@@ -1,10 +1,12 @@
 /**
  * Listening and speaking off (S8): for an hour after "Can't listen now", or until turned back on in
  * Preferences. Either keeps those exercises out of new sessions, and with listening off nothing
- * plays by itself; turning one back on ends both.
+ * plays by itself; turning one back on ends both. Listening turned off for good is also left out of
+ * known words and what is due (D41); a break is not.
  */
+import { LISTENING, SPEAKING } from "@nabu/core/lesson";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { BREAK_MS, isOff, offFor, playsUnasked, setBreakUntil, setTurnedOff, turnedOff, turnOn } from "../../src/breaks.ts";
+import { BREAK_MS, exclusionsOf, facetsOffOf, isOff, offFor, offNow, playsUnasked, setBreakUntil, setTurnedOff, turnedOff, turnOn } from "../../src/breaks.ts";
 
 /** A localStorage for the device (node has none). */
 const withStorage = (): Map<string, string> => {
@@ -72,5 +74,34 @@ describe("listening and speaking off", () => {
     expect(offFor("listening")).toBe("setting");
     turnOn("listening");
     expect(offFor("listening")).toBeUndefined();
+  });
+});
+
+describe("what sessions, known words and what is due leave out", () => {
+  it("off either way, sessions leave out the exercises", () => {
+    vi.useFakeTimers({ now: new Date("2026-11-12T09:00:00Z") });
+    withStorage();
+    expect(exclusionsOf(offNow())).toEqual(new Set());
+    setBreakUntil("listening", Date.now() + BREAK_MS);
+    expect(exclusionsOf(offNow())).toEqual(LISTENING);
+    setTurnedOff("speaking", true);
+    expect(exclusionsOf(offNow())).toEqual(new Set([...LISTENING, ...SPEAKING]));
+  });
+
+  it("only listening turned off for good leaves listening out of known words and what is due (D41)", () => {
+    vi.useFakeTimers({ now: new Date("2026-11-12T09:00:00Z") });
+    withStorage();
+    expect(facetsOffOf(offNow())).toEqual(new Set());
+    // A break, and speaking off for good, leave out their exercises and nothing more.
+    setBreakUntil("listening", Date.now() + BREAK_MS);
+    setTurnedOff("speaking", true);
+    expect(facetsOffOf(offNow())).toEqual(new Set());
+    setTurnedOff("listening", true);
+    expect(facetsOffOf(offNow())).toEqual(new Set(["listen"]));
+    // The same set each time, so a memo that depends on it keeps what it worked out.
+    expect(facetsOffOf(offNow())).toBe(facetsOffOf({ listening: "setting" }));
+    expect(facetsOffOf({})).toBe(facetsOffOf({ listening: "break" }));
+    turnOn("listening");
+    expect(facetsOffOf(offNow())).toEqual(new Set());
   });
 });

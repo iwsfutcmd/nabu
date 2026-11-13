@@ -221,7 +221,7 @@ test("listening off in Preferences: no listening exercises, until it is turned b
   await page.clock.setFixedTime(NOW);
   const apc = loadCourse("apc", "apc-Arab/standard");
   const request = { mode: "lesson", node: lessonNodes(apc)[0]?.node.id ?? "" } as const;
-  const without = planned(apc, [], request, NOW, 7, "UTC", LISTENING);
+  const without = planned(apc, [], request, NOW, 7, "UTC", { listening: "setting" });
   expect(planned(apc, [], request, NOW, 7).some((ex) => LISTENING.has(ex.template))).toBe(true);
   expect(without.some((ex) => LISTENING.has(ex.template))).toBe(false);
 
@@ -281,7 +281,7 @@ test("speaking off in Preferences: no speaking exercises", async ({ page }, info
     })[0];
   if (found === undefined) throw new Error("no early yue lesson plans a speaking card");
   const request = { mode: "lesson", node: found.node } as const;
-  const without = planned(yue, found.history, request, NOW, 7, "UTC", SPEAKING);
+  const without = planned(yue, found.history, request, NOW, 7, "UTC", { speaking: "setting" });
   expect(without.some((ex) => SPEAKING.has(ex.template))).toBe(false);
   if (found.history.length > 0) await seedLog(page, found.history);
 

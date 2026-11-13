@@ -7,8 +7,8 @@
  * New words are the ones the learner does not know yet (ADR 0100): the player shows their marks
  * where the course says marks are for new words.
  */
-import { learnedWords, type LearnerState } from "@nabu/core/learner";
-import type { CourseView } from "@nabu/core/lesson";
+import { DESIRED_RETENTION, learnedWords, type LearnerState } from "@nabu/core/learner";
+import type { CourseView, Facet } from "@nabu/core/lesson";
 import type { DisplayChoice } from "@nabu/ui/player";
 
 const KEY = "nabu.display.";
@@ -45,10 +45,13 @@ export const storeDisplay = (course: string, orthography: string, choice: Displa
   }
 };
 
-/** The words (KC ids) the learner knows now (ADR 0100), for vowel marks on new words only. */
-export const knownWords = (course: CourseView, state: LearnerState, now: Date): ReadonlySet<string> =>
+/**
+ * The words (KC ids) the learner knows now (ADR 0100), for vowel marks on new words only. `facetsOff`:
+ * the facets turned off for good on this device (D41), which words are known without.
+ */
+export const knownWords = (course: CourseView, state: LearnerState, now: Date, facetsOff: ReadonlySet<Facet>): ReadonlySet<string> =>
   new Set(
-    learnedWords(course, state, now.toISOString())
+    learnedWords(course, state, now.toISOString(), DESIRED_RETENTION, facetsOff)
       .filter((w) => w.known)
       .map((w) => w.kc),
   );

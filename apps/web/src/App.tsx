@@ -33,7 +33,7 @@ import {
   type SessionPlan,
   type SessionRequest,
 } from "@nabu/core/learner";
-import { cardGloss, createGrader, doneOf, firstTriesOf, lessonNodes, LISTENING, prepareGrading, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { cardGloss, createGrader, doneOf, firstTriesOf, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Facet, type PlayerState } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
@@ -50,7 +50,7 @@ import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import summaries from "virtual:nabu-courses";
 import { localDate, uuidv7 } from "./clock.ts";
-import { BREAK_MS, isOff, offFor, playsUnasked, setBreakUntil, setTurnedOff, turnOn, type Modality } from "./breaks.ts";
+import { BREAK_MS, exclusionsOf, facetsOffOf, isOff, offNow, playsUnasked, setBreakUntil, setTurnedOff, turnOn, type Modality } from "./breaks.ts";
 import { paceChoiceOf, setPaceChoice } from "./pace.ts";
 import { SentencesPage, useCorrections } from "./Corrections.tsx";
 import { LineReport } from "./Report.tsx";
@@ -509,7 +509,9 @@ const CoursePath = ({
 }): JSX.Element => {
   const t = useTranslator();
   // Listening and speaking off: for an hour, or turned off in Preferences (S8).
-  const [off, setOff] = useState(() => ({ listening: offFor("listening"), speaking: offFor("speaking") }));
+  const [off, setOff] = useState(offNow);
+  // Listening turned off for good is asked of no word and never due (D41); a break changes neither.
+  const facetsOff = facetsOffOf(off);
   const { course } = loaded;
   const orthography = course.orthography;
   const now = new Date();
@@ -522,15 +524,15 @@ const CoursePath = ({
   // The learner's pace (ADR 0105): read from the log unless they chose one (D5). It sets what "due"
   // means (its retention target) and where Continue goes (D6).
   const [paceChoice, setChoice] = useState<PaceChoice>(() => paceChoiceOf(course.id));
-  const pace = useMemo(() => paceOf(course, state, new Date(minute * 60_000).toISOString(), paceChoice), [course, state, minute, paceChoice]);
-  const counts = useMemo(() => wordCounts(learnedWords(course, state, new Date(minute * 60_000).toISOString(), pace.settings.retention)), [course, state, minute, pace]);
+  const pace = useMemo(() => paceOf(course, state, new Date(minute * 60_000).toISOString(), paceChoice, facetsOff), [course, state, minute, paceChoice, facetsOff]);
+  const counts = useMemo(() => wordCounts(learnedWords(course, state, new Date(minute * 60_000).toISOString(), pace.settings.retention, facetsOff)), [course, state, minute, pace, facetsOff]);
   const { due, known } = counts;
   const next = continueOf(course, state, pace);
   const studied = Object.keys(state.cards).length > 0;
   // What a mistakes session would hold now: a mistake on a listening card waits out a listening
   // break, and one the course no longer makes is not counted (practicableMistakes).
   const mistakes = useMemo(
-    () => practicableMistakes(course, state, { exclude: excludedBy({ listening: off.listening !== undefined, speaking: off.speaking !== undefined }), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
+    () => practicableMistakes(course, state, { exclude: exclusionsOf(off), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
     [course, state, off, speechTiers],
   );
   const today = game?.xp.byDate[localDate(now)] ?? 0;
@@ -798,13 +800,6 @@ const CoursePath = ({
   );
 };
 
-/** What sessions leave out: listening and speaking while they are off (a break, or turned off in Preferences). */
-const excludedBy = (off: { readonly listening: boolean; readonly speaking: boolean }): ReadonlySet<TemplateId> =>
-  new Set<TemplateId>([...(off.listening ? LISTENING : []), ...(off.speaking ? SPEAKING : [])]);
-
-/** What a new session leaves out, as listening and speaking stand when it opens. */
-const excluded = (): ReadonlySet<TemplateId> => excludedBy({ listening: isOff("listening"), speaking: isOff("speaking") });
-
 /** The session seed: ?seed=… for reproducible runs (tests), else fresh randomness. */
 const seedFor = (): number => {
   const param = new URLSearchParams(window.location.search).get("seed");
@@ -910,12 +905,16 @@ const plannedSetup = (props: SessionProps, route: string): Setup => {
   const seed = seedFor();
   // Speaking is scored where tones can be judged here or the server scores it (§10.4).
   const speech = speechSupportOf(course, serverAllowed() ? speechTiers.length : 0);
-  const exclude = excluded();
+  // As listening and speaking stand when it opens: off, their exercises are left out; listening
+  // turned off for good is also asked of no word and never due (D41).
+  const off = offNow();
+  const exclude = exclusionsOf(off);
+  const facetsOff = facetsOffOf(off);
   // The local date, as events stamp it: a word met today shows its skills from tomorrow (ADR 0100).
   const now = new Date();
   // The learner's pace (ADR 0105): a lesson's share of review and the retention target.
-  const pace = paceOf(course, state, now.toISOString(), paceChoiceOf(course.id)).band;
-  const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, ...(exclude.size > 0 ? { exclude } : {}) });
+  const pace = paceOf(course, state, now.toISOString(), paceChoiceOf(course.id), facetsOff).band;
+  const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, facetsOff, ...(exclude.size > 0 ? { exclude } : {}) });
   const session = uuidv7(now.getTime());
   const open: OpenSession | undefined = planned.exercises.length === 0 ? undefined : { route, course: course.id, session, seed, bundle: loaded.manifest.id, opened: now.getTime(), plan: planned };
   return { seed, planned, session, open };
@@ -1003,9 +1002,10 @@ const useSessionRoute = (route: string, back: string, playing: boolean) => {
 
 /**
  * Where the end of a session goes next (P9): the course page's Continue (ADR 0105), worked out from
- * the learner state with the session in it, once it has ended.
+ * the learner state with the session in it, once it has ended. `facetsOff`: listening turned off
+ * for good (D41), as on the course page.
  */
-const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go: (to: string) => void): NextStep | undefined => {
+const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go: (to: string) => void, facetsOff: ReadonlySet<Facet>): NextStep | undefined => {
   const t = useTranslator();
   const going = useRef(go);
   going.current = go;
@@ -1014,8 +1014,8 @@ const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go:
     const orthography = course.orthography;
     const hrefOf = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : href({ tag: "session", course: course.id, orthography, request: { mode: "lesson", node: n.node } }));
     const review = href({ tag: "session", course: course.id, orthography, request: { mode: "review" } });
-    return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), hrefOf, review, go: (to) => going.current(to), t });
-  }, [course, state, over, t]);
+    return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), facetsOff, hrefOf, review, go: (to) => going.current(to), t });
+  }, [course, state, over, facetsOff, t]);
 };
 
 const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, game, gameConfig, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
@@ -1034,8 +1034,10 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   // What was done before the session, and what a placement test placed: its result says what changed.
   const [before] = useState(() => new Set(state.completedNodes));
   const [placed, setPlaced] = useState<readonly string[] | undefined>(undefined);
+  // Listening turned off for good, as the session opens: words are known without it (D41).
+  const [facetsOff] = useState(() => facetsOffOf(offNow()));
   // The words the learner knows as the session opens: where a course marks vowels on new words only (P12).
-  const [known] = useState(() => knownWords(course, state, new Date()));
+  const [known] = useState(() => knownWords(course, state, new Date(), facetsOff));
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   const [onEvent] = useState(() => {
@@ -1052,8 +1054,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
     return recorder({ course, bundle: manifest.id, device, plan: setup.planned, seed: setup.seed, record: keep, session: setup.session, firstTries: setup.resumed?.firstTries });
   });
   // Its end (P9): what it changed, from the log with it against without it, and where to go next.
-  const end = useSessionEnd({ store, config: gameConfig, course, session: setup.session, ended: routing.over, state, game, placement, t });
-  const next = useNextStep(course, state, routing.over, routing.to);
+  const end = useSessionEnd({ store, config: gameConfig, course, session: setup.session, ended: routing.over, state, game, placement, facetsOff, t });
+  const next = useNextStep(course, state, routing.over, routing.to, facetsOff);
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
   // Nothing plays by itself with sound off or listening put off (P6).
@@ -1155,6 +1157,8 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
   const routing = useSessionRoute(route, back, storyAt(course, node) !== undefined);
   // Each question's latest answer, for "My answer should be accepted" under its feedback.
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
+  // Listening turned off for good, as the story opens: words are known without it (D41).
+  const [facetsOff] = useState(() => facetsOffOf(offNow()));
   const [setup] = useState(() => {
     const story = storyAt(course, node);
     if (story === undefined) return undefined;
@@ -1168,13 +1172,13 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
     return {
       session,
       script: storyScript(course, story, seededRng(seed)),
-      known: knownWords(course, state, new Date()),
+      known: knownWords(course, state, new Date(), facetsOff),
       onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep, session }),
     };
   });
   // Its end (P9): what it changed, from the log with it against without it, and where to go next.
-  const end = useSessionEnd({ store, config: gameConfig, course, session: setup?.session, ended: routing.over, state, game, placement: false, t });
-  const next = useNextStep(course, state, routing.over, routing.to);
+  const end = useSessionEnd({ store, config: gameConfig, course, session: setup?.session, ended: routing.over, state, game, placement: false, facetsOff, t });
+  const next = useNextStep(course, state, routing.over, routing.to, facetsOff);
   const grader = useMemo(() => createGrader(course), [course]);
   // Nothing plays by itself with sound off or listening put off (P6).
   const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());

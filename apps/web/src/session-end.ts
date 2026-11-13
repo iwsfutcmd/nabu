@@ -10,8 +10,8 @@
  * always on offer beside it (D6).
  */
 import { daysThisWeek, type GameConfig, type GameState } from "@nabu/core/game";
-import { continueOf, learnedWords, paceOf, pathNodes, replay, type LearnerState, type PaceChoice, type PathNode } from "@nabu/core/learner";
-import type { CourseView } from "@nabu/core/lesson";
+import { continueOf, DESIRED_RETENTION, learnedWords, paceOf, pathNodes, replay, type LearnerState, type PaceChoice, type PathNode } from "@nabu/core/learner";
+import type { CourseView, Facet } from "@nabu/core/lesson";
 import type { LearnerEvent } from "@nabu/schema";
 import type { useTranslator } from "@nabu/ui";
 import type { NextStep, NextTo, SessionProgress } from "@nabu/ui/player";
@@ -28,9 +28,9 @@ export interface Standing {
   readonly game: GameState;
 }
 
-/** The words of the course the learner knows, in course order. */
-const knownIn = (course: CourseView, state: LearnerState, now: string): readonly string[] =>
-  learnedWords(course, state, now)
+/** The words of the course the learner knows, in course order (without the facets turned off for good, D41). */
+const knownIn = (course: CourseView, state: LearnerState, now: string, facetsOff: ReadonlySet<Facet>): readonly string[] =>
+  learnedWords(course, state, now, DESIRED_RETENTION, facetsOff)
     .filter((w) => w.known)
     .map((w) => w.kc);
 
@@ -51,15 +51,17 @@ export interface ProgressInput {
   readonly firstDay: number;
   /** A placement test: its result already says what it marked done, unit by unit. */
   readonly placement: boolean;
+  /** Facets turned off for good on this device (D41): words are known without them. */
+  readonly facetsOff: ReadonlySet<Facet>;
   readonly t: Translator;
 }
 
 /** How the session moved the learner's progress: what is new after it that was not before. */
-export const progressOf = ({ course, before, after, config, now, firstDay, placement, t }: ProgressInput): SessionProgress => {
+export const progressOf = ({ course, before, after, config, now, firstDay, placement, facetsOff, t }: ProgressInput): SessionProgress => {
   const iso = now.toISOString();
   const today = localDate(now);
-  const knownBefore = new Set(knownIn(course, before.state, iso));
-  const knownAfter = knownIn(course, after.state, iso);
+  const knownBefore = new Set(knownIn(course, before.state, iso, facetsOff));
+  const knownAfter = knownIn(course, after.state, iso, facetsOff);
   const gained = knownAfter.filter((kc) => !knownBefore.has(kc));
   const unitsBefore = unitsDone(course, before.state);
   const unitsAfter = unitsDone(course, after.state);
@@ -88,6 +90,8 @@ export interface NextInput {
   readonly now: Date;
   /** The learner's pace choice for the course (D5). */
   readonly pace: PaceChoice;
+  /** Facets turned off for good on this device (D41): never due or slipping, as on the course page. */
+  readonly facetsOff: ReadonlySet<Facet>;
   /** Where a node is played, and practice. */
   readonly hrefOf: (node: PathNode) => string;
   readonly review: string;
@@ -97,8 +101,8 @@ export interface NextInput {
 }
 
 /** The next step, as the course page's Continue has it (ADR 0105); none once the path is done and nothing is due. */
-export const nextStepOf = ({ course, state, now, pace: choice, hrefOf, review, go, t }: NextInput): NextStep | undefined => {
-  const pace = paceOf(course, state, now.toISOString(), choice);
+export const nextStepOf = ({ course, state, now, pace: choice, facetsOff, hrefOf, review, go, t }: NextInput): NextStep | undefined => {
+  const pace = paceOf(course, state, now.toISOString(), choice, facetsOff);
   const next = continueOf(course, state, pace);
   if (next.kind === "done") return undefined;
   if (next.kind === "path") return { to: nextTo(course, next.next), go: () => go(hrefOf(next.next)) };
@@ -123,6 +127,8 @@ export interface SessionEndInput {
   readonly state: LearnerState;
   readonly game: GameState | null;
   readonly placement: boolean;
+  /** Facets turned off for good on this device (D41): the words now known are known without them. */
+  readonly facetsOff: ReadonlySet<Facet>;
   readonly t: Translator;
 }
 
@@ -132,7 +138,7 @@ export interface SessionEndInput {
  * standing now is the app's, worked out again as each event lands, so these settle a moment after
  * the session's last event.
  */
-export const useSessionEnd = ({ store, config, course, session, ended, state, game, placement, t }: SessionEndInput): { readonly progress: SessionProgress | undefined; readonly xp: number | undefined } => {
+export const useSessionEnd = ({ store, config, course, session, ended, state, game, placement, facetsOff, t }: SessionEndInput): { readonly progress: SessionProgress | undefined; readonly xp: number | undefined } => {
   const [before, setBefore] = useState<Standing | undefined>(undefined);
   useEffect(() => {
     if (!ended || session === undefined || config === null) return;
@@ -148,7 +154,7 @@ export const useSessionEnd = ({ store, config, course, session, ended, state, ga
   return useMemo(() => {
     if (before === undefined || game === null || config === null) return { progress: undefined, xp: undefined };
     const after: Standing = { state, game };
-    const progress = progressOf({ course, before, after, config, now: new Date(), firstDay: firstDayOf(t.formattingLocale), placement, t });
+    const progress = progressOf({ course, before, after, config, now: new Date(), firstDay: firstDayOf(t.formattingLocale), placement, facetsOff, t });
     return { progress, xp: game.xp.total - before.game.xp.total };
-  }, [before, game, config, state, course, placement, t]);
+  }, [before, game, config, state, course, placement, facetsOff, t]);
 };
