@@ -138,6 +138,28 @@ const numberingSystems = Object.fromEntries(
     .map(([id, n]) => [id, n._digits as string]),
 );
 
+// --- macrolanguages -----------------------------------------------------------
+// Each language a macrolanguage encompasses, and that macrolanguage, as CLDR records them: the
+// replacements its aliases give for a reason of "macrolanguage" (arb → ar, cmn → zh), and its
+// one-way language matches at distance 10 between two bare languages (apc → ar, yue → zh). The two
+// lists are disjoint. The pipeline hears a language its recognizer or eSpeak NG has no model for as
+// its macrolanguage (ADR 0116).
+const macroAliases = readCldr<{ supplemental: { metadata: { alias: { languageAlias: Record<string, { _reason?: string; _replacement?: string }> } } } }>(
+  "cldr-core",
+  "supplemental/aliases.json",
+).supplemental.metadata.alias.languageAlias;
+const macroMatches = readCldr<{ supplemental: { languageMatching: { "written-new": { languageMatch: { _desired: string; _supported: string; _distance: number | string; _oneway?: boolean | string }[] } } } }>(
+  "cldr-core",
+  "supplemental/languageMatching.json",
+).supplemental.languageMatching["written-new"].languageMatch;
+const bare = /^[a-z]{2,3}$/u;
+const macrolanguages = Object.fromEntries(
+  [
+    ...Object.entries(macroAliases).flatMap(([language, a]) => (a._reason === "macrolanguage" && a._replacement !== undefined && bare.test(language) && bare.test(a._replacement) ? [[language, a._replacement] as const] : [])),
+    ...macroMatches.flatMap((m) => (String(m._oneway) === "true" && Number(m._distance) === 10 && bare.test(m._desired) && bare.test(m._supported) ? [[m._desired, m._supported] as const] : [])),
+  ].sort(([a], [b]) => (a < b ? -1 : 1)),
+);
+
 // --- exemplars ----------------------------------------------------------------
 const exemplars = Object.fromEntries(
   config.exemplarLocales.map((locale) => {
@@ -176,13 +198,14 @@ const files: Record<string, unknown> = {
   "parent-locales.json": parentLocales,
   "exemplars.json": exemplars,
   "numbering-systems.json": numberingSystems,
+  "macrolanguages.json": macrolanguages,
 };
 
 /** One entry per line for the big tables, so CLDR bumps produce reviewable diffs. */
 const format = (name: string, data: unknown): string => {
-  if (name !== "likely-subtags.json" && name !== "exemplars.json") return `${JSON.stringify(data, null, 2)}\n`;
+  if (name !== "likely-subtags.json" && name !== "exemplars.json" && name !== "macrolanguages.json") return `${JSON.stringify(data, null, 2)}\n`;
   const lines = Object.entries(data as Record<string, unknown>).map(([k, v]) => {
-    if (name === "likely-subtags.json") return `  ${JSON.stringify(k)}: ${JSON.stringify(v)}`;
+    if (name !== "exemplars.json") return `  ${JSON.stringify(k)}: ${JSON.stringify(v)}`;
     const sets = Object.entries(v as Record<string, unknown>).map(([kind, set]) => `    ${JSON.stringify(kind)}: ${JSON.stringify(set)}`);
     return `  ${JSON.stringify(k)}: {\n${sets.join(",\n")}\n  }`;
   });
