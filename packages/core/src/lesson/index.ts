@@ -1,4 +1,5 @@
-export { buildLesson, cardGallery, sampleExercise, type GalleryCard, type LessonOptions } from "./build.ts";
+export { buildLesson, type LessonOptions } from "./build.ts";
+export { cardGallery, sampleExercise, type GalleryCard } from "./gallery.ts";
 export { courseExclusions, facetExclusions, speechExclusions, speechSupportOf, voiceExclusions, type SpeechSupport } from "./exclusions.ts";
 export { lessonNodes, type LessonNode } from "./nodes.ts";
 export { allKcs, allSentences, assembleCourse, coreFiles, createGrader, MEDIA_ROLES, prepareGrading, profileOf, readCourse, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
