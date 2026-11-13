@@ -215,7 +215,7 @@ export const GamePanel = ({ state, config }: { state: GameState; config: GameCon
   return (
     <section className={`${styles.course} ${styles.game}`} data-game="" aria-labelledby="game-title">
       <h2 className={styles.courseName} id="game-title">
-        {t.format("game.title")}
+        {t.format("game.practice.title")}
       </h2>
       <p className={styles.streak} data-streak={streak.current} data-practiced-today={String(streak.practicedToday)}>
         {streak.current > 0 ? (

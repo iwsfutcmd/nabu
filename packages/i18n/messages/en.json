@@ -1638,6 +1638,10 @@
       "message": ".input {$done :number}\n.input {$goal :number}\n.match $goal\none {{This week: {$done} of {$goal} day}}\n* {{This week: {$done} of {$goal} days}}",
       "description": "Progress toward the learner's weekly goal: $done practice days so far this week, of the $goal they aim for. The week starts on the day the interface language's region starts it. Select plural forms as your language needs; drop the selection if it needs none."
     },
+    "game.practice.title": {
+      "message": "Your practice",
+      "description": "Heading of the panel on the home screen with the streak, the weekly goal, today's quests and the achievements. It shows only once the learner has finished a session."
+    },
     "game.quests.done": {
       "message": "Done",
       "description": "A quest completed today."
@@ -1669,10 +1673,6 @@
     "game.streak.today-pending": {
       "message": "Practise today to keep it going.",
       "description": "Shown when today does not count yet; kind, never guilt-tripping."
-    },
-    "game.title": {
-      "message": "Your practice",
-      "description": "Heading of the panel on the home screen with the streak, the weekly goal, today's quests and the achievements. It shows only once the learner has finished a session."
     },
     "landing.contribute.audio": {
       "message": "Audio check: listen to every clip of a course and say whether it sounds right:",
