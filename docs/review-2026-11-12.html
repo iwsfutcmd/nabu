@@ -2250,12 +2250,14 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
       "note": "Merged (ADR 0123): a new account takes the device’s whole log; a sign-out by the server is said on Home until the learner signs in again or stays signed out; “offline” is told apart from “the server doesn’t answer”; with no email on the server, the sign-in form says plainly that a password can’t be reset. Choices D46, D47."
     },
     "R1": {
-      "state": "in-progress",
-      "note": "With a helper (fix/speed, ADR 0112): no game replay or corrections re-read per event inside a session, measured before and after at 4× CPU with a year of history. Still in progress."
+      "state": "done",
+      "commit": "252249c0",
+      "note": "Merged (ADR 0112): the learner state keeps no list of folded events, the game is recomputed only after the events that change it, and corrections are re-read only when one is recorded: about 0.13 s of main-thread work per answer with a year of history at 4× CPU, down from about 2.5 s."
     },
     "R4": {
-      "state": "in-progress",
-      "note": "With a helper (fix/speed, ADR 0112): a sync pull never brings back what the device just uploaded; less often, or by digest, otherwise. Still in progress."
+      "state": "done",
+      "commit": "88473e45",
+      "note": "Merged (ADR 0112): a sync pass pulls first and never brings back what the device just uploaded, and the check against the server’s projections runs after signing in and once a day, in a worker: 2 requests and 1 KB per pass instead of 4 requests and 605 KB, and a sign-up downloads 2.3 MB instead of 25.6 MB."
     },
     "P9": {
       "state": "done",
