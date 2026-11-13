@@ -30,7 +30,8 @@ import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { useReadings } from "../player/Readings.tsx";
 import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
-import { digitIndex, effectiveWritingMode, focusInReach, inDialog, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { effectiveWritingMode, focusInReach, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { usePlayerKeys } from "../player/Shell.tsx";
 import { SoundToggle } from "../player/SoundToggle.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
@@ -194,7 +195,8 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const ids = { instruction: `${base}-instruction`, base };
   const transcript = useRef<HTMLDivElement>(null);
   const shortcuts = useRef<Shortcuts | null>(null);
-  const keys = useRef<(e: globalThis.KeyboardEvent) => void>(() => undefined);
+  // Keyboard (§11.3, §11.7): Enter reads on, checks and continues; number keys and Backspace go to a question's view.
+  const keys = usePlayerKeys();
 
   const asking = state.tag === "asking" ? state.player : undefined;
   const active = asking === undefined || asking.tag === "finished" ? undefined : asking.tag === "interrupted" ? asking.resume : asking;
@@ -236,12 +238,6 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   useEffect(() => {
     if (rereading) rereadHeading.current?.focus();
   }, [rereading]);
-
-  useEffect(() => {
-    const onKeyDown = (e: globalThis.KeyboardEvent): void => keys.current(e);
-    window.addEventListener("keydown", onKeyDown, { capture: true });
-    return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
-  }, []);
 
   const lines = state.shown.map((i) => script.lines[i]).filter((l) => l !== undefined);
   // A story line's clip is the course's audio of "<story>#<step>" (ADR 0058's audio items).
@@ -302,7 +298,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   );
 
   if (state.tag === "finished") {
-    keys.current = () => undefined;
+    keys.current = undefined;
     const done = state.summary.completed;
     if (done && rereading) {
       // The whole story, as it was read, to read again (S15): its translations, glosses and clips;
@@ -386,29 +382,15 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     if (composing) focusInReach(checkButton.current, null);
   };
 
-  keys.current = (e) => {
-    // Never during IME composition, in a text field, or in a dialog (a correction's form, P11): its keys are its own.
-    if (confirming || e.isComposing || e.keyCode === 229 || typingInField(e.target) || inDialog(e.target)) return;
-    const control = e.target instanceof HTMLElement ? e.target.closest("button, a, [role=switch]") : null;
-    if (e.key === "Enter") {
-      if (control !== null && control !== continueButton.current) return;
-      if (state.tag === "reading" || feedback !== undefined || (canCheck && !composing)) {
-        e.preventDefault();
-        e.stopPropagation();
-        forward();
-      }
-      return;
-    }
-    if (e.ctrlKey || e.metaKey || e.altKey || state.tag !== "asking") return;
-    const digit = digitIndex(e.key);
-    if (digit !== undefined && shortcuts.current?.digit !== undefined) {
-      e.preventDefault();
-      shortcuts.current.digit(digit);
-    } else if (e.key === "Backspace" && shortcuts.current?.backspace !== undefined) {
-      e.preventDefault();
-      shortcuts.current.backspace();
-    }
-  };
+  // Enter reads on, continues from a question's feedback and checks an answer (never mid-composition),
+  // from Continue too, which takes the focus as each line is read; the quit dialog's keys are its own.
+  keys.current = confirming
+    ? undefined
+    : {
+        enter: state.tag === "reading" || feedback !== undefined || (canCheck && !composing) ? forward : undefined,
+        enterFrom: continueButton,
+        shortcuts: state.tag === "asking" ? shortcuts : undefined,
+      };
 
   return (
     <section className={`${playerStyles.card} ${styles.reader}`} data-story-reader="" data-story={script.id} data-state={state.tag} data-template={ex?.template} data-exercise={ex?.id}>

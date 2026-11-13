@@ -51,7 +51,8 @@ import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.t
 import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
 import styles from "./Player.module.css";
 import { useReadings } from "./Readings.tsx";
-import { digitIndex, focusInReach, inDialog, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
+import { focusInReach, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
+import { usePlayerKeys } from "./Shell.tsx";
 import { SoundToggle } from "./SoundToggle.tsx";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
@@ -244,7 +245,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const card = useRef<HTMLElement>(null);
   useActionsInReach(card, footer, state.tag === "finished" ? "" : (state.tag === "interrupted" ? state.resume : state).ex.id);
   const shortcuts = useRef<Shortcuts | null>(null);
-  const keys = useRef<(e: globalThis.KeyboardEvent) => void>(() => undefined);
+  // Keyboard (§11.3, §11.7): Enter checks and continues, number keys and Backspace go to the current view.
+  const keys = usePlayerKeys();
   // Tap-for-gloss (P1): the word tapped on the card now (a new card starts with none) and its meaning.
   const shown = state.tag === "finished" ? undefined : (state.tag === "interrupted" ? state.resume : state).ex.id;
   const [tap, setTap] = useState<{ readonly card: string; readonly word: WordTap } | undefined>(undefined);
@@ -266,17 +268,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
     if (feedbackOf !== undefined) focusInReach(continueButton.current, footer.current);
   }, [feedbackOf]);
 
-  // Keyboard (§11.3, §11.7): Enter checks and continues, number keys and Backspace go to the
-  // current view. A capturing window listener keeps them working when focus falls back to the
-  // page, and claims Enter before a focused radio would re-select itself.
-  useEffect(() => {
-    const onKeyDown = (e: globalThis.KeyboardEvent): void => keys.current(e);
-    window.addEventListener("keydown", onKeyDown, { capture: true });
-    return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
-  }, []);
-
   if (state.tag === "finished") {
-    keys.current = () => undefined;
+    keys.current = undefined;
     // What the session taught and what to go over, then progress and the next step (P9). A placement
     // test says where it placed instead of its score, and lists no misses (nor second checks): it asks ahead of the path.
     return (
@@ -342,36 +335,11 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const listening = LISTENING.has(ex.template);
   const pairs = TEMPLATES[ex.template].modality.input === "pairs";
 
-  keys.current = (e) => {
-    // Never act during IME composition (§6.7), inside text fields (they handle Enter), or in a dialog:
-    // the quit dialog, a correction's form, a menu (P11). Their keys are theirs.
-    if (e.isComposing || e.keyCode === 229 || typingInField(e.target) || inDialog(e.target) || state.tag === "interrupted") return;
-    const target = e.target instanceof HTMLElement ? e.target : null;
-    const control = target?.closest("button, a, [role=switch]") ?? null;
-    if (e.key === "Enter") {
-      if (control !== null) return; // buttons and links activate themselves
-      if (active.tag === "feedback") {
-        e.preventDefault();
-        e.stopPropagation();
-        dispatch({ tag: "continue" });
-      } else if (enterChecks) {
-        e.preventDefault();
-        e.stopPropagation();
-        dispatch({ tag: "submit" });
-      }
-      return;
-    }
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    const current = shortcuts.current;
-    const digit = digitIndex(e.key);
-    if (digit !== undefined && current?.digit !== undefined) {
-      e.preventDefault();
-      current.digit(digit);
-    } else if (e.key === "Backspace" && current?.backspace !== undefined) {
-      e.preventDefault();
-      current.backspace();
-    }
-  };
+  // Enter continues from the feedback and checks an answer (never mid-composition); the quit dialog's keys are its own.
+  keys.current =
+    state.tag === "interrupted"
+      ? undefined
+      : { enter: active.tag === "feedback" ? () => dispatch({ tag: "continue" }) : enterChecks ? () => dispatch({ tag: "submit" }) : undefined, shortcuts };
 
   return (
     <section ref={card} className={styles.card} data-lesson-player="" data-template={ex.template} data-exercise={ex.id} data-state={state.tag}>
