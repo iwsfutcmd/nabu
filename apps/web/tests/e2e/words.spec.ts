@@ -4,9 +4,11 @@
  * being learned with the skills it has yet to show (ADR 0100); found by its letters whatever its
  * vowel marks, or by its meaning; shown all, known or learning; ordered as the course,
  * alphabetically or weakest first. A learner who has practised nothing is told how words get there.
+ * With listening turned off for good on the device, words are known without being heard and
+ * listening is never due, on the course page as in the list (D41); a break changes neither.
  */
-import { learnedWords, replay, wordCounts } from "@nabu/core/learner";
-import { lessonNodes, type TemplateId } from "@nabu/core/lesson";
+import { continueOf, learnedWords, paceOf, replay, skillsAsked, wordCounts } from "@nabu/core/learner";
+import { allKcs, lessonNodes, type Facet, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
@@ -136,4 +138,78 @@ test("Cantonese words show their Jyutping; a learner with no practice is told ho
   await expect(word).toBeVisible();
   await expect(word.locator("rt").first()).toBeAttached();
   expect(await seriousAxeViolations(page, "[data-words-page]")).toEqual([]);
+});
+
+test("listening turned off for good: words are known without being heard, and it is never due; a break changes neither (D41)", async ({ page }) => {
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const asked = skillsAsked(course);
+  // Words the course asks to be read, typed and heard.
+  const kcs = allKcs(course)
+    .filter((k) => k.kind === "sense" && k.forms?.[course.orthography] !== undefined && asked(k.id).length === 3)
+    .slice(0, 25);
+  expect(kcs).toHaveLength(25);
+  const model = historyBefore(course, lessonNodes(course)[1]?.node.id ?? "", NOW).find((e) => e.type === "answer_submitted");
+  if (model?.type !== "answer_submitted") throw new Error("the history has answers");
+  // Each read, typed and heard right 20 days ago, then read and typed right again yesterday: every
+  // skill shown but listening, whose one review has faded since.
+  const answers = (daysAgo: number, session: string, templates: readonly TemplateId[]): LearnerEvent[] =>
+    kcs.flatMap((kc, i) =>
+      templates.map((template, j): LearnerEvent => {
+        const at = new Date(NOW.getTime() - daysAgo * DAY + (i * templates.length + j) * 10_000).toISOString();
+        const exercise = { id: `${template}:${kc.id}`, template, item: kc.id, kcs: [kc.id] };
+        return { ...model, session, clientTime: at, localDate: at.slice(0, 10), exercise, attempt: 1, outcome: { kind: "CORRECT", notes: [], kcs: [{ kc: kc.id, status: "right" }] } };
+      }),
+    );
+  const history = freshIds([
+    ...answers(20, "00000000-0000-7000-a000-0000000d4101", ["choose-translation", "translate-type.l1-l2", "listen-select"]),
+    ...answers(1, "00000000-0000-7000-a000-0000000d4102", ["choose-translation", "translate-type.l1-l2"]),
+  ]);
+  // What the course page shows at the pace the learner chose (steady), with listening on and turned off for good.
+  const state = replay(history);
+  const standing = (facetsOff?: ReadonlySet<Facet>): { known: number; due: number; next: string } => {
+    const pace = paceOf(course, state, NOW.toISOString(), "steady", facetsOff);
+    const { known, due } = wordCounts(learnedWords(course, state, NOW.toISOString(), pace.settings.retention, facetsOff));
+    return { known, due, next: continueOf(course, state, pace).kind };
+  };
+  const on = standing();
+  const off = standing(new Set<Facet>(["listen"]));
+  expect(on).toEqual({ known: 0, due: 25, next: "practice" });
+  expect(off).toEqual({ known: 25, due: 0, next: "path" });
+  const shows = async ({ known, due, next }: typeof on): Promise<void> => {
+    await expect(page.locator("[data-words-link]")).toHaveAttribute("data-count", String(known));
+    await expect(page.locator("[data-practice-mode=review]")).toHaveAttribute("data-count", String(due));
+    await expect(page.locator("[data-continue]")).toHaveAttribute("data-continue", next);
+  };
+  const coursePage = "/?sound=off#/fa/fa-Arab.standard";
+  const list = page.locator("[data-word-list=fa]");
+
+  await page.clock.setFixedTime(NOW);
+  await seedLog(page, history);
+  await page.evaluate(() => localStorage.setItem("nabu.pace.fa", "steady"));
+  await page.goto(coursePage);
+  await shows(on);
+  // The word list: every word still to be heard.
+  await page.locator("[data-words-link]").click();
+  await expect(list.locator("[data-words-count]")).toHaveAttribute("data-words-known", "0");
+  await expect(list.locator(`[data-word="${kcs[0]?.id ?? ""}"] [data-skills-missing]`)).toHaveAttribute("data-skills-missing", "listen");
+
+  // "Can't listen now" was pressed: for the hour, its exercises are left out and nothing else.
+  await page.evaluate((until) => localStorage.setItem("nabu.listening-off-until", String(until)), NOW.getTime() + 3_600_000);
+  await page.goto(coursePage);
+  await expect(page.locator("[data-listening-off]")).toHaveAttribute("data-listening-off", "break");
+  await shows(on);
+
+  // Kept off for good: the words are known without being heard, and their listening is never due.
+  await page.locator("[data-action=listening-keep-off]").click();
+  await expect(page.locator("[data-listening-off]")).toHaveAttribute("data-listening-off", "setting");
+  await shows(off);
+  await page.locator("[data-words-link]").click();
+  await expect(list.locator("[data-words-count]")).toHaveAttribute("data-words-known", "25");
+  await expect(list.locator("[data-skills-missing]")).toHaveCount(0);
+
+  // On again, the log says what it said before.
+  await page.goto(coursePage);
+  await page.locator("[data-action=listening-on]").click();
+  await expect(page.locator("[data-listening-off]")).toHaveCount(0);
+  await shows(on);
 });
