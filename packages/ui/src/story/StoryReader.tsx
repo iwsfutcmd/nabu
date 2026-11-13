@@ -17,11 +17,10 @@ import { countsAs, draftOf, emptyDraft, isCorrect, missedOf, responseOf, type Au
 import { storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type JSX, type ReactNode } from "react";
-import { Button, Dialog, Heading, Modal } from "react-aria-components";
+import { Button } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon } from "../icons.tsx";
 import { WordStatusProvider, type Marks } from "../marks.tsx";
-import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import type { DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
@@ -30,7 +29,7 @@ import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
 import { effectiveWritingMode, focusInReach, type Shortcuts, type WritingMode } from "../player/shared.ts";
-import { HeaderToggles, SessionHeader, usePlayerKeys, useToggles } from "../player/Shell.tsx";
+import { HeaderToggles, QuitDialog, SessionHeader, usePlayerKeys, useQuitRequest, useToggles } from "../player/Shell.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
 import { useStoryPlayer } from "./useStoryPlayer.ts";
@@ -159,7 +158,6 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
 const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
   const { course, script, grader, imageUrl, language, onEvent, onExit, profile, xpEarned } = props;
   const t = useTranslator();
-  const chrome = useChrome();
   // Sound, the reading layer, vowel marks and vertical reading: the learner's choices for the course,
   // else the profile's (P6, P12; vertical text in the story's lines).
   const toggles = useToggles(profile, "reading", props);
@@ -172,12 +170,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const [selected, setSelected] = useState(props.initial?.gloss);
   const [confirming, setConfirming] = useState(false);
   // Leaving mid-story (S3) asks as the quit button does; not once the story is over.
-  const quitAsked = useRef(props.quitRequest);
-  useEffect(() => {
-    if (props.quitRequest === quitAsked.current) return;
-    quitAsked.current = props.quitRequest;
+  useQuitRequest(props.quitRequest, () => {
     if (state.tag !== "finished") setConfirming(true);
-  }, [props.quitRequest]);
+  });
   // After the end, the whole story again, to read at leisure (S15): no questions, nothing recorded.
   const [rereading, setRereading] = useState(props.rereading === true);
   const rereadHeading = useRef<HTMLHeadingElement>(null);
@@ -443,35 +438,23 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         )}
       </footer>
 
-      {/* In the chrome's lang, dir and font (it is portalled out of the app's root); it says what leaving keeps (P8). */}
-      <Modal className={playerStyles.modal} isOpen={confirming} isDismissable onOpenChange={setConfirming}>
-        <Dialog className={`${playerStyles.dialog} ${chromeClass}`} style={chrome.style} data-quit-dialog="">
-          <div className={playerStyles.dialogBody} lang={chrome.lang} dir={chrome.dir}>
-            <Heading slot="title" className={playerStyles.instruction}>
-              {t.format("story.quit.title")}
-            </Heading>
-            <p data-quit-kept="" data-replay={props.replay === true || undefined}>
-              {t.format(props.replay === true ? "story.quit.kept.replay" : "story.quit.kept")}
-            </p>
-            <div className={playerStyles.footer}>
-              <Button
-                className={playerStyles.secondary}
-                onPress={() => {
-                  setConfirming(false);
-                  dispatch({ tag: "quit" });
-                  onExit?.();
-                }}
-                data-action="quit-confirm"
-              >
-                {t.format("story.quit.confirm")}
-              </Button>
-              <Button className={playerStyles.primary} onPress={() => setConfirming(false)} autoFocus data-action="resume">
-                {t.format("story.quit.cancel")}
-              </Button>
-            </div>
-          </div>
-        </Dialog>
-      </Modal>
+      {/* It says what leaving keeps (P8): a story done before loses nothing more (D13). */}
+      <QuitDialog
+        open={confirming}
+        copy={{
+          title: t.format("story.quit.title"),
+          body: t.format(props.replay === true ? "story.quit.kept.replay" : "story.quit.kept"),
+          confirm: t.format("story.quit.confirm"),
+          cancel: t.format("story.quit.cancel"),
+        }}
+        replay={props.replay === true}
+        onConfirm={() => {
+          setConfirming(false);
+          dispatch({ tag: "quit" });
+          onExit?.();
+        }}
+        onCancel={() => setConfirming(false)}
+      />
     </section>
   );
 };

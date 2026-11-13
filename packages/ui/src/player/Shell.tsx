@@ -1,12 +1,13 @@
 /**
- * What the lesson player and the story reader share (C14 in the 2026-11 review): their keys, and the
- * header with its progress bar and the toggles in it (the display menu, the sound switch). A fix to
- * one of them is made once, for both.
+ * What the lesson player and the story reader share (C14 in the 2026-11 review): their keys, the
+ * header with its progress bar, the toggles in it (the display menu, the sound switch) and the quit
+ * dialog. A fix to one of them is made once, for both.
  */
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
-import { Button, ProgressBar } from "react-aria-components";
+import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
 import { CloseIcon } from "../icons.tsx";
+import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { DisplayMenu, hasDisplayChoices, useDisplay, type Display, type DisplayChoice } from "./Display.tsx";
 import styles from "./Player.module.css";
 import { useReadings, type Readings } from "./Readings.tsx";
@@ -177,3 +178,80 @@ export const SessionHeader = ({
     {children}
   </header>
 );
+
+// ------------------------------------------------------------------------------------ quitting
+
+/** What a quit dialog says: its title, what quitting keeps, and its two buttons. */
+export interface QuitCopy {
+  readonly title: string;
+  readonly body: string;
+  readonly confirm: string;
+  readonly cancel: string;
+}
+
+/**
+ * Asks before leaving a session, and says what leaving keeps (P8). The dialog is portalled out of the
+ * app's root, so it takes the chrome's lang, dir and font itself. Dismissing it goes on, as its
+ * cancel button does.
+ */
+export const QuitDialog = ({
+  open,
+  copy,
+  replay,
+  mode,
+  onConfirm,
+  onCancel,
+}: {
+  readonly open: boolean;
+  readonly copy: QuitCopy;
+  /** The session was finished before (D13): leaving it loses nothing more. */
+  readonly replay: boolean;
+  /** The session's kind, where it has one (a lesson, practice, the placement test). */
+  readonly mode?: string | undefined;
+  readonly onConfirm: () => void;
+  readonly onCancel: () => void;
+}): JSX.Element => {
+  const chrome = useChrome();
+  return (
+    <Modal
+      className={styles.modal}
+      isOpen={open}
+      isDismissable
+      onOpenChange={(isOpen) => {
+        if (!isOpen) onCancel();
+      }}
+    >
+      <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} data-quit-dialog="" data-mode={mode}>
+        <div className={styles.dialogBody} lang={chrome.lang} dir={chrome.dir}>
+          <Heading slot="title" className={styles.instruction}>
+            {copy.title}
+          </Heading>
+          <p data-quit-kept="" data-replay={replay || undefined}>
+            {copy.body}
+          </p>
+          <div className={styles.footer}>
+            <Button className={styles.secondary} onPress={onConfirm} data-action="quit-confirm">
+              {copy.confirm}
+            </Button>
+            <Button className={styles.primary} onPress={onCancel} autoFocus data-action="resume">
+              {copy.cancel}
+            </Button>
+          </div>
+        </div>
+      </Dialog>
+    </Modal>
+  );
+};
+
+/**
+ * The app bumps `request` to ask, as the quit button does, whether to leave (S3: Back, or a phone's
+ * back button, in the middle of a session). `ask` is the one of the render that saw the bump.
+ */
+export const useQuitRequest = (request: number | undefined, ask: () => void): void => {
+  const asked = useRef(request);
+  useEffect(() => {
+    if (request === asked.current) return;
+    asked.current = request;
+    ask();
+  }, [request]);
+};

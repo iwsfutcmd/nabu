@@ -37,12 +37,11 @@ import {
 } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type JSX, type ReactNode } from "react";
-import { Button, Dialog, Heading, Link, Modal } from "react-aria-components";
+import { Button, Link } from "react-aria-components";
 import type { MessageId } from "@nabu/i18n";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, SettingsIcon } from "../icons.tsx";
 import { WordStatusProvider } from "../marks.tsx";
-import { chromeClass, useChrome } from "../UiRoot.tsx";
 import type { DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
 import { GlossPanel, useGlosses, type WordTap } from "./Gloss.tsx";
@@ -51,7 +50,7 @@ import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.t
 import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
 import styles from "./Player.module.css";
 import { focusInReach, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
-import { HeaderToggles, SessionHeader, usePlayerKeys, useToggles } from "./Shell.tsx";
+import { HeaderToggles, QuitDialog, SessionHeader, usePlayerKeys, useQuitRequest, useToggles, type QuitCopy } from "./Shell.tsx";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
 import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
@@ -139,7 +138,7 @@ export interface LessonPlayerProps {
    */
   readonly quitRequest?: number | undefined;
   /** What the quit dialog says, where quitting means something else (stopping a placement test, S5). */
-  readonly quitCopy?: { readonly title: string; readonly body: string; readonly confirm: string; readonly cancel: string } | undefined;
+  readonly quitCopy?: QuitCopy | undefined;
   /** What the end screen says above its XP and Continue, in place of the score (a placement test's result, S5). */
   readonly summary?: ((summary: SessionSummary) => ReactNode) | undefined;
   /**
@@ -201,7 +200,6 @@ const QUIT: Readonly<Record<SessionKind, { readonly title: MessageId; readonly k
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
   const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak } = props;
   const t = useTranslator();
-  const chrome = useChrome();
   const kind = props.mode ?? "lesson";
   // What quitting says: a lesson done before loses nothing by it (D13).
   const quit = props.replay === true && kind === "lesson" ? { title: QUIT.lesson.title, kept: "player.quit.kept.replay" as const } : QUIT[kind];
@@ -224,12 +222,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
     shell.dispatch(event);
   };
   // Leaving mid-lesson (S3) asks as the quit button does; the state machine ignores it once finished.
-  const quitAsked = useRef(props.quitRequest);
-  useEffect(() => {
-    if (props.quitRequest === quitAsked.current) return;
-    quitAsked.current = props.quitRequest;
-    dispatch({ tag: "interrupt", reason: "quit-confirm" });
-  }, [props.quitRequest]);
+  useQuitRequest(props.quitRequest, () => dispatch({ tag: "interrupt", reason: "quit-confirm" }));
   const mode = display.mode;
   const ruby = readings.shown;
   const marks = display.marks;
@@ -468,39 +461,22 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       </footer>
 
       {/*
-        The dialog is portalled out of the app's root, so it takes the chrome's lang, dir and font itself
-        (P8). It says what quitting keeps: every answer, with its XP, its mistakes and its scheduling;
-        only finishing (and its bonus) waits. Quitting goes straight back to the path, unless the end
-        screen has more to say (a placement test's result).
+        Quitting says what it keeps (P8): every answer, with its XP, its mistakes and its scheduling;
+        only finishing (and its bonus) waits. It goes straight back to the path, unless the end screen
+        has more to say (a placement test's result).
       */}
-      <Modal className={styles.modal} isOpen={state.tag === "interrupted"} isDismissable onOpenChange={(open) => !open && dispatch({ tag: "resume" })}>
-        <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} data-quit-dialog="" data-mode={kind}>
-          <div className={styles.dialogBody} lang={chrome.lang} dir={chrome.dir}>
-            <Heading slot="title" className={styles.instruction}>
-              {props.quitCopy?.title ?? t.format(quit.title)}
-            </Heading>
-            <p data-quit-kept="" data-replay={props.replay === true || undefined}>
-              {props.quitCopy?.body ?? t.format(quit.kept)}
-            </p>
-            <div className={styles.footer}>
-              <Button
-                className={styles.secondary}
-                onPress={() => {
-                  dispatch({ tag: "quit" });
-                  // Straight back, unless the end screen has more to say (a placement test's result, S5).
-                  if (props.summary === undefined) onExit?.();
-                }}
-                data-action="quit-confirm"
-              >
-                {props.quitCopy?.confirm ?? t.format("player.quit.confirm")}
-              </Button>
-              <Button className={styles.primary} onPress={() => dispatch({ tag: "resume" })} autoFocus data-action="resume">
-                {props.quitCopy?.cancel ?? t.format("player.quit.cancel")}
-              </Button>
-            </div>
-          </div>
-        </Dialog>
-      </Modal>
+      <QuitDialog
+        open={state.tag === "interrupted"}
+        copy={props.quitCopy ?? { title: t.format(quit.title), body: t.format(quit.kept), confirm: t.format("player.quit.confirm"), cancel: t.format("player.quit.cancel") }}
+        replay={props.replay === true}
+        mode={kind}
+        onConfirm={() => {
+          dispatch({ tag: "quit" });
+          // Straight back, unless the end screen has more to say (a placement test's result, S5).
+          if (props.summary === undefined) onExit?.();
+        }}
+        onCancel={() => dispatch({ tag: "resume" })}
+      />
     </section>
   );
 };
