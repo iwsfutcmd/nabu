@@ -606,3 +606,15 @@
   outline: 3px solid var(--nabu-color-accent);
   outline-offset: 2px;
 }
+
+/* Debug mode (Debug.tsx): a strip above every screen that says so and offers the way out. */
+.debugNotice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-4);
+  background-color: var(--nabu-color-focus-bg);
+}

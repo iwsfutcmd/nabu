@@ -30,7 +30,7 @@ import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
 import { reportIntake } from "./reports.ts";
 import { AudioCheckPage } from "./AudioCheck.tsx";
-import { CardsPage, debugOn } from "./Debug.tsx";
+import { CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
@@ -53,7 +53,7 @@ const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
 const OFFLINE = import.meta.env.PROD && offlineSupported() && !isNative();
 
 /** Debug mode (?debug=1, remembered on this device): every card says its kind; a gallery of every kind. */
-const DEBUG = debugOn();
+const DEBUG = debugMode;
 
 type Route =
   | { readonly tag: "home" }

@@ -1034,6 +1034,18 @@
       "message": "Try it",
       "description": "Debug mode: button that plays one card of this kind."
     },
+    "debug.leave": {
+      "message": "Leave debug mode",
+      "description": "Button in the debug-mode strip at the top of every screen: turns debug mode off on this device and opens the page again without it."
+    },
+    "debug.notice": {
+      "message": "Debug mode is on in this browser.",
+      "description": "The strip at the top of every screen while debug mode (for testers and reviewers) is on: cards say what kind they are, and course pages link to testing tools."
+    },
+    "debug.notice.label": {
+      "message": "Debug mode",
+      "description": "Accessible name of the debug-mode strip at the top of every screen."
+    },
     "debug.template": {
       "message": "Card: {$template}",
       "description": "Debug mode: under a card's instruction, which kind of card it is. $template is its technical id (gap-fill, translate-tap.l1-l2…), not translated."

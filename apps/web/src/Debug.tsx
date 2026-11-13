@@ -2,7 +2,8 @@
  * Debug mode: try every kind of card. `?debug=1` turns it on for this device (`?debug=0` off);
  * the course page then links to a gallery with one card of every kind the course can make, and
  * every card says which kind it is. Nothing played here is recorded: the gallery's sessions go
- * nowhere, so they never touch the learner's progress.
+ * nowhere, so they never touch the learner's progress. While it is on, every screen says so, with
+ * a way out (DebugNotice).
  */
 import { cardGallery, createGrader, type Exercise } from "@nabu/core/lesson";
 import { useTranslator } from "@nabu/ui";
@@ -23,6 +24,39 @@ export const debugOn = (): boolean => {
   } catch {
     return asked === "1";
   }
+};
+
+/** Debug mode as the page opened: read once, so every screen agrees until the page opens again. */
+export const debugMode = debugOn();
+
+/**
+ * Leaves debug mode on this device, and opens the page again without it (and without a
+ * ?debug=1 that would turn it straight back on).
+ */
+export const leaveDebug = (): void => {
+  try {
+    localStorage.removeItem(DEBUG);
+  } catch {
+    // Storage unavailable: only the address kept it on.
+  }
+  const url = new URL(window.location.href);
+  url.searchParams.delete("debug");
+  // The same address with a fragment would only scroll: load it again instead.
+  if (url.href === window.location.href) window.location.reload();
+  else window.location.replace(url.href);
+};
+
+/** On every screen while debug mode is on: says so, and offers the way out. */
+export const DebugNotice = (): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <aside className={styles.debugNotice} aria-label={t.format("debug.notice.label")} data-debug-notice="">
+      <span>{t.format("debug.notice")}</span>
+      <button type="button" className={styles.inlineButton} onClick={leaveDebug} data-action="leave-debug">
+        {t.format("debug.leave")}
+      </button>
+    </aside>
+  );
 };
 
 interface CardsProps {
