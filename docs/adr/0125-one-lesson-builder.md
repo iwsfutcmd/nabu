@@ -81,6 +81,12 @@ Two limits keep the walks to about half a minute:
 - Samples change their sentence or distractors: 20 of the 23 cards the player, pronunciation and
   persons stories show (all but fa's and apc's complete-translation and yue's transcribe), and the
   Finished story's lesson. Their visual baselines change.
+  - The Feedback story types the gap-fill option before the answer, which is marked in one place
+    in every target, as the visual matrix checks.
+  - The Finished story's lesson, planned for a new learner, has no typed card, so its missed cards
+    are a wrong choice and a skip. How the end of a session marks a typed answer is still checked,
+    in the DOM (`packages/ui/test/feedback.test.tsx`), but no longer in the pixels. A learner who
+    took the first lesson the day before gets a typed card in the second (complete-translation).
 - The gallery shows the same kinds in every fixture course; grc gains its matching pairs.
 - **A finding: lessons never plan a tone card.** The builder gave yue lessons a `tone-identify` card
   where it could make one. Where the app supports tones, the planner has them among its candidates,
