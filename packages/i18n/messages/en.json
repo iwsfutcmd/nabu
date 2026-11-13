@@ -430,13 +430,21 @@
       "message": ".input {$unit :number}\n.input {$number :number}\n{{Unit {$unit}, lesson {$number}}}",
       "description": "Name of a lesson where the course path is out of sight (the browser tab's title, the placement test's result): its unit's number ($unit) and its own number within the unit ($number), as the course path shows them."
     },
+    "app.listening.keep-off": {
+      "message": "Keep listening off",
+      "description": "Button in the notice of a listening break (app.listening.off): keeps listening exercises off on this device until the learner turns them back on, as Off in Preferences does."
+    },
     "app.listening.off": {
       "message": "Listening exercises are off for now. They come back in an hour.",
       "description": "Notice on the course path after the learner chose 'Can't listen now'."
     },
+    "app.listening.off-setting": {
+      "message": "You turned listening exercises off on this device.",
+      "description": "Notice on the course path while the learner has turned listening exercises off in Preferences (preferences.listening.off): there are none, and nothing plays by itself."
+    },
     "app.listening.on": {
       "message": "Turn listening back on",
-      "description": "Button that brings listening exercises back right away."
+      "description": "Button that brings listening exercises back right away, whether they were off for an hour or turned off in Preferences."
     },
     "app.name": {
       "message": "Nabu",
@@ -882,13 +890,21 @@
       "message": "Placement test",
       "description": "Name of the placement test session (a short test that finds the learner's level), in the browser tab's title and as the screen's heading for assistive tech."
     },
+    "app.speaking.keep-off": {
+      "message": "Keep speaking off",
+      "description": "Button in the notice of a speaking break (app.speaking.off): keeps speaking exercises off on this device until the learner turns them back on, as Off in Preferences does."
+    },
     "app.speaking.off": {
       "message": "Speaking exercises are off for now. They come back in an hour.",
       "description": "Notice on the course path after the learner chose 'Can't speak now'."
     },
+    "app.speaking.off-setting": {
+      "message": "You turned speaking exercises off on this device.",
+      "description": "Notice on the course path while the learner has turned speaking exercises off in Preferences (preferences.speaking.off)."
+    },
     "app.speaking.on": {
       "message": "Turn speaking back on",
-      "description": "Button that brings speaking exercises back right away."
+      "description": "Button that brings speaking exercises back right away, whether they were off for an hour or turned off in Preferences."
     },
     "app.store.memory": {
       "message": "This browser window can't save your progress. It will be lost when you close it.",
@@ -2382,6 +2398,22 @@
       "message": "Back to your courses",
       "description": "Link from the preferences screen back to the course list."
     },
+    "preferences.listening.hint": {
+      "message": "Off: no listening exercises in any course on this device, and nothing plays by itself; the play buttons still work. “Can't listen now” in a lesson puts them off for an hour only.",
+      "description": "Explains the listening choice, under its label. Quote the translation of player.action.cant-listen as your language quotes."
+    },
+    "preferences.listening.label": {
+      "message": "Listening exercises",
+      "description": "Label of the choice to turn listening exercises on or off on this device, in every course (for a learner who cannot hear the clips)."
+    },
+    "preferences.listening.off": {
+      "message": "Off",
+      "description": "Listening exercises choice: no listening exercises, and nothing plays by itself, until the learner turns them back on."
+    },
+    "preferences.listening.on": {
+      "message": "On",
+      "description": "Listening exercises choice (the default): sessions have listening exercises where the course does."
+    },
     "preferences.reminder.automatic": {
       "message": "Automatic: a little after the time you usually practise",
       "description": "Reminder time choice (the default): the app picks the time, half an hour after the time by which the learner has usually begun."
@@ -2429,6 +2461,22 @@
     "preferences.sound.on": {
       "message": "On",
       "description": "Sound choice (the default): tones after an answer, and sentences read out."
+    },
+    "preferences.speaking.hint": {
+      "message": "Off: no speaking exercises in any course on this device, for when you have no microphone or can't speak aloud. “Can't speak now” in a lesson puts them off for an hour only.",
+      "description": "Explains the speaking choice, under its label. Quote the translation of player.action.cant-speak as your language quotes."
+    },
+    "preferences.speaking.label": {
+      "message": "Speaking exercises",
+      "description": "Label of the choice to turn speaking exercises on or off on this device, in every course (for a learner without a microphone, or who cannot speak aloud)."
+    },
+    "preferences.speaking.off": {
+      "message": "Off",
+      "description": "Speaking exercises choice: no speaking exercises until the learner turns them back on."
+    },
+    "preferences.speaking.on": {
+      "message": "On",
+      "description": "Speaking exercises choice (the default): sessions have speaking exercises where the course does."
     },
     "preferences.target-size.default": {
       "message": "Default",

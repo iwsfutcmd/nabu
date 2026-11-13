@@ -4,7 +4,7 @@
  * - every card with a clip says it once answered (complete the translation, translations both
  *   ways, gap-fill, pictures, pronunciation, listening cards again);
  * - with sound off nothing plays: off in Preferences or the lesson's header (the play buttons still
- *   work), and after "Can't listen now" (P6).
+ *   work), and while listening is off: after "Can't listen now", or turned off in Preferences (P6, S8).
  */
 import { cardGallery, LISTENING } from "@nabu/core/lesson";
 import { expect, test, type Page } from "@playwright/test";
@@ -130,28 +130,36 @@ test("sound off in Preferences: nothing plays by itself, the play buttons still 
   await expect(page.locator("[data-sound-choice=on] input")).toBeChecked();
 });
 
-test("while listening is put off, no card says its clip by itself (P6)", async ({ page }) => {
-  // "Can't listen now" puts listening off for an hour: in every session meanwhile, a card that says
-  // its clip once answered stays quiet (a play button still plays when tapped, D18).
-  const course = loadCourse("apc", "apc-Arab/standard");
-  const all = cardGallery(course, 7).flatMap((c) => (c.exercise === undefined ? [] : [c.exercise]));
-  const firstListening = all.findIndex((e) => LISTENING.has(e.template));
-  const cards = all.slice(0, firstListening);
-  const sayers = new Set(cards.filter((e) => (SAY_WHEN_ANSWERED as readonly string[]).includes(e.template) && course.audio[e.item] !== undefined).map((e) => e.id));
-  expect(sayers.size).toBeGreaterThan(0);
-  await page.addInitScript(() => localStorage.setItem("nabu.listening-off-until", String(Date.now() + 3_600_000)));
-  await recordPlays(page);
-  await page.goto("/?debug=1#/apc/apc-Arab.standard/cards");
-  await page.locator("[data-action=play-all-cards]").click();
-  for (const ex of cards) {
-    await waitFor(page, ex);
-    await answer(page, ex, "keyboard");
-    await expect(page.locator("[data-feedback]")).toBeVisible();
-    if (sayers.has(ex.id)) {
-      await page.waitForTimeout(600);
-      expect(await page.evaluate(() => window.nabuPlayed), ex.id).toEqual([]);
+// "Can't listen now" puts listening off for an hour; Preferences turns it off until turned back on (S8).
+const LISTENING_OFF = {
+  "put off for an hour": () => localStorage.setItem("nabu.listening-off-until", String(Date.now() + 3_600_000)),
+  "turned off in Preferences": () => localStorage.setItem("nabu.listening", "off"),
+} as const;
+
+for (const [how, off] of Object.entries(LISTENING_OFF)) {
+  test(`while listening is ${how}, no card says its clip by itself (P6)`, async ({ page }) => {
+    // In every session meanwhile, a card that says its clip once answered stays quiet (a play button
+    // still plays when tapped, D18).
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const all = cardGallery(course, 7).flatMap((c) => (c.exercise === undefined ? [] : [c.exercise]));
+    const firstListening = all.findIndex((e) => LISTENING.has(e.template));
+    const cards = all.slice(0, firstListening);
+    const sayers = new Set(cards.filter((e) => (SAY_WHEN_ANSWERED as readonly string[]).includes(e.template) && course.audio[e.item] !== undefined).map((e) => e.id));
+    expect(sayers.size).toBeGreaterThan(0);
+    await page.addInitScript(off);
+    await recordPlays(page);
+    await page.goto("/?debug=1#/apc/apc-Arab.standard/cards");
+    await page.locator("[data-action=play-all-cards]").click();
+    for (const ex of cards) {
+      await waitFor(page, ex);
+      await answer(page, ex, "keyboard");
+      await expect(page.locator("[data-feedback]")).toBeVisible();
+      if (sayers.has(ex.id)) {
+        await page.waitForTimeout(600);
+        expect(await page.evaluate(() => window.nabuPlayed), ex.id).toEqual([]);
+      }
+      await expectRightAndContinue(page, "keyboard", ex);
     }
-    await expectRightAndContinue(page, "keyboard", ex);
-  }
-});
+  });
+}
 

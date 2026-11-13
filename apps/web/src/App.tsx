@@ -49,7 +49,7 @@ import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import summaries from "virtual:nabu-courses";
 import { localDate, uuidv7 } from "./clock.ts";
-import { BREAK_MS, onBreak, playsUnasked, setBreakUntil } from "./breaks.ts";
+import { BREAK_MS, isOff, offFor, playsUnasked, setBreakUntil, setTurnedOff, turnOn, type Modality } from "./breaks.ts";
 import { paceChoiceOf, setPaceChoice } from "./pace.ts";
 import { SentencesPage, useCorrections } from "./Corrections.tsx";
 import { LineReport } from "./Report.tsx";
@@ -402,6 +402,53 @@ const UnitHeading = ({ course, unit, number, untitled, done, total, advice }: Un
   );
 };
 
+const OFF_COPY = {
+  listening: { break: "app.listening.off", setting: "app.listening.off-setting", on: "app.listening.on", keep: "app.listening.keep-off" },
+  speaking: { break: "app.speaking.off", setting: "app.speaking.off-setting", on: "app.speaking.on", keep: "app.speaking.keep-off" },
+} as const;
+
+/**
+ * Listening or speaking off, on the course page: for an hour, or turned off in Preferences (S8). It
+ * says which, turns them back on at once, and offers to keep a break's for good: a learner who cannot
+ * listen at all should not have to say so every hour.
+ */
+const OffNotice = ({ modality, why, onChange }: { modality: Modality; why: "break" | "setting"; onChange: (why: "setting" | undefined) => void }): JSX.Element => {
+  const t = useTranslator();
+  const copy = OFF_COPY[modality];
+  return (
+    <p className={styles.notice} role="note" data-listening-off={modality === "listening" ? why : undefined} data-speaking-off={modality === "speaking" ? why : undefined}>
+      {t.format(copy[why])}{" "}
+      <button
+        type="button"
+        className={styles.inlineButton}
+        onClick={() => {
+          turnOn(modality);
+          onChange(undefined);
+        }}
+        data-action={`${modality}-on`}
+      >
+        {t.format(copy.on)}
+      </button>
+      {why === "break" && (
+        <>
+          {" "}
+          <button
+            type="button"
+            className={styles.inlineButton}
+            onClick={() => {
+              setTurnedOff(modality, true);
+              onChange("setting");
+            }}
+            data-action={`${modality}-keep-off`}
+          >
+            {t.format(copy.keep)}
+          </button>
+        </>
+      )}
+    </p>
+  );
+};
+
 /** The course's offline state, where this build keeps courses offline. */
 interface OfflineProps {
   readonly online: boolean;
@@ -437,7 +484,8 @@ const CoursePath = ({
   reports: JSX.Element;
 }): JSX.Element => {
   const t = useTranslator();
-  const [off, setOff] = useState(() => ({ listening: onBreak("listening"), speaking: onBreak("speaking") }));
+  // Listening and speaking off: for an hour, or turned off in Preferences (S8).
+  const [off, setOff] = useState(() => ({ listening: offFor("listening"), speaking: offFor("speaking") }));
   const { course } = loaded;
   const orthography = course.orthography;
   const now = new Date();
@@ -458,7 +506,7 @@ const CoursePath = ({
   // What a mistakes session would hold now: a mistake on a listening card waits out a listening
   // break, and one the course no longer makes is not counted (practicableMistakes).
   const mistakes = useMemo(
-    () => practicableMistakes(course, state, { exclude: excludedBy(off), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
+    () => practicableMistakes(course, state, { exclude: excludedBy({ listening: off.listening !== undefined, speaking: off.speaking !== undefined }), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
     [course, state, off, speechTiers],
   );
   const today = game?.xp.byDate[localDate(now)] ?? 0;
@@ -511,38 +559,8 @@ const CoursePath = ({
           {t.format("app.store.memory")}
         </p>
       )}
-      {off.listening && (
-        <p className={styles.notice} role="note" data-listening-off="">
-          {t.format("app.listening.off")}{" "}
-          <button
-            type="button"
-            className={styles.inlineButton}
-            onClick={() => {
-              setBreakUntil("listening", 0);
-              setOff({ ...off, listening: false });
-            }}
-            data-action="listening-on"
-          >
-            {t.format("app.listening.on")}
-          </button>
-        </p>
-      )}
-      {off.speaking && (
-        <p className={styles.notice} role="note" data-speaking-off="">
-          {t.format("app.speaking.off")}{" "}
-          <button
-            type="button"
-            className={styles.inlineButton}
-            onClick={() => {
-              setBreakUntil("speaking", 0);
-              setOff({ ...off, speaking: false });
-            }}
-            data-action="speaking-on"
-          >
-            {t.format("app.speaking.on")}
-          </button>
-        </p>
-      )}
+      {off.listening !== undefined && <OffNotice modality="listening" why={off.listening} onChange={(why) => setOff({ ...off, listening: why })} />}
+      {off.speaking !== undefined && <OffNotice modality="speaking" why={off.speaking} onChange={(why) => setOff({ ...off, speaking: why })} />}
 
       {/* Placement can be taken again (S5): it only ever adds lessons done, so it is offered until all are. */}
       {[...status.values()].some((s) => s !== "done") && (
@@ -752,12 +770,12 @@ const CoursePath = ({
   );
 };
 
-/** What sessions leave out: listening and speaking while they are on a break. */
+/** What sessions leave out: listening and speaking while they are off (a break, or turned off in Preferences). */
 const excludedBy = (off: { readonly listening: boolean; readonly speaking: boolean }): ReadonlySet<TemplateId> =>
   new Set<TemplateId>([...(off.listening ? LISTENING : []), ...(off.speaking ? SPEAKING : [])]);
 
-/** What a new session leaves out, as the breaks stand when it opens. */
-const excluded = (): ReadonlySet<TemplateId> => excludedBy({ listening: onBreak("listening"), speaking: onBreak("speaking") });
+/** What a new session leaves out, as listening and speaking stand when it opens. */
+const excluded = (): ReadonlySet<TemplateId> => excludedBy({ listening: isOff("listening"), speaking: isOff("speaking") });
 
 /** The session seed: ?seed=… for reproducible runs (tests), else fresh randomness. */
 const seedFor = (): number => {
@@ -1043,7 +1061,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         onEvent={onEvent}
         sound={sound}
         onSoundChange={storeSound}
-        listening={!onBreak("listening")}
+        listening={!isOff("listening")}
         retries={request.mode !== "placement"}
         mode={request.mode}
         replay={request.mode === "lesson" && before.has(request.node)}
@@ -1152,7 +1170,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         onEvent={setup.onEvent}
         sound={sound}
         onSoundChange={storeSound}
-        listening={!onBreak("listening")}
+        listening={!isOff("listening")}
         xpEarned={end.xp}
         progress={end.progress}
         next={next}

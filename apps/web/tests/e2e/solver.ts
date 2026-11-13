@@ -11,7 +11,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
-import { lessonNodes, readCourse, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
+import { lessonNodes, readCourse, retryOf, speechSupportOf, type CourseView, type Exercise, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
@@ -76,13 +76,14 @@ const localDateIn = (now: Date, timeZone: string): string => {
 /**
  * The session the app plans for this log, clock and seed (no speech server: tones scored on the
  * device), in the browser's time zone: UTC (playwright.config.ts) unless the spec sets another. The
- * plan aims at the skills of words met before the learner's local date (ADR 0101).
+ * plan aims at the skills of words met before the learner's local date (ADR 0101). `exclude`: what
+ * the app leaves out while listening or speaking is off (a break, or turned off in Preferences).
  */
-export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number, timeZone = "UTC"): readonly Exercise[] => {
+export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number, timeZone = "UTC", exclude?: ReadonlySet<TemplateId>): readonly Exercise[] => {
   const state = replay(log);
   // At the pace the app reads from the same log (ADR 0105); the tests never choose one.
   const pace = paceOf(course, state, now.toISOString()).band;
-  return plan(course, state, request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0), pace }).exercises;
+  return plan(course, state, request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0), pace, ...(exclude === undefined || exclude.size === 0 ? {} : { exclude }) }).exercises;
 };
 
 /**

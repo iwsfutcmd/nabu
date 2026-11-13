@@ -15,6 +15,10 @@
  * Sound: on, or off (nothing plays by itself in lessons and stories). The player's header has the
  * same switch.
  *
+ * Listening and speaking exercises: on, or off until turned back on (S8), for a learner who cannot
+ * hear the clips or has no microphone. Off, new sessions leave them out, as after "Can't listen now"
+ * (which lasts an hour), and with listening off nothing plays by itself (breaks.ts).
+ *
  * The time of the daily reminder is the one preference that is the account's, not the device's:
  * the server sends the reminders, so it keeps the time (ADR 0103) for every device that gets them.
  * It shows when signed in to a server that sends reminders.
@@ -24,6 +28,7 @@ import { useTranslator } from "@nabu/ui";
 import { useEffect, useState, type FormEvent, type JSX } from "react";
 import { Button, DateInput, DateSegment, Form, Label, Radio, RadioGroup, Text, TimeField, type TimeValue } from "react-aria-components";
 import styles from "./App.module.css";
+import { setTurnedOff, turnedOff, turnOn, type Modality } from "./breaks.ts";
 import { request, type Account } from "./sync.ts";
 
 export const TEXT_SIZES = ["smaller", "default", "large", "larger", "largest"] as const;
@@ -146,6 +151,46 @@ export const storeSound = (on: boolean): void => {
   }
 };
 
+const EXERCISES = {
+  listening: { label: "preferences.listening.label", hint: "preferences.listening.hint", on: "preferences.listening.on", off: "preferences.listening.off" },
+  speaking: { label: "preferences.speaking.label", hint: "preferences.speaking.hint", on: "preferences.speaking.on", off: "preferences.speaking.off" },
+} as const;
+
+/**
+ * Listening or speaking exercises (S8): on, or off on this device until turned back on. It shows the
+ * learner's choice, not a break ("Can't listen now" lasts an hour): a learner on a break who chooses
+ * Off keeps them off for good. On again ends a break too.
+ */
+const ExercisesChoice = ({ modality }: { readonly modality: Modality }): JSX.Element => {
+  const t = useTranslator();
+  const [on, setOn] = useState(() => !turnedOff(modality));
+  const copy = EXERCISES[modality];
+  return (
+    <RadioGroup
+      className={styles.preferenceOptions}
+      value={on ? "on" : "off"}
+      onChange={(value) => {
+        const next = value !== "off";
+        setOn(next);
+        if (next) turnOn(modality);
+        else setTurnedOff(modality, true);
+      }}
+      data-preference={modality}
+    >
+      <Label className={styles.subheading}>{t.format(copy.label)}</Label>
+      <Text slot="description" className={styles.muted}>
+        {t.format(copy.hint)}
+      </Text>
+      <Radio value="on" className={styles.preferenceOption} data-exercises-choice="on">
+        {t.format(copy.on)}
+      </Radio>
+      <Radio value="off" className={styles.preferenceOption} data-exercises-choice="off">
+        {t.format(copy.off)}
+      </Radio>
+    </RadioGroup>
+  );
+};
+
 /** What the server says of the reminder time: whether it sends reminders at all, and the time chosen ("HH:MM"; null: automatic). */
 interface ReminderSetting {
   readonly available: boolean;
@@ -256,8 +301,8 @@ const ReminderTime = ({ account }: { readonly account: Account }): JSX.Element |
 };
 
 /**
- * The preferences screen: appearance, the size of the language being learned and sound, applied as
- * the learner chooses; with an account, the time of the daily reminder.
+ * The preferences screen: appearance, the size of the language being learned, sound, and listening and
+ * speaking exercises, applied as the learner chooses; with an account, the time of the daily reminder.
  */
 export const PreferencesPage = ({ back, account }: { readonly back: string; readonly account?: Account | undefined }): JSX.Element => {
   const t = useTranslator();
@@ -322,6 +367,8 @@ export const PreferencesPage = ({ back, account }: { readonly back: string; read
           {t.format("preferences.sound.off")}
         </Radio>
       </RadioGroup>
+      <ExercisesChoice modality="listening" />
+      <ExercisesChoice modality="speaking" />
       {account !== undefined && <ReminderTime account={account} />}
       <p>
         <a className={styles.back} href={back} data-preferences-back="">
