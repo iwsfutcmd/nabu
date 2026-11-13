@@ -4,7 +4,7 @@
  * tiled answers the learner's answer with the differing parts marked. It is a
  * live region, and never relies on colour alone.
  */
-import { answerDiff, closestAnswer, isCorrect, type CourseView, type Exercise, type Outcome } from "@nabu/core/lesson";
+import { answerDiff, closestAnswer, isCorrect, nearMiss, type CourseView, type Exercise, type Outcome } from "@nabu/core/lesson";
 import type { Verdict } from "@nabu/core";
 import type { MessageId } from "@nabu/i18n";
 import type { SchemeId } from "@nabu/schema";
@@ -49,10 +49,11 @@ export const Feedback = ({ ex, outcome, course, ruby, marks }: FeedbackProps): J
     outcome.verdict !== "CORRECT" && outcome.alignment !== undefined && outcome.solution !== undefined && outcome.alignment.length > 0
       ? answerDiff(outcome.alignment, outcome.solution, joiner)
       : undefined;
-  // A wrong answer nearer another accepted wording than the solution: that wording first, what the
-  // learner left out or got wrong marked, then the solution (with its readings).
+  // A near miss of another accepted wording than the solution: after the solution (with its
+  // readings), that wording as the nearest correct version, what the learner left out or got wrong
+  // marked. An answer far from every wording gets the solution alone.
   const closest =
-    !right && outcome.closestIsSolution === false && outcome.alignment !== undefined && outcome.solution !== undefined && outcome.alignment.length > 0
+    !right && outcome.closestIsSolution === false && outcome.alignment !== undefined && outcome.solution !== undefined && nearMiss(outcome.alignment)
       ? closestAnswer(outcome.alignment, outcome.solution, joiner)
       : undefined;
   return (
@@ -73,12 +74,13 @@ export const Feedback = ({ ex, outcome, course, ruby, marks }: FeedbackProps): J
       {showSolution && outcome.solution !== undefined && (
         <div className={styles.solution} data-solution="" data-ink-container="solution">
           {solutionLabel !== undefined && <span className={styles.label}>{solutionLabel}</span>}
-          {closest !== undefined && (
-            <div data-closest="">
-              <T as="p" text={closest.text} highlight={closest.marked} marks={marks} />
-            </div>
-          )}
           <T as="p" text={outcome.solution} ruby={ruby} marks={marks} />
+        </div>
+      )}
+      {closest !== undefined && (
+        <div className={styles.solution} data-closest="">
+          <span className={styles.label}>{t.format("player.feedback.closest")}</span>
+          <T as="p" text={closest.text} highlight={closest.marked} marks={marks} />
         </div>
       )}
       {diff !== undefined && diff.marked.length > 0 && (

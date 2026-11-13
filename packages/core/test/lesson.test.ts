@@ -34,7 +34,7 @@ import { gradeVowels, withoutMarks } from "../src/match/pronounce.ts";
 import { pathNodes } from "../src/learner/path.ts";
 import { placementTest } from "../src/learner/placement.ts";
 import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, makeTranslateType, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
-import { closestAnswer } from "../src/lesson/diff.ts";
+import { closestAnswer, nearMiss } from "../src/lesson/diff.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -802,6 +802,30 @@ describe("the accepted answer closest to a wrong one (feedback)", () => {
     expect(closest.marked.map((i) => closest.text.tokens[i]?.surface)).toEqual(["\u55BA"]);
     // A slip in the solution's own wording lines up with the solution.
     expect(gradeExercise(ex, { tag: "text", text: "我嘅書尼？" }, createGrader(course)).closestIsSolution).toBe(true);
+  });
+
+  // ¿Tú tienes hambre? shows; its accept set (no punctuation) also takes Tienes [tú] hambre (W3).
+  const es = loadCourse("es");
+  const hungry = allSentences(es).find((x) => x.id === "s.u04.29");
+  const card = hungry === undefined ? undefined : makeTranslateType({ course: es, rng: seededRng(1), introduced: [] }, hungry);
+  if (card === undefined) throw new Error("s.u04.29 has no translate-type card");
+
+  it("takes the solution's punctuation at both ends, and keeps its own casing: ¿Tienes hambre?", () => {
+    const wrong = gradeExercise(card, { tag: "text", text: "Tienes hombre" }, createGrader(es));
+    expect(wrong.verdict).not.toMatch(/^CORRECT/u);
+    expect(wrong.closestIsSolution).toBe(false);
+    expect(nearMiss(wrong.alignment ?? [])).toBe(true);
+    const closest = closestAnswer(wrong.alignment ?? [], card.canonical, " ");
+    expect(surfaceOf(closest.text)).toBe("¿Tienes hambre?");
+    expect(closest.marked.map((i) => closest.text.tokens[i]?.surface)).toEqual(["hambre"]);
+  });
+
+  it("is no near miss for an answer that has little of any wording", () => {
+    for (const text of ["perro gato casa", "Yo quiero comer arroz con pollo hambre"]) {
+      const wrong = gradeExercise(card, { tag: "text", text }, createGrader(es));
+      expect(wrong.verdict, text).toBe("WRONG");
+      expect(nearMiss(wrong.alignment ?? []), text).toBe(false);
+    }
   });
 });
 

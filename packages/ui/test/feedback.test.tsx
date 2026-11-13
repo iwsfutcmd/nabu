@@ -28,16 +28,28 @@ describe("feedback on a wrong answer nearer another accepted wording", () => {
     closestIsSolution: false,
   };
 
-  it("shows that wording first, what was left out marked, then the solution with its readings", () => {
+  it("shows the solution with its readings, then that wording as the nearest correct version, what was left out marked", () => {
     const html = render(<Feedback ex={ex} outcome={outcome} course={course} ruby={JYUTPING} marks="show" />);
     const closest = html.slice(html.indexOf("data-closest"));
+    expect(closest).toContain("Nearest correct version:");
     expect(closest).toContain('data-highlight="true">喺</span>');
-    expect(html.indexOf("data-closest")).toBeLessThan(html.indexOf("呢<rt>ne1</rt>"));
+    expect(html.indexOf("呢<rt>ne1</rt>")).toBeLessThan(html.indexOf("data-closest"));
     for (const ch of "我嘅書喺邊度呀？") expect(closest).toContain(`>${ch}<`);
   });
 
   it("shows the solution alone when the answer was nearest the solution itself", () => {
     const html = render(<Feedback ex={ex} outcome={{ ...outcome, closestIsSolution: true }} course={course} ruby={JYUTPING} marks="show" />);
+    expect(html).not.toContain("data-closest");
+    expect(html).toContain("呢<rt>ne1</rt>");
+  });
+
+  it("shows the solution alone when the answer is far from every wording (W3)", () => {
+    // Two characters of the wording's seven: it lines up with it, but explains nothing.
+    const far: Outcome = {
+      ...outcome,
+      alignment: [m("我"), { op: "substitute", expected: "嘅", actual: "係" }, { op: "substitute", expected: "書", actual: "貓" }, { op: "delete", expected: "喺" }, { op: "delete", expected: "邊" }, { op: "delete", expected: "度" }, m("呀")],
+    };
+    const html = render(<Feedback ex={ex} outcome={far} course={course} ruby={JYUTPING} marks="show" />);
     expect(html).not.toContain("data-closest");
     expect(html).toContain("呢<rt>ne1</rt>");
   });
