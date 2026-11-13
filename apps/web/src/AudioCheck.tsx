@@ -156,7 +156,7 @@ const ItemRow = ({ row, orthography, ruby, url, isCurrent, stored, onJudge, onFo
         {form === undefined ? (
           <code className={styles.id}>{row.key}</code>
         ) : (
-          <T as="p" className={styles.text} text={form} ruby={ruby} {...(player.token === undefined ? {} : { highlight: [player.token] })} />
+          <T as="p" className={styles.text} text={form} ruby={ruby} current={player.token} />
         )}
         {row.target?.translation !== undefined && <T as="p" className={app.muted} text={row.target.translation} />}
         {form !== undefined && input !== undefined && input.normalize("NFC") !== surfaceOf(form).normalize("NFC") && (
@@ -519,7 +519,7 @@ const Reference = ({ text, audio, url, onPlay }: { readonly text: TaggedText; re
       <AudioButtons player={{ ...player, play }} audio={audio} label={false} />
       <div>
         <p className={styles.detail}>{t.format("audio.check.reference")}</p>
-        <T as="p" text={text} {...(player.token === undefined ? {} : { highlight: [player.token] })} />
+        <T as="p" text={text} current={player.token} />
       </div>
     </div>
   );

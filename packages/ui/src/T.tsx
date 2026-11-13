@@ -26,8 +26,13 @@ export interface TProps {
   readonly ruby?: SchemeId | false;
   /** Show or hide the profile's vowel marks (harakat). Shown by default. */
   readonly marks?: "show" | "hide";
-  /** Token indexes to mark (the parts of an answer that differ, §11.6). */
+  /** Token indexes to mark as wrong (the parts of an answer that differ, §11.6): the error style. */
   readonly highlight?: readonly number[];
+  /**
+   * The token a clip is saying right now (karaoke): marked in the focus style, never in the error
+   * style of `highlight`, so a sentence read out after a right answer shows no "mistakes" (P7).
+   */
+  readonly current?: number | undefined;
   /**
    * Token indexes a card asks about (the word whose vowel marks or reading to write, ADR 0095):
    * marked in the focus style, never the style of a wrong answer, and as a <mark> for screen readers.
@@ -66,12 +71,14 @@ interface TokenViewProps {
   readonly strip: RegExp | undefined;
   readonly highlighted: boolean;
   readonly emphasized: boolean;
+  /** Being said by a clip right now (karaoke). */
+  readonly spoken: boolean;
   readonly focus: number | undefined;
   readonly onPress: ((index: number) => void) | undefined;
   readonly pressed: boolean;
 }
 
-const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
+const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
   const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
   const segments = ruby === false ? undefined : token.ruby?.[ruby];
   // A focused character needs the segment bases even when no reading layer is shown.
@@ -103,6 +110,7 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
         data-tcy={tcy || undefined}
         data-highlight={highlighted || undefined}
         data-emphasis={emphasized || undefined}
+        data-current={spoken || undefined}
         aria-pressed={pressed}
         onClick={() => onPress(index)}
       >
@@ -112,13 +120,21 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
   }
   const Tag = emphasized ? "mark" : "span";
   return (
-    <Tag className={styles.token} data-kind={token.kind} data-index={index} data-tcy={tcy || undefined} data-highlight={highlighted || undefined} data-emphasis={emphasized || undefined}>
+    <Tag
+      className={styles.token}
+      data-kind={token.kind}
+      data-index={index}
+      data-tcy={tcy || undefined}
+      data-highlight={highlighted || undefined}
+      data-emphasis={emphasized || undefined}
+      data-current={spoken || undefined}
+    >
       {content}
     </Tag>
   );
 };
 
-export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, emphasis, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
+export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, emphasis, current, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
   const profile = useOrthography(text.orthography);
   const target = useIsTarget(text.orthography);
   const markSet = marks === "hide" ? profile?.match?.marks?.set : undefined;
@@ -154,6 +170,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           strip={strip}
           highlighted={highlight?.includes(index) ?? false}
           emphasized={emphasis?.includes(index) ?? false}
+          spoken={current === index}
           focus={focus?.token === index ? focus.segment : undefined}
           onPress={onTokenPress}
           pressed={pressed === index}

@@ -209,7 +209,7 @@ const TargetPrompt = ({ text, props, focus, ruby }: { text: TaggedText; props: V
         ruby={ruby ?? props.ruby}
         marks={props.marks}
         {...(focus === undefined ? {} : { focus })}
-        {...(player.token === undefined ? {} : { highlight: [player.token] })}
+        current={player.token}
       />
     </div>
   );
@@ -976,7 +976,7 @@ const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioR
       <AudioButtons player={player} audio={audio} size="large" />
       {answered && transcript !== undefined && (
         <div className={styles.transcript} dir={directionOf(transcript.lang)} data-transcript="">
-          <T as="p" text={transcript} ruby={props.ruby} marks={props.marks} {...(player.token === undefined ? {} : { highlight: [player.token] })} />
+          <T as="p" text={transcript} ruby={props.ruby} marks={props.marks} current={player.token} />
           {translation !== undefined && <T as="p" text={translation} className={styles.translation} />}
         </div>
       )}

@@ -112,7 +112,7 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
         marks={marks}
         onTokenPress={onToken}
         pressed={pressed}
-        {...(player.token === undefined ? {} : { highlight: [player.token] })}
+        current={player.token}
       />
       {line.translation !== undefined && (
         <>

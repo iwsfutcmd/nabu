@@ -134,4 +134,17 @@ describe("<T>", () => {
     const html = render(<T text={text} />);
     expect(html.match(/data-tcy="true"/g)).toHaveLength(1);
   });
+
+  it("marks the word a clip is saying apart from a wrong one (P7)", () => {
+    const fa = demoExercise("fa").answer;
+    const spoken = render(<T text={fa} current={1} />);
+    expect(spoken.match(/data-current="true"/g)).toHaveLength(1);
+    expect(spoken).toContain('data-index="1" data-current="true"');
+    expect(spoken).not.toContain("data-highlight");
+    // A tappable word (a story line) says so too.
+    const tappable = render(<T text={fa} current={0} onTokenPress={() => undefined} />);
+    expect(tappable).toMatch(/<button[^>]*data-index="0"[^>]*data-current="true"/u);
+    // Nothing is said: nothing is marked.
+    expect(render(<T text={fa} />)).not.toContain("data-current");
+  });
 });
