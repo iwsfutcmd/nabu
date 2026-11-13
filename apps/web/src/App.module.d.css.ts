@@ -116,6 +116,7 @@ declare const styles: {
   readonly unitName: string;
   readonly unitNumber: string;
   readonly unitTitle: string;
+  readonly unitToggle: string;
   readonly visuallyHidden: string;
   readonly voice: string;
   readonly warning: string;

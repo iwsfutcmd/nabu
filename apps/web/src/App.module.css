@@ -461,6 +461,34 @@
   margin: 0;
 }
 
+/* A finished unit's heading (S2): a button across the unit that shows its lessons again, or folds them away. */
+.unitToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nabu-space-3);
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: 2.75rem;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.unitToggle:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+/* A folded unit's lessons stay in the page, out of sight. */
+.list[hidden] {
+  display: none;
+}
+
 .lessonHead {
   display: flex;
   flex-wrap: wrap;

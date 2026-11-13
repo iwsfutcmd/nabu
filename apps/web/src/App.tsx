@@ -42,7 +42,7 @@ import { wordIndexes } from "@nabu/core/text";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { courseBlurb, courseName, directionOf, orthographyHint, orthographyName, type Named } from "@nabu/i18n";
 import type { AnswerSubmitted, BundleNode, BundleUnit, LearnerEvent, SentenceReported, TaggedText } from "@nabu/schema";
-import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
+import { CorrectIcon, CourseUiProvider, ExpandIcon, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse, type NextStep } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX, type MouseEvent } from "react";
@@ -391,26 +391,48 @@ interface UnitHeadingProps {
   readonly total: number;
   /** A line under it: who an alphabet row is for. */
   readonly advice?: string | undefined;
+  /** A finished unit folds away (S2): its heading shows and hides its lessons. */
+  readonly fold?: Fold | undefined;
+}
+
+interface Fold {
+  readonly open: boolean;
+  /** The id of the list it shows and hides. */
+  readonly list: string;
+  readonly onToggle: () => void;
 }
 
 /**
  * A unit's heading on the path (S11): its number and title, its level, and how many of its lessons
- * and stories are done.
+ * and stories are done. A finished unit's heading is a button that shows its lessons again (S2).
  */
-const UnitHeading = ({ course, unit, number, untitled, done, total, advice }: UnitHeadingProps): JSX.Element => {
+const UnitHeading = ({ course, unit, number, untitled, done, total, advice, fold }: UnitHeadingProps): JSX.Element => {
   const t = useTranslator();
   const title = unit.title?.[course.supportKey];
+  const name = (
+    <>
+      {number !== undefined && (
+        <>
+          <span className={styles.unitNumber} data-unit-number={number}>
+            {t.format("app.path.unit", { number })}
+          </span>{" "}
+        </>
+      )}
+      {title !== undefined ? <T text={title} /> : untitled}
+    </>
+  );
   return (
     <div className={styles.unitHead}>
       <h3 className={styles.unitName}>
-        {number !== undefined && (
-          <>
-            <span className={styles.unitNumber} data-unit-number={number}>
-              {t.format("app.path.unit", { number })}
-            </span>{" "}
-          </>
+        {fold === undefined ? (
+          name
+        ) : (
+          <button type="button" className={styles.unitToggle} aria-expanded={fold.open} aria-controls={fold.list} onClick={fold.onToggle} data-action="unit-toggle">
+            <span>{name}</span>
+            {/* Down while folded; up once open, to fold it again. */}
+            <ExpandIcon size={20} open={fold.open} />
+          </button>
         )}
-        {title !== undefined ? <T text={title} /> : untitled}
       </h3>
       <p className={styles.unitMeta}>
         {unit.cefr !== undefined && (
@@ -484,9 +506,13 @@ interface OfflineProps {
   readonly synced: boolean;
 }
 
+/** The ids of the lists of a unit's lessons and of an alphabet row's, which a finished one's heading shows and hides (S2). */
+const unitListId = (unit: string): string => `unit-lessons-${unit}`;
+const lettersListId = (unit: string): string => `letter-lessons-${unit}`;
+
 /**
  * The course's path (§11.1): Continue, practice, XP, and the lessons in order, each done, open or
- * locked. Its other pages are linked near the top (S2).
+ * locked. Its other pages are linked near the top, and finished units fold away (S2).
  */
 const CoursePath = ({
   loaded,
@@ -546,6 +572,25 @@ const CoursePath = ({
   const units = pathUnits(course);
   const to = (request: SessionRequest): string => href({ tag: "session", course: course.id, orthography, request });
   const nodeHref = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : to({ mode: "lesson", node: n.node }));
+  // Finished units fold away (S2); the learner opens one again with its heading. By their lists' ids.
+  const [opened, setOpened] = useState<ReadonlySet<string>>(() => new Set());
+  const foldOf = (list: string, finished: boolean): Fold | undefined =>
+    finished
+      ? {
+          open: opened.has(list),
+          list,
+          onToggle: () =>
+            setOpened((was) => {
+              const now = new Set(was);
+              if (!now.delete(list)) now.add(list);
+              return now;
+            }),
+        }
+      : undefined;
+  // The alphabet's row folds away too, once every letter lesson is done.
+  const scriptUnit = course.units.find((u) => u.id === scriptRow[0]?.unit);
+  const scriptDone = scriptRow.filter((n) => n.status === "done").length;
+  const scriptFold = scriptUnit === undefined ? undefined : foldOf(lettersListId(scriptUnit.id), scriptDone === scriptRow.length);
   // The line saying why (D5): what is slipping when practice comes first, else how the pace reads.
   const why =
     next.kind === "practice"
@@ -691,16 +736,12 @@ const CoursePath = ({
 
       <h2 className={styles.subheading}>{t.format("app.lessons.title")}</h2>
       {scriptRow.length > 0 && (
-        <section className={styles.unit} data-script-track="">
-          {(() => {
-            const first = course.units.find((u) => u.id === scriptRow[0]?.unit);
-            if (first === undefined) return null;
-            // The row never gates the units (ADR 0088): until it is begun, it says so, and who it is for (S11).
-            const begun = scriptRow.some((n) => n.status === "done");
-            const done = scriptRow.filter((n) => n.status === "done").length;
-            return <UnitHeading course={course} unit={first} number={undefined} done={done} total={scriptRow.length} advice={begun ? undefined : t.format("app.path.letters.advice")} />;
-          })()}
-          <ol className={styles.list}>
+        <section className={styles.unit} data-script-track="" data-finished={scriptFold === undefined ? undefined : ""}>
+          {/* The row never gates the units (ADR 0088): until it is begun, it says so, and who it is for (S11). */}
+          {scriptUnit !== undefined && (
+            <UnitHeading course={course} unit={scriptUnit} number={undefined} done={scriptDone} total={scriptRow.length} advice={scriptDone > 0 ? undefined : t.format("app.path.letters.advice")} fold={scriptFold} />
+          )}
+          <ol className={styles.list} id={scriptUnit === undefined ? undefined : lettersListId(scriptUnit.id)} hidden={scriptFold?.open === false}>
             {scriptRow.map((entry, k) => {
               const unit = course.units.find((u) => u.id === entry.unit);
               const node = unit?.nodes.find((n) => n.id === entry.node);
@@ -734,10 +775,11 @@ const CoursePath = ({
       )}
       {units.map(({ unit, number: unitNumber, entries }) => {
         const done = entries.filter((e) => status.get(e.node.id) === "done").length;
+        const fold = foldOf(unitListId(unit.id), done === entries.length);
         return (
-          <section key={unit.id} className={styles.unit} data-unit={unit.id}>
-            <UnitHeading course={course} unit={unit} number={unitNumber} untitled={unitNumber === undefined ? t.format("app.path.extra-practice") : undefined} done={done} total={entries.length} />
-            <ol className={styles.list} data-lesson-list="">
+          <section key={unit.id} className={styles.unit} data-unit={unit.id} data-finished={fold === undefined ? undefined : ""}>
+            <UnitHeading course={course} unit={unit} number={unitNumber} untitled={unitNumber === undefined ? t.format("app.path.extra-practice") : undefined} done={done} total={entries.length} fold={fold} />
+            <ol className={styles.list} id={unitListId(unit.id)} hidden={fold?.open === false} data-lesson-list="">
               {entries.map(({ node, kind, number }) => {
                 const s = status.get(node.id) ?? "locked";
                 const story = kind === "story" ? (unit.stories ?? []).find((st) => st.node === node.id) : undefined;
