@@ -57,7 +57,15 @@ export interface LearnerState {
   readonly shown: Readonly<Record<string, string>>;
   /** The local date each skill was last missed (a first try wrong, or the answer revealed). */
   readonly missed: Readonly<Record<string, string>>;
+  /**
+   * The last RECENT_WINDOW graded first tries, right or not, oldest first (self-ratings left out, a
+   * revealed answer counted as missed): how recent practice went, for the learning pace (ADR 0105).
+   */
+  readonly recent: readonly boolean[];
 }
+
+/** How many graded first tries the learning pace looks back over (ADR 0105): about four sessions. */
+export const RECENT_WINDOW = 60;
 
 export const DESIRED_RETENTION = 0.9;
 export const XP = { answer: 1, session: 10, perfect: 5 } as const;
@@ -89,6 +97,7 @@ export const emptyLearnerState = (): LearnerState => ({
   met: {},
   shown: {},
   missed: {},
+  recent: [],
 });
 
 /**
@@ -162,6 +171,7 @@ interface Draft {
   met: Record<string, string>;
   shown: Record<string, string>;
   missed: Record<string, string>;
+  recent: boolean[];
 }
 
 const draftOf = (s: LearnerState): Draft => structuredClone(s) as Draft;
@@ -237,6 +247,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   // A miss counts against a word only where the grading pins it there: a word card, or a sentence
   // with other words right. A sentence missed as a whole says nothing about which word failed.
   if (e.attempt === 1 && e.input.selfRating === undefined) {
+    d.recent = [...d.recent, correct].slice(-RECENT_WINDOW);
     const credited = e.outcome.kcs.filter((c) => c.status !== "given");
     const pinned = credited.length === 1 || credited.some((c) => c.status === "right");
     for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.kc, facet, c.status === "right");
@@ -252,6 +263,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
   if (e.reason !== "skip") return; // can't listen / can't speak: no update
   const facet = facetOf(e.exercise.template);
+  if (e.attempt === 1) d.recent = [...d.recent, false].slice(-RECENT_WINDOW);
   for (const kc of e.exercise.kcs) {
     rate(d, e, kc, facet, "again"); // the answer was revealed
     if (e.exercise.kcs.length === 1) witness(d, e, kc, facet, false); // pinned on the word (ADR 0100)
@@ -285,6 +297,7 @@ const startOver = (d: Draft): void => {
   d.met = fresh.met;
   d.shown = fresh.shown;
   d.missed = fresh.missed;
+  d.recent = fresh.recent;
 };
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {

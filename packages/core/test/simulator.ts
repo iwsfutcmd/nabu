@@ -8,7 +8,7 @@
  */
 import type { LearnerEvent } from "@nabu/schema";
 import { creditedKcs } from "../src/learner/credit.ts";
-import { applyEvents, dueFacets, emptyLearnerState, facetOf, PERFORMANCE_MODEL, plan, type LearnerState } from "../src/learner/index.ts";
+import { applyEvents, dueFacets, emptyLearnerState, facetOf, paceOf, PERFORMANCE_MODEL, plan, practiceFirst, type LearnerState } from "../src/learner/index.ts";
 import { lessonNodes, seededRng, type Exercise, type Rng, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -17,6 +17,8 @@ const DAY = 86_400_000;
 /** The simulated learner's hidden truth. */
 interface Truth {
   readonly theta: number;
+  /** How fast memories grow with practice: 1 as the planner's tuning assumed, more or less for others. */
+  readonly learning: number;
   readonly template: Readonly<Record<TemplateId, number>>;
   readonly kc: Map<string, number>;
   /** Memory per (KC, facet): stability in days and last practice. */
@@ -81,10 +83,11 @@ const latencyOf = (ex: Exercise, p: number, rng: Rng): number => Math.round((200
 
 const practise = (truth: Truth, ex: Exercise, correct: boolean, now: number): void => {
   const facet = facetOf(ex.template);
+  const grow = (gain: number): number => 1 + gain * truth.learning;
   for (const kc of creditedKcs(ex)) {
     const key = `${kc}|${facet}`;
     const m = truth.memory.get(key);
-    const s = m === undefined ? (correct ? 1 : 0.3) : correct ? m.s * (recall(truth, key, now) < 0.9 ? 2.5 : 1.2) : Math.max(0.3, m.s * 0.4);
+    const s = m === undefined ? (correct ? truth.learning : 0.3) : correct ? m.s * (recall(truth, key, now) < 0.9 ? grow(1.5) : grow(0.2)) : Math.max(0.3, m.s * 0.4);
     truth.memory.set(key, { s, last: now });
   }
 };
@@ -99,12 +102,30 @@ export interface Result {
   readonly byMode: Readonly<Record<string, { n: number; ok: number; p: number }>>;
 }
 
+export interface SimulationOptions {
+  /**
+   * How the learner picks sessions: "path" takes the next lesson, else a review when three cards
+   * are due (the original acceptance runs); "continue" follows Continue at its pace (ADR 0105):
+   * practice first once enough words are due, else the next lesson.
+   */
+  readonly follow?: "path" | "continue";
+  /** How fast the learner's memories grow (1: as the planner was tuned). */
+  readonly learning?: number;
+}
+
 /** 30 days of a learner who follows the app; `onEvent` sees every event the device would log. */
-export const simulate = (courseId: string, orthography: string | undefined, seed: number, ability: number, onEvent?: (e: LearnerEvent) => void): Result => {
+export const simulate = (
+  courseId: string,
+  orthography: string | undefined,
+  seed: number,
+  ability: number,
+  onEvent?: (e: LearnerEvent) => void,
+  options: SimulationOptions = {},
+): Result => {
   const course = loadCourse(courseId, orthography);
   const events = eventFactory(course, manifestOf(courseId).id);
   const rng = seededRng(seed);
-  const truth: Truth = { theta: ability + 0.2 * gauss(rng), template: TRUE_TEMPLATE, kc: new Map(), memory: new Map() };
+  const truth: Truth = { theta: ability + 0.2 * gauss(rng), learning: options.learning ?? 1, template: TRUE_TEMPLATE, kc: new Map(), memory: new Map() };
   let state: LearnerState = emptyLearnerState();
   const apply = (e: LearnerEvent): void => {
     state = applyEvents(state, [e]);
@@ -123,11 +144,14 @@ export const simulate = (courseId: string, orthography: string | undefined, seed
     for (const hour of [9, 19]) {
       let clock = start + day * DAY + hour * 3_600_000;
       const iso = (): string => new Date(clock).toISOString();
-      // A learner who follows the app: the next lesson, else a review when something is due, else a day off.
+      // A learner who follows the path: the next lesson, else a review when something is due, else a
+      // day off. One who follows Continue: practice first once its pace says so (ADR 0105).
       const next = nodes.find((n) => !state.completedNodes.includes(n));
-      if (next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
-      const request = next !== undefined ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
-      const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * 2 + (hour === 9 ? 0 : 1) });
+      const pace = options.follow === "continue" ? paceOf(course, state, iso()) : undefined;
+      const practice = pace !== undefined && pace.due > 0 && (practiceFirst(pace) || next === undefined);
+      if (!practice && next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
+      const request = next !== undefined && !practice ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
+      const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * 2 + (hour === 9 ? 0 : 1), pace: pace?.band });
       if (p.exercises.length === 0) continue;
       sessions++;
       if (request.mode === "lesson") lessons++;
