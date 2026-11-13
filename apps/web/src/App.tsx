@@ -595,10 +595,11 @@ const CoursePath = ({
   const scriptDone = scriptRow.filter((n) => n.status === "done").length;
   const scriptFold = scriptUnit === undefined ? undefined : foldOf(lettersListId(scriptUnit.id), scriptDone === scriptRow.length);
   // The line saying why (D5): what is slipping when practice comes first, else how the pace reads.
+  // Practice with nothing slipping comes only once the path is done: that is the line then.
   const why =
-    next.kind === "practice"
+    next.kind === "practice" && pace.slipping > 0
       ? t.format("app.pace.why.slipping", { count: pace.slipping })
-      : next.kind === "done"
+      : next.kind !== "path"
         ? t.format("app.continue.done")
         : pace.reason === "chosen"
           ? t.format(pace.band === "consolidate" ? "app.pace.why.chosen-consolidate" : pace.band === "accelerate" ? "app.pace.why.chosen-accelerate" : "app.pace.why.chosen-steady")
