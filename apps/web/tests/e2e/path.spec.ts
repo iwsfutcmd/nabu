@@ -45,7 +45,7 @@ test.describe("the course path", () => {
       await expect(section.locator("[data-node-name]")).toHaveText(namesOf(unit));
       if (unit.number !== undefined) await expect(section.locator("h3 [data-unit-number]")).toHaveText(`Unit ${unit.number}`);
       // The level is a placeholder, so MF2 isolates it (FSI … PDI).
-      if (unit.unit.cefr !== undefined) await expect(section.locator("[data-unit-level]")).toHaveText(`Level ⁨${unit.unit.cefr}⁩`);
+      if (unit.unit.cefr !== undefined) await expect(section.locator("[data-unit-level]")).toHaveText(`Level \u2068${unit.unit.cefr}\u2069`);
     }
     const progress = sections.first().locator("[data-unit-done]");
     await expect(progress).toHaveText(`1 of ${first.entries.length} done`);
@@ -77,7 +77,7 @@ test.describe("the course path", () => {
     if (later === undefined) throw new Error("fa's second unit has lessons");
     await page.goto(sessionUrl(course, { mode: "lesson", node: later.node.id }, SEED));
     await expect(page.locator("[data-lesson-player]")).toBeVisible();
-    await expect(page).toHaveTitle("⁨Unit 2, lesson 1⁩ – ⁨Persian⁩ – ⁨Nabu⁩");
+    await expect(page).toHaveTitle("\u2068Unit 2, lesson 1\u2069 – \u2068Persian\u2069 – \u2068Nabu\u2069");
     await expect(page.locator("[data-screen-heading]")).toHaveText("Unit 2, lesson 1");
   });
 
