@@ -17,6 +17,7 @@ import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
 import { Fragment, useMemo, type CSSProperties, type JSX } from "react";
 import { useIsTarget, useOrthography } from "./context.tsx";
+import { useWordStatus, type Marks } from "./marks.tsx";
 import styles from "./T.module.css";
 
 export interface TProps {
@@ -24,8 +25,11 @@ export interface TProps {
   readonly as?: "span" | "div" | "p";
   /** Which ruby layer to show, by scheme (e.g. "jyutping"). Off by default. */
   readonly ruby?: SchemeId | false;
-  /** Show or hide the profile's vowel marks (harakat). Shown by default. */
-  readonly marks?: "show" | "hide";
+  /**
+   * Show or hide the profile's vowel marks (harakat), or show them only on the words the learner is
+   * still learning ("new", P12: WordStatusProvider says which). Shown by default.
+   */
+  readonly marks?: Marks;
   /** Token indexes to mark as wrong (the parts of an answer that differ, §11.6): the error style. */
   readonly highlight?: readonly number[];
   /**
@@ -137,8 +141,13 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
 export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, emphasis, current, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
   const profile = useOrthography(text.orthography);
   const target = useIsTarget(text.orthography);
-  const markSet = marks === "hide" ? profile?.match?.marks?.set : undefined;
+  const status = useWordStatus();
+  const markSet = marks === "show" ? undefined : profile?.match?.marks?.set;
   const strip = useMemo(() => markStripper(markSet), [markSet]);
+  // "new": a word the learner knows loses its marks; one still being learned (or unknown) keeps them.
+  const known = (token: Token): boolean =>
+    status !== null && !status.isNew([...(token.sense === undefined ? [] : [`sense:${token.sense}`]), ...(token.morphs ?? []).map((m) => m.kc)], token.surface, text.orthography);
+  const stripOf = (token: Token): RegExp | undefined => (marks === "hide" || (marks === "new" && known(token)) ? strip : undefined);
   const font = fontStackFor(text.lang, profile?.fonts);
   const rubyLang = ruby === false ? undefined : profile?.annotations?.find((a) => a.kind === "reading" && a.scheme === ruby)?.lang;
   const style = {
@@ -167,7 +176,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           index={index}
           ruby={ruby}
           rubyLang={rubyLang}
-          strip={strip}
+          strip={stripOf(token)}
           highlighted={highlight?.includes(index) ?? false}
           emphasized={emphasis?.includes(index) ?? false}
           spoken={current === index}

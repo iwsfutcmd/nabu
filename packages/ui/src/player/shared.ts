@@ -5,6 +5,7 @@
 import type { CourseView, Draft, Exercise, PlayerEvent } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, type RefObject } from "react";
+import type { Marks } from "../marks.tsx";
 
 export type WritingMode = "horizontal-tb" | "vertical-rl" | "vertical-lr";
 
@@ -17,7 +18,8 @@ export interface ViewProps<E extends Exercise = Exercise> {
   readonly locked: boolean;
   /** The reading layer to show as ruby, or false. */
   readonly ruby: SchemeId | false;
-  readonly marks: "show" | "hide";
+  /** Vowel marks on every word, none, or the words still being learned (P12). */
+  readonly marks: Marks;
   /** Writing mode for target-language prompts and word banks (§11.4). */
   readonly writingMode: WritingMode;
   /** Maps a bundle path (images/…, audio/…) to a URL. */
@@ -58,6 +60,15 @@ export const rubySchemeOf = (profile: OrthographyProfile | undefined): SchemeId 
 /** Whether the profile has a toggleable vocalization layer (harakat). */
 export const hasMarksLayer = (profile: OrthographyProfile | undefined): boolean =>
   profile?.annotations?.some((a) => a.kind === "vocalization" && a.toggle) === true && profile.match?.marks !== undefined;
+
+/**
+ * The vowel marks a learner sees before they choose (P12): the profile's vocalization layer says,
+ * `on` (every word, the default), `off`, or `on-for-new-words` (Persian: the words still being learned).
+ */
+export const defaultMarks = (profile: OrthographyProfile | undefined): Marks => {
+  const layer = profile?.annotations?.find((a) => a.kind === "vocalization" && a.toggle);
+  return layer?.default === "off" ? "hide" : layer?.default === "on-for-new-words" ? "new" : "show";
+};
 
 /**
  * The writing mode a target region actually uses: vertical only where the

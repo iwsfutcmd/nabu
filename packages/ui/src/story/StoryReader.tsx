@@ -15,15 +15,17 @@ import { draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseV
 import { courseGlossary, glossAt, glossLine, storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
-import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
+import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
+import { WordStatusProvider, type Marks } from "../marks.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
+import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
 import playerStyles from "../player/Player.module.css";
-import { ReadingsControl, useReadings } from "../player/Readings.tsx";
-import { digitIndex, effectiveWritingMode, hasMarksLayer, inDialog, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { useReadings } from "../player/Readings.tsx";
+import { digitIndex, effectiveWritingMode, inDialog, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
 import { SoundToggle } from "../player/SoundToggle.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
@@ -53,6 +55,12 @@ export interface StoryReaderProps {
   readonly reading?: SchemeId | false | undefined;
   /** The learner chose a reading layer, or none. */
   readonly onReadingChange?: ((scheme: SchemeId | false) => void) | undefined;
+  /** Vowel marks and vertical text as the learner chose them for this course (P12); else the profile's. */
+  readonly display?: DisplayChoice | undefined;
+  /** The learner chose vowel marks or vertical text: the app keeps the choice for the course. */
+  readonly onDisplayChange?: ((choice: DisplayChoice) => void) | undefined;
+  /** The words (KC ids) the learner knows (ADR 0100), for vowel marks on new words only (P12). */
+  readonly known?: ReadonlySet<string> | undefined;
   /** For Storybook and tests: lines whose translation starts open, and a token whose gloss starts open. */
   readonly initial?: { readonly translations?: readonly number[]; readonly gloss?: { readonly line: number; readonly token: number } };
   /** For Storybook and tests: start from this state instead of the story's beginning. */
@@ -65,19 +73,10 @@ export interface StoryReaderProps {
   readonly quitRequest?: number | undefined;
 }
 
-const Toggle =({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
-  <Switch className={playerStyles.switch} isSelected={selected} onChange={onChange} data-toggle={id}>
-    <span className={playerStyles.switchTrack} aria-hidden="true">
-      <span className={playerStyles.switchThumb} />
-    </span>
-    {label}
-  </Switch>
-);
-
 interface LineProps {
   readonly line: StoryLine;
   readonly ruby: SchemeId | false;
-  readonly marks: "show" | "hide";
+  readonly marks: Marks;
   readonly pressed: number | undefined;
   readonly onToken: (token: number) => void;
   readonly translated: boolean;
@@ -143,15 +142,13 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const quiet = !sound || props.listening === false;
   const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound: !quiet, initialState: props.initialState });
   const glossary = useMemo(() => courseGlossary(course), [course]);
-  const verticalMode = profile?.layout?.vertical;
-  const canVertical = verticalMode !== undefined && verticalMode !== "none" && effectiveWritingMode(profile, verticalMode, "reading") !== "horizontal-tb";
-  const [mode, setMode] = useState<WritingMode>(props.writingMode ?? "horizontal-tb");
-  const transcriptMode = effectiveWritingMode(profile, mode, "reading");
+  // Vowel marks and vertical reading: the learner's choice for the course, else the profile's (P12).
+  const display = useDisplay(profile, "reading", props.writingMode, props.display, props.onDisplayChange);
+  const transcriptMode = effectiveWritingMode(profile, display.mode, "reading");
   // Rotated Latin ruby reads badly in vertical text: off by default there (§11.4).
   const readings = useReadings(profile, transcriptMode, props.reading, props.onReadingChange);
   // A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue).
   const glossRuby = readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false;
-  const [vowels, setVowels] = useState(true);
   const [translations, setTranslations] = useState<ReadonlySet<number>>(new Set(props.initial?.translations ?? []));
   const [selected, setSelected] = useState(props.initial?.gloss);
   const [confirming, setConfirming] = useState(false);
@@ -163,7 +160,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     if (state.tag !== "finished") setConfirming(true);
   }, [props.quitRequest]);
   const ruby = readings.shown;
-  const marks = vowels ? "show" : "hide";
+  const marks = display.marks;
   const continueButton = useRef<HTMLButtonElement>(null);
   // A question's instruction and prompt describe the control it focuses first (P10).
   const base = useId();
@@ -299,6 +296,8 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             </div>
           )}
         </ProgressBar>
+        {/* Readings, vowel marks, vertical reading: one button, so they take no room above the story (P12). */}
+        {hasDisplayChoices(profile, readings, display) && <DisplayMenu profile={profile} readings={readings} display={display} />}
         <SoundToggle
           on={sound}
           onChange={(on) => {
@@ -314,24 +313,6 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         <p className={playerStyles.synthetic} data-story-synthetic="">
           {t.format("player.audio.synthetic")}
         </p>
-      )}
-
-      {(readings.layers.length > 0 || hasMarksLayer(profile) || canVertical) && (
-        <div className={playerStyles.toggles}>
-          <ReadingsControl readings={readings} />
-          {hasMarksLayer(profile) && <Toggle id="marks" selected={vowels} onChange={setVowels} label={t.format("player.toggle.marks")} />}
-          {canVertical && verticalMode !== undefined && (
-            <Toggle
-              id="vertical"
-              selected={mode !== "horizontal-tb"}
-              onChange={(v) => {
-                setMode(v ? verticalMode : "horizontal-tb");
-                readings.onVertical(v);
-              }}
-              label={t.format("player.toggle.vertical")}
-            />
-          )}
-        </div>
       )}
 
       <div
@@ -416,7 +397,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             ids={ids}
           />
           <div className={playerStyles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
-            {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} course={course} ruby={ruby} marks={marks} />}
+            {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} course={course} ruby={ruby} marks={marks === "hide" ? "hide" : "show"} />}
           </div>
           {feedback !== undefined && props.feedbackExtra?.(feedback.ex, feedback.outcome, feedback.response)}
         </div>
@@ -472,7 +453,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
 export const StoryReader = (props: StoryReaderProps): JSX.Element => {
   return (
     <CourseUiProvider course={props.course}>
-      <ReaderBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
+      <WordStatusProvider course={props.course} known={props.known}>
+        <ReaderBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
+      </WordStatusProvider>
     </CourseUiProvider>
   );
 };

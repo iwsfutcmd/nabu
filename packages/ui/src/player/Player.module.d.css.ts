@@ -28,6 +28,8 @@ declare const styles: {
   readonly label: string;
   readonly left: string;
   readonly listen: string;
+  readonly menu: string;
+  readonly menuBody: string;
   readonly modal: string;
   readonly muted: string;
   readonly notes: string;
@@ -46,6 +48,7 @@ declare const styles: {
   readonly pictureImage: string;
   readonly play: string;
   readonly playLarge: string;
+  readonly popover: string;
   readonly primary: string;
   readonly primaryWrong: string;
   readonly progress: string;
@@ -71,7 +74,6 @@ declare const styles: {
   readonly tile: string;
   readonly tileNumber: string;
   readonly tileSlot: string;
-  readonly toggles: string;
   readonly track: string;
   readonly transcript: string;
   readonly translation: string;

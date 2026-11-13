@@ -60,6 +60,7 @@ import { CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
+import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
 import { PreferencesPage, storedSound, storeSound } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { startNative } from "./native.ts";
@@ -963,6 +964,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   // What was done before the session, and what a placement test placed: its result says what changed.
   const [before] = useState(() => new Set(state.completedNodes));
   const [placed, setPlaced] = useState<readonly string[] | undefined>(undefined);
+  // The words the learner knows as the session opens: where a course marks vowels on new words only (P12).
+  const [known] = useState(() => knownWords(course, state, new Date()));
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   const [onEvent] = useState(() => {
@@ -1026,6 +1029,9 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         debug={DEBUG}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
+        display={storedDisplay(course.id, course.orthography)}
+        onDisplayChange={(choice) => storeDisplay(course.id, course.orthography, choice)}
+        known={known}
         onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
         onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
         xpEarned={xpEarned}
@@ -1061,7 +1067,7 @@ const StorySession = (props: StorySessionProps): JSX.Element => {
   return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} />;
 };
 
-const StoryBody = ({ loaded, node, device, record, corrections, store, account, ai, game }: StorySessionProps): JSX.Element => {
+const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai, game }: StorySessionProps): JSX.Element => {
   const t = useTranslator();
   const xpEarned = useXpEarned(game, undefined);
   const { course, manifest, imageUrl } = loaded;
@@ -1079,7 +1085,11 @@ const StoryBody = ({ loaded, node, device, record, corrections, store, account, 
       record(event);
       if (event.type === "session_completed") routing.ended(event.summary.completed);
     };
-    return { script: storyScript(course, story, seededRng(seed)), onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }) };
+    return {
+      script: storyScript(course, story, seededRng(seed)),
+      known: knownWords(course, state, new Date()),
+      onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }),
+    };
   });
   const grader = useMemo(() => createGrader(course), [course]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound();
@@ -1109,6 +1119,9 @@ const StoryBody = ({ loaded, node, device, record, corrections, store, account, 
         xpEarned={xpEarned}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
+        display={storedDisplay(course.id, course.orthography)}
+        onDisplayChange={(choice) => storeDisplay(course.id, course.orthography, choice)}
+        known={setup.known}
         quitRequest={routing.quitRequest}
         onExit={routing.exit}
         lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}

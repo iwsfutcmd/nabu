@@ -1,6 +1,6 @@
 /**
- * The lesson player (gameplan §11.5): header (quit, progress), the current
- * exercise's view, the reading toggles, feedback and the footer. The shell is
+ * The lesson player (gameplan §11.5): header (quit, progress, the display menu and
+ * sound), the current exercise's view, feedback and the footer. The shell is
  * usePlayer(); this component only renders state and turns clicks and keys
  * into PlayerEvents.
  *
@@ -11,13 +11,15 @@
 import { cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
-import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
+import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
+import { WordStatusProvider } from "../marks.tsx";
+import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
-import { ReadingsControl, useReadings } from "./Readings.tsx";
-import { digitIndex, effectiveWritingMode, focusInReach, hasMarksLayer, inDialog, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
+import { useReadings } from "./Readings.tsx";
+import { digitIndex, focusInReach, inDialog, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
 import { SoundToggle } from "./SoundToggle.tsx";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
@@ -87,16 +89,21 @@ export interface LessonPlayerProps {
   readonly quitCopy?: { readonly title: string; readonly body: string; readonly confirm: string; readonly cancel: string } | undefined;
   /** What the end screen says above its XP and Continue, in place of the score (a placement test's result, S5). */
   readonly summary?: ((summary: SessionSummary) => ReactNode) | undefined;
+  /**
+   * Vowel marks and vertical text as the learner chose them for this course (P12), which the app
+   * keeps; where they have not chosen, the profile's defaults.
+   */
+  readonly display?: DisplayChoice | undefined;
+  /** The learner chose vowel marks or vertical text: the app keeps the choice for the course. */
+  readonly onDisplayChange?: ((choice: DisplayChoice) => void) | undefined;
+  /**
+   * The words (KC ids) the learner knows (ADR 0100), for vowel marks on new words only (P12).
+   * Without it every word counts as new.
+   */
+  readonly known?: ReadonlySet<string> | undefined;
+  /** For Storybook and tests: the display menu starts open. */
+  readonly displayOpen?: boolean | undefined;
 }
-
-const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
-  <Switch className={styles.switch} isSelected={selected} onChange={onChange} data-toggle={id}>
-    <span className={styles.switchTrack} aria-hidden="true">
-      <span className={styles.switchThumb} />
-    </span>
-    {label}
-  </Switch>
-);
 
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
   const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak } = props;
@@ -120,14 +127,13 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
     quitAsked.current = props.quitRequest;
     dispatch({ tag: "interrupt", reason: "quit-confirm" });
   }, [props.quitRequest]);
-  const [mode, setMode] = useState<WritingMode>(props.writingMode ?? "horizontal-tb");
+  // Vowel marks and vertical text: the learner's choice for the course, else the profile's (P12).
+  const display = useDisplay(profile, "wordbank", props.writingMode, props.display, props.onDisplayChange);
+  const mode = display.mode;
   // Rotated Latin ruby reads badly in vertical text: off by default there, on request (§11.4).
   const readings = useReadings(profile, mode, props.reading, props.onReadingChange);
-  const [vowels, setVowels] = useState(true);
-  const verticalMode = profile?.layout?.vertical;
-  const canVertical = verticalMode !== undefined && verticalMode !== "none" && effectiveWritingMode(profile, verticalMode, "wordbank") !== "horizontal-tb";
   const ruby = readings.shown;
-  const marks = vowels ? "show" : "hide";
+  const marks = display.marks;
   const continueButton = useRef<HTMLButtonElement>(null);
   // The card's instruction and prompt describe the control it focuses first (P10).
   const base = useId();
@@ -260,6 +266,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
             {t.format("player.progress.left", { count: left })}
           </span>
         )}
+        {/* Readings, vowel marks, vertical text: one button, so they take no room above the card (P12). */}
+        {hasDisplayChoices(profile, readings, display) && <DisplayMenu profile={profile} readings={readings} display={display} defaultOpen={props.displayOpen === true} />}
         <SoundToggle
           on={sound}
           onChange={(on) => {
@@ -302,24 +310,6 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         </p>
       )}
 
-      {(readings.layers.length > 0 || hasMarksLayer(profile) || canVertical) && (
-        <div className={styles.toggles}>
-          <ReadingsControl readings={readings} />
-          {hasMarksLayer(profile) && <Toggle id="marks" selected={vowels} onChange={setVowels} label={t.format("player.toggle.marks")} />}
-          {canVertical && verticalMode !== undefined && (
-            <Toggle
-              id="vertical"
-              selected={mode !== "horizontal-tb"}
-              onChange={(v) => {
-                setMode(v ? verticalMode : "horizontal-tb");
-                readings.onVertical(v);
-              }}
-              label={t.format("player.toggle.vertical")}
-            />
-          )}
-        </div>
-      )}
-
       <ExerciseView
         key={ex.id}
         ex={ex}
@@ -339,7 +329,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       />
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
-        {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={ex.template === "vocalize" ? "show" : marks} />}
+        {/* The solution shows its marks unless the learner hid them (a vocalize card's always: they are its answer). */}
+        {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={ex.template === "vocalize" || marks !== "hide" ? "show" : "hide"} />}
       </div>
       {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response)}
 
@@ -412,8 +403,10 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 /** Plays one lesson. Provides the course's orthography profiles, and its target ones, to <T>. */
 export const LessonPlayer = (props: LessonPlayerProps): JSX.Element => (
   <CourseUiProvider course={props.course}>
-    <SpeechProvider value={props.speech}>
-      <PlayerBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
-    </SpeechProvider>
+    <WordStatusProvider course={props.course} known={props.known}>
+      <SpeechProvider value={props.speech}>
+        <PlayerBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
+      </SpeechProvider>
+    </WordStatusProvider>
   </CourseUiProvider>
 );

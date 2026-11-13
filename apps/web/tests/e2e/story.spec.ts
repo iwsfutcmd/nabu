@@ -123,7 +123,10 @@ test("tap-for-gloss: vocalized apc-Arab words find their entries, whatever their
   const line = await kifak.evaluate((el) => el.closest("[data-line]")?.getAttribute("data-line"));
   const index = await kifak.getAttribute("data-index");
   const word = page.locator(`[data-story-transcript] [data-line="${line ?? ""}"] button[data-index="${index ?? ""}"]`);
-  await page.locator("[data-toggle=marks]").tap();
+  // Vowel marks off, from the header's display menu (P12).
+  await page.locator("[data-story-reader] [data-action=display]").tap();
+  await page.locator("[data-display-menu] [data-toggle=marks] [data-marks=hide]").tap();
+  await page.keyboard.press("Escape");
   await expect(word).toHaveText("كيفك");
   await expect(word).toHaveAttribute("aria-pressed", "true");
   await expect(entry).toBeVisible();

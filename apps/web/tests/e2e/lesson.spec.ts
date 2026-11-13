@@ -9,6 +9,7 @@
  * page's clock, writes the history of a learner who finished the earlier
  * lessons into the device's log, and plans the same session the app plans.
  */
+import { lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
 import { graded, historyBefore, loadCourse, logOf, planned, playSession, seedLog, sessionUrl, type Mode } from "./solver.ts";
 
@@ -87,7 +88,9 @@ test("Cantonese words show their Jyutping, as sentences do, and the toggle hides
   const words = player.locator("[data-pair^=left]");
   await expect(words).not.toHaveCount(0);
   for (const word of await words.all()) await expect(word.locator("rt")).not.toHaveCount(0);
-  await page.locator("[data-toggle=readings]").click();
+  // The readings switch is in the header's display menu (P12).
+  await page.locator("[data-lesson-player] [data-action=display]").click();
+  await page.locator("[data-display-menu] [data-toggle=readings]").click();
   await expect(player.locator("rt")).toHaveCount(0);
 });
 
@@ -103,7 +106,9 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   const player = page.locator("[data-lesson-player]");
   await expect(player).toHaveAttribute("data-state", "answering");
   await expect(player.locator("rt")).toHaveCount(0);
-  const readings = page.locator("[data-toggle=readings]");
+  // The choice is in the header's display menu (P12).
+  await page.locator("[data-lesson-player] [data-action=display]").click();
+  const readings = page.locator("[data-display-menu] [data-toggle=readings]");
   await expect(readings.locator("[data-reading]")).toHaveText(["Off", "Pinyin", "Jyutping", "Middle Chinese (Baxter)"]);
   await readings.locator("[data-reading=pinyin]").click();
   await expect(player.locator("rt").first()).toHaveAttribute("lang", "zh-Latn-pinyin");
@@ -115,7 +120,31 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   await page.goto(sessionUrl(course, { mode: "lesson", node: "lzh.u01.it-is" }, SEED));
   await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "answering");
   await expect(page.locator("[data-lesson-player] rt").first()).toHaveAttribute("lang", "ltc-Latn-x-baxter");
-  await page.locator("[data-toggle=readings] [data-reading=off]").click();
+  await page.locator("[data-lesson-player] [data-action=display]").click();
+  await page.locator("[data-display-menu] [data-toggle=readings] [data-reading=off]").click();
   await expect(page.locator("[data-lesson-player] rt")).toHaveCount(0);
+});
+
+test("Persian marks vowels on new words until the learner chooses, and the choice holds for the course (P12)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const [first, second] = lessonNodes(course).map((n) => n.node.id);
+  if (first === undefined || second === undefined) throw new Error("fa has two lessons");
+  const player = page.locator("[data-lesson-player]");
+  const menu = page.locator("[data-display-menu] [data-toggle=marks]");
+  await page.goto(sessionUrl(course, { mode: "lesson", node: first }, SEED));
+  await expect(player).toHaveAttribute("data-state", "answering");
+  // The profile's default (on-for-new-words): marks on the words not yet known.
+  await player.locator("[data-action=display]").click();
+  await expect(menu).toHaveAttribute("data-marks-shown", "new");
+  await expect(menu.locator("[data-marks]")).toHaveText(["All words", "New words", "None"]);
+  await menu.locator("[data-marks=hide]").click();
+  await expect(menu).toHaveAttribute("data-marks-shown", "hide");
+  // Another lesson of the course starts from the learner's choice.
+  await page.goto(sessionUrl(course, { mode: "lesson", node: second }, SEED));
+  await expect(player).toHaveAttribute("data-state", "answering");
+  await player.locator("[data-action=display]").click();
+  await expect(menu).toHaveAttribute("data-marks-shown", "hide");
 });
 

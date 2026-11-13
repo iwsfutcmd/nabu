@@ -1902,6 +1902,10 @@
       "message": "Special characters",
       "description": "Accessible label of the bar of extra characters (ZWNJ, ʻ, ў…)."
     },
+    "player.display.label": {
+      "message": "Display",
+      "description": "Accessible name of the button (sliders icon) in the header of a lesson or story that opens the display choices: readings, vowel marks, vertical text; and of the menu it opens."
+    },
     "player.feedback.closest": {
       "message": "Nearest correct version:",
       "description": "Label in the feedback on a wrong answer, under the correct answer: another accepted way to say it, the one closest to what the learner wrote, with what they left out or got wrong marked. Shown only when the answer was close to it."
@@ -2093,6 +2097,22 @@
     "player.loading": {
       "message": "Loading…",
       "description": "Shown while course data loads."
+    },
+    "player.marks.hide": {
+      "message": "None",
+      "description": "Vowel marks choice: shown on no word (the text as a reader of the script sees it)."
+    },
+    "player.marks.label": {
+      "message": "Vowel marks",
+      "description": "Label of the choice of where vowel marks (harakat in Arabic script, points in Hebrew) show: on every word, on new words only, or on none. Shown before the choices."
+    },
+    "player.marks.new": {
+      "message": "New words",
+      "description": "Vowel marks choice: shown only on the words the learner is still learning, and left off the words they know."
+    },
+    "player.marks.show": {
+      "message": "All words",
+      "description": "Vowel marks choice: shown on every word."
     },
     "player.meaning.label": {
       "message": "Meaning",
@@ -2309,10 +2329,6 @@
     "player.speech.tone-off": {
       "message": ".input {$heard :number}\n.input {$expected :number}\n{{tone {$heard}, expected {$expected}}}",
       "description": "After a syllable (shown before it): the tone heard and the tone expected, as tone numbers."
-    },
-    "player.toggle.marks": {
-      "message": "Show vowel marks",
-      "description": "Switch that shows or hides harakat (Arabic-script vowel marks and shadda)."
     },
     "player.toggle.vertical": {
       "message": "Vertical text",

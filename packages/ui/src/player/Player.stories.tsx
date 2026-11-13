@@ -17,13 +17,14 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry";
+export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry" | "display";
 
 const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
   tiles: "translate-tap.l1-l2",
   typing: "translate-type.l1-l2",
   feedback: "complete-translation",
   retry: "choose-translation",
+  display: "choose-translation",
 };
 
 const SEED = 7;
@@ -32,7 +33,7 @@ const SEED = 7;
 const stateFor = (screen: PlayerScreen, ex: Exercise, course: CourseView, grader: Grader): PlayerState => {
   const [presenting] = start("story", [ex]);
   const [answering] = step(presenting, { tag: "ready" });
-  if (screen === "typing") return answering;
+  if (screen === "typing" || screen === "display") return answering;
   if (screen === "retry" && ex.template === "choose-translation") {
     // A wrong option, then Continue: the card comes back, its options in a new order (P4).
     const chosen = step(answering, { tag: "input", draft: { tag: "choice", index: (ex.answer + 1) % ex.options.length } })[0];
@@ -75,6 +76,7 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
       sound={false}
       writingMode={writingMode}
       initialState={initialState}
+      displayOpen={screen === "display"}
     />
   );
 };
@@ -107,3 +109,5 @@ export const Typing: Story = story("typing");
 export const Feedback: Story = story("feedback");
 /** A missed card back at the end: "Earlier mistake", its options in a new order, the cards left unchanged (P4). */
 export const Retry: Story = story("retry");
+/** The display menu open: readings, vowel marks (every word, new words, none) and vertical text, as the course offers (P12). */
+export const Display: Story = story("display");

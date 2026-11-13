@@ -130,10 +130,25 @@
   opacity: 0.55;
 }
 
-.toggles {
+/* The display menu (P12): readings, vowel marks and vertical text, in a popover under its button. */
+.popover {
+  max-inline-size: min(22rem, calc(100vw - 2 * var(--nabu-space-4)));
+}
+
+.menu {
+  box-sizing: border-box;
+  padding: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-card);
+  outline: none;
+}
+
+.menuBody {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--nabu-space-4);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--nabu-space-3);
 }
 
 .switch {

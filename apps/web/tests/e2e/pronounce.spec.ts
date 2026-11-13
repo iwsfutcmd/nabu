@@ -45,7 +45,11 @@ test("vowel marks: a wrong vocalization is wrong, and the solution shows its mar
   const ex = cardOf("apc", "apc-Arab/standard", "vocalize");
   if (ex.template !== "vocalize") throw new Error("not a vocalize card");
   await tryCard(page, "#/apc/apc-Arab.standard", "vocalize");
-  await page.locator("[data-toggle=marks]").click();
+  // Vowel marks off, from the header's display menu (P12); the menu closes before answering.
+  await page.locator("[data-lesson-player] [data-action=display]").click();
+  await page.locator("[data-display-menu] [data-toggle=marks] [data-marks=hide]").click();
+  await page.keyboard.press("Escape");
+  await expect(page.locator("[data-display-menu]")).toHaveCount(0);
   await page.locator(`[data-option="${(ex.answer + 1) % ex.options.length}"]`).click();
   await page.locator("[data-action=check]").click();
   await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "WRONG");
