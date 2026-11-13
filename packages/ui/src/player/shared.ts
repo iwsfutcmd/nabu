@@ -30,7 +30,20 @@ export interface ViewProps<E extends Exercise = Exercise> {
   readonly sound?: boolean | undefined;
   /** Where a view registers its digit and Backspace shortcuts; the player listens on the window. */
   readonly shortcuts: { current: Shortcuts | null };
+  /**
+   * Element ids for screen readers (P10): the card's instruction (the player's heading), and a base
+   * the view derives its prompt's ids from (describedBy). The control a card focuses first is
+   * described by them, so its instruction and prompt are read when focus lands on it.
+   */
+  readonly ids?: { readonly instruction: string; readonly base: string } | undefined;
 }
+
+/** The id a view gives one part of its prompt (the prompt itself, a gap sentence, a hint). */
+export const partId = (ids: ViewProps["ids"], part: "prompt" | "gap" | "hint"): string | undefined => (ids === undefined ? undefined : `${ids.base}-${part}`);
+
+/** What describes a card's first control: its instruction, then the parts of its prompt it shows. */
+export const describedBy = (ids: ViewProps["ids"], parts: readonly ("prompt" | "gap" | "hint")[]): string | undefined =>
+  ids === undefined ? undefined : [ids.instruction, ...parts.map((p) => `${ids.base}-${p}`)].join(" ");
 
 /** A view's keyboard shortcuts: number keys pick in reading order (§11.3), Backspace takes back. */
 export interface Shortcuts {

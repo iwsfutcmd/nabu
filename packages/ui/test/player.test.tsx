@@ -2,7 +2,7 @@
  * The lesson player as it renders each state (server-rendered: no effects run), driven through the
  * pure state machine from the committed fixture bundles.
  */
-import { createGrader, gradeExercise, sampleExercise, start, step, type CourseView, type Draft, type Exercise, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { cardGallery, createGrader, gradeExercise, sampleExercise, start, step, type CourseView, type Draft, type Exercise, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import { describe, expect, it } from "vitest";
 import { LessonPlayer, type LessonPlayerProps } from "../src/player/LessonPlayer.tsx";
 import { loadCourse } from "./course.ts";
@@ -103,6 +103,62 @@ describe("a card back after a mistake (P4)", () => {
     expect(html).toContain(">1 left<");
     // The bar's value, for a screen reader: cards done out of the lesson's.
     expect(html).toContain('aria-valuetext="0 of 1 cards done"');
+  });
+});
+
+describe("what a screen reader hears as a card opens (P10)", () => {
+  const ids = (html: string): ReadonlySet<string> => new Set([...html.matchAll(/ id="([^"]+)"/gu)].map((m) => m[1] as string));
+  const described = (html: string): readonly string[] => [...html.matchAll(/aria-describedby="([^"]+)"/gu)].flatMap((m) => (m[1] as string).split(" "));
+
+  it.each([
+    ["fa", "fa-Arab/standard"],
+    ["yue", "yue-Hant-HK/standard"],
+    ["apc", "apc-Arab/standard"],
+    ["grc", "grc-Grek/polytonic"],
+  ] as const)("%s: every card's first control is described by its instruction and prompt, all there", (id, orthography) => {
+    const course = loadCourse(id, orthography);
+    let cards = 0;
+    for (const { exercise: ex } of cardGallery(course, SEED)) {
+      if (ex === undefined) continue;
+      const html = play(course, ex, stateOf(course, ex));
+      // React Aria's own slots (a field's description) are pruned in the browser, where they are missing.
+      const refs = described(html).filter((ref) => !ref.startsWith("react-aria-"));
+      const present = ids(html);
+      expect(refs.length, ex.template).toBeGreaterThan(0);
+      for (const ref of refs) expect(present.has(ref), `${ex.template}: #${ref}`).toBe(true);
+      // The instruction is always among them.
+      const heading = /<h2[^>]* id="([^"]+)"/u.exec(html)?.[1];
+      expect(refs, ex.template).toContain(heading);
+      cards++;
+    }
+    expect(cards).toBeGreaterThan(8);
+  });
+
+  it("names each prompt for what it is", () => {
+    const course = loadCourse("yue", "yue-Hant-HK/standard");
+    const label = (template: TemplateId): string | undefined => {
+      const ex = cardOf(course, template);
+      return /data-ink-container="prompt"/u.test(play(course, ex, stateOf(course, ex))) ? /role="group" aria-label="([^"]+)" id="[^"]+-prompt"/u.exec(play(course, ex, stateOf(course, ex)))?.[1] : undefined;
+    };
+    expect(label("choose-translation")).toBe("Sentence to translate");
+    expect(label("speak.tier-0")).toBe("Sentence to say");
+    expect(label("reading-disambiguation")).toBe("Text to read");
+  });
+
+  it("numbers the bank's tiles for their keys, and says a placed tile can be taken back", () => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const ex = cardOf(course, "translate-tap.l1-l2");
+    if (ex.template !== "translate-tap.l1-l2") throw new Error("not tiles");
+    const fresh = play(course, ex, stateOf(course, ex));
+    expect([...fresh.matchAll(/data-tile-key="(\d)"/gu)].map((m) => Number(m[1]))).toEqual(ex.tiles.slice(0, 9).map((_, i) => i + 1));
+    // One placed: the bank's numbers close up, and the placed tile is described by "take it back".
+    const [presenting] = start("lesson", [ex]);
+    const placed = step(step(presenting, { tag: "ready" })[0], { tag: "input", draft: { tag: "tiles", order: [0] } })[0];
+    const html = play(course, ex, placed);
+    expect([...html.matchAll(/data-tile-key="(\d)"/gu)].map((m) => Number(m[1]))).toEqual(ex.tiles.slice(1, 10).map((_, i) => i + 1));
+    const hint = /<button[^>]*aria-describedby="([^"]+)"[^>]*data-placed-tile="0"/u.exec(html)?.[1];
+    expect(hint).toBeDefined();
+    expect(html).toContain(`id="${hint ?? ""}" hidden="">Press to take it back out of your answer.</span>`);
   });
 });
 

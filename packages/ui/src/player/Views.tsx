@@ -36,16 +36,16 @@ import { calibrate, CANTONESE, DEVICE_TONE_SCORING, pitchTrack, scoreTones, tone
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
-import { useEffect, useRef, useState, type JSX, type ReactNode } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, type JSX, type ReactNode } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
 import { useOrthography, useTranslator } from "../context.tsx";
 import { T } from "../T.tsx";
 import { AnswerInput } from "./AnswerInput.tsx";
 import { AudioButtons, useClipElements, useClipPlayer, type ClipPlayer } from "./Audio.tsx";
 import styles from "./Player.module.css";
-import { FEEDBACK_SOUND_MS } from "./sound.ts";
+import { FEEDBACK_SOUND_MS, playFeedbackSound } from "./sound.ts";
 import { toPcm16k, useRecorder, useSpeech, type Decoded } from "./speech.tsx";
-import { effectiveWritingMode, type ViewProps } from "./shared.ts";
+import { describedBy, effectiveWritingMode, partId, type ViewProps } from "./shared.ts";
 
 export interface ViewExtras {
   readonly outcome: Outcome | undefined;
@@ -65,16 +65,19 @@ interface OptionsProps {
   readonly locked: boolean;
   readonly grid?: boolean;
   readonly onSelect: (index: number) => void;
+  /** The instruction and prompt, read as focus lands on the first option (P10). */
+  readonly describedBy?: string | undefined;
 }
 
 /** Radio choices (arrow keys follow the chrome direction), with number-key shortcuts. */
-const Options = ({ options, selected, answer, outcome, locked, grid = false, onSelect }: OptionsProps): JSX.Element => {
+const Options = ({ options, selected, answer, outcome, locked, grid = false, onSelect, describedBy: description }: OptionsProps): JSX.Element => {
   const t = useTranslator();
   const number = new Intl.NumberFormat(t.formattingLocale);
   return (
     <RadioGroup
       className={grid ? styles.optionGrid : styles.options}
       aria-label={t.format("player.options.label")}
+      {...(description === undefined ? {} : { "aria-describedby": description })}
       value={selected === null ? null : String(selected)}
       onChange={(v) => onSelect(Number(v))}
       isDisabled={locked}
@@ -170,12 +173,13 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
   return (
     <div className={styles.body}>
-      <div className={styles.prompt} role="group" aria-label={t.format("player.prompt.meaning")}>
+      <div className={styles.prompt} role="group" aria-label={t.format("player.prompt.meaning")} id={partId(props.ids, "prompt")}>
         <T as="p" text={ex.prompt} />
       </div>
       <AnswerAudio props={props} />
       <Options
         grid
+        describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => (
           <span key={i} className={styles.picture}>
             <img src={imageUrl(o.image)} alt="" className={styles.pictureImage} />
@@ -203,12 +207,15 @@ const TargetPrompt = ({
   focus,
   ruby,
   clipWhenAnswered = false,
+  labelId = "exercise.prompt.label",
 }: {
   text: TaggedText;
   props: ViewProps & ViewExtras;
   focus?: ReadingDisambiguation["focus"];
   ruby?: false;
   clipWhenAnswered?: boolean;
+  /** What the prompt is to the learner (P10): a sentence to translate, to say, a text to read. */
+  labelId?: MessageId;
 }): JSX.Element => {
   const t = useTranslator();
   const profile = useOrthography(text.orthography);
@@ -218,7 +225,7 @@ const TargetPrompt = ({
   useSayWhenAnswered(player, props, audio);
   const withheld = clipWhenAnswered && props.outcome === undefined;
   return (
-    <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-writing-mode={mode} data-ink-container="prompt">
+    <div className={styles.prompt} role="group" aria-label={t.format(labelId)} id={partId(props.ids, "prompt")} data-writing-mode={mode} data-ink-container="prompt">
       {audio !== undefined && (
         <div className={styles.answerAudio} data-prompt-audio="" data-hidden={withheld ? "" : undefined}>
           <AudioButtons player={player} audio={audio} />
@@ -243,6 +250,7 @@ export const ChooseTranslationView = (props: Props<ChooseTranslation>): JSX.Elem
     <div className={styles.body}>
       <TargetPrompt text={ex.prompt} props={props} />
       <Options
+        describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => <T key={i} text={o} />)}
         selected={selectedOf(props)}
         answer={ex.answer}
@@ -261,25 +269,27 @@ export const ChooseTranslationView = (props: Props<ChooseTranslation>): JSX.Elem
 export const CharReadView = (props: Props<CharRead | ReadingDisambiguation>): JSX.Element => {
   const { ex } = props;
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  const inSentence = ex.template === "char-read" && ex.word !== undefined;
   return (
     <div className={styles.body}>
       {ex.template === "char-read" && ex.word !== undefined ? (
         // A word in its sentence (ADR 0098): the sentence decides the reading.
         <>
-          <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation ?? ex.prompt} ruby={false} />
+          <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation ?? ex.prompt} ruby={false} ids={props.ids} />
           <AnswerAudio props={props} />
         </>
       ) : (
         <div className={styles.bigPrompt}>
           {ex.template === "reading-disambiguation" ? (
-            <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} clipWhenAnswered />
+            <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} clipWhenAnswered labelId="player.prompt.read" />
           ) : (
-            <TargetPrompt text={ex.prompt} props={props} ruby={false} clipWhenAnswered />
+            <TargetPrompt text={ex.prompt} props={props} ruby={false} clipWhenAnswered labelId="player.prompt.read" />
           )}
         </div>
       )}
       <Options
         grid
+        describedBy={describedBy(props.ids, inSentence ? ["prompt", "hint"] : ["prompt"])}
         options={ex.options.map((o, i) => <T key={i} text={o} />)}
         selected={selectedOf(props)}
         answer={ex.answer}
@@ -295,7 +305,7 @@ export const CharReadView = (props: Props<CharRead | ReadingDisambiguation>): JS
 const GapSentence = ({ before, after, fill, props }: { before: TaggedText; after: TaggedText; fill: TaggedText | undefined; props: ViewProps }): JSX.Element => {
   const t = useTranslator();
   return (
-    <p className={styles.gapSentence} dir={directionOf(before.lang)} data-gap-sentence="" data-ink-container="prompt">
+    <p className={styles.gapSentence} dir={directionOf(before.lang)} id={partId(props.ids, "gap")} data-gap-sentence="" data-ink-container="prompt">
       <T text={before} ruby={props.ruby} marks={props.marks} />
       <span className={styles.gap} role="img" aria-label={t.format("player.blank.label")} data-gap="">
         {fill === undefined ? null : <T text={fill} ruby={props.ruby} marks={props.marks} />}
@@ -312,7 +322,7 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
   return (
     <div className={styles.body}>
-      <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")}>
+      <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")} id={partId(props.ids, "hint")}>
         <T as="p" text={ex.hint} />
         <PersonsNote persons={ex.persons} prompt={ex.hint} />
       </div>
@@ -320,6 +330,7 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
       <GapSentence before={ex.before} after={ex.after} fill={selected === null ? undefined : ex.options[selected]} props={props} />
       <Options
         grid
+        describedBy={describedBy(props.ids, ["hint", "gap"])}
         options={ex.options.map((o, i) => <T key={i} text={o} ruby={props.ruby} marks={props.marks} />)}
         selected={selected}
         answer={ex.answer}
@@ -339,33 +350,74 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
  * back; tiles can also be dragged into the answer row. The answer row and bank
  * run in the answer language's direction, and become columns in vertical text.
  */
-/** The answer row and the bank of tiles (translate-tap and listen-tap). */
-const WordBank = ({ props, ex }: { props: Props<TranslateTap | ListenTap | StoryArrange>; ex: TranslateTap | ListenTap | StoryArrange }): JSX.Element => {
+/** Where focus goes once the tiles change under it (P10), so it never falls back to the page. */
+type FocusNext = { readonly kind: "bank"; readonly tile: number } | { readonly kind: "placed"; readonly position: number } | { readonly kind: "check" };
+
+/**
+ * The answer row and the bank of tiles (translate-tap, listen-tap, story-arrange, word-write).
+ * Keyboard and screen readers (P10): a tile that is placed or taken back from under the focus hands
+ * it on (to the next tile in the bank, the tile that takes its place, or Check once the bank is
+ * empty), so the next Enter never submits half an answer; the bank is described by the instruction
+ * and prompt (`parts`), and a placed tile says that pressing it takes it back. Number keys place the
+ * bank's tiles in reading order, and the numbers show where a keyboard is likely.
+ */
+const WordBank = ({ props, ex, parts }: { props: Props<TranslateTap | ListenTap | StoryArrange>; ex: TranslateTap | ListenTap | StoryArrange; parts: readonly ("prompt" | "gap" | "hint")[] }): JSX.Element => {
   const { locked, dispatch } = props;
   const t = useTranslator();
+  const number = new Intl.NumberFormat(t.formattingLocale);
+  const removeHint = useId();
+  const region = useRef<HTMLDivElement>(null);
+  const focusNext = useRef<FocusNext | null>(null);
   const order = props.draft.tag === "tiles" ? props.draft.order : [];
   const placed = new Set(order);
   const answerProfile = useOrthography(ex.canonical.orthography);
   const intoTarget = ex.template !== "translate-tap.l2-l1";
   const mode = intoTarget ? effectiveWritingMode(answerProfile, props.writingMode, "wordbank") : "horizontal-tb";
+  const remaining = ex.tiles.map((_, i) => i).filter((i) => !placed.has(i));
   const set = (next: readonly number[]): void => {
     if (!locked) dispatch({ tag: "input", draft: { tag: "tiles", order: next } });
   };
-  const add = (i: number): void => {
-    if (!placed.has(i)) set([...order, i]);
+  const has = (selector: string): boolean => document.activeElement !== null && document.activeElement === region.current?.querySelector(selector);
+  /** Places bank tile `i`; `handOn`: it has the focus, which goes on to the next tile (or Check). */
+  const add = (i: number, handOn: boolean): void => {
+    if (placed.has(i) || locked) return;
+    if (handOn) {
+      const next = remaining.find((j) => j > i) ?? remaining.findLast((j) => j < i);
+      focusNext.current = next === undefined ? { kind: "check" } : { kind: "bank", tile: next };
+    }
+    set([...order, i]);
   };
-  const remaining = ex.tiles.map((_, i) => i).filter((i) => !placed.has(i));
+  /** Takes back the placed tile at `position`; `handOn`: it has the focus, which goes to the tile taking its place. */
+  const remove = (position: number, handOn: boolean): void => {
+    const tile = order[position];
+    if (tile === undefined || locked) return;
+    if (handOn) focusNext.current = order.length > 1 ? { kind: "placed", position: Math.min(position, order.length - 2) } : { kind: "bank", tile };
+    set(order.filter((_, p) => p !== position));
+  };
+  useLayoutEffect(() => {
+    const next = focusNext.current;
+    focusNext.current = null;
+    const root = region.current;
+    if (next === null || root === null) return;
+    const el =
+      next.kind === "check"
+        ? root.closest("[data-lesson-player], [data-story-reader]")?.querySelector<HTMLElement>("[data-action=check]")
+        : next.kind === "bank"
+          ? root.querySelector<HTMLElement>(`[data-tile="${next.tile}"]`)
+          : root.querySelectorAll<HTMLElement>("[data-placed-tile]")[next.position];
+    el?.focus({ preventScroll: true });
+  });
   useShortcuts(
     props,
     (k) => {
       const tile = remaining[k];
-      if (tile !== undefined) add(tile);
+      if (tile !== undefined) add(tile, has(`[data-tile="${tile}"]`));
     },
-    () => set(order.slice(0, -1)),
+    () => remove(order.length - 1, has(`[data-placed-tile="${order.at(-1) ?? -1}"]`)),
   );
   const tileRuby = intoTarget ? props.ruby : false;
   return (
-    <div className={styles.target} dir={directionOf(ex.canonical.lang)} data-target-region="" data-writing-mode={mode}>
+    <div ref={region} className={styles.target} dir={directionOf(ex.canonical.lang)} data-target-region="" data-writing-mode={mode}>
       <div
         className={styles.answerRow}
         role="group"
@@ -375,26 +427,31 @@ const WordBank = ({ props, ex }: { props: Props<TranslateTap | ListenTap | Story
         onDrop={(e) => {
           e.preventDefault();
           const i = Number(e.dataTransfer.getData("text/plain"));
-          if (Number.isInteger(i)) add(i);
+          if (Number.isInteger(i)) add(i, false);
         }}
       >
+        <span id={removeHint} hidden>
+          {t.format("player.wordbank.remove")}
+        </span>
         {order.map((tileIndex, position) => (
           <button
             key={`${tileIndex}`}
             type="button"
             className={styles.tile}
             disabled={locked}
+            aria-describedby={removeHint}
             data-ink-container="tile"
             data-placed-tile={tileIndex}
-            onClick={() => set(order.filter((_, p) => p !== position))}
+            onClick={() => remove(position, true)}
           >
             <T text={ex.tiles[tileIndex] as TaggedText} ruby={tileRuby} marks={props.marks} />
           </button>
         ))}
       </div>
-      <div className={styles.bank} role="group" aria-label={t.format("exercise.wordbank.label")} data-word-bank="">
-        {ex.tiles.map((tile, i) =>
-          placed.has(i) ? (
+      <div className={styles.bank} role="group" aria-label={t.format("exercise.wordbank.label")} aria-describedby={describedBy(props.ids, parts)} data-word-bank="">
+        {ex.tiles.map((tile, i) => {
+          const key = remaining.indexOf(i);
+          return placed.has(i) ? (
             <span key={i} className={`${styles.tile} ${styles.tileSlot}`} aria-hidden="true">
               <T text={tile} ruby={tileRuby} marks={props.marks} />
             </span>
@@ -409,12 +466,17 @@ const WordBank = ({ props, ex }: { props: Props<TranslateTap | ListenTap | Story
               data-ink-container="tile"
               data-tile={i}
               onDragStart={(e) => e.dataTransfer.setData("text/plain", String(i))}
-              onClick={() => add(i)}
+              onClick={() => add(i, true)}
             >
+              {key >= 0 && key < 9 && (
+                <span className={styles.tileNumber} aria-hidden="true" data-tile-key={key + 1}>
+                  {number.format(key + 1)}
+                </span>
+              )}
               <T text={tile} ruby={tileRuby} marks={props.marks} />
             </button>
-          ),
-        )}
+          );
+        })}
       </div>
     </div>
   );
@@ -459,20 +521,39 @@ export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
       {ex.template === "translate-tap.l2-l1" ? (
         <TargetPrompt text={ex.prompt} props={props} />
       ) : (
-        <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-ink-container="prompt">
+        <div
+          className={styles.prompt}
+          role="group"
+          aria-label={t.format(ex.template === "word-write" ? "player.prompt.spell" : "exercise.prompt.label")}
+          id={partId(props.ids, "prompt")}
+          data-ink-container="prompt"
+        >
           <T as="p" text={ex.prompt} />
           <PersonsNote persons={ex.persons} prompt={ex.prompt} />
         </div>
       )}
       {ex.template !== "translate-tap.l2-l1" && <AnswerAudio props={props} />}
-      <WordBank props={props} ex={ex} />
+      <WordBank props={props} ex={ex} parts={["prompt"]} />
     </div>
   );
 };
 
 // ------------------------------------------------------------------------------------ typing
 
-const TypedAnswer = ({ props, label, answer, keys }: { props: ViewProps & ViewExtras; label: string; answer: TaggedText; keys?: readonly string[] }): JSX.Element => {
+const TypedAnswer = ({
+  props,
+  label,
+  answer,
+  keys,
+  parts,
+}: {
+  props: ViewProps & ViewExtras;
+  label: string;
+  answer: TaggedText;
+  keys?: readonly string[];
+  /** The parts of the prompt the field is described by, after the instruction (P10). */
+  parts: readonly ("prompt" | "gap" | "hint")[];
+}): JSX.Element => {
   const { course, dispatch, locked, ex } = props;
   const profile = course.profiles.get(ex.orthography)?.source;
   const text = props.draft.tag === "text" ? props.draft.text : "";
@@ -482,6 +563,7 @@ const TypedAnswer = ({ props, label, answer, keys }: { props: ViewProps & ViewEx
       base={answer}
       dir={directionOf(answer.lang)}
       label={label}
+      describedBy={describedBy(props.ids, parts)}
       disabled={locked}
       extraKeys={keys ?? profile?.input?.extraKeys ?? []}
       onInput={(value) => dispatch({ tag: "input", draft: { tag: "text", text: value } })}
@@ -497,12 +579,12 @@ export const TranslateTypeView = (props: Props<TranslateType>): JSX.Element => {
   const t = useTranslator();
   return (
     <div className={styles.body}>
-      <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-ink-container="prompt">
+      <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} id={partId(props.ids, "prompt")} data-ink-container="prompt">
         <T as="p" text={ex.prompt} />
         <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
       <AnswerAudio props={props} />
-      <TypedAnswer props={props} label={t.format("exercise.answer.input-label", { language: props.language })} answer={ex.canonical} />
+      <TypedAnswer props={props} label={t.format("exercise.answer.input-label", { language: props.language })} answer={ex.canonical} parts={["prompt"]} />
     </div>
   );
 };
@@ -523,13 +605,13 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
   const t = useTranslator();
   return (
     <div className={styles.body}>
-      <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")}>
+      <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")} id={partId(props.ids, "hint")}>
         <T as="p" text={ex.prompt} />
         <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
       <AnswerAudio props={props} />
       <GapSentence before={ex.before} after={ex.after} fill={gapFillOf(ex, props.draft, props.outcome)} props={props} />
-      <TypedAnswer props={props} label={t.format("player.blank.label")} answer={ex.blank} />
+      <TypedAnswer props={props} label={t.format("player.blank.label")} answer={ex.blank} parts={["hint", "gap"]} />
     </div>
   );
 };
@@ -537,14 +619,14 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
 // ------------------------------------------------------------------------------------ pronunciation (ADR 0054)
 
 /** The sentence with the word asked about marked, and what the sentence means (ADR 0095). */
-const WordInSentence = ({ sentence, word, translation, ruby }: { sentence: TaggedText; word: number; translation: TaggedText; ruby: false | undefined }): JSX.Element => {
+const WordInSentence = ({ sentence, word, translation, ruby, ids }: { sentence: TaggedText; word: number; translation: TaggedText; ruby: false | undefined; ids: ViewProps["ids"] }): JSX.Element => {
   const t = useTranslator();
   return (
     <>
-      <div className={styles.prompt} role="group" aria-label={t.format("player.word-in-sentence.label")} data-ink-container="prompt" data-pronounce-word="">
+      <div className={styles.prompt} role="group" aria-label={t.format("player.word-in-sentence.label")} id={partId(ids, "prompt")} data-ink-container="prompt" data-pronounce-word="">
         <T as="p" text={sentence} emphasis={[word]} marks="show" {...(ruby === false ? { ruby: false } : {})} />
       </div>
-      <div className={styles.hint} role="group" aria-label={t.format("player.meaning.label")} data-pronounce-meaning="">
+      <div className={styles.hint} role="group" aria-label={t.format("player.meaning.label")} id={partId(ids, "hint")} data-pronounce-meaning="">
         <T as="p" text={translation} />
       </div>
     </>
@@ -576,13 +658,14 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
   };
   return (
     <div className={styles.body}>
-      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={undefined} />
+      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={undefined} ids={props.ids} />
       <AnswerAudio props={props} />
       {typing ? (
-        <TypedAnswer props={props} label={t.format("player.vocalize.spelled-label", { orthography: name })} answer={spelled} keys={[]} />
+        <TypedAnswer props={props} label={t.format("player.vocalize.spelled-label", { orthography: name })} answer={spelled} keys={[]} parts={["prompt", "hint"]} />
       ) : (
         <Options
           grid
+          describedBy={describedBy(props.ids, ["prompt", "hint"])}
           options={ex.options.map((o, i) => <T key={i} text={o} marks="show" />)}
           selected={selectedOf(props)}
           answer={ex.answer}
@@ -608,21 +691,29 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
   const label: MessageId = t.has(scheme) ? scheme : "player.transcribe.label";
   return (
     <div className={styles.body}>
-      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={false} />
+      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={false} ids={props.ids} />
       <AnswerAudio props={props} />
-      <TypedAnswer props={props} label={t.format(label)} answer={ex.reading} keys={[]} />
+      <TypedAnswer props={props} label={t.format(label)} answer={ex.reading} keys={[]} parts={["prompt", "hint"]} />
     </div>
   );
 };
 
 // ------------------------------------------------------------------------------------ pairs
 
-/** Match-pairs: pick one word and one meaning; right pairs lock, wrong ones count as mistakes. */
+/**
+ * Match-pairs: pick one word and one meaning; right pairs lock, wrong ones count as mistakes. For the
+ * keyboard and screen readers (P10): a pair that locks hands the focus on to the next open word in
+ * its column (never back to the page), and each try is announced, a miss with its sound too.
+ */
 export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
   const { ex, dispatch, locked } = props;
   const t = useTranslator();
   const [picked, setPicked] = useState<{ readonly side: "left" | "right"; readonly index: number } | null>(null);
   const [miss, setMiss] = useState<readonly [number, number] | null>(null);
+  // What the last try was, for the live region; `n` makes the same news twice in a row news again.
+  const [news, setNews] = useState<{ readonly n: number; readonly kind: "match" | "miss" } | null>(null);
+  const pairsRef = useRef<HTMLDivElement>(null);
+  const focusNext = useRef<string | null>(null);
   const matched = props.draft.tag === "pairs" ? props.draft.matched : [];
   const mistakes = props.draft.tag === "pairs" ? props.draft.mistakes : 0;
   const matchedRight = new Set(matched.map((l) => ex.pairs[l]));
@@ -650,14 +741,32 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
     void el.play().catch(() => undefined);
   };
 
-  const attempt = (left: number, right: number): void => {
+  useLayoutEffect(() => {
+    const next = focusNext.current;
+    focusNext.current = null;
+    if (next !== null) pairsRef.current?.querySelector<HTMLElement>(`[data-pair="${next}"]`)?.focus({ preventScroll: true });
+  });
+
+  /** The next open word after `index` in a column (else before it), once `left` and `right` are matched. */
+  const openAfter = (side: "left" | "right", index: number, left: number, right: number): string | undefined => {
+    const open = (side === "left" ? ex.left : ex.right).map((_, i) => i).filter((i) => (side === "left" ? i !== left && !matched.includes(i) : i !== right && !matchedRight.has(i)));
+    const next = open.find((i) => i > index) ?? open.findLast((i) => i < index);
+    return next === undefined ? undefined : `${side}-${next}`;
+  };
+  const attempt = (left: number, right: number, by: "left" | "right"): void => {
     setPicked(null);
+    setNews((n) => ({ n: (n?.n ?? 0) + 1, kind: ex.pairs[left] === right ? "match" : "miss" }));
     if (ex.pairs[left] === right) {
       const next = [...matched, left];
+      // The button pressed locks. The focus goes where the next pair starts: the next open item in the
+      // column the learner picked from first (a word, usually), else in the other one.
+      const first = by === "left" ? "right" : "left";
+      focusNext.current = openAfter(first, first === "left" ? left : right, left, right) ?? openAfter(by, by === "left" ? left : right, left, right) ?? null;
       dispatch({ tag: "input", draft: { tag: "pairs", matched: next, mistakes } });
       if (next.length === ex.left.length) dispatch({ tag: "submit" });
     } else {
       setMiss([left, right]);
+      if (props.sound !== false) playFeedbackSound("wrong");
       dispatch({ tag: "input", draft: { tag: "pairs", matched, mistakes: mistakes + 1 } });
     }
   };
@@ -666,10 +775,10 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
     if (side === "left") say(index);
     setMiss(null);
     if (picked === null || picked.side === side) setPicked({ side, index });
-    else attempt(side === "left" ? index : picked.index, side === "right" ? index : picked.index);
+    else attempt(side === "left" ? index : picked.index, side === "right" ? index : picked.index, side);
   };
   const column = (side: "left" | "right", items: readonly TaggedText[], label: string): JSX.Element => (
-    <div className={styles.pairColumn} role="group" aria-label={label} data-pair-column={side}>
+    <div className={styles.pairColumn} role="group" aria-label={label} aria-describedby={side === "left" ? describedBy(props.ids, []) : undefined} data-pair-column={side}>
       {items.map((item, i) => {
         const done = side === "left" ? matched.includes(i) : matchedRight.has(i);
         const isPicked = picked?.side === side && picked.index === i;
@@ -697,10 +806,13 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
   );
   return (
     <div className={styles.body}>
-      <div className={styles.pairs}>
+      <div ref={pairsRef} className={styles.pairs}>
         {column("left", ex.left, t.format("player.pairs.words", { language: props.language }))}
         {column("right", ex.right, t.format("player.pairs.meanings"))}
       </div>
+      <p className={styles.spokenName} role="status" data-pairs-news={news?.kind}>
+        {news !== null && <span key={news.n}>{t.format(news.kind === "match" ? "player.pairs.match" : "player.pairs.miss")}</span>}
+      </p>
     </div>
   );
 };
@@ -783,10 +895,11 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
     ["hard", "player.speak.rate.hard"],
     ["again", "player.speak.rate.again"],
   ];
+  const description = describedBy(props.ids, ["prompt", "hint"]);
   return (
     <div className={styles.body}>
-      <TargetPrompt text={ex.prompt} props={props} />
-      <div className={styles.hint}>
+      <TargetPrompt text={ex.prompt} props={props} labelId="player.prompt.say" />
+      <div className={styles.hint} id={partId(props.ids, "hint")}>
         <T as="p" text={ex.translation} />
       </div>
       <ModelAudio props={props} />
@@ -802,7 +915,7 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
           </>
         ) : (
           <>
-            <button type="button" className={styles.secondary} disabled={locked} autoFocus={!locked} onClick={() => void startRecording()} data-action="record">
+            <button type="button" className={styles.secondary} disabled={locked} autoFocus={!locked} aria-describedby={description} onClick={() => void startRecording()} data-action="record">
               {t.format("player.speak.record")}
             </button>
             {recording.tag === "done" && (
@@ -816,7 +929,16 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
       <div className={styles.ratings} role="group" aria-label={t.format("player.speak.rate")}>
         <p className={styles.label}>{t.format("player.speak.rate")}</p>
         {ratings.map(([rating, message], i) => (
-          <button key={rating} type="button" className={styles.secondary} disabled={locked} autoFocus={i === 0 && !supported} data-rating={rating} onClick={() => rate(rating)}>
+          <button
+            key={rating}
+            type="button"
+            className={styles.secondary}
+            disabled={locked}
+            autoFocus={i === 0 && !supported}
+            aria-describedby={i === 0 && !supported ? description : undefined}
+            data-rating={rating}
+            onClick={() => rate(rating)}
+          >
             {t.format(message)}
           </button>
         ))}
@@ -883,11 +1005,16 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
     dispatch({ tag: "input", draft: { tag: "self-rating", rating } });
     dispatch({ tag: "submit" });
   };
+  const description = describedBy(props.ids, ex.template === "speak" ? ["prompt", "hint"] : []);
   return (
     <div className={styles.body}>
-      {ex.template === "listen-speak" ? <ListenPrompt audio={ex.audio} props={props} transcript={ex.prompt} translation={ex.translation} /> : <TargetPrompt text={ex.prompt} props={props} />}
+      {ex.template === "listen-speak" ? (
+        <ListenPrompt audio={ex.audio} props={props} transcript={ex.prompt} translation={ex.translation} />
+      ) : (
+        <TargetPrompt text={ex.prompt} props={props} labelId="player.prompt.say" />
+      )}
       {ex.template === "speak" && (
-        <div className={styles.hint}>
+        <div className={styles.hint} id={partId(props.ids, "hint")}>
           <T as="p" text={ex.translation} />
         </div>
       )}
@@ -896,8 +1023,17 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
           {recorder.state === "unavailable" ? (
             <div className={styles.ratings} role="group" aria-label={t.format("player.speech.rate-instead")}>
               <p className={styles.label}>{t.format("player.speech.rate-instead")}</p>
-              {(["good", "hard", "again"] as const).map((rating) => (
-                <button key={rating} type="button" className={styles.secondary} disabled={locked} data-rating={rating} onClick={() => rate(rating)}>
+              {(["good", "hard", "again"] as const).map((rating, i) => (
+                <button
+                  key={rating}
+                  type="button"
+                  className={styles.secondary}
+                  disabled={locked}
+                  autoFocus={i === 0 && !locked}
+                  aria-describedby={i === 0 ? description : undefined}
+                  data-rating={rating}
+                  onClick={() => rate(rating)}
+                >
                   {t.format(`player.speak.rate.${rating}`)}
                 </button>
               ))}
@@ -914,6 +1050,9 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
               type="button"
               className={styles.secondary}
               disabled={locked || scoring === "scoring"}
+              // Record has the focus, as on a self-rated card: a stray Enter never rates anything.
+              autoFocus={!locked}
+              aria-describedby={description}
               onClick={() => {
                 setScoring("idle");
                 void recorder.start();
@@ -969,6 +1108,7 @@ export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
     <div className={styles.body}>
       <ListenPrompt audio={ex.audio} props={props} transcript={ex.syllable} translation={ex.translation} />
       <Options
+        describedBy={describedBy(props.ids, [])}
         options={ex.tones.map((tone) => (
           <span key={tone} data-tone={tone}>
             {label(tone)}
@@ -1022,7 +1162,7 @@ export const ListenTapView = (props: Props<ListenTap>): JSX.Element => {
   return (
     <div className={styles.body}>
       <ListenPrompt audio={ex.audio} props={props} transcript={ex.canonical} translation={ex.translation} />
-      <WordBank props={props} ex={ex} />
+      <WordBank props={props} ex={ex} parts={[]} />
     </div>
   );
 };
@@ -1033,7 +1173,7 @@ export const ListenTypeView = (props: Props<ListenType>): JSX.Element => {
   return (
     <div className={styles.body}>
       <ListenPrompt audio={ex.audio} props={props} transcript={ex.canonical} translation={ex.translation} />
-      <TypedAnswer props={props} label={t.format("player.listen.type-label", { language: props.language })} answer={ex.canonical} />
+      <TypedAnswer props={props} label={t.format("player.listen.type-label", { language: props.language })} answer={ex.canonical} parts={[]} />
     </div>
   );
 };
@@ -1046,6 +1186,7 @@ export const ListenChoiceView = (props: Props<ListenSelect | MinimalPair>): JSX.
     <div className={styles.body}>
       <ListenPrompt audio={ex.audio} props={props} transcript={ex.options[ex.answer]} translation={ex.translation} />
       <Options
+        describedBy={describedBy(props.ids, [])}
         options={ex.options.map((o, i) => <T key={i} text={o} ruby={props.ruby} marks={props.marks} />)}
         selected={selectedOf(props)}
         answer={ex.answer}
@@ -1061,10 +1202,10 @@ export const ListenChoiceView = (props: Props<ListenSelect | MinimalPair>): JSX.
 // ------------------------------------------------------------------------------------ stories (Phase 6)
 
 /** A support-language prompt (a question, or a line's translation). */
-const SupportPrompt = ({ text }: { text: TaggedText }): JSX.Element => {
+const SupportPrompt = ({ text, ids, labelId }: { text: TaggedText; ids: ViewProps["ids"]; labelId: MessageId }): JSX.Element => {
   const t = useTranslator();
   return (
-    <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-ink-container="prompt">
+    <div className={styles.prompt} role="group" aria-label={t.format(labelId)} id={partId(ids, "prompt")} data-ink-container="prompt">
       <T as="p" text={text} />
     </div>
   );
@@ -1076,8 +1217,9 @@ export const StoryChooseView = (props: Props<StoryChoose>): JSX.Element => {
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
   return (
     <div className={styles.body}>
-      <SupportPrompt text={ex.prompt} />
+      <SupportPrompt text={ex.prompt} ids={props.ids} labelId="player.prompt.question" />
       <Options
+        describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => <T key={i} text={o} />)}
         selected={selectedOf(props)}
         answer={ex.answer}
@@ -1099,6 +1241,7 @@ export const StoryCompleteView = (props: Props<StoryComplete>): JSX.Element => {
       <GapSentence before={ex.before} after={ex.after} fill={selected === null ? undefined : ex.options[selected]} props={props} />
       <Options
         grid
+        describedBy={describedBy(props.ids, ["gap"])}
         options={ex.options.map((o, i) => <T key={i} text={o} ruby={props.ruby} marks={props.marks} />)}
         selected={selected}
         answer={ex.answer}
@@ -1115,8 +1258,8 @@ export const StoryArrangeView = (props: Props<StoryArrange>): JSX.Element => {
   const { ex } = props;
   return (
     <div className={styles.body}>
-      <SupportPrompt text={ex.prompt} />
-      <WordBank props={props} ex={ex} />
+      <SupportPrompt text={ex.prompt} ids={props.ids} labelId="exercise.prompt.label" />
+      <WordBank props={props} ex={ex} parts={["prompt"]} />
     </div>
   );
 };

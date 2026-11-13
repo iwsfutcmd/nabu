@@ -69,6 +69,7 @@ declare const styles: {
   readonly target: string;
   readonly textButton: string;
   readonly tile: string;
+  readonly tileNumber: string;
   readonly tileSlot: string;
   readonly toggles: string;
   readonly track: string;

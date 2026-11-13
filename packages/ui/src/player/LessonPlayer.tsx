@@ -10,7 +10,7 @@
  */
 import { cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
-import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
@@ -129,6 +129,9 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const ruby = readings.shown;
   const marks = vowels ? "show" : "hide";
   const continueButton = useRef<HTMLButtonElement>(null);
+  // The card's instruction and prompt describe the control it focuses first (P10).
+  const base = useId();
+  const ids = { instruction: `${base}-instruction`, base };
   const footer = useRef<HTMLElement>(null);
   const card = useRef<HTMLElement>(null);
   useActionsInReach(card, footer, state.tag === "finished" ? "" : (state.tag === "interrupted" ? state.resume : state).ex.id);
@@ -284,7 +287,9 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
           )}
         </div>
       )}
-      <h2 className={styles.instruction}>{instruction}</h2>
+      <h2 className={styles.instruction} id={ids.instruction}>
+        {instruction}
+      </h2>
       {props.debug === true && (
         <p className={styles.muted} data-debug-template={ex.template}>
           {t.format("debug.template", { template: ex.template })}
@@ -324,6 +329,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         outcome={outcome}
         language={language}
         shortcuts={shortcuts}
+        ids={ids}
       />
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">

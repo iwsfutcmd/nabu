@@ -14,7 +14,7 @@
 import { draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
@@ -165,6 +165,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const ruby = readings.shown;
   const marks = vowels ? "show" : "hide";
   const continueButton = useRef<HTMLButtonElement>(null);
+  // A question's instruction and prompt describe the control it focuses first (P10).
+  const base = useId();
+  const ids = { instruction: `${base}-instruction`, base };
   const transcript = useRef<HTMLDivElement>(null);
   const shortcuts = useRef<Shortcuts | null>(null);
   const keys = useRef<(e: globalThis.KeyboardEvent) => void>(() => undefined);
@@ -386,7 +389,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
 
       {asking !== undefined && ex !== undefined && draft !== undefined && (
         <div className={styles.question} data-story-question="" data-state={active?.tag}>
-          <h2 className={playerStyles.instruction}>{t.format(INSTRUCTIONS[ex.template], { language })}</h2>
+          <h2 className={playerStyles.instruction} id={ids.instruction}>
+            {t.format(INSTRUCTIONS[ex.template], { language })}
+          </h2>
           <ExerciseView
             key={ex.id}
             ex={ex}
@@ -402,6 +407,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             outcome={feedback?.outcome}
             language={language}
             shortcuts={shortcuts}
+            ids={ids}
           />
           <div className={playerStyles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
             {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} course={course} ruby={ruby} marks={marks} />}

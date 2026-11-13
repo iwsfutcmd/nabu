@@ -86,6 +86,8 @@ export interface AnswerInputProps {
   readonly base: Pick<TaggedText, "lang" | "orthography">;
   readonly dir: Direction;
   readonly label: string;
+  /** Ids of what the field is described by: the card's instruction and prompt (P10). */
+  readonly describedBy?: string | undefined;
   readonly disabled: boolean;
   readonly extraKeys: readonly string[];
   readonly onInput: (text: string) => void;
@@ -99,6 +101,7 @@ export const AnswerInput = ({
   base,
   dir,
   label,
+  describedBy,
   disabled,
   extraKeys,
   onInput,
@@ -156,6 +159,7 @@ export const AnswerInput = ({
         value={value}
         lang={base.lang}
         dir={dir}
+        aria-describedby={describedBy}
         autoCapitalize="off"
         autoCorrect="off"
         autoComplete="off"
