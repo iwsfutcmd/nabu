@@ -1833,6 +1833,22 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "Leave it: no alphabet track until script tracks get their own review"
       }
     ]
+  },
+  {
+    "id": "D52",
+    "title": "Tone cards in Cantonese lessons (found by C5)",
+    "context": "With the lesson tests now checking what the planner plans, a gap showed: yue lessons never plan a tone-identify card, though the app can score tones and the cards are among the candidates (their predicted success is about 0.52, and nothing reserves them a place). The old, unused builder always included one.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Reserve them a place where they can be made, as pronunciation cards have (a planner change; the simulation re-checked)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Leave them to need, as now: none in practice"
+      }
+    ]
   }
 ]
 </script>
@@ -2195,6 +2211,11 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     }
   },
   "progress": {
+    "C5": {
+      "state": "done",
+      "commit": "1b7d65f4",
+      "note": "Merged (ADR 0125): the unused second lesson builder (buildLesson, ROTATION) is gone; what production used from it lives in its own modules, the card gallery and sampleExercise come from the lessons’ own candidates, and the lesson tests check what plan() plans, walking all twelve course variants as a learner would (lessons, reviews, mistakes). plan() is unchanged (4,071 plans compared). The walk found one gap: D52."
+    },
     "C14": {
       "state": "done",
       "commit": "e1cb78f4",
@@ -2634,7 +2655,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
-    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9, P14, W6, P16, S11, S8, C6 and C10. R1/R4 is still with its helper. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. All 48 decisions are answered and built: D34, D39, D41, D44 and D45 change what was first built (and the word list counts due at the learner’s pace again)."
+    "Done (13 November): every finding prioritised Now, Next or Later is on main, with 54 decisions answered and built, CI green. Open: D52 (tone cards in yue lessons). Follow-ups found on the way, not in the list: gap-fill can offer a word already shown in its sentence (apc s.4); “Explain my answer” is offered for tile answers but the server explains only typed ones; a second check accepted after an offline wait isn’t announced; a league week joined in its grace hours keeps last week’s tier; opening a course with a year of history still takes about 4 s at 4× CPU (reading IndexedDB, converting FSRS cards); release builds keep draft name translations; P16/D39 want a check on a real Android phone."
   ]
 }
 </script>
