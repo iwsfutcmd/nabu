@@ -261,7 +261,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
     onTap: (word: WordTap): void => {
       const closing = tapped !== undefined && tapped.key === word.key && tapped.token === word.token;
       // Opening a meaning before the answer is checked is a hint (D16); after it, it is learning.
-      if (!closing && lookupIsHint(state)) hinted.current.add(ex.id);
+      if (!closing && lookupIsHint(state, ex.template)) hinted.current.add(ex.id);
       setTap(closing ? undefined : { card: ex.id, word });
     },
   };

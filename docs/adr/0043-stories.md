@@ -108,3 +108,8 @@ The owner decided (D16) that looking a word up on a card before its answer is ch
 - The fold rates a hinted right answer Hard at best (`ratingOf`), and a hinted first try shows no
   skill and misses none ([ADR 0100](0100-known-words.md)'s amendment). It still counts in recent
   practice (the learning pace), and the performance model learns it as right or wrong, as it was.
+- The owner settled three edges (D16a–c): a wrong answer after a lookup misses nothing either (the
+  lookup may have been another word, and it is still rated Again); story lines stay free to look up;
+  and a speaking card is never hinted, since it shows what the sentence means anyway and asks for it
+  to be said. The player marks no lookup on a speaking card, and the fold ignores `hinted` on one
+  (`SPEAKING`), so answers logged before this rule count the same way.

@@ -7,7 +7,7 @@
 import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
-import { TEMPLATES } from "../lesson/templates.ts";
+import { SPEAKING, TEMPLATES } from "../lesson/templates.ts";
 import { facetOf, ratingOf, type Pace, type Rating } from "./credit.ts";
 import { initialPerformance, update, type Performance } from "./performance.ts";
 import { withRevisions } from "./revisions.ts";
@@ -244,8 +244,9 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   const pace: Pace = typical === undefined ? "usual" : perUnit > PACE_SLOW * typical ? "slow" : perUnit <= PACE_FAST * typical ? "fast" : "usual";
   if (e.attempt === 1) d.latencies[template] = [...recent, perUnit].slice(-LATENCY_WINDOW);
   const typed = TEMPLATES[template].modality.input === "text";
-  // A word's meaning looked up on the card before answering (D16): a hint.
-  const hinted = e.input.hinted === true;
+  // A word's meaning looked up on the card before answering (D16): a hint, except on a speaking card,
+  // which shows what the sentence means anyway and asks for it to be said (D16c).
+  const hinted = e.input.hinted === true && !SPEAKING.has(template);
   for (const credit of e.outcome.kcs) {
     const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, pace, e.input.selfRating, typed, hinted);
     if (rating !== undefined) rate(d, e, credit.kc, facet, rating);

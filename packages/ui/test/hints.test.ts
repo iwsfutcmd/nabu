@@ -27,14 +27,21 @@ const states = (): { readonly presenting: PlayerState; readonly answering: Playe
 describe("a lookup before answering is a hint (D16)", () => {
   const s = states();
 
+  it("never counts on a speaking card, which shows what the sentence means anyway (D16c)", () => {
+    for (const template of ["speak.tier-0", "speak", "listen-speak"] as const) {
+      expect(lookupIsHint(s.presenting, template)).toBe(false);
+      expect(lookupIsHint(s.answering, template)).toBe(false);
+    }
+  });
+
   it("counts while the card is shown and being answered, never once it is checked", () => {
-    expect(lookupIsHint(s.presenting)).toBe(true);
-    expect(lookupIsHint(s.answering)).toBe(true);
-    expect(lookupIsHint(s.feedback)).toBe(false);
-    expect(lookupIsHint(s.finished)).toBe(false);
+    expect(lookupIsHint(s.presenting, ex.template)).toBe(true);
+    expect(lookupIsHint(s.answering, ex.template)).toBe(true);
+    expect(lookupIsHint(s.feedback, ex.template)).toBe(false);
+    expect(lookupIsHint(s.finished, ex.template)).toBe(false);
     // The quit dialog over a card being answered is still before the answer.
-    expect(lookupIsHint(step(s.answering, { tag: "interrupt", reason: "quit-confirm" })[0])).toBe(true);
-    expect(lookupIsHint(step(s.feedback, { tag: "interrupt", reason: "quit-confirm" })[0])).toBe(false);
+    expect(lookupIsHint(step(s.answering, { tag: "interrupt", reason: "quit-confirm" })[0], ex.template)).toBe(true);
+    expect(lookupIsHint(step(s.feedback, { tag: "interrupt", reason: "quit-confirm" })[0], ex.template)).toBe(false);
   });
 
   it("marks the answer of the card it was looked up on, and nothing else", () => {

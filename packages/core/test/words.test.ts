@@ -227,6 +227,18 @@ describe("known words (ADR 0100)", () => {
     expect(hinted.xp).toEqual(plain.xp);
   });
 
+  it("rates a speaking card as rated, looked up or not (D16c)", () => {
+    const run = (hinted: boolean): LearnerState => {
+      const l = log();
+      l.on(1);
+      l.answer(card("speak.tier-0", [a]), [true]);
+      l.on(2);
+      l.answer(card("speak.tier-0", [a]), [true], 1, hinted);
+      return l.state();
+    };
+    expect(run(true).cards).toEqual(run(false).cards);
+  });
+
   it("counts first tries only, and a revealed answer on a word card as a miss", () => {
     const l = log();
     l.on(1);

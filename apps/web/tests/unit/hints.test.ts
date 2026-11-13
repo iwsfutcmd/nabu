@@ -46,7 +46,7 @@ const playWithLookup = (lookAt: "answering" | "feedback"): AnswerSubmitted => {
   const onEvent = recorder({ course, bundle: "0".repeat(64), device: "unit", plan: lesson, seed: 5, record: (e) => logged.push(e) });
   let state: PlayerState = start(node, [ex])[0];
   const lookUp = (): void => {
-    if (lookupIsHint(state)) hinted.add(ex.id);
+    if (lookupIsHint(state, ex.template)) hinted.add(ex.id);
   };
   const run = (fx: readonly Effect[]): void => {
     for (const f of fx) {
