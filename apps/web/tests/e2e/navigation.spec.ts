@@ -31,6 +31,15 @@ const playFirst = async (page: Page, exercises: readonly Parameters<typeof answe
   }
 };
 
+/**
+ * Waits until the device's log holds these answers: events are written to IndexedDB a moment after
+ * they are recorded, and a reload before that would lose the last one, as closing the tab would.
+ */
+const logged = async (page: Page, exercises: readonly { readonly id: string }[]): Promise<void> => {
+  const ids = new Set(exercises.map((e) => e.id));
+  await expect.poll(async () => (await logOf(page, "fa")).filter((e) => e.type === "answer_submitted" && ids.has(e.exercise.id)).length).toBe(ids.size);
+};
+
 test.describe("back and reload", () => {
   if (first === undefined || second === undefined) throw new Error("fa needs two lessons");
 
@@ -40,7 +49,8 @@ test.describe("back and reload", () => {
     page.on("pageerror", (e) => errors.push(String(e)));
     await page.clock.setFixedTime(NOW);
     await page.goto(`/?seed=${SEED}&sound=off#/`);
-    await activate(page, mode, '[data-course="fa"] [data-orthography="fa-Arab/standard"]');
+    // Home's course card is the course's link (one writing system).
+    await activate(page, mode, '[data-course="fa"] [data-course-link]');
     await expect(page.locator("[data-course-path]")).toBeVisible();
     const exercises = planned(course, [], { mode: "lesson", node: first }, NOW, SEED);
     await activate(page, mode, `[data-lesson="${first}"]`);
@@ -90,6 +100,7 @@ test.describe("back and reload", () => {
     await activate(page, mode, `[data-lesson="${second}"]`);
     await playFirst(page, exercises, 3, mode);
     const progress = await page.locator("[data-progress-fill]").getAttribute("style");
+    await logged(page, exercises.slice(0, 3));
 
     // Half a minute later the tab is reloaded (a phone dropped it): the same card, the same progress.
     await page.clock.setFixedTime(new Date(NOW.getTime() + 30_000));
@@ -122,6 +133,7 @@ test.describe("back and reload", () => {
     const exercises = planned(course, [], { mode: "lesson", node: first }, NOW, SEED);
     await activate(page, "keyboard", `[data-lesson="${first}"]`);
     await playFirst(page, exercises, 2, "keyboard");
+    await logged(page, exercises.slice(0, 2));
     // An address typed (or a link followed): no question, the page it names.
     await page.clock.setFixedTime(new Date(NOW.getTime() + 30_000));
     await page.evaluate(() => (window.location.hash = "#/"));

@@ -225,6 +225,9 @@ test("placement stopped part-way places by the answers so far, and can be taken 
     await answer(page, ex, mode);
     await expectRightAndContinue(page, mode, ex);
   }
+  // Events reach IndexedDB a moment after they are recorded: a reload before then loses the last one.
+  const ids = new Set(asked.map((e) => e.id));
+  await expect.poll(async () => (await logOf(page, "fa")).filter((e) => e.type === "answer_submitted" && ids.has(e.exercise.id)).length).toBe(ids.size);
   // A reload goes on with the test where it was, without its introduction.
   await page.clock.setFixedTime(new Date(now.getTime() + 30_000));
   await page.reload();
