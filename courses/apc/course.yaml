@@ -4,6 +4,18 @@ id: apc
 target: apc-Arab-LB
 orthographies: [apc-Arab/standard, apc-Latn/arabizi]
 support: [en-Latn/standard]
+# What the app calls the course and its orthographies, and what the course list says of them, by
+# language (ADR 0109).
+names:
+  en:
+    course: Lebanese Arabic
+    blurb: "The Arabic of Lebanon, as people speak it every day."
+    orthographies:
+      apc-Arab/standard: Arabic script
+      apc-Latn/arabizi: "Arabizi (Latin letters and numbers)"
+    hints:
+      apc-Arab/standard: "Arabic letters, right to left, with vowel marks to help you read."
+      apc-Latn/arabizi: "Latin letters and digits, as many Lebanese write in messages."
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@6914f241714e', status: draft}
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-food.yaml, units/u04-home.yaml, units/u05-numbers.yaml, units/u06-day.yaml, units/u07-likes.yaml, units/u08-time.yaml, units/u09-past.yaml, units/u10-plans.yaml, units/u11-people.yaml, units/u12-trip.yaml, units/u13-health.yaml, units/u14-phone.yaml, units/u15-shopping.yaml, units/u16-dates.yaml, units/u17-childhood.yaml, units/u18-getting-around.yaml, units/u19-work.yaml, units/u20-celebrations.yaml]

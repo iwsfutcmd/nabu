@@ -9,24 +9,18 @@
  *   direction and optional vertical mode come from the script and profile.
  */
 import { tileGroups } from "@nabu/core/text";
-import { directionOf, type MessageId } from "@nabu/i18n";
-import type { OrthographyProfile, SchemeId, TaggedText } from "@nabu/schema";
-import { useState, type CSSProperties, type JSX } from "react";
+import { courseName, directionOf } from "@nabu/i18n";
+import type { OrthographyProfile, TaggedText } from "@nabu/schema";
+import type { CSSProperties, JSX } from "react";
 import { Button, Input, Label, ProgressBar, Switch, TextField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon, PlayIcon } from "../icons.tsx";
+import { useReadings } from "../player/Readings.tsx";
 import { T } from "../T.tsx";
-import type { CourseKey, DemoExercise } from "./fixtures.ts";
+import type { DemoExercise } from "./fixtures.ts";
 import styles from "./ExerciseCard.module.css";
 
 export type WritingMode = "horizontal-tb" | "vertical-rl" | "vertical-lr";
-
-const COURSE_NAMES: Readonly<Record<CourseKey, MessageId>> = {
-  fa: "course.name.fa",
-  yue: "course.name.yue",
-  uz: "course.name.uz",
-  apc: "course.name.apc",
-};
 
 /**
  * The writing mode the target region actually uses: vertical only where the
@@ -40,10 +34,6 @@ export const effectiveWritingMode = (profile: OrthographyProfile, requested: Wri
   const inScope = (layout.verticalScope ?? []).includes("wordbank");
   return requested === layout.vertical && inScope ? layout.vertical : "horizontal-tb";
 };
-
-/** The profile's ruby reading layer, if it has one (Jyutping for yue). */
-export const rubyScheme = (profile: OrthographyProfile): SchemeId | undefined =>
-  profile.annotations?.find((a) => a.kind === "reading" && a.render === "ruby")?.scheme;
 
 /** Deterministic word-bank order: distractors interleaved after the first remaining tiles. */
 const bankOrder = (remaining: readonly TaggedText[], distractors: readonly TaggedText[]): readonly TaggedText[] => {
@@ -76,15 +66,15 @@ export const ExerciseCard = ({
 }: ExerciseCardProps): JSX.Element => {
   const t = useTranslator();
   const mode = effectiveWritingMode(profile, writingMode);
-  const scheme = rubyScheme(profile);
-  // Rotated Latin ruby reads badly in vertical text: hidden by default there (§11.4).
-  const [readings, setReadings] = useState(mode === "horizontal-tb");
-  const ruby = readings && scheme !== undefined ? scheme : false;
+  // The player's readings: what shows before the learner chooses, and none in vertical text (§11.4).
+  const readings = useReadings(profile, mode);
+  const layer = readings.layers[0]?.scheme;
+  const ruby = readings.shown;
   const tiles = tileGroups(exercise.answer);
   const answerTiles = tiles.slice(0, placed);
   const bank = bankOrder(tiles.slice(placed), exercise.distractors);
   const targetDir = directionOf(exercise.answer.lang);
-  const language = t.format(COURSE_NAMES[exercise.course]);
+  const language = courseName(t, { id: exercise.course, target: exercise.answer.lang });
   const progressLabel = t.format("exercise.progress", progress);
 
   return (
@@ -139,8 +129,8 @@ export const ExerciseCard = ({
 
       <div className={styles.meta}>
         <p className={styles.remaining}>{t.format("exercise.wordbank.remaining", { count: bank.length })}</p>
-        {scheme !== undefined && (
-          <Switch className={styles.switch} isSelected={readings} onChange={setReadings}>
+        {layer !== undefined && (
+          <Switch className={styles.switch} isSelected={ruby !== false} onChange={(on) => readings.choose(on ? layer : false)}>
             <span className={styles.switchTrack} aria-hidden="true">
               <span className={styles.switchThumb} />
             </span>

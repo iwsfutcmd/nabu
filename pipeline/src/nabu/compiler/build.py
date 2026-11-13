@@ -675,6 +675,7 @@ def compile_course(
         return diags, None
 
     _load_vocalization(ctx, course, course_file, display, doc)
+    _names(ctx, course, doc)
     _drills(ctx, course, doc, units)
     _duplicates(ctx, units)
     for unit in units:
@@ -967,6 +968,30 @@ def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm)
 
 
 # ------------------------------------------------------------ stage 4: drills
+
+
+def _names(ctx: Ctx, course: CourseSource, doc: Doc) -> None:
+    """What the app calls the course (ADR 0109): a name in each support language, so no UI needs a
+    message for it, and orthography names and hints only for orthographies the course teaches."""
+    names = course.names or {}
+    for support in course.support:
+        language = ctx.profiles[support].lang.split("-")[0]
+        if not any(tag.split("-")[0] == language for tag in names):
+            ctx.diags.report(
+                "course.names",
+                f"no name for the course in its support language {language}: "
+                f"names: {{{language}: {{course: …}}}}",
+                doc.loc("names") if names else doc.loc("support"),
+            )
+    for tag, named in names.items():
+        for key, given in (("orthographies", named.orthographies), ("hints", named.hints)):
+            for orth in given or {}:
+                if orth not in course.orthographies:
+                    ctx.diags.report(
+                        "course.names",
+                        f"names.{tag}.{key} names {orth}, which the course does not teach",
+                        doc.loc("names", tag, key, orth),
+                    )
 
 
 def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None:

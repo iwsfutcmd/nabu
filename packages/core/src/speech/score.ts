@@ -6,11 +6,20 @@
  */
 import type { TaggedText } from "@nabu/schema";
 import type { Verdict } from "../match/grade.ts";
+import { readingSchemes } from "../profile/schemes.ts";
 import { pitchTrack } from "./pitch.ts";
-import { calibrate, CANTONESE, scoreTones, type Calibration, type ToneScore, type ToneSystem } from "./tone.ts";
+import { calibrate, scoreTones, toneSystemFrom, type Calibration, type ToneScore, type ToneSystem } from "./tone.ts";
 
-/** Tone systems by the reading scheme that carries them. */
-export const TONE_SYSTEMS: Readonly<Record<string, ToneSystem>> = { jyutping: CANTONESE };
+/** Tone systems by the reading scheme that carries them: every scheme whose data gives tones (Jyutping). */
+export const TONE_SYSTEMS: Readonly<Record<string, ToneSystem>> = Object.fromEntries(
+  readingSchemes().flatMap((scheme) => {
+    const system = toneSystemFrom(scheme);
+    return system === undefined ? [] : [[scheme.id, system] as const];
+  }),
+);
+
+/** A tone system by its id (yue-jyutping), as tone exercises name it. */
+export const toneSystemById = (id: string): ToneSystem | undefined => Object.values(TONE_SYSTEMS).find((system) => system.id === id);
 
 /**
  * Whether the app scores a learner's tones on the device (tier 3, ADR 0046). Off (ADR 0093): on

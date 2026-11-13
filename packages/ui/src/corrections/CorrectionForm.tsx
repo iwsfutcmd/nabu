@@ -10,9 +10,10 @@
  *   correction is made (NFC, in @nabu/core/corrections), and nothing is sent mid-composition.
  */
 import { correctionOf, draftFrom, shownOf, type Correctable, type CorrectionDraft, type CorrectionError } from "@nabu/core/corrections";
-import { READING_TAGS, type CourseView } from "@nabu/core/lesson";
+import { readingScheme } from "@nabu/core";
+import type { CourseView } from "@nabu/core/lesson";
 import { textOfSurface } from "@nabu/core/text";
-import { directionOf, fontStackFor } from "@nabu/i18n";
+import { directionOf, fontStackFor, orthographyName } from "@nabu/i18n";
 import type { CorrectionFields, SentenceReported, TaggedText, TokenReading } from "@nabu/schema";
 import { useId, useMemo, useState, type CSSProperties, type JSX } from "react";
 import { Button, FieldError, Input, Label, Text, TextArea, TextField } from "react-aria-components";
@@ -69,10 +70,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
   const [error, setError] = useState<CorrectionError | undefined>(undefined);
   const ime = { onCompositionStart: () => setComposing(true), onCompositionEnd: () => setComposing(false) };
   const errorOf = (field: string): string | undefined => (error !== undefined && "field" in error && error.field === field ? t.format(ERROR_MESSAGES[error.code]) : undefined);
-  const orthographyName = (id: string): string => {
-    const key = `orthography.${id.replace("/", ".")}`;
-    return t.has(key) ? t.format(key) : id;
-  };
+  const nameOf = (id: string): string => orthographyName(t, course, id);
   const edit = (next: CorrectionDraft): void => {
     setDraft(next);
     setError(undefined);
@@ -117,7 +115,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
         return (
           <div key={o} className={styles.field} data-orthography={o}>
             <TextField className={styles.field} value={form.text} onChange={(v) => setForm(o, { text: v })} isInvalid={errorOf(`text:${o}`) !== undefined}>
-              <Label className={styles.label}>{t.format(word ? "corrections.word.text" : "corrections.text", { orthography: orthographyName(o) })}</Label>
+              <Label className={styles.label}>{t.format(word ? "corrections.word.text" : "corrections.text", { orthography: nameOf(o) })}</Label>
               <TextArea className={styles.input} lang={text.lang} dir={directionOf(text.lang)} rows={2} spellCheck={false} style={fieldStyle(text.lang, profile?.fonts)} data-field="correction-text" {...ime} />
               <Text slot="description" className={styles.now} data-ink-container={`now:${o}`}>
                 {t.format("corrections.now")} <T text={text} />
@@ -128,8 +126,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
               <fieldset className={styles.readings}>
                 <legend className={styles.legend}>{t.format("corrections.readings")}</legend>
                 {readings.map((r, n) => {
-                  const tag = READING_TAGS[r.scheme];
-                  const lang = tag?.lang ?? "und-Latn";
+                  const lang = readingScheme(r.scheme)?.lang ?? "und-Latn";
                   return (
                     <TextField
                       key={`${String(r.token)}:${r.scheme}`}

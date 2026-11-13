@@ -41,6 +41,13 @@ _LINTS = [
     Lint(
         "parse.missing-asset", "error", 1, "An asset (a KC image) names a file that does not exist."
     ),
+    Lint(
+        "course.names",
+        "warning",
+        1,
+        "The course has no name in a support language, or names an orthography it does not teach"
+        " (ADR 0109).",
+    ),
     # 2 · text hygiene
     Lint("text.not-nfc", "error", 2, "A string is not in NFC."),
     Lint(

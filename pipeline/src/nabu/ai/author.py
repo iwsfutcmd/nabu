@@ -22,7 +22,7 @@ import yaml
 
 from nabu import yamlio
 from nabu.ai.llm import Model, load_prompt, render
-from nabu.ai.reports import escape_notation
+from nabu.notation import literal
 from nabu.paths import SCHEMAS
 from nabu.schema.models import AuthorOutput
 
@@ -151,14 +151,14 @@ def drafts_of(output: AuthorOutput, course: Course, node: str, author: str) -> l
             forms[orth] = {
                 "text": form.text,
                 "tokens": tokens,
-                "reverse": escape_notation(form.text),
+                "reverse": literal(form.text),
             }
         drafts.append(
             {
                 "id": f"draft.{node}.{i}",
                 "node": node,
                 "forms": forms,
-                "translations": {"en": "\n".join(escape_notation(t) for t in s.translations)},
+                "translations": {"en": "\n".join(literal(t) for t in s.translations)},
                 "provenance": yamlio.Flow({"author": author, "status": "draft"}),
             }
         )

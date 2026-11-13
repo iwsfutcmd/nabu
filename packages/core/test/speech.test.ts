@@ -11,7 +11,6 @@ import { allSentences, createGrader, gradeExercise, seededRng } from "../src/les
 import { makeSpeakScored } from "../src/lesson/templates.ts";
 import {
   calibrate,
-  CANTONESE,
   classify,
   decodeWav,
   DEVICE_TONE_SCORING,
@@ -23,9 +22,15 @@ import {
   scoreTones,
   semitones,
   syllableSpans,
+  TONE_SYSTEMS,
+  toneSystemById,
   type PitchTrack,
+  type ToneSystem,
 } from "../src/speech/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
+
+/** Cantonese in Jyutping: the tone system of the jyutping scheme's data (profiles/schemes, ADR 0109). */
+const CANTONESE = TONE_SYSTEMS["jyutping"] as ToneSystem;
 
 const RATE = 16_000;
 
@@ -261,5 +266,17 @@ describe("tone evaluation harness", () => {
 
   it("decodes only mono 16-bit WAV", () => {
     expect(decodeWav(new Uint8Array([1, 2, 3]))).toBeUndefined();
+  });
+});
+
+describe("tone systems are the reading schemes' data (ADR 0109)", () => {
+  it("Cantonese is the jyutping scheme's: its tones, their shapes, and a syllable's tone", () => {
+    expect(toneSystemById("yue-jyutping")).toBe(CANTONESE);
+    expect(CANTONESE.scheme).toBe("jyutping");
+    expect(Object.keys(CANTONESE.tones)).toEqual(["1", "2", "3", "4", "5", "6"]);
+    expect(CANTONESE.tones["4"]).toEqual({ chao: [2.2, 1.6, 1], shape: "falling" });
+    expect(["hou2", "m4", "ng5", "sik6", "hou", "hou7"].map((s) => CANTONESE.toneOf(s))).toEqual(["2", "4", "5", "6", undefined, undefined]);
+    // A scheme without tones has no system: Pinyin's are marks on vowels, not modelled yet.
+    expect(TONE_SYSTEMS["pinyin"]).toBeUndefined();
   });
 });

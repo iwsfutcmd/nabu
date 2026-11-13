@@ -350,7 +350,8 @@ def ingest(
 @app.command()
 def report(course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")]) -> None:
     """QA summary and the human review queue (clips the round-trip check did not pass)."""
-    from nabu.audio.course import audio_dir, read_index
+    from nabu.audio.course import audio_dir, held_back, read_index
+    from nabu.provenance import signed_off
 
     course_dir = course if course.is_dir() else course.parent
     index = read_index(audio_dir(course))
@@ -360,15 +361,16 @@ def report(course: Annotated[Path, typer.Argument(exists=True, help="Course dire
     )
     typer.echo(
         f"{course_dir.name}: {len(index.clips)} clips; "
-        f"normal speed by QA: {dict(sorted(counts.items()))}"
+        f"normal speed by QA: {dict(sorted(counts.items()))}; "
+        f"{len(held_back(index))} items held back from bundles"
     )
     for c in normal:
-        if c.provenance.status in ("reviewed", "published"):
+        if signed_off(c.provenance.status):
             continue
         if c.qa is not None and c.qa.status in ("review", "fail"):
             typer.echo(f"  {c.qa.status:6} {c.item}: CER {c.qa.cer} heard {c.qa.asrText!r}")
     rejected = [c for c in index.clips if c.rejected is not None]
-    reviewed = [c for c in normal if c.provenance.status in ("reviewed", "published")]
+    reviewed = [c for c in normal if signed_off(c.provenance.status)]
     if reviewed:
         typer.echo(
             f"{len(reviewed)} items a listener judged right (they ship whatever the check said)"

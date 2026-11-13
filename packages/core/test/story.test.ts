@@ -2,28 +2,13 @@
  * Phase 6: stories as the reader plays them, tap-for-gloss on story lines, and stories on the
  * path and in the learner model.
  */
-import { readFileSync } from "node:fs";
-import { join, resolve } from "node:path";
-import type { BundleManifest, LearnerEvent, TaggedText } from "@nabu/schema";
+import type { LearnerEvent, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
-import { allKcs, answerTextOf, assembleCourse, createGrader, gradeExercise, MEDIA_ROLES, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
+import { allKcs, answerTextOf, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
 import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyAt, storyScript, type StoryScript, type StoryState } from "../src/story/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
-
-const ROOT = resolve(import.meta.dirname, "../../..");
-const BUNDLES = join(ROOT, "apps/web/public/bundles");
-const numberingSystems = JSON.parse(readFileSync(join(ROOT, "packages/i18n/src/generated/numbering-systems.json"), "utf8")) as Record<string, string>;
-
-const loadCourse = (id: string, orthography?: string): CourseView => {
-  const manifest = JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
-  const files = new Map<string, unknown>(
-    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
-  );
-  const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
-  if (!course.ok) throw new Error(JSON.stringify(course.error));
-  return course.value;
-};
+import { loadCourse } from "./learner-fixtures.ts";
 
 const VARIANTS: readonly (readonly [string, string | undefined])[] = [
   ["fa", undefined],

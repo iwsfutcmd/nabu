@@ -93,6 +93,52 @@
       "type": "string",
       "pattern": "^[A-Z][a-z]{3}$",
       "examples": ["Arab", "Hant", "Latn"]
+    },
+    "Names": {
+      "title": "Names",
+      "description": "A name in the languages it is given in (BCP 47 tags; ADR 0109): data, not app messages. The app shows the one in the UI language, else the first.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/LangTag" },
+      "additionalProperties": { "type": "string", "minLength": 1 },
+      "examples": [{ "en": "Jyutping" }]
+    },
+    "CourseNames": {
+      "title": "CourseNames",
+      "description": "What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/LangTag" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["course"],
+        "additionalProperties": false,
+        "properties": {
+          "course": {
+            "description": "The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.",
+            "type": "string",
+            "minLength": 1
+          },
+          "blurb": {
+            "description": "One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.",
+            "type": "string",
+            "minLength": 1
+          },
+          "orthographies": {
+            "description": "Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).",
+            "type": "object",
+            "propertyNames": { "$ref": "#/$defs/OrthographyId" },
+            "additionalProperties": { "type": "string", "minLength": 1 }
+          },
+          "hints": {
+            "description": "For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.",
+            "type": "object",
+            "propertyNames": { "$ref": "#/$defs/OrthographyId" },
+            "additionalProperties": { "type": "string", "minLength": 1 }
+          }
+        }
+      },
+      "examples": [{ "en": { "course": "Cantonese", "orthographies": { "yue-Hant-HK/standard": "Traditional characters" } } }]
     }
   }
 }

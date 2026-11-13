@@ -7,7 +7,7 @@
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { CANTONESE, decodeWav, evaluateTones, type EvalClip } from "../src/speech/index.ts";
+import { decodeWav, evaluateTones, toneSystemById, type EvalClip } from "../src/speech/index.ts";
 
 interface Index {
   readonly set: string;
@@ -21,7 +21,9 @@ const jsonAt = args.indexOf("--json");
 const out = jsonAt >= 0 ? args[jsonAt + 1] : undefined;
 const dir = resolve(args.find((a, i) => !a.startsWith("--") && (jsonAt < 0 || i !== jsonAt + 1)) ?? join(import.meta.dirname, "../../../evals/tones/synthetic-espeak"));
 const index = JSON.parse(readFileSync(join(dir, "index.json"), "utf8")) as Index;
-if (index.system !== CANTONESE.id) throw new Error(`no tone system ${index.system}`);
+// The set names its tone system (yue-jyutping): a reading scheme's, from its data (ADR 0109).
+const system = toneSystemById(index.system);
+if (system === undefined) throw new Error(`no tone system ${index.system}`);
 const speakers = index.speakers.map((s) =>
   s.clips.map((c): EvalClip => {
     const wav = decodeWav(readFileSync(join(dir, c.file)));
@@ -29,7 +31,7 @@ const speakers = index.speakers.map((s) =>
     return { ...wav, expected: c.expected, said: c.said, kind: c.kind };
   }),
 );
-const report = evaluateTones(speakers, CANTONESE);
+const report = evaluateTones(speakers, system);
 const pct = (x: number): string => `${(100 * x).toFixed(0)}%`;
 console.info(`${index.set}${index.synthetic ? " (SYNTHETIC: not native speech)" : ""}, ${index.speakers.length} speaker(s)`);
 console.info("tone  native heard as said   wrong flagged");

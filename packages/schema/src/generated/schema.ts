@@ -319,6 +319,18 @@ export type ScriptedLangTag1 = LangTag;
  */
 export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
+ * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
+ */
+export type LangTag1 = string & { readonly __brand: "LangTag" };
+/**
+ * A LangTag that carries an explicit script subtag. Every piece of language data uses one (gameplan §1 decision 3, §6.1): direction, fonts, Han glyph selection and input all key off the script.
+ */
+export type ScriptedLangTag2 = LangTag;
+/**
+ * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ */
+export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReportSubmission".
  */
@@ -385,6 +397,8 @@ export interface NabuSchemaIndex {
   readonly Facet: Facet;
   readonly PlacementPolicy: PlacementPolicy1;
   readonly ScriptCode: ScriptCode;
+  readonly Names: Names;
+  readonly CourseNames: CourseNames1;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
   readonly CorrectedForm: CorrectedForm;
@@ -466,6 +480,8 @@ export interface NabuSchemaIndex {
   readonly Equivalence: Equivalence;
   readonly TableRef: TableRef;
   readonly Contrast: Contrast;
+  readonly ReadingScheme: ReadingScheme;
+  readonly Tone: Tone;
   readonly Reports: Reports;
   readonly ReportSubmission: ReportSubmission;
   readonly CorrectionSubmission: CorrectionSubmission;
@@ -1073,6 +1089,7 @@ export interface BundleManifest {
   readonly target: ScriptedLangTag;
   readonly orthographies: readonly OrthographyId[];
   readonly support: readonly OrthographyId[];
+  readonly names?: CourseNames;
   /**
    * The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.
    *
@@ -1120,6 +1137,33 @@ export interface BundleManifest {
    * A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.
    */
   readonly release?: boolean;
+}
+/**
+ * What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses.
+ */
+export interface CourseNames {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
+      readonly [k: string]: string;
+    };
+  };
 }
 /**
  * How the placement test probes, where the course says (course source `placement`, ADR 0077).
@@ -1410,6 +1454,45 @@ export interface PlacementPolicy1 {
   readonly production?: "tiles" | "typed";
 }
 /**
+ * A name in the languages it is given in (BCP 47 tags; ADR 0109): data, not app messages. The app shows the one in the UI language, else the first.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Names".
+ */
+export interface Names {
+  readonly [k: string]: string;
+}
+/**
+ * What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CourseNames".
+ */
+export interface CourseNames1 {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
+      readonly [k: string]: string;
+    };
+  };
+}
+/**
  * Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1524,6 +1607,7 @@ export interface CourseSource {
    * @minItems 1
    */
   readonly support: readonly OrthographyId[];
+  readonly names?: CourseNames2;
   readonly license?: Spdx1;
   readonly provenance?: Provenance1;
   /**
@@ -1547,6 +1631,33 @@ export interface CourseSource {
    * Vowel marks for the course's words, by orthography (ADR 0053): a file next to course.yaml, or given inline. The compiler marks every word of sentences, stories and word forms with them, so the vowel-marks toggle has something to show.
    */
   readonly vocalization?: readonly (string | VocalizationSource)[];
+}
+/**
+ * What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).
+ */
+export interface CourseNames2 {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
+      readonly [k: string]: string;
+    };
+  };
 }
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
@@ -3093,6 +3204,90 @@ export interface Fonts {
 export interface Transliteration {
   readonly to: OrthographyId;
   readonly via: string;
+}
+/**
+ * A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ReadingScheme".
+ */
+export interface ReadingScheme {
+  readonly id: SchemeId;
+  readonly name: Names1;
+  readonly language: LangTag1;
+  readonly lang?: ScriptedLangTag2;
+  readonly answer?: OrthographyId2;
+  /**
+   * A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
+   */
+  readonly typed?: {
+    /**
+     * One syllable, as a regular expression that JavaScript and Python's `regex` read alike (letters, character classes, quantifiers): [a-z]+[1-6].
+     */
+    readonly syllable: string;
+    readonly locale: LangTag;
+    /**
+     * A character class of what may stand between syllables and is dropped: spaces, apostrophes, dots, hyphens.
+     */
+    readonly between: string;
+  };
+  /**
+   * Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use.
+   */
+  readonly tones?: {
+    /**
+     * The tone system's id, as tone exercises name it: yue-jyutping.
+     */
+    readonly system: string;
+    /**
+     * A character class of what marks a tone in a syllable: [0-9]. A syllable's tone is its marks; a typed answer with none has no tones.
+     */
+    readonly marks: string;
+    /**
+     * Each tone, keyed by its marks, in the order a learner meets them.
+     */
+    readonly values: {
+      readonly [k: string]: Tone;
+    };
+  };
+}
+/**
+ * What the UI calls it: Jyutping, Middle Chinese (Baxter).
+ */
+export interface Names1 {
+  readonly [k: string]: string;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Tone".
+ */
+export interface Tone {
+  readonly name?: Names2;
+  /**
+   * Its contour in Chao's tone letters, 1 lowest to 5 highest: 55, 35, 21. Voices that take IPA get them as ˥˧˩.
+   */
+  readonly letters: string;
+  /**
+   * Its shorter contour in a checked syllable (one ending in a stop), where it has one: 5.
+   */
+  readonly checked?: string;
+  /**
+   * Its pitch's movement, which the device judges when it cannot tell the speaker's register.
+   */
+  readonly shape: "level" | "rising" | "falling";
+  /**
+   * Chao letters at the start, middle and end of a syllable that the device's tone classifier compares a heard contour with. REVIEW: from the standard descriptions; tune on native recordings.
+   *
+   * @minItems 3
+   * @maxItems 3
+   */
+  readonly template: readonly number[];
+}
+/**
+ * What the UI calls its pitch: high level, low rising.
+ */
+export interface Names2 {
+  readonly [k: string]: string;
 }
 /**
  * What the app sends to the report intake (ADR 0055) when a learner reports a problem: a sentence or story line they corrected (sentence_reported), or an answer they say should have been accepted or wrong (answer_reported). It carries no device, user or session id, and only the local date. A scheduled job files each report as a GitHub issue.

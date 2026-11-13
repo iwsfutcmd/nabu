@@ -5,8 +5,8 @@
  * speaker has checked yet. Nothing on it is written by hand; a course added to the bundles appears
  * at the next deploy.
  *
- * - Its text comes from the catalog (landing.*, course and orthography names), in the default UI
- *   locale; the page takes that locale's lang and dir.
+ * - Its text comes from the catalog (landing.*), in the default UI locale, and the courses' and
+ *   orthographies' names from the courses (ADR 0109); the page takes that locale's lang and dir.
  * - Each script shows a sentence of the course's first lessons, tagged with its own language and
  *   direction and set in its profile's fonts.
  * - It uses the demo's stylesheet (the design tokens, light and dark, and the web fonts the samples
@@ -19,10 +19,10 @@ import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { draftCount } from "@nabu/core/corrections";
 import { pathNodes } from "@nabu/core/learner";
-import { assembleCourse, lessonNodes, MEDIA_ROLES, type CourseView } from "@nabu/core/lesson";
+import { lessonNodes, readCourse, type CourseView } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
-import { DEFAULT_UI_LOCALE, directionOf, fontStackFor, loadTranslator, uiFontStack, type MessageId, type Translator } from "@nabu/i18n";
-import type { BundleManifest, Fonts, TaggedText } from "@nabu/schema";
+import { courseName, DEFAULT_UI_LOCALE, directionOf, fontStackFor, loadTranslator, orthographyName, uiFontStack, type MessageId, type Translator } from "@nabu/i18n";
+import type { CourseNames, Fonts, TaggedText } from "@nabu/schema";
 import { coursesWithAudio } from "./audio-check.ts";
 
 const ROOT = resolve(import.meta.dirname, "../..");
@@ -53,6 +53,9 @@ interface IndexEntry {
 /** One course as the page shows it. */
 export interface LandingCourse {
   readonly id: string;
+  /** Its target language and what it is called (ADR 0109): the page names it from course data. */
+  readonly target: string | undefined;
+  readonly names: CourseNames | undefined;
   readonly lessons: number;
   readonly stories: number;
   readonly drafts: number;
@@ -82,13 +85,15 @@ const sampleSentence = (course: CourseView): TaggedText | undefined => {
 export const landingCourses = (bundles: string): readonly LandingCourse[] => {
   const index = JSON.parse(readFileSync(join(bundles, "index.json"), "utf8")) as { courses: readonly IndexEntry[] };
   return index.courses.map((entry) => {
-    const manifest = JSON.parse(readFileSync(join(bundles, entry.manifest), "utf8")) as BundleManifest;
     const dir = join(bundles, entry.manifest, "..");
-    const files = new Map<string, unknown>(
-      manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(dir, f.path), "utf8")) as unknown]),
-    );
+    const files = new Map<string, unknown>();
+    // Read once for all the course's orthographies.
+    const read = (path: string): unknown => {
+      if (!files.has(path)) files.set(path, JSON.parse(readFileSync(join(dir, path), "utf8")));
+      return files.get(path);
+    };
     const views = entry.orthographies.map((orthography) => {
-      const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
+      const course = readCourse(read, numberingSystems, orthography);
       if (!course.ok) throw new Error(`${entry.id} ${orthography}: ${JSON.stringify(course.error)}`);
       return course.value;
     });
@@ -98,6 +103,8 @@ export const landingCourses = (bundles: string): readonly LandingCourse[] => {
     const { drafts, total } = draftCount(first.units);
     return {
       id: entry.id,
+      target: first.target,
+      names: first.names,
       lessons: path.filter((e) => e.kind === "lesson").length,
       stories: path.filter((e) => e.kind === "story").length,
       drafts,
@@ -105,16 +112,6 @@ export const landingCourses = (bundles: string): readonly LandingCourse[] => {
       scripts: views.map((view) => ({ orthography: view.orthography, sample: sampleSentence(view), fonts: view.profiles.get(view.orthography)?.source.fonts })),
     };
   });
-};
-
-const has = (t: Translator, key: string): key is MessageId => t.has(key);
-const courseName = (t: Translator, id: string): string => {
-  const key = `course.name.${id}`;
-  return has(t, key) ? t.format(key) : id;
-};
-const orthographyName = (t: Translator, orthography: string): string => {
-  const key = `orthography.${slug(orthography)}`;
-  return has(t, key) ? t.format(key) : orthography;
 };
 
 /** Links in a list, joined as the UI locale joins a list. */
@@ -138,12 +135,12 @@ const sample = (text: TaggedText, fonts: Fonts | undefined): string => {
 
 const courseCard = (t: Translator, demo: string, course: LandingCourse): string => {
   const scripts = course.scripts
-    .map((s) => `<li data-orthography="${escape(s.orthography)}"><a href="${escape(`${demo}#/${course.id}/${slug(s.orthography)}`)}">${escape(orthographyName(t, s.orthography))}</a>${s.sample === undefined ? "" : sample(s.sample, s.fonts)}</li>`)
+    .map((s) => `<li data-orthography="${escape(s.orthography)}"><a href="${escape(`${demo}#/${course.id}/${slug(s.orthography)}`)}">${escape(orthographyName(t, course, s.orthography))}</a>${s.sample === undefined ? "" : sample(s.sample, s.fonts)}</li>`)
     .join("");
   const facts = [t.format("landing.course.lessons", { count: course.lessons }), ...(course.stories > 0 ? [t.format("landing.course.stories", { count: course.stories })] : [])];
   return [
     `<li class="course" data-course="${escape(course.id)}">`,
-    `<h3>${escape(courseName(t, course.id))}</h3>`,
+    `<h3>${escape(courseName(t, course))}</h3>`,
     `<ul class="facts">${facts.map((f) => `<li>${escape(f)}</li>`).join("")}</ul>`,
     `<ul class="scripts">${scripts}</ul>`,
     course.drafts > 0 ? `<p class="drafts" data-drafts="${String(course.drafts)}">${escape(t.format("app.course.drafts", { drafts: course.drafts, total: course.total }))}</p>` : "",
@@ -192,12 +189,12 @@ export const landingPage = async (options: LandingOptions): Promise<string> => {
   const repository = options.repository ?? REPOSITORY;
   const storybook = options.storybook ?? "storybook/";
   const collator = new Intl.Collator(t.locale);
-  const courses = [...landingCourses(options.bundles)].sort((a, b) => collator.compare(courseName(t, a.id), courseName(t, b.id)));
+  const courses = [...landingCourses(options.bundles)].sort((a, b) => collator.compare(courseName(t, a), courseName(t, b)));
   const withAudio = new Set(options.audioCourses ?? coursesWithAudio());
   // Straight to the audio check: it needs no debug mode, which a visitor would keep on this device.
   const audio = courses
     .filter((c) => withAudio.has(c.id))
-    .map((c) => ({ href: `${options.demo}#/${c.id}/${slug(c.scripts[0]?.orthography ?? "")}/audio`, label: courseName(t, c.id) }));
+    .map((c) => ({ href: `${options.demo}#/${c.id}/${slug(c.scripts[0]?.orthography ?? "")}/audio`, label: courseName(t, c) }));
   const name = t.format("app.name");
   const tagline = t.format("landing.tagline");
   return `<!doctype html>

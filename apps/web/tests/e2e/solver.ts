@@ -11,7 +11,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
-import { assembleCourse, lessonNodes, MEDIA_ROLES, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
+import { lessonNodes, readCourse, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
@@ -26,11 +26,7 @@ export type Mode = "keyboard" | "touch";
 const manifestOf = (id: string): BundleManifest => JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
 
 export const loadCourse = (id: string, orthography: string): CourseView => {
-  const manifest = manifestOf(id);
-  const files = new Map<string, unknown>(
-    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
-  );
-  const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
+  const course = readCourse((path) => JSON.parse(readFileSync(join(BUNDLES, id, path), "utf8")) as unknown, numberingSystems, orthography);
   if (!course.ok) throw new Error(JSON.stringify(course.error));
   return course.value;
 };

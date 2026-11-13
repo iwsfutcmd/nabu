@@ -8,7 +8,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import AxeBuilder from "@axe-core/playwright";
-import type { AudioVerdicts } from "@nabu/schema";
+import type { AudioVerdicts, BundleAudio, BundleManifest } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
 import { parse } from "yaml";
 import { writeAudioCheck, type AudioCheckData } from "../../audio-check.ts";
@@ -29,15 +29,23 @@ interface IndexClip {
 const indexOf = (course: string): { clips: IndexClip[] } =>
   parse(readFileSync(new URL(`../../../../courses/${course}/audio/index.yaml`, import.meta.url), "utf8")) as never;
 
+/** The items whose clips a course's bundle carries: what learners get. */
+const bundledAudioOf = (course: string): Readonly<Record<string, unknown>> => {
+  const bundle = new URL(`../../public/bundles/${course}/`, import.meta.url);
+  const manifest = JSON.parse(readFileSync(new URL("manifest.json", bundle), "utf8")) as BundleManifest;
+  const file = manifest.files.find((f) => f.role === "audio-index");
+  return file === undefined ? {} : (JSON.parse(readFileSync(new URL(file.path, bundle), "utf8")) as BundleAudio).items;
+};
+
 test("every item with a clip can be heard and judged, and the verdicts download", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(String(e)));
   const index = indexOf("fa");
   const items = new Set(index.clips.map((c) => c.item));
   const failed = index.clips.filter((c) => c.speed === "normal" && c.qa?.status === "fail").length;
-  // Held back (as the compiler holds them): a failed clip nobody has passed, or a rejected one.
-  const passed = (c: IndexClip): boolean => c.provenance?.status === "reviewed" || c.provenance?.status === "published";
-  const held = new Set(index.clips.filter((c) => (c.speed === "normal" && c.qa?.status === "fail" && !passed(c)) || c.rejected !== undefined).map((c) => c.item)).size;
+  // Held back: what the compiler left out of the learners' bundle.
+  const shipped = bundledAudioOf("fa");
+  const held = [...items].filter((item) => shipped[item] === undefined).length;
 
   await page.goto("/?sound=off&debug=1#/fa/fa-Arab.standard");
   await page.locator("[data-audio-check-link]").click();

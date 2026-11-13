@@ -7,6 +7,14 @@ id: hbo
 target: hbo-Hebr
 orthographies: [hbo-Hebr/tiberian]
 support: [en-Latn/standard]
+# What the app calls the course and its orthographies, and what the course list says of them, by
+# language (ADR 0109).
+names:
+  en:
+    course: Biblical Hebrew
+    blurb: "The Hebrew of the Bible, with its vowel points, learned through its own passages."
+    orthographies:
+      hbo-Hebr/tiberian: "Hebrew script, Tiberian pointing"
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@hbo-draft-v1', status: draft}
 # A Hebrew verb is a root and a form: a new verb in a new form is two KCs on one word (sense + form).

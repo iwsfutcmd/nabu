@@ -6,7 +6,8 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry } from "@nabu/core";
+import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry } from "@nabu/core";
+import { TONE_SYSTEMS } from "@nabu/core/speech";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { loadProfiles } from "./load.ts";
@@ -113,6 +114,14 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
   "grade-vowels": (a) => gradeVowels(profile(a).marks, text(a, "expected"), text(a, "answer")),
   /** A word's romanized reading as typed, against the pinned one (ADR 0054). */
   "grade-reading": (a) => gradeReading(text(a, "scheme"), text(a, "expected"), text(a, "answer")),
+  /** A reading as typed, in syllables as its scheme's data shapes them (ADR 0109); null where it is not syllables. */
+  "reading-syllables": (a) => readingSyllables(text(a, "scheme"), text(a)) ?? null,
+  /** A syllable's tone, from its scheme's tone marks (ADR 0109); null where it has none. */
+  "reading-tone": (a) => {
+    const system = TONE_SYSTEMS[text(a, "scheme")];
+    if (system === undefined) throw new Error(`no tones in ${text(a, "scheme")}`);
+    return system.toneOf(text(a, "syllable")) ?? null;
+  },
   direction: (a) => ({ script: scriptOf(text(a, "tag")), dir: directionOf(text(a, "tag")) }),
   "check-tagged-text": (a) => checkTaggedText(a["text"] as TaggedText).map((i) => i.code),
   "unicode-set": (a) => parseExemplarSet(text(a, "set")),

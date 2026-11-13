@@ -3,7 +3,7 @@
  * for one taught orthography and one support language. Assembling it is pure;
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
-import type { BundleAudio, BundleAudioItem, BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, Facet, KeyboardLayout, OrthographyProfile, PlacementPolicy, TaggedText } from "@nabu/schema";
+import type { BundleAudio, BundleAudioItem, BundleFile, BundleKc, BundleManifest, BundleSentence, BundleUnit, CourseNames, DataTable, Facet, KeyboardLayout, OrthographyProfile, PlacementPolicy, TaggedText } from "@nabu/schema";
 import { keyboardDistance } from "../match/compare.ts";
 import { compileAcceptSet, grade, lexiconKey, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
@@ -13,6 +13,10 @@ import { surfaceOf } from "../text/tagged-text.ts";
 
 export interface CourseView {
   readonly id: string;
+  /** The course's target language (BCP 47). */
+  readonly target?: string | undefined;
+  /** What the app calls the course and its orthographies, by language (ADR 0109). */
+  readonly names?: CourseNames | undefined;
   readonly units: readonly BundleUnit[];
   /** The orthography the learner chose (one of the course's). */
   readonly orthography: string;
@@ -39,6 +43,20 @@ export interface CourseView {
 
 /** Bundle files that stay URLs (pictures, audio); every other file is JSON the course needs. */
 export const MEDIA_ROLES: ReadonlySet<string> = new Set(["image", "audio"]);
+
+/** The files every device that opens the course needs, what it is assembled from: all its manifest lists but media. */
+export const coreFiles = (manifest: BundleManifest): readonly BundleFile[] => manifest.files.filter((f) => !MEDIA_ROLES.has(f.role));
+
+/**
+ * A course from its bundle, each file read by `read`: a bundle path ("manifest.json", or a path the
+ * manifest lists) to its parsed JSON. The one loader of bundles from disk (tests, the API, the
+ * landing page); core does no I/O itself, so the caller reads.
+ */
+export const readCourse = (read: (path: string) => unknown, numberingSystems: Readonly<Record<string, string>>, orthography?: string): Result<CourseView, CourseError> => {
+  const manifest = read("manifest.json") as BundleManifest;
+  const files = new Map(coreFiles(manifest).map((f) => [f.path, read(f.path)] as const));
+  return assembleCourse({ manifest, files, numberingSystems }, orthography);
+};
 
 export interface CourseFiles {
   readonly manifest: BundleManifest;
@@ -77,6 +95,8 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
   const audio = (read("audio-index")[0] as BundleAudio | undefined)?.items ?? {};
   return ok({
     id: manifest.course,
+    target: manifest.target,
+    ...(manifest.names === undefined ? {} : { names: manifest.names }),
     units,
     orthography: chosen,
     support,

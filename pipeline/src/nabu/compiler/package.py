@@ -28,7 +28,13 @@ from nabu.compiler.script import romanized_orthographies
 from nabu.compiler.stories import line_item
 from nabu.drills.rbnf import icu_version
 from nabu.paths import I18N_GENERATED, PROFILES
-from nabu.schema.models import BundleAudio, BundleManifest, BundleUnit, OrthographyProfile
+from nabu.schema.models import (
+    BundleAudio,
+    BundleManifest,
+    BundleUnit,
+    CourseSource,
+    OrthographyProfile,
+)
 
 #: 1: credits are defined once, in the manifest's `credits` (ADR 0110).
 FORMAT_VERSION = 1
@@ -61,6 +67,16 @@ class Credits:
         if self.texts.setdefault(ident, text) != text:
             raise ValueError(f"two credits share the id {ident}: {self.texts[ident]!r}, {text!r}")
         return ident
+
+
+def names_of(course: CourseSource) -> dict[str, Any]:
+    """The course's names (ADR 0109), NFC, as the manifest and the bundles' index carry them."""
+    data = {
+        tag: names.model_dump(mode="json", exclude_none=True)
+        for tag, names in (course.names or {}).items()
+    }
+    text = unicodedata.normalize("NFC", json.dumps(data, ensure_ascii=False))
+    return cast(dict[str, Any], json.loads(text))
 
 
 def _profile_files(profile: OrthographyProfile) -> list[tuple[str, str, str]]:
@@ -269,6 +285,8 @@ def write_bundle(
         "target": course.target,
         "orthographies": compiled.orthographies,
         "support": compiled.support,
+        # What the app calls the course and its orthographies (ADR 0109): course data, not messages.
+        **({"names": names_of(course)} if course.names else {}),
         # Only where the course names them (ADR 0071): other manifests stay as they were.
         **({"facets": list(course.facets)} if course.facets else {}),
         # Only an iffy voice is flagged (ADR 0091): good is the default, a bad one ships no clips.

@@ -38,6 +38,10 @@
         "$ref": "common.schema.json#/$defs/OrthographyId"
       }
     },
+    "names": {
+      "description": "What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).",
+      "$ref": "common.schema.json#/$defs/CourseNames"
+    },
     "license": {
       "$ref": "#/$defs/Spdx",
       "description": "Default SPDX license for every content item that gives none."

@@ -4,6 +4,7 @@
  * the state machine. Target-language regions take the target script's
  * direction; everything a learner taps is language data rendered through <T>.
  */
+import { readingScheme } from "@nabu/core";
 import type {
   AudioRef,
   ChooseTranslation,
@@ -32,9 +33,9 @@ import type {
   TranslateType,
 } from "@nabu/core/lesson";
 import { isCorrect } from "@nabu/core/lesson";
-import { CANTONESE, hearOnDevice, type SpeechResult, type ToneScore } from "@nabu/core/speech";
+import { hearOnDevice, toneSystemById, toneSystemOf, type SpeechResult, type ToneScore, type ToneSystem } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
-import { directionOf, type MessageId } from "@nabu/i18n";
+import { directionOf, nameInUiLanguage, orthographyName, type MessageId } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useLayoutEffect, useRef, useState, type JSX, type ReactNode } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
@@ -670,12 +671,6 @@ const WordInSentence = ({
   );
 };
 
-/** An orthography's name in the UI language (orthography.<id> messages), else its id. */
-const orthographyLabel = (t: ReturnType<typeof useTranslator>, orthography: string): string => {
-  const key = `orthography.${orthography.replace("/", ".")}`;
-  return t.has(key) ? t.format(key) : orthography;
-};
-
 /**
  * Vowel marks (ADR 0098): the word with its marks, chosen among other vocalizations of its letters.
  * Where an orthography of the course writes the vowels (Arabizi), the learner may type the word in it
@@ -688,7 +683,7 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
   const spelled = ex.spelled;
   const typing = spelling && spelled !== undefined;
   useShortcuts(props, typing ? undefined : (i) => chooseByKey(props, i, ex.options.length));
-  const name = spelled === undefined ? "" : orthographyLabel(t, spelled.orthography);
+  const name = spelled === undefined ? "" : orthographyName(t, props.course, spelled.orthography);
   const switchTo = (on: boolean): void => {
     setSpelling(on);
     dispatch({ tag: "input", draft: on ? { tag: "text", text: "" } : { tag: "choice", index: null } });
@@ -990,10 +985,11 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
 type Scoring = "idle" | "scoring" | "silent" | "partial";
 
 /** One syllable's feedback: the syllable (its reading) and what was heard. */
-const SyllableNote = ({ syllable, score, ex }: { syllable: ToneScore["syllables"][number]; score: ToneScore; ex: SpeakScored | ListenSpeak }): JSX.Element => {
+const SyllableNote = ({ syllable, score, system, ex }: { syllable: ToneScore["syllables"][number]; score: ToneScore; system: ToneSystem; ex: SpeakScored | ListenSpeak }): JSX.Element => {
   const t = useTranslator();
-  const reading: TaggedText = { lang: "yue-Latn-HK-jyutping" as TaggedText["lang"], orthography: ex.orthography as TaggedText["orthography"], tokens: [{ surface: syllable.syllable, kind: "word" }] };
-  const expected = CANTONESE.tones[syllable.tone]?.shape ?? "level";
+  const lang = (readingScheme(system.scheme)?.lang ?? "und-Latn") as TaggedText["lang"];
+  const reading: TaggedText = { lang, orthography: ex.orthography as TaggedText["orthography"], tokens: [{ surface: syllable.syllable, kind: "word" }] };
+  const expected = system.tones[syllable.tone]?.shape ?? "level";
   return (
     <li data-syllable={syllable.syllable} data-heard={syllable.heard?.tone ?? syllable.heard?.shape ?? "-"}>
       <T text={reading} />{" "}
@@ -1033,6 +1029,8 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
   });
   const result = props.draft.tag === "speech" ? props.draft.result : null;
   const off = result?.tone?.syllables.filter((s) => !s.ok) ?? [];
+  // Where the device scored tones: the tone system the prompt's readings carry (its scheme's data).
+  const system = result?.tone === undefined ? undefined : toneSystemOf(ex.prompt);
   const heard = (result?.words as { heard?: TaggedText } | undefined)?.heard;
   const rate = (rating: SelfRating): void => {
     if (locked) return;
@@ -1116,10 +1114,10 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
             </>
           )}
           {result.tone !== undefined && !result.tone.calibrated && <p className={styles.muted}>{t.format("player.speech.calibrating")}</p>}
-          {result.tone !== undefined && off.length > 0 && (
+          {result.tone !== undefined && system !== undefined && off.length > 0 && (
             <ul className={styles.notes} data-tone-feedback="">
               {off.map((s, i) => (
-                <SyllableNote key={i} syllable={s} score={result.tone as ToneScore} ex={ex} />
+                <SyllableNote key={i} syllable={s} score={result.tone as ToneScore} system={system} ex={ex} />
               ))}
             </ul>
           )}
@@ -1134,9 +1132,15 @@ export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
   const { ex } = props;
   const t = useTranslator();
   useShortcuts(props, (i) => chooseByKey(props, i, ex.tones.length));
+  // The tone and the name of its pitch, from the scheme's data (ADR 0109): 1 · high level.
   const label = (tone: string): string => {
+    const named = readingScheme(toneSystemById(ex.system)?.scheme ?? "")?.tones?.values[tone]?.name;
+    const own = nameInUiLanguage(t, named);
+    if (own !== undefined) return t.format("player.tone.label", { tone, name: own });
     const id = `player.tone.${ex.system}.${tone}`;
-    return t.has(id) ? t.format(id) : tone;
+    if (t.has(id)) return t.format(id);
+    const given = named === undefined ? undefined : Object.values(named)[0];
+    return given === undefined ? tone : t.format("player.tone.label", { tone, name: given });
   };
   return (
     <div className={styles.body}>

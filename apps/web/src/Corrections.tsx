@@ -29,11 +29,12 @@ import type { CourseView } from "@nabu/core/lesson";
 import type { CorrectionFields, LearnerEvent, SentenceReported, SignOff, SignOffs } from "@nabu/schema";
 import { chromeClass, T, useChrome, useTranslator } from "@nabu/ui";
 import { CorrectionForm, SentenceList, signOffKey } from "@nabu/ui/corrections";
-import { rubySchemeOf } from "@nabu/ui/player";
+import { defaultRuby } from "@nabu/ui/player";
 import { useEffect, useMemo, useState, type JSX } from "react";
 import { Button, Dialog, Modal } from "react-aria-components";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
+import { storedReading } from "./readings.ts";
 import { useReportsPublic } from "./reports.ts";
 import type { EventStore } from "./store.ts";
 
@@ -196,7 +197,7 @@ interface ChooseProps {
 export const ChooseDialog =({ course, targets, corrections, onChoose, onClose }: ChooseProps): JSX.Element => {
   const t = useTranslator();
   const chrome = useChrome();
-  const ruby = rubySchemeOf(course.profiles.get(course.orthography)?.source) ?? false;
+  const ruby = defaultRuby(course.profiles.get(course.orthography)?.source, storedReading(course.orthography));
   return (
     <Modal className={styles.modal} isOpen isDismissable onOpenChange={(open) => !open && onClose()}>
       <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} aria-label={t.format("corrections.choose")} data-correction-choose="">
@@ -378,6 +379,7 @@ export const SentencesPage = ({ corrections, back, review = false, ...recording 
           setTarget(c);
         }}
         review={review ? controls : undefined}
+        reading={storedReading(course.orthography)}
       />
       {target !== undefined && (
         <CorrectionDialog

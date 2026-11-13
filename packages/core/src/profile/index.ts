@@ -7,3 +7,4 @@ export {
   type ProfileError,
   type UnitKind,
 } from "./compile.ts";
+export { readingScheme, readingSchemes, readingTag } from "./schemes.ts";

@@ -13,11 +13,15 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from functools import cache
 
 import regex
 
 from nabu.paths import PROFILES
+from nabu.schemes import find_syllables, tone_letters
+
+SCHEME = "jyutping"
 
 INITIALS: dict[str, list[str]] = {
     "b": ["p"],
@@ -95,9 +99,8 @@ IPA_INITIALS: dict[str, str] = {
     "z": "ts", "c": "tsʰ", "s": "s", "j": "j",
 }  # fmt: skip
 IPA_SYLLABIC = {"m": "m\u0329", "ng": "ŋ\u030d"}
-# Tones 1-6 as Chao contours; checked syllables (stop codas) are short: 1, 3, 6 → 5, 3, 2.
-TONES = {"1": "˥˥", "2": "˧˥", "3": "˧˧", "4": "˨˩", "5": "˨˧", "6": "˨˨"}
-CHECKED_TONES = {"1": "˥", "3": "˧", "6": "˨"}
+# Tones as Chao contours come from the scheme's data (profiles/schemes/jyutping.yaml): a checked
+# syllable (a stop coda) takes its tone's shorter contour, 1, 3, 6 → 5, 3, 2.
 
 
 def syllable_ipa(syllable: str) -> str:
@@ -105,14 +108,14 @@ def syllable_ipa(syllable: str) -> str:
     s = syllable.strip().lower()
     nasal = re.fullmatch(r"(m|ng)([1-6])", s)
     if nasal is not None:
-        return IPA_SYLLABIC[nasal.group(1)] + TONES[nasal.group(2)]
+        return IPA_SYLLABIC[nasal.group(1)] + tone_letters(SCHEME, nasal.group(2))
     match = _SYLLABLE.match(s)
     if match is None or match.group(2) not in FINALS:
         raise ValueError(f"not a Jyutping syllable: {syllable!r}")
     initial, final, tone = match.groups()
     rhyme = "".join(FINALS[final])
     checked = final[-1] in "ptk"
-    contour = CHECKED_TONES.get(tone, TONES[tone]) if checked else TONES[tone]
+    contour = tone_letters(SCHEME, tone, checked)
     return (IPA_INITIALS[initial] if initial else "") + rhyme + contour
 
 
@@ -141,3 +144,19 @@ def settled(surface: str, reading: str) -> bool:
         return False
     table = _table()
     return all(table.get(c) == frozenset([s]) for c, s in zip(chars, syllables, strict=True))
+
+
+def of_characters(chars: list[str]) -> list[str | None]:
+    """A Jyutping syllable for each grapheme (PyCantonese, words read in context), or None where
+    it has none (Latin, digits, a word it does not know): the round trip's reading of a
+    transcript (nabu.schemes, `read`)."""
+    import pycantonese  # pyright: ignore[reportMissingTypeStubs]
+
+    out: list[str | None] = []
+    pairs = pycantonese.characters_to_jyutping("".join(chars))  # pyright: ignore[reportUnknownMemberType, reportUnknownVariableType]
+    for word, reading in pairs:  # pyright: ignore[reportUnknownVariableType]
+        clusters: list[str] = regex.findall(r"\X", unicodedata.normalize("NFC", str(word)))  # pyright: ignore[reportUnknownArgumentType]
+        n = sum(1 for g in clusters if regex.match(r"[\p{L}\p{M}\p{N}]", g))
+        syllables = find_syllables(SCHEME, str(reading)) if reading else []  # pyright: ignore[reportUnknownArgumentType]
+        out += syllables if len(syllables) == n else [None] * n
+    return out if len(out) == len(chars) else [None] * len(chars)

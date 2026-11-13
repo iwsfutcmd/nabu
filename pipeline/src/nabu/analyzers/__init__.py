@@ -38,19 +38,22 @@ class Cantonese:
 
         return [str(w) for w in pycantonese.segment(text)]  # pyright: ignore[reportUnknownMemberType, reportUnknownVariableType]
 
+    #: The reading scheme PyCantonese writes (its syllables' shape is the scheme's data).
+    scheme: str = "jyutping"
+
     def reading(self, scheme: str, text: str) -> str | None:
-        if scheme != "jyutping":
+        if scheme != self.scheme:
             return None
         import pycantonese  # pyright: ignore[reportMissingTypeStubs]
 
-        from nabu.compiler.text import SYLLABLE
+        from nabu.schemes import find_syllables
 
         pairs = pycantonese.characters_to_jyutping(text)  # pyright: ignore[reportUnknownMemberType, reportUnknownVariableType]
         syllables: list[str] = []
         for _word, jp in pairs:  # pyright: ignore[reportUnknownVariableType]
             if not jp:
                 return None
-            syllables.extend(SYLLABLE.findall(str(jp)))  # pyright: ignore[reportUnknownArgumentType]
+            syllables.extend(find_syllables(self.scheme, str(jp)))  # pyright: ignore[reportUnknownArgumentType]
         return " ".join(syllables)
 
 

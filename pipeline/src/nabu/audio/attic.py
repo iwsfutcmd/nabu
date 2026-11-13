@@ -5,9 +5,9 @@ and υ that is not part of a diphthong marked long (macron, ᾱ) or short (breve
 circumflex or an iota subscript already makes it long. The spelling settles everything else, so a
 reading stripped of its macrons and breves is its token's surface.
 
-A voice with `reading: attic` says the reading through this conversion (`PHONEME_SCHEMES` in
-nabu.audio.course), as the reconstructed pronunciation of classical Attic in the Cambridge Grammar
-of Classical Greek (CGCG, van Emde Boas et al. 2019), §§1.14–33:
+A voice with `reading: attic` says the reading through this conversion (the scheme's `espeak`
+and `piper` plug-ins, nabu.schemes), as the reconstructed pronunciation of classical Attic in the
+Cambridge Grammar of Classical Greek (CGCG, van Emde Boas et al. 2019), §§1.14–33:
 
 - vowels (1.15): α [a]/[aː], ε [e], η [ɛː], ι [i]/[iː], ο [o], υ [y]/[yː], ω [ɔː];
 - short diphthongs (1.21): αι [ai], ει [eː], οι [oi], υι [yj], αυ [au], ευ [eu], ου [oː];

@@ -18,7 +18,7 @@ import { useId, useMemo, useState, type JSX } from "react";
 import { Input, Label, Radio, RadioGroup, SearchField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
-import { rubySchemeOf } from "../player/shared.ts";
+import { defaultRuby } from "../player/Readings.tsx";
 import { T } from "../T.tsx";
 import styles from "./Words.module.css";
 
@@ -27,6 +27,8 @@ export interface WordListProps {
   readonly words: readonly LearnedWord[];
   /** A bundle path (a clip) as a URL. */
   readonly url: (path: string) => string;
+  /** The reading layer the learner chose for the orthography (ADR 0071), if any: shown as ruby as the player shows it. */
+  readonly reading?: SchemeId | false | undefined;
 }
 
 /** How remembered a word is, in three words: due for review, strong, or fading. */
@@ -88,7 +90,7 @@ const Word = ({ course, word, url, ruby }: { course: CourseView; word: LearnedWo
 
 const titleOf = (course: CourseView, unit: string): TaggedText | undefined => course.units.find((u) => u.id === unit)?.title?.[course.supportKey];
 
-export const WordList = ({ course, words, url }: WordListProps): JSX.Element => {
+export const WordList = ({ course, words, url, reading }: WordListProps): JSX.Element => {
   const t = useTranslator();
   const listId = useId();
   const [order, setOrder] = useState<WordOrder>("course");
@@ -96,7 +98,7 @@ export const WordList = ({ course, words, url }: WordListProps): JSX.Element => 
   const [typed, setTyped] = useState("");
   const [query, setQuery] = useState("");
   const [composing, setComposing] = useState(false);
-  const ruby = useMemo(() => rubySchemeOf(course.profiles.get(course.orthography)?.source) ?? false, [course]);
+  const ruby = useMemo(() => defaultRuby(course.profiles.get(course.orthography)?.source, reading), [course, reading]);
   const counts = useMemo(() => wordCounts(words), [words]);
   // Whether any word is asked to be heard: the explanation names listening only where it counts.
   const heard = useMemo(() => words.some((w) => w.skills.some((s) => s.skill === "listen")), [words]);

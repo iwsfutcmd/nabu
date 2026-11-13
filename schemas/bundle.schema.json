@@ -13,6 +13,10 @@
     "target": { "$ref": "common.schema.json#/$defs/ScriptedLangTag" },
     "orthographies": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/OrthographyId" } },
     "support": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/OrthographyId" } },
+    "names": {
+      "description": "What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses.",
+      "$ref": "common.schema.json#/$defs/CourseNames"
+    },
     "facets": {
       "description": "The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
       "type": "array",

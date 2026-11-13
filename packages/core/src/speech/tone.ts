@@ -7,7 +7,7 @@
  * the classifier is. Without a calibration of the speaker's range, register (high, mid, low) is
  * unknowable from one syllable, so only the contour's shape is judged until there is one.
  */
-import type { TaggedText } from "@nabu/schema";
+import type { ReadingScheme, TaggedText } from "@nabu/schema";
 import { semitones, type PitchTrack } from "./pitch.ts";
 
 export type Shape = "level" | "rising" | "falling";
@@ -20,31 +20,33 @@ export interface ToneTemplate {
 
 export interface ToneSystem {
   readonly id: string;
-  /** The reading scheme whose syllables carry the tone number (jyutping). */
+  /** The reading scheme whose syllables carry the tones (jyutping). */
   readonly scheme: string;
   readonly tones: Readonly<Record<string, ToneTemplate>>;
-  /** Where the tone number sits in a syllable of the scheme. */
+  /** A syllable's tone in the scheme (its tone marks: hou2 → 2), if it has one. */
   readonly toneOf: (syllable: string) => string | undefined;
 }
 
 /**
- * Cantonese (Hong Kong) in Jyutping: 1 high level (55; 53 heard as 1 too), 2 high rising (25/35),
- * 3 mid level (33), 4 low falling (21/11), 5 low rising (23/13), 6 low level (22). Checked
- * syllables (-p, -t, -k) carry 1, 3 or 6 in Jyutping and share those pitches. REVIEW: templates
- * from the standard descriptions (Chao letters); tune against native recordings.
+ * A reading scheme's tone system, where its data gives tones (ADR 0109: profiles/schemes): each
+ * tone's template and shape, and a syllable's tone as its tone marks (Jyutping: hou2 is tone 2).
+ * Cantonese is the one so far; its templates are from the standard descriptions (REVIEW: tune
+ * against native recordings).
  */
-export const CANTONESE: ToneSystem = {
-  id: "yue-jyutping",
-  scheme: "jyutping",
-  tones: {
-    "1": { chao: [5, 5, 5], shape: "level" },
-    "2": { chao: [2.5, 3.3, 5], shape: "rising" },
-    "3": { chao: [3, 3, 3], shape: "level" },
-    "4": { chao: [2.2, 1.6, 1], shape: "falling" },
-    "5": { chao: [2, 2.3, 3], shape: "rising" },
-    "6": { chao: [2, 2, 2], shape: "level" },
-  },
-  toneOf: (syllable) => /([1-6])$/u.exec(syllable)?.[1],
+export const toneSystemFrom = (scheme: ReadingScheme): ToneSystem | undefined => {
+  const tones = scheme.tones;
+  if (tones === undefined) return undefined;
+  const marks = new RegExp(tones.marks, "gu");
+  return {
+    id: tones.system,
+    scheme: scheme.id,
+    // The schema gives a template three numbers: start, middle, end.
+    tones: Object.fromEntries(Object.entries(tones.values).map(([tone, t]) => [tone, { chao: t.template as unknown as readonly [number, number, number], shape: t.shape }])),
+    toneOf: (syllable) => {
+      const tone = (syllable.match(marks) ?? []).join("");
+      return tone !== "" && tones.values[tone] !== undefined ? tone : undefined;
+    },
+  };
 };
 
 /** A speaker's pitch range: mean and spread of voiced frames, in semitones. */

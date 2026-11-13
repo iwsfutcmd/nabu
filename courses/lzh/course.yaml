@@ -5,6 +5,14 @@ id: lzh
 target: lzh-Hant
 orthographies: [lzh-Hant/standard]
 support: [en-Latn/standard]
+# What the app calls the course and its orthographies, and what the course list says of them, by
+# language (ADR 0109).
+names:
+  en:
+    course: Classical Chinese
+    blurb: "The written language of the Chinese classics, learned through their own passages."
+    orthographies:
+      lzh-Hant/standard: Traditional characters
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@52f9ac56dcce', status: draft}
 facets: [recognize, produce]

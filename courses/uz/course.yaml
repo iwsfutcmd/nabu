@@ -4,6 +4,18 @@ id: uz
 target: uz-Latn-UZ
 orthographies: [uz-Latn/standard, uz-Cyrl/standard]
 support: [en-Latn/standard]
+# What the app calls the course and its orthographies, and what the course list says of them, by
+# language (ADR 0109).
+names:
+  en:
+    course: Uzbek
+    blurb: "The Uzbek of Uzbekistan, in Latin or Cyrillic letters."
+    orthographies:
+      uz-Latn/standard: Latin
+      uz-Cyrl/standard: Cyrillic
+    hints:
+      uz-Latn/standard: "The official alphabet in Uzbekistan today."
+      uz-Cyrl/standard: "The older alphabet, still widely read."
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@887599f213ef', status: draft}
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-home.yaml, units/u04-numbers.yaml, units/u05-food.yaml, units/u06-city.yaml, units/u07-day.yaml, units/u08-bazaar.yaml, units/u09-past.yaml, units/u10-travel.yaml]

@@ -1,5 +1,6 @@
 import { createGrader, gradeExercise, lessonNodes, sampleExercise, start, step, type CourseView, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
+import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -66,7 +67,6 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
   const ex = useMemo(() => sampleExercise(course, TEMPLATE[screen], SEED), [course, screen]);
   if (ex === undefined) throw new Error(`${course.id} has no ${TEMPLATE[screen]} exercise`);
   const initialState = useMemo(() => stateFor(screen, ex, course, grader), [screen, ex, course, grader]);
-  const name = `course.name.${course.id}`;
   // New words (P1): played as the lesson that introduces one of the card's words.
   const lessonId = screen === "new-words" ? (lessonNodes(course).find((n) => n.node.introduces.some((kc) => ex.kcs.includes(kc)))?.node.id ?? "story") : "story";
   return (
@@ -77,7 +77,7 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
       exercises={[ex]}
       grader={grader}
       imageUrl={imageUrl}
-      language={t.has(name) ? t.format(name) : course.id}
+      language={courseName(t, course)}
       sound={false}
       writingMode={writingMode}
       initialState={initialState}

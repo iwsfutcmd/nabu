@@ -1,7 +1,6 @@
 export { pitchTrack, semitones, type PitchOptions, type PitchTrack } from "./pitch.ts";
 export {
   calibrate,
-  CANTONESE,
   CHAO_PER_SD,
   classify,
   contourOf,
@@ -9,6 +8,7 @@ export {
   MIN_CALIBRATION_FRAMES,
   scoreTones,
   syllableSpans,
+  toneSystemFrom,
   type Calibration,
   type ExpectedSyllable,
   type HeardTone,
@@ -26,6 +26,7 @@ export {
   PHONES_NOTE,
   PHONES_PARTIAL,
   TONE_SYSTEMS,
+  toneSystemById,
   toneSystemOf,
   type DeviceHearing,
   type PhonesHeard,

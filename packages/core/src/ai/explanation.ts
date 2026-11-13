@@ -7,15 +7,15 @@
  */
 import type { Explanation, ExplanationOutput, ExplanationSegment, TaggedText, Token } from "@nabu/schema";
 import { err, ok, type Result } from "../result.ts";
-import { autoTokens, wordTokenIndexes } from "./tokens.ts";
+import { autoTokens, wordTokenIndexes, type TextBase } from "./tokens.ts";
 
 export interface ExplanationContext {
-  readonly support: Pick<TaggedText, "lang" | "orthography">;
-  readonly target: Pick<TaggedText, "lang" | "orthography">;
+  readonly support: TextBase;
+  readonly target: TextBase;
   /** The learner's answer, as typed or built. */
   readonly answer: string;
   /** The language the answer is in (target for L1→L2, support for L2→L1). */
-  readonly answerIn: Pick<TaggedText, "lang" | "orthography">;
+  readonly answerIn: TextBase;
 }
 
 export type ExplanationError = "empty" | "bad-segment" | "bad-ref";

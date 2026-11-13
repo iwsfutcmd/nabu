@@ -1,6 +1,7 @@
 import { createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Grader } from "@nabu/core/lesson";
 import { allStories, startStory, stepStory, storyScript, type StoryEvent, type StoryScript, type StoryState } from "@nabu/core/story";
 import { wordIndexes } from "@nabu/core/text";
+import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -64,7 +65,6 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
   const grader = useMemo(() => createGrader(course), [course]);
   const script = useMemo(() => scriptOf(course), [course]);
   const initialState = useMemo(() => stateFor(screen, script, grader), [screen, script, grader]);
-  const name = `course.name.${course.id}`;
   // Reading: the second line's translation open, and the gloss of the newest line's first word.
   const newest = initialState.shown.at(-1) ?? 0;
   const line = script.lines[newest];
@@ -76,7 +76,7 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
       script={script}
       grader={grader}
       imageUrl={imageUrl}
-      language={t.has(name) ? t.format(name) : course.id}
+      language={courseName(t, course)}
       sound={false}
       writingMode={writingMode}
       initialState={initialState}

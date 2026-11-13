@@ -12,7 +12,9 @@
  * The shell does the I/O (fetching, checking hashes, storing) and passes in which paths it has.
  */
 import type { BundleAudioItem, BundleFile, BundleManifest, BundleUnit } from "@nabu/schema";
-import { MEDIA_ROLES, type CourseView } from "../lesson/course.ts";
+import { coreFiles, type CourseView } from "../lesson/course.ts";
+
+export { coreFiles };
 
 export type UnitState = "ready" | "partial" | "missing";
 
@@ -45,9 +47,6 @@ export interface DownloadPlan {
 }
 
 const sum = (files: readonly BundleFile[]): number => files.reduce((n, f) => n + f.bytes, 0);
-
-/** The files every device that opens the course needs (no media). */
-export const coreFiles = (manifest: BundleManifest): readonly BundleFile[] => manifest.files.filter((f) => !MEDIA_ROLES.has(f.role));
 
 /** The media of one unit (none for an unknown unit). */
 export const unitFiles = (manifest: BundleManifest, unit: string): readonly BundleFile[] => {

@@ -161,12 +161,20 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
 
 def test_a_word_met_only_inside_longer_words_reads_its_share_of_them() -> None:
     """禮拜 (week) appears only in 禮拜一 (Monday): its clip reads lai5 baai3, the first two of
-    禮拜一's pinned syllables. A word whose characters do not each take a syllable is not split."""
+    禮拜一's pinned syllables, as its ruby pairs them. A word without ruby (a loanword in Latin
+    letters) is not split."""
     orth = "yue-Hant-HK/standard"
     token = {
         "surface": "禮拜一",
         "kind": "word",
         "readings": {"jyutping": "lai5 baai3 jat1"},
+        "ruby": {
+            "jyutping": [
+                {"base": "禮", "text": "lai5"},
+                {"base": "拜", "text": "baai3"},
+                {"base": "一", "text": "jat1"},
+            ]
+        },
         "morphs": [{"surface": "禮拜"}, {"surface": "一"}],
     }
     loan = {
@@ -417,8 +425,8 @@ def test_cantonese_transcripts_are_compared_by_reading(
     differ count by their readings."""
     from nabu.audio.qa import cer, reading_error_rate
 
-    assert reading_error_rate(heard, expected) == rate
-    assert reading_error_rate(heard, expected) <= cer(heard, expected)
+    assert reading_error_rate(heard, expected, "jyutping") == rate
+    assert reading_error_rate(heard, expected, "jyutping") <= cer(heard, expected)
 
 
 def test_cantonese_is_heard_by_its_fine_tuned_recognizer(monkeypatch: pytest.MonkeyPatch) -> None:

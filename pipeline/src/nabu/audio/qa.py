@@ -14,7 +14,9 @@ written Mandarin (佢係我媽媽 as 她是我妈妈). Its characters are compar
 differ, since a transcript cannot tell homophones and spellings apart (搭 and 答, 呀 and 啊, 喺 and
 係): a character said alike is no error, one that differs only in its tone half an error, and any
 other a whole one. So a lone word heard as a homophone of another tone goes to the review queue,
-not out of the course; a listener decides it in the audio check.
+not out of the course; a listener decides it in the audio check. That holds for any language a
+reading scheme reads the characters of (nabu.schemes `reader`: Jyutping's data says it writes
+yue, and its plug-in reads characters).
 """
 
 from __future__ import annotations
@@ -32,20 +34,18 @@ import regex
 
 from nabu.audio.phones import optional, to_16k
 from nabu.audio.providers import Clip
+from nabu.schemes import plugins, reader, toneless
 
 ASR_MODEL = "large-v3-turbo"
 PASS = 0.15
 REVIEW = 0.5
 _KEEP = regex.compile(r"[\p{L}\p{M}\p{N}]")
-_SYLLABLE = regex.compile(r"[a-z]+[1-6]")
 
 #: Recognizers for languages Whisper's own does not write: (Hugging Face repo, pinned revision,
 #: the Whisper language token it was tuned with). Apache-2.0; used to check clips, never shipped.
 FINE_TUNED: dict[str, tuple[str, str, str]] = {
     "yue": ("alvanlii/whisper-small-cantonese", "b03a4e5d482f06858ce10ebbabebabec9f447a0d", "zh"),
 }
-#: Languages whose transcripts are compared by reading where their characters differ.
-BY_READING = {"yue"}
 
 
 #: What CTranslate2 needs for a GPU besides the driver (its CUDA runtime is built in): cuBLAS 12,
@@ -136,31 +136,22 @@ def cer(heard: str, expected: str) -> float:
     return _distance(a, b, lambda i, j: float(a[i] != b[j])) / max(1, len(b))
 
 
-def jyutping_of(chars: list[str]) -> list[str | None]:
-    """A Jyutping syllable for each grapheme (PyCantonese, words read in context), or None where
-    it has none (Latin, digits, a word it does not know)."""
-    import pycantonese  # pyright: ignore[reportMissingTypeStubs]
-
-    out: list[str | None] = []
-    pairs = pycantonese.characters_to_jyutping("".join(chars))  # pyright: ignore[reportUnknownMemberType, reportUnknownVariableType]
-    for word, reading in pairs:  # pyright: ignore[reportUnknownVariableType]
-        n = len(graphemes(str(word)))  # pyright: ignore[reportUnknownArgumentType]
-        syllables: list[str] = _SYLLABLE.findall(str(reading)) if reading else []  # pyright: ignore[reportUnknownArgumentType]
-        out += syllables if len(syllables) == n else [None] * n
-    return out if len(out) == len(chars) else [None] * len(chars)
-
-
-def reading_error_rate(heard: str, expected: str) -> float:
+def reading_error_rate(heard: str, expected: str, scheme: str) -> float:
     """The character error rate, a substituted character said alike no error and one said with
-    another tone half an error (Cantonese: the module's docstring)."""
+    another tone half an error, its readings in `scheme` (a scheme that reads written text:
+    Jyutping for Cantonese; the module's docstring)."""
     a, b = graphemes(heard), graphemes(expected)
-    ra, rb = jyutping_of(a), jyutping_of(b)
+    read = plugins(scheme).read
+    if read is None:
+        raise ValueError(f"{scheme} does not read written text")
+    ra, rb = read(a), read(b)
 
     def cost(i: int, j: int) -> float:
         x, y = ra[i], rb[j]
         if a[i] == b[j] or (x is not None and x == y):
             return 0.0
-        return 0.5 if x is not None and y is not None and x[:-1] == y[:-1] else 1.0
+        apart = x is not None and y is not None and toneless(scheme, x) == toneless(scheme, y)
+        return 0.5 if apart else 1.0
 
     return _distance(a, b, cost) / max(1, len(b))
 
@@ -191,8 +182,10 @@ def transcribe(clip: Clip, language: str) -> str:
 
 def round_trip(clip: Clip, expected: str, language: str) -> dict[str, Any]:
     heard = transcribe(clip, language)
-    compare = reading_error_rate if language in BY_READING else cer
-    rate = round(compare(heard, expected), 3)
+    # Characters are compared by reading where a reading scheme of the language reads them.
+    scheme = reader(language)
+    rate = cer(heard, expected) if scheme is None else reading_error_rate(heard, expected, scheme)
+    rate = round(rate, 3)
     return {
         "asrModel": model_name(language),
         "asrText": heard,

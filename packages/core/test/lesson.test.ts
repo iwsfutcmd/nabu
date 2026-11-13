@@ -1,10 +1,7 @@
-import { readFileSync } from "node:fs";
-import { join, resolve } from "node:path";
-import type { BundleManifest, SchemeId, TaggedText } from "@nabu/schema";
+import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
   allSentences,
-  assembleCourse,
   buildLesson,
   cardGallery,
   createGrader,
@@ -14,7 +11,6 @@ import {
   isRetry,
   lessonNodes,
   LISTENING,
-  MEDIA_ROLES,
   placedBy,
   progressOf,
   responseOf,
@@ -39,20 +35,7 @@ import { placementTest } from "../src/learner/placement.ts";
 import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, makeTranslateType, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { closestAnswer, nearMiss } from "../src/lesson/diff.ts";
 import { surfaceOf } from "../src/text/index.ts";
-
-const ROOT = resolve(import.meta.dirname, "../../..");
-const BUNDLES = join(ROOT, "apps/web/public/bundles");
-const numberingSystems = JSON.parse(readFileSync(join(ROOT, "packages/i18n/src/generated/numbering-systems.json"), "utf8")) as Record<string, string>;
-
-const loadCourse = (id: string, orthography?: string): CourseView => {
-  const manifest = JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
-  const files = new Map<string, unknown>(
-    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
-  );
-  const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
-  if (!course.ok) throw new Error(JSON.stringify(course.error));
-  return course.value;
-};
+import { loadCourse } from "./learner-fixtures.ts";
 
 const VARIANTS: readonly (readonly [string, string | undefined])[] = [
   ["fa", undefined],

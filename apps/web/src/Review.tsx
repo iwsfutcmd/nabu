@@ -21,6 +21,8 @@ import { Tab, TabList, TabPanel, Tabs } from "react-aria-components";
 import styles from "./App.module.css";
 import { CorrectionDialog, Sent, signOffOf, unitSignOffs, type Recording } from "./Corrections.tsx";
 import { isHttpError, request } from "./http.ts";
+import type { Names } from "./screen.tsx";
+import { storedReading } from "./readings.ts";
 import type { Account, Sync } from "./sync.ts";
 
 export interface ReviewerInfo {
@@ -124,8 +126,6 @@ const Status = ({ state }: { state: ReviewerState }): JSX.Element | null => {
   );
 };
 
-type Names = { readonly course: (id: string) => string; readonly orthography: (id: string) => string };
-
 /** #/review: the courses this account reviews, one link per orthography. */
 export const ReviewHome = ({ courses, sync, names, back, hrefOf }: { courses: readonly CourseIndexEntry[]; sync: Sync; names: Names; back: string; hrefOf: (course: string, orthography: string) => string }): JSX.Element => {
   const t = useTranslator();
@@ -152,7 +152,7 @@ export const ReviewHome = ({ courses, sync, names, back, hrefOf }: { courses: re
                 <div className={styles.links}>
                   {c.orthographies.map((o) => (
                     <a key={o} className={styles.link} href={hrefOf(c.id, o)} data-orthography={o}>
-                      {names.orthography(o)}
+                      {names.orthography(c.id, o)}
                     </a>
                   ))}
                 </div>
@@ -344,6 +344,7 @@ export const ReviewPage = ({ loaded, sync, corrections, back, ...recording }: Pa
                 }}
                 review={controls}
                 details={details}
+                reading={storedReading(course.orthography)}
               />
             </TabPanel>
             <TabPanel id="queue">

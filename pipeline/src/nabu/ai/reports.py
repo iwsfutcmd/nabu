@@ -18,16 +18,9 @@ from typing import Any, cast
 
 import yaml
 
+from nabu.notation import literal
 from nabu.schema.models import AnswerReport
 from nabu.yamlio import INVISIBLE
-
-SPECIAL = set("()[]|\\@")
-
-
-def escape_notation(answer: str) -> str:
-    """An answer as one literal accept-set alternative (§7.4): specials escaped, no comment."""
-    text = "".join(f"\\{c}" if c in SPECIAL else c for c in " ".join(answer.split()))
-    return f"\\{text}" if text.startswith("#") else text
 
 
 def _yaml_scalar(value: str, indent: int) -> str:
@@ -160,7 +153,7 @@ def promote(reports: list[AnswerReport], courses: Path, cli: Any, weight: float 
         if str(graded["verdict"]).startswith("CORRECT"):
             out.skipped.append((r, f"already accepted ({graded['verdict']})"))
             continue
-        alternative = escape_notation(r.answer) + ("" if weight == 1 else f" @{weight:g}")
+        alternative = literal(r.answer) + ("" if weight == 1 else f" @{weight:g}")
         original = loc.file.read_text(encoding="utf-8")
         loc.file.write_text(add_alternative(loc, alternative), encoding="utf-8")
         after = locate([loc.file], r.item, str(r.orthography))

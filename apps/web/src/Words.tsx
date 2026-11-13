@@ -8,6 +8,7 @@ import type { LoadedCourse } from "@nabu/ui/player";
 import { WordList } from "@nabu/ui/words";
 import { useMemo, type JSX } from "react";
 import styles from "./App.module.css";
+import { storedReading } from "./readings.ts";
 
 export const WordsPage = ({ loaded, state, back }: { readonly loaded: LoadedCourse; readonly state: LearnerState; readonly back: string }): JSX.Element => {
   const t = useTranslator();
@@ -23,7 +24,7 @@ export const WordsPage = ({ loaded, state, back }: { readonly loaded: LoadedCour
         </a>
       </p>
       <h1 className={styles.heading}>{t.format("words.title")}</h1>
-      <WordList course={course} words={words} url={loaded.imageUrl} />
+      <WordList course={course} words={words} url={loaded.imageUrl} reading={storedReading(course.orthography)} />
     </main>
   );
 };

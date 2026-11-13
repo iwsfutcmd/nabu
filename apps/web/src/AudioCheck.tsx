@@ -8,17 +8,18 @@
  * The clips come from audio-check/<course>/ beside the app (the dev server serves courses/;
  * Pages publishes a copy), not from the learners' bundles, which leave held-back clips out.
  */
-import { correctable, correctablesByUnit, type Correctable } from "@nabu/core/corrections";
+import { correctable, correctablesByUnit, signedOff, type Correctable } from "@nabu/core/corrections";
 import type { AudioRef, CourseView } from "@nabu/core/lesson";
 import { surfaceOf, textOfSurface } from "@nabu/core/text";
-import type { AudioClip, AudioVerdict, AudioVerdicts, BundleClip, TaggedText } from "@nabu/schema";
+import type { AudioClip, AudioVerdict, AudioVerdicts, BundleClip, SchemeId, TaggedText } from "@nabu/schema";
 import { T, useTranslator } from "@nabu/ui";
-import { AudioButtons, rubySchemeOf, useClipPlayer, type LoadedCourse, type Speed } from "@nabu/ui/player";
+import { AudioButtons, defaultRuby, useClipPlayer, type LoadedCourse, type Speed } from "@nabu/ui/player";
 import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from "react";
 import { Button, Label, TextField, TextArea, ToggleButton } from "react-aria-components";
 import type { AudioCheckData } from "../audio-check.ts";
 import styles from "./AudioCheck.module.css";
 import app from "./App.module.css";
+import { storedReading } from "./readings.ts";
 
 type Kind = "word" | "sentence" | "line" | "other";
 type Status = "pass" | "review" | "fail" | "none";
@@ -32,6 +33,12 @@ interface Row {
   readonly target: Correctable | undefined;
   readonly normal: AudioClip | undefined;
   readonly slow: AudioClip | undefined;
+  /**
+   * Learners do not get it: the course's bundle has no clip for it (its clip failed the round trip
+   * and nobody has passed it, a listener rejected it, or the course ships no clips). The compiler
+   * decides (`held_back`, nabu/audio/course.py); the page reads its decision, never repeats it.
+   */
+  readonly held: boolean;
 }
 
 interface Stored {
@@ -50,9 +57,6 @@ const voiceOf = (row: Row): string => {
 };
 const clipsOf = (row: Row): readonly AudioClip[] => [row.normal, row.slow].flatMap((c) => (c === undefined ? [] : [c]));
 const shasOf = (row: Row): readonly string[] => clipsOf(row).map((c) => c.sha256);
-const reviewed = (clip: AudioClip | undefined): boolean => clip?.provenance.status === "reviewed" || clip?.provenance.status === "published";
-/** Learners do not get it: its clip failed the round trip unreviewed, or a listener rejected it. */
-const heldBack = (row: Row): boolean => (statusOf(row) === "fail" && !reviewed(row.normal)) || clipsOf(row).some((c) => c.rejected !== undefined);
 const current = (stored: Stored | undefined, row: Row): Stored | undefined => {
   const shas = shasOf(row);
   return stored !== undefined && stored.clips.length === shas.length && stored.clips.every((s) => shas.includes(s)) ? stored : undefined;
@@ -67,7 +71,7 @@ const rowsOf = (course: CourseView, clips: readonly AudioClip[]): readonly Row[]
     const found = byItem.get(key);
     if (found === undefined) return;
     byItem.delete(key);
-    rows.push({ key, kind, unit, target, normal: found.normal, slow: found.slow });
+    rows.push({ key, kind, unit, target, normal: found.normal, slow: found.slow, held: course.audio[key] === undefined });
   };
   correctablesByUnit(course).forEach(({ unit, sentences, stories }, u) => {
     for (const kc of unit.kcs) take(kc.id, "word", u, correctable(course, kc.id));
@@ -108,7 +112,7 @@ const download = (verdicts: AudioVerdicts): void => {
 interface RowProps {
   readonly row: Row;
   readonly orthography: string;
-  readonly ruby: false | NonNullable<ReturnType<typeof rubySchemeOf>>;
+  readonly ruby: SchemeId | false;
   readonly url: (path: string) => string;
   readonly isCurrent: boolean;
   readonly stored: Stored | undefined;
@@ -169,12 +173,12 @@ const ItemRow = ({ row, orthography, ruby, url, isCurrent, stored, onJudge, onFo
             {t.format(`audio.check.status.${status}`)}
           </span>
           {cer !== undefined && <span>{t.format("audio.check.cer", { cer })}</span>}
-          {heldBack(row) && (
+          {row.held && (
             <span className={styles.badge} data-badge="held">
               {t.format("audio.check.held")}
             </span>
           )}
-          {reviewed(row.normal) && <span className={styles.badge}>{t.format("audio.check.reviewed")}</span>}
+          {signedOff(row.normal?.provenance) && <span className={styles.badge}>{t.format("audio.check.reviewed")}</span>}
           {clipsOf(row).some((c) => c.rejected !== undefined) && <span className={styles.badge}>{t.format("audio.check.rejected")}</span>}
         </p>
         {form !== undefined && heard !== undefined && heard !== "" && (
@@ -259,7 +263,7 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
 
   const voice = data?.voices[0];
   const orthography = voice?.orthography ?? course.orthography;
-  const ruby = rubySchemeOf(course.profiles.get(orthography)?.source) ?? false;
+  const ruby = defaultRuby(course.profiles.get(orthography)?.source, storedReading(orthography));
   const bundled = data?.bundled;
   const url = useCallback(
     (path: string): string => {
@@ -318,7 +322,7 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
       return (
         (voiceShown === "all" || voiceOf(row) === voiceShown) &&
         (filter.kind === "all" || row.kind === filter.kind) &&
-        (filter.status === "all" || (filter.status === "held" ? heldBack(row) : statusOf(row) === filter.status)) &&
+        (filter.status === "all" || (filter.status === "held" ? row.held : statusOf(row) === filter.status)) &&
         (filter.mine === "all" || (filter.mine === "none" ? mine === undefined : mine === filter.mine))
       );
     });
@@ -366,7 +370,7 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
 
   const counts = useMemo(() => {
     const by = (s: Status): number => rows.filter((r) => statusOf(r) === s).length;
-    return { pass: by("pass"), review: by("review"), fail: by("fail"), none: by("none"), held: rows.filter(heldBack).length };
+    return { pass: by("pass"), review: by("review"), fail: by("fail"), none: by("none"), held: rows.filter((r) => r.held).length };
   }, [rows]);
   const reference = data?.index.references?.find((r) => r.id === voice?.voice);
   const sample = rows.find((r) => r.target?.forms[orthography] !== undefined)?.target?.forms[orthography];
