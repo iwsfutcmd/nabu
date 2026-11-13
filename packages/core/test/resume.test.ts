@@ -199,6 +199,72 @@ describe("resuming a session (S3)", () => {
     for (const point of points.slice(1)) expect(resume(node, lesson, {}, [...point.done].reverse())?.[0]).toEqual(point.state);
   });
 
+  describe("with answers revised (a claim, the judge: ADR 0113)", () => {
+    const grader = createGrader(course);
+    const misses = lesson.filter((e) => "answer" in e && "options" in e).slice(0, 3);
+    const [claimed, lateOne, kept] = misses;
+    if (claimed === undefined || lateOne === undefined || kept === undefined) throw new Error("the lesson needs three choice cards");
+
+    /**
+     * The session played live: `claimed` is missed and claimed right in its feedback; `lateOne` is
+     * missed, and the judge's accept comes as its retry opens; `kept` is missed and stays missed.
+     * The log is noted after every exercise, revisions where they were made.
+     */
+    const live = () => {
+      const done: Done[] = [];
+      let [state] = start(node, lesson);
+      const dispatch = (event: PlayerEvent): void => {
+        const [next, effects] = step(state, event);
+        state = next;
+        for (const f of effects) {
+          if (f.tag === "grade") dispatch({ tag: "graded", outcome: gradeExercise(f.ex, f.response, grader) });
+          else if (f.tag === "emit" && f.event.type === "answer_submitted") done.push({ tag: "answer", exercise: f.event.ex.id, verdict: f.event.graded.verdict, selfRated: f.event.graded.selfRated === true });
+          else if (f.tag === "emit" && f.event.type === "exercise_skipped") done.push({ tag: "skip", exercise: f.event.ex.id, reason: f.event.reason });
+        }
+      };
+      const revise = (exercise: string, verdict: "CORRECT" | "CORRECT_PROVISIONAL"): void => {
+        dispatch({ tag: "revise", exercise, verdict });
+        const at = done.findIndex((d) => d.exercise === exercise);
+        const d = done[at];
+        if (d?.tag === "answer") done[at] = { ...d, revised: verdict };
+      };
+      const now = (): PlayerState => state;
+      const points: { readonly state: PlayerState; readonly done: readonly Done[] }[] = [];
+      for (let i = 0; now().tag !== "finished" && i < 200; i++) {
+        const shown = now();
+        if (shown.tag !== "presenting") throw new Error(`unexpected ${shown.tag}`);
+        const ex = shown.ex;
+        if (ex.id === `${lateOne.id}#2`) revise(lateOne.id, "CORRECT_PROVISIONAL");
+        dispatch({ tag: "ready" });
+        const miss = ex.id === claimed.id || ex.id === lateOne.id || ex.id === kept.id;
+        const response = responseTo(ex, !miss);
+        if (response === undefined) dispatch({ tag: "skip", reason: "skip" });
+        else {
+          dispatch(draftOf(ex, response));
+          dispatch({ tag: "submit" });
+        }
+        if (ex.id === claimed.id) revise(claimed.id, "CORRECT");
+        if (now().tag === "feedback") dispatch({ tag: "continue" });
+        points.push({ state: now(), done: done.map((d) => ({ ...d })) });
+      }
+      return points;
+    };
+
+    it("the session picked up after any exercise goes on as the live one did", () => {
+      const points = live();
+      const end = points.at(-1)?.state;
+      if (end?.tag !== "finished") throw new Error("not finished");
+      const asked = end.session.queue.map((e) => e.id);
+      expect(asked).not.toContain(`${claimed.id}#2`);
+      expect(asked).toContain(`${lateOne.id}#2`);
+      expect(asked).toContain(`${kept.id}#2`);
+      // Two of the three misses count right: one claimed, one accepted by the judge.
+      expect(end.summary.correctFirstTry).toBe(end.summary.exercises - 1);
+      for (const [k, point] of points.entries()) expect(resume(node, lesson, {}, point.done)?.[0], `after ${k}`).toEqual(point.state);
+      expect(firstTriesOf(points.at(-1)?.done ?? [])).toEqual(new Map(end.session.results.filter((r) => !r.retry).map((r) => [r.exercise, isCorrect(r.verdict)] as const)));
+    });
+  });
+
   it("a log that does not fit the plan is not resumed", () => {
     const points = playLive(course, node, lesson, {}, () => "right");
     const done = points[3]?.done ?? [];
@@ -260,6 +326,55 @@ describe("a session's log, as resuming reads it", () => {
         ["a", false],
         ["b", true],
         ["c", false],
+      ]),
+    );
+  });
+
+  it("gives an answer the verdict its latest revision gives it: a claim, or the judge's (ADR 0052, 0113)", () => {
+    const wrong = answer("00000000-0000-7000-8000-000000000001", S, "2026-11-12T09:00:10.000+00:00", "a", "WRONG");
+    const lenient = { ...answer("00000000-0000-7000-8000-000000000002", S, "2026-11-12T09:00:20.000+00:00", "b", "CORRECT"), outcome: { kind: "CORRECT_WITH_TYPO" as const, notes: [], kcs: [] } };
+    const later = answer("00000000-0000-7000-8000-000000000005", S, "2026-11-12T09:00:50.000+00:00", "d", "WRONG");
+    const report = (id: string, at: string, of: LearnerEvent, claim?: "reject"): LearnerEvent => ({
+      ...base,
+      id,
+      session: S,
+      clientTime: at,
+      type: "answer_reported",
+      answer: of.id,
+      exercise: of.type === "answer_submitted" ? of.exercise : { id: "", template: "choose-translation", item: "", kcs: [] },
+      text: "…",
+      ...(claim === undefined ? {} : { claim }),
+    });
+    const events: LearnerEvent[] = [
+      wrong,
+      lenient,
+      later,
+      report("00000000-0000-7000-8000-000000000003", "2026-11-12T09:00:12.000+00:00", wrong),
+      report("00000000-0000-7000-8000-000000000004", "2026-11-12T09:00:22.000+00:00", lenient, "reject"),
+      // Two revisions of the last answer, a claim and then the judge's accept: the later one stands.
+      report("00000000-0000-7000-8000-000000000007", "2026-11-12T09:00:52.000+00:00", later, "reject"),
+      {
+        ...base,
+        id: "00000000-0000-7000-8000-000000000006",
+        session: S,
+        clientTime: "2026-11-12T09:00:55.000+00:00",
+        type: "outcome_revised",
+        device: "server",
+        answer: later.id,
+        outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: [] },
+        by: "judge",
+      },
+    ];
+    expect(doneOf(events, S)).toEqual([
+      { tag: "answer", exercise: "a", verdict: "WRONG", selfRated: false, revised: "CORRECT" },
+      { tag: "answer", exercise: "b", verdict: "CORRECT_WITH_TYPO", selfRated: false, revised: "WRONG" },
+      { tag: "answer", exercise: "d", verdict: "WRONG", selfRated: false, revised: "CORRECT_PROVISIONAL" },
+    ]);
+    expect(firstTriesOf(doneOf(events, S))).toEqual(
+      new Map([
+        ["a", true],
+        ["b", false],
+        ["d", true],
       ]),
     );
   });

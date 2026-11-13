@@ -121,6 +121,9 @@ export const learnerEventOf = (
     }
     case "exercise_skipped":
       return { ...base, type: "exercise_skipped", exercise: refOf(e.ex), attempt: attemptOf(e.ex.id), reason: e.reason };
+    // The claim or the judge's revision behind it is the learner event (ADR 0052, 0113).
+    case "answer_revised":
+      return undefined;
     case "session_completed":
       return {
         ...base,

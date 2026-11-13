@@ -25,6 +25,7 @@ import {
   practicableMistakes,
   replay,
   scriptPathOf,
+  withRevisions,
   wordCounts,
   type LearnerState,
   type NodeStatus,
@@ -876,9 +877,9 @@ const useSessionRoute = (route: string, back: string, playing: boolean) => {
   } as const;
 };
 
-/** XP the events earn by the game's rule (answers right, so far, in a session not yet finished). */
+/** XP the events earn by the game's rule (answers right, so far, in a session not yet finished), each answer as its revision has it (ADR 0052). */
 const xpOfEvents = (events: readonly LearnerEvent[], config: GameConfig): number =>
-  events.reduce((n, event) => n + xpRule({ event }, { config, mode: undefined, counts: true, replay: false }).reduce((m, e) => m + (e.tag === "xp" ? e.amount : 0), 0), 0);
+  withRevisions(events).reduce((n, event) => n + xpRule({ event }, { config, mode: undefined, counts: true, replay: false }).reduce((m, e) => m + (e.tag === "xp" ? e.amount : 0), 0), 0);
 
 /**
  * The XP a session has earned, from the game state (ADR 0107), as the course page counts XP: with the
@@ -986,11 +987,11 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         xpEarned={xpEarned}
         onExit={routing.exit}
         speech={speech}
-        feedbackExtra={(ex, _outcome, response) => {
+        feedbackExtra={(ex, _outcome, response, revise) => {
           const answer = answers.get(ex.id);
           // One report button beside the feedback (M6): claims about the answer, and corrections of what the card was built from.
           const correcting = { course, bundle: manifest.id, device, record, targets: correctablesOf(course, ex), corrections };
-          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} correcting={correcting} />;
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} correcting={correcting} revise={revise} />;
         }}
       />
     </main>
@@ -1076,9 +1077,9 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         quitRequest={routing.quitRequest}
         onExit={routing.exit}
         lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
-        feedbackExtra={(ex, _outcome, response) => {
+        feedbackExtra={(ex, _outcome, response, revise) => {
           const answer = answers.get(ex.id);
-          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />;
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} revise={revise} />;
         }}
       />
     </main>

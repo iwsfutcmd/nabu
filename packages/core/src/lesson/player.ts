@@ -27,6 +27,7 @@ export type Draft =
 export interface SessionResult {
   readonly exercise: string;
   readonly template: TemplateId;
+  /** The answer's verdict: the grader's, or a revision's (a claim, the judge: ADR 0052, 0113). */
   readonly verdict: Verdict;
   readonly retry: boolean;
   /** A self-rating (no verdict) or a card put off: neither counts in the score. */
@@ -74,7 +75,16 @@ type Active =
   | { readonly tag: "presenting"; readonly session: Session; readonly ex: Exercise }
   | { readonly tag: "answering"; readonly session: Session; readonly ex: Exercise; readonly draft: Draft; readonly composing: boolean }
   | { readonly tag: "checking"; readonly session: Session; readonly ex: Exercise; readonly response: Response }
-  | { readonly tag: "feedback"; readonly session: Session; readonly ex: Exercise; readonly response: Response | null; readonly outcome: Outcome };
+  | {
+      readonly tag: "feedback";
+      readonly session: Session;
+      readonly ex: Exercise;
+      readonly response: Response | null;
+      /** The grader's outcome, as the feedback shows it. */
+      readonly outcome: Outcome;
+      /** The verdict a claim or the judge gave the answer while its feedback showed (ADR 0113): what it counts as. */
+      readonly revised?: Verdict | undefined;
+    };
 
 export type PlayerState =
   | Active
@@ -90,6 +100,13 @@ export type PlayerEvent =
   | { readonly tag: "graded"; readonly outcome: Outcome }
   | { readonly tag: "continue" }
   | { readonly tag: "skip"; readonly reason: SkipReason }
+  /**
+   * An answer of the session revised after it was graded (ADR 0052, 0113): the learner's claim ("My
+   * answer should have been accepted", "This should have been wrong") or the judge's accept. The
+   * session goes on as if it had been graded so: what it counts in the score, and whether it comes
+   * back. `exercise` is the answer's exercise id ("…#2" for a retry).
+   */
+  | { readonly tag: "revise"; readonly exercise: string; readonly verdict: Verdict }
   | { readonly tag: "interrupt"; readonly reason: InterruptReason }
   | { readonly tag: "resume" }
   | { readonly tag: "quit" };
@@ -113,6 +130,12 @@ export type LessonEvent =
       readonly hinted?: true | undefined;
     }
   | { readonly type: "exercise_skipped"; readonly exercise: ExerciseRef; readonly reason: SkipReason; readonly ex: Exercise }
+  /**
+   * An answer of the session counts otherwise now (a `revise`, ADR 0113), for the shell's own count of
+   * first tries (where a placement test places). No learner event of its own: the claim or the
+   * judge's revision that caused it is one already.
+   */
+  | { readonly type: "answer_revised"; readonly exercise: ExerciseRef; readonly verdict: Verdict }
   | { readonly type: "session_completed"; readonly lesson: string; readonly summary: SessionSummary };
 
 export interface ExerciseRef {
@@ -249,8 +272,15 @@ const plannedId = (id: string): string => id.split("#")[0] as string;
 export const isRetry = (ex: Pick<Exercise, "id">): boolean => ex.id.includes("#");
 
 /** Whether an answered exercise comes back at the end of the lesson: a miss or a skip, where retries are on. */
-const comesBack = (session: Session, ex: Exercise, outcome: Outcome): boolean =>
-  session.adaptive === undefined && session.retries !== false && !isCorrect(outcome.verdict) && outcome.skipped !== "cant-speak" && outcome.skipped !== "cant-listen" && retryable(ex);
+const comesBack = (session: Session, ex: Exercise, verdict: Verdict, skipped: SkipReason | undefined): boolean =>
+  session.adaptive === undefined && session.retries !== false && !isCorrect(verdict) && skipped !== "cant-speak" && skipped !== "cant-listen" && retryable(ex);
+
+/**
+ * What an answer in feedback counts as (ADR 0113): the grader's verdict, unless a claim or the judge
+ * revised it while the feedback showed (ADR 0052). Continue's colour, the retry and the score follow
+ * it; the feedback itself still shows the grading, solution and all.
+ */
+export const countsAs = (feedback: { readonly outcome: Outcome; readonly revised?: Verdict | undefined }): Verdict => feedback.revised ?? feedback.outcome.verdict;
 
 /** A string's 32-bit FNV-1a hash: a retry's id seeds its new order, so a lesson replays the same. */
 const hash = (s: string): number => {
@@ -333,15 +363,62 @@ export const cameBack = (session: Session, ex: Exercise): "missed" | "skipped" |
   return last?.verdict === "SKIPPED" ? "skipped" : "missed";
 };
 
+/** The attempt a card's next retry is: one more than the times the session has it queued. */
+const nextAttempt = (session: Session, ex: Exercise): number => session.queue.filter((e) => e.item === ex.item && e.template === ex.template).length + 1;
+
 const advance = (state: Extract<Active, { tag: "feedback" }>): readonly [PlayerState, readonly Effect[]] => {
   const { session, ex, outcome } = state;
   if (session.adaptive !== undefined) {
     const run = runTest(session.adaptive, firstTries(session));
     return present({ ...session, queue: [...session.queue.slice(0, session.position + 1), ...run.next], position: session.position + 1, later: run.later });
   }
-  const attempt = session.queue.filter((e) => e.item === ex.item && e.template === ex.template).length + 1;
-  const queue = comesBack(session, ex, outcome) ? [...session.queue, retryOf(ex, attempt)] : session.queue;
+  const queue = comesBack(session, ex, countsAs(state), outcome.skipped) ? [...session.queue, retryOf(ex, nextAttempt(session, ex))] : session.queue;
   return present({ ...session, queue, position: session.position + 1 });
+};
+
+/**
+ * The results with the latest answer to `exercise` counting `verdict` (ADR 0113); undefined where
+ * that changes nothing: no answer to it, a skip or a self-rating (neither has a verdict to revise),
+ * or the verdict it has already.
+ */
+export const reviseResults = (results: readonly SessionResult[], exercise: string, verdict: Verdict): readonly SessionResult[] | undefined => {
+  const at = results.findLastIndex((r) => r.exercise === exercise);
+  const result = results[at];
+  if (result === undefined || result.skipped !== undefined || result.selfRated === true || result.verdict === verdict) return undefined;
+  return results.map((r, i) => (i === at ? { ...r, verdict } : r));
+};
+
+/**
+ * A revision that comes once the session has moved on (the judge can answer after Continue): the
+ * card comes back, or no longer does, as it would have had it been graded so. Only its latest
+ * answer decides, and only a retry not shown yet is taken away: a card on screen stays. An adaptive
+ * test asks on as it was asking; its first tries, and so where it places, take the revision.
+ */
+const requeued = (session: Session, exercise: string, verdict: Verdict): Session => {
+  if (session.adaptive !== undefined || session.retries === false) return session;
+  const planned = plannedId(exercise);
+  const ex = session.queue.find((e) => e.id === exercise);
+  const latest = session.results.findLast((r) => plannedId(r.exercise) === planned);
+  if (ex === undefined || latest?.exercise !== exercise) return session;
+  const answered = new Set(session.results.map((r) => r.exercise));
+  // An attempt still to come: queued after the card on screen, or on screen and not answered yet.
+  const toCome = (e: Exercise, i: number): boolean => i >= session.position && plannedId(e.id) === planned && !answered.has(e.id);
+  const unseen = (e: Exercise, i: number): boolean => i > session.position && toCome(e, i);
+  const back = comesBack(session, ex, verdict, undefined);
+  if (back && !session.queue.some(toCome)) return { ...session, queue: [...session.queue, retryOf(ex, nextAttempt(session, ex))] };
+  if (!back && session.queue.some(unseen)) return { ...session, queue: session.queue.filter((e, i) => !unseen(e, i)) };
+  return session;
+};
+
+/** Revises an answer of the session (ADR 0113): in its feedback, what it counts as; later, its result and its retry. */
+const revise = (state: Active, exercise: string, verdict: Verdict): readonly [Active, readonly Effect[]] => {
+  const results = reviseResults(state.session.results, exercise, verdict);
+  const ex = state.session.queue.find((e) => e.id === exercise);
+  if (results === undefined || ex === undefined) return [state, []];
+  const revised: Session = { ...state.session, results };
+  const emit: Effect = { tag: "emit", event: { type: "answer_revised", exercise: ref(ex), verdict } };
+  if (state.tag === "feedback" && state.ex.id === exercise) return [{ ...state, session: revised, revised: verdict }, [emit]];
+  return [{ ...state, session: requeued(revised, exercise, verdict) }, [emit]];
 };
 
 const record = (session: Session, ex: Exercise, verdict: Verdict, how: { readonly selfRated?: true | undefined; readonly skipped?: SkipReason | undefined } = {}): Session => ({
@@ -382,6 +459,10 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
   if (state.tag === "finished") return none;
   if (state.tag === "interrupted") {
     if (event.tag === "resume") return [state.resume, []];
+    if (event.tag === "revise") {
+      const [resume, effects] = revise(state.resume, event.exercise, event.verdict);
+      return resume === state.resume ? none : [{ ...state, session: resume.session, resume }, effects];
+    }
     if (event.tag === "quit") {
       const summary = summarize(state.session, false);
       return [{ tag: "finished", session: state.session, summary }, [{ tag: "emit", event: { type: "session_completed", lesson: state.session.lesson, summary } }]];
@@ -389,6 +470,7 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
     return none;
   }
   if (event.tag === "interrupt") return [{ tag: "interrupted", session: state.session, reason: event.reason, resume: state }, []];
+  if (event.tag === "revise") return revise(state, event.exercise, event.verdict);
 
   switch (state.tag) {
     case "presenting":
@@ -456,7 +538,7 @@ export const progressOf = (state: PlayerState): { readonly done: number; readonl
   const active = state.tag === "interrupted" ? state.resume : state;
   // Still to come: every card after this one, and this one unless it is answered for good.
   const open = new Set(session.queue.slice(session.position + 1).map((e) => plannedId(e.id)));
-  const settled = active.tag === "feedback" && !comesBack(session, active.ex, active.outcome);
+  const settled = active.tag === "feedback" && !comesBack(session, active.ex, countsAs(active), active.outcome.skipped);
   if (!settled) open.add(plannedId(active.ex.id));
   return { done: cards.size - open.size, total: cards.size + (session.later ?? 0) };
 };

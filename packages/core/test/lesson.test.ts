@@ -4,6 +4,7 @@ import {
   allSentences,
   buildLesson,
   cardGallery,
+  countsAs,
   createGrader,
   gradeExercise,
   cameBack,
@@ -19,6 +20,7 @@ import {
   seededRng,
   start,
   step,
+  summarize,
   TEMPLATES,
   type CourseView,
   type Effect,
@@ -672,6 +674,119 @@ describe("player", () => {
     placement.dispatch({ tag: "quit" });
     const stopped = placement.get();
     expect(stopped.tag === "finished" && stopped.summary.exercises).toBe(1);
+  });
+});
+
+describe("an answer revised while the session runs (P14, ADR 0113)", () => {
+  const course = loadCourse("fa");
+  const node = lessonNodes(course)[2]?.node.id as string;
+  const lesson = buildLesson(course, node, { seed: 3 });
+  const choices = lesson.filter((e) => e.template !== "speak.tier-0" && wrongAnswer(e)?.tag === "choice");
+  const [first, second] = choices;
+  if (first === undefined || second === undefined) throw new Error("the lesson needs two choice cards");
+  const emitted = (effects: readonly Effect[]): readonly string[] => effects.flatMap((f) => (f.tag === "emit" ? [f.event.type] : []));
+
+  it("a claim in the feedback counts the card right: it does not come back, and the score has it", () => {
+    const [s0] = start(node, [first, second]);
+    const shell = run(course, s0, answer(first, wrongAnswer(first) as Response));
+    const before = shell.get();
+    if (before.tag !== "feedback") throw new Error(before.tag);
+    expect(progressOf(before).done).toBe(0);
+    const [after, effects] = step(before, { tag: "revise", exercise: first.id, verdict: "CORRECT" });
+    if (after.tag !== "feedback") throw new Error(after.tag);
+    // The feedback still shows the grading; the answer counts as the claim says.
+    expect(after.outcome.verdict).toBe("WRONG");
+    expect(countsAs(after)).toBe("CORRECT");
+    expect(progressOf(after).done).toBe(1);
+    expect(effects).toEqual([{ tag: "emit", event: { type: "answer_revised", exercise: { id: first.id, template: first.template, item: first.item }, verdict: "CORRECT" } }]);
+    shell.dispatch({ tag: "revise", exercise: first.id, verdict: "CORRECT" });
+    for (const e of [{ tag: "continue" } as const, ...answer(second, rightAnswer(second)), { tag: "continue" } as const]) shell.dispatch(e);
+    const end = shell.get();
+    expect(end.tag === "finished" && end.session.queue.map((e) => e.id)).toEqual([first.id, second.id]);
+    expect(end.tag === "finished" && end.summary).toEqual({ completed: true, exercises: 2, correctFirstTry: 2, retries: 0, skipped: 0 });
+  });
+
+  it("this should have been wrong: the card comes back, and the score counts it wrong", () => {
+    const [s0] = start(node, [first]);
+    const shell = run(course, s0, [...answer(first, rightAnswer(first)), { tag: "revise", exercise: first.id, verdict: "WRONG" }]);
+    const feedback = shell.get();
+    expect(feedback.tag === "feedback" && countsAs(feedback)).toBe("WRONG");
+    shell.dispatch({ tag: "continue" });
+    const again = shell.get();
+    expect(again.tag === "presenting" && again.ex.id).toBe(`${first.id}#2`);
+    for (const e of [...answer(retryOf(first, 2), rightAnswer(retryOf(first, 2))), { tag: "continue" } as const]) shell.dispatch(e);
+    const end = shell.get();
+    expect(end.tag === "finished" && end.summary).toEqual({ completed: true, exercises: 1, correctFirstTry: 0, retries: 1, skipped: 0 });
+  });
+
+  it("a revision after Continue takes back the retry not shown yet, and the score has it", () => {
+    const [s0] = start(node, [first, second]);
+    const shell = run(course, s0, [...answer(first, wrongAnswer(first) as Response), { tag: "continue" }, { tag: "ready" }]);
+    const queued = shell.get();
+    expect(queued.session.queue.map((e) => e.id)).toEqual([first.id, second.id, `${first.id}#2`]);
+    shell.dispatch({ tag: "revise", exercise: first.id, verdict: "CORRECT_PROVISIONAL" });
+    expect(shell.get().session.queue.map((e) => e.id)).toEqual([first.id, second.id]);
+    for (const e of [...answer(second, rightAnswer(second)).slice(1), { tag: "continue" } as const]) shell.dispatch(e);
+    const end = shell.get();
+    expect(end.tag === "finished" && end.summary).toEqual({ completed: true, exercises: 2, correctFirstTry: 2, retries: 0, skipped: 0 });
+  });
+
+  it("a card back on screen stays, and is not queued twice", () => {
+    const [s0] = start(node, [first]);
+    const shell = run(course, s0, [...answer(first, wrongAnswer(first) as Response), { tag: "continue" }]);
+    const back = shell.get();
+    expect(back.tag === "presenting" && back.ex.id).toBe(`${first.id}#2`);
+    shell.dispatch({ tag: "revise", exercise: first.id, verdict: "CORRECT" });
+    shell.dispatch({ tag: "revise", exercise: first.id, verdict: "WRONG_WORD" });
+    const still = shell.get();
+    expect(still.tag === "presenting" && still.ex.id).toBe(`${first.id}#2`);
+    expect(still.session.queue.map((e) => e.id)).toEqual([first.id, `${first.id}#2`]);
+  });
+
+  it("changes nothing for a skip, a self-rating, an exercise not answered, or the verdict it has", () => {
+    const [s0] = start(node, [first, second]);
+    const shell = run(course, s0, [{ tag: "ready" }, { tag: "skip", reason: "skip" }]);
+    const skipped = shell.get();
+    for (const event of [
+      { tag: "revise", exercise: first.id, verdict: "CORRECT" },
+      { tag: "revise", exercise: second.id, verdict: "CORRECT" },
+      { tag: "revise", exercise: "elsewhere", verdict: "CORRECT" },
+    ] as const) {
+      expect(step(skipped, event)).toEqual([skipped, []]);
+    }
+    const right = run(course, start(node, [first])[0], answer(first, rightAnswer(first))).get();
+    expect(step(right, { tag: "revise", exercise: first.id, verdict: "CORRECT" })).toEqual([right, []]);
+    const speaking = lesson.find((e) => e.template === "speak.tier-0");
+    if (speaking !== undefined) {
+      const rated = run(course, start(node, [speaking])[0], answer(speaking, rightAnswer(speaking))).get();
+      expect(step(rated, { tag: "revise", exercise: speaking.id, verdict: "WRONG" })).toEqual([rated, []]);
+    }
+  });
+
+  it("reaches the feedback under the quit dialog", () => {
+    const [s0] = start(node, [first]);
+    const shell = run(course, s0, [...answer(first, wrongAnswer(first) as Response), { tag: "interrupt", reason: "quit-confirm" }]);
+    const [asked, effects] = step(shell.get(), { tag: "revise", exercise: first.id, verdict: "CORRECT" });
+    expect(asked.tag).toBe("interrupted");
+    expect(emitted(effects)).toEqual(["answer_revised"]);
+    const [resumed] = step(asked, { tag: "resume" });
+    expect(resumed.tag === "feedback" && countsAs(resumed)).toBe("CORRECT");
+    expect(summarize(asked.session, false).correctFirstTry).toBe(1);
+  });
+
+  it("an adaptive test asks on from what the answer counts as (placement)", () => {
+    const test = placementTest(course, 4).test;
+    const opening = runTest(test, new Map()).next;
+    const [s0] = start("placement", opening, { adaptive: test });
+    const firstAsked = s0.tag === "presenting" ? s0.ex : undefined;
+    if (firstAsked === undefined) throw new Error("no question");
+    const missed = run(course, s0, answer(firstAsked, wrongAnswer(firstAsked) ?? rightAnswer(firstAsked)));
+    const claimed = run(course, s0, [...answer(firstAsked, wrongAnswer(firstAsked) ?? rightAnswer(firstAsked)), { tag: "revise", exercise: firstAsked.id, verdict: "CORRECT" }]);
+    const right = run(course, s0, answer(firstAsked, rightAnswer(firstAsked)));
+    for (const shell of [missed, claimed, right]) shell.dispatch({ tag: "continue" });
+    const next = (s: PlayerState): string | undefined => (s.tag === "presenting" ? s.ex.id : undefined);
+    expect(next(claimed.get())).toBe(next(right.get()));
+    expect(claimed.get().session.results.map((r) => r.verdict)).toEqual(["CORRECT"]);
   });
 });
 

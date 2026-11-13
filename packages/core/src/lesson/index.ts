@@ -5,12 +5,14 @@ export { answerDiff, closestAnswer, nearMiss, type AnswerDiff } from "./diff.ts"
 export * from "./exercise.ts";
 export {
   cameBack,
+  countsAs,
   draftOf,
   emptyDraft,
   isRetry,
   progressOf,
   responseOf,
   retryOf,
+  reviseResults,
   start,
   step,
   summarize,

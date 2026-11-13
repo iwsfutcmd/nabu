@@ -75,6 +75,8 @@ const eventRecorder = ({
     if (e.type === "exercise_presented") presentedAt = performance.now();
     if (e.type === "answer_submitted" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, isCorrect(e.graded.verdict));
     if (e.type === "exercise_skipped" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, false);
+    // A claim or the judge revised an answer (ADR 0113): the test places by what it counts as now.
+    if (e.type === "answer_revised" && firstTry.has(e.exercise.id)) firstTry.set(e.exercise.id, isCorrect(e.verdict));
     const test = e.type === "session_completed" && request?.mode === "placement" ? plan?.placement : undefined;
     const reached = test === undefined ? undefined : placementOf(test, firstTry);
     // A placement test stopped part-way still places by the answers so far (S5, D9): it stays a

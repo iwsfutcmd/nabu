@@ -162,6 +162,37 @@ describe("what a screen reader hears as a card opens (P10)", () => {
   });
 });
 
+describe("an answer claimed right in its feedback (P14, ADR 0113)", () => {
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const ex = cardOf(course, "choose-translation");
+  if (ex.template !== "choose-translation") throw new Error("not a choice");
+  const continueOf = (html: string): string => /<button[^>]*data-action="continue"[^>]*>/u.exec(html)?.[0] ?? "";
+
+  it("turns Continue from wrong to right, the feedback still showing the grading", () => {
+    const missed = stateOf(course, ex, { tag: "choice", index: (ex.answer + 1) % ex.options.length });
+    const before = play(course, ex, missed);
+    expect(continueOf(before)).toContain('data-counts-as="WRONG"');
+    expect(continueOf(before)).toContain("primaryWrong");
+    const [claimed] = step(missed, { tag: "revise", exercise: ex.id, verdict: "CORRECT" });
+    const after = play(course, ex, claimed);
+    expect(continueOf(after)).toContain('data-counts-as="CORRECT"');
+    expect(continueOf(after)).not.toContain("primaryWrong");
+    expect(after).toContain('data-verdict="WRONG"');
+  });
+
+  it("hands the feedback's extras a way to revise the answer", () => {
+    const missed = stateOf(course, ex, { tag: "choice", index: (ex.answer + 1) % ex.options.length });
+    const seen: unknown[] = [];
+    play(course, ex, missed, {
+      feedbackExtra: (_ex, _outcome, _response, revise) => {
+        seen.push(typeof revise);
+        return null;
+      },
+    });
+    expect(seen).toEqual(["function"]);
+  });
+});
+
 describe("the lesson's sound switch (P6)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const ex = cardOf(course, "complete-translation");

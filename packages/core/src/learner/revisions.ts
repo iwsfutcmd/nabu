@@ -12,6 +12,16 @@
  * When an answer has several, the latest (device time, then id) wins.
  */
 import type { AnswerReported, AnswerSubmitted, LearnerEvent, OutcomeRevised } from "@nabu/schema";
+import type { Verdict } from "../match/grade.ts";
+
+/** The verdict a learner's claim gives their answer: right, or wrong. */
+const CLAIMED: Readonly<Record<"accept" | "reject", Verdict>> = { accept: "CORRECT", reject: "WRONG" };
+
+/**
+ * The verdict a revision gives the answer it names: the judge's, or the learner's claim. A session
+ * still running takes it at once (ADR 0113), as the projections do.
+ */
+export const revisionVerdict = (e: OutcomeRevised | AnswerReported): Verdict => (e.type === "outcome_revised" ? e.outcome.kind : CLAIMED[e.claim ?? "accept"]);
 
 /** One revision of an answer: when it was made, and the outcome it gives the answer. */
 export interface Revision {
@@ -29,7 +39,7 @@ const later = (a: Revision, b: Revision): boolean => {
 
 /** The learner's claim as an outcome: every KC of the answer right, or every one wrong. */
 const claimed = (claim: "accept" | "reject") => (answer: AnswerSubmitted): AnswerSubmitted["outcome"] => ({
-  kind: claim === "accept" ? "CORRECT" : "WRONG",
+  kind: CLAIMED[claim],
   notes: [...answer.outcome.notes, claim === "accept" ? "learner-accepted" : "learner-rejected"],
   kcs: answer.outcome.kcs.map((k) => ({ ...k, status: claim === "accept" ? "right" : "wrong" })),
 });

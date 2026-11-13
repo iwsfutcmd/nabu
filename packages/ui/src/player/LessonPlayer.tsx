@@ -8,7 +8,8 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { allKcs, cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, TEMPLATES, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
+import type { Verdict } from "@nabu/core";
+import { allKcs, cameBack, countsAs, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, TEMPLATES, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
@@ -72,9 +73,10 @@ export interface LessonPlayerProps {
   readonly onCantSpeak?: (() => void) | undefined;
   /**
    * More under the feedback for an answer (Phase 8: report it, a second check, an explanation).
-   * The app supplies it; the player only places it, outside the live region.
+   * The app supplies it; the player only places it, outside the live region. `revise` takes a
+   * claim's or the judge's verdict on the answer into the session (ADR 0113), even after Continue.
    */
-  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null) => ReactNode) | undefined;
+  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null, revise: (verdict: Verdict) => void) => ReactNode) | undefined;
   /** What can score speech (Phase 9): the device's calibration, and the server when the app has one. */
   readonly speech?: SpeechServices | undefined;
   /** Debug mode: label each card with its kind (template id), to test every kind of card. */
@@ -402,7 +404,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={ex.template === "vocalize" || marks !== "hide" ? "show" : "hide"} />}
       </div>
       {active.tag === "feedback" && <NewWordsAnswered course={course} template={ex.template} kcs={fresh} ruby={ruby} marks={marks} />}
-      {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response)}
+      {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response, (verdict) => dispatch({ tag: "revise", exercise: ex.id, verdict }))}
 
       {/*
         Putting off listening or speaking is its own, quieter action, apart from Skip (P13): a listening
@@ -428,7 +430,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 
       <footer ref={footer} className={styles.footer}>
         {active.tag === "feedback" ? (
-          <Button ref={continueButton} className={`${styles.primary} ${isCorrect(active.outcome.verdict) || active.outcome.selfRated === true ? "" : styles.primaryWrong}`} onPress={() => dispatch({ tag: "continue" })} data-action="continue">
+          <Button ref={continueButton} className={`${styles.primary} ${isCorrect(countsAs(active)) || active.outcome.selfRated === true ? "" : styles.primaryWrong}`} onPress={() => dispatch({ tag: "continue" })} data-action="continue" data-counts-as={countsAs(active)}>
             {t.format("player.action.continue")}
             <ArrowForwardIcon />
           </Button>
