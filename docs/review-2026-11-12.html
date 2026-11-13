@@ -1837,7 +1837,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   {
     "id": "D52",
     "title": "Tone cards in Cantonese lessons (found by C5)",
-    "context": "With the lesson tests now checking what the planner plans, a gap showed: yue lessons never plan a tone-identify card, though the app can score tones and the cards are among the candidates (their predicted success is about 0.52, and nothing reserves them a place). The old, unused builder always included one.",
+    "context": "With the lesson tests now checking what the planner plans, a gap showed: yue lessons never plan a tone-identify card, though the app can score tones and the cards are among the candidates (their predicted success is about 0.52, and nothing reserves them a place). The old, unused builder always included one. The owner added (13 Nov): TTS can’t be trusted to say a lone syllable’s tone, so a tone card may use only a clip a person has confirmed: a human recording, or a synthetic clip a native reviewer marked right in the audio check. None qualify yet; they appear clip by clip as clips are reviewed.",
     "options": [
       {
         "v": "a",
@@ -1912,7 +1912,8 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     "D48": "a",
     "D49": "a",
     "D50": "a",
-    "D51": "a"
+    "D51": "a",
+    "D52": "a"
   },
   "picks": {
     "L1": {
@@ -2655,7 +2656,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
-    "Done (13 November): every finding prioritised Now, Next or Later is on main, with 54 decisions answered and built, CI green. Open: D52 (tone cards in yue lessons). Follow-ups found on the way, not in the list: gap-fill can offer a word already shown in its sentence (apc s.4); “Explain my answer” is offered for tile answers but the server explains only typed ones; a second check accepted after an offline wait isn’t announced; a league week joined in its grace hours keeps last week’s tier; opening a course with a year of history still takes about 4 s at 4× CPU (reading IndexedDB, converting FSRS cards); release builds keep draft name translations; P16/D39 want a check on a real Android phone."
+    "Done (13 November): every finding prioritised Now, Next or Later is on main, with 54 decisions answered and built, CI green. D52 (tone cards in yue lessons, person-confirmed clips only) is being built. Follow-ups found on the way, not in the list: gap-fill can offer a word already shown in its sentence (apc s.4); “Explain my answer” is offered for tile answers but the server explains only typed ones; a second check accepted after an offline wait isn’t announced; a league week joined in its grace hours keeps last week’s tier; opening a course with a year of history still takes about 4 s at 4× CPU (reading IndexedDB, converting FSRS cards); release builds keep draft name translations; P16/D39 want a check on a real Android phone."
   ]
 }
 </script>
