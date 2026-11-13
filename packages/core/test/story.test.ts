@@ -198,6 +198,8 @@ describe("the story player", () => {
     const [quit, effects] = stepStory(state, { tag: "quit" });
     expect(quit.tag).toBe("finished");
     expect(effects.map((e) => (e.tag === "emit" ? [e.event.type, e.event.type === "session_completed" && e.event.summary.completed] : [e.tag]))).toEqual([["session_completed", false]]);
+    // Left before any question: none answered, whatever the story would have asked (P8).
+    expect(quit.tag === "finished" && quit.summary.exercises).toBe(0);
   });
 
   it("arranging accepts tiles that read the same in either order", () => {

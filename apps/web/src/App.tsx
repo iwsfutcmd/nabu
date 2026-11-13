@@ -1017,6 +1017,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         onSoundChange={storeSound}
         listening={!onBreak("listening")}
         retries={request.mode !== "placement"}
+        mode={request.mode}
         adaptive={setup.planned.placement?.test}
         resumed={setup.resumed?.from}
         quitRequest={routing.quitRequest}

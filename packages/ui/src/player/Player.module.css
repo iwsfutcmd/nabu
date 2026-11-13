@@ -669,6 +669,17 @@
   outline: none;
 }
 
+/* The dialog's content, in the chrome's lang and dir (it is portalled out of the app's root). */
+.dialogBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+}
+
+.dialogBody > p {
+  margin: 0;
+}
+
 .iconButton[data-focus-visible],
 .textButton[data-focus-visible],
 .primary[data-focus-visible],

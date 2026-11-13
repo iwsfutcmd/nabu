@@ -668,6 +668,28 @@ describe("player", () => {
     const end = shell.get();
     expect(end.tag === "finished" && end.summary.completed).toBe(false);
   });
+
+  it("scores a stopped lesson or test over what was answered (P8)", () => {
+    const answerable = lesson.filter((e) => e.template !== "speak.tier-0" && e.template !== "match-pairs");
+    const [s0] = start(node, answerable);
+    const shell = run(course, s0, []);
+    for (const ex of answerable.slice(0, 2)) for (const e of [...answer(ex, rightAnswer(ex)), { tag: "continue" } as const]) shell.dispatch(e);
+    shell.dispatch({ tag: "interrupt", reason: "quit-confirm" });
+    shell.dispatch({ tag: "quit" });
+    const end = shell.get();
+    expect(end.tag === "finished" && end.summary).toEqual({ completed: false, exercises: 2, correctFirstTry: 2, retries: 0, skipped: 0 });
+    // An adaptive test stopped after one question: one asked, not the queue it had planned.
+    const test = placementTest(course, 4).test;
+    const [t0] = start("placement", runTest(test, new Map()).next, { adaptive: test });
+    const placement = run(course, t0, []);
+    const first = placement.get();
+    if (first.tag !== "presenting") throw new Error(first.tag);
+    for (const e of [...answer(first.ex, rightAnswer(first.ex)), { tag: "continue" } as const]) placement.dispatch(e);
+    placement.dispatch({ tag: "interrupt", reason: "quit-confirm" });
+    placement.dispatch({ tag: "quit" });
+    const stopped = placement.get();
+    expect(stopped.tag === "finished" && stopped.summary.exercises).toBe(1);
+  });
 });
 
 describe("listening cards say what was heard means", () => {

@@ -19,6 +19,7 @@ import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-componen
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { WordStatusProvider, type Marks } from "../marks.tsx";
+import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
@@ -137,6 +138,7 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
 const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
   const { course, script, grader, imageUrl, language, onEvent, onExit, profile, xpEarned } = props;
   const t = useTranslator();
+  const chrome = useChrome();
   const [sound, setSound] = useState(props.sound !== false);
   // Nothing plays by itself with sound off or while the learner can't listen (P6).
   const quiet = !sound || props.listening === false;
@@ -422,26 +424,30 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         )}
       </footer>
 
+      {/* In the chrome's lang, dir and font (it is portalled out of the app's root); it says what leaving keeps (P8). */}
       <Modal className={playerStyles.modal} isOpen={confirming} isDismissable onOpenChange={setConfirming}>
-        <Dialog className={playerStyles.dialog} data-quit-dialog="">
-          <Heading slot="title" className={playerStyles.instruction}>
-            {t.format("player.quit.title")}
-          </Heading>
-          <p>{t.format("player.quit.body")}</p>
-          <div className={playerStyles.footer}>
-            <Button
-              className={playerStyles.secondary}
-              onPress={() => {
-                setConfirming(false);
-                dispatch({ tag: "quit" });
-              }}
-              data-action="quit-confirm"
-            >
-              {t.format("player.quit.confirm")}
-            </Button>
-            <Button className={playerStyles.primary} onPress={() => setConfirming(false)} autoFocus data-action="resume">
-              {t.format("player.quit.cancel")}
-            </Button>
+        <Dialog className={`${playerStyles.dialog} ${chromeClass}`} style={chrome.style} data-quit-dialog="">
+          <div className={playerStyles.dialogBody} lang={chrome.lang} dir={chrome.dir}>
+            <Heading slot="title" className={playerStyles.instruction}>
+              {t.format("player.quit.title")}
+            </Heading>
+            <p data-quit-kept="">{t.format("story.quit.kept")}</p>
+            <div className={playerStyles.footer}>
+              <Button
+                className={playerStyles.secondary}
+                onPress={() => {
+                  setConfirming(false);
+                  dispatch({ tag: "quit" });
+                  onExit?.();
+                }}
+                data-action="quit-confirm"
+              >
+                {t.format("player.quit.confirm")}
+              </Button>
+              <Button className={playerStyles.primary} onPress={() => setConfirming(false)} autoFocus data-action="resume">
+                {t.format("player.quit.cancel")}
+              </Button>
+            </div>
           </div>
         </Dialog>
       </Modal>

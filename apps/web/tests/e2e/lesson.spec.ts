@@ -11,7 +11,7 @@
  */
 import { lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
-import { graded, historyBefore, loadCourse, logOf, planned, playSession, seedLog, sessionUrl, type Mode } from "./solver.ts";
+import { answer, expectRightAndContinue, graded, historyBefore, loadCourse, logOf, planned, playSession, seedLog, sessionUrl, waitFor, type Mode } from "./solver.ts";
 
 const SEED = 7;
 const NOW = new Date("2026-03-10T09:00:00Z");
@@ -148,3 +148,30 @@ test("Persian marks vowels on new words until the learner chooses, and the choic
   await expect(menu).toHaveAttribute("data-marks-shown", "hide");
 });
 
+
+test("quitting says what is kept, in the app's face, and goes straight back to the path (P8)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("es", "es-Latn/standard");
+  const node = "es.u01.como-estas";
+  const history = historyBefore(course, node, NOW);
+  if (history.length > 0) await seedLog(page, history);
+  const [first] = planned(course, history, { mode: "lesson", node }, NOW, SEED);
+  if (first === undefined) throw new Error("the lesson has cards");
+  await page.goto(sessionUrl(course, { mode: "lesson", node }, SEED));
+  await waitFor(page, first);
+  await answer(page, first, "keyboard");
+  await expectRightAndContinue(page, "keyboard", first);
+  await page.locator("[data-lesson-player] [data-action=quit]").click();
+  const dialog = page.locator("[data-quit-dialog]");
+  await expect(dialog).toHaveAttribute("data-mode", "lesson");
+  await expect(dialog.locator("[data-quit-kept]")).toContainText("Your answers so far are kept");
+  // The chrome's face, not the browser's serif fallback: the dialog is portalled out of the app's root.
+  expect(await dialog.evaluate((el) => getComputedStyle(el).fontFamily)).toContain("Noto Sans");
+  await page.locator("[data-action=quit-confirm]").click();
+  await expect(page.locator("[data-course-path]")).toBeVisible();
+  // The session ends unfinished, scored over what was answered.
+  await expect
+    .poll(async () => (await logOf(page, "es")).find((e) => e.type === "session_completed" && e.node === node))
+    .toMatchObject({ summary: { completed: false, exercises: graded([first]) } });
+});

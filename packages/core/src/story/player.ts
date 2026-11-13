@@ -32,7 +32,8 @@ export const summarizeStory = (state: Common, completed: boolean): SessionSummar
   const first = state.results.filter((r) => !r.retry);
   return {
     completed,
-    exercises: questions(state.script),
+    // A story left before its end counts the questions answered (P8), not those it never asked.
+    exercises: completed ? questions(state.script) : first.length,
     correctFirstTry: first.filter((r) => isCorrect(r.verdict)).length,
     retries: state.results.filter((r) => r.retry).length,
     skipped: state.results.filter((r) => r.verdict === "SKIPPED").length,

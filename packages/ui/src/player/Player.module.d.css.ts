@@ -11,6 +11,7 @@ declare const styles: {
   readonly charKey: string;
   readonly correctIcon: string;
   readonly dialog: string;
+  readonly dialogBody: string;
   readonly feedback: string;
   readonly feedbackHeadline: string;
   readonly feedbackSlot: string;

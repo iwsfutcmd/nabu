@@ -214,8 +214,9 @@ export const summarize = (session: Session, completed: boolean): SessionSummary 
   const graded = first.filter((r) => r.selfRated !== true && r.skipped !== "cant-speak" && r.skipped !== "cant-listen");
   return {
     completed,
-    // An adaptive test plans as it goes: its size is what it asked.
-    exercises: session.adaptive === undefined ? graded.length : session.queue.length,
+    // An adaptive test plans as it goes: its size is what it asked. Stopped (P8), it is what was
+    // answered, as a lesson's is: never the questions it would still have asked.
+    exercises: session.adaptive === undefined || !completed ? graded.length : session.queue.length,
     correctFirstTry: graded.filter((r) => isCorrect(r.verdict)).length,
     retries: session.results.filter((r) => r.retry).length,
     skipped: session.results.filter((r) => r.verdict === "SKIPPED").length,

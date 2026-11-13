@@ -2210,10 +2210,6 @@
       "message": "No speaking exercises for the next hour. You can turn them back on from the course page.",
       "description": "Said in the lesson once the learner pressed 'Can't speak now' (player.action.cant-speak), and shown until the lesson ends."
     },
-    "player.quit.body": {
-      "message": "You'll lose your progress in this lesson.",
-      "description": "Body of the quit dialog."
-    },
     "player.quit.cancel": {
       "message": "Keep learning",
       "description": "Button that closes the quit dialog and goes back to the lesson."
@@ -2222,9 +2218,21 @@
       "message": "Quit",
       "description": "Button that quits the lesson."
     },
+    "player.quit.kept": {
+      "message": "Your answers so far are kept, with their XP: mistakes stay to practise, and words come back for review. The lesson won't count as finished, and you won't get the bonus for finishing it.",
+      "description": "Body of the dialog asked when the learner quits a lesson: what quitting keeps (every answer's XP, mistakes, review scheduling) and what it doesn't (the lesson done, the finishing bonus)."
+    },
+    "player.quit.kept.practice": {
+      "message": "Your answers so far are kept, with their XP: mistakes stay to practise, and words come back for review. You won't get the bonus for finishing.",
+      "description": "Body of the dialog asked when the learner stops a review or a mistakes session: what stopping keeps, and the finishing bonus it doesn't."
+    },
     "player.quit.title": {
       "message": "Quit this lesson?",
       "description": "Title of the dialog shown when the learner closes a lesson."
+    },
+    "player.quit.title.practice": {
+      "message": "Stop practising?",
+      "description": "Title of the dialog shown when the learner closes a review or a mistakes session."
     },
     "player.readings.label": {
       "message": "Readings",
@@ -2745,6 +2753,10 @@
     "story.narration": {
       "message": "Narration",
       "description": "Accessible label of a story line no character speaks."
+    },
+    "story.quit.kept": {
+      "message": "Your answers so far are kept, with their XP. The story won't count as read, and you won't get the bonus for finishing it.",
+      "description": "Body of the dialog asked when the learner leaves a story before its end: what leaving keeps, and what it doesn't."
     },
     "story.transcript.label": {
       "message": "The story so far",

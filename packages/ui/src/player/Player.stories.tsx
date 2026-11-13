@@ -17,7 +17,7 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry" | "display";
+export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry" | "display" | "quit";
 
 const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
   tiles: "translate-tap.l1-l2",
@@ -25,6 +25,7 @@ const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
   feedback: "complete-translation",
   retry: "choose-translation",
   display: "choose-translation",
+  quit: "choose-translation",
 };
 
 const SEED = 7;
@@ -34,6 +35,7 @@ const stateFor = (screen: PlayerScreen, ex: Exercise, course: CourseView, grader
   const [presenting] = start("story", [ex]);
   const [answering] = step(presenting, { tag: "ready" });
   if (screen === "typing" || screen === "display") return answering;
+  if (screen === "quit") return step(answering, { tag: "interrupt", reason: "quit-confirm" })[0];
   if (screen === "retry" && ex.template === "choose-translation") {
     // A wrong option, then Continue: the card comes back, its options in a new order (P4).
     const chosen = step(answering, { tag: "input", draft: { tag: "choice", index: (ex.answer + 1) % ex.options.length } })[0];
@@ -111,3 +113,5 @@ export const Feedback: Story = story("feedback");
 export const Retry: Story = story("retry");
 /** The display menu open: readings, vowel marks (every word, new words, none) and vertical text, as the course offers (P12). */
 export const Display: Story = story("display");
+/** Quitting: what it keeps, in the chrome's face (the dialog is portalled out of the root, P8). */
+export const Quit: Story = story("quit");

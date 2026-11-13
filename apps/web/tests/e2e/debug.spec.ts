@@ -32,8 +32,8 @@ test("every kind of card can be tried from the gallery, and none of it is record
     await expect(page.locator("[data-lesson-player]")).toBeVisible();
     await expect(page.locator("[data-debug-template]")).toHaveAttribute("data-debug-template", template);
     await page.locator("[data-action=quit]").click();
+    // Quitting goes straight back (P8): no stopped screen to tap through.
     await page.locator("[data-action=quit-confirm]").click();
-    await page.locator("[data-action=exit]").click();
     await expect(page.locator("[data-cards-page=yue]")).toBeVisible();
   }
   await page.locator("[data-action=play-all-cards]").click();

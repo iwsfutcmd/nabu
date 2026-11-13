@@ -12,9 +12,11 @@ import { cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, respon
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
+import type { MessageId } from "@nabu/i18n";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { WordStatusProvider } from "../marks.tsx";
+import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
@@ -74,6 +76,8 @@ export interface LessonPlayerProps {
   readonly speech?: SpeechServices | undefined;
   /** Debug mode: label each card with its kind (template id), to test every kind of card. */
   readonly debug?: boolean | undefined;
+  /** What kind of session this is, for what quitting it says (P8): a lesson (default), practice or the placement test. */
+  readonly mode?: SessionKind | undefined;
   /** The reading layer the learner chose before (false: none), which the app keeps (ADR 0071). */
   readonly reading?: SchemeId | false | undefined;
   /** The learner chose a reading layer, or none. */
@@ -105,9 +109,26 @@ export interface LessonPlayerProps {
   readonly displayOpen?: boolean | undefined;
 }
 
+/** A session's kind, as the app plans it. */
+export type SessionKind = "lesson" | "review" | "mistakes" | "placement";
+
+/**
+ * What quitting a session asks, and says it keeps, by kind (P8). A placement test says what the app
+ * gives it to say (`quitCopy`, S5: stopping part-way places by the answers so far); without that, as
+ * practice does.
+ */
+const QUIT: Readonly<Record<SessionKind, { readonly title: MessageId; readonly kept: MessageId }>> = {
+  lesson: { title: "player.quit.title", kept: "player.quit.kept" },
+  review: { title: "player.quit.title.practice", kept: "player.quit.kept.practice" },
+  mistakes: { title: "player.quit.title.practice", kept: "player.quit.kept.practice" },
+  placement: { title: "player.quit.title.practice", kept: "player.quit.kept.practice" },
+};
+
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
   const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak } = props;
   const t = useTranslator();
+  const chrome = useChrome();
+  const kind = props.mode ?? "lesson";
   const [sound, setSound] = useState(props.sound !== false);
   // Listening or speaking put off in this lesson ("Can't listen now"): said once it happens (P13).
   const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
@@ -380,19 +401,35 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         )}
       </footer>
 
+      {/*
+        The dialog is portalled out of the app's root, so it takes the chrome's lang, dir and font itself
+        (P8). It says what quitting keeps: every answer, with its XP, its mistakes and its scheduling;
+        only finishing (and its bonus) waits. Quitting goes straight back to the path, unless the end
+        screen has more to say (a placement test's result).
+      */}
       <Modal className={styles.modal} isOpen={state.tag === "interrupted"} isDismissable onOpenChange={(open) => !open && dispatch({ tag: "resume" })}>
-        <Dialog className={styles.dialog} data-quit-dialog="">
-          <Heading slot="title" className={styles.instruction}>
-            {props.quitCopy?.title ?? t.format("player.quit.title")}
-          </Heading>
-          <p>{props.quitCopy?.body ?? t.format("player.quit.body")}</p>
-          <div className={styles.footer}>
-            <Button className={styles.secondary} onPress={() => dispatch({ tag: "quit" })} data-action="quit-confirm">
-              {props.quitCopy?.confirm ?? t.format("player.quit.confirm")}
-            </Button>
-            <Button className={styles.primary} onPress={() => dispatch({ tag: "resume" })} autoFocus data-action="resume">
-              {props.quitCopy?.cancel ?? t.format("player.quit.cancel")}
-            </Button>
+        <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} data-quit-dialog="" data-mode={kind}>
+          <div className={styles.dialogBody} lang={chrome.lang} dir={chrome.dir}>
+            <Heading slot="title" className={styles.instruction}>
+              {props.quitCopy?.title ?? t.format(QUIT[kind].title)}
+            </Heading>
+            <p data-quit-kept="">{props.quitCopy?.body ?? t.format(QUIT[kind].kept)}</p>
+            <div className={styles.footer}>
+              <Button
+                className={styles.secondary}
+                onPress={() => {
+                  dispatch({ tag: "quit" });
+                  // Straight back, unless the end screen has more to say (a placement test's result, S5).
+                  if (props.summary === undefined) onExit?.();
+                }}
+                data-action="quit-confirm"
+              >
+                {props.quitCopy?.confirm ?? t.format("player.quit.confirm")}
+              </Button>
+              <Button className={styles.primary} onPress={() => dispatch({ tag: "resume" })} autoFocus data-action="resume">
+                {props.quitCopy?.cancel ?? t.format("player.quit.cancel")}
+              </Button>
+            </div>
           </div>
         </Dialog>
       </Modal>
