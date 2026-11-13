@@ -5,8 +5,9 @@
  *
  * An event the server rejects (not a valid event to it, or not this account's) is set aside: it
  * leaves the outbox but stays in the device's log, where it still counts, and the app says how
- * many there are (S13 in the 2026-11 review). One bad event never holds back the ones after it,
- * and it is not sent again unless the learner asks (or signs in again).
+ * many there are (S13 in the 2026-11 review). One bad event never holds back the ones after it.
+ * It is sent again when the learner asks, when they sign in again, and once after each update of
+ * the app (D10), never on its own every minute.
  */
 import type { LearnerEvent } from "@nabu/schema";
 import { isHttpError, request } from "./http.ts";
@@ -27,6 +28,29 @@ export interface Outbox {
   /** The server rejected these events: out of the outbox, kept in the log and noted as set aside. */
   readonly setAside: (events: readonly SetAside[]) => Promise<void>;
 }
+
+/** The META key of the app build that last ran on this device. */
+export const APP_BUILD = "app-build";
+
+/** What retryAfterUpdate needs of the device's store. */
+export interface HeldStore {
+  readonly getMeta: (key: string) => Promise<unknown>;
+  readonly setMeta: (key: string, value: unknown) => Promise<void>;
+  /** Puts the events set aside back into the outbox; returns how many. */
+  readonly releaseHeld: () => Promise<number>;
+}
+
+/**
+ * The first time a build of the app runs on this device, the events set aside go back into the
+ * outbox (D10): a rejection is usually an older app's mistake, which a newer app or the server it
+ * now talks to may take. Rejected again, they wait for the next update. Returns how many went back.
+ */
+export const retryAfterUpdate = async (store: HeldStore, build: string): Promise<number> => {
+  if ((await store.getMeta(APP_BUILD)) === build) return 0;
+  const released = await store.releaseHeld();
+  await store.setMeta(APP_BUILD, build);
+  return released;
+};
 
 /** Where to send: the account's server and token. */
 export interface Destination {

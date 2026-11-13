@@ -14,10 +14,12 @@ import { testDatabase } from "./database.ts";
 
 let database: Database;
 let app: App;
+/** What the server logged (D10): kept here rather than printed. */
+const logged: Record<string, unknown>[] = [];
 
 beforeAll(async () => {
   database = await testDatabase();
-  app = createApp({ db: database.db, accounts: createAccounts(database.db) });
+  app = createApp({ db: database.db, accounts: createAccounts(database.db), log: (entry) => logged.push({ ...entry }) });
 });
 afterAll(async () => database.close());
 
@@ -133,6 +135,23 @@ describe("event log", () => {
     expect(((await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number }).events).toBe(3);
     // A batch that is not a list of events at all is still refused whole.
     expect(await (await app.request("/v1/events", json({ events: "everything" }, token))).json()).toEqual({ error: { code: "invalid-batch" } });
+  });
+
+  it("logs each rejection, with the error that explains it and no learner text (D10)", async () => {
+    const token = await signUp("drift-log@example.com");
+    const answer = threeSessions().find((e) => e.type === "answer_submitted");
+    if (answer?.type !== "answer_submitted") throw new Error("no answer");
+    // A newer app's answer: a field this server's schema does not know, around an answer the learner typed.
+    const typed = { ...answer, id: "00000000-0000-7000-8000-0000000d0e1a", input: { ...answer.input, raw: "my very own words" }, appVersion: "2" };
+    logged.length = 0;
+    const res = (await (await app.request("/v1/events", json({ events: [typed, 42] }, token))).json()) as { rejected: { errors?: { instancePath: string; keyword: string }[] }[] };
+    // The answer's own kind of event explains it first: the schema is a oneOf over every kind.
+    expect(res.rejected[0]?.errors?.[0]).toMatchObject({ instancePath: "", keyword: "additionalProperties" });
+    expect(logged).toEqual([
+      { event: "upload-rejected", code: "invalid-event", id: typed.id, error: { path: "", keyword: "additionalProperties", message: "must NOT have additional properties", params: { additionalProperty: "appVersion" } } },
+      expect.objectContaining({ event: "upload-rejected", code: "invalid-event", id: null }),
+    ]);
+    expect(JSON.stringify(logged)).not.toContain("my very own words");
   });
 
   it("is idempotent: a duplicate upload changes nothing", async () => {

@@ -61,7 +61,7 @@ import type { Db } from "./db/index.ts";
 import { nativePushTokens, pushSubscriptions } from "./db/schema.ts";
 import { PLATFORMS, validToken, type NativeSenders, type Platform } from "./nativepush.ts";
 import { joinIfActive, leagueView } from "./leagues.ts";
-import { append, checkBatch, existing, gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
+import { append, checkBatch, existing, gameStateOf, MAX_BATCH, rejectionEntry, since, stateOf } from "./log.ts";
 import { ageCheck } from "./age.ts";
 import { createLimiter, type Limits } from "./limits.ts";
 import { deleteAccount, exportOf } from "./privacy.ts";
@@ -97,7 +97,11 @@ export interface AppDeps {
   readonly clientOf?: ((c: Context) => string | undefined) | undefined;
   /** The age gate (ADR 0069): sign-up needs an age of at least this many years (unset: no gate). */
   readonly minAge?: number | undefined;
+  /** Where the server notes what operators should see (default: one JSON line each on stderr). Never learner text. */
+  readonly log?: ((entry: Readonly<Record<string, unknown>>) => void) | undefined;
 }
+
+const stderrLog = (entry: Readonly<Record<string, unknown>>): void => console.warn(JSON.stringify(entry));
 
 export type Env = { Variables: { user: Account; token: string } };
 
@@ -151,7 +155,7 @@ const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256
   return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
 };
 
-export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {}, limits = {}, clientOf = () => undefined, minAge }: AppDeps) => {
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {}, limits = {}, clientOf = () => undefined, minAge, log = stderrLog }: AppDeps) => {
   const app = new Hono<Env>();
   app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT", "DELETE"], exposeHeaders: ["Retry-After"], maxAge: 600 }));
   const limiter = (l: Limits[keyof Limits]): ((key: string) => ReturnType<ReturnType<typeof createLimiter>>) => (l === undefined ? () => ({ ok: true }) : createLimiter(l, now));
@@ -302,7 +306,9 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     const checked = checkBatch(await c.req.json().catch(() => undefined), user);
     if (!checked.ok) return c.json({ error: checked.error }, 400);
     // Events that are not valid, or not this user's, are rejected one by one (`rejected`, by their
-    // index in the batch); the rest are taken, so one bad event never holds back the others.
+    // index in the batch); the rest are taken, so one bad event never holds back the others. Each
+    // rejection is logged (D10): an app and a server drifting apart show here first.
+    for (const r of checked.rejected) log(rejectionEntry(r));
     // Only the server issues revisions (§8.3): a device may hand back one it was given, never a new one.
     const revisions = checked.events.filter((e) => e.type === "outcome_revised").map((e) => e.id);
     const issued = await existing(db, user, revisions);

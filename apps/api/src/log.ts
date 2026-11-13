@@ -25,7 +25,8 @@ const ajv = new Ajv2020({ strict: true, allErrors: false });
 ajv.addKeyword({ keyword: "tsType", schemaType: "string" });
 ajv.addSchema(schema("common.schema.json"));
 ajv.addSchema(schema("correction.schema.json"));
-const validate = ajv.compile<LearnerEvent>(schema("learner-event.schema.json"));
+const eventSchema = schema("learner-event.schema.json") as { readonly $id: string };
+const validate = ajv.compile<LearnerEvent>(eventSchema);
 
 /** Whether a value is a valid learner event (schemas/learner-event.schema.json). */
 export const validEvent = (value: unknown): value is LearnerEvent => validate(value);
@@ -72,6 +73,46 @@ const idOf = (value: unknown): { readonly id?: string } => {
   return typeof id === "string" ? { id } : {};
 };
 
+/** Each event type's definition in the schema, where the errors that explain a rejection are. */
+const DEFINITIONS: Readonly<Record<string, string>> = {
+  session_started: "SessionStarted",
+  exercise_presented: "ExercisePresented",
+  answer_submitted: "AnswerSubmitted",
+  exercise_skipped: "ExerciseSkipped",
+  session_completed: "SessionCompleted",
+  outcome_revised: "OutcomeRevised",
+  answer_reported: "AnswerReported",
+  progress_reset: "ProgressReset",
+  sentence_reported: "SentenceReported",
+};
+
+/**
+ * Why a value is not a learner event: checked against its own type's definition, where it names
+ * one. The schema is a oneOf, so the errors of the whole schema say why it is not every other kind
+ * of event too, and the first of them would seldom be the one that matters.
+ */
+const explaining = (value: unknown, errors: readonly ErrorObject[]): readonly ErrorObject[] => {
+  const type = typeof value === "object" && value !== null ? (value as { type?: unknown }).type : undefined;
+  const definition = typeof type === "string" ? DEFINITIONS[type] : undefined;
+  const own = definition === undefined ? undefined : ajv.getSchema(`${eventSchema.$id}#/$defs/${definition}`);
+  return own !== undefined && !own(value) && own.errors !== null && own.errors !== undefined && own.errors.length > 0 ? own.errors : errors;
+};
+
+/**
+ * What the server logs of a rejected event (D10): its code, its id and the schema error that
+ * explains it (where, which rule, the rule's own words and parameters), never the event's values,
+ * so no learner text reaches the log.
+ */
+export const rejectionEntry = (r: Rejected): Readonly<Record<string, unknown>> => {
+  const error = r.code === "invalid-event" ? r.errors[0] : undefined;
+  return {
+    event: "upload-rejected",
+    code: r.code,
+    id: r.id ?? null,
+    ...(error === undefined ? {} : { error: { path: error.instancePath, keyword: error.keyword, message: error.message ?? null, params: error.params } }),
+  };
+};
+
 /**
  * Splits an upload into the events the server takes and those it rejects, by their index in the
  * batch. Only a batch that is not a list, or is too long, is refused whole.
@@ -86,7 +127,7 @@ export const checkBatch = (
   const events: LearnerEvent[] = [];
   const rejected: Rejected[] = [];
   for (const [index, e] of (batch as unknown[]).entries()) {
-    if (!validate(e)) rejected.push({ index, ...idOf(e), code: "invalid-event", errors: (validate.errors ?? []).slice(0, ERRORS_SHOWN) });
+    if (!validate(e)) rejected.push({ index, ...idOf(e), code: "invalid-event", errors: explaining(e, validate.errors ?? []).slice(0, ERRORS_SHOWN) });
     // Events recorded before sign-up carry no user; any that do must be this user's.
     else if (e.user !== undefined && e.user !== user) rejected.push({ index, id: e.id, code: "foreign-event" });
     else events.push(e);

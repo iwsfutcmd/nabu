@@ -5,7 +5,7 @@
  */
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { uploadOutbox } from "../../src/outbox.ts";
+import { retryAfterUpdate, uploadOutbox } from "../../src/outbox.ts";
 import { openStore, type EventStore } from "../../src/store.ts";
 
 const SERVER = "https://nabu.invalid";
@@ -108,6 +108,25 @@ describe("uploading the outbox", () => {
     await expect(uploadOutbox(store, to)).rejects.toBeInstanceOf(TypeError);
     expect(await store.pendingCount()).toBe(2);
     expect(await store.held()).toEqual({});
+  });
+
+  it("sends what was set aside once more after an update of the app, and only then (D10)", async () => {
+    const [a, b] = [event(1), event(2)];
+    const store = await deviceWith([a, b]);
+    expect(await retryAfterUpdate(store, "build 1")).toBe(0); // nothing held yet: this build is noted
+    server((events) => taken(events, [{ index: 0, code: "invalid-event" }]));
+    await uploadOutbox(store, to);
+    expect(Object.keys(await store.held())).toEqual([a.id]);
+    // The same build starting again: it stays aside.
+    expect(await retryAfterUpdate(store, "build 1")).toBe(0);
+    expect(await store.pendingCount()).toBe(0);
+    // A new build: back in the outbox, once; rejected again, it waits for the next update.
+    expect(await retryAfterUpdate(store, "build 2")).toBe(1);
+    expect((await store.pending(10)).map((e) => e.id)).toEqual([a.id]);
+    server((events) => taken(events, [{ index: 0, code: "invalid-event" }]));
+    await uploadOutbox(store, to);
+    expect(await retryAfterUpdate(store, "build 2")).toBe(0);
+    expect(Object.keys(await store.held())).toEqual([a.id]);
   });
 
   it("sends what was set aside again when asked", async () => {

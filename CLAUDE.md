@@ -122,9 +122,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
   Every recorded event enters the IndexedDB outbox; sign-up uploads it. Never derive state on the server
   differently from core's replay.
-- One bad event never holds back a batch: POST /v1/events takes the valid events and names the rest (`rejected`, by
-  index); the device sets those aside (outbox.ts, meta `held`, still in its log), says so in Your progress, and sends
-  them again only when the learner asks or signs in again. Sync's check against the server leaves them out.
+- One bad event never holds back a batch (ADR 0108): POST /v1/events takes the valid events and names the rest
+  (`rejected`, by index, with the errors of the event's own type) and logs each (code, id, that error; never event
+  values). The device sets those aside (outbox.ts, meta `held`, still in its log), says so in Your progress, and sends
+  them again when the learner asks, signs in again, or first runs a new build (`__NABU_BUILD__`, meta `app-build`).
+  Sync's check against the server leaves them out.
 - Your progress says what keeps the log (EventStore.durable: persistent storage granted, or a browser that may clear
   it) and restores a download (apps/web/src/restore.ts): every event checked with the schema as the API checks
   uploads (event-schema.ts, Ajv loaded only then), ids dedupe, added events enter the outbox.

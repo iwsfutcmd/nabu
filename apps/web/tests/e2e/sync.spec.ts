@@ -200,6 +200,14 @@ test.describe("sync", () => {
     await page.reload();
     await expect(page.locator("[data-sync-held]")).toHaveAttribute("data-sync-held", "1");
     expect(uploads).toBe(1);
+    // After an update of the app (D10), it is sent once more: still rejected, still kept.
+    await page.evaluate(async () => window.nabu?.setMeta("app-build", "an older build"));
+    await page.reload();
+    await expect.poll(() => uploads).toBe(2);
+    await expect(page.locator("[data-sync-held]")).toHaveAttribute("data-sync-held", "1");
+    await page.reload();
+    await expect(page.locator("[data-sync-held]")).toHaveAttribute("data-sync-held", "1");
+    expect(uploads).toBe(2);
     expect(errors).toEqual([]);
   });
 

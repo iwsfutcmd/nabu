@@ -13,8 +13,8 @@
  * again (a phone unlocked, the native app resumed), and every minute while events are pending.
  *
  * Events the server rejects are set aside (outbox.ts): kept on the device, counted in `held`, and
- * sent again only when the learner asks or signs in again. The check against the server's
- * projections leaves them out, since the server never took them.
+ * sent again only when the learner asks, signs in again, or first runs an updated app (D10). The
+ * check against the server's projections leaves them out, since the server never took them.
  */
 import { replay } from "@nabu/core/learner";
 import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
@@ -24,7 +24,7 @@ import { localDate } from "./clock.ts";
 import { gameOf } from "./game.tsx";
 import { difference } from "./compare.ts";
 import { isHttpError, request } from "./http.ts";
-import { uploadOutbox } from "./outbox.ts";
+import { retryAfterUpdate, uploadOutbox } from "./outbox.ts";
 import type { EventStore } from "./store.ts";
 
 export { canonical, difference } from "./compare.ts";
@@ -168,6 +168,8 @@ const VISIBLE_QUIET_MS = 30_000;
 export const createSync = async (store: EventStore, server: string | undefined, options: SyncOptions = {}): Promise<Sync> => {
   const saved = (await store.getMeta(ACCOUNT)) as Account | undefined;
   const refused = ((await store.getMeta(AGE_REFUSED)) ?? []) as string[];
+  // An updated app sends once more what the server rejected before (D10).
+  await retryAfterUpdate(store, typeof __NABU_BUILD__ === "string" ? __NABU_BUILD__ : "unknown");
   const heldCount = async (): Promise<number> => Object.keys(await store.held()).length;
   let state: SyncState = {
     server: saved?.server ?? server,

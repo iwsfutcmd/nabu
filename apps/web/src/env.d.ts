@@ -5,6 +5,9 @@ declare module "*?raw" {
   export default source;
 }
 
+/** This build of the app (vite.config.ts): a new value after every update. */
+declare const __NABU_BUILD__: string;
+
 interface ImportMetaEnv {
   /** The sync server's base URL (e.g. https://api.example.org). Unset: the app is local-only. */
   readonly VITE_NABU_API?: string;
