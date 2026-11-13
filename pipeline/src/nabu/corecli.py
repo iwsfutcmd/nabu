@@ -6,10 +6,9 @@ with exactly the code that will grade learners.
 
 from __future__ import annotations
 
-import json
-import subprocess
-from typing import Any, Self
+from typing import Any
 
+from nabu.jsonlines import JsonLinesProcess
 from nabu.paths import CORE_CLI
 
 
@@ -17,31 +16,16 @@ class CoreCliError(RuntimeError):
     pass
 
 
-class CoreCli:
+class CoreCli(JsonLinesProcess):
     def __init__(self) -> None:
-        self.proc = subprocess.Popen(
-            ["node", str(CORE_CLI)],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-        )
+        super().__init__(["node", str(CORE_CLI)], timeout=10)
         self.next_id = 0
 
-    def __enter__(self) -> Self:
-        return self
-
-    def __exit__(self, *_: object) -> None:
-        self.close()
-
     def call(self, request: dict[str, Any]) -> dict[str, Any]:
-        assert self.proc.stdin is not None and self.proc.stdout is not None
-        self.proc.stdin.write(json.dumps(request, ensure_ascii=False) + "\n")
-        self.proc.stdin.flush()
-        line = self.proc.stdout.readline()
-        if not line:
+        answer = self.ask(request)
+        if answer is None:
             raise CoreCliError("core-cli exited")
-        return json.loads(line)
+        return answer
 
     def try_result(self, op: str, **args: Any) -> tuple[bool, Any]:
         """(True, result) or (False, error message)."""
@@ -54,8 +38,3 @@ class CoreCli:
         if not ok:
             raise CoreCliError(f"{op}: {value}")
         return value
-
-    def close(self) -> None:
-        if self.proc.stdin is not None and not self.proc.stdin.closed:
-            self.proc.stdin.close()
-        self.proc.wait(timeout=10)

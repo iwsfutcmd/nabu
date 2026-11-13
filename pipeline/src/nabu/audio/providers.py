@@ -62,6 +62,7 @@ import regex
 
 from nabu.audio import espeak
 from nabu.audio.phones import optional
+from nabu.jsonlines import JsonLinesProcess
 from nabu.schema.models import AudioVoice
 
 
@@ -257,18 +258,25 @@ class PiperProvider:
     def _ids(self, engine: Any, text: str) -> list[int]:
         return list(engine.phonemes_to_ids([p for s in engine.phonemize(text) for p in s]))
 
-    def _frames(self, voice: str, ids: list[int]) -> list[float]:
-        """Predicted frames per phoneme id (no duration noise: deterministic)."""
-        from nabu.audio import carrier
-
+    def _feed(self, ids: list[int], durations: list[float] | None = None) -> dict[str, Any]:
+        """The split graph's inputs for phoneme ids, with no duration noise; with `durations`, the
+        frames each id is given (the graph that takes them)."""
         np: Any = importlib.import_module("numpy")
-        reading, _given = self._split(voice, self.model)
         feed = {
             "input": np.array([ids], dtype=np.int64),
             "input_lengths": np.array([len(ids)], dtype=np.int64),
             "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
         }
-        return [float(f) for f in reading.run([carrier.DURATIONS], feed)[0][0, 0]]
+        if durations is not None:
+            feed["durations"] = np.array([[durations]], dtype=np.float32)
+        return feed
+
+    def _frames(self, voice: str, ids: list[int]) -> list[float]:
+        """Predicted frames per phoneme id (no duration noise: deterministic)."""
+        from nabu.audio import carrier
+
+        reading, _given = self._split(voice, self.model)
+        return [float(f) for f in reading.run([carrier.DURATIONS], self._feed(ids))[0][0, 0]]
 
     def _symbols(self, engine: Any) -> dict[int, str]:
         return {i: p for p, ids in engine.config.phoneme_id_map.items() for i in ids}
@@ -345,43 +353,23 @@ class PiperProvider:
 
         np: Any = importlib.import_module("numpy")
         assert self.carrier is not None
-        reading, given = self._split(r.voice, self.model)
-        inv = {i: p for p, ids in engine.config.phoneme_id_map.items() for i in ids}
+        _reading, given = self._split(r.voice, self.model)
+        inv = self._symbols(engine)
         space = engine.config.phoneme_id_map[carrier.SPACE][0]
         pad = engine.config.phoneme_id_map[carrier.PAD][0]
-
-        def ids_of(text: str) -> list[int]:
-            return list(engine.phonemes_to_ids([p for s in engine.phonemize(text) for p in s]))
-
-        def frames(ids: list[int]) -> list[float]:
-            feed = {
-                "input": np.array([ids], dtype=np.int64),
-                "input_lengths": np.array([len(ids)], dtype=np.int64),
-                "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
-            }
-            return [float(f) for f in reading.run([carrier.DURATIONS], feed)[0][0, 0]]
-
         lead = self.carrier.rstrip()
-        # The carrier said on its own, as a sentence: the floors come from a reading the model
-        # gets right.
-        alone = ids_of(regex.sub(r"[\p{P}\s]+$", "", lead) + ".")
-        floor_phone, floor_pad = carrier.floors([inv[i] for i in alone], frames(alone))
-        ids = ids_of(f"{lead} {r.input}")
-        first = carrier.item_start(ids, ids_of(lead), space, pad)
+        floor_phone, floor_pad = self._floors(engine, r.voice)
+        ids = self._ids(engine, f"{lead} {r.input}")
+        first = carrier.item_start(ids, self._ids(engine, lead), space, pad)
         if first is None:
             raise ProviderError(f"piper: the carrier is not read the same before {r.input!r}")
-        plan = carrier.plan([inv[i] for i in ids], frames(ids), first, floor_phone, floor_pad)
+        frames = self._frames(r.voice, ids)
+        plan = carrier.plan([inv[i] for i in ids], frames, first, floor_phone, floor_pad)
         scaled = (
             [max(1.0, -(-f / r.rate // 1)) for f in plan.frames] if r.rate != 1.0 else plan.frames
         )
         plan = carrier.Plan(scaled, plan.first, plan.last)
-        feed = {
-            "input": np.array([ids], dtype=np.int64),
-            "input_lengths": np.array([len(ids)], dtype=np.int64),
-            "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
-            "durations": np.array([[plan.frames]], dtype=np.float32),
-        }
-        audio = self._session(given, seed_of(r)).run(None, feed)[0].ravel()
+        audio = self._session(given, seed_of(r)).run(None, self._feed(ids, plan.frames))[0].ravel()
         hop = engine.config.hop_length
         begin, end = carrier.bounds(plan, hop)
         cut = np.array(audio[begin:end], dtype=np.float32)
@@ -697,6 +685,18 @@ def seed_of(request: Request) -> int:
     return int.from_bytes(hashlib.sha256(key.encode("utf-8")).digest()[:4], "big")
 
 
+def retried(speak: Callable[[int], bytes], seed: int, tries: int, sample_rate: int) -> bytes:
+    """The PCM `speak` makes with `seed`, or, while what it makes lasts under 100 ms (a model can
+    give almost nothing for a very short word), with the next seeds in order: `tries` in all,
+    the last kept if none is longer."""
+    pcm = b""
+    for attempt in range(tries):
+        pcm = speak(seed + attempt)
+        if len(pcm) // 2 >= sample_rate // 10:  # 100 ms
+            break
+    return pcm
+
+
 def checkpoint(model: str) -> tuple[str, str]:
     """A Hugging Face checkpoint pinned to a commit: "owner/name@<40 hex>"."""
     repo, _, revision = model.partition("@")
@@ -883,17 +883,15 @@ class OmniVoiceProvider:
     TRIES = 4
 
     def _speak(self, engine: OmniVoiceEngine, text: str, seed: int, **extra: Any) -> Clip:
-        clip = Clip(b"", engine.sampling_rate, None, None)
-        for attempt in range(self.TRIES):
+        rate = engine.sampling_rate
+
+        def said(s: int) -> bytes:
             samples = engine.speak(
-                text, self.language, seed + attempt, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
+                text, self.language, s, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
             )
-            clip = Clip(
-                to_pcm(trim_edges(samples, engine.sampling_rate)), engine.sampling_rate, None, None
-            )
-            if len(clip.pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
-                break
-        return clip
+            return to_pcm(trim_edges(samples, rate))
+
+        return Clip(retried(said, seed, self.TRIES, rate), rate, None, None)
 
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         engine = self.load(self.repo, self.revision)
@@ -966,40 +964,53 @@ def runtime_command(runtime: Path = COSYVOICE_RUNTIME) -> list[str]:
     return [uv, "run", "--project", str(runtime), "python", str(runtime / "worker.py")]
 
 
-class CosyVoiceWorker:
-    """The model in its own environment: worker.py of the runtime, spoken to in JSON lines."""
+class RuntimeWorker(JsonLinesProcess):
+    """A model in its own environment: worker.py of a runtime (pipeline/runtimes), spoken to in
+    JSON lines. Its first message is what to load, which it answers {"ready": {...}}; each later
+    one asks for a clip, answered {"pcm": <base64 s16le>} or {"error": ...}. Ended when Python
+    exits, if not before."""
 
-    def __init__(self, config: dict[str, Any], command: list[str] | None = None) -> None:
+    #: Names the runtime in errors.
+    label: ClassVar[str]
+
+    def __init__(self, config: dict[str, Any], command: list[str]) -> None:
         import atexit
-        import subprocess
 
-        self.process = subprocess.Popen(
-            command or runtime_command(),
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-        )
+        super().__init__(command, timeout=60)
         atexit.register(self.close)
         ready = self._ask(config)
         if "ready" not in ready:
-            raise ProviderError(f"navoiy: the runtime did not start: {ready.get('error', ready)}")
-        self.sampling_rate = int(ready["ready"]["sampleRate"])
-        self.source = Path(ready["ready"]["source"])
+            raise ProviderError(
+                f"{self.label}: the runtime did not start: {ready.get('error', ready)}"
+            )
+        self.ready: dict[str, Any] = ready["ready"]
+        self.sampling_rate = int(self.ready["sampleRate"])
 
     def _ask(self, message: dict[str, Any]) -> dict[str, Any]:
-        stdin, stdout = self.process.stdin, self.process.stdout
-        assert stdin is not None and stdout is not None
-        stdin.write(json.dumps(message, ensure_ascii=False) + "\n")
-        stdin.flush()
-        line = stdout.readline()
-        if not line:
-            raise ProviderError(f"navoiy: the runtime exited ({self.process.wait()})")
-        answer: dict[str, Any] = json.loads(line)
+        answer = self.ask(message)
+        if answer is None:
+            raise ProviderError(f"{self.label}: the runtime exited ({self.process.wait()})")
         return answer
 
+    def _pcm(self, message: dict[str, Any]) -> bytes:
+        """The clip a message asks for; its error, if the runtime gives one."""
+        answer = self._ask(message)
+        if "error" in answer:
+            raise ProviderError(f"{self.label}: {message['text']!r}: {answer['error']}")
+        return base64.b64decode(answer["pcm"])
+
+
+class CosyVoiceWorker(RuntimeWorker):
+    """The CosyVoice runtime's worker.py (Navoiy)."""
+
+    label = "navoiy"
+
+    def __init__(self, config: dict[str, Any], command: list[str] | None = None) -> None:
+        super().__init__(config, command or runtime_command())
+        self.source = Path(self.ready["source"])
+
     def speak(self, text: str, instruct: str, prompt: Path, seed: int, speed: float) -> bytes:
-        answer = self._ask(
+        return self._pcm(
             {
                 "text": text,
                 "instruct": instruct,
@@ -1008,15 +1019,6 @@ class CosyVoiceWorker:
                 "speed": speed,
             }
         )
-        if "error" in answer:
-            raise ProviderError(f"navoiy: {text!r}: {answer['error']}")
-        return base64.b64decode(answer["pcm"])
-
-    def close(self) -> None:
-        if self.process.poll() is None:
-            assert self.process.stdin is not None
-            self.process.stdin.close()
-            self.process.wait(timeout=60)
 
 
 @cache
@@ -1085,13 +1087,13 @@ class NavoiyProvider:
     def _speak(
         self, engine: CosyVoiceEngine, text: str, prompt: Path, seed: int, rate: float
     ) -> Clip:
-        clip = Clip(b"", engine.sampling_rate, None, None)
-        for attempt in range(self.TRIES):
-            pcm = engine.speak(text, self.INSTRUCT, prompt, seed + attempt, rate)
-            clip = Clip(pcm, engine.sampling_rate, None, None)
-            if len(pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
-                break
-        return clip
+        pcm = retried(
+            lambda s: engine.speak(text, self.INSTRUCT, prompt, s, rate),
+            seed,
+            self.TRIES,
+            engine.sampling_rate,
+        )
+        return Clip(pcm, engine.sampling_rate, None, None)
 
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         engine = self.load(self.repo, self.revision)
@@ -1108,17 +1110,13 @@ class NavoiyProvider:
         prompt = engine.source / path
         if hashlib.sha256(prompt.read_bytes()).hexdigest() != sha256:
             raise ProviderError(f"navoiy: {prompt} differs from the pinned prompt recording")
-        clip = Clip(b"", engine.sampling_rate, None, None)
-        for attempt in range(self.TRIES):
-            clip = Clip(
-                engine.speak(text, instruct, prompt, seed + attempt, 1.0),
-                engine.sampling_rate,
-                None,
-                None,
-            )
-            if len(clip.pcm) // 2 >= engine.sampling_rate // 10:
-                break
-        return clip
+        pcm = retried(
+            lambda s: engine.speak(text, instruct, prompt, s, 1.0),
+            seed,
+            self.TRIES,
+            engine.sampling_rate,
+        )
+        return Clip(pcm, engine.sampling_rate, None, None)
 
     def design_record(self, instruct: str, seed: int) -> dict[str, Any]:
         path, sha256, license = NAVOIY_PROMPT
@@ -1158,42 +1156,13 @@ class VoxCPMEngine(Protocol):
         ...
 
 
-class VoxCPMWorker:
-    """VoxCPM2 in its own environment: worker.py of the runtime, spoken to in JSON lines."""
+class VoxCPMWorker(RuntimeWorker):
+    """The VoxCPM2 runtime's worker.py."""
+
+    label = "voxcpm"
 
     def __init__(self, config: dict[str, Any], command: list[str] | None = None) -> None:
-        import atexit
-        import subprocess
-
-        self.process = subprocess.Popen(
-            command or runtime_command(VOXCPM_RUNTIME),
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-        )
-        atexit.register(self.close)
-        ready = self._ask(config)
-        if "ready" not in ready:
-            raise ProviderError(f"voxcpm: the runtime did not start: {ready.get('error', ready)}")
-        self.sampling_rate = int(ready["ready"]["sampleRate"])
-
-    def _ask(self, message: dict[str, Any]) -> dict[str, Any]:
-        stdin, stdout = self.process.stdin, self.process.stdout
-        assert stdin is not None and stdout is not None
-        stdin.write(json.dumps(message, ensure_ascii=False) + "\n")
-        stdin.flush()
-        line = stdout.readline()
-        if not line:
-            raise ProviderError(f"voxcpm: the runtime exited ({self.process.wait()})")
-        answer: dict[str, Any] = json.loads(line)
-        return answer
-
-    def _pcm(self, message: dict[str, Any]) -> bytes:
-        answer = self._ask(message)
-        if "error" in answer:
-            raise ProviderError(f"voxcpm: {message['text']!r}: {answer['error']}")
-        return base64.b64decode(answer["pcm"])
+        super().__init__(config, command or runtime_command(VOXCPM_RUNTIME))
 
     def speak(self, text: str, prompt: Path, prompt_text: str, seed: int) -> bytes:
         return self._pcm(
@@ -1202,12 +1171,6 @@ class VoxCPMWorker:
 
     def design(self, text: str, instruct: str, seed: int) -> bytes:
         return self._pcm({"text": text, "instruct": instruct, "seed": seed})
-
-    def close(self) -> None:
-        if self.process.poll() is None:
-            assert self.process.stdin is not None
-            self.process.stdin.close()
-            self.process.wait(timeout=60)
 
 
 @cache
@@ -1396,12 +1359,12 @@ class VoxCPMProvider:
         return pcm if stretch <= 1.0 else self.stretch(pcm, sample_rate, stretch)
 
     def _speak(self, engine: VoxCPMEngine, text: str, seed: int) -> bytes:
-        pcm = b""
-        for attempt in range(self.TRIES):
-            pcm = engine.speak(text, self.reference.path, self.reference.text, seed + attempt)
-            if len(pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
-                break
-        return pcm
+        return retried(
+            lambda s: engine.speak(text, self.reference.path, self.reference.text, s),
+            seed,
+            self.TRIES,
+            engine.sampling_rate,
+        )
 
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         engine = self.load(self.repo, self.revision)
