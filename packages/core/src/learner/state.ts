@@ -33,8 +33,6 @@ export interface Mistake {
 }
 
 export interface LearnerState {
-  /** Ids of applied events: replaying a duplicate changes nothing. */
-  readonly seen: Readonly<Record<string, true>>;
   readonly cards: Readonly<Record<string, StoredCard>>;
   readonly performance: Performance;
   readonly xp: { readonly total: number; readonly byDate: Readonly<Record<string, number>> };
@@ -91,7 +89,6 @@ const STORY_TEMPLATES: ReadonlySet<TemplateId> = new Set(["story-choose", "story
 const MISTAKES_KEPT = 50;
 
 export const emptyLearnerState = (): LearnerState => ({
-  seen: {},
   cards: {},
   performance: initialPerformance(),
   xp: { total: 0, byDate: {} },
@@ -165,7 +162,6 @@ const median = (xs: readonly number[]): number | undefined => {
 
 /** Mutable working copy used inside one fold; never escapes. */
 interface Draft {
-  seen: Record<string, true>;
   cards: Record<string, StoredCard>;
   performance: Performance;
   xp: { total: number; byDate: Record<string, number> };
@@ -323,8 +319,6 @@ const startOver = (d: Draft): void => {
 };
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {
-  if (d.seen[e.id] === true) return;
-  d.seen[e.id] = true;
   switch (e.type) {
     case "answer_submitted":
       answered(d, e);
@@ -356,12 +350,43 @@ export const compareEvents = (a: LearnerEvent, b: LearnerEvent): number => {
   return t !== 0 ? t : a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
 };
 
-/** Applies events in order to a state. For a log that may contain late arrivals or revisions, use replay. */
+/**
+ * Which events the fold reads (applyOne); the rest change nothing it holds. Revisions reach it
+ * through replay's withRevisions. Every event type is listed, so a new one has to be placed here.
+ */
+const FOLDS: Readonly<Record<LearnerEvent["type"], boolean>> = {
+  answer_submitted: true,
+  exercise_skipped: true,
+  session_completed: true,
+  progress_reset: true,
+  session_started: false,
+  exercise_presented: false,
+  answer_reported: false,
+  sentence_reported: false,
+  outcome_revised: false,
+  goal_set: false,
+};
+
+/**
+ * Applies new events, in order, to a state: the events a device has just recorded, which are the
+ * newest in its log. An event appears once however often it is given here, but one the state has
+ * already folded in would count again: the state keeps no record of the events it holds (R1 in
+ * the 2026-11 review: copying that record cost every recorded event as much as the whole log). A
+ * log that may repeat events, arrive late or hold revisions is replayed. Events that change nothing
+ * (an exercise shown, a report) give back the same state, uncopied.
+ */
 export const applyEvents = (state: LearnerState, events: readonly LearnerEvent[]): LearnerState => {
+  const folded = events.filter((e) => FOLDS[e.type]);
+  if (folded.length === 0) return state;
   const d = draftOf(state);
-  for (const e of events) applyOne(d, e);
+  const applied = new Set<string>();
+  for (const e of folded) {
+    if (applied.has(e.id)) continue;
+    applied.add(e.id);
+    applyOne(d, e);
+  }
   return d;
 };
 
-/** The state a whole event log projects to: order-independent and idempotent. */
+/** The state a whole event log projects to: order-independent and idempotent (a duplicate counts once). */
 export const replay = (events: readonly LearnerEvent[]): LearnerState => applyEvents(emptyLearnerState(), withRevisions(events).sort(compareEvents));

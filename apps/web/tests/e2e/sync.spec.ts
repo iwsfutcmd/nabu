@@ -98,7 +98,7 @@ test.describe("sync", () => {
     await expect(status).toHaveAttribute("data-verified", "true");
 
     const server = await serverState(page, email, password);
-    const { seen: _seen, ...local } = replay(await logOf(page, "fa"));
+    const local = replay(await logOf(page, "fa"));
     expect(server.events).toBe(log.length);
     expect(canonical(server.state)).toBe(canonical(local));
     expect(errors).toEqual([]);

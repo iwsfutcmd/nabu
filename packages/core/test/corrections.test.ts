@@ -5,7 +5,7 @@
 import type { KcId, LearnerEvent, SentenceReported } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { correctable, correctablesByUnit, correctablesOf, correctionKey, correctionOf, correctionRows, draftFrom, jsonLines, latestCorrections, sentenceReportedOf, shownOf, CORRECTION_LIMITS } from "../src/corrections/index.ts";
-import { replay, type EventMeta } from "../src/learner/index.ts";
+import { applyEvents, replay, type EventMeta } from "../src/learner/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
 const ZWNJ = "\u200c";
@@ -163,10 +163,9 @@ describe("a device's corrections", () => {
   });
 
   it("is not part of what the learner knows", () => {
-    // Replay notes every event id it has folded (`seen`); nothing else changes.
-    const { seen, ...after } = replay([report(1)]);
-    const { seen: _none, ...before } = replay([]);
-    expect(Object.keys(seen)).toEqual([report(1).id]);
-    expect(after).toEqual(before);
+    expect(replay([report(1)])).toEqual(replay([]));
+    // Folded onto a state, it gives back that same state, uncopied (R1).
+    const before = replay([]);
+    expect(applyEvents(before, [report(1)])).toBe(before);
   });
 });
