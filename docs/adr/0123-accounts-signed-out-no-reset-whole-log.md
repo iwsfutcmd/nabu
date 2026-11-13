@@ -30,9 +30,9 @@ The 2026-11 review (S9) found four ways an account let a learner down without sa
 - The device remembers who was signed in (meta `signed-out`: the server and the address). Home says
   so at its top, across reloads: "You've been signed out of {address}. Your progress stays on this
   device, and syncs again when you sign in."
-  - **Sign in again** moves focus to the password of the form under Your progress. The form is on
-    sign-in, with the address filled in and "You've been signed out. Sign in again to keep syncing."
-    above it.
+  - **Sign in again** moves focus to the password of the form under Your progress. The form opens
+    on sign-in (it turns back if the learner switched it), with the address filled in and "You've
+    been signed out. Sign in again to keep syncing." above it.
   - **Stay signed out** forgets who it was. The form goes back to creating an account.
 - Signing in or up forgets it too. A sign-out remembered for another server than the build's is not
   shown.
