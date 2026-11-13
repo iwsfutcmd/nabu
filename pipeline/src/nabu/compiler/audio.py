@@ -6,7 +6,9 @@ model. It checks that every clip exists with its recorded hash, carries a licens
 provenance, is not synthetic in a human-required course, still matches what the voice would
 read now (a changed reading makes a clip stale) and the reference voice it cloned (ADR 0058),
 and that its timings point at word tokens of its sentence. Clips the round-trip check failed
-stay out of the bundle until a human marks them reviewed.
+stay out of the bundle until a human marks them reviewed. A clip a person confirmed (a recording,
+or a synthetic clip a listener marked right) says so in the bundle (`confirmed`, ADR 0125): only
+such a clip may ask which tone a lone syllable has.
 """
 
 from __future__ import annotations
@@ -23,6 +25,7 @@ from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, held
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
 from nabu.items import WORD_KINDS, iter_items
+from nabu.provenance import signed_off
 from nabu.schema.models import AudioClip, AudioIndex, BundleClip, CourseSource, TokenTiming
 
 if TYPE_CHECKING:
@@ -40,6 +43,8 @@ class ShippedClip:
     license: str
     credit: str
     timings: tuple[TokenTiming, ...] | None = None
+    #: A person confirmed what it says (confirmed_by_person); the bundle says so only when true.
+    confirmed: bool = False
 
     def bundled(self, credit: str) -> BundleClip:
         """The clip as the audio index lists it, its credit named by `credit` (an id)."""
@@ -50,8 +55,19 @@ class ShippedClip:
             synthetic=self.synthetic,
             license=self.license,
             credit=credit,
+            confirmed=True if self.confirmed else None,
             timings=timings,
         )
+
+
+def confirmed_by_person(clip: AudioClip) -> bool:
+    """Whether a person confirmed what a clip says (ADR 0125): a recording (`nabu audio ingest`),
+    or a synthetic clip a listener marked right in the audio check (`nabu audio verdicts`, ADR
+    0060), which signs it off as a human reviewer. Only such a clip may ask which tone it says."""
+    if not clip.synthetic:
+        return True
+    p = clip.provenance
+    return signed_off(p.status) and (p.reviewedBy or "").startswith("human:")
 
 
 def _credit(clip: AudioClip, recordings: dict[str, str]) -> str:
@@ -225,7 +241,15 @@ def check_audio(
         credit = _credit(clip, recordings)
         files.setdefault(clip.item, {})[rel] = (data, clip.license, credit)
         timings = None if clip.timings is None else tuple(clip.timings)
-        entry = ShippedClip(rel, clip.durationMs, clip.synthetic, clip.license, credit, timings)
+        entry = ShippedClip(
+            rel,
+            clip.durationMs,
+            clip.synthetic,
+            clip.license,
+            credit,
+            timings,
+            confirmed_by_person(clip),
+        )
         items.setdefault(clip.item, {})[clip.speed] = entry
         tallies.setdefault(clip.item, []).append(clip)
     if held:

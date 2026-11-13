@@ -15,7 +15,8 @@ import pytest
 
 from nabu.audio.course import apply_verdicts, audio_dir, read_index
 from nabu.compiler import compile_course
-from nabu.schema.models import AudioVerdicts
+from nabu.compiler.audio import ShippedClip, confirmed_by_person
+from nabu.schema.models import AudioClip, AudioVerdicts
 
 from .conftest import ROOT, CoreCli
 
@@ -110,6 +111,67 @@ def test_a_verdict_on_a_clip_made_again_since_is_skipped(fa: Path) -> None:
 def test_the_reviewer_is_a_human_id(fa: Path) -> None:
     with pytest.raises(ValueError, match="human:<id>"):
         apply_verdicts(fa, verdicts(), "ben")
+
+
+def test_a_clip_a_listener_marked_right_is_confirmed_in_the_bundle(
+    fa: Path, core_cli: CoreCli
+) -> None:
+    """ADR 0125: a synthetic clip is confirmed once a listener marks it right; the bundle says so
+    only then, so a course with no confirmed clip builds the bundle it built before."""
+    index = read_index(audio_dir(fa))
+    item = next(
+        c.item
+        for c in index.clips
+        if c.speed == "normal" and c.qa is not None and c.qa.status == "pass"
+        if c.provenance.status == "draft"
+    )
+
+    def shipped() -> ShippedClip:
+        _, compiled = compile_course(fa, core_cli)
+        assert compiled is not None
+        return compiled.audio_items[item]["normal"]
+
+    def bundled(clip: ShippedClip) -> dict[str, Any]:
+        return clip.bundled("0" * 8).model_dump(mode="json", exclude_none=True)
+
+    before = shipped()
+    assert not before.confirmed and "confirmed" not in bundled(before)
+    apply_verdicts(
+        fa,
+        verdicts({"item": item, "clips": clips_of(fa, item), "verdict": "right", "at": AT}),
+        "human:ben",
+    )
+    after = shipped()
+    assert after.confirmed and bundled(after)["confirmed"] is True
+    assert {k: v for k, v in bundled(after).items() if k != "confirmed"} == bundled(before)
+
+
+def test_a_recording_is_confirmed_and_a_synthetic_clip_only_once_a_person_signed_it_off() -> None:
+    def clip(synthetic: bool, **provenance: str) -> AudioClip:
+        return AudioClip.model_validate(
+            {
+                "item": "s.1",
+                "speed": "normal",
+                "file": f"clips/{'a' * 16}.mp3",
+                "sha256": "a" * 64,
+                "durationMs": 420,
+                "license": "CC0-1.0",
+                "provenance": provenance,
+                "synthetic": synthetic,
+            }
+        )
+
+    generated = "generated:piper@voice"
+    assert confirmed_by_person(clip(False, author="human:speaker", status="draft"))
+    assert not confirmed_by_person(clip(True, author=generated, status="draft"))
+    reviewed = {"author": generated, "status": "reviewed", "reviewedAt": "2026-11-05"}
+    assert confirmed_by_person(clip(True, **reviewed, reviewedBy="human:ben"))
+    assert confirmed_by_person(
+        clip(True, **(reviewed | {"status": "published"}), reviewedBy="human:ben")
+    )
+    # Signed off by no one, or by a model: not a person's word on what it says.
+    assert not confirmed_by_person(clip(True, **reviewed))
+    assert not confirmed_by_person(clip(True, **reviewed, reviewedBy="llm:judge"))
 
 
 def test_the_web_apps_file_validates() -> None:
