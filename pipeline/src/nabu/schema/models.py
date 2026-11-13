@@ -1920,6 +1920,50 @@ class Fonts(BaseModel):
     ] = None
 
 
+class FineTunedRecognizer(BaseModel):
+    """
+    A Whisper fine-tune that hears the language instead of Whisper's own.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    model: Annotated[
+        str,
+        Field(
+            description='Its Hugging Face repo and pinned revision: "alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d".',
+            pattern="^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+@[0-9a-f]{40}$",
+        ),
+    ]
+    token: Annotated[
+        str,
+        Field(
+            description='The Whisper language token it was trained with ("zh").',
+            pattern="^[a-z]{2,3}$",
+        ),
+    ]
+
+
+class SpeechPhones(BaseModel):
+    """
+    Where expected phones come from: the reading each word pins in `reading`, where that scheme gives phones (Jyutping), else eSpeak NG's phonemes of the spelling in `voice`.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    reading: SchemeId | None = None
+    voice: Annotated[
+        str | None,
+        Field(
+            description="The eSpeak NG voice that reads the spelling. Default: the profile's language, or, where eSpeak NG has no voice for it, the macrolanguage that encompasses it (apc is read as ar).",
+            pattern="^[a-z]{2,3}(-[A-Za-z0-9]{1,8})*$",
+        ),
+    ] = None
+
+
 class Transliteration(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -3190,6 +3234,25 @@ class MatchPolicy(BaseModel):
     ] = None
 
 
+class Recognizer(BaseModel):
+    """
+    Who hears the orthography: Whisper, in a language, or a Whisper fine-tune for a language Whisper's own does not write (Cantonese, which it writes as Mandarin: ADR 0094).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    language: Annotated[
+        str | None,
+        Field(
+            description="The language Whisper hears it as. Default: the profile's language, or, where Whisper has none for it, the macrolanguage that encompasses it (CLDR's data: apc is heard as ar).",
+            pattern="^[a-z]{2,3}$",
+        ),
+    ] = None
+    fineTuned: FineTunedRecognizer | None = None
+
+
 class Tones(BaseModel):
     """
     Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use.
@@ -3583,6 +3646,25 @@ type NormalizeStep = Annotated[
 ]
 
 
+class SpeechSetup(BaseModel):
+    """
+    How speech in the orthography is heard (gameplan §10.4, ADR 0116): what the speech service scores a learner on, the recognizer that hears it (learners, and the round trip of the course's clips) and where expected phones come from (tier 2, and forced alignment of clips). A profile without it is scored on nothing; its recognizer and phones take their defaults.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    tiers: Annotated[
+        list[Literal[1, 2]],
+        Field(
+            description="What the speech service scores (REVIEW: per-language choices, to revisit with recorded learners). 1: the words, where the recognizer writes this orthography; the API grades its transcript with the sentence's accept set. 2: the phones, where the expected phones can be trusted. Empty: nothing."
+        ),
+    ]
+    recognizer: Recognizer | None = None
+    phones: SpeechPhones | None = None
+
+
 class TaggedText(BaseModel):
     """
     A run of language data (gameplan §6.1). `tokens` concatenate, in logical order, to the NFC surface text. Language data is never a bare string and never addressed by character offsets.
@@ -3902,6 +3984,7 @@ class OrthographyProfile(BaseModel):
         ),
     ] = None
     transliterate: Transliteration | None = None
+    speech: SpeechSetup | None = None
 
 
 class BundleStoryStep(BaseModel):
