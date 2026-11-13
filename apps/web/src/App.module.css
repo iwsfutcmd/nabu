@@ -577,9 +577,14 @@
   outline-offset: 2px;
 }
 
-/* Two actions in a row (a break's notice: back on, or kept off): apart, so they read as two. */
-.inlineButton + .inlineButton {
-  margin-inline-start: var(--nabu-space-3);
+/*
+ * A notice's actions (a break's: back on, or kept off): apart, so they read as two, and on a line of
+ * their own where they don't fit after the text, never indented by the space between them.
+ */
+.noticeActions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
 }
 
 /* The game panel (§12): streak, freezes, quests, achievements. */

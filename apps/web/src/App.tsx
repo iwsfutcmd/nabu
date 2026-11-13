@@ -438,20 +438,19 @@ const OffNotice = ({ modality, why, onChange }: { modality: Modality; why: "brea
   return (
     <p className={styles.notice} role="note" data-listening-off={modality === "listening" ? why : undefined} data-speaking-off={modality === "speaking" ? why : undefined}>
       {t.format(copy[why])}{" "}
-      <button
-        type="button"
-        className={styles.inlineButton}
-        onClick={() => {
-          turnOn(modality);
-          onChange(undefined);
-        }}
-        data-action={`${modality}-on`}
-      >
-        {t.format(copy.on)}
-      </button>
-      {why === "break" && (
-        <>
-          {" "}
+      <span className={styles.noticeActions}>
+        <button
+          type="button"
+          className={styles.inlineButton}
+          onClick={() => {
+            turnOn(modality);
+            onChange(undefined);
+          }}
+          data-action={`${modality}-on`}
+        >
+          {t.format(copy.on)}
+        </button>
+        {why === "break" && (
           <button
             type="button"
             className={styles.inlineButton}
@@ -463,8 +462,8 @@ const OffNotice = ({ modality, why, onChange }: { modality: Modality; why: "brea
           >
             {t.format(copy.keep)}
           </button>
-        </>
-      )}
+        )}
+      </span>
     </p>
   );
 };
