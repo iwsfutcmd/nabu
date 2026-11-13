@@ -2,6 +2,7 @@
 declare const styles: {
   readonly actions: string;
   readonly badge: string;
+  readonly date: string;
   readonly error: string;
   readonly field: string;
   readonly form: string;
@@ -13,14 +14,21 @@ declare const styles: {
   readonly label: string;
   readonly legend: string;
   readonly list: string;
+  readonly made: string;
   readonly muted: string;
+  readonly note: string;
   readonly now: string;
   readonly other: string;
   readonly primary: string;
   readonly readings: string;
+  readonly report: string;
+  readonly reports: string;
   readonly secondary: string;
   readonly small: string;
   readonly storyHeading: string;
+  readonly suggested: string;
+  readonly suggestedForm: string;
+  readonly suggestedReading: string;
   readonly target: string;
   readonly texts: string;
   readonly translation: string;
