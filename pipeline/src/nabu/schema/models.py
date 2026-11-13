@@ -400,6 +400,12 @@ class BundleClip(BaseModel):
             description="Attribution (the speaker, or the synthetic voice): an entry of the manifest's `credits`."
         ),
     ] = None
+    confirmed: Annotated[
+        bool | None,
+        Field(
+            description="A person confirmed what the clip says (ADR 0125): it is a recording (not synthetic), or a synthetic clip a listener marked right in the audio check (ADR 0060). Present only when true. A tone card (tone-identify) plays only confirmed clips: a synthetic voice is not trusted with a lone syllable's tone."
+        ),
+    ] = None
     timings: list[TokenTiming] | None = None
 
 
