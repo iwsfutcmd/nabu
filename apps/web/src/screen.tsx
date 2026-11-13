@@ -70,6 +70,8 @@ export const titleOf = (t: Translator, route: Route, names: Names, course: Cours
       return inCourse(t.format("words.title"), route.course);
     case "reports":
       return inCourse(t.format("reports.title"), route.course);
+    case "offline":
+      return inCourse(t.format("app.offline.title"), route.course);
     case "cards":
       return inCourse(t.format("debug.cards.title"), route.course);
     case "audio":

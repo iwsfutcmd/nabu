@@ -17,6 +17,7 @@ declare const styles: {
   readonly courseCard: string;
   readonly courseLine: string;
   readonly courseLink: string;
+  readonly courseLinks: string;
   readonly courseName: string;
   readonly courseTag: string;
   readonly dangerButton: string;

@@ -1,9 +1,10 @@
 /**
  * Phase 10 acceptance (gameplan §16), against the production build and the real API (PGlite):
  *
- * - Courses download per unit (the course's text and each unit's audio and pictures). With no
- *   network the app reloads from its service worker, and a lesson plans with the media this
- *   device has: no listening exercise for a clip it never downloaded.
+ * - Courses download per unit (the course's text and each unit's audio and pictures), on the
+ *   course's offline page, linked near the top of its page (S2). With no network the app reloads
+ *   from its service worker, and a lesson plans with the media this device has: no listening
+ *   exercise for a clip it never downloaded.
  * - Three sessions in airplane mode, synced a day later in the background (the service worker,
  *   with no page open): the streak counts each on its own local date, and the server's
  *   projections (the learner state and the game state) match the device's exactly.
@@ -95,6 +96,7 @@ test.describe("offline", () => {
     if (first === undefined) throw new Error("fa has lessons");
     await page.goto(app("#/fa/fa-Arab.standard"));
     await controlled(page);
+    await page.locator("[data-course-path=fa] [data-offline-link]").click();
 
     const panel = page.locator("[data-offline=fa]");
     const intro = panel.locator('[data-offline-unit="intro"]');
@@ -112,7 +114,9 @@ test.describe("offline", () => {
     const stored = new Set(await storedOf(page, "fa"));
     expect(stored).toEqual(new Set(["manifest.json", ...coreFiles(manifest).map((f) => f.path), ...numberAssets]));
 
-    // No network: the app comes back from the service worker.
+    // No network: the app comes back from the service worker, on the course's page.
+    await page.locator("[data-offline-page=fa] a").first().click();
+    await expect(page.locator("[data-course-path=fa]")).toBeVisible();
     await context.setOffline(true);
     await page.reload();
     await expect(page.locator("[data-course-path=fa]")).toBeVisible();
@@ -131,6 +135,7 @@ test.describe("offline", () => {
     // frees only what no other unit uses: the numbers drill's clips all belong to the numbers
     // unit too, so it offers nothing to remove; family's own files go and its shared ones stay.
     await context.setOffline(false);
+    await page.locator("[data-course-path=fa] [data-offline-link]").click();
     await page.locator("[data-action=download-course]").click();
     await expect(panel).toHaveAttribute("data-offline-complete", "true", { timeout: DOWNLOAD_TIMEOUT_MS });
     expect(removable(manifest, ["drill-numbers"])).toEqual([]);
@@ -175,10 +180,12 @@ test.describe("offline", () => {
     await page.locator("[data-field=password]").fill("ketab-e man");
     await page.locator("[data-action=account-submit]").click();
     await expect(page.locator("[data-account]")).toHaveAttribute("data-account", email);
-    await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard"));
+    await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard/offline"));
     await controlled(page);
     await page.locator("[data-action=download-course]").click();
     await expect(page.locator("[data-offline=fa]")).toHaveAttribute("data-offline-complete", "true", { timeout: DOWNLOAD_TIMEOUT_MS });
+    await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard"));
+    await expect(page.locator("[data-course-path=fa]")).toBeVisible();
 
     // Airplane mode: three sessions, the app reloaded from the service worker before each.
     await context.setOffline(true);

@@ -4,6 +4,7 @@
  * static build works anywhere (GitHub Pages):
  *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes | placement>
  *   · #/<course>/<orthography>/story/<node> · #/<course>/<orthography>/roleplay/<scenario>
+ *   · #/<course>/<orthography>/<words | sentences | reports | offline> (the course page's links)
  *
  * Local-first (§14.2): every learner event goes to the on-device log, and the
  * path, XP and the next session are projections of it, computed by @nabu/core.
@@ -64,7 +65,7 @@ import { CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, gateClosed, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
 import { Progress, SignedOutNotice } from "./Progress.tsx";
-import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
+import { OfflineNotice, OfflinePage } from "./Offline.tsx";
 import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
 import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
@@ -104,6 +105,7 @@ export type Route =
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
   | { readonly tag: "reports"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "offline"; readonly course: string; readonly orthography: string }
   | { readonly tag: "review" }
   | { readonly tag: "review-course"; readonly course: string; readonly orthography: string };
 
@@ -127,6 +129,7 @@ const parse = (hash: string): Route => {
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
   if (session === "words") return { tag: "words", course, orthography: unslug(orthography) };
   if (session === "reports") return { tag: "reports", course, orthography: unslug(orthography) };
+  if (session === "offline") return { tag: "offline", course, orthography: unslug(orthography) };
   if (session === "story" && node !== undefined) return { tag: "story", course, orthography: unslug(orthography), node };
   if (session === "roleplay" && node !== undefined) return { tag: "roleplay", course, orthography: unslug(orthography), scenario: node };
   return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
@@ -149,7 +152,7 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports"
+          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
@@ -474,17 +477,17 @@ const OffNotice = ({ modality, why, onChange }: { modality: Modality; why: "brea
   );
 };
 
-/** The course's offline state, where this build keeps courses offline. */
+/** Whether the device is online, for the course page's offline notice. */
 interface OfflineProps {
   readonly online: boolean;
   /** Whether progress syncs (an account): what the offline notice promises. */
   readonly synced: boolean;
-  readonly root: string;
-  readonly stored: ReadonlySet<string> | undefined;
-  readonly onChange: () => void;
 }
 
-/** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
+/**
+ * The course's path (§11.1): Continue, practice, XP, and the lessons in order, each done, open or
+ * locked. Its other pages are linked near the top (S2).
+ */
 const CoursePath = ({
   loaded,
   state,
@@ -565,14 +568,32 @@ const CoursePath = ({
         <a className={styles.back} href={href({ tag: "home" })}>
           {t.format("app.lessons.back")}
         </a>
-        {/* Preferences from the course too, not only from the course list (S8). */}
-        <a className={styles.back} href={href({ tag: "preferences" })} data-preferences-link="">
-          {t.format("app.preferences.link")}
-        </a>
       </p>
       <h1 className={styles.heading}>
         {courseName(t, course)} · {orthographyName(t, course, orthography)}
       </h1>
+      {/* The course's other pages, near the top rather than after the whole path (S2). */}
+      <nav className={styles.courseLinks} aria-label={t.format("app.course.links")} data-course-links="">
+        {/* The words met and known (ADR 0100). */}
+        <a href={href({ tag: "words", course: course.id, orthography })} data-words-link="" data-count={known}>
+          {t.format("words.title")}
+          {studied && <span className={styles.count}>{t.format("app.practice.known", { count: known })}</span>}
+        </a>
+        {/* The course's sentences to correct, and what came of the learner's reports (ADR 0115). */}
+        <a href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
+          {t.format("corrections.page.open")}
+        </a>
+        {reports}
+        {/* Preferences from the course too, not only from the course list (S8). */}
+        <a href={href({ tag: "preferences" })} data-preferences-link="">
+          {t.format("app.preferences.link")}
+        </a>
+        {OFFLINE && (
+          <a href={href({ tag: "offline", course: course.id, orthography })} data-offline-link="">
+            {t.format("app.offline.link")}
+          </a>
+        )}
+      </nav>
       {game !== null && (
         <p className={styles.stats} data-xp={game.xp.total} data-xp-today={today}>
           <span className={styles.stat}>{t.format("app.xp.total", { xp: game.xp.total })}</span>
@@ -666,11 +687,6 @@ const CoursePath = ({
             {t.format("app.practice.mistakes")}
           </span>
         )}
-        {/* The words met and known (ADR 0100), next to practising them (S14). */}
-        <a className={styles.link} href={href({ tag: "words", course: course.id, orthography })} data-words-link="" data-count={known}>
-          {t.format("words.title")}
-          {studied && <span className={styles.count}>{t.format("app.practice.known", { count: known })}</span>}
-        </a>
       </div>
 
       <h2 className={styles.subheading}>{t.format("app.lessons.title")}</h2>
@@ -774,13 +790,6 @@ const CoursePath = ({
           </section>
         );
       })}
-      {/* The course's sentences to correct, and what came of the learner's reports (ADR 0115). */}
-      <div className={styles.links}>
-        <a className={styles.link} href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
-          {t.format("corrections.page.open")}
-        </a>
-        {reports}
-      </div>
       {DEBUG && (
         <p>
           <a className={styles.link} href={href({ tag: "cards", course: course.id, orthography })} data-cards-link="">
@@ -795,7 +804,6 @@ const CoursePath = ({
           </a>
         </p>
       )}
-      {OFFLINE && offline.stored !== undefined && <OfflinePanel loaded={loaded} root={offline.root} stored={offline.stored} onChange={offline.onChange} />}
       <StartOver language={courseName(t, course)} hasProgress={studied || state.completedNodes.length > 0 || state.mistakes.length > 0} onReset={onReset} />
     </main>
   );
@@ -1485,8 +1493,19 @@ export const App = (): JSX.Element => {
   if (loaded === null || loaded.key !== courseKey || "error" in loaded || store === null || log === null || log.course !== route.course) {
     return <Loading />;
   }
+  if (route.tag === "offline") {
+    // Until it is known what this device keeps of the course, where this build keeps courses offline.
+    if (OFFLINE && stored === undefined) return <Loading />;
+    const { course } = loaded.value;
+    const back = href({ tag: "course", course: course.id, orthography: course.orthography });
+    return (
+      <CourseUiProvider course={course}>
+        <OfflinePage loaded={loaded.value} root={root ?? BUNDLES} stored={OFFLINE ? stored : undefined} onChange={() => setDownloads((n) => n + 1)} back={back} />
+      </CourseUiProvider>
+    );
+  }
   if (route.tag === "course") {
-    const offline: OfflineProps = { online, synced: account !== undefined, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
+    const offline: OfflineProps = { online, synced: account !== undefined };
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
     // The path's words and titles take the course's profiles (fonts, target text size), as its pages do.

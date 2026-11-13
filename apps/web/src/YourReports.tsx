@@ -66,14 +66,17 @@ export const ReportsPage = ({ loaded, store, version, back }: ReportsProps & { r
   );
 };
 
-/** The course page's link to Your reports, once the learner made one: with how many the course took up. */
+/**
+ * The course page's link to Your reports, once the learner made one: with how many the course took
+ * up. One of the links near the top of the page (S2), styled as they are.
+ */
 export const ReportsLink = ({ loaded, store, version, href }: ReportsProps & { readonly href: string }): JSX.Element | null => {
   const t = useTranslator();
   const entries = useReports(store, loaded.course, version);
   if (entries === undefined || entries.length === 0) return null;
   const taken = entries.filter(takenUp).length;
   return (
-    <a className={styles.link} href={href} data-reports-link="" data-count={taken}>
+    <a href={href} data-reports-link="" data-count={taken}>
       {t.format("reports.title")}
       {taken > 0 && <span className={styles.count}>{t.format("reports.taken-up", { count: taken })}</span>}
     </a>

@@ -294,6 +294,10 @@
       "message": ".input {$drafts :number}\n.input {$total :number}\n{{Sentences not yet checked by a native speaker: {$drafts} of {$total}.}}",
       "description": "A note on a course's page in the demo: how many of its sentences (story lines included) no native speaker has signed off yet, of all of them (ADR 0073). A release build has none, so it never shows there."
     },
+    "app.course.links": {
+      "message": "In this course",
+      "description": "Accessible name of the row of links near the top of a course's page (S2): the words learned, the sentence list, Your reports, Preferences and Offline. Not shown."
+    },
     "app.course.unchecked.all": {
       "message": "This course is a draft: a language model wrote it, and no expert has checked it yet. Try it, and report anything that looks wrong from inside a lesson.",
       "description": "A note on a course's page in the demo, where no sentence of the course has been signed off yet (ADR 0073): what a draft course means for the learner, in the words of the site's landing page (landing.courses.note). An expert: a native speaker, or for an ancient language a scholar. A release build has no drafts, so it never shows there."
@@ -506,6 +510,10 @@
       "message": "There is not enough storage on this device for this download.",
       "description": "The browser refused to store more."
     },
+    "app.offline.link": {
+      "message": "Offline",
+      "description": "Link near the top of a course's page to its offline page (S2): what of the course is on this device, and downloading or removing each unit's audio and pictures."
+    },
     "app.offline.notice": {
       "message": "You are offline. Lessons on this device still work, and your progress is saved here and syncs when you are back online.",
       "description": "Shown while the device has no network, to a learner signed in to an account (their progress syncs)."
@@ -536,7 +544,7 @@
     },
     "app.offline.title": {
       "message": "Offline",
-      "description": "Heading of the course's offline section (Phase 10)."
+      "description": "Heading of a course's offline page (Phase 10): what of the course is on this device, and its downloads."
     },
     "app.offline.unavailable": {
       "message": "This course is not on this device yet. Open it once while you are online to use it offline.",

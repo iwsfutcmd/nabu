@@ -7,6 +7,8 @@
  * - a drill's unit, which has no title, is "Extra practice";
  * - an alphabet row says who it is for and that the units don't wait for it, and shows each letter
  *   with its Latin spelling.
+ * And the course's other pages are linked under its title: the words, the sentences, Preferences,
+ * Offline (S2).
  */
 import { pathUnits, type PathUnit } from "@nabu/core/learner";
 import { cardGloss, scriptNodes } from "@nabu/core/lesson";
@@ -95,5 +97,25 @@ test.describe("the course path", () => {
     await expect(page.locator(`[data-lesson="${lesson?.node.id ?? ""}"]`)).toHaveAttribute("data-status", "available");
     await expect(page.locator(`[data-lesson="${lesson?.node.id ?? ""}"] [data-node-name]`)).toHaveText("Lesson 1");
     expect(await seriousAxeViolations(page, "main")).toEqual([]);
+  });
+
+  test("the course's other pages are linked under its title; Offline is a page of its own (S2)", async ({ page }) => {
+    const course = loadCourse("fa", "fa-Arab/standard");
+    await page.goto(pathUrl(course, SEED));
+    const links = page.locator("[data-course-path] [data-course-links]");
+    // Before the main action, not after the whole path. Your reports joins them once there is a report.
+    await expect(page.locator("[data-course-path] [data-course-links] ~ [data-continue]")).toHaveCount(1);
+    await expect(links.locator("a")).toHaveText(["Words you've learned", "Check the sentences", "Preferences", "Offline"]);
+    await expect(page.locator("[data-practice] [data-words-link]")).toHaveCount(0);
+    expect(await seriousAxeViolations(page, "[data-course-links]")).toEqual([]);
+
+    await links.locator("[data-offline-link]").click();
+    await expect(page.locator("[data-offline-page=fa] h1")).toHaveText("Offline");
+    await expect(page.locator("[data-offline=fa] [data-offline-unit]").first()).toBeVisible();
+    await expect(page).toHaveTitle("\u2068Offline\u2069 – \u2068Persian\u2069 – \u2068Nabu\u2069");
+    expect(await seriousAxeViolations(page, "main")).toEqual([]);
+    await page.locator("[data-offline-page=fa] a").first().click();
+    await expect(page.locator("[data-course-path=fa]")).toBeVisible();
+    await expect(page.locator("[data-course-path] [data-offline]")).toHaveCount(0);
   });
 });
