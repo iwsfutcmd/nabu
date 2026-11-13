@@ -19,7 +19,16 @@ export interface QuestTemplate {
   readonly id: string;
   readonly count: Predicate;
   readonly target: number;
+  /**
+   * The practice the quest needs, where not every learner can do it (ADR 0107): listening (not in
+   * every course, nor on a listening break), writing, a story, something to review. The quest is
+   * drawn only for a learner whose log shows it in the QUEST_WINDOW days before the date.
+   */
+  readonly requires?: Predicate;
 }
+
+/** How far back a quest's `requires` is looked for: two weeks of the learner's own practice. */
+export const QUEST_WINDOW = 14;
 
 export type AchievementTemplate =
   | { readonly id: string; readonly kind: "streak"; readonly days: number }
@@ -80,11 +89,12 @@ export const DEFAULT_GAME: GameConfig = {
       { id: "xp-30", count: { type: "xp" }, target: 30 },
       { id: "sessions-2", count: { type: "session" }, target: 2 },
       { id: "right-20", count: { type: "answer", correct: true }, target: 20 },
-      { id: "listen-5", count: { type: "answer", correct: true, facet: "listen" }, target: 5 },
-      { id: "produce-5", count: { type: "answer", correct: true, facet: "produce" }, target: 5 },
+      { id: "listen-5", count: { type: "answer", correct: true, facet: "listen" }, target: 5, requires: { type: "answer", facet: "listen" } },
+      { id: "produce-5", count: { type: "answer", correct: true, facet: "produce" }, target: 5, requires: { type: "answer", facet: "produce" } },
       { id: "perfect-1", count: { type: "session", perfect: true }, target: 1 },
-      { id: "story-1", count: { type: "session", modes: ["story"] }, target: 1 },
-      { id: "review-1", count: { type: "session", modes: ["review", "mistakes"] }, target: 1 },
+      { id: "story-1", count: { type: "session", modes: ["story"] }, target: 1, requires: { type: "session", modes: ["story"] } },
+      // Something to review: any session finished before the day.
+      { id: "review-1", count: { type: "session", modes: ["review", "mistakes"] }, target: 1, requires: { type: "session" } },
     ],
   },
   achievements: [

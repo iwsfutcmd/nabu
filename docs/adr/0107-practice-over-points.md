@@ -15,6 +15,9 @@ on replayed logs (M1, M3, M4):
 - **The XP on screen was not the game's.** The course page and the end of a session showed the
   learner model's XP (`LearnerState`, fixed constants), so a deployment's `game.json` and quest XP
   never showed.
+- **Daily quests could be impossible.** Everyone got the same three quests on a date, and "get 5
+  listening exercises right" came up on 128 days of 365, though lzh, hbo, tok and grc never plan
+  listening, nor does anyone on a listening break. The quest reminder counted it too.
 
 The owner's line: learning over points. XP should follow practice, and stay simple to explain.
 
@@ -40,6 +43,21 @@ off (a property test over random logs with replays and starts over).
 **Leagues** count the same rule. To know a replay, league XP reads the learner's earlier finished
 sessions and starts over too (they earn nothing in the week).
 
+**Quests the learner can do** (`questsFor`, `QuestTemplate.requires`). This replaces ADR 0044's
+"every learner gets the same three quests on a date":
+- The date still shuffles the pool, the same way for everyone.
+- A quest that needs some practice says so (`requires`): listening (`listen-5`), writing in the
+  language (`produce-5`), a story (`story-1`), something to review (`review-1`: any session
+  finished before).
+- It is drawn only if the learner's log shows that practice in the 14 days before the date
+  (`QUEST_WINDOW`), whichever course it was in. Their courses and settings allow it, then.
+- The day's quests are the first three of the shuffle the learner can do. Two learners with the
+  same practice get the same quests; with every kind of practice, the draw is ADR 0044's.
+- The window ends the day before, so a day's quests never change during it. The device and the
+  server draw the same ones from the same log (reminders count the same quests).
+- Four quests need nothing (XP, sessions, right answers, a perfect session), so there are always
+  three. A deployment's pool may set `requires` on its own quests.
+
 ## Consequences
 
 - The shortest sessions no longer pay most: a 1-card session pays 2 XP, not 16. A session pays about
@@ -50,6 +68,9 @@ sessions and starts over too (they earn nothing in the week).
   bonus: a review session is the way to practise what a lesson taught.
 - Learners see less XP than before for the same practice (a 5-card review: 15, was 20). Logs replay
   to the new totals, the week's league standings included; nothing stored changes.
+- A new learner's first day has only the four quests anyone can do; listening, writing and story
+  quests come once they have done that kind of practice. A learner who stops listening for two
+  weeks stops getting the listening quest.
 - **Not done:**
   - XP for a word met the first time, or for a review that was due (the review's other two ideas):
     "due" needs the learner model's memory, which the game projection (and the server's league)

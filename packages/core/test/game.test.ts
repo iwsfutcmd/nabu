@@ -23,6 +23,7 @@ import {
   HEARTS,
   localDateOf,
   questsFor,
+  QUEST_WINDOW,
   replayGame,
   replaysOf,
   streakOf,
@@ -427,12 +428,40 @@ describe("freezes", () => {
 // ------------------------------------------------------------------------------------ quests, achievements, XP
 
 describe("quests and achievements", () => {
-  it("the day's quests are the same for everyone on a date, and rotate", () => {
-    const a = questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id);
-    expect(a).toEqual(questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id));
+  it("the day's quests are the same for everyone on a date who can do them, and rotate", () => {
+    const every = new Set(DEFAULT_GAME.quests.pool.map((q) => q.id));
+    const a = questsFor("2026-05-01", DEFAULT_GAME, every).map((q) => q.id);
+    expect(a).toEqual(questsFor("2026-05-01", DEFAULT_GAME, every).map((q) => q.id));
     expect(new Set(a).size).toBe(3);
-    const week = Array.from({ length: 7 }, (_, i) => questsFor(addDays("2026-05-01", i), DEFAULT_GAME).map((q) => q.id).join());
+    const week = Array.from({ length: 7 }, (_, i) => questsFor(addDays("2026-05-01", i), DEFAULT_GAME, every).map((q) => q.id).join());
     expect(new Set(week).size).toBeGreaterThan(1);
+    // Someone who can do fewer kinds of practice gets the same draw without the others.
+    const some = questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id);
+    expect(some).toHaveLength(3);
+    expect(some.every((id) => DEFAULT_GAME.quests.pool.find((q) => q.id === id)?.requires === undefined)).toBe(true);
+  });
+
+  it("a quest needs practice the log shows in the two weeks before its day: none for listening in a reading course (ADR 0107)", () => {
+    const tz = "UTC";
+    const dates = Array.from({ length: 40 }, (_, i) => addDays("2026-07-01", i));
+    const reading = dates.flatMap((date) => session({ at: instantAt(date, 600, tz), tz }));
+    const drawn = (events: readonly LearnerEvent[], date: string): readonly string[] => replayGame(online(events), DEFAULT_GAME, clockAt(date, instantAt(date, 1200, tz))).quests.map((q) => q.id);
+    // Only ever reading (choose-translation, lessons): three quests a day, none for listening, writing or a story.
+    for (const date of dates) {
+      const ids = drawn(reading, date);
+      expect(ids, date).toHaveLength(3);
+      expect(ids.filter((id) => ["listen-5", "produce-5", "story-1"].includes(id)), date).toEqual([]);
+    }
+    // Nothing to review on the very first day; something every day after.
+    expect(drawn(reading, "2026-07-01")).not.toContain("review-1");
+    expect(dates.some((date) => drawn(reading, date).includes("review-1"))).toBe(true);
+    // Listening once, on 20 July, makes the listening quest possible from the next day, for two weeks.
+    const listened = session({ at: instantAt("2026-07-20", 700, tz), tz }).map((e) => (e.type === "answer_submitted" ? { ...e, exercise: { ...e.exercise, template: "listen-select" } } : e)) as LearnerEvent[];
+    const listening = dates.filter((date) => drawn([...reading, ...listened], date).includes("listen-5"));
+    expect(listening.length).toBeGreaterThan(0);
+    for (const date of listening) expect(date > "2026-07-20" && date <= addDays("2026-07-20", QUEST_WINDOW), date).toBe(true);
+    // The day's own practice never changes its quests.
+    expect(drawn([...reading, ...listened], "2026-07-20")).toEqual(drawn(reading, "2026-07-20"));
   });
 
   it("completed quests add their XP; without quests, XP matches the learner model's", () => {

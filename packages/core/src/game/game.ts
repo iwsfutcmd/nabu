@@ -17,7 +17,7 @@ import type { AnswerSubmitted, LearnerEvent, SessionCompleted } from "@nabu/sche
 import { facetOf } from "../learner/credit.ts";
 import { revised, revisionsOf } from "../learner/revisions.ts";
 import { seededRng } from "../lesson/rng.ts";
-import type { AchievementTemplate, GameConfig, GatePolicy, Predicate, QuestTemplate } from "./config.ts";
+import { QUEST_WINDOW, type AchievementTemplate, type GameConfig, type GatePolicy, type Predicate, type QuestTemplate } from "./config.ts";
 import { addDays, daysBetween, localDateOf, startOfDay } from "./dates.ts";
 
 /** A logged event, with when the server received it (absent on the device). */
@@ -306,10 +306,16 @@ const fnv1a = (s: string): number => {
   return h;
 };
 
-/** The day's quests: the same for every learner on a date, rotating through the pool. */
-export const questsFor = (date: string, config: GameConfig): readonly QuestTemplate[] =>
+/**
+ * The day's quests (ADR 0107): the date's shuffle of the pool, the same for every learner on a
+ * date, keeping the first `daily` this learner can do. A quest that `requires` some practice is
+ * kept only if it is among `able`, the quests whose practice the learner's log shows lately
+ * (ableOn): listening is no quest for a course without it, nor for a learner who never listens.
+ */
+export const questsFor = (date: string, config: GameConfig, able: ReadonlySet<string> = new Set()): readonly QuestTemplate[] =>
   seededRng(fnv1a(date))
     .shuffle(config.quests.pool)
+    .filter((q) => q.requires === undefined || able.has(q.id))
     .slice(0, config.quests.daily);
 
 const matches = (p: Predicate, e: LearnerEvent): number => {
@@ -423,8 +429,21 @@ export const replayGame = (inputs: readonly GameInput[], config: GameConfig, clo
     if (day === undefined) byDay.set(input.event.localDate, [input]);
     else day.push(input);
   }
+  // Each day's practice that quests may require (ADR 0107), by date: the quests whose `requires` an
+  // event of that day met. A day's quests look back QUEST_WINDOW days from the day before, so they
+  // stay the same all day, whatever the learner does.
+  const required = config.quests.pool.filter((q) => q.requires !== undefined);
+  const met = new Map<string, ReadonlySet<string>>();
+  for (const [date, inputs] of byDay) {
+    met.set(date, new Set(required.filter((q) => inputs.some(({ event }) => matches(q.requires as Predicate, event) > 0)).map((q) => q.id)));
+  }
+  const ableOn = (date: string): ReadonlySet<string> => {
+    const able = new Set<string>();
+    for (let back = 1; back <= QUEST_WINDOW; back += 1) for (const id of met.get(addDays(date, -back)) ?? []) able.add(id);
+    return able;
+  };
   const questsOn = (date: string): readonly QuestProgress[] =>
-    questsFor(date, config).map((q) => {
+    questsFor(date, config, ableOn(date)).map((q) => {
       const progress = progressOf(q.count, byDay.get(date) ?? [], earned[date] ?? 0);
       return { id: q.id, progress: Math.min(progress, q.target), target: q.target, done: progress >= q.target };
     });
