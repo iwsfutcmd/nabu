@@ -1,4 +1,3 @@
-export { buildLesson, type LessonOptions } from "./build.ts";
 export { cardGallery, sampleExercise, type GalleryCard } from "./gallery.ts";
 export { courseExclusions, facetExclusions, speechExclusions, speechSupportOf, voiceExclusions, type SpeechSupport } from "./exclusions.ts";
 export { lessonNodes, type LessonNode } from "./nodes.ts";
