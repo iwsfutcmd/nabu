@@ -10,7 +10,7 @@ import { restrictMedia } from "@nabu/core/offline";
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
-import { pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
+import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
 import { assembleCourse, lessonNodes, MEDIA_ROLES, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
@@ -82,8 +82,12 @@ const localDateIn = (now: Date, timeZone: string): string => {
  * device), in the browser's time zone: UTC (playwright.config.ts) unless the spec sets another. The
  * plan aims at the skills of words met before the learner's local date (ADR 0101).
  */
-export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number, timeZone = "UTC"): readonly Exercise[] =>
-  plan(course, replay(log), request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0) }).exercises;
+export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number, timeZone = "UTC"): readonly Exercise[] => {
+  const state = replay(log);
+  // At the pace the app reads from the same log (ADR 0105); the tests never choose one.
+  const pace = paceOf(course, state, now.toISOString()).band;
+  return plan(course, state, request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0), pace }).exercises;
+};
 
 /**
  * A learner who already finished every lesson before `node`, two days before

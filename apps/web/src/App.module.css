@@ -687,3 +687,55 @@
   padding-inline: var(--nabu-space-4);
   background-color: var(--nabu-color-focus-bg);
 }
+
+/* Continue (ADR 0105): the course page's main action, the line saying why, and the pace choice. */
+.continue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+  margin-block: var(--nabu-space-4);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 3rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-5);
+  font-weight: 700;
+  color: var(--nabu-color-accent-text);
+  text-decoration: none;
+  background-color: var(--nabu-color-accent);
+  border: 2px solid var(--nabu-color-accent);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.primary:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 3px;
+}
+
+.paceLine {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.paceChoice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+.paceChoice select {
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-2);
+  font: inherit;
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}

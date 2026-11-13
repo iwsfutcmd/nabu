@@ -27,6 +27,7 @@ import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
 import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, type LearnerState } from "./state.ts";
+import { PACE, type PaceBand } from "./pacing.ts";
 import { skillsAsked } from "./words.ts";
 
 export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
@@ -45,7 +46,13 @@ export interface PlanOptions {
   readonly targetSuccess?: number;
   readonly size?: number;
   readonly exclude?: ReadonlySet<TemplateId>;
+  /** Recall below which a card is due: the pace's target where unset (ADR 0105). */
   readonly desiredRetention?: number;
+  /**
+   * The learner's pace (ADR 0105): it sets a lesson's share of review and the retention target.
+   * Steady where unset.
+   */
+  readonly pace?: PaceBand | undefined;
   /** What the app can do with speech (scored speaking, tone exercises); without it, tier 0 only. */
   readonly speech?: SpeechSupport | undefined;
   /**
@@ -104,11 +111,10 @@ const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = {
 };
 
 /**
- * Review inside a lesson (ADR 0097): earlier sentences to bring back, and the share of a lesson's
- * cards they may take (a quarter, at least one).
+ * Review inside a lesson (ADR 0097): earlier sentences to bring back. The share of a lesson's cards
+ * they may take (at least one) is the pace's (ADR 0105): a quarter when steady.
  */
 const REVIEW_SENTENCES = 6;
-const REVIEW_SHARE = 0.25;
 /**
  * A lesson running well under the target success (its mean p̂ more than REVIEW_SHORTFALL below) may
  * give review up to REVIEW_SHARE_STRUGGLING of its cards: a learner who struggles gets more
@@ -324,7 +330,8 @@ export const plannable = (course: CourseView, request: SessionRequest): boolean 
 export const plan = (course: CourseView, state: LearnerState, request: SessionRequest, options: PlanOptions): SessionPlan => {
   const rng = seededRng(options.seed);
   const target = options.targetSuccess ?? 0.85;
-  const desired = options.desiredRetention ?? DESIRED_RETENTION;
+  const pace = PACE[options.pace ?? "steady"];
+  const desired = options.desiredRetention ?? pace.retention;
   const exclude = exclusionsOf(course, options);
   const { now } = options;
   const orthography = course.orthography;
@@ -427,7 +434,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   };
   // A lesson's review is a small share of its cards (ADR 0097, D1), more while the lesson runs short
   // of the target success.
-  const reviewCap = (): number => Math.max(1, Math.floor(size * (struggling() ? REVIEW_SHARE_STRUGGLING : REVIEW_SHARE)));
+  const reviewCap = (): number => Math.max(1, Math.floor(size * (struggling() ? Math.max(REVIEW_SHARE_STRUGGLING, pace.reviewShare) : pace.reviewShare)));
   // A card that has a word show a skill it lacks (ADR 0101): of that facet, credited to such a word
   // not yet exercised so in this plan.
   const shows = (c: Candidate, facet: Facet): boolean => facetOf(c.ex.template) === facet && creditedKcs(c.ex).some((kc) => needs.has(key(kc, facet)) && !covered.has(key(kc, facet)));

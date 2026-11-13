@@ -79,7 +79,8 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
       type: "answer_submitted",
       exercise: { id: ex.id, template: ex.template, item: ex.item, kcs: [...ex.kcs] },
       attempt,
-      input: { method: "choice", latencyMs },
+      // Self-rated speaking (tier 0) carries the learner's rating, as the player logs it (ADR 0099).
+      input: { method: "choice", latencyMs, ...(ex.template === "speak.tier-0" ? { selfRating: correct ? ("good" as const) : ("again" as const) } : {}) },
       outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], kcs: creditsOf(ex, correct) },
       ...(prediction === undefined ? {} : { prediction }),
     }),

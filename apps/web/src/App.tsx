@@ -9,7 +9,7 @@
  * path, XP and the next session are projections of it, computed by @nabu/core.
  * An account is optional; with one, the log syncs to the server.
  */
-import { applyEvents, learnedWords, pathNodes, pathOf, plan, plannable, practicableMistakes, replay, scriptPathOf, wordCounts, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
+import { applyEvents, continueOf, learnedWords, paceOf, pathNodes, pathOf, plan, plannable, practicableMistakes, replay, scriptPathOf, wordCounts, type LearnerState, type NodeStatus, type PaceChoice, type PathEntry, type PathNode, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type CourseView, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { draftCount } from "@nabu/core/corrections";
@@ -25,6 +25,7 @@ import { AnswerHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, typ
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
+import { paceChoiceOf, setPaceChoice } from "./pace.ts";
 import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
@@ -232,8 +233,13 @@ const CoursePath = ({
   // The words due for review and known (ADR 0100), as the word list counts them (W8): worked out once
   // a minute and when the log changes, not on every render (R12).
   const minute = Math.floor(now.getTime() / 60_000);
-  const counts = useMemo(() => wordCounts(learnedWords(course, state, new Date(minute * 60_000).toISOString())), [course, state, minute]);
+  // The learner's pace (ADR 0105): read from the log unless they chose one (D5). It sets what "due"
+  // means (its retention target) and where Continue goes (D6).
+  const [paceChoice, setChoice] = useState<PaceChoice>(() => paceChoiceOf(course.id));
+  const pace = useMemo(() => paceOf(course, state, new Date(minute * 60_000).toISOString(), paceChoice), [course, state, minute, paceChoice]);
+  const counts = useMemo(() => wordCounts(learnedWords(course, state, new Date(minute * 60_000).toISOString(), pace.settings.retention)), [course, state, minute, pace]);
   const { due, known } = counts;
+  const next = continueOf(course, state, pace);
   const studied = Object.keys(state.cards).length > 0;
   // What a mistakes session would hold now: a mistake on a listening card waits out a listening
   // break, and one the course no longer makes is not counted (practicableMistakes).
@@ -252,6 +258,22 @@ const CoursePath = ({
   }, []);
   let number = 0;
   const to = (request: SessionRequest): string => href({ tag: "session", course: course.id, orthography, request });
+  const nodeHref = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : to({ mode: "lesson", node: n.node }));
+  // The line saying why (D5): what is slipping when practice comes first, else how the pace reads.
+  const why =
+    next.kind === "practice"
+      ? t.format("app.pace.why.slipping", { count: pace.slipping })
+      : next.kind === "done"
+        ? t.format("app.continue.done")
+        : pace.reason === "chosen"
+          ? t.format(pace.band === "consolidate" ? "app.pace.why.chosen-consolidate" : pace.band === "accelerate" ? "app.pace.why.chosen-accelerate" : "app.pace.why.chosen-steady")
+          : pace.reason === "struggling"
+            ? t.format("app.pace.why.struggling")
+            : pace.reason === "breezing"
+              ? t.format("app.pace.why.breezing")
+              : pace.reason === "backlog"
+                ? t.format("app.pace.why.backlog")
+                : undefined;
 
   return (
     <main className={styles.page} data-course-path={course.id}>
@@ -318,6 +340,48 @@ const CoursePath = ({
           </a>
         </p>
       )}
+
+      <section className={styles.continue} aria-label={t.format("app.continue.label")} data-continue={next.kind} data-pace={pace.band} data-pace-reason={pace.reason}>
+        {next.kind === "practice" ? (
+          <>
+            <a className={styles.primary} href={to({ mode: "review" })} data-action="continue">
+              {t.format("app.continue.practice")}
+            </a>
+            {/* A new lesson is always on offer (D6). */}
+            {next.next !== undefined && (
+              <a className={styles.link} href={nodeHref(next.next)} data-action="new-lesson">
+                {t.format("app.continue.new-lesson")}
+              </a>
+            )}
+          </>
+        ) : next.kind === "path" ? (
+          <a className={styles.primary} href={nodeHref(next.next)} data-action="continue">
+            {t.format("app.continue.lesson")}
+          </a>
+        ) : null}
+        {why !== undefined && (
+          <p className={styles.paceLine} data-pace-line="">
+            {why}
+          </p>
+        )}
+        <label className={styles.paceChoice}>
+          {t.format("app.pace.label")}
+          <select
+            value={paceChoice}
+            onChange={(e) => {
+              const choice = e.currentTarget.value as PaceChoice;
+              setPaceChoice(course.id, choice);
+              setChoice(choice);
+            }}
+            data-field="pace"
+          >
+            <option value="auto">{t.format("app.pace.auto")}</option>
+            <option value="consolidate">{t.format("app.pace.consolidate")}</option>
+            <option value="steady">{t.format("app.pace.steady")}</option>
+            <option value="accelerate">{t.format("app.pace.accelerate")}</option>
+          </select>
+        </label>
+      </section>
 
       <h2 className={styles.subheading}>{t.format("app.practice.title")}</h2>
       <div className={styles.links} data-practice="">
@@ -650,7 +714,9 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
     const exclude = excluded();
     // The local date, as events stamp it: a word met today shows its skills from tomorrow (ADR 0100).
     const now = new Date();
-    const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, ...(exclude.size > 0 ? { exclude } : {}) });
+    // The learner's pace (ADR 0105): a lesson's share of review and the retention target.
+    const pace = paceOf(course, state, now.toISOString(), paceChoiceOf(course.id)).band;
+    const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, ...(exclude.size > 0 ? { exclude } : {}) });
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);

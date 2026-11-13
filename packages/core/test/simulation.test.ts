@@ -5,7 +5,7 @@
  */
 import { describe, expect, it } from "vitest";
 import type { LearnerEvent } from "@nabu/schema";
-import { learnedWords, replay } from "../src/learner/index.ts";
+import { learnedWords, replay, wordCounts } from "../src/learner/index.ts";
 import { allKcs, allSentences, lessonNodes } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 import { simulate } from "./simulator.ts";
@@ -77,5 +77,37 @@ describe("planner: 30 simulated days", () => {
       const written = learnedWords(view, replay(log), "2026-02-01T00:00:00.000Z").filter((w) => w.skills.some((k) => k.skill === "produce" && k.shown));
       expect(written.length).toBeGreaterThan(0);
     }, SIMULATION_TIMEOUT_MS);
+  }
+});
+
+/**
+ * Adaptive pacing (ADR 0105): learners who follow Continue, at their pace, against the same learners
+ * taking the next lesson every time. A weak, slow learner is not crushed and knows more words by day
+ * 30; a strong, fast one is neither held back nor drowned in easy review; the backlog stays lower.
+ */
+describe("pacing: 30 simulated days following Continue", () => {
+  const END = "2026-01-31T08:00:00.000Z";
+  const run = (course: string, ability: number, learning: number, follow: "path" | "continue") => {
+    const log: LearnerEvent[] = [];
+    const r = simulate(course, undefined, 31, ability, (e) => log.push(e), { follow, learning });
+    const words = learnedWords(loadCourse(course), replay(log), END);
+    return { rate: r.correct / r.firstTries, lessons: r.lessons, ...wordCounts(words) };
+  };
+  for (const course of ["es", "hbo"]) {
+    it(`${course}: a weak, slow learner stays near the target and knows more words`, () => {
+      const path = run(course, 0.5, 0.6, "path");
+      const paced = run(course, 0.5, 0.6, "continue");
+      expect(paced.rate).toBeGreaterThanOrEqual(0.8);
+      expect(paced.known).toBeGreaterThanOrEqual(path.known);
+      expect(paced.due).toBeLessThan(path.due);
+    }, 2 * SIMULATION_TIMEOUT_MS);
+    it(`${course}: a strong, fast learner moves on and is not drowned in easy review`, () => {
+      const path = run(course, 2.5, 1.5, "path");
+      const paced = run(course, 2.5, 1.5, "continue");
+      expect(paced.lessons).toBeGreaterThanOrEqual(30);
+      expect(paced.rate).toBeLessThanOrEqual(0.92);
+      expect(paced.known).toBeGreaterThanOrEqual(path.known);
+      expect(paced.due).toBeLessThan(path.due);
+    }, 2 * SIMULATION_TIMEOUT_MS);
   }
 });

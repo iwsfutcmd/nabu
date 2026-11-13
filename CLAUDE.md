@@ -131,6 +131,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `localDate(now)`; the e2e solver UTC, as its browser). Tune against the simulation, which checks typing too.
 - The simulator logs credits as the player does (asked words right or wrong, the rest given): keep
   test/learner-fixtures `creditsOf` in step with `creditOf`.
+- The learning pace (ADR 0105): `paceOf(course, state, now, choice)` reads a band (consolidate, steady, accelerate)
+  from the fold's `recent` first tries and slipping words; `PACE` sets the retention target, a lesson's review share
+  and when `continueOf` offers practice first. Pass the band to `plan` (web: SessionBody; e2e: the solver) so plans
+  match. Never block a lesson (D6); tune `PACE` only against the simulation's pacing runs.
 - Due means a facet's recall is below the target (`dueFacets`, `LearnedWord.due`): never a card's FSRS due date. The
   course page counts due words. A review session has a card per word needing one (5–15) and plans only from the
   neediest sentences and words plus a few well-known ones: never build candidates from every studied sentence (R3).

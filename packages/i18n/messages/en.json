@@ -234,6 +234,26 @@
       "message": "Sign in to bring your progress from your other devices.",
       "description": "Introduces the sign-in form."
     },
+    "app.continue.done": {
+      "message": "You’ve done every lesson. Practice keeps what you’ve learned.",
+      "description": "The course page once the whole path is done and nothing is slipping."
+    },
+    "app.continue.label": {
+      "message": "Continue",
+      "description": "Accessible name of the course page's main action area: Continue, the line saying why, and the pace choice (ADR 0105)."
+    },
+    "app.continue.lesson": {
+      "message": "Continue",
+      "description": "The course page's main action: start the next lesson or story on the path."
+    },
+    "app.continue.new-lesson": {
+      "message": "New lesson anyway",
+      "description": "Beside “Practise first”: start the next lesson without practising first. Always offered (D6)."
+    },
+    "app.continue.practice": {
+      "message": "Practise first",
+      "description": "The course page's main action when enough words are slipping: a practice session before the next lesson (ADR 0105, D6)."
+    },
     "app.course.drafts": {
       "message": ".input {$drafts :number}\n.input {$total :number}\n{{Sentences not yet checked by a native speaker: {$drafts} of {$total}.}}",
       "description": "A note on a course's page in the demo: how many of its sentences (story lines included) no native speaker has signed off yet, of all of them (ADR 0073). A release build has none, so it never shows there."
@@ -429,6 +449,54 @@
     "app.offline.unit": {
       "message": ".input {$number :number}\n{{Unit {$number}}}",
       "description": "Name of a unit without a title, by its position in the course."
+    },
+    "app.pace.accelerate": {
+      "message": "Faster",
+      "description": "Pace choice: less review, new material comes sooner."
+    },
+    "app.pace.auto": {
+      "message": "Automatic",
+      "description": "Pace choice: the app sets the pace from how practice is going."
+    },
+    "app.pace.consolidate": {
+      "message": "More practice",
+      "description": "Pace choice: more review, new material comes more slowly."
+    },
+    "app.pace.label": {
+      "message": "Pace",
+      "description": "Label of the choice of how fast new material comes in this course (ADR 0105, D5)."
+    },
+    "app.pace.steady": {
+      "message": "Steady",
+      "description": "Pace choice: the usual mix of new material and review."
+    },
+    "app.pace.why.backlog": {
+      "message": "Many words are slipping, so lessons bring back more of what you’ve met.",
+      "description": "Why the pace is “More practice”, set automatically: many words' recall has fallen well below the target."
+    },
+    "app.pace.why.breezing": {
+      "message": "You’re doing well, so lessons bring back less review.",
+      "description": "Why the pace is “Faster”, set automatically: recent first tries ran well over the target success."
+    },
+    "app.pace.why.chosen-accelerate": {
+      "message": "You chose a faster pace: lessons bring back less review.",
+      "description": "The learner set the pace to “Faster”."
+    },
+    "app.pace.why.chosen-consolidate": {
+      "message": "You chose more practice: lessons bring back more of what you’ve met.",
+      "description": "The learner set the pace to “More practice”."
+    },
+    "app.pace.why.chosen-steady": {
+      "message": "You chose a steady pace.",
+      "description": "The learner set the pace to “Steady”."
+    },
+    "app.pace.why.slipping": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} word is slipping: practising it first helps it stick.}}\n* {{{$count} words are slipping: practising them first helps them stick.}}",
+      "description": "Why Continue offers practice first: this many words' recall has fallen well below the target. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "app.pace.why.struggling": {
+      "message": "Recent answers were harder going, so lessons bring back more of what you’ve met.",
+      "description": "Why the pace is “More practice”, set automatically: recent first tries ran well under the target success."
     },
     "app.path.conversation": {
       "message": "Conversation",

@@ -9,6 +9,7 @@ declare const styles: {
   readonly choiceMeaning: string;
   readonly choiceWord: string;
   readonly choices: string;
+  readonly continue: string;
   readonly count: string;
   readonly course: string;
   readonly courseName: string;
@@ -43,11 +44,14 @@ declare const styles: {
   readonly offlineName: string;
   readonly offlineUnit: string;
   readonly offlineUnits: string;
+  readonly paceChoice: string;
+  readonly paceLine: string;
   readonly page: string;
   readonly player: string;
   readonly preferenceOption: string;
   readonly preferenceOptions: string;
   readonly preview: string;
+  readonly primary: string;
   readonly progress: string;
   readonly quest: string;
   readonly questBar: string;
