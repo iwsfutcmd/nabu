@@ -67,10 +67,10 @@ const REVIEW = "#/fa/review";
 const hrefOf = (node: PathNode): string => `#/fa/${node.node}`;
 
 /** What the end of a session offers after this history, and where each of its buttons goes. */
-const endOf = (events: readonly LearnerEvent[], practised: boolean) => {
+const endOf = (events: readonly LearnerEvent[], practised: boolean, gated = false) => {
   const state = replay(events);
   const went: string[] = [];
-  const next = nextStepOf({ course, state, now: NOW, pace: "auto", facetsOff: new Set(), hrefOf, review: REVIEW, practised, go: (to) => went.push(to), t });
+  const next = nextStepOf({ course, state, now: NOW, pace: "auto", facetsOff: new Set(), hrefOf, review: REVIEW, practised, gated, go: (to) => went.push(to), t });
   const continued = continueOf(course, state, paceOf(course, state, NOW.toISOString()));
   const go = (): readonly string[] => {
     next?.go();
@@ -140,5 +140,22 @@ describe("the next step at the end of a session", () => {
     expect(end.next?.to).toEqual({ kind: "lesson", number: 3 });
     expect(end.next?.beside).toBeUndefined();
     expect(end.next?.why).toBeUndefined();
+  });
+
+  it("while a deployment's gate keeps lessons closed: practice, and no lesson beside it (M5)", () => {
+    for (const [events, practised] of [
+      [fresh, false],
+      [fresh, true],
+      [slipped, false],
+      [slipped, true],
+    ] as const) {
+      const end = endOf(events, practised, true);
+      expect(end.next?.to).toEqual({ kind: "practice" });
+      expect(end.next?.beside).toBeUndefined();
+      expect(end.go()).toEqual([REVIEW]);
+    }
+    // Words slipping: it says so, as Continue would.
+    expect(endOf(slipped, false, true).next?.why).toMatch(/words are slipping/u);
+    expect(endOf(fresh, false, true).next?.why).toBeUndefined();
   });
 });

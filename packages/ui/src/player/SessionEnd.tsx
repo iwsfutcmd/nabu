@@ -11,6 +11,7 @@
  *   session still has the answer: a session picked up after a reload has only typed ones).
  * - Your progress: what the app works out from the log (words now known, a unit finished, the streak,
  *   the week's practice days, quests done, achievements), then the XP.
+ * - Where a deployment's gate keeps the next lesson closed (M5): that it does, and until when.
  * - Next: what the course page's Continue offers (ADR 0105): the next lesson or story, or practice
  *   first with a new lesson beside it (D6); right after practice, the next lesson or story with more
  *   practice beside it (D34); and back to the course.
@@ -71,6 +72,11 @@ export interface SessionProgress {
   readonly week?: { readonly done: number; readonly goal: number; readonly met: boolean } | undefined;
   readonly quests?: readonly Earned[] | undefined;
   readonly achievements?: readonly Earned[] | undefined;
+  /**
+   * Lessons and stories may not start now (a deployment's gate, M5): what the gate says (that it is
+   * empty, when a lesson may start again, whether practice refills it), and that time.
+   */
+  readonly gate?: { readonly text: string; readonly opensAt?: string | undefined } | undefined;
 }
 
 export interface SessionEndProps {
@@ -307,6 +313,12 @@ export const SessionEnd = (props: SessionEndProps): JSX.Element => {
         </section>
       )}
 
+      {/* The next lesson needs practice or time first (M5): said before the next step, which is practice then. */}
+      {progress?.gate !== undefined && (
+        <p className={styles.notice} role="note" data-end-gate="" data-gate-opens={progress.gate.opensAt}>
+          {progress.gate.text}
+        </p>
+      )}
       {next?.why !== undefined && (
         <p className={styles.muted} data-end-why="">
           {next.why}

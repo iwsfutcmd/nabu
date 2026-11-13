@@ -61,7 +61,7 @@ import { reportIntake, reportsThrough } from "./reports.ts";
 import { ReportsLink, ReportsPage } from "./YourReports.tsx";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { CardsPage, debugMode } from "./Debug.tsx";
-import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
+import { GamePanel, gateClosed, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
 import { Progress, SignedOutNotice } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
@@ -808,16 +808,45 @@ const seedFor = (): number => {
   return crypto.getRandomValues(new Uint32Array(1))[0] ?? 1;
 };
 
-/** The session gate is empty (§12.3, only where an instance turns it on): practice stays open. */
-const GateEmpty = ({ course }: { course: LoadedCourse["course"] }): JSX.Element => {
+/**
+ * The session gate is empty (§12.3, only where an instance turns it on): practice stays open. It says
+ * when a lesson may start again (M5), and once that time comes, offers to start this one.
+ */
+const GateEmpty = ({ course, game, gameConfig, onOpen }: { course: LoadedCourse["course"]; onOpen: () => void } & GameProps): JSX.Element => {
   const t = useTranslator();
+  const opensAt = game?.gate.opensAt;
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (opensAt === undefined) return undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    // Set from the clock again each time: a timer can fire early by the clock (set back), and then waits again.
+    const arm = (): void => {
+      const left = Date.parse(opensAt) - Date.now();
+      if (left <= 0) setOpen(true);
+      else timer = setTimeout(arm, left);
+    };
+    arm();
+    return () => clearTimeout(timer);
+  }, [opensAt]);
   const to = (mode: "review" | "mistakes"): string => href({ tag: "session", course: course.id, orthography: course.orthography, request: { mode } });
+  const said = game === null || gameConfig === null ? undefined : gateClosed(t, game, gameConfig);
   return (
     <main className={styles.page}>
-      <p className={styles.notice} role="note" data-gate-empty="">
-        {t.format("game.gate.empty")}
-      </p>
+      {open ? (
+        <p className={styles.notice} role="note" data-gate-open="">
+          {t.format("game.gate.opened")}
+        </p>
+      ) : (
+        <p className={styles.notice} role="note" data-gate-empty="" data-gate-opens={opensAt}>
+          {said ?? t.format("game.gate.empty")}
+        </p>
+      )}
       <div className={styles.links}>
+        {open && (
+          <button type="button" className={styles.button} onClick={onOpen} data-action="gate-start">
+            {t.format("game.gate.start")}
+          </button>
+        )}
         <a className={styles.link} href={to("review")} data-practice-mode="review">
           {t.format("app.practice.review")}
         </a>
@@ -955,7 +984,11 @@ const Session = (props: SessionProps): JSX.Element => {
   }, []);
   if (!known) return <Missing course={loaded.course} />;
   if (opened === undefined) return <Loading />;
-  return opened === "gate" ? <GateEmpty course={loaded.course} /> : <SessionBody {...props} setup={opened.setup} route={route} />;
+  return opened === "gate" ? (
+    <GateEmpty course={loaded.course} game={game} gameConfig={gameConfig} onOpen={() => setOpened({ setup: plannedSetup(props, route) })} />
+  ) : (
+    <SessionBody {...props} setup={opened.setup} route={route} />
+  );
 };
 
 /**
@@ -1005,19 +1038,21 @@ const useSessionRoute = (route: string, back: string, playing: boolean) => {
  * Where the end of a session goes next (P9): the course page's Continue (ADR 0105), worked out from
  * the learner state with the session in it, once it has ended; right after practice, the next lesson
  * or story with more practice beside it (D34). `facetsOff`: listening turned off for good (D41), as on
- * the course page.
+ * the course page. While a deployment's gate keeps lessons closed, practice (M5).
  */
-const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go: (to: string) => void, facetsOff: ReadonlySet<Facet>, practised: boolean): NextStep | undefined => {
+const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go: (to: string) => void, facetsOff: ReadonlySet<Facet>, practised: boolean, { game, gameConfig }: GameProps): NextStep | undefined => {
   const t = useTranslator();
   const going = useRef(go);
   going.current = go;
+  // The game state is worked out again once the session's end is logged: then this says it too.
+  const gated = over && !sessionAllowed(game, "lesson", gameConfig);
   return useMemo(() => {
     if (!over) return undefined;
     const orthography = course.orthography;
     const hrefOf = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : href({ tag: "session", course: course.id, orthography, request: { mode: "lesson", node: n.node } }));
     const review = href({ tag: "session", course: course.id, orthography, request: { mode: "review" } });
-    return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), facetsOff, hrefOf, review, practised, go: (to) => going.current(to), t });
-  }, [course, state, over, facetsOff, practised, t]);
+    return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), facetsOff, hrefOf, review, practised, gated, go: (to) => going.current(to), t });
+  }, [course, state, over, facetsOff, practised, gated, t]);
 };
 
 const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, game, gameConfig, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
@@ -1057,7 +1092,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   });
   // Its end (P9): what it changed, from the log with it against without it, and where to go next.
   const end = useSessionEnd({ store, config: gameConfig, course, session: setup.session, ended: routing.over, state, game, placement, facetsOff, t });
-  const next = useNextStep(course, state, routing.over, routing.to, facetsOff, practises(request.mode));
+  const next = useNextStep(course, state, routing.over, routing.to, facetsOff, practises(request.mode), { game, gameConfig });
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
   // Nothing plays by itself with sound off or listening put off (P6).
@@ -1146,9 +1181,9 @@ interface StorySessionProps extends GameProps {
 
 /** Reads one story (Phase 6): a session of mode story at its node. */
 const StorySession = (props: StorySessionProps): JSX.Element => {
-  const [allowed] = useState(() => sessionAllowed(props.game, "story", props.gameConfig));
+  const [allowed, setAllowed] = useState(() => sessionAllowed(props.game, "story", props.gameConfig));
   if (storyAt(props.loaded.course, props.node) === undefined) return <Missing course={props.loaded.course} />;
-  return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} />;
+  return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} game={props.game} gameConfig={props.gameConfig} onOpen={() => setAllowed(true)} />;
 };
 
 const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai, game, gameConfig }: StorySessionProps): JSX.Element => {
@@ -1180,7 +1215,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
   });
   // Its end (P9): what it changed, from the log with it against without it, and where to go next.
   const end = useSessionEnd({ store, config: gameConfig, course, session: setup?.session, ended: routing.over, state, game, placement: false, facetsOff, t });
-  const next = useNextStep(course, state, routing.over, routing.to, facetsOff, practises("story"));
+  const next = useNextStep(course, state, routing.over, routing.to, facetsOff, practises("story"), { game, gameConfig });
   const grader = useMemo(() => createGrader(course), [course]);
   // Nothing plays by itself with sound off or listening put off (P6).
   const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());

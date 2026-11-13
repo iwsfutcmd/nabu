@@ -1644,7 +1644,7 @@
     },
     "game.gate.empty": {
       "message": "You're out for now. Practise reviews or mistakes to refill, or come back a little later.",
-      "description": "Shown instead of a lesson when the gate is empty; practice always stays open."
+      "description": "Shown instead of a lesson when the gate is empty and no time can be given for when it opens (a deployment whose rules never refill it with time alone); practice always stays open. Otherwise game.gate.out.* and game.gate.refill.* say it, with the time."
     },
     "game.gate.energy": {
       "message": ".input {$count :number}\n{{{$count} energy}}",
@@ -1653,6 +1653,38 @@
     "game.gate.hearts": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} heart}}\n* {{{$count} hearts}}",
       "description": "Hearts left (only on instances that turn the hearts gate on)."
+    },
+    "game.gate.next.energy": {
+      "message": "More energy at {$time}",
+      "description": "Beside the energy left, while some is missing (only on instances that turn the energy gate on): when the next unit comes back. $time is a time of day as the interface language writes it (14:30, 2:30 PM), with the weekday when it is not today."
+    },
+    "game.gate.next.hearts": {
+      "message": "Next heart at {$time}",
+      "description": "Beside the hearts left, while some are missing (only on instances that turn the hearts gate on): when the next heart comes back. $time is a time of day as the interface language writes it (14:30, 2:30 PM), with the weekday when it is not today."
+    },
+    "game.gate.opened": {
+      "message": "You can start now.",
+      "description": "On the screen shown in place of a lesson or story while the gate was empty: the time it opens has come, and a button (game.gate.start) starts it."
+    },
+    "game.gate.out.energy": {
+      "message": "You're out of energy for now.",
+      "description": "The energy gate is empty (only on instances that turn it on): no lesson or story can start. Followed by game.gate.refill.practice or game.gate.refill.wait. Kind, never guilt-tripping."
+    },
+    "game.gate.out.hearts": {
+      "message": "You're out of hearts for now.",
+      "description": "The hearts gate is empty (only on instances that turn it on): no lesson or story can start. Followed by game.gate.refill.practice or game.gate.refill.wait. Kind, never guilt-tripping."
+    },
+    "game.gate.refill.practice": {
+      "message": "Practise reviews or mistakes to refill, or start your next lesson at {$time}.",
+      "description": "After game.gate.out.*, where practice refills the gate: finishing a review or a mistakes session refills it at once, and with time alone a lesson can start again at $time, a time of day as the interface language writes it (14:30, 2:30 PM), with the weekday when it is not today."
+    },
+    "game.gate.refill.wait": {
+      "message": "Your next lesson can start at {$time}. Reviews and mistakes stay open.",
+      "description": "After game.gate.out.*, where practice does not refill the gate: a lesson can start again at $time, a time of day as the interface language writes it (14:30, 2:30 PM), with the weekday when it is not today; practice is open meanwhile."
+    },
+    "game.gate.start": {
+      "message": "Start now",
+      "description": "Button on the screen shown in place of a lesson or story while the gate was empty, once the time it opens has come: starts the lesson or story."
     },
     "game.goal.change": {
       "message": "Change goal",

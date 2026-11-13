@@ -9,7 +9,7 @@ import { DEFAULT_LEAGUE, leagueWeek } from "@nabu/core/game";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, test, type Page } from "@playwright/test";
 import { API_PORT } from "./ports.ts";
-import { activate, loadCourse, logOf, planned, playSession, seedLog, seriousAxeViolations } from "./solver.ts";
+import { activate, canMiss, loadCourse, logOf, planned, playSession, seedLog, seriousAxeViolations } from "./solver.ts";
 
 const API = `http://127.0.0.1:${API_PORT}`;
 const DAY = 86_400_000;
@@ -137,18 +137,68 @@ test.describe("game", () => {
     // service worker makes: these tests run without it.
     test.use({ serviceWorkers: "block" });
 
+    const HEARTS = { gate: { policy: "hearts", max: 5, regenMinutes: 300, refillByPractice: true } };
+    /** When the first heart lost in `practice(at, 2, …)` comes back: its first mistake (11 s in), plus 300 minutes. */
+    const firstHeartBack = (at: number): number => at + 11_000 + 300 * 60_000;
+
     test("a deployment can turn on hearts; practice stays open", async ({ page }) => {
-      await page.route("**/game.json", (route) => route.fulfill({ json: { gate: { policy: "hearts", max: 5, regenMinutes: 300, refillByPractice: true } } }));
+      await page.route("**/game.json", (route) => route.fulfill({ json: HEARTS }));
       const now = Date.parse("2026-05-21T10:00:00Z");
       await page.clock.setFixedTime(new Date(now));
       await seedLog(page, practice(now - 3_600_000, 2, 5)); // five mistakes an hour ago: no hearts left
       await page.reload();
       await expect(page.locator("[data-gate]")).toHaveAttribute("data-gate-value", "0");
+      // When the next comes back (M5).
+      await expect(page.locator("[data-gate-next]")).toHaveAttribute("data-gate-next", new Date(firstHeartBack(now - 3_600_000)).toISOString());
       await page.goto("/?sound=off#/fa/fa-Arab.standard/fa.names");
       await expect(page.locator("[data-gate-empty]")).toBeVisible();
       await activate(page, "keyboard", '[data-gate-empty] ~ div [data-practice-mode="review"]');
       await expect(page.locator("[data-lesson-player], [data-empty-session]").first()).toBeVisible();
       await expect(page.locator("[data-gate-empty]")).toHaveCount(0);
+    });
+
+    test("the empty gate says when a lesson may start, and starts it then (M5)", async ({ page }) => {
+      await page.route("**/game.json", (route) => route.fulfill({ json: HEARTS }));
+      const now = Date.parse("2026-05-21T10:00:00Z");
+      await page.clock.install({ time: new Date(now) });
+      const earlier = now - 3_600_000;
+      await seedLog(page, practice(earlier, 2, 5)); // no hearts left
+      await page.reload();
+      await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard/fa.names"));
+      const empty = page.locator("[data-gate-empty]");
+      await expect(empty).toHaveAttribute("data-gate-opens", new Date(firstHeartBack(earlier)).toISOString());
+      await expect(empty).toContainText("You're out of hearts for now. Practise reviews or mistakes to refill, or start your next lesson at");
+      await expect(page.locator("[data-action=gate-start]")).toHaveCount(0);
+      // Four hours on, the page still open: the lesson may start.
+      await page.clock.runFor(firstHeartBack(earlier) - now + 1_000);
+      await expect(page.locator("[data-gate-open]")).toBeVisible();
+      await page.locator("[data-action=gate-start]").click();
+      await expect(page.locator("[data-lesson-player]")).toBeVisible();
+      await expect(page.locator("[data-gate-empty], [data-gate-open]")).toHaveCount(0);
+    });
+
+    test("a lesson that spends the last heart ends saying when the next may start, and offers practice (M5)", async ({ page }) => {
+      await page.route("**/game.json", (route) => route.fulfill({ json: HEARTS }));
+      const now = Date.parse("2026-05-21T10:00:00Z");
+      await page.clock.setFixedTime(new Date(now));
+      const earlier = now - 3_600_000;
+      await seedLog(page, practice(earlier, 2, 4)); // four mistakes an hour ago: one heart left
+      await page.reload();
+      await expect(page.locator("[data-gate]")).toHaveAttribute("data-gate-value", "1");
+      const request = { mode: "lesson", node: "fa.names" } as const;
+      const exercises = planned(course, await logOf(page, "fa"), request, new Date(now), 3);
+      const missed = exercises.find(canMiss);
+      if (missed === undefined) throw new Error("no card to miss");
+      await page.goto(`/?seed=3&sound=off#/fa/fa-Arab.standard/${request.node}`);
+      await playSession(page, exercises, "keyboard", { miss: new Set([missed.id]) });
+      const end = page.locator('[data-lesson-player][data-state="finished"]');
+      const gate = end.locator("[data-end-gate]");
+      await expect(gate).toHaveAttribute("data-gate-opens", new Date(firstHeartBack(earlier)).toISOString());
+      await expect(gate).toContainText("You're out of hearts for now.");
+      // The next step is practice, which refills them; no lesson beside it.
+      await expect(end.locator("[data-action=next]")).toHaveAttribute("data-next", "practice");
+      await expect(end.locator("[data-action=next-anyway]")).toHaveCount(0);
+      expect(await seriousAxeViolations(page)).toEqual([]);
     });
   });
 });

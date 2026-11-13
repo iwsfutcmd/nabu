@@ -18,7 +18,7 @@ import type { useTranslator } from "@nabu/ui";
 import type { NextStep, NextTo, SessionProgress } from "@nabu/ui/player";
 import { useEffect, useMemo, useState } from "react";
 import { localDate } from "./clock.ts";
-import { achievementText, firstDayOf, gameOf, questName } from "./game.tsx";
+import { achievementText, firstDayOf, gameOf, gateClosed, questName } from "./game.tsx";
 import type { EventStore } from "./store.ts";
 
 type Translator = ReturnType<typeof useTranslator>;
@@ -57,7 +57,10 @@ export interface ProgressInput {
   readonly t: Translator;
 }
 
-/** How the session moved the learner's progress: what is new after it that was not before. */
+/**
+ * How the session moved the learner's progress: what is new after it that was not before; and
+ * whether the deployment's gate keeps the next lesson closed after it (M5).
+ */
 export const progressOf = ({ course, before, after, config, now, firstDay, placement, facetsOff, t }: ProgressInput): SessionProgress => {
   const iso = now.toISOString();
   const today = localDate(now);
@@ -70,7 +73,10 @@ export const progressOf = ({ course, before, after, config, now, firstDay, place
   const goal = after.game.goal;
   const week = { before: daysThisWeek(before.game.days, today, firstDay), after: daysThisWeek(after.game.days, today, firstDay) };
   const doneBefore = new Set(before.game.quests.filter((q) => q.done).map((q) => q.id));
+  // The deployment's gate keeps the next lesson closed after the session (M5): said, with the time.
+  const closed = gateClosed(t, after.game, config, now);
   return {
+    ...(closed === undefined ? {} : { gate: { text: closed, opensAt: after.game.gate.opensAt } }),
     ...(gained.length > 0 ? { known: { words: gained, total: knownAfter.length } } : {}),
     ...(finished === undefined ? {} : { unit: { number: course.units.indexOf(finished) + 1, title: finished.title?.[course.supportKey] } }),
     // The first session of the day: today joins the streak.
@@ -101,6 +107,8 @@ export interface NextInput {
   readonly review: string;
   /** The session that ended was practice (`practises`): the next lesson comes first (D34). */
   readonly practised: boolean;
+  /** A deployment's gate keeps lessons and stories closed now (M5): only practice is open. */
+  readonly gated?: boolean | undefined;
   /** Leaves the session's screen for another (navigation.ts). */
   readonly go: (to: string) => void;
   readonly t: Translator;
@@ -109,13 +117,15 @@ export interface NextInput {
 /**
  * The next step: what the course page's Continue has (ADR 0105), but right after practice the next
  * lesson or story on the path, whatever Continue says, with more practice beside it (D34). None once
- * the path is done and nothing is due. `facetsOff`: listening turned off for good (D41).
+ * the path is done and nothing is due. `facetsOff`: listening turned off for good (D41). While a
+ * deployment's gate keeps lessons closed, practice, and nothing beside it (the end screen says why, M5).
  */
-export const nextStepOf = ({ course, state, now, pace: choice, facetsOff, hrefOf, review, practised, go, t }: NextInput): NextStep | undefined => {
+export const nextStepOf = ({ course, state, now, pace: choice, facetsOff, hrefOf, review, practised, gated = false, go, t }: NextInput): NextStep | undefined => {
   const pace = paceOf(course, state, now.toISOString(), choice, facetsOff);
   const next = continueOf(course, state, pace);
   if (next.kind === "done") return undefined;
   const practice = { to: { kind: "practice" }, go: () => go(review) } as const;
+  if (gated) return next.kind === "practice" ? { ...practice, why: t.format("app.pace.why.slipping", { count: pace.slipping }) } : practice;
   // The next node on the path, whether Continue offers it first or beside practice.
   const node = next.next;
   if (practised && node !== undefined) return { to: nextTo(course, node), go: () => go(hrefOf(node)), beside: practice };

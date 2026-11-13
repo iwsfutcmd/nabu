@@ -88,8 +88,34 @@ export const useGame = (store: EventStore | null, config: GameConfig | null, ver
   return state;
 };
 
-export const sessionAllowed = (state: GameState | null, mode: Mode, config: GameConfig | null): boolean =>
-  state === null || config === null ? true : canStart(state.gate, mode, config.gate);
+/** Whether a session of this mode may start now: a gate state worked out a while ago opens on time (M5). */
+export const sessionAllowed = (state: GameState | null, mode: Mode, config: GameConfig | null, now = new Date()): boolean =>
+  state === null || config === null ? true : canStart(state.gate, mode, config.gate, now.toISOString());
+
+type Translator = ReturnType<typeof useTranslator>;
+
+/** A time the gate gives something back, as the UI locale says it: the time of day, and the weekday unless it is today. */
+export const gateTime = (t: Translator, iso: string, now = new Date()): string => {
+  const at = new Date(iso);
+  const options: Intl.DateTimeFormatOptions = localDate(at) === localDate(now) ? { hour: "numeric", minute: "2-digit" } : { weekday: "long", hour: "numeric", minute: "2-digit" };
+  return new Intl.DateTimeFormat(t.formattingLocale, options).format(at);
+};
+
+/**
+ * What the gate says while lessons and stories are closed (M5): that it is empty, and when a lesson
+ * may start again, or how practice refills it sooner where it does. Undefined while they are open.
+ */
+export const gateClosed = (t: Translator, state: GameState, config: GameConfig, now = new Date()): string | undefined => {
+  const policy = config.gate;
+  if (policy.policy === "none" || canStart(state.gate, "lesson", policy, now.toISOString())) return undefined;
+  const out = t.format(policy.policy === "hearts" ? "game.gate.out.hearts" : "game.gate.out.energy");
+  const opensAt = state.gate.opensAt;
+  // No time to give only where the deployment's rules never open it again by themselves.
+  if (opensAt === undefined) return t.format("game.gate.empty");
+  const time = gateTime(t, opensAt, now);
+  const refills = policy.policy === "energy" || policy.refillByPractice;
+  return `${out} ${t.format(refills ? "game.gate.refill.practice" : "game.gate.refill.wait", { time })}`;
+};
 
 /** A quest's name, as Today's quests lists it. */
 export const questName = (t: ReturnType<typeof useTranslator>, q: { readonly id: string; readonly target: number }): string => {
@@ -106,14 +132,24 @@ export const achievementText = (t: ReturnType<typeof useTranslator>, id: string,
   return t.has(key) ? t.format(key, { target: a.target }) : id;
 };
 
+/** Hearts or energy left, and when the next comes back while some are missing (M5). */
 export const GatePanel = ({ state, config }: { state: GameState; config: GameConfig }): JSX.Element | null => {
   const t = useTranslator();
   if (config.gate.policy === "none") return null;
-  const label = config.gate.policy === "hearts" ? t.format("game.gate.hearts", { count: state.gate.value }) : t.format("game.gate.energy", { count: state.gate.value });
+  const hearts = config.gate.policy === "hearts";
+  const label = hearts ? t.format("game.gate.hearts", { count: state.gate.value }) : t.format("game.gate.energy", { count: state.gate.value });
+  const next = state.gate.nextAt;
   return (
-    <p className={styles.stat} data-gate={config.gate.policy} data-gate-value={state.gate.value}>
-      {label}
-    </p>
+    <>
+      <span className={styles.stat} data-gate={config.gate.policy} data-gate-value={state.gate.value}>
+        {label}
+      </span>
+      {next !== undefined && (
+        <span className={styles.muted} data-gate-next={next}>
+          {t.format(hearts ? "game.gate.next.hearts" : "game.gate.next.energy", { time: gateTime(t, next) })}
+        </span>
+      )}
+    </>
   );
 };
 
