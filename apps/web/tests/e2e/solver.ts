@@ -11,7 +11,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
-import { assembleCourse, lessonNodes, MEDIA_ROLES, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
+import { assembleCourse, lessonNodes, MEDIA_ROLES, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
@@ -297,6 +297,14 @@ export const seriousAxeViolations = async (page: Page, scope = "[data-lesson-pla
   return result.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help} (${v.nodes.map((n) => n.target.join(" ")).join(", ")})`);
 };
 
+/** The exercise the player shows under `id`: the planned one, or its retry ("…#2", "…#3") as core reshuffles it. */
+export const retried = (planned: Exercise, id: string): Exercise => {
+  const attempt = Number(id.split("#")[1] ?? "1");
+  let ex = planned;
+  for (let a = 2; a <= attempt; a++) ex = retryOf(ex, a);
+  return ex;
+};
+
 export interface PlayOptions {
   /** Planned exercise ids to answer wrong the first time; the player brings them back. */
   readonly miss?: ReadonlySet<string>;
@@ -322,7 +330,8 @@ export const playSession = async (page: Page, exercises: readonly Exercise[], mo
     if (planned === undefined) throw new Error(`the app showed ${id}, which the solver did not plan`);
     if (!id.includes("#")) expect(id, "planned order").toBe(exercises[seen.filter((s) => !s.includes("#")).length]?.id);
     seen.push(id);
-    const ex = { ...planned, id };
+    // A card that comes back has its options or tiles in a new order (P4): the player's own reshuffle.
+    const ex = retried(planned, id);
     if (options.axe === true) violations.push(...(await seriousAxeViolations(page)).map((v) => `${id}: ${v}`));
     if (options.miss?.has(id) === true) {
       await miss(page, ex, mode);

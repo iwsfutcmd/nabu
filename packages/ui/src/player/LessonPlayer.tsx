@@ -8,7 +8,7 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
+import { cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
@@ -181,8 +181,13 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const draft = draftOf(state) ?? emptyDraft(ex);
   const outcome = active.tag === "feedback" ? active.outcome : undefined;
   const locked = active.tag !== "answering" && active.tag !== "presenting";
+  // Cards done for good out of the lesson's cards: a miss never moves the bar back (P4).
   const progress = progressOf(state);
-  const progressLabel = t.format("exercise.progress", { current: progress.done, total: progress.total });
+  const left = progress.total - progress.done;
+  // An adaptive test knows only the most it may still ask, so it says no count.
+  const counted = state.session.adaptive === undefined;
+  // Why this card is back: an earlier mistake, or a skip (P4).
+  const back = cameBack(state.session, ex);
   const canCheck = active.tag === "answering" && !active.composing && responseOf(ex, active.draft) !== undefined;
   const instruction = t.format(INSTRUCTIONS[ex.template], { language });
   // Every speaking card can be put off, as every listening card can: rated or scored alike.
@@ -226,13 +231,26 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         <Button className={styles.iconButton} aria-label={t.format("exercise.action.quit")} onPress={() => dispatch({ tag: "interrupt", reason: "quit-confirm" })} data-action="quit">
           <CloseIcon />
         </Button>
-        <ProgressBar className={styles.progress} value={progress.done} minValue={0} maxValue={progress.total} aria-label={progressLabel} valueLabel={progressLabel}>
+        <ProgressBar
+          className={styles.progress}
+          value={progress.done}
+          minValue={0}
+          maxValue={progress.total}
+          aria-label={t.format("player.progress.label")}
+          valueLabel={t.format("player.progress.value", { done: progress.done, total: progress.total })}
+        >
           {({ percentage }) => (
             <div className={styles.track} data-progress-track="">
               <div className={styles.fill} data-progress-fill="" style={{ "--nabu-progress": `${percentage ?? 0}%` } as CSSProperties} />
             </div>
           )}
         </ProgressBar>
+        {/* How many cards remain, in sight (the bar's value says it to a screen reader). */}
+        {counted && (
+          <span className={styles.left} aria-hidden="true" data-cards-left={left}>
+            {t.format("player.progress.left", { count: left })}
+          </span>
+        )}
         <SoundToggle
           on={sound}
           onChange={(on) => {
@@ -248,11 +266,23 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         {putOff.speaking && onCantSpeak !== undefined && <p className={styles.notice}>{t.format("player.put-off.speaking")}</p>}
       </div>
 
-      {/* Earlier material brought back because it is due (ADR 0097): said before the instruction. */}
-      {ex.review === true && (
-        <p className={styles.reviewTag} data-review-tag="">
-          {t.format("player.review.tag")}
-        </p>
+      {/*
+        Said before the instruction: earlier material brought back because it is due (ADR 0097), and a
+        card of this lesson back after a mistake or a skip (P4).
+      */}
+      {(ex.review === true || back !== undefined) && (
+        <div className={styles.tags}>
+          {ex.review === true && (
+            <p className={styles.reviewTag} data-review-tag="">
+              {t.format("player.review.tag")}
+            </p>
+          )}
+          {back !== undefined && (
+            <p className={styles.reviewTag} data-retry-tag={back}>
+              {t.format(back === "skipped" ? "player.retry.skipped" : "player.retry.missed")}
+            </p>
+          )}
+        </div>
       )}
       <h2 className={styles.instruction}>{instruction}</h2>
       {props.debug === true && (

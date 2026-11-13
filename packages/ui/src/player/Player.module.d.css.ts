@@ -26,6 +26,7 @@ declare const styles: {
   readonly instruction: string;
   readonly keyName: string;
   readonly label: string;
+  readonly left: string;
   readonly listen: string;
   readonly modal: string;
   readonly muted: string;
@@ -64,6 +65,7 @@ declare const styles: {
   readonly switchThumb: string;
   readonly switchTrack: string;
   readonly synthetic: string;
+  readonly tags: string;
   readonly target: string;
   readonly textButton: string;
   readonly tile: string;

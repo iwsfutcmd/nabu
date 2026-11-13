@@ -9,13 +9,16 @@ import {
   cardGallery,
   createGrader,
   gradeExercise,
+  cameBack,
   isCorrect,
+  isRetry,
   lessonNodes,
   LISTENING,
   MEDIA_ROLES,
   placedBy,
   progressOf,
   responseOf,
+  retryOf,
   runTest,
   seededRng,
   start,
@@ -492,9 +495,92 @@ describe("player", () => {
     expect(s.tag).toBe("presenting");
     if (s.tag !== "presenting") return;
     expect(s.ex.id).toBe(`${first.id}#2`);
+    // It comes back in a new order (P4), and says why.
+    expect(s.ex).toEqual(retryOf(first, 2));
+    expect(isRetry(s.ex)).toBe(true);
+    expect(isRetry(first)).toBe(false);
+    expect(cameBack(s.session, s.ex)).toBe("missed");
+    expect(cameBack(s.session, first)).toBeUndefined();
     for (const e of [...answer(s.ex, rightAnswer(s.ex)), { tag: "continue" } as const]) shell.dispatch(e);
     const end = shell.get();
     expect(end.tag === "finished" && end.summary).toEqual({ completed: true, exercises: 1, correctFirstTry: 0, retries: 1, skipped: 0 });
+  });
+
+  it("brings a skipped card back as skipped, not as a mistake", () => {
+    const first = lesson.find((e) => e.template !== "speak.tier-0" && e.template !== "match-pairs") as Exercise;
+    const [s0] = start(node, [first]);
+    const shell = run(course, s0, [{ tag: "ready" }, { tag: "skip", reason: "skip" }, { tag: "continue" }]);
+    const s = shell.get();
+    expect(s.tag === "presenting" && cameBack(s.session, s.ex)).toBe("skipped");
+  });
+
+  describe("a card that comes back (P4)", () => {
+    const shown = (texts: readonly TaggedText[]): readonly string[] => texts.map((t) => surfaceOf(t));
+    const cards = [...VARIANTS.map(([id, orthography]) => loadCourse(id, orthography)), loadCourse("es")].flatMap((c) =>
+      cardGallery(c, 7).flatMap((g) => (g.exercise === undefined ? [] : [g.exercise])),
+    );
+
+    it("has its options in a new order, the answer elsewhere, and is the same every time", () => {
+      let checked = 0;
+      for (const ex of cards) {
+        if (!("options" in ex) || !("answer" in ex) || ex.options.length < 2) continue;
+        const again = retryOf(ex, 2);
+        if (!("options" in again) || !("answer" in again)) throw new Error(ex.id);
+        const text = (o: (typeof ex.options)[number]): string => surfaceOf("image" in o ? o.text : o);
+        expect(again.id, ex.id).toBe(`${ex.id}#2`);
+        expect([...again.options.map(text)].sort(), ex.id).toEqual([...ex.options.map(text)].sort());
+        expect(text(again.options[again.answer] as (typeof ex.options)[number]), ex.id).toBe(text(ex.options[ex.answer] as (typeof ex.options)[number]));
+        expect(again.answer, ex.id).not.toBe(ex.answer);
+        expect(retryOf(ex, 2), ex.id).toEqual(again);
+        checked++;
+      }
+      expect(checked).toBeGreaterThan(20);
+    });
+
+    it("has its tiles in a new order that spells the same answer", () => {
+      let checked = 0;
+      for (const ex of cards) {
+        if (!("tiles" in ex) || ex.tiles.length < 2) continue;
+        const again = retryOf(ex, 3);
+        if (!("tiles" in again)) throw new Error(ex.id);
+        expect(again.id, ex.id).toBe(`${ex.id}#3`);
+        expect([...shown(again.tiles)].sort(), ex.id).toEqual([...shown(ex.tiles)].sort());
+        expect(shown(again.tiles), ex.id).not.toEqual(shown(ex.tiles));
+        expect(again.solution.map((i) => surfaceOf(again.tiles[i] as TaggedText)), ex.id).toEqual(ex.solution.map((i) => surfaceOf(ex.tiles[i] as TaggedText)));
+        checked++;
+      }
+      expect(checked).toBeGreaterThan(10);
+    });
+
+    it("keeps a typed question as it was, under its new id", () => {
+      const typed = cards.find((e) => e.template === "translate-type.l1-l2") as Exercise;
+      expect(retryOf(typed, 2)).toEqual({ ...typed, id: `${typed.id}#2` });
+    });
+  });
+
+  it("never moves the progress bar back, and counts a card done once it is right (P4)", () => {
+    const misses = lesson.filter((e) => wrongAnswer(e)?.tag === "choice" && e.template !== "speak.tier-0").slice(0, 2);
+    expect(misses.length).toBe(2);
+    const [s0] = start(node, lesson);
+    const shell = run(course, s0, []);
+    const missed = new Set(misses.map((e) => e.id));
+    const seen: { done: number; total: number }[] = [progressOf(shell.get())];
+    for (let s = shell.get(); s.tag !== "finished"; s = shell.get()) {
+      if (s.tag !== "presenting") throw new Error(`unexpected ${s.tag}`);
+      const response = missed.delete(s.ex.id) ? (wrongAnswer(s.ex) as Response) : rightAnswer(s.ex);
+      for (const e of answer(s.ex, response)) shell.dispatch(e);
+      seen.push(progressOf(shell.get()));
+      shell.dispatch({ tag: "continue" });
+      seen.push(progressOf(shell.get()));
+    }
+    // The lesson's cards, once each, however many came back.
+    expect(seen.every((p) => p.total === lesson.length)).toBe(true);
+    expect(seen.map((p) => p.done)).toEqual([...seen.map((p) => p.done)].sort((a, b) => a - b));
+    expect(seen.at(0)?.done).toBe(0);
+    expect(seen.at(-1)).toEqual({ done: lesson.length, total: lesson.length });
+    // A miss leaves the bar where it was: two of the steps answered moved nothing.
+    const answered = seen.filter((_, i) => i % 2 === 1).map((p, i) => p.done - (seen[2 * i]?.done ?? 0));
+    expect(answered.filter((d) => d === 0)).toHaveLength(2);
   });
 
   it("asks each question once when retries are off (placement)", () => {

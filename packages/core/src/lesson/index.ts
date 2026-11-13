@@ -4,10 +4,13 @@ export { placedBy, runTest, type AdaptiveTest, type TestBlock, type TestRun, typ
 export { answerDiff, closestAnswer, nearMiss, type AnswerDiff } from "./diff.ts";
 export * from "./exercise.ts";
 export {
+  cameBack,
   draftOf,
   emptyDraft,
+  isRetry,
   progressOf,
   responseOf,
+  retryOf,
   start,
   step,
   summarize,

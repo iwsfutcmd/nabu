@@ -2138,6 +2138,18 @@
       "message": "a man speaking",
       "description": "Tag under a prompt in the learner's language: the sentence is said by a man, so the answer uses the forms that agree with a male speaker (e.g. Arabic adjectives)."
     },
+    "player.progress.label": {
+      "message": "Lesson progress",
+      "description": "Accessible name of the progress bar at the top of a lesson, review or practice."
+    },
+    "player.progress.left": {
+      "message": ".input {$count :number}\n{{{$count} left}}",
+      "description": "Shown beside the lesson's progress bar: how many cards are still to come (a missed card that comes back counts once). Keep it short: it shares a line with the bar. $count is a number."
+    },
+    "player.progress.value": {
+      "message": ".input {$done :number}\n.input {$total :number}\n{{{$done} of {$total} cards done}}",
+      "description": "Accessible value of the lesson's progress bar: cards answered for good out of the lesson's cards. A missed card that comes back counts once, when it is right. $done and $total are numbers."
+    },
     "player.prompt.hint": {
       "message": "Translation",
       "description": "Accessible label of the support-language translation shown as a hint."
@@ -2177,6 +2189,14 @@
     "player.readings.off": {
       "message": "Off",
       "description": "Choice in the readings control: show no pronunciation guide."
+    },
+    "player.retry.missed": {
+      "message": "Earlier mistake",
+      "description": "Small label above a card that comes back later in the lesson because the learner got it wrong (its options are in a new order)."
+    },
+    "player.retry.skipped": {
+      "message": "Skipped earlier",
+      "description": "Small label above a card that comes back later in the lesson because the learner skipped it."
     },
     "player.review.tag": {
       "message": "Review",

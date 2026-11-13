@@ -17,12 +17,13 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-export type PlayerScreen = "tiles" | "typing" | "feedback";
+export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry";
 
 const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
   tiles: "translate-tap.l1-l2",
   typing: "translate-type.l1-l2",
   feedback: "complete-translation",
+  retry: "choose-translation",
 };
 
 const SEED = 7;
@@ -32,6 +33,14 @@ const stateFor = (screen: PlayerScreen, ex: Exercise, course: CourseView, grader
   const [presenting] = start("story", [ex]);
   const [answering] = step(presenting, { tag: "ready" });
   if (screen === "typing") return answering;
+  if (screen === "retry" && ex.template === "choose-translation") {
+    // A wrong option, then Continue: the card comes back, its options in a new order (P4).
+    const chosen = step(answering, { tag: "input", draft: { tag: "choice", index: (ex.answer + 1) % ex.options.length } })[0];
+    const [checking] = step(chosen, { tag: "submit" });
+    if (checking.tag !== "checking") return chosen;
+    const [feedback] = step(checking, { tag: "graded", outcome: gradeExercise(ex, checking.response, grader) });
+    return step(step(feedback, { tag: "continue" })[0], { tag: "ready" })[0];
+  }
   if (screen === "tiles") {
     const first = ex.template === "translate-tap.l1-l2" ? ex.solution.slice(0, 1) : [];
     return step(answering, { tag: "input", draft: { tag: "tiles", order: first } })[0];
@@ -96,3 +105,5 @@ export const Tiles: Story = story("tiles");
 export const Typing: Story = story("typing");
 /** Feedback after a wrong word: verdict, solution, and the answer with the differing word marked. */
 export const Feedback: Story = story("feedback");
+/** A missed card back at the end: "Earlier mistake", its options in a new order, the cards left unchanged (P4). */
+export const Retry: Story = story("retry");

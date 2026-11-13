@@ -75,6 +75,37 @@ describe("putting off listening and speaking (P13)", () => {
   });
 });
 
+describe("a card back after a mistake (P4)", () => {
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const ex = cardOf(course, "choose-translation");
+  if (ex.template !== "choose-translation") throw new Error("not a choice");
+  const grader = createGrader(course);
+  const missed = (): PlayerState => {
+    const [presenting] = start("lesson", [ex]);
+    let s = step(presenting, { tag: "ready" })[0];
+    s = step(s, { tag: "input", draft: { tag: "choice", index: (ex.answer + 1) % ex.options.length } })[0];
+    const [checking] = step(s, { tag: "submit" });
+    if (checking.tag !== "checking") throw new Error("not checking");
+    const [feedback] = step(checking, { tag: "graded", outcome: gradeExercise(ex, checking.response, grader) });
+    return step(feedback, { tag: "continue" })[0];
+  };
+
+  it("says so, and the count of cards left never grows", () => {
+    const first = play(course, ex, stateOf(course, ex));
+    expect(first).not.toContain("data-retry-tag");
+    expect(first).toContain('data-cards-left="1"');
+    const again = missed();
+    expect(again.tag === "presenting" && again.ex.id).toBe(`${ex.id}#2`);
+    const html = play(course, ex, again);
+    expect(html).toContain('data-retry-tag="missed"');
+    expect(html).toContain(">Earlier mistake<");
+    expect(html).toContain('data-cards-left="1"');
+    expect(html).toContain(">1 left<");
+    // The bar's value, for a screen reader: cards done out of the lesson's.
+    expect(html).toContain('aria-valuetext="0 of 1 cards done"');
+  });
+});
+
 describe("the lesson's sound switch (P6)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const ex = cardOf(course, "complete-translation");

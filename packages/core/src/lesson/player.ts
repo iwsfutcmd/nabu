@@ -6,10 +6,13 @@
  * IME safety (§6.7): while `composing` is true, `submit` is ignored and the
  * draft is stored exactly as typed. Only `compositionend` settles text.
  */
+import type { TaggedText } from "@nabu/schema";
 import type { Verdict } from "../match/grade.ts";
+import { surfaceOf } from "../text/tagged-text.ts";
 import { runTest, type AdaptiveTest } from "./adaptive.ts";
 import type { SpeechResult } from "../speech/score.ts";
 import { isCorrect, type Exercise, type Outcome, type Response, type SelfRating, type SkipReason, type TemplateId } from "./exercise.ts";
+import { seededRng, type Rng } from "./rng.ts";
 import { solutionOf, TEMPLATES } from "./templates.ts";
 
 export type Draft =
@@ -234,15 +237,105 @@ const retryable = (ex: Exercise): boolean => !TEMPLATES[ex.template].modality.mi
 /** First tries so far: exercise id → right. A skip counts as a miss. */
 const firstTries = (session: Session): ReadonlyMap<string, boolean> => new Map(session.results.filter((r) => !r.retry).map((r) => [r.exercise, isCorrect(r.verdict)]));
 
+/** The id an exercise was planned under: a retry's ("…#2") without its attempt. */
+const plannedId = (id: string): string => id.split("#")[0] as string;
+
+/** Whether an exercise is a missed or skipped one brought back ("…#2"), not a planned one. */
+export const isRetry = (ex: Pick<Exercise, "id">): boolean => ex.id.includes("#");
+
+/** Whether an answered exercise comes back at the end of the lesson: a miss or a skip, where retries are on. */
+const comesBack = (session: Session, ex: Exercise, outcome: Outcome): boolean =>
+  session.adaptive === undefined && session.retries !== false && !isCorrect(outcome.verdict) && outcome.skipped !== "cant-speak" && outcome.skipped !== "cant-listen" && retryable(ex);
+
+/** A string's 32-bit FNV-1a hash: a retry's id seeds its new order, so a lesson replays the same. */
+const hash = (s: string): number => {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 0x01000193) >>> 0;
+  return h;
+};
+
+/**
+ * A new order of `n` items (new[j] = old[order[j]]) that `differs` accepts: a few seeded shuffles,
+ * then the order turned by one; the old order where nothing else would do (one item).
+ */
+const reorder = (rng: Rng, n: number, differs: (order: readonly number[]) => boolean): readonly number[] => {
+  const identity = Array.from({ length: n }, (_, i) => i);
+  for (let tries = 0; tries < 8; tries++) {
+    const order = rng.shuffle(identity);
+    if (differs(order)) return order;
+  }
+  const turned = identity.map((i) => (i + 1) % n);
+  return n > 1 && differs(turned) ? turned : identity;
+};
+
+/** Options in a new order, the answer never where it was. */
+const reshuffled = <T>(rng: Rng, options: readonly T[], answer: number): { readonly options: readonly T[]; readonly answer: number } => {
+  const order = reorder(rng, options.length, (o) => o[answer] !== answer);
+  return { options: order.map((i) => options[i] as T), answer: order.indexOf(answer) };
+};
+
+type Tiled = Extract<Exercise, { readonly tiles: readonly TaggedText[] }>;
+
+/** Tiles in a new order that reads differently, the solution following them. */
+const retiled = <T extends Tiled>(rng: Rng, ex: T): T => {
+  const shown = ex.tiles.map((tile) => surfaceOf(tile));
+  const order = reorder(rng, ex.tiles.length, (o) => o.some((from, to) => shown[from] !== shown[to]));
+  return { ...ex, tiles: order.map((i) => ex.tiles[i] as TaggedText), solution: ex.solution.map((i) => order.indexOf(i)) };
+};
+
+/**
+ * A missed exercise as it comes back (P4 in the 2026-11 review): the same question with its options
+ * or tiles in a new order, so it is answered by recall, never by where the answer was. Seeded by the
+ * retry's id: pure, and the same every time. A tone question keeps its tones in the system's order.
+ */
+export const retryOf = (ex: Exercise, attempt: number): Exercise => {
+  const id = `${plannedId(ex.id)}#${attempt}`;
+  const rng = seededRng(hash(id));
+  switch (ex.template) {
+    case "select-image":
+      return { ...ex, id, ...reshuffled(rng, ex.options, ex.answer) };
+    case "choose-translation":
+    case "gap-fill":
+    case "char-read":
+    case "letter-read":
+    case "word-read":
+    case "reading-disambiguation":
+    case "vocalize":
+    case "listen-select":
+    case "minimal-pair":
+    case "story-choose":
+    case "story-complete":
+      return { ...ex, id, ...reshuffled(rng, ex.options, ex.answer) };
+    case "translate-tap.l2-l1":
+    case "translate-tap.l1-l2":
+    case "word-write":
+    case "listen-tap":
+    case "story-arrange":
+      return retiled(rng, { ...ex, id });
+    default:
+      return { ...ex, id };
+  }
+};
+
+/**
+ * Why a card is back, for its tag: an earlier mistake, or a skip. Undefined for a card asked the
+ * first time.
+ */
+export const cameBack = (session: Session, ex: Exercise): "missed" | "skipped" | undefined => {
+  if (!isRetry(ex)) return undefined;
+  const planned = plannedId(ex.id);
+  const last = session.results.findLast((r) => plannedId(r.exercise) === planned);
+  return last?.verdict === "SKIPPED" ? "skipped" : "missed";
+};
+
 const advance = (state: Extract<Active, { tag: "feedback" }>): readonly [PlayerState, readonly Effect[]] => {
   const { session, ex, outcome } = state;
   if (session.adaptive !== undefined) {
     const run = runTest(session.adaptive, firstTries(session));
     return present({ ...session, queue: [...session.queue.slice(0, session.position + 1), ...run.next], position: session.position + 1, later: run.later });
   }
-  const again = session.retries !== false && !isCorrect(outcome.verdict) && outcome.skipped !== "cant-speak" && outcome.skipped !== "cant-listen" && retryable(ex);
   const attempt = session.queue.filter((e) => e.item === ex.item && e.template === ex.template).length + 1;
-  const queue = again ? [...session.queue, { ...ex, id: `${ex.id.split("#")[0] as string}#${attempt}` }] : session.queue;
+  const queue = comesBack(session, ex, outcome) ? [...session.queue, retryOf(ex, attempt)] : session.queue;
   return present({ ...session, queue, position: session.position + 1 });
 };
 
@@ -345,9 +438,20 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
   }
 };
 
-/** Progress for the progress bar: exercises done out of the lesson as it now stands. */
+/**
+ * Progress for the progress bar: the lesson's cards done for good, out of its cards (P4 in the
+ * 2026-11 review). A card is one planned exercise, however often it comes back: a miss leaves the
+ * bar where it was, and the card counts once its retry is right. So the bar never moves back, and
+ * `total - done` is how many cards remain. An adaptive test adds the most it may still ask.
+ */
 export const progressOf = (state: PlayerState): { readonly done: number; readonly total: number } => {
   const { session } = state;
-  const done = state.tag === "finished" ? session.queue.length : session.position + (state.tag === "feedback" ? 1 : 0);
-  return { done, total: session.queue.length + (state.tag === "finished" ? 0 : (session.later ?? 0)) };
+  const cards = new Set(session.queue.map((e) => plannedId(e.id)));
+  if (state.tag === "finished") return { done: cards.size, total: cards.size };
+  const active = state.tag === "interrupted" ? state.resume : state;
+  // Still to come: every card after this one, and this one unless it is answered for good.
+  const open = new Set(session.queue.slice(session.position + 1).map((e) => plannedId(e.id)));
+  const settled = active.tag === "feedback" && !comesBack(session, active.ex, active.outcome);
+  if (!settled) open.add(plannedId(active.ex.id));
+  return { done: cards.size - open.size, total: cards.size + (session.later ?? 0) };
 };
