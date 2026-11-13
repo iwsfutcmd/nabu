@@ -17,7 +17,7 @@
  */
 import type { BundleSentence } from "@nabu/schema";
 import { placedBy, type AdaptiveTest, type TestBlock } from "../lesson/adaptive.ts";
-import { lessonNodes, sentencesOf, type LessonNode } from "../lesson/build.ts";
+import { lessonNodes, sentencesOf, type LessonNode } from "../lesson/nodes.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { Exercise, TemplateId } from "../lesson/exercise.ts";
 import { seededRng } from "../lesson/rng.ts";

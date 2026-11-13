@@ -15,13 +15,15 @@
  *    (typing them, hearing them; ADR 0101).
  * 5. Order: selection order (new words first), ending on a likely success.
  */
-import type { BundleKc, BundleSentence, KcId } from "@nabu/schema";
-import { courseExclusions, lessonNodes, sentencesOf, speechExclusions, type SpeechSupport } from "../lesson/build.ts";
+import type { BundleSentence, KcId } from "@nabu/schema";
+import { candidatesFor, lessonCandidates } from "../lesson/candidates.ts";
 import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
+import { courseExclusions, speechExclusions, type SpeechSupport } from "../lesson/exclusions.ts";
+import { lessonNodes, sentencesOf } from "../lesson/nodes.ts";
 import { seededRng } from "../lesson/rng.ts";
 import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
-import { KC_LISTENING, KC_TEMPLATES, makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
+import { KC_LISTENING, KC_TEMPLATES, SENTENCE_TEMPLATES, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { askedKcs, creditedKcs, facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
@@ -304,25 +306,6 @@ export const practicableMistakes = (
   options: { readonly exclude?: ReadonlySet<TemplateId> | undefined; readonly speech?: SpeechSupport | undefined } = {},
 ): readonly Exercise[] => mistakeExercises({ course, rng: seededRng(1), introduced: [] }, state, exclusionsOf(course, options), seenKcs(state));
 
-const candidatesFor = (ctx: MakeContext, sentences: readonly BundleSentence[], kcs: readonly BundleKc[], exclude: ReadonlySet<TemplateId>): Exercise[] => {
-  const out: Exercise[] = [];
-  const ids = new Set<string>();
-  const add = (ex: Exercise | undefined): void => {
-    if (ex === undefined || exclude.has(ex.template) || ids.has(ex.id)) return;
-    ids.add(ex.id);
-    out.push(ex);
-  };
-  if (!exclude.has("select-image")) for (const kc of kcs) add(makeSelectImage(ctx, kc));
-  for (const kc of kcs) for (const make of KC_LISTENING) add(make(ctx, kc));
-  if (!exclude.has("match-pairs") && kcs.length >= 3) add(makeMatchPairs(ctx, kcs));
-  for (const s of sentences) {
-    for (const [template, make] of Object.entries(SENTENCE_TEMPLATES)) {
-      if (!exclude.has(template as TemplateId)) add(make(ctx, s));
-    }
-  }
-  return out;
-};
-
 /**
  * Whether the course can plan this request. A lesson request names one of the course's lesson or
  * script nodes; an old link may name one a newer course no longer has, which `plan` refuses.
@@ -373,8 +356,6 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const { unit, node } = found;
     introduced = node.introduces;
     const ctx: MakeContext = { course, rng, introduced, focus };
-    const fresh = node.introduces.flatMap<BundleKc>((id) => allKcs(course).find((k) => k.id === id) ?? []);
-    const pairsPool = fresh.length >= 3 ? fresh : [...fresh, ...unit.kcs.filter((k) => !fresh.includes(k) && seen.has(k.id))];
     const own = sentencesOf(course, unit, node);
     // Interleave: the earlier sentences that need review most (ADR 0097), marked as review.
     const lessons = lessonNodes(course);
@@ -386,7 +367,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const unheard = allKcs(course).filter((k) => needs.has(key(k.id, "listen")) && !node.introduces.includes(k.id));
     const hearing = unheard.flatMap((kc) => KC_LISTENING.flatMap((make) => make(ctx, kc) ?? [])).filter((ex) => !exclude.has(ex.template));
     for (const ex of hearing) reviewItems.add(ex.item);
-    pool = [...candidatesFor(ctx, own, pairsPool, exclude), ...candidatesFor(ctx, earlier, [], exclude), ...hearing];
+    pool = [...lessonCandidates(ctx, found, seen, exclude), ...candidatesFor(ctx, earlier, [], exclude), ...hearing];
     size = options.size ?? Math.min(14, Math.max(10, own.length * 2));
   } else if (request.mode === "review") {
     const ctx: MakeContext = { course, rng, introduced: [], focus };

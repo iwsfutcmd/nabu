@@ -5,7 +5,7 @@
  * practice and rereading.
  */
 import type { BundleNode, BundleUnit } from "@nabu/schema";
-import { lessonNodes } from "../lesson/build.ts";
+import { lessonNodes } from "../lesson/nodes.ts";
 import { scriptNodes } from "../lesson/script.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { LearnerState } from "./state.ts";

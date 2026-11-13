@@ -16,7 +16,7 @@
  * Pure: the state is the replayed log, `now` the caller's clock.
  */
 import type { BundleKc, TaggedText } from "@nabu/schema";
-import { courseExclusions } from "../lesson/build.ts";
+import { courseExclusions } from "../lesson/exclusions.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
