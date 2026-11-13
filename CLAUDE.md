@@ -525,6 +525,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   for script nodes: never add them to SENTENCE_TEMPLATES (every course's lessons and goldens would change).
 - The row (`scriptPathOf`) sits above the units and never gates them; a script node is planned as `{mode: "lesson"}`.
   Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
+- A script track's letters and marks come from the profile (core-cli `letters` and `unicode-set`), never a list in code;
+  `romanize` is `{scheme, orthography}`; a form with no letter is `script.no-letter` (ADR 0124).
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

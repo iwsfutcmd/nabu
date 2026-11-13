@@ -1817,6 +1817,22 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "The course page of the course studied last"
       }
     ]
+  },
+  {
+    "id": "D51",
+    "title": "Release builds and the alphabet track (C8)",
+    "context": "Release builds keep only reviewed sentences, stories and scenarios (ADR 0073). Alphabet nodes have no sentences, so a release build drops grc’s whole alphabet track today.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Keep script tracks in release builds: their letters come from the profile and their words from reviewed KC forms",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Leave it: no alphabet track until script tracks get their own review"
+      }
+    ]
   }
 ]
 </script>
@@ -2173,6 +2189,16 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     }
   },
   "progress": {
+    "C13": {
+      "state": "done",
+      "commit": "a89dfe26",
+      "note": "Merged: the compiled course is typed (the generated bundle models, validated once in compile_course), and one iter_items walks every sentence, word and story line; all nine courses build byte-identical, release builds and audio indexes included."
+    },
+    "C8": {
+      "state": "done",
+      "commit": "d33b1993",
+      "note": "Merged (ADR 0124): a script track reads its letters and marks from the profile (core-cli’s letters and unicode-set), final forms from its folds, and romanize names its romanized orthography; grc’s track compiles as before. Choice D51."
+    },
     "S1": {
       "state": "done",
       "commit": "bfce29a0",
