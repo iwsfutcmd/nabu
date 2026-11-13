@@ -1025,11 +1025,11 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     "L1":{"state":"done","commit":"564ce0e6"},
     "P5":{"state":"done","commit":"f10e2bbb"},
     "L6":{"state":"done","commit":"f10e2bbb"},
-    "L4":{"state":"in-progress","note":"Built, not committed: the fold records the day each word was met and when each skill (recognize, produce, listen) was shown or missed (D2, D3); the word list says which words are known and which skills a learning word still lacks, with counts, and search finds readings (S14). Being tuned together with L5."},
-    "L5":{"state":"in-progress","note":"Pulled into L4: sessions aim at each word’s missing skills (typing it, hearing it), a few cards spread through each session, more once the learner does them well; blanks fall on the words that need typing; earlier words’ own clips come back in lessons."},
-    "L10":{"state":"in-progress","note":"Gap-fill is recognition (D4). On its own, that left typed production at zero in the simulation; L5 is the fix."},
-    "S14":{"state":"in-progress"},
-    "R6":{"state":"in-progress","note":"Done inside the L4 rewrite: the word list reads the cards once, grouped by word."},
+    "L4":{"state":"done","commit":"5c162d08","note":"Known means every skill the course asks of a word (reading; writing where a sentence uses it; hearing where the voice is good) shown right on a later day than it was met; a miss takes it away (D2, D3). The word list says known or learning with the skills still to show, filters with counts, and counts known words per unit (ADR 0100)."},
+    "L5":{"state":"done","commit":"5c162d08","note":"Sessions aim at the skills words lack: typing and listening cards spread through each session, only where the session can still reach its target; blanks on the words that need typing (ADR 0101). Typed answers in 30 simulated days: 10–195 a run, above main’s level."},
+    "L10":{"state":"done","commit":"5c162d08","note":"Gap-fill is recognition (D4)."},
+    "S14":{"state":"done","commit":"5c162d08","note":"The link sits with Practice and shows the known count; search finds readings (zousan finds 早晨). “Practise these” waits for L3."},
+    "R6":{"state":"done","commit":"5c162d08","note":"The word list reads the cards once, grouped by word."},
     "C7":{"state":"in-progress","note":"Handed to a helper agent (branch fix/pipeline-scripts, its own worktree); merged and checked before it counts as done."},
     "C15":{"state":"in-progress","note":"Handed to a helper agent (branch fix/pipeline-scripts)."},
     "C16":{"state":"in-progress","note":"Handed to a helper agent (branch fix/pipeline-scripts)."},
@@ -1039,7 +1039,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     "S12":{"state":"in-progress","note":"Handed to a helper agent (branch fix/web-shell)."},
     "S10":{"state":"in-progress","note":"Handed to a helper agent (branch fix/web-shell)."},
     "W5":{"state":"in-progress","note":"Handed to a helper agent (branch fix/web-shell)."},
-    "L12":{"state":"in-progress","note":"Started with L4: the simulator now logs credits as the app does (the words a card asks about, the rest given), and the simulation test will check production and known words, which is how the production regression slipped through."}
+    "L12":{"state":"in-progress","note":"Started in 5c162d08: the simulator logs credits as the app does, and the simulation test checks typing and that some word shows it can be written. The rest (pacing, the word list, review sessions) waits for L2 and L3."}
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
