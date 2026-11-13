@@ -291,10 +291,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   plans one where it can. Optional marks: the profile's `match.marks.optional`; orthographies that spell the vowels
   (apc: Arabizi), `match.marks.spelledIn`.
 - Reading schemes are data (ADR 0109): a new scheme is `profiles/schemes/<id>.yaml` (schemas/reading-scheme.schema.json:
-  name, lang, answer orthography, syllable shape, tones), plug-ins in `nabu.schemes` for what voices need, and
+  `names` per language, lang, answer orthography, syllable shape, tones), plug-ins in `nabu.schemes` for what voices need, and
   `reading-syllables`/`reading-tone` conformance vectors. Never hard-code a scheme id in TS or Python.
 - Course and orthography names, blurbs and hints are course data (`names` in course.yaml, ADR 0109), read through
-  `@nabu/i18n` names.ts; the catalogs' `course.name.*`/`orthography.*` remain only for the draft translations.
+  `@nabu/i18n` names.ts (`schemeName`, `toneName` for schemes); never in the catalogs. Translations carry provenance
+  (drafts are `llm:`); pseudo-locales show the English names pseudo-localized.
 
 ## Report intake notes (see docs/adr/0055, docs/reports.md)
 - Reports (sentence_reported, answer_reported) also go to the deployment's Firestore intake (`reports.json` beside

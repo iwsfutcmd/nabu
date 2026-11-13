@@ -1725,7 +1725,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     },
     "C19": {
       "state": "done",
-      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite). D19 (fcbbc020): the draft translations of course, orthography, scheme and tone names now live in course.yaml and the scheme files, with their provenance, and the catalogs hold none; pseudo-locales show the English names pseudo-localized."
     },
     "C12": {
       "state": "done",
@@ -1733,7 +1733,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     },
     "C18": {
       "state": "done",
-      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite). D20 (89276b5d): in a course whose voice is rated bad (grc), the audio check says “Not shipped: this course’s voice is rated bad”; “Held back” is kept for clips that failed a check."
     },
     "S5": {
       "state": "done",
@@ -1993,7 +1993,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
-    "Merged to main (12 November): every Now finding and decisions D1–D18 and D21 are on main. D19 and D20 are with a helper. CI’s visual job waits for the new baselines from the pinned container (the next commit). wip/known-words, wip/pacing and the fix/* helper branches are merged and can be deleted."
+    "Merged to main (12 November): every Now finding and all 21 decisions are on main, with visual baselines regenerated in the pinned container. wip/known-words, wip/pacing and the fix/* helper branches are merged and can be deleted. The Next round is with six helpers (fix/speed, fix/session-end, fix/course-page, fix/reports-status, fix/course-data, fix/phone-player)."
   ]
 }
 </script>
