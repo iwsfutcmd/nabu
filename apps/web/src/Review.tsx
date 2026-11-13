@@ -21,6 +21,7 @@ import { Tab, TabList, TabPanel, Tabs } from "react-aria-components";
 import styles from "./App.module.css";
 import { CorrectionDialog, Sent, signOffOf, unitSignOffs, type Recording } from "./Corrections.tsx";
 import { isHttpError, request } from "./http.ts";
+import { storedReading } from "./readings.ts";
 import type { Account, Sync } from "./sync.ts";
 
 export interface ReviewerInfo {
@@ -332,6 +333,7 @@ export const ReviewPage = ({ loaded, sync, corrections, back, ...recording }: Pa
                 }}
                 review={controls}
                 details={details}
+                reading={storedReading(course.orthography)}
               />
             </TabPanel>
             <TabPanel id="queue">

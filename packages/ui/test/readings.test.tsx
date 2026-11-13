@@ -1,8 +1,12 @@
-import type { SchemeId } from "@nabu/schema";
+import type { LearnedWord } from "@nabu/core/learner";
+import type { CourseView } from "@nabu/core/lesson";
+import type { SchemeId, TaggedText } from "@nabu/schema";
 import type { JSX } from "react";
 import { describe, expect, it } from "vitest";
+import { SentenceList } from "../src/corrections/SentenceList.tsx";
 import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
 import { defaultRuby, ReadingsControl, rubyLayersOf, useReadings } from "../src/player/Readings.tsx";
+import { WordList } from "../src/words/WordList.tsx";
 import { render } from "./render.tsx";
 
 const yue = DEMO_ORTHOGRAPHIES.get("yue-Hant-HK/standard");
@@ -45,5 +49,27 @@ describe("reading layers (ADR 0071)", () => {
     expect([...several.matchAll(/data-reading="([^"]+)"/g)].map((m) => m[1])).toEqual(["off", "pinyin", "jyutping", "baxter"]);
     for (const label of ["Readings", "Off", "Pinyin", "Jyutping", "Middle Chinese (Baxter)"]) expect(several).toContain(label);
     expect(several).toContain('data-shown="jyutping"');
+  });
+});
+
+describe("the word list and the sentence list show the layer the learner chose", () => {
+  const LZH = "lzh-Hant/standard";
+  const ruby = { pinyin: [{ base: "說", text: "yuè" }], jyutping: [{ base: "說", text: "jyut6" }], baxter: [{ base: "說", text: "ywet" }] };
+  const form = { lang: "lzh-Hant", orthography: LZH, tokens: [{ surface: "說", kind: "word", sense: "說.yue", ruby }] } as unknown as TaggedText;
+  const units = [{ id: "u1", nodes: [], kcs: [], sentences: [{ id: "s1", forms: { [LZH]: { text: form } }, translations: {} }] }];
+  const course = { id: "lzh", orthography: LZH, supportKey: "en", audio: {}, units, profiles: new Map([[LZH, { source: lzh }]]) } as unknown as CourseView;
+  const word = { kc: "說.yue", unit: "u1", form, gloss: undefined, strength: 0.5, due: false, reviews: 1, known: false, skills: [] } as unknown as LearnedWord;
+  const shown = (html: string): string[] => [...html.matchAll(/<rt[^>]*>([^<]*)<\/rt>/g)].map((m) => m[1] as string);
+  const words = (reading?: SchemeId): string[] => shown(render(<WordList course={course} words={[word]} url={(p) => p} {...(reading === undefined ? {} : { reading })} />));
+  const sentences = (reading?: SchemeId): string[] =>
+    shown(render(<SentenceList course={course} corrections={new Map()} onUnit={() => undefined} onCorrect={() => undefined} {...(reading === undefined ? {} : { reading })} />));
+
+  it("as the player does: the learner's choice, else the profile's default", () => {
+    expect(words("baxter" as SchemeId)).toEqual(["ywet"]);
+    expect(words("jyutping" as SchemeId)).toEqual(["jyut6"]);
+    expect(sentences("baxter" as SchemeId)).toEqual(["ywet"]);
+    // Classical Chinese marks every layer off: none until the learner picks one.
+    expect(words()).toEqual([]);
+    expect(sentences()).toEqual([]);
   });
 });

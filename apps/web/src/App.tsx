@@ -40,7 +40,7 @@ import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
-import type { AnswerSubmitted, LearnerEvent, SchemeId, SentenceReported } from "@nabu/schema";
+import type { AnswerSubmitted, LearnerEvent, SentenceReported } from "@nabu/schema";
 import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
@@ -54,6 +54,7 @@ import { paceChoiceOf, setPaceChoice } from "./pace.ts";
 import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
+import { storedReading, storeReading } from "./readings.ts";
 import { reportIntake } from "./reports.ts";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { CardsPage, debugMode } from "./Debug.tsx";
@@ -700,30 +701,6 @@ const setBreakUntil = (b: Break, until: number): void => {
 };
 
 const onBreak = (b: Break): boolean => breakUntil(b) > Date.now();
-
-/**
- * The reading layer the learner last chose for an orthography (ADR 0071): Pinyin, Jyutping, Middle
- * Chinese or none for Classical Chinese. A per-device preference in localStorage; without storage
- * the player starts from the profile's default each time.
- */
-const READING_KEY = "nabu.reading.";
-
-const storedReading = (orthography: string): SchemeId | false | undefined => {
-  try {
-    const value = localStorage.getItem(READING_KEY + orthography);
-    return value === null ? undefined : value === "" ? false : (value as SchemeId);
-  } catch {
-    return undefined;
-  }
-};
-
-const storeReading = (orthography: string, scheme: SchemeId | false): void => {
-  try {
-    localStorage.setItem(READING_KEY + orthography, scheme === false ? "" : scheme);
-  } catch {
-    // Storage unavailable: the choice lasts this session.
-  }
-};
 
 /** What sessions leave out: listening and speaking while they are on a break. */
 const excludedBy = (off: { readonly listening: boolean; readonly speaking: boolean }): ReadonlySet<TemplateId> =>

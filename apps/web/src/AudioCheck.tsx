@@ -11,14 +11,15 @@
 import { correctable, correctablesByUnit, signedOff, type Correctable } from "@nabu/core/corrections";
 import type { AudioRef, CourseView } from "@nabu/core/lesson";
 import { surfaceOf, textOfSurface } from "@nabu/core/text";
-import type { AudioClip, AudioVerdict, AudioVerdicts, BundleClip, TaggedText } from "@nabu/schema";
+import type { AudioClip, AudioVerdict, AudioVerdicts, BundleClip, SchemeId, TaggedText } from "@nabu/schema";
 import { T, useTranslator } from "@nabu/ui";
-import { AudioButtons, rubySchemeOf, useClipPlayer, type LoadedCourse, type Speed } from "@nabu/ui/player";
+import { AudioButtons, defaultRuby, useClipPlayer, type LoadedCourse, type Speed } from "@nabu/ui/player";
 import { useCallback, useEffect, useMemo, useRef, useState, type JSX } from "react";
 import { Button, Label, TextField, TextArea, ToggleButton } from "react-aria-components";
 import type { AudioCheckData } from "../audio-check.ts";
 import styles from "./AudioCheck.module.css";
 import app from "./App.module.css";
+import { storedReading } from "./readings.ts";
 
 type Kind = "word" | "sentence" | "line" | "other";
 type Status = "pass" | "review" | "fail" | "none";
@@ -111,7 +112,7 @@ const download = (verdicts: AudioVerdicts): void => {
 interface RowProps {
   readonly row: Row;
   readonly orthography: string;
-  readonly ruby: false | NonNullable<ReturnType<typeof rubySchemeOf>>;
+  readonly ruby: SchemeId | false;
   readonly url: (path: string) => string;
   readonly isCurrent: boolean;
   readonly stored: Stored | undefined;
@@ -262,7 +263,7 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
 
   const voice = data?.voices[0];
   const orthography = voice?.orthography ?? course.orthography;
-  const ruby = rubySchemeOf(course.profiles.get(orthography)?.source) ?? false;
+  const ruby = defaultRuby(course.profiles.get(orthography)?.source, storedReading(orthography));
   const bundled = data?.bundled;
   const url = useCallback(
     (path: string): string => {

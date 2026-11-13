@@ -65,10 +65,6 @@ export interface Shortcuts {
   readonly backspace?: () => void;
 }
 
-/** The profile's ruby reading scheme (Jyutping for yue), if it has one. */
-export const rubySchemeOf = (profile: OrthographyProfile | undefined): SchemeId | undefined =>
-  profile?.annotations?.find((a) => a.kind === "reading" && a.render === "ruby")?.scheme;
-
 /** Whether the profile has a toggleable vocalization layer (harakat). */
 export const hasMarksLayer = (profile: OrthographyProfile | undefined): boolean =>
   profile?.annotations?.some((a) => a.kind === "vocalization" && a.toggle) === true && profile.match?.marks !== undefined;
