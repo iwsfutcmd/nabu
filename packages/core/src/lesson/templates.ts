@@ -268,18 +268,45 @@ const finalPunct = (text: TaggedText): string => {
   return last?.kind === "punct" ? last.surface : "";
 };
 
-const wordSurfaces = (text: TaggedText): readonly string[] => text.tokens.filter((t) => t.kind === "word").map((t) => t.surface.toLocaleLowerCase(text.lang));
+/**
+ * Words as their language lowercases them, per course and language. Ranking distractors asks this
+ * of every word in the earlier units for each card a plan considers, and lowercasing for a tag with
+ * a script (es-Latn) takes V8 microseconds a call: most of a review's planning with a year of
+ * history, before it was remembered.
+ */
+const lowered = new WeakMap<CourseView, Map<string, Map<string, string>>>();
+
+const lowerIn = (course: CourseView, lang: string, surface: string): string => {
+  let byLang = lowered.get(course);
+  if (byLang === undefined) {
+    byLang = new Map();
+    lowered.set(course, byLang);
+  }
+  let bySurface = byLang.get(lang);
+  if (bySurface === undefined) {
+    bySurface = new Map();
+    byLang.set(lang, bySurface);
+  }
+  let lower = bySurface.get(surface);
+  if (lower === undefined) {
+    lower = surface.toLocaleLowerCase(lang);
+    bySurface.set(surface, lower);
+  }
+  return lower;
+};
+
+const wordSurfaces = (course: CourseView, text: TaggedText): readonly string[] => text.tokens.filter((t) => t.kind === "word").map((t) => lowerIn(course, text.lang, t.surface));
 
 /**
  * How well a distractor sentence matches the answer's shape (P2): the same final punctuation, about
  * as many words, and words in common, so neither punctuation nor length gives the answer away.
  */
-const shapeScore = (answer: TaggedText): ((t: TaggedText) => number) => {
+const shapeScore = (course: CourseView, answer: TaggedText): ((t: TaggedText) => number) => {
   const end = finalPunct(answer);
-  const words = wordSurfaces(answer);
+  const words = wordSurfaces(course, answer);
   const own = new Set(words);
   return (t) => {
-    const theirs = wordSurfaces(t);
+    const theirs = wordSurfaces(course, t);
     const shared = theirs.filter((w) => own.has(w)).length;
     return (finalPunct(t) === end ? 3 : 0) - Math.min(3, Math.abs(theirs.length - words.length)) * 0.5 + Math.min(2, shared) * 0.5;
   };
@@ -289,9 +316,9 @@ const shapeScore = (answer: TaggedText): ((t: TaggedText) => number) => {
  * Whether a text's first word has a capital (in its own language's case; never in a caseless script):
  * what a sentence-initial word, a name or a sentence's first tile shows.
  */
-const capitalized = (text: TaggedText): boolean => {
+const capitalized = (course: CourseView, text: TaggedText): boolean => {
   const word = text.tokens.find((t) => t.kind === "word")?.surface ?? "";
-  return word !== word.toLocaleLowerCase(text.lang);
+  return word !== lowerIn(course, text.lang, word);
 };
 
 /** Places `answer` among `others` at a random position. */
@@ -440,7 +467,7 @@ export const makeChooseTranslation = (ctx: MakeContext, s: BundleSentence): Choo
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
   const pool = otherSentences(ctx, s).flatMap((o) => translationOf(ctx.course, o)?.text ?? []);
-  const others = pickRanked(ctx, pool, [translation.text], 2, shapeScore(translation.text));
+  const others = pickRanked(ctx, pool, [translation.text], 2, shapeScore(ctx.course, translation.text));
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, translation.text, others);
   return {
@@ -468,10 +495,10 @@ const makeTap = (
   if (tiles.length === 0) return undefined;
   // Three or four distractors (P2); where the answer starts with a capital, a capitalized one comes
   // first, so the capital doesn't mark the sentence's first tile.
-  const capital = tiles[0] !== undefined && capitalized(tiles[0]);
+  const capital = tiles[0] !== undefined && capitalized(ctx.course, tiles[0]);
   const bank = pool.flatMap((t) => tileGroups(t));
   const count = Math.min(4, Math.max(3, tiles.length));
-  const distractors = capital ? pickRanked(ctx, bank, tiles, count, (t) => (capitalized(t) ? 1 : 0)) : pickDistinct(ctx, bank, tiles, count);
+  const distractors = capital ? pickRanked(ctx, bank, tiles, count, (t) => (capitalized(ctx.course, t) ? 1 : 0)) : pickDistinct(ctx, bank, tiles, count);
   const all = [...tiles, ...distractors];
   const order = ctx.rng.shuffle(all.map((_, i) => i));
   return {
@@ -576,8 +603,8 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
   });
   // Same lexeme in another form first (هستم / هستی / هستند), then any other word; each with the
   // answer's case (P2): a capital that only marks the sentence's first word must not mark the answer.
-  const capital = capitalized(correct);
-  const sameCase = (t: TaggedText): number => (capitalized(t) === capital ? 1 : 0);
+  const capital = capitalized(ctx.course, correct);
+  const sameCase = (t: TaggedText): number => (capitalized(ctx.course, t) === capital ? 1 : 0);
   const sameSense = candidates.filter((c) => target.sense !== undefined && c.token.sense === target.sense);
   const preferred = pickRanked(ctx, sameSense.map((c) => single(c.text, c.token)), [correct], 2, sameCase);
   const rest = pickRanked(ctx, candidates.map((c) => single(c.text, c.token)), [correct, ...preferred], 2 - preferred.length, sameCase);
@@ -891,15 +918,35 @@ const minimallyApart = (ctx: MakeContext, a: TaggedText, b: TaggedText): boolean
   return la.length >= 2 && lb.length >= 2 && distance(la, lb) === 1;
 };
 
+/**
+ * The earlier words minimally apart from each KC's word, per course: they depend on the course
+ * alone, and finding them compares the word with every earlier word's letters, which a plan did
+ * for every word card it considered.
+ */
+const rivalsOf = new WeakMap<CourseView, Map<string, readonly TaggedText[]>>();
+
+const rivals = (ctx: MakeContext, kc: BundleKc, word: TaggedText): readonly TaggedText[] => {
+  let byKc = rivalsOf.get(ctx.course);
+  if (byKc === undefined) {
+    byKc = new Map();
+    rivalsOf.set(ctx.course, byKc);
+  }
+  let found = byKc.get(kc.id);
+  if (found === undefined) {
+    found = otherKcs(ctx, kc).flatMap((k) => {
+      const other = writtenForm(ctx, k);
+      return other !== undefined && keyOf(ctx.course, other) !== keyOf(ctx.course, word) && minimallyApart(ctx, word, other) ? [other] : [];
+    });
+    byKc.set(kc.id, found);
+  }
+  return found;
+};
+
 export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | undefined => {
   const audio = audioOf(ctx, kc.id);
   const word = writtenForm(ctx, kc);
   if (audio === undefined || word === undefined) return undefined;
-  const rivals = otherKcs(ctx, kc).flatMap((k) => {
-    const other = writtenForm(ctx, k);
-    return other !== undefined && keyOf(ctx.course, other) !== keyOf(ctx.course, word) && minimallyApart(ctx, word, other) ? [other] : [];
-  });
-  const rival = ctx.rng.shuffle(rivals)[0];
+  const rival = ctx.rng.shuffle(rivals(ctx, kc, word))[0];
   if (rival === undefined) return undefined;
   const { options, answer } = withAnswer(ctx, word, [rival]);
   return { template: "minimal-pair", id: id("minimal-pair", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, kc) };
