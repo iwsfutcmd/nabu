@@ -244,7 +244,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Expected tones come from pinned surface readings. Never tune templates to synthetic speech; tune on native
   recordings (evals/tones).
 - Tiers 1–2: `cd pipeline && uv run nabu speech serve`, API NABU_SPEECH_URL. Never prompt the recognizer with the
-  sentence. Per-orthography tiers live in apps/api/src/speech.ts (SPEECH_SETUP, REVIEW).
+  sentence. What an orthography is scored on is its profile's `speech` (ADR 0116): `tiers` (REVIEW), `recognizer`
+  (a fine-tune where Whisper's own fails), `phones`. The API reads it from the course's bundle; the round trip and
+  `nabu audio align` read it too. A language Whisper or eSpeak NG lacks is heard as its macrolanguage (CLDR's data,
+  `macrolanguages.json`: apc as ar). Never key speech settings by course id in code.
 - Recordings are never stored or logged anywhere; speaking answers log method voice with no raw text.
   A scored speaking card (speak, listen-speak) can be claimed right ("I said it right", ADR 0052): the claim's
   text is the prompt sentence, never what was heard; `nabu reports promote` skips it.
@@ -452,8 +455,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   forced alignment; a sentence is slowed toward `pace` (4.3 syllables/s, ≤1.6×) with Rubber Band (apt rubberband-cli).
   Generate on a GPU (Kaggle): the runtime and the pipeline on CUDA torch, `UV_NO_SYNC=1`, then `nabu audio align`
   for each voice. Never re-cast the anchors without the owner: they are the voices the owner chose.
-- The round trip hears yue with a Cantonese Whisper fine-tune (nabu.audio.qa `FINE_TUNED`), never Whisper's own
-  (it writes Mandarin), and compares differing characters by reading (homophones free, a tone apart half).
+- The round trip hears yue with a Cantonese Whisper fine-tune (the yue profile's `speech.recognizer`, ADR 0116), never
+  Whisper's own (it writes Mandarin), and compares differing characters by reading (homophones free, a tone apart half).
   `nabu audio check <course>` re-runs the check on existing clips.
 
 ## Toki Pona notes (see docs/adr/0086)
