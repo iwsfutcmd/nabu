@@ -51,6 +51,29 @@ describe("a reading question's clip (W9)", () => {
   });
 });
 
+describe("one set of play buttons a card", () => {
+  /** How many sets of play buttons the card shows. */
+  const sets = (html: string): number => [...html.matchAll(/data-audio-buttons=""/gu)].length;
+
+  it("a self-rated speaking card plays its model from the sentence, once", () => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const ex = cardOf(course, "speak.tier-0");
+    expect(course.audio[ex.item], `${ex.id} has a clip`).toBeDefined();
+    const html = play(course, ex, stateOf(course, ex));
+    expect(sets(html)).toBe(1);
+    // Beside the sentence, whose words it lights up as it plays.
+    expect(html).toMatch(/data-prompt-audio=""[^>]*>\s*<div[^>]*data-audio-buttons=""/u);
+  });
+
+  it.each([["apc", "apc-Arab/standard"], ["yue", "yue-Hant-HK/standard"], ["fa", "fa-Arab/standard"]] as const)("no card in %s's gallery shows two", (id, orthography) => {
+    const course = loadCourse(id, orthography);
+    for (const { exercise: ex } of cardGallery(course, SEED)) {
+      if (ex === undefined || ex.template === "match-pairs") continue;
+      expect(sets(play(course, ex, stateOf(course, ex))), ex.id).toBeLessThanOrEqual(1);
+    }
+  });
+});
+
 describe("putting off listening and speaking (P13)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const actions = (html: string): readonly string[] => [...html.matchAll(/data-action="([^"]+)"/gu)].map((m) => m[1] as string);

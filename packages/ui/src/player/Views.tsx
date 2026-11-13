@@ -225,6 +225,7 @@ const TargetPrompt = ({
   clipWhenAnswered = false,
   labelId = "exercise.prompt.label",
   gloss,
+  sayOnOpen = false,
 }: {
   text: TaggedText;
   props: ViewProps & ViewExtras;
@@ -235,12 +236,20 @@ const TargetPrompt = ({
   labelId?: MessageId;
   /** When its words may be tapped for their meanings (P1); never without. */
   gloss?: GlossWhen;
+  /** Say the clip as the card opens: the model a speaking card asks the learner to imitate (P5). */
+  sayOnOpen?: boolean;
 }): JSX.Element => {
   const t = useTranslator();
   const profile = useOrthography(text.orthography);
   const mode = effectiveWritingMode(profile, props.writingMode, "prompt");
   const audio = props.course.audio[props.ex.item];
   const player = useClipPlayer(audio, props.imageUrl, { preload: true });
+  const { play } = player;
+  // Said as the card opens, unless nothing may play by itself (sound off, or can't listen: P6).
+  const { sound } = props;
+  useEffect(() => {
+    if (sayOnOpen && audio !== undefined && sound !== false) play("normal");
+  }, [sayOnOpen, play, audio, sound]);
   useSayWhenAnswered(player, props, audio);
   const withheld = clipWhenAnswered && props.outcome === undefined;
   return (
@@ -854,27 +863,6 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
 type Recording = { readonly tag: "idle" } | { readonly tag: "recording" } | { readonly tag: "done"; readonly url: string } | { readonly tag: "unavailable" };
 
 /**
- * The model to imitate on a self-rated speaking card (P5): the sentence's clip, said when the card
- * opens (before the learner speaks, not after rating) and said again once rated (ADR 0064).
- */
-const ModelAudio = ({ props }: { props: Props<Speak> }): JSX.Element | null => {
-  const audio = props.course.audio[props.ex.item];
-  const player = useClipPlayer(audio, props.imageUrl, { preload: true });
-  const { play } = player;
-  // Said as the card opens, unless nothing may play by itself (sound off, or can't listen: P6).
-  const { sound } = props;
-  useEffect(() => {
-    if (audio !== undefined && sound !== false) play("normal");
-  }, [play, audio, sound]);
-  useSayWhenAnswered(player, props, audio);
-  return audio === undefined ? null : (
-    <div data-model-audio="">
-      <AudioButtons player={player} audio={audio} />
-    </div>
-  );
-};
-
-/**
  * Speak, tier 0 (§10.4): hear the model, read the sentence aloud, optionally record and play it
  * back, then rate yourself. Nothing is checked automatically and nothing is stored: the recording
  * lives in this component only. Record has the focus, so a stray Enter never rates the card.
@@ -930,11 +918,11 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
   const description = describedBy(props.ids, ["prompt", "hint"]);
   return (
     <div className={styles.body}>
-      <TargetPrompt text={ex.prompt} props={props} labelId="player.prompt.say" gloss="always" />
+      {/* The sentence's clip is the model to imitate: said as the card opens and again once rated. */}
+      <TargetPrompt text={ex.prompt} props={props} labelId="player.prompt.say" gloss="always" sayOnOpen />
       <div className={styles.hint} id={partId(props.ids, "hint")}>
         <T as="p" text={ex.translation} />
       </div>
-      <ModelAudio props={props} />
       <div className={styles.recorder} data-recorder={recording.tag}>
         {!supported || recording.tag === "unavailable" ? (
           <p className={styles.muted}>{t.format("player.speak.unavailable")}</p>
