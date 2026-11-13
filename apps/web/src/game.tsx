@@ -5,13 +5,13 @@
  * The deployment configures the rules in `game.json` next to the app (optional; the defaults
  * keep the gate off and streaks, XP and quests on).
  */
-import { canStart, daysBetween, daysThisWeek, DEFAULT_GAME, GOAL_DAYS, gameConfig, isGoalDays, replayGame, type GameConfig, type GameState, type Mode } from "@nabu/core/game";
-import type { LearnerEvent } from "@nabu/schema";
+import { canStart, daysBetween, daysThisWeek, DEFAULT_GAME, GOAL_DAYS, gameConfig, isGoalDays, type GameConfig, type GameState, type Mode } from "@nabu/core/game";
 import { useTranslator } from "@nabu/ui";
 import { useEffect, useState, type CSSProperties, type JSX } from "react";
 import { Button, Label, ProgressBar, Radio, RadioGroup } from "react-aria-components";
 import styles from "./App.module.css";
 import { localDate, msUntilNextLocalDate } from "./clock.ts";
+import { gameOfLog } from "./game-log.ts";
 import type { EventStore } from "./store.ts";
 
 /** The deployment's rules: game.json overrides on the defaults, or the defaults. */
@@ -25,18 +25,10 @@ export const loadGameConfig = async (base: string): Promise<GameConfig> => {
   }
 };
 
-/**
- * The game state of the whole device log (all courses) as of now. Synced events carry when the
- * server received them, so a late sync counts as the server counts it (§12.2) and the two agree.
- * `keep` leaves events out (sync's check: those the server rejected).
- */
-export const gameOf = async (store: EventStore, config: GameConfig, now = new Date(), keep: (event: LearnerEvent) => boolean = () => true): Promise<GameState> => {
+/** The game state of the whole device log (all courses) as of now (game-log.ts). */
+const gameOf = async (store: EventStore, config: GameConfig): Promise<GameState> => {
   const received = await store.receivedTimes();
-  return replayGame(
-    (await store.allEvents()).filter(keep).map((event) => ({ event, receivedAt: received.get(event.id) })),
-    config,
-    { today: localDate(now), now: now.toISOString() },
-  );
+  return gameOfLog(await store.allEvents(), received, config);
 };
 
 /**

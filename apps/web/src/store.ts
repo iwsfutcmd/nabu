@@ -41,6 +41,8 @@ export interface EventStore {
   /** The oldest events the server has not acknowledged, up to `limit`. */
   readonly pending: (limit: number) => Promise<readonly LearnerEvent[]>;
   readonly pendingCount: () => Promise<number>;
+  /** The ids of the events the server has not acknowledged (keys only). */
+  readonly pendingIds: () => Promise<ReadonlySet<string>>;
   /** The server has these events; `received` says when it first got each. */
   readonly acknowledge: (ids: readonly string[], received?: Readonly<Record<string, string>>) => Promise<void>;
   /** The server rejected these events (outbox.ts): they leave the outbox and are set aside, kept in the log. */
@@ -99,6 +101,7 @@ const indexedStore = async (): Promise<EventStore> => {
     ids: async () => new Set((await promised(db.transaction(EVENTS).objectStore(EVENTS).getAllKeys())) as string[]),
     pending: outbox.pending,
     pendingCount: async () => promised(db.transaction(OUTBOX).objectStore(OUTBOX).count()),
+    pendingIds: async () => new Set((await promised(db.transaction(OUTBOX).objectStore(OUTBOX).getAllKeys())) as string[]),
     acknowledge: outbox.acknowledge,
     setAside: outbox.setAside,
     held: () => heldOf(db),
@@ -146,6 +149,7 @@ const memoryStore = (): EventStore => {
     ids: () => Promise.resolve(new Set(log.keys())),
     pending: (limit) => Promise.resolve([...outbox].sort().slice(0, limit).flatMap((id) => log.get(id) ?? [])),
     pendingCount: () => Promise.resolve(outbox.size),
+    pendingIds: () => Promise.resolve(new Set(outbox)),
     acknowledge: (ids, times) => {
       for (const id of ids) outbox.delete(id);
       receive(times);
