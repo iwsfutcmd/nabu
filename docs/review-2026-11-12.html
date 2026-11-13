@@ -1223,6 +1223,54 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     ]
   },
   {
+    "id": "D16a",
+    "title": "A wrong answer after a lookup (D16)",
+    "context": "A lookup before answering makes the answer hinted: a right one is rated Hard at best and shows no skill.",
+    "options": [
+      {
+        "v": "a",
+        "label": "It misses no skill either (the lookup may have been another word); still rated Again (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "It counts as a miss for the card's words"
+      }
+    ]
+  },
+  {
+    "id": "D16b",
+    "title": "Looking up words in a story's lines (D16)",
+    "context": "Story lines can be tapped for meanings while reading; questions about them come after.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Free: the lines are the reading, never a question's answer (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "A lookup on a line before its question makes the question hinted"
+      }
+    ]
+  },
+  {
+    "id": "D16c",
+    "title": "Looking up words on a speaking card (D16)",
+    "context": "“Read this aloud” shows the sentence and what it means, and asks the learner to say it.",
+    "options": [
+      {
+        "v": "a",
+        "label": "A hint like any other: “Sounded right” after a lookup is rated Hard (what the helper built)"
+      },
+      {
+        "v": "b",
+        "label": "Never a hint: the card shows the meaning anyway and asks for it to be said",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "D17",
     "title": "Where does the sound switch live? (P6)",
     "context": "The lesson header is now: quit, progress, “N left”, the display menu, and a speaker button (the same setting as in Preferences).",
@@ -1327,6 +1375,9 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     "D14": "a",
     "D15": "a",
     "D16": "a",
+    "D16a": "a",
+    "D16b": "a",
+    "D16c": "b",
     "D17": "a",
     "D18": "a",
     "D19": "a",
@@ -1785,7 +1836,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     },
     "P1": {
       "state": "done",
-      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite). D16 (aa07dd75): a meaning opened on a card before its answer is checked marks the answer hinted (<code>input.hinted</code>): a right answer rates Hard at best, and the first try shows no skill and misses none. Lookups after checking, and on story lines, are free."
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite). D16 (aa07dd75): a meaning opened on a card before its answer is checked marks the answer hinted (<code>input.hinted</code>): a right answer rates Hard at best, and the first try shows no skill and misses none. Lookups after checking, on story lines and on speaking cards are free (D16a–c, 1345ab0c)."
     },
     "S15": {
       "state": "done",
