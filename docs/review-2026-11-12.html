@@ -2189,6 +2189,21 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     }
   },
   "progress": {
+    "R2": {
+      "state": "done",
+      "commit": "ca3e355e",
+      "note": "Merged (ADR 0119): the fold updates the performance model in place on its private draft, checked against the old fold as an oracle: a simulated year replays in about 0.55 s instead of about 5 s, and opening es with that history at 4× CPU takes 4.2 s instead of 16 s."
+    },
+    "R7": {
+      "state": "done",
+      "commit": "8f01176e",
+      "note": "Merged (ADR 0119): the Han font faces moved to their own stylesheet, loaded when Han text first needs them; render-blocking CSS drops from 128.6 kB to 9.6 kB gzipped and first paint comes about half a second sooner."
+    },
+    "R8": {
+      "state": "done",
+      "commit": "b5937d47",
+      "note": "Merged (ADR 0119): the service worker takes hashed build files from the HTTP cache and precaches only the learner’s UI catalog; a first visit downloads 466 kB instead of 1,141 kB."
+    },
     "C13": {
       "state": "done",
       "commit": "a89dfe26",

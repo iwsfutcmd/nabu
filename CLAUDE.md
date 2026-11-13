@@ -97,6 +97,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Phase 4 notes (see docs/adr/0036–0039)
 - Learner state is a projection: @nabu/core/learner `replay(events)`. Never store derived state; change the fold.
+- The fold changes its private draft in place (`learn`, ADR 0119): never pass it a state's own objects, and mirror a
+  deliberate fold change in test/fold-before-r2.ts (the oracle a replay is checked against).
 - Ratings come from the answer, never the learner (but tier-0 speaking): pace per unit of length decides Hard and
   Easy (ADR 0096, `PACE_*` in state.ts); tune those on real logs, never on the simulator's latency model.
   Never delete events to undo progress: starting a course over is a `progress_reset` event (ADR 0049).
@@ -281,6 +283,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   never make a template depend on media without the builder checking course.audio or kc.image (restrictMedia drops them).
 - The service worker is apps/web/sw/sw.ts (built by vite-sw.ts, its own tsconfig with the WebWorker lib). Code it
   shares with the app (idb.ts, outbox.ts, http.ts, caches.ts) must not touch window or import React.
+- Files under `assets/` come from the HTTP cache (hashed names); the worker precaches only the UI catalogs listed under
+  `ui-catalogs` (ADR 0119). Han font faces live only in `@nabu/ui/fonts-han.css`, loaded with the text that needs them.
 - Course files are cached by URL in "nabu-bundles"; downloads check sha256 and store the manifest last.
 - Game state on the server: GET /v1/game; devices replay with the server's receipt times (store.receivedTimes).
   Instances set NABU_GAME to the game.json the web app is deployed with.
