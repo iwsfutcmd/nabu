@@ -2400,6 +2400,10 @@ export interface SessionCompleted {
    * Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done.
    */
   readonly placed?: readonly string[];
+  /**
+   * Placement only (ADR 0111): the KCs the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them.
+   */
+  readonly seeded?: readonly KcRefLocal[];
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

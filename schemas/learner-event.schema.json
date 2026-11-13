@@ -737,6 +737,14 @@
             "minLength": 1
           },
           "uniqueItems": true
+        },
+        "seeded": {
+          "description": "Placement only (ADR 0111): the KCs the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KcRefLocal"
+          },
+          "uniqueItems": true
         }
       }
     },

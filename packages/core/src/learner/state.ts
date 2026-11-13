@@ -276,8 +276,19 @@ const completed = (d: Draft, e: SessionCompleted): void => {
   if (!e.summary.completed) return;
   addXp(d, e.localDate, XP.session + (e.summary.exercises > 0 && e.summary.correctFirstTry === e.summary.exercises ? XP.perfect : 0));
   if ((e.mode === "lesson" || e.mode === "story") && e.node !== undefined && !d.completedNodes.includes(e.node)) d.completedNodes.push(e.node);
-  // A placement test marks the nodes the learner placed out of as done (§9.5).
-  if (e.mode === "placement") for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
+  // A placement test marks the nodes the learner placed out of as done (§9.5), and seeds their KCs
+  // (ADR 0111): a recognize card each, as if recalled with ease at the end of the test, so the
+  // planner counts them as seen, review brings them back at long intervals and the word list shows
+  // them. A KC with a card already keeps it.
+  if (e.mode === "placement") {
+    for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
+    const at = new Date(e.clientTime);
+    for (const kc of e.seeded ?? []) {
+      d.met[kc] ??= e.localDate;
+      const key = cardKey(kc, "recognize", e.orthography);
+      if (d.cards[key] === undefined) d.cards[key] = fromCard(scheduler.next(createEmptyCard(at), at, GRADES.easy).card);
+    }
+  }
 };
 
 /**

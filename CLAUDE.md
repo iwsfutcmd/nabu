@@ -352,7 +352,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `iPlusOne: 2`. A unit that first teaches a tense defines its form KC.
 - es-Latn/standard: a missing accent is CORRECT_MARKS; one that spells another word of the course is WRONG_WORD
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
-- Placement is adaptive (ADR 0077: a block per unit, gallop then bisect, then node steps); `placement: {production:
+- A finished placement seeds the placed nodes' KCs (ADR 0111): `seeded` on the event (`placedKcs`), a recognize card
+  each in the fold. Placement is adaptive (ADR 0077: a block per unit, gallop then bisect, then node steps); `placement: {production:
   typed}` makes its production typed. The test is data and `runTest` a pure function: never make it stateful.
 - Two voices clone Cuban recordings (`nabu audio cast --recording`; a man's CC BY, a woman's CC0); clips are CC-BY-NC-4.0
   (OmniVoice weights) and credit the recording. Cut a reference on whole words, no breath at either end.
