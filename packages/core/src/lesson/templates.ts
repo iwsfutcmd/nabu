@@ -41,6 +41,10 @@ import type { Rng } from "./rng.ts";
 import { gradeSpeech, toneSystemOf } from "../speech/score.ts";
 import { expectedSyllables } from "../speech/tone.ts";
 
+/**
+ * Everything about a template in one place (C11): what it exercises, how it is answered, and what the
+ * planner and the performance model need to know of it.
+ */
 export interface TemplateInfo {
   readonly facet: Facet;
   readonly modality: {
@@ -48,43 +52,59 @@ export interface TemplateInfo {
     readonly mic: boolean;
     readonly input: "choice" | "pairs" | "tiles" | "text" | "voice";
   };
+  /**
+   * The performance model's cold-start difficulty (§9.3): choosing among three is easier than
+   * building from tiles, which is easier than typing; hearing is harder than reading the same item.
+   * Tuned on the 30-day simulation (test/simulation.test.ts), to be replaced by fitted values.
+   */
+  readonly prior: number;
+  /** At most this many a session (§9.4 variety); three where unset. */
+  readonly perSession?: number;
+  /** It can present a word for the first time: a new KC is recognized before it is produced or read. */
+  readonly presents?: true;
 }
 
 export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
-  "select-image": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "match-pairs": { facet: "recognize", modality: { audioOut: false, mic: false, input: "pairs" } },
-  "choose-translation": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "translate-tap.l2-l1": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
+  "select-image": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.6, perSession: 2, presents: true },
+  "match-pairs": { facet: "recognize", modality: { audioOut: false, mic: false, input: "pairs" }, prior: -1.4, perSession: 1, presents: true },
+  "choose-translation": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.0, presents: true },
+  "translate-tap.l2-l1": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.4, presents: true },
   // The tiles are handed to the learner, so no production credit (§8.5).
-  "translate-tap.l1-l2": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
-  "translate-type.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" } },
-  "complete-translation": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" } },
+  "translate-tap.l1-l2": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: 0.0, presents: true },
+  "translate-type.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 1.0 },
+  "complete-translation": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.6 },
   // Picking the missing word among options is recognizing it, as tiles are (D4 in the 2026-11 review,
   // ADR 0100): producing a word means supplying it.
-  "gap-fill": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  // A word's pronunciation as its script leaves it out (ADR 0054): reading the script, typed.
-  vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  transcribe: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" } },
-  "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
+  "gap-fill": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.2 },
+  "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.4 },
+  "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: 0.4 },
+  // A word's pronunciation as its script leaves it out (ADR 0054). Its vowel marks, chosen among other
+  // vocalizations of its letters, are like a reading among a few (ADR 0098); its reading typed is all
+  // or nothing, every tone counting.
+  vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.4, perSession: 1 },
+  transcribe: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.8, perSession: 1 },
+  // Self-rated speaking checks nothing (P5): one card a session, never a filler (L6).
+  "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" }, prior: -1.5, perSession: 1 },
   // Phase 9: scored speaking (tiers 1–3) and hearing tones.
-  speak: { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
-  "listen-speak": { facet: "speak", modality: { audioOut: true, mic: true, input: "voice" } },
-  "tone-identify": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
-  "listen-tap": { facet: "listen", modality: { audioOut: true, mic: false, input: "tiles" } },
-  "listen-type": { facet: "listen", modality: { audioOut: true, mic: false, input: "text" } },
-  "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
-  "minimal-pair": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
+  // Scored speaking: saying it well is harder than rating yourself; repeating a clip is a little harder
+  // again (no text). Naming one of six tones is hard for beginners.
+  speak: { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" }, prior: 0.2, perSession: 2 },
+  "listen-speak": { facet: "speak", modality: { audioOut: true, mic: true, input: "voice" }, prior: 0.4, perSession: 2 },
+  "tone-identify": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: 0.6 },
+  // Hearing is harder than reading the same item: the listening priors sit above their reading twins.
+  "listen-tap": { facet: "listen", modality: { audioOut: true, mic: false, input: "tiles" }, prior: 0.3, perSession: 2 },
+  "listen-type": { facet: "listen", modality: { audioOut: true, mic: false, input: "text" }, prior: 1.2, perSession: 2 },
+  "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: -0.6, perSession: 2 },
+  "minimal-pair": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: -0.2, perSession: 1 },
   // Stories (Phase 6): reading comprehension exercises recognition of the line's words.
-  "story-choose": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "story-arrange": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
+  "story-choose": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.0 },
+  "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.6 },
+  "story-arrange": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.2 },
   // Script tracks (ADR 0088): built only for script nodes (lesson/script.ts), never for sentences.
-  "letter-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  "letter-pairs": { facet: "read-script", modality: { audioOut: false, mic: false, input: "pairs" } },
-  "word-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  "word-write": { facet: "write-script", modality: { audioOut: false, mic: false, input: "tiles" } },
+  "letter-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.4, perSession: 4, presents: true },
+  "letter-pairs": { facet: "read-script", modality: { audioOut: false, mic: false, input: "pairs" }, prior: -1.4, perSession: 1, presents: true },
+  "word-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.8, presents: true },
+  "word-write": { facet: "write-script", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.2 },
 };
 
 /** Templates that play audio: "can't listen now" leaves them out (§10, §11.5). */

@@ -10,6 +10,7 @@
  * shared item and KC difficulties.
  */
 import type { TemplateId } from "../lesson/exercise.ts";
+import { TEMPLATES } from "../lesson/templates.ts";
 import type { Facet } from "../lesson/exercise.ts";
 
 export const PERFORMANCE_MODEL = "elo@1";
@@ -24,48 +25,10 @@ export interface Performance {
   readonly w: number;
 }
 
-/**
- * Cold-start difficulties by template (§9.3): choosing among three is easier
- * than building from tiles, which is easier than typing. Tuned on the 30-day
- * simulation (test/simulation.test.ts), to be replaced by fitted values.
- */
-export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = {
-  "select-image": -1.6,
-  "match-pairs": -1.4,
-  "choose-translation": -1.0,
-  "translate-tap.l2-l1": -0.4,
-  "translate-tap.l1-l2": 0.0,
-  "gap-fill": -0.2,
-  "char-read": -0.4,
-  "reading-disambiguation": 0.4,
-  // A word's vowel marks, chosen among other vocalizations of its letters (ADR 0098): like a reading
-  // among a few. Its reading typed (ADR 0054): all or nothing, every tone counts.
-  vocalize: -0.4,
-  transcribe: 0.8,
-  "complete-translation": 0.6,
-  "translate-type.l1-l2": 1.0,
-  "speak.tier-0": -1.5,
-  // Scored speaking (Phase 9): saying it well is harder than rating yourself; repeating a clip is a
-  // little harder again (no text). Naming one of six tones is hard for beginners.
-  speak: 0.2,
-  "listen-speak": 0.4,
-  "tone-identify": 0.6,
-  // Hearing is harder than reading the same item: the listening priors sit above their reading twins.
-  "listen-select": -0.6,
-  "minimal-pair": -0.2,
-  "listen-tap": 0.3,
-  "listen-type": 1.2,
-  // Stories: questions in context, about lines just read.
-  "story-choose": -1.0,
-  "story-complete": -0.6,
-  "story-arrange": -0.2,
-  // Script tracks (ADR 0088): a letter among four is easy, a word among four a little less;
-  // building a word from its letters is like building a sentence from tiles.
-  "letter-read": -1.4,
-  "letter-pairs": -1.4,
-  "word-read": -0.8,
-  "word-write": -0.2,
-};
+/** Cold-start difficulties by template (§9.3): each template's `prior` in `TEMPLATES` (C11). */
+export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = Object.fromEntries(
+  (Object.keys(TEMPLATES) as TemplateId[]).map((t) => [t, TEMPLATES[t].prior]),
+) as Record<TemplateId, number>;
 
 export const initialPerformance = (): Performance => ({ theta: 1.5, facet: {}, template: {}, kc: {}, item: {}, w: 2 });
 

@@ -21,7 +21,7 @@ import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
 import { seededRng } from "../lesson/rng.ts";
 import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
-import { KC_LISTENING, KC_TEMPLATES, makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
+import { KC_LISTENING, KC_TEMPLATES, makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { askedKcs, creditedKcs, facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
@@ -92,23 +92,8 @@ const CALIBRATION_WEIGHT = 90;
 
 /** Variety (§9.4): no template more than three times a session, and at most two speaking turns. */
 const MAX_PER_TEMPLATE_DEFAULT = 3;
-const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = {
-  // Self-rated speaking checks nothing (P5): one card a session, never a filler (L6).
-  "speak.tier-0": 1,
-  speak: 2,
-  "listen-speak": 2,
-  "match-pairs": 1,
-  "select-image": 2,
-  "listen-tap": 2,
-  "listen-type": 2,
-  "listen-select": 2,
-  "minimal-pair": 1,
-  "letter-pairs": 1,
-  "letter-read": 4,
-  // A word's pronunciation in its sentence (ADR 0054, 0095): one card of each a session.
-  vocalize: 1,
-  transcribe: 1,
-};
+/** At most this many of a template a session (§9.4): its own cap (`TEMPLATES[t].perSession`), else three. */
+const capOf = (template: TemplateId): number => TEMPLATES[template].perSession ?? MAX_PER_TEMPLATE_DEFAULT;
 
 /**
  * Review inside a lesson (ADR 0097): earlier sentences to bring back. The share of a lesson's cards
@@ -240,7 +225,8 @@ const reviewSentences = (
 const PRONOUNCE: ReadonlySet<TemplateId> = new Set<TemplateId>(["vocalize", "transcribe"]);
 
 // On a script track (ADR 0088), a new letter is read before it is written.
-const RECOGNITION = new Set<TemplateId>(["select-image", "match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2", "letter-read", "letter-pairs", "word-read"]);
+/** Templates that can present a new word (`TemplateInfo.presents`). */
+const RECOGNITION: ReadonlySet<TemplateId> = new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].presents === true));
 
 /** p̂ for an exercise in this state, in the course's orthography, at `now`. */
 export const predictExercise = (state: LearnerState, ex: Exercise, orthography: string, now: string): number => {
@@ -449,7 +435,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const quota = quotas.reduce((a, q) => a + q.quota, 0);
   const allowed = (c: Candidate): boolean => {
     const same = chosen.filter((x) => x.ex.template === c.ex.template).length;
-    if (same >= (MAX_PER_TEMPLATE[c.ex.template] ?? MAX_PER_TEMPLATE_DEFAULT)) return false;
+    if (same >= capOf(c.ex.template)) return false;
     if (reviewItems.has(c.ex.item) && chosen.filter((x) => reviewItems.has(x.ex.item)).length >= reviewCap()) return false;
     if (RECOGNITION.has(c.ex.template)) return true;
     // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
