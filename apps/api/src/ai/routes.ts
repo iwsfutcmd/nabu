@@ -13,7 +13,7 @@
 import { acceptForJudge, accepts, answerUnitsPrompt, checkTurn, explanationOf, gateOpen, judgeable, knownForms, productionAccept, provisionalOutcome, autoTokens, ROLEPLAY_HISTORY, textBase, type ExplanationContext, type TextBase } from "@nabu/core/ai";
 import { localDateOf } from "@nabu/core/game";
 import { replay } from "@nabu/core/learner";
-import { allSentences, type CourseView } from "@nabu/core/lesson";
+import { allSentences, TEMPLATES, type CourseView, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { AnswerSubmitted, BundleScenario, BundleSentence, EvalGate, ExplanationOutput, JudgeOutput, JudgeVerdict, OutcomeRevised, RoleplayOutput, RoleplayTurn, TaggedText } from "@nabu/schema";
 import { createHash } from "node:crypto";
@@ -37,8 +37,8 @@ export interface AiDeps {
   readonly now: () => number;
 }
 
-/** Templates Explain My Answer covers: translations, typed or built from tiles. */
-const EXPLAINED = new Set(["translate-type.l1-l2", "translate-tap.l1-l2", "translate-tap.l2-l1"]);
+/** Templates Explain My Answer covers: translations, typed or built from tiles (`TemplateInfo.explained`, C11). */
+const EXPLAINED: ReadonlySet<string> = new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].explained === true));
 /** New words a roleplay turn may use beyond the learner's known vocabulary (§13.4 k). */
 export const ROLEPLAY_NEW_WORDS = 1;
 const ROLEPLAY_ATTEMPTS = 3;

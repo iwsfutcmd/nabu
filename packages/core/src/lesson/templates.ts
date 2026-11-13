@@ -63,16 +63,20 @@ export interface TemplateInfo {
   readonly perSession?: number;
   /** It can present a word for the first time: a new KC is recognized before it is produced or read. */
   readonly presents?: true;
+  /** The learner rates it themselves (tier-0 speaking): no verdict, never a filler (P5, L6). */
+  readonly selfRated?: true;
+  /** Explain My Answer covers it (§13.3): a translation, typed or built from tiles. */
+  readonly explained?: true;
 }
 
 export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "select-image": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.6, perSession: 2, presents: true },
   "match-pairs": { facet: "recognize", modality: { audioOut: false, mic: false, input: "pairs" }, prior: -1.4, perSession: 1, presents: true },
   "choose-translation": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.0, presents: true },
-  "translate-tap.l2-l1": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.4, presents: true },
+  "translate-tap.l2-l1": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.4, presents: true, explained: true },
   // The tiles are handed to the learner, so no production credit (§8.5).
-  "translate-tap.l1-l2": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: 0.0, presents: true },
-  "translate-type.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 1.0 },
+  "translate-tap.l1-l2": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: 0.0, presents: true, explained: true },
+  "translate-type.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 1.0, explained: true },
   "complete-translation": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.6 },
   // Picking the missing word among options is recognizing it, as tiles are (D4 in the 2026-11 review,
   // ADR 0100): producing a word means supplying it.
@@ -85,7 +89,7 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.4, perSession: 1 },
   transcribe: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.8, perSession: 1 },
   // Self-rated speaking checks nothing (P5): one card a session, never a filler (L6).
-  "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" }, prior: -1.5, perSession: 1 },
+  "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" }, prior: -1.5, perSession: 1, selfRated: true },
   // Phase 9: scored speaking (tiers 1–3) and hearing tones.
   // Scored speaking: saying it well is harder than rating yourself; repeating a clip is a little harder
   // again (no text). Naming one of six tones is hard for beginners.

@@ -414,7 +414,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   };
   // Whether the session runs well under the target success so far (self-rated speaking aside).
   const struggling = (): boolean => {
-    const counted = chosen.filter((x) => x.ex.template !== "speak.tier-0");
+    const counted = chosen.filter((x) => TEMPLATES[x.ex.template].selfRated !== true);
     const meanP = counted.length === 0 ? target : counted.reduce((a, x) => a + x.p, 0) / counted.length;
     return meanP < target - REVIEW_SHORTFALL;
   };
@@ -446,7 +446,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.
   // A self-rated speaking card is no verdict (L6): it neither pulls the session's mean p̂ toward the
   // target nor away, so the calibration never reaches for it as an easy card.
-  const selfRated = (c: Candidate): boolean => c.ex.template === "speak.tier-0";
+  const selfRated = (c: Candidate): boolean => TEMPLATES[c.ex.template].selfRated === true;
   const score = (c: Candidate): number => {
     const counted = chosen.filter((x) => !selfRated(x));
     const sumP = counted.reduce((a, x) => a + x.p, 0);

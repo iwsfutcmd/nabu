@@ -8,7 +8,7 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { allKcs, cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
+import { allKcs, cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, TEMPLATES, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
@@ -262,7 +262,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   // Every speaking card can be put off, as every listening card can: rated or scored alike.
   const speaking = SPEAKING.has(ex.template);
   const listening = LISTENING.has(ex.template);
-  const pairs = ex.template === "match-pairs" || ex.template === "letter-pairs";
+  const pairs = TEMPLATES[ex.template].modality.input === "pairs";
 
   keys.current = (e) => {
     // Never act during IME composition (§6.7), inside text fields (they handle Enter), or in a dialog:

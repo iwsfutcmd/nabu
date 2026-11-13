@@ -9,7 +9,7 @@
  * - roleplay conversations, once the scenario's node is done.
  */
 import { judgeable, ROLEPLAY_HISTORY, textBase } from "@nabu/core/ai";
-import { answerTextOf, SPEAKING, type CourseView, type Exercise, type Response, type TemplateId } from "@nabu/core/lesson";
+import { answerTextOf, SPEAKING, TEMPLATES, type CourseView, type Exercise, type Response, type TemplateId } from "@nabu/core/lesson";
 import type { LearnerState } from "@nabu/core/learner";
 import { surfaceOf } from "@nabu/core/text";
 import { directionOf } from "@nabu/i18n";
@@ -33,7 +33,8 @@ export interface AiStatus {
 
 const OFF: AiStatus = { judge: false, explain: false, roleplay: false };
 /** Templates whose wrong answers can be explained: translations, typed or built from tiles. */
-const EXPLAINED: ReadonlySet<string> = new Set(["translate-type.l1-l2", "translate-tap.l1-l2", "translate-tap.l2-l1"]);
+/** Templates Explain My Answer covers (`TemplateInfo.explained`, C11). */
+const EXPLAINED: ReadonlySet<string> = new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].explained === true));
 
 const noSync = { subscribe: () => () => undefined, get: () => undefined };
 
@@ -93,7 +94,7 @@ export interface AnswerHelpProps {
  * review queue. Speaking is graded by the voice, and pairs have no single answer: neither is claimed.
  */
 const reportable = (template: string): boolean =>
-  (!SPEAKING.has(template as TemplateId) || SCORED_SPEECH.has(template)) && template !== "match-pairs" && template !== "letter-pairs";
+  (!SPEAKING.has(template as TemplateId) || SCORED_SPEECH.has(template)) && TEMPLATES[template as TemplateId].modality.input !== "pairs";
 
 /**
  * The grades that let an answer pass with a difference (a typo, marks, a variant form): only after
@@ -107,7 +108,7 @@ const LENIENT: ReadonlySet<string> = new Set(["CORRECT_WITH_TYPO", "CORRECT_MARK
  * say they said it right. The claim's text is the sentence they were asked to say: no recording
  * and no transcript leave the device. A self-rated card (speak.tier-0) has nothing to overrule.
  */
-const SCORED_SPEECH: ReadonlySet<string> = new Set(["speak", "listen-speak"]);
+const SCORED_SPEECH: ReadonlySet<string> = new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].modality.mic && TEMPLATES[t].selfRated !== true));
 
 /** "My answer should have been accepted" or "this should have been wrong" (§13.2, ADR 0052). */
 const reportOf = (answer: AnswerSubmitted, text: string, claim: "accept" | "reject"): AnswerReported => {
