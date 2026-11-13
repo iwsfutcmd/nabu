@@ -398,7 +398,7 @@ const CoursePath = ({
         {mistakes > 0 ? (
           <a className={styles.link} href={to({ mode: "mistakes" })} data-practice-mode="mistakes" data-count={mistakes}>
             {t.format("app.practice.mistakes")}
-            <span className={styles.count}>{t.format("app.practice.to-fix", { count: mistakes })}</span>
+            <span className={styles.count}>{t.format("app.practice.to-fix-later", { count: mistakes })}</span>
           </a>
         ) : (
           <span className={`${styles.link} ${styles.disabled}`} aria-disabled="true" data-practice-mode="mistakes" data-count={0}>
