@@ -9,7 +9,7 @@
  * - **Offline.** Reports wait on the device and go when it is back online.
  * - **Retries.** A report is a document named by its event's id, so a retried send cannot
  *   duplicate it.
- * - **No intake.** With no `reports.json`, nothing is sent, and the app says nothing about it.
+ * - **No intake.** With no `reports.json`, nothing is sent here, and no form says reports are public.
  *
  * Where a report goes is said where one is made (ADR 0115, `useReportsReach`): to the course's
  * reviewers (an intake, or an account whose server files it in its review queue), to them once the
