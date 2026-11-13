@@ -76,16 +76,22 @@ export const offNow = (): Off => ({ listening: offFor("listening"), speaking: of
 export const exclusionsOf = (off: Off): ReadonlySet<TemplateId> =>
   new Set<TemplateId>([...(off.listening !== undefined ? LISTENING : []), ...(off.speaking !== undefined ? SPEAKING : [])]);
 
-const LISTEN_OFF: ReadonlySet<Facet> = new Set<Facet>(["listen"]);
 const NOTHING_OFF: ReadonlySet<Facet> = new Set<Facet>();
+const LISTEN_OFF: ReadonlySet<Facet> = new Set<Facet>(["listen"]);
+const SPEAK_OFF: ReadonlySet<Facet> = new Set<Facet>(["speak"]);
+const BOTH_OFF: ReadonlySet<Facet> = new Set<Facet>(["listen", "speak"]);
 
 /**
- * The facets turned off for good (D41), which known words and what is due leave out (the core's
- * `facetsOff`): listening, while it is turned off in Preferences. A break turns nothing off, and
- * speaking turned off only leaves its exercises out (D41 is about listening). Always one of two
- * sets, so a memo that depends on it sees a change only when there is one.
+ * The facets turned off for good, which known words and what is due leave out (the core's
+ * `facetsOff`): listening (D41) and speaking (D45), each while it is turned off in Preferences. A
+ * break turns nothing off. Always one of four sets, so a memo that depends on it sees a change only
+ * when there is one.
  */
-export const facetsOffOf = (off: Off): ReadonlySet<Facet> => (off.listening === "setting" ? LISTEN_OFF : NOTHING_OFF);
+export const facetsOffOf = (off: Off): ReadonlySet<Facet> => {
+  const listen = off.listening === "setting";
+  const speak = off.speaking === "setting";
+  return listen ? (speak ? BOTH_OFF : LISTEN_OFF) : speak ? SPEAK_OFF : NOTHING_OFF;
+};
 
 /** On again, at once: the break ends and the setting is on. */
 export const turnOn = (m: Modality): void => {

@@ -162,7 +162,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Due means a facet's recall is below the target (`dueFacets`, `LearnedWord.due`): never a card's FSRS due date. The
   course page counts due words. A review session has a card per word needing one (5–15) and plans only from the
   neediest sentences and words plus a few well-known ones: never build candidates from every studied sentence (R3).
-- Listening turned off for good (Preferences, D41; never a break) is asked of no word and never due: pass `facetsOff`
+- Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 
 ## Phase 5 notes (see docs/adr/0040–0042)

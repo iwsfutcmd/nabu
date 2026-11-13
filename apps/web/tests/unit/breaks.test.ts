@@ -88,19 +88,23 @@ describe("what sessions, known words and what is due leave out", () => {
     expect(exclusionsOf(offNow())).toEqual(new Set([...LISTENING, ...SPEAKING]));
   });
 
-  it("only listening turned off for good leaves listening out of known words and what is due (D41)", () => {
+  it("listening or speaking turned off for good leaves it out of known words and what is due (D41, D45)", () => {
     vi.useFakeTimers({ now: new Date("2026-11-12T09:00:00Z") });
     withStorage();
     expect(facetsOffOf(offNow())).toEqual(new Set());
-    // A break, and speaking off for good, leave out their exercises and nothing more.
+    // A break leaves out its exercises and nothing more.
     setBreakUntil("listening", Date.now() + BREAK_MS);
-    setTurnedOff("speaking", true);
+    setBreakUntil("speaking", Date.now() + BREAK_MS);
     expect(facetsOffOf(offNow())).toEqual(new Set());
+    setTurnedOff("speaking", true);
+    expect(facetsOffOf(offNow())).toEqual(new Set(["speak"]));
     setTurnedOff("listening", true);
-    expect(facetsOffOf(offNow())).toEqual(new Set(["listen"]));
+    expect(facetsOffOf(offNow())).toEqual(new Set(["listen", "speak"]));
     // The same set each time, so a memo that depends on it keeps what it worked out.
-    expect(facetsOffOf(offNow())).toBe(facetsOffOf({ listening: "setting" }));
-    expect(facetsOffOf({})).toBe(facetsOffOf({ listening: "break" }));
+    expect(facetsOffOf(offNow())).toBe(facetsOffOf({ listening: "setting", speaking: "setting" }));
+    expect(facetsOffOf({})).toBe(facetsOffOf({ listening: "break", speaking: "break" }));
+    turnOn("speaking");
+    expect(facetsOffOf(offNow())).toEqual(new Set(["listen"]));
     turnOn("listening");
     expect(facetsOffOf(offNow())).toEqual(new Set());
   });

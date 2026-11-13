@@ -97,7 +97,7 @@ counts due and slipping words without the facets turned off. This changes:
 A break ("Can't listen now", an hour) changes none of this. The web app passes the facets turned off
 only for the lasting switch (`facetsOffOf`, breaks.ts); the e2e solver uses the same function.
 
-**Speaking is open.** D41 is about listening, so speaking turned off for good only leaves its
-exercises out. The speak cards practised before it was turned off still count as due and slipping,
-as listening's did. Adding `speak` to `facetsOffOf` would treat them the same way. That is a
-decision for the owner.
+**Speaking too (D45, 2026-11-13).** The owner decided that speaking turned off for good is treated
+the same way: the speak cards practised before it was turned off no longer count as due or
+slipping (`facetsOffOf` returns `speak` too). Speaking is asked of no word, so known words are
+unchanged by it.
