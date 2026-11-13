@@ -69,5 +69,5 @@ Credentials stay on the server, in its environment. The app holds none.
 ## Icons and splash screens
 
 Drawn for Nabu by `scripts/icons.ts` (three cuneiform wedges on the UI's accent colour) and
-released under CC0-1.0. To redraw at every Android density and for iOS:
-`pnpm --filter @nabu/mobile icons`.
+released under CC0-1.0. To redraw at every Android density, for iOS, and the web app's favicon
+and manifest icons (`apps/web/public/icons`): `pnpm --filter @nabu/mobile icons`.
