@@ -208,6 +208,7 @@ export const landingPage = async (options: LandingOptions): Promise<string> => {
 <title>${escape(name)}</title>
 <meta name="description" content="${escape(tagline)}" />
 <meta name="color-scheme" content="light dark" />
+<link rel="icon" href="${escape(`${options.demo}icons/nabu.svg`)}" type="image/svg+xml" />
 <script>
   // The theme chosen in the app (Preferences, nabu.theme), before the first paint.
   try {

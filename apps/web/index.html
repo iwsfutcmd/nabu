@@ -9,6 +9,9 @@
     <!-- The page colour of each theme (--nabu-color-page in tokens.css), for the browser's own chrome. -->
     <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" data-theme-for="light" />
     <meta name="theme-color" content="#161614" media="(prefers-color-scheme: dark)" data-theme-for="dark" />
+    <!-- The app's icon (public/icons, drawn by apps/mobile/scripts/icons.ts); vite-manifest.ts links the manifest. -->
+    <link rel="icon" href="/icons/nabu.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <script>
       // The theme chosen on this device (Preferences.tsx, THEME_KEY), before the first paint.
       try {

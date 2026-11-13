@@ -1,17 +1,19 @@
 /**
  * Draws the app's icons and splash screens (CC0-1.0, drawn for Nabu): three cuneiform wedges,
  * after the god of writing the project is named for, in white on the UI's accent colour. Renders
- * one SVG at every size the Android and iOS projects use, with the Chromium Playwright ships.
+ * one SVG at every size the Android and iOS projects use, with the Chromium Playwright ships, and
+ * writes the web app's (apps/web/public/icons: the favicon, and the manifest's icons).
  *
  *   node apps/mobile/scripts/icons.ts
  */
 import { chromium } from "@playwright/test";
-import { writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
 const RES = join(ROOT, "android/app/src/main/res");
 const ASSETS = join(ROOT, "ios/App/App/Assets.xcassets");
+const WEB = join(ROOT, "../web/public/icons");
 const ACCENT = "#1f6b4f"; // --nabu-color-accent (packages/ui/src/tokens.css)
 
 /** One wedge: a triangular head at (x, y) and a tapering tail, pointing along `angle` degrees. */
@@ -69,5 +71,14 @@ for (const [dir, w, h] of SPLASHES) await render(join(RES, dir, "splash.png"), s
 // iOS: the 1024 px app icon (opaque, square; the system rounds it) and the splash image.
 await render(join(ASSETS, "AppIcon.appiconset/AppIcon-512@2x.png"), svg(1024, "full", 0.62), 1024, 1024, false);
 for (const name of ["splash-2732x2732.png", "splash-2732x2732-1.png", "splash-2732x2732-2.png"]) await render(join(ASSETS, "Splash.imageset", name), svg(0, "full", 0.18, 2732, 2732), 2732, 2732, false);
+
+// The web app (apps/web/vite-manifest.ts lists them): the favicon, scalable; the manifest's
+// rounded icons; a maskable one, all background with the glyph well inside the circle every
+// platform's mask keeps; and Apple's home-screen icon, opaque and square like the iOS app's.
+mkdirSync(WEB, { recursive: true });
+writeFileSync(join(WEB, "nabu.svg"), `<!-- Nabu's icon, drawn by apps/mobile/scripts/icons.ts. SPDX-License-Identifier: CC0-1.0 -->\n${svg(100, "square", 0.7)}\n`);
+for (const size of [192, 512]) await render(join(WEB, `nabu-${size}.png`), svg(size, "square", 0.7), size, size, true);
+await render(join(WEB, "nabu-maskable-512.png"), svg(512, "full", 0.62), 512, 512, false);
+await render(join(WEB, "apple-touch-icon.png"), svg(180, "full", 0.62), 180, 180, false);
 
 await browser.close();
