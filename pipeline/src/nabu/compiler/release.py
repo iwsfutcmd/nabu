@@ -4,9 +4,13 @@ reviewer has signed off (ADR 0072).
 `nabu build --release` keeps the sentences, stories and roleplay scenarios whose provenance is
 reviewed or published (generated drills are reviewed by construction), and then:
 
-- **Nodes:** a lesson or script node keeps its reviewed sentences, and goes when none is left; a
+- **Nodes:** a lesson or convert node keeps its reviewed sentences, and goes when none is left; a
   story node goes with its story; a practice node stays while its unit keeps a lesson; a scenario
   stays while the node it follows does.
+- **Script tracks** (ADR 0073's amendment, D51): an alphabet node stays, with its letters, which
+  are the profile's. It keeps the words whose KCs the release keeps and its reviewed sentences or
+  stories use; with none, it teaches its letters alone. Tracks go along with reviewed content:
+  with nothing reviewed there is no release.
 - **Units:** a unit with no node left goes.
 - **Media:** only the clips of what is kept (sentences, story lines, the words of kept units), and
   the images of kept units' words.
@@ -41,11 +45,13 @@ def _count(table: dict[str, int], key: str, by: int = 1) -> None:
 
 
 def _nodes(unit: BundleUnit, sentences: set[str], stories: set[str]) -> list[BundleNode]:
-    """The unit's nodes that keep content: lessons and script nodes with a kept sentence, story
-    nodes with their story, and practice nodes while a lesson stays."""
+    """The unit's nodes that keep content: lessons and convert nodes with a kept sentence, story
+    nodes with their story, alphabet nodes, and practice nodes while a lesson stays."""
     nodes: list[BundleNode] = []
     for node in unit.nodes:
-        if node.kind in ("lesson", "script"):
+        if node.alphabet is not None:
+            nodes.append(node)  # its words are chosen once the units are (_alphabet_words)
+        elif node.kind in ("lesson", "script"):
             node = node.model_copy(
                 update={"sentences": [s for s in node.sentences if s in sentences]}
             )
@@ -56,14 +62,32 @@ def _nodes(unit: BundleUnit, sentences: set[str], stories: set[str]) -> list[Bun
                 nodes.append(node)
         else:
             nodes.append(node)
-    lessons = [n for n in nodes if n.kind in ("lesson", "script")]
+    lessons = [n for n in nodes if n.kind in ("lesson", "script") and n.alphabet is None]
     return [n for n in nodes if n.kind in ("lesson", "script", "story") or lessons]
 
 
+def _alphabet_words(unit: BundleUnit, kcs: set[str], report: ReleaseReport) -> BundleUnit:
+    """The unit with each alphabet node's words cut to those whose KCs are in `kcs`."""
+    if all(n.alphabet is None for n in unit.nodes):
+        return unit
+    nodes: list[BundleNode] = []
+    for node in unit.nodes:
+        if node.alphabet is None:
+            nodes.append(node)
+            continue
+        words = [w for w in node.alphabet.words if w.kc in kcs]
+        _count(report.kept, "alphabet words", len(words))
+        _count(report.dropped, "alphabet words", len(node.alphabet.words) - len(words))
+        alphabet = node.alphabet.model_copy(update={"words": words})
+        nodes.append(node.model_copy(update={"alphabet": alphabet}))
+    return unit.model_copy(update={"nodes": nodes})
+
+
 def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
-    """The compiled course with only reviewed content; the original is left as it was."""
+    """The compiled course with only reviewed content; the original is left as it was. With
+    nothing reviewed, it has no units."""
     report = ReleaseReport()
-    units: list[BundleUnit] = []
+    parts: list[tuple[BundleUnit, list[BundleNode]]] = []
     for unit in compiled.units:
         kept = [s for s in unit.sentences if _reviewed(s.provenance)]
         stories = [s for s in unit.stories or [] if _reviewed(s.provenance)]
@@ -72,15 +96,25 @@ def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
         _count(report.dropped, "sentences", len(unit.sentences) - len(kept))
         _count(report.kept, "stories", len(stories))
         _count(report.dropped, "stories", len(unit.stories or []) - len(stories))
-        if not nodes:
-            _count(report.dropped, "units")
-            _count(report.dropped, "scenarios", len(unit.scenarios or []))
-            continue
         update: dict[str, object] = {"sentences": kept, "nodes": nodes}
         if unit.stories is not None:
             update["stories"] = stories
-        units.append(unit.model_copy(update=update))
+        parts.append((unit.model_copy(update=update), nodes))
+    # Script tracks go along with reviewed content: alone, they make no release.
+    reviewed = any(n.alphabet is None for _, nodes in parts for n in nodes)
+    units: list[BundleUnit] = []
+    for unit, nodes in parts:
+        if not nodes or not reviewed:
+            _count(report.dropped, "units")
+            _count(report.dropped, "scenarios", len(unit.scenarios or []))
+            continue
+        units.append(unit)
         _count(report.kept, "units")
+    # An alphabet node's words: those whose KCs the release keeps and reviewed content uses.
+    defined = {k.id for u in units for k in u.kcs}
+    used = {kc for u in units for s in u.sentences for kc in s.kcs}
+    used |= {kc for u in units for s in u.stories or [] for kc in s.kcs}
+    units = [_alphabet_words(u, defined & used, report) for u in units]
     # A scenario follows a lesson or story node, of any unit: it stays while that node does.
     kept_nodes = {n.id for u in units for n in u.nodes}
     for i, unit in enumerate(units):
@@ -94,7 +128,7 @@ def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
     items = {item.id for item in iter_items(units)}
     images = {k.image for u in units for k in u.kcs if k.image}
     audio_items = {k: v for k, v in compiled.audio_items.items() if k in items}
-    used = {clip.path for item in audio_items.values() for clip in item.values()}
+    files = {clip.path for item in audio_items.values() for clip in item.values()}
     # The summary counts sentences and clips by item id, images by their bundle path.
     counted = [c for c in compiled.counted if c.item in items or c.item in images]
     licenses: dict[str, int] = {}
@@ -109,6 +143,6 @@ def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
         counted=counted,
         images={k: v for k, v in compiled.images.items() if k in images},
         audio_items=audio_items,
-        audio_files={k: v for k, v in compiled.audio_files.items() if k in used},
+        audio_files={k: v for k, v in compiled.audio_files.items() if k in files},
     )
     return out, report
