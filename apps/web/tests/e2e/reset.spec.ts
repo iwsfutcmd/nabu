@@ -4,12 +4,16 @@
  * lesson (placement is offered again), XP stays, the reset survives a reload, and it syncs: the
  * server's projection forgets the same things and agrees with the device. The dialog works in
  * RTL chrome and passes axe.
+ *
+ * While a keyboard still composes the name (D39, ADR 0118), the confirmation takes a press as
+ * Check does: one tap starts over, a press that leaves the focus in the field waits for the
+ * composition to end, and an input method's Enter or commit starts nothing over by itself.
  */
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type CDPSession, type Page } from "@playwright/test";
 import { lessonNodes } from "@nabu/core/lesson";
 import { API_PORT } from "./ports.ts";
-import { freshIds, historyBefore, loadCourse, logOf, seedLog } from "./solver.ts";
+import { activate, freshIds, historyBefore, loadCourse, logOf, seedLog, type Mode } from "./solver.ts";
 
 const API = `http://127.0.0.1:${API_PORT}`;
 const NOW = new Date("2026-04-10T09:00:00Z");
@@ -61,15 +65,19 @@ test.describe("starting a course over", () => {
     await expect(confirm).toBeDisabled();
     await field.fill("Persia");
     await expect(confirm).toBeDisabled();
-    // Mid-composition (an IME still open), the name is not yet typed.
+    // Mid-composition (an IME still open), what is composed so far counts (D39); the IME's commit
+    // alone starts nothing over.
     await field.fill("");
     await field.focus();
     const cdp = await page.context().newCDPSession(page);
-    await cdp.send("Input.imeSetComposition", { text: "persian", selectionStart: 7, selectionEnd: 7 });
+    await cdp.send("Input.imeSetComposition", { text: "persia", selectionStart: 6, selectionEnd: 6 });
     await expect(confirm).toBeDisabled();
+    await cdp.send("Input.imeSetComposition", { text: "persian", selectionStart: 7, selectionEnd: 7 });
+    await expect(confirm).toBeEnabled(); // case does not matter
     await cdp.send("Input.insertText", { text: "persian" });
     await expect(field).toHaveValue("persian");
-    await expect(confirm).toBeEnabled(); // case does not matter
+    await expect(confirm).toBeEnabled();
+    await expect(dialog).toBeVisible();
     await field.fill("  PERSIAN ");
     await expect(confirm).toBeEnabled(); // nor do outer spaces
     expect(await axe(page, "[data-start-over-dialog]")).toEqual([]);
@@ -118,5 +126,81 @@ test.describe("starting a course over", () => {
     const confirm = await page.locator("[data-action=confirm-start-over]").boundingBox();
     expect((keep?.x ?? 0) > (confirm?.x ?? 0)).toBe(true);
     expect(await axe(page, "[data-start-over-dialog]")).toEqual([]);
+  });
+});
+
+test.describe("starting over while a keyboard composes the name (D39)", () => {
+  if (second === undefined) throw new Error("fa needs two lessons");
+
+  /** The confirmation open, its field focused, and a CDP session to compose in it as an input method would. */
+  const openConfirmation = async (page: Page, mode: Mode): Promise<CDPSession> => {
+    await page.clock.setFixedTime(NOW);
+    await seedLog(page, historyBefore(course, second, NOW));
+    await page.goto("/?sound=off#/fa/fa-Arab.standard");
+    await activate(page, mode, "[data-action=start-over]");
+    await expect(page.locator("[data-start-over-dialog]")).toBeVisible();
+    const field = page.locator("[data-field=reset-name]");
+    if (mode === "touch") await field.tap();
+    else await field.focus();
+    await expect(field).toBeFocused();
+    return page.context().newCDPSession(page);
+  };
+  /** The composition as the field shows it, the caret at its end. */
+  const compose = async (cdp: CDPSession, text: string): Promise<void> => {
+    await cdp.send("Input.imeSetComposition", { text, selectionStart: text.length, selectionEnd: text.length });
+  };
+  const resets = async (page: Page): Promise<number> => (await logOf(page, "fa")).filter((e) => e.type === "progress_reset").length;
+
+  test("one tap on the confirmation while a phone keyboard still composes the name starts over", async ({ page }, info) => {
+    test.skip(info.project.name !== "touch", "a phone keyboard: the touch pass");
+    const cdp = await openConfirmation(page, "touch");
+    // Gboard keeps the word being typed in a composition until it is committed (P16).
+    await compose(cdp, "Persian");
+    await expect(page.locator("[data-field=reset-name]")).toHaveValue("Persian");
+    const confirm = page.locator("[data-action=confirm-start-over]");
+    await expect(confirm).toBeEnabled();
+    // One tap: the composition ends as the focus leaves the field, and the settled name confirms.
+    await confirm.tap();
+    await expect(page.locator("[data-reset-done]")).toBeVisible();
+    await expect(page.locator("[data-start-over-dialog]")).toHaveCount(0);
+    await expect.poll(() => resets(page)).toBe(1);
+  });
+
+  test("a press that leaves the focus in the composing field waits for the composition to end", async ({ page }, info) => {
+    const cdp = await openConfirmation(page, info.project.name === "touch" ? "touch" : "keyboard");
+    await compose(cdp, "persian");
+    // What the field and the page saw, in order: the reset must come after compositionend.
+    await page.evaluate(() => {
+      const seen: string[] = [];
+      (window as unknown as { seen: string[] }).seen = seen;
+      document.querySelector("[data-field=reset-name]")?.addEventListener("compositionend", () => seen.push("compositionend"));
+      new MutationObserver(() => {
+        if (document.querySelector("[data-reset-done]") !== null && !seen.includes("reset")) seen.push("reset");
+      }).observe(document.body, { childList: true, subtree: true });
+    });
+    // A screen reader's activation: a click with no pointer, which moves no focus by itself.
+    await page.locator("[data-action=confirm-start-over]").dispatchEvent("click");
+    await expect(page.locator("[data-reset-done]")).toBeVisible();
+    expect(await page.evaluate(() => (window as unknown as { seen: string[] }).seen)).toEqual(["compositionend", "reset"]);
+    await expect.poll(() => resets(page)).toBe(1);
+  });
+
+  test("an input method's Enter, or its commit, starts nothing over by itself", async ({ page }, info) => {
+    test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+    const cdp = await openConfirmation(page, "keyboard");
+    await compose(cdp, "persian");
+    // Enter while composing, as an IME reports it (keyCode 229).
+    await cdp.send("Input.dispatchKeyEvent", { type: "rawKeyDown", key: "Enter", code: "Enter", windowsVirtualKeyCode: 229, nativeVirtualKeyCode: 229 });
+    await cdp.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Enter", code: "Enter", windowsVirtualKeyCode: 229, nativeVirtualKeyCode: 229 });
+    // The IME commits the name: compositionend, with no press waiting.
+    await cdp.send("Input.insertText", { text: "persian" });
+    await expect(page.locator("[data-field=reset-name]")).toHaveValue("persian");
+    await expect(page.locator("[data-action=confirm-start-over]")).toBeEnabled();
+    await expect(page.locator("[data-start-over-dialog]")).toBeVisible();
+    // Keeping the progress after all: nothing was reset.
+    await page.locator("[data-action=keep-progress]").click();
+    await expect(page.locator("[data-start-over-dialog]")).toHaveCount(0);
+    await expect(page.locator("[data-reset-done]")).toHaveCount(0);
+    expect(await resets(page)).toBe(0);
   });
 });
