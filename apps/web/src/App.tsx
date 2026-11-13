@@ -919,7 +919,7 @@ export const App = (): JSX.Element => {
     [store, sync],
   );
 
-  if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} />;
+  if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} account={account} />;
   if (route.tag === "review") {
     return index === null || sync === null ? (
       <Loading />

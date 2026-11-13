@@ -54,7 +54,7 @@ deploy/smoke.sh https://your.domain     # optional: checks the instance end to e
   come out of `GET /admin/v1/reports.jsonl?status=approved`, for `nabu reports promote`.
 - **Game rules** (§12): to change them, mount a `game.json` into both the web image
   (`/srv/www/game.json`) and the API (set `NABU_GAME` to its path). The API checks the file when
-  it starts.
+  it starts; the game check, the account export and reminders (their streak and quests) follow it.
 - **A local model** for the AI features: `--profile llm` starts Ollama. Pull a model
   (`docker compose … exec ollama ollama pull <model>`), then set `NABU_LLM=ollama`,
   `NABU_LLM_URL=http://ollama:11434` and `NABU_LLM_MODEL`. The judge stays off until evaluations

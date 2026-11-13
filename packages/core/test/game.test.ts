@@ -11,6 +11,7 @@ import { describe, expect, it } from "vitest";
 import {
   addDays,
   canStart,
+  countable,
   daysBetween,
   DEFAULT_GAME,
   DEFAULT_LEAGUE,
@@ -329,6 +330,65 @@ describe("what counts for a day", () => {
     const state = replayGame(online(events), NO_QUESTS, clockAt("2026-09-06", Date.parse("2026-09-06T23:00:00Z")));
     // The first zone and three changes count; the fourth and fifth change do not.
     expect(state.days).toEqual(["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04"]);
+  });
+
+  /** §12.2 as written, every check on every event in time order: what the replay must agree with, whatever it puts off. */
+  const countableAsWritten = (inputs: readonly GameInput[], config: GameConfig, now: string): Map<string, boolean> => {
+    const byId = new Map<string, GameInput>();
+    for (const input of inputs) if (input.event.type !== "outcome_revised" && !byId.has(input.event.id)) byId.set(input.event.id, input);
+    const time = (e: LearnerEvent): number => Date.parse(e.clientTime);
+    const sorted = [...byId.values()].sort((a, b) => time(a.event) - time(b.event) || (a.event.id < b.event.id ? -1 : a.event.id > b.event.id ? 1 : 0));
+    const out = new Map<string, boolean>();
+    const changes: number[] = [];
+    let zone: string | undefined;
+    for (const { event: e, receivedAt } of sorted) {
+      const seen = Date.parse(receivedAt ?? now);
+      let ok = localDateOf(e.clientTime, e.tz) === e.localDate && time(e) <= seen + 5 * 60_000;
+      if (ok && receivedAt !== undefined) ok = seen - time(e) <= config.streak.graceHours * 3_600_000;
+      if (ok && zone !== undefined && e.tz !== zone) {
+        if (changes.filter((c) => time(e) - c < 7 * 86_400_000).length >= config.streak.maxTzChangesPerWeek) ok = false;
+        else changes.push(time(e));
+      }
+      if (ok) zone = e.tz;
+      out.set(e.id, ok);
+    }
+    return out;
+  };
+
+  it("checking local dates only where they matter changes nothing: forged dates, the future, late syncs, zone hops", { timeout: 120_000 }, () => {
+    const practice = fc.record({
+      gapMinutes: fc.integer({ min: 1, max: 3 * 24 * 60 }),
+      zone: fc.constantFrom(...ZONES),
+      // The device's local date: its own, a day off on the whole session, or a day off on the completion only.
+      forged: fc.constantFrom("none", "none", "none", "session", "completion"),
+      // When the server got it: in time, after the grace window, before it happened (the future), or never (the device).
+      received: fc.constantFrom("in-time", "in-time", "late", "early", "device"),
+    });
+    fc.assert(
+      fc.property(fc.array(practice, { minLength: 1, maxLength: 25 }), fc.integer(), (practices, seed) => {
+        let at = Date.parse("2026-03-20T08:00:00Z");
+        const inputs: GameInput[] = practices.flatMap((p) => {
+          at += p.gapMinutes * 60_000;
+          const own = localDateOf(new Date(at).toISOString(), p.zone) as string;
+          const events = session({ at, tz: p.zone, ...(p.forged === "session" ? { localDate: addDays(own, 1) } : {}) }).map((e) =>
+            p.forged === "completion" && e.type === "session_completed" ? { ...e, localDate: addDays(own, -1) } : e,
+          );
+          const receivedAt = (e: LearnerEvent): string | undefined => {
+            const t = Date.parse(e.clientTime);
+            if (p.received === "device") return undefined;
+            return new Date(p.received === "late" ? t + 80 * 3_600_000 : p.received === "early" ? t - 3_600_000 : t + 2_000).toISOString();
+          };
+          return events.map((event) => ({ event, receivedAt: receivedAt(event) }));
+        });
+        const now = new Date(at + 3_600_000).toISOString();
+        const expected = countableAsWritten(inputs, NO_QUESTS, now);
+        const shuffled = fc.sample(fc.shuffledSubarray([...inputs, ...inputs.slice(0, 5)], { minLength: inputs.length + Math.min(5, inputs.length) }), { numRuns: 1, seed })[0] ?? [];
+        expect([...countable(shuffled, NO_QUESTS, now)]).toEqual([...expected]);
+        const counted = inputs.flatMap(({ event: e }) => (e.type === "session_completed" && expected.get(e.id) === true ? [e.localDate] : []));
+        expect(replayGame(shuffled, NO_QUESTS, { today: localDateOf(now, "UTC") as string, now }).days).toEqual([...new Set(counted)].sort());
+      }),
+      { numRuns: 150 },
+    );
   });
 });
 

@@ -28,7 +28,8 @@
  *   NABU_FCM_SERVICE_ACCOUNT    reminders to the Android app: a Firebase service-account JSON (needs NABU_PUSH=1)
  *   NABU_APNS_KEY, NABU_APNS_KEY_ID, NABU_APNS_TEAM_ID, NABU_APNS_TOPIC (NABU_APNS_SANDBOX=1)
  *                               reminders to the iOS app: an APNs auth key (.p8) and its ids (needs NABU_PUSH=1)
- *   NABU_GAME                   the game rules: the game.json the web app is deployed with (default: the defaults)
+ *   NABU_GAME                   the game rules: the game.json the web app is deployed with; /v1/game, the export
+ *                               and reminders (their streak and quests) follow it (default: the defaults)
  */
 import { serve } from "@hono/node-server";
 import { getConnInfo } from "@hono/node-server/conninfo";
@@ -46,8 +47,8 @@ import { limitsFromEnv } from "./limits.ts";
 import { openDatabase } from "./db/index.ts";
 import { rollover } from "./leagues.ts";
 import { nativeSendersFromEnv } from "./nativepush.ts";
-import { sendReminders } from "./reminders.ts";
-import { sendPush, vapidKeys, type Vapid } from "./webpush.ts";
+import { sendReminders, type Notification } from "./reminders.ts";
+import { sendPush, vapidKeys, type Subscription, type Vapid } from "./webpush.ts";
 
 const port = Number(process.env["PORT"] ?? 8787);
 const on = (name: string): boolean => process.env[name] === "1";
@@ -107,7 +108,8 @@ const runJobs = async (now: number): Promise<{ rolled: readonly string[]; sent: 
   let sent = 0;
   if (keys !== undefined || Object.keys(native).length > 0) {
     const v = keys === undefined ? undefined : await keys();
-    sent = (await sendReminders(db, now, v === undefined ? undefined : (sub, payload) => sendPush(sub, payload, v, now, (url, init) => fetch(url, init)), native)).sent;
+    const send = v === undefined ? undefined : (sub: Subscription, payload: Notification) => sendPush(sub, payload, v, now, (url, init) => fetch(url, init));
+    sent = (await sendReminders(db, now, { send, native, game })).sent;
   }
   return { rolled, sent };
 };

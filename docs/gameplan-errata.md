@@ -257,3 +257,8 @@ ADR is linked. The gameplan text itself is left as written.
     the meaning). A word is known once it has shown each skill on a later day than it was met
     ([ADR 0100](adr/0100-known-words.md)); sessions aim at the skills words lack
     ([ADR 0101](adr/0101-skill-targets.md)).
+66. **§12.6 "the median of their recent session start times":** at the median, on about half the
+    days the learner practises anyway the reminder came just before practice that was going to
+    happen, and took the credit, so the back-off never started. Reminders now come half an hour
+    after the 80th percentile of the start times, and only practice begun after a reminder answers
+    it ([ADR 0103](adr/0103-reminder-timing.md)).

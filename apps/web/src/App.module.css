@@ -125,6 +125,48 @@
   outline-offset: 2px;
 }
 
+/* The reminder time (Preferences, ADR 0103): two choices, then a time field, hour and minute. */
+.reminderModes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
+.timeInput {
+  display: flex;
+  align-items: center;
+  inline-size: fit-content;
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.timeInput[data-focus-within] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 1px;
+}
+
+.timeSegment {
+  padding-inline: 0.125rem;
+  font-variant-numeric: tabular-nums;
+  border-radius: 0.25rem;
+}
+
+.timeSegment[data-placeholder] {
+  color: var(--nabu-color-muted);
+}
+
+/* The segment being typed into: the field's own outline marks the field, this the segment. */
+.timeSegment[data-focused] {
+  color: var(--nabu-color-accent-text);
+  background-color: var(--nabu-color-accent);
+  outline: none;
+}
+
 .link:focus-visible,
 .lesson:focus-visible,
 .back:focus-visible {

@@ -225,4 +225,15 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       `create index signoffs_course on signoffs (course)`,
     ],
   ],
+  [
+    "0008_reminder_settings",
+    [
+      // The time a learner chose for the daily reminder (ADR 0103), in minutes after local
+      // midnight. No row: automatic, after the time they usually practise.
+      `create table reminder_settings (
+        user_id uuid primary key references users(id) on delete cascade,
+        minute smallint not null check (minute between 0 and 1439)
+      )`,
+    ],
+  ],
 ];

@@ -542,10 +542,6 @@
       "message": "This device could not sign up for reminders. Try again later.",
       "description": "The phone's push service refused to register the app (Android or iOS)."
     },
-    "app.reminders.hint": {
-      "message": "At most one a day, around the time you usually practise, and only if you haven't yet.",
-      "description": "Explains when reminders come."
-    },
     "app.reminders.label": {
       "message": "Daily practice reminder",
       "description": "Switch that turns practice reminders (push notifications) on or off."
@@ -553,6 +549,10 @@
     "app.reminders.unsupported": {
       "message": "This browser can't show reminders.",
       "description": "Shown when the browser has no push support."
+    },
+    "app.reminders.when": {
+      "message": "At most one a day, after the time you usually practise or at the time you set in Preferences, and only if you haven't practised yet.",
+      "description": "Explains when reminders come, under the switch that turns them on. Preferences is the settings screen (preferences.title)."
     },
     "app.reset.cancel": {
       "message": "Keep my progress",
@@ -1981,6 +1981,38 @@
     "preferences.back": {
       "message": "Back to your courses",
       "description": "Link from the preferences screen back to the course list."
+    },
+    "preferences.reminder.automatic": {
+      "message": "Automatic: a little after the time you usually practise",
+      "description": "Reminder time choice (the default): the app picks the time, half an hour after the time by which the learner has usually begun."
+    },
+    "preferences.reminder.chosen": {
+      "message": "At a time I choose",
+      "description": "Reminder time choice: the learner sets the time of day."
+    },
+    "preferences.reminder.failed": {
+      "message": "The reminder time couldn't be saved. Check your connection and try again.",
+      "description": "Shown when saving the reminder time failed."
+    },
+    "preferences.reminder.hint": {
+      "message": "At most one a day, and only if you haven't practised yet. Turn reminders on under “Your progress”.",
+      "description": "Explains the reminder time choice, under its label. Quote the translation of app.progress.title as your language quotes."
+    },
+    "preferences.reminder.label": {
+      "message": "Daily reminder time",
+      "description": "Label of the choice of when the daily practice reminder comes (shown with an account on a server that sends reminders)."
+    },
+    "preferences.reminder.save": {
+      "message": "Save reminder time",
+      "description": "Button that saves the reminder time choice to the account."
+    },
+    "preferences.reminder.saved": {
+      "message": "Saved.",
+      "description": "Shown after the reminder time is saved."
+    },
+    "preferences.reminder.time": {
+      "message": "Remind me at",
+      "description": "Label of the time-of-day field (hours and minutes, in the learner's own time zone) for the reminder."
     },
     "preferences.target-size.default": {
       "message": "Default",
