@@ -66,8 +66,8 @@ describe("<T>", () => {
         },
       ],
     } as unknown as TaggedText;
-    expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain('君<rt lang="zh-Latn-pinyin">jūn</rt>子<rt lang="zh-Latn-pinyin">zǐ</rt>');
-    expect(render(<T text={text} ruby={"baxter" as SchemeId} />)).toContain('君<rt lang="ltc-Latn-x-baxter">kjun</rt>子<rt lang="ltc-Latn-x-baxter">tsiX</rt>');
+    expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain('君<rt lang="zh-Latn-pinyin" data-script="Latn">jūn</rt>子<rt lang="zh-Latn-pinyin" data-script="Latn">zǐ</rt>');
+    expect(render(<T text={text} ruby={"baxter" as SchemeId} />)).toContain('君<rt lang="ltc-Latn-x-baxter" data-script="Latn">kjun</rt>子<rt lang="ltc-Latn-x-baxter" data-script="Latn">tsiX</rt>');
     // Latin readings are set in the Latin face, whose tone letters (ū, ǖ) the CJK face lacks.
     expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain("--nabu-ruby-font:&quot;Noto Sans&quot;, sans-serif");
     expect(render(<T text={text} />)).not.toContain("--nabu-ruby-font");

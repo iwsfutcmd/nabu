@@ -338,7 +338,11 @@
           "description": "A person confirmed what the clip says (ADR 0125): it is a recording (not synthetic), or a synthetic clip a listener marked right in the audio check (ADR 0060). Present only when true. A tone card (tone-identify) plays only confirmed clips: a synthetic voice is not trusted with a lone syllable's tone.",
           "type": "boolean"
         },
-        "timings": { "type": "array", "items": { "$ref": "audio-index.schema.json#/$defs/TokenTiming" } }
+        "timings": { "type": "array", "items": { "$ref": "audio-index.schema.json#/$defs/TokenTiming" } },
+        "orthography": {
+          "description": "The orthography whose tokens `timings` index: the one the voice read. Another orthography of the course gets them moved to its own tokens, word for word (ADR 0126).",
+          "type": "string"
+        }
       }
     }
   }

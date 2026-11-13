@@ -250,6 +250,7 @@ export type NormalizeStep =
   | PunctuationStep
   | WhitespaceStep
   | DetachStep
+  | SplitStep
   | LogographsStep;
 /**
  * Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).
@@ -475,6 +476,7 @@ export interface NabuSchemaIndex {
   readonly PunctuationStep: PunctuationStep;
   readonly WhitespaceStep: WhitespaceStep;
   readonly DetachStep: DetachStep;
+  readonly SplitStep: SplitStep;
   readonly LogographsStep: LogographsStep;
   readonly MatchPolicy: MatchPolicy;
   readonly NoteId: NoteId;
@@ -1472,6 +1474,10 @@ export interface BundleClip {
    */
   readonly confirmed?: boolean;
   readonly timings?: readonly TokenTiming[];
+  /**
+   * The orthography whose tokens `timings` index: the one the voice read. Another orthography of the course gets them moved to its own tokens, word for word (ADR 0126).
+   */
+  readonly orthography?: string;
 }
 /**
  * How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
@@ -3042,6 +3048,20 @@ export interface DetachStep {
      */
     readonly prefixes: readonly string[];
     readonly minRest?: number;
+  };
+}
+/**
+ * Puts a space after any of the `after` characters when a letter follows it, so joined and spaced spellings compare alike: Jyutping's tone numbers end its syllables, so hok6saang1 = hok6 saang1 (ADR 0126).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SplitStep".
+ */
+export interface SplitStep {
+  readonly split: {
+    /**
+     * The characters that end a unit, each one code point (Jyutping: 123456).
+     */
+    readonly after: string;
   };
 }
 /**

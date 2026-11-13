@@ -45,6 +45,8 @@ class ShippedClip:
     timings: tuple[TokenTiming, ...] | None = None
     #: A person confirmed what it says (confirmed_by_person); the bundle says so only when true.
     confirmed: bool = False
+    #: The orthography whose tokens the timings index: the one the voice read (ADR 0126).
+    orthography: str | None = None
 
     def bundled(self, credit: str) -> BundleClip:
         """The clip as the audio index lists it, its credit named by `credit` (an id)."""
@@ -57,6 +59,7 @@ class ShippedClip:
             credit=credit,
             confirmed=True if self.confirmed else None,
             timings=timings,
+            orthography=self.orthography if timings is not None else None,
         )
 
 
@@ -146,6 +149,10 @@ def check_audio(
         if not ref.synthetic and ref.source is not None:
             speaker = ref.provenance.author.removeprefix("human:")
             recordings[ref.id] = f"{speaker} ({ref.license}): {ref.source}"
+    # Whose tokens a clip's timings index: the orthography its voice read (ADR 0126); a recording,
+    # the cast's first voice's, else the course's first orthography.
+    read_in = {(v.provider, v.voice): v.orthography for v in voices}
+    default_orth = voices[0].orthography if voices else course.orthographies[0]
     held = 0
     items: dict[str, dict[str, ShippedClip]] = {}
     files: dict[str, dict[str, tuple[bytes, str, str]]] = {}
@@ -241,6 +248,10 @@ def check_audio(
         credit = _credit(clip, recordings)
         files.setdefault(clip.item, {})[rel] = (data, clip.license, credit)
         timings = None if clip.timings is None else tuple(clip.timings)
+        said_by = (
+            None if clip.synthesis is None else (clip.synthesis.provider, clip.synthesis.voice)
+        )
+        orth = read_in.get(said_by, default_orth) if said_by is not None else default_orth
         entry = ShippedClip(
             rel,
             clip.durationMs,
@@ -248,7 +259,8 @@ def check_audio(
             clip.license,
             credit,
             timings,
-            confirmed_by_person(clip),
+            confirmed=confirmed_by_person(clip),
+            orthography=orth,
         )
         items.setdefault(clip.item, {})[clip.speed] = entry
         tallies.setdefault(clip.item, []).append(clip)

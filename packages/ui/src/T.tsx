@@ -102,7 +102,9 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
         {segments.map((segment, i) => (
           <Fragment key={i}>
             {base(segment.base, i)}
-            <rt lang={rubyLang}>{segment.text}</rt>
+            <rt lang={rubyLang} data-script={rubyLang === undefined ? undefined : scriptOf(rubyLang)}>
+              {segment.text}
+            </rt>
           </Fragment>
         ))}
       </ruby>
@@ -154,10 +156,14 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const font = fontStackFor(text.lang, profile?.fonts);
   useFonts(font.family);
   const rubyLang = ruby === false ? undefined : profile?.annotations?.find((a) => a.kind === "reading" && a.scheme === ruby)?.lang;
+  // A layer in another script than its text loads that script's face too: the characters over
+  // Jyutping (ADR 0126) need the Han font that Latin text would never load.
+  const rubyFont = rubyLang === undefined ? undefined : fontStackFor(rubyLang).family;
+  useFonts(rubyFont ?? "");
   const style = {
     "--nabu-text-font": font.family,
     "--nabu-text-line-height": String(font.lineHeight),
-    ...(rubyLang === undefined ? {} : { "--nabu-ruby-font": fontStackFor(rubyLang).family }),
+    ...(rubyFont === undefined ? {} : { "--nabu-ruby-font": rubyFont }),
     ...(font.scale === 1 ? {} : { "--nabu-text-scale": String(font.scale) }),
   } as CSSProperties;
   return (

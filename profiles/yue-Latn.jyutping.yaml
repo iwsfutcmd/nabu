@@ -1,0 +1,43 @@
+# profiles/yue-Latn.jyutping.yaml
+# Cantonese in Jyutping (ADR 0126): the LSHK romanization as the text a learner reads and types, each word's Hong
+# Kong characters above it as ruby (`characters`). yue's second orthography. Every sentence, story line, word and
+# accept set in it is written from the characters' pinned readings by `nabu jyutping`, never by hand, and the
+# compiler checks the two agree.
+# - Written lowercase, a space between syllables (ngo5 hai6 hok6 saang1), every syllable with its tone number,
+#   changed tones as they are said (名 meng2), Latin punctuation. REVIEW
+# - A learner may join a word's syllables (hok6saang1): the tone numbers end them (`split`). Case is ignored.
+# - Tones are never typos (REVIEW):
+#   - a wrong tone number is another word (WRONG_WORD, "check the tones"), even where the digits are neighbours
+#     on the keyboard;
+#   - a missing one is too ("each syllable needs its tone number").
+#   - A slip in a syllable's letters is a typo only when it spells no other syllable of the course (the lexicon).
+# Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+id: yue-Latn/jyutping
+# Its text is tagged yue-Latn-HK (the course's region added); its ruby, yue-Hant-HK.
+lang: yue-Latn
+exemplars: cldr:en
+# The tone numbers.
+exemplarsExtra: ["1", "2", "3", "4", "5", "6"]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  - punctuation: strip
+  - split: { after: "123456" }
+  - whitespace: collapse
+match:
+  case: { locale: en }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:en
+    # A tone number is a fifth of a short syllable (hok6): the slip must count as a typo for the contrast sets
+    # to hear it.
+    maxRatio: 0.34
+    minLength: 2
+    contrasts:
+      - { id: tone, note: reading-tone, members: ["1", "2", "3", "4", "5", "6"] }
+      - { id: tone-missing, note: reading-no-tones, members: ["", "1", "2", "3", "4", "5", "6"] }
+annotations:
+  - { id: characters, kind: reading, scheme: characters, lang: yue-Hant-HK, toggle: true, render: ruby, fade: none }
+input:
+  keyboard: cldr-kbd:en
+layout: { vertical: none }

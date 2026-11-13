@@ -37,6 +37,7 @@ import { plannedCards, walkPath, type PlannedSession } from "./planned.ts";
 const COURSES: readonly (readonly [string, string | undefined])[] = [
   ["fa", undefined],
   ["yue", undefined],
+  ["yue", "yue-Latn/jyutping"],
   ["uz", "uz-Latn/standard"],
   ["uz", "uz-Cyrl/standard"],
   ["apc", "apc-Arab/standard"],
@@ -347,7 +348,8 @@ describe("a word's pronunciation in its sentence (ADR 0054, 0095, 0098)", () => 
     for (const [id, orthography] of COURSES) {
       const asked = new Set(plannedCards(walked(id, orthography).sessions).map(({ ex }) => ex.template));
       expect(asked.has("vocalize"), `${id} ${orthography ?? ""}`).toBe(["fa", "apc-Arab/standard", "hbo"].includes(orthography ?? id));
-      expect(asked.has("transcribe"), `${id} ${orthography ?? ""}`).toBe(id === "yue");
+      // Typing a word's Jyutping: in the characters, not in Jyutping itself (ADR 0126).
+      expect(asked.has("transcribe"), `${id} ${orthography ?? ""}`).toBe((orthography ?? id) === "yue");
     }
   });
 });

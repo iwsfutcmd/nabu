@@ -12,11 +12,15 @@
  * - It uses the demo's stylesheet (the design tokens, light and dark, and the web fonts the samples
  *   need) and the theme chosen in the app, which keeps it on the same origin (`nabu.theme`).
  *
- *   node landing.ts <site> [<repository URL>]   # after the demo is built into <site>/demo
+ * - When the Android preview is published (ci.yml's android-preview release), a link downloads it,
+ *   with its size.
+ *
+ *   node landing.ts <site> [<repository URL>] [--apk <URL> --apk-bytes <size>]   # after the demo is built into <site>/demo
  */
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { parseArgs } from "node:util";
 import { draftCount } from "@nabu/core/corrections";
 import { pathNodes } from "@nabu/core/learner";
 import { lessonNodes, readCourse, type CourseView } from "@nabu/core/lesson";
@@ -42,6 +46,8 @@ export interface LandingOptions {
   readonly locale?: string;
   /** Courses whose clips the audio check lists (default: every course with audio in courses/). */
   readonly audioCourses?: readonly string[];
+  /** The Android preview APK: its URL and size in bytes. No link without it. */
+  readonly android?: { readonly href: string; readonly bytes: number };
 }
 
 interface IndexEntry {
@@ -169,7 +175,9 @@ a:focus-visible { outline: 3px solid var(--nabu-color-accent); outline-offset: 2
 h1 { margin-block: 0 var(--nabu-space-2); font-size: 2.5rem; }
 h2 { margin-block: calc(var(--nabu-space-5) * 2) var(--nabu-space-3); }
 .tagline { max-inline-size: 42rem; margin-block: 0 var(--nabu-space-5); font-size: 1.25rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nabu-space-3); margin-block: 0 var(--nabu-space-3); }
 .open { display: inline-block; padding-block: var(--nabu-space-3); padding-inline: var(--nabu-space-5); color: var(--nabu-color-accent-text); background-color: var(--nabu-color-accent); border-radius: var(--nabu-radius-tile); font-weight: 700; text-decoration: none; }
+.android { display: inline-block; padding-block: calc(var(--nabu-space-3) - 2px); padding-inline: calc(var(--nabu-space-5) - 2px); color: var(--nabu-color-accent); border: 2px solid var(--nabu-color-accent); border-radius: var(--nabu-radius-tile); font-weight: 700; text-decoration: none; }
 .note { max-inline-size: 42rem; color: var(--nabu-color-muted); }
 .courses { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: var(--nabu-space-4); margin: 0; padding: 0; list-style: none; }
 .course { display: flex; flex-direction: column; gap: var(--nabu-space-3); padding: var(--nabu-space-4); background-color: var(--nabu-color-surface); border: 1px solid var(--nabu-color-border); border-radius: var(--nabu-radius-card); }
@@ -182,6 +190,10 @@ h2 { margin-block: calc(var(--nabu-space-5) * 2) var(--nabu-space-3); }
 .features li, .links li { margin-block: var(--nabu-space-2); }
 `;
 };
+
+/** A size in bytes as the UI locale writes megabytes (92 MB). */
+const megabytes = (t: Translator, bytes: number): string =>
+  new Intl.NumberFormat(t.locale, { style: "unit", unit: "megabyte", unitDisplay: "short", maximumFractionDigits: 0 }).format(bytes / 1_000_000);
 
 /** The landing page, as HTML. */
 export const landingPage = async (options: LandingOptions): Promise<string> => {
@@ -221,7 +233,12 @@ ${options.stylesheets.map((href) => `<link rel="stylesheet" href="${escape(href)
 <header>
 <h1>${escape(name)}</h1>
 <p class="tagline">${escape(tagline)}</p>
-<p><a class="open" href="${escape(options.demo)}" data-open-app="">${escape(t.format("landing.open"))}</a></p>
+<p class="actions"><a class="open" href="${escape(options.demo)}" data-open-app="">${escape(t.format("landing.open"))}</a>${
+    options.android === undefined
+      ? ""
+      : `<a class="android" href="${escape(options.android.href)}" type="application/vnd.android.package-archive" data-android="">${escape(t.format("landing.android"))}</a>`
+  }</p>
+${options.android === undefined ? "" : `<p class="note" data-android-note="">${escape(t.format("landing.android.note", { size: megabytes(t, options.android.bytes) }))}</p>`}
 </header>
 <section aria-labelledby="courses">
 <h2 id="courses">${escape(t.format("landing.courses.title"))}</h2>
@@ -262,9 +279,12 @@ export const demoStylesheets = (demoIndex: string, demo: string): readonly strin
 };
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const [site, repository] = process.argv.slice(2);
-  if (site === undefined) {
-    process.stderr.write("usage: node landing.ts <site> [<repository URL>]\n");
+  const { values, positionals } = parseArgs({ options: { apk: { type: "string" }, "apk-bytes": { type: "string" } }, allowPositionals: true });
+  const [site, repository] = positionals;
+  const raw = values["apk-bytes"];
+  const bytes = raw !== undefined && /^[0-9]+$/u.test(raw) ? Number.parseInt(raw, 10) : undefined;
+  if (site === undefined || (values.apk === undefined) !== (raw === undefined) || (raw !== undefined && !(bytes !== undefined && Number.isSafeInteger(bytes) && bytes > 0))) {
+    process.stderr.write("usage: node landing.ts <site> [<repository URL>] [--apk <URL> --apk-bytes <size>]\n");
     process.exit(2);
   }
   const root = resolve(site);
@@ -273,6 +293,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     demo: "demo/",
     stylesheets: demoStylesheets(join(root, "demo", "index.html"), "demo/"),
     ...(repository === undefined ? {} : { repository }),
+    ...(values.apk === undefined || bytes === undefined ? {} : { android: { href: values.apk, bytes } }),
   });
   writeFileSync(join(root, "index.html"), html);
   process.stdout.write(`landing page → ${join(root, "index.html")}\n`);
