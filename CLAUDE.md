@@ -79,9 +79,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - CLDR exemplar gaps go in a profile's `exemplarsExtra` (marked REVIEW), never by loosening the script audit.
 
 ## Phase 3 notes (see docs/adr/0034–0035)
-- Lessons: pure @nabu/core/lesson (templates, buildLesson, step). Distractors come from the item's own unit or an
-  earlier one (ADR 0050), so adding a unit never changes earlier lessons. The player shell and views are @nabu/ui/player;
-  views render state and dispatch PlayerEvents, never grade or advance themselves.
+- Lessons: pure @nabu/core/lesson (templates, the candidates sessions choose among, step); every session is
+  @nabu/core/learner `plan`'s, and there is no other builder (ADR 0125). Test lessons on what plan() plans
+  (test/planned.ts walks a fixture course), never on a builder of the tests' own; the card gallery and `sampleExercise`
+  show the planner's candidates (`lessonCandidates`). Distractors come from the item's own unit or an earlier one
+  (ADR 0050), so adding a unit never changes earlier lessons. The player shell and views are @nabu/ui/player; views
+  render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
 - Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
@@ -275,7 +278,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   A scored speaking card (speak, listen-speak) can be claimed right ("I said it right", ADR 0052): the claim's
   text is the prompt sentence, never what was heard; `nabu reports promote` skips it.
 - `speak`/`listen-speak` replace tier 0 only with SpeechSupport (speechSupportOf); `tone-identify` needs a one-syllable
-  clip. Lessons keep their rotation length (golden files): substitute slots, never add rotation entries.
+  clip. Speech never changes a lesson's length (the planner's size, golden files): scored speaking takes tier 0's place.
 - `pnpm --filter @nabu/core tone-eval [set]` reports per-tone accuracy; evals/tones/synthetic-espeak is synthetic.
 - Speech e2e uses Chromium's fake microphone (tests/e2e/fixtures); speech service tests need NABU_SPEECH=1.
 
