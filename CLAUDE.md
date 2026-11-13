@@ -145,6 +145,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   facets count only in their orthography; each known or learning, ADR 0100), `orderWords`, `wordMatcher` (letters as
   the profile compares them, marks stripped; readings with or without tones; glosses folded in their own language);
   @nabu/ui/words WordList. It reads the log; it records nothing.
+- Home leads with where the learner left off (ADR 0120): each course's latest start, `studiedCourses` over
+  `EventStore.latestStarts` (read back from each course's newest event; never the whole log). The course page marks
+  where it opens with `data-arrival` (screen.tsx brings it into view; focus stays on the h1); finished units fold
+  (their lists stay in the DOM, `hidden`); its other pages are linked under its title; Offline is its own page.
 
 ## Known words notes (see docs/adr/0100–0101)
 - Known (ADR 0100): every skill `skillsAsked(course)` asks of a word (recognize; produce where a sentence uses it; listen
