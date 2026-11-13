@@ -8,8 +8,9 @@
  * - Tap-for-gloss runs the runtime glossary (longest match, exact and folded passes), so a
  *   vocalized كِيفَك finds its unvocalized entry; the meaning appears in a live panel, not a
  *   floating popover, so it reads the same in RTL, LTR and vertical text.
- * - Vertical reading (§11.4): where the profile allows it, the transcript turns into columns
- *   (vertical-rl); the chrome stays horizontal, and ruby is off by default there.
+ * - Vertical reading (§11.4, ADR 0118): where the profile allows it, each line's text turns into
+ *   columns (vertical-rl) with the reading layer the learner chose beside them; names, play
+ *   buttons, translations and the chrome stay horizontal, and the lines follow one another down.
  */
 import { draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
 import { storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
@@ -192,19 +193,15 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     if (continueOf !== undefined) continueButton.current?.focus({ preventScroll: true });
   }, [continueOf]);
 
-  // The newest line is the last one: the transcript scrolls to its block end (the bottom; the left
-  // in vertical-rl), and again whenever the layout settles under it, since web fonts change line
-  // heights after the first layout and a question opening below resizes the transcript. Scrolling
-  // to the end, not "nearest", gives the same position whatever the scroll was before.
+  // The newest line is the last one: the transcript scrolls to its end (the bottom, in vertical
+  // reading too: only the lines' text turns), and again whenever the layout settles under it, since
+  // web fonts change line heights after the first layout and a question opening below resizes the
+  // transcript. Scrolling to the end, not "nearest", gives the same position whatever the scroll was.
   const shownCount = state.shown.length;
   useEffect(() => {
     const box = transcript.current;
     const reveal = (): void => {
-      if (box === null) return;
-      const mode = getComputedStyle(box).writingMode;
-      if (mode === "vertical-rl") box.scrollLeft = -box.scrollWidth;
-      else if (mode === "vertical-lr") box.scrollLeft = box.scrollWidth;
-      else box.scrollTop = box.scrollHeight;
+      if (box !== null) box.scrollTop = box.scrollHeight;
     };
     reveal();
     let live = true;

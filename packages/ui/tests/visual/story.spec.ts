@@ -2,9 +2,9 @@
  * Phase 6: the story reader in the visual matrix (gameplan §15): UI {en, en-XA, ar-XB} × target
  * {fa, yue-Hant-HK, uz-Latn, apc-Arab} × {horizontal, vertical where allowed}, on two screens:
  * reading (four lines, a translation open, a word glossed) and a question (building a line from
- * its tiles). Vertical cells are the reading screen: the transcript turns into columns while the
- * chrome stays horizontal (§11.4). Same structural checks as the player; pixels in the pinned
- * container.
+ * its tiles). Vertical cells are the reading screen: each line's text turns into columns, its
+ * reading beside them, while names, buttons, translations and the chrome stay horizontal (§11.4,
+ * ADR 0118). Same structural checks as the player; pixels in the pinned container.
  */
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
@@ -46,18 +46,37 @@ for (const cell of cells()) {
 
       if (screen === "reading") {
         const transcript = page.locator("[data-story-transcript]");
-        expect(await transcript.evaluate((el) => getComputedStyle(el).writingMode)).toBe(cell.writingMode);
+        await expect(transcript).toHaveAttribute("data-writing-mode", cell.writingMode);
         expect(await transcript.locator("[data-line]").count()).toBeGreaterThanOrEqual(4);
         // Words are buttons for tap-for-gloss; one is open, and the panel explains it.
         await expect(transcript.locator("button[aria-pressed=true]")).toHaveCount(1);
         await expect(page.locator("[data-gloss-panel] [data-gloss-kc]")).not.toHaveCount(0);
         await expect(transcript.locator("[data-action=translate][aria-expanded=true]")).toHaveCount(1);
+        // Only the lines' text may turn: the transcript, the names, the buttons and the translations
+        // stay horizontal, as the chrome does (ADR 0118).
+        expect(await transcript.evaluate((el) => getComputedStyle(el).writingMode)).toBe("horizontal-tb");
+        const lineText = transcript.locator("[data-line] p[data-nabu-text]").first();
+        expect(await lineText.evaluate((el) => getComputedStyle(el).writingMode)).toBe(cell.writingMode);
+        for (const chrome of ["[data-action=translate]", "[data-action=play]"]) {
+          const modes = await transcript.locator(chrome).evaluateAll((els) => els.map((el) => getComputedStyle(el).writingMode));
+          expect(modes.length, chrome).toBeGreaterThan(0);
+          expect(new Set(modes), chrome).toEqual(new Set(["horizontal-tb"]));
+        }
+        // No empty block pushing Continue down: the newest line ends where its content does, and the
+        // transcript where the newest line does.
+        const gaps = await transcript.evaluate((el) => {
+          const line = el.querySelector("[data-line]:last-child");
+          if (line === null) return [Number.POSITIVE_INFINITY];
+          const content = Math.max(...[...line.children].map((c) => c.getBoundingClientRect().bottom));
+          const bottom = line.getBoundingClientRect().bottom;
+          return [bottom - content, el.getBoundingClientRect().bottom - bottom];
+        });
+        for (const gap of gaps) expect(gap).toBeLessThan(24);
         if (cell.writingMode !== "horizontal-tb") {
-          // Columns: each line's text runs top to bottom, and everything in the column follows it.
-          const line = await transcript.locator("[data-line] p[data-nabu-text]").first().boundingBox();
+          // Columns: each line's text runs top to bottom, its reading beside it (yue shows Jyutping).
+          const line = await lineText.boundingBox();
           expect(line!.height).toBeGreaterThan(line!.width);
-          const translate = transcript.locator("[data-action=translate]").first();
-          expect(await translate.evaluate((el) => getComputedStyle(el).writingMode)).toBe(cell.writingMode);
+          await expect(transcript.locator("rt").first()).toBeVisible();
         }
       }
 
