@@ -115,8 +115,22 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Count open mistakes with @nabu/core/learner `practicableMistakes` (the course page does), never `state.mistakes`:
   a session leaves out templates on a break, items the course no longer makes, and items needing unseen KCs.
 - The word list (`#/<course>/<orth>/words`): @nabu/core/learner `learnedWords` (word KCs with a reviewed card; script
-  facets count only in their orthography), `orderWords`, `wordMatcher` (letters as the profile compares them, marks
-  stripped; glosses folded in their own language); @nabu/ui/words WordList. It reads the log; it records nothing.
+  facets count only in their orthography; each known or learning, ADR 0100), `orderWords`, `wordMatcher` (letters as
+  the profile compares them, marks stripped; readings with or without tones; glosses folded in their own language);
+  @nabu/ui/words WordList. It reads the log; it records nothing.
+
+## Known words notes (see docs/adr/0100–0101)
+- Known (ADR 0100): every skill `skillsAsked(course)` asks of a word (recognize; produce where a sentence uses it; listen
+  where the voice is good and the word can be heard) is in the fold's `shown`: a first try right, not self-rated, on a
+  later local date than `met` and than its last `missed`. Never store known status; change the fold.
+- A miss counts against a word only where the grading pins it (a one-word card, `askedKcs`, word-level credit); a
+  sentence missed as a whole leaves its words alone. Gap-fill is recognition; production is typing (D4).
+- A new word is presented only by a card credited to it (`creditedKcs`), never as a pronunciation card's context.
+- Sessions aim at the skills words lack (ADR 0101): `NEED_GAIN`, typing and listening slots that only come in where the
+  session can still reach its target, `focus` blanks. Callers pass `today`, the learner's local date (web
+  `localDate(now)`; the e2e solver UTC, as its browser). Tune against the simulation, which checks typing too.
+- The simulator logs credits as the player does (asked words right or wrong, the rest given): keep
+  test/learner-fixtures `creditsOf` in step with `creditOf`.
 
 ## Phase 5 notes (see docs/adr/0040–0042)
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate

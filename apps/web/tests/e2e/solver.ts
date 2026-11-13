@@ -70,9 +70,20 @@ export const teachable = async (page: Page, course: CourseView): Promise<CourseV
   return restrictMedia(course, (path) => stored.has(path));
 };
 
-/** The session the app plans for this log, clock and seed (no speech server: tones scored on the device). */
-export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number): readonly Exercise[] =>
-  plan(course, replay(log), request, { now: now.toISOString(), seed, speech: speechSupportOf(course, 0) }).exercises;
+/** The local date (YYYY-MM-DD) at `now` in a time zone, as the app's clock stamps it in a browser there. */
+const localDateIn = (now: Date, timeZone: string): string => {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+  const part = (type: Intl.DateTimeFormatPartTypes): string => parts.find((p) => p.type === type)?.value ?? "";
+  return `${part("year")}-${part("month")}-${part("day")}`;
+};
+
+/**
+ * The session the app plans for this log, clock and seed (no speech server: tones scored on the
+ * device), in the browser's time zone: UTC (playwright.config.ts) unless the spec sets another. The
+ * plan aims at the skills of words met before the learner's local date (ADR 0101).
+ */
+export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number, timeZone = "UTC"): readonly Exercise[] =>
+  plan(course, replay(log), request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0) }).exercises;
 
 /**
  * A learner who already finished every lesson before `node`, two days before

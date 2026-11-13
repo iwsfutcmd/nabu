@@ -56,7 +56,7 @@ const addDays = (date: string, n: number): string => new Date(Date.parse(`${date
 
 /** Plays one planned session from the course path, at the page's clock `now`. */
 const play = async (page: Page, c: CourseView, request: Parameters<typeof planned>[2], now: Date, selector: string): Promise<void> => {
-  const exercises = planned(c, await logOf(page, c.id), request, now, SEED);
+  const exercises = planned(c, await logOf(page, c.id), request, now, SEED, TZ);
   await activate(page, "keyboard", selector);
   await playSession(page, exercises, "keyboard");
   await activate(page, "keyboard", "[data-action=exit]");
@@ -119,9 +119,9 @@ test.describe("offline", () => {
     await expect(page.locator("[data-offline-notice]")).toBeVisible();
 
     // The first unit's clips are not on this device: its first lesson plans without listening.
-    const full = planned(course, [], { mode: "lesson", node: first }, now, SEED);
+    const full = planned(course, [], { mode: "lesson", node: first }, now, SEED, TZ);
     const here = restrictMedia(course, (p) => stored.has(p));
-    const offline = planned(here, [], { mode: "lesson", node: first }, now, SEED);
+    const offline = planned(here, [], { mode: "lesson", node: first }, now, SEED, TZ);
     expect(full.some((e) => LISTENING.has(e.template))).toBe(true);
     expect(offline.some((e) => LISTENING.has(e.template))).toBe(false);
     await play(page, here, { mode: "lesson", node: first }, now, `[data-lesson="${first}"]`);

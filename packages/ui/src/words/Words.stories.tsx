@@ -1,4 +1,4 @@
-import type { LearnedWord } from "@nabu/core/learner";
+import { skillsAsked, type LearnedWord } from "@nabu/core/learner";
 import type { CourseView } from "@nabu/core/lesson";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
@@ -15,15 +15,32 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-/** The first unit's words, learned: a strong one, a fading one and a due one in turn. */
+/**
+ * The first unit's words, met: a strong one, a fading one and a due one in turn; every third known
+ * (ADR 0100), the others still to show one or two of the skills the course asks of them.
+ */
 const sampleWords = (course: CourseView): LearnedWord[] => {
   const unit = course.units[0];
   if (unit === undefined) return [];
+  const asked = skillsAsked(course);
   return unit.kcs.flatMap((kc, i): LearnedWord[] => {
     const form = kc.forms?.[course.orthography]?.[0];
     if ((kc.kind !== "sense" && kc.kind !== "form") || form === undefined) return [];
     const band = i % 3;
-    return [{ kc: kc.id, unit: unit.id, form, gloss: kc.gloss?.[course.supportKey], strength: band === 0 ? 0.97 : band === 1 ? 0.62 : 0.4, due: band === 2, reviews: 3 + i }];
+    const skills = asked(kc.id).map((skill, k) => ({ skill, shown: band === 0 || k < band }));
+    return [
+      {
+        kc: kc.id,
+        unit: unit.id,
+        form,
+        gloss: kc.gloss?.[course.supportKey],
+        strength: band === 0 ? 0.97 : band === 1 ? 0.62 : 0.4,
+        due: band === 2,
+        reviews: 3 + i,
+        known: skills.length > 0 && skills.every((s) => s.shown),
+        skills,
+      },
+    ];
   });
 };
 

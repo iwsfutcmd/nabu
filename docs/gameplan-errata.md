@@ -251,3 +251,9 @@ ADR is linked. The gameplan text itself is left as written.
     half the usual time, on a card already recalled with at least 0.9 probability, is Easy
     ([ADR 0096](adr/0096-pace-in-ratings.md)). Learners still never rate themselves, except
     speaking at tier 0.
+
+65. **§8.2 `gap-fill` "form·produce":** picking the missing word among options is recognition,
+    like tiles: production is supplying the form, typed (or, once scored speech exists, said from
+    the meaning). A word is known once it has shown each skill on a later day than it was met
+    ([ADR 0100](adr/0100-known-words.md)); sessions aim at the skills words lack
+    ([ADR 0101](adr/0101-skill-targets.md)).

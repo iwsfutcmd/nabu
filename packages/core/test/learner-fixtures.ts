@@ -2,6 +2,7 @@
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { BundleManifest, KcCredit, LearnerEvent, Prediction } from "@nabu/schema";
+import { askedKcs } from "../src/learner/credit.ts";
 import { assembleCourse, MEDIA_ROLES, type CourseView, type Exercise } from "../src/lesson/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -38,6 +39,14 @@ export interface EventFactory {
   readonly completed: (mode: "lesson" | "review" | "mistakes", node: string | undefined, summary: { exercises: number; correctFirstTry: number; retries: number }) => LearnerEvent;
 }
 
+/** The credits the player logs for a whole answer (creditOf): the words asked about, the rest given. */
+const creditsOf = (ex: Exercise, correct: boolean): KcCredit[] => {
+  const asked = askedKcs(ex);
+  const status = correct ? "right" : "wrong";
+  if (asked === undefined) return ex.kcs.map((kc): KcCredit => ({ kc, status }));
+  return [...new Set([...asked, ...ex.kcs])].map((kc): KcCredit => ({ kc, status: asked.includes(kc) ? status : "given" }));
+};
+
 /** Builds valid learner events for one course, with a settable clock. */
 export const eventFactory = (course: CourseView, bundle: string): EventFactory => {
   const nextId = idFactory();
@@ -71,7 +80,7 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
       exercise: { id: ex.id, template: ex.template, item: ex.item, kcs: [...ex.kcs] },
       attempt,
       input: { method: "choice", latencyMs },
-      outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], kcs: ex.kcs.map((kc): KcCredit => ({ kc, status: correct ? "right" : "wrong" })) },
+      outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], kcs: creditsOf(ex, correct) },
       ...(prediction === undefined ? {} : { prediction }),
     }),
     completed: (mode, node, summary) => ({

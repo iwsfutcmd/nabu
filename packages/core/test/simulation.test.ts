@@ -4,6 +4,8 @@
  * The simulated learners are in simulator.ts.
  */
 import { describe, expect, it } from "vitest";
+import type { LearnerEvent } from "@nabu/schema";
+import { learnedWords, replay } from "../src/learner/index.ts";
 import { allKcs, allSentences, lessonNodes } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 import { simulate } from "./simulator.ts";
@@ -48,10 +50,14 @@ describe("planner: 30 simulated days", () => {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {
       // Which KCs each lesson session presented: every new KC an exercise can carry must appear.
       const presented = new Map<string, Set<string>>();
+      const log: LearnerEvent[] = [];
       let node = "";
       const r = simulate(course, orthography, seed, ability, (e) => {
+        log.push(e);
         if (e.type === "session_started") node = e.mode === "lesson" ? (e.node ?? "") : "";
-        if (e.type === "answer_submitted" && node !== "") for (const kc of e.exercise.kcs) (presented.get(node) ?? presented.set(node, new Set()).get(node))?.add(kc);
+        // A word is presented by a card credited to it: not as the context of another word's card.
+        if (e.type === "answer_submitted" && node !== "")
+          for (const { kc, status } of e.outcome.kcs) if (status !== "given") (presented.get(node) ?? presented.set(node, new Set()).get(node))?.add(kc);
       });
       const view = loadCourse(course, orthography);
       const carried = new Set([...allSentences(view).flatMap((s) => s.kcs), ...allKcs(view).filter((k) => (k.forms?.[view.orthography]?.length ?? 0) > 0).map((k) => k.id)]);
@@ -64,6 +70,12 @@ describe("planner: 30 simulated days", () => {
       );
       expect(r.firstTries).toBeGreaterThan(150);
       expect(Math.abs(rate - 0.85)).toBeLessThanOrEqual(0.05);
+      // Words get typed (ADR 0101): every learner is asked to produce, and some word shows it can be
+      // written. The success rate alone hid a month with no typing at all (the review's L5, L12).
+      const typed = (r.templates["translate-type.l1-l2"] ?? 0) + (r.templates["complete-translation"] ?? 0);
+      expect(typed).toBeGreaterThanOrEqual(5);
+      const written = learnedWords(view, replay(log), "2026-02-01T00:00:00.000Z").filter((w) => w.skills.some((k) => k.skill === "produce" && k.shown));
+      expect(written.length).toBeGreaterThan(0);
     }, SIMULATION_TIMEOUT_MS);
   }
 });

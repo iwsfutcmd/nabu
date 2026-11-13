@@ -327,9 +327,10 @@ describe("planner constraints", () => {
       const p = plan(fa, emptyLearnerState(), { mode: "lesson", node: node.id }, { now: "2026-03-01T08:00:00.000Z", seed: 2 });
       const recognized = new Set<string>();
       for (const ex of p.exercises) {
-        const produces = ex.template === "translate-type.l1-l2" || ex.template === "complete-translation" || ex.template === "gap-fill";
-        if (produces) for (const kc of ex.kcs) if (node.introduces.includes(kc)) expect(recognized.has(kc), `${node.id}: ${ex.id} before recognizing ${kc}`).toBe(true);
-        if (!produces) ex.kcs.forEach((kc) => recognized.add(kc));
+        // Gap-fill is recognition (ADR 0100), but choosing among forms of words needs the word met first.
+        const gated = ex.template === "translate-type.l1-l2" || ex.template === "complete-translation" || ex.template === "gap-fill";
+        if (gated) for (const kc of ex.kcs) if (node.introduces.includes(kc)) expect(recognized.has(kc), `${node.id}: ${ex.id} before recognizing ${kc}`).toBe(true);
+        if (!gated) ex.kcs.forEach((kc) => recognized.add(kc));
       }
     }
   }, WHOLE_COURSE_TIMEOUT_MS);
