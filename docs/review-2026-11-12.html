@@ -1310,109 +1310,642 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
 <script type="application/json" id="assessments-data">
 {
   "recorded": "12 November 2026",
-  "decisions": {"D1":"a","D2":"a","D3":"a","D4":"a","D5":"a","D6":"a","D7":"a","D8":"a","D9":"a","D10":"a","D11":"a","D12":"b","D13":"a","D14":"a","D15":"a","D16":"a","D17":"a","D18":"a","D19":"a","D20":"a","D21":"a"},
+  "decisions": {
+    "D1": "a",
+    "D2": "a",
+    "D3": "a",
+    "D4": "a",
+    "D5": "a",
+    "D6": "a",
+    "D7": "a",
+    "D8": "a",
+    "D9": "a",
+    "D10": "a",
+    "D11": "a",
+    "D12": "b",
+    "D13": "a",
+    "D14": "a",
+    "D15": "a",
+    "D16": "a",
+    "D17": "a",
+    "D18": "a",
+    "D19": "a",
+    "D20": "a",
+    "D21": "a"
+  },
   "picks": {
-    "L1":{"priority":"now"},"L7":{"priority":"now"},"P5":{"priority":"now"},"S7":{"priority":"now"},"W2":{"priority":"now"},
-    "C1":{"priority":"now","note":"Test the words in context (inside a sentence), not on their own. Vocalizing should accept Arabizi in apc: it spells the vowels. Later: vowels are a pain to type in any abjad (Arab, Hebr, Syrc…), so vocalization should be multiple choice; Han readings both multiple choice and typed."},
-    "C2":{"priority":"now"},"L3":{"priority":"now"},"L4":{"priority":"now"},"L5":{"priority":"now"},"P1":{"priority":"now"},"P2":{"priority":"now"},
-    "S3":{"priority":"now"},"M7":{"priority":"now"},"W1":{"priority":"now"},"L2":{"priority":"now"},"C3":{"priority":"now"},
-    "L6":{"priority":"now"},"L9":{"priority":"now"},"P13":{"priority":"now"},"S16":{"priority":"now"},"W9":{"priority":"now"},"W11":{"priority":"now"},
-    "C15":{"priority":"now"},"C16":{"priority":"now"},"C17":{"priority":"now"},"C18":{"priority":"now"},"C19":{"priority":"now"},"C20":{"priority":"now"},
-    "R10":{"priority":"now"},"R12":{"priority":"now"},"S14":{"priority":"now"},"S15":{"priority":"now"},"M9":{"priority":"now"},"R9":{"priority":"now"},"R11":{"priority":"now"},
-    "L11":{"priority":"now"},"P6":{"priority":"now"},"P7":{"priority":"now"},"P8":{"priority":"now"},"P11":{"priority":"now"},"P15":{"priority":"now"},"S10":{"priority":"now"},"S12":{"priority":"now"},
-    "L10":{"priority":"next","note":"Same as decision D4 (gap-fill becomes recognition): Claude will do it with the known-word rule (L4)."},
-    "C14":{"priority":"later"},"R7":{"priority":"later"},"C13":{"priority":"later"},
-    "C4":{"priority":"next"},"P9":{"priority":"next"},
-    "P3":{"priority":"later"},"S1":{"priority":"later"},"S2":{"priority":"later"},"C5":{"priority":"later"},
-    "L8":{"note":"Recall should be rated automatically, never by the learner (Anki’s self-rating was the pain). Claude proposed folding this into L7."},
-    "M1":{"priority":"now"},"M6":{"priority":"now","note":"I’d like to make the report button smaller and more off to the side. It can be an icon."},
-    "W3":{"priority":"now"},"W4":{"priority":"now"},"W5":{"priority":"now"},"W7":{"priority":"now"},"W8":{"priority":"now"},"W10":{"priority":"now"},
-    "C7":{"priority":"now"},"C12":{"priority":"now"},"R5":{"priority":"now"},"R6":{"priority":"now"},
-    "P16":{"priority":"next"},
-    "M5":{"priority":"later"},"R8":{"priority":"later"},
-    "R3":{"priority":"now"},"L12":{"priority":"now"},"P4":{"priority":"now"},"P10":{"priority":"now"},"P12":{"priority":"now"},"S4":{"priority":"now"},"M3":{"priority":"now"},
-    "R1":{"priority":"next"},"R4":{"priority":"next"},"P14":{"priority":"next"},
-    "R2":{"priority":"later"},
-    "M4":{"priority":"now"},"C9":{"priority":"now"},
-    "M2":{"priority":"next"},"W6":{"priority":"next"},"C6":{"priority":"next"},"C10":{"priority":"next"},
-    "M8":{"priority":"later"},"M10":{"priority":"later"},"C8":{"priority":"later"},
-    "S5":{"priority":"now"},"S6":{"priority":"now"},"S13":{"priority":"now"},"C11":{"priority":"now"},
-    "S8":{"priority":"next"},"S11":{"priority":"next"},
-    "S9":{"priority":"later"}
+    "L1": {
+      "priority": "now"
+    },
+    "L7": {
+      "priority": "now"
+    },
+    "P5": {
+      "priority": "now"
+    },
+    "S7": {
+      "priority": "now"
+    },
+    "W2": {
+      "priority": "now"
+    },
+    "C1": {
+      "priority": "now",
+      "note": "Test the words in context (inside a sentence), not on their own. Vocalizing should accept Arabizi in apc: it spells the vowels. Later: vowels are a pain to type in any abjad (Arab, Hebr, Syrc…), so vocalization should be multiple choice; Han readings both multiple choice and typed."
+    },
+    "C2": {
+      "priority": "now"
+    },
+    "L3": {
+      "priority": "now"
+    },
+    "L4": {
+      "priority": "now"
+    },
+    "L5": {
+      "priority": "now"
+    },
+    "P1": {
+      "priority": "now"
+    },
+    "P2": {
+      "priority": "now"
+    },
+    "S3": {
+      "priority": "now"
+    },
+    "M7": {
+      "priority": "now"
+    },
+    "W1": {
+      "priority": "now"
+    },
+    "L2": {
+      "priority": "now"
+    },
+    "C3": {
+      "priority": "now"
+    },
+    "L6": {
+      "priority": "now"
+    },
+    "L9": {
+      "priority": "now"
+    },
+    "P13": {
+      "priority": "now"
+    },
+    "S16": {
+      "priority": "now"
+    },
+    "W9": {
+      "priority": "now"
+    },
+    "W11": {
+      "priority": "now"
+    },
+    "C15": {
+      "priority": "now"
+    },
+    "C16": {
+      "priority": "now"
+    },
+    "C17": {
+      "priority": "now"
+    },
+    "C18": {
+      "priority": "now"
+    },
+    "C19": {
+      "priority": "now"
+    },
+    "C20": {
+      "priority": "now"
+    },
+    "R10": {
+      "priority": "now"
+    },
+    "R12": {
+      "priority": "now"
+    },
+    "S14": {
+      "priority": "now"
+    },
+    "S15": {
+      "priority": "now"
+    },
+    "M9": {
+      "priority": "now"
+    },
+    "R9": {
+      "priority": "now"
+    },
+    "R11": {
+      "priority": "now"
+    },
+    "L11": {
+      "priority": "now"
+    },
+    "P6": {
+      "priority": "now"
+    },
+    "P7": {
+      "priority": "now"
+    },
+    "P8": {
+      "priority": "now"
+    },
+    "P11": {
+      "priority": "now"
+    },
+    "P15": {
+      "priority": "now"
+    },
+    "S10": {
+      "priority": "now"
+    },
+    "S12": {
+      "priority": "now"
+    },
+    "L10": {
+      "priority": "next",
+      "note": "Same as decision D4 (gap-fill becomes recognition): Claude will do it with the known-word rule (L4)."
+    },
+    "C14": {
+      "priority": "later"
+    },
+    "R7": {
+      "priority": "later"
+    },
+    "C13": {
+      "priority": "later"
+    },
+    "C4": {
+      "priority": "next"
+    },
+    "P9": {
+      "priority": "next"
+    },
+    "P3": {
+      "priority": "later"
+    },
+    "S1": {
+      "priority": "later"
+    },
+    "S2": {
+      "priority": "later"
+    },
+    "C5": {
+      "priority": "later"
+    },
+    "L8": {
+      "note": "Recall should be rated automatically, never by the learner (Anki’s self-rating was the pain). Claude proposed folding this into L7."
+    },
+    "M1": {
+      "priority": "now"
+    },
+    "M6": {
+      "priority": "now",
+      "note": "I’d like to make the report button smaller and more off to the side. It can be an icon."
+    },
+    "W3": {
+      "priority": "now"
+    },
+    "W4": {
+      "priority": "now"
+    },
+    "W5": {
+      "priority": "now"
+    },
+    "W7": {
+      "priority": "now"
+    },
+    "W8": {
+      "priority": "now"
+    },
+    "W10": {
+      "priority": "now"
+    },
+    "C7": {
+      "priority": "now"
+    },
+    "C12": {
+      "priority": "now"
+    },
+    "R5": {
+      "priority": "now"
+    },
+    "R6": {
+      "priority": "now"
+    },
+    "P16": {
+      "priority": "next"
+    },
+    "M5": {
+      "priority": "later"
+    },
+    "R8": {
+      "priority": "later"
+    },
+    "R3": {
+      "priority": "now"
+    },
+    "L12": {
+      "priority": "now"
+    },
+    "P4": {
+      "priority": "now"
+    },
+    "P10": {
+      "priority": "now"
+    },
+    "P12": {
+      "priority": "now"
+    },
+    "S4": {
+      "priority": "now"
+    },
+    "M3": {
+      "priority": "now"
+    },
+    "R1": {
+      "priority": "next"
+    },
+    "R4": {
+      "priority": "next"
+    },
+    "P14": {
+      "priority": "next"
+    },
+    "R2": {
+      "priority": "later"
+    },
+    "M4": {
+      "priority": "now"
+    },
+    "C9": {
+      "priority": "now"
+    },
+    "M2": {
+      "priority": "next"
+    },
+    "W6": {
+      "priority": "next"
+    },
+    "C6": {
+      "priority": "next"
+    },
+    "C10": {
+      "priority": "next"
+    },
+    "M8": {
+      "priority": "later"
+    },
+    "M10": {
+      "priority": "later"
+    },
+    "C8": {
+      "priority": "later"
+    },
+    "S5": {
+      "priority": "now"
+    },
+    "S6": {
+      "priority": "now"
+    },
+    "S13": {
+      "priority": "now"
+    },
+    "C11": {
+      "priority": "now"
+    },
+    "S8": {
+      "priority": "next"
+    },
+    "S11": {
+      "priority": "next"
+    },
+    "S9": {
+      "priority": "later"
+    }
   },
   "progress": {
-    "C4":{"state":"done","commit":"98ff8a02","note":"Done early with R9 by the performance helper: the demo’s profiles load only for the demo card, and course pages render inside the course’s own profiles."},
-    "C11":{"state":"in-progress","commit":"62a19d91","note":"Core done: each template’s facet, modality, prior, per-session cap and whether it presents new words live in one spec (TEMPLATES); plans unchanged. Left: the app’s spots that re-derive categories by template id (ai.tsx, LessonPlayer, the API’s EXPLAINED), once the helpers editing those files are merged."},
-    "W7":{"state":"done","commit":"8dd43c87","note":"Match-pairs show a card gloss: the first sense, without notes in parentheses (呀 no longer shows its reading); tap-for-gloss keeps the full gloss."},
-    "P2":{"state":"done","commit":"8dd43c87","note":"Distractors are ranked by the answer’s final punctuation, length, shared words and capital: in es, over 90% of choose-translation distractors now end like the answer, and a sentence’s first word is no longer the only capitalised gap-fill option; word banks get 3–4 distractors."},
-    "W11":{"state":"done","commit":"16e51fb2","note":"Kept open through the lesson’s own retry (getting it right minutes after seeing the answer proves little), and the count now says so: “1 to get right in a later session”."},
-    "R11":{"state":"in-progress","note":"With a helper agent (branch fix/perf-cleanup); merged and checked before it counts as done."},
-    "R9":{"state":"in-progress","note":"With a helper agent (branch fix/perf-cleanup); merged and checked before it counts as done."},
-    "R5":{"state":"in-progress","note":"With a helper agent (branch fix/perf-cleanup); merged and checked before it counts as done."},
-    "C17":{"state":"in-progress","note":"With a helper agent (branch fix/perf-cleanup); merged and checked before it counts as done."},
-    "C20":{"state":"in-progress","note":"With a helper agent (branch fix/perf-cleanup); merged and checked before it counts as done."},
-    "C3":{"state":"in-progress","note":"With a helper agent (branch fix/readings-data); merged and checked before it counts as done."},
-    "C19":{"state":"in-progress","note":"With a helper agent (branch fix/readings-data); merged and checked before it counts as done."},
-    "C12":{"state":"in-progress","note":"With a helper agent (branch fix/readings-data); merged and checked before it counts as done."},
-    "C18":{"state":"in-progress","note":"With a helper agent (branch fix/readings-data); merged and checked before it counts as done."},
-    "S5":{"state":"in-progress","note":"Merged (c45ef353): placement explains itself first, says afterwards where it placed you, can stop part-way and be taken again until the course is done."},
-    "S6":{"state":"in-progress","note":"Merged (1e35436a): the progress section says where data is kept (persistent storage granted or not, the app, a private window), and a downloaded file can be restored (every event checked against the schema, ids deduplicated)."},
-    "S3":{"state":"in-progress","note":"Merged (34e8fc4f): Back after a session goes back to the course page and never replays it; Back mid-session asks like Quit; a reload resumes the session from its saved plan (within 12 hours). Five e2e flows broke and are being fixed by the helper."},
-    "S13":{"state":"in-progress","note":"Merged (604bd5ef): the server takes a batch’s valid events and lists the rest; the device sets a rejected event aside (kept in its log, offered again from a button and at sign-in) and says so, never “all saved”. Final e2e fixes pending."},
-    "S4":{"state":"in-progress","note":"Merged (2c5f7d68): a first-run introduction, and each course card one link with a blurb, levels, units and tags like “No listening”. Full e2e run pending."},
-    "M4":{"state":"in-progress","note":"Merged (ed832b48): Home opens on the courses; after a lapse “Start a new streak today”; a weekly goal of practice days. Full e2e run pending."},
-    "M3":{"state":"in-progress","note":"Merged (bcaaa53b): three quests a day, each something the learner’s last 14 days show they can do. Full e2e run pending."},
-    "M1":{"state":"in-progress","note":"Merged (9e3f10fb): a point a card up to 10 a session, the perfect bonus from 5 cards, a replayed lesson pays its answers only (ADR 0107). Full e2e run pending."},
-    "M6":{"state":"in-progress","note":"Merged (2ec570e5): one report button per answer, a small flag at the inline end, opening only the reports that apply. Full e2e run pending."},
-    "W4":{"state":"in-progress","note":"Merged (23fa7de7): a missing accent that spells another word names both words (“Cómo and Como are different words…”); 5 conformance vectors. Full e2e run pending."},
-    "W3":{"state":"in-progress","note":"Merged (63428510): the nearest correct version shows only for a near miss, labelled, with the solution’s punctuation. Full e2e run pending."},
-    "S16":{"state":"in-progress","note":"Merged (f3af568c): notices are neutral (a new info token, AA in both themes); errors and the can’t-save warning keep the error colours. Full e2e run pending."},
-    "P1":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "S15":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P8":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P12":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P11":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P10":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P4":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P6":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P13":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "W9":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P7":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "P15":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
-    "L9":{"state":"done","commit":"8bfd1f84","note":"A finished placement seeds the placed nodes’ KCs: a recognize card each, so the planner counts them as seen, review brings them back and the word list shows them (ADR 0111)."},
-    "C2":{"state":"done","commit":"2a0b776a"},
-    "M7":{"state":"done","commit":"2b475148"},
-    "S7":{"state":"done","commit":"1466eb38"},
-    "W2":{"state":"done","commit":"4f2059c1"},
-    "W1":{"state":"done","commit":"4f2059c1"},
-    "C1":{"state":"done","commit":"eff3a5da · bd700091 · bb6655c8"},
-    "L7":{"state":"done","commit":"653bd4f1"},
-    "L8":{"state":"done","commit":"653bd4f1"},
-    "L1":{"state":"done","commit":"564ce0e6"},
-    "P5":{"state":"done","commit":"f10e2bbb"},
-    "L6":{"state":"done","commit":"f10e2bbb"},
-    "L4":{"state":"done","commit":"5c162d08","note":"Known means every skill the course asks of a word (reading; writing where a sentence uses it; hearing where the voice is good) shown right on a later day than it was met; a miss takes it away (D2, D3). The word list says known or learning with the skills still to show, filters with counts, and counts known words per unit (ADR 0100)."},
-    "L5":{"state":"done","commit":"5c162d08","note":"Sessions aim at the skills words lack: typing and listening cards spread through each session, only where the session can still reach its target; blanks on the words that need typing (ADR 0101). Typed answers in 30 simulated days: 10–195 a run, above main’s level."},
-    "L10":{"state":"done","commit":"5c162d08","note":"Gap-fill is recognition (D4)."},
-    "S14":{"state":"done","commit":"5c162d08","note":"The link sits with Practice and shows the known count; search finds readings (zousan finds 早晨). “Practise these” waits for L3."},
-    "R6":{"state":"done","commit":"5c162d08","note":"The word list reads the cards once, grouped by word."},
-    "C7":{"state":"done","commit":"ed26e806","note":"By the pipeline helper agent; merged into review-fixes."},
-    "C15":{"state":"done","commit":"afa8b9a6","note":"By the pipeline helper agent; merged into review-fixes."},
-    "C16":{"state":"done","commit":"c830ee68","note":"By the pipeline helper agent; merged into review-fixes."},
-    "M9":{"state":"done","commit":"merged","note":"Reminders come 30 minutes after the 80th percentile of the learner’s start times (19:00 with no history, never after 23:30); only practice after a reminder answers it; the deployment’s game rules; a reminder time the learner can choose (ADR 0103)."},
-    "R10":{"state":"done","commit":"merged","note":"replayGame sorts once and checks local dates only where they count: a year of events 39 ms → 10 ms."},
-    "W10":{"state":"done","commit":"merged","note":"An installable app: manifest from the catalog and tokens, the app’s icons, precached by the service worker; the reviewer role is asked once a browser session."},
-    "S12":{"state":"done","commit":"merged","note":"No debug mode from the landing page; a “Leave debug mode” strip wherever it is on."},
-    "S10":{"state":"done","commit":"merged","note":"A title per screen, focus on the new screen’s heading and scroll to the top on route changes, loading states announced."},
-    "W5":{"state":"done","commit":"merged","note":"The streak panel recomputes at local midnight and when the page becomes visible."},
-    "L3":{"state":"done","commit":"e02772de","note":"The course page counts due words; a review session has a card for each word that needs one, 5 to 15. Routing Continue to review when the backlog is high comes with L2."},
-    "R3":{"state":"done","commit":"e02772de","note":"A review plans from the neediest sentences and words plus a few well-known ones, with cached course lists and set lookups: es 3 s to 0.14 s, fa 0.45 s to 0.04 s for a learner who has seen every word (Node)."},
-    "R12":{"state":"done","commit":"e02772de","note":"The course page works out its counts once a minute and when the log changes."},
-    "W8":{"state":"done","commit":"e02772de","note":"Due means a skill’s recall is below the target, on the word list and the course page alike."},
-    "L2":{"state":"done","commit":"d47a0d39","note":"A pace read from the log (consolidate, steady, accelerate) or chosen by the learner; it sets the retention target, a lesson’s review share and when Continue offers practice first, with “New lesson anyway” beside it and a line saying why (ADR 0105). Not yet: “test out of the rest of this unit” when accelerating."},
-    "L11":{"state":"done","commit":"d47a0d39","note":"The retention target comes from the pace: 0.93, 0.90 or 0.85."},
-    "C9":{"state":"done","commit":"ec61ee61","note":"By the pipeline helper: voices go by what the plan says an item is (word card or sentence), every script’s stops come from punctuation.py, providers declare how they are cast. Bundles and clip identities unchanged."},
-    "L12":{"state":"done","commit":"3d9c758f","note":"The simulator logs credits and self-ratings as the app does, has learners who follow Continue and learn at different speeds, with varied answer times; the simulation test checks typing, words shown as written, known words and backlog against path-followers, and that no earlier unit takes more than 40% of a lesson’s review."}
+    "C4": {
+      "state": "done",
+      "commit": "98ff8a02",
+      "note": "Done early with R9 by the performance helper: the demo’s profiles load only for the demo card, and course pages render inside the course’s own profiles."
+    },
+    "C11": {
+      "state": "done",
+      "commit": "62a19d91",
+      "note": "One spec per template holds its facet, modality, prior, per-session cap, whether it presents words, is self-rated or is explained; the planner, the performance model, the web app and the API read it (62a19d91, 3420d4fb)."
+    },
+    "W7": {
+      "state": "done",
+      "commit": "8dd43c87",
+      "note": "Match-pairs show a card gloss: the first sense, without notes in parentheses (呀 no longer shows its reading); tap-for-gloss keeps the full gloss."
+    },
+    "P2": {
+      "state": "done",
+      "commit": "8dd43c87",
+      "note": "Distractors are ranked by the answer’s final punctuation, length, shared words and capital: in es, over 90% of choose-translation distractors now end like the answer, and a sentence’s first word is no longer the only capitalised gap-fill option; word banks get 3–4 distractors."
+    },
+    "W11": {
+      "state": "done",
+      "commit": "16e51fb2",
+      "note": "Kept open through the lesson’s own retry (getting it right minutes after seeing the answer proves little), and the count now says so: “1 to get right in a later session”."
+    },
+    "R11": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "R9": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "R5": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "C17": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "C20": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "C3": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "C19": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "C12": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "C18": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "S5": {
+      "state": "done",
+      "note": "Merged (c45ef353): placement explains itself first, says afterwards where it placed you, can stop part-way and be taken again until the course is done."
+    },
+    "S6": {
+      "state": "done",
+      "note": "Merged (1e35436a): the progress section says where data is kept (persistent storage granted or not, the app, a private window), and a downloaded file can be restored (every event checked against the schema, ids deduplicated)."
+    },
+    "S3": {
+      "state": "done",
+      "note": "Merged (34e8fc4f): Back after a session goes back to the course page and never replays it; Back mid-session asks like Quit; a reload resumes the session from its saved plan (within 12 hours)."
+    },
+    "S13": {
+      "state": "done",
+      "note": "Merged (604bd5ef): the server takes a batch’s valid events and lists the rest; the device sets a rejected event aside (kept in its log, offered again from a button and at sign-in) and says so, never “all saved”."
+    },
+    "S4": {
+      "state": "done",
+      "note": "Merged (2c5f7d68): a first-run introduction, and each course card one link with a blurb, levels, units and tags like “No listening”."
+    },
+    "M4": {
+      "state": "done",
+      "note": "Merged (ed832b48): Home opens on the courses; after a lapse “Start a new streak today”; a weekly goal of practice days."
+    },
+    "M3": {
+      "state": "done",
+      "note": "Merged (bcaaa53b): three quests a day, each something the learner’s last 14 days show they can do."
+    },
+    "M1": {
+      "state": "done",
+      "note": "Merged (9e3f10fb): a point a card up to 10 a session, the perfect bonus from 5 cards, a replayed lesson pays its answers only (ADR 0107)."
+    },
+    "M6": {
+      "state": "done",
+      "note": "Merged (2ec570e5): one report button per answer, a small flag at the inline end, opening only the reports that apply."
+    },
+    "W4": {
+      "state": "done",
+      "note": "Merged (23fa7de7): a missing accent that spells another word names both words (“Cómo and Como are different words…”); 5 conformance vectors."
+    },
+    "W3": {
+      "state": "done",
+      "note": "Merged (63428510): the nearest correct version shows only for a near miss, labelled, with the solution’s punctuation."
+    },
+    "S16": {
+      "state": "done",
+      "note": "Merged (f3af568c): notices are neutral (a new info token, AA in both themes); errors and the can’t-save warning keep the error colours."
+    },
+    "P1": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "S15": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P8": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P12": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P11": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P10": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P4": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P6": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P13": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "W9": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P7": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "P15": {
+      "state": "done",
+      "note": "Done by a helper agent; merged into review-fixes and checked (unit, pipeline, conformance and the full e2e suite)."
+    },
+    "L9": {
+      "state": "done",
+      "commit": "8bfd1f84",
+      "note": "A finished placement seeds the placed nodes’ KCs: a recognize card each, so the planner counts them as seen, review brings them back and the word list shows them (ADR 0111)."
+    },
+    "C2": {
+      "state": "done",
+      "commit": "2a0b776a"
+    },
+    "M7": {
+      "state": "done",
+      "commit": "2b475148"
+    },
+    "S7": {
+      "state": "done",
+      "commit": "1466eb38"
+    },
+    "W2": {
+      "state": "done",
+      "commit": "4f2059c1"
+    },
+    "W1": {
+      "state": "done",
+      "commit": "4f2059c1"
+    },
+    "C1": {
+      "state": "done",
+      "commit": "eff3a5da · bd700091 · bb6655c8"
+    },
+    "L7": {
+      "state": "done",
+      "commit": "653bd4f1"
+    },
+    "L8": {
+      "state": "done",
+      "commit": "653bd4f1"
+    },
+    "L1": {
+      "state": "done",
+      "commit": "564ce0e6"
+    },
+    "P5": {
+      "state": "done",
+      "commit": "f10e2bbb"
+    },
+    "L6": {
+      "state": "done",
+      "commit": "f10e2bbb"
+    },
+    "L4": {
+      "state": "done",
+      "commit": "5c162d08",
+      "note": "Known means every skill the course asks of a word (reading; writing where a sentence uses it; hearing where the voice is good) shown right on a later day than it was met; a miss takes it away (D2, D3). The word list says known or learning with the skills still to show, filters with counts, and counts known words per unit (ADR 0100)."
+    },
+    "L5": {
+      "state": "done",
+      "commit": "5c162d08",
+      "note": "Sessions aim at the skills words lack: typing and listening cards spread through each session, only where the session can still reach its target; blanks on the words that need typing (ADR 0101). Typed answers in 30 simulated days: 10–195 a run, above main’s level."
+    },
+    "L10": {
+      "state": "done",
+      "commit": "5c162d08",
+      "note": "Gap-fill is recognition (D4)."
+    },
+    "S14": {
+      "state": "done",
+      "commit": "5c162d08",
+      "note": "The link sits with Practice and shows the known count; search finds readings (zousan finds 早晨). “Practise these” waits for L3."
+    },
+    "R6": {
+      "state": "done",
+      "commit": "5c162d08",
+      "note": "The word list reads the cards once, grouped by word."
+    },
+    "C7": {
+      "state": "done",
+      "commit": "ed26e806",
+      "note": "By the pipeline helper agent; merged into review-fixes."
+    },
+    "C15": {
+      "state": "done",
+      "commit": "afa8b9a6",
+      "note": "By the pipeline helper agent; merged into review-fixes."
+    },
+    "C16": {
+      "state": "done",
+      "commit": "c830ee68",
+      "note": "By the pipeline helper agent; merged into review-fixes."
+    },
+    "M9": {
+      "state": "done",
+      "commit": "merged",
+      "note": "Reminders come 30 minutes after the 80th percentile of the learner’s start times (19:00 with no history, never after 23:30); only practice after a reminder answers it; the deployment’s game rules; a reminder time the learner can choose (ADR 0103)."
+    },
+    "R10": {
+      "state": "done",
+      "commit": "merged",
+      "note": "replayGame sorts once and checks local dates only where they count: a year of events 39 ms → 10 ms."
+    },
+    "W10": {
+      "state": "done",
+      "commit": "merged",
+      "note": "An installable app: manifest from the catalog and tokens, the app’s icons, precached by the service worker; the reviewer role is asked once a browser session."
+    },
+    "S12": {
+      "state": "done",
+      "commit": "merged",
+      "note": "No debug mode from the landing page; a “Leave debug mode” strip wherever it is on."
+    },
+    "S10": {
+      "state": "done",
+      "commit": "merged",
+      "note": "A title per screen, focus on the new screen’s heading and scroll to the top on route changes, loading states announced."
+    },
+    "W5": {
+      "state": "done",
+      "commit": "merged",
+      "note": "The streak panel recomputes at local midnight and when the page becomes visible."
+    },
+    "L3": {
+      "state": "done",
+      "commit": "e02772de",
+      "note": "The course page counts due words; a review session has a card for each word that needs one, 5 to 15. Routing Continue to review when the backlog is high comes with L2."
+    },
+    "R3": {
+      "state": "done",
+      "commit": "e02772de",
+      "note": "A review plans from the neediest sentences and words plus a few well-known ones, with cached course lists and set lookups: es 3 s to 0.14 s, fa 0.45 s to 0.04 s for a learner who has seen every word (Node)."
+    },
+    "R12": {
+      "state": "done",
+      "commit": "e02772de",
+      "note": "The course page works out its counts once a minute and when the log changes."
+    },
+    "W8": {
+      "state": "done",
+      "commit": "e02772de",
+      "note": "Due means a skill’s recall is below the target, on the word list and the course page alike."
+    },
+    "L2": {
+      "state": "done",
+      "commit": "d47a0d39",
+      "note": "A pace read from the log (consolidate, steady, accelerate) or chosen by the learner; it sets the retention target, a lesson’s review share and when Continue offers practice first, with “New lesson anyway” beside it and a line saying why (ADR 0105). Not yet: “test out of the rest of this unit” when accelerating."
+    },
+    "L11": {
+      "state": "done",
+      "commit": "d47a0d39",
+      "note": "The retention target comes from the pace: 0.93, 0.90 or 0.85."
+    },
+    "C9": {
+      "state": "done",
+      "commit": "ec61ee61",
+      "note": "By the pipeline helper: voices go by what the plan says an item is (word card or sentence), every script’s stops come from punctuation.py, providers declare how they are cast. Bundles and clip identities unchanged."
+    },
+    "L12": {
+      "state": "done",
+      "commit": "3d9c758f",
+      "note": "The simulator logs credits and self-ratings as the app does, has learners who follow Continue and learn at different speeds, with varied answer times; the simulation test checks typing, words shown as written, known words and backlog against path-followers, and that no earlier unit takes more than 40% of a lesson’s review."
+    }
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
@@ -1489,7 +2022,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     el.innerHTML = `<strong>Your assessments of ${esc(recorded.recorded || "")} are recorded in this page:</strong> ${Object.keys(recorded.decisions || {}).length} decisions and ${picks.length} priorities (${picks.filter((p) => p.priority === "now").length} Now). ` +
       `Done: ${done.length === 0 ? "none yet" : done.map((id) => `<a class="ref" href="#f-${esc(id)}">${esc(id)}</a>`).join(" ")}. ` +
       (doing.length === 0 ? "" : `In progress: ${doing.map((id) => `<a class="ref" href="#f-${esc(id)}">${esc(id)}</a>`).join(" ")}. `) +
-      `The work is on the <code>review-fixes</code> branch, not pushed yet.` +
+      `The work is on the <code>review-fixes</code> branch, merging into <code>main</code>.` +
       (recorded.notices || []).map((n) => `<br><strong>Note:</strong> ${fmt(n)}`).join("");
     el.hidden = false;
   }
