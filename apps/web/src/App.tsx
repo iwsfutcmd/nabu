@@ -187,7 +187,7 @@ const Home = ({ courses, store, sync, game, gameConfig, version, online }: { cou
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
-      {!online && <OfflineNotice />}
+      {!online && <OfflineNotice synced={account !== undefined} />}
       {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} />}
       {account !== undefined && <LeaguePanel account={account} version={version} />}
       <ul className={styles.list} data-course-list="">
@@ -237,6 +237,8 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
 /** The course's offline state, where this build keeps courses offline. */
 interface OfflineProps {
   readonly online: boolean;
+  /** Whether progress syncs (an account): what the offline notice promises. */
+  readonly synced: boolean;
   readonly root: string;
   readonly stored: ReadonlySet<string> | undefined;
   readonly onChange: () => void;
@@ -326,14 +328,14 @@ const CoursePath = ({
         <span className={styles.stat}>{t.format("app.xp.total", { xp: state.xp.total })}</span>
         <span className={styles.stat}>{t.format("app.xp.today", { xp: today })}</span>
       </p>
-      {!offline.online && <OfflineNotice />}
+      {!offline.online && <OfflineNotice synced={offline.synced} />}
       {drafts.drafts > 0 && (
         <p className={styles.notice} role="note" data-drafts={drafts.drafts}>
-          {t.format("app.course.drafts", { drafts: drafts.drafts, total: drafts.total })}
+          {drafts.drafts === drafts.total ? t.format("app.course.unchecked.all") : t.format("app.course.unchecked.some", { drafts: drafts.drafts, total: drafts.total })}
         </p>
       )}
       {!persistent && (
-        <p className={styles.notice} role="note" data-not-saved="">
+        <p className={`${styles.notice} ${styles.warning}`} role="note" data-not-saved="">
           {t.format("app.store.memory")}
         </p>
       )}
@@ -1168,7 +1170,7 @@ export const App = (): JSX.Element => {
     return <Loading />;
   }
   if (route.tag === "course") {
-    const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
+    const offline: OfflineProps = { online, synced: account !== undefined, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
     return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} onReset={onReset} />;

@@ -258,6 +258,14 @@
       "message": ".input {$drafts :number}\n.input {$total :number}\n{{Sentences not yet checked by a native speaker: {$drafts} of {$total}.}}",
       "description": "A note on a course's page in the demo: how many of its sentences (story lines included) no native speaker has signed off yet, of all of them (ADR 0073). A release build has none, so it never shows there."
     },
+    "app.course.unchecked.all": {
+      "message": "This course is a draft: a language model wrote it, and no expert has checked it yet. Try it, and report anything that looks wrong from inside a lesson.",
+      "description": "A note on a course's page in the demo, where no sentence of the course has been signed off yet (ADR 0073): what a draft course means for the learner, in the words of the site's landing page (landing.courses.note). An expert: a native speaker, or for an ancient language a scholar. A release build has no drafts, so it never shows there."
+    },
+    "app.course.unchecked.some": {
+      "message": ".input {$drafts :number}\n.input {$total :number}\n{{Parts of this course are still drafts: a language model wrote them, and no expert has checked {$drafts} of its {$total} sentences yet. Report anything that looks wrong from inside a lesson.}}",
+      "description": "A note on a course's page in the demo, where some sentences are signed off and some are not (ADR 0073): $drafts sentences (story lines included) are not checked yet, of $total in all. An expert: a native speaker, or for an ancient language a scholar. A release build has no drafts, so it never shows there."
+    },
     "app.error.account.age-required": {
       "message": "This server asks for your age before it creates an account.",
       "description": "Shown when the server needs the person's age to create an account; the age field appears with it."
@@ -416,7 +424,11 @@
     },
     "app.offline.notice": {
       "message": "You are offline. Lessons on this device still work, and your progress is saved here and syncs when you are back online.",
-      "description": "Shown while the device has no network."
+      "description": "Shown while the device has no network, to a learner signed in to an account (their progress syncs)."
+    },
+    "app.offline.notice-local": {
+      "message": "You are offline. Lessons on this device still work, and your progress is saved here.",
+      "description": "Shown while the device has no network, to a learner without an account: their progress stays on this device and nothing syncs."
     },
     "app.offline.progress": {
       "message": "{$done} of {$total}",

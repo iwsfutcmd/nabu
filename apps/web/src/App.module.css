@@ -218,10 +218,19 @@
   border-radius: var(--nabu-radius-tile);
 }
 
+/*
+ * A note the learner should know about (a draft course, a break from listening, offline) is
+ * neutral. Only an error (role="alert") or a warning about losing progress takes the wrong colours.
+ */
 .notice {
   padding: var(--nabu-space-3);
-  background-color: var(--nabu-color-wrong-bg);
+  background-color: var(--nabu-color-info-bg);
   border-radius: var(--nabu-radius-tile);
+}
+
+.notice[role="alert"],
+.warning {
+  background-color: var(--nabu-color-wrong-bg);
 }
 
 .count {

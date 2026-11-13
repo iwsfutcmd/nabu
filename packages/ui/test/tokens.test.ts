@@ -43,9 +43,10 @@ const contrast = (a: string, b: string): number => {
 
 /** Text colours and the backgrounds the components set them on. */
 const TEXT: Readonly<Record<string, readonly string[]>> = {
-  text: ["page", "surface", "tile", "track", "focus-bg", "correct-bg", "wrong-bg"],
-  muted: ["page", "surface", "tile", "focus-bg", "correct-bg", "wrong-bg"],
-  accent: ["page", "surface", "tile", "focus-bg", "wrong-bg"],
+  text: ["page", "surface", "tile", "track", "focus-bg", "correct-bg", "wrong-bg", "info-bg"],
+  muted: ["page", "surface", "tile", "focus-bg", "correct-bg", "wrong-bg", "info-bg"],
+  // On a note's background too: the buttons inside a note ("Turn listening back on") are accent links.
+  accent: ["page", "surface", "tile", "focus-bg", "wrong-bg", "info-bg"],
   "accent-text": ["accent", "wrong", "correct"],
   correct: ["page", "surface", "correct-bg"],
   wrong: ["page", "surface", "wrong-bg"],

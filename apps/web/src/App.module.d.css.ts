@@ -80,6 +80,7 @@ declare const styles: {
   readonly unitTitle: string;
   readonly visuallyHidden: string;
   readonly voice: string;
+  readonly warning: string;
   readonly wideDialog: string;
 };
 export default styles;
