@@ -790,11 +790,16 @@ export const makeListenSpeak = (ctx: MakeContext, s: BundleSentence): ListenSpea
   return { ...tier0, template: "listen-speak", id: id("listen-speak", s.id), audio };
 };
 
-/** Which tone? A sentence of one syllable in a tonal reading scheme, with a clip (number drills, one-word answers). */
+/**
+ * Which tone? A sentence of one syllable in a tonal reading scheme (number drills, one-word answers),
+ * with a clip a person confirmed (ADR 0125): a recording, or a synthetic clip a listener marked right.
+ * A synthetic voice is not trusted with a lone syllable's tone, and the card asks nothing else.
+ */
 export const makeToneIdentify = (ctx: MakeContext, s: BundleSentence): ToneIdentify | undefined => {
   const audio = audioOf(ctx, s.id);
   const form = formOf(ctx.course, s);
   if (audio === undefined || form === undefined) return undefined;
+  if (audio.normal.confirmed !== true || (audio.slow !== undefined && audio.slow.confirmed !== true)) return undefined;
   const system = toneSystemOf(form.text);
   if (system === undefined) return undefined;
   const syllables = expectedSyllables(form.text, system);

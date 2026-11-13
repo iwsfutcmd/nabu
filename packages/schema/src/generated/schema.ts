@@ -1467,6 +1467,10 @@ export interface BundleClip {
   readonly synthetic: boolean;
   readonly license: string;
   readonly credit?: CreditId2;
+  /**
+   * A person confirmed what the clip says (ADR 0125): it is a recording (not synthetic), or a synthetic clip a listener marked right in the audio check (ADR 0060). Present only when true. A tone card (tone-identify) plays only confirmed clips: a synthetic voice is not trusted with a lone syllable's tone.
+   */
+  readonly confirmed?: boolean;
   readonly timings?: readonly TokenTiming[];
 }
 /**
