@@ -1,6 +1,6 @@
 /**
- * Writing in a word's pronunciation (ADR 0054): vowel marks for the abjads (fa, apc-Arab), a
- * Jyutping reading for Cantonese. uz writes its vowels and has no such card.
+ * A word's pronunciation (ADR 0054): its vowel marks chosen for the abjads (fa, apc-Arab, ADR 0098),
+ * its Jyutping reading typed for Cantonese. uz writes its vowels and has no such card.
  */
 import { createGrader, gradeExercise, sampleExercise, start, step, type Exercise, type Grader, type PlayerState } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
@@ -80,7 +80,7 @@ const story = (screen: Screen): Story => ({
   render: (_args, { loaded }) => <Card loaded={loaded["course"] as LoadedCourse} screen={screen} />,
 });
 
-/** The word's letters in the field, the vowel-mark keys under it (or a Jyutping field). */
+/** The word's vocalizations to choose from (or a Jyutping field). */
 export const Typing: Story = story("typing");
 /** A wrong answer: no marks, or a wrong tone; the note says which, and the solution shows. */
 export const Feedback: Story = story("feedback");
