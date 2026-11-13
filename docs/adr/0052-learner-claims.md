@@ -60,8 +60,11 @@ mistakes and XP change on the spot. The report uploads like any event.
 - Claims earn or lose XP like the answers they revise, in leagues too. Leagues' plausibility
   limits ([ADR 0044](0044-gamification-and-notifications.md)) bound what claiming every answer right could gain, and
   the reports are visible in the review queue.
-- Within the session the claim was made in, the player has already scheduled any retry of a wrong
-  answer, so an accepted answer can still come back once. The session summary keeps the grading as
-  it was shown.
+- **The session it is made in** (2026-11-12, the review's P14; [ADR 0113](0113-session-end-and-claims-in-session.md)).
+  This said the player had already scheduled any retry of a wrong answer, so an accepted answer could
+  still come back once, and the session's summary kept the grading as shown. The player queues a retry
+  on Continue, after the claim, so neither needs to hold: a claim (or the judge's accept) now revises
+  the answer in the session still running. Continue, the retry, the progress bar and the score follow
+  it, and a session picked up after a reload agrees.
 - ADR 0045's rule "only the server issues revisions" now reads "only the server issues
   `outcome_revised`; a learner's claim revises only their own answers".
