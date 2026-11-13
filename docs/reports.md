@@ -26,6 +26,15 @@ in this repository, with no account needed ([ADR 0055](adr/0055-report-intake.md
 
 **Reports are public.** The app says so where a report is made.
 
+**What the learner is told** ([ADR 0115](adr/0115-reports-come-back.md)):
+- **Where it goes.** The confirmation says it: to the reviewers (an intake, or an account), to them
+  once the learner signs in (a server, but no account), or nowhere (neither).
+- **What came of it.** Each course's **Your reports** page (`#/<course>/<orthography>/reports`,
+  linked from the course page) lists the device's reports. The device compares each with the
+  course it has: a correction in the course now, or an answer the grader now accepts. The sentence
+  list marks a correction the course took up, too. So a learner hears back once a bundle with the
+  fix reaches them: applying a correction or promoting an answer is the reply.
+
 ## Setting it up (once)
 
 The intake can share a Firebase project with another app. It uses its own two collections and
