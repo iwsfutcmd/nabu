@@ -375,7 +375,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A sign-off pins the sha256 of `signoffText` (@nabu/core/corrections); its Python twin is nabu/review. Change both,
   with the pinned text in packages/core/test/signoff.test.ts and pipeline/tests/test_review.py.
 - Release builds (ADR 0073): `uv run nabu build ../courses/<id> --release` keeps only reviewed sentences, stories and
-  scenarios. Committed bundles and the demo stay full builds. The manifest's summary counts come from
+  scenarios, and script tracks: an alphabet node keeps its letters and the words whose KCs reviewed content uses (D51);
+  script tracks alone are no release. Committed bundles and the demo stay full builds. The manifest's summary counts come from
   `compiled.counted` (compiler/counts.py): count through `count()`, never by editing the dicts.
 - Review workspace (ADR 0074): reviewer accounts (`PUT /admin/v1/reviewers {email, handle, courses}`) work at `#/review`
   through /v1/review/* (apps/api/src/review.ts, apps/web/src/Review.tsx, @nabu/ui/review). Every route checks the course is
