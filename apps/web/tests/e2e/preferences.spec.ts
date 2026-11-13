@@ -151,7 +151,7 @@ test("Preferences opens from a course's page, shows the text size on a sentence 
   await expect(back).toHaveText("Back to the course");
   const sample = page.locator("[data-target-size-sample=fa]");
   // The course's name is a placeholder, so MF2 isolates it (FSI … PDI).
-  await expect(sample.locator("figcaption")).toHaveText("⁨Persian⁩ at this size:");
+  await expect(sample.locator("figcaption")).toHaveText("\u2068Persian\u2069 at this size:");
   const sampleWord = sample.locator("[data-nabu-text][data-target] [data-kind=word]").first();
   const sampleGloss = sample.locator('[data-nabu-text][lang="en-Latn"] [data-kind=word]').first();
   const at = { word: await fontSize(sampleWord), gloss: await fontSize(sampleGloss) };
