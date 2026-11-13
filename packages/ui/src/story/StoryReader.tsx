@@ -16,23 +16,21 @@ import type { Verdict } from "@nabu/core";
 import { countsAs, draftOf, emptyDraft, isCorrect, missedOf, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
 import { storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
-import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
-import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
+import { useEffect, useId, useMemo, useRef, useState, type JSX, type ReactNode } from "react";
+import { Button, Dialog, Heading, Modal } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
-import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
+import { ArrowForwardIcon } from "../icons.tsx";
 import { WordStatusProvider, type Marks } from "../marks.tsx";
 import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
-import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "../player/Display.tsx";
+import type { DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
 import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
-import { useReadings } from "../player/Readings.tsx";
 import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
 import { effectiveWritingMode, focusInReach, type Shortcuts, type WritingMode } from "../player/shared.ts";
-import { usePlayerKeys } from "../player/Shell.tsx";
-import { SoundToggle } from "../player/SoundToggle.tsx";
+import { HeaderToggles, SessionHeader, usePlayerKeys, useToggles } from "../player/Shell.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
 import { useStoryPlayer } from "./useStoryPlayer.ts";
@@ -162,17 +160,14 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const { course, script, grader, imageUrl, language, onEvent, onExit, profile, xpEarned } = props;
   const t = useTranslator();
   const chrome = useChrome();
-  const [sound, setSound] = useState(props.sound !== false);
+  // Sound, the reading layer, vowel marks and vertical reading: the learner's choices for the course,
+  // else the profile's (P6, P12; vertical text in the story's lines).
+  const toggles = useToggles(profile, "reading", props);
+  const { display, readings } = toggles;
   // Nothing plays by itself with sound off or while the learner can't listen (P6).
-  const quiet = !sound || props.listening === false;
+  const quiet = !toggles.sound || props.listening === false;
   const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound: !quiet, initialState: props.initialState });
-  // Vowel marks and vertical reading: the learner's choice for the course, else the profile's (P12).
-  const display = useDisplay(profile, "reading", props.writingMode, props.display, props.onDisplayChange);
   const transcriptMode = effectiveWritingMode(profile, display.mode, "reading");
-  // The reading layer the learner chose, in horizontal and vertical text alike (ADR 0118).
-  const readings = useReadings(profile, props.reading, props.onReadingChange);
-  // A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue).
-  const glossRuby = readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false;
   const [translations, setTranslations] = useState<ReadonlySet<number>>(new Set(props.initial?.translations ?? []));
   const [selected, setSelected] = useState(props.initial?.gloss);
   const [confirming, setConfirming] = useState(false);
@@ -281,21 +276,10 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     ));
   };
 
-  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} ruby={glossRuby} marks={marks} />;
+  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} ruby={toggles.glossRuby} marks={marks} />;
 
-  const headerTools = (
-    <>
-      {/* Readings, vowel marks, vertical reading: one button, so they take no room above the story (P12). */}
-      {hasDisplayChoices(profile, readings, display) && <DisplayMenu profile={profile} readings={readings} display={display} />}
-      <SoundToggle
-        on={sound}
-        onChange={(on) => {
-          setSound(on);
-          props.onSoundChange?.(on);
-        }}
-      />
-    </>
-  );
+  // Readings, vowel marks, vertical reading and sound: in the header, taking no room above the story (P12).
+  const headerTools = <HeaderToggles profile={profile} toggles={toggles} />;
 
   if (state.tag === "finished") {
     keys.current = undefined;
@@ -305,13 +289,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
       // no questions, and nothing recorded (the session is over).
       return (
         <section className={`${playerStyles.card} ${styles.reader}`} data-story-reader="" data-story={script.id} data-state="rereading">
-          <header className={playerStyles.header}>
-            <Button className={playerStyles.iconButton} aria-label={t.format("story.reread.close")} onPress={() => setRereading(false)} data-action="close-reread">
-              <CloseIcon />
-            </Button>
-            <span className={playerStyles.progress} />
+          <SessionHeader close={{ label: t.format("story.reread.close"), action: "close-reread", onPress: () => setRereading(false) }} progress={undefined}>
             {headerTools}
-          </header>
+          </SessionHeader>
           <h2 ref={rereadHeading} tabIndex={-1} className={playerStyles.instruction} data-reread-heading="">
             {script.title === undefined ? t.format("story.reread.title") : <T text={script.title} />}
           </h2>
@@ -394,19 +374,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
 
   return (
     <section className={`${playerStyles.card} ${styles.reader}`} data-story-reader="" data-story={script.id} data-state={state.tag} data-template={ex?.template} data-exercise={ex?.id}>
-      <header className={playerStyles.header}>
-        <Button className={playerStyles.iconButton} aria-label={t.format("story.action.quit")} onPress={() => setConfirming(true)} data-action="quit">
-          <CloseIcon />
-        </Button>
-        <ProgressBar className={playerStyles.progress} value={progress.done} minValue={0} maxValue={progress.total} aria-label={progressLabel} valueLabel={progressLabel}>
-          {({ percentage }) => (
-            <div className={playerStyles.track} data-progress-track="">
-              <div className={playerStyles.fill} data-progress-fill="" style={{ "--nabu-progress": `${percentage ?? 0}%` } as CSSProperties} />
-            </div>
-          )}
-        </ProgressBar>
+      <SessionHeader close={{ label: t.format("story.action.quit"), action: "quit", onPress: () => setConfirming(true) }} progress={{ ...progress, label: progressLabel, value: progressLabel }}>
         {headerTools}
-      </header>
+      </SessionHeader>
 
       {script.title !== undefined && <T as="div" className={playerStyles.instruction} text={script.title} />}
 
