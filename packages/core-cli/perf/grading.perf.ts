@@ -4,11 +4,14 @@
  * bundled core with CDP CPU throttling at 4× (Lighthouse's mid-tier mobile
  * setting); accept sets are compiled up front, only grade() is timed.
  */
-import { resolve } from "node:path";
-import { expect, test } from "@playwright/test";
+import { readFileSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { expect, test, type Page } from "@playwright/test";
 import { build } from "esbuild";
-import { loadProfileData, loadRawProfiles } from "../src/load.ts";
-import type { BenchCase, BenchResult } from "./bench.entry.ts";
+import numberingSystems from "@nabu/i18n/generated/numbering-systems.json" with { type: "json" };
+import type { BundleManifest } from "@nabu/schema";
+import { loadProfileData, loadRawProfiles, REPO } from "../src/load.ts";
+import type { BenchCase, BenchResult, CourseCase, FirstAnswerResult } from "./bench.entry.ts";
 
 const THROTTLE = 4;
 const BUDGET_MS = 5;
@@ -47,7 +50,8 @@ const CASES: readonly BenchCase[] = [
   },
 ];
 
-test(`grading p95 < ${BUDGET_MS} ms with ${THROTTLE}× CPU throttling`, async ({ page }) => {
+/** The bundled benchmark in a page with the CPU throttled. */
+const benchPage = async (page: Page): Promise<void> => {
   const bundle = await build({
     entryPoints: [resolve(import.meta.dirname, "bench.entry.ts")],
     bundle: true,
@@ -56,13 +60,16 @@ test(`grading p95 < ${BUDGET_MS} ms with ${THROTTLE}× CPU throttling`, async ({
     platform: "browser",
     target: "es2022",
   });
-  const profiles = loadRawProfiles();
-  const data = loadProfileData();
-
   await page.setContent("<!doctype html><meta charset=utf-8><title>nabu grading bench</title>");
   const cdp = await page.context().newCDPSession(page);
   await cdp.send("Emulation.setCPUThrottlingRate", { rate: THROTTLE });
   await page.addScriptTag({ content: bundle.outputFiles[0]!.text });
+};
+
+test(`grading p95 < ${BUDGET_MS} ms with ${THROTTLE}× CPU throttling`, async ({ page }) => {
+  const profiles = loadRawProfiles();
+  const data = loadProfileData();
+  await benchPage(page);
 
   const results = await page.evaluate(
     ([p, d, c]) => (globalThis as unknown as { nabuBench: (...a: unknown[]) => BenchResult[] }).nabuBench(p, d, c, 50),
@@ -72,4 +79,34 @@ test(`grading p95 < ${BUDGET_MS} ms with ${THROTTLE}× CPU throttling`, async ({
   console.log(table.join("\n"));
   await test.info().attach("grading-bench.txt", { body: table.join("\n"), contentType: "text/plain" });
   for (const r of results) expect(r.p95, r.name).toBeLessThan(BUDGET_MS);
+});
+
+/** The committed bundle of a course as the app loads it (packages/ui/src/player/load.ts). */
+const courseCase = (course: string, orthography: string): CourseCase => {
+  const dir = join(REPO, "apps/web/public/bundles", course);
+  const manifest = JSON.parse(readFileSync(join(dir, "manifest.json"), "utf8")) as BundleManifest;
+  const files = manifest.files.filter((f) => f.role !== "image" && f.role !== "audio").map((f) => [f.path, JSON.parse(readFileSync(join(dir, f.path), "utf8")) as unknown] as const);
+  return { name: `${course} ${orthography}`, orthography, manifest, files };
+};
+
+/**
+ * A session's first answer (the review's R5): the largest courses, whose word lexicons took the
+ * first Check half a second at 4× before they were built once per course. Once the app has
+ * prepared the course (while it is shown), a new session's first answer is within the budget; a
+ * course just loaded is reported, not asserted (it depends on the machine more than the rest).
+ */
+test(`a session's first answer p95 < ${BUDGET_MS} ms with ${THROTTLE}× CPU throttling, once the course is prepared`, async ({ page }) => {
+  const courses = [courseCase("es", "es-Latn/standard"), courseCase("apc", "apc-Latn/arabizi")];
+  await benchPage(page);
+  const results = await page.evaluate(
+    ([n, c]) => (globalThis as unknown as { nabuFirstAnswers: (...a: unknown[]) => FirstAnswerResult[] }).nabuFirstAnswers(n, c, 50),
+    [numberingSystems, courses] as const,
+  );
+  const table = results.map(
+    (r) =>
+      `${r.name.padEnd(28)} just loaded: ${r.cold.map((t) => t.toFixed(0)).join(" / ")} ms   prepared: n=${r.warm.samples}  p50=${r.warm.p50.toFixed(2)}  p95=${r.warm.p95.toFixed(2)}  max=${r.warm.max.toFixed(2)} ms`,
+  );
+  console.log(table.join("\n"));
+  await test.info().attach("first-answer-bench.txt", { body: table.join("\n"), contentType: "text/plain" });
+  for (const r of results) expect(r.warm.p95, r.name).toBeLessThan(BUDGET_MS);
 });
