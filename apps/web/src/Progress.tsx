@@ -16,7 +16,8 @@
  *
  * When the server ends the session (ADR 0123), Home says so at its top (SignedOutNotice) until the
  * learner signs in again or stays signed out, and the form here asks them to sign in again, their
- * address filled in.
+ * address filled in. A server sends no email, so it cannot reset a password: the sign-in form says so
+ * plainly when asked, and what is left to do (a new account takes everything on the device).
  */
 import { parseDigits, type Named } from "@nabu/i18n";
 import { useTranslator } from "@nabu/ui";
@@ -246,6 +247,8 @@ const AccountForm = ({ sync, ageRefused, signedOut }: { sync: Sync; ageRefused: 
   const [age, setAge] = useState("");
   const [error, setError] = useState<SyncError | "invalid-age" | undefined>(undefined);
   const [busy, setBusy] = useState(false);
+  // What a forgotten password leaves the learner (ADR 0123): the server cannot reset one.
+  const [forgot, setForgot] = useState(false);
   const submit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (busy) return;
@@ -293,6 +296,11 @@ const AccountForm = ({ sync, ageRefused, signedOut }: { sync: Sync; ageRefused: 
             {t.format(mode === "create" ? "app.account.create" : "app.account.sign-in")}
           </Button>
         )}
+        {mode === "sign-in" && (
+          <Button className={styles.textButton} onPress={() => setForgot(!forgot)} aria-expanded={forgot} data-action="forgot-password">
+            {t.format("app.account.forgot")}
+          </Button>
+        )}
         <Button
           className={styles.textButton}
           onPress={() => {
@@ -304,6 +312,11 @@ const AccountForm = ({ sync, ageRefused, signedOut }: { sync: Sync; ageRefused: 
           {t.format(mode === "create" ? "app.account.have-account" : "app.account.new-account")}
         </Button>
       </div>
+      {mode === "sign-in" && forgot && (
+        <p className={styles.notice} role="note" data-no-reset="">
+          {t.format("app.account.no-reset")}
+        </p>
+      )}
     </Form>
   );
 };

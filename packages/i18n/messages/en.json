@@ -214,6 +214,10 @@
       "message": "Download my account data",
       "description": "Button that downloads, as one file, everything the server keeps for the account."
     },
+    "app.account.forgot": {
+      "message": "Forgot your password?",
+      "description": "Button in the sign-in form: shows app.account.no-reset, what the learner can do, since the server cannot reset a password."
+    },
     "app.account.have-account": {
       "message": "I already have an account",
       "description": "Switches the account form to signing in."
@@ -221,6 +225,10 @@
     "app.account.new-account": {
       "message": "I need a new account",
       "description": "Switches the account form to creating an account."
+    },
+    "app.account.no-reset": {
+      "message": "This server can't reset passwords: it doesn't send email. Your progress stays on this device all the same. To keep it syncing, create a new account with another email address, and everything on this device goes into it.",
+      "description": "Shown under Forgot your password? (app.account.forgot). Say plainly that there is no password reset, then what the learner can do. Another address, because the old one still belongs to the old account. Everything on this device: the new account takes the device's whole history."
     },
     "app.account.password": {
       "message": "Password",
