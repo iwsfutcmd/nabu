@@ -1557,6 +1557,90 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "rec": true
       }
     ]
+  },
+  {
+    "id": "D35",
+    "title": "Vertical text in a story (W6)",
+    "context": "With vertical text on, each story line’s text now runs in columns, with the line’s play buttons, translation and report flag kept horizontal beside it.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Lines stacked down the page, each line’s text in columns (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "A book-like flow from right to left, with each line’s buttons in a side panel (a bigger change)"
+      }
+    ]
+  },
+  {
+    "id": "D36",
+    "title": "Clicking Check before converting, on a computer (P16)",
+    "context": "Check now works while a keyboard is composing: the press waits until the text is settled. On a computer, a Chinese-character learner who clicks Check before choosing characters submits the romanization the browser commits.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Submit whatever the composition settles to (what the helper built)"
+      },
+      {
+        "v": "b",
+        "label": "Submit a waiting Check only if the settled text is in the answer’s script; otherwise keep composing",
+        "rec": true
+      }
+    ]
+  },
+  {
+    "id": "D37",
+    "title": "The phone keyboard’s Enter key on a typed answer (P16)",
+    "context": "The answer field now tells the keyboard what Enter does.",
+    "options": [
+      {
+        "v": "a",
+        "label": "“Done” (a ✓ on Gboard) (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "“Go” (an arrow, like the Check button’s)"
+      }
+    ]
+  },
+  {
+    "id": "D38",
+    "title": "Where a story says “Synthetic voice” (W6)",
+    "context": "It used to float alone above the transcript.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Beside the newest synthesized line while reading, and beside the first when read again (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Beside the first line only"
+      },
+      {
+        "v": "c",
+        "label": "A note above the transcript, as before"
+      }
+    ]
+  },
+  {
+    "id": "D39",
+    "title": "The other buttons a composing phone keyboard disables (P16)",
+    "context": "Roleplay’s Send, the correction form’s Send and Start over’s confirmation are still disabled while composing, so on Android they may also need two taps.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Give them Check’s treatment: a press waits for the composition to end",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Leave them as they are"
+      }
+    ]
   }
 ]
 </script>
@@ -1891,11 +1975,11 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   "progress": {
     "R1": {
       "state": "in-progress",
-      "note": "With a helper (fix/speed, ADR 0112): no game replay or corrections re-read per event inside a session; measured before and after at 4× CPU with a year of history."
+      "note": "With a helper (fix/speed, ADR 0112): no game replay or corrections re-read per event inside a session, measured before and after at 4× CPU with a year of history. Still in progress."
     },
     "R4": {
       "state": "in-progress",
-      "note": "With a helper (fix/speed, ADR 0112): sync compares less often or by digest, and an upload moves the cursor on."
+      "note": "With a helper (fix/speed, ADR 0112): a sync pull never brings back what the device just uploaded; less often, or by digest, otherwise. Still in progress."
     },
     "P9": {
       "state": "done",
@@ -1909,11 +1993,11 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     },
     "S11": {
       "state": "in-progress",
-      "note": "With a helper (fix/course-page): lessons numbered within units, glossed previews, level and progress on unit headers."
+      "note": "With a helper (fix/course-page): lessons numbered within units, glossed previews, level and progress on unit headers. Built; final checks running."
     },
     "S8": {
       "state": "in-progress",
-      "note": "With a helper (fix/course-page): lasting Listening and Speaking switches, Preferences reachable from the course and the player, a text-size sample."
+      "note": "With a helper (fix/course-page): lasting Listening and Speaking switches, Preferences from the course and the lesson, a text-size sample. Built; final checks running."
     },
     "M2": {
       "state": "done",
@@ -1922,19 +2006,19 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     },
     "C6": {
       "state": "in-progress",
-      "note": "With a helper (fix/course-data, ADR 0116): speech setup as course data, so es gets speech scoring."
+      "note": "With a helper (fix/course-data, ADR 0116): speech setup as course data, so es gets speech scoring. Still in progress."
     },
     "C10": {
       "state": "in-progress",
-      "note": "With a helper (fix/course-data, ADR 0117): the compiler pins each word’s readings and everyone reads them; no clip may go stale."
+      "note": "With a helper (fix/course-data, ADR 0117): the compiler pins each word’s readings and everyone reads them; no clip may go stale. Still in progress."
     },
     "W6": {
       "state": "in-progress",
-      "note": "With a helper (fix/phone-player): vertical text keeps its readings and the chrome stays horizontal."
+      "note": "Built and checked by its helper on fix/phone-player (ADR 0118), merging next: vertical text keeps the reading layer the learner chose; only the target text turns, in columns a phone can hold, with the buttons and “Synthetic voice” kept horizontal; story lines likewise. Choices D35, D38."
     },
     "P16": {
       "state": "in-progress",
-      "note": "With a helper (fix/phone-player): a Check tapped while composing goes ahead once composition ends."
+      "note": "Built and checked by its helper on fix/phone-player (ADR 0118), merging next: Check stays enabled while a keyboard composes; a press waits for the composition to end, then checks the settled text (never mid-composition); Enter never checks while composing; the field has an Enter-key hint. Reproduced and fixed in Chromium’s touch emulation; not yet tried on a real Android phone. Choices D36, D37, D39."
     },
     "C4": {
       "state": "done",
@@ -2255,7 +2339,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
-    "Merged to main (12 November): every Now finding and all 21 decisions are on main, with visual baselines regenerated in the pinned container. wip/known-words, wip/pacing and the fix/* helper branches are merged and can be deleted. The Next round is with six helpers (fix/speed, fix/session-end, fix/course-page, fix/reports-status, fix/course-data, fix/phone-player)."
+    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9 and P14. W6 and P16 are finished and merge next; R1/R4, S11/S8 and C6/C10 are with helpers. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. Choices D22–D39 are open, each with a default."
   ]
 }
 </script>
