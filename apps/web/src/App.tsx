@@ -70,7 +70,8 @@ import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
 import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { startNative } from "./native.ts";
-import { cameFrom, holdRoute, leave, watchRoute } from "./navigation.ts";
+import { cameFrom, holdRoute, leave, openAddress, watchRoute } from "./navigation.ts";
+import { isOpenMessage } from "./caches.ts";
 import { closeOpen, keepOpen, reopen, type OpenSession } from "./open-session.ts";
 import { mostQuestions, PlacementIntro, PlacementResult } from "./Placement.tsx";
 import { isNative } from "./platform.ts";
@@ -1421,6 +1422,12 @@ export const App = (): JSX.Element => {
     if (OFFLINE) void registerWorker(import.meta.env.BASE_URL);
     // The native app: sync when it comes back to the foreground; reminders open where they point.
     void ready.then(({ sync: s }) => startNative(() => void s.syncNow()));
+    // A reminder tapped while the app is open in a browser: the worker hands over where it points (S1).
+    const fromWorker = (e: MessageEvent<unknown>): void => {
+      if (isOpenMessage(e.data)) openAddress(e.data.url);
+    };
+    navigator.serviceWorker?.addEventListener("message", fromWorker);
+    return () => navigator.serviceWorker?.removeEventListener("message", fromWorker);
   }, []);
   useEffect(() => {
     if (pulled > 0) setLog(null);

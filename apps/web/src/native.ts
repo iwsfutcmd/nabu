@@ -5,7 +5,7 @@
  * native shell.
  */
 import type { PluginListenerHandle } from "@capacitor/core";
-import { askToLeave } from "./navigation.ts";
+import { askToLeave, openAddress } from "./navigation.ts";
 import { isNative } from "./platform.ts";
 
 export type NativePlatform = "android" | "ios";
@@ -53,7 +53,7 @@ export const startNative = async (onResume: () => void): Promise<void> => {
   const { PushNotifications } = await import("@capacitor/push-notifications");
   await PushNotifications.addListener("pushNotificationActionPerformed", (action) => {
     const url = (action.notification.data as { url?: unknown } | undefined)?.url;
-    if (typeof url === "string") window.location.hash = new URL(url, window.location.href).hash || "#/";
+    if (typeof url === "string") openAddress(url);
   });
 };
 

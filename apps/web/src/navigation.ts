@@ -121,6 +121,15 @@ export const askToLeave = (): boolean => {
 export const cameFrom = (): string | null => markOf(history.state)?.from ?? null;
 
 /**
+ * Opens an address handed to the app from outside it: a tapped reminder, by Web Push (the service
+ * worker's message) or in the native app. Only its route is taken (a reminder's opens Home, S1): a
+ * new navigation, so a running session is kept and the screen goes ahead (ADR 0108).
+ */
+export const openAddress = (url: string): void => {
+  window.location.hash = new URL(url, window.location.href).hash || "#/";
+};
+
+/**
  * Leaves the screen for `to`: back, when `to` is the entry before this one, so Back from there
  * goes on to what came before; else `to` takes this entry's place.
  */

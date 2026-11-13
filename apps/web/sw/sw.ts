@@ -12,8 +12,10 @@
  *   uploads the outbox with the account the app saved.
  * - **Reminders.** Web Push (RFC 8291): the server sends {title, body, lang, dir, tag, url},
  *   already in the learner's UI locale, and the notification keeps its language and direction.
+ *   Tapped, it opens the app at its url (Home, where Continue leads, S1), in the window open
+ *   already if there is one.
  */
-import { BUNDLE_CACHE, OUTBOX_SYNC, RUNTIME_CACHE, SHELL_PREFIX, type SyncedMessage } from "../src/caches.ts";
+import { BUNDLE_CACHE, OUTBOX_SYNC, RUNTIME_CACHE, SHELL_PREFIX, type OpenMessage, type SyncedMessage } from "../src/caches.ts";
 import { openDb, outboxOf, readMeta } from "../src/idb.ts";
 import { uploadOutbox, type Destination } from "../src/outbox.ts";
 
@@ -185,8 +187,15 @@ self.addEventListener("notificationclick", (event) => {
     (async () => {
       const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
       const open = windows.find((w) => w.url.startsWith(scope()));
-      if (open !== undefined) await open.focus();
-      else await self.clients.openWindow(url);
+      if (open === undefined) {
+        await self.clients.openWindow(url);
+        return;
+      }
+      // The app open already goes where the reminder points (Home, whose Continue card leads, S1):
+      // a new navigation there, so a session under way is kept (ADR 0108).
+      await open.focus();
+      const message: OpenMessage = { type: "nabu-open", url };
+      open.postMessage(message);
     })(),
   );
 });
