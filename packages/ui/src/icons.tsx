@@ -56,6 +56,16 @@ export const WrongIcon = ({ size = 28 }: IconProps): JSX.Element => (
   </svg>
 );
 
+/**
+ * Shows what is folded away, or folds it again: a chevron pointing down, and up once `open`. Points
+ * across the line, not along it: never mirrors.
+ */
+export const ExpandIcon = ({ size = 20, open = false }: IconProps & { readonly open?: boolean }): JSX.Element => (
+  <svg {...base(size, styles.icon)} data-icon={open ? "collapse" : "expand"}>
+    <path d={open ? "m6 15 6-6 6 6" : "m6 9 6 6 6-6"} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 /** A locked lesson. Symmetric: never mirrors. */
 export const LockIcon = ({ size = 20 }: IconProps): JSX.Element => (
   <svg {...base(size, styles.icon)} data-icon="lock">

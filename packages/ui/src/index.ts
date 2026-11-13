@@ -1,5 +1,5 @@
 export { CourseUiProvider, NabuUiProvider, useIsTarget, useOrthography, useTranslator, type NabuUiProviderProps } from "./context.tsx";
-export { ArrowForwardIcon, CloseIcon, CorrectIcon, FlagIcon, LockIcon, PlayIcon, SettingsIcon, SlowIcon, SoundOffIcon, SoundOnIcon, WrongIcon } from "./icons.tsx";
+export { ArrowForwardIcon, CloseIcon, CorrectIcon, ExpandIcon, FlagIcon, LockIcon, PlayIcon, SettingsIcon, SlowIcon, SoundOffIcon, SoundOnIcon, WrongIcon } from "./icons.tsx";
 export { useSettledSubmit, type SettledSubmit } from "./ime.ts";
 export { WordStatusProvider, type Marks } from "./marks.tsx";
 export { T, type TProps } from "./T.tsx";
