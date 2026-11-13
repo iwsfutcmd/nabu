@@ -15,9 +15,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from nabu.audio import espeak, jyutping
+from nabu.audio import espeak
 from nabu.audio.course import audio_dir, encode_mp3, read_index, write_index
 from nabu.schema.models import AudioIndex
+from nabu.schemes import Plugins, plugins
 
 SAMPLE_RATE = 22_050
 SLOW = 0.8  # time-stretch factor for the slow variant (pitch preserved)
@@ -47,13 +48,21 @@ def prepare(path: Path) -> tuple[bytes, bytes]:
 
 
 def expected_phones(tokens: list[dict[str, Any]], reading: str, voice: str) -> list[list[str]]:
-    """Each word token's expected phones: from its pinned Jyutping, or eSpeak NG's phonemes."""
+    """Each word token's expected phones, from its pinned reading in the scheme `reading` where
+    the scheme says how (nabu.schemes): its own phones (Jyutping's), or eSpeak NG's phonemes of
+    its phoneme input (`voice` is an eSpeak NG voice), never the surface read as a modern
+    language would (the Tiberian reading, Attic: ADR 0082, 0087). Without a pinned reading, eSpeak
+    NG's phonemes of the surface."""
+    found = plugins(reading) if reading not in ("", "text") else Plugins()
     out: list[list[str]] = []
     for t in tokens:
         if t.get("kind") not in ("word", "number"):
             continue
-        if reading == "jyutping" and "jyutping" in t.get("readings", {}):
-            out.append(jyutping.phones(t["readings"]["jyutping"]))
+        pinned = t.get("readings", {}).get(reading)
+        if pinned is not None and found.phones is not None:
+            out.append(found.phones(pinned))
+        elif pinned is not None and found.espeak is not None:
+            out.append([p for w in espeak.phonemes(found.espeak(pinned), voice) for p in w])
         else:
             out.append([p for w in espeak.phonemes(t["surface"], voice) for p in w])
     return out

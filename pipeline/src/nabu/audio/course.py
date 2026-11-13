@@ -44,7 +44,7 @@ import regex
 import yaml
 
 from nabu import yamlio
-from nabu.audio import attic, espeak, jyutping, tiberian, toki_pona
+from nabu.audio import espeak
 from nabu.audio.providers import (
     PIPER_PHONEMES,
     Caster,
@@ -66,6 +66,7 @@ from nabu.schema.models import (
     ReferenceVoice,
     TokenTiming,
 )
+from nabu.schemes import Plugins, plugins, schemes
 
 INDEX = "index.yaml"
 #: Bitrate of the MP3s: speech, mono.
@@ -74,23 +75,6 @@ BITRATE = "48k"
 BATCH = 16
 #: The one speed clips are synthesized at: the player slows them itself (ADR 0062).
 SPEED = "normal"
-#: Reading schemes `pronounce` can turn into IPA.
-IPA_SCHEMES = {"jyutping"}
-#: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
-#: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text,
-#: Toki Pona's words in sitelen Lasina (ADR 0086), which no synthesizer has a voice for, and Attic
-#: Greek with its vowel lengths marked (ADR 0087), said as reconstructed, never as Modern Greek.
-PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
-    "tiberian": tiberian.espeak,
-    "lasina": toki_pona.espeak,
-    "attic": attic.espeak,
-}
-#: The same schemes as IPA for a Piper voice (ADR 0087): its symbol table is eSpeak NG's IPA.
-#: Tiberian for Piper is Arabic-bent (ADR 0089).
-PIPER_PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
-    "attic": attic.piper,
-    "tiberian": tiberian.piper,
-}
 WORD_KINDS = {"word", "number"}
 
 
@@ -178,18 +162,38 @@ def write_index(adir: Path, index: AudioIndex) -> None:
     (adir / INDEX).write_text(header + yamlio.dump(data), encoding="utf-8")
 
 
+def _ipa(scheme: str) -> Plugins:
+    """The plug-ins a `pronounce` voice needs of its scheme: its IPA, and whether a spelling
+    settles a reading; ValueError for a scheme without them (or without data)."""
+    found = plugins(scheme) if scheme in schemes() else Plugins()
+    if found.ipa is None or found.settled is None:
+        raise ValueError(f"no IPA conversion for the reading scheme {scheme!r}")
+    return found
+
+
 def pronounced(surface: str, reading: str, scheme: str) -> str:
     """A token as a `pronounce` voice reads it: its spelling where that settles the pinned
-    reading, else the reading in IPA between slashes."""
-    if scheme not in IPA_SCHEMES:
-        raise ValueError(f"no IPA conversion for the reading scheme {scheme!r}")
-    return surface if jyutping.settled(surface, reading) else f"/{jyutping.ipa(reading)}/"
+    reading, else the reading in IPA between slashes (the scheme's plug-ins: nabu.schemes)."""
+    found = _ipa(scheme)
+    assert found.ipa is not None and found.settled is not None
+    return surface if found.settled(surface, reading) else f"/{found.ipa(reading)}/"
+
+
+def phoneme_scheme(scheme: str) -> bool:
+    """Whether a voice says the scheme's readings as eSpeak NG phonemes (`[[...]]`), one word at a
+    time, never as text: the Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may
+    read as Modern Hebrew text, Toki Pona's words in sitelen Lasina (ADR 0086), which no
+    synthesizer has a voice for, and Attic with its vowel lengths (ADR 0087), said as
+    reconstructed, never as Modern Greek. A scheme with an `espeak` plug-in (nabu.schemes)."""
+    return plugins(scheme).espeak is not None
 
 
 def said(reading: str, scheme: str, provider: str = "espeak-ng") -> str:
-    """A pinned reading as the voice takes it: phonemes for a phoneme scheme (IPA for a Piper
-    voice, eSpeak NG's mnemonics otherwise), else as written."""
-    convert = (PIPER_PHONEME_SCHEMES if provider == "piper" else PHONEME_SCHEMES).get(scheme)
+    """A pinned reading as the voice takes it: phonemes for a phoneme scheme (the IPA a Piper
+    voice takes where the scheme gives it: ADR 0087, 0089; eSpeak NG's mnemonics otherwise),
+    else as written."""
+    found = plugins(scheme)
+    convert = found.piper if provider == "piper" else found.espeak
     return reading if convert is None else convert(reading)
 
 
@@ -237,7 +241,7 @@ def _input_of(
             offset += len(piece)
         if not parts:
             return None
-        end = _final_mark(tokens) if voice.reading in PHONEME_SCHEMES else ""
+        end = _final_mark(tokens) if phoneme_scheme(voice.reading) else ""
         return (" ".join(parts) + end, tuple(spans))
     # The form's text, every token in order: punctuation and spacing included.
     for i, token in enumerate(tokens):
@@ -254,23 +258,25 @@ def _input_of(
     return ("".join(parts), tuple(spans)) if spans else None
 
 
-def _morph_readings(token: dict[str, Any], reading: str) -> list[tuple[str, str]]:
-    """Each morph's share of its word's pinned reading, where the word is Han characters read one
-    syllable each (as the compiler's ruby alignment pairs them): 禮拜一 lai5 baai3 jat1 gives
-    禮拜 lai5 baai3. A word KC that only appears inside longer words (禮拜 in 禮拜一, 百 in 一百)
-    then still has a reading to be read from."""
+def _morph_readings(token: dict[str, Any], scheme: str) -> list[tuple[str, str]]:
+    """Each morph's share of its word's pinned reading, as the compiler's ruby pairs the reading's
+    syllables with the word's characters: 禮拜一 lai5 baai3 jat1 gives 禮拜 lai5 baai3. A word KC
+    that only appears inside longer words (禮拜 in 禮拜一, 百 in 一百) then still has a reading to
+    be read from. A word without ruby in the scheme (a loanword in Latin letters) is not split."""
     raw: list[Any] = list(token.get("morphs") or [])
     morphs: list[list[str]] = [regex.findall(r"\X", str(m["surface"])) for m in raw]
-    syllables = reading.split()
+    segments = cast(
+        list[dict[str, str]], cast(dict[str, Any], token.get("ruby") or {}).get(scheme) or []
+    )
     surface: list[str] = regex.findall(r"\X", str(token["surface"]))
-    if not morphs or [g for m in morphs for g in m] != surface or len(syllables) != len(surface):
+    if not morphs or [g for m in morphs for g in m] != surface:
         return []
-    if not all(regex.match(r"\p{Script=Han}", g) for g in surface):
+    if [s["base"] for s in segments] != surface:
         return []
     out: list[tuple[str, str]] = []
     at = 0
     for m in morphs:
-        out.append(("".join(m), " ".join(syllables[at : at + len(m)])))
+        out.append(("".join(m), " ".join(s["text"] for s in segments[at : at + len(m)])))
         at += len(m)
     return out
 
@@ -426,9 +432,12 @@ def plan(
     orth = voice.orthography
     items: list[Item] = []
     skipped: list[str] = []
-    if voice.pronounce is not None and voice.pronounce not in IPA_SCHEMES:
-        raise ValueError(f"no IPA conversion for the reading scheme {voice.pronounce!r}")
+    if voice.pronounce is not None:
+        _ipa(voice.pronounce)
     scheme = _scheme(voice)
+    # A scheme a word card cites otherwise than a sentence says the word (Attic: an acute for
+    # a sentence's grave, καί for καὶ): the same word, with the same reading.
+    cite = None if scheme is None else plugins(scheme).cite
     readings: dict[str, str] = {}  # surface → pinned reading, learned from sentence tokens
     in_words: dict[str, str] = {}  # the same for morphs, from the syllables of their word
     for unit in units:
@@ -440,7 +449,7 @@ def plan(
             for t in tokens:
                 if scheme is not None and scheme in t.get("readings", {}):
                     readings.setdefault(t["surface"], t["readings"][scheme])
-                    for surface, reading in _morph_readings(t, t["readings"][scheme]):
+                    for surface, reading in _morph_readings(t, scheme):
                         in_words.setdefault(surface, reading)
             if owner[s["id"]] != voice.id:
                 continue  # another voice reads it; its readings still serve word KCs
@@ -474,13 +483,8 @@ def plan(
             marked = "".join(t["surface"] for t in word) if word else str(forms[0])
             surface = "".join(kc_written) if kc_written is not None else marked
             reading = readings.get(surface, in_words.get(surface))
-            if reading is None and scheme == "attic":
-                # A Greek word card shows the word as cited, with an acute; in a sentence its
-                # last syllable's acute is a grave before the next word (καί, καὶ σύ): the same
-                # word, with the same reading.
-                reading = next(
-                    (attic.cited(r) for w, r in readings.items() if attic.cited(w) == surface), None
-                )
+            if reading is None and cite is not None:
+                reading = next((cite(r) for w, r in readings.items() if cite(w) == surface), None)
             if scheme is not None and reading is None:
                 skipped.append(kc["id"])
                 continue
@@ -522,7 +526,7 @@ def plan(
         # the stop comes after the last word.
         tag = orth.split("/")[0]
         items = [replace(i, input=with_final_stop(i.input, tag)) for i in items]
-    elif voice.finalStop and voice.reading in PHONEME_SCHEMES:
+    elif voice.finalStop and phoneme_scheme(voice.reading):
         # Phonemes: a word card ends with the "." a sentence ends with (ADR 0089).
         items = [
             i if i.input.rstrip().endswith((".", "?")) else replace(i, input=i.input + ".")

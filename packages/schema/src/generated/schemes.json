@@ -1,0 +1,138 @@
+[
+  {
+    "id": "attic",
+    "name": {
+      "en": "Attic (vowel lengths marked)"
+    },
+    "language": "grc",
+    "lang": "grc-Grek"
+  },
+  {
+    "id": "baxter",
+    "name": {
+      "en": "Middle Chinese (Baxter)"
+    },
+    "language": "ltc",
+    "lang": "ltc-Latn-x-baxter"
+  },
+  {
+    "id": "jyutping",
+    "name": {
+      "en": "Jyutping"
+    },
+    "language": "yue",
+    "lang": "yue-Latn-HK-jyutping",
+    "answer": "yue-Latn/jyutping",
+    "typed": {
+      "syllable": "[a-z]+[1-6]",
+      "locale": "yue-Latn-HK",
+      "between": "[\\s'’.-]"
+    },
+    "tones": {
+      "system": "yue-jyutping",
+      "marks": "[0-9]",
+      "values": {
+        "1": {
+          "name": {
+            "en": "high level"
+          },
+          "letters": "55",
+          "checked": "5",
+          "shape": "level",
+          "template": [
+            5,
+            5,
+            5
+          ]
+        },
+        "2": {
+          "name": {
+            "en": "high rising"
+          },
+          "letters": "35",
+          "shape": "rising",
+          "template": [
+            2.5,
+            3.3,
+            5
+          ]
+        },
+        "3": {
+          "name": {
+            "en": "mid level"
+          },
+          "letters": "33",
+          "checked": "3",
+          "shape": "level",
+          "template": [
+            3,
+            3,
+            3
+          ]
+        },
+        "4": {
+          "name": {
+            "en": "low falling"
+          },
+          "letters": "21",
+          "shape": "falling",
+          "template": [
+            2.2,
+            1.6,
+            1
+          ]
+        },
+        "5": {
+          "name": {
+            "en": "low rising"
+          },
+          "letters": "23",
+          "shape": "rising",
+          "template": [
+            2,
+            2.3,
+            3
+          ]
+        },
+        "6": {
+          "name": {
+            "en": "low level"
+          },
+          "letters": "22",
+          "checked": "2",
+          "shape": "level",
+          "template": [
+            2,
+            2,
+            2
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "lasina",
+    "name": {
+      "en": "sitelen Lasina"
+    },
+    "language": "tok",
+    "lang": "tok-Latn",
+    "answer": "tok-Latn/standard"
+  },
+  {
+    "id": "pinyin",
+    "name": {
+      "en": "Pinyin"
+    },
+    "language": "cmn",
+    "lang": "zh-Latn-pinyin"
+  },
+  {
+    "id": "tiberian",
+    "name": {
+      "en": "Tiberian reading (SBL)"
+    },
+    "language": "hbo",
+    "lang": "hbo-Latn"
+  }
+]

@@ -523,6 +523,20 @@ type ScriptCode = Annotated[
 ]
 
 
+type NamesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type Names = Annotated[
+    dict[LangTag, NamesAdditionalProperty],
+    Field(
+        description="A name in the languages it is given in (BCP 47 tags; ADR 0109): data, not app messages. The app shows the one in the UI language, else the first.",
+        examples=[{"en": "Jyutping"}],
+        min_length=1,
+        title="Names",
+    ),
+]
+
+
 type OrthographiesAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
@@ -1994,6 +2008,73 @@ class Contrast(BaseModel):
     ] = None
 
 
+class Typed(BaseModel):
+    """
+    A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    syllable: Annotated[
+        str,
+        Field(
+            description="One syllable, as a regular expression that JavaScript and Python's `regex` read alike (letters, character classes, quantifiers): [a-z]+[1-6].",
+            min_length=1,
+        ),
+    ]
+    locale: LangTag
+    between: Annotated[
+        str,
+        Field(
+            description="A character class of what may stand between syllables and is dropped: spaces, apostrophes, dots, hyphens.",
+            min_length=1,
+        ),
+    ]
+
+
+type TemplateItem = Annotated[float, Field(ge=1.0, le=5.0)]
+
+
+class Tone(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    name: Annotated[
+        Names | None, Field(description="What the UI calls its pitch: high level, low rising.")
+    ] = None
+    letters: Annotated[
+        str,
+        Field(
+            description="Its contour in Chao's tone letters, 1 lowest to 5 highest: 55, 35, 21. Voices that take IPA get them as ˥˧˩.",
+            pattern="^[1-5]{1,3}$",
+        ),
+    ]
+    checked: Annotated[
+        str | None,
+        Field(
+            description="Its shorter contour in a checked syllable (one ending in a stop), where it has one: 5.",
+            pattern="^[1-5]{1,3}$",
+        ),
+    ] = None
+    shape: Annotated[
+        Literal["level", "rising", "falling"],
+        Field(
+            description="Its pitch's movement, which the device judges when it cannot tell the speaker's register."
+        ),
+    ]
+    template: Annotated[
+        list[TemplateItem],
+        Field(
+            description="Chao letters at the start, middle and end of a syllable that the device's tone classifier compares a heard contour with. REVIEW: from the standard descriptions; tune on native recordings.",
+            max_length=3,
+            min_length=3,
+        ),
+    ]
+
+
 class Reports(BaseModel):
     """
     What the app sends to the report intake (ADR 0055) when a learner reports a problem: a sentence or story line they corrected (sentence_reported), or an answer they say should have been accepted or wrong (answer_reported). It carries no device, user or session id, and only the local date. A scheduled job files each report as a GitHub issue.
@@ -3097,6 +3178,83 @@ class MatchPolicy(BaseModel):
     ] = None
 
 
+class Tones(BaseModel):
+    """
+    Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    system: Annotated[
+        str,
+        Field(
+            description="The tone system's id, as tone exercises name it: yue-jyutping.",
+            pattern="^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        ),
+    ]
+    marks: Annotated[
+        str,
+        Field(
+            description="A character class of what marks a tone in a syllable: [0-9]. A syllable's tone is its marks; a typed answer with none has no tones.",
+            min_length=1,
+        ),
+    ]
+    values: Annotated[
+        dict[str, Tone],
+        Field(
+            description="Each tone, keyed by its marks, in the order a learner meets them.",
+            min_length=2,
+        ),
+    ]
+
+
+class ReadingScheme(BaseModel):
+    """
+    A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: SchemeId
+    name: Annotated[
+        Names, Field(description="What the UI calls it: Jyutping, Middle Chinese (Baxter).")
+    ]
+    language: Annotated[
+        LangTag,
+        Field(
+            description="The language whose sounds it writes: yue for Jyutping, cmn for Pinyin, ltc for Baxter's Middle Chinese. The audio round trip compares a language's characters by their readings where a scheme of that language can read written text (nabu.schemes)."
+        ),
+    ]
+    lang: Annotated[
+        ScriptedLangTag | None,
+        Field(
+            description="The language tag of its text where it stands on its own, as an option or an answer: yue-Latn-HK-jyutping. A profile's reading layer may tag its ruby otherwise (`lang`, ADR 0071)."
+        ),
+    ] = None
+    answer: Annotated[
+        OrthographyId | None,
+        Field(
+            description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese."
+        ),
+    ] = None
+    typed: Annotated[
+        Typed | None,
+        Field(
+            description="A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end."
+        ),
+    ] = None
+    tones: Annotated[
+        Tones | None,
+        Field(
+            description="Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use."
+        ),
+    ] = None
+
+
 type ReportSubmission = Annotated[
     CorrectionSubmission | AnswerSubmission, Field(title="ReportSubmission")
 ]
@@ -3813,6 +3971,7 @@ type NabuSchemaBundle = Annotated[
     | LearnerEvent
     | MessageCatalog
     | OrthographyProfile
+    | ReadingScheme
     | Reports
     | SignOffs
     | TaggedText,

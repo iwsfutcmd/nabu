@@ -4,11 +4,13 @@
  *   its vocalized form. The letters must stay as they are; each letter's marks must be the
  *   expected ones, except the profile's optional marks (sukun), which may be written or not.
  * - **a reading** (`gradeReading`): an ideographic word's romanization (Jyutping), syllable by
- *   syllable, spaces optional and case ignored.
+ *   syllable, spaces optional and case ignored, in a scheme whose data gives a syllable's shape
+ *   (profiles/schemes, ADR 0109).
  *
  * Both are all or nothing: a word's pronunciation is right or it is not. `off` lists what was
  * wrong (letters by grapheme index, or syllables), for feedback.
  */
+import { readingScheme } from "../profile/schemes.ts";
 import { graphemes } from "../text/graphemes.ts";
 
 /** An orthography's vowel marks (a profile's `match.marks`): one code point each, NFD. */
@@ -134,23 +136,42 @@ export const vocalizationVariants = (marks: VowelMarks, vocalized: string, attes
   return out;
 };
 
-/** Syllable shapes of the romanizations that can be typed (Jyutping: letters, then a tone 1–6). */
-const SYLLABLE: Readonly<Record<string, { readonly syllable: RegExp; readonly locale: string }>> = {
-  jyutping: { syllable: /[a-z]+[1-6]/gu, locale: "yue-Latn-HK" },
+/** A scheme's typed shape (its data, ADR 0109): one syllable, what may stand between, its tone marks. */
+interface Shape {
+  readonly syllable: RegExp;
+  readonly between: RegExp;
+  readonly locale: string;
+  /** A character class of what marks a tone in a syllable, where the scheme has tones. */
+  readonly marks: string | undefined;
+}
+
+const shapes = new Map<string, Shape | undefined>();
+const shapeOf = (scheme: string): Shape | undefined => {
+  if (!shapes.has(scheme)) {
+    const data = readingScheme(scheme);
+    const typed = data?.typed;
+    shapes.set(scheme, typed === undefined ? undefined : { syllable: new RegExp(typed.syllable, "gu"), between: new RegExp(typed.between, "gu"), locale: typed.locale, marks: data?.tones?.marks });
+  }
+  return shapes.get(scheme);
 };
 
-/** Whether a word's reading in this scheme can be asked for as typed text. */
-export const transcribable = (scheme: string): boolean => SYLLABLE[scheme] !== undefined;
+/** Whether a word's reading in this scheme can be asked for as typed text: the scheme gives a syllable's shape. */
+export const transcribable = (scheme: string): boolean => shapeOf(scheme) !== undefined;
 
+/** A typed reading's syllables: lowercased, what may stand between them dropped, end to end; undefined where it is not syllables. */
 const syllablesOf = (scheme: string, text: string): readonly string[] | undefined => {
-  const shape = SYLLABLE[scheme];
+  const shape = shapeOf(scheme);
   if (shape === undefined) throw new Error(`no syllable shape for ${scheme}`);
-  const squeezed = text.normalize("NFC").toLocaleLowerCase(shape.locale).replace(/[\s'’.-]/gu, "");
+  const squeezed = text.normalize("NFC").toLocaleLowerCase(shape.locale).replace(shape.between, "");
   const found = squeezed.match(shape.syllable) ?? [];
   return found.join("") === squeezed && found.length > 0 ? found : undefined;
 };
 
-const toneless = (syllable: string): string => syllable.replace(/[0-9]/gu, "");
+/** The syllables of a reading as typed in a scheme, as grading reads them (conformance: reading-syllables). */
+export const readingSyllables = (scheme: string, text: string): readonly string[] | undefined => syllablesOf(scheme, text);
+
+/** A syllable without its tone marks: the sounds its tone variants share. */
+const toneless = (shape: Shape, syllable: string): string => (shape.marks === undefined ? syllable : syllable.replace(new RegExp(shape.marks, "gu"), ""));
 
 /**
  * Other readings a word could be mistaken for, for a multiple-choice reading card (ADR 0098): one
@@ -158,13 +179,14 @@ const toneless = (syllable: string): string => syllable.replace(/[0-9]/gu, "");
  * what a learner most often gets wrong. In a stable order: the caller picks.
  */
 export const toneVariants = (scheme: string, reading: string, attested: ReadonlySet<string>): readonly string[] => {
-  const syllables = transcribable(scheme) ? syllablesOf(scheme, reading) : undefined;
-  if (syllables === undefined) return [];
+  const shape = shapeOf(scheme);
+  const syllables = shape === undefined ? undefined : syllablesOf(scheme, reading);
+  if (shape === undefined || syllables === undefined) return [];
   const byBase = new Map<string, string[]>();
-  for (const a of [...attested].sort()) byBase.set(toneless(a), [...(byBase.get(toneless(a)) ?? []), a]);
+  for (const a of [...attested].sort()) byBase.set(toneless(shape, a), [...(byBase.get(toneless(shape, a)) ?? []), a]);
   const out: string[] = [];
   for (const [i, syllable] of syllables.entries()) {
-    for (const other of byBase.get(toneless(syllable)) ?? []) {
+    for (const other of byBase.get(toneless(shape, syllable)) ?? []) {
       if (other === syllable) continue;
       const variant = syllables.map((x, k) => (k === i ? other : x)).join(" ");
       if (!out.includes(variant)) out.push(variant);
@@ -177,12 +199,13 @@ export const toneVariants = (scheme: string, reading: string, attested: Readonly
 export const gradeReading = (scheme: string, expected: string, answer: string): PronunciationGrade => {
   const want = syllablesOf(scheme, expected);
   if (want === undefined) throw new Error(`${expected} is not ${scheme}`);
+  const shape = shapeOf(scheme) as Shape;
   const got = syllablesOf(scheme, answer);
-  // Letters with no tone numbers, or something that is not syllables at all.
-  if (got === undefined) return /[0-9]/u.test(answer) ? wrong("reading-syllables") : wrong("reading-no-tones");
+  // Letters with no tone marks, or something that is not syllables at all.
+  if (got === undefined) return shape.marks === undefined || new RegExp(shape.marks, "u").test(answer) ? wrong("reading-syllables") : wrong("reading-no-tones");
   if (got.length !== want.length) return wrong("reading-syllables");
   const off = want.flatMap((s, i) => (s === got[i] ? [] : [i]));
   if (off.length === 0) return RIGHT;
   // The same sounds, other tones.
-  return off.every((i) => toneless(want[i] as string) === toneless(got[i] as string)) ? wrong("reading-tone", off) : wrong("reading-syllables", off);
+  return off.every((i) => toneless(shape, want[i] as string) === toneless(shape, got[i] as string)) ? wrong("reading-tone", off) : wrong("reading-syllables", off);
 };

@@ -363,14 +363,15 @@ def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> No
     Piper voice), never Hebrew text, and no voice is a Hebrew (Modern Hebrew) one; every clip's
     input is phonemes."""
     from nabu.audio import tiberian
-    from nabu.audio.course import PHONEME_SCHEMES, PIPER_PHONEME_SCHEMES, read_index
+    from nabu.audio.course import read_index
+    from nabu.schemes import plugins
 
     _, compiled = build(core_cli, "hbo")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
-        assert voice.reading == "tiberian" and voice.reading in PHONEME_SCHEMES
-        assert voice.reading in PIPER_PHONEME_SCHEMES or voice.provider != "piper"
+        assert voice.reading == "tiberian" and plugins(voice.reading).espeak is not None
+        assert plugins(voice.reading).piper is not None or voice.provider != "piper"
         assert not voice.voice.startswith("he")
     index = read_index(COURSES / "hbo" / "audio")
     assert len(index.clips) > 300
@@ -469,14 +470,15 @@ def test_toki_pona_pins_every_sentence_in_sitelen_lasina_and_sitelen_pona(
 def test_toki_pona_is_said_as_phonemes(core_cli: CoreCli) -> None:
     """No synthesizer speaks Toki Pona: every voice says the pinned sitelen Lasina as eSpeak NG
     phonemes (nabu.audio.toki_pona), and every clip's input is phonemes of Toki Pona's sounds."""
-    from nabu.audio.course import PHONEME_SCHEMES, read_index
+    from nabu.audio.course import read_index
+    from nabu.schemes import plugins
 
     _, compiled = build(core_cli, "tok")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
         assert voice.provider == "espeak-ng" and voice.reading == "lasina"
-        assert voice.reading in PHONEME_SCHEMES
+        assert plugins(voice.reading).espeak is not None
     index = read_index(COURSES / "tok" / "audio")
     assert len(index.clips) > 300
     for clip in index.clips:
@@ -493,14 +495,15 @@ GREEK_LETTER = regex.compile(r"\p{Script=Greek}")
 def test_attic_greek_is_never_read_as_modern_greek(core_cli: CoreCli) -> None:
     """grc (ADR 0087): every voice says the pinned Attic reading as phonemes (IPA for its Piper
     voice), never Greek text, which a Greek voice would read as Modern Greek."""
-    from nabu.audio.course import PHONEME_SCHEMES, PIPER_PHONEME_SCHEMES, read_index
+    from nabu.audio.course import read_index
+    from nabu.schemes import plugins
 
     _, compiled = build(core_cli, "grc")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
-        assert voice.reading == "attic" and voice.reading in PHONEME_SCHEMES
-        assert voice.reading in PIPER_PHONEME_SCHEMES or voice.provider != "piper"
+        assert voice.reading == "attic" and plugins(voice.reading).espeak is not None
+        assert plugins(voice.reading).piper is not None or voice.provider != "piper"
     index = read_index(COURSES / "grc" / "audio")
     assert len(index.clips) > 400
     for clip in index.clips:

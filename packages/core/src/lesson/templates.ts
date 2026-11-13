@@ -4,9 +4,10 @@
  * not eligible), `grade` turns a response into an outcome. Randomness comes
  * from the injected seeded Rng only.
  */
-import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, ScriptedLangTag, TaggedText, Token } from "@nabu/schema";
+import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, TaggedText, Token } from "@nabu/schema";
 import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
+import { readingTag } from "../profile/schemes.ts";
 import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, toneVariants, transcribable, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
 import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
 import { allKcs, allSentences, profileOf, type CourseView, type Grader } from "./course.ts";
@@ -596,26 +597,23 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
 
 // ------------------------------------------------------------------------------------ reading templates
 
-/** How a reading scheme is tagged when its readings are shown as options (Jyutping: yue-Latn-HK-jyutping). */
-export const READING_TAGS: Readonly<Record<string, { readonly lang: string; readonly orthography: string }>> = {
-  jyutping: { lang: "yue-Latn-HK-jyutping", orthography: "yue-Latn/jyutping" },
-  // A sitelen pona logograph's word in sitelen Lasina (ADR 0086): options are the course's own Latin orthography.
-  lasina: { lang: "tok-Latn", orthography: "tok-Latn/standard" },
-};
-
-/** The profile's ruby reading scheme (Jyutping for yue), if it is one we can show as options. */
+/**
+ * The scheme reading cards ask about: the profile's first ruby layer, where its scheme's data says
+ * how its readings stand as options (`answer`, ADR 0109): Jyutping for yue, sitelen Lasina for
+ * sitelen pona; none for Classical Chinese (Pinyin first, only shown).
+ */
 export const rubySchemeOf = (ctx: MakeContext): SchemeId | undefined => {
   const scheme = profileOf(ctx.course, ctx.course.orthography).source.annotations?.find((a) => a.kind === "reading" && a.render === "ruby")?.scheme;
-  return scheme !== undefined && READING_TAGS[scheme] !== undefined ? scheme : undefined;
+  return scheme !== undefined && readingTag(scheme) !== undefined ? scheme : undefined;
 };
 
 const readingText = (scheme: SchemeId, reading: string): TaggedText => {
-  const tag = READING_TAGS[scheme] as { readonly lang: string; readonly orthography: string };
+  const tag = readingTag(scheme) as Pick<TaggedText, "lang" | "orthography">;
   const tokens: Token[] = reading.split(" ").flatMap((syllable, i) => [
     ...(i === 0 ? [] : [{ surface: " ", kind: "space" as const }]),
     { surface: syllable, kind: "word" as const },
   ]);
-  return { lang: tag.lang as ScriptedLangTag, orthography: tag.orthography as TaggedText["orthography"], tokens };
+  return { lang: tag.lang, orthography: tag.orthography, tokens };
 };
 
 const stripRuby = (token: Token): Token => {

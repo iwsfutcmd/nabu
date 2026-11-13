@@ -14,5 +14,9 @@ Phase 1: nine profiles, all executed by the engine in `@nabu/core` and pinned by
 Also here:
 - `tables/`: generated data tables (`pnpm tables`).
 - `keyboards/`: interim layouts for the keyboard typo model (ADR 0025).
+- `schemes/`: reading schemes (ADR 0109), one YAML file per scheme (`<id>.yaml`, validated against
+  `schemas/reading-scheme.schema.json`): what a profile's reading layer and a course voice's `reading`
+  name. `pnpm codegen` copies them into `@nabu/schema/schemes` for core; the pipeline reads them
+  (`nabu.schemes`).
 
 A profile with id `<lang>/<slug>` lives in `<lang>.<slug>.yaml`.

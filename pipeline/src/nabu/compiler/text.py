@@ -100,8 +100,6 @@ def ruby_bearing(surface: str, script: Script | None = None) -> bool:
     return script is not None and surface != "" and all(c in script.logographs for c in surface)
 
 
-SYLLABLE = regex.compile(r"[a-z]+[1-6]")
-
 # Never allowed in content (§7.5): bidi embeddings/overrides/isolates, BOM, ZWSP, word joiner.
 # LRM/RLM/ALM are also flagged: content direction comes from the script, never from marks.
 ALWAYS_INVISIBLE = set(

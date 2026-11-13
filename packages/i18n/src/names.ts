@@ -1,17 +1,18 @@
 /**
- * What the app calls a course and its orthographies (ADR 0109). Names are course data: course.yaml
- * `names`, by the language they are written in, shipped in the manifest and the bundles' index. A
- * new course needs no app message. The name shown is, in order:
+ * Names that are data, not app messages (ADR 0109): a course's and its orthographies' (course.yaml
+ * `names`, in the manifest and the bundles' index), a reading scheme's and its tones'
+ * (profiles/schemes). Each is given by the language it is written in. The name shown is, in order:
  *
- * 1. the course's own, in the UI language or a CLDR parent of it (en-GB, en-001, en);
- * 2. a UI catalog's (`course.name.<id>`, `orthography.<id>`): the draft catalogs translated the
- *    names before courses carried them, and those translations keep working until the courses
- *    carry them too (the English catalog's copies are pinned to the courses' own by a test);
- * 3. the course's own in the first language it gives (its support language);
- * 4. what CLDR calls the language or the script in the UI language (Intl.DisplayNames);
+ * 1. the data's, in the UI language or a CLDR parent of it (en-GB, en-001, en);
+ * 2. a UI catalog's (`course.name.<id>`, `orthography.<id>`, `reading.scheme.<id>`): the draft
+ *    catalogs translated these names before the data carried them, and the translations keep
+ *    working until the data carries them too (the English catalog's copies are pinned to the
+ *    data's by tests);
+ * 3. the data's in the first language it gives;
+ * 4. for a course or an orthography, what CLDR calls its language or script (Intl.DisplayNames);
  * 5. the id.
  */
-import type { CourseNames } from "@nabu/schema";
+import type { CourseNames, Names } from "@nabu/schema";
 import type { Translator } from "./catalog.ts";
 import { cldrLocaleId, parentChain, parseTag, scriptOf } from "./locale.ts";
 
@@ -23,24 +24,33 @@ export interface Named {
   readonly names?: CourseNames | undefined;
 }
 
-type Names = NonNullable<CourseNames[string]>;
-
-/** The course's names in the UI language or the nearest CLDR parent of it that it gives. */
-const inUiLanguage = (t: Translator, named: Named): Names | undefined => {
+/** What is given in the UI language, or the nearest CLDR parent of it that it is given in. */
+const inUiLanguage = <T>(t: Translator, byLanguage: Readonly<Record<string, T>> | undefined): T | undefined => {
   const chain = parentChain(t.locale);
-  let best: Names | undefined;
+  let best: T | undefined;
   let rank = chain.length;
-  for (const [tag, names] of Object.entries(named.names ?? {})) {
+  for (const [tag, value] of Object.entries(byLanguage ?? {})) {
     const at = chain.indexOf(cldrLocaleId(tag));
     if (at >= 0 && at < rank) {
-      best = names;
+      best = value;
       rank = at;
     }
   }
   return best;
 };
 
-const first = (named: Named): Names | undefined => Object.values(named.names ?? {})[0];
+const first = <T>(byLanguage: Readonly<Record<string, T>> | undefined): T | undefined => Object.values(byLanguage ?? {})[0];
+
+/** A name given by language, in the UI language or a CLDR parent of it only (step 1). */
+export const nameInUiLanguage = (t: Translator, names: Names | undefined): string | undefined => inUiLanguage(t, names);
+
+/** A name given by language, as the app shows it (steps 1–3), or undefined; `key` is the catalog's message for it, if any. */
+export const localName = (t: Translator, names: Names | undefined, key?: string): string | undefined => {
+  const own = inUiLanguage(t, names);
+  if (own !== undefined) return own;
+  if (key !== undefined && t.has(key)) return t.format(key);
+  return first(names);
+};
 
 /** CLDR's name of a language or a script in the UI language, if it has one. */
 const displayName = (t: Translator, type: "language" | "script", code: string): string | undefined => {
@@ -59,30 +69,32 @@ const languageOf = (tag: string | undefined): string | undefined => {
   }
 };
 
+const scriptOfOrthography = (orthography: string): string | undefined => {
+  try {
+    return scriptOf(orthography.split("/")[0] ?? "");
+  } catch {
+    return undefined;
+  }
+};
+
 /** What the app calls the course: Cantonese, Lebanese Arabic. */
 export const courseName = (t: Translator, named: Named): string => {
-  const own = inUiLanguage(t, named)?.course;
+  const own = inUiLanguage(t, named.names)?.course;
   if (own !== undefined) return own;
   const key = `course.name.${named.id}`;
   if (t.has(key)) return t.format(key);
   const language = languageOf(named.target);
-  return first(named)?.course ?? (language === undefined ? undefined : displayName(t, "language", language)) ?? named.id;
+  return first(named.names)?.course ?? (language === undefined ? undefined : displayName(t, "language", language)) ?? named.id;
 };
 
 /** What the app calls one of the course's orthographies: Arabizi (Latin letters and numbers), Cyrillic. */
 export const orthographyName = (t: Translator, named: Named, orthography: string): string => {
-  const own = inUiLanguage(t, named)?.orthographies?.[orthography];
+  const own = inUiLanguage(t, named.names)?.orthographies?.[orthography];
   if (own !== undefined) return own;
   const key = `orthography.${orthography.replace("/", ".")}`;
   if (t.has(key)) return t.format(key);
   const given = Object.values(named.names ?? {}).find((n) => n.orthographies?.[orthography] !== undefined)?.orthographies?.[orthography];
   if (given !== undefined) return given;
-  const script = (() => {
-    try {
-      return scriptOf(orthography.split("/")[0] ?? "");
-    } catch {
-      return undefined;
-    }
-  })();
+  const script = scriptOfOrthography(orthography);
   return (script === undefined ? undefined : displayName(t, "script", script)) ?? orthography;
 };

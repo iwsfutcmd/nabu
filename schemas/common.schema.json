@@ -94,6 +94,15 @@
       "pattern": "^[A-Z][a-z]{3}$",
       "examples": ["Arab", "Hant", "Latn"]
     },
+    "Names": {
+      "title": "Names",
+      "description": "A name in the languages it is given in (BCP 47 tags; ADR 0109): data, not app messages. The app shows the one in the UI language, else the first.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/LangTag" },
+      "additionalProperties": { "type": "string", "minLength": 1 },
+      "examples": [{ "en": "Jyutping" }]
+    },
     "CourseNames": {
       "title": "CourseNames",
       "description": "What the app calls a course and the orthographies it teaches, by the language the names are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows the names in the UI language where the course gives them.",

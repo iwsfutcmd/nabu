@@ -7,7 +7,7 @@ syllable of a word (pu). eSpeak NG's Esperanto table names these phonemes as Tok
 Esperanto text, jan would be januaro and the stress would fall on the penult.
 
 The course pins each word's sitelen Lasina spelling as its `lasina` reading, and a voice with
-`reading: lasina` says it through this conversion (`PHONEME_SCHEMES` in nabu.audio.course).
+`reading: lasina` says it through this conversion (the scheme's `espeak` plug-in, nabu.schemes).
 """
 
 from __future__ import annotations

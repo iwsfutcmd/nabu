@@ -6,7 +6,8 @@
  * and take the direction of their first strong character.
  */
 import { correctable, type Correctable } from "@nabu/core/corrections";
-import { READING_TAGS, type CourseView } from "@nabu/core/lesson";
+import { readingScheme, readingTag } from "@nabu/core";
+import type { CourseView } from "@nabu/core/lesson";
 import { textOfSurface } from "@nabu/core/text";
 import type { AnswerReport, BundleSentence, CorrectionFields, SentenceCorrection, TaggedText } from "@nabu/schema";
 import { useId, type JSX } from "react";
@@ -90,12 +91,12 @@ const Report = ({ course, report, onDecide }: { course: CourseView; report: Answ
   );
 };
 
-/** A reading's tag: the profile's ruby layer names it (ADR 0071), else the scheme's known tag, else the form's. */
-const readingTag = (course: CourseView, orthography: string, scheme: string, base: TaggedText): Pick<TaggedText, "lang" | "orthography"> => {
+/** A reading's tag: the profile's ruby layer names it (ADR 0071), else the scheme's data (ADR 0109), else the form's. */
+const tagOfReading = (course: CourseView, orthography: string, scheme: string, base: TaggedText): Pick<TaggedText, "lang" | "orthography"> => {
   const layer = course.profiles.get(orthography)?.source.annotations?.find((a) => a.kind === "reading" && a.scheme === scheme);
   if (layer?.lang !== undefined) return { lang: layer.lang, orthography: base.orthography };
-  const known = READING_TAGS[scheme];
-  return known === undefined ? base : { lang: known.lang as TaggedText["lang"], orthography: known.orthography as TaggedText["orthography"] };
+  const lang = readingScheme(scheme)?.lang;
+  return readingTag(scheme) ?? (lang === undefined ? base : { lang, orthography: base.orthography });
 };
 
 /** What a correction changes, field by field, each in its own language. */
@@ -116,7 +117,7 @@ const Changes = ({ course, target, fields }: { course: CourseView; target: Corre
             )}
             {(form.readings ?? []).map((r) => (
               <dd key={`${String(r.token)}:${r.scheme}`} className={styles.reading}>
-                <T text={textOfSurface(base, r.surface)} /> <T text={textOfSurface(readingTag(course, orthography, r.scheme, base), r.reading)} />
+                <T text={textOfSurface(base, r.surface)} /> <T text={textOfSurface(tagOfReading(course, orthography, r.scheme, base), r.reading)} />
               </dd>
             ))}
           </div>

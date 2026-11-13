@@ -63,6 +63,24 @@ describe("orthography profiles in /profiles", () => {
   }
 });
 
+describe("reading schemes in /profiles/schemes (ADR 0109)", () => {
+  const validate = makeAjv().getSchema(ID("reading-scheme.schema.json"))!;
+  const paths = filesIn(join(PROFILES_DIR, "schemes"));
+  for (const path of paths) {
+    it(`${path.slice(ROOT.length + 1)} is valid and named by its id`, () => {
+      const data = load(path);
+      const ok = validate(data);
+      expect(validate.errors ?? []).toEqual([]);
+      expect(ok).toBe(true);
+      expect(`${(data as { id: string }).id}.yaml`).toBe(path.split("/").at(-1));
+    });
+  }
+  it("are what @nabu/schema/schemes carries (pnpm codegen)", () => {
+    const generated = JSON.parse(readFileSync(resolve(import.meta.dirname, "../src/generated/schemes.json"), "utf8")) as unknown;
+    expect(generated).toEqual(paths.map(load));
+  });
+});
+
 describe("fixture courses in /courses", () => {
   const ajv = makeAjv();
   const course = ajv.getSchema(ID("course-source.schema.json"))!;

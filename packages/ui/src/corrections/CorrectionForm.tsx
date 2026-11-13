@@ -10,7 +10,8 @@
  *   correction is made (NFC, in @nabu/core/corrections), and nothing is sent mid-composition.
  */
 import { correctionOf, draftFrom, shownOf, type Correctable, type CorrectionDraft, type CorrectionError } from "@nabu/core/corrections";
-import { READING_TAGS, type CourseView } from "@nabu/core/lesson";
+import { readingScheme } from "@nabu/core";
+import type { CourseView } from "@nabu/core/lesson";
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, fontStackFor, orthographyName } from "@nabu/i18n";
 import type { CorrectionFields, SentenceReported, TaggedText, TokenReading } from "@nabu/schema";
@@ -125,8 +126,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
               <fieldset className={styles.readings}>
                 <legend className={styles.legend}>{t.format("corrections.readings")}</legend>
                 {readings.map((r, n) => {
-                  const tag = READING_TAGS[r.scheme];
-                  const lang = tag?.lang ?? "und-Latn";
+                  const lang = readingScheme(r.scheme)?.lang ?? "und-Latn";
                   return (
                     <TextField
                       key={`${String(r.token)}:${r.scheme}`}
