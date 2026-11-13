@@ -861,32 +861,13 @@ const distance = <T>(a: readonly T[], b: readonly T[]): number => {
 };
 
 /**
- * Pinned readings by surface, per course view and scheme: the first sentence token (in course
- * order) that spells the word gives its reading. Indexed once, as a course has hundreds of
- * sentences and minimal pairs compare every word with every other.
+ * A word's pinned reading in a scheme: its words' readings, as the compiler pins them on a KC's
+ * forms (ADR 0117), the reading its card shows and its clip was read from; undefined where a word
+ * has none.
  */
-const readingIndex = new WeakMap<CourseView, Map<SchemeId, ReadonlyMap<string, string>>>();
-
-/** The pinned reading of a written word, from any sentence token that spells it. */
-const readingOf = (ctx: MakeContext, scheme: SchemeId, surface: string): string | undefined => {
-  let byScheme = readingIndex.get(ctx.course);
-  if (byScheme === undefined) {
-    byScheme = new Map();
-    readingIndex.set(ctx.course, byScheme);
-  }
-  let index = byScheme.get(scheme);
-  if (index === undefined) {
-    const built = new Map<string, string>();
-    for (const s of allSentences(ctx.course)) {
-      for (const t of formOf(ctx.course, s)?.text.tokens ?? []) {
-        const reading = t.readings?.[scheme];
-        if (reading !== undefined && !built.has(t.surface)) built.set(t.surface, reading);
-      }
-    }
-    index = built;
-    byScheme.set(scheme, index);
-  }
-  return index.get(surface);
+const pinnedReading = (text: TaggedText, scheme: SchemeId): string | undefined => {
+  const readings = text.tokens.filter((t) => t.kind === "word" || t.kind === "number").map((t) => t.readings?.[scheme]);
+  return readings.length === 0 || readings.includes(undefined) ? undefined : readings.join(" ");
 };
 
 /**
@@ -897,8 +878,8 @@ const readingOf = (ctx: MakeContext, scheme: SchemeId, surface: string): string 
 const minimallyApart = (ctx: MakeContext, a: TaggedText, b: TaggedText): boolean => {
   const scheme = rubySchemeOf(ctx);
   if (scheme !== undefined) {
-    const ra = readingOf(ctx, scheme, surfaceOf(a))?.split(" ");
-    const rb = readingOf(ctx, scheme, surfaceOf(b))?.split(" ");
+    const ra = pinnedReading(a, scheme)?.split(" ");
+    const rb = pinnedReading(b, scheme)?.split(" ");
     if (ra === undefined || rb === undefined || ra.length !== rb.length) return false;
     const differing = ra.flatMap((syllable, i) => (syllable === rb[i] ? [] : [[[...syllable], [...(rb[i] ?? "")]] as const]));
     const [only] = differing;
