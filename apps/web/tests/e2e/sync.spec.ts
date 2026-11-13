@@ -7,6 +7,8 @@
  * - Phase 11 (§14.4): a learner downloads what the server keeps for the account, then deletes
  *   it; the server forgets them and the device keeps its progress.
  * - An event the server rejects is set aside and said so; the rest syncs (S13, 2026-11 review).
+ * - The server ending the session is said at the top of Home until the learner signs in again or
+ *   stays signed out; a new account after a deletion takes the device's whole log (S9, ADR 0123).
  */
 import { replay } from "@nabu/core/learner";
 import { lessonNodes } from "@nabu/core/lesson";
@@ -81,12 +83,12 @@ test.describe("sync", () => {
     const log = await logOf(page, "fa");
     expect(log.filter((e) => e.type === "session_completed")).toHaveLength(3);
 
-    // Signing up needs the server: offline, the form says so and nothing is lost.
+    // Signing up needs the server: offline, the form says so (offline, not a server that is down) and nothing is lost.
     await home(page);
     const email = "maryam@example.com";
     const password = "ketab-e man";
     await signUp(page, email, password);
-    await expect(page.locator("[data-account-error]")).toHaveAttribute("data-account-error", "unreachable");
+    await expect(page.locator("[data-account-error]")).toHaveAttribute("data-account-error", "offline");
 
     // Back online: sign up, and the whole local history uploads.
     await context.setOffline(false);
@@ -118,13 +120,16 @@ test.describe("sync", () => {
     await expect(page.locator("[data-sync-status]")).toHaveAttribute("data-sync-status", "saved");
     expect(await axe()).toEqual([]);
 
-    // The server becomes unreachable; the learner keeps going.
+    // The server becomes unreachable, the device still online; the learner keeps going.
     await page.route(`${API}/v1/**`, (route) => route.abort("internetdisconnected"));
     await coursePath(page);
     await session(page, { mode: "lesson", node: first }, now, `[data-lesson="${first}"]`);
     await home(page);
     const status = page.locator("[data-sync-status]");
-    await expect(status).toHaveAttribute("data-sync-status", /^(offline|pending)$/u);
+    await expect(status).toHaveAttribute("data-sync-status", /^(unreachable|pending)$/u);
+    // A pass says the server can't be reached, not that the device is offline (S9).
+    await page.evaluate(async () => window.nabuSync?.syncNow());
+    await expect(status).toHaveAttribute("data-sync-status", "unreachable");
     // The session's last events are still being stored as the path opens: read the queue once
     // it holds still (the same size twice, half a second apart).
     let pending = -1;
@@ -257,6 +262,83 @@ test.describe("sync", () => {
     const signIn = await page.request.post(`${API}/v1/auth/sign-in`, { data: { email, password } });
     expect(signIn.status()).toBe(401);
     expect(await logOf(page, "fa")).toHaveLength(local);
+  });
+
+  test("the server ends the session: Home says so until the learner acts; a new account takes the whole log (S9)", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    const now = new Date("2026-04-08T09:00:00Z");
+    await page.clock.setFixedTime(now);
+    await page.goto(app("#/fa/fa-Arab.standard"));
+    await session(page, { mode: "lesson", node: first }, now, `[data-lesson="${first}"]`);
+    await home(page);
+    const email = "سناز@example.com";
+    const password = "یک رمز دیگر";
+    await signUp(page, email, password);
+    const status = page.locator("[data-sync-status]");
+    await expect(status).toHaveAttribute("data-sync-status", "saved");
+    await expect(status).toHaveAttribute("data-pending", "0");
+    const log = (await logOf(page, "fa")).length;
+    const axe = async (): Promise<string[]> =>
+      (await new AxeBuilder({ page }).include("[data-signed-out]").include("[data-progress]").analyze()).violations
+        .filter((v) => v.impact === "serious" || v.impact === "critical")
+        .map((v) => `${v.id}: ${v.help}`);
+
+    // The server ends the session, as the 180-day expiry does: the next pass finds out, and Home says so.
+    const token = await page.evaluate(async () => ((await window.nabu?.getMeta("account")) as { token: string }).token);
+    expect((await page.request.post(`${API}/v1/auth/sign-out`, { headers: { Authorization: `Bearer ${token}` } })).status()).toBe(204);
+    await page.evaluate(async () => window.nabuSync?.syncNow());
+    const banner = page.locator("[data-signed-out]");
+    await expect(banner).toHaveAttribute("data-signed-out", email);
+    // The form asks to sign in again, the address filled in.
+    const form = page.locator("[data-account-form]");
+    await expect(form).toHaveAttribute("data-account-form", "sign-in");
+    await expect(page.locator("[data-field=email]")).toHaveValue(email);
+    expect(await axe()).toEqual([]);
+    // It stays said across a reload, and the progress stays on the device.
+    await page.reload();
+    await expect(banner).toHaveAttribute("data-signed-out", email);
+    await expect(form).toHaveAttribute("data-account-form", "sign-in");
+    expect(await logOf(page, "fa")).toHaveLength(log);
+
+    // No password reset: the form says so plainly, and what is left to do.
+    await page.locator("[data-action=forgot-password]").click();
+    await expect(page.locator("[data-action=forgot-password]")).toHaveAttribute("aria-expanded", "true");
+    await expect(page.locator("[data-no-reset]")).toBeVisible();
+    expect(await axe()).toEqual([]);
+
+    // Sign in again, from the notice: to the password, then Enter.
+    await page.locator("[data-action=sign-in-again]").click();
+    await expect(page.locator("[data-field=password]")).toBeFocused();
+    await page.keyboard.type(password);
+    await page.keyboard.press("Enter");
+    await expect(page.locator("[data-account]")).toHaveAttribute("data-account", email);
+    await expect(banner).toHaveCount(0);
+    await expect(status).toHaveAttribute("data-sync-status", "saved");
+    await expect(status).toHaveAttribute("data-verified", "true");
+
+    // The account is deleted on another device: signed out again. The learner stays signed out.
+    const elsewhere = ((await (await page.request.post(`${API}/v1/auth/sign-in`, { data: { email, password } })).json()) as { token: string }).token;
+    expect((await page.request.delete(`${API}/v1/account`, { headers: { Authorization: `Bearer ${elsewhere}` }, data: { password } })).status()).toBe(204);
+    await page.evaluate(async () => window.nabuSync?.syncNow());
+    await expect(banner).toHaveAttribute("data-signed-out", email);
+    await page.locator("[data-action=stay-signed-out]").click();
+    await expect(banner).toHaveCount(0);
+    await expect(form).toHaveAttribute("data-account-form", "create");
+    await page.reload();
+    await expect(page.locator("[data-progress]")).toBeVisible();
+    await expect(banner).toHaveCount(0);
+
+    // A new account, with the same address: it takes everything on this device, not only what came since.
+    await signUp(page, email, password);
+    await expect(page.locator("[data-account]")).toHaveAttribute("data-account", email);
+    await expect(status).toHaveAttribute("data-sync-status", "saved");
+    await expect(status).toHaveAttribute("data-pending", "0");
+    await expect(status).toHaveAttribute("data-verified", "true");
+    const server = await serverState(page, email, password);
+    expect(server.events).toBe(log);
+    expect(canonical(server.state)).toBe(canonical(replay(await logOf(page, "fa"))));
+    expect(errors).toEqual([]);
   });
 
   test("a server with an age gate asks the age neutrally, turns a child away and is remembered", async ({ page }) => {
