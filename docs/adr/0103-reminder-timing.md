@@ -1,4 +1,4 @@
-# 0103. Reminders come after the usual window
+# 0103. Reminders come after the usual window, or at a time the learner chooses
 
 - Status: Proposed
 - Date: 2026-11-12
@@ -16,6 +16,7 @@ weeks (ADR 0044). The 2026-11 review found (M9):
   again never lifted that: ADR 0044 says "none until they practise".
 - **The quest count was the defaults'.** Reminders replayed the log with `DEFAULT_GAME`, not the
   deployment's `game.json`.
+- **There was no time setting.** A learner could only turn reminders on or off.
 
 ## Decision
 
@@ -43,6 +44,19 @@ weeks (ADR 0044). The 2026-11 review found (M9):
 the `game.json` its web app is deployed with), as `/v1/game` and the export do. The streak and
 the quests a reminder speaks of are the ones the learner sees.
 
+**A chosen time.** The learner may set the time of day instead (Preferences: "Automatic" or "At a
+time I choose").
+- It is the account's, not a device's: the server sends the reminders, so it keeps the time for
+  every device that gets them. Table `reminder_settings` (migration 0008): minutes after local
+  midnight; no row is automatic.
+- It is read in the zone of the learner's latest event, like the automatic time.
+- Everything else still applies: none on a day already practised, at most one a day, the caps.
+- `GET /v1/push/reminder` gives `{available, time}` (`time` "HH:MM" or null; `available`: whether
+  the instance sends reminders at all); `PUT /v1/push/reminder` takes `{time}`.
+- The export holds it (`reminders.time`); deleting the account deletes it with the user row.
+- The field is React Aria's time field: it writes the time as the UI locale does (12 or 24 hours,
+  its digits); the API takes 24-hour "HH:MM".
+
 ## Consequences
 
 - A learner who usually begins between 18:00 and 19:00 hears at about 19:20, not at 18:30.
@@ -50,6 +64,9 @@ the quests a reminder speaks of are the ones the learner sees.
   hour.
 - Learners who practise before the reminder, offline, now count it unanswered. Their reminders
   thin out to every other day and stop after seven, until they practise again.
+- A learner who wants mornings, or late evenings, can have them.
+- A new account with no events yet has no zone: a chosen time is read in UTC until the first
+  session syncs.
 - **Not done:**
   - a reminder still opens Home, not the course the learner was in (the review's S1);
   - reminders need an account and a server: the native apps do not schedule them on the device.

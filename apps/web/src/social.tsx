@@ -202,7 +202,7 @@ const NativeReminders = ({ account, platform }: { account: Account; platform: Na
       <Switch isSelected={on} onChange={(v) => void toggle(v)} data-action="reminders">
         {t.format("app.reminders.label")}
       </Switch>
-      <p className={styles.muted}>{t.format(problem === "denied" ? "app.reminders.denied" : problem === "failed" ? "app.reminders.failed" : "app.reminders.hint")}</p>
+      <p className={styles.muted}>{t.format(problem === "denied" ? "app.reminders.denied" : problem === "failed" ? "app.reminders.failed" : "app.reminders.when")}</p>
     </div>
   );
 };
@@ -249,7 +249,7 @@ const WebReminders = ({ account }: { account: Account }): JSX.Element | null => 
       <Switch isSelected={on} isDisabled={problem === "unsupported"} onChange={(v) => void toggle(v)} data-action="reminders">
         {t.format("app.reminders.label")}
       </Switch>
-      <p className={styles.muted}>{t.format(problem === "denied" ? "app.reminders.denied" : problem === "unsupported" ? "app.reminders.unsupported" : "app.reminders.hint")}</p>
+      <p className={styles.muted}>{t.format(problem === "denied" ? "app.reminders.denied" : problem === "unsupported" ? "app.reminders.unsupported" : "app.reminders.when")}</p>
     </div>
   );
 };

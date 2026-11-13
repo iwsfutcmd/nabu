@@ -11,11 +11,17 @@
  * Appearance: match the browser (the default: light or dark as the browser or device is set), or
  * light or dark whatever it is set to. A chosen theme is data-theme on <html> (tokens.css);
  * index.html sets it before the first paint, so a dark page never flashes light.
+ *
+ * The time of the daily reminder is the one preference that is the account's, not the device's:
+ * the server sends the reminders, so it keeps the time (ADR 0103) for every device that gets them.
+ * It shows when signed in to a server that sends reminders.
  */
+import { parseTime, Time } from "@internationalized/date";
 import { useTranslator } from "@nabu/ui";
-import { useState, type JSX } from "react";
-import { Label, Radio, RadioGroup, Text } from "react-aria-components";
+import { useEffect, useState, type FormEvent, type JSX } from "react";
+import { Button, DateInput, DateSegment, Form, Label, Radio, RadioGroup, Text, TimeField, type TimeValue } from "react-aria-components";
 import styles from "./App.module.css";
+import { request, type Account } from "./sync.ts";
 
 export const TEXT_SIZES = ["smaller", "default", "large", "larger", "largest"] as const;
 export type TextSize = (typeof TEXT_SIZES)[number];
@@ -110,8 +116,120 @@ export const applyTheme = (theme: Theme): void => {
   }
 };
 
-/** The preferences screen: appearance and the size of the language being learned, applied as the learner chooses. */
-export const PreferencesPage = ({ back }: { readonly back: string }): JSX.Element => {
+/** What the server says of the reminder time: whether it sends reminders at all, and the time chosen ("HH:MM"; null: automatic). */
+interface ReminderSetting {
+  readonly available: boolean;
+  readonly time: string | null;
+}
+
+/** Automatic (after the time the learner usually practises) or a time they choose. */
+type ReminderMode = "automatic" | "chosen";
+
+/** "07:30" from a time field's value: the 24-hour form the API takes, whatever the field shows. */
+const hhmm = (value: TimeValue): string => `${String(value.hour).padStart(2, "0")}:${String(value.minute).padStart(2, "0")}`;
+
+/**
+ * When the daily reminder comes: a little after the time the learner usually practises, or at a
+ * time they choose. The field shows the time as the UI locale writes it (12 or 24 hours, its
+ * digits); the account keeps it as hours and minutes of the learner's own day.
+ */
+const ReminderTime = ({ account }: { readonly account: Account }): JSX.Element | null => {
+  const t = useTranslator();
+  const [setting, setSetting] = useState<ReminderSetting | null>(null);
+  const [mode, setMode] = useState<ReminderMode>("automatic");
+  const [time, setTime] = useState<TimeValue | null>(() => new Time(19, 0));
+  const [status, setStatus] = useState<"saved" | "failed" | null>(null);
+  const [busy, setBusy] = useState(false);
+  useEffect(() => {
+    void request<ReminderSetting>(account.server, "/v1/push/reminder", { token: account.token }).then(
+      (s) => {
+        setSetting(s);
+        setMode(s.time === null ? "automatic" : "chosen");
+        if (s.time !== null) setTime(parseTime(s.time));
+      },
+      // An older server, or none reachable: nothing to set.
+      () => setSetting(null),
+    );
+  }, [account]);
+  if (setting === null || !setting.available) return null;
+  const save = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    if (busy || (mode === "chosen" && time === null)) return;
+    setBusy(true);
+    const body = { time: mode === "chosen" && time !== null ? hhmm(time) : null };
+    void request<ReminderSetting>(account.server, "/v1/push/reminder", { token: account.token, method: "PUT", body }).then(
+      (s) => {
+        setSetting(s);
+        setStatus("saved");
+        setBusy(false);
+      },
+      () => {
+        setStatus("failed");
+        setBusy(false);
+      },
+    );
+  };
+  return (
+    <Form className={styles.preferenceOptions} onSubmit={save} data-preference="reminder-time">
+      <RadioGroup
+        className={styles.reminderModes}
+        value={mode}
+        onChange={(value) => {
+          if (value !== "automatic" && value !== "chosen") return;
+          setMode(value);
+          setStatus(null);
+        }}
+      >
+        <Label className={styles.subheading}>{t.format("preferences.reminder.label")}</Label>
+        <Text slot="description" className={styles.muted}>
+          {t.format("preferences.reminder.hint")}
+        </Text>
+        <Radio value="automatic" className={styles.preferenceOption} data-reminder-mode="automatic">
+          {t.format("preferences.reminder.automatic")}
+        </Radio>
+        <Radio value="chosen" className={styles.preferenceOption} data-reminder-mode="chosen">
+          {t.format("preferences.reminder.chosen")}
+        </Radio>
+      </RadioGroup>
+      {mode === "chosen" && (
+        <TimeField
+          className={styles.field}
+          value={time}
+          onChange={(value) => {
+            setTime(value);
+            setStatus(null);
+          }}
+          isRequired
+          data-field="reminder-time"
+        >
+          <Label className={styles.label}>{t.format("preferences.reminder.time")}</Label>
+          <DateInput className={styles.timeInput}>{(segment) => <DateSegment segment={segment} className={styles.timeSegment} />}</DateInput>
+        </TimeField>
+      )}
+      <div className={styles.links}>
+        <Button className={styles.button} type="submit" isDisabled={busy} data-action="reminder-time-save">
+          {t.format("preferences.reminder.save")}
+        </Button>
+      </div>
+      {status === "saved" && (
+        <p className={styles.muted} role="status" data-reminder-time-saved="">
+          {t.format("preferences.reminder.saved")}
+        </p>
+      )}
+      {status === "failed" && (
+        <p className={styles.notice} role="alert" data-reminder-time-error="">
+          {t.format("preferences.reminder.failed")}
+        </p>
+      )}
+    </Form>
+  );
+};
+
+/**
+ * The preferences screen: appearance and the size of the language being learned, applied as the
+ * learner chooses; with an account, the time of the daily reminder.
+ */
+export const PreferencesPage = ({ back, account }: { readonly back: string; readonly account?: Account | undefined }): JSX.Element => {
   const t = useTranslator();
   const [size, setSize] = useState<TextSize>(storedTextSize);
   const [theme, setTheme] = useState<Theme>(storedTheme);
@@ -152,6 +270,7 @@ export const PreferencesPage = ({ back }: { readonly back: string }): JSX.Elemen
           </Radio>
         ))}
       </RadioGroup>
+      {account !== undefined && <ReminderTime account={account} />}
       <p>
         <a className={styles.back} href={back} data-preferences-back="">
           {t.format("preferences.back")}

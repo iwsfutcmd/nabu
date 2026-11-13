@@ -229,6 +229,18 @@ describe("reminders", () => {
     expect(reminderMinute(owl, noon)).toBe(23 * 60 + 30);
   });
 
+  it("come at the time the learner chose, instead", () => {
+    // The learner who practises 18:00–19:00 asks for mornings…
+    expect(decide(usual, [], berlin("2026-05-08", "07:55"), DEFAULT_GAME, 8 * 60)).toMatchObject({ send: false, reason: "too-early" });
+    expect(decide(usual, [], berlin("2026-05-08", "08:00"), DEFAULT_GAME, 8 * 60)).toMatchObject({ send: true, template: "streak" });
+    // …or for late evenings: nothing at 19:30, when the automatic time would have come.
+    expect(decide(usual, [], berlin("2026-05-08", "19:30"), DEFAULT_GAME, 21 * 60)).toMatchObject({ send: false, reason: "too-early" });
+    expect(decide(usual, [], berlin("2026-05-08", "21:00"), DEFAULT_GAME, 21 * 60)).toMatchObject({ send: true });
+    // A day already practised still gets none.
+    const practised = [...usual, ...session(berlin("2026-05-08", "07:00"), 3, 3000, tz)];
+    expect(decide(practised, [], berlin("2026-05-08", "08:00"), DEFAULT_GAME, 8 * 60)).toMatchObject({ send: false, reason: "practised" });
+  });
+
   it("come only on a day without practice, at most once a day", () => {
     const practised = [...usual, ...session(berlin("2026-05-08", "09:00"), 3, 3000, tz)];
     expect(decide(practised, [], berlin("2026-05-08", "21:00"), DEFAULT_GAME)).toMatchObject({ send: false, reason: "practised" });
@@ -351,6 +363,38 @@ describe("reminders", () => {
     const [log] = await database.db.select().from(pushLog).where(eq(pushLog.userId, user.id));
     expect(log).toMatchObject({ localDate: "2026-08-03", template: "quest" });
     expect(log?.sentAt.getTime()).toBe(jobsAt);
+  });
+
+  it("keep the time the learner chose, and come then", async () => {
+    const res = await app.request("/v1/auth/sign-up", request("POST", { email: "mornings@example.org", password: "correct horse battery" }));
+    const { token, user } = (await res.json()) as { token: string; user: { id: string } };
+    const put = (body: unknown) => app.request("/v1/push/reminder", request("PUT", body, token));
+    const get = async (): Promise<unknown> => (await app.request("/v1/push/reminder", request("GET", undefined, token))).json();
+    expect(await get()).toEqual({ available: true, time: null }); // automatic until chosen
+    for (const bad of [{ time: "24:00" }, { time: "7:30" }, { time: "07:30:00" }, { time: 450 }, {}]) expect((await put(bad)).status).toBe(400);
+    expect(await (await put({ time: "07:30" })).json()).toEqual({ available: true, time: "07:30" });
+    expect(await get()).toEqual({ available: true, time: "07:30" });
+    expect((await app.request("/v1/push/reminder", request("GET", undefined))).status).toBe(401);
+
+    // They practise in the evening and asked for mornings: the reminder comes at 07:30, not before.
+    await upload(token, session(at("2026-08-10T19:00:00Z"), 3));
+    await database.db.insert(nativePushTokens).values({ token: "chosen-time", userId: user.id, platform: "android" });
+    const received: Notification[] = [];
+    const android = (device: string, n: Notification): Promise<"sent"> => {
+      if (device === "chosen-time") received.push(n);
+      return Promise.resolve("sent");
+    };
+    await sendReminders(database.db, at("2026-08-11T07:25:00Z"), { native: { android }, game: DEFAULT_GAME });
+    expect(received).toHaveLength(0);
+    await sendReminders(database.db, at("2026-08-11T07:30:00Z"), { native: { android }, game: DEFAULT_GAME });
+    expect(received).toHaveLength(1);
+
+    // Automatic again.
+    expect(await (await put({ time: null })).json()).toEqual({ available: true, time: null });
+    expect(await get()).toEqual({ available: true, time: null });
+    // An instance that sends no reminders says so.
+    const quiet = createApp({ db: database.db, accounts: createAccounts(database.db) });
+    expect(await (await quiet.request("/v1/push/reminder", request("GET", undefined, token))).json()).toEqual({ available: false, time: null });
   });
 });
 

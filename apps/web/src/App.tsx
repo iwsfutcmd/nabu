@@ -913,7 +913,7 @@ export const App = (): JSX.Element => {
     [store, sync],
   );
 
-  if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} />;
+  if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} account={account} />;
   if (route.tag === "review") {
     const names = { course: (id: string) => courseName(t, id), orthography: (id: string) => orthographyName(t, id) };
     return index === null || sync === null ? (

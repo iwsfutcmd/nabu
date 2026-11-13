@@ -52,6 +52,7 @@ declare const styles: {
   readonly questBar: string;
   readonly questHead: string;
   readonly quests: string;
+  readonly reminderModes: string;
   readonly standing: string;
   readonly standings: string;
   readonly startOver: string;
@@ -65,6 +66,8 @@ declare const styles: {
   readonly tabList: string;
   readonly tabs: string;
   readonly textButton: string;
+  readonly timeInput: string;
+  readonly timeSegment: string;
   readonly track: string;
   readonly unit: string;
   readonly unitTitle: string;

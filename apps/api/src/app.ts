@@ -18,6 +18,8 @@
  *   GET  /v1/push/key                  → {publicKey}: the VAPID key for pushManager.subscribe
  *   POST /v1/push/subscribe            {endpoint, keys: {p256dh, auth}}
  *   POST /v1/push/unsubscribe          {endpoint}
+ *   GET  /v1/push/reminder             → {available, time}: when the daily reminder comes ("HH:MM", or null: automatic)
+ *   PUT  /v1/push/reminder             {time: "HH:MM" | null} (ADR 0103)
  *   /v1/ai/*                           the AI features (ai/routes.ts), when the instance has a model
  *   /v1/speech/*                       speech scoring, tiers 1–2 (speech.ts), with a speech service
  *
@@ -66,6 +68,7 @@ import { getProfile, setProfile } from "./profiles.ts";
 import { CORRECTION_STATUSES, fileCorrection, listCorrections, setCorrectionStatus } from "./corrections.ts";
 import { fileReport, listReports, setStatus, STATUSES } from "./reports.ts";
 import { allSignOffs, grant, listReviewers, reviewRoutes, revoke } from "./review.ts";
+import { chooseMinute, chosenMinute, minuteOf, timeOf } from "./reminders.ts";
 import { base64url, fromBase64url, type Vapid } from "./webpush.ts";
 
 export interface AppDeps {
@@ -402,6 +405,22 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     if (typeof token !== "string") return c.json({ error: "invalid-request" }, 400);
     await db.delete(nativePushTokens).where(and(eq(nativePushTokens.token, token), eq(nativePushTokens.userId, c.get("user").id)));
     return c.body(null, 204);
+  });
+
+  // When the daily reminder comes (ADR 0103): the learner's own time of day, or automatic (null).
+  // It is the account's, for every device that gets reminders; `available` says whether this
+  // instance sends any.
+  const available = vapid !== undefined || nativePlatforms.length > 0;
+  app.get("/v1/push/reminder", async (c) => {
+    const minute = await chosenMinute(db, c.get("user").id);
+    return c.json({ available, time: minute === undefined ? null : timeOf(minute) });
+  });
+  app.put("/v1/push/reminder", async (c) => {
+    const time = (await body(c))?.["time"];
+    const minute = typeof time === "string" ? minuteOf(time) : undefined;
+    if (time !== null && minute === undefined) return c.json({ error: "invalid-time" }, 400);
+    await chooseMinute(db, c.get("user").id, minute);
+    return c.json({ available, time: minute === undefined ? null : timeOf(minute) });
   });
 
   reviewRoutes(app, { db, courses: ai?.courses, now });

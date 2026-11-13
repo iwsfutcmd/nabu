@@ -2,12 +2,12 @@
  * Practice reminders (gameplan §12.6; ADRs 0044 and 0103), by Web Push and to the Android and iOS
  * apps, for learners who asked for them.
  *
- * - **When:** after the learner's usual window, only on a day they have not practised yet, at most
- *   once a day, in the zone they were last in. The window ends at the 80th percentile of the
- *   start times of their sessions in the last four weeks: by then four practice days in five have
- *   begun. Half an hour later, a session begun then is over and synced, so a reminder never lands
- *   just before the practice it would take credit for. Before there are any sessions, 19:00; never
- *   after 23:30, or it would not come that day at all.
+ * - **When:** at the time the learner chose, or else after their usual window; only on a day they
+ *   have not practised yet, at most once a day, in the zone they were last in. The window ends at
+ *   the 80th percentile of the start times of their sessions in the last four weeks: by then four
+ *   practice days in five have begun. Half an hour later, a session begun then is over and synced,
+ *   so a reminder never lands just before the practice it would take credit for. Before there are
+ *   any sessions, 19:00; never after 23:30, or it would not come that day at all.
  * - **Caps:** a reminder is answered when the learner practises after it, the day it came (practice
  *   before it, synced late, was going to happen anyway). After three unanswered in a row, every
  *   other day at most; after seven, none until they practise again.
@@ -22,7 +22,7 @@ import { directionOf, loadTranslator, type MessageId } from "@nabu/i18n";
 import type { LearnerEvent } from "@nabu/schema";
 import { and, desc, eq, inArray } from "drizzle-orm";
 import type { Db } from "./db/index.ts";
-import { events, nativePushTokens, profiles, pushLog, pushSubscriptions } from "./db/schema.ts";
+import { events, nativePushTokens, profiles, pushLog, pushSubscriptions, reminderSettings } from "./db/schema.ts";
 import type { NativeSenders, Platform } from "./nativepush.ts";
 import type { Subscription } from "./webpush.ts";
 
@@ -74,6 +74,27 @@ export const usualStart = (log: readonly LearnerEvent[], now: number): number | 
 export const reminderMinute = (log: readonly LearnerEvent[], now: number): number => {
   const usual = usualStart(log, now);
   return usual === undefined ? DEFAULT_MINUTE : Math.min(usual + AFTER_MINUTES, LATEST_MINUTE);
+};
+
+/** A time of day as the API and the export write it: 1170 is "19:30". */
+export const timeOf = (minute: number): string => `${String(Math.floor(minute / 60)).padStart(2, "0")}:${String(minute % 60).padStart(2, "0")}`;
+
+/** The minutes after midnight of a 24-hour "HH:MM", or undefined for anything else. */
+export const minuteOf = (time: string): number | undefined => {
+  const m = /^([01]\d|2[0-3]):([0-5]\d)$/u.exec(time);
+  return m === null ? undefined : Number(m[1]) * 60 + Number(m[2]);
+};
+
+/** The time the learner chose for the daily reminder, in minutes after local midnight; undefined: automatic. */
+export const chosenMinute = async (db: Db, user: string): Promise<number | undefined> => {
+  const [row] = await db.select({ minute: reminderSettings.minute }).from(reminderSettings).where(eq(reminderSettings.userId, user));
+  return row?.minute;
+};
+
+/** Chooses the time of the daily reminder (minutes after local midnight), or leaves it automatic (undefined). */
+export const chooseMinute = async (db: Db, user: string, minute: number | undefined): Promise<void> => {
+  if (minute === undefined) await db.delete(reminderSettings).where(eq(reminderSettings.userId, user));
+  else await db.insert(reminderSettings).values({ userId: user, minute }).onConflictDoUpdate({ target: reminderSettings.userId, set: { minute } });
 };
 
 export interface Sent {
@@ -163,8 +184,12 @@ const latestOf = (log: readonly LearnerEvent[]): LearnerEvent | undefined => {
   return latest;
 };
 
-/** Whether, and what, to remind one learner now: pure, from their log, their reminder history and the deployment's game rules. */
-export const decide = (log: readonly LearnerEvent[], history: readonly Sent[], now: number, game: GameConfig): Decision => {
+/**
+ * Whether, and what, to remind one learner now: pure, from their log, their reminder history, the
+ * deployment's game rules and the time they chose (minutes after local midnight; undefined:
+ * automatic, after their usual window).
+ */
+export const decide = (log: readonly LearnerEvent[], history: readonly Sent[], now: number, game: GameConfig, chosen?: number): Decision => {
   const tz = latestOf(log)?.tz ?? "UTC";
   const iso = new Date(now).toISOString();
   const today = localDateOf(iso, tz) ?? iso.slice(0, 10);
@@ -172,7 +197,7 @@ export const decide = (log: readonly LearnerEvent[], history: readonly Sent[], n
   const state = replayGame(inputs, game, { today, now: iso });
   if (state.streak.practicedToday) return { send: false, reason: "practised", localDate: today };
   if (history.some((h) => h.localDate === today)) return { send: false, reason: "already-sent", localDate: today };
-  if ((localMinute(iso, tz) ?? 0) < reminderMinute(log, now)) return { send: false, reason: "too-early", localDate: today };
+  if ((localMinute(iso, tz) ?? 0) < (chosen ?? reminderMinute(log, now))) return { send: false, reason: "too-early", localDate: today };
   const practices = practicesOf(log);
   const ignored = ignoredInARow(history, practices);
   // Seven unanswered: none until the learner practises again, at any time after the last one.
@@ -212,7 +237,7 @@ export const sendReminders = async (db: Db, now: number, { send, native = {}, ga
     const history = (
       await db.select({ template: pushLog.template, localDate: pushLog.localDate, sentAt: pushLog.sentAt }).from(pushLog).where(eq(pushLog.userId, user)).orderBy(desc(pushLog.localDate)).limit(30)
     ).map((h) => ({ template: h.template as Template, localDate: h.localDate, sentAt: h.sentAt.toISOString() }));
-    const decision = decide(log, history, now, game);
+    const decision = decide(log, history, now, game, await chosenMinute(db, user));
     if (!decision.send || decision.template === undefined || decision.values === undefined) continue;
     const [profile] = await db.select({ uiLocale: profiles.uiLocale }).from(profiles).where(eq(profiles.userId, user));
     const payload = await renderReminder(decision.template, profile?.uiLocale ?? "en", decision.values);
