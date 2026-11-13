@@ -1630,6 +1630,50 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     }
   },
   "progress": {
+    "R1": {
+      "state": "in-progress",
+      "note": "With a helper (fix/speed, ADR 0112): no game replay or corrections re-read per event inside a session; measured before and after at 4× CPU with a year of history."
+    },
+    "R4": {
+      "state": "in-progress",
+      "note": "With a helper (fix/speed, ADR 0112): sync compares less often or by digest, and an upload moves the cursor on."
+    },
+    "P9": {
+      "state": "in-progress",
+      "note": "With a helper (fix/session-end, ADR 0113): a title per mode, missed items, new and known words, the game before and after, and a next step that agrees with Continue."
+    },
+    "P14": {
+      "state": "in-progress",
+      "note": "With a helper (fix/session-end, ADR 0113): a revise event during feedback drops the retry and corrects the summary."
+    },
+    "S11": {
+      "state": "in-progress",
+      "note": "With a helper (fix/course-page): lessons numbered within units, glossed previews, level and progress on unit headers."
+    },
+    "S8": {
+      "state": "in-progress",
+      "note": "With a helper (fix/course-page): lasting Listening and Speaking switches, Preferences reachable from the course and the player, a text-size sample."
+    },
+    "M2": {
+      "state": "in-progress",
+      "note": "With a helper (fix/reports-status): the confirmation says where a report goes; “Your reports” shows what the course has taken up."
+    },
+    "C6": {
+      "state": "in-progress",
+      "note": "With a helper (fix/course-data, ADR 0116): speech setup as course data, so es gets speech scoring."
+    },
+    "C10": {
+      "state": "in-progress",
+      "note": "With a helper (fix/course-data, ADR 0117): the compiler pins each word’s readings and everyone reads them; no clip may go stale."
+    },
+    "W6": {
+      "state": "in-progress",
+      "note": "With a helper (fix/phone-player): vertical text keeps its readings and the chrome stays horizontal."
+    },
+    "P16": {
+      "state": "in-progress",
+      "note": "With a helper (fix/phone-player): a Check tapped while composing goes ahead once composition ends."
+    },
     "C4": {
       "state": "done",
       "commit": "98ff8a02",
