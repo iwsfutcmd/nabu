@@ -75,6 +75,45 @@
   font-weight: 700;
 }
 
+/* What the lesson says it did ("Can't listen now"): a live region, empty and out of the way until then. */
+.notices:empty {
+  display: none;
+}
+
+.notice {
+  margin: 0;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  border-radius: var(--nabu-radius-tile);
+  background-color: var(--nabu-color-focus-bg);
+  color: var(--nabu-color-text);
+}
+
+/* "Can't listen now", "Can't speak now": quieter than Skip, on a row of their own above the footer. */
+.putOff {
+  margin: 0;
+}
+
+.textButton {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.75rem;
+  padding-block: 0;
+  padding-inline: var(--nabu-space-1);
+  font: inherit;
+  color: var(--nabu-color-text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.textButton[data-disabled] {
+  cursor: default;
+  opacity: 0.55;
+}
+
 .toggles {
   display: flex;
   flex-wrap: wrap;
@@ -580,6 +619,7 @@
 }
 
 .iconButton[data-focus-visible],
+.textButton[data-focus-visible],
 .primary[data-focus-visible],
 .secondary[data-focus-visible],
 .secondary:focus-visible,

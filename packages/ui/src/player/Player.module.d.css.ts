@@ -30,6 +30,8 @@ declare const styles: {
   readonly modal: string;
   readonly muted: string;
   readonly notes: string;
+  readonly notice: string;
+  readonly notices: string;
   readonly option: string;
   readonly optionGrid: string;
   readonly optionNumber: string;
@@ -47,6 +49,7 @@ declare const styles: {
   readonly primaryWrong: string;
   readonly progress: string;
   readonly prompt: string;
+  readonly putOff: string;
   readonly ratings: string;
   readonly readings: string;
   readonly readingsLabel: string;
@@ -62,6 +65,7 @@ declare const styles: {
   readonly switchTrack: string;
   readonly synthetic: string;
   readonly target: string;
+  readonly textButton: string;
   readonly tile: string;
   readonly tileSlot: string;
   readonly toggles: string;

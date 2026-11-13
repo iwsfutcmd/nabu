@@ -51,6 +51,30 @@ describe("a reading question's clip (W9)", () => {
   });
 });
 
+describe("putting off listening and speaking (P13)", () => {
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const actions = (html: string): readonly string[] => [...html.matchAll(/data-action="([^"]+)"/gu)].map((m) => m[1] as string);
+
+  it("a listening card can be skipped like any other, and put off apart from that", () => {
+    const ex = cardOf(course, "listen-tap");
+    const html = play(course, ex, stateOf(course, ex), { onCantListen: () => undefined });
+    expect(actions(html)).toEqual(expect.arrayContaining(["cant-listen", "skip", "check"]));
+    // Its own row, above the footer: never in the footer, where Skip and Check are.
+    const footer = html.slice(html.indexOf("<footer"));
+    expect(footer).not.toContain("cant-listen");
+    expect(html.indexOf('data-action="cant-listen"')).toBeLessThan(html.indexOf("<footer"));
+    // Nothing is said until it is pressed.
+    expect(html).not.toContain("data-put-off=");
+  });
+
+  it("a speaking card is put off, never skipped", () => {
+    const ex = cardOf(course, "speak.tier-0");
+    const html = play(course, ex, stateOf(course, ex), { onCantSpeak: () => undefined });
+    expect(actions(html)).toContain("cant-speak");
+    expect(actions(html)).not.toContain("skip");
+  });
+});
+
 describe("the answer's play buttons (P15)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const ex = cardOf(course, "complete-translation");

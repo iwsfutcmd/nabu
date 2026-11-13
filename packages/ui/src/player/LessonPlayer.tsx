@@ -44,9 +44,12 @@ export interface LessonPlayerProps {
   readonly retries?: boolean | undefined;
   /** An adaptive test (the placement test, ADR 0077): what comes next depends on the answers. */
   readonly adaptive?: AdaptiveTest | undefined;
-  /** The learner pressed "Can't listen now": the app leaves listening out of the next sessions. */
+  /**
+   * The learner pressed "Can't listen now": the app leaves listening out of the sessions of the next
+   * hour. With it, the player says so when it happens (P13); without it, only this lesson drops them.
+   */
   readonly onCantListen?: (() => void) | undefined;
-  /** The learner pressed "Can't speak now": the app leaves speaking out of the next sessions. */
+  /** The learner pressed "Can't speak now": the app leaves speaking out of the next hour's sessions. */
   readonly onCantSpeak?: (() => void) | undefined;
   /**
    * More under the feedback for an answer (Phase 8: report it, a second check, an explanation).
@@ -104,6 +107,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   // Rotated Latin ruby reads badly in vertical text: off by default there, on request (§11.4).
   const readings = useReadings(profile, mode, props.reading, props.onReadingChange);
   const [vowels, setVowels] = useState(true);
+  // Listening or speaking put off in this lesson ("Can't listen now"): said once it happens (P13).
+  const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
   const verticalMode = profile?.layout?.vertical;
   const canVertical = verticalMode !== undefined && verticalMode !== "none" && effectiveWritingMode(profile, verticalMode, "wordbank") !== "horizontal-tb";
   const ruby = readings.shown;
@@ -215,6 +220,12 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         </ProgressBar>
       </header>
 
+      {/* "Can't listen now" and "Can't speak now" say what they did, for as long as the lesson lasts (P13). */}
+      <div className={styles.notices} role="status" data-put-off={[putOff.listening ? "listening" : "", putOff.speaking ? "speaking" : ""].join(" ").trim() || undefined}>
+        {putOff.listening && onCantListen !== undefined && <p className={styles.notice}>{t.format("player.put-off.listening")}</p>}
+        {putOff.speaking && onCantSpeak !== undefined && <p className={styles.notice}>{t.format("player.put-off.speaking")}</p>}
+      </div>
+
       {/* Earlier material brought back because it is due (ADR 0097): said before the instruction. */}
       {ex.review === true && (
         <p className={styles.reviewTag} data-review-tag="">
@@ -268,6 +279,28 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       </div>
       {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response)}
 
+      {/*
+        Putting off listening or speaking is its own, quieter action, apart from Skip (P13): a listening
+        card can be skipped like any other without losing an hour of listening.
+      */}
+      {active.tag !== "feedback" && (speaking || listening) && (
+        <p className={styles.putOff}>
+          <Button
+            className={styles.textButton}
+            onPress={() => {
+              if (speaking) onCantSpeak?.();
+              else onCantListen?.();
+              setPutOff((p) => (speaking ? { ...p, speaking: true } : { ...p, listening: true }));
+              dispatch({ tag: "skip", reason: speaking ? "cant-speak" : "cant-listen" });
+            }}
+            isDisabled={locked}
+            data-action={speaking ? "cant-speak" : "cant-listen"}
+          >
+            {t.format(speaking ? "player.action.cant-speak" : "player.action.cant-listen")}
+          </Button>
+        </p>
+      )}
+
       <footer ref={footer} className={styles.footer}>
         {active.tag === "feedback" ? (
           <Button ref={continueButton} className={`${styles.primary} ${isCorrect(active.outcome.verdict) || active.outcome.selfRated === true ? "" : styles.primaryWrong}`} onPress={() => dispatch({ tag: "continue" })} data-action="continue">
@@ -276,31 +309,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
           </Button>
         ) : (
           <>
-            {speaking ? (
-              <Button
-                className={styles.secondary}
-                onPress={() => {
-                  onCantSpeak?.();
-                  dispatch({ tag: "skip", reason: "cant-speak" });
-                }}
-                isDisabled={locked}
-                data-action="cant-speak"
-              >
-                {t.format("player.action.cant-speak")}
-              </Button>
-            ) : listening ? (
-              <Button
-                className={styles.secondary}
-                onPress={() => {
-                  onCantListen?.();
-                  dispatch({ tag: "skip", reason: "cant-listen" });
-                }}
-                isDisabled={locked}
-                data-action="cant-listen"
-              >
-                {t.format("player.action.cant-listen")}
-              </Button>
-            ) : (
+            {/* A speaking card is rated, never skipped: "Couldn't say it" is its honest skip. */}
+            {!speaking && (
               <Button className={styles.secondary} onPress={() => dispatch({ tag: "skip", reason: "skip" })} isDisabled={locked} data-action="skip">
                 {t.format("exercise.action.skip")}
               </Button>
