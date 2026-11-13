@@ -342,7 +342,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     <span class="refs"><a class="ref" href="#f-R1">R1</a><a class="ref" href="#f-R2">R2</a><a class="ref" href="#f-R3">R3</a><a class="ref" href="#f-R4">R4</a><a class="ref" href="#f-R5">R5</a><a class="ref" href="#f-R6">R6</a><a class="ref" href="#f-R7">R7</a><a class="ref" href="#f-R8">R8</a></span></div></div>
 
   <h2 id="decisions">Decisions for you</h2>
-  <p>Your answers go into the copied plan. D1–D6 are answered; D7–D11 came up while the fixes were made and are open (the recommended option comes first).</p>
+  <p>Your answers go into the copied plan. D1–D11 are answered; D12–D14 came up while the fixes were made and are open (the recommended option comes first). Also please check the new course blurbs and script hints on Home (S4): new English copy, especially for apc, grc, hbo, lzh and tok.</p>
   <div id="decision-list"></div>
 
   <h2 id="findings">All findings</h2>
@@ -1137,6 +1137,58 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "Leave it: one 403 per browser session"
       }
     ]
+  },
+  {
+    "id": "D12",
+    "title": "What kind of practice goal? (M4)",
+    "context": "Home now opens on the courses and, after the first session, asks for a weekly goal of practice days (3–7), shown as “This week: N of G days”. It is kept on each device.",
+    "options": [
+      {
+        "v": "a",
+        "label": "A weekly goal of practice days, kept on each device (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "A weekly goal of practice days, kept with the account so every device shares it"
+      },
+      {
+        "v": "c",
+        "label": "A daily goal (minutes or cards a day)"
+      }
+    ]
+  },
+  {
+    "id": "D13",
+    "title": "Replaying a finished lesson: what does it pay? (M1)",
+    "context": "XP now rewards practice: a point a card up to 10 a session, the perfect bonus only from 5 cards. A lesson or story already done pays its answers only, so replays can’t farm the completion bonus.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Answers only, whenever it is replayed (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Answers only on the same day; a replay on a later day pays like any session (it is review)"
+      }
+    ]
+  },
+  {
+    "id": "D14",
+    "title": "Who the unreviewed-content note says should check it (S16)",
+    "context": "Course pages with unreviewed sentences now say so in neutral wording. For Biblical Hebrew, Classical Chinese and Attic Greek there are no native speakers.",
+    "options": [
+      {
+        "v": "a",
+        "label": "“An expert” (what the helper wrote): fits ancient languages too",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "“A native speaker” for living languages, “an expert” for ancient ones"
+      }
+    ]
   }
 ]
 </script>
@@ -1146,7 +1198,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
 <script type="application/json" id="assessments-data">
 {
   "recorded": "12 November 2026",
-  "decisions": {"D1":"a","D2":"a","D3":"a","D4":"a","D5":"a","D6":"a"},
+  "decisions": {"D1":"a","D2":"a","D3":"a","D4":"a","D5":"a","D6":"a","D7":"a","D8":"a","D9":"a","D10":"a","D11":"a"},
   "picks": {
     "L1":{"priority":"now"},"L7":{"priority":"now"},"P5":{"priority":"now"},"S7":{"priority":"now"},"W2":{"priority":"now"},
     "C1":{"priority":"now","note":"Test the words in context (inside a sentence), not on their own. Vocalizing should accept Arabizi in apc: it spells the vowels. Later: vowels are a pain to type in any abjad (Arab, Hebr, Syrc…), so vocalization should be multiple choice; Han readings both multiple choice and typed."},
@@ -1194,14 +1246,14 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     "S6":{"state":"in-progress","note":"Merged (1e35436a): the progress section says where data is kept (persistent storage granted or not, the app, a private window), and a downloaded file can be restored (every event checked against the schema, ids deduplicated)."},
     "S3":{"state":"in-progress","note":"Merged (34e8fc4f): Back after a session goes back to the course page and never replays it; Back mid-session asks like Quit; a reload resumes the session from its saved plan (within 12 hours). Five e2e flows broke and are being fixed by the helper."},
     "S13":{"state":"in-progress","note":"Merged (604bd5ef): the server takes a batch’s valid events and lists the rest; the device sets a rejected event aside (kept in its log, offered again from a button and at sign-in) and says so, never “all saved”. Final e2e fixes pending."},
-    "S4":{"state":"in-progress","note":"With a helper agent (branch fix/feedback-game); merged and checked before it counts as done."},
-    "M4":{"state":"in-progress","note":"With a helper agent (branch fix/feedback-game); merged and checked before it counts as done."},
-    "M3":{"state":"in-progress","note":"With a helper agent (branch fix/feedback-game); merged and checked before it counts as done."},
-    "M1":{"state":"in-progress","note":"With a helper agent (branch fix/feedback-game); merged and checked before it counts as done."},
-    "M6":{"state":"in-progress","note":"With a helper agent (branch fix/feedback-game); merged and checked before it counts as done."},
-    "W4":{"state":"in-progress","note":"With a helper agent (branch fix/feedback-game); merged and checked before it counts as done."},
-    "W3":{"state":"in-progress","note":"With a helper agent (branch fix/feedback-game); merged and checked before it counts as done."},
-    "S16":{"state":"in-progress","note":"With a helper agent (branch fix/feedback-game); merged and checked before it counts as done."},
+    "S4":{"state":"in-progress","note":"Merged (2c5f7d68): a first-run introduction, and each course card one link with a blurb, levels, units and tags like “No listening”. Full e2e run pending."},
+    "M4":{"state":"in-progress","note":"Merged (ed832b48): Home opens on the courses; after a lapse “Start a new streak today”; a weekly goal of practice days. Full e2e run pending."},
+    "M3":{"state":"in-progress","note":"Merged (bcaaa53b): three quests a day, each something the learner’s last 14 days show they can do. Full e2e run pending."},
+    "M1":{"state":"in-progress","note":"Merged (9e3f10fb): a point a card up to 10 a session, the perfect bonus from 5 cards, a replayed lesson pays its answers only (ADR 0107). Full e2e run pending."},
+    "M6":{"state":"in-progress","note":"Merged (2ec570e5): one report button per answer, a small flag at the inline end, opening only the reports that apply. Full e2e run pending."},
+    "W4":{"state":"in-progress","note":"Merged (23fa7de7): a missing accent that spells another word names both words (“Cómo and Como are different words…”); 5 conformance vectors. Full e2e run pending."},
+    "W3":{"state":"in-progress","note":"Merged (63428510): the nearest correct version shows only for a near miss, labelled, with the solution’s punctuation. Full e2e run pending."},
+    "S16":{"state":"in-progress","note":"Merged (f3af568c): notices are neutral (a new info token, AA in both themes); errors and the can’t-save warning keep the error colours. Full e2e run pending."},
     "P1":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
     "S15":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
     "P8":{"state":"in-progress","note":"With a helper agent (branch fix/player); merged and checked before it counts as done."},
