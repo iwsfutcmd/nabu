@@ -1,0 +1,25 @@
+# Hanyu Pinyin: Mandarin readings of Chinese characters, one syllable per character, tones as marks
+# on the vowels (yuè). lzh pins it on every Han word (ADR 0071); it is shown, never asked for.
+id: pinyin
+# What the UI calls the scheme and its tones, by language (ADR 0109). The translations are an
+# LLM's drafts, made for the draft UI catalogs (ADR 0070), and await review as those do.
+names:
+  en:
+    scheme: Pinyin
+  ar:
+    scheme: "بينيين"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    scheme: "پین\u200cیین"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    scheme: "Pinyin"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    scheme: "Пиньинь"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    scheme: "漢語拼音"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+language: cmn
+lang: zh-Latn-pinyin

@@ -3,8 +3,11 @@
  * dispatch PlayerEvents; they never grade or advance on their own.
  */
 import type { CourseView, Draft, Exercise, PlayerEvent } from "@nabu/core/lesson";
+import { parseDigits } from "@nabu/i18n";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, type RefObject } from "react";
+import type { Marks } from "../marks.tsx";
+import type { WordTap } from "./Gloss.tsx";
 
 export type WritingMode = "horizontal-tb" | "vertical-rl" | "vertical-lr";
 
@@ -17,16 +20,44 @@ export interface ViewProps<E extends Exercise = Exercise> {
   readonly locked: boolean;
   /** The reading layer to show as ruby, or false. */
   readonly ruby: SchemeId | false;
-  readonly marks: "show" | "hide";
+  /** Vowel marks on every word, none, or the words still being learned (P12). */
+  readonly marks: Marks;
   /** Writing mode for target-language prompts and word banks (§11.4). */
   readonly writingMode: WritingMode;
   /** Maps a bundle path (images/…, audio/…) to a URL. */
   readonly imageUrl: (path: string) => string;
-  /** Whether a tap may play a word's clip (match-pairs); off with the player's sound. */
+  /**
+   * Whether clips may play by themselves: as a card opens or is answered, or as a word is tapped
+   * (match-pairs). Off with the player's sound, and while the learner can't listen (P6); the play
+   * buttons work either way.
+   */
   readonly sound?: boolean | undefined;
   /** Where a view registers its digit and Backspace shortcuts; the player listens on the window. */
   readonly shortcuts: { current: Shortcuts | null };
+  /**
+   * Element ids for screen readers (P10): the card's instruction (the player's heading), and a base
+   * the view derives its prompt's ids from (describedBy). The control a card focuses first is
+   * described by them, so its instruction and prompt are read when focus lands on it.
+   */
+  readonly ids?: { readonly instruction: string; readonly base: string } | undefined;
+  /**
+   * Tap-for-gloss in a lesson (P1): the word tapped on this card, and where a tap goes. Views make
+   * a target text tappable only where its words' meanings give nothing away; stories gloss their own.
+   */
+  readonly glossing?: Glossing | undefined;
 }
+
+export interface Glossing {
+  readonly tapped: WordTap | undefined;
+  readonly onTap: (tap: WordTap) => void;
+}
+
+/** The id a view gives one part of its prompt (the prompt itself, a gap sentence, a hint). */
+export const partId = (ids: ViewProps["ids"], part: "prompt" | "gap" | "hint"): string | undefined => (ids === undefined ? undefined : `${ids.base}-${part}`);
+
+/** What describes a card's first control: its instruction, then the parts of its prompt it shows. */
+export const describedBy = (ids: ViewProps["ids"], parts: readonly ("prompt" | "gap" | "hint")[]): string | undefined =>
+  ids === undefined ? undefined : [ids.instruction, ...parts.map((p) => `${ids.base}-${p}`)].join(" ");
 
 /** A view's keyboard shortcuts: number keys pick in reading order (§11.3), Backspace takes back. */
 export interface Shortcuts {
@@ -34,13 +65,18 @@ export interface Shortcuts {
   readonly backspace?: () => void;
 }
 
-/** The profile's ruby reading scheme (Jyutping for yue), if it has one. */
-export const rubySchemeOf = (profile: OrthographyProfile | undefined): SchemeId | undefined =>
-  profile?.annotations?.find((a) => a.kind === "reading" && a.render === "ruby")?.scheme;
-
 /** Whether the profile has a toggleable vocalization layer (harakat). */
 export const hasMarksLayer = (profile: OrthographyProfile | undefined): boolean =>
   profile?.annotations?.some((a) => a.kind === "vocalization" && a.toggle) === true && profile.match?.marks !== undefined;
+
+/**
+ * The vowel marks a learner sees before they choose (P12): the profile's vocalization layer says,
+ * `on` (every word, the default), `off`, or `on-for-new-words` (Persian: the words still being learned).
+ */
+export const defaultMarks = (profile: OrthographyProfile | undefined): Marks => {
+  const layer = profile?.annotations?.find((a) => a.kind === "vocalization" && a.toggle);
+  return layer?.default === "off" ? "hide" : layer?.default === "on-for-new-words" ? "new" : "show";
+};
 
 /**
  * The writing mode a target region actually uses: vertical only where the
@@ -53,10 +89,6 @@ export const effectiveWritingMode = (profile: OrthographyProfile | undefined, re
   return requested === layout.vertical && (layout.verticalScope ?? []).includes(scope) ? layout.vertical : "horizontal-tb";
 };
 
-/** Digits in reading order for keyboard shortcuts, in the numbering systems learners type (§11.3). */
-const DIGITS = ["123456789", "۱۲۳۴۵۶۷۸۹", "١٢٣٤٥٦٧٨٩"];
-
-/** 0 for "1" (or ۱ or ١), …; undefined for any other key. */
 /**
  * Focuses an action (Continue) and brings its footer into view, with the footer's scroll margin
  * below it: a phone browser's toolbar at the bottom of the screen covers the last strip of the
@@ -116,13 +148,21 @@ export const useActionsInReach = (card: RefObject<HTMLElement | null>, footer: R
   }, [card, footer, exercise]);
 };
 
+/**
+ * The option a number key picks, in reading order (§11.3): 0 for 1, … 8 for 9, in whatever digits
+ * the learner's keyboard types (۱, ١, १ …: parseDigits reads every Unicode set); undefined for any
+ * other key.
+ */
 export const digitIndex = (key: string): number | undefined => {
-  for (const digits of DIGITS) {
-    const i = digits.indexOf(key);
-    if (i >= 0) return i;
-  }
-  return undefined;
+  const n = parseDigits(key);
+  return n !== undefined && n >= 1 && n <= 9 ? n - 1 : undefined;
 };
+
+/**
+ * Whether a key comes from inside a dialog (the quit dialog, a correction's form, a popover): the
+ * player's shortcuts leave it alone, or Enter there would answer or move on and close it (P11).
+ */
+export const inDialog = (target: EventTarget | null): boolean => target instanceof Element && target.closest("[role=dialog], [role=alertdialog]") !== null;
 
 /** Keyboard shortcuts must not fire while the learner types in a field. */
 export const typingInField = (target: EventTarget | null): boolean =>

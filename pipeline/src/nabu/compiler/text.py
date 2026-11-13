@@ -1,36 +1,104 @@
 """Text handling for the compiler: tokens from authored forms, ruby, and the hygiene audits of
-§7.5 stage 2. Python indexes by code point; grapheme clusters come from `regex`'s \\X."""
+§7.5 stage 2. Python indexes by code point; grapheme clusters come from `regex`'s \\X.
+
+What a script is comes from Unicode (its Script_Extensions, through `regex`), so text in any
+script Unicode encodes needs nothing here. One it does not encode (a private-use subtag:
+sitelen pona's Qaap, ADR 0086) is what its orthography profile says it is (`Script`)."""
 
 from __future__ import annotations
 
 import unicodedata
+from dataclasses import dataclass
+from functools import cache
 from typing import Any
 
 import regex
 
 GRAPHEME = regex.compile(r"\X")
-# sitelen pona (ADR 0086), in the UCSUR's private use block, runs its words together: each logograph
-# is a word, and so is a name, a whole cartouche (U+F1990 … U+F1991).
-_LOGOGRAPH = r"[\U000F1900-\U000F198F\U000F19A0-\U000F19FF]"
-SITELEN_PONA = rf"\U000F1990{_LOGOGRAPH}*\U000F1991|{_LOGOGRAPH}"
 # A word may hold an apostrophe between letters: English I'm and name's are one word, one tile.
-WORD = regex.compile(
-    SITELEN_PONA + r"|[\p{L}\p{M}\p{N}\u200c\u200d]+(?:['\u2019][\p{L}\p{M}\p{N}]+)*"
-)
+_LETTERS = r"[\p{L}\p{M}\p{N}\u200c\u200d]+(?:['\u2019][\p{L}\p{M}\p{N}]+)*"
+WORD = regex.compile(_LETTERS)
 WORDCHAR = regex.compile(r"[\p{L}\p{M}\p{N}]")
 HAN = regex.compile(r"\p{Han}")
-# sitelen pona's logographs as the UCSUR encodes them (ADR 0086), without its cartouche, joiner and
-# punctuation controls (U+F1990..U+F199F): a word written with one carries its sitelen Lasina
-# reading as ruby, as a Han word carries Jyutping. A name in a cartouche carries none.
-SITELEN_PONA_WORD = regex.compile(r"[\U000F1900-\U000F198F\U000F19A0-\U000F19FF]+")
+
+#: ISO 15924 codes for a variant or a mix of scripts: Unicode's Script property has only the
+#: scripts themselves (Hant is Han; Jpan is Han, Hiragana and Katakana).
+SCRIPT_VARIANTS: dict[str, tuple[str, ...]] = {
+    "Aran": ("Arab",),
+    "Cyrs": ("Cyrl",),
+    "Geok": ("Geor",),
+    "Hanb": ("Hani", "Bopo"),
+    "Hans": ("Hani",),
+    "Hant": ("Hani",),
+    "Hrkt": ("Hira", "Kana"),
+    "Jamo": ("Hang",),
+    "Jpan": ("Hani", "Hira", "Kana"),
+    "Kore": ("Hang", "Hani"),
+    "Latf": ("Latn",),
+    "Latg": ("Latn",),
+    "Syre": ("Syrc",),
+    "Syrj": ("Syrc",),
+    "Syrn": ("Syrc",),
+}
 
 
-def ruby_bearing(surface: str) -> bool:
-    """Whether a word token carries ruby readings: Han characters, or sitelen pona logographs."""
-    return bool(HAN.search(surface)) or SITELEN_PONA_WORD.fullmatch(surface) is not None
+def unicode_scripts(code: str) -> tuple[str, ...] | None:
+    """The Unicode scripts an ISO 15924 subtag stands for (Ethi; Jpan: Hani, Hira and Kana), or
+    None for one Unicode does not encode: a private-use code (Qaaa..Qabx), such as sitelen
+    pona's Qaap."""
+    if code in SCRIPT_VARIANTS:
+        return SCRIPT_VARIANTS[code]
+    if regex.fullmatch(r"[A-Z][a-z]{3}", code) is None:
+        return None
+    try:
+        regex.compile(rf"\p{{Script={code}}}")
+    except regex.error:
+        return None
+    return (code,)
 
 
-SYLLABLE = regex.compile(r"[a-z]+[1-6]")
+@dataclass(frozen=True)
+class Script:
+    """An orthography's script, as text handling needs it: its ISO 15924 subtag (`code`) and the
+    Unicode scripts its letters belong to (`unicode`). A script Unicode does not encode has none:
+    its characters are `own`, its profile's exemplars, of which `logographs` are each a word, and
+    the logographs between a `cartouche`'s marks are a name, one word too (sitelen pona)."""
+
+    code: str
+    unicode: tuple[str, ...] | None
+    own: frozenset[str] = frozenset()
+    logographs: frozenset[str] = frozenset()
+    cartouche: tuple[str, str] | None = None
+
+
+@cache
+def _logograph_words(
+    logographs: frozenset[str], cartouche: tuple[str, str] | None
+) -> regex.Pattern[str]:
+    one = "[" + "".join(regex.escape(c) for c in sorted(logographs)) + "]"
+    if cartouche is None:
+        return regex.compile(f"{one}|{_LETTERS}")
+    name = f"{regex.escape(cartouche[0])}{one}*{regex.escape(cartouche[1])}"
+    return regex.compile(f"{name}|{one}|{_LETTERS}")
+
+
+def words_of(script: Script | None) -> regex.Pattern[str]:
+    """A word of text in this script: a run of letters, marks and numbers, with any apostrophe
+    between letters; where the script writes words as logographs, run together (sitelen pona),
+    each logograph, and a whole cartouche, a name."""
+    if script is None or not script.logographs:
+        return WORD
+    return _logograph_words(script.logographs, script.cartouche)
+
+
+def ruby_bearing(surface: str, script: Script | None = None) -> bool:
+    """Whether a word token carries ruby readings: Han characters (a Han word carries its
+    Jyutping), or the script's logographs (sitelen pona's carry their sitelen Lasina word). A
+    name in a cartouche carries none."""
+    if HAN.search(surface):
+        return True
+    return script is not None and surface != "" and all(c in script.logographs for c in surface)
+
 
 # Never allowed in content (§7.5): bidi embeddings/overrides/isolates, BOM, ZWSP, word joiner.
 # LRM/RLM/ALM are also flagged: content direction comes from the script, never from marks.
@@ -100,10 +168,13 @@ def align(text: str, tokens: list[dict[str, Any]]) -> tuple[list[dict[str, Any]]
     return out, None
 
 
-def auto_tokens(text: str, segment: Any = None) -> list[dict[str, Any]]:
-    """Tokens for text without authored tokens: word runs, or an analyzer's segmentation of them."""
+def auto_tokens(
+    text: str, segment: Any = None, script: Script | None = None
+) -> list[dict[str, Any]]:
+    """Tokens for text without authored tokens: words (`words_of` the text's script), or an
+    analyzer's segmentation of them."""
     words: list[dict[str, Any]] = []
-    for m in WORD.finditer(text):
+    for m in words_of(script).finditer(text):
         pieces = segment(m.group(0)) if segment is not None else None
         words.extend({"surface": p} for p in (pieces or [m.group(0)]))
     toks, error = align(text, words)
@@ -128,49 +199,41 @@ def invisible_chars(text: str, allowed: set[str]) -> list[str]:
     )
 
 
-def script_of(ch: str) -> str | None:
-    """The Unicode Script of a letter (None for Common/Inherited), via `regex` properties."""
-    m = regex.match(
-        r"(\p{Script=Latin})|(\p{Script=Cyrillic})|(\p{Script=Arabic})|(\p{Script=Han})|(\p{Script=Greek})|(\p{Script=Hebrew})|(\p{Script=Hiragana})|(\p{Script=Katakana})|(\p{Script=Hangul})|(\p{Script=Devanagari})|(\p{Script=Thai})|(\p{Script=Armenian})|(\p{Script=Georgian})",
-        ch,
-    )
-    names = (
-        "Latn",
-        "Cyrl",
-        "Arab",
-        "Hani",
-        "Grek",
-        "Hebr",
-        "Hira",
-        "Kana",
-        "Hang",
-        "Deva",
-        "Thai",
-        "Armn",
-        "Geor",
-    )
-    if m is None:
-        return None if regex.match(r"[\p{Script=Common}\p{Script=Inherited}]", ch) else "Zzzz"
-    return names[m.lastindex - 1] if m.lastindex else None
+# Letters of every script: Common (the Uzbek okina, the tatweel) and Inherited.
+_COMMON = regex.compile(r"[\p{Script=Common}\p{Script=Inherited}]")
 
 
-SCRIPT_EQUIV = {
-    "Hant": {"Hani"},
-    "Hans": {"Hani"},
-    "Jpan": {"Hani", "Hira", "Kana"},
-    "Kore": {"Hang", "Hani"},
-}
+@cache
+def _letters_of(scripts: tuple[str, ...]) -> regex.Pattern[str]:
+    return regex.compile("[" + "".join(rf"\p{{Script_Extensions={s}}}" for s in scripts) + "]")
 
 
-def foreign_letters(word: str, script: str) -> list[str]:
-    """Letters in `word` from a script other than the orthography's (mixed-script confusables)."""
-    allowed = SCRIPT_EQUIV.get(script, {script})
+def foreign_letters(word: str, script: Script) -> list[str]:
+    """Letters in `word` from a script other than the orthography's (mixed-script confusables).
+    A letter is the orthography's when it is Common or Inherited, when its Script_Extensions has
+    one of the orthography's scripts, or, in a script Unicode does not encode, when its profile
+    lists it."""
+    ours = None if script.unicode is None else _letters_of(script.unicode)
     return sorted(
         {
             c
             for c in word
             if unicodedata.category(c)[0] == "L"
-            and (s := script_of(c)) is not None
-            and s not in allowed
+            and _COMMON.match(c) is None
+            and not (c in script.own if ours is None else ours.match(c) is not None)
         }
     )
+
+
+# Unicode's presentation forms: letters in the shape a font gives them in context (Arabic's
+# initial, medial, final and isolated forms) and ligatures (fi, lam-alef), kept for compatibility.
+_PRESENTATION = regex.compile(
+    r"[\p{Block=Alphabetic_Presentation_Forms}\p{Block=Arabic_Presentation_Forms_A}"
+    r"\p{Block=Arabic_Presentation_Forms_B}]"
+)
+
+
+def presentation_forms(text: str) -> list[str]:
+    """The presentation forms in `text` that stand for other characters (compatibility
+    normalization turns them into those): content writes the characters themselves."""
+    return [c for c in text if _PRESENTATION.match(c) and unicodedata.normalize("NFKC", c) != c]

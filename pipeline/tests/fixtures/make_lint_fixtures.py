@@ -24,6 +24,7 @@ YUE: dict[str, Any] = {
     "target": "yue-Hant-HK",
     "orthographies": ["yue-Hant-HK/standard"],
     "support": ["en-Latn/standard"],
+    "names": {"en": {"course": "Cantonese"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
     "units": [
@@ -62,6 +63,7 @@ FA: dict[str, Any] = {
     "target": "fa-Arab-IR",
     "orthographies": ["fa-Arab/standard"],
     "support": ["en-Latn/standard"],
+    "names": {"en": {"course": "Persian"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
     "vocalization": [
@@ -95,6 +97,38 @@ FA: dict[str, Any] = {
     ],
 }
 """A Persian course whose one word takes its vowel marks from the course's vocalization."""
+
+GRC_ORTH = "grc-Grek/polytonic"
+GRC: dict[str, Any] = {
+    "id": "clean-grc",
+    "target": "grc-Grek",
+    "orthographies": [GRC_ORTH],
+    "support": ["en-Latn/standard"],
+    "names": {"en": {"course": "Ancient Greek"}},
+    "license": "CC0-1.0",
+    "provenance": {"author": "human:fixture", "status": "draft"},
+    "units": [
+        {
+            "id": "abc",
+            "kcs": [
+                {"id": "grapheme:α", "gloss": {"en": "alpha: a"}, "forms": {GRC_ORTH: ["α", "Α"]}},
+                {"id": "grapheme:ι", "gloss": {"en": "iota: i"}, "forms": {GRC_ORTH: ["ι", "Ι"]}},
+                {"id": "grapheme:ν", "gloss": {"en": "nu: n"}, "forms": {GRC_ORTH: ["ν", "Ν"]}},
+                {"id": "sense:ναί", "gloss": {"en": "yes"}, "forms": {GRC_ORTH: ["ναί"]}},
+            ],
+            "nodes": [
+                {
+                    "id": "abc.1",
+                    "kind": "script",
+                    "introduces": ["grapheme:α", "grapheme:ι", "grapheme:ν"],
+                    "alphabet": {"orthography": GRC_ORTH, "words": ["sense:ναί"]},
+                }
+            ],
+            "sentences": [],
+        }
+    ],
+}
+"""A Greek alphabet track (ADR 0088): one node teaching α, ι and ν, and ναί spelled with them."""
 
 Course = dict[str, Any]
 
@@ -197,6 +231,23 @@ def _iplus(c: Course) -> None:
 
 
 def _script_untaught(c: Course) -> None:
+    """The alphabet node teaches α and ι only, and its word ναί needs ν."""
+    unit(c)["nodes"][0]["introduces"].remove("grapheme:ν")
+
+
+def _script_no_letter(c: Course) -> None:
+    """The rough breathing taught as its spacing sign (U+1FFE), on no letter (ADR 0124)."""
+    unit(c)["kcs"].append(
+        {
+            "id": "grapheme:rough",
+            "gloss": {"en": "rough breathing: h"},
+            "forms": {GRC_ORTH: ["῾"]},
+        }
+    )
+    unit(c)["nodes"][0]["introduces"].append("grapheme:rough")
+
+
+def _script_no_romanization(c: Course) -> None:
     """An alphabet node (ADR 0088) in an orthography with no romanization."""
     unit(c)["kcs"].append({"id": "grapheme:s", "forms": {"uz-Latn/standard": ["s"]}})
     unit(c)["nodes"].append(
@@ -398,6 +449,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
                 },
             )
         ),
+    ),
+    "course.names": (
+        "The course names an orthography it does not teach.",
+        m(set_(["names", "en", "orthographies"], {"uz-Cyrl/standard": "Cyrillic"})),
     ),
     "parse.token-mismatch": (
         "A token that is not in the text.",
@@ -601,6 +656,15 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
             )
         ),
     ),
+    "kc.reading": (
+        "我哋's card is given ngo4 dei6, which no token gives it: the sentence pins ngo5 dei6.",
+        m(
+            lambda c: unit(c)["kcs"][0].update(
+                forms={"yue-Hant-HK/standard": ["我哋"]}, readings={"jyutping": "ngo4 dei6"}
+            ),
+            YUE,
+        ),
+    ),
     "glossary.tile-split": (
         "Tiles split salom inside one runtime unit.",
         m(
@@ -613,8 +677,16 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         ),
     ),
     "script.untaught-letter": (
+        "A Greek alphabet node's word uses ν before the track teaches it.",
+        m(_script_untaught, GRC),
+    ),
+    "script.no-letter": (
+        "A grapheme KC for the rough breathing written as its spacing sign, on no letter.",
+        m(_script_no_letter, GRC),
+    ),
+    "script.no-romanization": (
         "An alphabet node in an orthography whose profile names no romanization.",
-        m(_script_untaught),
+        m(_script_no_romanization),
     ),
     "script.missing-form": (
         "A script-convert track uses a sentence with no Cyrillic form.",

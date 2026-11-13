@@ -42,6 +42,9 @@ const open = async (page: Page): Promise<void> => {
   await page.evaluate(async () => document.fonts.ready);
 };
 
+/** An orthography's sample sentence on the page. */
+const sampleOf = (page: Page, orthography: string) => page.locator(`[data-orthography="${orthography}"] .sample`);
+
 const serious = async (page: Page): Promise<string[]> =>
   (await new AxeBuilder({ page }).include("[data-landing]").analyze()).violations
     .filter((v) => v.impact === "serious" || v.impact === "critical")
@@ -79,6 +82,16 @@ test("the landing page lists every course with its scripts, and its links open t
   const glyphs = (await sitelen.textContent()) ?? "";
   expect(glyphs.length).toBeGreaterThan(0);
   expect(await page.evaluate((text) => document.fonts.check('22px "sitelen seli kiwen juniko"', text), glyphs)).toBe(true);
+  // Han samples are set in the Han families, whose stylesheet the app loads with their text (ADR 0119).
+  for (const [orthography, family] of [
+    ["yue-Hant-HK/standard", "Noto Sans HK"],
+    ["lzh-Hant/standard", "Noto Serif TC"],
+  ] as const) {
+    const text = (await sampleOf(page, orthography).textContent()) ?? "";
+    expect(text.length).toBeGreaterThan(0);
+    const loaded = await page.evaluate(([f, t]) => document.fonts.check(`22px "${f}"`, t) && [...document.fonts].some((face) => face.family.replace(/"/gu, "") === f && face.status === "loaded"), [family, text] as const);
+    expect(loaded, family).toBe(true);
+  }
 
   expect(await serious(page)).toEqual([]);
   await page.emulateMedia({ colorScheme: "dark" });

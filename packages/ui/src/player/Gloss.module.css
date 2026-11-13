@@ -1,0 +1,53 @@
+/* Tap-for-gloss (Phase 6, P1): what a tapped word means, in a live panel, not a floating
+   popover, so it reads the same in RTL, LTR and vertical text. Logical properties only. */
+
+.gloss {
+  box-sizing: border-box;
+  min-block-size: 4.5rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  border: 1px dashed var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+/* In a lesson the panel waits, empty and out of sight, until a word is tapped: it stays in the page
+   as a live region, so what appears in it is announced. */
+.gloss[data-quiet]:not([data-gloss-open]) {
+  min-block-size: 0;
+  padding: 0;
+  border: none;
+}
+
+.glossHint {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.glossList {
+  display: grid;
+  gap: var(--nabu-space-2);
+  margin: 0;
+}
+
+.glossEntry {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-3);
+}
+
+.glossEntry dt {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.glossEntry dd {
+  margin: 0;
+}
+
+.glossNote {
+  margin-inline-start: var(--nabu-space-2);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--nabu-color-muted);
+}

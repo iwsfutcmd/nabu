@@ -22,10 +22,11 @@ Everything here but `split` is pure: ids and frames in, frames and sample offset
 
 from __future__ import annotations
 
-import re
 import unicodedata
 from dataclasses import dataclass
 from typing import Any
+
+from nabu.audio import punctuation
 
 #: The duration node of Piper's VITS export: frames per phoneme id, [batch, 1, ids].
 DURATIONS = "/Ceil_output_0"
@@ -44,8 +45,6 @@ METHOD = "carrier-1"
 #: one it would collapse. Measured on fa: every sentence a listener heard as static or cut off was
 #: under it, and none they passed.
 COLLAPSE = 0.8
-#: Where Piper (eSpeak) ends a sentence: its closing punctuation, then a space.
-_SENTENCE_END = re.compile(r"(?<=[.!?\u061F\u06D4])\s+")
 
 
 @dataclass(frozen=True)
@@ -78,8 +77,10 @@ def item_start(ids: list[int], carrier_ids: list[int], space: int, pad: int) -> 
 
 
 def sentences(text: str) -> list[str]:
-    """The text's sentences, split where Piper splits them (closing punctuation and a space)."""
-    return [s for s in _SENTENCE_END.split(text.strip()) if s]
+    """The text's sentences, split where Piper (eSpeak) splits them: after a sentence's closing
+    mark, in any script (punctuation.sentences), and the space that follows. The Piper provider
+    checks the split against Piper's own and says the item as it is where they differ."""
+    return punctuation.sentences(text)
 
 
 def collapses(syms: list[str], frames: list[float], phone_floor: float) -> bool:

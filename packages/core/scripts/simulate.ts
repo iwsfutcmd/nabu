@@ -21,6 +21,12 @@ const LEARNERS: readonly (readonly [string, string | undefined, number])[] = [
   ["uz", "uz-Cyrl/standard", 1.0],
   ["apc", "apc-Arab/standard", 1.6],
   ["apc", "apc-Latn/arabizi", 1.3],
+  ["lzh", undefined, 1.3],
+  ["es", undefined, 1.0],
+  ["hbo", undefined, 2.0],
+  ["tok", "tok-Latn/standard", 1.3],
+  ["tok", "tok-Qaap/sitelen-pona", 1.6],
+  ["grc", undefined, 1.0],
 ];
 const lines: string[] = [];
 for (const [i, [course, orthography, ability]] of LEARNERS.entries()) {

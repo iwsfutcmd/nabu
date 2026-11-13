@@ -1,0 +1,20 @@
+# The VoxCPM2 runtime, for the yue voices (ADR 0094).
+#
+# Its own environment: VoxCPM 2.x brings gradio, funasr, modelscope and an older `datasets`, which
+# the pipeline's environment should not carry. The pipeline runs worker.py here as a subprocess.
+# CI never installs it: committed clips need no model. On a GPU machine, swap in the CUDA build of
+# the same torch for the run (the generation notebook does).
+[project]
+name = "nabu-voxcpm-runtime"
+version = "0.0.0"
+description = "VoxCPM2 inference for nabu audio generate, in its own environment"
+license = "MIT OR Apache-2.0"
+requires-python = "==3.12.*"
+dependencies = [
+  "huggingface-hub",
+  "numpy",
+  "soundfile",
+  "torch==2.11.0",
+  "torchaudio==2.11.0",
+  "voxcpm==2.0.3",
+]

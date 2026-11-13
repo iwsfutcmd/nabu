@@ -63,13 +63,13 @@ test("karaoke follows the clip within 80 ms", async ({ page }, info) => {
     const prompt = document.querySelector("[data-lesson-player] [data-ink-container=prompt]");
     if (prompt === null) throw new Error("no prompt");
     new MutationObserver(() => {
-      const lit = prompt.querySelector("[data-highlight]");
+      const lit = prompt.querySelector("[data-current]");
       const audio = window.nabuAudio;
       if (lit === null || audio === undefined) return;
       const token = Number(lit.getAttribute("data-index"));
       const log = window.nabuKaraoke ?? [];
       if (log.at(-1)?.token !== token) log.push({ token, ms: audio.currentTime * 1000 });
-    }).observe(prompt, { subtree: true, attributes: true, attributeFilter: ["data-highlight"], childList: true });
+    }).observe(prompt, { subtree: true, attributes: true, attributeFilter: ["data-current"], childList: true });
   });
   await page.locator("[data-lesson-player] [data-ink-container=prompt] [data-action=play]").click();
   await page.waitForFunction(() => window.nabuAudio?.ended === true, undefined, { timeout: 20_000 });

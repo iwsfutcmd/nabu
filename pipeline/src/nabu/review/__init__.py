@@ -19,44 +19,44 @@ from __future__ import annotations
 
 import hashlib
 import unicodedata
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, cast
+from typing import cast
 
 import yaml
 
 from nabu.corrections import Edit, flow_scalar
-from nabu.schema.models import SignOffs
+from nabu.provenance import signed_off
+from nabu.schema.models import BundleSentence, BundleStory, BundleUnit, SignOffs, TaggedText
 
 
-def _text(tagged: dict[str, Any]) -> str:
-    tokens = cast(list[dict[str, Any]], tagged.get("tokens") or [])
-    return unicodedata.normalize("NFC", "".join(str(t["surface"]) for t in tokens))
+def _text(tagged: TaggedText) -> str:
+    return unicodedata.normalize("NFC", "".join(t.surface for t in tagged.tokens))
 
 
-def _block(forms: dict[str, dict[str, Any]], translations: dict[str, dict[str, Any]]) -> list[str]:
+def _block(forms: Mapping[str, TaggedText], translations: Mapping[str, TaggedText]) -> list[str]:
     return [
         *(f"form\t{o}\t{_text(forms[o])}" for o in sorted(forms)),
         *(f"translation\t{k}\t{_text(translations[k])}" for k in sorted(translations)),
     ]
 
 
-def sentence_text(sentence: dict[str, Any]) -> str:
+def sentence_text(sentence: BundleSentence) -> str:
     """What a reviewer saw of a compiled sentence (signoffText's sentence form)."""
-    forms = {o: cast(dict[str, Any], f["text"]) for o, f in sentence["forms"].items()}
-    translations = {k: cast(dict[str, Any], t["text"]) for k, t in sentence["translations"].items()}
-    return "\n".join([f"sentence\t{sentence['id']}", *_block(forms, translations)])
+    forms = {o: f.text for o, f in sentence.forms.items()}
+    translations = {k: t.text for k, t in sentence.translations.items()}
+    return "\n".join([f"sentence\t{sentence.id}", *_block(forms, translations)])
 
 
-def story_text(story: dict[str, Any]) -> str:
+def story_text(story: BundleStory) -> str:
     """What a reviewer saw of a compiled story: its lines, in order."""
-    out = [f"story\t{story['id']}"]
-    for i, step in enumerate(cast(list[dict[str, Any]], story["steps"])):
-        line = step.get("line")
-        if line is None:
+    out = [f"story\t{story.id}"]
+    for i, step in enumerate(story.steps):
+        if step.line is None:
             continue
-        out += [f"line\t{i}", *_block(line["forms"], line["translations"])]
+        out += [f"line\t{i}", *_block(step.line.forms, step.line.translations)]
     return "\n".join(out)
 
 
@@ -64,14 +64,14 @@ def fingerprint(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def shown_of(units: list[dict[str, Any]]) -> dict[tuple[str, str], str]:
+def shown_of(units: Sequence[BundleUnit]) -> dict[tuple[str, str], str]:
     """Every signable item of a compiled course: (kind, id) → fingerprint."""
     out: dict[tuple[str, str], str] = {}
     for unit in units:
-        for s in cast(list[dict[str, Any]], unit["sentences"]):
-            out[("sentence", str(s["id"]))] = fingerprint(sentence_text(s))
-        for story in cast(list[dict[str, Any]], unit.get("stories") or []):
-            out[("story", str(story["id"]))] = fingerprint(story_text(story))
+        for s in unit.sentences:
+            out[("sentence", s.id)] = fingerprint(sentence_text(s))
+        for story in unit.stories or []:
+            out[("story", story.id)] = fingerprint(story_text(story))
     return out
 
 
@@ -150,19 +150,22 @@ def apply(
     signoffs: SignOffs,
     course_dir: Path,
     units: list[Path],
-    compiled_units: list[dict[str, Any]],
+    compiled_units: Sequence[BundleUnit],
     course_author: str,
     reviewer: str,
 ) -> Outcome:
     """Sign off every item whose source still compiles to what the reviewer saw."""
     shown = shown_of(compiled_units)
     reviewed = {
-        (kind, str(x["id"]))
-        for unit in compiled_units
-        for kind, key in (("sentence", "sentences"), ("story", "stories"))
-        for x in cast(list[dict[str, Any]], unit.get(key) or [])
-        if cast(dict[str, Any], x.get("provenance") or {}).get("status")
-        in ("reviewed", "published")
+        ("sentence", s.id)
+        for u in compiled_units
+        for s in u.sentences
+        if signed_off(s.provenance.status)
+    } | {
+        ("story", s.id)
+        for u in compiled_units
+        for s in u.stories or []
+        if s.provenance is not None and signed_off(s.provenance.status)
     }
     texts = {f: f.read_text(encoding="utf-8") for f in units}
     roots = {f: cast(yaml.Node | None, yaml.compose(texts[f])) for f in units}  # pyright: ignore[reportUnknownMemberType]

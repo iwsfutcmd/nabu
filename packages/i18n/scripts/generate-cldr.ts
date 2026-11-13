@@ -2,13 +2,15 @@
  * Generates src/generated/*.json from the pinned CLDR JSON packages
  * (cldr-core, cldr-misc-full). The output is checked in, so the app never
  * depends on the engine's own CLDR/ICU data for these tables (gameplan §6.2,
- * §17 risk "differences between browsers' Unicode and Intl data").
+ * §17 risk "differences between browsers' Unicode and Intl data"). The likely
+ * subtags keep the languages this repository's profiles and UI catalogs write,
+ * so a profile or catalog in a new language may need a run (the check says so).
  *
  *   node scripts/generate-cldr.ts           # write
  *   node scripts/generate-cldr.ts --check   # exit 1 if the checked-in files are stale
  */
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join, resolve } from "node:path";
 import { parseExemplarSet } from "@nabu/core/text";
@@ -80,11 +82,38 @@ const scriptMetadata = Object.fromEntries(
 );
 
 // --- likelySubtags ------------------------------------------------------------
+// The table ships in the web app's main chunk, and most of CLDR's 7,900 entries are languages
+// nothing here meets. It keeps every language a tag the app handles can name (one CLDR has locale
+// data for, one a profile or a UI catalog of this repository writes, and `und`), and every
+// language whose likely script is not Latin, so direction and fonts never depend on the trim.
+// What it leaves out are rare Latin-script languages: maximize() leaves such a tag as it is, and
+// a tag without a script is treated as Latin anyway (left to right, the default font stack).
 const likely = readCldr<{ supplemental: { version: { _cldrVersion: string; _unicodeVersion: string }; likelySubtags: Record<string, string> } }>(
   "cldr-core",
   "supplemental/likelySubtags.json",
 ).supplemental;
-const likelySubtags = Object.fromEntries(Object.entries(likely.likelySubtags).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
+const languageOf = (tag: string): string => tag.split("-")[0] as string;
+const REPO = resolve(PKG, "../..");
+const written = new Set([
+  "und",
+  ...readCldr<{ availableLocales: { full: string[] } }>("cldr-core", "availableLocales.json").availableLocales.full.map(languageOf),
+  ...readdirSync(join(REPO, "profiles"))
+    .filter((f) => f.endsWith(".yaml"))
+    .map((f) => {
+      const lang = /^lang:\s*["']?([A-Za-z0-9-]+)/mu.exec(readFileSync(join(REPO, "profiles", f), "utf8"))?.[1];
+      if (lang === undefined) throw new Error(`profiles/${f} names no lang`);
+      return languageOf(lang);
+    }),
+  ...readdirSync(join(PKG, "messages"))
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => languageOf(f.slice(0, -".json".length))),
+]);
+const nonLatin = new Set(Object.entries(likely.likelySubtags).flatMap(([key, value]) => (value.split("-")[1] === "Latn" ? [] : [languageOf(key)])));
+const likelySubtags = Object.fromEntries(
+  Object.entries(likely.likelySubtags)
+    .filter(([key]) => written.has(languageOf(key)) || nonLatin.has(languageOf(key)))
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)),
+);
 
 // --- parentLocales ------------------------------------------------------------
 const parents = readCldr<{ supplemental: { parentLocales: { parentLocale: Record<string, string>; _localeRules?: { parentLocale?: { nonlikelyScript?: string } } } } }>(
@@ -107,6 +136,28 @@ const numberingSystems = Object.fromEntries(
     .filter(([, n]) => n._type === "numeric" && n._digits !== undefined)
     .sort(([a], [b]) => (a < b ? -1 : 1))
     .map(([id, n]) => [id, n._digits as string]),
+);
+
+// --- macrolanguages -----------------------------------------------------------
+// Each language a macrolanguage encompasses, and that macrolanguage, as CLDR records them: the
+// replacements its aliases give for a reason of "macrolanguage" (arb → ar, cmn → zh), and its
+// one-way language matches at distance 10 between two bare languages (apc → ar, yue → zh). The two
+// lists are disjoint. The pipeline hears a language its recognizer or eSpeak NG has no model for as
+// its macrolanguage (ADR 0116).
+const macroAliases = readCldr<{ supplemental: { metadata: { alias: { languageAlias: Record<string, { _reason?: string; _replacement?: string }> } } } }>(
+  "cldr-core",
+  "supplemental/aliases.json",
+).supplemental.metadata.alias.languageAlias;
+const macroMatches = readCldr<{ supplemental: { languageMatching: { "written-new": { languageMatch: { _desired: string; _supported: string; _distance: number | string; _oneway?: boolean | string }[] } } } }>(
+  "cldr-core",
+  "supplemental/languageMatching.json",
+).supplemental.languageMatching["written-new"].languageMatch;
+const bare = /^[a-z]{2,3}$/u;
+const macrolanguages = Object.fromEntries(
+  [
+    ...Object.entries(macroAliases).flatMap(([language, a]) => (a._reason === "macrolanguage" && a._replacement !== undefined && bare.test(language) && bare.test(a._replacement) ? [[language, a._replacement] as const] : [])),
+    ...macroMatches.flatMap((m) => (String(m._oneway) === "true" && Number(m._distance) === 10 && bare.test(m._desired) && bare.test(m._supported) ? [[m._desired, m._supported] as const] : [])),
+  ].sort(([a], [b]) => (a < b ? -1 : 1)),
 );
 
 // --- exemplars ----------------------------------------------------------------
@@ -147,13 +198,14 @@ const files: Record<string, unknown> = {
   "parent-locales.json": parentLocales,
   "exemplars.json": exemplars,
   "numbering-systems.json": numberingSystems,
+  "macrolanguages.json": macrolanguages,
 };
 
 /** One entry per line for the big tables, so CLDR bumps produce reviewable diffs. */
 const format = (name: string, data: unknown): string => {
-  if (name !== "likely-subtags.json" && name !== "exemplars.json") return `${JSON.stringify(data, null, 2)}\n`;
+  if (name !== "likely-subtags.json" && name !== "exemplars.json" && name !== "macrolanguages.json") return `${JSON.stringify(data, null, 2)}\n`;
   const lines = Object.entries(data as Record<string, unknown>).map(([k, v]) => {
-    if (name === "likely-subtags.json") return `  ${JSON.stringify(k)}: ${JSON.stringify(v)}`;
+    if (name !== "exemplars.json") return `  ${JSON.stringify(k)}: ${JSON.stringify(v)}`;
     const sets = Object.entries(v as Record<string, unknown>).map(([kind, set]) => `    ${JSON.stringify(kind)}: ${JSON.stringify(set)}`);
     return `  ${JSON.stringify(k)}: {\n${sets.join(",\n")}\n  }`;
   });

@@ -4,10 +4,10 @@ clip's voice."""
 
 from __future__ import annotations
 
-from typing import Any
-
 from nabu.audio.course import assignment, pick_voice
-from nabu.schema.models import AudioVoice
+from nabu.schema.models import AudioVoice, BundleUnit
+
+from .units import kc, line, question, sentence, story, unit
 
 
 def voice(id_: str, speaker: str | None) -> AudioVoice:
@@ -27,32 +27,15 @@ def voice(id_: str, speaker: str | None) -> AudioVoice:
 MAN, WOMAN = voice("man", "m"), voice("woman", "f")
 
 
-def sentence(id_: str, speaker: str | None = None) -> dict[str, Any]:
-    return {
-        "id": id_,
-        "forms": {},
-        **({} if speaker is None else {"persons": {"speaker": speaker}}),
-    }
-
-
-def units(n: int = 200) -> list[dict[str, Any]]:
+def units(n: int = 200) -> list[BundleUnit]:
+    said = [line(speaker=who) for who in ["maya", "sami", None, "sami", "maya", "sami"]]
     return [
-        {
-            "sentences": [sentence(f"s.{i}") for i in range(n)]
-            + [sentence("s.f", "f"), sentence("s.m", "m")],
-            "kcs": [{"id": f"sense:w{i}"} for i in range(n)],
-            "stories": [
-                {
-                    "id": "st",
-                    "characters": [{"id": "maya", "speaker": "f"}, {"id": "sami"}],
-                    "steps": [
-                        {"line": {"speaker": who}}
-                        for who in ["maya", "sami", None, "sami", "maya", "sami"]
-                    ]
-                    + [{"choose": {}}],
-                }
-            ],
-        }
+        unit(
+            sentences=[sentence(f"s.{i}") for i in range(n)]
+            + [sentence("s.f", speaker="f"), sentence("s.m", speaker="m")],
+            kcs=[kc(f"sense:w{i}") for i in range(n)],
+            stories=[story("st", [*said, question()], {"maya": "f", "sami": None})],
+        )
     ]
 
 

@@ -3,7 +3,7 @@
   "$id": "https://nabu.invalid/schemas/v0/learner-event.schema.json",
   "title": "LearnerEvent",
   "description": "The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
-  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify; Phase 10 follow-up progress_reset; then sentence_reported (ADR 0051) and answer_reported's claim (ADR 0052).",
+  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify; Phase 10 follow-up progress_reset; then sentence_reported (ADR 0051) and answer_reported's claim (ADR 0052); goal_set, the account's weekly practice goal (ADR 0107, D12).",
   "oneOf": [
     {
       "$ref": "#/$defs/SessionStarted"
@@ -31,6 +31,9 @@
     },
     {
       "$ref": "#/$defs/SentenceReported"
+    },
+    {
+      "$ref": "#/$defs/GoalSet"
     }
   ],
   "$defs": {
@@ -494,6 +497,10 @@
                 "hard",
                 "again"
               ]
+            },
+            "hinted": {
+              "description": "The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up.",
+              "const": true
             }
           }
         },
@@ -730,11 +737,19 @@
           "$ref": "#/$defs/SessionSummaryData"
         },
         "placed": {
-          "description": "Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done.",
+          "description": "Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done. A test the learner stopped part-way (summary.completed false) places by its answers so far, still without the session's XP (D9 in the 2026-11 review).",
           "type": "array",
           "items": {
             "type": "string",
             "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "seeded": {
+          "description": "Placement only (ADR 0111): the KCs the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KcRefLocal"
           },
           "uniqueItems": true
         }
@@ -1179,6 +1194,68 @@
           "description": "Optional words from the learner. Personal data.",
           "type": "string",
           "maxLength": 1000
+        }
+      }
+    },
+    "GoalSet": {
+      "title": "GoalSet",
+      "description": "The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "clientTime",
+        "localDate",
+        "tz",
+        "days"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "goal_set"
+        },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "#/$defs/Uuid"
+        },
+        "schema": {
+          "const": 1
+        },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "days": {
+          "description": "Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 7
         }
       }
     }

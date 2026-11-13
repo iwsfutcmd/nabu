@@ -36,7 +36,7 @@ const DRAFTS: Readonly<Record<string, () => Promise<MessageCatalog>>> = {
 };
 
 /** The source locale every pseudo-locale is derived from. */
-const PSEUDO_SOURCE = "en";
+export const PSEUDO_SOURCE = "en";
 
 export const UI_LOCALES: readonly string[] = Object.keys(CATALOGS);
 /** Locales with a draft catalog, for reviewers only. */
@@ -54,6 +54,8 @@ export interface Translator {
   readonly formattingLocale: string;
   /** Direction of the UI chrome, from the locale's script. */
   readonly dir: Direction;
+  /** The locales of the catalogs it reads, most specific first: the web app keeps those offline (ADR 0119). */
+  readonly catalogs: readonly string[];
   readonly format: (id: MessageId, values?: MessageValues) => string;
   readonly formatToParts: (id: MessageId, values?: MessageValues) => MessagePart<string>[];
   readonly has: (id: string) => id is MessageId;
@@ -107,6 +109,7 @@ export const createTranslator = (options: TranslatorOptions): Translator => {
     locale,
     formattingLocale,
     dir,
+    catalogs: catalogs.map((c) => c.locale),
     format: (id, values) => formatter(id)?.format(values, onError) ?? missing(id),
     formatToParts: (id, values) => formatter(id)?.formatToParts(values, onError) ?? [{ type: "text", value: missing(id) }],
     has: (id): id is MessageId => sourceOf(id) !== undefined,

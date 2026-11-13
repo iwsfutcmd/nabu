@@ -2,11 +2,12 @@
   "name": "@nabu/schema",
   "version": "0.0.0",
   "private": true,
-  "description": "TypeScript types generated from /schemas. Never hand-edit src/generated.",
+  "description": "TypeScript types generated from /schemas, and the reading schemes of /profiles/schemes. Never hand-edit src/generated.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
+    "./schemes": "./src/generated/schemes.json",
     "./json/*": "../../schemas/*"
   },
   "scripts": {

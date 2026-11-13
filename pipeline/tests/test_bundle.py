@@ -10,7 +10,7 @@ import pytest
 
 from nabu.analyzers import analyzers_by_tool
 from nabu.compiler import compile_course, load_profiles, write_bundle
-from nabu.compiler.package import canonical
+from nabu.compiler.package import canonical, credit_id
 from nabu.schema.models import BundleManifest, BundleUnit
 
 from .conftest import FIXTURES, ROOT, CoreCli
@@ -77,3 +77,41 @@ def test_every_medium_downloads_with_a_unit(
         unit = json.loads((tmp_path / u.file).read_text(encoding="utf-8"))
         images = {p for p in u.assets if roles[p] == "image"}
         assert images <= {kc["image"] for kc in unit["kcs"] if "image" in kc}
+
+
+@pytest.mark.parametrize("course", ["tok", "apc"])
+def test_credits_are_defined_once(core_cli: CoreCli, course: str, tmp_path: Path) -> None:
+    """ADR 0110: the manifest holds each credit's text once, by id; files and clips name the id.
+    Every clip of a voice used to repeat its credit, in the manifest and the audio index both."""
+    profiles = load_profiles()
+    analyzers = analyzers_by_tool()
+    diags, compiled = compile_course(ROOT / "courses" / course, core_cli, profiles, analyzers)
+    assert compiled is not None, [d.format() for d in diags.items]
+    raw = write_bundle(compiled, profiles, analyzers, tmp_path)
+    manifest = BundleManifest.model_validate(raw)
+    assert manifest.formatVersion == 1
+    assert all(credit_id(text) == ident for ident, text in manifest.credits.items())
+    named = {f.credit for f in manifest.files if f.credit is not None}
+    # Each text once in the manifest (and nowhere in the audio index, below).
+    text = (tmp_path / "manifest.json").read_text(encoding="utf-8")
+    for credit in manifest.credits.values():
+        assert text.count(json.dumps(credit, ensure_ascii=False)) == 1, credit
+    # Each file and clip credits what it did before: its source, its speaker or voice.
+    by_path = {f.path: f for f in manifest.files}
+    for path, (_blob, _license, made_by) in compiled.audio_files.items():
+        credit = by_path[path].credit
+        assert credit is not None and manifest.credits[credit] == made_by
+    index = next(f for f in manifest.files if f.role == "audio-index")
+    audio = json.loads((tmp_path / index.path).read_text(encoding="utf-8"))["items"]
+    clips = 0
+    for item, speeds in compiled.audio_items.items():
+        for speed, clip in speeds.items():
+            bundled = audio[item][speed]
+            assert manifest.credits[bundled["credit"]] == clip.credit
+            named.add(bundled["credit"])
+            clips += 1
+    # The credits files and clips name, and nothing else.
+    assert clips > len(manifest.credits) > 1
+    assert named == set(manifest.credits)
+    clip_index = (tmp_path / index.path).read_text(encoding="utf-8")
+    assert not any(credit in clip_index for credit in manifest.credits.values())

@@ -5,6 +5,7 @@
  * a key generated here. Delivery to real devices needs real credentials and is not tested.
  */
 import { generateKeyPairSync, randomUUID, verify, type KeyObject } from "node:crypto";
+import { DEFAULT_GAME } from "@nabu/core/game";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAccounts } from "../src/accounts.ts";
@@ -165,18 +166,18 @@ describe("native reminders on the server", () => {
     expect((await app.request("/v1/push/native/register", request("POST", { platform: "windows", token: ios }, token))).status).toBe(400);
 
     const evening = at("2026-07-02T19:30:00Z");
-    expect((await sendReminders(database.db, evening, undefined, native)).sent).toBe(1);
+    expect((await sendReminders(database.db, evening, { native, game: DEFAULT_GAME })).sent).toBe(1);
     expect(delivered.map((d) => [d.platform, d.token])).toEqual([
       ["android", android],
       ["ios", ios],
     ]);
     expect(delivered[0]?.notification).toMatchObject({ lang: "ar-XB", dir: "rtl", tag: "nabu-reminder" });
-    await sendReminders(database.db, evening + 60_000, undefined, native);
+    await sendReminders(database.db, evening + 60_000, { native, game: DEFAULT_GAME });
     expect(delivered).toHaveLength(2); // once a day
 
     // A token the push service says is dead is forgotten; unregistering removes one.
     answer = "gone";
-    await sendReminders(database.db, at("2026-07-03T19:30:00Z"), undefined, native);
+    await sendReminders(database.db, at("2026-07-03T19:30:00Z"), { native, game: DEFAULT_GAME });
     expect(await database.db.select().from(nativePushTokens)).toEqual([]);
     expect((await app.request("/v1/push/native/register", request("POST", { platform: "android", token: android }, token))).status).toBe(201);
     expect((await app.request("/v1/push/native/unregister", request("POST", { token: android }, token))).status).toBe(204);

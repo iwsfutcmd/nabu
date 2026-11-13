@@ -50,7 +50,7 @@ SCALING_JOINER = "\U000f1996"
 # (and ZWJ, which fonts read the same way), the long glyph and long pi controls, the legacy
 # cartouche extension.
 PRESENTATION = (
-    "‍",
+    "\u200d",
     "\U000f1992",
     "\U000f1993",
     "\U000f1994",

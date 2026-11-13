@@ -13,37 +13,45 @@ from __future__ import annotations
 
 import hashlib
 from collections.abc import Callable
+from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
-from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, plan
+from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, held_back, plan
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
-from nabu.schema.models import AudioClip, AudioIndex, CourseSource
+from nabu.items import WORD_KINDS, iter_items
+from nabu.schema.models import AudioClip, AudioIndex, BundleClip, CourseSource, TokenTiming
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Compiled, Ctx
 
-WORD_KINDS = {"word", "number"}
 
+@dataclass(frozen=True)
+class ShippedClip:
+    """A clip that ships, as the bundle's audio index lists it (BundleClip), but for its credit:
+    the text, which the bundle names by its id (ADR 0110)."""
 
-def _items(units: list[dict[str, Any]]) -> tuple[dict[str, list[list[dict[str, Any]]]], set[str]]:
-    """Every sentence's and story line's tokens per orthography (id → forms; a line's id is
-    "<story>#<step>"), and every KC id."""
-    sentences: dict[str, list[list[dict[str, Any]]]] = {}
-    kcs: set[str] = set()
-    for unit in units:
-        for s in unit["sentences"]:
-            sentences[s["id"]] = [form["text"]["tokens"] for form in s["forms"].values()]
-        for story in unit.get("stories", []):
-            for step, s in enumerate(story["steps"]):
-                if s.get("line"):
-                    key = f"{story['id']}#{step}"
-                    sentences[key] = [form["tokens"] for form in s["line"]["forms"].values()]
-        kcs.update(kc["id"] for kc in unit.get("kcs", []))
-    return sentences, kcs
+    path: str
+    durationMs: int
+    synthetic: bool
+    license: str
+    credit: str
+    timings: tuple[TokenTiming, ...] | None = None
+
+    def bundled(self, credit: str) -> BundleClip:
+        """The clip as the audio index lists it, its credit named by `credit` (an id)."""
+        timings = None if self.timings is None else list(self.timings)
+        return BundleClip(
+            path=self.path,
+            durationMs=self.durationMs,
+            synthetic=self.synthetic,
+            license=self.license,
+            credit=credit,
+            timings=timings,
+        )
 
 
 def _credit(clip: AudioClip, recordings: dict[str, str]) -> str:
@@ -88,7 +96,8 @@ def check_audio(
     if loaded is None:
         return
     doc, index = loaded
-    sentences, kcs = _items(compiled.units)
+    # Every sentence, word KC and story line ("<story>#<step>"), by id.
+    known = {item.id: item for item in iter_items(compiled.units)}
     human_required = course.audio is not None and course.audio.humanRequired is True
     voices = course.audio.voices if course.audio is not None and course.audio.voices else []
     # What each voice of the cast would read now, by (provider, voice).
@@ -104,16 +113,7 @@ def check_audio(
             ctx.diags.report("audio.schema", f"voice {voice.id}: {error}", doc.loc())
             continue
         planned[(voice.provider, voice.voice)] = {r.item: r.input for r in reads}
-    # The round trip checks the normal-speed clip; when it fails, the whole item (slow too) waits.
-    # So does an item a listener rejected a clip of (ADR 0060), until the clip is made again.
-    failed = {
-        c.item
-        for c in index.clips
-        if c.speed == "normal"
-        and c.qa is not None
-        and c.qa.status == "fail"
-        and c.provenance.status not in ("reviewed", "published")
-    } | {c.item for c in index.clips if c.rejected is not None}
+    failed = held_back(index)
     # Reference voices a cloning provider imitates: each must be its recorded file.
     references: dict[str, str] = {}
     recordings: dict[str, str] = {}  # a recorded reference's speaker, license and source
@@ -131,7 +131,7 @@ def check_audio(
             speaker = ref.provenance.author.removeprefix("human:")
             recordings[ref.id] = f"{speaker} ({ref.license}): {ref.source}"
     held = 0
-    items: dict[str, dict[str, Any]] = {}
+    items: dict[str, dict[str, ShippedClip]] = {}
     files: dict[str, dict[str, tuple[bytes, str, str]]] = {}
     tallies: dict[str, list[AudioClip]] = {}
     for i, clip in enumerate(index.clips):
@@ -153,7 +153,8 @@ def check_audio(
                 loc,
             )
             continue
-        if clip.item not in sentences and clip.item not in kcs:
+        said = known.get(clip.item)
+        if said is None:
             ctx.diags.report(
                 "audio.unknown-item",
                 f"{clip.item}: no such sentence, story line or KC in the course",
@@ -201,14 +202,13 @@ def check_audio(
                 )
                 continue
         # Sentence clips time the sentence's tokens; a word KC's clip times its own form.
-        if clip.timings is not None and clip.item in sentences:
-            forms = sentences[clip.item]
+        if clip.timings is not None and said.kind != "kc":
             ok = any(
                 all(
-                    t.token < len(tokens) and tokens[t.token].get("kind") in WORD_KINDS
+                    t.token < len(tokens) and tokens[t.token].kind in WORD_KINDS
                     for t in clip.timings
                 )
-                for tokens in forms
+                for tokens in said.forms.values()
             )
             ordered = all(t.startMs <= t.endMs <= clip.durationMs + 5 for t in clip.timings)
             if not ok or not ordered:
@@ -222,16 +222,10 @@ def check_audio(
             held += clip.speed == "normal"
             continue
         rel = f"audio/{clip.sha256[:16]}.mp3"
-        files.setdefault(clip.item, {})[rel] = (data, clip.license, _credit(clip, recordings))
-        entry: dict[str, Any] = {
-            "path": rel,
-            "durationMs": clip.durationMs,
-            "synthetic": clip.synthetic,
-            "license": clip.license,
-            "credit": _credit(clip, recordings),
-        }
-        if clip.timings is not None:
-            entry["timings"] = [t.model_dump(mode="json") for t in clip.timings]
+        credit = _credit(clip, recordings)
+        files.setdefault(clip.item, {})[rel] = (data, clip.license, credit)
+        timings = None if clip.timings is None else tuple(clip.timings)
+        entry = ShippedClip(rel, clip.durationMs, clip.synthetic, clip.license, credit, timings)
         items.setdefault(clip.item, {})[clip.speed] = entry
         tallies.setdefault(clip.item, []).append(clip)
     if held:

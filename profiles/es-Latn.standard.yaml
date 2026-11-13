@@ -29,3 +29,8 @@ match:
       - { id: ending, note: contrast-ending, members: [o, a, e, os, as, es, an, en, amos, emos, imos, aste, iste, aron, ieron, io, i, aba, abas, aban, ia, ias, ian] }
       - { id: pronoun, note: contrast-pronoun, members: [yo, tu, el, ella, ellos, ellas, usted, ustedes, nosotros, nosotras] }
 layout: { vertical: none }
+# What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
+# Whisper writes Spanish (tier 1). Not the phones: eSpeak NG's es says Castilian (θ for c and z, every s), and Cuban
+# speech (seseo, s aspirated or dropped before a consonant: ehtá) would be marked wrong where it is right.
+speech:
+  tiers: [1]

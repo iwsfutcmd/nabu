@@ -1,9 +1,11 @@
 /**
  * The Android and iOS apps (Capacitor, ADR 0048): practice reminders through the platform's push
- * service (FCM or APNs, by the server), opening the app from a reminder, and syncing when the app
- * comes back to the foreground. The plugins load only inside the native shell.
+ * service (FCM or APNs, by the server), opening the app from a reminder, syncing when the app
+ * comes back to the foreground, and Android's back button. The plugins load only inside the
+ * native shell.
  */
 import type { PluginListenerHandle } from "@capacitor/core";
+import { askToLeave, openAddress } from "./navigation.ts";
 import { isNative } from "./platform.ts";
 
 export type NativePlatform = "android" | "ios";
@@ -34,15 +36,24 @@ const saveToken = (token: string | undefined): void => {
   }
 };
 
-/** Native start-up: sync on resume, and open the app where a tapped reminder points. */
+/**
+ * Native start-up: sync on resume, open the app where a tapped reminder points, and Android's back
+ * button. Back goes back as a browser's does, so a running session asks before it is left and a
+ * finished one is never played again (navigation.ts, S3); with nothing to go back to, a running
+ * session still asks, and otherwise the app goes to the background, as Android's own Back does.
+ */
 export const startNative = async (onResume: () => void): Promise<void> => {
   if (!isNative()) return;
   const { App } = await import("@capacitor/app");
   await App.addListener("resume", onResume);
+  await App.addListener("backButton", ({ canGoBack }) => {
+    if (canGoBack) window.history.back();
+    else if (!askToLeave()) void App.minimizeApp();
+  });
   const { PushNotifications } = await import("@capacitor/push-notifications");
   await PushNotifications.addListener("pushNotificationActionPerformed", (action) => {
     const url = (action.notification.data as { url?: unknown } | undefined)?.url;
-    if (typeof url === "string") window.location.hash = new URL(url, window.location.href).hash || "#/";
+    if (typeof url === "string") openAddress(url);
   });
 };
 

@@ -4,6 +4,10 @@ Every file is canonical JSON (sorted keys, no insignificant whitespace, NFC, tra
 named by the first 16 hex digits of its sha256. The manifest lists every file with its role,
 hash and SPDX license, plus the versions of everything that can change the output; its own id is
 the sha256 of its content without the id. No timestamps, no absolute paths.
+
+Attribution is defined once (ADR 0110): the manifest's `credits` holds each text by its id (the
+first 8 hex digits of its sha256), and files and clips name it by that id (`credit`). A course
+with a voice credits it on every clip, which repeated the same sentence thousands of times.
 """
 
 from __future__ import annotations
@@ -21,12 +25,19 @@ import yaml
 from nabu.analyzers import Analyzer, versions
 from nabu.compiler.build import Compiled
 from nabu.compiler.script import romanized_orthographies
-from nabu.compiler.stories import line_item
 from nabu.drills.rbnf import icu_version
+from nabu.items import iter_items, unit_json
 from nabu.paths import I18N_GENERATED, PROFILES
-from nabu.schema.models import BundleAudio, BundleManifest, BundleUnit, OrthographyProfile
+from nabu.schema.models import (
+    BundleAudio,
+    BundleManifest,
+    BundleUnit,
+    CourseSource,
+    OrthographyProfile,
+)
 
-FORMAT_VERSION = 0
+#: 1: credits are defined once, in the manifest's `credits` (ADR 0110).
+FORMAT_VERSION = 1
 
 
 def canonical(data: Any) -> bytes:
@@ -37,6 +48,35 @@ def canonical(data: Any) -> bytes:
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def credit_id(text: str) -> str:
+    """A credit's id in the manifest's `credits`: the first 8 hex digits of its text's sha256."""
+    return sha256(text.encode("utf-8"))[:8]
+
+
+class Credits:
+    """The bundle's credits: each text once, by its id."""
+
+    def __init__(self) -> None:
+        self.texts: dict[str, str] = {}
+
+    def __call__(self, text: str) -> str:
+        """Defines a credit (once) and returns its id."""
+        ident = credit_id(text)
+        if self.texts.setdefault(ident, text) != text:
+            raise ValueError(f"two credits share the id {ident}: {self.texts[ident]!r}, {text!r}")
+        return ident
+
+
+def names_of(course: CourseSource) -> dict[str, Any]:
+    """The course's names (ADR 0109), NFC, as the manifest and the bundles' index carry them."""
+    data = {
+        tag: names.model_dump(mode="json", exclude_none=True)
+        for tag, names in (course.names or {}).items()
+    }
+    text = unicodedata.normalize("NFC", json.dumps(data, ensure_ascii=False))
+    return cast(dict[str, Any], json.loads(text))
 
 
 def _profile_files(profile: OrthographyProfile) -> list[tuple[str, str, str]]:
@@ -104,24 +144,19 @@ def _strings(data: object) -> set[str]:
     return {s for v in values for s in _strings(v)}
 
 
-def unit_assets(unit: dict[str, Any], compiled: Compiled) -> list[str]:
+def unit_assets(unit: BundleUnit, compiled: Compiled) -> list[str]:
     """The media a unit's items use (Phase 10 per-unit downloads): the images it names, and the
     bundled clips of every item id it names (its sentences, drills and story lines). An item
     another unit owns but this one uses is included, so a downloaded unit never misses a clip."""
     # Story lines are items by position ("<story>#<step>"), a string the unit itself never holds.
-    lines = {
-        line_item(story["id"], step)
-        for story in unit.get("stories", [])
-        for step, s in enumerate(story["steps"])
-        if s.get("line")
-    }
-    named = _strings(unit) | lines
+    lines = {item.id for item in iter_items([unit]) if item.kind == "line"}
+    named = _strings(unit_json(unit)) | lines
     images = {p for p in named if p in compiled.images}
     clips = {
-        clip["path"]
+        clip.path
         for item in sorted(named & compiled.audio_items.keys())
         for clip in compiled.audio_items[item].values()
-        if clip.get("path") in compiled.audio_files
+        if clip.path in compiled.audio_files
     }
     return sorted(images | clips)
 
@@ -140,6 +175,7 @@ def write_bundle(
         shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True)
     files: list[dict[str, Any]] = []
+    credit = Credits()
     course = compiled.course
 
     def put(role: str, name: str, data: bytes, license_: str, source: str | None = None) -> str:
@@ -155,15 +191,14 @@ def write_bundle(
             "bytes": len(data),
         }
         if source is not None:
-            entry["source"] = source
+            entry["credit"] = credit(source)
         files.append(entry)
         return rel
 
     units: list[dict[str, Any]] = []
     for unit in compiled.units:
-        BundleUnit.model_validate(unit)
-        rel = put("unit", unit["id"], canonical(unit), course.license or "NOASSERTION")
-        units.append({"id": unit["id"], "file": rel, "assets": unit_assets(unit, compiled)})
+        rel = put("unit", unit.id, canonical(unit_json(unit)), course.license or "NOASSERTION")
+        units.append({"id": unit.id, "file": rel, "assets": unit_assets(unit, compiled)})
 
     seen: set[str] = set()
     latin = romanized_orthographies(compiled.course, profiles)
@@ -197,10 +232,10 @@ def write_bundle(
             "bytes": len(blob),
         }
         if image_source is not None:
-            entry["source"] = image_source
+            entry["credit"] = credit(image_source)
         files.append(entry)
 
-    for rel, (blob, clip_license, credit) in sorted(compiled.audio_files.items()):
+    for rel, (blob, clip_license, made_by) in sorted(compiled.audio_files.items()):
         (out_dir / rel).parent.mkdir(parents=True, exist_ok=True)
         (out_dir / rel).write_bytes(blob)
         files.append(
@@ -209,14 +244,18 @@ def write_bundle(
                 "role": "audio",
                 "sha256": sha256(blob),
                 "license": clip_license,
-                "source": credit,
+                "credit": credit(made_by),
                 "bytes": len(blob),
             }
         )
     if compiled.audio_items:
-        index = {"items": compiled.audio_items}
-        BundleAudio.model_validate(index)
-        index_blob = canonical(index)
+        # Each clip names its credit by id, as its file does in the manifest.
+        items = {
+            item: {speed: clip.bundled(credit(clip.credit)) for speed, clip in clips.items()}
+            for item, clips in compiled.audio_items.items()
+        }
+        index = BundleAudio.model_validate({"items": items})
+        index_blob = canonical(index.model_dump(mode="json", by_alias=True, exclude_none=True))
         rel = f"audio/index.{sha256(index_blob)[:16]}.json"
         (out_dir / rel).write_bytes(index_blob)
         license_ = course.license or "NOASSERTION"
@@ -236,6 +275,8 @@ def write_bundle(
         "target": course.target,
         "orthographies": compiled.orthographies,
         "support": compiled.support,
+        # What the app calls the course and its orthographies (ADR 0109): course data, not messages.
+        **({"names": names_of(course)} if course.names else {}),
         # Only where the course names them (ADR 0071): other manifests stay as they were.
         **({"facets": list(course.facets)} if course.facets else {}),
         # Only an iffy voice is flagged (ADR 0091): good is the default, a bad one ships no clips.
@@ -252,6 +293,7 @@ def write_bundle(
         ),
         "versions": tool_versions(analyzers, *_used_tools(compiled, profiles)),
         "files": sorted(files, key=lambda f: f["path"]),
+        "credits": dict(sorted(credit.texts.items())),
         "units": units,
         "licenses": dict(sorted(compiled.licenses.items())),
         "provenance": dict(sorted(compiled.provenance.items())),

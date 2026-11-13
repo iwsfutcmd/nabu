@@ -6,6 +6,41 @@ id: es
 target: es-Latn-CU
 orthographies: [es-Latn/standard]
 support: [en-Latn/standard]
+# What the app calls the course and its orthographies, and what the course list says of them, by
+# language (ADR 0109).
+names:
+  en:
+    course: Cuban Spanish
+    blurb: "Spanish as Cuban families speak it, in Cuba and in Miami: for heritage speakers, and from the start."
+    orthographies:
+      es-Latn/standard: Spanish spelling
+  # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
+  # await review as those do.
+  ar:
+    course: "الإسبانية الكوبية"
+    orthographies:
+      es-Latn/standard: "الإملاء الإسباني"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    course: "اسپانیایی کوبایی"
+    orthographies:
+      es-Latn/standard: "املای اسپانیایی"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    course: "Kuba ispan tili"
+    orthographies:
+      es-Latn/standard: "Ispan imlosi"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    course: "Куба испан тили"
+    orthographies:
+      es-Latn/standard: "Испан имлоси"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    course: "古巴西班牙語"
+    orthographies:
+      es-Latn/standard: "西班牙文拼寫"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@1ebc6e7db77a', status: draft}
 # A Spanish verb is fusional: a new verb in a new tense is two KCs on one word (sense + form), so a

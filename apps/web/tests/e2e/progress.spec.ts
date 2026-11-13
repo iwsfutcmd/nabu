@@ -8,11 +8,12 @@
  *   day 2         a review session; XP grows, and survives another reload
  * Each session is planned by the test from the log the page holds, at the
  * page's (fixed) clock, and must match what the app shows exercise by exercise.
+ * The page says where progress is kept, and a download restores on another device (S6).
  */
 import { emptyLearnerState, pathNodes, placementOf, plan } from "@nabu/core/learner";
 import { lessonNodes, runTest, type Exercise } from "@nabu/core/lesson";
 import { expect, test, type Page } from "@playwright/test";
-import { activate, canMiss, loadCourse, logOf, pathUrl, planned, playSession, type Mode } from "./solver.ts";
+import { activate, answer, canMiss, expectRightAndContinue, historyBefore, loadCourse, logOf, pathUrl, planned, playSession, seedLog, type Mode } from "./solver.ts";
 
 const SEED = 11;
 const DAY = 86_400_000;
@@ -20,6 +21,22 @@ const DAY = 86_400_000;
 const statusOf = (page: Page, node: string) => page.locator(`[data-lesson="${node}"]`);
 const practice = (page: Page, mode: "review" | "mistakes") => page.locator(`[data-practice-mode="${mode}"]`);
 const xp = async (page: Page): Promise<number> => Number(await page.locator("[data-xp]").getAttribute("data-xp"));
+/** The XP once it stops changing: Home folds a session's last events in as they are written (R1). */
+const settledXp = async (page: Page): Promise<number> => {
+  let last = Number.NaN;
+  await expect
+    .poll(
+      async () => {
+        const now = await xp(page);
+        const same = now === last;
+        last = now;
+        return same;
+      },
+      { intervals: [750], timeout: 30_000 },
+    )
+    .toBe(true);
+  return last;
+};
 
 test("progress, mistakes and review live on the device", async ({ page }, info) => {
   const mode = info.project.name as Mode;
@@ -55,7 +72,7 @@ test("progress, mistakes and review live on the device", async ({ page }, info) 
     await expect(practice(page, "review")).not.toHaveAttribute("aria-disabled", "true");
   };
   await afterLesson();
-  const xpAfterLesson = await xp(page);
+  const xpAfterLesson = await settledXp(page);
   expect(xpAfterLesson).toBeGreaterThan(10);
 
   // Reload: everything comes back from IndexedDB.
@@ -84,10 +101,59 @@ test("progress, mistakes and review live on the device", async ({ page }, info) 
   await playSession(page, review, mode);
   await activate(page, mode, "[data-action=exit]");
   await expect.poll(() => xp(page)).toBeGreaterThan(before);
-  const total = await xp(page);
+  const total = await settledXp(page);
   await page.reload();
   await expect(page.locator("[data-xp]")).toHaveAttribute("data-xp", String(total));
   await expect(page.locator("[data-xp-today]")).toHaveAttribute("data-xp-today", String(total - before));
+  expect(errors).toEqual([]);
+});
+
+test("a download says where progress is kept, and restores on another device (S6)", async ({ page, browser }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const [, second, third] = lessonNodes(course).map((n) => n.node.id);
+  if (second === undefined || third === undefined) throw new Error("fa needs three lessons");
+  const now = new Date("2026-03-14T10:00:00Z");
+  await page.clock.setFixedTime(now);
+  await seedLog(page, historyBefore(course, third, now));
+  await page.reload();
+  // This browser was not asked to keep the site's data for good: the page says it may clear it.
+  await expect(page.locator("[data-device-copy]")).toHaveAttribute("data-device-copy", "at-risk");
+
+  const downloading = page.waitForEvent("download");
+  await page.locator("[data-action=export]").click();
+  const file = await (await downloading).path();
+  const events = (await logOf(page, "fa")).length;
+
+  // Another device: nothing yet. The file restores the two lessons, once.
+  const other = await (await browser.newContext({ locale: "en-US", timezoneId: "UTC" })).newPage();
+  other.on("pageerror", (e) => errors.push(String(e)));
+  await other.clock.setFixedTime(now);
+  await other.goto("/?sound=off#/");
+  const restore = async (): Promise<void> => {
+    const chooser = other.waitForEvent("filechooser");
+    await other.locator("[data-action=restore]").click();
+    await (await chooser).setFiles(file);
+  };
+  await restore();
+  const found = other.locator("[data-restore-found]");
+  await expect(found).toHaveAttribute("data-restore-found", String(events));
+  await expect(found).toHaveAttribute("data-restore-new", String(events));
+  await expect(found).toHaveAttribute("data-restore-invalid", "0");
+  await other.locator("[data-action=restore-confirm]").click();
+  await expect(other.locator("[data-restored]")).toHaveAttribute("data-restored", String(events));
+  await other.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard"));
+  await expect(other.locator(`[data-lesson="${second}"]`)).toHaveAttribute("data-status", "done");
+  await expect(other.locator(`[data-lesson="${third}"]`)).toHaveAttribute("data-status", "available");
+
+  // The same file again: this device has it all already.
+  await other.evaluate(() => (window.location.hash = "#/"));
+  await restore();
+  await expect(found).toHaveAttribute("data-restore-new", "0");
+  await expect(other.locator("[data-action=restore-confirm]")).toHaveCount(0);
+  expect(await logOf(other, "fa")).toHaveLength(events);
   expect(errors).toEqual([]);
 });
 
@@ -123,17 +189,88 @@ test("placement: a learner who knows the first units starts after them", async (
   if (next === undefined) throw new Error("this learner should not place out of everything");
   const nodeAt = (id: string) => page.locator(`[data-lesson="${id}"], [data-story-node="${id}"]`);
 
+  // It says what it does before it starts (S5).
   await activate(page, mode, '[data-practice-mode="placement"]');
+  await expect(page.locator("[data-placement-intro]")).toBeVisible();
+  await activate(page, mode, "[data-action=placement-start]");
   const played = await playSession(page, asked, mode, { miss: new Set(asked.filter((e) => !knows(e)).map((e) => e.id)) });
   expect(played.seen).toEqual(asked.map((e) => e.id)); // asked once each, as the answers decided
+  // And what it placed the learner out of, and where they start, when it ends.
+  const result = page.locator("[data-placement-result]");
+  const lessons = path.filter((n) => n.kind === "lesson");
+  await expect(result).toHaveAttribute("data-placed", String(lessons.filter((n) => placed.includes(n.node.id)).length));
+  await expect(result).toHaveAttribute("data-next", next.node.id);
   await activate(page, mode, "[data-action=exit]");
 
   // Lessons and stories: a unit passed places out of both.
   for (const node of placed) await expect(nodeAt(node)).toHaveAttribute("data-status", "done");
   await expect(nodeAt(next.node.id)).toHaveAttribute("data-status", "available");
-  await expect(page.locator('[data-practice-mode="placement"]')).toHaveCount(0);
+  // It can be taken again.
+  await expect(page.locator('[data-practice-mode="placement"]')).toHaveAttribute("data-again", "");
   await page.reload();
   await expect(nodeAt(next.node.id)).toHaveAttribute("data-status", "available");
+});
+
+test("placement stopped part-way places by the answers so far, and can be taken again (S5)", async ({ page }, info) => {
+  const mode = info.project.name as Mode;
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const now = new Date("2026-03-12T08:30:00Z");
+  await page.clock.setFixedTime(now);
+  await page.goto(pathUrl(course, SEED));
+  const planned = plan(course, emptyLearnerState(), { mode: "placement" }, { now: now.toISOString(), seed: SEED }).placement;
+  if (planned === undefined) throw new Error("no placement test");
+  const units = planned.test.blocks.map((b) => b.id);
+  const unitOf = new Map(course.units.flatMap((u) => u.sentences.map((s) => [s.id, u.id] as const)));
+  // A learner who knows the first two units: their two blocks, then stop.
+  const knows = (e: Exercise): boolean => units.indexOf(unitOf.get(e.item) ?? "") < 2;
+  const answers = new Map<string, boolean>();
+  const asked: Exercise[] = [];
+  for (let run = runTest(planned.test, answers); run.passed < 1 && run.next.length > 0; run = runTest(planned.test, answers)) {
+    const ex = run.next[0] as Exercise;
+    asked.push(ex);
+    answers.set(ex.id, knows(ex));
+  }
+  const placed = placementOf(planned, answers);
+  expect(placed.length).toBeGreaterThan(0);
+
+  await activate(page, mode, '[data-practice-mode="placement"]');
+  await activate(page, mode, "[data-action=placement-start]");
+  for (const ex of asked) {
+    await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-exercise", ex.id);
+    await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "answering");
+    await answer(page, ex, mode);
+    await expectRightAndContinue(page, mode, ex);
+  }
+  // Events reach IndexedDB a moment after they are recorded: a reload before then loses the last one.
+  const ids = new Set(asked.map((e) => e.id));
+  await expect.poll(async () => (await logOf(page, "fa")).filter((e) => e.type === "answer_submitted" && ids.has(e.exercise.id)).length).toBe(ids.size);
+  // A reload goes on with the test where it was, without its introduction.
+  await page.clock.setFixedTime(new Date(now.getTime() + 30_000));
+  await page.reload();
+  await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-exercise", runTest(planned.test, answers).next[0]?.id ?? "");
+  await expect(page.locator("[data-placement-intro]")).toHaveCount(0);
+
+  // Stopping asks in the test's own words, then places by what the answers showed.
+  await activate(page, mode, "[data-action=quit]");
+  await expect(page.locator("[data-quit-dialog]")).toBeVisible();
+  await activate(page, mode, "[data-action=quit-confirm]");
+  const lessons = pathNodes(course).filter((n) => n.kind === "lesson");
+  await expect(page.locator("[data-placement-result]")).toHaveAttribute("data-placed", String(lessons.filter((n) => placed.includes(n.node.id)).length));
+  await expect
+    .poll(async () => (await logOf(page, "fa")).find((e) => e.type === "session_completed"))
+    // A stopped session (no session XP, D9) that still says what its answers placed.
+    .toMatchObject({ mode: "placement", summary: { completed: false }, placed: [...placed] });
+  await activate(page, mode, "[data-action=exit]");
+  for (const node of placed) await expect(page.locator(`[data-lesson="${node}"], [data-story-node="${node}"]`)).toHaveAttribute("data-status", "done");
+
+  // Again: the introduction, and nothing done is undone by stopping at once.
+  await activate(page, mode, '[data-practice-mode="placement"][data-again]');
+  await activate(page, mode, "[data-action=placement-start]");
+  await activate(page, mode, "[data-action=quit]");
+  await activate(page, mode, "[data-action=quit-confirm]");
+  await expect(page.locator("[data-placement-result]")).toHaveAttribute("data-placed", "0");
+  await activate(page, mode, "[data-action=exit]");
+  for (const node of placed) await expect(page.locator(`[data-lesson="${node}"], [data-story-node="${node}"]`)).toHaveAttribute("data-status", "done");
 });
 
 

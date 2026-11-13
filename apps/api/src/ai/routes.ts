@@ -10,10 +10,10 @@
  * Without a model (NABU_LLM unset) every feature reports off and the app hides it: the judge
  * falls back to accept sets plus reports (§13.1).
  */
-import { acceptForJudge, accepts, answerUnitsPrompt, checkTurn, explanationOf, gateOpen, judgeable, knownForms, productionAccept, provisionalOutcome, autoTokens, type ExplanationContext } from "@nabu/core/ai";
+import { acceptForJudge, accepts, answerUnitsPrompt, checkTurn, explanationOf, gateOpen, judgeable, knownForms, productionAccept, provisionalOutcome, autoTokens, ROLEPLAY_HISTORY, textBase, type ExplanationContext, type TextBase } from "@nabu/core/ai";
 import { localDateOf } from "@nabu/core/game";
 import { replay } from "@nabu/core/learner";
-import { allSentences, type CourseView } from "@nabu/core/lesson";
+import { allSentences, TEMPLATES, type CourseView, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { AnswerSubmitted, BundleScenario, BundleSentence, EvalGate, ExplanationOutput, JudgeOutput, JudgeVerdict, OutcomeRevised, RoleplayOutput, RoleplayTurn, TaggedText } from "@nabu/schema";
 import { createHash } from "node:crypto";
@@ -37,12 +37,16 @@ export interface AiDeps {
   readonly now: () => number;
 }
 
-/** Templates Explain My Answer covers: translations, typed or built from tiles. */
-const EXPLAINED = new Set(["translate-type.l1-l2", "translate-tap.l1-l2", "translate-tap.l2-l1"]);
+/** Templates Explain My Answer covers: translations, typed or built from tiles (`TemplateInfo.explained`, C11). */
+const EXPLAINED: ReadonlySet<string> = new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].explained === true));
 /** New words a roleplay turn may use beyond the learner's known vocabulary (§13.4 k). */
 export const ROLEPLAY_NEW_WORDS = 1;
 const ROLEPLAY_ATTEMPTS = 3;
-const MAX_HISTORY = 16;
+/**
+ * A request with more turns than this is not a conversation and is refused. Longer ones are fine:
+ * the model sees only the latest ROLEPLAY_HISTORY turns, and the app sends no more than those.
+ */
+const MAX_TURNS = 200;
 
 const names = new Intl.DisplayNames(["en"], { type: "language" });
 /** A language tag as the English name prompts use ("Cantonese (Traditional, Hong Kong)"). */
@@ -180,8 +184,8 @@ export const aiRoutes = (app: Hono<Env>, deps: AiDeps): void => {
     const support = sentence?.translations[e.support];
     if (course === undefined || sentence === undefined || target === undefined || support === undefined) return c.json({ error: "unknown-item" }, 404);
     const intoTarget = e.exercise.template.endsWith("l1-l2");
-    const lang = (t: TaggedText): Pick<TaggedText, "lang" | "orthography"> => ({ lang: t.lang, orthography: t.orthography });
-    const ctx: ExplanationContext = { support: lang(support.text), target: lang(target.text), answer: raw, answerIn: intoTarget ? lang(target.text) : lang(support.text) };
+    const base = (t: TaggedText): TextBase => textBase(course.profiles, t);
+    const ctx: ExplanationContext = { support: base(support.text), target: base(target.text), answer: raw, answerIn: intoTarget ? base(target.text) : base(support.text) };
     const solution = intoTarget ? (acceptForJudge(target.reverse ?? text(target.text))[0] ?? text(target.text)) : (acceptForJudge(support.accept)[0] ?? text(support.text));
     const normalized = normalizedAnswer(courses, e.course, e.orthography, raw);
     const key = createHash("sha256").update(JSON.stringify([e.course, e.orthography, e.support, e.exercise.template, sentence.id, normalized])).digest("hex").slice(0, 32);
@@ -226,10 +230,10 @@ export const aiRoutes = (app: Hono<Env>, deps: AiDeps): void => {
     const user = c.get("user").id;
     const b = (await c.req.json().catch(() => undefined)) as Record<string, unknown> | undefined;
     const { course: courseId, orthography, support: supportKey, scenario: scenarioId, history } = b ?? {};
-    if (typeof courseId !== "string" || typeof orthography !== "string" || typeof supportKey !== "string" || typeof scenarioId !== "string" || !Array.isArray(history) || history.length > MAX_HISTORY)
+    if (typeof courseId !== "string" || typeof orthography !== "string" || typeof supportKey !== "string" || typeof scenarioId !== "string" || !Array.isArray(history) || history.length > MAX_TURNS)
       return c.json({ error: "invalid-request" }, 400);
     const lines: { role: "learner" | "character"; text: string }[] = [];
-    for (const h of history as unknown[]) {
+    for (const h of (history as unknown[]).slice(-ROLEPLAY_HISTORY)) {
       const { role, text: line } = (h ?? {}) as { role?: unknown; text?: unknown };
       if ((role !== "learner" && role !== "character") || typeof line !== "string" || line.trim() === "") return c.json({ error: "invalid-request" }, 400);
       lines.push({ role, text: asData(line, 300) });
@@ -277,8 +281,10 @@ export const aiRoutes = (app: Hono<Env>, deps: AiDeps): void => {
       if (!checks.ok) continue;
       const { reply, translation } = result.value.output;
       const turn: RoleplayTurn = {
-        text: autoTokens(reply, { lang: target, orthography: orthography as TaggedText["orthography"] }),
-        ...(translation === undefined || translation.trim() === "" ? {} : { translation: autoTokens(translation, { lang: supportTag(course), orthography: course.support as TaggedText["orthography"] }) }),
+        text: autoTokens(reply, textBase(course.profiles, { lang: target, orthography: orthography as TaggedText["orthography"] })),
+        ...(translation === undefined || translation.trim() === ""
+          ? {}
+          : { translation: autoTokens(translation, textBase(course.profiles, { lang: supportTag(course), orthography: course.support as TaggedText["orthography"] })) }),
         checks: { unknown: [...checks.unknown], outOfScript: [...checks.outOfScript], words: checks.words },
         attempts: attempt,
         provenance: result.value.provenance,

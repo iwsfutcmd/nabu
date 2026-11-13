@@ -1,22 +1,24 @@
 /**
- * Corrections in the app (ADR 0051, 0057): the sentence list page, and "This sentence is wrong"
- * under an exercise's feedback and on story lines; "This word is wrong" under a word exercise's,
- * and "One of these is wrong" under match-the-pairs, which asks which word first. A correction is a sentence_reported event in the
+ * Corrections in the app (ADR 0051, 0057): the sentence list page, "This sentence is wrong" on story
+ * lines, and the dialogs the report button beside an answer's feedback opens (Report.tsx): "This
+ * sentence is wrong", "This word is wrong" for a word exercise, and "One of these is wrong" for
+ * match-the-pairs, which asks which word first. A correction is a sentence_reported event in the
  * device's log: it syncs like any other and joins the server's review queue. The sentence list
- * also downloads the device's own corrections as the file `nabu corrections apply` reads, so a
- * reviewer can apply them with no server at all.
+ * also downloads the device's own corrections still open as the file `nabu corrections apply`
+ * reads, so a reviewer can apply them with no server at all. What came of each is the device's own
+ * comparison with the course it has (ADR 0115); "Thanks!" says where the correction goes.
  *
  * For a reviewer (debug mode, ADR 0072) the list also signs items off: each sign-off holds the
  * sha256 of what was shown (signoffText), stays on this device, and downloads as the file
  * `nabu review apply` reads.
  */
 import {
-  correctable,
-  correctablesOf,
   correctionKey,
   correctionRows,
+  correctionStatus,
   jsonLines,
   latestCorrections,
+  openCorrection,
   sentenceReportedOf,
   sentenceSignoffText,
   signedOff,
@@ -25,16 +27,17 @@ import {
   type SignOffKind,
   type UnitCorrectables,
 } from "@nabu/core/corrections";
-import type { CourseView, Exercise } from "@nabu/core/lesson";
+import type { CourseView } from "@nabu/core/lesson";
 import type { CorrectionFields, LearnerEvent, SentenceReported, SignOff, SignOffs } from "@nabu/schema";
 import { chromeClass, T, useChrome, useTranslator } from "@nabu/ui";
-import { CorrectionForm, SentenceList, signOffKey } from "@nabu/ui/corrections";
-import { rubySchemeOf } from "@nabu/ui/player";
+import { CORRECTION_BADGES, CorrectionForm, SentenceList, signOffKey } from "@nabu/ui/corrections";
+import { defaultRuby } from "@nabu/ui/player";
 import { useEffect, useMemo, useState, type JSX } from "react";
 import { Button, Dialog, Modal } from "react-aria-components";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
-import { useReportsPublic } from "./reports.ts";
+import { storedReading } from "./readings.ts";
+import { useReportsPublic, useReportsReach } from "./reports.ts";
 import type { EventStore } from "./store.ts";
 
 type Made = { readonly correction: CorrectionFields; readonly note?: string };
@@ -104,94 +107,16 @@ export const CorrectionDialog = ({ course, bundle, device, record, target, previ
   );
 };
 
+const SENT = { reviewers: "corrections.sent", "sign-in": "corrections.sent.sign-in", device: "corrections.sent.device" } as const;
+
+/** "Thanks!", and where the correction goes (ADR 0115): to the course's reviewers, to them once the learner signs in, or nowhere. */
 export const Sent = (): JSX.Element => {
   const t = useTranslator();
+  const reach = useReportsReach();
   return (
-    <p className={styles.muted} role="status" data-correction-sent="">
-      {t.format("corrections.sent")}
+    <p className={styles.muted} role="status" data-correction-sent="" data-reach={reach}>
+      {reach === undefined ? null : t.format(SENT[reach])}
     </p>
-  );
-};
-
-interface MarkProps extends Recording {
-  readonly item: string;
-  readonly step?: number | undefined;
-  readonly corrections: ReadonlyMap<string, SentenceReported>;
-  readonly className?: string | undefined;
-}
-
-/** "This sentence is wrong": a button that opens the form, for any item the course source holds. */
-export const MarkIncorrect = ({ item, step, corrections, className, ...recording }: MarkProps): JSX.Element | null => {
-  const target = correctable(recording.course, item, step);
-  return target === undefined ? null : <MarkTargets {...recording} targets={[target]} corrections={corrections} className={className} />;
-};
-
-interface ExerciseMarkProps extends Recording {
-  readonly ex: Pick<Exercise, "template" | "item" | "kcs">;
-  readonly corrections: ReadonlyMap<string, SentenceReported>;
-}
-
-/**
- * Under an exercise's feedback: the sentence or word it was built from can be marked as wrong;
- * match-the-pairs asks which of its words first.
- */
-export const MarkExercise = ({ ex, ...props }: ExerciseMarkProps): JSX.Element | null => {
-  const targets = correctablesOf(props.course, ex);
-  return targets.length === 0 ? null : <MarkTargets {...props} targets={targets} />;
-};
-
-interface TargetsProps extends Recording {
-  readonly targets: readonly Correctable[];
-  readonly corrections: ReadonlyMap<string, SentenceReported>;
-  readonly className?: string | undefined;
-}
-
-const MarkTargets = ({ targets, corrections, className, ...recording }: TargetsProps): JSX.Element | null => {
-  const t = useTranslator();
-  const [choosing, setChoosing] = useState(false);
-  const [target, setTarget] = useState<Correctable | undefined>(undefined);
-  const [sent, setSent] = useState(false);
-  const [first] = targets;
-  if (first === undefined) return null;
-  const previousOf = (c: Correctable): SentenceReported | undefined => corrections.get(correctionKey(c.item, c.step));
-  const several = targets.length > 1;
-  const label = several ? "corrections.mark.pairs" : previousOf(first) !== undefined ? "corrections.edit" : first.kind === "word" ? "corrections.mark.word" : "corrections.mark";
-  return (
-    <>
-      <Button
-        className={className ?? styles.textButton}
-        onPress={() => (several ? setChoosing(true) : setTarget(first))}
-        data-action="mark-incorrect"
-        data-item={several ? undefined : first.item}
-        data-step={several ? undefined : first.step}
-      >
-        {t.format(label)}
-      </Button>
-      {sent && <Sent />}
-      {choosing && (
-        <ChooseDialog
-          course={recording.course}
-          targets={targets}
-          corrections={corrections}
-          onChoose={(c) => {
-            setChoosing(false);
-            setTarget(c);
-          }}
-          onClose={() => setChoosing(false)}
-        />
-      )}
-      {target !== undefined && (
-        <CorrectionDialog
-          {...recording}
-          target={target}
-          previous={previousOf(target)}
-          onClose={(done) => {
-            setTarget(undefined);
-            if (done) setSent(true);
-          }}
-        />
-      )}
-    </>
   );
 };
 
@@ -207,10 +132,10 @@ interface ChooseProps {
  * "Which one is wrong?": each word in the learner's orthography (with its readings, which can be
  * what is wrong), and its meaning, through <T>.
  */
-const ChooseDialog = ({ course, targets, corrections, onChoose, onClose }: ChooseProps): JSX.Element => {
+export const ChooseDialog =({ course, targets, corrections, onChoose, onClose }: ChooseProps): JSX.Element => {
   const t = useTranslator();
   const chrome = useChrome();
-  const ruby = rubySchemeOf(course.profiles.get(course.orthography)?.source) ?? false;
+  const ruby = defaultRuby(course.profiles.get(course.orthography)?.source, storedReading(course.orthography));
   return (
     <Modal className={styles.modal} isOpen isDismissable onOpenChange={(open) => !open && onClose()}>
       <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} aria-label={t.format("corrections.choose")} data-correction-choose="">
@@ -219,13 +144,16 @@ const ChooseDialog = ({ course, targets, corrections, onChoose, onClose }: Choos
           <ul className={styles.choices}>
             {targets.map((c) => {
               const word = c.forms[course.orthography];
-              const corrected = corrections.has(correctionKey(c.item, c.step));
+              const report = corrections.get(correctionKey(c.item, c.step));
+              // What came of this device's correction of the word (ADR 0115).
+              const status = report === undefined ? undefined : correctionStatus(course, report, c);
+              const corrected = status === undefined || status === "gone" ? undefined : status;
               return (
                 <li key={c.item}>
-                  <Button className={styles.choice} onPress={() => onChoose(c)} data-choose={c.item} data-corrected={corrected || undefined}>
+                  <Button className={styles.choice} onPress={() => onChoose(c)} data-choose={c.item} data-corrected={corrected === undefined ? undefined : true} data-correction-status={corrected}>
                     {word !== undefined && <T className={styles.choiceWord} text={word} ruby={ruby} />}
                     {c.translation !== undefined && <T className={styles.choiceMeaning} text={c.translation} />}
-                    {corrected && <span className={styles.muted}>{t.format("corrections.pending")}</span>}
+                    {corrected !== undefined && <span className={styles.muted}>{t.format(CORRECTION_BADGES[corrected])}</span>}
                   </Button>
                 </li>
               );
@@ -242,9 +170,12 @@ const ChooseDialog = ({ course, targets, corrections, onChoose, onClose }: Choos
   );
 };
 
-/** Saves the device's corrections in this course as JSON Lines, the rows `nabu corrections apply` reads. */
-const download = (course: string, corrections: ReadonlyMap<string, SentenceReported>): void => {
-  const blob = new Blob([jsonLines(correctionRows(corrections.values()))], { type: "application/x-ndjson" });
+/**
+ * Saves the device's open corrections in this course as JSON Lines, the rows `nabu corrections
+ * apply` reads: one the course took up, or changed since some other way, has nothing left to apply.
+ */
+const download = (course: string, corrections: readonly SentenceReported[]): void => {
+  const blob = new Blob([jsonLines(correctionRows(corrections))], { type: "application/x-ndjson" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -361,6 +292,8 @@ export const SentencesPage = ({ corrections, back, review = false, ...recording 
     [signoffs, corrections, course],
   );
   const count = Object.keys(signoffs).length;
+  // The corrections still open (ADR 0115): what a reviewer can still apply.
+  const open = useMemo(() => [...corrections.values()].filter((c) => correctionStatus(course, c) === "pending"), [course, corrections]);
   return (
     <main className={styles.page} data-sentences-page={course.id}>
       <p>
@@ -371,9 +304,9 @@ export const SentencesPage = ({ corrections, back, review = false, ...recording 
       <h1 className={styles.heading}>{t.format("corrections.page.title")}</h1>
       <p className={styles.muted}>{t.format("corrections.page.intro")}</p>
       {review && <p className={styles.muted}>{t.format("review.intro")}</p>}
-      {corrections.size > 0 && (
-        <Button className={styles.textButton} onPress={() => download(course.id, corrections)} data-action="export-corrections">
-          {t.format("corrections.export", { count: corrections.size })}
+      {open.length > 0 && (
+        <Button className={styles.textButton} onPress={() => download(course.id, open)} data-action="export-corrections">
+          {t.format("corrections.export", { count: open.length })}
         </Button>
       )}
       {review && count > 0 && (
@@ -392,12 +325,13 @@ export const SentencesPage = ({ corrections, back, review = false, ...recording 
           setTarget(c);
         }}
         review={review ? controls : undefined}
+        reading={storedReading(course.orthography)}
       />
       {target !== undefined && (
         <CorrectionDialog
           {...recording}
           target={target}
-          previous={corrections.get(correctionKey(target.item, target.step))}
+          previous={openCorrection(course, corrections, target.item, target.step)}
           onClose={(done) => {
             setTarget(undefined);
             if (done) setSent(true);

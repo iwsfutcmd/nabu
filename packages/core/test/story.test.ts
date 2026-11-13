@@ -2,28 +2,13 @@
  * Phase 6: stories as the reader plays them, tap-for-gloss on story lines, and stories on the
  * path and in the learner model.
  */
-import { readFileSync } from "node:fs";
-import { join, resolve } from "node:path";
-import type { BundleManifest, LearnerEvent, TaggedText } from "@nabu/schema";
+import type { LearnerEvent, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
-import { allKcs, answerTextOf, assembleCourse, createGrader, gradeExercise, MEDIA_ROLES, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
+import { allKcs, answerTextOf, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
 import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyAt, storyScript, type StoryScript, type StoryState } from "../src/story/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
-
-const ROOT = resolve(import.meta.dirname, "../../..");
-const BUNDLES = join(ROOT, "apps/web/public/bundles");
-const numberingSystems = JSON.parse(readFileSync(join(ROOT, "packages/i18n/src/generated/numbering-systems.json"), "utf8")) as Record<string, string>;
-
-const loadCourse = (id: string, orthography?: string): CourseView => {
-  const manifest = JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
-  const files = new Map<string, unknown>(
-    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
-  );
-  const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
-  if (!course.ok) throw new Error(JSON.stringify(course.error));
-  return course.value;
-};
+import { loadCourse } from "./learner-fixtures.ts";
 
 const VARIANTS: readonly (readonly [string, string | undefined])[] = [
   ["fa", undefined],
@@ -192,12 +177,53 @@ describe("the story player", () => {
     expect(answers.some((e) => e.exercise.id.endsWith("#2"))).toBe(true);
   });
 
+  it("a question claimed right in its feedback is not asked again, and counts right; a later revision counts too (ADR 0113)", () => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const script = scriptOf(course);
+    const grader = createGrader(course);
+    const questions = script.steps.flatMap((s) => (s.tag === "question" ? [s.ex] : []));
+    const [claimed, revisedLater] = questions;
+    if (claimed === undefined || revisedLater === undefined) throw new Error("the story needs two questions");
+    let state: StoryState = startStory(script)[0];
+    const dispatch = (event: Parameters<typeof stepStory>[1]): void => {
+      const [next, effects] = stepStory(state, event);
+      state = next;
+      for (const e of effects) if (e.tag === "grade") dispatch({ tag: "player", event: { tag: "graded", outcome: gradeExercise(e.ex, e.response, grader) } });
+    };
+    const asked: string[] = [];
+    for (let guard = 0; state.tag !== "finished" && guard < 200; guard += 1) {
+      if (state.tag === "reading") dispatch({ tag: "continue" });
+      else if (state.player.tag === "presenting") {
+        asked.push(state.player.ex.id);
+        dispatch({ tag: "player", event: { tag: "ready" } });
+      } else if (state.player.tag === "answering") {
+        const ex = state.player.ex;
+        const response = ex.id === claimed.id || ex.id === revisedLater.id ? wrong(ex) : right(ex);
+        const draft = response.tag === "choice" ? { tag: "choice" as const, index: response.index } : { tag: "tiles" as const, order: response.tag === "tiles" ? response.order : [] };
+        dispatch({ tag: "player", event: { tag: "input", draft } });
+        dispatch({ tag: "player", event: { tag: "submit" } });
+        if (ex.id === claimed.id) dispatch({ tag: "player", event: { tag: "revise", exercise: ex.id, verdict: "CORRECT" } });
+      } else if (state.player.tag === "feedback") {
+        const done = state.player.ex.id === `${revisedLater.id}#2`;
+        dispatch({ tag: "player", event: { tag: "continue" } });
+        // The judge's accept of the first try comes once the question is behind the reader.
+        if (done) dispatch({ tag: "player", event: { tag: "revise", exercise: revisedLater.id, verdict: "CORRECT_PROVISIONAL" } });
+      } else throw new Error(`stuck in ${state.player.tag}`);
+    }
+    if (state.tag !== "finished") throw new Error("not finished");
+    expect(asked).not.toContain(`${claimed.id}#2`);
+    expect(asked).toContain(`${revisedLater.id}#2`);
+    expect(state.summary).toMatchObject({ exercises: questions.length, correctFirstTry: questions.length, retries: 1 });
+  });
+
   it("quitting ends the session uncompleted", () => {
     const course = loadCourse("yue");
     const [state] = startStory(scriptOf(course));
     const [quit, effects] = stepStory(state, { tag: "quit" });
     expect(quit.tag).toBe("finished");
     expect(effects.map((e) => (e.tag === "emit" ? [e.event.type, e.event.type === "session_completed" && e.event.summary.completed] : [e.tag]))).toEqual([["session_completed", false]]);
+    // Left before any question: none answered, whatever the story would have asked (P8).
+    expect(quit.tag === "finished" && quit.summary.exercises).toBe(0);
   });
 
   it("arranging accepts tiles that read the same in either order", () => {

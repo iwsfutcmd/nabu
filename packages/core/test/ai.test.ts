@@ -1,30 +1,17 @@
 /** Phase 8, the pure parts: model text as TaggedText, explanations, and roleplay turn checks. */
-import { readFileSync } from "node:fs";
-import { join, resolve } from "node:path";
-import type { AnswerReported, AnswerSubmitted, BundleManifest, EvalGate, LearnerEvent, OutcomeRevised, TaggedText } from "@nabu/schema";
+import type { AnswerReported, AnswerSubmitted, EvalGate, LearnerEvent, OutcomeRevised, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { acceptForJudge, accepts, autoTokens, checkTurn, excerpt, explanationOf, gateOf, gateOpen, judgeable, knownForms, provisionalOutcome } from "../src/ai/index.ts";
+import { acceptForJudge, accepts, autoTokens, checkTurn, excerpt, explanationOf, gateOf, gateOpen, judgeable, knownForms, provisionalOutcome, textBase } from "../src/ai/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { emptyLearnerState, replay } from "../src/learner/index.ts";
-import { assembleCourse, buildLesson, MEDIA_ROLES, type CourseView } from "../src/lesson/index.ts";
+import { emptyLearnerState, plan, replay } from "../src/learner/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
-import { eventFactory } from "./learner-fixtures.ts";
-
-const ROOT = resolve(import.meta.dirname, "../../..");
-const BUNDLES = join(ROOT, "apps/web/public/bundles");
-const numberingSystems = JSON.parse(readFileSync(join(ROOT, "packages/i18n/src/generated/numbering-systems.json"), "utf8")) as Record<string, string>;
-const loadCourse = (id: string, orthography?: string): CourseView => {
-  const manifest = JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
-  const files = new Map<string, unknown>(manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]));
-  const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
-  if (!course.ok) throw new Error(JSON.stringify(course.error));
-  return course.value;
-};
+import { eventFactory, loadCourse } from "./learner-fixtures.ts";
 
 const ZWNJ = "\u200C";
 const kinds = (t: TaggedText): string[] => t.tokens.map((x) => `${x.kind}:${x.surface}`);
 const FA = { lang: "fa-Arab-IR", orthography: "fa-Arab/standard" } as Pick<TaggedText, "lang" | "orthography">;
-const YUE = { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard" } as Pick<TaggedText, "lang" | "orthography">;
+// Cantonese is written without spaces: its profile counts graphemes, and so does autoTokens.
+const YUE = textBase(loadCourse("yue").profiles, { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard" } as Pick<TaggedText, "lang" | "orthography">);
 const EN = { lang: "en-Latn", orthography: "en-Latn/standard" } as Pick<TaggedText, "lang" | "orthography">;
 const PROVENANCE = { provider: "ollama" as const, model: "test", prompt: "explain", promptHash: "0123456789ab", createdAt: "2026-01-01T00:00:00Z" };
 
@@ -32,7 +19,10 @@ describe("model text as TaggedText", () => {
   it("keeps ZWNJ, modifier letters and grapheme clusters inside words", () => {
     expect(kinds(autoTokens(`کتاب${ZWNJ}های من.`, FA))).toEqual([`word:کتاب${ZWNJ}های`, "space: ", "word:من", "punct:."]);
     expect(kinds(autoTokens("Oʻqituvchi, 12!", { lang: "uz-Latn", orthography: "uz-Latn/standard" } as Pick<TaggedText, "lang" | "orthography">))).toEqual(["word:Oʻqituvchi", "punct:,", "space: ", "number:12", "punct:!"]);
-    expect(kinds(autoTokens("你好！👋🏽 ok", YUE))).toEqual(["word:你", "word:好", "punct:！", "symbol:👋🏽", "space: ", "word:ok"]);
+    expect(YUE.unitKind).toBe("grapheme");
+    expect(kinds(autoTokens("你好！👋🏽 ok", YUE))).toEqual(["word:你", "word:好", "punct:！", "symbol:👋🏽", "space: ", "word:o", "word:k"]);
+    // An orthography whose units are words joins letters into words, whatever their script.
+    expect(kinds(autoTokens("你好 ok", EN))).toEqual(["word:你好", "space: ", "word:ok"]);
     expect(surfaceOf(autoTokens("e\u0301te\u0301", EN))).toBe("été"); // NFC
   });
 });
@@ -98,6 +88,14 @@ describe("roleplay turn checks", () => {
     expect(checkTurn(yue, "早晨！hello", ["早晨"], 5).outOfScript).toEqual(["h", "e", "l", "o"]);
   });
 
+  it("checks a private-use script (sitelen pona, Qaap) against the profile's repertoire", () => {
+    const tok = loadCourse("tok", "tok-Qaap/sitelen-pona");
+    // mi moku. in UCSUR logographs: no Unicode script property exists for them.
+    const miMoku = String.fromCodePoint(0xf1934, 0xf1939);
+    expect(checkTurn(tok, miMoku, [], 5)).toMatchObject({ outOfScript: [] });
+    expect(checkTurn(tok, `${miMoku} moku`, [], 5).outOfScript).toEqual(["m", "o", "k", "u"]);
+  });
+
   it("known vocabulary comes from the learner's recall, not from the course", () => {
     expect(knownForms(fa, emptyLearnerState(), "2026-01-01T00:00:00Z")).toEqual([]);
   });
@@ -106,7 +104,7 @@ describe("roleplay turn checks", () => {
 describe("the judge's rules", () => {
   const fa = loadCourse("fa");
   const events = eventFactory(fa, "0".repeat(64));
-  const [exercise] = buildLesson(fa, "fa.greetings", { seed: 3 }).filter((e) => e.kcs.length > 0);
+  const [exercise] = plan(fa, emptyLearnerState(), { mode: "lesson", node: "fa.greetings" }, { now: "2026-01-01T09:00:00.000Z", seed: 3 }).exercises.filter((e) => e.kcs.length > 0);
   if (exercise === undefined) throw new Error("no exercise");
   const typed = (e: LearnerEvent, raw = "سلام"): AnswerSubmitted => {
     if (e.type !== "answer_submitted") throw new Error(e.type);

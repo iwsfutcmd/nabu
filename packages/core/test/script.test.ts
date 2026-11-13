@@ -7,7 +7,7 @@ import type { LearnerEvent } from "@nabu/schema";
 import { emptyLearnerState, pathOf, plan, replay, scriptPathOf } from "../src/learner/index.ts";
 import { createGrader } from "../src/lesson/course.ts";
 import type { Exercise, Response } from "../src/lesson/exercise.ts";
-import { lessonNodes } from "../src/lesson/build.ts";
+import { lessonNodes } from "../src/lesson/nodes.ts";
 import { responseOf } from "../src/lesson/player.ts";
 import { SCRIPT_TEMPLATES, scriptNodes } from "../src/lesson/script.ts";
 import { gradeExercise, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";

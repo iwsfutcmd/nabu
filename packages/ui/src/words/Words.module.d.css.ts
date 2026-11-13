@@ -12,12 +12,17 @@ declare const styles: {
   readonly meter: string;
   readonly muted: string;
   readonly orders: string;
+  readonly progress: string;
   readonly radio: string;
   readonly radios: string;
   readonly search: string;
   readonly side: string;
+  readonly skill: string;
+  readonly skills: string;
+  readonly status: string;
   readonly texts: string;
   readonly unit: string;
+  readonly unitKnown: string;
   readonly word: string;
   readonly words: string;
 };

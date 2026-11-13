@@ -1,5 +1,5 @@
 {
-  "$comment": "Pronunciation as the script leaves it out (ADR 0054). grade-vowels: an abjad word with the learner's vowel marks against its vocalized form; letters must not change, sukun is optional where the profile says so, marks compare per letter after NFC. grade-reading: a typed romanization (Jyutping) syllable by syllable, spaces, hyphens and case ignored, tones required.",
+  "$comment": "Pronunciation as the script leaves it out (ADR 0054). grade-vowels: an abjad word with the learner's vowel marks against its vocalized form; letters must not change, sukun is optional where the profile says so, marks compare per letter after NFC. grade-reading: a typed romanization (Jyutping) syllable by syllable, spaces, hyphens and case ignored, tones required. reading-syllables and reading-tone: a typed reading's syllables and a syllable's tone, as a reading scheme's data (profiles/schemes, ADR 0109) shapes them; the pipeline's nabu.schemes passes the same vectors (pipeline/tests/test_schemes.py).",
   "vectors": [
     {
       "id": "vowels/fa/right",
@@ -510,6 +510,158 @@
         ]
       },
       "note": "No points at all: every pointed letter is off."
+    },
+    {
+      "id": "scheme/jyutping/syllables",
+      "op": "reading-syllables",
+      "args": {
+        "scheme": "jyutping",
+        "text": "nei5 hou2"
+      },
+      "expected": [
+        "nei5",
+        "hou2"
+      ],
+      "note": "Syllables of the shape [a-z]+[1-6], one per character."
+    },
+    {
+      "id": "scheme/jyutping/run-together",
+      "op": "reading-syllables",
+      "args": {
+        "scheme": "jyutping",
+        "text": "nei5hou2"
+      },
+      "expected": [
+        "nei5",
+        "hou2"
+      ],
+      "note": "A tone number ends a syllable: spaces are optional."
+    },
+    {
+      "id": "scheme/jyutping/between",
+      "op": "reading-syllables",
+      "args": {
+        "scheme": "jyutping",
+        "text": "Nei5-Hou2"
+      },
+      "expected": [
+        "nei5",
+        "hou2"
+      ],
+      "note": "Lowercased in yue-Latn-HK; hyphens, apostrophes, dots and spaces between syllables dropped."
+    },
+    {
+      "id": "scheme/jyutping/syllabic-nasal",
+      "op": "reading-syllables",
+      "args": {
+        "scheme": "jyutping",
+        "text": "m4 goi1"
+      },
+      "expected": [
+        "m4",
+        "goi1"
+      ],
+      "note": "m4 (唔) is a syllable."
+    },
+    {
+      "id": "scheme/jyutping/no-tones",
+      "op": "reading-syllables",
+      "args": {
+        "scheme": "jyutping",
+        "text": "nei hou"
+      },
+      "expected": null,
+      "note": "Without tone numbers it is not Jyutping syllables."
+    },
+    {
+      "id": "scheme/jyutping/fullwidth",
+      "op": "reading-syllables",
+      "args": {
+        "scheme": "jyutping",
+        "text": "ngo５"
+      },
+      "expected": null,
+      "note": "A full-width 5 is not a tone number."
+    },
+    {
+      "id": "scheme/pinyin/shown-only",
+      "op": "reading-syllables",
+      "args": {
+        "scheme": "pinyin",
+        "text": "ni hao"
+      },
+      "error": "no syllable shape",
+      "note": "Pinyin's data gives no typed shape: shown, never asked for."
+    },
+    {
+      "id": "scheme/lasina/shown-only",
+      "op": "reading-syllables",
+      "args": {
+        "scheme": "lasina",
+        "text": "toki"
+      },
+      "error": "no syllable shape",
+      "note": "sitelen Lasina is offered as options, never typed."
+    },
+    {
+      "id": "scheme/jyutping/tone",
+      "op": "reading-tone",
+      "args": {
+        "scheme": "jyutping",
+        "syllable": "hou2"
+      },
+      "expected": "2",
+      "note": "A syllable's tone is its tone marks."
+    },
+    {
+      "id": "scheme/jyutping/tone-nasal",
+      "op": "reading-tone",
+      "args": {
+        "scheme": "jyutping",
+        "syllable": "m4"
+      },
+      "expected": "4",
+      "note": "A syllabic nasal carries a tone too."
+    },
+    {
+      "id": "scheme/jyutping/tone-checked",
+      "op": "reading-tone",
+      "args": {
+        "scheme": "jyutping",
+        "syllable": "sik6"
+      },
+      "expected": "6",
+      "note": "A checked syllable takes 1, 3 or 6."
+    },
+    {
+      "id": "scheme/jyutping/toneless",
+      "op": "reading-tone",
+      "args": {
+        "scheme": "jyutping",
+        "syllable": "hou"
+      },
+      "expected": null,
+      "note": "No tone mark: no tone."
+    },
+    {
+      "id": "scheme/jyutping/not-a-tone",
+      "op": "reading-tone",
+      "args": {
+        "scheme": "jyutping",
+        "syllable": "hou7"
+      },
+      "expected": null,
+      "note": "7 is no Cantonese tone."
+    },
+    {
+      "id": "scheme/pinyin/no-tones",
+      "op": "reading-tone",
+      "args": {
+        "scheme": "pinyin",
+        "syllable": "hǎo"
+      },
+      "error": "no tones",
+      "note": "Pinyin's tones (marks on vowels) are not in its data yet."
     }
   ]
 }

@@ -1,9 +1,10 @@
 /**
  * Phase 10 acceptance (gameplan §16), against the production build and the real API (PGlite):
  *
- * - Courses download per unit (the course's text and each unit's audio and pictures). With no
- *   network the app reloads from its service worker, and a lesson plans with the media this
- *   device has: no listening exercise for a clip it never downloaded.
+ * - Courses download per unit (the course's text and each unit's audio and pictures), on the
+ *   course's offline page, linked near the top of its page (S2). With no network the app reloads
+ *   from its service worker, and a lesson plans with the media this device has: no listening
+ *   exercise for a clip it never downloaded.
  * - Three sessions in airplane mode, synced a day later in the background (the service worker,
  *   with no page open): the streak counts each on its own local date, and the server's
  *   projections (the learner state and the game state) match the device's exactly.
@@ -50,13 +51,25 @@ const storedOf = (page: Page, id: string): Promise<string[]> =>
     return keys.map((r) => r.url).filter((u) => u.startsWith(prefix)).map((u) => u.slice(prefix.length));
   }, id);
 
+/** The files of the app's shell this device keeps (the worker's shell cache), as paths from the app's root. */
+const shellOf = (page: Page): Promise<string[]> =>
+  page.evaluate(async () => {
+    const root = new URL("./", window.location.href).href;
+    const name = (await caches.keys()).find((k) => k.startsWith("nabu-shell-"));
+    const keys = name === undefined ? [] : await (await caches.open(name)).keys();
+    return keys.map((r) => r.url.slice(root.length)).sort();
+  });
+
+/** A UI catalog's own file (assets/fa-<hash>.js), as the build names it. */
+const CATALOG_FILE = /^assets\/(?:ar|fa|uz|uz-Cyrl|zh-Hant-HK)-[\w-]+\.js$/u;
+
 /** The instant of a local wall-clock time in TZ (no DST there, so the offset is fixed). */
 const localTime = (date: string, time: string): Date => new Date(`${date}T${time}:00+05:45`);
 const addDays = (date: string, n: number): string => new Date(Date.parse(`${date}T12:00:00Z`) + n * 24 * HOUR).toISOString().slice(0, 10);
 
 /** Plays one planned session from the course path, at the page's clock `now`. */
 const play = async (page: Page, c: CourseView, request: Parameters<typeof planned>[2], now: Date, selector: string): Promise<void> => {
-  const exercises = planned(c, await logOf(page, c.id), request, now, SEED);
+  const exercises = planned(c, await logOf(page, c.id), request, now, SEED, TZ);
   await activate(page, "keyboard", selector);
   await playSession(page, exercises, "keyboard");
   await activate(page, "keyboard", "[data-action=exit]");
@@ -86,6 +99,32 @@ test.describe("offline", () => {
     test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
   });
 
+  test("the shell keeps what this learner needs: no other UI locale, no fonts loaded with their text, no demo", async ({ page }) => {
+    await page.goto(app("#/"));
+    await controlled(page);
+    const shell = await shellOf(page);
+    expect(shell).toEqual(expect.arrayContaining(["index.html", "manifest.webmanifest"]));
+    expect(shell.some((p) => /^assets\/index-[\w-]+\.js$/u.test(p))).toBe(true);
+    // English is in the app's own script: no catalog file of its own, and no draft's (ADR 0119).
+    expect(shell.filter((p) => CATALOG_FILE.test(p))).toEqual([]);
+    expect(shell.filter((p) => /^assets\/(?:fonts-|demo-)/u.test(p))).toEqual([]);
+  });
+
+  test("a draft UI's catalog is kept with the shell: offline, the app opens in it", async ({ page, context }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    await page.goto(`/?ui=fa&drafts=1&sound=off&api=${encodeURIComponent(API)}#/`);
+    await controlled(page);
+    await expect(page.locator("html")).toHaveAttribute("lang", "fa");
+    expect((await shellOf(page)).filter((p) => CATALOG_FILE.test(p)).map((p) => p.replace(/-[\w-]+\.js$/u, ""))).toEqual(["assets/fa"]);
+    // With no network the app still starts, in Persian: the catalog came from the shell.
+    await context.setOffline(true);
+    await page.reload();
+    await expect(page.locator("[data-ui-root]")).toHaveAttribute("lang", "fa");
+    await context.setOffline(false);
+    expect(errors).toEqual([]);
+  });
+
   test("courses download per unit; offline, the app reloads and plans with the media it has", async ({ page, context }) => {
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(String(e)));
@@ -95,6 +134,7 @@ test.describe("offline", () => {
     if (first === undefined) throw new Error("fa has lessons");
     await page.goto(app("#/fa/fa-Arab.standard"));
     await controlled(page);
+    await page.locator("[data-course-path=fa] [data-offline-link]").click();
 
     const panel = page.locator("[data-offline=fa]");
     const intro = panel.locator('[data-offline-unit="intro"]');
@@ -112,16 +152,18 @@ test.describe("offline", () => {
     const stored = new Set(await storedOf(page, "fa"));
     expect(stored).toEqual(new Set(["manifest.json", ...coreFiles(manifest).map((f) => f.path), ...numberAssets]));
 
-    // No network: the app comes back from the service worker.
+    // No network: the app comes back from the service worker, on the course's page.
+    await page.locator("[data-offline-page=fa] a").first().click();
+    await expect(page.locator("[data-course-path=fa]")).toBeVisible();
     await context.setOffline(true);
     await page.reload();
     await expect(page.locator("[data-course-path=fa]")).toBeVisible();
     await expect(page.locator("[data-offline-notice]")).toBeVisible();
 
     // The first unit's clips are not on this device: its first lesson plans without listening.
-    const full = planned(course, [], { mode: "lesson", node: first }, now, SEED);
+    const full = planned(course, [], { mode: "lesson", node: first }, now, SEED, TZ);
     const here = restrictMedia(course, (p) => stored.has(p));
-    const offline = planned(here, [], { mode: "lesson", node: first }, now, SEED);
+    const offline = planned(here, [], { mode: "lesson", node: first }, now, SEED, TZ);
     expect(full.some((e) => LISTENING.has(e.template))).toBe(true);
     expect(offline.some((e) => LISTENING.has(e.template))).toBe(false);
     await play(page, here, { mode: "lesson", node: first }, now, `[data-lesson="${first}"]`);
@@ -131,6 +173,7 @@ test.describe("offline", () => {
     // frees only what no other unit uses: the numbers drill's clips all belong to the numbers
     // unit too, so it offers nothing to remove; family's own files go and its shared ones stay.
     await context.setOffline(false);
+    await page.locator("[data-course-path=fa] [data-offline-link]").click();
     await page.locator("[data-action=download-course]").click();
     await expect(panel).toHaveAttribute("data-offline-complete", "true", { timeout: DOWNLOAD_TIMEOUT_MS });
     expect(removable(manifest, ["drill-numbers"])).toEqual([]);
@@ -175,10 +218,12 @@ test.describe("offline", () => {
     await page.locator("[data-field=password]").fill("ketab-e man");
     await page.locator("[data-action=account-submit]").click();
     await expect(page.locator("[data-account]")).toHaveAttribute("data-account", email);
-    await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard"));
+    await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard/offline"));
     await controlled(page);
     await page.locator("[data-action=download-course]").click();
     await expect(page.locator("[data-offline=fa]")).toHaveAttribute("data-offline-complete", "true", { timeout: DOWNLOAD_TIMEOUT_MS });
+    await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard"));
+    await expect(page.locator("[data-course-path=fa]")).toBeVisible();
 
     // Airplane mode: three sessions, the app reloaded from the service worker before each.
     await context.setOffline(true);
@@ -226,7 +271,7 @@ test.describe("offline", () => {
     const serverGame = ((await (await context.request.get(`${API}/v1/game?today=${today}&now=${encodeURIComponent(now)}`, auth)).json()) as { game: unknown }).game;
     expect(canonical(serverGame)).toBe(canonical(JSON.parse(JSON.stringify(deviceGame))));
     const serverState = ((await (await context.request.get(`${API}/v1/state?course=fa`, auth)).json()) as { state: unknown }).state;
-    const { seen: _seen, ...local } = replay(device.events.filter((e) => e.course === "fa"));
+    const local = replay(device.events.filter((e) => e.type !== "goal_set" && e.course === "fa"));
     expect(canonical(serverState)).toBe(canonical(JSON.parse(JSON.stringify(local))));
     expect(errors).toEqual([]);
   });

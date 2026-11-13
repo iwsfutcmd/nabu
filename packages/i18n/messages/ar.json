@@ -58,10 +58,6 @@
       "message": "غير مفيد",
       "source": "0f4cda6e7ccbcc"
     },
-    "ai.judge.accepted": {
-      "message": "بعد إعادة النظر، قُبلت إجابتكم وتُحتسب صحيحة.",
-      "source": "16541d0f177a53"
-    },
     "ai.judge.checking": {
       "message": "جارٍ التحقّق من إجابتكم مرة أخرى…",
       "source": "0b108f06b1aec3"
@@ -442,10 +438,6 @@
       "message": "العودة إلى الدورة",
       "source": "0820c073883099"
     },
-    "app.practice.due": {
-      "message": ".input {$count :number}\n{{{$count} للمراجعة}}",
-      "source": "0f59593aca6c20"
-    },
     "app.practice.empty": {
       "message": "لا شيء للتدرّب عليه الآن.",
       "source": "1569dd1a1c05f6"
@@ -465,10 +457,6 @@
     "app.practice.title": {
       "message": "التدرّب",
       "source": "1bb4b01c6ca9a0"
-    },
-    "app.practice.to-fix": {
-      "message": ".input {$count :number}\n{{{$count} للتصحيح}}",
-      "source": "018a1da69b8e6e"
     },
     "app.preferences.link": {
       "message": "التفضيلات",
@@ -498,10 +486,6 @@
       "message": "من ثلاثة إلى ثلاثين حرفًا أو رقمًا، مع _ أو - أو . بينها.",
       "source": "107355ec7eb50b"
     },
-    "app.progress.device": {
-      "message": "يُحفظ تقدّمكم على هذا الجهاز.",
-      "source": "1b4bb7e86eea6c"
-    },
     "app.progress.export": {
       "message": "تنزيل بيانات تعلّمي",
       "source": "139603a6ece948"
@@ -518,10 +502,6 @@
       "message": "تعذّر تسجيل هذا الجهاز لتلقّي التذكيرات. حاولوا مرة أخرى لاحقًا.",
       "source": "0763e87e92fff9"
     },
-    "app.reminders.hint": {
-      "message": "تذكير واحد في اليوم على الأكثر، قرب الوقت الذي تتدرّبون فيه عادةً، وفقط إن لم تتدرّبوا بعد.",
-      "source": "16d05c5f49f4ab"
-    },
     "app.reminders.label": {
       "message": "تذكير يومي بالتدرّب",
       "source": "075045dd5b51b5"
@@ -529,6 +509,10 @@
     "app.reminders.unsupported": {
       "message": "لا يستطيع هذا المتصفح عرض التذكيرات.",
       "source": "13fd157356b3c1"
+    },
+    "app.reminders.when": {
+      "message": "تذكير واحد في اليوم على الأكثر، بعد الوقت الذي تتدرّبون فيه عادةً أو في الوقت الذي تحدّدونه في التفضيلات، وفقط إن لم تتدرّبوا بعد.",
+      "source": "1aad72d9ba7d00"
     },
     "app.reset.cancel": {
       "message": "الإبقاء على تقدّمي",
@@ -577,10 +561,6 @@
     "app.roleplay.note": {
       "message": "يؤدي نموذج لغوي دور الطرف الآخر، مستخدمًا كلمات تعرفونها فقط. وقد يخطئ.",
       "source": "12026862d750f2"
-    },
-    "app.roleplay.title": {
-      "message": "المحادثات",
-      "source": "10e79f46fb5744"
     },
     "app.roleplay.unavailable": {
       "message": "تحتاج المحادثات إلى حساب وإلى خادم فيه نموذج لغوي.",
@@ -946,42 +926,6 @@
       "message": "الكلمة ({$orthography})",
       "source": "0f55aaa03db2e2"
     },
-    "course.name.apc": {
-      "message": "العربية اللبنانية",
-      "source": "156dd02569cccd"
-    },
-    "course.name.es": {
-      "message": "الإسبانية الكوبية",
-      "source": "171b108954d4f8"
-    },
-    "course.name.fa": {
-      "message": "الفارسية",
-      "source": "0814f27aca872d"
-    },
-    "course.name.grc": {
-      "message": "اليونانية القديمة",
-      "source": "1e44e3a3ed8730"
-    },
-    "course.name.hbo": {
-      "message": "العبرية التوراتية",
-      "source": "0ddad88d960e7d"
-    },
-    "course.name.lzh": {
-      "message": "الصينية الكلاسيكية",
-      "source": "169053e6ceef8d"
-    },
-    "course.name.tok": {
-      "message": "توكي بونا",
-      "source": "07288edbd3337d"
-    },
-    "course.name.uz": {
-      "message": "الأوزبكية",
-      "source": "00eccd2e4cea3a"
-    },
-    "course.name.yue": {
-      "message": "الكانتونية",
-      "source": "1b9e50f7526657"
-    },
     "debug.cards.back": {
       "message": "العودة إلى الدورة",
       "source": "0820c073883099"
@@ -1306,10 +1250,6 @@
       "message": "تدرّبوا اليوم لتستمر السلسلة.",
       "source": "1cc4f4ce2c152b"
     },
-    "game.title": {
-      "message": "سلسلتكم",
-      "source": "0fe67f53d96cb0"
-    },
     "landing.contribute.audio": {
       "message": "فحص الصوت: استمع إلى كل مقاطع الدورة وقل هل يبدو كلٌّ منها صحيحًا:",
       "source": "11026897e30bf4"
@@ -1430,54 +1370,6 @@
       "message": "منطقة الصعود",
       "source": "1cdef66c79e45d"
     },
-    "orthography.apc-Arab.standard": {
-      "message": "الحروف العربية",
-      "source": "08f5b94b048129"
-    },
-    "orthography.apc-Latn.arabizi": {
-      "message": "العربيزي (حروف لاتينية وأرقام)",
-      "source": "078998ef01b429"
-    },
-    "orthography.es-Latn.standard": {
-      "message": "الإملاء الإسباني",
-      "source": "0ed8e4b41d54ae"
-    },
-    "orthography.fa-Arab.standard": {
-      "message": "الحروف الفارسية",
-      "source": "1a96004e1beccf"
-    },
-    "orthography.grc-Grek.polytonic": {
-      "message": "اليونانية متعددة النبرات",
-      "source": "0b1395732f8b7d"
-    },
-    "orthography.hbo-Hebr.tiberian": {
-      "message": "الخط العبري بالتشكيل الطبري",
-      "source": "0056996ec949db"
-    },
-    "orthography.lzh-Hant.standard": {
-      "message": "الرموز التقليدية",
-      "source": "0768e08b58f7c1"
-    },
-    "orthography.tok-Latn.standard": {
-      "message": "الحروف اللاتينية (sitelen Lasina)",
-      "source": "1dfd55beb895ac"
-    },
-    "orthography.tok-Qaap.sitelen-pona": {
-      "message": "sitelen pona (كتابة رمزية)",
-      "source": "09967254be9d0c"
-    },
-    "orthography.uz-Cyrl.standard": {
-      "message": "الحروف السيريلية",
-      "source": "0c0f5c83735b6c"
-    },
-    "orthography.uz-Latn.standard": {
-      "message": "الحروف اللاتينية",
-      "source": "15289618d8a1e5"
-    },
-    "orthography.yue-Hant-HK.standard": {
-      "message": "الرموز التقليدية",
-      "source": "0768e08b58f7c1"
-    },
     "player.action.cant-listen": {
       "message": "لا أستطيع الاستماع الآن",
       "source": "140179193b2176"
@@ -1541,10 +1433,6 @@
     "player.finished.xp": {
       "message": ".input {$xp :number}\n{{+{$xp} XP}}",
       "source": "10d9c04ce5ff3f"
-    },
-    "player.instruction.char-read": {
-      "message": "كيف يُقرأ هذا؟",
-      "source": "09f22944d314cc"
     },
     "player.instruction.choose-translation": {
       "message": "ما معنى هذا؟",
@@ -1622,17 +1510,9 @@
       "message": "أيّ نغمة تسمعون؟",
       "source": "16db060d6d4816"
     },
-    "player.instruction.transcribe": {
-      "message": "اكتبوا نطق هذه الكلمة",
-      "source": "17544047c67949"
-    },
     "player.instruction.translate-into-support": {
       "message": "ترجموا هذه الجملة",
       "source": "0ca18e83db09fc"
-    },
-    "player.instruction.vocalize": {
-      "message": "أضيفوا التشكيل",
-      "source": "041a63b98f57c1"
     },
     "player.instruction.word-read": {
       "message": "كيف تُكتب هذه الكلمة بالحروف اللاتينية؟",
@@ -1754,10 +1634,6 @@
       "message": "المعنى",
       "source": "1031b11de169ce"
     },
-    "player.quit.body": {
-      "message": "ستفقدون تقدّمكم في هذا الدرس.",
-      "source": "0ab86dd29faeef"
-    },
     "player.quit.cancel": {
       "message": "مواصلة التعلّم",
       "source": "059d6b2b56381d"
@@ -1858,37 +1734,9 @@
       "message": ".input {$heard :number}\n.input {$expected :number}\n{{النغمة {$heard}، والمتوقَّعة {$expected}}}",
       "source": "1e34116823fbfc"
     },
-    "player.toggle.marks": {
-      "message": "إظهار التشكيل",
-      "source": "17bb7ce344c4e6"
-    },
     "player.toggle.vertical": {
       "message": "نص عمودي",
       "source": "1fa81eb3e6f25e"
-    },
-    "player.tone.yue-jyutping.1": {
-      "message": "1 · عالية مستوية",
-      "source": "0eeda0fb5b3a04"
-    },
-    "player.tone.yue-jyutping.2": {
-      "message": "2 · عالية صاعدة",
-      "source": "02fa98567b0205"
-    },
-    "player.tone.yue-jyutping.3": {
-      "message": "3 · متوسطة مستوية",
-      "source": "0911e5c7447f54"
-    },
-    "player.tone.yue-jyutping.4": {
-      "message": "4 · منخفضة هابطة",
-      "source": "1df41eb52dab37"
-    },
-    "player.tone.yue-jyutping.5": {
-      "message": "5 · منخفضة صاعدة",
-      "source": "00ad4735faecfd"
-    },
-    "player.tone.yue-jyutping.6": {
-      "message": "6 · منخفضة مستوية",
-      "source": "0c9f5d02772e14"
     },
     "player.transcribe.label": {
       "message": "النطق",
@@ -1898,14 +1746,6 @@
       "message": "النطق بنظام Jyutping",
       "source": "0e6c8b2c872445"
     },
-    "player.vocalize.label": {
-      "message": "الكلمة مع تشكيلها",
-      "source": "09f512786abfe5"
-    },
-    "player.word.label": {
-      "message": "الكلمة",
-      "source": "05d88136696d61"
-    },
     "player.wordbank.answer-label": {
       "message": "إجابتكم",
       "source": "196b73b49f8369"
@@ -1913,6 +1753,38 @@
     "preferences.back": {
       "message": "العودة إلى دوراتك",
       "source": "00cd88f7410e08"
+    },
+    "preferences.reminder.automatic": {
+      "message": "تلقائي: بعد الوقت الذي تتدرّبون فيه عادةً بقليل",
+      "source": "0ca3a0ca1e2c92"
+    },
+    "preferences.reminder.chosen": {
+      "message": "في وقت أختاره",
+      "source": "14e51aac9dab5e"
+    },
+    "preferences.reminder.failed": {
+      "message": "تعذّر حفظ وقت التذكير. تحقّقوا من اتصالكم ثم حاولوا مرة أخرى.",
+      "source": "1044670c4d487f"
+    },
+    "preferences.reminder.hint": {
+      "message": "تذكير واحد في اليوم على الأكثر، وفقط إن لم تتدرّبوا بعد. فعّلوا التذكيرات في «تقدّمكم».",
+      "source": "018341ed944d95"
+    },
+    "preferences.reminder.label": {
+      "message": "وقت التذكير اليومي",
+      "source": "046f6d85d15c65"
+    },
+    "preferences.reminder.save": {
+      "message": "حفظ وقت التذكير",
+      "source": "068a59bebf966a"
+    },
+    "preferences.reminder.saved": {
+      "message": "تم الحفظ.",
+      "source": "06de620ec8bcdf"
+    },
+    "preferences.reminder.time": {
+      "message": "ذكّرني الساعة",
+      "source": "144881e6ef822f"
     },
     "preferences.target-size.default": {
       "message": "الافتراضي",
@@ -2021,22 +1893,6 @@
     "quest.xp-30": {
       "message": ".input {$target :number}\n{{كسب {$target} XP}}",
       "source": "1f2468bc1998a6"
-    },
-    "reading.scheme.baxter": {
-      "message": "الصينية الوسطى (باكستر)",
-      "source": "19597222ec8510"
-    },
-    "reading.scheme.jyutping": {
-      "message": "جيوتبينغ",
-      "source": "060334df66e05a"
-    },
-    "reading.scheme.lasina": {
-      "message": "sitelen Lasina",
-      "source": "1301a482fe38d5"
-    },
-    "reading.scheme.pinyin": {
-      "message": "بينيين",
-      "source": "158f03ef25e7f5"
     },
     "reports.public": {
       "message": "تصل البلاغات إلى مراجعي الدورة على شكل مشكلات (issues) عامة على GitHub، من دون اسمكم أو أي معلومات عن جهازكم.",

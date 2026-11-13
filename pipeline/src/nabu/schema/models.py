@@ -187,6 +187,19 @@ type ReportStatus = Annotated[
 type Note = Annotated[str, Field(max_length=500)]
 
 
+class Recast(BaseModel):
+    """
+    The designed voice first read `text` (seed `seed` above); the reference is that reading cloned, transcript and all, saying the reference's own text with this seed (VoxCPM2, ADR 0094): a designed voice moved to another register.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: Annotated[str, Field(min_length=1)]
+    seed: Annotated[int, Field(ge=0)]
+
+
 class SynthesisRecord(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -249,7 +262,7 @@ class AudioQa(BaseModel):
     cer: Annotated[
         float | None,
         Field(
-            description="Character error rate of the recognized text against the expected text.",
+            description="Character error rate of the recognized text against the expected text. Cantonese counts characters that differ by their readings: one said alike is no error, one a tone apart half an error (ADR 0094).",
             ge=0.0,
         ),
     ] = None
@@ -314,6 +327,19 @@ class AudioVerdict(BaseModel):
     ]
 
 
+type CreditsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type CreditId = Annotated[
+    str,
+    Field(
+        description="An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.",
+        pattern="^[0-9a-f]{8}$",
+        title="CreditId",
+    ),
+]
+
+
 class BundleFile(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -323,7 +349,12 @@ class BundleFile(BaseModel):
     role: Literal["unit", "profile", "table", "keyboard", "image", "audio", "audio-index"]
     sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
     license: str
-    source: str | None = None
+    credit: Annotated[
+        CreditId | None,
+        Field(
+            description="Who or what made the file (its source): an entry of the manifest's `credits`."
+        ),
+    ] = None
     bytes: Annotated[
         int,
         Field(description="Size in bytes, to say what a download costs before it starts.", ge=0),
@@ -364,7 +395,10 @@ class BundleClip(BaseModel):
     synthetic: bool
     license: str
     credit: Annotated[
-        str | None, Field(description="Attribution: the speaker, or the synthetic voice.")
+        CreditId | None,
+        Field(
+            description="Attribution (the speaker, or the synthetic voice): an entry of the manifest's `credits`."
+        ),
     ] = None
     timings: list[TokenTiming] | None = None
 
@@ -487,6 +521,12 @@ type ScriptCode = Annotated[
         title="ScriptCode",
     ),
 ]
+
+
+type OrthographiesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type HintsAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
 class Corrections(BaseModel):
@@ -662,6 +702,9 @@ type FormsAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
 type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Field(min_length=1)]
 
 
+type ReadingsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
 type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
@@ -718,9 +761,6 @@ class PathNodeSource(BaseModel):
 type TranslationsAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
-type ReadingsAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
 type Variant = Annotated[str, Field(min_length=1)]
 
 
@@ -770,9 +810,24 @@ class ImageAsset(BaseModel):
 type SpokenAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+class AudioPace(BaseModel):
+    """
+    VoxCPM2: a sentence the voice says faster than `target` syllables (Han characters) a second is slowed toward it with Rubber Band, pitch and formants kept, by at most `maxStretch` (ADR 0094). A learner's normal pace, not the player's slow speed (ADR 0062). Word cards are cut from the carrier as they are.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    target: Annotated[float, Field(description="Syllables a second.", gt=0.0)]
+    maxStretch: Annotated[
+        float, Field(description="The most a clip is made longer (1.6: 60% longer).", ge=1.0)
+    ]
+
+
 class AudioCarrier(BaseModel):
     """
-    Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine.
+    Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine. VoxCPM2: an item without closing punctuation (a word card) is said after this text, with the script's full stop, and cut out by forced alignment (ADR 0094); `maxWords` is not used.
     """
 
     model_config = ConfigDict(
@@ -788,7 +843,10 @@ class AudioCarrier(BaseModel):
     ]
     maxWords: Annotated[
         int,
-        Field(description="The longest item the carrier says, in words (split at spaces).", ge=1),
+        Field(
+            description="The longest item the carrier says, in words: its word tokens, so a script written without spaces counts too.",
+            ge=1,
+        ),
     ] = 2
 
 
@@ -932,11 +990,11 @@ type GroupItem = Annotated[str, Field(min_length=1)]
 type Group = Annotated[list[GroupItem], Field(min_length=2)]
 
 
-type ReadingsAdditionalProperty1Item = Annotated[str, Field(min_length=1)]
+type ReadingsAdditionalProperty2Item = Annotated[str, Field(min_length=1)]
 
 
-type ReadingsAdditionalProperty1 = Annotated[
-    list[ReadingsAdditionalProperty1Item], Field(min_length=1)
+type ReadingsAdditionalProperty2 = Annotated[
+    list[ReadingsAdditionalProperty2Item], Field(min_length=1)
 ]
 
 
@@ -960,7 +1018,7 @@ class DataTable(BaseModel):
         Field(description="variants: each group is a set of mutually acceptable forms."),
     ] = None
     readings: Annotated[
-        dict[str, ReadingsAdditionalProperty1] | None,
+        dict[str, ReadingsAdditionalProperty2] | None,
         Field(description="readings: character → readings in the profile's scheme."),
     ] = None
     chars: Annotated[str | None, Field(description="charset: the characters, concatenated.")] = None
@@ -1132,6 +1190,12 @@ class Input(BaseModel):
         Literal["good", "hard", "again"] | None,
         Field(description="Speak tier 0 only: the learner's own rating."),
     ] = None
+    hinted: Annotated[
+        Literal[True] | None,
+        Field(
+            description="The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up."
+        ),
+    ] = None
 
 
 class Outcome(BaseModel):
@@ -1214,7 +1278,13 @@ class SessionCompleted(BaseModel):
     placed: Annotated[
         list[PlacedItem] | None,
         Field(
-            description="Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done."
+            description="Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done. A test the learner stopped part-way (summary.completed false) places by its answers so far, still without the session's XP (D9 in the 2026-11 review)."
+        ),
+    ] = None
+    seeded: Annotated[
+        list[KcRefLocal] | None,
+        Field(
+            description="Placement only (ADR 0111): the KCs the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them."
         ),
     ] = None
 
@@ -1437,6 +1507,59 @@ class SentenceReported(BaseModel):
         str | None,
         Field(description="Optional words from the learner. Personal data.", max_length=1000),
     ] = None
+
+
+class GoalSet(BaseModel):
+    """
+    The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["goal_set"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    days: Annotated[
+        int | None,
+        Field(
+            description="Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.",
+            ge=1,
+            le=7,
+        ),
+    ]
 
 
 type MessageKey = Annotated[
@@ -1797,6 +1920,50 @@ class Fonts(BaseModel):
     ] = None
 
 
+class FineTunedRecognizer(BaseModel):
+    """
+    A Whisper fine-tune that hears the language instead of Whisper's own.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    model: Annotated[
+        str,
+        Field(
+            description='Its Hugging Face repo and pinned revision: "alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d".',
+            pattern="^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+@[0-9a-f]{40}$",
+        ),
+    ]
+    token: Annotated[
+        str,
+        Field(
+            description='The Whisper language token it was trained with ("zh").',
+            pattern="^[a-z]{2,3}$",
+        ),
+    ]
+
+
+class SpeechPhones(BaseModel):
+    """
+    Where expected phones come from: the reading each word pins in `reading`, where that scheme gives phones (Jyutping), else eSpeak NG's phonemes of the spelling in `voice`.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    reading: SchemeId | None = None
+    voice: Annotated[
+        str | None,
+        Field(
+            description="The eSpeak NG voice that reads the spelling. Default: the profile's language, or, where eSpeak NG has no voice for it, the macrolanguage that encompasses it (apc is read as ar).",
+            pattern="^[a-z]{2,3}(-[A-Za-z0-9]{1,8})*$",
+        ),
+    ] = None
+
+
 class Transliteration(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -1804,6 +1971,29 @@ class Transliteration(BaseModel):
     )
     to: OrthographyId
     via: Annotated[str, Field(pattern="^[a-z0-9-]+(:[A-Za-z0-9_/-]+)?$")]
+
+
+class Romanization(BaseModel):
+    """
+    How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088, 0124): a scheme, and the orthography the Latin spellings are in.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    scheme: Annotated[
+        Literal["greek"],
+        Field(
+            description="A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds."
+        ),
+    ]
+    orthography: Annotated[
+        OrthographyId,
+        Field(
+            description="The orthography of the Latin spellings (grc-Latn/romanized): their text is tagged with it, and its profile ships in the bundle beside the course's own."
+        ),
+    ]
 
 
 class Equivalence(BaseModel):
@@ -1893,6 +2083,100 @@ class Contrast(BaseModel):
             pattern="^[a-z][a-z0-9-]*$",
         ),
     ] = None
+
+
+class Typed(BaseModel):
+    """
+    A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    syllable: Annotated[
+        str,
+        Field(
+            description="One syllable, as a regular expression that JavaScript and Python's `regex` read alike (letters, character classes, quantifiers): [a-z]+[1-6].",
+            min_length=1,
+        ),
+    ]
+    locale: LangTag
+    between: Annotated[
+        str,
+        Field(
+            description="A character class of what may stand between syllables and is dropped: spaces, apostrophes, dots, hyphens.",
+            min_length=1,
+        ),
+    ]
+
+
+type TonesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class SchemeNames(BaseModel):
+    """
+    A reading scheme's names in one language.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    scheme: Annotated[
+        str,
+        Field(description="The scheme's name: Jyutping, Middle Chinese (Baxter).", min_length=1),
+    ]
+    tones: Annotated[
+        dict[str, TonesAdditionalProperty] | None,
+        Field(
+            description="Each tone's pitch, by its marks, where the scheme has tones: high level, low rising."
+        ),
+    ] = None
+    provenance: Annotated[
+        Provenance | None,
+        Field(
+            description="Who wrote the names in this language, where not the scheme's authors: an LLM's translation awaiting review (status draft)."
+        ),
+    ] = None
+
+
+type TemplateItem = Annotated[float, Field(ge=1.0, le=5.0)]
+
+
+class Tone(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    letters: Annotated[
+        str,
+        Field(
+            description="Its contour in Chao's tone letters, 1 lowest to 5 highest: 55, 35, 21. Voices that take IPA get them as ˥˧˩.",
+            pattern="^[1-5]{1,3}$",
+        ),
+    ]
+    checked: Annotated[
+        str | None,
+        Field(
+            description="Its shorter contour in a checked syllable (one ending in a stop), where it has one: 5.",
+            pattern="^[1-5]{1,3}$",
+        ),
+    ] = None
+    shape: Annotated[
+        Literal["level", "rising", "falling"],
+        Field(
+            description="Its pitch's movement, which the device judges when it cannot tell the speaker's register."
+        ),
+    ]
+    template: Annotated[
+        list[TemplateItem],
+        Field(
+            description="Chao letters at the start, middle and end of a syllable that the device's tone classifier compares a heard contour with. REVIEW: from the standard descriptions; tune on native recordings.",
+            max_length=3,
+            min_length=3,
+        ),
+    ]
 
 
 class Reports(BaseModel):
@@ -2033,7 +2317,7 @@ type TokenKind = Annotated[
 ]
 
 
-type ReadingsAdditionalProperty2 = Annotated[str, Field(min_length=1)]
+type ReadingsAdditionalProperty3 = Annotated[str, Field(min_length=1)]
 
 
 class RubySegment(BaseModel):
@@ -2208,6 +2492,12 @@ class Design(BaseModel):
     dtype: Annotated[
         str | None, Field(description='The weights\' precision ("bfloat16").', min_length=1)
     ] = None
+    recast: Annotated[
+        Recast | None,
+        Field(
+            description="The designed voice first read `text` (seed `seed` above); the reference is that reading cloned, transcript and all, saying the reference's own text with this seed (VoxCPM2, ADR 0094): a designed voice moved to another register."
+        ),
+    ] = None
     prompt: Annotated[
         Prompt | None,
         Field(
@@ -2314,71 +2604,6 @@ class AudioVerdicts(BaseModel):
     verdicts: list[AudioVerdict]
 
 
-class BundleManifest(BaseModel):
-    """
-    A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    formatVersion: Literal[0]
-    id: Annotated[
-        str,
-        Field(description="sha256 of the manifest without this field.", pattern="^[0-9a-f]{64}$"),
-    ]
-    course: str
-    target: ScriptedLangTag
-    orthographies: list[OrthographyId]
-    support: list[OrthographyId]
-    facets: Annotated[
-        list[Facet] | None,
-        Field(
-            description="The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
-            min_length=1,
-        ),
-    ] = None
-    audioQuality: Annotated[
-        Literal["iffy"] | None,
-        Field(
-            description="How far learners may rely on the course's clips, where it is not good (course source `audio.quality`, ADR 0091). iffy: no template whose prompt is a clip (listening, listen-and-repeat) is planned; clips still play where the learner has the text. A bad voice ships no clips, so it needs no flag."
-        ),
-    ] = None
-    placement: Annotated[
-        PlacementPolicy | None,
-        Field(
-            description="How the placement test probes, where the course says (course source `placement`, ADR 0077)."
-        ),
-    ] = None
-    versions: Annotated[
-        dict[str, str],
-        Field(
-            description="Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU."
-        ),
-    ]
-    files: Annotated[
-        list[BundleFile],
-        Field(description="Every file in the bundle by role, with its SPDX license."),
-    ]
-    units: Annotated[
-        list[BundleManifestUnit],
-        Field(
-            description="The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit."
-        ),
-    ]
-    licenses: Annotated[
-        dict[str, int], Field(description="SPDX expression → number of content items.")
-    ]
-    provenance: Annotated[dict[str, int], Field(description="Counts by status and author kind.")]
-    release: Annotated[
-        bool | None,
-        Field(
-            description="A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
-        ),
-    ] = None
-
-
 class BundleAudioItem(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2386,6 +2611,63 @@ class BundleAudioItem(BaseModel):
     )
     normal: BundleClip
     slow: BundleClip | None = None
+
+
+class CourseNames1(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    course: Annotated[
+        str,
+        Field(
+            description="The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.",
+            min_length=1,
+        ),
+    ]
+    blurb: Annotated[
+        str | None,
+        Field(
+            description="One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.",
+            min_length=1,
+        ),
+    ] = None
+    orthographies: Annotated[
+        dict[OrthographyId, OrthographiesAdditionalProperty] | None,
+        Field(
+            description="Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers)."
+        ),
+    ] = None
+    hints: Annotated[
+        dict[OrthographyId, HintsAdditionalProperty] | None,
+        Field(
+            description="For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages."
+        ),
+    ] = None
+    provenance: Annotated[
+        Provenance | None,
+        Field(
+            description="Who wrote the names in this language, where not the course's authors: an LLM's translation awaiting review (status draft). Without it, the course's provenance."
+        ),
+    ] = None
+
+
+type CourseNames = Annotated[
+    dict[LangTag, CourseNames1],
+    Field(
+        description="What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.",
+        examples=[
+            {
+                "en": {
+                    "course": "Cantonese",
+                    "orthographies": {"yue-Hant-HK/standard": "Traditional characters"},
+                }
+            }
+        ],
+        min_length=1,
+        title="CourseNames",
+    ),
+]
 
 
 class KnowledgeComponentSource(BaseModel):
@@ -2404,6 +2686,12 @@ class KnowledgeComponentSource(BaseModel):
         dict[OrthographyId, FormsAdditionalProperty] | None,
         Field(
             description="Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7)."
+        ),
+    ] = None
+    readings: Annotated[
+        dict[SchemeId, ReadingsAdditionalProperty] | None,
+        Field(
+            description="How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-."
         ),
     ] = None
     image: ImageAsset | None = None
@@ -2453,20 +2741,20 @@ class AudioVoice(BaseModel):
         ),
     ] = None
     provider: Annotated[
-        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy"],
+        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy", "voxcpm"],
         Field(description="A provider of nabu.audio.providers."),
     ]
     voice: Annotated[
         str,
         Field(
-            description="The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
+            description="The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice, Navoiy and VoxCPM2 a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
             min_length=1,
         ),
     ]
     model: Annotated[
         str | None,
         Field(
-            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips\' recorded version.',
+            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, VoxCPM2, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("openbmb/VoxCPM2@…", "MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips\' recorded version.',
             min_length=1,
         ),
     ] = None
@@ -2497,6 +2785,7 @@ class AudioVoice(BaseModel):
         ),
     ] = None
     carrier: AudioCarrier | None = None
+    pace: AudioPace | None = None
     spoken: Annotated[
         dict[Annotated[str, StringConstraints(min_length=1)], SpokenAdditionalProperty] | None,
         Field(
@@ -2871,6 +3160,12 @@ class Marks(BaseModel):
             description="The note for an answer whose marks spell another word (with `distinguishes`)."
         ),
     ] = None
+    spelledIn: Annotated[
+        list[OrthographyId] | None,
+        Field(
+            description="Orthographies that write out the vowels these marks leave unwritten (ADR 0095): Arabizi for Lebanese Arabic. Where a course has one of them, a vocalize card also accepts the word as that orthography writes it."
+        ),
+    ] = None
 
 
 class Zwnj(BaseModel):
@@ -2968,6 +3263,106 @@ class MatchPolicy(BaseModel):
     ] = None
 
 
+class Recognizer(BaseModel):
+    """
+    Who hears the orthography: Whisper, in a language, or a Whisper fine-tune for a language Whisper's own does not write (Cantonese, which it writes as Mandarin: ADR 0094).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    language: Annotated[
+        str | None,
+        Field(
+            description="The language Whisper hears it as. Default: the profile's language, or, where Whisper has none for it, the macrolanguage that encompasses it (CLDR's data: apc is heard as ar).",
+            pattern="^[a-z]{2,3}$",
+        ),
+    ] = None
+    fineTuned: FineTunedRecognizer | None = None
+
+
+class Tones(BaseModel):
+    """
+    Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    system: Annotated[
+        str,
+        Field(
+            description="The tone system's id, as tone exercises name it: yue-jyutping.",
+            pattern="^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        ),
+    ]
+    marks: Annotated[
+        str,
+        Field(
+            description="A character class of what marks a tone in a syllable: [0-9]. A syllable's tone is its marks; a typed answer with none has no tones.",
+            min_length=1,
+        ),
+    ]
+    values: Annotated[
+        dict[str, Tone],
+        Field(
+            description="Each tone, keyed by its marks, in the order a learner meets them.",
+            min_length=2,
+        ),
+    ]
+
+
+class ReadingScheme(BaseModel):
+    """
+    A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: SchemeId
+    names: Annotated[
+        dict[LangTag, SchemeNames],
+        Field(
+            description="What the UI calls it and its tones, by the language they are written in (a BCP 47 tag; ADR 0109), as a course's names are: data, never app messages.",
+            min_length=1,
+        ),
+    ]
+    language: Annotated[
+        LangTag,
+        Field(
+            description="The language whose sounds it writes: yue for Jyutping, cmn for Pinyin, ltc for Baxter's Middle Chinese. The audio round trip compares a language's characters by their readings where a scheme of that language can read written text (nabu.schemes)."
+        ),
+    ]
+    lang: Annotated[
+        ScriptedLangTag | None,
+        Field(
+            description="The language tag of its text where it stands on its own, as an option or an answer: yue-Latn-HK-jyutping. A profile's reading layer may tag its ruby otherwise (`lang`, ADR 0071)."
+        ),
+    ] = None
+    answer: Annotated[
+        OrthographyId | None,
+        Field(
+            description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese."
+        ),
+    ] = None
+    typed: Annotated[
+        Typed | None,
+        Field(
+            description="A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end."
+        ),
+    ] = None
+    tones: Annotated[
+        Tones | None,
+        Field(
+            description="Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use."
+        ),
+    ] = None
+
+
 type ReportSubmission = Annotated[
     CorrectionSubmission | AnswerSubmission, Field(title="ReportSubmission")
 ]
@@ -3015,7 +3410,7 @@ class TokenModel(BaseModel):
         ),
     ] = None
     readings: Annotated[
-        dict[SchemeId, ReadingsAdditionalProperty2] | None,
+        dict[SchemeId, ReadingsAdditionalProperty3] | None,
         Field(
             description='Readings per scheme, e.g. {"jyutping": "hong4"}. Pinned in content, never guessed at runtime.'
         ),
@@ -3064,6 +3459,88 @@ class AudioIndex(BaseModel):
         list[ReferenceVoice] | None,
         Field(
             description="Reference voices (`nabu audio cast`): a short recording a voice-cloning provider (OmniVoice) clones for every clip, so one course voice sounds like one speaker."
+        ),
+    ] = None
+
+
+class BundleManifest(BaseModel):
+    """
+    A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    formatVersion: Annotated[
+        Literal[1],
+        Field(
+            description="1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text."
+        ),
+    ]
+    id: Annotated[
+        str,
+        Field(description="sha256 of the manifest without this field.", pattern="^[0-9a-f]{64}$"),
+    ]
+    course: str
+    target: ScriptedLangTag
+    orthographies: list[OrthographyId]
+    support: list[OrthographyId]
+    names: Annotated[
+        CourseNames | None,
+        Field(
+            description="What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses."
+        ),
+    ] = None
+    facets: Annotated[
+        list[Facet] | None,
+        Field(
+            description="The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
+            min_length=1,
+        ),
+    ] = None
+    audioQuality: Annotated[
+        Literal["iffy"] | None,
+        Field(
+            description="How far learners may rely on the course's clips, where it is not good (course source `audio.quality`, ADR 0091). iffy: no template whose prompt is a clip (listening, listen-and-repeat) is planned; clips still play where the learner has the text. A bad voice ships no clips, so it needs no flag."
+        ),
+    ] = None
+    placement: Annotated[
+        PlacementPolicy | None,
+        Field(
+            description="How the placement test probes, where the course says (course source `placement`, ADR 0077)."
+        ),
+    ] = None
+    versions: Annotated[
+        dict[str, str],
+        Field(
+            description="Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU."
+        ),
+    ]
+    files: Annotated[
+        list[BundleFile],
+        Field(description="Every file in the bundle by role, with its SPDX license."),
+    ]
+    credits: Annotated[
+        dict[CreditId, CreditsAdditionalProperty],
+        Field(
+            description="Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`)."
+        ),
+    ]
+    units: Annotated[
+        list[BundleManifestUnit],
+        Field(
+            description="The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit."
+        ),
+    ]
+    licenses: Annotated[
+        dict[str, int], Field(description="SPDX expression → number of content items.")
+    ]
+    provenance: Annotated[dict[str, int], Field(description="Counts by status and author kind.")]
+    release: Annotated[
+        bool | None,
+        Field(
+            description="A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
         ),
     ] = None
 
@@ -3174,7 +3651,8 @@ type LearnerEvent = Annotated[
     | OutcomeRevised
     | AnswerReported
     | ProgressReset
-    | SentenceReported,
+    | SentenceReported
+    | GoalSet,
     Field(
         description="The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
         title="LearnerEvent",
@@ -3195,6 +3673,25 @@ type NormalizeStep = Annotated[
     | LogographsStep,
     Field(title="NormalizeStep"),
 ]
+
+
+class SpeechSetup(BaseModel):
+    """
+    How speech in the orthography is heard (gameplan §10.4, ADR 0116): what the speech service scores a learner on, the recognizer that hears it (learners, and the round trip of the course's clips) and where expected phones come from (tier 2, and forced alignment of clips). A profile without it is scored on nothing; its recognizer and phones take their defaults.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    tiers: Annotated[
+        list[Literal[1, 2]],
+        Field(
+            description="What the speech service scores (REVIEW: per-language choices, to revisit with recorded learners). 1: the words, where the recognizer writes this orthography; the API grades its transcript with the sentence's accept set. 2: the phones, where the expected phones can be trusted. Empty: nothing."
+        ),
+    ]
+    recognizer: Recognizer | None = None
+    phones: SpeechPhones | None = None
 
 
 class TaggedText(BaseModel):
@@ -3509,13 +4006,9 @@ class OrthographyProfile(BaseModel):
     layout: Layout | None = None
     strokeOrder: StrokeOrder | None = None
     fonts: Fonts | None = None
-    romanize: Annotated[
-        Literal["greek"] | None,
-        Field(
-            description="How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline."
-        ),
-    ] = None
+    romanize: Romanization | None = None
     transliterate: Transliteration | None = None
+    speech: SpeechSetup | None = None
 
 
 class BundleStoryStep(BaseModel):
@@ -3635,6 +4128,12 @@ class CourseSource(BaseModel):
             min_length=1,
         ),
     ]
+    names: Annotated[
+        CourseNames | None,
+        Field(
+            description="What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names)."
+        ),
+    ] = None
     license: Annotated[
         Spdx | None,
         Field(description="Default SPDX license for every content item that gives none."),
@@ -3678,6 +4177,7 @@ type NabuSchemaBundle = Annotated[
     | LearnerEvent
     | MessageCatalog
     | OrthographyProfile
+    | ReadingScheme
     | Reports
     | SignOffs
     | TaggedText,

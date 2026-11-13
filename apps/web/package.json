@@ -13,16 +13,19 @@
     "typecheck": "node ../../packages/ui/scripts/css-module-types.ts --root src --check && tsc -p tsconfig.json && tsc -p sw/tsconfig.json",
     "lint": "eslint .",
     "lint:css": "stylelint \"src/**/*.css\"",
+    "test": "vitest run",
     "test:e2e": "playwright test"
   },
   "dependencies": {
     "@capacitor/app": "8.1.2",
     "@capacitor/core": "8.5.3",
     "@capacitor/push-notifications": "8.1.3",
+    "@internationalized/date": "^3.12.4",
     "@nabu/core": "workspace:*",
     "@nabu/i18n": "workspace:*",
     "@nabu/schema": "workspace:*",
     "@nabu/ui": "workspace:*",
+    "ajv": "^8.20.0",
     "react": "^19.3.1",
     "react-aria-components": "^1.22.1",
     "react-dom": "^19.3.1"
@@ -36,6 +39,7 @@
     "@vitejs/plugin-react": "^6.2.1",
     "typescript": "~6.0.3",
     "vite": "^8.3.5",
+    "vitest": "^5.1.0",
     "yaml": "^2.9.1"
   }
 }

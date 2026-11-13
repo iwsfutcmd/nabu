@@ -6,11 +6,13 @@
  *
  * It cannot happen by accident: the dialog asks the learner to type the course's name, as it
  * reads in their UI language, before the button works. The comparison ignores case, accents and
- * surrounding spaces (an Intl.Collator at base strength in the UI locale) and waits for any IME
- * composition to end, so learners typing with an input method are never cut short.
+ * surrounding spaces (an Intl.Collator at base strength in the UI locale). The button works while
+ * a keyboard still composes the name, as Check does (ADR 0118, D39): a press then waits for the
+ * composition to end and goes ahead only if the settled text still names the course, so learners
+ * typing with an input method need one tap, and nothing happens mid-composition.
  */
-import { chromeClass, useChrome, useTranslator } from "@nabu/ui";
-import { useMemo, useState, type JSX } from "react";
+import { chromeClass, useChrome, useSettledSubmit, useTranslator } from "@nabu/ui";
+import { useMemo, useRef, useState, type JSX } from "react";
 import { Button, Dialog, DialogTrigger, Heading, Input, Label, Modal, Text, TextField } from "react-aria-components";
 import styles from "./App.module.css";
 
@@ -21,8 +23,19 @@ const Confirm = ({ language, onConfirm, close }: { language: string; onConfirm: 
   const t = useTranslator();
   const collator = useMemo(() => new Intl.Collator(t.formattingLocale, { sensitivity: "base", usage: "search" }), [t.formattingLocale]);
   const [typed, setTyped] = useState("");
-  const [composing, setComposing] = useState(false);
-  const ready = !composing && namesCourse(collator, typed, language);
+  // What is typed names the course, composing or not; a press while composing waits for the settled text.
+  const ready = namesCourse(collator, typed, language);
+  const confirmButton = useRef<HTMLButtonElement>(null);
+  const actions = useRef<HTMLDivElement>(null);
+  const settled = useSettledSubmit(
+    () => {
+      if (!ready) return;
+      onConfirm();
+      close();
+    },
+    confirmButton,
+    actions,
+  );
   return (
     <>
       <Heading slot="title" className={styles.subheading}>
@@ -31,31 +44,16 @@ const Confirm = ({ language, onConfirm, close }: { language: string; onConfirm: 
       <p>{t.format("app.reset.confirm-body")}</p>
       <TextField className={styles.field} value={typed} onChange={setTyped} autoComplete="off" data-reset-field="">
         <Label className={styles.label}>{t.format("app.reset.type-label", { language })}</Label>
-        <Input
-          className={styles.input}
-          spellCheck={false}
-          autoCapitalize="none"
-          onCompositionStart={() => setComposing(true)}
-          onCompositionEnd={() => setComposing(false)}
-          data-field="reset-name"
-        />
+        <Input className={styles.input} spellCheck={false} autoCapitalize="none" {...settled.composition} data-field="reset-name" />
         <Text slot="description" className={styles.muted}>
           {t.format("app.reset.type-hint")}
         </Text>
       </TextField>
-      <div className={styles.dialogActions}>
+      <div ref={actions} className={styles.dialogActions}>
         <Button className={styles.textButton} onPress={close} autoFocus data-action="keep-progress">
           {t.format("app.reset.cancel")}
         </Button>
-        <Button
-          className={styles.dangerButton}
-          isDisabled={!ready}
-          onPress={() => {
-            onConfirm();
-            close();
-          }}
-          data-action="confirm-start-over"
-        >
+        <Button ref={confirmButton} className={styles.dangerButton} isDisabled={!ready} onPress={settled.press} data-action="confirm-start-over">
           {t.format("app.reset.confirm")}
         </Button>
       </div>

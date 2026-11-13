@@ -1,8 +1,10 @@
 /**
  * The typed-answer field, IME-safe (gameplan §6.7):
  * - the value is stored exactly as typed: never normalized, never rewritten;
- * - Enter submits only outside composition (isComposing / keyCode 229);
- * - compositionend hands the settled text to the state machine;
+ * - Enter submits only outside composition (isComposing / keyCode 229); a phone keyboard labels
+ *   its Enter key "done" (enterKeyHint), since it checks the answer;
+ * - compositionend hands the settled text to the state machine (a Check pressed mid-composition
+ *   waits for it, ADR 0118);
  * - `lang` and `dir` are the target orthography's, not the UI's.
  *
  * The special-character bar inserts at the caret and keeps focus in the field.
@@ -10,19 +12,32 @@
  * scripts well on phones; an on-screen keyboard is deferred (ADR 0034).
  */
 import { textOfSurface } from "@nabu/core/text";
-import { fontStackFor, type Direction } from "@nabu/i18n";
+import { fontStackFor, scriptOf, type Direction } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { useId, useLayoutEffect, useRef, type CSSProperties, type JSX, type KeyboardEvent } from "react";
 import { useIsTarget, useOrthography, useTranslator } from "../context.tsx";
 import { T } from "../T.tsx";
 import styles from "./Player.module.css";
 
-const ZWNJ = "‌";
-const ZWJ = "‍";
+const ZWNJ = "\u200c";
+const ZWJ = "\u200d";
 const TATWEEL = "ـ";
 const DOTTED_CIRCLE = "◌";
 const MARK_ONLY = /^\p{M}+$/u;
-const ARABIC = /\p{Script=Arabic}/u;
+
+/**
+ * What a lone mark is shown on in a language's script: the tatweel in the scripts it joins (its
+ * Unicode Script_Extensions: Arabic, Syriac, Mandaic …), a dotted circle in every other one, and in
+ * a script Unicode does not encode (a private-use subtag).
+ */
+export const markCarrier = (lang: string): string => {
+  try {
+    const script = scriptOf(lang);
+    return script !== undefined && new RegExp(`\\p{scx=${script}}`, "u").test(TATWEEL) ? TATWEEL : DOTTED_CIRCLE;
+  } catch {
+    return DOTTED_CIRCLE;
+  }
+};
 
 interface KeyProps {
   readonly value: string;
@@ -44,8 +59,7 @@ const InsertKey = ({ value, base, onInsert, disabled, className }: KeyProps): JS
   const invisible = value === ZWNJ ? "zwnj" : value === ZWJ ? "zwj" : undefined;
   const mark = markName(value);
   const spoken = mark !== undefined && t.has(mark) ? t.format(mark) : undefined;
-  const carrier = ARABIC.test(base.lang) || base.lang.includes("-Arab") ? TATWEEL : DOTTED_CIRCLE;
-  const shown = MARK_ONLY.test(value) ? `${carrier}${value}` : value;
+  const shown = MARK_ONLY.test(value) ? `${markCarrier(base.lang)}${value}` : value;
   return (
     <button
       type="button"
@@ -86,6 +100,8 @@ export interface AnswerInputProps {
   readonly base: Pick<TaggedText, "lang" | "orthography">;
   readonly dir: Direction;
   readonly label: string;
+  /** Ids of what the field is described by: the card's instruction and prompt (P10). */
+  readonly describedBy?: string | undefined;
   readonly disabled: boolean;
   readonly extraKeys: readonly string[];
   readonly onInput: (text: string) => void;
@@ -99,6 +115,7 @@ export const AnswerInput = ({
   base,
   dir,
   label,
+  describedBy,
   disabled,
   extraKeys,
   onInput,
@@ -156,10 +173,12 @@ export const AnswerInput = ({
         value={value}
         lang={base.lang}
         dir={dir}
+        aria-describedby={describedBy}
         autoCapitalize="off"
         autoCorrect="off"
         autoComplete="off"
         spellCheck={false}
+        enterKeyHint="done"
         disabled={disabled}
         autoFocus
         data-answer-input=""

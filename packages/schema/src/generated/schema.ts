@@ -60,6 +60,21 @@ export type Spdx = string;
  */
 export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
 /**
+ * Who or what made the file (its source): an entry of the manifest's `credits`.
+ */
+export type CreditId = string;
+/**
+ * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CreditId".
+ */
+export type CreditId1 = string;
+/**
+ * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
+ */
+export type CreditId2 = string;
+/**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -147,7 +162,8 @@ export type LearnerEvent =
   | OutcomeRevised
   | AnswerReported
   | ProgressReset
-  | SentenceReported;
+  | SentenceReported
+  | GoalSet;
 /**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
@@ -209,6 +225,10 @@ export type Uuid12 = string;
  * The session the learner was in, or a session of this one event (the sentence list).
  */
 export type Uuid13 = string;
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid14 = string;
 /**
  * Dotted lowercase key, e.g. exercise.action.check.
  *
@@ -304,6 +324,22 @@ export type ScriptedLangTag1 = LangTag;
  */
 export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
+ * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ */
+export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
+/**
+ * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
+ */
+export type LangTag1 = string & { readonly __brand: "LangTag" };
+/**
+ * A LangTag that carries an explicit script subtag. Every piece of language data uses one (gameplan §1 decision 3, §6.1): direction, fonts, Han glyph selection and input all key off the script.
+ */
+export type ScriptedLangTag2 = LangTag;
+/**
+ * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ */
+export type OrthographyId3 = string & { readonly __brand: "OrthographyId" };
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReportSubmission".
  */
@@ -345,6 +381,7 @@ export interface NabuSchemaIndex {
   readonly AudioVerdicts: AudioVerdicts;
   readonly AudioVerdict: AudioVerdict;
   readonly BundleManifest: BundleManifest;
+  readonly CreditId: CreditId1;
   readonly BundleFile: BundleFile;
   readonly BundleManifestUnit: BundleManifestUnit;
   readonly BundleUnit: BundleUnit;
@@ -369,6 +406,7 @@ export interface NabuSchemaIndex {
   readonly Facet: Facet;
   readonly PlacementPolicy: PlacementPolicy1;
   readonly ScriptCode: ScriptCode;
+  readonly CourseNames: CourseNames1;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
   readonly CorrectedForm: CorrectedForm;
@@ -390,6 +428,7 @@ export interface NabuSchemaIndex {
   readonly ImageAsset: ImageAsset;
   readonly CourseAudio: CourseAudio;
   readonly AudioVoice: AudioVoice;
+  readonly AudioPace: AudioPace;
   readonly AudioCarrier: AudioCarrier;
   readonly StorySource: StorySource;
   readonly StoryCharacter: StoryCharacter;
@@ -416,6 +455,7 @@ export interface NabuSchemaIndex {
   readonly AnswerReported: AnswerReported;
   readonly ProgressReset: ProgressReset;
   readonly SentenceReported: SentenceReported;
+  readonly GoalSet: GoalSet;
   readonly MessageCatalog: MessageCatalog;
   readonly MessageKey: MessageKey;
   readonly CatalogMessage: CatalogMessage;
@@ -445,10 +485,18 @@ export interface NabuSchemaIndex {
   readonly StrokeOrderStandard: StrokeOrderStandard;
   readonly StrokeOrder: StrokeOrder;
   readonly Fonts: Fonts;
+  readonly Speech: SpeechSetup;
+  readonly Recognizer: Recognizer;
+  readonly FineTunedRecognizer: FineTunedRecognizer;
+  readonly SpeechPhones: SpeechPhones;
   readonly Transliteration: Transliteration;
+  readonly Romanization: Romanization;
   readonly Equivalence: Equivalence;
   readonly TableRef: TableRef;
   readonly Contrast: Contrast;
+  readonly ReadingScheme: ReadingScheme;
+  readonly SchemeNames: SchemeNames;
+  readonly Tone: Tone;
   readonly Reports: Reports;
   readonly ReportSubmission: ReportSubmission;
   readonly CorrectionSubmission: CorrectionSubmission;
@@ -913,7 +961,7 @@ export interface AudioQa {
   readonly asrModel?: string;
   readonly asrText?: string;
   /**
-   * Character error rate of the recognized text against the expected text.
+   * Character error rate of the recognized text against the expected text. Cantonese counts characters that differ by their readings: one said alike is no error, one a tone apart half an error (ADR 0094).
    */
   readonly cer?: number;
   readonly status?: "pass" | "review" | "fail";
@@ -978,6 +1026,13 @@ export interface ReferenceVoice {
      */
     readonly dtype?: string;
     /**
+     * The designed voice first read `text` (seed `seed` above); the reference is that reading cloned, transcript and all, saying the reference's own text with this seed (VoxCPM2, ADR 0094): a designed voice moved to another register.
+     */
+    readonly recast?: {
+      readonly text: string;
+      readonly seed: number;
+    };
+    /**
      * A recording the voice was cloned from, for a model that clones rather than designs (Navoiy, ADR 0059): where it is, its sha256 and its license. It is not kept in the course.
      */
     readonly prompt?: {
@@ -1037,7 +1092,10 @@ export interface AudioVerdict {
  * via the `definition` "BundleManifest".
  */
 export interface BundleManifest {
-  readonly formatVersion: 0;
+  /**
+   * 1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text.
+   */
+  readonly formatVersion: 1;
   /**
    * sha256 of the manifest without this field.
    */
@@ -1046,6 +1104,7 @@ export interface BundleManifest {
   readonly target: ScriptedLangTag;
   readonly orthographies: readonly OrthographyId[];
   readonly support: readonly OrthographyId[];
+  readonly names?: CourseNames;
   /**
    * The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.
    *
@@ -1068,6 +1127,12 @@ export interface BundleManifest {
    */
   readonly files: readonly BundleFile[];
   /**
+   * Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`).
+   */
+  readonly credits: {
+    readonly [k: string]: string;
+  };
+  /**
    * The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit.
    */
   readonly units: readonly BundleManifestUnit[];
@@ -1089,6 +1154,43 @@ export interface BundleManifest {
   readonly release?: boolean;
 }
 /**
+ * What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses.
+ */
+export interface CourseNames {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
+      readonly [k: string]: string;
+    };
+    readonly provenance?: Provenance1;
+  };
+}
+/**
+ * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
+ */
+export interface Provenance1 {
+  readonly author: string;
+  readonly status: "draft" | "reviewed" | "published";
+  readonly reviewedBy?: string;
+  readonly reviewedAt?: string;
+}
+/**
  * How the placement test probes, where the course says (course source `placement`, ADR 0077).
  */
 export interface PlacementPolicy {
@@ -1103,7 +1205,7 @@ export interface BundleFile {
   readonly role: "unit" | "profile" | "table" | "keyboard" | "image" | "audio" | "audio-index";
   readonly sha256: string;
   readonly license: string;
-  readonly source?: string;
+  readonly credit?: CreditId;
   /**
    * Size in bytes, to say what a download costs before it starts.
    */
@@ -1364,10 +1466,7 @@ export interface BundleClip {
   readonly durationMs: number;
   readonly synthetic: boolean;
   readonly license: string;
-  /**
-   * Attribution: the speaker, or the synthetic voice.
-   */
-  readonly credit?: string;
+  readonly credit?: CreditId2;
   readonly timings?: readonly TokenTiming[];
 }
 /**
@@ -1378,6 +1477,37 @@ export interface BundleClip {
  */
 export interface PlacementPolicy1 {
   readonly production?: "tiles" | "typed";
+}
+/**
+ * What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CourseNames".
+ */
+export interface CourseNames1 {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
+      readonly [k: string]: string;
+    };
+    readonly provenance?: Provenance1;
+  };
 }
 /**
  * Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
@@ -1494,8 +1624,9 @@ export interface CourseSource {
    * @minItems 1
    */
   readonly support: readonly OrthographyId[];
+  readonly names?: CourseNames2;
   readonly license?: Spdx1;
-  readonly provenance?: Provenance1;
+  readonly provenance?: Provenance2;
   /**
    * The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.
    *
@@ -1519,9 +1650,37 @@ export interface CourseSource {
   readonly vocalization?: readonly (string | VocalizationSource)[];
 }
 /**
+ * What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).
+ */
+export interface CourseNames2 {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
+      readonly [k: string]: string;
+    };
+    readonly provenance?: Provenance1;
+  };
+}
+/**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
  */
-export interface Provenance1 {
+export interface Provenance2 {
   readonly author: string;
   readonly status: "draft" | "reviewed" | "published";
   readonly reviewedBy?: string;
@@ -1577,6 +1736,12 @@ export interface KnowledgeComponentSource {
      * @minItems 1
      */
     readonly [k: string]: readonly string[];
+  };
+  /**
+   * How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-.
+   */
+  readonly readings?: {
+    readonly [k: string]: string;
   };
   readonly image?: ImageAsset;
   readonly notes?: {
@@ -1895,13 +2060,13 @@ export interface AudioVoice {
   /**
    * A provider of nabu.audio.providers.
    */
-  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice" | "navoiy";
+  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice" | "navoiy" | "voxcpm";
   /**
-   * The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
+   * The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice, Navoiy and VoxCPM2 a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
    */
   readonly voice: string;
   /**
-   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips' recorded version.
+   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, VoxCPM2, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("openbmb/VoxCPM2@…", "MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips' recorded version.
    */
   readonly model?: string;
   /**
@@ -1921,6 +2086,7 @@ export interface AudioVoice {
    */
   readonly pronounce?: string;
   readonly carrier?: AudioCarrier;
+  readonly pace?: AudioPace;
   /**
    * What the voice reads instead of an item's text (item id: text in the orthography), for a reading the text does not settle: a homograph (نه is noh "nine" in the numbers drill, na "no" elsewhere: drill.numbers.9: نُه). Vowel marks where they settle it. It must have as many words as the item, so word timings still map. The full stop of `finalStop` is added after it.
    */
@@ -1935,7 +2101,7 @@ export interface AudioVoice {
   readonly license: Spdx2;
 }
 /**
- * Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine.
+ * Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine. VoxCPM2: an item without closing punctuation (a word card) is said after this text, with the script's full stop, and cut out by forced alignment (ADR 0094); `maxWords` is not used.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "AudioCarrier".
@@ -1946,9 +2112,25 @@ export interface AudioCarrier {
    */
   readonly text: string;
   /**
-   * The longest item the carrier says, in words (split at spaces).
+   * The longest item the carrier says, in words: its word tokens, so a script written without spaces counts too.
    */
   readonly maxWords?: number;
+}
+/**
+ * VoxCPM2: a sentence the voice says faster than `target` syllables (Han characters) a second is slowed toward it with Rubber Band, pitch and formants kept, by at most `maxStretch` (ADR 0094). A learner's normal pace, not the player's slow speed (ADR 0062). Word cards are cut from the carrier as they are.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioPace".
+ */
+export interface AudioPace {
+  /**
+   * Syllables a second.
+   */
+  readonly target: number;
+  /**
+   * The most a clip is made longer (1.6: 60% longer).
+   */
+  readonly maxStretch: number;
 }
 /**
  * A course's vowel marks for one orthography (ADR 0053): each word's vocalized form. A surface with several pronunciations is ambiguous: each of its tokens names its own (SourceToken.vocalized).
@@ -2254,6 +2436,10 @@ export interface AnswerSubmitted {
      * Speak tier 0 only: the learner's own rating.
      */
     readonly selfRating?: "good" | "hard" | "again";
+    /**
+     * The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up.
+     */
+    readonly hinted?: true;
   };
   readonly outcome: {
     readonly kind:
@@ -2372,9 +2558,13 @@ export interface SessionCompleted {
   readonly node?: string;
   readonly summary: SessionSummaryData;
   /**
-   * Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done.
+   * Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done. A test the learner stopped part-way (summary.completed false) places by its answers so far, still without the session's XP (D9 in the 2026-11 review).
    */
   readonly placed?: readonly string[];
+  /**
+   * Placement only (ADR 0111): the KCs the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them.
+   */
+  readonly seeded?: readonly KcRefLocal[];
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -2636,6 +2826,41 @@ export interface CorrectionFields2 {
   readonly translation?: string;
 }
 /**
+ * The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "GoalSet".
+ */
+export interface GoalSet {
+  readonly type: "goal_set";
+  readonly id: Uuid14;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
+  /**
+   * Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.
+   */
+  readonly days: number | null;
+}
+/**
  * UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -2644,7 +2869,7 @@ export interface CorrectionFields2 {
 export interface MessageCatalog {
   readonly $schema?: string;
   readonly locale: LangTag;
-  readonly provenance?: Provenance2;
+  readonly provenance?: Provenance3;
   readonly messages: {
     readonly [k: string]: CatalogMessage;
   };
@@ -2652,7 +2877,7 @@ export interface MessageCatalog {
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
  */
-export interface Provenance2 {
+export interface Provenance3 {
   readonly author: string;
   readonly status: "draft" | "reviewed" | "published";
   readonly reviewedBy?: string;
@@ -2714,11 +2939,9 @@ export interface OrthographyProfile {
   readonly layout?: Layout;
   readonly strokeOrder?: StrokeOrder;
   readonly fonts?: Fonts;
-  /**
-   * How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline.
-   */
-  readonly romanize?: "greek";
+  readonly romanize?: Romanization;
   readonly transliterate?: Transliteration;
+  readonly speech?: SpeechSetup;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -2855,6 +3078,10 @@ export interface MatchPolicy {
      */
     readonly distinguishes?: boolean;
     readonly wordNote?: NoteId1;
+    /**
+     * Orthographies that write out the vowels these marks leave unwritten (ADR 0095): Arabizi for Lebanese Arabic. Where a course has one of them, a vocalize card also accepts the word as that orthography writes it.
+     */
+    readonly spelledIn?: readonly OrthographyId[];
   };
   readonly zwnj?: {
     /**
@@ -3032,12 +3259,185 @@ export interface Fonts {
   readonly scale?: number;
 }
 /**
+ * How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088, 0124): a scheme, and the orthography the Latin spellings are in.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Romanization".
+ */
+export interface Romanization {
+  /**
+   * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds.
+   */
+  readonly scheme: "greek";
+  readonly orthography: OrthographyId2;
+}
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Transliteration".
  */
 export interface Transliteration {
   readonly to: OrthographyId;
   readonly via: string;
+}
+/**
+ * How speech in the orthography is heard (gameplan §10.4, ADR 0116): what the speech service scores a learner on, the recognizer that hears it (learners, and the round trip of the course's clips) and where expected phones come from (tier 2, and forced alignment of clips). A profile without it is scored on nothing; its recognizer and phones take their defaults.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Speech".
+ */
+export interface SpeechSetup {
+  /**
+   * What the speech service scores (REVIEW: per-language choices, to revisit with recorded learners). 1: the words, where the recognizer writes this orthography; the API grades its transcript with the sentence's accept set. 2: the phones, where the expected phones can be trusted. Empty: nothing.
+   */
+  readonly tiers: readonly (1 | 2)[];
+  readonly recognizer?: Recognizer;
+  readonly phones?: SpeechPhones;
+}
+/**
+ * Who hears the orthography: Whisper, in a language, or a Whisper fine-tune for a language Whisper's own does not write (Cantonese, which it writes as Mandarin: ADR 0094).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Recognizer".
+ */
+export interface Recognizer {
+  /**
+   * The language Whisper hears it as. Default: the profile's language, or, where Whisper has none for it, the macrolanguage that encompasses it (CLDR's data: apc is heard as ar).
+   */
+  readonly language?: string;
+  readonly fineTuned?: FineTunedRecognizer;
+}
+/**
+ * A Whisper fine-tune that hears the language instead of Whisper's own.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "FineTunedRecognizer".
+ */
+export interface FineTunedRecognizer {
+  /**
+   * Its Hugging Face repo and pinned revision: "alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d".
+   */
+  readonly model: string;
+  /**
+   * The Whisper language token it was trained with ("zh").
+   */
+  readonly token: string;
+}
+/**
+ * Where expected phones come from: the reading each word pins in `reading`, where that scheme gives phones (Jyutping), else eSpeak NG's phonemes of the spelling in `voice`.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SpeechPhones".
+ */
+export interface SpeechPhones {
+  readonly reading?: SchemeId;
+  /**
+   * The eSpeak NG voice that reads the spelling. Default: the profile's language, or, where eSpeak NG has no voice for it, the macrolanguage that encompasses it (apc is read as ar).
+   */
+  readonly voice?: string;
+}
+/**
+ * A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ReadingScheme".
+ */
+export interface ReadingScheme {
+  readonly id: SchemeId;
+  /**
+   * What the UI calls it and its tones, by the language they are written in (a BCP 47 tag; ADR 0109), as a course's names are: data, never app messages.
+   */
+  readonly names: {
+    readonly [k: string]: SchemeNames;
+  };
+  readonly language: LangTag1;
+  readonly lang?: ScriptedLangTag2;
+  readonly answer?: OrthographyId3;
+  /**
+   * A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
+   */
+  readonly typed?: {
+    /**
+     * One syllable, as a regular expression that JavaScript and Python's `regex` read alike (letters, character classes, quantifiers): [a-z]+[1-6].
+     */
+    readonly syllable: string;
+    readonly locale: LangTag;
+    /**
+     * A character class of what may stand between syllables and is dropped: spaces, apostrophes, dots, hyphens.
+     */
+    readonly between: string;
+  };
+  /**
+   * Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use.
+   */
+  readonly tones?: {
+    /**
+     * The tone system's id, as tone exercises name it: yue-jyutping.
+     */
+    readonly system: string;
+    /**
+     * A character class of what marks a tone in a syllable: [0-9]. A syllable's tone is its marks; a typed answer with none has no tones.
+     */
+    readonly marks: string;
+    /**
+     * Each tone, keyed by its marks, in the order a learner meets them.
+     */
+    readonly values: {
+      readonly [k: string]: Tone;
+    };
+  };
+}
+/**
+ * A reading scheme's names in one language.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SchemeNames".
+ */
+export interface SchemeNames {
+  /**
+   * The scheme's name: Jyutping, Middle Chinese (Baxter).
+   */
+  readonly scheme: string;
+  /**
+   * Each tone's pitch, by its marks, where the scheme has tones: high level, low rising.
+   */
+  readonly tones?: {
+    readonly [k: string]: string;
+  };
+  readonly provenance?: Provenance4;
+}
+/**
+ * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
+ */
+export interface Provenance4 {
+  readonly author: string;
+  readonly status: "draft" | "reviewed" | "published";
+  readonly reviewedBy?: string;
+  readonly reviewedAt?: string;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Tone".
+ */
+export interface Tone {
+  /**
+   * Its contour in Chao's tone letters, 1 lowest to 5 highest: 55, 35, 21. Voices that take IPA get them as ˥˧˩.
+   */
+  readonly letters: string;
+  /**
+   * Its shorter contour in a checked syllable (one ending in a stop), where it has one: 5.
+   */
+  readonly checked?: string;
+  /**
+   * Its pitch's movement, which the device judges when it cannot tell the speaker's register.
+   */
+  readonly shape: "level" | "rising" | "falling";
+  /**
+   * Chao letters at the start, middle and end of a syllable that the device's tone classifier compares a heard contour with. REVIEW: from the standard descriptions; tune on native recordings.
+   *
+   * @minItems 3
+   * @maxItems 3
+   */
+  readonly template: readonly number[];
 }
 /**
  * What the app sends to the report intake (ADR 0055) when a learner reports a problem: a sentence or story line they corrected (sentence_reported), or an answer they say should have been accepted or wrong (answer_reported). It carries no device, user or session id, and only the local date. A scheduled job files each report as a GitHub issue.

@@ -225,4 +225,26 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       `create index signoffs_course on signoffs (course)`,
     ],
   ],
+  [
+    "0008_reminder_settings",
+    [
+      // The time a learner chose for the daily reminder (ADR 0103), in minutes after local
+      // midnight. No row: automatic, after the time they usually practise.
+      `create table reminder_settings (
+        user_id uuid primary key references users(id) on delete cascade,
+        minute smallint not null check (minute between 0 and 1439)
+      )`,
+    ],
+  ],
+  [
+    "0009_league_opt_outs",
+    [
+      // Learners who said no to leagues (M8, ADR 0122): they join no cohort until they take part
+      // again. No row: they take part, as before.
+      `create table league_opt_outs (
+        user_id uuid primary key references users(id) on delete cascade,
+        opted_out_at timestamptz not null default now()
+      )`,
+    ],
+  ],
 ];

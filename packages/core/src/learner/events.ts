@@ -4,7 +4,8 @@
  * the device, the measured latency. Credit is assigned here (§8.5), once, at
  * answer time; projections fold the result.
  */
-import type { AnswerSubmitted, LearnerEvent, OrthographyId, Prediction, ProgressReset } from "@nabu/schema";
+import type { AnswerSubmitted, KcId, LearnerEvent, OrthographyId, Prediction, ProgressReset } from "@nabu/schema";
+import { lessonNodes } from "../lesson/nodes.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import type { LessonEvent } from "../lesson/player.ts";
@@ -29,6 +30,13 @@ export interface SessionMeta {
   readonly seed: number;
   readonly planner: string;
 }
+
+
+/** The KCs the placed nodes introduce (ADR 0111), once each, in path order. */
+export const placedKcs = (course: CourseView, placed: readonly string[]): KcId[] => {
+  const nodes = new Set(placed);
+  return [...new Set(lessonNodes(course).flatMap((n) => (nodes.has(n.node.id) ? n.node.introduces : [])))];
+};
 
 /**
  * "Start this course over": a progress_reset event for the course, stamped by the shell like any
@@ -104,6 +112,8 @@ export const learnerEventOf = (
           latencyMs: Math.max(0, Math.round(extra.latencyMs ?? 0)),
           ...(response.tag === "text" ? { raw: response.text } : {}),
           ...(response.tag === "self-rating" ? { selfRating: response.rating } : {}),
+          // A word looked up on the card before answering (D16): the fold rates the answer Hard at best.
+          ...(e.hinted === true ? { hinted: true as const } : {}),
         },
         outcome: { kind: e.graded.verdict, notes: [...e.graded.notes], kcs: [...creditOf(e.ex, e.graded, course.profiles)] },
         ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }),
@@ -111,7 +121,18 @@ export const learnerEventOf = (
     }
     case "exercise_skipped":
       return { ...base, type: "exercise_skipped", exercise: refOf(e.ex), attempt: attemptOf(e.ex.id), reason: e.reason };
+    // The claim or the judge's revision behind it is the learner event (ADR 0052, 0113).
+    case "answer_revised":
+      return undefined;
     case "session_completed":
-      return { ...base, type: "session_completed", mode: session.mode, ...node, summary: { ...e.summary }, ...(extra.placed === undefined ? {} : { placed: [...extra.placed] }) };
+      return {
+        ...base,
+        type: "session_completed",
+        mode: session.mode,
+        ...node,
+        summary: { ...e.summary },
+        // A placement test's nodes, and the KCs they introduce for the fold to seed (ADR 0111).
+        ...(extra.placed === undefined ? {} : { placed: [...extra.placed], seeded: placedKcs(course, extra.placed) }),
+      };
   }
 };

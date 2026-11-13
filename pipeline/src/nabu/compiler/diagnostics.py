@@ -41,6 +41,13 @@ _LINTS = [
     Lint(
         "parse.missing-asset", "error", 1, "An asset (a KC image) names a file that does not exist."
     ),
+    Lint(
+        "course.names",
+        "warning",
+        1,
+        "The course has no name in a support language, or names an orthography it does not teach"
+        " (ADR 0109).",
+    ),
     # 2 · text hygiene
     Lint("text.not-nfc", "error", 2, "A string is not in NFC."),
     Lint(
@@ -67,7 +74,8 @@ _LINTS = [
         "text.non-canonical",
         "warning",
         2,
-        "Content uses a character its own profile folds away (Arabic ي in Persian, ' for ʻ).",
+        "Content uses a character its own profile folds away (Arabic ي in Persian, ' for ʻ), "
+        "or a presentation form (a ligature, an Arabic positional form) for what it stands for.",
     ),
     # 3 · enrichment
     Lint(
@@ -219,6 +227,13 @@ _LINTS = [
         "A KC form is a word the sentences analyse into several KCs: forms are lemmas (ADR 0061).",
     ),
     Lint(
+        "kc.reading",
+        "error",
+        7,
+        "A KC's own reading (`readings`, ADR 0117) is one no token gives its word, is for a "
+        "first form of several words, or is in a scheme no orthography of its forms pins.",
+    ),
+    Lint(
         "glossary.dead-entry",
         "warning",
         7,
@@ -237,14 +252,29 @@ _LINTS = [
         "script.untaught-letter",
         "error",
         7,
-        "An alphabet node's word uses a letter its track has not taught by then (ADR 0088), or the "
-        "orthography has no romanization.",
+        "An alphabet node's word uses a letter its track has not taught by then (ADR 0088).",
+    ),
+    Lint(
+        "script.no-letter",
+        "error",
+        7,
+        "A grapheme KC whose first form has no letter, nor one letter carrying marks of the "
+        "profile's mark set (a spacing breathing, a mark on nothing): it would be in every word "
+        "(ADR 0124).",
+    ),
+    Lint(
+        "script.no-romanization",
+        "error",
+        7,
+        "An alphabet node's orthography names no romanization (its profile's `romanize`), or has "
+        "no profile for its Latin spellings (ADR 0088).",
     ),
     Lint(
         "script.missing-form",
         "error",
         7,
-        "A script-convert track uses a sentence lacking one of its orthographies.",
+        "A script track uses an item lacking its orthography: a convert track's sentence, or an "
+        "alphabet node's word.",
     ),
     # 9 · packaging
     Lint(

@@ -19,12 +19,12 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
 from nabu.compiler.source import Doc
+from nabu.items import line_item
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Ctx, Unit
     from nabu.schema.models import CourseSource, StoryChoiceSource, StoryLineSource, StorySource
 
-WORD_KINDS = ("word", "number")
 Path = tuple[str | int, ...]
 
 
@@ -42,11 +42,6 @@ class LineForm:
 class Stories:
     by_unit: dict[int, list[dict[str, Any]]] = field(default_factory=lambda: {})
     lines: list[LineForm] = field(default_factory=lambda: [])
-
-
-def line_item(story: str, step: int) -> str:
-    """A story line's id among a course's audio items (and corrections): "<story>#<step>"."""
-    return f"{story}#{step}"
 
 
 def token_kcs(token: dict[str, Any]) -> list[str]:

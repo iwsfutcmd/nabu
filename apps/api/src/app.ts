@@ -10,14 +10,19 @@
  *   GET  /v1/auth/me
  *   GET  /v1/export                    everything the account holds, as one JSON file (§14.4)
  *   DELETE /v1/account                 {password}: deletes the account and its data (§14.4)
- *   POST /v1/events                    {events: LearnerEvent[]} → {accepted, duplicates, cursor}
+ *   POST /v1/events                    {events: LearnerEvent[], since?} → {accepted, duplicates, cursor, received, refused, rejected, caughtUp?}
+ *                                      (rejected: [{index, id?, code, errors?}], events not taken; caughtUp: the cursor
+ *                                      a device that pulled up to `since` holds every event to, ADR 0112)
  *   GET  /v1/events?since=<cursor>&limit=<n>   → {events, cursor, more}
  *   GET  /v1/state?course=<id>         → {course, events, state}: the replayed projection
  *   GET  /v1/profile                   → {profile}            PUT {username, displayName?, uiLocale?}
- *   GET  /v1/league                    → this week's cohort, or {enabled: false} (leagues are opt-in)
+ *   GET  /v1/league                    → this week's cohort and how last week ended, or {enabled: false} (leagues are opt-in)
+ *   PUT  /v1/league                    {optedOut: boolean}: say no to leagues, or take part again (ADR 0122) → the league
  *   GET  /v1/push/key                  → {publicKey}: the VAPID key for pushManager.subscribe
  *   POST /v1/push/subscribe            {endpoint, keys: {p256dh, auth}}
  *   POST /v1/push/unsubscribe          {endpoint}
+ *   GET  /v1/push/reminder             → {available, time}: when the daily reminder comes ("HH:MM", or null: automatic)
+ *   PUT  /v1/push/reminder             {time: "HH:MM" | null} (ADR 0103)
  *   /v1/ai/*                           the AI features (ai/routes.ts), when the instance has a model
  *   /v1/speech/*                       speech scoring, tiers 1–2 (speech.ts), with a speech service
  *
@@ -57,8 +62,8 @@ import { speechRoutes } from "./speech.ts";
 import type { Db } from "./db/index.ts";
 import { nativePushTokens, pushSubscriptions } from "./db/schema.ts";
 import { PLATFORMS, validToken, type NativeSenders, type Platform } from "./nativepush.ts";
-import { joinIfActive, leagueView } from "./leagues.ts";
-import { append, checkBatch, existing, gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
+import { joinIfActive, leagueView, setOptedOut } from "./leagues.ts";
+import { append, checkBatch, existing, gameStateOf, MAX_BATCH, rejectionEntry, since, sinceOf, stateOf } from "./log.ts";
 import { ageCheck } from "./age.ts";
 import { createLimiter, type Limits } from "./limits.ts";
 import { deleteAccount, exportOf } from "./privacy.ts";
@@ -66,6 +71,7 @@ import { getProfile, setProfile } from "./profiles.ts";
 import { CORRECTION_STATUSES, fileCorrection, listCorrections, setCorrectionStatus } from "./corrections.ts";
 import { fileReport, listReports, setStatus, STATUSES } from "./reports.ts";
 import { allSignOffs, grant, listReviewers, reviewRoutes, revoke } from "./review.ts";
+import { chooseMinute, chosenMinute, minuteOf, timeOf } from "./reminders.ts";
 import { base64url, fromBase64url, type Vapid } from "./webpush.ts";
 
 export interface AppDeps {
@@ -93,7 +99,11 @@ export interface AppDeps {
   readonly clientOf?: ((c: Context) => string | undefined) | undefined;
   /** The age gate (ADR 0069): sign-up needs an age of at least this many years (unset: no gate). */
   readonly minAge?: number | undefined;
+  /** Where the server notes what operators should see (default: one JSON line each on stderr). Never learner text. */
+  readonly log?: ((entry: Readonly<Record<string, unknown>>) => void) | undefined;
 }
+
+const stderrLog = (entry: Readonly<Record<string, unknown>>): void => console.warn(JSON.stringify(entry));
 
 export type Env = { Variables: { user: Account; token: string } };
 
@@ -147,7 +157,7 @@ const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256
   return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
 };
 
-export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {}, limits = {}, clientOf = () => undefined, minAge }: AppDeps) => {
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {}, limits = {}, clientOf = () => undefined, minAge, log = stderrLog }: AppDeps) => {
   const app = new Hono<Env>();
   app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT", "DELETE"], exposeHeaders: ["Retry-After"], maxAge: 600 }));
   const limiter = (l: Limits[keyof Limits]): ((key: string) => ReturnType<ReturnType<typeof createLimiter>>) => (l === undefined ? () => ({ ok: true }) : createLimiter(l, now));
@@ -295,16 +305,22 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     const user = c.get("user").id;
     const limited = overLimit(c, uploads, [`user:${user}`]);
     if (limited !== undefined) return limited;
-    const checked = checkBatch(await c.req.json().catch(() => undefined), user);
+    const upload: unknown = await c.req.json().catch(() => undefined);
+    const checked = checkBatch(upload, user);
     if (!checked.ok) return c.json({ error: checked.error }, 400);
+    // Events that are not valid, or not this user's, are rejected one by one (`rejected`, by their
+    // index in the batch); the rest are taken, so one bad event never holds back the others. Each
+    // rejection is logged (D10): an app and a server drifting apart show here first.
+    for (const r of checked.rejected) log(rejectionEntry(r));
     // Only the server issues revisions (§8.3): a device may hand back one it was given, never a new one.
     const revisions = checked.events.filter((e) => e.type === "outcome_revised").map((e) => e.id);
     const issued = await existing(db, user, revisions);
     const batch = checked.events.filter((e) => e.type !== "outcome_revised" || issued.has(e.id));
     // A retried upload must not file an old correction over a newer one: only new ones are filed.
     const filed = await existing(db, user, batch.filter((e) => e.type === "sentence_reported").map((e) => e.id));
-    const result = await append(db, user, batch, new Date(now()));
-    if (leagues !== undefined && result.accepted > 0) await joinIfActive(db, user, now(), leagues);
+    // Where the device's pulls are, if it says: then the answer says whether it is caught up (ADR 0112).
+    const result = await append(db, user, batch, new Date(now()), sinceOf(upload));
+    if (leagues !== undefined && result.accepted > 0) await joinIfActive(db, user, now(), leagues, game);
     if (ai !== undefined) {
       // Reports join the review queue; filing one twice changes nothing (one vote per learner).
       const subject = await ai.gateway.subjectOf(user);
@@ -315,7 +331,7 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
         await fileReport(db, ai.courses, { course: e.course, orthography: e.orthography, template: e.exercise.template, item: e.exercise.item, answer: e.text, note: e.note, subject, source: "report", claim: e.claim }, now());
       }
     }
-    return c.json({ ...result, refused: checked.events.length - batch.length });
+    return c.json({ ...result, refused: checked.events.length - batch.length, rejected: checked.rejected });
   });
 
   app.get("/v1/events", async (c) => {
@@ -356,7 +372,16 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     return c.json({ error: result.error }, taken ? 409 : 400);
   });
 
-  app.get("/v1/league", async (c) => c.json(leagues === undefined ? { enabled: false } : await leagueView(db, c.get("user").id, now(), leagues)));
+  app.get("/v1/league", async (c) => c.json(leagues === undefined ? { enabled: false } : await leagueView(db, c.get("user").id, now(), leagues, game)));
+  // A learner may say no to leagues, and take part again (M8): it is the account's, on every device.
+  app.put("/v1/league", async (c) => {
+    if (leagues === undefined) return c.json({ error: "leagues-disabled" }, 404);
+    const optedOut = (await body(c))?.["optedOut"];
+    if (typeof optedOut !== "boolean") return c.json({ error: "invalid-request" }, 400);
+    const user = c.get("user").id;
+    await setOptedOut(db, user, optedOut, now(), leagues, game);
+    return c.json(await leagueView(db, user, now(), leagues, game));
+  });
 
   app.get("/v1/push/key", async (c) => (vapid === undefined ? c.json({ error: "push-disabled" }, 404) : c.json({ publicKey: base64url((await vapid()).publicKey) })));
 
@@ -402,6 +427,22 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     if (typeof token !== "string") return c.json({ error: "invalid-request" }, 400);
     await db.delete(nativePushTokens).where(and(eq(nativePushTokens.token, token), eq(nativePushTokens.userId, c.get("user").id)));
     return c.body(null, 204);
+  });
+
+  // When the daily reminder comes (ADR 0103): the learner's own time of day, or automatic (null).
+  // It is the account's, for every device that gets reminders; `available` says whether this
+  // instance sends any.
+  const available = vapid !== undefined || nativePlatforms.length > 0;
+  app.get("/v1/push/reminder", async (c) => {
+    const minute = await chosenMinute(db, c.get("user").id);
+    return c.json({ available, time: minute === undefined ? null : timeOf(minute) });
+  });
+  app.put("/v1/push/reminder", async (c) => {
+    const time = (await body(c))?.["time"];
+    const minute = typeof time === "string" ? minuteOf(time) : undefined;
+    if (time !== null && minute === undefined) return c.json({ error: "invalid-time" }, 400);
+    await chooseMinute(db, c.get("user").id, minute);
+    return c.json({ available, time: minute === undefined ? null : timeOf(minute) });
   });
 
   reviewRoutes(app, { db, courses: ai?.courses, now });

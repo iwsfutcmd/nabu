@@ -97,9 +97,61 @@
 }
 
 .unit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
   margin: 0;
   margin-block: var(--nabu-space-4) var(--nabu-space-2);
   font-size: 1.125rem;
+}
+
+.unitKnown {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--nabu-color-muted);
+}
+
+/* Known or still being learned (ADR 0100), and the skills a word has yet to show: said in words,
+   never by colour alone. */
+.progress {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-1) var(--nabu-space-2);
+}
+
+.status {
+  margin: 0;
+  padding-block: 0.0625rem;
+  padding-inline: var(--nabu-space-2);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: 999px;
+}
+
+.status[data-status="known"] {
+  color: var(--nabu-color-correct);
+  background-color: var(--nabu-color-correct-bg);
+  border-color: var(--nabu-color-correct);
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-1);
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--nabu-color-muted);
+}
+
+.skill {
+  padding-inline: var(--nabu-space-1);
+  border: 1px dashed var(--nabu-color-line);
+  border-radius: var(--nabu-radius-tile);
 }
 
 .words {

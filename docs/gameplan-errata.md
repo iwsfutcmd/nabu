@@ -127,9 +127,9 @@ ADR is linked. The gameplan text itself is left as written.
 36. **§16 Phase 5 "the polyphone fixture is synthesized correctly and passes round-trip
     verification":** 銀行 and 行路 are synthesized from their pinned readings, and eSpeak's own
     phoneme trace confirms hong4 and haang4. Whisper cannot recognize eSpeak's Cantonese at all, so
-    the round trip fails, and the gate rightly keeps those clips out. Meeting this criterion needs a
-    better Cantonese voice. Qwen3-TTS with a CC0-trained Hong Kong LoRA (Apache-2.0) is the
-    candidate, awaiting a decision ([ADR 0040](adr/0040-audio-pipeline.md)).
+    the round trip fails, and the gate rightly kept those clips out. The voice is now VoxCPM2 cloning
+    two designed anchors ([ADR 0094](adr/0094-yue-voxcpm2.md)). It reads characters, not the pinned
+    readings: the carrier for word cards and the round trip and audio check stand in for that.
 37. **§10.3 "an MMS-based aligner that takes romanized input, or the Montreal Forced Aligner":**
     alignment uses one phoneme CTC model (wav2vec2-xlsr-53-espeak-cv-ft). Its outputs are eSpeak
     IPA, which needs no romanizer. Word starts are refined from the audio's energy, because CTC
@@ -209,9 +209,9 @@ ADR is linked. The gameplan text itself is left as written.
 53. **§16 Phase 9 acceptance "a recorded fixture set of native and deliberately wrong tones":** no
     recordings exist. The harness and its report are done, and run on a synthetic eSpeak NG set
     marked as such; the acceptance waits for native speakers (`evals/tones/README.md`).
-54. **§8.1 `tone-identify` for yue:** it needs one-syllable clips, and every committed yue clip
-    but one is held back by Phase 5's round-trip check (Whisper does not understand eSpeak's
-    Cantonese). The exercise appears once clips are reviewed or recorded.
+54. **§8.1 `tone-identify` for yue:** it needs one-syllable clips, and eSpeak NG's were held back by
+    the round-trip check (Whisper did not understand its Cantonese). The exercise appears with
+    VoxCPM2's word cards ([ADR 0094](adr/0094-yue-voxcpm2.md)) where they pass the check.
 55. **§10.4 tier 1 everywhere:** Whisper writes Uzbek in Latin and Lebanese in Arabic script, so
     `uz-Cyrl` and `apc-Latn` get no tier 1, and `apc` no tier 2 (no trustworthy expected
     phones from unvocalized text). Their speaking is self-rated unless tones apply
@@ -243,3 +243,37 @@ ADR is linked. The gameplan text itself is left as written.
 62. **§8.2 `vocalize` "form":** the card asks how the script reads a word, so it exercises the
     `read-script` facet, like `char-read`. A Han counterpart, `transcribe` (type the word's
     Jyutping), joins it ([ADR 0054](adr/0054-pronunciation-exercises.md)).
+63. **§9.2 "latency ≤ the learner's median for this template":** slower than one's own median
+    made about half of all right answers Hard, whatever the learner, and long sentences nearly
+    always "slow". Pace is now judged per unit of length (the item's KCs plus a fixed part) and
+    only well past the usual (twice) is slow ([ADR 0096](adr/0096-pace-in-ratings.md)).
+64. **§9.2 "Easy is never assigned automatically":** a right answer typed from memory in at most
+    half the usual time, on a card already recalled with at least 0.9 probability, is Easy
+    ([ADR 0096](adr/0096-pace-in-ratings.md)). Learners still never rate themselves, except
+    speaking at tier 0.
+
+65. **§8.2 `gap-fill` "form·produce":** picking the missing word among options is recognition,
+    like tiles: production is supplying the form, typed (or, once scored speech exists, said from
+    the meaning). A word is known once it has shown each skill on a later day than it was met
+    ([ADR 0100](adr/0100-known-words.md)); sessions aim at the skills words lack
+    ([ADR 0101](adr/0101-skill-targets.md)).
+66. **§12.6 "the median of their recent session start times":** at the median, on about half the
+    days the learner practises anyway the reminder came just before practice that was going to
+    happen, and took the credit, so the back-off never started. Reminders now come half an hour
+    after the 80th percentile of the start times, and only practice begun after a reminder answers
+    it ([ADR 0103](adr/0103-reminder-timing.md)).
+67. **§5.1 `services/speech/`:** the speech service is part of the pipeline (`nabu speech serve`,
+    `pipeline/src/nabu/speech/service.py`), sharing its uv project and the models Phase 5 already
+    uses; there is no `services/` directory ([ADR 0046](adr/0046-speech.md)).
+68. **§11.4 "ruby … hidden by default there" (vertical text):** hiding readings whenever text turned
+    vertical took away what a learner had chosen to see. The reading layer the learner chose now
+    shows in vertical text too, and only the target text turns; the chrome stays horizontal
+    ([ADR 0118](adr/0118-the-player-on-a-phone.md)).
+69. **§11.5 "submit is ignored while composing":** on Android, keyboards compose Latin words until they
+    are committed, so an ignored press made every typed answer take two taps. A Check pressed while
+    composing is now held until `compositionend` and goes ahead with the settled text; nothing is ever
+    submitted mid-composition ([ADR 0118](adr/0118-the-player-on-a-phone.md)). Roleplay's Send, the correction
+    form's Send and Start over's confirmation take a press the same way (D39).
+70. **§12.4 "a learner joins a cohort with their first XP of the week":** a learner may now decline leagues
+    (PUT /v1/league), and joins no cohort while declined; past results are kept
+    ([ADR 0122](adr/0122-gate-leagues-and-ai-help.md)).

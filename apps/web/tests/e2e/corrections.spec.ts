@@ -5,22 +5,23 @@
  * as the file `nabu corrections apply` reads, and after sign-up reaches the server's review queue.
  *
  * Fields take their own text's lang and dir (Persian right to left, Jyutping in its own tag), and
- * nothing is sent while an input method is composing.
+ * nothing is sent while an input method is composing: Send stays enabled, and a press while a
+ * keyboard composes waits for the composition to end, then sends the settled text (D39).
  */
 import { readFileSync } from "node:fs";
 import { seededRng } from "@nabu/core/lesson";
 import { allStories, storyScript } from "@nabu/core/story";
 import { surfaceOf } from "@nabu/core/text";
 import type { LearnerEvent, SentenceCorrection, SentenceReported, TaggedText } from "@nabu/schema";
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type CDPSession, type Page } from "@playwright/test";
 import { API_PORT } from "./ports.ts";
-import { answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, seriousAxeViolations, waitFor } from "./solver.ts";
+import { activate, answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, seriousAxeViolations, waitFor, type Mode } from "./solver.ts";
 
 const API = `http://127.0.0.1:${API_PORT}`;
 const ADMIN = "e2e-review-token";
 const SEED = 7;
 const NOW = new Date("2026-05-12T09:00:00Z");
-const ZWNJ = "‌";
+const ZWNJ = "\u200c";
 const url = (hash: string): string => `/?seed=${SEED}&sound=off&api=${encodeURIComponent(API)}${hash}`;
 
 const reports = async (page: Page, course: string): Promise<SentenceReported[]> => (await logOf(page, course)).filter((e: LearnerEvent): e is SentenceReported => e.type === "sentence_reported");
@@ -61,7 +62,10 @@ test.describe("my answer should be accepted, in a story", () => {
     await page.locator(`[data-option="${String(wrong)}"]`).click();
     await page.locator("[data-story-reader] [data-action=check]").click();
     await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "WRONG");
-    await page.locator("[data-story-reader] [data-action=report]").click();
+    // The one report button beside the feedback (M6); a story question offers the claim alone.
+    await page.locator("[data-story-question] [data-action=report-problem]").click();
+    await expect(page.locator("[data-report-dialog] [data-action=mark-incorrect]")).toHaveCount(0);
+    await page.locator("[data-report-dialog] [data-action=report]").click();
     await expect(page.locator("[data-reported]")).toBeVisible();
     const text = `${surfaceOf(question.before)}${surfaceOf(question.options[wrong] as TaggedText)}${surfaceOf(question.after)}`;
     await expect.poll(async () => (await logOf(page, "yue")).find((e) => e.type === "answer_reported")).toMatchObject({ text, exercise: { template: "story-complete", item: question.item } });
@@ -112,10 +116,11 @@ test.describe("corrections", () => {
     await expect(translation).toHaveAttribute("dir", "ltr");
     expect(await seriousAxeViolations(page, "[data-correction-dialog]")).toEqual([]);
 
-    // While an input method composes, the correction cannot be sent.
+    // While an input method composes, Send stays enabled: a press waits for the composition to end (D39).
     await text.dispatchEvent("compositionstart");
-    await expect(dialog(page).locator("[data-action=send-correction]")).toBeDisabled();
+    await expect(dialog(page).locator("[data-action=send-correction]")).toBeEnabled();
     await text.dispatchEvent("compositionend");
+    await expect(dialog(page)).toBeVisible(); // a composition ending sends nothing
     await expect(dialog(page).locator("[data-action=send-correction]")).toBeEnabled();
 
     // Typed as the learner types it (a ZWNJ kept, an accent decomposed); stored NFC.
@@ -191,10 +196,18 @@ test.describe("corrections", () => {
     await waitFor(page, ex);
     await answer(page, ex, "keyboard");
     await expect(page.locator("[data-feedback]")).toBeVisible();
-    await page.locator(`[data-action=mark-incorrect][data-item="${ex.item}"]`).click();
+    await page.locator("[data-action=report-problem]").click();
+    await page.locator(`[data-report-dialog] [data-action=mark-incorrect][data-item="${ex.item}"]`).click();
     const translation = dialog(page).locator("[data-field=correction-translation]");
     const fixed = `${await translation.inputValue()} (corrected)`;
     await translation.fill(fixed);
+    // Enter in the form is the form's (P11): the lesson stays on its card, the form keeps its text.
+    await dialog(page).focus();
+    await page.keyboard.press("Enter");
+    await expect(dialog(page)).toBeVisible();
+    await expect(translation).toHaveValue(fixed);
+    await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-exercise", ex.id);
+    await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "feedback");
     await dialog(page).locator("[data-action=send-correction]").click();
     await expect(page.locator("[data-correction-sent]")).toBeVisible();
     // The lesson goes on.
@@ -206,7 +219,10 @@ test.describe("corrections", () => {
     if (story === undefined) throw new Error("yue has a story");
     await page.goto(url(`#/yue/yue-Hant-HK.standard/story/${story.node}`));
     const line = page.locator("[data-story-reader] [data-line='0']");
-    await line.locator("[data-action=mark-incorrect]").click();
+    // The same small flag as a card's, at the end of the line's controls: never a line of text.
+    await expect(line.locator("[data-action=mark-incorrect]")).toHaveCount(0);
+    await line.locator("[data-action=report-problem]").click();
+    await page.locator("[data-report-dialog] [data-action=mark-incorrect]").click();
     const step = story.steps.findIndex((s) => s.line !== undefined);
     await expect(dialog(page).locator("[data-correction-form]")).toHaveAttribute("data-step", String(step));
     await dialog(page).locator("[data-field=correction-note]").fill("Too formal for friends.");
@@ -225,5 +241,72 @@ test.describe("corrections", () => {
     expect(corrections.some((c) => c.item === ex.item && c.correction.translation === fixed)).toBe(true);
     expect(corrections.some((c) => c.item === story.id && c.step === step && c.notes.includes("Too formal for friends."))).toBe(true);
     expect(errors).toEqual([]);
+  });
+});
+
+test.describe("sending a correction while a keyboard composes (D39)", () => {
+  /** Typed with a Persian keyboard: the ZWNJ kept as typed. */
+  const TYPED = `سلام${ZWNJ}ها، مریم!`;
+
+  /** s.6's correction form, its Persian text emptied and focused, and a CDP session to compose in it. */
+  const openForm = async (page: Page, mode: Mode): Promise<CDPSession> => {
+    await page.goto(url("#/fa/fa-Arab.standard/sentences"));
+    await activate(page, mode, '[data-correctable="s.6"] [data-action=mark-incorrect]');
+    await expect(dialog(page)).toBeVisible();
+    const text = textField(page, "fa-Arab/standard");
+    await text.fill("");
+    if (mode === "touch") await text.tap();
+    else await text.focus();
+    await expect(text).toBeFocused();
+    const cdp = await page.context().newCDPSession(page);
+    // An input method composes the whole sentence, not yet committed.
+    await cdp.send("Input.imeSetComposition", { text: TYPED, selectionStart: TYPED.length, selectionEnd: TYPED.length });
+    await expect(text).toHaveValue(TYPED);
+    await expect(dialog(page).locator("[data-action=send-correction]")).toBeEnabled();
+    return cdp;
+  };
+
+  /** The correction recorded: exactly one, with the settled text. */
+  const expectSent = async (page: Page): Promise<void> => {
+    await expect(dialog(page)).toHaveCount(0);
+    await expect(page.locator('[data-correctable="s.6"]')).toHaveAttribute("data-corrected", "true");
+    await expect.poll(async () => (await reports(page, "fa")).length).toBe(1);
+    const [event] = await reports(page, "fa");
+    expect(event?.correction.forms?.["fa-Arab/standard"]?.text).toBe(TYPED);
+  };
+
+  test("one tap on Send while a phone keyboard still composes sends the correction", async ({ page }, info) => {
+    test.skip(info.project.name !== "touch", "a phone keyboard: the touch pass");
+    await openForm(page, "touch");
+    await dialog(page).locator("[data-action=send-correction]").tap();
+    await expectSent(page);
+  });
+
+  test("a press on Send that leaves the focus in the composing field waits for the composition to end", async ({ page }, info) => {
+    await openForm(page, info.project.name === "touch" ? "touch" : "keyboard");
+    // What the field and the page saw, in order: the correction must be sent after compositionend.
+    await page.evaluate(() => {
+      const seen: string[] = [];
+      (window as unknown as { seen: string[] }).seen = seen;
+      document.querySelector("[data-correction-dialog] [data-field=correction-text]")?.addEventListener("compositionend", () => seen.push("compositionend"));
+      new MutationObserver(() => {
+        if (document.querySelector("[data-correction-dialog]") === null && !seen.includes("sent")) seen.push("sent");
+      }).observe(document.body, { childList: true, subtree: true });
+    });
+    // A screen reader's activation: a click with no pointer, which moves no focus by itself.
+    await dialog(page).locator("[data-action=send-correction]").dispatchEvent("click");
+    await expectSent(page);
+    expect(await page.evaluate(() => (window as unknown as { seen: string[] }).seen)).toEqual(["compositionend", "sent"]);
+  });
+
+  test("an input method's commit sends nothing by itself", async ({ page }, info) => {
+    test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+    const cdp = await openForm(page, "keyboard");
+    await cdp.send("Input.insertText", { text: TYPED });
+    await expect(textField(page, "fa-Arab/standard")).toHaveValue(TYPED);
+    await expect(dialog(page)).toBeVisible();
+    await dialog(page).locator("[data-action=cancel-correction]").click();
+    await expect(dialog(page)).toHaveCount(0);
+    expect(await reports(page, "fa")).toEqual([]);
   });
 });

@@ -79,24 +79,50 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - CLDR exemplar gaps go in a profile's `exemplarsExtra` (marked REVIEW), never by loosening the script audit.
 
 ## Phase 3 notes (see docs/adr/0034–0035)
-- Lessons: pure @nabu/core/lesson (templates, buildLesson, step). Distractors come from the item's own unit or an
-  earlier one (ADR 0050), so adding a unit never changes earlier lessons. The player shell and views are @nabu/ui/player;
-  views render state and dispatch PlayerEvents, never grade or advance themselves.
+- Lessons: pure @nabu/core/lesson (templates, the candidates sessions choose among, step); every session is
+  @nabu/core/learner `plan`'s, and there is no other builder (ADR 0125). Test lessons on what plan() plans
+  (test/planned.ts walks a fixture course), never on a builder of the tests' own; the card gallery and `sampleExercise`
+  show the planner's candidates (`lessonCandidates`). Distractors come from the item's own unit or an earlier one
+  (ADR 0050), so adding a unit never changes earlier lessons. The player shell and views are @nabu/ui/player; views
+  render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
+- Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
+  Check; Enter never checks while composing (ADR 0118).
+- Any other button that submits typed text (roleplay Send, the correction form, Start over) takes a press while
+  composing through `useSettledSubmit` (@nabu/ui); never disable a button while composing (ADR 0118, D39).
+- Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
+  shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
-- Keyboard shortcuts live in the player's capturing window listener; views register digit/Backspace handlers.
+- Keyboard shortcuts live in one capturing window listener, `usePlayerKeys` (packages/ui/src/player/Shell.tsx), shared by
+  the lesson player and the story reader with their header, toggles and quit dialog (C14); views register digit/Backspace handlers.
 - Bring an action into view with `focusInReach` (player/shared.ts), never a bare focus(): a phone browser's bottom
   toolbar covers the viewport's last strip. Pages hosting the player keep `--nabu-space-reach` below the card.
 
 ## Phase 4 notes (see docs/adr/0036–0039)
 - Learner state is a projection: @nabu/core/learner `replay(events)`. Never store derived state; change the fold.
+- The fold changes its private draft in place (`learn`, ADR 0119): never pass it a state's own objects, and mirror a
+  deliberate fold change in test/fold-before-r2.ts (the oracle a replay is checked against).
+- Ratings come from the answer, never the learner (but tier-0 speaking): pace per unit of length decides Hard and
+  Easy (ADR 0096, `PACE_*` in state.ts); tune those on real logs, never on the simulator's latency model.
   Never delete events to undo progress: starting a course over is a `progress_reset` event (ADR 0049).
+- A lesson's review (ADR 0097): earlier lessons' sentences picked by need (`reviewSentences`), at most a quarter of
+  its cards, marked `review: true` (the player labels them). Never pick review in course order.
 - The planner is pure: (request, state, bundle, now, seed) → plan. Re-tune CALIBRATION_WEIGHT only against
   test/simulation.test.ts (every course within ±5pp of 85%, no lesson dropping a new KC); golden files:
   UPDATE_GOLDEN=1 after a deliberate change. Every new KC of a lesson is presented in it (a hard constraint, ADR 0050).
 - Card keys: "kc|facet", and "kc|facet|orthography" for read-script/write-script (§6.3).
 - The web app stamps events (apps/web/src/clock.ts, session.ts) and keeps them in IndexedDB (store.ts).
+- A running lesson or story holds the route against Back and Forward (navigation.ts, ADR 0108): Back, or Android's
+  back button, asks as the quit button does; a new navigation (a link, a typed address, a reminder, an e2e `goto`)
+  goes ahead. Leave a session with `leave()`, never `location.hash =`, so Back never plays it again. A reload, or
+  opening a lesson left part-way, picks the session up: its plan is kept on the device until it ends
+  (open-session.ts), and core `resume` folds the session's logged answers through the player. Never re-plan a
+  session that is under way.
+- Placement (ADR 0039, 0077, 0108) says what it does before it starts and what it placed after. Stopped part-way, it
+  stays a stopped session (no session XP) whose `placed` still says what the answers so far placed (D9); the fold and
+  the game's replays mark those nodes done whether or not the session finished. It is offered until every node is
+  done: a placement only ever adds nodes done, in the fold.
 - e2e sessions depend on the log and clock: fix the clock (page.clock.setFixedTime), seed history through
   window.nabu, and plan with the solver's `planned()`. Seeded history that gets uploaded needs `freshIds()`.
 - The API (apps/api) runs on PGlite unless DATABASE_URL is set; migrations are SQL in src/db/migrations.ts
@@ -106,19 +132,61 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
   Every recorded event enters the IndexedDB outbox; sign-up uploads it. Never derive state on the server
   differently from core's replay.
+- Signing up re-queues the whole log (`store.requeue`, ADR 0123); signing in sends the outbox. A 401 signs out and
+  remembers who (meta `signed-out`) until sign-in or "Stay signed out". `offline` is `navigator.onLine` false;
+  `unreachable` is no answer while online, or 502-504.
+- One bad event never holds back a batch (ADR 0108): POST /v1/events takes the valid events and names the rest
+  (`rejected`, by index, with the errors of the event's own type) and logs each (code, id, that error; never event
+  values). The device sets those aside (outbox.ts, meta `held`, still in its log), says so in Your progress, and sends
+  them again when the learner asks, signs in again, or first runs a new build (`__NABU_BUILD__`, meta `app-build`).
+  Sync's check against the server leaves them out.
+- Your progress says what keeps the log (EventStore.durable: persistent storage granted, or a browser that may clear
+  it) and restores a download (apps/web/src/restore.ts): every event checked with the schema as the API checks
+  uploads (event-schema.ts, Ajv loaded only then), ids dedupe, added events enter the outbox.
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
 - Count open mistakes with @nabu/core/learner `practicableMistakes` (the course page does), never `state.mistakes`:
   a session leaves out templates on a break, items the course no longer makes, and items needing unseen KCs.
 - The word list (`#/<course>/<orth>/words`): @nabu/core/learner `learnedWords` (word KCs with a reviewed card; script
-  facets count only in their orthography), `orderWords`, `wordMatcher` (letters as the profile compares them, marks
-  stripped; glosses folded in their own language); @nabu/ui/words WordList. It reads the log; it records nothing.
+  facets count only in their orthography; each known or learning, ADR 0100), `orderWords`, `wordMatcher` (letters as
+  the profile compares them, marks stripped; readings with or without tones; glosses folded in their own language);
+  @nabu/ui/words WordList. It reads the log; it records nothing.
+- Home leads with where the learner left off (ADR 0120): each course's latest start, `studiedCourses` over
+  `EventStore.latestStarts` (read back from each course's newest event; never the whole log). The course page marks
+  where it opens with `data-arrival` (screen.tsx brings it into view; focus stays on the h1); finished units fold
+  (their lists stay in the DOM, `hidden`); its other pages are linked under its title; Offline is its own page.
+
+## Known words notes (see docs/adr/0100–0101)
+- Known (ADR 0100): every skill `skillsAsked(course)` asks of a word (recognize; produce where a sentence uses it; listen
+  where the voice is good and the word can be heard) is in the fold's `shown`: a first try right, not self-rated, on a
+  later local date than `met` and than its last `missed`. Never store known status; change the fold.
+- A miss counts against a word only where the grading pins it (a one-word card, `askedKcs`, word-level credit); a
+  sentence missed as a whole leaves its words alone. Gap-fill is recognition; production is typing (D4).
+- A new word is presented only by a card credited to it (`creditedKcs`), never as a pronunciation card's context.
+- Sessions aim at the skills words lack (ADR 0101): `NEED_GAIN`, typing and listening slots that only come in where the
+  session can still reach its target, `focus` blanks. Callers pass `today`, the learner's local date (web
+  `localDate(now)`; the e2e solver UTC, as its browser). Tune against the simulation, which checks typing too.
+- The simulator logs credits as the player does (asked words right or wrong, the rest given): keep
+  test/learner-fixtures `creditsOf` in step with `creditOf`.
+- The learning pace (ADR 0105): `paceOf(course, state, now, choice)` reads a band (consolidate, steady, accelerate)
+  from the fold's `recent` first tries and slipping words; `PACE` sets the retention target, a lesson's review share
+  and when `continueOf` offers practice first. Pass the band to `plan` (web: SessionBody; e2e: the solver) so plans
+  match. Never block a lesson (D6); tune `PACE` only against the simulation's pacing runs.
+- Due means a facet's recall is below the target (`dueFacets`, `LearnedWord.due`): never a card's FSRS due date. The
+  course page counts due words. A review session has a card per word needing one (5–15) and plans only from the
+  neediest sentences and words plus a few well-known ones: never build candidates from every studied sentence (R3).
+- Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
+  (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 
 ## Phase 5 notes (see docs/adr/0040–0042)
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
   ../courses/<id> [--check]` writes it (needs espeak-ng and ffmpeg; --check needs `uv sync --group speech`). The compiler only
   reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
-- Synthesize from pinned readings (Jyutping), never raw characters. Human recordings: `nabu audio ingest`.
+- Synthesize from pinned readings (Jyutping), never raw characters, except a voice that reads only characters (yue's
+  VoxCPM2, ADR 0094: the round trip and the audio check catch its readings). Human recordings: `nabu audio ingest`.
+- A word's reading is the one the compiler pins on its KC form (`nabu.compiler.readings`, ADR 0117: every scheme, the
+  sense's most common in lessons first): its card, its clip and minimal pairs all read that; never look one up by
+  spelling. A change to the order can make clips stale: `test_readings.py` checks every course's, grc's too.
 - One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
 - `finalStop: true` on a voice (ADR 0063) ends unpunctuated text (word cards) with its script's full stop
@@ -139,7 +207,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   through `nabu audio verdicts <course> <file> --reviewer human:<id>`: right → reviewed (ships), wrong → rejected (held);
   the next `generate` makes a rejected clip again as its next take (another seed; seeded voices only).
 - Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
-- Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
+- Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING), and so do
+  Preferences' lasting Listening and Speaking switches (per device, apps/web/src/breaks.ts).
   Once answered, a listening card shows what was heard and what it means: a sentence's translation, a word's gloss
   (`translation` on the exercise, shown by ListenPrompt). Never before the answer: it would give it away.
 - Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns
@@ -173,6 +242,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `pnpm --filter @nabu/i18n generate:security`; pinned sha256). Render every user-chosen name inside <bdi>.
 - API options: NABU_LEAGUES=1, NABU_PUSH=1 (VAPID key kept in the database unless NABU_VAPID_PRIVATE_JWK),
   NABU_TEST_HOOKS=1 only in tests (push sink, job runner). Reminder copy lives in packages/i18n (push.reminder.*).
+- The gate never counts placement answers or the learner's own claims (only graded answers and server revisions);
+  `GateState.opensAt` says when lessons open. Leagues can be declined (`league_opt_outs`, in export and delete) and say
+  how last week ended (ADR 0122).
 - Web Push is our own RFC 8291/8292 code (apps/api/src/webpush.ts); its test pins the RFC's example bytes.
 
 ## Phase 8 notes (see docs/adr/0045)
@@ -182,6 +254,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every judge gate until `pnpm --filter @nabu/api evals -- --run` with a model writes new ones.
 - evals/gates.json: never hand-write a gate or a result. Golden items must stay real judge cases (check mode, in CI).
 - A judge accept is an outcome_revised event the server issues; projections fold logs through withRevisions.
+- A claim or the judge's accept revises the running session too (`revise`, ADR 0113): Continue, the retry and the score
+  follow it, and a reload agrees. The end screen's progress is the log with the session against without it
+  (apps/web/src/session-end.ts); never store it.
   A learner's answer_reported is their own revision (claim accept or reject, ADR 0052); it counts at once.
 - Reports are answer_reported events. Review: /admin/v1 (NABU_ADMIN_TOKEN); `nabu reports promote` edits accept sets.
 - Roleplay scenarios are course content (`scenarios:`, no target text); model turns are checked before shown.
@@ -195,12 +270,15 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Expected tones come from pinned surface readings. Never tune templates to synthetic speech; tune on native
   recordings (evals/tones).
 - Tiers 1–2: `cd pipeline && uv run nabu speech serve`, API NABU_SPEECH_URL. Never prompt the recognizer with the
-  sentence. Per-orthography tiers live in apps/api/src/speech.ts (SPEECH_SETUP, REVIEW).
+  sentence. What an orthography is scored on is its profile's `speech` (ADR 0116): `tiers` (REVIEW), `recognizer`
+  (a fine-tune where Whisper's own fails), `phones`. The API reads it from the course's bundle; the round trip and
+  `nabu audio align` read it too. A language Whisper or eSpeak NG lacks is heard as its macrolanguage (CLDR's data,
+  `macrolanguages.json`: apc as ar). Never key speech settings by course id in code.
 - Recordings are never stored or logged anywhere; speaking answers log method voice with no raw text.
   A scored speaking card (speak, listen-speak) can be claimed right ("I said it right", ADR 0052): the claim's
   text is the prompt sentence, never what was heard; `nabu reports promote` skips it.
 - `speak`/`listen-speak` replace tier 0 only with SpeechSupport (speechSupportOf); `tone-identify` needs a one-syllable
-  clip. Lessons keep their rotation length (golden files): substitute slots, never add rotation entries.
+  clip. Speech never changes a lesson's length (the planner's size, golden files): scored speaking takes tier 0's place.
 - `pnpm --filter @nabu/core tone-eval [set]` reports per-tone accuracy; evals/tones/synthetic-espeak is synthetic.
 - Speech e2e uses Chromium's fake microphone (tests/e2e/fixtures); speech service tests need NABU_SPEECH=1.
 
@@ -209,11 +287,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   never make a template depend on media without the builder checking course.audio or kc.image (restrictMedia drops them).
 - The service worker is apps/web/sw/sw.ts (built by vite-sw.ts, its own tsconfig with the WebWorker lib). Code it
   shares with the app (idb.ts, outbox.ts, http.ts, caches.ts) must not touch window or import React.
+- Files under `assets/` come from the HTTP cache (hashed names); the worker precaches only the UI catalogs listed under
+  `ui-catalogs` (ADR 0119). Han font faces live only in `@nabu/ui/fonts-han.css`, loaded with the text that needs them.
 - Course files are cached by URL in "nabu-bundles"; downloads check sha256 and store the manifest last.
 - Game state on the server: GET /v1/game; devices replay with the server's receipt times (store.receivedTimes).
   Instances set NABU_GAME to the game.json the web app is deployed with.
 - e2e that needs Background Sync uses `channel: "chromium"` (the headless shell has none); the CI image has it.
-- Tests import projection helpers from src/compare.ts (src/sync.ts pulls in React and CSS).
+- Tests import projection helpers from src/compare.ts. sync.ts imports no React (the game state comes from
+  game-log.ts), so sync is tested from Node; the daily check of the server's projections runs in check-worker.ts (ADR 0112).
 - Native apps (ADR 0048): apps/mobile (Capacitor 8; android/ and ios/ are committed, generated projects). After a web
   change: `pnpm --filter @nabu/mobile build`. Capacitor plugins load only in the native shell (src/native.ts, dynamic
   imports). Native reminders: apps/api/src/nativepush.ts; credentials only as file paths in the environment
@@ -238,9 +319,18 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   at compile time. A token pins its own with `vocalized` (needed for `ambiguous` words). New word: add an entry.
 - Compare letters, never marks: grading, credit, glossary, corrections apply. Voices read `Compiled.written`
   (the source's surfaces), so a vocalization never changes clips.
-- Pronunciation cards (ADR 0054): `vocalize` (abjads, needs vocalized KC forms) and `transcribe` (a ruby scheme
-  with a syllable shape in core match/pronounce.ts: only Jyutping). A new scheme needs a shape, a READING_TAGS
-  entry and conformance vectors (conformance/pronounce.json). Optional marks: the profile's `match.marks.optional`.
+- Pronunciation cards (ADR 0054, in context since ADR 0095, answered by choice since ADR 0098): `vocalize` (abjads:
+  the word with its marks among attested variants, never typed marks) and `transcribe` (typed; a ruby scheme whose
+  data gives a syllable shape: only Jyutping so far; `char-read` is its multiple-choice twin, tone variants first) are
+  sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
+  plans one where it can. Optional marks: the profile's `match.marks.optional`; orthographies that spell the vowels
+  (apc: Arabizi), `match.marks.spelledIn`.
+- Reading schemes are data (ADR 0109): a new scheme is `profiles/schemes/<id>.yaml` (schemas/reading-scheme.schema.json:
+  `names` per language, lang, answer orthography, syllable shape, tones), plug-ins in `nabu.schemes` for what voices need, and
+  `reading-syllables`/`reading-tone` conformance vectors. Never hard-code a scheme id in TS or Python.
+- Course and orthography names, blurbs and hints are course data (`names` in course.yaml, ADR 0109), read through
+  `@nabu/i18n` names.ts (`schemeName`, `toneName` for schemes); never in the catalogs. Translations carry provenance
+  (drafts are `llm:`); pseudo-locales show the English names pseudo-localized.
 
 ## Report intake notes (see docs/adr/0055, docs/reports.md)
 - Reports (sentence_reported, answer_reported) also go to the deployment's Firestore intake (`reports.json` beside
@@ -249,6 +339,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Firebase keys and the service account live only in repo settings (variables/secrets): never in chat or commits.
   The rules in deploy/firebase/ are merged into a shared project's rules, never deployed on their own.
 - Learner text in issues stays in code spans (no mentions, links, markup); keep it so when changing the rendering.
+- What came of a report is the device's own comparison with its bundle (ADR 0115): `correctionStatus`/`openCorrection`,
+  `claimStatus`/`reportsOf`; never a server route, never stored. Confirmations say where a report goes (`useReportsReach`).
 
 ## Morphology notes (see docs/adr/0061)
 - A KC's forms are its lemma (first: what word cards show) and its variants, never an inflected word; the compiler's
@@ -286,7 +378,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A sign-off pins the sha256 of `signoffText` (@nabu/core/corrections); its Python twin is nabu/review. Change both,
   with the pinned text in packages/core/test/signoff.test.ts and pipeline/tests/test_review.py.
 - Release builds (ADR 0073): `uv run nabu build ../courses/<id> --release` keeps only reviewed sentences, stories and
-  scenarios. Committed bundles and the demo stay full builds. The manifest's summary counts come from
+  scenarios, and script tracks: an alphabet node keeps its letters and the words whose KCs reviewed content uses (D51);
+  script tracks alone are no release. Committed bundles and the demo stay full builds. The manifest's summary counts come from
   `compiled.counted` (compiler/counts.py): count through `count()`, never by editing the dicts.
 - Review workspace (ADR 0074): reviewer accounts (`PUT /admin/v1/reviewers {email, handle, courses}`) work at `#/review`
   through /v1/review/* (apps/api/src/review.ts, apps/web/src/Review.tsx, @nabu/ui/review). Every route checks the course is
@@ -322,7 +415,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `iPlusOne: 2`. A unit that first teaches a tense defines its form KC.
 - es-Latn/standard: a missing accent is CORRECT_MARKS; one that spells another word of the course is WRONG_WORD
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
-- Placement is adaptive (ADR 0077: a block per unit, gallop then bisect, then node steps); `placement: {production:
+- A finished placement seeds the placed nodes' KCs (ADR 0111): `seeded` on the event (`placedKcs`), a recognize card
+  each in the fold. Placement is adaptive (ADR 0077: a block per unit, gallop then bisect, then node steps); `placement: {production:
   typed}` makes its production typed. The test is data and `runTest` a pure function: never make it stateful.
 - Two voices clone Cuban recordings (`nabu audio cast --recording`; a man's CC BY, a woman's CC0); clips are CC-BY-NC-4.0
   (OmniVoice weights) and credit the recording. Cut a reference on whole words, no breath at either end.
@@ -389,6 +483,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Particles: 呀 aa3 softens a question or statement but never makes one; aa4 (àh) turns a statement into a question.
   No 嘅呀 (ge + a is 㗎, outside the script audit); 嗎 is formal (你好嗎). 喇 laa3 a new situation, 啦 laa1 requests.
 - 俾 puts the thing first (俾錢你). 好 + adjective is a weak "very": English accept sets keep very/really/so optional.
+- Voices (ADR 0094): VoxCPM2 (`voxcpm`, pipeline/runtimes/voxcpm, its own uv project) cloning two designed anchors
+  (courses/yue/audio/voices, Apache-2.0) with their transcript. A word card is said after `跟住我讀：` and cut out by
+  forced alignment; a sentence is slowed toward `pace` (4.3 syllables/s, ≤1.6×) with Rubber Band (apt rubberband-cli).
+  Generate on a GPU (Kaggle): the runtime and the pipeline on CUDA torch, `UV_NO_SYNC=1`, then `nabu audio align`
+  for each voice. Never re-cast the anchors without the owner: they are the voices the owner chose.
+- The round trip hears yue with a Cantonese Whisper fine-tune (the yue profile's `speech.recognizer`, ADR 0116), never
+  Whisper's own (it writes Mandarin), and compares differing characters by reading (homophones free, a tone apart half).
+  `nabu audio check <course>` re-runs the check on existing clips.
 
 ## Toki Pona notes (see docs/adr/0086)
 - courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and
@@ -432,6 +534,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   for script nodes: never add them to SENTENCE_TEMPLATES (every course's lessons and goldens would change).
 - The row (`scriptPathOf`) sits above the units and never gates them; a script node is planned as `{mode: "lesson"}`.
   Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
+- A script track's letters and marks come from the profile (core-cli `letters` and `unicode-set`), never a list in code;
+  `romanize` is `{scheme, orthography}`; a form with no letter is `script.no-letter` (ADR 0124).
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

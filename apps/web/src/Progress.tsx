@@ -1,8 +1,9 @@
 /**
- * "Your progress" on the home screen: where progress lives (this device),
- * a download of the learner's own data (§14.4), and, when a sync server is
- * configured, the optional account (§14.2): create one or sign in, which
- * uploads the local history; then sync status and sign-out.
+ * "Your progress" on the home screen: where progress lives (this browser or
+ * app, and whether it is kept for good), a download of the learner's own data
+ * (§14.4) and restoring one (S6), and, when a sync server is configured, the
+ * optional account (§14.2): create one or sign in, which uploads the local
+ * history; then sync status and sign-out.
  *
  * Email addresses may use any script (EAI), so the field is text with an
  * email keyboard, not type=email (which rejects non-ASCII local parts). An
@@ -12,16 +13,22 @@
  * A server with an age gate (ADR 0069) answers the first sign-up with "age-required": the form then
  * asks the person's age, neutrally (no threshold shown), in any script's digits. If the server turns
  * them away, the device remembers and offers no new account there; learning on the device goes on.
+ *
+ * When the server ends the session (ADR 0123), Home says so at its top (SignedOutNotice) until the
+ * learner signs in again or stays signed out, and the form here asks them to sign in again, their
+ * address filled in. A server sends no email, so it cannot reset a password: the sign-in form says so
+ * plainly when asked, and what is left to do (a new account takes everything on the device).
  */
-import { parseDigits } from "@nabu/i18n";
+import { parseDigits, type Named } from "@nabu/i18n";
 import { useTranslator } from "@nabu/ui";
-import { useState, useSyncExternalStore, type FormEvent, type JSX } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent, type JSX, type RefObject } from "react";
 import { Button, Form, Input, Label, Text, TextField } from "react-aria-components";
 import styles from "./App.module.css";
+import { DeviceCopy, Restore } from "./Restore.tsx";
 import { ProfileForm, Reminders } from "./social.tsx";
 import { forgetCalibration, loadCalibration, serverAllowed, setServerAllowed } from "./voice.ts";
 import type { EventStore } from "./store.ts";
-import type { Sync, SyncError, SyncState } from "./sync.ts";
+import type { SignedOut, Sync, SyncError, SyncState } from "./sync.ts";
 
 /** Left-to-right isolate (LRI … PDI): keeps an address in its own order inside any paragraph. */
 const ltr = (text: string): string => `\u2066${text}\u2069`;
@@ -37,6 +44,7 @@ const ERRORS = {
   "rate-limited": "app.error.account.rate-limited",
   "age-required": "app.error.account.age-required",
   age: "app.account.age-refused",
+  offline: "app.error.account.offline",
   unreachable: "app.error.account.unreachable",
   "signed-out": "app.error.account.signed-out",
   rejected: "app.error.account.rejected",
@@ -135,17 +143,34 @@ const AccountData = ({ sync, onDeleted }: { sync: Sync; onDeleted: () => void })
 
 const Status = ({ state }: { state: SyncState }): JSX.Element => {
   const t = useTranslator();
-  const status = state.phase === "offline" ? "offline" : state.phase === "syncing" ? "syncing" : state.pending > 0 ? "pending" : state.phase === "error" ? "error" : "saved";
+  // Never "all saved" while the server has rejected some of it (S13): that part is said apart. No
+  // network is not a server that does not answer (ADR 0123): each is said as what it is.
+  const status =
+    state.phase === "offline" || state.phase === "unreachable"
+      ? state.phase
+      : state.phase === "syncing"
+        ? "syncing"
+        : state.pending > 0
+          ? "pending"
+          : state.phase === "error"
+            ? "error"
+            : state.held > 0
+              ? "held"
+              : "saved";
   const text =
     status === "offline"
       ? t.format("app.sync.offline", { count: state.pending })
-      : status === "syncing"
-        ? t.format("app.sync.syncing")
-        : status === "pending"
-          ? t.format("app.sync.pending", { count: state.pending })
-          : status === "error"
-            ? t.format(ERRORS[state.error ?? "unknown"], { min: MIN_PASSWORD })
-            : t.format("app.sync.saved");
+      : status === "unreachable"
+        ? t.format("app.sync.unreachable", { count: state.pending })
+        : status === "syncing"
+          ? t.format("app.sync.syncing")
+          : status === "pending"
+            ? t.format("app.sync.pending", { count: state.pending })
+            : status === "error"
+              ? t.format(ERRORS[state.error ?? "unknown"], { min: MIN_PASSWORD })
+              : status === "held"
+                ? t.format("app.sync.saved-except")
+                : t.format("app.sync.saved");
   return (
     <p className={styles.muted} role="status" data-sync-status={status} data-pending={state.pending} data-verified={state.verified === undefined ? undefined : String(state.verified)}>
       {text}
@@ -154,16 +179,97 @@ const Status = ({ state }: { state: SyncState }): JSX.Element => {
   );
 };
 
-const AccountForm = ({ sync, ageRefused }: { sync: Sync; ageRefused: boolean }): JSX.Element => {
+/**
+ * Events the server rejected (S13): how many, that they stay on this device and still count here,
+ * and a way to send them again (a newer server may take them).
+ */
+const Held = ({ sync, count }: { sync: Sync; count: number }): JSX.Element => {
   const t = useTranslator();
-  const [mode, setMode] = useState<"create" | "sign-in">("create");
-  const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+  return (
+    <p className={styles.notice} role="note" data-sync-held={count}>
+      {t.format("app.sync.held", { count })}{" "}
+      <Button
+        className={styles.inlineButton}
+        isDisabled={busy}
+        onPress={() => {
+          setBusy(true);
+          void sync.retryHeld().finally(() => setBusy(false));
+        }}
+        data-action="sync-retry-held"
+      >
+        {t.format("app.sync.held-retry", { count })}
+      </Button>
+    </p>
+  );
+};
+
+/**
+ * Sign in again (SignedOutNotice, at the top of Home) asks the account form under Your progress to
+ * open on sign-in, the address filled in, with focus on the password.
+ */
+const signInAsked = new Set<() => void>();
+const toSignIn = (): void => {
+  for (const ask of signInAsked) ask();
+};
+
+/**
+ * The server ended the session (ADR 0123): said at the top of Home, across reloads, until the learner
+ * signs in again or stays signed out. Progress stays on the device either way.
+ */
+export const SignedOutNotice = ({ sync }: { sync: Sync }): JSX.Element | null => {
+  const t = useTranslator();
+  const signedOut = useSyncExternalStore(sync.subscribe, () => sync.get().signedOut);
+  if (signedOut === undefined) return null;
+  return (
+    <p className={styles.notice} role="status" data-signed-out={signedOut.email}>
+      {t.format("app.account.signed-out", { email: ltr(signedOut.email) })}{" "}
+      <span className={styles.noticeActions}>
+        <Button className={styles.inlineButton} onPress={toSignIn} data-action="sign-in-again">
+          {t.format("app.account.sign-in-again")}
+        </Button>
+        <Button className={styles.inlineButton} onPress={() => void sync.staySignedOut()} data-action="stay-signed-out">
+          {t.format("app.account.stay-signed-out")}
+        </Button>
+      </span>
+    </p>
+  );
+};
+
+/** `signedOut`: the server ended this person's session, so the form asks them to sign in again (ADR 0123). */
+const AccountForm = ({ sync, ageRefused, signedOut }: { sync: Sync; ageRefused: boolean; signedOut: SignedOut | undefined }): JSX.Element => {
+  const t = useTranslator();
+  const [mode, setMode] = useState<"create" | "sign-in">(signedOut === undefined ? "create" : "sign-in");
+  const [email, setEmail] = useState(signedOut?.email ?? "");
   const [password, setPassword] = useState("");
   // Only once the server asks (ADR 0069); the answer goes with the sign-up and nowhere else.
   const [askAge, setAskAge] = useState(false);
   const [age, setAge] = useState("");
   const [error, setError] = useState<SyncError | "invalid-age" | undefined>(undefined);
   const [busy, setBusy] = useState(false);
+  // What a forgotten password leaves the learner (ADR 0123): the server cannot reset one.
+  const [forgot, setForgot] = useState(false);
+  // Sign in again, asked from the top of Home: on sign-in, then focus to the password once it renders.
+  const passwordField = useRef<HTMLInputElement>(null);
+  const [asked, setAsked] = useState(0);
+  useEffect(() => {
+    const ask = (): void => {
+      setMode("sign-in");
+      setError(undefined);
+      setAsked((n) => n + 1);
+    };
+    signInAsked.add(ask);
+    return () => {
+      signInAsked.delete(ask);
+    };
+  }, []);
+  useEffect(() => {
+    if (asked === 0) return;
+    const field = passwordField.current;
+    field?.focus({ preventScroll: true });
+    // The middle of the screen, clear of a phone browser's bottom toolbar.
+    field?.scrollIntoView({ block: "center" });
+  }, [asked]);
   const submit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (busy) return;
@@ -188,7 +294,18 @@ const AccountForm = ({ sync, ageRefused }: { sync: Sync; ageRefused: boolean }):
           {t.format("app.account.age-refused")}
         </p>
       ) : (
-        <AccountFields mode={mode} email={email} setEmail={setEmail} password={password} setPassword={setPassword} askAge={askAge} age={age} setAge={setAge} />
+        <AccountFields
+          mode={mode}
+          again={signedOut !== undefined}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          passwordField={passwordField}
+          askAge={askAge}
+          age={age}
+          setAge={setAge}
+        />
       )}
       {error !== undefined && !(turnedAway && error === "age") && (
         <p className={styles.notice} role="alert" data-account-error={error}>
@@ -199,6 +316,11 @@ const AccountForm = ({ sync, ageRefused }: { sync: Sync; ageRefused: boolean }):
         {!turnedAway && (
           <Button className={styles.button} type="submit" isDisabled={busy} data-action="account-submit">
             {t.format(mode === "create" ? "app.account.create" : "app.account.sign-in")}
+          </Button>
+        )}
+        {mode === "sign-in" && (
+          <Button className={styles.textButton} onPress={() => setForgot(!forgot)} aria-expanded={forgot} data-action="forgot-password">
+            {t.format("app.account.forgot")}
           </Button>
         )}
         <Button
@@ -212,33 +334,42 @@ const AccountForm = ({ sync, ageRefused }: { sync: Sync; ageRefused: boolean }):
           {t.format(mode === "create" ? "app.account.have-account" : "app.account.new-account")}
         </Button>
       </div>
+      {mode === "sign-in" && forgot && (
+        <p className={styles.notice} role="note" data-no-reset="">
+          {t.format("app.account.no-reset")}
+        </p>
+      )}
     </Form>
   );
 };
 
 interface FieldsProps {
   readonly mode: "create" | "sign-in";
+  /** The server signed this person out: signing in is signing in again. */
+  readonly again: boolean;
   readonly email: string;
   readonly setEmail: (v: string) => void;
   readonly password: string;
   readonly setPassword: (v: string) => void;
+  /** The password's input, for Sign in again to focus. */
+  readonly passwordField: RefObject<HTMLInputElement | null>;
   readonly askAge: boolean;
   readonly age: string;
   readonly setAge: (v: string) => void;
 }
 
-const AccountFields = ({ mode, email, setEmail, password, setPassword, askAge, age, setAge }: FieldsProps): JSX.Element => {
+const AccountFields = ({ mode, again, email, setEmail, password, setPassword, passwordField, askAge, age, setAge }: FieldsProps): JSX.Element => {
   const t = useTranslator();
   return (
     <>
-      <p className={styles.formIntro}>{t.format(mode === "create" ? "app.account.pitch" : "app.account.welcome-back")}</p>
+      <p className={styles.formIntro}>{t.format(mode === "create" ? "app.account.pitch" : again ? "app.error.account.signed-out" : "app.account.welcome-back")}</p>
       <TextField className={styles.field} value={email} onChange={setEmail} isRequired autoComplete="email" name="email">
         <Label className={styles.label}>{t.format("app.account.email")}</Label>
         <Input className={styles.input} inputMode="email" dir="ltr" spellCheck={false} autoCapitalize="none" data-field="email" />
       </TextField>
       <TextField className={styles.field} value={password} onChange={setPassword} isRequired type="password" autoComplete={mode === "create" ? "new-password" : "current-password"} name="password">
         <Label className={styles.label}>{t.format("app.account.password")}</Label>
-        <Input className={styles.input} dir="auto" data-field="password" />
+        <Input ref={passwordField} className={styles.input} dir="auto" data-field="password" />
         {mode === "create" && (
           <Text slot="description" className={styles.muted}>
             {t.format("app.account.password-hint", { min: MIN_PASSWORD })}
@@ -258,7 +389,8 @@ const AccountFields = ({ mode, email, setEmail, password, setPassword, askAge, a
   );
 };
 
-export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JSX.Element => {
+/** `courses` names the courses a restored file holds (ADR 0109). */
+export const Progress = ({ store, sync, courses }: { store: EventStore; sync: Sync; courses: readonly Named[] }): JSX.Element => {
   const t = useTranslator();
   const state = useSyncExternalStore(sync.subscribe, sync.get);
   const [deleted, setDeleted] = useState(false);
@@ -267,7 +399,7 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
       <h2 className={styles.courseName} id="progress-title">
         {t.format("app.progress.title")}
       </h2>
-      <p className={styles.muted}>{t.format(store.persistent ? "app.progress.device" : "app.store.memory")}</p>
+      <DeviceCopy store={store} />
       {deleted && state.account === undefined && (
         <p className={styles.notice} role="status" data-account-deleted="">
           {t.format("app.account.deleted")}
@@ -275,13 +407,15 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
       )}
       {state.server !== undefined &&
         (state.account === undefined ? (
-          <AccountForm sync={sync} ageRefused={state.ageRefused} />
+          // A sign-out by the server while the page is open starts the form afresh, on sign-in.
+          <AccountForm key={state.signedOut?.email ?? ""} sync={sync} ageRefused={state.ageRefused} signedOut={state.signedOut} />
         ) : (
           <div data-account={state.account.user.email}>
             <p>
               {t.format("app.account.signed-in", { email: ltr(state.account.user.email) })}
             </p>
             <Status state={state} />
+            {state.held > 0 && <Held sync={sync} count={state.held} />}
             <ProfileForm account={state.account} uiLocale={t.locale} />
             <Reminders account={state.account} />
             <Button className={styles.textButton} onPress={() => void sync.signOut()} data-action="sign-out">
@@ -295,6 +429,7 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
           {t.format("app.progress.export")}
         </Button>
       </div>
+      <Restore store={store} sync={sync} courses={courses} />
       <Voice signedIn={state.account !== undefined} />
     </section>
   );
@@ -305,10 +440,14 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
  * chooses whether the server's speech service may hear them; the pitch range learned on this
  * device (three numbers) can be forgotten.
  */
-const Voice = ({ signedIn }: { signedIn: boolean }): JSX.Element => {
+const Voice = ({ signedIn }: { signedIn: boolean }): JSX.Element | null => {
   const t = useTranslator();
   const [server, setServer] = useState(serverAllowed);
   const [range, setRange] = useState(() => loadCalibration() !== undefined);
+  // Nothing to choose and nothing to forget (no server to allow, no pitch range kept): no panel (S4).
+  // Once shown, it stays to say the range is forgotten.
+  const [kept] = useState(range);
+  if (!signedIn && !kept) return null;
   return (
     <div className={styles.voice} data-voice="">
       <h3 className={styles.subheading}>{t.format("app.voice.title")}</h3>

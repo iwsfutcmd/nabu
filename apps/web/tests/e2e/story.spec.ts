@@ -86,6 +86,13 @@ for (const mode of ["keyboard", "touch"] as const) {
       const violations = await read(page, script, mode);
       expect(violations).toEqual([]);
       await expect(page.locator("[data-story-reader] [data-xp-earned]")).toBeVisible();
+      // Read it again (S15): every line, no questions, and nothing more recorded.
+      const before = (await logOf(page, id)).length;
+      await activate(page, mode, "[data-story-reader] [data-action=reread]");
+      await expect(reader(page)).toHaveAttribute("data-state", "rereading");
+      await expect(page.locator("[data-story-transcript] [data-line]")).toHaveCount(script.lines.length);
+      await expect(page.locator("[data-story-question]")).toHaveCount(0);
+      expect((await logOf(page, id)).length).toBe(before);
       await activate(page, mode, "[data-story-reader] [data-action=exit]");
       await expect(page.locator(`[data-story-node="${story.node}"]`)).toHaveAttribute("data-status", "done");
 
@@ -123,8 +130,50 @@ test("tap-for-gloss: vocalized apc-Arab words find their entries, whatever their
   const line = await kifak.evaluate((el) => el.closest("[data-line]")?.getAttribute("data-line"));
   const index = await kifak.getAttribute("data-index");
   const word = page.locator(`[data-story-transcript] [data-line="${line ?? ""}"] button[data-index="${index ?? ""}"]`);
-  await page.locator("[data-toggle=marks]").tap();
+  // Vowel marks off, from the header's display menu (P12).
+  await page.locator("[data-story-reader] [data-action=display]").tap();
+  await page.locator("[data-display-menu] [data-toggle=marks] [data-marks=hide]").tap();
+  await page.keyboard.press("Escape");
   await expect(word).toHaveText("كيفك");
   await expect(word).toHaveAttribute("aria-pressed", "true");
   await expect(entry).toBeVisible();
+});
+
+test("vertical reading on a phone: the readings stay, only the Cantonese turns, Continue in sight (W6)", async ({ page }, info) => {
+  test.skip(info.project.name !== "touch", "a phone: the touch pass");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("yue", "yue-Hant-HK/standard");
+  const [story] = allStories(course);
+  if (story === undefined) throw new Error("yue has no story");
+  await seedLog(page, historyBefore(course, story.node, NOW));
+  await page.goto(`/?seed=${SEED}&sound=off#/yue/yue-Hant-HK.standard/story/${encodeURIComponent(story.node)}`);
+  await expect(reader(page)).toHaveAttribute("data-state", "reading");
+  const transcript = page.locator("[data-story-transcript]");
+  await expect(transcript.locator("rt").first()).toBeVisible();
+  // Vertical reading, from the header's display menu.
+  await page.locator("[data-story-reader] [data-action=display]").tap();
+  await page.locator("[data-display-menu] [data-toggle=vertical]").tap();
+  await page.keyboard.press("Escape");
+  await expect(transcript).toHaveAttribute("data-writing-mode", "vertical-rl");
+  // Read on a line.
+  await page.locator("[data-story-reader] [data-action=continue]").tap();
+  await expect(reader(page)).toHaveAttribute("data-state", "reading");
+  const newest = transcript.locator("[data-line]").last();
+  await expect(transcript.locator("[data-line]")).toHaveCount(2);
+  // The lines' text runs in columns, its readings beside it; names, buttons and links stay horizontal.
+  expect(await newest.locator("p[data-nabu-text]").evaluate((el) => getComputedStyle(el).writingMode)).toBe("vertical-rl");
+  await expect(newest.locator("rt").first()).toBeVisible();
+  // Every control of a line (its play buttons, its translation's, the app's report) is horizontal: only words turn.
+  const controls = await transcript
+    .locator("[data-line] button:not([data-index])")
+    .evaluateAll((els) => els.map((el) => `${el.getAttribute("data-action") ?? ""}:${getComputedStyle(el).writingMode}`));
+  expect(controls.some((c) => c.startsWith("translate:"))).toBe(true);
+  expect(controls.some((c) => c.startsWith("play:"))).toBe(true);
+  expect(controls.filter((c) => !c.endsWith(":horizontal-tb"))).toEqual([]);
+  // "Synthetic voice" is said beside the newest line's buttons, never on a line of its own.
+  await expect(reader(page).getByText("Synthetic voice")).toHaveCount(1);
+  await expect(newest.getByText("Synthetic voice")).toBeVisible();
+  // No empty block under the lines: what moves the story on is in sight.
+  const box = await page.locator("[data-story-reader] [data-action=continue]").boundingBox();
+  expect(box!.y + box!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
 });

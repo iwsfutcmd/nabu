@@ -7,16 +7,21 @@
  * - Every field takes its text's own `lang` and `dir` (from the script, never the UI) and font;
  *   the course's text is shown beside it through <T>.
  * - IME-safe (gameplan §6.7): values are kept exactly as typed; nothing is normalized until the
- *   correction is made (NFC, in @nabu/core/corrections), and nothing is sent mid-composition.
+ *   correction is made (NFC, in @nabu/core/corrections), and nothing is sent mid-composition. Send
+ *   stays enabled while a keyboard composes: a press then waits for the composition to end, and
+ *   sends what it settled to (ADR 0118, D39). Enter in a one-line field (a reading) sends the form
+ *   as HTML forms do, a press on Send by another name; browsers never do so mid-composition.
  */
 import { correctionOf, draftFrom, shownOf, type Correctable, type CorrectionDraft, type CorrectionError } from "@nabu/core/corrections";
-import { READING_TAGS, type CourseView } from "@nabu/core/lesson";
+import { readingScheme } from "@nabu/core";
+import type { CourseView } from "@nabu/core/lesson";
 import { textOfSurface } from "@nabu/core/text";
-import { directionOf, fontStackFor } from "@nabu/i18n";
+import { directionOf, fontStackFor, orthographyName } from "@nabu/i18n";
 import type { CorrectionFields, SentenceReported, TaggedText, TokenReading } from "@nabu/schema";
-import { useId, useMemo, useState, type CSSProperties, type JSX } from "react";
+import { useId, useMemo, useRef, useState, type CSSProperties, type JSX } from "react";
 import { Button, FieldError, Input, Label, Text, TextArea, TextField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
+import { useSettledSubmit } from "../ime.ts";
 import { T } from "../T.tsx";
 import styles from "./Corrections.module.css";
 
@@ -65,14 +70,22 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
   const headingId = useId();
   const shown = useMemo(() => shownOf(target), [target]);
   const [draft, setDraft] = useState<CorrectionDraft>(() => startFrom(shown, previous));
-  const [composing, setComposing] = useState(false);
   const [error, setError] = useState<CorrectionError | undefined>(undefined);
-  const ime = { onCompositionStart: () => setComposing(true), onCompositionEnd: () => setComposing(false) };
+  const sendButton = useRef<HTMLButtonElement>(null);
+  const actions = useRef<HTMLDivElement>(null);
+  // The settled draft: never mid-composition, when a press on Send waits for compositionend (D39).
+  const settled = useSettledSubmit(
+    () => {
+      const made = correctionOf(shown, draft);
+      if (made.ok) onSubmit(made.value, shown);
+      else setError(made.error);
+    },
+    sendButton,
+    actions,
+  );
+  const ime = settled.composition;
   const errorOf = (field: string): string | undefined => (error !== undefined && "field" in error && error.field === field ? t.format(ERROR_MESSAGES[error.code]) : undefined);
-  const orthographyName = (id: string): string => {
-    const key = `orthography.${id.replace("/", ".")}`;
-    return t.has(key) ? t.format(key) : id;
-  };
+  const nameOf = (id: string): string => orthographyName(t, course, id);
   const edit = (next: CorrectionDraft): void => {
     setDraft(next);
     setError(undefined);
@@ -80,12 +93,6 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
   const setForm = (o: string, change: Partial<{ text: string; readings: readonly string[] }>): void => {
     const form = draft.forms[o] ?? { text: "", readings: [] };
     edit({ ...draft, forms: { ...draft.forms, [o]: { ...form, ...change } } });
-  };
-  const send = (): void => {
-    if (composing) return;
-    const made = correctionOf(shown, draft);
-    if (made.ok) onSubmit(made.value, shown);
-    else setError(made.error);
   };
   const translation: TaggedText | undefined = target.translation;
   const word = target.kind === "word";
@@ -100,7 +107,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
       data-kind={target.kind}
       onSubmit={(e) => {
         e.preventDefault();
-        send();
+        settled.press();
       }}
     >
       <h2 className={styles.heading} id={headingId}>
@@ -117,7 +124,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
         return (
           <div key={o} className={styles.field} data-orthography={o}>
             <TextField className={styles.field} value={form.text} onChange={(v) => setForm(o, { text: v })} isInvalid={errorOf(`text:${o}`) !== undefined}>
-              <Label className={styles.label}>{t.format(word ? "corrections.word.text" : "corrections.text", { orthography: orthographyName(o) })}</Label>
+              <Label className={styles.label}>{t.format(word ? "corrections.word.text" : "corrections.text", { orthography: nameOf(o) })}</Label>
               <TextArea className={styles.input} lang={text.lang} dir={directionOf(text.lang)} rows={2} spellCheck={false} style={fieldStyle(text.lang, profile?.fonts)} data-field="correction-text" {...ime} />
               <Text slot="description" className={styles.now} data-ink-container={`now:${o}`}>
                 {t.format("corrections.now")} <T text={text} />
@@ -128,8 +135,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
               <fieldset className={styles.readings}>
                 <legend className={styles.legend}>{t.format("corrections.readings")}</legend>
                 {readings.map((r, n) => {
-                  const tag = READING_TAGS[r.scheme];
-                  const lang = tag?.lang ?? "und-Latn";
+                  const lang = readingScheme(r.scheme)?.lang ?? "und-Latn";
                   return (
                     <TextField
                       key={`${String(r.token)}:${r.scheme}`}
@@ -175,11 +181,12 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
           {t.format(ERROR_MESSAGES.unchanged)}
         </p>
       )}
-      <div className={styles.actions}>
+      <div ref={actions} className={styles.actions}>
         <Button className={styles.secondary} onPress={onCancel} data-action="cancel-correction">
           {t.format("corrections.cancel")}
         </Button>
-        <Button className={styles.primary} type="submit" isDisabled={composing} data-action="send-correction">
+        {/* Enabled while composing (D39): the form's submit is the press, and waits for the composition to end. */}
+        <Button ref={sendButton} className={styles.primary} type="submit" data-action="send-correction">
           {t.format("corrections.submit")}
         </Button>
       </div>

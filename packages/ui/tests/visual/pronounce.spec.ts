@@ -1,8 +1,8 @@
 /**
- * Writing in a word's pronunciation (ADR 0054) in the visual matrix: UI {en, en-XA, ar-XB} ×
- * {fa, apc-Arab: vowel marks; yue-Hant-HK: Jyutping}, horizontal. The field takes the answer's own
- * language and direction (the target's for marks, yue-Latn-HK-jyutping left to right for a
- * reading); the mark keys sit on a tatweel; the solution always shows its marks.
+ * A word's pronunciation (ADR 0054) in the visual matrix: UI {en, en-XA, ar-XB} × {fa, apc-Arab:
+ * vowel marks; yue-Hant-HK: Jyutping}, horizontal. Vowel marks are chosen among the word's
+ * vocalizations (ADR 0098), each option in the target's language and direction; a reading is typed
+ * in a field that takes yue-Latn-HK-jyutping, left to right. The solution always shows its marks.
  */
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
@@ -34,18 +34,24 @@ for (const cell of cells()) {
       await expect(word.locator("rt")).toHaveCount(0);
       await expect(page.locator("[data-pronounce-meaning] [data-nabu-text]")).toHaveAttribute("dir", "ltr");
 
-      if (screen === "typing") {
+      if (screen === "typing" && reading) {
         const input = page.locator("[data-answer-input]");
-        await expect(input).toHaveAttribute("lang", reading ? JYUTPING : new RegExp(`^${cell.targetLang}`, "u"));
-        await expect(input).toHaveAttribute("dir", reading ? "ltr" : "rtl");
-        if (reading) {
-          await expect(input).toHaveValue("");
-          await expect(page.locator("[data-char-bar]")).toHaveCount(0);
-        } else {
-          // The field starts from the letters; the keys add the marks.
-          await expect(input).toHaveValue(((await word.textContent()) ?? "").trim());
-          await expect(page.locator("[data-char-bar] [data-key]")).toHaveCount(9);
+        await expect(input).toHaveAttribute("lang", JYUTPING);
+        await expect(input).toHaveAttribute("dir", "ltr");
+        await expect(input).toHaveValue("");
+        await expect(page.locator("[data-char-bar]")).toHaveCount(0);
+      } else if (screen === "typing") {
+        // Marks are chosen, never typed: the word written with each vocalization of its letters.
+        await expect(page.locator("[data-answer-input]")).toHaveCount(0);
+        const options = page.locator("[data-options] [data-option] [data-nabu-text]");
+        expect(await options.count()).toBeGreaterThanOrEqual(2);
+        for (const option of await options.all()) {
+          await expect(option).toHaveAttribute("lang", new RegExp(`^${cell.targetLang}`, "u"));
+          await expect(option).toHaveAttribute("dir", cell.targetDir);
         }
+        const written = await options.allTextContents();
+        expect(new Set(written).size).toBe(written.length);
+        expect(written.some((w) => HARAKAT.test(w))).toBe(true);
       } else {
         await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "WRONG");
         await expect(page.locator("[data-solution]")).toBeVisible();

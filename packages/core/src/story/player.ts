@@ -7,7 +7,7 @@
  */
 import type { Exercise } from "../lesson/exercise.ts";
 import { isCorrect } from "../lesson/exercise.ts";
-import { start as startLesson, step as stepLesson, type Effect, type PlayerEvent, type PlayerState, type SessionResult, type SessionSummary } from "../lesson/player.ts";
+import { reviseResults, start as startLesson, step as stepLesson, type Effect, type PlayerEvent, type PlayerState, type SessionResult, type SessionSummary } from "../lesson/player.ts";
 import type { StoryScript } from "./story.ts";
 
 interface Common {
@@ -32,7 +32,8 @@ export const summarizeStory = (state: Common, completed: boolean): SessionSummar
   const first = state.results.filter((r) => !r.retry);
   return {
     completed,
-    exercises: questions(state.script),
+    // A story left before its end counts the questions answered (P8), not those it never asked.
+    exercises: completed ? questions(state.script) : first.length,
     correctFirstTry: first.filter((r) => isCorrect(r.verdict)).length,
     retries: state.results.filter((r) => r.retry).length,
     skipped: state.results.filter((r) => r.verdict === "SKIPPED").length,
@@ -64,6 +65,15 @@ export const startStory = (script: StoryScript): readonly [StoryState, readonly 
 export const stepStory = (state: StoryState, event: StoryEvent): readonly [StoryState, readonly Effect[]] => {
   if (state.tag === "finished") return [state, []];
   if (event.tag === "quit") return finish(state, false);
+  // An answer revised (ADR 0113): the question being asked takes it in its own player; a question
+  // answered before, in the story's results, which its score counts.
+  if (event.tag === "player" && event.event.tag === "revise") {
+    const { exercise, verdict } = event.event;
+    if (state.tag !== "asking" || !state.player.session.results.some((r) => r.exercise === exercise)) {
+      const results = reviseResults(state.results, exercise, verdict);
+      return results === undefined ? [state, []] : [{ ...state, results }, []];
+    }
+  }
   if (state.tag === "reading") return event.tag === "continue" ? enter({ ...state, at: state.at + 1 }) : [state, []];
   // asking
   if (event.tag !== "player") return [state, []];

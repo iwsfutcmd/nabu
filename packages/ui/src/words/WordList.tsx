@@ -1,22 +1,24 @@
 /**
- * The word list: the words a learner has learned in a course, to browse (learnedWords in
+ * The word list: the words a learner has met in a course, to browse (learnedWords in
  * @nabu/core/learner). Each word in the orthography being learned, with its readings where the
- * profile has them, its meaning in the support language, its clip, and how well it is remembered.
+ * profile has them, its meaning in the support language, its clip, how well it is remembered, and
+ * whether it is known or still being learned, with the skills it has yet to show (ADR 0100).
  *
- * - Order: as in the course (by unit), alphabetical by the language's own collation, or weakest
- *   first.
- * - Search: by letters, whatever the vowel marks, or by meaning (wordMatcher). The field takes the
- *   direction of what is typed, and the list follows a query only once an IME has committed it:
- *   nothing filters on a half-composed syllable.
+ * - Show: every word, the known ones, or the ones being learned, each with its count.
+ * - Order: as in the course (by unit, each unit with how many of its words are known),
+ *   alphabetical by the language's own collation, or weakest first.
+ * - Search: by letters, whatever the vowel marks, by reading (Jyutping, pinyin…), or by meaning
+ *   (wordMatcher). The field takes the direction of what is typed, and the list follows a query
+ *   only once an IME has committed it: nothing filters on a half-composed syllable.
  */
-import { orderWords, wordMatcher, type LearnedWord, type WordOrder } from "@nabu/core/learner";
+import { orderWords, wordCounts, wordMatcher, type LearnedWord, type Skill, type WordOrder } from "@nabu/core/learner";
 import type { CourseView } from "@nabu/core/lesson";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useId, useMemo, useState, type JSX } from "react";
 import { Input, Label, Radio, RadioGroup, SearchField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
-import { rubySchemeOf } from "../player/shared.ts";
+import { defaultRuby } from "../player/Readings.tsx";
 import { T } from "../T.tsx";
 import styles from "./Words.module.css";
 
@@ -25,6 +27,8 @@ export interface WordListProps {
   readonly words: readonly LearnedWord[];
   /** A bundle path (a clip) as a URL. */
   readonly url: (path: string) => string;
+  /** The reading layer the learner chose for the orthography (ADR 0071), if any: shown as ruby as the player shows it. */
+  readonly reading?: SchemeId | false | undefined;
 }
 
 /** How remembered a word is, in three words: due for review, strong, or fading. */
@@ -34,16 +38,42 @@ const BAND_MESSAGES = { due: "words.strength.due", strong: "words.strength.stron
 
 const ORDERS: readonly WordOrder[] = ["course", "alphabetical", "weakest"];
 
+type WordFilter = "all" | "known" | "learning";
+const FILTERS: readonly WordFilter[] = ["all", "known", "learning"];
+const FILTER_MESSAGES = { all: "words.filter.all", known: "words.filter.known", learning: "words.filter.learning" } as const;
+
+const SKILL_MESSAGES: Readonly<Record<Skill, "words.skill.recognize" | "words.skill.produce" | "words.skill.listen">> = {
+  recognize: "words.skill.recognize",
+  produce: "words.skill.produce",
+  listen: "words.skill.listen",
+};
+
 const Word = ({ course, word, url, ruby }: { course: CourseView; word: LearnedWord; url: (path: string) => string; ruby: SchemeId | false }): JSX.Element => {
   const t = useTranslator();
   const audio = course.audio[word.kc];
   const player = useClipPlayer(audio, url);
   const band = strengthBand(word);
+  const missing = word.skills.filter((s) => !s.shown).map((s) => s.skill);
   return (
-    <li className={styles.word} data-word={word.kc} data-strength={band}>
+    <li className={styles.word} data-word={word.kc} data-strength={band} data-known={word.known}>
       <div className={styles.texts} data-ink-container={`word:${word.kc}`}>
         <T as="p" className={styles.form} text={word.form} ruby={ruby} />
         {word.gloss !== undefined && <T as="p" className={styles.gloss} text={word.gloss} />}
+        <div className={styles.progress}>
+          <p className={styles.status} data-status={word.known ? "known" : "learning"}>
+            {t.format(word.known ? "words.status.known" : "words.status.learning")}
+          </p>
+          {!word.known && missing.length > 0 && (
+            <p className={styles.skills} data-skills-missing={missing.join(" ")}>
+              <span>{t.format("words.skills.label")}</span>
+              {missing.map((s) => (
+                <span key={s} className={styles.skill} data-skill={s}>
+                  {t.format(SKILL_MESSAGES[s])}
+                </span>
+              ))}
+            </p>
+          )}
+        </div>
       </div>
       <div className={styles.side}>
         {audio !== undefined && <AudioButtons player={player} audio={audio} label={false} />}
@@ -60,15 +90,34 @@ const Word = ({ course, word, url, ruby }: { course: CourseView; word: LearnedWo
 
 const titleOf = (course: CourseView, unit: string): TaggedText | undefined => course.units.find((u) => u.id === unit)?.title?.[course.supportKey];
 
-export const WordList = ({ course, words, url }: WordListProps): JSX.Element => {
+export const WordList = ({ course, words, url, reading }: WordListProps): JSX.Element => {
   const t = useTranslator();
   const listId = useId();
   const [order, setOrder] = useState<WordOrder>("course");
+  const [filter, setFilter] = useState<WordFilter>("all");
   const [typed, setTyped] = useState("");
   const [query, setQuery] = useState("");
   const [composing, setComposing] = useState(false);
-  const ruby = useMemo(() => rubySchemeOf(course.profiles.get(course.orthography)?.source) ?? false, [course]);
-  const shown = useMemo(() => orderWords(words, order).filter(wordMatcher(course, query)), [words, order, course, query]);
+  const ruby = useMemo(() => defaultRuby(course.profiles.get(course.orthography)?.source, reading), [course, reading]);
+  const counts = useMemo(() => wordCounts(words), [words]);
+  // Whether any word is asked to be heard: the explanation names listening only where it counts.
+  const heard = useMemo(() => words.some((w) => w.skills.some((s) => s.skill === "listen")), [words]);
+  const shown = useMemo(
+    () =>
+      orderWords(words, order)
+        .filter((w) => filter === "all" || (filter === "known") === w.known)
+        .filter(wordMatcher(course, query)),
+    [words, order, filter, course, query],
+  );
+  // How many of each unit's words are known, for the unit headings.
+  const byUnit = useMemo(() => {
+    const out = new Map<string, { known: number; count: number }>();
+    for (const w of words) {
+      const u = out.get(w.unit) ?? { known: 0, count: 0 };
+      out.set(w.unit, { known: u.known + (w.known ? 1 : 0), count: u.count + 1 });
+    }
+    return out;
+  }, [words]);
   // In course order the words stay under their units.
   const groups = useMemo(() => {
     if (order !== "course") return [{ unit: undefined, words: shown }];
@@ -94,9 +143,10 @@ export const WordList = ({ course, words, url }: WordListProps): JSX.Element => 
   }
   return (
     <div className={styles.list} data-word-list={course.id}>
-      <p className={styles.count} data-words-count={words.length}>
+      <p className={styles.count} data-words-count={words.length} data-words-known={counts.known}>
         {t.format("words.count", { count: words.length })}
       </p>
+      <p className={styles.muted}>{t.format(heard ? "words.known.explain-heard" : "words.known.explain")}</p>
       <div className={styles.controls}>
         <SearchField
           className={styles.search}
@@ -122,6 +172,16 @@ export const WordList = ({ course, words, url }: WordListProps): JSX.Element => 
             data-field="word-search"
           />
         </SearchField>
+        <RadioGroup className={styles.orders} value={filter} onChange={(v) => setFilter(v as WordFilter)} orientation="horizontal" data-word-filter={filter}>
+          <Label className={styles.label}>{t.format("words.filter.label")}</Label>
+          <div className={styles.radios}>
+            {FILTERS.map((f) => (
+              <Radio key={f} className={styles.radio} value={f} data-filter={f}>
+                {t.format(FILTER_MESSAGES[f], { count: f === "all" ? words.length : counts[f] })}
+              </Radio>
+            ))}
+          </div>
+        </RadioGroup>
         <RadioGroup className={styles.orders} value={order} onChange={(v) => setOrder(v as WordOrder)} orientation="horizontal" data-word-order={order}>
           <Label className={styles.label}>{t.format("words.order.label")}</Label>
           <div className={styles.radios}>
@@ -143,7 +203,10 @@ export const WordList = ({ course, words, url }: WordListProps): JSX.Element => 
             <section key={g.unit ?? "all"} aria-labelledby={g.unit === undefined ? undefined : `${listId}-${g.unit}`} data-word-unit={g.unit}>
               {g.unit !== undefined && (
                 <h2 className={styles.unit} id={`${listId}-${g.unit}`}>
-                  {unitName(g.unit)}
+                  <span>{unitName(g.unit)}</span>
+                  <span className={styles.unitKnown} data-unit-known={byUnit.get(g.unit)?.known ?? 0}>
+                    {t.format("words.unit.known", { known: byUnit.get(g.unit)?.known ?? 0, count: byUnit.get(g.unit)?.count ?? 0 })}
+                  </span>
                 </h2>
               )}
               <ul className={styles.words}>

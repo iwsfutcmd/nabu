@@ -20,6 +20,11 @@ Two hosted providers, for languages the local voices serve badly (ADR 0042):
   timestamps. Speed 0.7-1.2.
 - **cartesia** (Sonic): word timestamps over server-sent events; speed 0.6-1.5; no seed.
 
+VoxCPM2 for Cantonese (ADR 0094), in its own runtime (pipeline/runtimes/voxcpm):
+
+- **voxcpm**: every clip clones a reference with its transcript. A word card is said after a
+  carrier and cut out by forced alignment; a sentence is slowed toward a pace with Rubber Band.
+
 One local model for dialects the others do not serve (ADR 0058):
 
 - **omnivoice**: OmniVoice checkpoints from Hugging Face, run on this machine. The Lahgtna
@@ -50,14 +55,20 @@ from collections.abc import Callable
 from dataclasses import dataclass, replace
 from functools import cache
 from pathlib import Path
-from typing import Any, ClassVar, Protocol
+from typing import Any, ClassVar, Literal, Protocol, runtime_checkable
 from urllib.parse import quote
 
 import regex
 
 from nabu.audio import espeak
 from nabu.audio.phones import optional
+from nabu.audio.punctuation import with_final_stop
+from nabu.jsonlines import JsonLinesProcess
 from nabu.schema.models import AudioVoice
+
+#: What an item is, as the course's plan says (nabu.audio.course): a word card, said on its own
+#: (no closing punctuation, ADR 0094), or a sentence.
+Kind = Literal["word", "sentence"]
 
 
 @dataclass(frozen=True)
@@ -69,6 +80,12 @@ class Request:
     #: Which attempt (ADR 0060): a clip a listener rejected is made again with the next take,
     #: which a seeded provider samples with another seed.
     take: int = 0
+    #: What the item is, and how many words it has (its word tokens, so a script written without
+    #: spaces counts too), from the plan: what a carrier voice goes by, never its input's spaces
+    #: or the script of its letters. They reach a clip's identity only through the route they
+    #: choose (`item_settings`), and never its seed.
+    kind: Kind = "sentence"
+    words: int = 1
 
 
 @dataclass(frozen=True)
@@ -107,6 +124,33 @@ class Provider(Protocol):
         ...
 
     def synthesize(self, requests: list[Request]) -> list[Clip]: ...
+
+
+#: How `nabu audio cast` makes a cloning voice's reference: "design", the model makes it here,
+#: reading the text in a voice an instruction describes (speaker attributes, or a style);
+#: "recording", a real speaker's recording is kept (ADR 0076); "designed", a voice the model
+#: designed elsewhere is kept with how it was made (ADR 0094).
+Cast = Literal["design", "recording", "designed"]
+
+
+@runtime_checkable
+class Caster(Protocol):
+    """A provider whose every clip clones a reference voice, and the ways it is cast."""
+
+    name: str
+    CASTS: ClassVar[frozenset[Cast]]
+    #: The instruction a "design" cast takes when none is given; None if one must be.
+    DEFAULT_INSTRUCT: ClassVar[str | None]
+
+    def version(self) -> str: ...
+
+    def design(self, text: str, instruct: str, seed: int) -> Clip:
+        """A reference reading `text`, in the voice `instruct` describes."""
+        ...
+
+    def design_record(self, instruct: str, seed: int) -> dict[str, Any]:
+        """How a reference was designed, as the audio index keeps it."""
+        ...
 
 
 class EspeakProvider:
@@ -174,11 +218,12 @@ class PiperProvider:
     Hugging Face (`model`: owner/name@commit, `voice`: the file stem). Sampling is seeded per clip
     (`seed_of`). Sentences are joined with SENTENCE_GAP_MS of silence.
 
-    With a `carrier` (ADR 0065), an item of at most `maxWords` words is said at the end of the
-    carrier sentence with durations set from it, and cut out (nabu.audio.carrier). So is any
-    sentence of a longer item that the model would collapse (`carrier.collapses`); the item's
-    other sentences are said as they are. `item_settings` names that route, so only the items
-    it changes have new identities."""
+    With a `carrier` (ADR 0065), an item of at most `maxWords` words (the request's word tokens:
+    a script written without spaces counts too) is said at the end of the carrier sentence with
+    durations set from it, and cut out (nabu.audio.carrier). So is any sentence of a longer item
+    that the model would collapse (`carrier.collapses`); the item's other sentences are said as
+    they are. `item_settings` names that route, so only the items it changes have new
+    identities."""
 
     name = "piper"
     seeded = True
@@ -252,18 +297,25 @@ class PiperProvider:
     def _ids(self, engine: Any, text: str) -> list[int]:
         return list(engine.phonemes_to_ids([p for s in engine.phonemize(text) for p in s]))
 
-    def _frames(self, voice: str, ids: list[int]) -> list[float]:
-        """Predicted frames per phoneme id (no duration noise: deterministic)."""
-        from nabu.audio import carrier
-
+    def _feed(self, ids: list[int], durations: list[float] | None = None) -> dict[str, Any]:
+        """The split graph's inputs for phoneme ids, with no duration noise; with `durations`, the
+        frames each id is given (the graph that takes them)."""
         np: Any = importlib.import_module("numpy")
-        reading, _given = self._split(voice, self.model)
         feed = {
             "input": np.array([ids], dtype=np.int64),
             "input_lengths": np.array([len(ids)], dtype=np.int64),
             "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
         }
-        return [float(f) for f in reading.run([carrier.DURATIONS], feed)[0][0, 0]]
+        if durations is not None:
+            feed["durations"] = np.array([[durations]], dtype=np.float32)
+        return feed
+
+    def _frames(self, voice: str, ids: list[int]) -> list[float]:
+        """Predicted frames per phoneme id (no duration noise: deterministic)."""
+        from nabu.audio import carrier
+
+        reading, _given = self._split(voice, self.model)
+        return [float(f) for f in reading.run([carrier.DURATIONS], self._feed(ids))[0][0, 0]]
 
     def _symbols(self, engine: Any) -> dict[int, str]:
         return {i: p for p, ids in engine.config.phoneme_id_map.items() for i in ids}
@@ -277,14 +329,19 @@ class PiperProvider:
         alone = self._ids(engine, regex.sub(r"[\p{P}\s]+$", "", self.carrier.rstrip()) + ".")
         return carrier.floors([inv[i] for i in alone], self._frames(voice, alone))
 
-    def _route(self, engine: Any, voice: str, text: str) -> list[tuple[str, bool]] | None:
+    def _short(self, r: Request) -> bool:
+        """Whether the item is said in the carrier: one of at most `maxWords` words."""
+        return self.carrier is not None and r.words <= self.max_words
+
+    def _route(self, engine: Any, voice: str, r: Request) -> list[tuple[str, bool]] | None:
         """A longer item's sentences, each with whether the model would collapse it (then it is
         said in the carrier); None when none would, or when the text does not split as Piper
         splits it (then the item is said as it is)."""
         from nabu.audio import carrier
 
-        if self.carrier is None or len(text.split()) <= self.max_words:
+        if self.carrier is None or self._short(r):
             return None
+        text = r.input
         parts = carrier.sentences(text)
         whole = [list(engine.phonemes_to_ids(s)) for s in engine.phonemize(text)]
         alone = [self._ids(engine, part) for part in parts]
@@ -298,13 +355,13 @@ class PiperProvider:
         ]
         return route if any(c for _, c in route) else None
 
-    def item_settings(self, text: str) -> dict[str, Any]:
+    def item_settings(self, request: Request) -> dict[str, Any]:
         """What shapes this item's clip beyond `settings`: the route through its sentences, when a
         sentence goes through the carrier. Empty otherwise, so other clips keep their identity."""
-        if self.voice is None:
+        if self.voice is None or self.carrier is None or self._short(request):
             return {}
         engine, _raw = self._engine(self.voice, self.model)
-        route = self._route(engine, self.voice, text)
+        route = self._route(engine, self.voice, request)
         if route is None:
             return {}
         return {"sentences": ["carrier" if c else "plain" for _, c in route]}
@@ -340,43 +397,23 @@ class PiperProvider:
 
         np: Any = importlib.import_module("numpy")
         assert self.carrier is not None
-        reading, given = self._split(r.voice, self.model)
-        inv = {i: p for p, ids in engine.config.phoneme_id_map.items() for i in ids}
+        _reading, given = self._split(r.voice, self.model)
+        inv = self._symbols(engine)
         space = engine.config.phoneme_id_map[carrier.SPACE][0]
         pad = engine.config.phoneme_id_map[carrier.PAD][0]
-
-        def ids_of(text: str) -> list[int]:
-            return list(engine.phonemes_to_ids([p for s in engine.phonemize(text) for p in s]))
-
-        def frames(ids: list[int]) -> list[float]:
-            feed = {
-                "input": np.array([ids], dtype=np.int64),
-                "input_lengths": np.array([len(ids)], dtype=np.int64),
-                "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
-            }
-            return [float(f) for f in reading.run([carrier.DURATIONS], feed)[0][0, 0]]
-
         lead = self.carrier.rstrip()
-        # The carrier said on its own, as a sentence: the floors come from a reading the model
-        # gets right.
-        alone = ids_of(regex.sub(r"[\p{P}\s]+$", "", lead) + ".")
-        floor_phone, floor_pad = carrier.floors([inv[i] for i in alone], frames(alone))
-        ids = ids_of(f"{lead} {r.input}")
-        first = carrier.item_start(ids, ids_of(lead), space, pad)
+        floor_phone, floor_pad = self._floors(engine, r.voice)
+        ids = self._ids(engine, f"{lead} {r.input}")
+        first = carrier.item_start(ids, self._ids(engine, lead), space, pad)
         if first is None:
             raise ProviderError(f"piper: the carrier is not read the same before {r.input!r}")
-        plan = carrier.plan([inv[i] for i in ids], frames(ids), first, floor_phone, floor_pad)
+        frames = self._frames(r.voice, ids)
+        plan = carrier.plan([inv[i] for i in ids], frames, first, floor_phone, floor_pad)
         scaled = (
             [max(1.0, -(-f / r.rate // 1)) for f in plan.frames] if r.rate != 1.0 else plan.frames
         )
         plan = carrier.Plan(scaled, plan.first, plan.last)
-        feed = {
-            "input": np.array([ids], dtype=np.int64),
-            "input_lengths": np.array([len(ids)], dtype=np.int64),
-            "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
-            "durations": np.array([[plan.frames]], dtype=np.float32),
-        }
-        audio = self._session(given, seed_of(r)).run(None, feed)[0].ravel()
+        audio = self._session(given, seed_of(r)).run(None, self._feed(ids, plan.frames))[0].ravel()
         hop = engine.config.hop_length
         begin, end = carrier.bounds(plan, hop)
         cut = np.array(audio[begin:end], dtype=np.float32)
@@ -425,11 +462,10 @@ class PiperProvider:
             if PIPER_PHONEMES.fullmatch(r.input):
                 out.append(self._phonemes(engine, raw, r))
                 continue
-            short = self.carrier is not None and len(r.input.split()) <= self.max_words
-            if short:
+            if self._short(r):
                 out.append(self._carried(engine, r))
                 continue
-            route = self._route(engine, r.voice, r.input)
+            route = self._route(engine, r.voice, r)
             out.append(
                 self._plain(engine, raw, r)
                 if route is None
@@ -692,6 +728,18 @@ def seed_of(request: Request) -> int:
     return int.from_bytes(hashlib.sha256(key.encode("utf-8")).digest()[:4], "big")
 
 
+def retried(speak: Callable[[int], bytes], seed: int, tries: int, sample_rate: int) -> bytes:
+    """The PCM `speak` makes with `seed`, or, while what it makes lasts under 100 ms (a model can
+    give almost nothing for a very short word), with the next seeds in order: `tries` in all,
+    the last kept if none is longer."""
+    pcm = b""
+    for attempt in range(tries):
+        pcm = speak(seed + attempt)
+        if len(pcm) // 2 >= sample_rate // 10:  # 100 ms
+            break
+    return pcm
+
+
 def checkpoint(model: str) -> tuple[str, str]:
     """A Hugging Face checkpoint pinned to a commit: "owner/name@<40 hex>"."""
     repo, _, revision = model.partition("@")
@@ -834,6 +882,9 @@ class OmniVoiceProvider:
 
     name = "omnivoice"
     seeded = True
+    #: Its reference: designed from speaker attributes, or a real speaker's recording.
+    CASTS: ClassVar[frozenset[Cast]] = frozenset({"design", "recording"})
+    DEFAULT_INSTRUCT: ClassVar[str | None] = None
     #: Decoding steps and guidance: OmniVoice's defaults, pinned so a change of defaults cannot
     #: change new clips silently.
     NUM_STEP = 32
@@ -878,17 +929,15 @@ class OmniVoiceProvider:
     TRIES = 4
 
     def _speak(self, engine: OmniVoiceEngine, text: str, seed: int, **extra: Any) -> Clip:
-        clip = Clip(b"", engine.sampling_rate, None, None)
-        for attempt in range(self.TRIES):
+        rate = engine.sampling_rate
+
+        def said(s: int) -> bytes:
             samples = engine.speak(
-                text, self.language, seed + attempt, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
+                text, self.language, s, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
             )
-            clip = Clip(
-                to_pcm(trim_edges(samples, engine.sampling_rate)), engine.sampling_rate, None, None
-            )
-            if len(clip.pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
-                break
-        return clip
+            return to_pcm(trim_edges(samples, rate))
+
+        return Clip(retried(said, seed, self.TRIES, rate), rate, None, None)
 
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         engine = self.load(self.repo, self.revision)
@@ -957,44 +1006,57 @@ def runtime_command(runtime: Path = COSYVOICE_RUNTIME) -> list[str]:
 
     uv = shutil.which("uv")
     if uv is None:
-        raise ProviderError("navoiy: uv is needed to run the CosyVoice runtime")
+        raise ProviderError(f"uv is needed to run the {runtime.name} runtime")
     return [uv, "run", "--project", str(runtime), "python", str(runtime / "worker.py")]
 
 
-class CosyVoiceWorker:
-    """The model in its own environment: worker.py of the runtime, spoken to in JSON lines."""
+class RuntimeWorker(JsonLinesProcess):
+    """A model in its own environment: worker.py of a runtime (pipeline/runtimes), spoken to in
+    JSON lines. Its first message is what to load, which it answers {"ready": {...}}; each later
+    one asks for a clip, answered {"pcm": <base64 s16le>} or {"error": ...}. Ended when Python
+    exits, if not before."""
 
-    def __init__(self, config: dict[str, Any], command: list[str] | None = None) -> None:
+    #: Names the runtime in errors.
+    label: ClassVar[str]
+
+    def __init__(self, config: dict[str, Any], command: list[str]) -> None:
         import atexit
-        import subprocess
 
-        self.process = subprocess.Popen(
-            command or runtime_command(),
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-        )
+        super().__init__(command, timeout=60)
         atexit.register(self.close)
         ready = self._ask(config)
         if "ready" not in ready:
-            raise ProviderError(f"navoiy: the runtime did not start: {ready.get('error', ready)}")
-        self.sampling_rate = int(ready["ready"]["sampleRate"])
-        self.source = Path(ready["ready"]["source"])
+            raise ProviderError(
+                f"{self.label}: the runtime did not start: {ready.get('error', ready)}"
+            )
+        self.ready: dict[str, Any] = ready["ready"]
+        self.sampling_rate = int(self.ready["sampleRate"])
 
     def _ask(self, message: dict[str, Any]) -> dict[str, Any]:
-        stdin, stdout = self.process.stdin, self.process.stdout
-        assert stdin is not None and stdout is not None
-        stdin.write(json.dumps(message, ensure_ascii=False) + "\n")
-        stdin.flush()
-        line = stdout.readline()
-        if not line:
-            raise ProviderError(f"navoiy: the runtime exited ({self.process.wait()})")
-        answer: dict[str, Any] = json.loads(line)
+        answer = self.ask(message)
+        if answer is None:
+            raise ProviderError(f"{self.label}: the runtime exited ({self.process.wait()})")
         return answer
 
+    def _pcm(self, message: dict[str, Any]) -> bytes:
+        """The clip a message asks for; its error, if the runtime gives one."""
+        answer = self._ask(message)
+        if "error" in answer:
+            raise ProviderError(f"{self.label}: {message['text']!r}: {answer['error']}")
+        return base64.b64decode(answer["pcm"])
+
+
+class CosyVoiceWorker(RuntimeWorker):
+    """The CosyVoice runtime's worker.py (Navoiy)."""
+
+    label = "navoiy"
+
+    def __init__(self, config: dict[str, Any], command: list[str] | None = None) -> None:
+        super().__init__(config, command or runtime_command())
+        self.source = Path(self.ready["source"])
+
     def speak(self, text: str, instruct: str, prompt: Path, seed: int, speed: float) -> bytes:
-        answer = self._ask(
+        return self._pcm(
             {
                 "text": text,
                 "instruct": instruct,
@@ -1003,15 +1065,6 @@ class CosyVoiceWorker:
                 "speed": speed,
             }
         )
-        if "error" in answer:
-            raise ProviderError(f"navoiy: {text!r}: {answer['error']}")
-        return base64.b64decode(answer["pcm"])
-
-    def close(self) -> None:
-        if self.process.poll() is None:
-            assert self.process.stdin is not None
-            self.process.stdin.close()
-            self.process.wait(timeout=60)
 
 
 @cache
@@ -1041,6 +1094,9 @@ class NavoiyProvider:
     #: an even, neutral voice for learners.
     STYLE = "calm"
     INSTRUCT = "Speak in a calm, steady, neutral voice with even pacing and relaxed intonation."
+    #: Its reference: the text read in the voice of CosyVoice's prompt recording, in a style.
+    CASTS: ClassVar[frozenset[Cast]] = frozenset({"design"})
+    DEFAULT_INSTRUCT: ClassVar[str | None] = INSTRUCT
     #: float32 everywhere: the same clip on a CPU and a GPU (upstream uses float16 on GPUs).
     DTYPE = "float32"
     TRIES = OmniVoiceProvider.TRIES
@@ -1080,13 +1136,13 @@ class NavoiyProvider:
     def _speak(
         self, engine: CosyVoiceEngine, text: str, prompt: Path, seed: int, rate: float
     ) -> Clip:
-        clip = Clip(b"", engine.sampling_rate, None, None)
-        for attempt in range(self.TRIES):
-            pcm = engine.speak(text, self.INSTRUCT, prompt, seed + attempt, rate)
-            clip = Clip(pcm, engine.sampling_rate, None, None)
-            if len(pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
-                break
-        return clip
+        pcm = retried(
+            lambda s: engine.speak(text, self.INSTRUCT, prompt, s, rate),
+            seed,
+            self.TRIES,
+            engine.sampling_rate,
+        )
+        return Clip(pcm, engine.sampling_rate, None, None)
 
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         engine = self.load(self.repo, self.revision)
@@ -1103,17 +1159,13 @@ class NavoiyProvider:
         prompt = engine.source / path
         if hashlib.sha256(prompt.read_bytes()).hexdigest() != sha256:
             raise ProviderError(f"navoiy: {prompt} differs from the pinned prompt recording")
-        clip = Clip(b"", engine.sampling_rate, None, None)
-        for attempt in range(self.TRIES):
-            clip = Clip(
-                engine.speak(text, instruct, prompt, seed + attempt, 1.0),
-                engine.sampling_rate,
-                None,
-                None,
-            )
-            if len(clip.pcm) // 2 >= engine.sampling_rate // 10:
-                break
-        return clip
+        pcm = retried(
+            lambda s: engine.speak(text, instruct, prompt, s, 1.0),
+            seed,
+            self.TRIES,
+            engine.sampling_rate,
+        )
+        return Clip(pcm, engine.sampling_rate, None, None)
 
     def design_record(self, instruct: str, seed: int) -> dict[str, Any]:
         path, sha256, license = NAVOIY_PROMPT
@@ -1132,6 +1184,289 @@ class NavoiyProvider:
         }
 
 
+# ------------------------------------------------------------------------------- VoxCPM2 (ADR 0094)
+
+#: The VoxCPM2 runtime's own environment (pipeline/runtimes/voxcpm) and the package it pins.
+VOXCPM_RUNTIME = Path(__file__).resolve().parents[3] / "runtimes" / "voxcpm"
+VOXCPM_PACKAGE = "2.0.3"
+
+
+class VoxCPMEngine(Protocol):
+    """What the provider needs of VoxCPM2 (a fake one in tests)."""
+
+    sampling_rate: int
+
+    def speak(self, text: str, prompt: Path, prompt_text: str, seed: int) -> bytes:
+        """s16le mono PCM of `text`, cloning the prompt recording with its transcript."""
+        ...
+
+    def design(self, text: str, instruct: str, seed: int) -> bytes:
+        """s16le mono PCM of `text` in a voice designed from `instruct`."""
+        ...
+
+
+class VoxCPMWorker(RuntimeWorker):
+    """The VoxCPM2 runtime's worker.py."""
+
+    label = "voxcpm"
+
+    def __init__(self, config: dict[str, Any], command: list[str] | None = None) -> None:
+        super().__init__(config, command or runtime_command(VOXCPM_RUNTIME))
+
+    def speak(self, text: str, prompt: Path, prompt_text: str, seed: int) -> bytes:
+        return self._pcm(
+            {"text": text, "prompt": str(prompt), "promptText": prompt_text, "seed": seed}
+        )
+
+    def design(self, text: str, instruct: str, seed: int) -> bytes:
+        return self._pcm({"text": text, "instruct": instruct, "seed": seed})
+
+
+@cache
+def load_voxcpm(repo: str, revision: str) -> VoxCPMEngine:
+    """VoxCPM2 at that commit, in the runtime (cached)."""
+    return VoxCPMWorker(
+        {
+            "model": {"repo": repo, "revision": revision},
+            "cfg": VoxCPMProvider.CFG,
+            "steps": VoxCPMProvider.STEPS,
+        }
+    )
+
+
+def _samples(pcm: bytes) -> array[int]:
+    out = array("h")
+    out.frombytes(pcm)
+    if sys.byteorder == "big":
+        out.byteswap()
+    return out
+
+
+def _pcm_of(samples: array[int]) -> bytes:
+    out = array("h", samples)
+    if sys.byteorder == "big":
+        out.byteswap()
+    return out.tobytes()
+
+
+def speech_span(pcm: bytes, sample_rate: int, floor: float = 0.05) -> tuple[int, int]:
+    """First and last sample of the speech: the 20 ms frames within `floor` of the loudest."""
+    x = _samples(pcm)
+    step = max(1, sample_rate // 50)
+    n = len(x) // step
+    rms = [math.sqrt(sum(v * v for v in x[i * step : (i + 1) * step]) / step) for i in range(n)]
+    if n == 0 or max(rms) <= 0.0:
+        return 0, len(x)
+    loud = [i for i, r in enumerate(rms) if r >= max(rms) * floor]
+    return loud[0] * step, (loud[-1] + 1) * step
+
+
+def faded(pcm: bytes, sample_rate: int, fade_in_ms: int = 10, fade_out_ms: int = 40) -> bytes:
+    """Short linear fades, so a cut does not click."""
+    x = _samples(pcm)
+    a, b = sample_rate * fade_in_ms // 1000, sample_rate * fade_out_ms // 1000
+    for i in range(min(a, len(x))):
+        x[i] = round(x[i] * i / a)
+    for i in range(min(b, len(x))):
+        x[len(x) - 1 - i] = round(x[len(x) - 1 - i] * i / b)
+    return _pcm_of(x)
+
+
+def rubberband_stretch(pcm: bytes, sample_rate: int, stretch: float) -> bytes:
+    """`stretch` times longer, pitch and formants kept: Rubber Band's R3 engine (the CLI)."""
+    import shutil
+    import subprocess
+    import tempfile
+    import wave
+
+    exe = shutil.which("rubberband")
+    if exe is None:
+        raise ProviderError("voxcpm: pacing needs Rubber Band (apt install rubberband-cli)")
+    with tempfile.TemporaryDirectory() as tmp:
+        src, dst = Path(tmp) / "in.wav", Path(tmp) / "out.wav"
+        with wave.open(str(src), "wb") as w:
+            w.setnchannels(1)
+            w.setsampwidth(2)
+            w.setframerate(sample_rate)
+            w.writeframes(pcm)
+        subprocess.run(
+            [exe, "-q", "--fine", "--formant", "-T", f"{1 / stretch:.6f}", str(src), str(dst)],
+            check=True,
+            capture_output=True,
+        )
+        with wave.open(str(dst), "rb") as r:
+            return r.readframes(r.getnframes())
+
+
+#: Scripts whose syllables `pace` counts: one Han character is one syllable (ADR 0094).
+PACED_SCRIPTS = frozenset({"Hani", "Hans", "Hant"})
+_HAN = regex.compile(r"\p{Han}")
+
+
+class VoxCPMProvider:
+    """VoxCPM2 (`model`: openbmb/VoxCPM2@commit) cloning a reference recording and its transcript
+    (ADR 0094). Sampling is seeded per clip (`seed_of`). A word card (the request's kind: no
+    closing punctuation) is said after the `carrier`, ended with its script's full stop, and cut
+    out by forced alignment; a sentence is slowed toward the `pace`, in syllables a second,
+    which only a Han script's voice can count. No timings: `nabu audio align` gives them."""
+
+    name = "voxcpm"
+    seeded = True
+    #: Its reference: a voice it designed (on a GPU, from a description), kept with how it was
+    #: designed.
+    CASTS: ClassVar[frozenset[Cast]] = frozenset({"designed"})
+    DEFAULT_INSTRUCT: ClassVar[str | None] = None
+    #: Guidance and diffusion steps: VoxCPM2's defaults, pinned so a change of defaults cannot
+    #: change new clips silently.
+    CFG = 2.0
+    STEPS = 10
+    TRIES = OmniVoiceProvider.TRIES
+    #: Around a word cut from the carrier: before it, and after it (its last sound's tail).
+    LEAD_MS = 40
+    TAIL_MS = 150
+    #: Shapes the clips: part of their identity, so changing how they are made means a new id.
+    CARRIER_METHOD = "voxcpm-align-1"
+    PACE_METHOD = "rubberband-r3-formant-1"
+
+    def __init__(
+        self,
+        voice: AudioVoice,
+        reference: Reference | None,
+        load: Callable[[str, str], VoxCPMEngine] = load_voxcpm,
+        align: Callable[[bytes, int, list[list[str]]], Any] | None = None,
+        phonemes: Callable[[str, str], list[list[str]]] = espeak.phonemes,
+        stretch: Callable[[bytes, int, float], bytes] = rubberband_stretch,
+    ) -> None:
+        self.repo, self.revision = checkpoint(_required(voice, "model"))
+        #: The eSpeak NG voice the aligner's phones come from ("yue").
+        self.language = _required(voice, "language")
+        #: The language tag of what the voice reads ("yue-Hant-HK"): its script's full stop
+        #: ends a word card said after the carrier.
+        self.tag = voice.orthography.split("/")[0]
+        self.carrier = voice.carrier.text if voice.carrier is not None else None
+        self.pace = voice.pace
+        if reference is None:
+            raise ValueError(
+                f"voice {voice.id}: no reference voice {voice.voice!r} in the audio index "
+                f"(`nabu audio cast <course> --voice {voice.id}`)"
+            )
+        script = next((s for s in self.tag.split("-")[1:] if len(s) == 4 and s.isalpha()), None)
+        if self.pace is not None and script not in PACED_SCRIPTS:
+            raise ValueError(
+                f"voice {voice.id}: `pace` counts syllables as Han characters, and "
+                f"{voice.orthography} is not written in them"
+            )
+        self.reference = reference
+        self.load = load
+        self.align = align
+        self.phonemes = phonemes
+        self.stretch = stretch
+
+    def version(self) -> str:
+        # No spaces or "@": it also names the clips' author (generated:voxcpm@<version>).
+        return f"{self.repo}#{self.revision}+voxcpm-{VOXCPM_PACKAGE}"
+
+    def settings(self) -> dict[str, Any]:
+        return {"cfg": self.CFG, "steps": self.STEPS, "reference": self.reference.sha256}
+
+    def speed(self, rate: float) -> float:
+        return 1.0
+
+    def carried(self, request: Request) -> bool:
+        return self.carrier is not None and request.kind == "word"
+
+    def item_settings(self, request: Request) -> dict[str, Any]:
+        """The route of one item, in its clip's identity alone (ADR 0094)."""
+        if self.carried(request):
+            return {"carrier": {"text": self.carrier, "method": self.CARRIER_METHOD}}
+        if self.pace is not None:
+            return {
+                "pace": {
+                    "target": self.pace.target,
+                    "maxStretch": self.pace.maxStretch,
+                    "method": self.PACE_METHOD,
+                }
+            }
+        return {}
+
+    def _aligner(self) -> Callable[[bytes, int, list[list[str]]], Any]:
+        if self.align is None:
+            from nabu.audio.phones import align_words
+
+            self.align = align_words
+        return self.align
+
+    def _cut(self, pcm: bytes, sample_rate: int, carrier: str, word: str) -> bytes:
+        """The word after the carrier, by forced alignment of the two."""
+        words = [
+            [p for w in self.phonemes(carrier, self.language) for p in w],
+            [p for w in self.phonemes(word, self.language) for p in w],
+        ]
+        timing = self._aligner()(pcm, sample_rate, words)[1]
+        per_ms = sample_rate / 1000
+        start = max(0, round((timing.start_ms - self.LEAD_MS) * per_ms))
+        end = min(len(pcm) // 2, round((timing.end_ms + self.TAIL_MS) * per_ms))
+        return faded(pcm[start * 2 : end * 2], sample_rate)
+
+    def _paced(self, pcm: bytes, sample_rate: int, text: str) -> bytes:
+        """Slowed toward the pace, if the voice says it faster (ADR 0094)."""
+        if self.pace is None:
+            return pcm
+        syllables = len(_HAN.findall(text))
+        start, end = speech_span(pcm, sample_rate)
+        seconds = (end - start) / sample_rate
+        if syllables == 0 or seconds <= 0:
+            return pcm
+        stretch = min(self.pace.maxStretch, syllables / seconds / self.pace.target)
+        return pcm if stretch <= 1.0 else self.stretch(pcm, sample_rate, stretch)
+
+    def _speak(self, engine: VoxCPMEngine, text: str, seed: int) -> bytes:
+        return retried(
+            lambda s: engine.speak(text, self.reference.path, self.reference.text, s),
+            seed,
+            self.TRIES,
+            engine.sampling_rate,
+        )
+
+    def synthesize(self, requests: list[Request]) -> list[Clip]:
+        engine = self.load(self.repo, self.revision)
+        rate = engine.sampling_rate
+        out: list[Clip] = []
+        for r in requests:
+            if self.carried(r):
+                carrier = cast_str(self.carrier)
+                said = with_final_stop(carrier + r.input, self.tag)
+                pcm = self._cut(self._speak(engine, said, seed_of(r)), rate, carrier, r.input)
+            else:
+                pcm = self._speak(engine, r.input, seed_of(r))
+                start, end = speech_span(pcm, rate)
+                lead, tail = round(LEAD_S * rate), round(TAIL_S * rate)
+                pcm = pcm[max(0, start - lead) * 2 : min(len(pcm) // 2, end + tail) * 2]
+                pcm = self._paced(pcm, rate, r.input)
+            out.append(Clip(pcm, rate, None, None))
+        return out
+
+    def design(self, text: str, instruct: str, seed: int) -> Clip:
+        """A voice designed from a description, as `nabu audio cast` keeps (its first step)."""
+        engine = self.load(self.repo, self.revision)
+        return Clip(engine.design(text, instruct, seed), engine.sampling_rate, None, None)
+
+    def design_record(self, instruct: str, seed: int) -> dict[str, Any]:
+        return {
+            "provider": self.name,
+            "version": self.version(),
+            "language": self.language,
+            "instruct": instruct,
+            "seed": seed,
+        }
+
+
+def cast_str(value: str | None) -> str:
+    if value is None:
+        raise ValueError("no carrier")
+    return value
+
+
 PROVIDERS: dict[str, Callable[[AudioVoice, Reference | None], Provider]] = {
     "espeak-ng": lambda _voice, _ref: EspeakProvider(),
     "piper": lambda voice, _ref: PiperProvider(voice),
@@ -1139,6 +1474,7 @@ PROVIDERS: dict[str, Callable[[AudioVoice, Reference | None], Provider]] = {
     "cartesia": lambda voice, _ref: CartesiaProvider(voice),
     "omnivoice": lambda voice, ref: OmniVoiceProvider(voice, ref),
     "navoiy": lambda voice, ref: NavoiyProvider(voice, ref),
+    "voxcpm": lambda voice, ref: VoxCPMProvider(voice, ref),
 }
 
 

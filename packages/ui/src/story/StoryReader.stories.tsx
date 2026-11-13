@@ -1,6 +1,7 @@
 import { createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Grader } from "@nabu/core/lesson";
 import { allStories, startStory, stepStory, storyScript, type StoryEvent, type StoryScript, type StoryState } from "@nabu/core/story";
 import { wordIndexes } from "@nabu/core/text";
+import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -18,7 +19,7 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-export type StoryScreen = "reading" | "question";
+export type StoryScreen = "reading" | "question" | "reread";
 
 const SEED = 7;
 
@@ -50,6 +51,8 @@ const advance = (script: StoryScript, grader: Grader, stop: (s: StoryState) => b
 
 const stateFor = (screen: StoryScreen, script: StoryScript, grader: Grader): StoryState => {
   if (screen === "reading") return advance(script, grader, (s) => s.tag === "reading" && s.shown.length >= 4);
+  // The end, every question right: then the whole story read again (S15).
+  if (screen === "reread") return advance(script, grader, () => false);
   // The arrange question, one tile placed.
   const asking = advance(script, grader, (s) => s.tag === "asking" && s.ex.template === "story-arrange" && s.player.tag === "answering");
   if (asking.tag !== "asking" || asking.ex.template !== "story-arrange") return asking;
@@ -62,7 +65,6 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
   const grader = useMemo(() => createGrader(course), [course]);
   const script = useMemo(() => scriptOf(course), [course]);
   const initialState = useMemo(() => stateFor(screen, script, grader), [screen, script, grader]);
-  const name = `course.name.${course.id}`;
   // Reading: the second line's translation open, and the gloss of the newest line's first word.
   const newest = initialState.shown.at(-1) ?? 0;
   const line = script.lines[newest];
@@ -74,11 +76,12 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
       script={script}
       grader={grader}
       imageUrl={imageUrl}
-      language={t.has(name) ? t.format(name) : course.id}
+      language={courseName(t, course)}
       sound={false}
       writingMode={writingMode}
       initialState={initialState}
       initial={screen === "reading" ? { translations: [1], gloss: { line: newest, token: firstWord } } : {}}
+      rereading={screen === "reread"}
     />
   );
 };
@@ -111,3 +114,5 @@ const story = (screen: StoryScreen): Story => ({
 export const Reading: Story = story("reading");
 /** Building a line from its tiles, one placed. */
 export const Question: Story = story("question");
+/** After the end: the whole story again, with its translations and glosses, no questions, nothing recorded (S15). */
+export const ReadAgain: Story = story("reread");

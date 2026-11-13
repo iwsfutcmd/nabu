@@ -5,7 +5,7 @@
  * a handle, which provenance names them by (human:<handle>), and the courses they review (["*"]:
  * all). Signed in, a reviewer then works from #/review in the app:
  *
- *   GET    /v1/review/me                                  → {handle, courses} (403 not-a-reviewer)
+ *   GET    /v1/review/me                                  → {role: "reviewer", handle, courses}, or {role: null}
  *   GET    /v1/review/reports?course=&status=             the course's answer reports
  *   POST   /v1/review/reports/:id                         {status: approved | rejected}
  *   GET    /v1/review/corrections?course=&status=         the course's corrections (ADR 0051)
@@ -198,9 +198,12 @@ export const reviewRoutes = (app: Hono<Env>, { db, courses, now }: ReviewDeps): 
     return covers(r, course) ? r : c.json({ error: "not-your-course" }, 403);
   };
 
+  // Anyone signed in may ask what they review (D11): an account that reviews nothing is told so
+  // with no role, not refused, so the course list's one quiet check leaves no error in a learner's
+  // browser. Every route that does a reviewer's work still refuses everyone else.
   app.get("/v1/review/me", async (c) => {
-    const r = await reviewer(c);
-    return r instanceof Response ? r : c.json({ handle: r.handle, courses: r.courses });
+    const r = await reviewerOf(db, c.get("user").id);
+    return c.json(r === undefined ? { role: null } : { role: "reviewer", handle: r.handle, courses: r.courses });
   });
 
   app.get("/v1/review/reports", async (c) => {

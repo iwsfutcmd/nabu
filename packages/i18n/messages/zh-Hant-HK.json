@@ -58,10 +58,6 @@
       "message": "沒有幫助",
       "source": "0f4cda6e7ccbcc"
     },
-    "ai.judge.accepted": {
-      "message": "再次檢查後，你的答案獲接納，計為正確。",
-      "source": "16541d0f177a53"
-    },
     "ai.judge.checking": {
       "message": "正在再次檢查你的答案……",
       "source": "0b108f06b1aec3"
@@ -442,10 +438,6 @@
       "message": "返回課程",
       "source": "0820c073883099"
     },
-    "app.practice.due": {
-      "message": ".input {$count :number}\n{{{$count}項待溫習}}",
-      "source": "0f59593aca6c20"
-    },
     "app.practice.empty": {
       "message": "目前沒有需要練習的內容。",
       "source": "1569dd1a1c05f6"
@@ -465,10 +457,6 @@
     "app.practice.title": {
       "message": "練習",
       "source": "1bb4b01c6ca9a0"
-    },
-    "app.practice.to-fix": {
-      "message": ".input {$count :number}\n{{{$count}項待改正}}",
-      "source": "018a1da69b8e6e"
     },
     "app.preferences.link": {
       "message": "偏好設定",
@@ -498,10 +486,6 @@
       "message": "3至30個字母或數字，中間可用 _、- 或 . 分隔。",
       "source": "107355ec7eb50b"
     },
-    "app.progress.device": {
-      "message": "你的進度保存在這部裝置上。",
-      "source": "1b4bb7e86eea6c"
-    },
     "app.progress.export": {
       "message": "下載我的學習資料",
       "source": "139603a6ece948"
@@ -518,10 +502,6 @@
       "message": "這部裝置未能登記接收提醒，請稍後再試。",
       "source": "0763e87e92fff9"
     },
-    "app.reminders.hint": {
-      "message": "每日最多一次，約在你平常練習的時間，而且只在你當天還未練習時才提醒。",
-      "source": "16d05c5f49f4ab"
-    },
     "app.reminders.label": {
       "message": "每日練習提醒",
       "source": "075045dd5b51b5"
@@ -529,6 +509,10 @@
     "app.reminders.unsupported": {
       "message": "這個瀏覽器無法顯示提醒。",
       "source": "13fd157356b3c1"
+    },
+    "app.reminders.when": {
+      "message": "每日最多一次，在你平常練習的時間之後，或在你於偏好設定中選定的時間，而且只在你當天還未練習時才提醒。",
+      "source": "1aad72d9ba7d00"
     },
     "app.reset.cancel": {
       "message": "保留我的進度",
@@ -577,10 +561,6 @@
     "app.roleplay.note": {
       "message": "對話中的另一方由語言模型扮演，只會用你學過的詞語，但可能會出錯。",
       "source": "12026862d750f2"
-    },
-    "app.roleplay.title": {
-      "message": "對話練習",
-      "source": "10e79f46fb5744"
     },
     "app.roleplay.unavailable": {
       "message": "對話練習需要帳戶，以及設有語言模型的伺服器。",
@@ -946,42 +926,6 @@
       "message": "詞語（{$orthography}）",
       "source": "0f55aaa03db2e2"
     },
-    "course.name.apc": {
-      "message": "黎巴嫩阿拉伯語",
-      "source": "156dd02569cccd"
-    },
-    "course.name.es": {
-      "message": "古巴西班牙語",
-      "source": "171b108954d4f8"
-    },
-    "course.name.fa": {
-      "message": "波斯語",
-      "source": "0814f27aca872d"
-    },
-    "course.name.grc": {
-      "message": "古希臘文",
-      "source": "1e44e3a3ed8730"
-    },
-    "course.name.hbo": {
-      "message": "聖經希伯來文",
-      "source": "0ddad88d960e7d"
-    },
-    "course.name.lzh": {
-      "message": "文言文",
-      "source": "169053e6ceef8d"
-    },
-    "course.name.tok": {
-      "message": "道本語",
-      "source": "07288edbd3337d"
-    },
-    "course.name.uz": {
-      "message": "烏茲別克語",
-      "source": "00eccd2e4cea3a"
-    },
-    "course.name.yue": {
-      "message": "粵語",
-      "source": "1b9e50f7526657"
-    },
     "debug.cards.back": {
       "message": "返回課程",
       "source": "0820c073883099"
@@ -1306,10 +1250,6 @@
       "message": "今日練習一下，就能延續紀錄。",
       "source": "1cc4f4ce2c152b"
     },
-    "game.title": {
-      "message": "連續學習紀錄",
-      "source": "0fe67f53d96cb0"
-    },
     "landing.contribute.audio": {
       "message": "語音檢查：聆聽一個課程的所有錄音，並說出每段聽起來是否正確：",
       "source": "11026897e30bf4"
@@ -1430,54 +1370,6 @@
       "message": "升級區",
       "source": "1cdef66c79e45d"
     },
-    "orthography.apc-Arab.standard": {
-      "message": "阿拉伯字母",
-      "source": "08f5b94b048129"
-    },
-    "orthography.apc-Latn.arabizi": {
-      "message": "Arabizi（拉丁字母和數字）",
-      "source": "078998ef01b429"
-    },
-    "orthography.es-Latn.standard": {
-      "message": "西班牙文拼寫",
-      "source": "0ed8e4b41d54ae"
-    },
-    "orthography.fa-Arab.standard": {
-      "message": "波斯字母",
-      "source": "1a96004e1beccf"
-    },
-    "orthography.grc-Grek.polytonic": {
-      "message": "多調號希臘文",
-      "source": "0b1395732f8b7d"
-    },
-    "orthography.hbo-Hebr.tiberian": {
-      "message": "希伯來字母（提比利亞標音）",
-      "source": "0056996ec949db"
-    },
-    "orthography.lzh-Hant.standard": {
-      "message": "繁體字",
-      "source": "0768e08b58f7c1"
-    },
-    "orthography.tok-Latn.standard": {
-      "message": "拉丁字母（sitelen Lasina）",
-      "source": "1dfd55beb895ac"
-    },
-    "orthography.tok-Qaap.sitelen-pona": {
-      "message": "sitelen pona（語素文字）",
-      "source": "09967254be9d0c"
-    },
-    "orthography.uz-Cyrl.standard": {
-      "message": "西里爾字母",
-      "source": "0c0f5c83735b6c"
-    },
-    "orthography.uz-Latn.standard": {
-      "message": "拉丁字母",
-      "source": "15289618d8a1e5"
-    },
-    "orthography.yue-Hant-HK.standard": {
-      "message": "繁體字",
-      "source": "0768e08b58f7c1"
-    },
     "player.action.cant-listen": {
       "message": "現在不能聽",
       "source": "140179193b2176"
@@ -1541,10 +1433,6 @@
     "player.finished.xp": {
       "message": ".input {$xp :number}\n{{+{$xp} XP}}",
       "source": "10d9c04ce5ff3f"
-    },
-    "player.instruction.char-read": {
-      "message": "這個詞怎樣讀？",
-      "source": "09f22944d314cc"
     },
     "player.instruction.choose-translation": {
       "message": "這是甚麼意思？",
@@ -1622,17 +1510,9 @@
       "message": "你聽到哪個聲調？",
       "source": "16db060d6d4816"
     },
-    "player.instruction.transcribe": {
-      "message": "寫出這個詞的讀音",
-      "source": "17544047c67949"
-    },
     "player.instruction.translate-into-support": {
       "message": "翻譯這個句子",
       "source": "0ca18e83db09fc"
-    },
-    "player.instruction.vocalize": {
-      "message": "加上元音符號",
-      "source": "041a63b98f57c1"
     },
     "player.instruction.word-read": {
       "message": "這個詞用拉丁字母怎麼寫？",
@@ -1754,10 +1634,6 @@
       "message": "意思",
       "source": "1031b11de169ce"
     },
-    "player.quit.body": {
-      "message": "你在這一課的進度將會失去。",
-      "source": "0ab86dd29faeef"
-    },
     "player.quit.cancel": {
       "message": "繼續學習",
       "source": "059d6b2b56381d"
@@ -1858,37 +1734,9 @@
       "message": ".input {$heard :number}\n.input {$expected :number}\n{{聽到第{$heard}聲，應為第{$expected}聲}}",
       "source": "1e34116823fbfc"
     },
-    "player.toggle.marks": {
-      "message": "顯示元音符號",
-      "source": "17bb7ce344c4e6"
-    },
     "player.toggle.vertical": {
       "message": "直排文字",
       "source": "1fa81eb3e6f25e"
-    },
-    "player.tone.yue-jyutping.1": {
-      "message": "1 · 高平",
-      "source": "0eeda0fb5b3a04"
-    },
-    "player.tone.yue-jyutping.2": {
-      "message": "2 · 高升",
-      "source": "02fa98567b0205"
-    },
-    "player.tone.yue-jyutping.3": {
-      "message": "3 · 中平",
-      "source": "0911e5c7447f54"
-    },
-    "player.tone.yue-jyutping.4": {
-      "message": "4 · 低降",
-      "source": "1df41eb52dab37"
-    },
-    "player.tone.yue-jyutping.5": {
-      "message": "5 · 低升",
-      "source": "00ad4735faecfd"
-    },
-    "player.tone.yue-jyutping.6": {
-      "message": "6 · 低平",
-      "source": "0c9f5d02772e14"
     },
     "player.transcribe.label": {
       "message": "讀音",
@@ -1898,14 +1746,6 @@
       "message": "粵拼讀音",
       "source": "0e6c8b2c872445"
     },
-    "player.vocalize.label": {
-      "message": "加上元音符號的詞語",
-      "source": "09f512786abfe5"
-    },
-    "player.word.label": {
-      "message": "詞語",
-      "source": "05d88136696d61"
-    },
     "player.wordbank.answer-label": {
       "message": "你的答案",
       "source": "196b73b49f8369"
@@ -1913,6 +1753,38 @@
     "preferences.back": {
       "message": "返回你的課程",
       "source": "00cd88f7410e08"
+    },
+    "preferences.reminder.automatic": {
+      "message": "自動：在你平常練習的時間稍後",
+      "source": "0ca3a0ca1e2c92"
+    },
+    "preferences.reminder.chosen": {
+      "message": "在我選定的時間",
+      "source": "14e51aac9dab5e"
+    },
+    "preferences.reminder.failed": {
+      "message": "無法儲存提醒時間。請檢查網絡連線，然後再試。",
+      "source": "1044670c4d487f"
+    },
+    "preferences.reminder.hint": {
+      "message": "每日最多一次，而且只在你當天還未練習時才提醒。請在「你的進度」開啟提醒。",
+      "source": "018341ed944d95"
+    },
+    "preferences.reminder.label": {
+      "message": "每日提醒時間",
+      "source": "046f6d85d15c65"
+    },
+    "preferences.reminder.save": {
+      "message": "儲存提醒時間",
+      "source": "068a59bebf966a"
+    },
+    "preferences.reminder.saved": {
+      "message": "已儲存。",
+      "source": "06de620ec8bcdf"
+    },
+    "preferences.reminder.time": {
+      "message": "提醒時間",
+      "source": "144881e6ef822f"
     },
     "preferences.target-size.default": {
       "message": "預設",
@@ -2021,22 +1893,6 @@
     "quest.xp-30": {
       "message": ".input {$target :number}\n{{賺取{$target} XP}}",
       "source": "1f2468bc1998a6"
-    },
-    "reading.scheme.baxter": {
-      "message": "中古漢語（白一平）",
-      "source": "19597222ec8510"
-    },
-    "reading.scheme.jyutping": {
-      "message": "粵拼",
-      "source": "060334df66e05a"
-    },
-    "reading.scheme.lasina": {
-      "message": "sitelen Lasina",
-      "source": "1301a482fe38d5"
-    },
-    "reading.scheme.pinyin": {
-      "message": "漢語拼音",
-      "source": "158f03ef25e7f5"
     },
     "reports.public": {
       "message": "報告會以公開 GitHub issue 的形式送交課程審核員，不會附上你的名字或裝置資料。",

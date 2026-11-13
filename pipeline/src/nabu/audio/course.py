@@ -44,50 +44,40 @@ import regex
 import yaml
 
 from nabu import yamlio
-from nabu.audio import attic, espeak, jyutping, tiberian, toki_pona
+from nabu.audio import espeak
 from nabu.audio.providers import (
     PIPER_PHONEMES,
+    Caster,
     Clip,
-    NavoiyProvider,
-    OmniVoiceProvider,
+    Kind,
     Provider,
     Reference,
     Request,
     provider,
 )
-from nabu.audio.punctuation import with_final_stop
+from nabu.audio.punctuation import closed, with_final_stop
+from nabu.items import WORD_KINDS, CourseItem, iter_items
+from nabu.provenance import signed_off
 from nabu.schema.models import (
     AudioIndex,
+    AudioQa,
     AudioRejection,
     AudioVerdicts,
     AudioVoice,
+    BundleUnit,
     ReferenceVoice,
+    TokenModel,
     TokenTiming,
 )
+from nabu.schemes import Plugins, plugins, schemes
 
 INDEX = "index.yaml"
 #: Bitrate of the MP3s: speech, mono.
 BITRATE = "48k"
 #: Clips synthesized between saves of the index.
 BATCH = 16
-#: Reading schemes `pronounce` can turn into IPA.
-IPA_SCHEMES = {"jyutping"}
-#: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
-#: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text,
-#: Toki Pona's words in sitelen Lasina (ADR 0086), which no synthesizer has a voice for, and Attic
-#: Greek with its vowel lengths marked (ADR 0087), said as reconstructed, never as Modern Greek.
-PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
-    "tiberian": tiberian.espeak,
-    "lasina": toki_pona.espeak,
-    "attic": attic.espeak,
-}
-#: The same schemes as IPA for a Piper voice (ADR 0087): its symbol table is eSpeak NG's IPA.
-#: Tiberian for Piper is Arabic-bent (ADR 0089).
-PIPER_PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
-    "attic": attic.piper,
-    "tiberian": tiberian.piper,
-}
-WORD_KINDS = {"word", "number"}
+#: The one speed clips are synthesized at: the player slows them itself (ADR 0062).
+SPEED = "normal"
 
 
 @dataclass(frozen=True)
@@ -103,6 +93,37 @@ class Item:
     input: str
     spans: tuple[Span, ...]
     expected: str  # what a listener should hear, in the orthography (for the round-trip check)
+    #: A word card (its text as written has no closing punctuation) or a sentence, and how many
+    #: word tokens it has: what a carrier voice goes by, whatever its script.
+    kind: Kind = "sentence"
+    words: int = 1
+
+    def request(self, voice: str, rate: float = 1.0, take: int = 0) -> Request:
+        """What a provider is asked to say for it."""
+        return Request(self.input, voice, rate, take, self.kind, self.words)
+
+
+@dataclass(frozen=True)
+class Job:
+    """A clip to make: the item, the voice that reads it with its provider and the clips'
+    author, the rate the provider takes, the clip's identity and its take (ADR 0060)."""
+
+    voice: AudioVoice
+    tts: Provider
+    author: str
+    item: Item
+    rate: float
+    identity: str
+    take: int
+
+    @property
+    def key(self) -> tuple[str, str]:
+        """Its entry's key in the index: (item, speed)."""
+        return (self.item.item, SPEED)
+
+    @property
+    def request(self) -> Request:
+        return self.item.request(self.voice.voice, self.rate, self.take)
 
 
 @dataclass
@@ -143,27 +164,47 @@ def write_index(adir: Path, index: AudioIndex) -> None:
     (adir / INDEX).write_text(header + yamlio.dump(data), encoding="utf-8")
 
 
+def _ipa(scheme: str) -> Plugins:
+    """The plug-ins a `pronounce` voice needs of its scheme: its IPA, and whether a spelling
+    settles a reading; ValueError for a scheme without them (or without data)."""
+    found = plugins(scheme) if scheme in schemes() else Plugins()
+    if found.ipa is None or found.settled is None:
+        raise ValueError(f"no IPA conversion for the reading scheme {scheme!r}")
+    return found
+
+
 def pronounced(surface: str, reading: str, scheme: str) -> str:
     """A token as a `pronounce` voice reads it: its spelling where that settles the pinned
-    reading, else the reading in IPA between slashes."""
-    if scheme not in IPA_SCHEMES:
-        raise ValueError(f"no IPA conversion for the reading scheme {scheme!r}")
-    return surface if jyutping.settled(surface, reading) else f"/{jyutping.ipa(reading)}/"
+    reading, else the reading in IPA between slashes (the scheme's plug-ins: nabu.schemes)."""
+    found = _ipa(scheme)
+    assert found.ipa is not None and found.settled is not None
+    return surface if found.settled(surface, reading) else f"/{found.ipa(reading)}/"
+
+
+def phoneme_scheme(scheme: str) -> bool:
+    """Whether a voice says the scheme's readings as eSpeak NG phonemes (`[[...]]`), one word at a
+    time, never as text: the Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may
+    read as Modern Hebrew text, Toki Pona's words in sitelen Lasina (ADR 0086), which no
+    synthesizer has a voice for, and Attic with its vowel lengths (ADR 0087), said as
+    reconstructed, never as Modern Greek. A scheme with an `espeak` plug-in (nabu.schemes)."""
+    return plugins(scheme).espeak is not None
 
 
 def said(reading: str, scheme: str, provider: str = "espeak-ng") -> str:
-    """A pinned reading as the voice takes it: phonemes for a phoneme scheme (IPA for a Piper
-    voice, eSpeak NG's mnemonics otherwise), else as written."""
-    convert = (PIPER_PHONEME_SCHEMES if provider == "piper" else PHONEME_SCHEMES).get(scheme)
+    """A pinned reading as the voice takes it: phonemes for a phoneme scheme (the IPA a Piper
+    voice takes where the scheme gives it: ADR 0087, 0089; eSpeak NG's mnemonics otherwise),
+    else as written."""
+    found = plugins(scheme)
+    convert = found.piper if provider == "piper" else found.espeak
     return reading if convert is None else convert(reading)
 
 
-def _final_mark(tokens: list[dict[str, Any]]) -> str:
+def _final_mark(tokens: Sequence[TokenModel]) -> str:
     """The end of a phoneme-scheme input: its question mark, else a full stop (intonation)."""
     for token in reversed(tokens):
-        if token.get("kind") in WORD_KINDS:
+        if token.kind in WORD_KINDS:
             return "."
-        if "?" in str(token["surface"]):
+        if "?" in token.surface:
             return "?"
     return "."
 
@@ -179,7 +220,7 @@ words vowel marks (ADR 0053): voices read the text as written."""
 
 
 def _input_of(
-    tokens: list[dict[str, Any]], voice: AudioVoice, written: list[str] | None = None
+    tokens: Sequence[TokenModel], voice: AudioVoice, written: list[str] | None = None
 ) -> tuple[str, tuple[Span, ...]] | None:
     """The string the voice reads, and where each word token sits in it (None: a word token
     lacks the pinned reading the voice needs)."""
@@ -189,9 +230,9 @@ def _input_of(
     if voice.reading != "text":
         # Pinned readings of the words, space-separated (punctuation has no reading).
         for i, token in enumerate(tokens):
-            if token.get("kind") not in WORD_KINDS:
+            if token.kind not in WORD_KINDS:
                 continue
-            piece = token.get("readings", {}).get(voice.reading)
+            piece = (token.readings or {}).get(voice.reading)
             if piece is None:
                 return None
             piece = said(piece, voice.reading, voice.provider)
@@ -202,14 +243,14 @@ def _input_of(
             offset += len(piece)
         if not parts:
             return None
-        end = _final_mark(tokens) if voice.reading in PHONEME_SCHEMES else ""
+        end = _final_mark(tokens) if phoneme_scheme(voice.reading) else ""
         return (" ".join(parts) + end, tuple(spans))
     # The form's text, every token in order: punctuation and spacing included.
     for i, token in enumerate(tokens):
-        piece = str(token["surface"]) if written is None else written[i]
-        if token.get("kind") in WORD_KINDS:
+        piece = token.surface if written is None else written[i]
+        if token.kind in WORD_KINDS:
             if voice.pronounce is not None:
-                reading = token.get("readings", {}).get(voice.pronounce)
+                reading = (token.readings or {}).get(voice.pronounce)
                 if reading is None:
                     return None
                 piece = pronounced(piece, reading, voice.pronounce)
@@ -219,25 +260,14 @@ def _input_of(
     return ("".join(parts), tuple(spans)) if spans else None
 
 
-def _morph_readings(token: dict[str, Any], reading: str) -> list[tuple[str, str]]:
-    """Each morph's share of its word's pinned reading, where the word is Han characters read one
-    syllable each (as the compiler's ruby alignment pairs them): 禮拜一 lai5 baai3 jat1 gives
-    禮拜 lai5 baai3. A word KC that only appears inside longer words (禮拜 in 禮拜一, 百 in 一百)
-    then still has a reading to be read from."""
-    raw: list[Any] = list(token.get("morphs") or [])
-    morphs: list[list[str]] = [regex.findall(r"\X", str(m["surface"])) for m in raw]
-    syllables = reading.split()
-    surface: list[str] = regex.findall(r"\X", str(token["surface"]))
-    if not morphs or [g for m in morphs for g in m] != surface or len(syllables) != len(surface):
-        return []
-    if not all(regex.match(r"\p{Script=Han}", g) for g in surface):
-        return []
-    out: list[tuple[str, str]] = []
-    at = 0
-    for m in morphs:
-        out.append(("".join(m), " ".join(syllables[at : at + len(m)])))
-        at += len(m)
-    return out
+def form_readings(tokens: Sequence[TokenModel], scheme: str) -> list[str] | None:
+    """A KC form's words' readings in a scheme, as the compiler pins them on the form (ADR 0117:
+    what its word card shows), or None where a word has none."""
+    words = [t for t in tokens if t.kind in WORD_KINDS]
+    readings = [(t.readings or {}).get(scheme) for t in words]
+    if not words or any(r is None for r in readings):
+        return None
+    return [r for r in readings if r is not None]
 
 
 #: A word of a voice's `spoken` text: letters, marks, digits and the format characters inside
@@ -270,10 +300,22 @@ def _spoken(items: list[Item], spoken: dict[str, str]) -> list[Item]:
     return out
 
 
-# ------------------------------------------------------------------------------------ the cast
+def held_back(index: AudioIndex) -> set[str]:
+    """Items whose clips stay out of the learners' bundles (ADR 0060), the whole item (slow too):
+    the round trip failed its normal-speed clip and no person has passed that clip since, or a
+    listener rejected one of its clips, until it is made again."""
+    failed = {
+        c.item
+        for c in index.clips
+        if c.speed == SPEED
+        and c.qa is not None
+        and c.qa.status == "fail"
+        and not signed_off(c.provenance.status)
+    }
+    return failed | {c.item for c in index.clips if c.rejected is not None}
 
-#: Clips a person checked keep their voice when the cast changes (ADR 0078).
-CHECKED = ("reviewed", "published")
+
+# ------------------------------------------------------------------------------------ the cast
 
 
 def _seeded(key: str) -> int:
@@ -298,11 +340,11 @@ def pick_voice(key: str, said_by: str | None, voices: Sequence[AudioVoice]) -> A
 
 def checked_voices(index: AudioIndex, voices: Sequence[AudioVoice]) -> dict[str, str]:
     """Items whose clip a person checked (reviewed or published), and the id of the cast voice
-    it is in: they keep that voice rather than lose the check (ADR 0078)."""
+    it is in: they keep that voice rather than lose the check when the cast changes (ADR 0078)."""
     by_name = {(v.provider, v.voice): v.id for v in voices}
     out: dict[str, str] = {}
     for c in index.clips:
-        if c.synthesis is None or c.provenance.status not in CHECKED:
+        if c.synthesis is None or not signed_off(c.provenance.status):
             continue
         found = by_name.get((c.synthesis.provider, c.synthesis.voice))
         if found is not None:
@@ -311,7 +353,7 @@ def checked_voices(index: AudioIndex, voices: Sequence[AudioVoice]) -> dict[str,
 
 
 def assignment(
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voices: Sequence[AudioVoice],
     checked: Mapping[str, str] | None = None,
 ) -> dict[str, str]:
@@ -334,140 +376,106 @@ def assignment(
         return voice.id
 
     out: dict[str, str] = {}
-    for unit in units:
-        for s in unit["sentences"]:
-            said_by = speaker_of(s.get("persons"))
-            out[s["id"]] = choose(s["id"], said_by, [s["id"]])
-        for kc in unit.get("kcs", []):
-            out[kc["id"]] = choose(kc["id"], None, [kc["id"]])
-        for story in unit.get("stories", []):
-            genders = {c["id"]: c.get("speaker") for c in story.get("characters", [])}
-            lines: dict[str | None, list[str]] = {}
-            for step, st in enumerate(story["steps"]):
-                if st.get("line"):
-                    lines.setdefault(st["line"].get("speaker"), []).append(f"{story['id']}#{step}")
-            for who, keys in lines.items():
-                chosen = choose(f"{story['id']}#{who or ''}", genders.get(who or ""), keys)
-                out.update(dict.fromkeys(keys, chosen))
+    # A story's lines by who says them: one voice for each character, one for the narrator.
+    lines: dict[tuple[str | None, str | None], list[CourseItem]] = {}
+    for item in iter_items(units):
+        if item.kind == "line":
+            lines.setdefault((item.story, item.character), []).append(item)
+        else:
+            out[item.id] = choose(item.id, item.said_by, [item.id])
+    for (story, who), said in lines.items():
+        keys = [i.id for i in said]
+        chosen = choose(f"{story}#{who or ''}", said[0].said_by, keys)
+        out.update(dict.fromkeys(keys, chosen))
     return out
 
 
-def speaker_of(persons: Any) -> str | None:
-    """A sentence's persons.speaker (m or f), if it has one."""
-    return cast("Mapping[str, Any]", persons or {}).get("speaker")
+def _shape(surfaces: list[str], tokens: Sequence[TokenModel]) -> tuple[Kind, int]:
+    """An item's kind, from its text as written (a word card has no closing punctuation, ADR
+    0094: a voice's final stop or IPA does not change it), and its words, its word tokens."""
+    kind: Kind = "sentence" if closed("".join(surfaces)) else "word"
+    return kind, sum(1 for t in tokens if t.kind in WORD_KINDS)
+
+
+def _word_card(
+    item: CourseItem,
+    tokens: Sequence[TokenModel],
+    voice: AudioVoice,
+    scheme: str | None,
+    written: Written,
+) -> Item | None:
+    """What the voice reads for a word KC: its form as its card shows it, from the reading the
+    compiler pinned on the form (ADR 0117). None where the voice needs a reading it lacks."""
+    kc_written = written.get((item.id, voice.orthography))
+    marked = "".join(t.surface for t in tokens)
+    surface = "".join(kc_written) if kc_written is not None else marked
+    readings = None if scheme is None else form_readings(tokens, scheme)
+    if scheme is not None and readings is None:
+        return None
+    if voice.reading != "text":
+        assert readings is not None
+        piece = " ".join(said(r, voice.reading, voice.provider) for r in readings)
+    elif voice.pronounce is not None and readings is not None:
+        piece = pronounced(surface, " ".join(readings), voice.pronounce)
+    else:
+        piece = marked if voice.vowelMarks else surface
+    kind, words = _shape([surface], tokens)
+    return Item(item.id, piece, (Span(0, 0, len(piece)),), surface, kind, words)
+
+
+def _sentence(
+    item: CourseItem, tokens: Sequence[TokenModel], voice: AudioVoice, written: Written
+) -> Item | None:
+    """What the voice reads for a sentence or a story line, or None where it lacks a reading."""
+    as_written = written.get((item.id, voice.orthography))
+    # A vowelMarks voice reads the marked surfaces; every other voice, the source's.
+    planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
+    if planned is None:
+        return None
+    surfaces = as_written or [t.surface for t in tokens]
+    text = "".join(w for w, t in zip(surfaces, tokens, strict=True) if t.kind in WORD_KINDS)
+    return Item(item.id, planned[0], planned[1], text, *_shape(surfaces, tokens))
 
 
 def plan(
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voice: AudioVoice,
     written: Written | None = None,
     voices: Sequence[AudioVoice] | None = None,
     checked: Mapping[str, str] | None = None,
 ) -> tuple[list[Item], list[str]]:
-    """Sentences and word KCs the voice can read, and the ones it cannot (no pinned reading).
-    Given the course's whole cast (`voices`, and the voices people `checked`), only the items
-    the assignment gives this voice (ADR 0078); alone, every item.
+    """Sentences, word KCs and story lines the voice can read, in that order (nabu.items), and the
+    ones it cannot (no pinned reading). Given the course's whole cast (`voices`, and the voices
+    people `checked`), only the items the assignment gives this voice (ADR 0078); alone, every
+    item. `units` are the compiler's: a word KC is read from the reading it pinned on the KC's
+    form (ADR 0117). A story line is read like a sentence; its id is "<story>#<step>".
     `written`: the source's own surfaces where the compiler added vowel marks."""
     owner = assignment(units, voices or [voice], checked)
-    orth = voice.orthography
     items: list[Item] = []
     skipped: list[str] = []
-    if voice.pronounce is not None and voice.pronounce not in IPA_SCHEMES:
-        raise ValueError(f"no IPA conversion for the reading scheme {voice.pronounce!r}")
+    if voice.pronounce is not None:
+        _ipa(voice.pronounce)
     scheme = _scheme(voice)
-    readings: dict[str, str] = {}  # surface → pinned reading, learned from sentence tokens
-    in_words: dict[str, str] = {}  # the same for morphs, from the syllables of their word
-    for unit in units:
-        for s in unit["sentences"]:
-            form = s["forms"].get(orth)
-            if form is None:
-                continue
-            tokens = form["text"]["tokens"]
-            for t in tokens:
-                if scheme is not None and scheme in t.get("readings", {}):
-                    readings.setdefault(t["surface"], t["readings"][scheme])
-                    for surface, reading in _morph_readings(t, t["readings"][scheme]):
-                        in_words.setdefault(surface, reading)
-            if owner[s["id"]] != voice.id:
-                continue  # another voice reads it; its readings still serve word KCs
-            as_written = (written or {}).get((s["id"], orth))
-            # A vowelMarks voice reads the marked surfaces; every other voice, the source's.
-            planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
-            if planned is None:
-                skipped.append(s["id"])
-                continue
-            surfaces = as_written or [str(t["surface"]) for t in tokens]
-            text = "".join(
-                w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
-            )
-            items.append(Item(s["id"], planned[0], planned[1], text))
-    # Story lines pin readings too: a word card may take its reading from one.
-    for unit in units:
-        for story in unit.get("stories", []):
-            for s in story["steps"]:
-                line = cast(dict[str, Any], s.get("line") or {})
-                form = cast(dict[str, Any] | None, line.get("forms", {}).get(orth))
-                for t in cast(list[dict[str, Any]], (form or {}).get("tokens", [])):
-                    if scheme is not None and scheme in t.get("readings", {}):
-                        readings.setdefault(t["surface"], t["readings"][scheme])
-    for unit in units:
-        for kc in unit.get("kcs", []):
-            forms = kc.get("forms", {}).get(orth)
-            if not forms or owner[kc["id"]] != voice.id:
-                continue
-            word = forms[0]["tokens"] if isinstance(forms[0], dict) else None
-            kc_written = (written or {}).get((kc["id"], orth))
-            marked = "".join(t["surface"] for t in word) if word else str(forms[0])
-            surface = "".join(kc_written) if kc_written is not None else marked
-            reading = readings.get(surface, in_words.get(surface))
-            if reading is None and scheme == "attic":
-                # A Greek word card shows the word as cited, with an acute; in a sentence its
-                # last syllable's acute is a grave before the next word (καί, καὶ σύ): the same
-                # word, with the same reading.
-                reading = next(
-                    (attic.cited(r) for w, r in readings.items() if attic.cited(w) == surface), None
-                )
-            if scheme is not None and reading is None:
-                skipped.append(kc["id"])
-                continue
-            if voice.reading != "text":
-                piece = None if reading is None else said(reading, voice.reading, voice.provider)
-            elif voice.pronounce is not None and reading is not None:
-                piece = pronounced(surface, reading, voice.pronounce)
-            else:
-                piece = marked if voice.vowelMarks else surface
-            assert piece is not None
-            items.append(Item(kc["id"], piece, (Span(0, 0, len(piece)),), surface))
-    # Story lines last, each read like a sentence: its id is "<story>#<step>".
-    for unit in units:
-        for story in unit.get("stories", []):
-            for step, s in enumerate(story["steps"]):
-                line = cast(dict[str, Any], s.get("line") or {})
-                form = cast(dict[str, Any] | None, line.get("forms", {}).get(orth))
-                if form is None:
-                    continue
-                key = f"{story['id']}#{step}"
-                if owner.get(key) != voice.id:
-                    continue
-                tokens = cast(list[dict[str, Any]], form["tokens"])
-                as_written = (written or {}).get((key, orth))
-                planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
-                if planned is None:
-                    skipped.append(key)
-                    continue
-                surfaces = as_written or [str(t["surface"]) for t in tokens]
-                text = "".join(
-                    w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
-                )
-                items.append(Item(key, planned[0], planned[1], text))
+    for item in iter_items(units):
+        tokens = item.forms.get(voice.orthography)
+        if tokens is None or owner.get(item.id) != voice.id:
+            continue
+        if item.kind == "kc":
+            planned = _word_card(item, tokens, voice, scheme, written or {})
+        else:
+            planned = _sentence(item, tokens, voice, written or {})
+        if planned is None:
+            skipped.append(item.id)
+        else:
+            items.append(planned)
     if voice.spoken:
         items = _spoken(items, voice.spoken)
     if voice.finalStop and voice.reading == "text":
         # Text with no final punctuation reads as a sentence (ADR 0063); spans are unaffected:
         # the stop comes after the last word.
-        tag = orth.split("/")[0]
+        tag = voice.orthography.split("/")[0]
         items = [replace(i, input=with_final_stop(i.input, tag)) for i in items]
-    elif voice.finalStop and voice.reading in PHONEME_SCHEMES:
+    elif voice.finalStop and phoneme_scheme(voice.reading):
         # Phonemes: a word card ends with the "." a sentence ends with (ADR 0089).
         items = [
             i if i.input.rstrip().endswith((".", "?")) else replace(i, input=i.input + ".")
@@ -476,14 +484,14 @@ def plan(
     return items, skipped
 
 
-def item_settings(tts: Provider, text: str) -> dict[str, Any]:
+def item_settings(tts: Provider, request: Request) -> dict[str, Any]:
     """What shapes one item's clip beyond the provider's settings (Piper: the route through its
     sentences, ADR 0065). Part of that clip's identity alone, so a provider can change how it says
     some items without making every clip stale."""
     extra = getattr(tts, "item_settings", None)
     if not callable(extra):
         return {}
-    out = extra(text)
+    out = extra(request)
     return cast("dict[str, Any]", out) if isinstance(out, dict) else {}
 
 
@@ -538,43 +546,38 @@ def timings(item: Item, clip: Clip, duration_ms: int) -> list[dict[str, int]] | 
 
 
 def _entry(
-    item: Item,
-    speed: str,
-    rate: float,
-    ident: str,
+    job: Job,
     clip: Clip,
-    tts: Provider,
-    voice: AudioVoice,
-    author: str,
     adir: Path,
     check: Callable[[Item, Clip], dict[str, Any]] | None,
 ) -> dict[str, Any]:
     """Encode and write one clip; its index entry."""
+    item, tts, voice = job.item, job.tts, job.voice
     version = tts.version()
-    settings = tts.settings() | item_settings(tts, item.input)
+    settings = tts.settings() | item_settings(tts, job.request)
     data = encode_mp3(
         clip.pcm, clip.sample_rate, f"Synthetic speech: {tts.name} {version} ({voice.voice})"
     )
-    rel = f"clips/{ident[:16]}.mp3"
+    rel = f"clips/{job.identity[:16]}.mp3"
     (adir / rel).write_bytes(data)
     duration = len(clip.pcm) // 2 * 1000 // clip.sample_rate
     entry: dict[str, Any] = {
         "item": item.item,
-        "speed": speed,
+        "speed": SPEED,
         "file": rel,
         "sha256": hashlib.sha256(data).hexdigest(),
         "durationMs": duration,
         "license": voice.license,
-        "provenance": {"author": author, "status": "draft"},
+        "provenance": {"author": job.author, "status": "draft"},
         "synthetic": True,
         "synthesis": {
             "provider": tts.name,
             "version": version,
             "voice": voice.voice,
             "input": item.input,
-            "rate": rate,
+            "rate": job.rate,
             **({"settings": settings} if settings else {}),
-            "inputHash": ident,
+            "inputHash": job.identity,
         },
     }
     token_timings = timings(item, clip, duration)
@@ -582,10 +585,12 @@ def _entry(
         entry["timings"] = token_timings
         entry["timingSource"] = "synthesis"
     qa: dict[str, Any] = {} if clip.trace is None else {"trace": clip.trace}
-    if check is not None and speed == "normal":
+    if check is not None:
         qa |= check(item, clip)
     if qa:
         entry["qa"] = qa
+    if job.take:
+        entry["synthesis"]["take"] = job.take
     return entry
 
 
@@ -606,7 +611,7 @@ def _twin(
     if token_timings is not None:
         twin["timings"] = token_timings
         twin["timingSource"] = "synthesis"
-    if check is not None and twin["speed"] == "normal" and item.expected != first.expected:
+    if check is not None and item.expected != first.expected:
         twin["qa"] = ({} if clip.trace is None else {"trace": clip.trace}) | check(item, clip)
     return twin
 
@@ -635,7 +640,7 @@ def take_of(old: Any, item: Item, tts: Provider) -> int:
 
 def synthesize_course(
     course_dir: Path,
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voices: AudioVoice | Sequence[AudioVoice],
     check: Callable[[Item, Clip], dict[str, Any]] | None = None,
     written: Written | None = None,
@@ -663,8 +668,8 @@ def synthesize_course(
     report = Report()
     for v in cast_:
         report.shares[v.id] = len(plan(units, v, written, cast_, checked)[0])
-    #: (voice, provider, author, item, speed, rate, identity, take), voice by voice.
-    wanted: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
+    #: The clips to make, voice by voice.
+    wanted: list[Job] = []
     kept: list[Any] = []
     claimed: set[tuple[str, str]] = set()
     for voice in running:
@@ -672,43 +677,45 @@ def synthesize_course(
         version = tts.version()
         settings = tts.settings()
         author = f"generated:{tts.name}@{version}"
+        rate = tts.speed(1.0)
         items, skipped = plan(units, voice, written, cast_, checked)
         report.skipped += skipped
         for item in items:
-            for speed, requested in (("normal", 1.0),):
-                claimed.add((item.item, speed))
-                rate = tts.speed(requested)
-                old = previous.get((item.item, speed))
-                take = take_of(old, item, tts)
-                ident = identity(
-                    tts.name,
-                    version,
-                    voice.voice,
-                    item.input,
-                    rate,
-                    settings | item_settings(tts, item.input) | take_field(take),
-                )
-                if (
-                    old is not None
-                    and old.synthesis is not None
-                    and old.synthesis.inputHash == ident
-                    and intact(adir / old.file, old.sha256)
-                ):
-                    kept.append(old)
-                    continue
-                wanted.append((voice, tts, author, item, speed, rate, ident, take))
+            key = (item.item, SPEED)
+            claimed.add(key)
+            old = previous.get(key)
+            take = take_of(old, item, tts)
+            ident = identity(
+                tts.name,
+                version,
+                voice.voice,
+                item.input,
+                rate,
+                settings | item_settings(tts, item.request(voice.voice)) | take_field(take),
+            )
+            if (
+                old is not None
+                and old.synthesis is not None
+                and old.synthesis.inputHash == ident
+                and intact(adir / old.file, old.sha256)
+            ):
+                kept.append(old)
+                continue
+            wanted.append(Job(voice, tts, author, item, rate, ident, take))
     # Items said alike (one input, voice and settings: one identity, so one file) share a clip.
     # One already there serves the rest, so making theirs never writes over it.
     there = {c.synthesis.inputHash: c for c in kept if c.synthesis is not None}
-    unmade: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
-    for w in wanted:
-        clip_there = there.get(w[6])
+    unmade: list[Job] = []
+    for job in wanted:
+        clip_there = there.get(job.identity)
         if clip_there is None:
-            unmade.append(w)
+            unmade.append(job)
             continue
         # Its token timings were the other item's: alignment gives this one its own.
         kept.append(
-            clip_there.model_copy(update={"item": w[3].item, "timings": None, "timingSource": None})
+            clip_there.model_copy(
+                update={"item": job.item.item, "timings": None, "timingSource": None}
+            )
         )
     wanted = unmade
     # Items another voice reads, not run this time, keep their clips until it runs.
@@ -729,41 +736,35 @@ def synthesize_course(
 
     def save(done: int) -> None:
         # Clips not regenerated yet keep their old entries (and files) until they are.
-        waiting = [
-            previous[(w[3].item, w[4])]
-            for w in wanted[done:]
-            if (w[3].item, w[4]) in previous and not prune
-        ]
+        waiting = [previous[job.key] for job in wanted[done:] if job.key in previous and not prune]
         clips = [*dump([*human, *kept, *others, *waiting]), *fresh]
         write_index(adir, AudioIndex.model_validate({**references, "clips": clips}))
 
     # In batches of one voice, saving the index after each: a provider failing midway (a rate
     # limit, an outage) keeps every clip already made, and the next run picks up from there.
     done = len(wanted) if prune else 0
-    report.dropped = sum((w[3].item, w[4]) in previous for w in wanted) if prune else 0
+    report.dropped = sum(job.key in previous for job in wanted) if prune else 0
     #: Clips made in this run by identity, with their entry and item: twins share them.
     made: dict[str, tuple[dict[str, Any], Clip, Item]] = {}
     while done < len(wanted):
-        voice, tts = wanted[done][0], wanted[done][1]
-        batch = [w for w in wanted[done : done + BATCH] if w[0] is voice]
-        todo: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
-        for w in batch:
-            if w[6] not in made and all(t[6] != w[6] for t in todo):
-                todo.append(w)
-        clips = tts.synthesize([Request(w[3].input, voice.voice, w[5], w[7]) for w in todo])
-        said = dict(zip((w[6] for w in todo), clips, strict=True))
-        for _, _, author, item, speed, rate, ident, take in batch:
-            if ident in made:
-                fresh.append(_twin(*made[ident], item, check))
+        voice, tts = wanted[done].voice, wanted[done].tts
+        batch = [job for job in wanted[done : done + BATCH] if job.voice is voice]
+        todo: list[Job] = []
+        for job in batch:
+            if job.identity not in made and all(t.identity != job.identity for t in todo):
+                todo.append(job)
+        clips = tts.synthesize([job.request for job in todo])
+        said = dict(zip((job.identity for job in todo), clips, strict=True))
+        for job in batch:
+            if job.identity in made:
+                fresh.append(_twin(*made[job.identity], job.item, check))
                 continue
-            clip = said[ident]
+            clip = said[job.identity]
             if len(clip.pcm) < 2:
-                report.silent.append(f"{item.item} ({speed})")
+                report.silent.append(f"{job.item.item} ({SPEED})")
                 continue
-            entry = _entry(item, speed, rate, ident, clip, tts, voice, author, adir, check)
-            if take:
-                entry["synthesis"]["take"] = take
-            made[ident] = (entry, clip, item)
+            entry = _entry(job, clip, adir, check)
+            made[job.identity] = (entry, clip, job.item)
             fresh.append(entry)
         done += len(batch)
         save(done)
@@ -809,7 +810,7 @@ def ipa_phones(word: str) -> list[str]:
 
 def align_course(
     course_dir: Path,
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voice: AudioVoice,
     phonemes: str,
     written: Written | None = None,
@@ -869,6 +870,46 @@ def align_course(
             write_index(adir, index.model_copy(update={"clips": clips}))
     write_index(adir, index.model_copy(update={"clips": clips}))
     return done
+
+
+def check_course(
+    course_dir: Path,
+    units: Sequence[BundleUnit],
+    voices: Sequence[AudioVoice],
+    check: Callable[[Item, Clip], dict[str, Any]],
+    written: Written | None = None,
+) -> dict[str, int]:
+    """The round trip run again on the course's synthetic clips, which stay as they are: for a
+    new recognizer or comparison. Only clips of the text their voice reads now; the index is
+    saved as it goes. Clips said alike share a file, heard once. Returns the clips by status."""
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    checked = checked_voices(index, voices)
+    reads = {
+        (v.voice, i.item): i for v in voices for i in plan(units, v, written, voices, checked)[0]
+    }
+    clips = list(index.clips)
+    heard: dict[str, Clip] = {}
+    counts: dict[str, int] = {}
+    done = 0
+    for k, clip in enumerate(clips):
+        if not clip.synthetic or clip.speed != "normal" or clip.synthesis is None:
+            continue
+        item = reads.get((clip.synthesis.voice, clip.item))
+        if item is None or clip.synthesis.input != item.input:
+            continue
+        said = heard.get(clip.file)
+        if said is None:
+            said = heard[clip.file] = Clip(decode_clip(adir / clip.file), ALIGN_RATE, None, None)
+        trace = None if clip.qa is None else clip.qa.trace
+        qa = ({} if trace is None else {"trace": trace}) | check(item, said)
+        clips[k] = clip.model_copy(update={"qa": AudioQa.model_validate(qa)})
+        counts[qa["status"]] = counts.get(qa["status"], 0) + 1
+        done += 1
+        if done % BATCH == 0:
+            write_index(adir, index.model_copy(update={"clips": clips}))
+    write_index(adir, index.model_copy(update={"clips": clips}))
+    return counts
 
 
 # ------------------------------------------------------------------------------------ verdicts
@@ -954,7 +995,8 @@ def record_reference(
     text: str,
     license_: str,
     author: str,
-    source: str,
+    source: str | None,
+    design: dict[str, Any] | None = None,
 ) -> ReferenceVoice:
     """Keeps a real speaker's recording as the voice's reference (voices/<voice>.wav), replacing
     an earlier one (ADR 0076): every clip of an OmniVoice voice then clones that speaker, accent
@@ -964,8 +1006,13 @@ def record_reference(
 
     adir = audio_dir(course_dir)
     index = read_index(adir)
-    pcm, _ = prepare(recording)
-    data = wav_bytes(pcm, INGEST_RATE)
+    if design is None:
+        pcm, _ = prepare(recording)
+        rate = INGEST_RATE
+    else:
+        # A designed voice (VoxCPM2, ADR 0094) is kept as the model made it, at its own rate.
+        pcm, rate = decoded(recording)
+    data = wav_bytes(pcm, rate)
     rel = f"voices/{voice.voice}.wav"
     (adir / "voices").mkdir(parents=True, exist_ok=True)
     (adir / rel).write_bytes(data)
@@ -975,11 +1022,12 @@ def record_reference(
             "file": rel,
             "sha256": hashlib.sha256(data).hexdigest(),
             "text": unicodedata.normalize("NFC", text.strip()),
-            "durationMs": len(pcm) // 2 * 1000 // INGEST_RATE,
+            "durationMs": len(pcm) // 2 * 1000 // rate,
             "license": license_,
             "provenance": {"author": author, "status": "draft"},
-            "synthetic": False,
-            "source": source,
+            "synthetic": design is not None,
+            **({"source": source} if source is not None else {}),
+            **({"design": design} if design is not None else {}),
         }
     )
     others = [r for r in index.references or [] if r.id != voice.voice]
@@ -987,8 +1035,60 @@ def record_reference(
     return ref
 
 
+def decoded(path: Path) -> tuple[bytes, int]:
+    """A recording as 16-bit mono PCM at its own sample rate."""
+    probe = subprocess.run(
+        [
+            "ffprobe",
+            "-v",
+            "error",
+            "-select_streams",
+            "a:0",
+            "-show_entries",
+            "stream=sample_rate",
+            "-of",
+            "default=nw=1:nk=1",
+            str(path),
+        ],
+        capture_output=True,
+        check=True,
+        text=True,
+    )
+    rate = int(probe.stdout.strip())
+    out = subprocess.run(
+        [
+            "ffmpeg",
+            "-v",
+            "error",
+            "-i",
+            str(path),
+            "-f",
+            "s16le",
+            "-ac",
+            "1",
+            "-ar",
+            str(rate),
+            "-",
+        ],
+        capture_output=True,
+        check=True,
+    )
+    return out.stdout, rate
+
+
 #: The sample rate a recorded reference is kept at (ingest.SAMPLE_RATE).
 INGEST_RATE = 22_050
+
+
+#: The reference a cloning provider is made with before it has one: to cast it, or to say how.
+NO_REFERENCE = Reference(Path(), "", "0" * 64)
+
+
+def caster_of(voice: AudioVoice) -> Caster | None:
+    """The voice's provider, if its every clip clones a reference voice (`nabu audio cast`). A
+    voice its provider cannot be made from (no model, an unknown provider) is a ValueError."""
+    tts = provider(voice, NO_REFERENCE)
+    return tts if isinstance(tts, Caster) else None
 
 
 def cast_reference(
@@ -997,19 +1097,17 @@ def cast_reference(
     text: str,
     instruct: str,
     seed: int,
-    tts: OmniVoiceProvider | NavoiyProvider | None = None,
+    tts: Caster | None = None,
 ) -> ReferenceVoice:
     """Makes the voice's reference and keeps it in the audio index (voices/<voice>.wav),
-    replacing an earlier one: OmniVoice designs it from speaker attributes, Navoiy clones its
-    prompt recording. Clips cloned from the old one become stale."""
+    replacing an earlier one, with a provider that designs one ("design" in its CASTS):
+    OmniVoice from speaker attributes, Navoiy reading the text in its prompt recording's voice.
+    Clips cloned from the old one become stale."""
     adir = audio_dir(course_dir)
     index = read_index(adir)
-    none = Reference(Path(), "", "0" * 64)
-    designer = tts or (
-        NavoiyProvider(voice, none)
-        if voice.provider == "navoiy"
-        else OmniVoiceProvider(voice, none)
-    )
+    designer = tts or caster_of(voice)
+    if designer is None or "design" not in designer.CASTS:
+        raise ValueError(f"voice {voice.id}: {voice.provider} does not design a reference voice")
     text = unicodedata.normalize("NFC", text.strip())
     clip = designer.design(text, instruct, seed)
     data = wav_bytes(clip.pcm, clip.sample_rate)

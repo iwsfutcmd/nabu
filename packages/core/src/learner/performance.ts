@@ -10,6 +10,7 @@
  * shared item and KC difficulties.
  */
 import type { TemplateId } from "../lesson/exercise.ts";
+import { TEMPLATES } from "../lesson/templates.ts";
 import type { Facet } from "../lesson/exercise.ts";
 
 export const PERFORMANCE_MODEL = "elo@1";
@@ -24,47 +25,10 @@ export interface Performance {
   readonly w: number;
 }
 
-/**
- * Cold-start difficulties by template (§9.3): choosing among three is easier
- * than building from tiles, which is easier than typing. Tuned on the 30-day
- * simulation (test/simulation.test.ts), to be replaced by fitted values.
- */
-export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = {
-  "select-image": -1.6,
-  "match-pairs": -1.4,
-  "choose-translation": -1.0,
-  "translate-tap.l2-l1": -0.4,
-  "translate-tap.l1-l2": 0.0,
-  "gap-fill": -0.2,
-  "char-read": -0.4,
-  "reading-disambiguation": 0.4,
-  // Writing a word's pronunciation in (ADR 0054): typed, all or nothing, every mark or tone counts.
-  vocalize: 0.8,
-  transcribe: 0.8,
-  "complete-translation": 0.6,
-  "translate-type.l1-l2": 1.0,
-  "speak.tier-0": -1.5,
-  // Scored speaking (Phase 9): saying it well is harder than rating yourself; repeating a clip is a
-  // little harder again (no text). Naming one of six tones is hard for beginners.
-  speak: 0.2,
-  "listen-speak": 0.4,
-  "tone-identify": 0.6,
-  // Hearing is harder than reading the same item: the listening priors sit above their reading twins.
-  "listen-select": -0.6,
-  "minimal-pair": -0.2,
-  "listen-tap": 0.3,
-  "listen-type": 1.2,
-  // Stories: questions in context, about lines just read.
-  "story-choose": -1.0,
-  "story-complete": -0.6,
-  "story-arrange": -0.2,
-  // Script tracks (ADR 0088): a letter among four is easy, a word among four a little less;
-  // building a word from its letters is like building a sentence from tiles.
-  "letter-read": -1.4,
-  "letter-pairs": -1.4,
-  "word-read": -0.8,
-  "word-write": -0.2,
-};
+/** Cold-start difficulties by template (§9.3): each template's `prior` in `TEMPLATES` (C11). */
+export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = Object.fromEntries(
+  (Object.keys(TEMPLATES) as TemplateId[]).map((t) => [t, TEMPLATES[t].prior]),
+) as Record<TemplateId, number>;
 
 export const initialPerformance = (): Performance => ({ theta: 1.5, facet: {}, template: {}, kc: {}, item: {}, w: 2 });
 
@@ -91,18 +55,36 @@ export const predict = (m: Performance, x: PredictionInput): number => sigmoid(l
 const LEARNING_RATE = 0.15;
 const L2 = 0.01;
 
-/** One online SGD step on the log loss; offsets shrink toward their priors (0). */
-export const update = (m: Performance, x: PredictionInput, correct: boolean): Performance => {
+/** The model as a fold changes it: its own working copy (ADR 0119), never a state's. */
+export interface PerformanceDraft {
+  theta: number;
+  facet: Partial<Record<Facet, number>>;
+  template: Partial<Record<TemplateId, number>>;
+  kc: Record<string, number>;
+  item: Record<string, number>;
+  w: number;
+}
+
+/**
+ * One online SGD step on the log loss, made in place; offsets shrink toward their priors (0). Each
+ * parameter's new value depends only on its own old value and the error, which is worked out
+ * first, so the step is the same as `update`'s. The fold calls it on its draft: copying the KC and
+ * item maps for every first try made a replay slower with every word and item met (R2).
+ */
+export const learn = (m: PerformanceDraft, x: PredictionInput, correct: boolean): void => {
   const error = (correct ? 1 : 0) - predict(m, x);
   const step = (value: number, gradient: number): number => value + LEARNING_RATE * (gradient * error - L2 * value);
-  const kc = { ...m.kc };
-  for (const k of x.kcs) kc[k] = (kc[k] ?? 0) - (LEARNING_RATE * error) / x.kcs.length - LEARNING_RATE * L2 * (kc[k] ?? 0);
-  return {
-    theta: m.theta + LEARNING_RATE * error,
-    facet: { ...m.facet, [x.facet]: step(m.facet[x.facet] ?? 0, 1) },
-    template: { ...m.template, [x.template]: step(m.template[x.template] ?? 0, -1) },
-    kc,
-    item: { ...m.item, [x.item]: step(m.item[x.item] ?? 0, -1) },
-    w: m.w + LEARNING_RATE * (error * (x.r - 0.5) - L2 * (m.w - 2)),
-  };
+  for (const k of x.kcs) m.kc[k] = (m.kc[k] ?? 0) - (LEARNING_RATE * error) / x.kcs.length - LEARNING_RATE * L2 * (m.kc[k] ?? 0);
+  m.facet[x.facet] = step(m.facet[x.facet] ?? 0, 1);
+  m.template[x.template] = step(m.template[x.template] ?? 0, -1);
+  m.item[x.item] = step(m.item[x.item] ?? 0, -1);
+  m.w += LEARNING_RATE * (error * (x.r - 0.5) - L2 * (m.w - 2));
+  m.theta += LEARNING_RATE * error;
+};
+
+/** One online SGD step on the log loss, as a new model: `learn` on a copy. */
+export const update = (m: Performance, x: PredictionInput, correct: boolean): Performance => {
+  const next: PerformanceDraft = { theta: m.theta, facet: { ...m.facet }, template: { ...m.template }, kc: { ...m.kc }, item: { ...m.item }, w: m.w };
+  learn(next, x, correct);
+  return next;
 };

@@ -54,9 +54,9 @@
       "message": "Not helpful",
       "description": "Rating button: the explanation did not help."
     },
-    "ai.judge.accepted": {
-      "message": "On second look, your answer is accepted. It counts as right.",
-      "description": "The language model accepted an answer graded wrong; the learner's progress is updated."
+    "ai.judge.accepted.model": {
+      "message": "A language model checked your answer again and accepted it, so it counts as right. It can be wrong: a reviewer will look at it too.",
+      "description": "Under the feedback for an answer graded wrong: a language model (the judge) checked it again and accepted it, and the learner's progress is updated. Say plainly that a model decided, not a person (M10). The answer also joins the reviewers' queue."
     },
     "ai.judge.checking": {
       "message": "Checking your answer again…",
@@ -68,23 +68,39 @@
     },
     "ai.report.button": {
       "message": "My answer should have been accepted",
-      "description": "Button after an answer graded wrong: the learner says it is right. It counts as right for them at once and goes to review."
+      "description": "An option of the report button beside an answer graded wrong (report.problem): the learner says it is right. It counts as right for them at once and goes to review."
     },
     "ai.report.done": {
       "message": "Counted as right. A reviewer will look at your answer too.",
-      "description": "Confirmation after the learner said their answer should have been accepted."
+      "description": "Confirmation after the learner said their answer should have been accepted, when the report goes to the course's reviewers: the deployment sends reports to its intake, or the learner has an account (ADR 0115)."
+    },
+    "ai.report.done.device": {
+      "message": "Counted as right. Your report stays on this device: no reviewer will see it.",
+      "description": "Confirmation after the learner said their answer should have been accepted, when nothing takes reports: the app has no report intake and no server (ADR 0115). The answer counts as right for the learner all the same."
+    },
+    "ai.report.done.sign-in": {
+      "message": "Counted as right. A reviewer will see your report once you sign in.",
+      "description": "Confirmation after the learner said their answer should have been accepted, when the app has a server but the learner has no account on it: the report waits on the device and goes to the reviewers when they sign in or create an account (ADR 0115)."
     },
     "ai.report.reject": {
       "message": "This should have been wrong",
-      "description": "Button after an answer graded right: the learner says it should not have been accepted. It counts as wrong for them at once and goes to review."
+      "description": "An option of the report button beside an answer graded right with a difference let pass (a typo, an accent mark, a variant form): the learner says it should not have been accepted. It counts as wrong for them at once and goes to review."
     },
     "ai.report.rejected": {
       "message": "Counted as wrong. A reviewer will look at it too.",
-      "description": "Confirmation after the learner said their answer should have been wrong."
+      "description": "Confirmation after the learner said their answer should have been wrong, when the report goes to the course's reviewers: the deployment sends reports to its intake, or the learner has an account (ADR 0115)."
+    },
+    "ai.report.rejected.device": {
+      "message": "Counted as wrong. Your report stays on this device: no reviewer will see it.",
+      "description": "Confirmation after the learner said their answer should have been wrong, when nothing takes reports: the app has no report intake and no server (ADR 0115). The answer counts as wrong for the learner all the same."
+    },
+    "ai.report.rejected.sign-in": {
+      "message": "Counted as wrong. A reviewer will see your report once you sign in.",
+      "description": "Confirmation after the learner said their answer should have been wrong, when the app has a server but the learner has no account on it: the report waits on the device and goes to the reviewers when they sign in or create an account (ADR 0115)."
     },
     "ai.report.spoken": {
       "message": "I said it right",
-      "description": "Button under the feedback of a speaking exercise the device scored as wrong: the learner says they said the sentence right (tone and sound scoring can be wrong). It counts as right at once, and a reviewer looks at it."
+      "description": "An option of the report button beside a speaking exercise the device scored as wrong: the learner says they said the sentence right (tone and sound scoring can be wrong). It counts as right at once, and a reviewer looks at it."
     },
     "ai.roleplay.character": {
       "message": "Who",
@@ -94,9 +110,17 @@
       "message": "Your goal",
       "description": "Label: what the learner tries to do in the conversation."
     },
+    "ai.roleplay.gone": {
+      "message": "This conversation isn't in the course any more.",
+      "description": "The scenario was removed or renamed in a newer version of the course."
+    },
     "ai.roleplay.hide-translation": {
       "message": "Hide translation",
       "description": "Button: hide the translation again."
+    },
+    "ai.roleplay.locked": {
+      "message": "This conversation opens once you finish the lesson before it. If you just did, try again in a moment.",
+      "description": "The server has not seen the conversation's lesson done yet (it may still be syncing)."
     },
     "ai.roleplay.log": {
       "message": "Conversation",
@@ -190,6 +214,10 @@
       "message": "Download my account data",
       "description": "Button that downloads, as one file, everything the server keeps for the account."
     },
+    "app.account.forgot": {
+      "message": "Forgot your password?",
+      "description": "Button in the sign-in form: shows app.account.no-reset, what the learner can do, since the server cannot reset a password."
+    },
     "app.account.have-account": {
       "message": "I already have an account",
       "description": "Switches the account form to signing in."
@@ -197,6 +225,10 @@
     "app.account.new-account": {
       "message": "I need a new account",
       "description": "Switches the account form to creating an account."
+    },
+    "app.account.no-reset": {
+      "message": "This server can't reset passwords: it doesn't send email. Your progress stays on this device all the same. To keep it syncing, create a new account with another email address, and everything on this device goes into it.",
+      "description": "Shown under Forgot your password? (app.account.forgot). Say plainly that there is no password reset, then what the learner can do. Another address, because the old one still belongs to the old account. Everything on this device: the new account takes the device's whole history."
     },
     "app.account.password": {
       "message": "Password",
@@ -214,6 +246,10 @@
       "message": "Sign in",
       "description": "Button that signs in to an existing account."
     },
+    "app.account.sign-in-again": {
+      "message": "Sign in again",
+      "description": "Button after app.account.signed-out: takes the learner to the sign-in form under Your progress, with their email address filled in."
+    },
     "app.account.sign-out": {
       "message": "Sign out",
       "description": "Button that signs out. Progress stays on this device."
@@ -222,13 +258,53 @@
       "message": "Signed in as {$email}",
       "description": "Who is signed in. $email is the account's email address."
     },
+    "app.account.signed-out": {
+      "message": "You've been signed out of {$email}. Your progress stays on this device, and syncs again when you sign in.",
+      "description": "At the top of the home screen when the server ended the device's session: it expired, or the account was deleted on another device. It stays, across reloads, until the learner signs in again or chooses Stay signed out (app.account.stay-signed-out). $email is the account's email address."
+    },
+    "app.account.stay-signed-out": {
+      "message": "Stay signed out",
+      "description": "Button after app.account.signed-out: the learner lets the account go and the notice goes away. Progress stays on this device; they can still sign in or create an account later."
+    },
     "app.account.welcome-back": {
       "message": "Sign in to bring your progress from your other devices.",
       "description": "Introduces the sign-in form."
     },
+    "app.continue.done": {
+      "message": "You’ve done every lesson. Practice keeps what you’ve learned.",
+      "description": "A course's page and the home screen's Continue card once the whole path is done and no word is slipping (practice may still be offered for words due)."
+    },
+    "app.continue.label": {
+      "message": "Continue",
+      "description": "Accessible name of the course page's main action area: Continue, the line saying why, and the pace choice (ADR 0105)."
+    },
+    "app.continue.lesson": {
+      "message": "Continue",
+      "description": "The main action of a course's page and of the home screen's Continue card: start the next lesson or story on the path."
+    },
+    "app.continue.new-lesson": {
+      "message": "New lesson anyway",
+      "description": "Beside “Practise first”: start the next lesson without practising first. Always offered (D6)."
+    },
+    "app.continue.practice": {
+      "message": "Practise first",
+      "description": "The main action of a course's page and of the home screen's Continue card when enough words are slipping: a practice session before the next lesson (ADR 0105, D6)."
+    },
     "app.course.drafts": {
       "message": ".input {$drafts :number}\n.input {$total :number}\n{{Sentences not yet checked by a native speaker: {$drafts} of {$total}.}}",
       "description": "A note on a course's page in the demo: how many of its sentences (story lines included) no native speaker has signed off yet, of all of them (ADR 0073). A release build has none, so it never shows there."
+    },
+    "app.course.links": {
+      "message": "In this course",
+      "description": "Accessible name of the row of links near the top of a course's page (S2): the words learned, the sentence list, Your reports, Preferences and Offline. Not shown."
+    },
+    "app.course.unchecked.all": {
+      "message": "This course is a draft: a language model wrote it, and no expert has checked it yet. Try it, and report anything that looks wrong from inside a lesson.",
+      "description": "A note on a course's page in the demo, where no sentence of the course has been signed off yet (ADR 0073): what a draft course means for the learner, in the words of the site's landing page (landing.courses.note). An expert: a native speaker, or for an ancient language a scholar. A release build has no drafts, so it never shows there."
+    },
+    "app.course.unchecked.some": {
+      "message": ".input {$drafts :number}\n.input {$total :number}\n{{Parts of this course are still drafts: a language model wrote them, and no expert has checked {$drafts} of its {$total} sentences yet. Report anything that looks wrong from inside a lesson.}}",
+      "description": "A note on a course's page in the demo, where some sentences are signed off and some are not (ADR 0073): $drafts sentences (story lines included) are not checked yet, of $total in all. An expert: a native speaker, or for an ancient language a scholar. A release build has no drafts, so it never shows there."
     },
     "app.error.account.age-required": {
       "message": "This server asks for your age before it creates an account.",
@@ -246,6 +322,10 @@
       "message": "Enter a valid email address.",
       "description": "Shown when the email address is not valid."
     },
+    "app.error.account.offline": {
+      "message": "You're offline. Connect to the internet, then try again.",
+      "description": "Shown when an account action (signing in, creating an account, the profile, the account's data) failed because the device has no network. When the device is online but the server does not answer, app.error.account.unreachable says so instead."
+    },
     "app.error.account.rate-limited": {
       "message": "Too many tries. Wait a few minutes and try again.",
       "description": "Shown when the server refuses more sign-ins or sign-ups for a while."
@@ -256,15 +336,15 @@
     },
     "app.error.account.signed-out": {
       "message": "You've been signed out. Sign in again to keep syncing.",
-      "description": "Shown when the server no longer accepts the saved sign-in."
+      "description": "Shown when the server no longer accepts the saved sign-in (it expired, or the account was deleted on another device): above the sign-in form, which then has the email address filled in."
     },
     "app.error.account.unknown": {
       "message": "Something went wrong. Try again.",
       "description": "Shown for unexpected account or sync errors."
     },
     "app.error.account.unreachable": {
-      "message": "Can't reach the server. Check your connection and try again.",
-      "description": "Shown when the sync server cannot be reached."
+      "message": "Can't reach the server right now. Try again later.",
+      "description": "Shown when an account action failed because the sync server does not answer although the device is online: the server may be down, or a network in between may block it. With no network at all, app.error.account.offline says so instead."
     },
     "app.error.account.weak-password": {
       "message": ".input {$min :number}\n{{Use at least {$min} characters.}}",
@@ -274,9 +354,17 @@
       "message": "That email and password don't match.",
       "description": "Shown when signing in fails."
     },
+    "app.error.index": {
+      "message": "The list of courses couldn't be loaded.",
+      "description": "Home: the course list failed to load while online."
+    },
     "app.error.load": {
       "message": "This course could not be loaded.",
       "description": "Shown when a course bundle fails to load."
+    },
+    "app.error.page": {
+      "message": "Something went wrong on this page.",
+      "description": "Shown instead of a page that failed to render; a link to the course list follows."
     },
     "app.error.profile.characters": {
       "message": "Usernames can only use letters, digits and _ - . between them.",
@@ -306,6 +394,50 @@
       "message": "That username is taken.",
       "description": "Another learner has this username."
     },
+    "app.error.retry": {
+      "message": "Try again",
+      "description": "Button under a loading error: load the course or the course list again."
+    },
+    "app.home.continue.next": {
+      "message": "Next: {$step}",
+      "description": "On the home screen's Continue card: what Continue starts. $step is the lesson or story as the course path names it: “Unit 3, lesson 2” (app.lessons.unit-lesson), “Story” (app.path.story) or “Practice” (app.path.practice)."
+    },
+    "app.home.continue.title": {
+      "message": "Pick up where you left off",
+      "description": "Heading of the card at the top of the home screen that continues the course the learner studied last (S1): the course's name, its next step, and a button that starts it. A practice reminder opens the home screen, so it opens this card."
+    },
+    "app.home.course.last": {
+      "message": "Last practised {$when}",
+      "description": "On the card of a course the learner has studied, in the course list, where such courses come first, the latest first (S1): when they last practised it. $when comes from the browser, already in the UI language: “today”, “yesterday”, “3 days ago”, “last week”, “2 months ago”."
+    },
+    "app.home.course.level": {
+      "message": ".input {$units :number}\n.match $units\none {{Level {$level}, {$units} unit}}\n* {{Level {$level}, {$units} units}}",
+      "description": "On a course's card in the course list, when all its units are at one level: that level ($level: a CEFR level such as A1, kept as it is) and how many units it has ($units). Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "app.home.course.levels": {
+      "message": ".input {$units :number}\n.match $units\none {{Levels {$from} to {$to}, {$units} unit}}\n* {{Levels {$from} to {$to}, {$units} units}}",
+      "description": "On a course's card in the course list: the levels its units go from and to ($from, $to: CEFR levels such as A1 and B2, kept as they are) and how many units it has ($units). Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "app.home.course.no-listening": {
+      "message": "No listening exercises.",
+      "description": "On the card of a course without listening exercises in the course list (such as Biblical Hebrew or Ancient Greek, whose voices are stand-ins)."
+    },
+    "app.home.course.reading": {
+      "message": "Reading and writing only: no listening or speaking.",
+      "description": "On the card of a course for a written language (such as Classical Chinese) in the course list: it has no listening or speaking exercises."
+    },
+    "app.home.course.units": {
+      "message": ".input {$units :number}\n.match $units\none {{{$units} unit}}\n* {{{$units} units}}",
+      "description": "On a course's card in the course list, when its units name no level: how many units it has. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "app.home.intro": {
+      "message": "Nabu teaches languages in their own writing systems, in short lessons that build on each other.",
+      "description": "On the home screen of a learner who has not started yet, under the course list's heading: what the app is, in one sentence. Nabu is the app's name (app.name)."
+    },
+    "app.home.start": {
+      "message": "Choose a course to start its first lesson. You need no account: your progress stays on this device.",
+      "description": "On the home screen of a learner who has not started yet: how to begin. An account is optional; without one, progress is kept on the device."
+    },
     "app.home.title": {
       "message": "Choose a course",
       "description": "Heading of the course list."
@@ -314,29 +446,45 @@
       "message": "Writing system",
       "description": "Label of the choice between a course's orthographies (e.g. Latin or Cyrillic for Uzbek)."
     },
+    "app.home.writing-switch": {
+      "message": "You can switch any time: your lessons and words carry over.",
+      "description": "Under the 'Writing system' label of a course written in more than one system (Latin or Cyrillic for Uzbek): the learner can change later, and their progress stays."
+    },
     "app.lessons.back": {
       "message": "All courses",
       "description": "Link back to the course list."
     },
     "app.lessons.lesson": {
       "message": ".input {$number :number}\n{{Lesson {$number}}}",
-      "description": "Name of a lesson in the list. $number is its position."
+      "description": "Name of a lesson on the course path, under its unit's heading. $number is its position in its unit."
     },
     "app.lessons.new-words": {
       "message": "New words",
-      "description": "Accessible label of the preview of words a lesson introduces."
+      "description": "Accessible label of the preview of the words a lesson introduces, each shown with its meaning under it."
     },
     "app.lessons.title": {
       "message": "Lessons",
       "description": "Heading of a course's lesson list."
     },
+    "app.lessons.unit-lesson": {
+      "message": ".input {$unit :number}\n.input {$number :number}\n{{Unit {$unit}, lesson {$number}}}",
+      "description": "Name of a lesson where the course path is out of sight (the browser tab's title, the placement test's result): its unit's number ($unit) and its own number within the unit ($number), as the course path shows them."
+    },
+    "app.listening.keep-off": {
+      "message": "Keep listening off",
+      "description": "Button in the notice of a listening break (app.listening.off): keeps listening exercises off on this device until the learner turns them back on, as Off in Preferences does."
+    },
     "app.listening.off": {
       "message": "Listening exercises are off for now. They come back in an hour.",
       "description": "Notice on the course path after the learner chose 'Can't listen now'."
     },
+    "app.listening.off-setting": {
+      "message": "You turned listening exercises off on this device.",
+      "description": "Notice on the course path while the learner has turned listening exercises off in Preferences (preferences.listening.off): there are none, and nothing plays by itself."
+    },
     "app.listening.on": {
       "message": "Turn listening back on",
-      "description": "Button that brings listening exercises back right away."
+      "description": "Button that brings listening exercises back right away, whether they were off for an hour or turned off in Preferences."
     },
     "app.name": {
       "message": "Nabu",
@@ -374,9 +522,17 @@
       "message": "There is not enough storage on this device for this download.",
       "description": "The browser refused to store more."
     },
+    "app.offline.link": {
+      "message": "Offline",
+      "description": "Link near the top of a course's page to its offline page (S2): what of the course is on this device, and downloading or removing each unit's audio and pictures."
+    },
     "app.offline.notice": {
       "message": "You are offline. Lessons on this device still work, and your progress is saved here and syncs when you are back online.",
-      "description": "Shown while the device has no network."
+      "description": "Shown while the device has no network, to a learner signed in to an account (their progress syncs)."
+    },
+    "app.offline.notice-local": {
+      "message": "You are offline. Lessons on this device still work, and your progress is saved here.",
+      "description": "Shown while the device has no network, to a learner without an account: their progress stays on this device and nothing syncs."
     },
     "app.offline.progress": {
       "message": "{$done} of {$total}",
@@ -400,7 +556,7 @@
     },
     "app.offline.title": {
       "message": "Offline",
-      "description": "Heading of the course's offline section (Phase 10)."
+      "description": "Heading of a course's offline page (Phase 10): what of the course is on this device, and its downloads."
     },
     "app.offline.unavailable": {
       "message": "This course is not on this device yet. Open it once while you are online to use it offline.",
@@ -410,13 +566,77 @@
       "message": ".input {$number :number}\n{{Unit {$number}}}",
       "description": "Name of a unit without a title, by its position in the course."
     },
+    "app.pace.accelerate": {
+      "message": "Faster",
+      "description": "Pace choice: less review, new material comes sooner."
+    },
+    "app.pace.auto": {
+      "message": "Automatic",
+      "description": "Pace choice: the app sets the pace from how practice is going."
+    },
+    "app.pace.consolidate": {
+      "message": "More practice",
+      "description": "Pace choice: more review, new material comes more slowly."
+    },
+    "app.pace.label": {
+      "message": "Pace",
+      "description": "Label of the choice of how fast new material comes in this course (ADR 0105, D5)."
+    },
+    "app.pace.steady": {
+      "message": "Steady",
+      "description": "Pace choice: the usual mix of new material and review."
+    },
+    "app.pace.why.backlog": {
+      "message": "Many words are slipping, so lessons bring back more of what you’ve met.",
+      "description": "Why the pace is “More practice”, set automatically: many words' recall has fallen well below the target."
+    },
+    "app.pace.why.breezing": {
+      "message": "You’re doing well, so lessons bring back less review.",
+      "description": "Why the pace is “Faster”, set automatically: recent first tries ran well over the target success."
+    },
+    "app.pace.why.chosen-accelerate": {
+      "message": "You chose a faster pace: lessons bring back less review.",
+      "description": "The learner set the pace to “Faster”."
+    },
+    "app.pace.why.chosen-consolidate": {
+      "message": "You chose more practice: lessons bring back more of what you’ve met.",
+      "description": "The learner set the pace to “More practice”."
+    },
+    "app.pace.why.chosen-steady": {
+      "message": "You chose a steady pace.",
+      "description": "The learner set the pace to “Steady”."
+    },
+    "app.pace.why.slipping": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} word is slipping: practising it first helps it stick.}}\n* {{{$count} words are slipping: practising them first helps them stick.}}",
+      "description": "Why Continue offers practice first: this many words' recall has fallen well below the target. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "app.pace.why.struggling": {
+      "message": "Recent answers were harder going, so lessons bring back more of what you’ve met.",
+      "description": "Why the pace is “More practice”, set automatically: recent first tries ran well under the target success."
+    },
+    "app.path.conversation": {
+      "message": "Conversation",
+      "description": "Label on a conversation entry of the learning path (a roleplay whose other person a language model plays); the scenario's title follows it."
+    },
     "app.path.done": {
       "message": "Done",
       "description": "Status of a lesson the learner has completed. They can still open it to practise."
     },
+    "app.path.extra-practice": {
+      "message": "Extra practice",
+      "description": "Heading on the course path of a unit of extra practice that has no title of its own, such as a drill of the numbers one to ten, after the course's units."
+    },
     "app.path.letters": {
       "message": ".input {$number :number}\n{{Letters {$number}}}",
       "description": "Name of a node of a script track (the lessons that teach a writing system's letters, beside the units; ADR 0088). $number is its position in the track."
+    },
+    "app.path.letters.advice": {
+      "message": "New to these letters? Start here. If you can read them already, go straight to the units: they don’t wait for these lessons.",
+      "description": "Under the heading of a script track on the course path (the lessons that teach a writing system's letters, beside the units; ADR 0088), until the learner has done one of them. The units can be started before, after or without it."
+    },
+    "app.path.level": {
+      "message": "Level {$level}",
+      "description": "On the course path, under a unit's heading: the unit's level ($level: a CEFR level such as A1, kept as it is)."
     },
     "app.path.locked": {
       "message": "Locked",
@@ -424,7 +644,11 @@
     },
     "app.path.new-letters": {
       "message": "New letters",
-      "description": "Accessible label of the preview of the letters a script-track node teaches."
+      "description": "Accessible label of the preview of the letters a script-track node teaches, each shown with its Latin spelling under it."
+    },
+    "app.path.practice": {
+      "message": "Practice",
+      "description": "Name of a practice node on the course path (a drill, such as the numbers one to ten); what it practises follows it, in the learner's own language. Also the browser tab's title while the drill is open."
     },
     "app.path.start": {
       "message": "Start",
@@ -434,17 +658,85 @@
       "message": "Story",
       "description": "Label on a story node of the learning path; the story's title follows it."
     },
+    "app.path.unit": {
+      "message": ".input {$number :number}\n{{Unit {$number}}}",
+      "description": "On the course path, before a unit's title (or in its place, where the unit has none): the unit's number among the course's units ($number, from 1)."
+    },
+    "app.path.unit-done": {
+      "message": ".input {$done :number}\n.input {$total :number}\n{{{$done} of {$total} done}}",
+      "description": "On the course path, under a unit's heading: how many of the unit's lessons and stories ($total) the learner has done ($done). Select plural forms as your language needs."
+    },
+    "app.placement.about": {
+      "message": ".input {$most :number}\n{{A short test of what you know already. It goes through the course's units in order and skips ahead while you get most questions right, so it asks {$most} questions at most, and often far fewer.}}",
+      "description": "Placement test introduction: what the test does and how long it is. $most is the most questions it can ask (more than a few)."
+    },
+    "app.placement.all": {
+      "message": "You placed out of the whole course.",
+      "description": "Placement test end screen, when every lesson of the course is now done."
+    },
+    "app.placement.done": {
+      "message": "Placement test done",
+      "description": "Heading of the placement test's end screen."
+    },
+    "app.placement.next": {
+      "message": "You start at {$step}.",
+      "description": "Placement test end screen: the next thing to do on the course page. $step is a path node's name (app.lessons.unit-lesson, Unit 3, lesson 2; app.path.story, Story; or app.path.practice, Practice); the unit's title follows on its own line."
+    },
+    "app.placement.outcome": {
+      "message": "Lessons you show you know are marked done, and you start after them. Nothing you have done is undone, and you can take the test again later.",
+      "description": "Placement test introduction: what the result changes."
+    },
+    "app.placement.placed": {
+      "message": ".input {$count :number}\n.match $count\none {{You placed out of {$count} lesson: it is marked done.}}\n* {{You placed out of {$count} lessons: they are marked done.}}",
+      "description": "Placement test end screen: how many lessons the test newly marked done. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.placement.placed-none": {
+      "message": "This time your answers marked no more lessons done.",
+      "description": "Placement test end screen, when the test marked no lesson done that was not done already."
+    },
+    "app.placement.quit.body": {
+      "message": "Lessons your answers so far show you know are marked done; the rest stays as it is.",
+      "description": "Body of the dialog shown when the learner closes the placement test part-way."
+    },
+    "app.placement.quit.cancel": {
+      "message": "Keep going",
+      "description": "Button that closes the stop dialog and goes back to the placement test."
+    },
+    "app.placement.quit.confirm": {
+      "message": "Stop the test",
+      "description": "Button that stops the placement test, keeping what the answers so far show."
+    },
+    "app.placement.quit.title": {
+      "message": "Stop the test?",
+      "description": "Title of the dialog shown when the learner closes the placement test part-way (or goes back)."
+    },
+    "app.placement.start": {
+      "message": "Start the test",
+      "description": "Button that starts the placement test after its introduction."
+    },
+    "app.placement.stop-anytime": {
+      "message": "You can stop at any time: what your answers show so far still counts.",
+      "description": "Placement test introduction: stopping part-way keeps what the answers so far show."
+    },
+    "app.placement.title": {
+      "message": "Find your level in {$language}",
+      "description": "Heading of the placement test's introduction. $language is a course name (course.name.*)."
+    },
     "app.practice.back": {
       "message": "Back to the course",
       "description": "Link from an empty practice session back to the course path."
     },
-    "app.practice.due": {
-      "message": ".input {$count :number}\n{{{$count} due}}",
-      "description": "How many word facets are due for review. $count is a number."
+    "app.practice.due-words": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} word due}}\n* {{{$count} words due}}",
+      "description": "On the course page, beside Review: how many words are due for review (a skill's recall has dropped below the learner's target). Select plural forms as your language needs; drop the selection if it needs none."
     },
     "app.practice.empty": {
       "message": "Nothing to practise right now.",
       "description": "Shown when a review or mistakes session has no exercises."
+    },
+    "app.practice.known": {
+      "message": ".input {$count :number}\n{{{$count} known}}",
+      "description": "On the course page, beside the link to the word list: how many words the learner knows (ADR 0100: every skill the course asks of a word shown right on a later day than they met it). $count is a number."
     },
     "app.practice.mistakes": {
       "message": "Mistakes",
@@ -452,7 +744,11 @@
     },
     "app.practice.placement": {
       "message": "Already know some {$language}? Find your level",
-      "description": "Link to a short placement test, shown before any lesson is done. $language is a course name (course.name.*)."
+      "description": "Link to a short placement test, on the course page before any lesson is done. $language is a course name (course.name.*)."
+    },
+    "app.practice.placement-again": {
+      "message": "Know more {$language} than this? Take the placement test",
+      "description": "Link to the placement test on the course page once some lessons are done: it can be taken again, and only ever marks more lessons done. $language is a course name (course.name.*)."
     },
     "app.practice.review": {
       "message": "Review",
@@ -462,13 +758,13 @@
       "message": "Practice",
       "description": "Heading above the review and mistakes buttons."
     },
-    "app.practice.to-fix": {
-      "message": ".input {$count :number}\n{{{$count} to fix}}",
-      "description": "How many recent mistakes are waiting in the mistakes session. $count is a number."
+    "app.practice.to-fix-later": {
+      "message": ".input {$count :number}\n{{{$count} to get right in a later session}}",
+      "description": "On the course page, beside Mistakes: how many mistakes wait in the mistakes session. A mistake clears once the learner gets it right on a first try in a later session; the lesson's own retry doesn't clear it, so this explains why it is still there. Select plural forms as your language needs; drop the selection if it needs none."
     },
     "app.preferences.link": {
       "message": "Preferences",
-      "description": "Link from the course list to the preferences screen (text size and other settings for this device)."
+      "description": "Link to the preferences screen (text size, sound, listening and speaking exercises, and other settings for this device): at the foot of the course list, and at the top of a course's page."
     },
     "app.profile.display-name": {
       "message": "Display name (optional)",
@@ -494,13 +790,25 @@
       "message": "3 to 30 letters or digits, with _ - or . between them.",
       "description": "Hint under the username field."
     },
-    "app.progress.device": {
-      "message": "Your progress is saved on this device.",
-      "description": "Where progress is kept when there is no account."
+    "app.progress.app": {
+      "message": "Your progress is saved in the app on this device. Deleting the app deletes it.",
+      "description": "Where progress is kept, in the Android or iOS app."
+    },
+    "app.progress.at-risk": {
+      "message": "Your progress is saved in this browser on this device. The browser may clear it to free up space, or after a few weeks without a visit, so download a copy from time to time.",
+      "description": "Where progress is kept: in the browser, which has not promised to keep it (persistent storage not granted; Safari clears site data after about a week unused). The download button follows."
     },
     "app.progress.export": {
       "message": "Download my learning data",
       "description": "Button that downloads every learning event recorded on this device."
+    },
+    "app.progress.kept": {
+      "message": "Your progress is saved in this browser on this device, and the browser has agreed to keep it. It stays until you clear this site's data.",
+      "description": "Where progress is kept: in the browser, which granted persistent storage (it will not clear the site's data on its own)."
+    },
+    "app.progress.restore": {
+      "message": "Restore from a download",
+      "description": "Button that opens a file a learner downloaded before (Download my learning data, or the account's download) to add its progress to this device."
     },
     "app.progress.title": {
       "message": "Your progress",
@@ -514,10 +822,6 @@
       "message": "This device could not sign up for reminders. Try again later.",
       "description": "The phone's push service refused to register the app (Android or iOS)."
     },
-    "app.reminders.hint": {
-      "message": "At most one a day, around the time you usually practise, and only if you haven't yet.",
-      "description": "Explains when reminders come."
-    },
     "app.reminders.label": {
       "message": "Daily practice reminder",
       "description": "Switch that turns practice reminders (push notifications) on or off."
@@ -525,6 +829,10 @@
     "app.reminders.unsupported": {
       "message": "This browser can't show reminders.",
       "description": "Shown when the browser has no push support."
+    },
+    "app.reminders.when": {
+      "message": "At most one a day, after the time you usually practise or at the time you set in Preferences, and only if you haven't practised yet.",
+      "description": "Explains when reminders come, under the switch that turns them on. Preferences is the settings screen (preferences.title)."
     },
     "app.reset.cancel": {
       "message": "Keep my progress",
@@ -566,33 +874,93 @@
       "message": "To confirm, type {$language}",
       "description": "Label of the field where the learner types the course's name to confirm starting over. $language is the course's name, already in the UI language."
     },
+    "app.restore.cancel": {
+      "message": "Cancel",
+      "description": "Button that closes the restore summary without adding anything."
+    },
+    "app.restore.close": {
+      "message": "Close",
+      "description": "Button that closes the restore summary when there is nothing to add."
+    },
+    "app.restore.confirm": {
+      "message": "Add them to this device",
+      "description": "Button that adds the file's new records to this device's progress."
+    },
+    "app.restore.done": {
+      "message": ".input {$count :number}\n.match $count\none {{Added {$count} record to this device.}}\n* {{Added {$count} records to this device.}}",
+      "description": "After restoring: how many records were added to this device. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.restore.empty": {
+      "message": "This file has no Nabu records in it. Choose a file saved with Download my learning data, or your account's download.",
+      "description": "The chosen file holds no valid learning records (another kind of file). Download my learning data is app.progress.export."
+    },
+    "app.restore.found": {
+      "message": ".input {$count :number}\n.match $count\none {{This file holds {$count} record of learning, in {$courses}.}}\n* {{This file holds {$count} records of learning, in {$courses}.}}",
+      "description": "After choosing a file to restore: how many learning records (answers, sessions) it holds. $count is a number; $courses is a list of course names (Persian, Cantonese and Uzbek). Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.restore.invalid": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} entry in it is not a Nabu record and will be left out.}}\n* {{{$count} entries in it are not Nabu records and will be left out.}}",
+      "description": "After choosing a file to restore: how many of its lines are not valid learning records. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.restore.new": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} of them is not on this device yet.}}\n* {{{$count} of them are not on this device yet.}}",
+      "description": "After app.restore.found: how many of the file's records this device does not have. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.restore.none-new": {
+      "message": "This device has all of them already.",
+      "description": "After app.restore.found, when the device already has every record in the file: restoring would change nothing."
+    },
+    "app.restore.unreadable": {
+      "message": "That file couldn't be read.",
+      "description": "The chosen file could not be read or its records could not be added."
+    },
     "app.roleplay.back": {
       "message": "Back to the course",
       "description": "Link from a conversation back to the course path."
     },
     "app.roleplay.note": {
       "message": "A language model plays the other person, using only words you know. It can make mistakes.",
-      "description": "Explains roleplay before the list of scenarios."
-    },
-    "app.roleplay.title": {
-      "message": "Conversations",
-      "description": "Course page heading: roleplay scenarios with a character played by a language model."
+      "description": "Shown at the top of a conversation page: what plays the other person, and that it can be wrong."
     },
     "app.roleplay.unavailable": {
       "message": "Conversations need an account and a server with a language model.",
       "description": "Shown on a conversation page when roleplay is not available."
     },
+    "app.session.missing": {
+      "message": "This lesson or story isn't in the course any more. The course may have changed since this link was made.",
+      "description": "A link to a lesson or story the course no longer has (an old bookmark, or a tab restored after an update)."
+    },
+    "app.session.placement": {
+      "message": "Placement test",
+      "description": "Name of the placement test session (a short test that finds the learner's level), in the browser tab's title and as the screen's heading for assistive tech."
+    },
+    "app.speaking.keep-off": {
+      "message": "Keep speaking off",
+      "description": "Button in the notice of a speaking break (app.speaking.off): keeps speaking exercises off on this device until the learner turns them back on, as Off in Preferences does."
+    },
     "app.speaking.off": {
       "message": "Speaking exercises are off for now. They come back in an hour.",
       "description": "Notice on the course path after the learner chose 'Can't speak now'."
     },
+    "app.speaking.off-setting": {
+      "message": "You turned speaking exercises off on this device.",
+      "description": "Notice on the course path while the learner has turned speaking exercises off in Preferences (preferences.speaking.off)."
+    },
     "app.speaking.on": {
       "message": "Turn speaking back on",
-      "description": "Button that brings speaking exercises back right away."
+      "description": "Button that brings speaking exercises back right away, whether they were off for an hour or turned off in Preferences."
     },
     "app.store.memory": {
       "message": "This browser window can't save your progress. It will be lost when you close it.",
       "description": "Shown when on-device storage is unavailable (for example in some private windows)."
+    },
+    "app.sync.held": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} update couldn't be saved to your account: the server didn't accept it. It's kept on this device, where it still counts.}}\n* {{{$count} updates couldn't be saved to your account: the server didn't accept them. They're kept on this device, where they still count.}}",
+      "description": "Under the sync status when the server rejected some of the learner's events (for example after the server and the app got out of step). They are not sent again unless the learner asks. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.sync.held-retry": {
+      "message": ".input {$count :number}\n.match $count\none {{Send it again}}\n* {{Send them again}}",
+      "description": "Button after app.sync.held: sends the events the server did not accept once more (a newer server may take them). $count is how many (as in app.sync.held). Select plural forms as your language needs; drop the .match if it needs none."
     },
     "app.sync.mismatch": {
       "message": "The server's copy of your progress doesn't match this device's.",
@@ -600,7 +968,7 @@
     },
     "app.sync.offline": {
       "message": ".input {$count :number}\n.match $count\none {{Offline. {$count} update will upload when you're back online.}}\n* {{Offline. {$count} updates will upload when you're back online.}}",
-      "description": "Sync status while the server cannot be reached. $count is how many events wait to upload."
+      "description": "Sync status while the device has no network. $count is how many events wait to upload. When the device is online but the server does not answer, app.sync.unreachable says so instead."
     },
     "app.sync.pending": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} update waiting to upload}}\n* {{{$count} updates waiting to upload}}",
@@ -610,9 +978,29 @@
       "message": "All progress saved to your account",
       "description": "Sync status when everything is uploaded."
     },
+    "app.sync.saved-except": {
+      "message": "Everything else is saved to your account.",
+      "description": "Sync status when everything is uploaded except the events the server did not accept, which app.sync.held explains right after it."
+    },
     "app.sync.syncing": {
       "message": "Saving…",
       "description": "Sync status while uploading."
+    },
+    "app.sync.unreachable": {
+      "message": ".input {$count :number}\n.match $count\none {{Can't reach the server right now. {$count} update will upload when it's back.}}\n* {{Can't reach the server right now. {$count} updates will upload when it's back.}}",
+      "description": "Sync status while the device is online but the sync server does not answer (it may be down). Not the device being offline, which app.sync.offline says. $count is how many events wait to upload; \"it\" is the server. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.title.course": {
+      "message": "{$course} · {$orthography} – {$app}",
+      "description": "The browser tab's title on a course's page: the course ($course, a language name), the writing system it is in ($orthography), then the app's name ($app)."
+    },
+    "app.title.in-course": {
+      "message": "{$page} – {$course} – {$app}",
+      "description": "The browser tab's title on a screen of a course: the screen ($page, e.g. \"Lesson 3\" or \"Words you've learned\"), the course ($course, a language name), then the app's name ($app)."
+    },
+    "app.title.page": {
+      "message": "{$page} – {$app}",
+      "description": "The browser tab's title on a screen outside a course: the screen ($page, e.g. \"Preferences\"), then the app's name ($app)."
     },
     "app.voice.forget": {
       "message": "Forget my voice range",
@@ -636,11 +1024,11 @@
     },
     "app.xp.today": {
       "message": ".input {$xp :number}\n{{Today: {$xp} XP}}",
-      "description": "Experience points earned today (the learner's local date). XP: experience points, often left as XP."
+      "description": "Experience points earned today (the learner's local date), in every course, quests included. XP: experience points, often left as XP."
     },
     "app.xp.total": {
       "message": ".input {$xp :number}\n{{{$xp} XP}}",
-      "description": "Total experience points in this course. XP: experience points, often left as XP."
+      "description": "Experience points earned in all, in every course, quests included (the game's count, ADR 0107). XP: experience points, often left as XP."
     },
     "audio.check.back": {
       "message": "Back to the course",
@@ -680,7 +1068,7 @@
     },
     "audio.check.held": {
       "message": "Held back",
-      "description": "Audio check: badge on an item the learners' app does not play, because its clip failed the check or a listener rejected it."
+      "description": "Audio check: badge on an item the learners' app does not play, in a course that ships its clips: the item's clip failed the check, or a listener rejected it. Also labels the count of such items and the filter that shows them. (A course whose voice is rated bad ships no clips at all: its items say audio.check.not-shipped instead.)"
     },
     "audio.check.intro": {
       "message": "Every clip of this course, with what the speech recognizer heard when it was made. Listen, and say whether each one sounds right. Your verdicts stay on this device until you download them.",
@@ -721,6 +1109,10 @@
     "audio.check.missing": {
       "message": "This site has no audio check for this course.",
       "description": "Audio check: the page could not load the course's list of clips (it is published with the demo, not with the app)."
+    },
+    "audio.check.not-shipped": {
+      "message": "Not shipped: this course's voice is rated bad",
+      "description": "Audio check (a page for reviewers): badge on every item of a course whose voice is rated bad (audio.quality bad, ADR 0091), so the course ships none of its clips and learners hear none of them: the clips are only here, to be judged. Shown instead of audio.check.held (Held back), which is for a clip that failed a check in a course that ships its clips. Also labels the count of such items and the filter that shows them."
     },
     "audio.check.note": {
       "message": "What is wrong?",
@@ -822,9 +1214,17 @@
       "message": "Sounds wrong",
       "description": "Audio check: toggle button, the listener says the clip sounds wrong."
     },
+    "corrections.adopted": {
+      "message": "In the course now. Thank you!",
+      "description": "Badge on a sentence, story line or word the learner suggested a correction for, once the course on this device (a newer version of it) reads as they suggested (ADR 0115). In the sentence list and on Your reports."
+    },
     "corrections.cancel": {
       "message": "Cancel",
       "description": "Button that closes the correction form without saving."
+    },
+    "corrections.changed": {
+      "message": "Changed since your correction",
+      "description": "Badge on a sentence, story line or word the learner suggested a correction for, when the course has changed it since, but not as they suggested: they may want to look at it again (ADR 0115). In the sentence list and on Your reports."
     },
     "corrections.choose": {
       "message": "Which one is wrong?",
@@ -832,7 +1232,7 @@
     },
     "corrections.edit": {
       "message": "Change your correction",
-      "description": "Button in place of corrections.mark when the learner already suggested a correction for this sentence or line."
+      "description": "In place of corrections.mark (an option of the report button, in the sentence list, on a story line) when the learner already suggested a correction for this sentence or line."
     },
     "corrections.error.empty": {
       "message": "This can't be empty.",
@@ -848,7 +1248,7 @@
     },
     "corrections.export": {
       "message": ".input {$count :number}\n.match $count\none {{Download your correction ({$count})}}\n* {{Download your corrections ({$count})}}",
-      "description": "Button on the sentence list: save the corrections this device made to this course as a file a reviewer can apply. $count is how many."
+      "description": "Button on the sentence list: save the corrections this device made to this course as a file a reviewer can apply, those still open (not yet in the course, ADR 0115). $count is how many."
     },
     "corrections.intro": {
       "message": "Change whatever is wrong: the text, how a word is read, or the translation. A reviewer checks every correction before it reaches the course.",
@@ -856,15 +1256,15 @@
     },
     "corrections.mark": {
       "message": "This sentence is wrong",
-      "description": "Button under an exercise's feedback, in the sentence list, and on a story line: open the form to say what is wrong with the sentence or line."
+      "description": "An option of the report button beside an exercise's feedback, and a button in the sentence list and on a story line: open the form to say what is wrong with the sentence or line."
     },
     "corrections.mark.pairs": {
       "message": "One of these is wrong",
-      "description": "Button under the feedback of a match-the-pairs exercise: choose which word or meaning is wrong, then say what it should be."
+      "description": "An option of the report button beside a match-the-pairs exercise's feedback: choose which word or meaning is wrong, then say what it should be."
     },
     "corrections.mark.word": {
       "message": "This word is wrong",
-      "description": "Button under the feedback of an exercise about a word (its form or its meaning): open the form to say what is wrong with it."
+      "description": "An option of the report button beside the feedback of an exercise about a word (its form or its meaning): open the form to say what is wrong with it."
     },
     "corrections.note": {
       "message": "Note for the reviewer (optional)",
@@ -904,7 +1304,7 @@
     },
     "corrections.pending": {
       "message": "You suggested a correction",
-      "description": "Badge on a sentence or story line the learner has already suggested a correction for."
+      "description": "Badge on a sentence or story line the learner has already suggested a correction for, while the course still reads as they saw it (ADR 0115)."
     },
     "corrections.readings": {
       "message": "How each word is read",
@@ -912,7 +1312,15 @@
     },
     "corrections.sent": {
       "message": "Thanks! A reviewer will check your correction.",
-      "description": "Confirmation after a correction is recorded."
+      "description": "Confirmation after a correction is recorded, when it goes to the course's reviewers: the deployment sends reports to its intake, or the learner has an account (ADR 0115)."
+    },
+    "corrections.sent.device": {
+      "message": "Thanks! Your correction stays on this device: no reviewer will see it.",
+      "description": "Confirmation after a correction is recorded, when nothing takes reports: the app has no report intake and no server (ADR 0115)."
+    },
+    "corrections.sent.sign-in": {
+      "message": "Thanks! A reviewer will see your correction once you sign in.",
+      "description": "Confirmation after a correction is recorded, when the app has a server but the learner has no account on it: the correction waits on the device and goes to the reviewers when they sign in or create an account (ADR 0115)."
     },
     "corrections.submit": {
       "message": "Send correction",
@@ -942,42 +1350,6 @@
       "message": "Word ({$orthography})",
       "description": "Label of the field holding the word in one orthography. $orthography is that orthography's name (a course can be taught in several)."
     },
-    "course.name.apc": {
-      "message": "Lebanese Arabic",
-      "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety."
-    },
-    "course.name.es": {
-      "message": "Cuban Spanish",
-      "description": "Name of the Cuban Spanish (es) course, used inside other messages as $language. Spanish as Cuban families speak it, in Cuba and in Miami; the course is for heritage speakers but starts from the beginning."
-    },
-    "course.name.fa": {
-      "message": "Persian",
-      "description": "Name of the Persian (fa) course, used inside other messages as $language."
-    },
-    "course.name.grc": {
-      "message": "Ancient Greek",
-      "description": "Name of the Ancient Greek (grc) course, used inside other messages as $language. The course teaches Attic, the Greek of Athens in the fifth and fourth centuries BCE (Plato, Xenophon, Lysias)."
-    },
-    "course.name.hbo": {
-      "message": "Biblical Hebrew",
-      "description": "Name of the Biblical Hebrew (hbo) course, used inside other messages as $language. The Hebrew of the Bible, read in the Tiberian pointing; not Modern Hebrew."
-    },
-    "course.name.lzh": {
-      "message": "Classical Chinese",
-      "description": "Name of the Classical (Literary) Chinese (lzh) course, used inside other messages as $language. The written language of the classics, read and written in Traditional characters."
-    },
-    "course.name.tok": {
-      "message": "Toki Pona",
-      "description": "Name of the Toki Pona (tok) course, used inside other messages as $language. Toki Pona is a small constructed language (Sonja Lang, 2001); its name stays as it is in every language."
-    },
-    "course.name.uz": {
-      "message": "Uzbek",
-      "description": "Name of the Uzbek (uz) course, used inside other messages as $language."
-    },
-    "course.name.yue": {
-      "message": "Cantonese",
-      "description": "Name of the Cantonese (yue) course, used inside other messages as $language."
-    },
     "debug.cards.back": {
       "message": "Back to the course",
       "description": "Debug mode: link from the card gallery back to the course page."
@@ -1005,6 +1377,18 @@
     "debug.cards.try": {
       "message": "Try it",
       "description": "Debug mode: button that plays one card of this kind."
+    },
+    "debug.leave": {
+      "message": "Leave debug mode",
+      "description": "Button in the debug-mode strip at the top of every screen: turns debug mode off on this device and opens the page again without it."
+    },
+    "debug.notice": {
+      "message": "Debug mode is on in this browser.",
+      "description": "The strip at the top of every screen while debug mode (for testers and reviewers) is on: cards say what kind they are, and course pages link to testing tools."
+    },
+    "debug.notice.label": {
+      "message": "Debug mode",
+      "description": "Accessible name of the debug-mode strip at the top of every screen."
     },
     "debug.template": {
       "message": "Card: {$template}",
@@ -1066,6 +1450,10 @@
       "message": "The accent mark makes it another word (está “is”, esta “this”).",
       "description": "Feedback note for Spanish: with an accent mark left out or added, the answer spells a different word (esta for está, hablo for habló, el for él), so it does not count. The examples are Spanish words and stay as they are."
     },
+    "feedback.note.accent-word-pair": {
+      "message": "{$expected} and {$answer} are different words: the accent mark tells them apart.",
+      "description": "Feedback note for Spanish, in place of feedback.note.accent-word when the words are known: with an accent mark left out or added, the learner wrote $answer (another word of the course, such as como) where $expected was asked for (such as cómo), so the answer does not count. $expected and $answer are Spanish words, shown in their own language; put them where your grammar wants them."
+    },
     "feedback.note.alef-maqsura": {
       "message": "Watch the alif maqsura (ى) at the end of the word.",
       "description": "Feedback note for Arabic: alif maqsura and ya were confused."
@@ -1105,6 +1493,10 @@
     "feedback.note.greek-marks-word": {
       "message": "With those marks it is another word (ἡ “the”, ἤ “or”).",
       "description": "Feedback note for Ancient Greek: with an accent or breathing left out, added or changed, the answer spells a different word (ἡ for ἤ, τις for τίς), so it does not count. The examples are Greek words and stay as they are."
+    },
+    "feedback.note.greek-marks-word-pair": {
+      "message": "{$expected} and {$answer} are different words: their accents, breathings or iota subscripts tell them apart.",
+      "description": "Feedback note for Ancient Greek, in place of feedback.note.greek-marks-word when the words are known: with an accent, breathing or iota subscript left out, added or changed, the learner wrote $answer (another word of the course, such as τις) where $expected was asked for (such as τίς), so the answer does not count. $expected and $answer are Greek words, shown in their own language; put them where your grammar wants them."
     },
     "feedback.note.hamza": {
       "message": "Watch the hamza (أ, إ, آ).",
@@ -1234,6 +1626,10 @@
       "message": "Almost: a character sounds right but is the wrong one.",
       "description": "Feedback headline for an IME slip: a homophone was picked from the input method."
     },
+    "feedback.verdict.self-rated": {
+      "message": "Noted. Saying it aloud is practice either way.",
+      "description": "Feedback headline after the learner rated their own speaking: nothing was checked, so neither right nor wrong (P5)."
+    },
     "feedback.verdict.skipped": {
       "message": "Skipped",
       "description": "Feedback headline when the learner skipped the exercise."
@@ -1258,13 +1654,17 @@
       "message": "Achievements",
       "description": "Heading of the unlocked achievements."
     },
+    "game.freeze.covered": {
+      "message": ".input {$count :number}\n.match $count\none {{A streak freeze covered {$days}, so your streak goes on.}}\n* {{Streak freezes covered {$days}, so your streak goes on.}}",
+      "description": "A missed day in the last week was covered by a streak freeze, spent on it automatically. $days is the day or days of the week, as a list in the interface language (Tuesday; Monday and Tuesday); $count is how many. Select plural forms as your language needs; drop the selection if it needs none."
+    },
     "game.freezes": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} streak freeze}}\n* {{{$count} streak freezes}}",
       "description": "Streak freezes held: each covers one missed day automatically."
     },
     "game.gate.empty": {
       "message": "You're out for now. Practise reviews or mistakes to refill, or come back a little later.",
-      "description": "Shown instead of a lesson when the gate is empty; practice always stays open."
+      "description": "Shown instead of a lesson when the gate is empty and no time can be given for when it opens (a deployment whose rules never refill it with time alone); practice always stays open. Otherwise game.gate.out.* and game.gate.refill.* say it, with the time."
     },
     "game.gate.energy": {
       "message": ".input {$count :number}\n{{{$count} energy}}",
@@ -1273,6 +1673,62 @@
     "game.gate.hearts": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} heart}}\n* {{{$count} hearts}}",
       "description": "Hearts left (only on instances that turn the hearts gate on)."
+    },
+    "game.gate.next.energy": {
+      "message": "More energy at {$time}",
+      "description": "Beside the energy left, while some is missing (only on instances that turn the energy gate on): when the next unit comes back. $time is a time of day as the interface language writes it (14:30, 2:30 PM), with the weekday when it is not today."
+    },
+    "game.gate.next.hearts": {
+      "message": "Next heart at {$time}",
+      "description": "Beside the hearts left, while some are missing (only on instances that turn the hearts gate on): when the next heart comes back. $time is a time of day as the interface language writes it (14:30, 2:30 PM), with the weekday when it is not today."
+    },
+    "game.gate.opened": {
+      "message": "You can start now.",
+      "description": "On the screen shown in place of a lesson or story while the gate was empty: the time it opens has come, and a button (game.gate.start) starts it."
+    },
+    "game.gate.out.energy": {
+      "message": "You're out of energy for now.",
+      "description": "The energy gate is empty (only on instances that turn it on): no lesson or story can start. Followed by game.gate.refill.practice or game.gate.refill.wait. Kind, never guilt-tripping."
+    },
+    "game.gate.out.hearts": {
+      "message": "You're out of hearts for now.",
+      "description": "The hearts gate is empty (only on instances that turn it on): no lesson or story can start. Followed by game.gate.refill.practice or game.gate.refill.wait. Kind, never guilt-tripping."
+    },
+    "game.gate.refill.practice": {
+      "message": "Practise reviews or mistakes to refill, or start your next lesson at {$time}.",
+      "description": "After game.gate.out.*, where practice refills the gate: finishing a review or a mistakes session refills it at once, and with time alone a lesson can start again at $time, a time of day as the interface language writes it (14:30, 2:30 PM), with the weekday when it is not today."
+    },
+    "game.gate.refill.wait": {
+      "message": "Your next lesson can start at {$time}. Reviews and mistakes stay open.",
+      "description": "After game.gate.out.*, where practice does not refill the gate: a lesson can start again at $time, a time of day as the interface language writes it (14:30, 2:30 PM), with the weekday when it is not today; practice is open meanwhile."
+    },
+    "game.gate.start": {
+      "message": "Start now",
+      "description": "Button on the screen shown in place of a lesson or story while the gate was empty, once the time it opens has come: starts the lesson or story."
+    },
+    "game.goal.change": {
+      "message": "Change goal",
+      "description": "Button beside the week's progress: choose another weekly goal."
+    },
+    "game.goal.days": {
+      "message": ".input {$days :number}\n.match $days\none {{{$days} day}}\n* {{{$days} days}}",
+      "description": "One choice of the weekly goal: this many practice days a week ($days, 3 to 7). Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "game.goal.met": {
+      "message": "Goal met. Well done!",
+      "description": "Beside the week's progress once the learner has practised on as many days this week as their goal."
+    },
+    "game.goal.question": {
+      "message": "How many days a week would you like to practise?",
+      "description": "Label of the choice of a weekly goal on the home screen (ADR 0107): the learner picks a number of practice days a week. Shown until they choose; they can change it later."
+    },
+    "game.goal.week": {
+      "message": ".input {$done :number}\n.input {$goal :number}\n.match $goal\none {{This week: {$done} of {$goal} day}}\n* {{This week: {$done} of {$goal} days}}",
+      "description": "Progress toward the learner's weekly goal: $done practice days so far this week, of the $goal they aim for. The week starts on the day the interface language's region starts it. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "game.practice.title": {
+      "message": "Your practice",
+      "description": "Heading of the panel on the home screen with the streak, the weekly goal, today's quests and the achievements. It shows only once the learner has finished a session."
     },
     "game.quests.done": {
       "message": "Done",
@@ -1294,6 +1750,10 @@
       "message": ".input {$days :number}\n{{Longest: {$days}}}",
       "description": "The learner's longest streak ever, in days."
     },
+    "game.streak.restart": {
+      "message": "Start a new streak today.",
+      "description": "In place of the streak's length when the streak has ended (a day was missed with no streak freeze to cover it): a kind invitation, never a zero and never guilt-tripping."
+    },
     "game.streak.today-done": {
       "message": "You practised today.",
       "description": "Shown when today already counts for the streak."
@@ -1301,10 +1761,6 @@
     "game.streak.today-pending": {
       "message": "Practise today to keep it going.",
       "description": "Shown when today does not count yet; kind, never guilt-tripping."
-    },
-    "game.title": {
-      "message": "Your streak",
-      "description": "Heading of the panel with the streak, freezes, quests and achievements."
     },
     "landing.contribute.audio": {
       "message": "Audio check: listen to every clip of a course and say whether it sounds right:",
@@ -1402,6 +1858,34 @@
       "message": "Earn XP this week to join a league.",
       "description": "Shown to a signed-in learner who has not earned league XP this week."
     },
+    "league.last.demoted": {
+      "message": ".input {$tier :number}\n{{You moved down to tier {$tier}.}}",
+      "description": "After league.last.place: last week ended in the demotion zone, so the learner plays this week in the tier below, $tier (1 is the first)."
+    },
+    "league.last.place": {
+      "message": ".input {$rank :number}\n.input {$of :number}\n{{Last week: place {$rank} of {$of}.}}",
+      "description": "On the league panel, the week after a league week ended: where the learner finished in their group, $rank out of the $of learners in it. Followed by league.last.promoted, league.last.stayed or league.last.demoted."
+    },
+    "league.last.promoted": {
+      "message": ".input {$tier :number}\n{{You moved up to tier {$tier}.}}",
+      "description": "After league.last.place: last week ended in the promotion zone, so the learner plays this week in the tier above, $tier (1 is the first)."
+    },
+    "league.last.stayed": {
+      "message": ".input {$tier :number}\n{{You stay in tier {$tier}.}}",
+      "description": "After league.last.place: last week ended outside the promotion and demotion zones, so the learner stays in tier $tier (1 is the first)."
+    },
+    "league.leave": {
+      "message": "Don't take part in leagues",
+      "description": "Button on the league panel: the learner says no to leagues. They leave this week's league at once and join none until they take part again (league.rejoin)."
+    },
+    "league.out": {
+      "message": "You don't take part in leagues: no one sees your name or your XP.",
+      "description": "On the league panel of a learner who said no to leagues (league.leave), above the button that takes them back (league.rejoin)."
+    },
+    "league.rejoin": {
+      "message": "Take part in leagues",
+      "description": "Button on the league panel of a learner who said no to leagues: take part again. With XP this week, they join this week's league at once."
+    },
     "league.tier": {
       "message": ".input {$tier :number}\n{{Tier {$tier}}}",
       "description": "The learner's league tier this week (1 is the first)."
@@ -1409,6 +1893,10 @@
     "league.title": {
       "message": "League",
       "description": "Heading of the weekly league."
+    },
+    "league.visible": {
+      "message": "Others in your league see your name and your XP for the week.",
+      "description": "On the league panel of a learner who takes part, above the button that declines leagues (league.leave): what others can see of them."
     },
     "league.xp": {
       "message": ".input {$xp :number}\n{{{$xp} XP}}",
@@ -1420,67 +1908,19 @@
     },
     "league.zone.demote": {
       "message": "Demotion zone",
-      "description": "Accessible label of the rows that move down a tier at the end of the week."
+      "description": "Heading over the rows of the league table that move down a tier when the week ends (its bottom rows)."
     },
     "league.zone.promote": {
       "message": "Promotion zone",
-      "description": "Accessible label of the rows that move up a tier at the end of the week."
-    },
-    "orthography.apc-Arab.standard": {
-      "message": "Arabic script",
-      "description": "Name of the Lebanese Arabic orthography in Arabic script."
-    },
-    "orthography.apc-Latn.arabizi": {
-      "message": "Arabizi (Latin letters and numbers)",
-      "description": "Name of Arabizi, Lebanese Arabic written with Latin letters and digits (7 for ح, 3 for ع, 2 for ء)."
-    },
-    "orthography.es-Latn.standard": {
-      "message": "Spanish spelling",
-      "description": "Name of the Spanish orthography: the Latin alphabet with ñ and accent marks, as the Royal Spanish Academy spells it."
-    },
-    "orthography.fa-Arab.standard": {
-      "message": "Persian script",
-      "description": "Name of the Persian orthography (Arabic script as used for Persian)."
-    },
-    "orthography.grc-Grek.polytonic": {
-      "message": "Polytonic Greek",
-      "description": "Name of the Ancient Greek orthography: the Greek alphabet written with its accents, breathings and iota subscript, as editions of ancient texts print it."
-    },
-    "orthography.hbo-Hebr.tiberian": {
-      "message": "Hebrew script, Tiberian pointing",
-      "description": "Name of the Biblical Hebrew orthography: the Hebrew letters with the Tiberian vowel points (niqqud), as in the Masoretic text."
-    },
-    "orthography.lzh-Hant.standard": {
-      "message": "Traditional characters",
-      "description": "Name of the Classical Chinese orthography: Traditional Chinese characters."
-    },
-    "orthography.tok-Latn.standard": {
-      "message": "Latin letters (sitelen Lasina)",
-      "description": "Name of the Toki Pona orthography in the Latin alphabet, called sitelen Lasina in Toki Pona. Keep sitelen Lasina as it is."
-    },
-    "orthography.tok-Qaap.sitelen-pona": {
-      "message": "sitelen pona (logographs)",
-      "description": "Name of Toki Pona's own script, sitelen pona: one picture-like sign (logograph) for each word. Keep sitelen pona as it is, in lowercase."
-    },
-    "orthography.uz-Cyrl.standard": {
-      "message": "Cyrillic",
-      "description": "Name of the Uzbek Cyrillic orthography."
-    },
-    "orthography.uz-Latn.standard": {
-      "message": "Latin",
-      "description": "Name of the Uzbek Latin orthography."
-    },
-    "orthography.yue-Hant-HK.standard": {
-      "message": "Traditional characters",
-      "description": "Name of the Hong Kong Cantonese orthography."
+      "description": "Heading over the rows of the league table that move up a tier when the week ends (its top rows)."
     },
     "player.action.cant-listen": {
       "message": "Can't listen now",
-      "description": "Skips listening exercises for now (no sound available). They come back in an hour."
+      "description": "Quiet button on a listening card: no listening exercises, and no sound playing by itself, for the next hour. Skip is a separate button."
     },
     "player.action.cant-speak": {
       "message": "Can't speak now",
-      "description": "Button that skips speaking exercises for the rest of the lesson."
+      "description": "Quiet button on a speaking card: no speaking exercises for the next hour."
     },
     "player.action.continue": {
       "message": "Continue",
@@ -1510,9 +1950,105 @@
       "message": "Special characters",
       "description": "Accessible label of the bar of extra characters (ZWNJ, ʻ, ў…)."
     },
+    "player.display.label": {
+      "message": "Display",
+      "description": "Accessible name of the button (sliders icon) in the header of a lesson or story that opens the display choices: readings, vowel marks, vertical text; and of the menu it opens."
+    },
+    "player.end.accepted.note": {
+      "message": ".input {$count :number}\n.match $count\none {{A language model checked this answer again and accepted it, so it counts as right. It can be wrong: a reviewer will look at it too.}}\n* {{A language model checked these answers again and accepted them, so they count as right. It can be wrong: a reviewer will look at them too.}}",
+      "description": "End of a session, under player.end.accepted.title, above the cards: a language model (the judge) accepted these answers, which were graded wrong, sometimes after the learner had moved on. $count is how many. Say plainly that a model decided, not a person. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "player.end.accepted.title": {
+      "message": "Accepted on a second check",
+      "description": "End of a session: heading over the answers graded wrong that a language model then checked again and accepted (they count as right), each with what it asked, the right answer and the learner's answer."
+    },
+    "player.end.achievement": {
+      "message": "New achievement: {$achievement}",
+      "description": "End of a session, under Your progress: an achievement the session unlocked. $achievement is its name, as Your practice lists it (achievement.*)."
+    },
+    "player.end.back": {
+      "message": "Back to the course",
+      "description": "Button at the end of a session, beside the next step: back to the course page."
+    },
+    "player.end.known": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} more word you know}}\n* {{{$count} more words you know}}",
+      "description": "End of a session, under Your progress: how many words the session made known (every skill the course asks of them shown on a later day than they were met, ADR 0100). The words follow. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "player.end.known.total": {
+      "message": ".input {$total :number}\n.match $total\none {{{$total} word known in all}}\n* {{{$total} words known in all}}",
+      "description": "End of a session, after the words it made known: how many words of the course the learner knows now. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "player.end.missed.skipped": {
+      "message": "You skipped this one.",
+      "description": "End of a session, in the list of cards missed the first time: this card was skipped, so there is no answer of the learner's to show."
+    },
+    "player.end.missed.title": {
+      "message": "Missed the first time",
+      "description": "End of a session: heading over the cards the learner got wrong or skipped on the first try, each with what it asked, the right answer and the learner's answer."
+    },
+    "player.end.next.anyway": {
+      "message": "New lesson anyway",
+      "description": "End of a session, where practice comes first: start the next lesson all the same (a new lesson is always on offer, as on the course page)."
+    },
+    "player.end.next.lesson": {
+      "message": ".input {$number :number}\n{{Next: Lesson {$number}}}",
+      "description": "Button at the end of a session: start the next lesson on the course's path, as the course page's Continue would. $number is the lesson's number on the path."
+    },
+    "player.end.next.more-practice": {
+      "message": "Keep practising",
+      "description": "End of a review or practice session, beside the button to the next lesson: another practice session instead (D34)."
+    },
+    "player.end.next.practice": {
+      "message": "Practise first",
+      "description": "Button at the end of a session, where many words are slipping: practise them before the next lesson, as the course page's Continue offers."
+    },
+    "player.end.next.story": {
+      "message": "Next: the story",
+      "description": "Button at the end of a session: read the unit's story, the next step on the course's path."
+    },
+    "player.end.next.unit-lesson": {
+      "message": ".input {$unit :number}\n.input {$number :number}\n{{Next: Unit {$unit}, lesson {$number}}}",
+      "description": "Button at the end of a session: start the next lesson on the course's path, as the course page's Continue would. $unit is its unit's number and $number its number within the unit, as the course path shows them."
+    },
+    "player.end.progress.title": {
+      "message": "Your progress",
+      "description": "End of a session: heading over what the session changed: words now known, a unit finished, the streak, the week's practice days, quests done, achievements, and the XP."
+    },
+    "player.end.quest": {
+      "message": "Quest done: {$quest}",
+      "description": "End of a session, under Your progress: a daily quest the session completed. $quest is the quest as Today's quests names it (quest.*)."
+    },
+    "player.end.streak": {
+      "message": ".input {$days :number}\n.match $days\none {{Today starts your streak.}}\n* {{{$days} days in a row, today included.}}",
+      "description": "End of the first session of the day, under Your progress: today now counts for the streak, which is this many days long. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "player.end.unit": {
+      "message": ".input {$number :number}\n{{Unit {$number} finished}}",
+      "description": "End of a session, under Your progress: the session finished the last lesson or story of this unit. The unit's title follows."
+    },
+    "player.end.words.title": {
+      "message": "New words",
+      "description": "End of a lesson: heading over the words the lesson taught, each with its meaning and a button that plays it."
+    },
+    "player.feedback.chosen-meaning": {
+      "message": "What you chose means:",
+      "description": "Label in the feedback on a wrong choice among words of the course being learned (a word for a gap, a word heard, a picture's word): the chosen word follows, in that language, with its meaning in the learner's language, so they see why it does not fit."
+    },
+    "player.feedback.closest": {
+      "message": "Nearest correct version:",
+      "description": "Label in the feedback on a wrong answer, under the correct answer: another accepted way to say it, the one closest to what the learner wrote, with what they left out or got wrong marked. Shown only when the answer was close to it."
+    },
+    "player.feedback.gap": {
+      "message": "Left out",
+      "description": "Accessible name of the mark in the learner's answer where they left something out (a word, or a character in Chinese). The correct answer above it marks what goes there."
+    },
     "player.feedback.marked": {
       "message": "(marked parts differ)",
       "description": "Short explanation after the learner's marked answer: marked words or characters are the ones that differ. Not shown by colour alone."
+    },
+    "player.feedback.marked-meaning": {
+      "message": ".input {$count :number}\n.match $count\none {{What the marked word means:}}\n* {{What the marked words mean:}}",
+      "description": "Label in the feedback on a wrong answer, after the learner's answer with its differing words marked: a marked word that is another word of the course (hablas where hablo was asked, esta for está) follows, in the language being learned, with its meaning in the learner's language. $count is how many such words follow."
     },
     "player.feedback.solution": {
       "message": "Correct answer:",
@@ -1534,13 +2070,25 @@
       "message": "Lesson complete!",
       "description": "Heading when the lesson is finished."
     },
+    "player.finished.title.mistakes": {
+      "message": "Practice complete!",
+      "description": "Heading when a session practising earlier mistakes is finished."
+    },
+    "player.finished.title.placement": {
+      "message": "Placement test complete!",
+      "description": "Heading when the placement test is finished."
+    },
+    "player.finished.title.review": {
+      "message": "Review complete!",
+      "description": "Heading when a review session is finished."
+    },
     "player.finished.xp": {
       "message": ".input {$xp :number}\n{{+{$xp} XP}}",
       "description": "Experience points the session just earned, on the summary screen."
     },
-    "player.instruction.char-read": {
-      "message": "How is this read?",
-      "description": "Instruction: choose the reading (e.g. Jyutping) of the word shown."
+    "player.instruction.char-read-word": {
+      "message": "How is the marked word read?",
+      "description": "Instruction above a char-read exercise: a sentence without readings, one word marked; the learner chooses its reading (e.g. Jyutping) among a few (ADR 0098)."
     },
     "player.instruction.choose-translation": {
       "message": "What does this mean?",
@@ -1618,17 +2166,17 @@
       "message": "Which tone do you hear?",
       "description": "Instruction: hear one syllable and pick its tone."
     },
-    "player.instruction.transcribe": {
-      "message": "Write how this word is read",
-      "description": "Instruction: type the reading of a Chinese-character word in Latin letters (e.g. Jyutping)."
+    "player.instruction.transcribe-word": {
+      "message": "Write how the marked word is read",
+      "description": "Instruction above a transcribe exercise: a sentence without readings, one word marked; the learner types its reading (ADR 0095)."
     },
     "player.instruction.translate-into-support": {
       "message": "Translate this sentence",
       "description": "Instruction: build the translation of a target-language sentence from word tiles."
     },
-    "player.instruction.vocalize": {
-      "message": "Add the vowel marks",
-      "description": "Instruction: write the short-vowel marks (harakat) into an Arabic-script word."
+    "player.instruction.vocalize-choice": {
+      "message": "Choose the marked word with its vowel marks",
+      "description": "Instruction above a vocalize exercise: a sentence without vowel marks, one word marked; the learner picks that word with its marks among a few (ADR 0098)."
     },
     "player.instruction.word-read": {
       "message": "How is this word written in Latin letters?",
@@ -1698,17 +2246,45 @@
       "message": "Loading…",
       "description": "Shown while course data loads."
     },
+    "player.marks.hide": {
+      "message": "None",
+      "description": "Vowel marks choice: shown on no word (the text as a reader of the script sees it)."
+    },
+    "player.marks.label": {
+      "message": "Vowel marks",
+      "description": "Label of the choice of where vowel marks (harakat in Arabic script, points in Hebrew) show: on every word, on new words only, or on none. Shown before the choices."
+    },
+    "player.marks.new": {
+      "message": "New words",
+      "description": "Vowel marks choice: shown only on the words the learner is still learning, and left off the words they know."
+    },
+    "player.marks.show": {
+      "message": "All words",
+      "description": "Vowel marks choice: shown on every word."
+    },
     "player.meaning.label": {
       "message": "Meaning",
       "description": "Accessible label of a word's meaning, shown in the learner's language."
+    },
+    "player.new-word.tag": {
+      "message": ".input {$count :number}\n.match $count\none {{New word}}\n* {{New words}}",
+      "description": "Small label on the card of a lesson that first shows a word (or words) the lesson teaches; the word and its meaning follow where they give nothing away, else once the card is answered. $count is how many."
     },
     "player.options.label": {
       "message": "Answer choices",
       "description": "Accessible label of the group of answer options."
     },
+    "player.pairs.match": {
+      "message": "A pair.",
+      "description": "Announced to screen readers in match-the-pairs when the word and meaning just chosen belong together (they lock)."
+    },
     "player.pairs.meanings": {
       "message": "Meanings",
       "description": "Accessible label of the column of meanings in match-pairs."
+    },
+    "player.pairs.miss": {
+      "message": "Not a pair. Try again.",
+      "description": "Announced to screen readers in match-the-pairs when the word and meaning just chosen do not belong together."
     },
     "player.pairs.words": {
       "message": "{$language} words",
@@ -1742,6 +2318,22 @@
       "message": "a man speaking",
       "description": "Tag under a prompt in the learner's language: the sentence is said by a man, so the answer uses the forms that agree with a male speaker (e.g. Arabic adjectives)."
     },
+    "player.preferences": {
+      "message": "Preferences",
+      "description": "Accessible name of the link with a cog-wheel icon in the header of a lesson: it opens the preferences screen (text size, sound, listening and speaking exercises). The lesson waits where it was, and goes on when the learner comes back."
+    },
+    "player.progress.label": {
+      "message": "Lesson progress",
+      "description": "Accessible name of the progress bar at the top of a lesson, review or practice."
+    },
+    "player.progress.left": {
+      "message": ".input {$count :number}\n{{{$count} left}}",
+      "description": "Shown beside the lesson's progress bar: how many cards are still to come (a missed card that comes back counts once). Keep it short: it shares a line with the bar. $count is a number."
+    },
+    "player.progress.value": {
+      "message": ".input {$done :number}\n.input {$total :number}\n{{{$done} of {$total} cards done}}",
+      "description": "Accessible value of the lesson's progress bar: cards answered for good out of the lesson's cards. A missed card that comes back counts once, when it is right. $done and $total are numbers."
+    },
     "player.prompt.hint": {
       "message": "Translation",
       "description": "Accessible label of the support-language translation shown as a hint."
@@ -1750,9 +2342,29 @@
       "message": "Meaning",
       "description": "Accessible label of the meaning (gloss) the learner matches a picture to."
     },
-    "player.quit.body": {
-      "message": "You'll lose your progress in this lesson.",
-      "description": "Body of the quit dialog."
+    "player.prompt.question": {
+      "message": "Question",
+      "description": "Accessible label of a comprehension question about a story, in the learner's own language."
+    },
+    "player.prompt.read": {
+      "message": "Text to read",
+      "description": "Accessible label of the word, character or letter whose reading the learner chooses (how is this read?)."
+    },
+    "player.prompt.say": {
+      "message": "Sentence to say",
+      "description": "Accessible label of the sentence the learner says aloud on a speaking card."
+    },
+    "player.prompt.spell": {
+      "message": "Word to write",
+      "description": "Accessible label of the Latin spelling of a word the learner writes in the script being learned, from its letters."
+    },
+    "player.put-off.listening": {
+      "message": "No listening exercises for the next hour, and nothing plays by itself. You can turn listening back on from the course page.",
+      "description": "Said in the lesson once the learner pressed 'Can't listen now' (player.action.cant-listen), and shown until the lesson ends. The play buttons still work."
+    },
+    "player.put-off.speaking": {
+      "message": "No speaking exercises for the next hour. You can turn them back on from the course page.",
+      "description": "Said in the lesson once the learner pressed 'Can't speak now' (player.action.cant-speak), and shown until the lesson ends."
     },
     "player.quit.cancel": {
       "message": "Keep learning",
@@ -1762,9 +2374,25 @@
       "message": "Quit",
       "description": "Button that quits the lesson."
     },
+    "player.quit.kept": {
+      "message": "Your answers so far are kept, with their XP: mistakes stay to practise, and words come back for review. The lesson won't count as finished, and you won't get the bonus for finishing it.",
+      "description": "Body of the dialog asked when the learner quits a lesson: what quitting keeps (every answer's XP, mistakes, review scheduling) and what it doesn't (the lesson done, the finishing bonus)."
+    },
+    "player.quit.kept.practice": {
+      "message": "Your answers so far are kept, with their XP: mistakes stay to practise, and words come back for review. You won't get the bonus for finishing.",
+      "description": "Body of the dialog asked when the learner stops a review or a mistakes session: what stopping keeps, and the finishing bonus it doesn't."
+    },
+    "player.quit.kept.replay": {
+      "message": "You've finished this lesson before, so quitting loses nothing: your answers so far are kept, with their XP, and words come back for review.",
+      "description": "Body of the dialog asked when the learner quits a lesson they had already finished: a replay pays for its answers only, so quitting it loses nothing."
+    },
     "player.quit.title": {
       "message": "Quit this lesson?",
       "description": "Title of the dialog shown when the learner closes a lesson."
+    },
+    "player.quit.title.practice": {
+      "message": "Stop practising?",
+      "description": "Title of the dialog shown when the learner closes a review or a mistakes session."
     },
     "player.readings.label": {
       "message": "Readings",
@@ -1773,6 +2401,22 @@
     "player.readings.off": {
       "message": "Off",
       "description": "Choice in the readings control: show no pronunciation guide."
+    },
+    "player.retry.missed": {
+      "message": "Earlier mistake",
+      "description": "Small label above a card that comes back later in the lesson because the learner got it wrong (its options are in a new order)."
+    },
+    "player.retry.skipped": {
+      "message": "Skipped earlier",
+      "description": "Small label above a card that comes back later in the lesson because the learner skipped it."
+    },
+    "player.review.tag": {
+      "message": "Review",
+      "description": "Label above a lesson card that brings back earlier material because it is due for review (ADR 0097)."
+    },
+    "player.sound.label": {
+      "message": "Sound",
+      "description": "Accessible name of the toggle button with a speaker icon in the header of a lesson or story. Pressed: sound is on. Off, nothing plays by itself (tones after an answer, sentences read out); the play buttons still work."
     },
     "player.speak.play": {
       "message": "Play my recording",
@@ -1854,37 +2498,13 @@
       "message": ".input {$heard :number}\n.input {$expected :number}\n{{tone {$heard}, expected {$expected}}}",
       "description": "After a syllable (shown before it): the tone heard and the tone expected, as tone numbers."
     },
-    "player.toggle.marks": {
-      "message": "Show vowel marks",
-      "description": "Switch that shows or hides harakat (Arabic-script vowel marks and shadda)."
-    },
     "player.toggle.vertical": {
       "message": "Vertical text",
       "description": "Switch that sets the sentence and word tiles top to bottom (CJK)."
     },
-    "player.tone.yue-jyutping.1": {
-      "message": "1 · high level",
-      "description": "Cantonese tone 1 (Jyutping), with its pitch shape."
-    },
-    "player.tone.yue-jyutping.2": {
-      "message": "2 · high rising",
-      "description": "Cantonese tone 2 (Jyutping), with its pitch shape."
-    },
-    "player.tone.yue-jyutping.3": {
-      "message": "3 · mid level",
-      "description": "Cantonese tone 3 (Jyutping), with its pitch shape."
-    },
-    "player.tone.yue-jyutping.4": {
-      "message": "4 · low falling",
-      "description": "Cantonese tone 4 (Jyutping), with its pitch shape."
-    },
-    "player.tone.yue-jyutping.5": {
-      "message": "5 · low rising",
-      "description": "Cantonese tone 5 (Jyutping), with its pitch shape."
-    },
-    "player.tone.yue-jyutping.6": {
-      "message": "6 · low level",
-      "description": "Cantonese tone 6 (Jyutping), with its pitch shape."
+    "player.tone.label": {
+      "message": "{$tone} · {$name}",
+      "description": "An option of the 'which tone?' exercise: a tone ($tone, as its reading scheme writes it, such as 1) and the name of its pitch from the scheme's data ($name, such as high level)."
     },
     "player.transcribe.label": {
       "message": "Reading",
@@ -1894,21 +2514,129 @@
       "message": "Reading in Jyutping",
       "description": "Label of the field where the learner types a Cantonese word's reading in Jyutping."
     },
-    "player.vocalize.label": {
-      "message": "The word with its vowel marks",
-      "description": "Label of the field holding a word's letters, where the learner adds vowel marks."
+    "player.vocalize.spelled-label": {
+      "message": "The marked word in {$orthography}",
+      "description": "Label of the field where the learner writes the marked word in another orthography that spells its vowels. $orthography is that orthography's name (orthography.*)."
     },
-    "player.word.label": {
-      "message": "Word",
-      "description": "Accessible label of the word an exercise asks about."
+    "player.vocalize.use-options": {
+      "message": "Choose among the options instead",
+      "description": "Button on a vocalize exercise, back from typing the word in another orthography to choosing it with its vowel marks."
+    },
+    "player.vocalize.use-spelled": {
+      "message": "Write it in {$orthography} instead",
+      "description": "Button on a vocalize exercise: write the marked word in another orthography that spells its vowels. $orthography is that orthography's name (orthography.*), e.g. Arabizi."
+    },
+    "player.word-in-sentence.label": {
+      "message": "Sentence, with the word to answer marked",
+      "description": "Accessible name of the sentence on a vocalize or transcribe exercise; the word asked about is marked in it."
     },
     "player.wordbank.answer-label": {
       "message": "Your answer",
       "description": "Accessible label of the row where the chosen tiles go."
     },
+    "player.wordbank.remove": {
+      "message": "Press to take it back out of your answer.",
+      "description": "Read by screen readers after the word of a tile already placed in the answer row: pressing the tile puts it back in the word bank."
+    },
     "preferences.back": {
       "message": "Back to your courses",
-      "description": "Link from the preferences screen back to the course list."
+      "description": "Link from the preferences screen back to the course list (where it was opened from, or opened directly)."
+    },
+    "preferences.back.course": {
+      "message": "Back to the course",
+      "description": "Link from the preferences screen back to the course page it was opened from."
+    },
+    "preferences.back.lesson": {
+      "message": "Back to the lesson",
+      "description": "Link from the preferences screen back to the lesson it was opened from; the lesson goes on where it was."
+    },
+    "preferences.back.placement": {
+      "message": "Back to the placement test",
+      "description": "Link from the preferences screen back to the placement test it was opened from; the test goes on where it was."
+    },
+    "preferences.back.practice": {
+      "message": "Back to practice",
+      "description": "Link from the preferences screen back to the review or mistakes session it was opened from; the session goes on where it was."
+    },
+    "preferences.listening.hint": {
+      "message": "Off: no listening exercises in any course on this device, and nothing plays by itself; the play buttons still work. “Can't listen now” in a lesson puts them off for an hour only.",
+      "description": "Explains the listening choice, under its label. Quote the translation of player.action.cant-listen as your language quotes."
+    },
+    "preferences.listening.label": {
+      "message": "Listening exercises",
+      "description": "Label of the choice to turn listening exercises on or off on this device, in every course (for a learner who cannot hear the clips)."
+    },
+    "preferences.listening.off": {
+      "message": "Off",
+      "description": "Listening exercises choice: no listening exercises, and nothing plays by itself, until the learner turns them back on."
+    },
+    "preferences.listening.on": {
+      "message": "On",
+      "description": "Listening exercises choice (the default): sessions have listening exercises where the course does."
+    },
+    "preferences.reminder.automatic": {
+      "message": "Automatic: a little after the time you usually practise",
+      "description": "Reminder time choice (the default): the app picks the time, half an hour after the time by which the learner has usually begun."
+    },
+    "preferences.reminder.chosen": {
+      "message": "At a time I choose",
+      "description": "Reminder time choice: the learner sets the time of day."
+    },
+    "preferences.reminder.failed": {
+      "message": "The reminder time couldn't be saved. Check your connection and try again.",
+      "description": "Shown when saving the reminder time failed."
+    },
+    "preferences.reminder.hint": {
+      "message": "At most one a day, and only if you haven't practised yet. Turn reminders on under “Your progress”.",
+      "description": "Explains the reminder time choice, under its label. Quote the translation of app.progress.title as your language quotes."
+    },
+    "preferences.reminder.label": {
+      "message": "Daily reminder time",
+      "description": "Label of the choice of when the daily practice reminder comes (shown with an account on a server that sends reminders)."
+    },
+    "preferences.reminder.save": {
+      "message": "Save reminder time",
+      "description": "Button that saves the reminder time choice to the account."
+    },
+    "preferences.reminder.saved": {
+      "message": "Saved.",
+      "description": "Shown after the reminder time is saved."
+    },
+    "preferences.reminder.time": {
+      "message": "Remind me at",
+      "description": "Label of the time-of-day field (hours and minutes, in the learner's own time zone) for the reminder."
+    },
+    "preferences.sound.hint": {
+      "message": "With sound off, nothing plays by itself in lessons and stories: no tones after an answer, no sentences read out. The play buttons still work. The speaker button in a lesson changes this too.",
+      "description": "Explains the sound choice, under its label."
+    },
+    "preferences.sound.label": {
+      "message": "Sound",
+      "description": "Label of the choice to turn sound on or off in lessons and stories."
+    },
+    "preferences.sound.off": {
+      "message": "Off",
+      "description": "Sound choice: nothing plays by itself."
+    },
+    "preferences.sound.on": {
+      "message": "On",
+      "description": "Sound choice (the default): tones after an answer, and sentences read out."
+    },
+    "preferences.speaking.hint": {
+      "message": "Off: no speaking exercises in any course on this device, for when you have no microphone or can't speak aloud. “Can't speak now” in a lesson puts them off for an hour only.",
+      "description": "Explains the speaking choice, under its label. Quote the translation of player.action.cant-speak as your language quotes."
+    },
+    "preferences.speaking.label": {
+      "message": "Speaking exercises",
+      "description": "Label of the choice to turn speaking exercises on or off on this device, in every course (for a learner without a microphone, or who cannot speak aloud)."
+    },
+    "preferences.speaking.off": {
+      "message": "Off",
+      "description": "Speaking exercises choice: no speaking exercises until the learner turns them back on."
+    },
+    "preferences.speaking.on": {
+      "message": "On",
+      "description": "Speaking exercises choice (the default): sessions have speaking exercises where the course does."
     },
     "preferences.target-size.default": {
       "message": "Default",
@@ -1933,6 +2661,10 @@
     "preferences.target-size.largest": {
       "message": "Largest",
       "description": "Size choice for the language being learned: the largest offered (three quarters larger)."
+    },
+    "preferences.target-size.sample": {
+      "message": "{$language} at this size:",
+      "description": "Caption of a sample sentence under the text size choices: a sentence of the course the learner came from, at the size chosen, and its translation, which keeps its size. $language is a course name (course.name.*, such as Persian)."
     },
     "preferences.target-size.smaller": {
       "message": "Smaller",
@@ -2018,25 +2750,69 @@
       "message": ".input {$target :number}\n{{Earn {$target} XP}}",
       "description": "Daily quest: earn XP."
     },
-    "reading.scheme.baxter": {
-      "message": "Middle Chinese (Baxter)",
-      "description": "William Baxter's transcription of Middle Chinese (the language of the 601 CE Qieyun rhyme dictionary), a choice in the readings control. Keep Baxter's name: it names the transcription."
+    "report.problem": {
+      "message": "Report a problem",
+      "description": "The name of the small flag button beside an answer's feedback (read out by screen readers; the button shows only the flag), and the heading of what it opens: the reports that apply to this card, such as 'My answer should have been accepted' or 'This sentence is wrong'."
     },
-    "reading.scheme.jyutping": {
-      "message": "Jyutping",
-      "description": "Name of the Jyutping romanization (Cantonese readings of Chinese characters), a choice in the readings control."
+    "reports.accepted": {
+      "message": "The course accepts this answer now. Thank you!",
+      "description": "On Your reports, under an answer the learner said should have been accepted, once the course on this device (a newer version of it) grades it right (ADR 0115)."
     },
-    "reading.scheme.lasina": {
-      "message": "sitelen Lasina",
-      "description": "The Toki Pona word of each sitelen pona sign in Latin letters (sitelen Lasina), a choice in the readings control. Keep sitelen Lasina as it is."
+    "reports.claim.accept": {
+      "message": "You said this answer should have been accepted",
+      "description": "On Your reports, before an answer the learner said should have been accepted (ai.report.button)."
     },
-    "reading.scheme.pinyin": {
-      "message": "Pinyin",
-      "description": "Name of the Pinyin romanization (Mandarin readings of Chinese characters), a choice in the readings control."
+    "reports.claim.reject": {
+      "message": "You said this answer should have been wrong",
+      "description": "On Your reports, before an answer the learner said should have been wrong (ai.report.reject)."
+    },
+    "reports.claim.spoken": {
+      "message": "You said you said this sentence right",
+      "description": "On Your reports, under a sentence the learner said they had said right in a speaking exercise the device scored as wrong (ai.report.spoken)."
+    },
+    "reports.empty": {
+      "message": "You haven't reported anything in this course.",
+      "description": "On Your reports, when the learner has made no report in the course."
+    },
+    "reports.gone": {
+      "message": "No longer in the course",
+      "description": "On Your reports, under a report about a sentence, story line or word the course on this device no longer has (ADR 0115)."
+    },
+    "reports.intro": {
+      "message": "Everything you reported in this course. When a newer version of the course takes a report up, it says so here.",
+      "description": "Explanation at the top of Your reports. The app compares each report with the course on this device; it asks no server (ADR 0115)."
     },
     "reports.public": {
       "message": "Reports go to the course's reviewers as public GitHub issues, without your name or device.",
       "description": "Shown where a learner can report a problem (a correction, or a claim about their answer) when the app sends reports to the project: says they become public issues and carry no name or device."
+    },
+    "reports.reach.device": {
+      "message": "Your reports stay on this device: this app sends them to no reviewer.",
+      "description": "On Your reports, when nothing takes reports: the app has no report intake and no server (ADR 0115)."
+    },
+    "reports.reach.reviewers": {
+      "message": "Your reports go to the course's reviewers.",
+      "description": "On Your reports, when reports reach the course's reviewers: the deployment sends them to its intake, or the learner has an account (ADR 0115)."
+    },
+    "reports.reach.sign-in": {
+      "message": "Your reports stay on this device until you sign in. Then they go to the course's reviewers.",
+      "description": "On Your reports, when the app has a server but the learner has no account on it: reports wait on the device and go when they sign in or create an account (ADR 0115)."
+    },
+    "reports.rejected": {
+      "message": "The course marks this answer wrong now. Thank you!",
+      "description": "On Your reports, under an answer the learner said should have been wrong, once the course on this device (a newer version of it) grades it wrong (ADR 0115)."
+    },
+    "reports.suggested": {
+      "message": "You suggested",
+      "description": "On Your reports, before what the learner suggested in a correction: the text, reading or translation they changed, and their note."
+    },
+    "reports.taken-up": {
+      "message": ".input {$count :number}\n{{{$count} in the course now}}",
+      "description": "Beside the Your reports link on the course page: how many of the learner's reports the course has taken up (a correction in it, or an answer graded as they said, ADR 0115). $count is at least 1."
+    },
+    "reports.title": {
+      "message": "Your reports",
+      "description": "Title of the page listing what the learner reported in a course (corrections, and claims about their answers), with what the course made of each; also the link to it on the course page (ADR 0115)."
     },
     "review.accepted.add": {
       "message": "Accept",
@@ -2174,6 +2950,10 @@
       "message": "Review workspace",
       "description": "Review workspace: page title."
     },
+    "story.action.quit": {
+      "message": "Leave the story",
+      "description": "Accessible label of the close (×) button in a story's header."
+    },
     "story.finished.stopped": {
       "message": "Story stopped",
       "description": "Heading when the learner leaves a story before its end."
@@ -2210,6 +2990,46 @@
       "message": "Narration",
       "description": "Accessible label of a story line no character speaks."
     },
+    "story.quit.cancel": {
+      "message": "Keep reading",
+      "description": "Button that closes the leave-the-story dialog and goes back to the story."
+    },
+    "story.quit.confirm": {
+      "message": "Leave",
+      "description": "Button that leaves the story before its end."
+    },
+    "story.quit.kept": {
+      "message": "Your answers so far are kept, with their XP. The story won't count as read, and you won't get the bonus for finishing it.",
+      "description": "Body of the dialog asked when the learner leaves a story before its end: what leaving keeps, and what it doesn't."
+    },
+    "story.quit.kept.replay": {
+      "message": "You've read this story before, so leaving loses nothing: your answers so far are kept, with their XP.",
+      "description": "Body of the dialog asked when the learner leaves a story they had already finished: a reread pays for its answers only, so leaving it loses nothing."
+    },
+    "story.quit.title": {
+      "message": "Leave this story?",
+      "description": "Title of the dialog shown when the learner closes a story before its end."
+    },
+    "story.reread.action": {
+      "message": "Read it again",
+      "description": "Button at the end of a story: shows the whole story again, to read with its translations and word meanings, without questions."
+    },
+    "story.reread.close": {
+      "message": "Close the story",
+      "description": "Accessible label of the close (×) button while the learner reads a finished story again: back to the end screen."
+    },
+    "story.reread.done": {
+      "message": "Done",
+      "description": "Button under a story read again: back to the end screen."
+    },
+    "story.reread.label": {
+      "message": "The whole story",
+      "description": "Accessible name of the region that holds every line of a story read again after its end."
+    },
+    "story.reread.title": {
+      "message": "The story",
+      "description": "Heading of a story read again, when the story has no title of its own."
+    },
     "story.transcript.label": {
       "message": "The story so far",
       "description": "Accessible name of the region that holds the story's lines as they appear."
@@ -2229,6 +3049,30 @@
     "words.empty": {
       "message": "No words yet. Words show here once you have practised them in a lesson.",
       "description": "The word list, before the learner has practised any word."
+    },
+    "words.filter.all": {
+      "message": ".input {$count :number}\n{{All ({$count})}}",
+      "description": "The word list: show every word the learner has met. $count is how many."
+    },
+    "words.filter.known": {
+      "message": ".input {$count :number}\n{{Known ({$count})}}",
+      "description": "The word list: show only the words the learner knows: each skill the course asks shown on a later day than the word was met (ADR 0100). $count is how many."
+    },
+    "words.filter.label": {
+      "message": "Show",
+      "description": "The word list: label of the choice between every word, the known ones and the ones being learned."
+    },
+    "words.filter.learning": {
+      "message": ".input {$count :number}\n{{Learning ({$count})}}",
+      "description": "The word list: show only the words the learner is still learning: met, but not yet known (ADR 0100). $count is how many."
+    },
+    "words.known.explain": {
+      "message": "A word is known once you’ve read it and written it right on a later day than you met it.",
+      "description": "The word list, in a course without listening: what makes a word known (ADR 0100). Reading: understanding it in a card; writing: typing it from its meaning."
+    },
+    "words.known.explain-heard": {
+      "message": "A word is known once you’ve read it, written it and heard it right on a later day than you met it.",
+      "description": "The word list, in a course whose voice the learner can rely on: what makes a word known (ADR 0100). Reading: understanding it in a card; writing: typing it from its meaning; hearing: understanding it from its sound."
     },
     "words.none-found": {
       "message": "No word you've learned matches that.",
@@ -2254,6 +3098,30 @@
       "message": "Find a word",
       "description": "The word list: label of a search field. The learner can type the word, with or without its vowel marks, or its meaning."
     },
+    "words.skill.listen": {
+      "message": "Listening",
+      "description": "The word list: a skill a word has yet to show, understanding it from its sound (ADR 0100). Shown after “Still to show:”."
+    },
+    "words.skill.produce": {
+      "message": "Writing",
+      "description": "The word list: a skill a word has yet to show, typing it from its meaning (ADR 0100). Shown after “Still to show:”."
+    },
+    "words.skill.recognize": {
+      "message": "Reading",
+      "description": "The word list: a skill a word has yet to show, understanding it when it is shown (ADR 0100). Shown after “Still to show:”."
+    },
+    "words.skills.label": {
+      "message": "Still to show:",
+      "description": "The word list, under a word being learned: followed by the skills it has yet to show right on a later day than the learner met it (Reading, Writing, Listening)."
+    },
+    "words.status.known": {
+      "message": "Known",
+      "description": "The word list: this word is known. Every skill the course asks of it was shown right on a later day than the learner met it, and not missed since (ADR 0100)."
+    },
+    "words.status.learning": {
+      "message": "Learning",
+      "description": "The word list: this word is still being learned (ADR 0100)."
+    },
     "words.strength.due": {
       "message": "Due for review",
       "description": "The word list: the learner should practise this word again now."
@@ -2269,6 +3137,10 @@
     "words.title": {
       "message": "Words you've learned",
       "description": "The word list: title of the page that lists the words a learner has practised in a course, and the link to it on the course's page."
+    },
+    "words.unit.known": {
+      "message": ".input {$known :number}\n.input {$count :number}\n{{{$known} of {$count} known}}",
+      "description": "The word list, beside a unit's title: how many of the unit's words the learner has met ($count) are known ($known)."
     }
   }
 }

@@ -37,3 +37,7 @@ input:
   extraKeys: ["\u200C"]          # ZWNJ on the special-character bar
 layout: { vertical: none }
 fonts: { stack: [Vazirmatn, Noto Naskh Arabic], lineHeight: 1.9 }
+# What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
+# Whisper writes Persian in Arabic script (tier 1); eSpeak NG's fa reads the spelling for the expected phones (tier 2).
+speech:
+  tiers: [1, 2]

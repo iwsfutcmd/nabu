@@ -207,6 +207,18 @@ What a native speaker should still check:
    so they take 你 and not 你哋. 15 new sentences, tagged "to several people", are their 你哋
    counterparts with the same tokens and readings (s.u02.39 …). Check that each still sounds natural
    to a group: 你哋媽媽 (siblings), 你哋有冇貓, 我等你哋.
+10. **The voices** ([ADR 0094](../docs/adr/0094-yue-voxcpm2.md)). Every clip is synthetic: VoxCPM2, cloning one
+    of two news anchors it designed (`audio/voices/anchor-f.wav`, `anchor-m.wav`). Each item draws one at random
+    (ADR 0078).
+    - **It reads characters, not the pinned Jyutping.** Listen first for the readings this list confirms
+      (呢 ni1 and ne1, 名 meng2, 平 peng4, 弟弟 dai4 dai2, 英文 man2), changed tones, and Mandarin-like
+      readings of words (the survey caught 銀行 once).
+    - **Word cards** are cut from 跟住我讀：<word>。 Listen for clipped starts and for a breath of the carrier left
+      in. One-syllable cards are also the tone-identify exercise's clips, so their tones matter most.
+    - **Sentences** are slowed (Rubber Band, pitch kept) toward 4.3 syllables a second. Listen for
+      artefacts on long vowels and final particles.
+    - **Where to start:** `nabu audio report ../courses/yue` lists the clips the round trip held back; the
+      audio check (debug mode) plays them all. A rejected clip is made again as its next take.
 
 ## uz (Uzbek)
 

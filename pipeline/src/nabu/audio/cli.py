@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import unicodedata
 from collections import Counter
 from collections.abc import Callable
 from pathlib import Path
@@ -11,17 +12,28 @@ import typer
 
 from nabu.audio.course import Item, Written
 from nabu.audio.providers import Clip
-from nabu.schema.models import AudioVoice
+from nabu.items import iter_items
+from nabu.schema.models import AudioVoice, BundleUnit
 
 app = typer.Typer(no_args_is_help=True, add_completion=False, help="A course's audio clips.")
 
-#: Whisper language codes of the fixture courses' targets.
-ASR_LANGUAGE = {"fa": "fa", "yue": "yue", "uz": "uz", "apc": "ar"}
-#: eSpeak NG voices for forced alignment where the course voice is not eSpeak's.
-ESPEAK_VOICE = {"apc": "ar"}
+
+def _heard(source: Any) -> str:
+    """The orthography the course's clips say: its voices' (each reads one), else its first."""
+    voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
+    return voices[0].orthography if voices else str(source.orthographies[0])
 
 
-def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
+def phonemes_of(orthography: str) -> str:
+    """The eSpeak NG voice whose phonemes stand for an orthography's spelling (ADR 0116): its
+    profile's, or its language's, or the macrolanguage's (apc is read as ar)."""
+    from nabu.audio import espeak
+    from nabu.speech.setup import espeak_voice_of, profiles
+
+    return espeak_voice_of(profiles()[orthography], espeak.has_voice)
+
+
+def _compiled(course: Path) -> tuple[Path, Any, list[BundleUnit], Written]:
     from nabu.compiler import compile_course
     from nabu.corecli import CoreCli
 
@@ -34,6 +46,20 @@ def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
         raise typer.Exit(code=1)
     course_dir = course if course.is_dir() else course.parent
     return course_dir, compiled.course, compiled.units, compiled.written
+
+
+def round_trip_of(source: Any) -> Callable[[Item, Clip], dict[str, Any]]:
+    """The round-trip check, by the recognizer of the orthography the clips say (its profile's
+    `speech.recognizer`, ADR 0116; nabu.audio.qa)."""
+    from nabu.audio.qa import round_trip
+    from nabu.speech.setup import profiles, recognizer_of
+
+    by = recognizer_of(profiles()[_heard(source)])
+
+    def round_trip_check(item: Item, clip: Clip) -> dict[str, Any]:
+        return round_trip(clip, item.expected, by)
+
+    return round_trip_check
 
 
 @app.command()
@@ -72,16 +98,7 @@ def generate(
     if voice_id is not None and all(v.id != voice_id for v in audio.voices):
         typer.echo(f"✗ {source.id}: no voice {voice_id!r} in the cast", err=True)
         raise typer.Exit(code=1)
-    checker: Callable[[Item, Clip], dict[str, Any]] | None = None
-    if check:
-        from nabu.audio.qa import round_trip
-
-        language: str = ASR_LANGUAGE.get(source.id) or str(source.target).split("-")[0]
-
-        def round_trip_check(item: Item, clip: Clip) -> dict[str, Any]:
-            return round_trip(clip, item.expected, language)
-
-        checker = round_trip_check
+    checker = round_trip_of(source) if check else None
     try:
         report = synthesize_course(course_dir, units, audio.voices, checker, written, voice_id)
     except (MissingKey, ProviderError, ValueError) as error:
@@ -157,32 +174,80 @@ def cast(
         str | None,
         typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
     ] = None,
+    recast_text: Annotated[
+        str | None,
+        typer.Option(
+            help="VoxCPM2: what the designed voice first read, when the recording is that reading "
+            "cloned saying --text (ADR 0094)."
+        ),
+    ] = None,
+    recast_seed: Annotated[
+        int | None, typer.Option(help="VoxCPM2, with --recast-text: the seed of the re-reading.")
+    ] = None,
 ) -> None:
     """Make a cloning voice's reference: OmniVoice designs it from speaker attributes (ADR 0058)
     or keeps a real speaker's recording (--recording, ADR 0076); Navoiy reads the text in the
-    voice of CosyVoice's prompt recording (ADR 0059).
+    voice of CosyVoice's prompt recording (ADR 0059). VoxCPM2 keeps a voice it designed
+    (--recording, with the --instruct and --seed it was designed with; ADR 0094).
 
     Every clip of the voice clones the reference, so the course voice is one speaker. Casting
     again replaces it, and its clips are synthesized again on the next `generate`.
     """
-    from nabu.audio.course import cast_reference, record_reference
-    from nabu.audio.providers import NavoiyProvider, ProviderError
+    from nabu.audio.course import cast_reference, caster_of, record_reference
+    from nabu.audio.providers import ProviderError
 
     _, source, _, _ = _compiled(course)
     voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
     voice = next((v for v in voices if voice_id in (None, v.id)), None)
-    if voice is None or voice.provider not in ("omnivoice", "navoiy"):
+    # How a voice is cast is its provider's to say (its CASTS), never its name's.
+    try:
+        tts = None if voice is None else caster_of(voice)
+    except ValueError as error:
+        typer.echo(f"✗ {source.id}: {error}", err=True)
+        raise typer.Exit(code=1) from None
+    if voice is None or tts is None:
         typer.echo(
-            f"✗ {source.id}: no OmniVoice or Navoiy voice {voice_id or ''} in the cast", err=True
+            f"✗ {source.id}: no voice {voice_id or ''} in the cast clones a reference voice",
+            err=True,
         )
         raise typer.Exit(code=1)
     course_dir = course if course.is_dir() else course.parent
-    if recording is not None:
-        if voice.provider != "omnivoice" or None in (license_, author, origin):
+    if "designed" in tts.CASTS:
+        if recording is None or instruct is None or (recast_text is None) != (recast_seed is None):
             typer.echo(
-                f"✗ {source.id}: --recording is for an OmniVoice voice, with --license, "
-                "--author and --source",
+                f"✗ {source.id}: a {tts.name} voice keeps a voice it designed: --recording, "
+                "--instruct "
+                "and --seed (and --recast-text with --recast-seed if it was re-read)",
                 err=True,
+            )
+            raise typer.Exit(code=1)
+        design = tts.design_record(instruct, seed)
+        if recast_text is not None and recast_seed is not None:
+            design["recast"] = {
+                "text": unicodedata.normalize("NFC", recast_text),
+                "seed": recast_seed,
+            }
+        ref = record_reference(
+            course_dir,
+            voice,
+            recording,
+            text,
+            voice.license,
+            f"generated:{tts.name}@{tts.version()}",
+            origin,
+            design,
+        )
+        typer.echo(f"✓ {source.id}: {ref.file} ({ref.durationMs} ms, {ref.license})")
+        return
+    if recording is not None:
+        if "recording" not in tts.CASTS:
+            typer.echo(
+                f"✗ {source.id}: a {tts.name} voice does not clone a speaker's recording", err=True
+            )
+            raise typer.Exit(code=1)
+        if None in (license_, author, origin):
+            typer.echo(
+                f"✗ {source.id}: --recording needs --license, --author and --source", err=True
             )
             raise typer.Exit(code=1)
         ref = record_reference(
@@ -191,12 +256,12 @@ def cast(
         typer.echo(f"✓ {source.id}: {ref.file} ({ref.durationMs} ms, {ref.license})")
         return
     if instruct is None:
-        if voice.provider == "omnivoice":
-            typer.echo(f"✗ {source.id}: an OmniVoice voice needs --instruct", err=True)
+        if tts.DEFAULT_INSTRUCT is None:
+            typer.echo(f"✗ {source.id}: a {tts.name} voice needs --instruct", err=True)
             raise typer.Exit(code=1)
-        instruct = NavoiyProvider.INSTRUCT
+        instruct = tts.DEFAULT_INSTRUCT
     try:
-        ref = cast_reference(course_dir, voice, text, instruct, seed)
+        ref = cast_reference(course_dir, voice, text, instruct, seed, tts)
     except (ValueError, ProviderError) as error:
         typer.echo(f"✗ {source.id}: {error}", err=True)
         raise typer.Exit(code=1) from None
@@ -214,7 +279,8 @@ def align(
     """Word timings by forced alignment for clips their voice gave none (speech group).
 
     OmniVoice, Navoiy and Piper report no word onsets; aligned, their sentences highlight word
-    by word and their words can be tapped. Phones come from eSpeak NG for the course's language.
+    by word and their words can be tapped. Phones come from eSpeak NG, in the voice the
+    orthography's profile names or its language's (ADR 0116).
     """
     from nabu.audio.course import align_course
 
@@ -224,9 +290,27 @@ def align(
     if voice is None:
         typer.echo(f"✗ {source.id}: no voice {voice_id or ''} in the cast", err=True)
         raise typer.Exit(code=1)
-    phonemes = ESPEAK_VOICE.get(source.id, str(source.target).split("-")[0])
+    phonemes = phonemes_of(voice.orthography)
     done = align_course(course_dir, units, voice, phonemes, written, voices=voices)
     typer.echo(f"✓ {source.id}: {done} clips aligned (eSpeak NG {phonemes} phones)")
+
+
+@app.command("check")
+def recheck(
+    course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
+) -> None:
+    """Run the round trip again on the course's clips, keeping them (speech group).
+
+    For a new recognizer or comparison (nabu.audio.qa): no clip is made again. Clips the check
+    now fails stay out of the bundles until a listener passes them in the audio check.
+    """
+    from nabu.audio.course import check_course
+
+    course_dir, source, units, written = _compiled(course)
+    voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
+    counts = check_course(course_dir, units, voices, round_trip_of(source), written)
+    by_status = dict(sorted(counts.items()))
+    typer.echo(f"✓ {source.id}: {sum(counts.values())} clips checked {by_status}")
 
 
 @app.command()
@@ -256,23 +340,19 @@ def ingest(
         # The sentence in the voice's orthography: the one its recordings say.
         tokens = next(
             (
-                s["forms"][voice.orthography]["text"]["tokens"]
-                for u in units
-                for s in u["sentences"]
-                if s["id"] == item and voice is not None and voice.orthography in s["forms"]
+                s.forms.get(voice.orthography)
+                for s in iter_items(units)
+                if s.id == item and s.kind == "sentence" and voice is not None
             ),
             None,
         )
         if tokens is None or voice is None:
             typer.echo(f"✗ {item}: alignment needs a sentence and a course voice", err=True)
             raise typer.Exit(code=1)
-        # Phonemes come from eSpeak NG: the voice's own, or one for the course's language.
-        phonemes = (
-            voice.voice
-            if voice.provider == "espeak-ng"
-            else ESPEAK_VOICE.get(src.id, str(src.target).split("-")[0])
-        )
-        alignment = (tokens, voice.reading, phonemes)
+        # Phonemes come from eSpeak NG: the voice's own, or the orthography's (ADR 0116).
+        phonemes = voice.voice if voice.provider == "espeak-ng" else phonemes_of(voice.orthography)
+        words = [t.model_dump(mode="json", exclude_none=True) for t in tokens]
+        alignment = (words, voice.reading, phonemes)
     entries = add(course_dir, Recording(item, file, license, author, source, status), alignment)
     typer.echo(f"✓ {item}: {len(entries)} clips ({license}, {author})")
 
@@ -280,7 +360,8 @@ def ingest(
 @app.command()
 def report(course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")]) -> None:
     """QA summary and the human review queue (clips the round-trip check did not pass)."""
-    from nabu.audio.course import audio_dir, read_index
+    from nabu.audio.course import audio_dir, held_back, read_index
+    from nabu.provenance import signed_off
 
     course_dir = course if course.is_dir() else course.parent
     index = read_index(audio_dir(course))
@@ -290,15 +371,16 @@ def report(course: Annotated[Path, typer.Argument(exists=True, help="Course dire
     )
     typer.echo(
         f"{course_dir.name}: {len(index.clips)} clips; "
-        f"normal speed by QA: {dict(sorted(counts.items()))}"
+        f"normal speed by QA: {dict(sorted(counts.items()))}; "
+        f"{len(held_back(index))} items held back from bundles"
     )
     for c in normal:
-        if c.provenance.status in ("reviewed", "published"):
+        if signed_off(c.provenance.status):
             continue
         if c.qa is not None and c.qa.status in ("review", "fail"):
             typer.echo(f"  {c.qa.status:6} {c.item}: CER {c.qa.cer} heard {c.qa.asrText!r}")
     rejected = [c for c in index.clips if c.rejected is not None]
-    reviewed = [c for c in normal if c.provenance.status in ("reviewed", "published")]
+    reviewed = [c for c in normal if signed_off(c.provenance.status)]
     if reviewed:
         typer.echo(
             f"{len(reviewed)} items a listener judged right (they ship whatever the check said)"

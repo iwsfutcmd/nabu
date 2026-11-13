@@ -22,9 +22,10 @@ from pydantic import BaseModel, ValidationError
 from nabu import sitelen_pona
 from nabu.analyzers import Analyzer, analyzers_by_tool
 from nabu.compiler import text as tx
-from nabu.compiler.audio import check_audio
+from nabu.compiler.audio import ShippedClip, check_audio
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.diagnostics import Diagnostics, Loc
+from nabu.compiler.readings import pin_kc_readings
 from nabu.compiler.scenarios import compile_scenarios
 from nabu.compiler.script import compile_alphabets
 from nabu.compiler.source import Doc, load_doc
@@ -33,7 +34,9 @@ from nabu.corecli import CoreCli
 from nabu.drills.rbnf import icu_version, spellout, transform
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.schema.models import (
+    BundleUnit,
     CourseSource,
+    LogographsStep,
     OrthographyProfile,
     SentenceForm,
     SentenceSource,
@@ -63,6 +66,8 @@ def load_exemplars() -> dict[str, dict[str, list[str]]]:
 class Unit:
     doc: Doc
     source: UnitSource
+    #: A drill the compiler made (stage 4), not authored text: its forms are not linted as prose.
+    generated: bool = False
 
 
 @dataclass
@@ -70,7 +75,8 @@ class Compiled:
     """Everything stage 9 needs to write a bundle."""
 
     course: CourseSource
-    units: list[dict[str, Any]] = field(default_factory=lambda: [])
+    #: The bundle's units, as its schema types them (nabu.items walks the items in them).
+    units: list[BundleUnit] = field(default_factory=lambda: [])
     orthographies: list[str] = field(default_factory=lambda: [])
     support: list[str] = field(default_factory=lambda: [])
     licenses: dict[str, int] = field(default_factory=lambda: {})
@@ -81,7 +87,7 @@ class Compiled:
     images: dict[str, tuple[bytes, str, str | None]] = field(default_factory=lambda: {})
     # audio: bundle path → (bytes, SPDX license, credit); item → {normal, slow} clips (audio.json)
     audio_files: dict[str, tuple[bytes, str, str]] = field(default_factory=lambda: {})
-    audio_items: dict[str, dict[str, Any]] = field(default_factory=lambda: {})
+    audio_items: dict[str, dict[str, ShippedClip]] = field(default_factory=lambda: {})
     # (item, orthography) → token surfaces as written, where vowel marks were added (ADR 0053)
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
 
@@ -105,6 +111,8 @@ class Ctx:
     analyzers: dict[str, Analyzer]
     vocalization: dict[str, Vocalized] = field(default_factory=lambda: {})
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
+    # Each orthography's script (`script_of`), as it is first needed.
+    scripts: dict[str, tx.Script] = field(default_factory=lambda: {})
 
 
 # ------------------------------------------------------------ helpers
@@ -180,7 +188,9 @@ def _ruby_schemes(profile: OrthographyProfile) -> list[str]:
     ]
 
 
-def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set[str]] | None:
+def _exemplar_sets(
+    exemplars: dict[str, dict[str, list[str]]], profile: OrthographyProfile
+) -> tuple[set[str], set[str]] | None:
     """Letter/mark/number/symbol and punctuation code points from the profile's CLDR exemplars.
     A script CLDR has no locale for (sitelen pona, ADR 0086) lists its whole repertoire in
     `exemplarsExtra`, with no `exemplars`: the audit then checks against that alone."""
@@ -190,7 +200,7 @@ def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set
         data: dict[str, list[str]] = {}
     else:
         key = profile.exemplars.removeprefix("cldr:").replace("_", "-")
-        found = ctx.exemplars.get(key) or ctx.exemplars.get(key.split("-")[0])
+        found = exemplars.get(key) or exemplars.get(key.split("-")[0])
         if found is None:
             return None
         data = found
@@ -205,6 +215,33 @@ def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set
         for c in extra:
             (punct if unicodedata.category(c)[0] == "P" else chars).add(c)
     return chars, punct
+
+
+def script_of(profile: OrthographyProfile, exemplars: dict[str, dict[str, list[str]]]) -> tx.Script:
+    """The profile's script: the Unicode scripts its subtag stands for. One Unicode does not
+    encode (a private-use subtag) is what the profile lists: its exemplars, and, if it writes
+    each word as a logograph (a `logographs` step: sitelen pona, ADR 0086), those of them that
+    are not the step's cartouche marks."""
+    code = profile.lang.split("-")[1]
+    scripts = tx.unicode_scripts(code)
+    if scripts is not None:
+        return tx.Script(code, scripts)
+    sets = _exemplar_sets(exemplars, profile)
+    own = frozenset(sets[0]) if sets is not None else frozenset[str]()
+    for step in profile.normalize:
+        root = getattr(step, "root", step)
+        if isinstance(root, LogographsStep):
+            marks = root.logographs.cartouche
+            cartouche = None if marks is None else (marks.open, marks.close)
+            return tx.Script(code, None, own, own - set(cartouche or ()), cartouche)
+    return tx.Script(code, None, own)
+
+
+def _script(ctx: Ctx, orth: str) -> tx.Script:
+    found = ctx.scripts.get(orth)
+    if found is None:
+        found = ctx.scripts[orth] = script_of(ctx.profiles[orth], ctx.exemplars)
+    return found
 
 
 def _letter_maps(profile: OrthographyProfile) -> dict[str, str]:
@@ -234,10 +271,15 @@ def _allowed_invisibles(profile: OrthographyProfile) -> set[str]:
 
 
 def _hygiene(
-    ctx: Ctx, profile: OrthographyProfile, text: str, toks: list[dict[str, Any]], loc: Loc
+    ctx: Ctx,
+    profile: OrthographyProfile,
+    script: tx.Script,
+    text: str,
+    toks: list[dict[str, Any]],
+    loc: Loc,
 ) -> None:
     diags = ctx.diags
-    sets = _exemplar_sets(ctx, profile)
+    sets = _exemplar_sets(ctx.exemplars, profile)
     if sets is not None:
         letters, punct = sets
         outside = sorted(
@@ -268,34 +310,35 @@ def _hygiene(
                 + " ".join(foreign_punct),
                 loc,
             )
-    script = profile.lang.split("-")[1]
     for tok in toks:
         if tok.get("kind", "word") == "word":
             foreign = tx.foreign_letters(tok["surface"], script)
             if foreign:
                 diags.report(
                     "text.mixed-script",
-                    f"{tok['surface']!r} mixes {' '.join(foreign)} into {script} text",
+                    f"{tok['surface']!r} mixes {' '.join(foreign)} into {script.code} text",
                     loc,
                 )
     folds = [k for k in _letter_maps(profile) if k in text and unicodedata.category(k[0])[0] != "P"]
-    presentation = [c for c in text if 0xFB50 <= ord(c) <= 0xFDFF or 0xFE70 <= ord(c) <= 0xFEFC]
-    if folds or presentation:
-        shown = " ".join(
-            f"U+{ord(c):04X}" if len(k) == 1 else repr(k)
-            for k in folds + presentation
-            for c in k[:1]
-        )
+    if folds:
+        shown = " ".join(f"U+{ord(k):04X}" if len(k) == 1 else repr(k) for k in folds)
         diags.report(
             "text.non-canonical", f"uses characters its profile normalizes away: {shown}", loc
+        )
+    presentation = tx.presentation_forms(text)
+    if presentation:
+        diags.report(
+            "text.non-canonical",
+            "uses presentation forms, not the characters they stand for: "
+            + " ".join(f"U+{ord(c):04X}" for c in presentation),
+            loc,
         )
 
 
 def _form(ctx: Ctx, course: CourseSource, unit: Unit, si: int, orth: str) -> dict[str, Any] | None:
     form = unit.source.sentences[si].forms[orth]
-    generated = unit.source.id.startswith("drill-")
     at = ("sentences", si, "forms", orth)
-    return compile_form(ctx, course, unit.doc, at, form, orth, warn=not generated)
+    return compile_form(ctx, course, unit.doc, at, form, orth, warn=not unit.generated)
 
 
 def compile_form(
@@ -310,6 +353,7 @@ def compile_form(
     """A sentence or story line form (text, tokens) → TaggedText, with stages 2-3 checks.
     `warn`: false for generated sentences (drills), which have no tokens to vocalize by hand."""
     profile = ctx.profiles[orth]
+    script = _script(ctx, orth)
     loc = doc.loc(*at)
     text = form.text
     diags = ctx.diags
@@ -344,7 +388,7 @@ def compile_form(
         segment = (
             analyzer.segment if analyzer is not None and _unit_kind(profile) == "grapheme" else None
         )
-        toks = tx.auto_tokens(text, segment)
+        toks = tx.auto_tokens(text, segment, script)
 
     # kinds and default tile groups
     explicit = [t["tileGroup"] for t in toks if "tileGroup" in t]
@@ -358,7 +402,7 @@ def compile_form(
     # stage 3: readings and ruby, for every ruby layer
     for scheme in _ruby_schemes(profile):
         for t in toks:
-            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"]):
+            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"], script):
                 continue
             pinned = t.get("readings", {}).get(scheme)
             guessed = analyzer.reading(scheme, t["surface"]) if analyzer is not None else None
@@ -385,7 +429,7 @@ def compile_form(
             else:
                 t.setdefault("ruby", {})[scheme] = segments
 
-    _hygiene(ctx, profile, text, toks, doc.loc(*at, "text"))
+    _hygiene(ctx, profile, script, text, toks, doc.loc(*at, "text"))
     mark_vowels(ctx, orth, toks, loc, warn)
     tagged = {"lang": _lang_for(profile, course.target), "orthography": orth, "tokens": toks}
     public = {
@@ -568,7 +612,7 @@ def marked(ctx: Ctx, orth: str, text: dict[str, Any], kc: str | None) -> dict[st
 
 def support_text(ctx: Ctx, orth: str, text: str, target: str) -> dict[str, Any]:
     profile = ctx.profiles[orth]
-    toks = tx.auto_tokens(text)
+    toks = tx.auto_tokens(text, None, _script(ctx, orth))
     for i, t in enumerate(x for x in toks if x["kind"] in ("word", "number")):
         t["tileGroup"] = i
     return {"lang": _lang_for(profile, target), "orthography": orth, "tokens": toks}
@@ -634,6 +678,7 @@ def compile_course(
         return diags, None
 
     _load_vocalization(ctx, course, course_file, display, doc)
+    _names(ctx, course, doc)
     _drills(ctx, course, doc, units)
     _duplicates(ctx, units)
     for unit in units:
@@ -670,7 +715,12 @@ def compile_course(
     # ---- stage 7: glossary, tiles, script tracks
     _glossary(ctx, course, units, compiled_forms, stories.lines)
     alphabets = compile_alphabets(
-        diags, course, units, ctx.profiles, lambda o, t: support_text(ctx, o, t, course.target)
+        diags,
+        course,
+        units,
+        ctx.profiles,
+        lambda o, t: support_text(ctx, o, t, course.target),
+        ctx.cli,
     )
     # ---- stage 9: packaging lints
     compiled = Compiled(
@@ -680,109 +730,39 @@ def compile_course(
     image_paths = _images(ctx, course_file.parent, units, compiled)
     if diags.errors:
         return diags, None
-    compiled.units = [
-        _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths, alphabets)
-        | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
-        | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
+    # From here on the course is the bundle's typed units: a key mistyped or a shape changed
+    # fails here, as the course compiles.
+    bundled = [
+        BundleUnit.model_validate(
+            _bundle_unit(
+                ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths, alphabets
+            )
+            | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
+            | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
+        )
         for ui, unit in enumerate(units)
     ]
     compiled.written = ctx.written
-    _kc_readings(ctx, course, compiled.units)
+    # Every word of a KC's forms takes one reading per scheme, which word cards show, voices read
+    # and minimal pairs compare (ADR 0117); a KC's entry may choose its first form's (`readings`).
+    entries = {kc.id: (unit, ki, kc) for unit in units for ki, kc in enumerate(unit.source.kcs)}
+    compiled.units, refused = pin_kc_readings(
+        bundled,
+        list(course.orthographies),
+        lambda orth: _ruby_schemes(ctx.profiles[orth]),
+        lambda orth: _script(ctx, orth),
+        {kc_id: kc.readings for kc_id, (_, _, kc) in entries.items() if kc.readings},
+    )
+    for r in refused:
+        unit, ki, _ = entries[r.kc]
+        ctx.diags.report(
+            "kc.reading", f"{r.kc}: {r.message}", unit.doc.loc("kcs", ki, "readings", r.scheme)
+        )
     if audio:
         check_audio(ctx, course, course_file, display, compiled)
     if diags.errors:
         return diags, None
     return diags, compiled
-
-
-Tally = dict[str, int]
-"""How often each reading was seen."""
-
-
-def _count(table: dict[Any, Tally], key: Any, reading: str) -> None:
-    seen = table.setdefault(key, {})
-    seen[reading] = seen.get(reading, 0) + 1
-
-
-def _tally_readings(
-    tokens: list[dict[str, Any]], scheme: str, by_kc: dict[Any, Tally], by_surface: dict[Any, Tally]
-) -> None:
-    """Each word token's pinned reading, by its sense and by its surface; and each morph's share of
-    it, from the token's ruby (one segment per character)."""
-    for t in tokens:
-        readings = cast(dict[str, str], t.get("readings") or {})
-        reading = readings.get(scheme)
-        if t.get("kind") != "word" or reading is None:
-            continue
-        surface = str(t["surface"])
-        _count(by_surface, surface, reading)
-        if t.get("sense"):
-            _count(by_kc, (f"sense:{t['sense']}", surface), reading)
-        ruby = cast(
-            list[dict[str, str]], cast(dict[str, Any], t.get("ruby") or {}).get(scheme) or []
-        )
-        morphs = cast(list[dict[str, str]], t.get("morphs") or [])
-        if not morphs or len(ruby) != len(tx.graphemes(surface)):
-            continue
-        at = 0
-        for m in morphs:
-            n = len(tx.graphemes(m["surface"]))
-            share = " ".join(seg["text"] for seg in ruby[at : at + n])
-            at += n
-            if share:
-                _count(by_kc, (m["kc"], m["surface"]), share)
-                _count(by_surface, m["surface"], share)
-
-
-def _pick_reading(
-    by_kc: dict[Any, Tally], by_surface: dict[Any, Tally], kc: str, surface: str
-) -> str | None:
-    own = by_kc.get((kc, surface))
-    if own:
-        return sorted(own.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
-    seen = by_surface.get(surface) or {}
-    return next(iter(seen)) if len(seen) == 1 else None
-
-
-def _kc_readings(ctx: Ctx, course: CourseSource, units: list[dict[str, Any]]) -> None:
-    """Readings and ruby for KC forms, so word exercises (pairs, pictures, listening options) show
-    them as sentences do. A KC's form takes the reading its sense has in the course's sentences
-    and story lines (the most common, if several); a word met only inside longer words takes its
-    characters' share of their reading (禮拜 in 禮拜一); a form no token names takes the reading
-    its surface always has, and none if that varies (a polyphone). Nothing is guessed."""
-    for orth in course.orthographies:
-        for scheme in _ruby_schemes(ctx.profiles[orth]):
-            _kc_readings_in(ctx, units, orth, scheme)
-
-
-def _kc_readings_in(ctx: Ctx, units: list[dict[str, Any]], orth: str, scheme: str) -> None:
-    """One orthography's KC forms, one ruby layer: see _kc_readings."""
-    by_kc: dict[Any, Tally] = {}
-    by_surface: dict[Any, Tally] = {}
-    for u in units:
-        for sentence in cast(list[dict[str, Any]], u["sentences"]):
-            form = cast(dict[str, Any] | None, sentence["forms"].get(orth))
-            if form is not None:
-                _tally_readings(form["text"]["tokens"], scheme, by_kc, by_surface)
-        for story in cast(list[dict[str, Any]], u.get("stories", [])):
-            for step in cast(list[dict[str, Any]], story["steps"]):
-                line = cast(dict[str, Any], step.get("line") or {}).get("forms", {}).get(orth)
-                if line is not None:
-                    _tally_readings(line["tokens"], scheme, by_kc, by_surface)
-    for u in units:
-        for kc in cast(list[dict[str, Any]], u["kcs"]):
-            forms = cast(dict[str, list[dict[str, Any]]], kc.get("forms") or {})
-            for form in forms.get(orth, []):
-                for t in cast(list[dict[str, Any]], form["tokens"]):
-                    surface = str(t["surface"])
-                    if t["kind"] != "word" or not tx.ruby_bearing(surface):
-                        continue
-                    reading = _pick_reading(by_kc, by_surface, str(kc["id"]), surface)
-                    segments = None if reading is None else tx.ruby_segments(surface, reading)
-                    if reading is None or segments is None:
-                        continue
-                    t.setdefault("readings", {})[scheme] = reading
-                    t.setdefault("ruby", {})[scheme] = segments
 
 
 def _images(ctx: Ctx, course_dir: Path, units: list[Unit], compiled: Compiled) -> dict[str, str]:
@@ -855,23 +835,36 @@ def _strings(
     return []
 
 
+def _language_invisibles(ctx: Ctx, tag: str) -> set[str]:
+    """What text in a language may hold invisibly: what that language's orthographies allow."""
+    language = tag.split("-")[0]
+    allowed: set[str] = set()
+    for profile in ctx.profiles.values():
+        if profile.lang.split("-")[0] == language:
+            allowed |= _allowed_invisibles(profile)
+    return allowed
+
+
 def _nfc_and_invisibles(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None:
     allowed: set[str] = set()
     for orth in course.orthographies:
         allowed |= _allowed_invisibles(ctx.profiles[orth])
-    docs = [
-        Doc(
-            doc.file,
-            {k: v for k, v in cast(dict[str, Any], doc.data).items() if k != "units"},
-            doc.lines,
-        )
-    ]
-    docs += [u.doc for u in units if u.doc.data is not None]
+    course_doc = Doc(
+        doc.file,
+        {k: v for k, v in cast(dict[str, Any], doc.data).items() if k != "units"},
+        doc.lines,
+    )
+    docs = [course_doc, *(u.doc for u in units if u.doc.data is not None)]
     for d in docs:
         for path, value in _strings(d.data):
             if unicodedata.normalize("NFC", value) != value:
                 ctx.diags.report("text.not-nfc", f"{value!r} is not NFC", d.loc(*path))
-            bad = tx.invisible_chars(value, allowed)
+            here = allowed
+            if d is course_doc and len(path) > 1 and path[0] == "names":
+                # A name is text in the language it is given in (ADR 0109): a Persian name keeps
+                # its ZWNJ whatever course it names.
+                here = _language_invisibles(ctx, str(path[1]))
+            bad = tx.invisible_chars(value, here)
             if bad:
                 ctx.diags.report(
                     "text.invisible", " ".join(f"U+{ord(c):04X}" for c in bad), d.loc(*path)
@@ -927,7 +920,35 @@ def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm)
 # ------------------------------------------------------------ stage 4: drills
 
 
+def _names(ctx: Ctx, course: CourseSource, doc: Doc) -> None:
+    """What the app calls the course (ADR 0109): a name in each support language, so no UI needs a
+    message for it, and orthography names and hints only for orthographies the course teaches."""
+    names = course.names or {}
+    for support in course.support:
+        language = ctx.profiles[support].lang.split("-")[0]
+        if not any(tag.split("-")[0] == language for tag in names):
+            ctx.diags.report(
+                "course.names",
+                f"no name for the course in its support language {language}: "
+                f"names: {{{language}: {{course: …}}}}",
+                doc.loc("names") if names else doc.loc("support"),
+            )
+    for tag, named in names.items():
+        for key, given in (("orthographies", named.orthographies), ("hints", named.hints)):
+            for orth in given or {}:
+                if orth not in course.orthographies:
+                    ctx.diags.report(
+                        "course.names",
+                        f"names.{tag}.{key} names {orth}, which the course does not teach",
+                        doc.loc("names", tag, key, orth),
+                    )
+
+
 def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None:
+    """A unit per drill: `drill-<kind>` (a unit id, as the offline downloads name it), with one
+    node `drill.<kind>` and sentences `drill.<kind>.<value>`. Runtime code tells generated
+    sentences by that `drill.` prefix (core's corrections and distractors); the compiler by
+    `Unit.generated`."""
     for di, drill in enumerate(course.drills or []):
         loc = doc.loc("drills", di)
         if drill.orthography not in course.orthographies:
@@ -978,7 +999,11 @@ def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None
             "sentences": sentences,
         }
         units.append(
-            Unit(Doc(doc.file, data, doc.lines, ("drills", di)), UnitSource.model_validate(data))
+            Unit(
+                Doc(doc.file, data, doc.lines, ("drills", di)),
+                UnitSource.model_validate(data),
+                generated=True,
+            )
         )
 
 

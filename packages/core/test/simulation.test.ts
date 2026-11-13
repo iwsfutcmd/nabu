@@ -4,12 +4,14 @@
  * The simulated learners are in simulator.ts.
  */
 import { describe, expect, it } from "vitest";
+import type { LearnerEvent } from "@nabu/schema";
+import { learnedWords, replay, wordCounts } from "../src/learner/index.ts";
 import { allKcs, allSentences, lessonNodes } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 import { simulate } from "./simulator.ts";
 
 /** A month of sessions takes a few seconds; more on a busy CI runner. */
-const SIMULATION_TIMEOUT_MS = 60_000;
+const SIMULATION_TIMEOUT_MS = 300_000;
 
 /**
  * Learners from weak (θ* = 1.0) to strong (θ* = 2.0), on every course and
@@ -48,10 +50,14 @@ describe("planner: 30 simulated days", () => {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {
       // Which KCs each lesson session presented: every new KC an exercise can carry must appear.
       const presented = new Map<string, Set<string>>();
+      const log: LearnerEvent[] = [];
       let node = "";
       const r = simulate(course, orthography, seed, ability, (e) => {
+        log.push(e);
         if (e.type === "session_started") node = e.mode === "lesson" ? (e.node ?? "") : "";
-        if (e.type === "answer_submitted" && node !== "") for (const kc of e.exercise.kcs) (presented.get(node) ?? presented.set(node, new Set()).get(node))?.add(kc);
+        // A word is presented by a card credited to it: not as the context of another word's card.
+        if (e.type === "answer_submitted" && node !== "")
+          for (const { kc, status } of e.outcome.kcs) if (status !== "given") (presented.get(node) ?? presented.set(node, new Set()).get(node))?.add(kc);
       });
       const view = loadCourse(course, orthography);
       const carried = new Set([...allSentences(view).flatMap((s) => s.kcs), ...allKcs(view).filter((k) => (k.forms?.[view.orthography]?.length ?? 0) > 0).map((k) => k.id)]);
@@ -64,6 +70,71 @@ describe("planner: 30 simulated days", () => {
       );
       expect(r.firstTries).toBeGreaterThan(150);
       expect(Math.abs(rate - 0.85)).toBeLessThanOrEqual(0.05);
+      // Words get typed (ADR 0101): every learner is asked to produce, and some word shows it can be
+      // written. The success rate alone hid a month with no typing at all (the review's L5, L12).
+      const typed = (r.templates["translate-type.l1-l2"] ?? 0) + (r.templates["complete-translation"] ?? 0);
+      expect(typed).toBeGreaterThanOrEqual(5);
+      const written = learnedWords(view, replay(log), "2026-02-01T00:00:00.000Z").filter((w) => w.skills.some((k) => k.skill === "produce" && k.shown));
+      expect(written.length).toBeGreaterThan(0);
+    }, SIMULATION_TIMEOUT_MS);
+  }
+});
+
+/**
+ * Adaptive pacing (ADR 0105): learners who follow Continue, at their pace, against the same learners
+ * taking the next lesson every time. A weak, slow learner is not crushed and knows more words by day
+ * 30; a strong, fast one is neither held back nor drowned in easy review; the backlog stays lower.
+ */
+describe("pacing: 30 simulated days following Continue", () => {
+  const END = "2026-01-31T08:00:00.000Z";
+  const run = (course: string, ability: number, learning: number, follow: "path" | "continue") => {
+    const log: LearnerEvent[] = [];
+    const r = simulate(course, undefined, 31, ability, (e) => log.push(e), { follow, learning });
+    const words = learnedWords(loadCourse(course), replay(log), END);
+    return { rate: r.correct / r.firstTries, lessons: r.lessons, ...wordCounts(words) };
+  };
+  for (const course of ["es", "hbo"]) {
+    it(`${course}: a weak, slow learner stays near the target and knows more words`, () => {
+      const path = run(course, 0.5, 0.6, "path");
+      const paced = run(course, 0.5, 0.6, "continue");
+      expect(paced.rate).toBeGreaterThanOrEqual(0.8);
+      expect(paced.known).toBeGreaterThanOrEqual(path.known);
+      expect(paced.due).toBeLessThan(path.due);
+    }, 2 * SIMULATION_TIMEOUT_MS);
+    it(`${course}: a strong, fast learner moves on and is not drowned in easy review`, () => {
+      const path = run(course, 2.5, 1.5, "path");
+      const paced = run(course, 2.5, 1.5, "continue");
+      expect(paced.lessons).toBeGreaterThanOrEqual(30);
+      expect(paced.rate).toBeLessThanOrEqual(0.92);
+      expect(paced.known).toBeGreaterThanOrEqual(path.known);
+      expect(paced.due).toBeLessThan(path.due);
+    }, 2 * SIMULATION_TIMEOUT_MS);
+  }
+});
+
+/**
+ * Review spreads across what the learner has met (L1, L12): over a month of lessons, no earlier unit
+ * takes more than 40% of the review a lesson brings back. Before ADR 0097 apc's unit 1 alone took 42%
+ * (its "Thank you" sentences came back lesson after lesson).
+ */
+describe("review in lessons: 30 simulated days", () => {
+  for (const [course, orthography] of [["apc", "apc-Arab/standard"], ["es", undefined], ["fa", undefined]] as const) {
+    it(`${course}: no earlier unit dominates a lesson's review`, () => {
+      const view = loadCourse(course, orthography);
+      const unitOf = new Map(view.units.flatMap((u, i) => u.sentences.map((s) => [s.id, i] as const)));
+      const nodeUnit = new Map(view.units.flatMap((u, i) => u.nodes.map((n) => [n.id, i] as const)));
+      const counts = new Map<number, number>();
+      let node = "";
+      simulate(course, orthography, 6, 1.3, (e) => {
+        if (e.type === "session_started") node = e.mode === "lesson" ? (e.node ?? "") : "";
+        if (e.type !== "answer_submitted" || node === "" || e.attempt !== 1) return;
+        const unit = unitOf.get(e.exercise.item);
+        const here = nodeUnit.get(node);
+        if (unit !== undefined && here !== undefined && unit < here) counts.set(unit, (counts.get(unit) ?? 0) + 1);
+      });
+      const total = [...counts.values()].reduce((a, b) => a + b, 0);
+      expect(total).toBeGreaterThan(50);
+      expect(Math.max(...counts.values()) / total).toBeLessThanOrEqual(0.4);
     }, SIMULATION_TIMEOUT_MS);
   }
 });

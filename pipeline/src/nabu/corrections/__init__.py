@@ -34,13 +34,12 @@ from typing import Any, cast
 import regex
 import yaml
 
-from nabu.ai.reports import escape_notation
+from nabu.notation import canonical_map, escape, literal
 from nabu.schema.models import SentenceCorrection
 from nabu.vocalization import unmarker
 from nabu.yamlio import INVISIBLE, FlowList, dump
 
 WORDISH = regex.compile(r"[\p{L}\p{M}\p{N}]")
-SPECIALS = set("()[]|\\@")
 
 
 # ------------------------------------------------------------------------------------- reading
@@ -247,54 +246,6 @@ def retokenize(old: str, new: str, surfaces: list[str]) -> dict[int, str] | str:
 # --------------------------------------------------------------------------------- translations
 
 
-def canonical_map(line: str) -> tuple[str, list[tuple[int, int] | None]]:
-    """The canonical answer of one accept-set line (every optional part, the first branch of
-    every alternation, escapes resolved, no weight) and, per grapheme of it, the span it came from
-    in `line` when that is plain text outside any group (None otherwise)."""
-    body = regex.sub(r"\s+@\d+(\.\d+)?\s*$", "", line)
-    chars: list[tuple[str, int, int, bool]] = []  # char, start, end, plain
-    depth = 0
-    skipping: list[bool] = []  # per open group: are we past its first branch?
-    i = 0
-    while i < len(body):
-        c = body[i]
-        dead = any(skipping)
-        if c == "\\" and i + 1 < len(body):
-            if not dead:
-                chars.append((body[i + 1], i, i + 2, False))
-            i += 2
-            continue
-        if c in "([":
-            depth += 1
-            skipping.append(False)
-        elif c in ")]":
-            depth -= 1
-            if skipping:
-                skipping.pop()
-        elif c == "|" and skipping:
-            skipping[-1] = True
-        elif not dead:
-            chars.append((c, i, i + 1, depth == 0))
-        i += 1
-    text = "".join(c for c, _, _, _ in chars)
-    spans: list[tuple[int, int] | None] = []
-    at = 0
-    for g in _graphemes(text):
-        group = chars[at : at + len(g)]
-        at += len(g)
-        plain = all(p for _, _, _, p in group) and all(
-            group[n][1] == group[n - 1][2] for n in range(1, len(group))
-        )
-        spans.append((group[0][1], group[-1][2]) if plain and group else None)
-    return text, spans
-
-
-def _escape(text: str, at_start: bool) -> str:
-    """A piece of a literal answer in accept notation: specials escaped, spaces kept."""
-    out = "".join(f"\\{c}" if c in SPECIALS else c for c in text)
-    return f"\\{out}" if at_start and out.startswith("#") else out
-
-
 def edit_notation(line: str, new: str) -> str | None:
     """`line` with its canonical answer changed to `new`, edited inside the notation where every
     change touches only plain text; None when it cannot be."""
@@ -304,7 +255,7 @@ def edit_notation(line: str, new: str) -> str | None:
     for tag, i1, i2, j1, j2 in SequenceMatcher(None, og, ng, autojunk=False).get_opcodes():
         if tag == "equal":
             continue
-        replacement = _escape("".join(ng[j1:j2]), at_start=i1 == 0)
+        replacement = escape("".join(ng[j1:j2]), at_start=i1 == 0)
         if tag == "insert":
             left = spans[i1 - 1] if i1 > 0 else None
             right = spans[i1] if i1 < len(spans) else None
@@ -551,7 +502,7 @@ def _apply_one(
                 raise Conflict(f"the source changed since: the translation now reads {display!r}")
             edited = edit_notation(lines[first], fixed.translation)
             if edited is None:
-                edited = escape_notation(fixed.translation)
+                edited = literal(fixed.translation)
                 applied.checks.append(
                     f"translation: replaced {lines[first]!r}; the variants it accepted are gone"
                 )

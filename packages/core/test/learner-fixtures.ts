@@ -2,7 +2,8 @@
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { BundleManifest, KcCredit, LearnerEvent, Prediction } from "@nabu/schema";
-import { assembleCourse, MEDIA_ROLES, type CourseView, type Exercise } from "../src/lesson/index.ts";
+import { askedKcs } from "../src/learner/credit.ts";
+import { readCourse, type CourseView, type Exercise } from "../src/lesson/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
 const BUNDLES = join(ROOT, "apps/web/public/bundles");
@@ -10,12 +11,9 @@ const numberingSystems = JSON.parse(readFileSync(join(ROOT, "packages/i18n/src/g
 
 export const manifestOf = (id: string): BundleManifest => JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
 
+/** A course from its committed bundle: every test's one loader. */
 export const loadCourse = (id: string, orthography?: string): CourseView => {
-  const manifest = manifestOf(id);
-  const files = new Map<string, unknown>(
-    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
-  );
-  const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
+  const course = readCourse((path) => JSON.parse(readFileSync(join(BUNDLES, id, path), "utf8")) as unknown, numberingSystems, orthography);
   if (!course.ok) throw new Error(JSON.stringify(course.error));
   return course.value;
 };
@@ -38,6 +36,14 @@ export interface EventFactory {
   readonly completed: (mode: "lesson" | "review" | "mistakes", node: string | undefined, summary: { exercises: number; correctFirstTry: number; retries: number }) => LearnerEvent;
 }
 
+/** The credits the player logs for a whole answer (creditOf): the words asked about, the rest given. */
+const creditsOf = (ex: Exercise, correct: boolean): KcCredit[] => {
+  const asked = askedKcs(ex);
+  const status = correct ? "right" : "wrong";
+  if (asked === undefined) return ex.kcs.map((kc): KcCredit => ({ kc, status }));
+  return [...new Set([...asked, ...ex.kcs])].map((kc): KcCredit => ({ kc, status: asked.includes(kc) ? status : "given" }));
+};
+
 /** Builds valid learner events for one course, with a settable clock. */
 export const eventFactory = (course: CourseView, bundle: string): EventFactory => {
   const nextId = idFactory();
@@ -48,7 +54,7 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
     schema: 1 as const,
     device: "test",
     course: course.id,
-    orthography: course.orthography as LearnerEvent["orthography"],
+    orthography: course.orthography as Exclude<LearnerEvent, { type: "goal_set" }>["orthography"],
     support: course.supportKey,
     bundle,
     session,
@@ -70,8 +76,9 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
       type: "answer_submitted",
       exercise: { id: ex.id, template: ex.template, item: ex.item, kcs: [...ex.kcs] },
       attempt,
-      input: { method: "choice", latencyMs },
-      outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], kcs: ex.kcs.map((kc): KcCredit => ({ kc, status: correct ? "right" : "wrong" })) },
+      // Self-rated speaking (tier 0) carries the learner's rating, as the player logs it (ADR 0099).
+      input: { method: "choice", latencyMs, ...(ex.template === "speak.tier-0" ? { selfRating: correct ? ("good" as const) : ("again" as const) } : {}) },
+      outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], kcs: creditsOf(ex, correct) },
       ...(prediction === undefined ? {} : { prediction }),
     }),
     completed: (mode, node, summary) => ({

@@ -78,8 +78,11 @@ describe("listening templates", () => {
     }
   });
 
-  /** A copy of the course with one more word: `like`'s KC respelled `surface` (with its reading). */
-  const withWord = (course: CourseView, like: string, surface: string, reading?: string): CourseView => {
+  /**
+   * A copy of the course with one more word: `like`'s KC respelled `surface` (with its reading), and
+   * a sentence that says it, unless `said` is false.
+   */
+  const withWord = (course: CourseView, like: string, surface: string, reading?: string, said = true): CourseView => {
     const [unit, ...rest] = course.units;
     if (unit === undefined) throw new Error("no unit");
     const kc = unit.kcs.find((k) => k.forms?.[course.orthography]?.[0]?.tokens.map((t) => t.surface).join("") === like);
@@ -89,7 +92,7 @@ describe("listening templates", () => {
     const respelled = { ...form, tokens: [token] };
     const extra = { ...kc, id: `sense:${surface}` as typeof kc.id, forms: { [course.orthography]: [respelled] } };
     const sentence = unit.sentences.find((x) => x.forms[course.orthography] !== undefined);
-    const carrier = sentence === undefined ? [] : [{ ...sentence, id: `s.carrier.${surface}`, forms: { [course.orthography]: { ...sentence.forms[course.orthography], text: respelled } } }];
+    const carrier = sentence === undefined || !said ? [] : [{ ...sentence, id: `s.carrier.${surface}`, forms: { [course.orthography]: { ...sentence.forms[course.orthography], text: respelled } } }];
     return withAudio({ ...course, units: [{ ...unit, kcs: [...unit.kcs, extra], sentences: [...unit.sentences, ...carrier] }, ...rest] as CourseView["units"] });
   };
 
@@ -137,6 +140,9 @@ describe("listening templates", () => {
     const pairs = pairsOf(withWord(loadCourse("yue"), "嗎", "媽", "maa1"));
     expect(pairs).toEqual(expect.arrayContaining(["呀/嗎", "嗎/媽", "啦/媽"]));
     expect(pairs).not.toContain("啦/嗎");
+    // Words are compared by the readings their cards show, the ones the compiler pins on their
+    // forms (ADR 0117), whether or not a sentence spells them so.
+    expect(pairsOf(withWord(loadCourse("yue"), "嗎", "媽", "maa1", false))).toEqual(expect.arrayContaining(["嗎/媽", "啦/媽"]));
   });
 
   it("a missed word-level exercise comes back in mistakes mode", () => {

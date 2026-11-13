@@ -18,7 +18,6 @@ from nabu.corecli import CoreCli
 from nabu.corrections import (
     Outcome,
     apply,
-    canonical_map,
     edit_notation,
     flow_scalar,
     retokenize,
@@ -27,7 +26,7 @@ from nabu.corrections import (
 from nabu.schema.models import SentenceCorrection
 
 ROOT = Path(__file__).resolve().parents[2]
-ZWNJ = "‌"
+ZWNJ = "\u200c"
 FA = "fa-Arab/standard"
 YUE = "yue-Hant-HK/standard"
 UZ_CYRL = "uz-Cyrl/standard"
@@ -125,21 +124,6 @@ def test_a_translation_is_edited_inside_its_notation_where_the_change_is_plain_t
             core_cli.result("accept", profile="en-Latn/standard", accept=edited)["canonicalSource"]
             == new
         )
-
-
-def test_the_canonical_answer_maps_back_to_the_notation(core_cli: CoreCli) -> None:
-    for line in [
-        "(Thanks|Thank you), I('m| am) (well|fine).",
-        "It('s| is) Maryam.",
-        "a [b (c|d)] e @2",
-    ]:
-        text, spans = canonical_map(line)
-        assert (
-            text
-            == core_cli.result("accept", profile="en-Latn/standard", accept=line)["canonicalSource"]
-        )
-        plain = "".join(line[s[0] : s[1]] for s in spans if s is not None)
-        assert all(c not in "()[]|" for c in plain)
 
 
 def test_tokens_follow_a_punctuation_or_spelling_fix_and_nothing_else() -> None:

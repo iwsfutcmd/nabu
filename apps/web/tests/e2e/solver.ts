@@ -10,11 +10,12 @@ import { restrictMedia } from "@nabu/core/offline";
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
-import { pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
-import { assembleCourse, lessonNodes, MEDIA_ROLES, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
+import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
+import { lessonNodes, readCourse, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
+import { exclusionsOf, facetsOffOf, type Off } from "../../src/breaks.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../../..");
 const BUNDLES = join(ROOT, "apps/web/public/bundles");
@@ -26,11 +27,7 @@ export type Mode = "keyboard" | "touch";
 const manifestOf = (id: string): BundleManifest => JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
 
 export const loadCourse = (id: string, orthography: string): CourseView => {
-  const manifest = manifestOf(id);
-  const files = new Map<string, unknown>(
-    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
-  );
-  const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
+  const course = readCourse((path) => JSON.parse(readFileSync(join(BUNDLES, id, path), "utf8")) as unknown, numberingSystems, orthography);
   if (!course.ok) throw new Error(JSON.stringify(course.error));
   return course.value;
 };
@@ -70,9 +67,29 @@ export const teachable = async (page: Page, course: CourseView): Promise<CourseV
   return restrictMedia(course, (path) => stored.has(path));
 };
 
-/** The session the app plans for this log, clock and seed (no speech server: tones scored on the device). */
-export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number): readonly Exercise[] =>
-  plan(course, replay(log), request, { now: now.toISOString(), seed, speech: speechSupportOf(course, 0) }).exercises;
+/** The local date (YYYY-MM-DD) at `now` in a time zone, as the app's clock stamps it in a browser there. */
+const localDateIn = (now: Date, timeZone: string): string => {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now);
+  const part = (type: Intl.DateTimeFormatPartTypes): string => parts.find((p) => p.type === type)?.value ?? "";
+  return `${part("year")}-${part("month")}-${part("day")}`;
+};
+
+/**
+ * The session the app plans for this log, clock and seed (no speech server: tones scored on the
+ * device), in the browser's time zone: UTC (playwright.config.ts) unless the spec sets another. The
+ * plan aims at the skills of words met before the learner's local date (ADR 0101). `off`: why
+ * listening or speaking is off on the device, if it is (a break, or turned off in Preferences), from
+ * which the app derives what it leaves out: their exercises, and listening turned off for good from
+ * known words and what is due (D41).
+ */
+export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number, timeZone = "UTC", off: Off = {}): readonly Exercise[] => {
+  const state = replay(log);
+  const exclude = exclusionsOf(off);
+  const facetsOff = facetsOffOf(off);
+  // At the pace the app reads from the same log (ADR 0105); the tests never choose one.
+  const pace = paceOf(course, state, now.toISOString(), "auto", facetsOff).band;
+  return plan(course, state, request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0), pace, facetsOff, ...(exclude.size === 0 ? {} : { exclude }) }).exercises;
+};
 
 /**
  * A learner who already finished every lesson before `node`, two days before
@@ -119,7 +136,7 @@ export const historyBefore = (course: CourseView, node: string, now: Date): Lear
         outcome: { kind: "CORRECT", notes: [], kcs: ex.kcs.map((kc) => ({ kc, status: "right" as const })) },
       });
     }
-    const summary = { completed: true, exercises: exercises.length, correctFirstTry: exercises.length, retries: 0, skipped: 0 };
+    const summary = { completed: true, exercises: graded(exercises), correctFirstTry: graded(exercises), retries: 0, skipped: 0 };
     events.push({ ...base(), type: "session_completed", mode: "lesson", node: id, summary });
   }
   return events;
@@ -184,6 +201,7 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     case "tone-identify":
     case "letter-read":
     case "word-read":
+    case "vocalize":
       await choose(page, mode, ex.answer);
       return;
     case "translate-tap.l2-l1":
@@ -217,10 +235,8 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
       }
       return;
     }
-    case "vocalize":
     case "transcribe": {
-      // The vocalize field starts from the word's letters: the answer replaces them.
-      const text = surfaceOf(ex.template === "vocalize" ? ex.vocalized : ex.reading);
+      const text = surfaceOf(ex.reading);
       const field = page.locator("[data-answer-input]");
       if (mode === "touch") await field.tap();
       await field.selectText();
@@ -262,11 +278,14 @@ const miss = async (page: Page, ex: Exercise, mode: Mode): Promise<void> => {
   await choose(page, mode, (ex.answer + 1) % ex.options.length);
 };
 
-/** Feedback must say "right"; then move on the same way the learner answered. */
+/** The cards a session's score counts: a self-rated speaking card is no verdict (P5). */
+export const graded = (exercises: readonly Exercise[]): number => exercises.filter((e) => e.template !== "speak.tier-0").length;
+
+/** Feedback must say "right" (or, for a self-rating, nothing either way); then move on the same way the learner answered. */
 export const expectRightAndContinue = async (page: Page, mode: Mode, ex: Exercise): Promise<void> => {
   const feedback = page.locator("[data-feedback]");
   await expect(feedback, ex.id).toBeVisible();
-  expect(await feedback.getAttribute("data-verdict"), `${ex.id}: ${await feedback.innerText()}`).toMatch(/^CORRECT/u);
+  expect(await feedback.getAttribute("data-verdict"), `${ex.id}: ${await feedback.innerText()}`).toMatch(/^(CORRECT|SELF_RATED$)/u);
   await next(page, mode);
 };
 
@@ -280,11 +299,21 @@ export const seriousAxeViolations = async (page: Page, scope = "[data-lesson-pla
   return result.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help} (${v.nodes.map((n) => n.target.join(" ")).join(", ")})`);
 };
 
+/** The exercise the player shows under `id`: the planned one, or its retry ("…#2", "…#3") as core reshuffles it. */
+export const retried = (planned: Exercise, id: string): Exercise => {
+  const attempt = Number(id.split("#")[1] ?? "1");
+  let ex = planned;
+  for (let a = 2; a <= attempt; a++) ex = retryOf(ex, a);
+  return ex;
+};
+
 export interface PlayOptions {
   /** Planned exercise ids to answer wrong the first time; the player brings them back. */
   readonly miss?: ReadonlySet<string>;
   /** Run axe on every exercise and its feedback (keyboard passes). */
   readonly axe?: boolean;
+  /** How many planned exercises the test played itself before handing over (default none). */
+  readonly played?: number;
 }
 
 /**
@@ -303,9 +332,10 @@ export const playSession = async (page: Page, exercises: readonly Exercise[], mo
     const base = id.split("#")[0] ?? id;
     const planned = byId.get(base);
     if (planned === undefined) throw new Error(`the app showed ${id}, which the solver did not plan`);
-    if (!id.includes("#")) expect(id, "planned order").toBe(exercises[seen.filter((s) => !s.includes("#")).length]?.id);
+    if (!id.includes("#")) expect(id, "planned order").toBe(exercises[(options.played ?? 0) + seen.filter((s) => !s.includes("#")).length]?.id);
     seen.push(id);
-    const ex = { ...planned, id };
+    // A card that comes back has its options or tiles in a new order (P4): the player's own reshuffle.
+    const ex = retried(planned, id);
     if (options.axe === true) violations.push(...(await seriousAxeViolations(page)).map((v) => `${id}: ${v}`));
     if (options.miss?.has(id) === true) {
       await miss(page, ex, mode);

@@ -16,6 +16,7 @@ import yaml
 
 from nabu import yamlio
 from nabu.compiler import compile_course
+from nabu.items import unit_json
 
 from .conftest import ROOT, CoreCli
 from .fixtures.make_lint_fixtures import CLEAN, with_story
@@ -44,7 +45,7 @@ def test_a_clean_story_compiles_without_diagnostics(core_cli: CoreCli, tmp_path:
     diags, compiled = compile_course(path, core_cli)
     assert compiled is not None
     assert [d.format() for d in diags.items] == []
-    [story] = compiled.units[0]["stories"]
+    [story] = unit_json(compiled.units[0])["stories"]
     assert story["node"] == "basics.story" and story["kcs"] == [
         "sense:salom",
         "sense:men",
@@ -66,9 +67,10 @@ def test_every_fixture_course_has_stories_in_every_orthography(courses: dict[str
     """Every unit's story sits on a story node, asks questions, and has every line in every
     orthography; across the course, both kinds of line question are used."""
     for course, compiled in courses.items():
-        stories = [s for u in compiled.units for s in u.get("stories", [])]
+        units = [unit_json(u) for u in compiled.units]
+        stories = [s for u in units for s in u.get("stories", [])]
         assert len(stories) >= 1, course
-        nodes = {n["id"]: n["kind"] for u in compiled.units for n in u["nodes"]}
+        nodes = {n["id"]: n["kind"] for u in units for n in u["nodes"]}
         asks: set[str] = set()
         for story in stories:
             assert nodes[story["node"]] == "story", story["id"]
@@ -100,7 +102,10 @@ def test_the_vocalized_apc_story_glosses_against_unvocalized_keys(
     # The glossary keys carry no vowel marks (a shadda at most, as in بدّي).
     assert entries and all(not (set(e["text"]) & (HARAKAT - {chr(0x0651)})) for e in entries)
     [story] = [
-        s for u in compiled.units for s in u.get("stories", []) if s["id"] == "apc.story.cafe"
+        s
+        for u in compiled.units
+        for s in unit_json(u).get("stories", [])
+        if s["id"] == "apc.story.cafe"
     ]
     vocalized = 0
     for step in story["steps"]:

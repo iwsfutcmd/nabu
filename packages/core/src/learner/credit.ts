@@ -13,7 +13,13 @@ import type { CompiledProfile } from "../profile/compile.ts";
 import { isCorrect, type Exercise, type Facet, type Outcome, type SelfRating } from "../lesson/exercise.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
 
-export type Rating = "again" | "hard" | "good";
+export type Rating = "again" | "hard" | "good" | "easy";
+
+/**
+ * How an answer's time compares with the learner's usual for its template, per unit of length
+ * (ADR 0096): much slower is "slow", much faster "fast".
+ */
+export type Pace = "slow" | "usual" | "fast";
 
 /** The facet an exercise of this template exercises (§9.1). */
 export const facetOf = (template: Exercise["template"]): Facet => TEMPLATES[template].facet;
@@ -28,14 +34,22 @@ const unique = <T>(xs: readonly T[]): readonly T[] => [...new Set(xs)];
 
 const firstToken = (text: TaggedText | undefined): Token | undefined => text?.tokens[0];
 
-/** The KCs an exercise asks the learner to produce or pick; the rest of its KCs were given. */
-const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
+/** The KCs an answer is credited to: those the exercise asks about, else all of its KCs. */
+export const creditedKcs = (ex: Exercise): readonly KcId[] => askedKcs(ex) ?? ex.kcs;
+
+/** The KCs an exercise asks the learner to produce, pick or pronounce; the rest of its KCs were given. */
+export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
   if (ex.template === "complete-translation") {
     const token = firstToken(ex.blank);
     return token === undefined ? undefined : kcsOfToken(token);
   }
   if (ex.template === "gap-fill" || ex.template === "story-complete") {
     const token = firstToken(ex.options[ex.answer]);
+    return token === undefined ? undefined : kcsOfToken(token);
+  }
+  // A pronunciation card in context (ADR 0095, 0098) asks about one word; the sentence around it is given.
+  if (ex.template === "vocalize" || ex.template === "transcribe" || (ex.template === "char-read" && ex.word !== undefined)) {
+    const token = ex.word === undefined ? undefined : ex.prompt.tokens[ex.word];
     return token === undefined ? undefined : kcsOfToken(token);
   }
   return undefined;
@@ -93,17 +107,33 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
   return ex.kcs.map((kc) => ({ kc, status: right ? "right" : "wrong" }));
 };
 
-/** The rating that goes to FSRS (§9.2). Learners never rate themselves, except speaking at tier 0. */
+/**
+ * The rating that goes to FSRS (§9.2, ADR 0096). Learners never rate themselves, except speaking at
+ * tier 0: the answer says how recall went. Right is Good; right but slow, or with a slip (typo,
+ * marks, variant, provisional, IME), is Hard; right, fast and typed from memory is Easy, which the
+ * fold grants only to a card already sure. A right answer after a hint (a word's meaning looked up
+ * on the card before answering, D16) is Hard at best: §9.2's Good is for an answer with no hint.
+ */
 export const ratingOf = (
   status: KcCredit["status"],
   verdict: Verdict,
   notes: readonly string[],
-  slow: boolean,
+  pace: Pace,
   selfRating?: SelfRating,
+  typed = false,
+  hinted = false,
 ): Rating | undefined => {
+  const rating = unhintedRating(status, verdict, notes, pace, selfRating, typed);
+  return hinted && (rating === "good" || rating === "easy") ? "hard" : rating;
+};
+
+const unhintedRating = (status: KcCredit["status"], verdict: Verdict, notes: readonly string[], pace: Pace, selfRating: SelfRating | undefined, typed: boolean): Rating | undefined => {
   if (status === "given") return undefined;
   if (status === "wrong") return "again";
   if (selfRating !== undefined) return selfRating === "again" ? "again" : selfRating;
-  if (verdict === "CORRECT" || verdict === "CORRECT_ALT") return slow || notes.includes("pairs-mistakes") ? "hard" : "good";
-  return "hard"; // typo, marks, variant, provisional, IME slip
+  if (verdict === "CORRECT" || verdict === "CORRECT_ALT") {
+    if (pace === "slow" || notes.includes("pairs-mistakes")) return "hard";
+    return pace === "fast" && typed ? "easy" : "good";
+  }
+  return "hard";
 };

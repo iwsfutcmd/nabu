@@ -4,42 +4,85 @@
  * static build works anywhere (GitHub Pages):
  *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes | placement>
  *   · #/<course>/<orthography>/story/<node> · #/<course>/<orthography>/roleplay/<scenario>
+ *   · #/<course>/<orthography>/<words | sentences | reports | offline> (the course page's links)
  *
  * Local-first (§14.2): every learner event goes to the on-device log, and the
  * path, XP and the next session are projections of it, computed by @nabu/core.
  * An account is optional; with one, the log syncs to the server.
+ *
+ * A running session holds the route: Back asks before leaving it, and leaving a
+ * finished one goes back to where it was opened from (navigation.ts). A reload
+ * picks a session up where it was (open-session.ts).
  */
-import { applyEvents, dueFacets, pathNodes, pathOf, plan, practicableMistakes, replay, scriptPathOf, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
-import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type TemplateId } from "@nabu/core/lesson";
+import {
+  applyEvents,
+  continueOf,
+  learnedWords,
+  paceOf,
+  pathOf,
+  pathUnits,
+  plan,
+  plannable,
+  practicableMistakes,
+  replay,
+  scriptPathOf,
+  wordCounts,
+  type LearnerState,
+  type NodeStatus,
+  type PaceChoice,
+  type PathNode,
+  type SessionPlan,
+  type SessionRequest,
+  type Studied,
+} from "@nabu/core/learner";
+import { cardGloss, createGrader, doneOf, firstTriesOf, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Facet, type PlayerState } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
-import { draftCount } from "@nabu/core/corrections";
+import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
-import { storyAt, storyScript } from "@nabu/core/story";
-import { directionOf } from "@nabu/i18n";
-import type { AnswerSubmitted, LearnerEvent, SchemeId, SentenceReported } from "@nabu/schema";
-import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
-import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
+import { wordIndexes } from "@nabu/core/text";
+import { prepareMeanings, storyAt, storyScript } from "@nabu/core/story";
+import { courseBlurb, courseName, directionOf, orthographyHint, orthographyName, type Named } from "@nabu/i18n";
+import type { AnswerSubmitted, BundleNode, BundleUnit, LearnerEvent, SentenceReported, TaggedText } from "@nabu/schema";
+import { CorrectIcon, CourseUiProvider, ExpandIcon, LockIcon, T, useTranslator } from "@nabu/ui";
+import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse, type NextStep } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
-import { AnswerHelp, Conversations, RoleplayPage, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX, type MouseEvent } from "react";
+import { AnswerHelp, MissedHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, useSessionHelp, type AiStatus } from "./ai.tsx";
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
-import { localDate } from "./clock.ts";
-import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
+import summaries from "virtual:nabu-courses";
+import { localDate, uuidv7 } from "./clock.ts";
+import { BREAK_MS, exclusionsOf, facetsOffOf, isOff, offNow, playsUnasked, setBreakUntil, setTurnedOff, turnOn, type Modality } from "./breaks.ts";
+import { paceChoiceOf, setPaceChoice } from "./pace.ts";
+import { SentencesPage, useCorrections } from "./Corrections.tsx";
+import { LineReport } from "./Report.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
-import { reportIntake } from "./reports.ts";
+import { storedReading, storeReading } from "./readings.ts";
+import { reportIntake, reportsThrough } from "./reports.ts";
+import { ReportsLink, ReportsPage } from "./YourReports.tsx";
 import { AudioCheckPage } from "./AudioCheck.tsx";
-import { CardsPage, debugOn } from "./Debug.tsx";
-import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
-import { Progress } from "./Progress.tsx";
-import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
-import { PreferencesPage } from "./Preferences.tsx";
+import { CardsPage, debugMode } from "./Debug.tsx";
+import { GamePanel, gateClosed, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
+import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
+import { Progress, SignedOutNotice } from "./Progress.tsx";
+import { OfflineNotice, OfflinePage } from "./Offline.tsx";
+import { ContinueCard, useStudied, type ContinueLinks } from "./HomeContinue.tsx";
+import { lastPractised, orderCourses, resumeOf } from "./left-off.ts";
+import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
+import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
+import { UI_CATALOGS } from "./caches.ts";
 import { startNative } from "./native.ts";
+import { cameFrom, holdRoute, leave, openAddress, watchRoute } from "./navigation.ts";
+import { isOpenMessage } from "./caches.ts";
+import { closeOpen, keepOpen, reopen, type OpenSession } from "./open-session.ts";
+import { mostQuestions, PlacementIntro, PlacementResult } from "./Placement.tsx";
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, resetEvent, storyRecorder } from "./session.ts";
+import { nextStepOf, practises, useSessionEnd } from "./session-end.ts";
+import { focusScreen, Loading, ScreenHeading, sessionName, titleOf, useScreen } from "./screen.tsx";
 import { StartOver } from "./StartOver.tsx";
 import { openStore, type EventStore } from "./store.ts";
 import { createSync, type Account, type Sync } from "./sync.ts";
@@ -53,9 +96,9 @@ const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
 const OFFLINE = import.meta.env.PROD && offlineSupported() && !isNative();
 
 /** Debug mode (?debug=1, remembered on this device): every card says its kind; a gallery of every kind. */
-const DEBUG = debugOn();
+const DEBUG = debugMode;
 
-type Route =
+export type Route =
   | { readonly tag: "home" }
   | { readonly tag: "preferences" }
   | { readonly tag: "course"; readonly course: string; readonly orthography: string }
@@ -66,6 +109,8 @@ type Route =
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "reports"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "offline"; readonly course: string; readonly orthography: string }
   | { readonly tag: "review" }
   | { readonly tag: "review-course"; readonly course: string; readonly orthography: string };
 
@@ -88,6 +133,8 @@ const parse = (hash: string): Route => {
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
   if (session === "words") return { tag: "words", course, orthography: unslug(orthography) };
+  if (session === "reports") return { tag: "reports", course, orthography: unslug(orthography) };
+  if (session === "offline") return { tag: "offline", course, orthography: unslug(orthography) };
   if (session === "story" && node !== undefined) return { tag: "story", course, orthography: unslug(orthography), node };
   if (session === "roleplay" && node !== undefined) return { tag: "roleplay", course, orthography: unslug(orthography), scenario: node };
   return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
@@ -110,30 +157,53 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words"
+          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
+/** The route in the URL hash; a running session holds it (navigation.ts, S3). */
 const useRoute = (): Route => {
   const [route, setRoute] = useState(() => parse(window.location.hash));
-  useEffect(() => {
-    const onChange = (): void => setRoute(parse(window.location.hash));
-    window.addEventListener("hashchange", onChange);
-    return () => window.removeEventListener("hashchange", onChange);
-  }, []);
+  useEffect(() => watchRoute(() => setRoute(parse(window.location.hash))), []);
   return route;
 };
 
+/**
+ * A link that leaves the screen it is on (navigation.ts): back to `to` when that is where the
+ * learner came from, else in this screen's place, so Back never returns to what was left.
+ */
+const leaving =
+  (to: string) =>
+  (e: MouseEvent<HTMLAnchorElement>): void => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    leave(to);
+  };
+
 type Translator = ReturnType<typeof useTranslator>;
 
-const courseName = (t: Translator, id: string): string => {
-  const key = `course.name.${id}`;
-  return t.has(key) ? t.format(key) : id;
+/** Where Preferences goes back to (S8): the course page or the session it was opened from, else the course list. */
+const preferencesBack = (from: string | null): { readonly to: string; readonly label: PreferencesBack } => {
+  const at = from === null ? undefined : parse(from);
+  if (at?.tag === "course") return { to: href(at), label: "preferences.back.course" };
+  if (at?.tag === "session") {
+    const { mode } = at.request;
+    return { to: href(at), label: mode === "lesson" ? "preferences.back.lesson" : mode === "placement" ? "preferences.back.placement" : "preferences.back.practice" };
+  }
+  return { to: href({ tag: "home" }), label: "preferences.back" };
 };
 
-const orthographyName = (t: Translator, id: string): string => {
-  const key = `orthography.${slug(id)}`;
-  return t.has(key) ? t.format(key) : id;
+/** A sentence of the course for Preferences' text size (S8): the first on its path of three words or more, else its first. */
+const sampleOf = (course: CourseView, language: string): TextSample | undefined => {
+  const sentences = lessonNodes(course).flatMap(({ unit, node }) =>
+    node.sentences.flatMap((id) => {
+      const sentence = unit.sentences.find((s) => s.id === id);
+      const text = sentence?.forms[course.orthography]?.text;
+      return sentence === undefined || text === undefined ? [] : [{ text, translation: sentence.translations[course.supportKey]?.text }];
+    }),
+  );
+  const pick = sentences.find((s) => wordIndexes(s.text).length >= 3) ?? sentences[0];
+  return pick === undefined ? undefined : { course, language, ...pick };
 };
 
 interface GameProps {
@@ -141,32 +211,151 @@ interface GameProps {
   readonly gameConfig: GameConfig | null;
 }
 
-const Home = ({ courses, store, sync, game, gameConfig, version, online }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string; online: boolean } & GameProps): JSX.Element => {
+/** What a course's card says of its size and levels, from the bundles (vite-courses.ts). */
+const aboutCourse = (t: Translator, id: string): string | undefined => {
+  const summary = summaries[id];
+  if (summary === undefined) return undefined;
+  const { units, levels } = summary;
+  if (levels === undefined) return t.format("app.home.course.units", { units });
+  return levels[0] === levels[1] ? t.format("app.home.course.level", { level: levels[0], units }) : t.format("app.home.course.levels", { from: levels[0], to: levels[1], units });
+};
+
+/** What a course leaves out, said on its card: a reading course, or one without listening (ADR 0071, 0091). */
+const leavesOut = (id: string): "app.home.course.reading" | "app.home.course.no-listening" | undefined => {
+  const summary = summaries[id];
+  if (summary === undefined || summary.listening) return undefined;
+  return summary.speaking ? "app.home.course.no-listening" : "app.home.course.reading";
+};
+
+/**
+ * A course in the list (S4): the whole card is the link to its course page, in its first writing
+ * system, or the one the learner studies it in (S1); a line on what it teaches, its levels and size,
+ * and what it leaves out, and when the learner last practised it. A course written in several
+ * systems offers each, with a hint, and says the learner can switch any time.
+ */
+const CourseCard = ({ entry, studied }: { readonly entry: CourseIndexEntry; readonly studied?: Studied | undefined }): JSX.Element => {
+  const t = useTranslator();
+  const orthography = studied !== undefined && entry.orthographies.includes(studied.orthography) ? studied.orthography : entry.orthographies[0];
+  const blurb = courseBlurb(t, entry);
+  const about = aboutCourse(t, entry.id);
+  const leaves = leavesOut(entry.id);
+  return (
+    <li className={`${styles.course} ${styles.courseCard}`} data-course={entry.id} data-studied={studied === undefined ? undefined : ""}>
+      <h2 className={styles.courseName}>
+        {orthography === undefined ? (
+          courseName(t, entry)
+        ) : (
+          <a className={styles.courseLink} href={href({ tag: "course", course: entry.id, orthography })} data-course-link="">
+            {courseName(t, entry)}
+          </a>
+        )}
+      </h2>
+      {studied !== undefined && (
+        <p className={styles.muted} data-course-last="">
+          {lastPractised(t, studied.at, new Date())}
+        </p>
+      )}
+      {blurb !== undefined && <p className={styles.courseLine}>{blurb}</p>}
+      {about !== undefined && (
+        <p className={styles.muted} data-course-about="">
+          {about}
+        </p>
+      )}
+      {leaves !== undefined && (
+        <p className={styles.courseTag} data-course-leaves="">
+          {t.format(leaves)}
+        </p>
+      )}
+      {entry.orthographies.length > 1 && (
+        <div className={styles.scripts} role="group" aria-labelledby={`scripts-${entry.id}`}>
+          <p className={`${styles.courseLine} ${styles.label}`} id={`scripts-${entry.id}`}>
+            {t.format("app.home.writing")}
+          </p>
+          <p className={styles.muted}>{t.format("app.home.writing-switch")}</p>
+          <div className={styles.links}>
+            {entry.orthographies.map((o) => {
+              const hint = orthographyHint(t, entry, o);
+              return (
+                <a key={o} className={`${styles.link} ${styles.scriptLink}`} href={href({ tag: "course", course: entry.id, orthography: o })} data-orthography={o}>
+                  <span>{orthographyName(t, entry, o)}</span>
+                  {hint !== undefined && <span className={styles.scriptHint}>{hint}</span>}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </li>
+  );
+};
+
+/** Where the learner left off (S1): the course Home continues, and once loaded, the course and the learner's state in it. */
+interface LeftOff {
+  readonly entry: CourseIndexEntry;
+  readonly orthography: string;
+  readonly course: CourseView | undefined;
+  readonly state: LearnerState | undefined;
+}
+
+const Home = ({
+  courses,
+  store,
+  sync,
+  game,
+  gameConfig,
+  version,
+  online,
+  onGoal,
+  studied,
+  leftOff,
+}: {
+  courses: readonly CourseIndexEntry[];
+  store: EventStore;
+  sync: Sync;
+  version: string;
+  online: boolean;
+  onGoal: (days: number) => void;
+  /** The courses studied, the latest first (S1). */
+  studied: readonly Studied[];
+  leftOff: LeftOff | undefined;
+} & GameProps): JSX.Element => {
   const t = useTranslator();
   const account = useSyncExternalStore(sync.subscribe, () => sync.get().account);
   const reviewer = useReviewer(sync);
+  // A learner who has not started yet is told what this is and how to begin (S4).
+  const fresh = game !== null && game.days.length === 0 && game.xp.total === 0;
+  // The courses studied first, the latest first (S1); the rest in the order of their names as the UI language sorts them.
+  const collator = new Intl.Collator(t.formattingLocale);
+  const sorted = orderCourses(courses, studied, (a, b) => collator.compare(courseName(t, a), courseName(t, b)));
+  const lastIn = new Map(studied.map((s) => [s.course, s]));
+  const links = (r: LeftOff): ContinueLinks => {
+    const at = { course: r.entry.id, orthography: r.orthography };
+    return {
+      page: href({ tag: "course", ...at }),
+      review: href({ tag: "session", ...at, request: { mode: "review" } }),
+      node: (n) => (n.kind === "story" ? href({ tag: "story", ...at, node: n.node }) : href({ tag: "session", ...at, request: { mode: "lesson", node: n.node } })),
+    };
+  };
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
-      {!online && <OfflineNotice />}
-      {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} />}
+      {!online && <OfflineNotice synced={account !== undefined} />}
+      <SignedOutNotice sync={sync} />
+      {fresh && (
+        <div className={styles.intro} data-home-intro="">
+          <p>{t.format("app.home.intro")}</p>
+          <p className={styles.muted}>{t.format("app.home.start")}</p>
+        </div>
+      )}
+      {leftOff !== undefined && <ContinueCard entry={leftOff.entry} orthography={leftOff.orthography} course={leftOff.course} state={leftOff.state} links={links(leftOff)} />}
+      {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} onGoal={onGoal} />}
       {account !== undefined && <LeaguePanel account={account} version={version} />}
       <ul className={styles.list} data-course-list="">
-        {courses.map((c) => (
-          <li key={c.id} className={styles.course} data-course={c.id}>
-            <h2 className={styles.courseName}>{courseName(t, c.id)}</h2>
-            {c.orthographies.length > 1 && <p className={styles.muted}>{t.format("app.home.writing")}</p>}
-            <div className={styles.links}>
-              {c.orthographies.map((o) => (
-                <a key={o} className={styles.link} href={href({ tag: "course", course: c.id, orthography: o })} data-orthography={o}>
-                  {orthographyName(t, o)}
-                </a>
-              ))}
-            </div>
-          </li>
+        {sorted.map((c) => (
+          <CourseCard key={c.id} entry={c} studied={lastIn.get(c.id)} />
         ))}
       </ul>
-      <Progress store={store} sync={sync} />
+      <Progress store={store} sync={sync} courses={courses} />
       <div className={styles.links}>
         <a className={styles.link} href={href({ tag: "preferences" })} data-preferences-link="">
           {t.format("app.preferences.link")}
@@ -194,15 +383,179 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
   );
 };
 
-/** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
-/** The course's offline state, where this build keeps courses offline. */
-interface OfflineProps {
-  readonly online: boolean;
-  readonly root: string;
-  readonly stored: ReadonlySet<string> | undefined;
-  readonly onChange: () => void;
+/** A word (or letter) a path node previews, and under it what it means or how it is spelled in Latin letters. */
+interface PreviewItem {
+  readonly text: TaggedText;
+  readonly gloss?: TaggedText | undefined;
 }
 
+/**
+ * What a path node brings (S11): its new words, each with its meaning under it, so a learner who
+ * cannot read the script yet still knows what is coming. In the direction of the words' script.
+ */
+const Preview = ({ items, label }: { readonly items: readonly PreviewItem[]; readonly label?: string | undefined }): JSX.Element | null => {
+  const first = items[0];
+  if (first === undefined) return null;
+  return (
+    <span className={styles.preview} role={label === undefined ? undefined : "group"} aria-label={label} dir={directionOf(first.text.lang)} data-preview="">
+      {items.map(({ text, gloss }, k) => (
+        <span key={k} className={styles.previewItem} data-preview-item="">
+          <T text={text} />
+          {gloss !== undefined && <T className={styles.previewGloss} text={gloss} />}
+        </span>
+      ))}
+    </span>
+  );
+};
+
+/**
+ * A lesson's new words in the orthography being learned, each with its meaning as a card shows it
+ * (its first sense). A drill's KC has no form: it previews what it practises ("numbers").
+ */
+const previewOf = (course: CourseView, unit: BundleUnit, node: BundleNode): PreviewItem[] =>
+  node.introduces.flatMap((id): PreviewItem[] => {
+    const kc = unit.kcs.find((k) => k.id === id);
+    const form = kc?.forms?.[course.orthography]?.[0];
+    const gloss = kc?.gloss?.[course.supportKey];
+    if (form !== undefined) return [{ text: form, gloss: gloss === undefined ? undefined : cardGloss(gloss) }];
+    return node.kind === "practice" && gloss !== undefined ? [{ text: cardGloss(gloss) }] : [];
+  });
+
+interface UnitHeadingProps {
+  readonly course: CourseView;
+  readonly unit: BundleUnit;
+  /** Its number on the path; none for a unit of practice only, or an alphabet row. */
+  readonly number: number | undefined;
+  /** What it is called where it has no title of its own (a drill's unit: "Extra practice"). */
+  readonly untitled?: string | undefined;
+  readonly done: number;
+  readonly total: number;
+  /** A line under it: who an alphabet row is for. */
+  readonly advice?: string | undefined;
+  /** A finished unit folds away (S2): its heading shows and hides its lessons. */
+  readonly fold?: Fold | undefined;
+}
+
+interface Fold {
+  readonly open: boolean;
+  /** The id of the list it shows and hides. */
+  readonly list: string;
+  readonly onToggle: () => void;
+}
+
+/**
+ * A unit's heading on the path (S11): its number and title, its level, and how many of its lessons
+ * and stories are done. A finished unit's heading is a button that shows its lessons again (S2).
+ */
+const UnitHeading = ({ course, unit, number, untitled, done, total, advice, fold }: UnitHeadingProps): JSX.Element => {
+  const t = useTranslator();
+  const title = unit.title?.[course.supportKey];
+  const name = (
+    <>
+      {number !== undefined && (
+        <>
+          <span className={styles.unitNumber} data-unit-number={number}>
+            {t.format("app.path.unit", { number })}
+          </span>{" "}
+        </>
+      )}
+      {title !== undefined ? <T text={title} /> : untitled}
+    </>
+  );
+  return (
+    <div className={styles.unitHead}>
+      <h3 className={styles.unitName}>
+        {fold === undefined ? (
+          name
+        ) : (
+          <button type="button" className={styles.unitToggle} aria-expanded={fold.open} aria-controls={fold.list} onClick={fold.onToggle} data-action="unit-toggle">
+            <span>{name}</span>
+            {/* Down while folded; up once open, to fold it again. */}
+            <ExpandIcon size={20} open={fold.open} />
+          </button>
+        )}
+      </h3>
+      <p className={styles.unitMeta}>
+        {unit.cefr !== undefined && (
+          <span className={styles.level} data-unit-level={unit.cefr}>
+            {t.format("app.path.level", { level: unit.cefr })}
+          </span>
+        )}
+        <span data-unit-done={done} data-unit-total={total}>
+          {t.format("app.path.unit-done", { done, total })}
+        </span>
+      </p>
+      {advice !== undefined && (
+        <p className={styles.unitAdvice} data-unit-advice="">
+          {advice}
+        </p>
+      )}
+    </div>
+  );
+};
+
+const OFF_COPY = {
+  listening: { break: "app.listening.off", setting: "app.listening.off-setting", on: "app.listening.on", keep: "app.listening.keep-off" },
+  speaking: { break: "app.speaking.off", setting: "app.speaking.off-setting", on: "app.speaking.on", keep: "app.speaking.keep-off" },
+} as const;
+
+/**
+ * Listening or speaking off, on the course page: for an hour, or turned off in Preferences (S8). It
+ * says which, turns them back on at once, and offers to keep a break's for good: a learner who cannot
+ * listen at all should not have to say so every hour.
+ */
+const OffNotice = ({ modality, why, onChange }: { modality: Modality; why: "break" | "setting"; onChange: (why: "setting" | undefined) => void }): JSX.Element => {
+  const t = useTranslator();
+  const copy = OFF_COPY[modality];
+  return (
+    <p className={styles.notice} role="note" data-listening-off={modality === "listening" ? why : undefined} data-speaking-off={modality === "speaking" ? why : undefined}>
+      {t.format(copy[why])}{" "}
+      <span className={styles.noticeActions}>
+        <button
+          type="button"
+          className={styles.inlineButton}
+          onClick={() => {
+            turnOn(modality);
+            onChange(undefined);
+          }}
+          data-action={`${modality}-on`}
+        >
+          {t.format(copy.on)}
+        </button>
+        {why === "break" && (
+          <button
+            type="button"
+            className={styles.inlineButton}
+            onClick={() => {
+              setTurnedOff(modality, true);
+              onChange("setting");
+            }}
+            data-action={`${modality}-keep-off`}
+          >
+            {t.format(copy.keep)}
+          </button>
+        )}
+      </span>
+    </p>
+  );
+};
+
+/** Whether the device is online, for the course page's offline notice. */
+interface OfflineProps {
+  readonly online: boolean;
+  /** Whether progress syncs (an account): what the offline notice promises. */
+  readonly synced: boolean;
+}
+
+/** The ids of the lists of a unit's lessons and of an alphabet row's, which a finished one's heading shows and hides (S2). */
+const unitListId = (unit: string): string => `unit-lessons-${unit}`;
+const lettersListId = (unit: string): string => `letter-lessons-${unit}`;
+
+/**
+ * The course's path (§11.1): Continue, practice, XP, and the lessons in order, each done, open or
+ * locked. Its other pages are linked near the top, finished units fold away, and on arrival the page
+ * brings Continue's lesson into view (S2, through screen.tsx's `data-arrival`).
+ */
 const CoursePath = ({
   loaded,
   state,
@@ -210,7 +563,9 @@ const CoursePath = ({
   ai,
   offline,
   speechTiers,
+  game,
   onReset,
+  reports,
 }: {
   loaded: LoadedCourse;
   state: LearnerState;
@@ -218,108 +573,194 @@ const CoursePath = ({
   ai: AiStatus;
   offline: OfflineProps;
   speechTiers: readonly number[];
+  /** The game state: XP comes from it alone, with the deployment's rules and quests (ADR 0107). */
+  game: GameState | null;
   onReset: () => void;
+  /** The link to Your reports, beside the sentence list's (ADR 0115). */
+  reports: JSX.Element;
 }): JSX.Element => {
   const t = useTranslator();
-  const [off, setOff] = useState(() => ({ listening: onBreak("listening"), speaking: onBreak("speaking") }));
+  // Listening and speaking off: for an hour, or turned off in Preferences (S8).
+  const [off, setOff] = useState(offNow);
+  // Listening turned off for good is asked of no word and never due (D41); a break changes neither.
+  const facetsOff = facetsOffOf(off);
   const { course } = loaded;
   const orthography = course.orthography;
   const now = new Date();
   const status = new Map(pathOf(course, state).map((n) => [n.node, n.status]));
   // A script track (ADR 0088): the alphabet, a row of its own that never gates the units.
   const scriptRow = scriptPathOf(course, state);
-  const due = dueFacets(state, orthography, now.toISOString()).length;
+  // The words due for review and known (ADR 0100), as the word list counts them (W8): worked out once
+  // a minute and when the log changes, not on every render (R12).
+  const minute = Math.floor(now.getTime() / 60_000);
+  // The learner's pace (ADR 0105): read from the log unless they chose one (D5). It sets what "due"
+  // means (its retention target) and where Continue goes (D6).
+  const [paceChoice, setChoice] = useState<PaceChoice>(() => paceChoiceOf(course.id));
+  const pace = useMemo(() => paceOf(course, state, new Date(minute * 60_000).toISOString(), paceChoice, facetsOff), [course, state, minute, paceChoice, facetsOff]);
+  const counts = useMemo(() => wordCounts(learnedWords(course, state, new Date(minute * 60_000).toISOString(), pace.settings.retention, facetsOff)), [course, state, minute, pace, facetsOff]);
+  const { due, known } = counts;
+  const next = continueOf(course, state, pace);
   const studied = Object.keys(state.cards).length > 0;
   // What a mistakes session would hold now: a mistake on a listening card waits out a listening
   // break, and one the course no longer makes is not counted (practicableMistakes).
   const mistakes = useMemo(
-    () => practicableMistakes(course, state, { exclude: excludedBy(off), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
+    () => practicableMistakes(course, state, { exclude: exclusionsOf(off), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
     [course, state, off, speechTiers],
   );
-  const today = state.xp.byDate[localDate(now)] ?? 0;
+  const today = game?.xp.byDate[localDate(now)] ?? 0;
   // The demo's full builds keep drafts and say so (ADR 0073); a release build has none.
   const drafts = draftCount(course.units);
-  const units = pathNodes(course).reduce<{ unit: PathEntry["unit"]; entries: PathEntry[] }[]>((acc, entry) => {
-    const last = acc.at(-1);
-    if (last?.unit === entry.unit) last.entries.push(entry);
-    else acc.push({ unit: entry.unit, entries: [entry] });
-    return acc;
-  }, []);
-  let number = 0;
+  // The path by unit, lessons numbered within theirs (S11).
+  const units = pathUnits(course);
   const to = (request: SessionRequest): string => href({ tag: "session", course: course.id, orthography, request });
+  const nodeHref = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : to({ mode: "lesson", node: n.node }));
+  // Finished units fold away (S2); the learner opens one again with its heading. By their lists' ids.
+  const [opened, setOpened] = useState<ReadonlySet<string>>(() => new Set());
+  const foldOf = (list: string, finished: boolean): Fold | undefined =>
+    finished
+      ? {
+          open: opened.has(list),
+          list,
+          onToggle: () =>
+            setOpened((was) => {
+              const now = new Set(was);
+              if (!now.delete(list)) now.add(list);
+              return now;
+            }),
+        }
+      : undefined;
+  // Where the page opens (S2): Continue's lesson or story, once the learner is past the first one.
+  const arrival = state.completedNodes.length > 0 && next.kind !== "done" ? next.next?.node : undefined;
+  // The alphabet's row folds away too, once every letter lesson is done.
+  const scriptUnit = course.units.find((u) => u.id === scriptRow[0]?.unit);
+  const scriptDone = scriptRow.filter((n) => n.status === "done").length;
+  const scriptFold = scriptUnit === undefined ? undefined : foldOf(lettersListId(scriptUnit.id), scriptDone === scriptRow.length);
+  // The line saying why (D5): what is slipping when practice comes first, else how the pace reads.
+  // Practice with nothing slipping comes only once the path is done: that is the line then.
+  const why =
+    next.kind === "practice" && pace.slipping > 0
+      ? t.format("app.pace.why.slipping", { count: pace.slipping })
+      : next.kind !== "path"
+        ? t.format("app.continue.done")
+        : pace.reason === "chosen"
+          ? t.format(pace.band === "consolidate" ? "app.pace.why.chosen-consolidate" : pace.band === "accelerate" ? "app.pace.why.chosen-accelerate" : "app.pace.why.chosen-steady")
+          : pace.reason === "struggling"
+            ? t.format("app.pace.why.struggling")
+            : pace.reason === "breezing"
+              ? t.format("app.pace.why.breezing")
+              : pace.reason === "backlog"
+                ? t.format("app.pace.why.backlog")
+                : undefined;
 
   return (
     <main className={styles.page} data-course-path={course.id}>
-      <p>
+      <p className={styles.pageLinks}>
         <a className={styles.back} href={href({ tag: "home" })}>
           {t.format("app.lessons.back")}
         </a>
       </p>
       <h1 className={styles.heading}>
-        {courseName(t, course.id)} · {orthographyName(t, orthography)}
+        {courseName(t, course)} · {orthographyName(t, course, orthography)}
       </h1>
-      <p className={styles.stats} data-xp={state.xp.total} data-xp-today={today}>
-        <span className={styles.stat}>{t.format("app.xp.total", { xp: state.xp.total })}</span>
-        <span className={styles.stat}>{t.format("app.xp.today", { xp: today })}</span>
-      </p>
-      {!offline.online && <OfflineNotice />}
+      {/* The course's other pages, near the top rather than after the whole path (S2). */}
+      <nav className={styles.courseLinks} aria-label={t.format("app.course.links")} data-course-links="">
+        {/* The words met and known (ADR 0100). */}
+        <a href={href({ tag: "words", course: course.id, orthography })} data-words-link="" data-count={known}>
+          {t.format("words.title")}
+          {studied && <span className={styles.count}>{t.format("app.practice.known", { count: known })}</span>}
+        </a>
+        {/* The course's sentences to correct, and what came of the learner's reports (ADR 0115). */}
+        <a href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
+          {t.format("corrections.page.open")}
+        </a>
+        {reports}
+        {/* Preferences from the course too, not only from the course list (S8). */}
+        <a href={href({ tag: "preferences" })} data-preferences-link="">
+          {t.format("app.preferences.link")}
+        </a>
+        {OFFLINE && (
+          <a href={href({ tag: "offline", course: course.id, orthography })} data-offline-link="">
+            {t.format("app.offline.link")}
+          </a>
+        )}
+      </nav>
+      {game !== null && (
+        <p className={styles.stats} data-xp={game.xp.total} data-xp-today={today}>
+          <span className={styles.stat}>{t.format("app.xp.total", { xp: game.xp.total })}</span>
+          <span className={styles.stat}>{t.format("app.xp.today", { xp: today })}</span>
+        </p>
+      )}
+      {!offline.online && <OfflineNotice synced={offline.synced} />}
       {drafts.drafts > 0 && (
         <p className={styles.notice} role="note" data-drafts={drafts.drafts}>
-          {t.format("app.course.drafts", { drafts: drafts.drafts, total: drafts.total })}
+          {drafts.drafts === drafts.total ? t.format("app.course.unchecked.all") : t.format("app.course.unchecked.some", { drafts: drafts.drafts, total: drafts.total })}
         </p>
       )}
       {!persistent && (
-        <p className={styles.notice} role="note" data-not-saved="">
+        <p className={`${styles.notice} ${styles.warning}`} role="note" data-not-saved="">
           {t.format("app.store.memory")}
         </p>
       )}
-      {off.listening && (
-        <p className={styles.notice} role="note" data-listening-off="">
-          {t.format("app.listening.off")}{" "}
-          <button
-            type="button"
-            className={styles.inlineButton}
-            onClick={() => {
-              setBreakUntil("listening", 0);
-              setOff({ ...off, listening: false });
-            }}
-            data-action="listening-on"
-          >
-            {t.format("app.listening.on")}
-          </button>
-        </p>
-      )}
-      {off.speaking && (
-        <p className={styles.notice} role="note" data-speaking-off="">
-          {t.format("app.speaking.off")}{" "}
-          <button
-            type="button"
-            className={styles.inlineButton}
-            onClick={() => {
-              setBreakUntil("speaking", 0);
-              setOff({ ...off, speaking: false });
-            }}
-            data-action="speaking-on"
-          >
-            {t.format("app.speaking.on")}
-          </button>
-        </p>
-      )}
+      {off.listening !== undefined && <OffNotice modality="listening" why={off.listening} onChange={(why) => setOff({ ...off, listening: why })} />}
+      {off.speaking !== undefined && <OffNotice modality="speaking" why={off.speaking} onChange={(why) => setOff({ ...off, speaking: why })} />}
 
-      {state.completedNodes.length === 0 && (
+      {/* Placement can be taken again (S5): it only ever adds lessons done, so it is offered until all are. */}
+      {[...status.values()].some((s) => s !== "done") && (
         <p>
-          <a className={styles.back} href={to({ mode: "placement" })} data-practice-mode="placement">
-            {t.format("app.practice.placement", { language: courseName(t, course.id) })}
+          <a className={styles.back} href={to({ mode: "placement" })} data-practice-mode="placement" data-again={state.completedNodes.length > 0 ? "" : undefined}>
+            {t.format(state.completedNodes.length === 0 ? "app.practice.placement" : "app.practice.placement-again", { language: courseName(t, course) })}
           </a>
         </p>
       )}
+
+      <section className={styles.continue} aria-label={t.format("app.continue.label")} data-continue={next.kind} data-pace={pace.band} data-pace-reason={pace.reason}>
+        {next.kind === "practice" ? (
+          <>
+            <a className={styles.primary} href={to({ mode: "review" })} data-action="continue">
+              {t.format("app.continue.practice")}
+            </a>
+            {/* A new lesson is always on offer (D6). */}
+            {next.next !== undefined && (
+              <a className={styles.link} href={nodeHref(next.next)} data-action="new-lesson">
+                {t.format("app.continue.new-lesson")}
+              </a>
+            )}
+          </>
+        ) : next.kind === "path" ? (
+          <a className={styles.primary} href={nodeHref(next.next)} data-action="continue">
+            {t.format("app.continue.lesson")}
+          </a>
+        ) : null}
+        {why !== undefined && (
+          <p className={styles.paceLine} data-pace-line="">
+            {why}
+          </p>
+        )}
+        <label className={styles.paceChoice}>
+          {t.format("app.pace.label")}
+          <select
+            value={paceChoice}
+            onChange={(e) => {
+              const choice = e.currentTarget.value as PaceChoice;
+              setPaceChoice(course.id, choice);
+              setChoice(choice);
+            }}
+            data-field="pace"
+          >
+            <option value="auto">{t.format("app.pace.auto")}</option>
+            <option value="consolidate">{t.format("app.pace.consolidate")}</option>
+            <option value="steady">{t.format("app.pace.steady")}</option>
+            <option value="accelerate">{t.format("app.pace.accelerate")}</option>
+          </select>
+        </label>
+      </section>
 
       <h2 className={styles.subheading}>{t.format("app.practice.title")}</h2>
       <div className={styles.links} data-practice="">
         {studied ? (
           <a className={styles.link} href={to({ mode: "review" })} data-practice-mode="review" data-count={due}>
             {t.format("app.practice.review")}
-            <span className={styles.count}>{t.format("app.practice.due", { count: due })}</span>
+            {due > 0 && <span className={styles.count}>{t.format("app.practice.due-words", { count: due })}</span>}
           </a>
         ) : (
           <span className={`${styles.link} ${styles.disabled}`} aria-disabled="true" data-practice-mode="review" data-count={0}>
@@ -329,7 +770,7 @@ const CoursePath = ({
         {mistakes > 0 ? (
           <a className={styles.link} href={to({ mode: "mistakes" })} data-practice-mode="mistakes" data-count={mistakes}>
             {t.format("app.practice.mistakes")}
-            <span className={styles.count}>{t.format("app.practice.to-fix", { count: mistakes })}</span>
+            <span className={styles.count}>{t.format("app.practice.to-fix-later", { count: mistakes })}</span>
           </a>
         ) : (
           <span className={`${styles.link} ${styles.disabled}`} aria-disabled="true" data-practice-mode="mistakes" data-count={0}>
@@ -340,32 +781,24 @@ const CoursePath = ({
 
       <h2 className={styles.subheading}>{t.format("app.lessons.title")}</h2>
       {scriptRow.length > 0 && (
-        <section className={styles.unit} data-script-track="">
-          {(() => {
-            const first = course.units.find((u) => u.id === scriptRow[0]?.unit);
-            const title = first?.title?.[course.supportKey];
-            return title === undefined ? null : (
-              <h3 className={styles.unitTitle}>
-                <T text={title} />
-              </h3>
-            );
-          })()}
-          <ol className={styles.list}>
+        <section className={styles.unit} data-script-track="" data-finished={scriptFold === undefined ? undefined : ""}>
+          {/* The row never gates the units (ADR 0088): until it is begun, it says so, and who it is for (S11). */}
+          {scriptUnit !== undefined && (
+            <UnitHeading course={course} unit={scriptUnit} number={undefined} done={scriptDone} total={scriptRow.length} advice={scriptDone > 0 ? undefined : t.format("app.path.letters.advice")} fold={scriptFold} />
+          )}
+          <ol className={styles.list} id={scriptUnit === undefined ? undefined : lettersListId(scriptUnit.id)} hidden={scriptFold?.open === false}>
             {scriptRow.map((entry, k) => {
               const unit = course.units.find((u) => u.id === entry.unit);
               const node = unit?.nodes.find((n) => n.id === entry.node);
-              const letters = node?.alphabet?.letters.map((l) => l.text) ?? [];
+              // Each letter with its Latin spelling under it.
+              const letters = (node?.alphabet?.letters ?? []).map((l): PreviewItem => ({ text: l.text, gloss: l.latin }));
               const body = (
                 <>
                   <span className={styles.lessonHead}>
-                    <span className={styles.lessonName}>{t.format("app.path.letters", { number: k + 1 })}</span>
+                    <span className={styles.lessonName} data-node-name="">{t.format("app.path.letters", { number: k + 1 })}</span>
                     <Status status={entry.status} />
                   </span>
-                  <span className={styles.preview} role="group" aria-label={t.format("app.path.new-letters")} dir={letters[0] === undefined ? undefined : directionOf(letters[0].lang)}>
-                    {letters.map((l, i) => (
-                      <T key={i} text={l} />
-                    ))}
-                  </span>
+                  <Preview items={letters} label={t.format("app.path.new-letters")} />
                 </>
               );
               return (
@@ -385,27 +818,24 @@ const CoursePath = ({
           </ol>
         </section>
       )}
-      {units.map(({ unit, entries }) => {
-        const title = unit.title?.[course.supportKey];
+      {units.map(({ unit, number: unitNumber, entries }) => {
+        const done = entries.filter((e) => status.get(e.node.id) === "done").length;
+        const fold = foldOf(unitListId(unit.id), done === entries.length);
         return (
-          <section key={unit.id} className={styles.unit}>
-            {title !== undefined && units.length > 1 && (
-              <h3 className={styles.unitTitle}>
-                <T text={title} />
-              </h3>
-            )}
-            <ol className={styles.list} data-lesson-list="">
-              {entries.map(({ node, kind }) => {
+          <section key={unit.id} className={styles.unit} data-unit={unit.id} data-finished={fold === undefined ? undefined : ""}>
+            <UnitHeading course={course} unit={unit} number={unitNumber} untitled={unitNumber === undefined ? t.format("app.path.extra-practice") : undefined} done={done} total={entries.length} fold={fold} />
+            <ol className={styles.list} id={unitListId(unit.id)} hidden={fold?.open === false} data-lesson-list="">
+              {entries.map(({ node, kind, number }) => {
                 const s = status.get(node.id) ?? "locked";
                 const story = kind === "story" ? (unit.stories ?? []).find((st) => st.node === node.id) : undefined;
                 const storyTitle = story?.title[course.supportKey];
-                if (kind === "lesson") number++;
-                const words = node.introduces.flatMap((id) => unit.kcs.find((k) => k.id === id)?.forms?.[orthography]?.[0] ?? []);
+                // A lesson is numbered within its unit; a drill is practice (S11).
+                const name = number === undefined ? t.format("app.path.practice") : t.format("app.lessons.lesson", { number });
                 const body =
                   kind === "story" ? (
                     <>
                       <span className={styles.lessonHead}>
-                        <span className={styles.lessonName}>{t.format("app.path.story")}</span>
+                        <span className={styles.lessonName} data-node-name="">{t.format("app.path.story")}</span>
                         <Status status={s} />
                       </span>
                       {storyTitle !== undefined && (
@@ -417,47 +847,36 @@ const CoursePath = ({
                   ) : (
                     <>
                       <span className={styles.lessonHead}>
-                        <span className={styles.lessonName}>{t.format("app.lessons.lesson", { number })}</span>
+                        <span className={styles.lessonName} data-node-name="">{name}</span>
                         <Status status={s} />
                       </span>
-                      <span className={styles.preview} role="group" aria-label={t.format("app.lessons.new-words")} dir={words[0] === undefined ? undefined : directionOf(words[0].lang)}>
-                        {words.map((w, k) => (
-                          <T key={k} text={w} />
-                        ))}
-                      </span>
+                      <Preview items={previewOf(course, unit, node)} label={number === undefined ? undefined : t.format("app.lessons.new-words")} />
                     </>
                   );
                 const link = kind === "story" ? href({ tag: "story", course: course.id, orthography, node: node.id }) : to({ mode: "lesson", node: node.id });
                 const data = kind === "story" ? { "data-story-node": node.id } : { "data-lesson": node.id };
                 return (
-                  <li key={node.id}>
-                    {s === "locked" ? (
-                      <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" {...data} data-status={s}>
-                        {body}
-                      </div>
-                    ) : (
-                      <a className={`${styles.lesson} ${s === "available" ? styles.next : ""}`} href={link} {...data} data-status={s}>
-                        {body}
-                      </a>
-                    )}
-                  </li>
+                  <Fragment key={node.id}>
+                    <li>
+                      {s === "locked" ? (
+                        <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" {...data} data-status={s}>
+                          {body}
+                        </div>
+                      ) : (
+                        <a className={`${styles.lesson} ${s === "available" ? styles.next : ""}`} href={link} {...data} data-status={s} data-arrival={node.id === arrival ? "" : undefined}>
+                          {body}
+                        </a>
+                      )}
+                    </li>
+                    {/* The conversations this node opens sit right after it (§13.4). */}
+                    <ScenarioEntries course={course} node={node.id} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
+                  </Fragment>
                 );
               })}
             </ol>
           </section>
         );
       })}
-      <Conversations course={course} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
-      <p>
-        <a className={styles.link} href={href({ tag: "words", course: course.id, orthography })} data-words-link="">
-          {t.format("words.title")}
-        </a>
-      </p>
-      <p>
-        <a className={styles.link} href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
-          {t.format("corrections.page.open")}
-        </a>
-      </p>
       {DEBUG && (
         <p>
           <a className={styles.link} href={href({ tag: "cards", course: course.id, orthography })} data-cards-link="">
@@ -472,71 +891,10 @@ const CoursePath = ({
           </a>
         </p>
       )}
-      {OFFLINE && offline.stored !== undefined && <OfflinePanel loaded={loaded} root={offline.root} stored={offline.stored} onChange={offline.onChange} />}
-      <StartOver language={courseName(t, course.id)} hasProgress={studied || state.completedNodes.length > 0 || state.mistakes.length > 0} onReset={onReset} />
+      <StartOver language={courseName(t, course)} hasProgress={studied || state.completedNodes.length > 0 || state.mistakes.length > 0} onReset={onReset} />
     </main>
   );
 };
-
-/**
- * "Can't listen now" and "Can't speak now" (§10): those exercises stay out of new sessions for an
- * hour. A per-device convenience, so it lives in localStorage; without storage it lasts the page.
- */
-type Break = "listening" | "speaking";
-const BREAK_KEYS: Readonly<Record<Break, string>> = { listening: "nabu.listening-off-until", speaking: "nabu.speaking-off-until" };
-const BREAK_MS = 3_600_000;
-const breakFallback: Record<Break, number> = { listening: 0, speaking: 0 };
-
-const breakUntil = (b: Break): number => {
-  try {
-    return Number(localStorage.getItem(BREAK_KEYS[b]) ?? 0);
-  } catch {
-    return breakFallback[b];
-  }
-};
-
-const setBreakUntil = (b: Break, until: number): void => {
-  breakFallback[b] = until;
-  try {
-    if (until === 0) localStorage.removeItem(BREAK_KEYS[b]);
-    else localStorage.setItem(BREAK_KEYS[b], String(until));
-  } catch {
-    // Storage unavailable: the in-memory value above still holds for this page.
-  }
-};
-
-const onBreak = (b: Break): boolean => breakUntil(b) > Date.now();
-
-/**
- * The reading layer the learner last chose for an orthography (ADR 0071): Pinyin, Jyutping, Middle
- * Chinese or none for Classical Chinese. A per-device preference in localStorage; without storage
- * the player starts from the profile's default each time.
- */
-const READING_KEY = "nabu.reading.";
-
-const storedReading = (orthography: string): SchemeId | false | undefined => {
-  try {
-    const value = localStorage.getItem(READING_KEY + orthography);
-    return value === null ? undefined : value === "" ? false : (value as SchemeId);
-  } catch {
-    return undefined;
-  }
-};
-
-const storeReading = (orthography: string, scheme: SchemeId | false): void => {
-  try {
-    localStorage.setItem(READING_KEY + orthography, scheme === false ? "" : scheme);
-  } catch {
-    // Storage unavailable: the choice lasts this session.
-  }
-};
-
-/** What sessions leave out: listening and speaking while they are on a break. */
-const excludedBy = (off: { readonly listening: boolean; readonly speaking: boolean }): ReadonlySet<TemplateId> =>
-  new Set<TemplateId>([...(off.listening ? LISTENING : []), ...(off.speaking ? SPEAKING : [])]);
-
-/** What a new session leaves out, as the breaks stand when it opens. */
-const excluded = (): ReadonlySet<TemplateId> => excludedBy({ listening: onBreak("listening"), speaking: onBreak("speaking") });
 
 /** The session seed: ?seed=… for reproducible runs (tests), else fresh randomness. */
 const seedFor = (): number => {
@@ -545,23 +903,52 @@ const seedFor = (): number => {
   return crypto.getRandomValues(new Uint32Array(1))[0] ?? 1;
 };
 
-/** The session gate is empty (§12.3, only where an instance turns it on): practice stays open. */
-const GateEmpty = ({ course }: { course: LoadedCourse["course"] }): JSX.Element => {
+/**
+ * The session gate is empty (§12.3, only where an instance turns it on): practice stays open. It says
+ * when a lesson may start again (M5), and once that time comes, offers to start this one.
+ */
+const GateEmpty = ({ course, game, gameConfig, onOpen }: { course: LoadedCourse["course"]; onOpen: () => void } & GameProps): JSX.Element => {
   const t = useTranslator();
+  const opensAt = game?.gate.opensAt;
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (opensAt === undefined) return undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    // Set from the clock again each time: a timer can fire early by the clock (set back), and then waits again.
+    const arm = (): void => {
+      const left = Date.parse(opensAt) - Date.now();
+      if (left <= 0) setOpen(true);
+      else timer = setTimeout(arm, left);
+    };
+    arm();
+    return () => clearTimeout(timer);
+  }, [opensAt]);
   const to = (mode: "review" | "mistakes"): string => href({ tag: "session", course: course.id, orthography: course.orthography, request: { mode } });
+  const said = game === null || gameConfig === null ? undefined : gateClosed(t, game, gameConfig);
   return (
     <main className={styles.page}>
-      <p className={styles.notice} role="note" data-gate-empty="">
-        {t.format("game.gate.empty")}
-      </p>
+      {open ? (
+        <p className={styles.notice} role="note" data-gate-open="">
+          {t.format("game.gate.opened")}
+        </p>
+      ) : (
+        <p className={styles.notice} role="note" data-gate-empty="" data-gate-opens={opensAt}>
+          {said ?? t.format("game.gate.empty")}
+        </p>
+      )}
       <div className={styles.links}>
+        {open && (
+          <button type="button" className={styles.button} onClick={onOpen} data-action="gate-start">
+            {t.format("game.gate.start")}
+          </button>
+        )}
         <a className={styles.link} href={to("review")} data-practice-mode="review">
           {t.format("app.practice.review")}
         </a>
         <a className={styles.link} href={to("mistakes")} data-practice-mode="mistakes">
           {t.format("app.practice.mistakes")}
         </a>
-        <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })}>
+        <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })} onClick={leaving(href({ tag: "course", course: course.id, orthography: course.orthography }))}>
           {t.format("app.practice.back")}
         </a>
       </div>
@@ -584,42 +971,242 @@ interface SessionProps extends GameProps {
   readonly corrections: ReadonlyMap<string, SentenceReported>;
 }
 
-/** Plans one session from the learner's state when it opens (§9.4), then plays it. */
-const Session = (props: SessionProps): JSX.Element => {
-  const { loaded, request, game, gameConfig } = props;
-  // Decided once, when the session opens: answering inside it never closes the gate on it.
-  const [allowed] = useState(() => sessionAllowed(game, request.mode, gameConfig));
-  return allowed ? <SessionBody {...props} /> : <GateEmpty course={loaded.course} />;
+/** A course or the course list could not be loaded: what happened, Try again, and (in a course) a way home. */
+const LoadFailed = ({ message, home, onRetry }: { message: "app.error.index" | "app.error.load" | "app.offline.unavailable"; home: boolean; onRetry: () => void }): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <main className={styles.page}>
+      <p role="alert" data-load-error="">
+        {t.format(message)}
+      </p>
+      <p className={styles.links}>
+        <button type="button" className={styles.link} onClick={onRetry} data-action="retry">
+          {t.format("app.error.retry")}
+        </button>
+        {home && (
+          <a className={styles.back} href={href({ tag: "home" })}>
+            {t.format("app.lessons.back")}
+          </a>
+        )}
+      </p>
+    </main>
+  );
 };
 
-const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections }: SessionProps): JSX.Element => {
+/** A link to a lesson or story the course no longer has (an old bookmark, a tab restored after an update). */
+const Missing = ({ course }: { course: CourseView }): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <main className={styles.page}>
+      <p role="alert" data-missing-node="">
+        {t.format("app.session.missing")}
+      </p>
+      <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })} onClick={leaving(href({ tag: "course", course: course.id, orthography: course.orthography }))}>
+        {t.format("app.practice.back")}
+      </a>
+    </main>
+  );
+};
+
+/** A session as it opens: planned now, or picked up where a reload left it (S3). */
+interface Setup {
+  readonly seed: number;
+  readonly planned: SessionPlan;
+  /** The session's id: every event it records carries it. */
+  readonly session: string;
+  /** Picked up again: where the session stands, what reopens it, and its first tries so far. */
+  readonly resumed?: { readonly from: readonly [PlayerState, readonly Effect[]]; readonly firstTries: ReadonlyMap<string, boolean> } | undefined;
+  /** A new session's plan, kept on the device once the session starts (S3). */
+  readonly open?: OpenSession | undefined;
+}
+
+/** What the player starts a session's exercises with: retries, or the placement test's search. */
+const startOptions = (request: SessionRequest, planned: SessionPlan) => ({ retries: request.mode !== "placement", ...(planned.placement === undefined ? {} : { adaptive: planned.placement.test }) });
+
+/** Plans a new session from the learner's state as it opens (§9.4); its plan is kept from when it starts until it ends (S3). */
+const plannedSetup = (props: SessionProps, route: string): Setup => {
+  const { loaded, request, state, speechTiers } = props;
+  const { course } = loaded;
+  const seed = seedFor();
+  // Speaking is scored where tones can be judged here or the server scores it (§10.4).
+  const speech = speechSupportOf(course, serverAllowed() ? speechTiers.length : 0);
+  // As listening and speaking stand when it opens: off, their exercises are left out; listening
+  // turned off for good is also asked of no word and never due (D41).
+  const off = offNow();
+  const exclude = exclusionsOf(off);
+  const facetsOff = facetsOffOf(off);
+  // The local date, as events stamp it: a word met today shows its skills from tomorrow (ADR 0100).
+  const now = new Date();
+  // The learner's pace (ADR 0105): a lesson's share of review and the retention target.
+  const pace = paceOf(course, state, now.toISOString(), paceChoiceOf(course.id), facetsOff).band;
+  const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, facetsOff, ...(exclude.size > 0 ? { exclude } : {}) });
+  const session = uuidv7(now.getTime());
+  const open: OpenSession | undefined = planned.exercises.length === 0 ? undefined : { route, course: course.id, session, seed, bundle: loaded.manifest.id, opened: now.getTime(), plan: planned };
+  return { seed, planned, session, open };
+};
+
+/**
+ * Opens a session (§9.4): the one this device was in the middle of at this route, picked up where
+ * it was (S3: a reload, a phone that dropped the tab, the log reloading under it), or a new one.
+ */
+const Session = (props: SessionProps): JSX.Element => {
+  const { loaded, request, game, gameConfig, store } = props;
+  const route = href({ tag: "session", course: loaded.course.id, orthography: loaded.course.orthography, request });
+  const [opened, setOpened] = useState<{ readonly setup: Setup } | "gate" | undefined>(undefined);
+  const known = plannable(loaded.course, request);
+  useEffect(() => {
+    if (!known) return;
+    let live = true;
+    void reopen(store, { route, course: loaded.course.id, bundle: loaded.manifest.id, now: Date.now() }).then((found) => {
+      if (!live) return;
+      const done = found === undefined ? [] : doneOf(found.events, found.open.session);
+      const from = found === undefined ? undefined : resume(request.mode === "lesson" ? request.node : request.mode, found.open.plan.exercises, startOptions(request, found.open.plan), done);
+      if (found !== undefined && from !== undefined) {
+        // What the session did so far is in the log already: its end counts from the log without it (session-end.ts).
+        const { open } = found;
+        setOpened({ setup: { seed: open.seed, planned: open.plan, session: open.session, resumed: { from, firstTries: firstTriesOf(done) } } });
+      } else if (!sessionAllowed(game, request.mode, gameConfig)) {
+        // Decided once, when the session opens: answering inside it never closes the gate on it.
+        setOpened("gate");
+      } else {
+        setOpened({ setup: plannedSetup(props, route) });
+      }
+    });
+    return () => {
+      live = false;
+    };
+    // Once, as the session opens: later states are its own doing.
+  }, []);
+  if (!known) return <Missing course={loaded.course} />;
+  if (opened === undefined) return <Loading />;
+  return opened === "gate" ? (
+    <GateEmpty course={loaded.course} game={game} gameConfig={gameConfig} onOpen={() => setOpened({ setup: plannedSetup(props, route) })} />
+  ) : (
+    <SessionBody {...props} setup={opened.setup} route={route} />
+  );
+};
+
+/**
+ * While a session plays it holds the route (navigation.ts, S3): Back, or the phone's back button,
+ * asks whether to quit as the quit button does, and quitting goes where Back was going. Once it
+ * ends, leaving goes back to the course page it came from, so Back never plays it again.
+ */
+const useSessionRoute = (route: string, back: string, playing: boolean) => {
+  const [quitRequest, setQuitRequest] = useState(0);
+  // Where Back was going when the session asked: quitting goes there.
+  const going = useRef<string | undefined>(undefined);
+  const [ended, setEnded] = useState(false);
+  const release = useRef<(() => void) | undefined>(undefined);
+  useEffect(() => {
+    if (!playing || ended) return undefined;
+    release.current = holdRoute(route, (to) => {
+      going.current = to ?? back;
+      setQuitRequest((n) => n + 1);
+    });
+    return release.current;
+  }, [route, back, playing, ended]);
+  // Once: the end screen's Continue and a quit on the way out must not both go back.
+  const left = useRef(false);
+  const go = (to: string): void => {
+    if (left.current) return;
+    left.current = true;
+    leave(to);
+  };
+  return {
+    quitRequest,
+    /** Whether the session has ended: its end screen shows. */
+    over: ended,
+    /** The session ended. A quit that Back asked for goes on where Back was going, unless the end screen has more to say (`stay`). */
+    ended: (completed: boolean, stay = false): void => {
+      // The route is free at once: nothing to ask about any more.
+      release.current?.();
+      setEnded(true);
+      if (!completed && !stay && going.current !== undefined) go(going.current);
+    },
+    exit: (): void => go(going.current ?? back),
+    /** The end screen's next step: another session, in this one's place (navigation.ts). */
+    to: (where: string): void => go(where),
+  } as const;
+};
+
+/**
+ * Where the end of a session goes next (P9): the course page's Continue (ADR 0105), worked out from
+ * the learner state with the session in it, once it has ended; right after practice, the next lesson
+ * or story with more practice beside it (D34). `facetsOff`: listening turned off for good (D41), as on
+ * the course page. While a deployment's gate keeps lessons closed, practice (M5).
+ */
+const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go: (to: string) => void, facetsOff: ReadonlySet<Facet>, practised: boolean, { game, gameConfig }: GameProps): NextStep | undefined => {
+  const t = useTranslator();
+  const going = useRef(go);
+  going.current = go;
+  // The game state is worked out again once the session's end is logged: then this says it too.
+  const gated = over && !sessionAllowed(game, "lesson", gameConfig);
+  return useMemo(() => {
+    if (!over) return undefined;
+    const orthography = course.orthography;
+    const hrefOf = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : href({ tag: "session", course: course.id, orthography, request: { mode: "lesson", node: n.node } }));
+    const review = href({ tag: "session", course: course.id, orthography, request: { mode: "review" } });
+    return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), facetsOff, hrefOf, review, practised, gated, go: (to) => going.current(to), t });
+  }, [course, state, over, facetsOff, practised, gated, t]);
+};
+
+const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, game, gameConfig, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
+  const back = href({ tag: "course", course: course.id, orthography: course.orthography });
+  const placement = request.mode === "placement";
+  // A placement test starts once the learner has read what it does (S5); one picked up again goes on.
+  const [started, setStarted] = useState(!placement || setup.resumed !== undefined);
+  const playing = started && setup.planned.exercises.length > 0;
+  const routing = useSessionRoute(route, back, playing);
+  // The plan is kept from the start until the session ends, so a reload picks it up (S3).
+  useEffect(() => {
+    if (playing && setup.open !== undefined) void keepOpen(store, setup.open);
+  }, [playing, setup.open, store]);
+  // What was done before the session, and what a placement test placed: its result says what changed.
+  const [before] = useState(() => new Set(state.completedNodes));
+  const [placed, setPlaced] = useState<readonly string[] | undefined>(undefined);
+  // Listening turned off for good, as the session opens: words are known without it (D41).
+  const [facetsOff] = useState(() => facetsOffOf(offNow()));
+  // The words the learner knows as the session opens: where a course marks vowels on new words only (P12).
+  const [known] = useState(() => knownWords(course, state, new Date(), facetsOff));
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
-  const [setup] = useState(() => {
-    const seed = seedFor();
-    // Speaking is scored where tones can be judged here or the server scores it (§10.4).
-    const speech = speechSupportOf(course, serverAllowed() ? speechTiers.length : 0);
-    const exclude = excluded();
-    const planned = plan(course, state, request, { now: new Date().toISOString(), seed, speech, ...(exclude.size > 0 ? { exclude } : {}) });
+  // The AI help the session's answers got, which its end shows again (M10).
+  const help = useSessionHelp();
+  const [onEvent] = useState(() => {
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);
+      if (event.type === "session_completed") {
+        void closeOpen(store, setup.session);
+        if (event.mode === "placement") setPlaced(event.placed);
+        // A placement test's end screen says where the learner placed, however it ended.
+        routing.ended(event.summary.completed, placement);
+      }
     };
-    return { seed, planned, xpBefore: state.xp.total, onEvent: recorder({ course, bundle: manifest.id, device, plan: planned, seed, record: keep }) };
+    return recorder({ course, bundle: manifest.id, device, plan: setup.planned, seed: setup.seed, record: keep, session: setup.session, firstTries: setup.resumed?.firstTries });
   });
+  // Its end (P9): what it changed, from the log with it against without it, and where to go next.
+  const end = useSessionEnd({ store, config: gameConfig, course, session: setup.session, ended: routing.over, state, game, placement, facetsOff, t });
+  const next = useNextStep(course, state, routing.over, routing.to, facetsOff, practises(request.mode), { game, gameConfig });
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
-  const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
-  const exit = (): void => {
-    window.location.hash = href({ tag: "course", course: course.id, orthography: course.orthography });
-  };
-  if (setup.planned.exercises.length === 0) {
+  // Nothing plays by itself with sound off or listening put off (P6).
+  const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());
+  if (!started) {
+    const start = (): void => {
+      setStarted(true);
+      // The player opens on the same screen: focus goes to it, as a new screen's does.
+      requestAnimationFrame(focusScreen);
+    };
+    return <PlacementIntro language={courseName(t, course)} most={mostQuestions(setup.planned)} onStart={start} back={back} onBack={leaving(back)} />;
+  }
+  if (!playing) {
     return (
       <main className={styles.page}>
         <p data-empty-session="">{t.format("app.practice.empty")}</p>
-        <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })}>
+        <a className={styles.back} href={back} onClick={leaving(back)}>
           {t.format("app.practice.back")}
         </a>
       </main>
@@ -627,34 +1214,54 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   }
   return (
     <main className={styles.player}>
+      <ScreenHeading>{sessionName(t, request, course)}</ScreenHeading>
       <LessonPlayer
         course={course}
         lessonId={request.mode === "lesson" ? request.node : request.mode}
         exercises={setup.planned.exercises}
         grader={grader}
         imageUrl={imageUrl}
-        language={courseName(t, course.id)}
-        onEvent={setup.onEvent}
+        language={courseName(t, course)}
+        onEvent={onEvent}
         sound={sound}
+        onSoundChange={storeSound}
+        listening={!isOff("listening")}
         retries={request.mode !== "placement"}
+        mode={request.mode}
+        replay={request.mode === "lesson" && before.has(request.node)}
         adaptive={setup.planned.placement?.test}
+        resumed={setup.resumed?.from}
+        quitRequest={routing.quitRequest}
+        quitCopy={
+          placement
+            ? { title: t.format("app.placement.quit.title"), body: t.format("app.placement.quit.body"), confirm: t.format("app.placement.quit.confirm"), cancel: t.format("app.placement.quit.cancel") }
+            : undefined
+        }
+        summary={placement ? () => <PlacementResult course={course} state={state} before={before} placed={placed} /> : undefined}
         debug={DEBUG}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
+        display={storedDisplay(course.id, course.orthography)}
+        onDisplayChange={(choice) => storeDisplay(course.id, course.orthography, choice)}
+        known={known}
         onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
         onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
-        xpEarned={state.xp.total - setup.xpBefore}
-        onExit={exit}
+        xpEarned={end.xp}
+        progress={end.progress}
+        next={next}
+        onExit={routing.exit}
+        // Preferences mid-session (S8): a new navigation; the session is kept, and picked up on the way back.
+        preferences={href({ tag: "preferences" })}
         speech={speech}
-        feedbackExtra={(ex, _outcome, response) => {
+        feedbackExtra={(ex, _outcome, response, revise) => {
           const answer = answers.get(ex.id);
-          return (
-            <>
-              <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />
-              <MarkExercise key={`mark:${ex.id}`} course={course} bundle={manifest.id} device={device} record={record} ex={ex} corrections={corrections} />
-            </>
-          );
+          // One report button beside the feedback (M6): claims about the answer, and corrections of what the card was built from.
+          const correcting = { course, bundle: manifest.id, device, record, targets: correctablesOf(course, ex), corrections };
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} correcting={correcting} revise={revise} help={help} />;
         }}
+        // The end of the session keeps the AI help (M10): explanations under the cards missed, the judge's accepts listed.
+        missedExtra={(m) => <MissedHelp key={`missed-help:${m.ex.id}`} answer={answers.get(m.ex.id)} ex={m.ex} response={m.response} status={ai} account={account} help={help} />}
+        judged={help.judged}
       />
     </main>
   );
@@ -674,33 +1281,49 @@ interface StorySessionProps extends GameProps {
 
 /** Reads one story (Phase 6): a session of mode story at its node. */
 const StorySession = (props: StorySessionProps): JSX.Element => {
-  const [allowed] = useState(() => sessionAllowed(props.game, "story", props.gameConfig));
-  return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} />;
+  const [allowed, setAllowed] = useState(() => sessionAllowed(props.game, "story", props.gameConfig));
+  if (storyAt(props.loaded.course, props.node) === undefined) return <Missing course={props.loaded.course} />;
+  return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} game={props.game} gameConfig={props.gameConfig} onOpen={() => setAllowed(true)} />;
 };
 
-const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai }: StorySessionProps): JSX.Element => {
+const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai, game, gameConfig }: StorySessionProps): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
+  const back = href({ tag: "course", course: course.id, orthography: course.orthography });
+  const route = href({ tag: "story", course: course.id, orthography: course.orthography, node });
+  const routing = useSessionRoute(route, back, storyAt(course, node) !== undefined);
   // Each question's latest answer, for "My answer should be accepted" under its feedback.
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
+  // Listening turned off for good, as the story opens: words are known without it (D41).
+  const [facetsOff] = useState(() => facetsOffOf(offNow()));
   const [setup] = useState(() => {
     const story = storyAt(course, node);
     if (story === undefined) return undefined;
     const seed = seedFor();
+    const session = uuidv7();
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);
+      if (event.type === "session_completed") routing.ended(event.summary.completed);
     };
-    return { script: storyScript(course, story, seededRng(seed)), xpBefore: state.xp.total, onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }) };
+    return {
+      session,
+      script: storyScript(course, story, seededRng(seed)),
+      known: knownWords(course, state, new Date(), facetsOff),
+      onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep, session }),
+    };
   });
+  // Its end (P9): what it changed, from the log with it against without it, and where to go next.
+  const end = useSessionEnd({ store, config: gameConfig, course, session: setup?.session, ended: routing.over, state, game, placement: false, facetsOff, t });
+  const next = useNextStep(course, state, routing.over, routing.to, facetsOff, practises("story"), { game, gameConfig });
   const grader = useMemo(() => createGrader(course), [course]);
-  const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
-  const back = href({ tag: "course", course: course.id, orthography: course.orthography });
+  // Nothing plays by itself with sound off or listening put off (P6).
+  const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());
   if (setup === undefined) {
     return (
       <main className={styles.page}>
         <p data-empty-session="">{t.format("app.practice.empty")}</p>
-        <a className={styles.back} href={back}>
+        <a className={styles.back} href={back} onClick={leaving(back)}>
           {t.format("app.practice.back")}
         </a>
       </main>
@@ -708,24 +1331,32 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
   }
   return (
     <main className={styles.player}>
+      <ScreenHeading>{t.format("app.path.story")}</ScreenHeading>
       <StoryReader
         course={course}
         script={setup.script}
         grader={grader}
         imageUrl={imageUrl}
-        language={courseName(t, course.id)}
+        language={courseName(t, course)}
         onEvent={setup.onEvent}
         sound={sound}
-        xpEarned={state.xp.total - setup.xpBefore}
+        onSoundChange={storeSound}
+        listening={!isOff("listening")}
+        xpEarned={end.xp}
+        progress={end.progress}
+        next={next}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
-        onExit={() => {
-          window.location.hash = back;
-        }}
-        lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
-        feedbackExtra={(ex, _outcome, response) => {
+        display={storedDisplay(course.id, course.orthography)}
+        onDisplayChange={(choice) => storeDisplay(course.id, course.orthography, choice)}
+        known={setup.known}
+        replay={state.completedNodes.includes(node)}
+        quitRequest={routing.quitRequest}
+        onExit={routing.exit}
+        lineAction={(line) => <LineReport course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
+        feedbackExtra={(ex, _outcome, response, revise) => {
           const answer = answers.get(ex.id);
-          return <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />;
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} revise={revise} />;
         }}
       />
     </main>
@@ -756,10 +1387,19 @@ const ready = openStore().then(async (store) => {
   const sync = await createSync(store, apiBase(), { gameConfig: () => gameRules });
   window.nabu = store;
   window.nabuSync = sync;
+  // Where a report goes depends on the server and the account (ADR 0115).
+  reportsThrough(sync);
   return { store, sync };
 });
 
 const noSync = { subscribe: () => () => undefined, get: () => undefined };
+
+/**
+ * The recorded events after which the game state is worked out again (R1 in the 2026-11 review). It
+ * reads the whole log, so not after each answer: a session's answers show in it only on the end
+ * screen, which reads it after session_completed, and the gate is decided as a session opens.
+ */
+const GAME_EVENTS: ReadonlySet<LearnerEvent["type"]> = new Set<LearnerEvent["type"]>(["session_completed", "goal_set", "progress_reset", "answer_reported", "outcome_revised"]);
 
 /** One course's event log and the state it projects to. */
 interface Log {
@@ -771,6 +1411,9 @@ export const App = (): JSX.Element => {
   const t = useTranslator();
   const route = useRoute();
   const [index, setIndex] = useState<readonly CourseIndexEntry[] | null>(null);
+  const [indexFailed, setIndexFailed] = useState(false);
+  // Loads that failed are tried again when the connection comes back, or when the learner asks.
+  const [retry, setRetry] = useState(0);
   const [{ store, sync }, setDevice] = useState<{ store: EventStore | null; sync: Sync | null }>({ store: null, sync: null });
   // Events pulled from another device: replay the open course.
   const pulled = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().pulled ?? 0);
@@ -779,14 +1422,26 @@ export const App = (): JSX.Element => {
   const account = useAccount(sync);
   const [log, setLog] = useState<Log | null>(null);
   const [gameConfig, setGameConfig] = useState<GameConfig | null>(null);
-  const [recorded, setRecorded] = useState(0);
-  const version = `${recorded}:${pulled}:${href(route)}`;
+  // Bumped by the recorded events that change the game state beyond a session's answers (GAME_EVENTS).
+  const [played, setPlayed] = useState(0);
+  // Bumped by a recorded correction: this device's corrections are read again then, not after every event.
+  const [corrected, setCorrected] = useState(0);
+  const version = `${played}:${pulled}:${revised}:${href(route)}`;
   const game = useGame(store, gameConfig, version);
-  const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string } | null>(null);
+  // A failed load remembers the retry it was, so it is tried again only on the next one (never in a loop).
+  const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string; attempt: number } | null>(null);
   // The route's course, if it has one (home and preferences have none).
   const inCourse = route.tag === "home" || route.tag === "preferences" || route.tag === "review" ? null : route;
-  const courseKey = inCourse === null ? null : `${inCourse.course}:${inCourse.orthography}`;
   const courseId = inCourse === null ? null : inCourse.course;
+  // Where the learner left off (S1): each course's latest start, read on Home, and the course Home continues.
+  const onHome = route.tag === "home";
+  const studied = useStudied(onHome ? store : null, version);
+  const resumeAt = useMemo(() => (onHome && studied !== undefined && index !== null ? resumeOf(studied, index) : undefined), [onHome, studied, index]);
+  // The course the app holds, loaded with the learner's state in it: the route's, or on Home the one
+  // Home continues, so that Continue (and the course page after it) opens with nothing more to load.
+  const held = useMemo(() => inCourse ?? (resumeAt === undefined ? null : { course: resumeAt.entry.id, orthography: resumeAt.orthography }), [inCourse, resumeAt]);
+  const courseKey = held === null ? null : `${held.course}:${held.orthography}`;
+  const heldId = held === null ? null : held.course;
   const ai = useAiStatus(account, courseId ?? "", inCourse === null ? "" : inCourse.orthography);
   const speechTiers = useSpeechTiers(account, courseId ?? "", inCourse === null ? "" : inCourse.orthography);
   const online = useOnline();
@@ -794,34 +1449,59 @@ export const App = (): JSX.Element => {
   const root = courseId === null ? undefined : `${BUNDLES}${courseId}/`;
   // Re-read after a course loads (the worker keeps what the app fetched) and after a download.
   const stored = useStored(OFFLINE ? root : undefined, `${downloads}:${loaded?.key ?? ""}:${online}`);
-  const corrections = useCorrections(store, courseId, version);
+  const corrections = useCorrections(store, courseId, `${corrected}:${pulled}`);
+  // Each screen's title; a new route starts at the top, with focus on its heading.
+  // Named from the index, so a title names a course before it loads.
+  const named = (id: string): Named => index?.find((c) => c.id === id) ?? { id };
+  const names = { course: (id: string) => courseName(t, named(id)), orthography: (id: string, orthography: string) => orthographyName(t, named(id), orthography) };
+  useScreen(href(route), titleOf(t, route, names, loaded !== null && loaded.key === courseKey && "value" in loaded ? loaded.value.course : undefined));
 
   useEffect(() => {
-    void fetchCourseIndex(BUNDLES).then(setIndex);
+    if (online) setRetry((n) => n + 1);
+  }, [online]);
+  useEffect(() => {
+    if (index !== null) return;
+    setIndexFailed(false);
+    fetchCourseIndex(BUNDLES).then(setIndex, () => setIndexFailed(true));
+  }, [index, retry]);
+  useEffect(() => {
     void gameRules.then(setGameConfig);
     void ready.then(setDevice);
-    if (OFFLINE) void registerWorker(import.meta.env.BASE_URL);
+    // The UI catalogs this page reads, noted first: a new worker keeps them with the shell, and no other locale's (ADR 0119).
+    if (OFFLINE)
+      void ready
+        .then(({ store: s }) => s.setMeta(UI_CATALOGS, t.catalogs))
+        .catch(() => undefined)
+        .then(() => registerWorker(import.meta.env.BASE_URL));
     // The native app: sync when it comes back to the foreground; reminders open where they point.
     void ready.then(({ sync: s }) => startNative(() => void s.syncNow()));
+    // A reminder tapped while the app is open in a browser: the worker hands over where it points (S1).
+    const fromWorker = (e: MessageEvent<unknown>): void => {
+      if (isOpenMessage(e.data)) openAddress(e.data.url);
+    };
+    navigator.serviceWorker?.addEventListener("message", fromWorker);
+    return () => navigator.serviceWorker?.removeEventListener("message", fromWorker);
   }, []);
   useEffect(() => {
     if (pulled > 0) setLog(null);
   }, [pulled]);
   useEffect(() => {
-    if (revised === 0 || store === null || courseId === null) return;
-    void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
-  }, [revised, store, courseId]);
+    if (revised === 0 || store === null || heldId === null) return;
+    void store.eventsOf(heldId).then((events) => setLog({ course: heldId, state: replay(events) }));
+  }, [revised, store, heldId]);
   useEffect(() => {
-    if (inCourse === null || courseKey === null || loaded?.key === courseKey) return;
-    fetchCourse(BUNDLES, inCourse.course, inCourse.orthography).then(
+    if (held === null || courseKey === null) return;
+    if (loaded?.key === courseKey && !("error" in loaded && loaded.attempt < retry)) return;
+    const attempt = retry;
+    fetchCourse(BUNDLES, held.course, held.orthography).then(
       (value) => setLoaded({ key: courseKey, value }),
-      (e: unknown) => setLoaded({ key: courseKey, error: String(e) }),
+      (e: unknown) => setLoaded({ key: courseKey, error: String(e), attempt }),
     );
-  }, [inCourse, courseKey, loaded]);
+  }, [held, courseKey, loaded, retry]);
   useEffect(() => {
-    if (store === null || courseId === null || log?.course === courseId) return;
-    void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
-  }, [store, courseId, log]);
+    if (store === null || heldId === null || log?.course === heldId) return;
+    void store.eventsOf(heldId).then((events) => setLog({ course: heldId, state: replay(events) }));
+  }, [store, heldId, log]);
 
   // Live events are the newest in the log, so folding them onto the state equals a replay. A
   // revision rewrites an earlier answer (§8.3): the server issued it, and the log is replayed.
@@ -839,46 +1519,129 @@ export const App = (): JSX.Element => {
           .then((events) => {
             setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: replay(events) }));
             if (!fromServer) sync?.schedule();
-            setRecorded((n) => n + 1);
+            setPlayed((n) => n + 1);
           });
         return;
       }
-      setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: applyEvents(prev.state, [event]) }));
+      // The weekly goal is the account's, no course's (ADR 0107, D12): kept and synced, read from the game state.
+      // An event that changes nothing the state holds (an exercise shown) leaves it as it is, uncopied.
+      if (event.type !== "goal_set")
+        setLog((prev) => {
+          if (prev === null || prev.course !== event.course) return prev;
+          const state = applyEvents(prev.state, [event]);
+          return state === prev.state ? prev : { course: prev.course, state };
+        });
       void store?.append([event]).then(() => {
         sync?.schedule();
-        setRecorded((n) => n + 1);
+        if (GAME_EVENTS.has(event.type)) setPlayed((n) => n + 1);
+        if (event.type === "sentence_reported") setCorrected((n) => n + 1);
       });
     },
     [store, sync],
   );
 
-  if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} />;
+  // The weekly goal is the account's (ADR 0107, D12): choosing it records a goal_set, which syncs.
+  const setGoal = useCallback(
+    (days: number): void => {
+      if (store !== null) record(goalEvent(days, store.device));
+    },
+    [store, record],
+  );
+  // A goal this device kept before goals were the account's goes into the log once, if the log has
+  // none from any device; the device's own copy is forgotten either way.
+  useEffect(() => {
+    if (game === null || store === null) return;
+    const kept = deviceGoal();
+    if (kept === undefined) return;
+    forgetDeviceGoal();
+    const days = goalToMigrate(kept, game);
+    if (days !== undefined) setGoal(days);
+  }, [game, store, setGoal]);
+
+  // Offline, a session uses only the media on this device: no listening without the clip. One
+  // object per load and download state, so a session's grader keeps its course across renders.
+  const current = loaded !== null && "value" in loaded ? loaded.value : undefined;
+  const playable = useMemo(
+    (): LoadedCourse | undefined => (current === undefined || online || stored === undefined ? current : { ...current, course: restrictMedia(current.course, (path) => stored.has(path)) }),
+    [current, online, stored],
+  );
+  // The words typed answers are looked up in, built while the learner looks at the course, so the
+  // first Check of a session never waits for them (R5); and what a wrong word means is looked up
+  // in, so the first wrong answer's feedback never does either (P3).
+  useEffect(() => {
+    if (playable === undefined) return;
+    const course = playable.course;
+    const prepare = (): void => {
+      prepareGrading(course);
+      prepareMeanings(course);
+    };
+    if (typeof requestIdleCallback === "function") {
+      const id = requestIdleCallback(prepare, { timeout: 2000 });
+      return () => cancelIdleCallback(id);
+    }
+    const id = setTimeout(prepare, 200);
+    return () => clearTimeout(id);
+  }, [playable]);
+
+  if (route.tag === "preferences") {
+    // Back where it was opened from (S8); a sample of the text size in the course last open, if any.
+    const back = preferencesBack(cameFrom());
+    const sample = current === undefined ? undefined : sampleOf(current.course, courseName(t, current.course));
+    return <PreferencesPage back={back.to} backLabel={back.label} onBack={leaving(back.to)} account={account} sample={sample} />;
+  }
   if (route.tag === "review") {
-    const names = { course: (id: string) => courseName(t, id), orthography: (id: string) => orthographyName(t, id) };
     return index === null || sync === null ? (
-      <p className={styles.page}>{t.format("player.loading")}</p>
+      <Loading />
     ) : (
       <ReviewHome courses={index} sync={sync} names={names} back={href({ tag: "home" })} hrefOf={(course, orthography) => href({ tag: "review-course", course, orthography })} />
     );
   }
   if (route.tag === "home") {
-    return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} />;
+    if (index === null && indexFailed) return <LoadFailed message={online ? "app.error.index" : "app.offline.unavailable"} home={false} onRetry={() => setRetry((n) => n + 1)} />;
+    if (index === null || store === null || sync === null || studied === undefined) return <Loading />;
+    // The course Home continues, with the course and the learner's state in it once loaded (an error leaves Continue on its page).
+    const leftOff =
+      resumeAt === undefined
+        ? undefined
+        : {
+            ...resumeAt,
+            course: loaded !== null && loaded.key === courseKey && "value" in loaded ? loaded.value.course : undefined,
+            state: log?.course === resumeAt.entry.id ? log.state : undefined,
+          };
+    return <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} onGoal={setGoal} studied={studied} leftOff={leftOff} />;
   }
-  if (loaded === null || loaded.key !== courseKey || store === null || log === null || log.course !== route.course) {
-    return <p className={styles.page}>{t.format("player.loading")}</p>;
+  if (loaded?.key === courseKey && "error" in loaded) return <LoadFailed message={online ? "app.error.load" : "app.offline.unavailable"} home onRetry={() => setRetry((n) => n + 1)} />;
+  if (loaded === null || loaded.key !== courseKey || "error" in loaded || store === null || log === null || log.course !== route.course) {
+    return <Loading />;
   }
-  if ("error" in loaded) return <p className={styles.page} role="alert" data-load-error="">{t.format(online ? "app.error.load" : "app.offline.unavailable")}</p>;
+  if (route.tag === "offline") {
+    // Until it is known what this device keeps of the course, where this build keeps courses offline.
+    if (OFFLINE && stored === undefined) return <Loading />;
+    const { course } = loaded.value;
+    const back = href({ tag: "course", course: course.id, orthography: course.orthography });
+    return (
+      <CourseUiProvider course={course}>
+        <OfflinePage loaded={loaded.value} root={root ?? BUNDLES} stored={OFFLINE ? stored : undefined} onChange={() => setDownloads((n) => n + 1)} back={back} />
+      </CourseUiProvider>
+    );
+  }
   if (route.tag === "course") {
-    const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
+    const offline: OfflineProps = { online, synced: account !== undefined };
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
-    return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} onReset={onReset} />;
+    // The path's words and titles take the course's profiles (fonts, target text size), as its pages do.
+    const reports = <ReportsLink loaded={value} store={store} version={version} href={href({ tag: "reports", course: value.course.id, orthography: value.course.orthography })} />;
+    return (
+      <CourseUiProvider course={value.course}>
+        <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} game={game} onReset={onReset} reports={reports} />
+      </CourseUiProvider>
+    );
   }
   if (route.tag === "cards") {
     const { course } = loaded.value;
     return (
       <CourseUiProvider course={course}>
-        <CardsPage loaded={loaded.value} language={courseName(t, course.id)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+        <CardsPage loaded={loaded.value} language={courseName(t, course)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
       </CourseUiProvider>
     );
   }
@@ -893,7 +1656,7 @@ export const App = (): JSX.Element => {
   if (route.tag === "review-course") {
     const { course, manifest } = loaded.value;
     return sync === null ? (
-      <p className={styles.page}>{t.format("player.loading")}</p>
+      <Loading />
     ) : (
       <CourseUiProvider course={course}>
         <ReviewPage loaded={loaded.value} sync={sync} course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={href({ tag: "review" })} />
@@ -908,6 +1671,14 @@ export const App = (): JSX.Element => {
       </CourseUiProvider>
     );
   }
+  if (route.tag === "reports") {
+    const { course } = loaded.value;
+    return (
+      <CourseUiProvider course={course}>
+        <ReportsPage loaded={loaded.value} store={store} version={version} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+      </CourseUiProvider>
+    );
+  }
   if (route.tag === "sentences") {
     const { course, manifest } = loaded.value;
     const back = href({ tag: "course", course: course.id, orthography: course.orthography });
@@ -917,8 +1688,7 @@ export const App = (): JSX.Element => {
       </CourseUiProvider>
     );
   }
-  // Offline, a session uses only the media on this device: no listening without the clip.
-  const playable: LoadedCourse = online || stored === undefined ? loaded.value : { ...loaded.value, course: restrictMedia(loaded.value.course, (path) => stored.has(path)) };
+  const sessionCourse = playable ?? loaded.value;
   if (route.tag === "roleplay") {
     const back = href({ tag: "course", course: route.course, orthography: route.orthography });
     return (
@@ -927,12 +1697,12 @@ export const App = (): JSX.Element => {
       </CourseUiProvider>
     );
   }
-  if (game === null && gameConfig?.gate.policy !== "none") return <p className={styles.page}>{t.format("player.loading")}</p>;
+  if (game === null && gameConfig?.gate.policy !== "none") return <Loading />;
   if (route.tag === "story")
     return (
       <StorySession
         key={href(route)}
-        loaded={playable}
+        loaded={sessionCourse}
         node={route.node}
         state={log.state}
         device={store.device}
@@ -948,7 +1718,7 @@ export const App = (): JSX.Element => {
   return (
     <Session
       key={href(route)}
-      loaded={playable}
+      loaded={sessionCourse}
       request={route.request}
       state={log.state}
       device={store.device}

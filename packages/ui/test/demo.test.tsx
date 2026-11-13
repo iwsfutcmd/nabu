@@ -4,9 +4,10 @@ import type { OrthographyProfile, TaggedText } from "@nabu/schema";
 import { Ajv2020 } from "ajv/dist/2020.js";
 import { describe, expect, it } from "vitest";
 import { DemoExerciseCard } from "../src/demo/DemoExerciseCard.tsx";
-import { effectiveWritingMode, rubyScheme } from "../src/demo/ExerciseCard.tsx";
+import { effectiveWritingMode } from "../src/demo/ExerciseCard.tsx";
 import { DEMO_TARGETS, demoExercise, type DemoTarget } from "../src/demo/fixtures.ts";
 import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
+import { defaultRuby } from "../src/player/Readings.tsx";
 import { render } from "./render.tsx";
 
 const SCHEMAS = resolve(import.meta.dirname, "../../../schemas");
@@ -62,9 +63,9 @@ describe("writing mode policy", () => {
     const mong = { id: "mn-Mong/standard", lang: "mn-Mong", segmentation: { content: "whitespace", runtime: "grapheme" }, normalize: ["nfc"], layout: { vertical: "vertical-lr", verticalPolicy: "always" } } as unknown as OrthographyProfile;
     expect(effectiveWritingMode(mong, "horizontal-tb")).toBe("vertical-lr");
   });
-  it("finds the ruby layer", () => {
-    expect(rubyScheme(profile("yue-Hant-HK/standard"))).toBe("jyutping");
-    expect(rubyScheme(profile("fa-Arab/standard"))).toBeUndefined();
+  it("shows the ruby layer the player shows", () => {
+    expect(defaultRuby(profile("yue-Hant-HK/standard"))).toBe("jyutping");
+    expect(defaultRuby(profile("fa-Arab/standard"))).toBe(false);
   });
 });
 

@@ -40,7 +40,7 @@ from nabu.audio.providers import (
     trim_edges,
 )
 from nabu.compiler import compile_course
-from nabu.schema.models import AudioVoice, Provenance
+from nabu.schema.models import AudioVoice, BundleUnit, Provenance
 
 from .conftest import ROOT, CoreCli
 
@@ -189,7 +189,7 @@ def test_a_new_reference_makes_the_clips_cloned_from_the_old_one_stale(
     assert engine.calls[-1]["instruct"] == "male, young adult"
     assert reference_of(adir, read_index(adir), "beirut-m") is not None
 
-    intro = [u for u in apc.units if u["id"] == "intro"]
+    intro = [u for u in apc.units if u.id == "intro"]
     # The man's voice alone, within the course's cast: its share of the items (ADR 0078).
     cast = list(apc.course.audio.voices)
     assert [x.voice for x in cast] == ["beirut-m", "beirut-f"]
@@ -264,6 +264,7 @@ LIVE = os.environ.get("NABU_OMNIVOICE") == "1"
 @pytest.mark.skipif(not LIVE, reason="NABU_OMNIVOICE=1, the omnivoice group and the checkpoint")
 def test_live_the_course_voice_speaks_lebanese() -> None:
     from nabu.audio.qa import cer, transcribe
+    from nabu.speech.setup import profiles, recognizer_of
 
     source = yaml.safe_load((ROOT / "courses" / "apc" / "course.yaml").read_text("utf-8"))
     v = AudioVoice.model_validate(source["audio"]["voices"][0])
@@ -271,18 +272,20 @@ def test_live_the_course_voice_speaks_lebanese() -> None:
     tts = OmniVoiceProvider(v, reference_of(adir, read_index(adir), v.voice))
     [clip] = tts.synthesize([Request("أَنا مْنيح.", v.voice, 1.0)])
     assert 0.3 < len(clip.pcm) / 2 / clip.sample_rate < 5
-    assert cer(transcribe(clip, "ar"), "أنا منيح") <= 0.15
+    lebanese = recognizer_of(profiles()[v.orthography])  # heard as Arabic, its macrolanguage
+    assert cer(transcribe(clip, lebanese), "أنا منيح") <= 0.15
 
 
 def test_story_lines_are_read_too(apc: Any) -> None:
     """Each story line is an audio item "<story>#<step>", read like a sentence."""
     items = {i.item: i for i in plan(apc.units, voice(), apc.written)[0]}
+    units: list[BundleUnit] = apc.units
     lines = [
-        (story["id"], step)
-        for unit in apc.units
-        for story in unit.get("stories", [])
-        for step, s in enumerate(story["steps"])
-        if s.get("line")
+        (story.id, step)
+        for unit in units
+        for story in unit.stories or []
+        for step, s in enumerate(story.steps)
+        if s.line is not None
     ]
     assert lines
     assert all(f"{story}#{step}" in items for story, step in lines)
@@ -335,7 +338,7 @@ def test_an_item_the_voice_says_nothing_for_gets_no_clip(
     cast_reference(course, v, "مَرْحَبا!", "male", 7, fake(engine, v, REF))
     hushed = Hushed(silent=99)
     monkeypatch.setitem(providers.PROVIDERS, "omnivoice", lambda vv, r: fake(hushed, vv, r))
-    intro: list[dict[str, Any]] = [{**u, "stories": []} for u in apc.units if u["id"] == "intro"]
+    intro = [u.model_copy(update={"stories": []}) for u in apc.units if u.id == "intro"]
     report = synthesize_course(course, intro, v, None, apc.written)
     assert report.synthesized == 0 and report.silent
     assert read_index(audio_dir(course)).clips == []
@@ -356,7 +359,7 @@ def test_a_rejected_clip_is_made_again_as_its_next_take(
     monkeypatch.setitem(providers.PROVIDERS, "omnivoice", lambda v, r: fake(engine, v, r))
     v = voice()
     cast_reference(course, v, "مَرْحَبا!", "male", 7, fake(engine, v, REF))
-    intro: list[dict[str, Any]] = [{**u, "stories": []} for u in apc.units if u["id"] == "intro"]
+    intro = [u.model_copy(update={"stories": []}) for u in apc.units if u.id == "intro"]
     synthesize_course(course, intro, v, None, apc.written)
     adir = audio_dir(course)
     first = read_index(adir).clips

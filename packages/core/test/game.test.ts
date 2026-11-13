@@ -11,7 +11,9 @@ import { describe, expect, it } from "vitest";
 import {
   addDays,
   canStart,
+  countable,
   daysBetween,
+  daysThisWeek,
   DEFAULT_GAME,
   DEFAULT_LEAGUE,
   leagueWeek,
@@ -19,16 +21,21 @@ import {
   rankCohort,
   ENERGY,
   gameConfig,
+  GOAL_DAYS,
+  goalSetOf,
   HEARTS,
   localDateOf,
   questsFor,
+  QUEST_WINDOW,
   replayGame,
+  replaysOf,
   streakOf,
   weekStart,
   type GameConfig,
   type GameInput,
 } from "../src/game/index.ts";
 import { replay } from "../src/learner/index.ts";
+import { seededRng } from "../src/lesson/rng.ts";
 
 // ------------------------------------------------------------------------------------ building logs
 
@@ -55,7 +62,7 @@ interface Practice {
   readonly localDate?: string;
   readonly right?: number;
   readonly wrong?: number;
-  readonly mode?: "lesson" | "review" | "mistakes" | "story";
+  readonly mode?: "lesson" | "review" | "mistakes" | "story" | "placement";
 }
 
 /** One session as a device logs it: start, answers, completion; local date from the device clock. */
@@ -133,6 +140,19 @@ describe("local dates", () => {
     expect(addDays("2026-01-01", -1)).toBe("2025-12-31");
     expect(weekStart("2026-11-08")).toBe("2026-11-02"); // Sunday → Monday
     expect(weekStart("2026-11-02")).toBe("2026-11-02");
+    // Weeks that start on Sunday (7) or Saturday (6), as some locales have them.
+    expect(weekStart("2026-11-08", 7)).toBe("2026-11-08");
+    expect(weekStart("2026-11-07", 7)).toBe("2026-11-01");
+    expect(weekStart("2026-11-07", 6)).toBe("2026-11-07");
+    expect(weekStart("2026-11-06", 6)).toBe("2026-10-31");
+  });
+
+  it("counts this week's practice days from the week's first day (ADR 0107)", () => {
+    const days = ["2026-10-30", "2026-11-01", "2026-11-02", "2026-11-04"];
+    expect(daysThisWeek(days, "2026-11-05")).toBe(2); // Monday 2 November on
+    expect(daysThisWeek(days, "2026-11-05", 7)).toBe(3); // Sunday 1 November on
+    expect(daysThisWeek(days, "2026-11-01", 7)).toBe(1); // a new week, practised today
+    expect(daysThisWeek([], "2026-11-05")).toBe(0);
   });
 
   it("an instant's local date depends on the zone, across the date line", () => {
@@ -330,6 +350,65 @@ describe("what counts for a day", () => {
     // The first zone and three changes count; the fourth and fifth change do not.
     expect(state.days).toEqual(["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04"]);
   });
+
+  /** §12.2 as written, every check on every event in time order: what the replay must agree with, whatever it puts off. */
+  const countableAsWritten = (inputs: readonly GameInput[], config: GameConfig, now: string): Map<string, boolean> => {
+    const byId = new Map<string, GameInput>();
+    for (const input of inputs) if (input.event.type !== "outcome_revised" && !byId.has(input.event.id)) byId.set(input.event.id, input);
+    const time = (e: LearnerEvent): number => Date.parse(e.clientTime);
+    const sorted = [...byId.values()].sort((a, b) => time(a.event) - time(b.event) || (a.event.id < b.event.id ? -1 : a.event.id > b.event.id ? 1 : 0));
+    const out = new Map<string, boolean>();
+    const changes: number[] = [];
+    let zone: string | undefined;
+    for (const { event: e, receivedAt } of sorted) {
+      const seen = Date.parse(receivedAt ?? now);
+      let ok = localDateOf(e.clientTime, e.tz) === e.localDate && time(e) <= seen + 5 * 60_000;
+      if (ok && receivedAt !== undefined) ok = seen - time(e) <= config.streak.graceHours * 3_600_000;
+      if (ok && zone !== undefined && e.tz !== zone) {
+        if (changes.filter((c) => time(e) - c < 7 * 86_400_000).length >= config.streak.maxTzChangesPerWeek) ok = false;
+        else changes.push(time(e));
+      }
+      if (ok) zone = e.tz;
+      out.set(e.id, ok);
+    }
+    return out;
+  };
+
+  it("checking local dates only where they matter changes nothing: forged dates, the future, late syncs, zone hops", { timeout: 120_000 }, () => {
+    const practice = fc.record({
+      gapMinutes: fc.integer({ min: 1, max: 3 * 24 * 60 }),
+      zone: fc.constantFrom(...ZONES),
+      // The device's local date: its own, a day off on the whole session, or a day off on the completion only.
+      forged: fc.constantFrom("none", "none", "none", "session", "completion"),
+      // When the server got it: in time, after the grace window, before it happened (the future), or never (the device).
+      received: fc.constantFrom("in-time", "in-time", "late", "early", "device"),
+    });
+    fc.assert(
+      fc.property(fc.array(practice, { minLength: 1, maxLength: 25 }), fc.integer(), (practices, seed) => {
+        let at = Date.parse("2026-03-20T08:00:00Z");
+        const inputs: GameInput[] = practices.flatMap((p) => {
+          at += p.gapMinutes * 60_000;
+          const own = localDateOf(new Date(at).toISOString(), p.zone) as string;
+          const events = session({ at, tz: p.zone, ...(p.forged === "session" ? { localDate: addDays(own, 1) } : {}) }).map((e) =>
+            p.forged === "completion" && e.type === "session_completed" ? { ...e, localDate: addDays(own, -1) } : e,
+          );
+          const receivedAt = (e: LearnerEvent): string | undefined => {
+            const t = Date.parse(e.clientTime);
+            if (p.received === "device") return undefined;
+            return new Date(p.received === "late" ? t + 80 * 3_600_000 : p.received === "early" ? t - 3_600_000 : t + 2_000).toISOString();
+          };
+          return events.map((event) => ({ event, receivedAt: receivedAt(event) }));
+        });
+        const now = new Date(at + 3_600_000).toISOString();
+        const expected = countableAsWritten(inputs, NO_QUESTS, now);
+        const shuffled = fc.sample(fc.shuffledSubarray([...inputs, ...inputs.slice(0, 5)], { minLength: inputs.length + Math.min(5, inputs.length) }), { numRuns: 1, seed })[0] ?? [];
+        expect([...countable(shuffled, NO_QUESTS, now)]).toEqual([...expected]);
+        const counted = inputs.flatMap(({ event: e }) => (e.type === "session_completed" && expected.get(e.id) === true ? [e.localDate] : []));
+        expect(replayGame(shuffled, NO_QUESTS, { today: localDateOf(now, "UTC") as string, now }).days).toEqual([...new Set(counted)].sort());
+      }),
+      { numRuns: 150 },
+    );
+  });
 });
 
 // ------------------------------------------------------------------------------------ freezes
@@ -366,12 +445,40 @@ describe("freezes", () => {
 // ------------------------------------------------------------------------------------ quests, achievements, XP
 
 describe("quests and achievements", () => {
-  it("the day's quests are the same for everyone on a date, and rotate", () => {
-    const a = questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id);
-    expect(a).toEqual(questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id));
+  it("the day's quests are the same for everyone on a date who can do them, and rotate", () => {
+    const every = new Set(DEFAULT_GAME.quests.pool.map((q) => q.id));
+    const a = questsFor("2026-05-01", DEFAULT_GAME, every).map((q) => q.id);
+    expect(a).toEqual(questsFor("2026-05-01", DEFAULT_GAME, every).map((q) => q.id));
     expect(new Set(a).size).toBe(3);
-    const week = Array.from({ length: 7 }, (_, i) => questsFor(addDays("2026-05-01", i), DEFAULT_GAME).map((q) => q.id).join());
+    const week = Array.from({ length: 7 }, (_, i) => questsFor(addDays("2026-05-01", i), DEFAULT_GAME, every).map((q) => q.id).join());
     expect(new Set(week).size).toBeGreaterThan(1);
+    // Someone who can do fewer kinds of practice gets the same draw without the others.
+    const some = questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id);
+    expect(some).toHaveLength(3);
+    expect(some.every((id) => DEFAULT_GAME.quests.pool.find((q) => q.id === id)?.requires === undefined)).toBe(true);
+  });
+
+  it("a quest needs practice the log shows in the two weeks before its day: none for listening in a reading course (ADR 0107)", () => {
+    const tz = "UTC";
+    const dates = Array.from({ length: 40 }, (_, i) => addDays("2026-07-01", i));
+    const reading = dates.flatMap((date) => session({ at: instantAt(date, 600, tz), tz }));
+    const drawn = (events: readonly LearnerEvent[], date: string): readonly string[] => replayGame(online(events), DEFAULT_GAME, clockAt(date, instantAt(date, 1200, tz))).quests.map((q) => q.id);
+    // Only ever reading (choose-translation, lessons): three quests a day, none for listening, writing or a story.
+    for (const date of dates) {
+      const ids = drawn(reading, date);
+      expect(ids, date).toHaveLength(3);
+      expect(ids.filter((id) => ["listen-5", "produce-5", "story-1"].includes(id)), date).toEqual([]);
+    }
+    // Nothing to review on the very first day; something every day after.
+    expect(drawn(reading, "2026-07-01")).not.toContain("review-1");
+    expect(dates.some((date) => drawn(reading, date).includes("review-1"))).toBe(true);
+    // Listening once, on 20 July, makes the listening quest possible from the next day, for two weeks.
+    const listened = session({ at: instantAt("2026-07-20", 700, tz), tz }).map((e) => (e.type === "answer_submitted" ? { ...e, exercise: { ...e.exercise, template: "listen-select" } } : e)) as LearnerEvent[];
+    const listening = dates.filter((date) => drawn([...reading, ...listened], date).includes("listen-5"));
+    expect(listening.length).toBeGreaterThan(0);
+    for (const date of listening) expect(date > "2026-07-20" && date <= addDays("2026-07-20", QUEST_WINDOW), date).toBe(true);
+    // The day's own practice never changes its quests.
+    expect(drawn([...reading, ...listened], "2026-07-20")).toEqual(drawn(reading, "2026-07-20"));
   });
 
   it("completed quests add their XP; without quests, XP matches the learner model's", () => {
@@ -393,10 +500,152 @@ describe("quests and achievements", () => {
     expect(state.achievements).toEqual(["streak-7", "sessions-10"]);
   });
 
+  it("a session pays a point a card up to ten, and the perfect bonus only from five cards (ADR 0107)", () => {
+    const tz = "UTC";
+    const at = (minutes: number): number => instantAt("2026-05-01", minutes, tz);
+    const xpOf = (events: readonly LearnerEvent[]): number => replayGame(online(events), NO_QUESTS, clockAt("2026-05-01", at(1200))).xp.total;
+    // One card right: 1 for the answer, 1 for the session, no perfect bonus.
+    expect(xpOf(session({ at: at(600), tz, right: 1, mode: "mistakes" }))).toBe(2);
+    // Five right: 5 + 5 + 5.
+    expect(xpOf(session({ at: at(600), tz, right: 5, mode: "review" }))).toBe(15);
+    // Fourteen, one wrong: 13 + 10, no bonus.
+    expect(xpOf(session({ at: at(600), tz, right: 13, wrong: 1 }))).toBe(23);
+    // Per card, five one-card sessions now pay less than one five-card session.
+    const minis = [0, 1, 2, 3, 4].flatMap((i) => session({ at: at(600 + i * 10), tz, right: 1, mode: "mistakes" }));
+    expect(xpOf(minis)).toBeLessThan(xpOf(session({ at: at(600), tz, right: 5, mode: "review" })));
+  });
+
+  it("a lesson finished before pays its answers only, until the course is started over (ADR 0107)", () => {
+    const tz = "UTC";
+    const at = (minutes: number): number => instantAt("2026-05-01", minutes, tz);
+    const lesson = (minutes: number, node = "fa.greetings"): LearnerEvent[] =>
+      session({ at: at(minutes), tz, right: 6 }).map((e): LearnerEvent => (e.type === "session_started" || e.type === "session_completed" ? { ...e, node } : e));
+    const clock = clockAt("2026-05-01", at(1200));
+    const first = lesson(600);
+    const again = lesson(700);
+    const once = replayGame(online(first), NO_QUESTS, clock).xp.total;
+    expect(once).toBe(6 + 6 + 5);
+    expect(replayGame(online([...first, ...again]), NO_QUESTS, clock).xp.total).toBe(once + 6);
+    expect(replaysOf([...first, ...again])).toEqual(new Set([again.at(-1)?.id]));
+    // Another lesson is no replay; neither is the same one after starting the course over.
+    expect(replayGame(online([...first, ...lesson(700, "fa.names")]), NO_QUESTS, clock).xp.total).toBe(2 * once);
+    const reset = { ...(first[0] as LearnerEvent), id: uuid(), type: "progress_reset", clientTime: new Date(at(650)).toISOString() } as unknown as LearnerEvent;
+    const restarted = [...first, reset, ...again];
+    expect(replayGame(online(restarted), NO_QUESTS, clock).xp.total).toBe(2 * once);
+    // The learner model pays the same.
+    for (const log of [[...first, ...again], restarted]) expect(replay(log).xp.total).toBe(replayGame(online(log), NO_QUESTS, clock).xp.total);
+    // So do leagues, which see the finish before the week only to know the replay.
+    const week = leagueWeek(at(700), DEFAULT_LEAGUE);
+    const before = lesson(600).map((e) => ({ ...e, clientTime: new Date(week.start - 3_600_000 + Date.parse(e.clientTime) - at(600)).toISOString() })) as LearnerEvent[];
+    const inWeek = lesson(600).map((e) => ({ ...e, clientTime: new Date(week.start + 3_600_000 + Date.parse(e.clientTime) - at(600)).toISOString() })) as LearnerEvent[];
+    expect(leagueXp(online([...before, ...inWeek]), week.start, week.end, DEFAULT_GAME, DEFAULT_LEAGUE)).toBe(6);
+    expect(leagueXp(online(inWeek), week.start, week.end, DEFAULT_GAME, DEFAULT_LEAGUE)).toBe(once);
+  });
+
+  it("a placement test stopped part-way places by its answers, without the session's XP (D9)", () => {
+    const tz = "UTC";
+    const at = (minutes: number): number => instantAt("2026-05-02", minutes, tz);
+    const clock = clockAt("2026-05-02", at(1200));
+    // Six right first tries, then the learner stops; the answers placed out of the first lesson.
+    const stopped = session({ at: at(600), tz, right: 6 }).map((e): LearnerEvent =>
+      e.type === "session_started"
+        ? { ...e, mode: "placement" }
+        : e.type === "session_completed"
+          ? ({ ...e, mode: "placement", summary: { ...e.summary, completed: false }, placed: ["fa.greetings"], seeded: ["sense:salam"] } as unknown as LearnerEvent)
+          : e,
+    );
+    expect(replayGame(online(stopped), NO_QUESTS, clock).xp.total).toBe(6);
+    const model = replay(stopped);
+    expect(model.xp.total).toBe(6);
+    expect(model.completedNodes).toEqual(["fa.greetings"]);
+    expect(model.cards["sense:salam|recognize"]).toBeDefined();
+    // The same test run to its end pays the session's XP as well.
+    const finished = stopped.map((e): LearnerEvent => (e.type === "session_completed" ? { ...e, summary: { ...e.summary, completed: true } } : e));
+    expect(replayGame(online(finished), NO_QUESTS, clock).xp.total).toBe(6 + 6 + 5);
+    expect(replay(finished).xp.total).toBe(6 + 6 + 5);
+    // A lesson it placed out of is done: playing it pays its answers only, in the game and the model alike.
+    const lesson = session({ at: at(700), tz, right: 6 }).map((e): LearnerEvent => (e.type === "session_started" || e.type === "session_completed" ? { ...e, node: "fa.greetings" } : e));
+    const log = [...stopped, ...lesson];
+    expect(replaysOf(log)).toEqual(new Set([lesson.at(-1)?.id]));
+    expect(replayGame(online(log), NO_QUESTS, clock).xp.total).toBe(6 + 6);
+    expect(replay(log).xp.total).toBe(6 + 6);
+  });
+
+  it("XP agrees with the learner model's on any log of one course, quests off (ADR 0044)", () => {
+    const tz = "UTC";
+    const nodes = ["fa.greetings", "fa.names", undefined];
+    const day = fc.record({
+      right: fc.integer({ min: 0, max: 14 }),
+      wrong: fc.integer({ min: 0, max: 3 }),
+      mode: fc.constantFrom<"lesson" | "review" | "mistakes" | "story">("lesson", "review", "mistakes", "story"),
+      node: fc.constantFrom(...nodes),
+      reset: fc.boolean(),
+    });
+    fc.assert(
+      fc.property(fc.array(day, { minLength: 1, maxLength: 12 }), (days) => {
+        const events = days.flatMap((d, i) => {
+          const at = instantAt(addDays("2026-03-01", i), 600, tz);
+          const done = session({ at, tz, right: d.right, wrong: d.wrong, mode: d.mode }).map((e): LearnerEvent =>
+            (e.type === "session_started" || e.type === "session_completed") && d.node !== undefined && (d.mode === "lesson" || d.mode === "story") ? { ...e, node: d.node } : e,
+          );
+          const reset = d.reset ? [{ ...(done[0] as LearnerEvent), id: uuid(), type: "progress_reset", clientTime: new Date(at - 60_000).toISOString() } as unknown as LearnerEvent] : [];
+          return [...reset, ...done];
+        });
+        const last = events.at(-1) as LearnerEvent;
+        expect(replayGame(online(events), NO_QUESTS, clockAt(last.localDate, Date.parse(last.clientTime))).xp.total).toBe(replay(events).xp.total);
+      }),
+      { numRuns: 200 },
+    );
+  });
+
   it("the golden session's XP agrees with the learner model when quests are off", () => {
     const golden = JSON.parse(readFileSync(join(import.meta.dirname, "golden/fa-lesson-1.events.json"), "utf8")) as LearnerEvent[];
     const last = golden.at(-1) as LearnerEvent;
     expect(replayGame(device(golden), NO_QUESTS, { today: last.localDate, now: last.clientTime }).xp.total).toBe(replay(golden).xp.total);
+  });
+});
+
+// ------------------------------------------------------------------------------------ the weekly goal (ADR 0107, D12)
+
+describe("the weekly goal is the account's", () => {
+  const tz = "UTC";
+  const goalAt = (at: number, days: number | null, device = "phone"): LearnerEvent => {
+    const clientTime = new Date(at).toISOString();
+    return goalSetOf(days, { id: uuid(), device, clientTime, localDate: localDateOf(clientTime, tz) as string, tz });
+  };
+  const t0 = Date.parse("2026-07-01T09:00:00Z");
+  const clock = clockAt("2026-07-10", Date.parse("2026-07-10T12:00:00Z"));
+
+  it("is none until set, and the latest goal_set by device time holds, whichever device recorded it and whenever it arrived", () => {
+    expect(replayGame(online(session({ at: t0, tz })), DEFAULT_GAME, clock).goal).toBeUndefined();
+    const goal = fc.record({ at: fc.integer({ min: 0, max: 8 * 86_400_000 }), days: fc.option(fc.constantFrom(...GOAL_DAYS), { nil: null }), device: fc.constantFrom("phone", "laptop", "tablet") });
+    fc.assert(
+      fc.property(fc.array(goal, { minLength: 1, maxLength: 8 }), fc.integer(), (goals, seed) => {
+        const events = goals.map((g) => goalAt(t0 + g.at, g.days, g.device));
+        const latest = [...events].sort((a, b) => Date.parse(a.clientTime) - Date.parse(b.clientTime) || (a.id < b.id ? -1 : 1)).at(-1);
+        const expected = latest?.type === "goal_set" ? latest.days : undefined;
+        // Any order of arrival, practice among them, and some events received twice.
+        const all = [...session({ at: t0 + 3_600_000, tz }), ...events];
+        const shuffled = seededRng(seed).shuffle(all);
+        const inputs = online([...shuffled, ...shuffled.slice(0, 3)]);
+        expect(replayGame(inputs, DEFAULT_GAME, clock).goal).toBe(expected);
+      }),
+      { numRuns: 200 },
+    );
+  });
+
+  it("changes nothing else: XP, the streak, quests, achievements, and the learner model", () => {
+    const practice = [0, 1, 2, 3].flatMap((i) => session({ at: t0 + i * 86_400_000, tz }));
+    const goals = [goalAt(t0 + 60_000, 5), goalAt(t0 + 2 * 86_400_000 + 60_000, 3, "laptop")];
+    const { goal, ...withGoals } = replayGame(online([...practice, ...goals]), DEFAULT_GAME, clock);
+    const { goal: none, ...without } = replayGame(online(practice), DEFAULT_GAME, clock);
+    expect(goal).toBe(3);
+    expect(none).toBeUndefined();
+    expect(withGoals).toEqual(without);
+    // The learner model leaves goal_set out (it only notes the id as seen).
+    const learner = replay([...practice, ...goals]);
+    const plain = replay(practice);
+    expect(learner).toEqual(plain);
   });
 });
 
@@ -436,6 +685,122 @@ describe("the session gate", () => {
     expect(state.gate).toMatchObject({ policy: "energy", value: 21, max: 25 });
     expect(canStart(state.gate, "story", config.gate)).toBe(true);
   });
+
+  it("a placement test costs nothing, and may start with the gate empty (M5)", () => {
+    for (const gate of [HEARTS, ENERGY]) {
+      const config = gameConfig({ gate });
+      const placement = session({ at: t0, tz, right: 2, wrong: 5, mode: "placement" });
+      expect(replayGame(online(placement), config, clock(t0 + 60_000)).gate).toMatchObject({ value: gate.policy === "none" ? 0 : gate.max });
+      // A lesson that empties the gate, after the test: the test could still start again.
+      const lesson = session({ at: t0 + 120_000, tz, right: 0, wrong: 25 });
+      const empty = replayGame(online([...placement, ...lesson]), config, clock(t0 + 180_000)).gate;
+      expect(empty.value).toBe(0);
+      expect(canStart(empty, "placement", config.gate)).toBe(true);
+      expect(canStart(empty, "review", config.gate)).toBe(true);
+      expect(canStart(empty, "lesson", config.gate)).toBe(false);
+      expect(canStart(empty, "story", config.gate)).toBe(false);
+    }
+  });
+
+  /** The learner's claim about an answer (ADR 0052), a minute after `at`. */
+  const claimOf = (answer: LearnerEvent, at: number, claim?: "reject"): LearnerEvent => {
+    if (answer.type !== "answer_submitted") throw new Error("not an answer");
+    const time = new Date(at).toISOString();
+    return { ...answer, id: uuid(), type: "answer_reported", clientTime: time, localDate: localDateOf(time, answer.tz) ?? "", answer: answer.id, text: "x", ...(claim === undefined ? {} : { claim }) } as unknown as LearnerEvent;
+  };
+  /** The judge's accept of an answer (§8.3), as the server issues it. */
+  const judged = (answer: LearnerEvent, at: number): LearnerEvent => {
+    if (answer.type !== "answer_submitted") throw new Error("not an answer");
+    const time = new Date(at).toISOString();
+    return {
+      ...answer,
+      id: uuid(),
+      type: "outcome_revised",
+      device: "server",
+      clientTime: time,
+      localDate: localDateOf(time, answer.tz) ?? "",
+      answer: answer.id,
+      outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: answer.outcome.kcs.map((k) => ({ ...k, status: "right" })) },
+      by: "judge",
+      judge: { model: "m", promptHash: "000000000000", confidence: 0.9 },
+    } as unknown as LearnerEvent;
+  };
+  const isWrong = (e: LearnerEvent): boolean => e.type === "answer_submitted" && e.outcome.kind === "WRONG";
+  const isRightAnswer = (e: LearnerEvent): boolean => e.type === "answer_submitted" && e.outcome.kind === "CORRECT";
+
+  it("the learner's claims never move the gate, though they count everywhere else; the judge's accept does (M5)", () => {
+    const config = gameConfig({ gate: HEARTS });
+    const lesson = session({ at: t0, tz, right: 2, wrong: 3 });
+    const [w1, w2, w3] = lesson.filter(isWrong);
+    const [r1] = lesson.filter(isRightAnswer);
+    if (w1 === undefined || w2 === undefined || w3 === undefined || r1 === undefined) throw new Error("the lesson has answers");
+    const later = t0 + 120_000;
+    // Two wrong answers claimed right, a right one claimed wrong.
+    const claimed = [...lesson, claimOf(w1, later), claimOf(w2, later + 1_000), claimOf(r1, later + 2_000, "reject")];
+    const at = clock(later + 60_000);
+    const plain = replayGame(online(lesson), config, at);
+    const withClaims = replayGame(online(claimed), config, at);
+    expect(plain.gate.value).toBe(2);
+    expect(withClaims.gate).toEqual(plain.gate);
+    // Everywhere else they count: a net answer more right, a point more of XP.
+    expect(withClaims.xp.total).toBe(plain.xp.total + 1);
+    // The judge's accept is a second grading: the heart comes back.
+    expect(replayGame(online([...claimed, judged(w3, later + 3_000)]), config, at).gate.value).toBe(3);
+  });
+
+  it("whatever the learner claims, the gate is what it is without the claims (M5)", () => {
+    fc.assert(
+      fc.property(
+        fc.array(fc.record({ right: fc.integer({ min: 0, max: 4 }), wrong: fc.integer({ min: 0, max: 4 }), mode: fc.constantFrom("lesson", "story", "review", "placement"), gap: fc.integer({ min: 1, max: 600 }) }), { minLength: 1, maxLength: 6 }),
+        fc.array(fc.tuple(fc.nat(), fc.boolean()), { maxLength: 8 }),
+        fc.constantFrom(HEARTS, ENERGY),
+        (sessions, claims, gate) => {
+          // Sessions one after another, minutes to hours apart; each claim after every answer.
+          let at = t0;
+          const log = sessions.flatMap((s) => {
+            const events = session({ at, tz, right: s.right, wrong: s.wrong, mode: s.mode });
+            at = Date.parse(events.at(-1)?.clientTime ?? "") + s.gap * 60_000;
+            return events;
+          });
+          const answers = log.filter((e) => e.type === "answer_submitted");
+          const claimed = answers.length === 0 ? [] : claims.map(([i, accept], k) => claimOf(answers[i % answers.length] as LearnerEvent, at + k * 60_000, accept ? undefined : "reject"));
+          const config = gameConfig({ gate });
+          const now = clock(at + (claims.length + 2) * 60_000);
+          expect(replayGame(online([...log, ...claimed]), config, now).gate).toEqual(replayGame(online(log), config, now).gate);
+        },
+      ),
+      { numRuns: 60 },
+    );
+  });
+
+  it("says when a lesson may start again, and lets it start then (M5)", () => {
+    const config = gameConfig({ gate: HEARTS });
+    const lesson = session({ at: t0, tz, right: 0, wrong: 5 });
+    const first = Date.parse(lesson.find(isWrong)?.clientTime ?? "");
+    const out = replayGame(online(lesson), config, clock(t0 + 60_000)).gate;
+    // The first heart lost comes back 300 minutes after it went: then a lesson may start.
+    expect(out.opensAt).toBe(new Date(first + 300 * 60_000).toISOString());
+    expect(out.nextAt).toBe(out.opensAt);
+    const opens = Date.parse(out.opensAt ?? "");
+    expect(canStart(out, "lesson", config.gate)).toBe(false);
+    expect(canStart(out, "lesson", config.gate, new Date(opens - 1_000).toISOString())).toBe(false);
+    // A state worked out earlier opens on time, given the time.
+    expect(canStart(out, "lesson", config.gate, new Date(opens).toISOString())).toBe(true);
+    const back = replayGame(online(lesson), config, clock(opens)).gate;
+    expect(back.value).toBe(1);
+    expect(back.opensAt).toBeUndefined();
+    // With hearts left, nothing to wait for.
+    expect(replayGame(online(session({ at: t0, tz, right: 2, wrong: 1 })), config, clock(t0 + 60_000)).gate.opensAt).toBeUndefined();
+
+    // Energy where an exercise costs three: three units must come back, one every 24 h / 25.
+    const costly = gameConfig({ gate: { policy: "energy", max: 25, costPerExercise: 3, earnOnCorrectRun: 3, runLength: 5, fullRechargeHours: 24 } });
+    const spent = session({ at: t0, tz, right: 0, wrong: 9 });
+    const start = Date.parse(spent.find(isWrong)?.clientTime ?? "");
+    const energy = replayGame(online(spent), costly, clock(t0 + 60_000)).gate;
+    expect(energy.value).toBe(0);
+    expect(energy.opensAt).toBe(new Date(start + 3 * ((24 * 3_600_000) / 25)).toISOString());
+    expect(canStart(energy, "story", costly.gate, energy.opensAt)).toBe(true);
+  });
 });
 
 // ------------------------------------------------------------------------------------ leagues (§12.4)
@@ -454,7 +819,7 @@ describe("league XP and ranking", () => {
     const inWeek = session({ at: week.start + 3_600_000, tz, right: 5 });
     const before = session({ at: week.start - 3_600_000, tz, right: 5 });
     const xp = leagueXp(online([...inWeek, ...before]), week.start, week.end, DEFAULT_GAME, league);
-    expect(xp).toBe(5 + 10 + 5); // answers, session, perfect: the earlier session does not count
+    expect(xp).toBe(5 + 5 + 5); // answers, a point a card, perfect: the earlier session does not count
     // Too fast: no answer XP, and a session with no plausible answer earns nothing either.
     const fast = session({ at: week.start + 7_200_000, tz, right: 5 }).map((e) => (e.type === "answer_submitted" ? { ...e, input: { ...e.input, latencyMs: 50 } } : e)) as LearnerEvent[];
     expect(leagueXp(online(fast), week.start, week.end, DEFAULT_GAME, league)).toBe(0);

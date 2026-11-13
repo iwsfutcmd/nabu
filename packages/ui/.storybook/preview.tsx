@@ -3,6 +3,8 @@ import type { Decorator, Loader, Preview } from "@storybook/react-vite";
 import { NabuUiProvider } from "../src/context.tsx";
 import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
 import "../src/fonts.css";
+// Every font up front, so a story's first screenshot never waits on a stylesheet (the app loads the Han fonts with their text).
+import "../src/fonts-han.css";
 import "../src/tokens.css";
 import { UiRoot } from "../src/UiRoot.tsx";
 import "./preview.css";

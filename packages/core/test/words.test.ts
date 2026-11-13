@@ -1,6 +1,7 @@
+import type { KcCredit, LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { emptyLearnerState, learnedWords, orderWords, plan, replay, wordMatcher } from "../src/learner/index.ts";
-import { lessonNodes } from "../src/lesson/index.ts";
+import { DESIRED_RETENTION, dueFacets, emptyLearnerState, learnedWords, orderWords, parseCardKey, plan, replay, retrievability, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
+import { lessonNodes, type Exercise, type Facet, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-03-01T08:00:00.000Z";
@@ -53,6 +54,17 @@ describe("the words a learner has learned", () => {
     expect(then.every((w) => w.due)).toBe(true);
   });
 
+  it("is due when a skill's recall drops below the target, as the planner counts due cards (W8)", () => {
+    const { state } = afterFirstLesson();
+    for (const at of [NOW, "2026-03-04T08:00:00.000Z", "2026-03-20T08:00:00.000Z"]) {
+      const due = new Set(dueFacets(state, fa.orthography, at).map((f) => parseCardKey(f.key).kc));
+      for (const w of learnedWords(fa, state, at)) expect(w.due, `${w.kc} at ${at}`).toBe(due.has(w.kc));
+    }
+    // A higher target makes more words due, never fewer.
+    const at = "2026-03-04T08:00:00.000Z";
+    expect(wordCounts(learnedWords(fa, state, at, 0.97)).due).toBeGreaterThanOrEqual(wordCounts(learnedWords(fa, state, at)).due);
+  });
+
   it("counts one orthography's script practice only in that orthography", () => {
     const uz = loadCourse("uz", "uz-Latn/standard");
     const cyrl = loadCourse("uz", "uz-Cyrl/standard");
@@ -92,7 +104,268 @@ describe("browsing the word list", () => {
     const surface = (w: (typeof words)[number]): string => w.form.tokens.map((t) => t.surface).join("");
     const alphabetical = orderWords(words, "alphabetical").map(surface);
     expect(alphabetical).toEqual([...alphabetical].sort((a, b) => collator.compare(a, b)));
-    const later = learnedWords(fa, { ...state, cards: { ...state.cards, [`${kcs[1]?.id ?? ""}|recognize`]: { ...card, due: "2026-02-01T08:00:00.000Z" } } }, NOW);
+    // Practised three weeks ago with a four-day stability: its recall has fallen below the target.
+    const faded = { ...card, last_review: "2026-02-08T08:00:00.000Z", due: "2026-02-12T08:00:00.000Z" };
+    const later = learnedWords(fa, { ...state, cards: { ...state.cards, [`${kcs[1]?.id ?? ""}|recognize`]: faded } }, NOW);
     expect(orderWords(later, "weakest")[0]?.kc).toBe(kcs[1]?.id);
+  });
+});
+
+describe("known words (ADR 0100)", () => {
+  const fa = loadCourse("fa");
+  const words = fa.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense" && k.forms?.[fa.orthography] !== undefined);
+  const [a, b, c] = words.map((k) => String(k.id));
+  if (a === undefined || b === undefined || c === undefined) throw new Error("fa has words");
+  /** A stand-in exercise: what the fold reads of one (template, item, KCs). */
+  const card = (template: TemplateId, kcs: readonly string[]): Exercise => ({ id: `${template}:${kcs.join("+")}`, template, item: kcs.join("+"), kcs, orthography: fa.orthography }) as unknown as Exercise;
+  const day = (n: number): string => `2026-03-${String(n).padStart(2, "0")}T08:00:00.000Z`;
+  const log = () => {
+    const events = eventFactory(fa, manifestOf("fa").id);
+    const out: LearnerEvent[] = [];
+    const on = (n: number) => {
+      events.at(day(n));
+      events.session();
+    };
+    /**
+     * A first try (or `attempt`), with each KC's credit (true: right; false: wrong; undefined: given);
+     * `hinted`: a word's meaning was looked up on the card before answering (D16).
+     */
+    const answer = (ex: Exercise, credits: readonly (boolean | undefined)[], attempt = 1, hinted = false): void => {
+      const e = events.answer(ex, credits.every((x) => x !== false), attempt) as LearnerEvent & { input: object; outcome: { kcs: KcCredit[] } };
+      const kcs = ex.kcs.map((kc, i): KcCredit => ({ kc, status: credits[i] === undefined ? "given" : credits[i] ? "right" : "wrong" }));
+      out.push({ ...e, input: { ...e.input, ...(hinted ? { hinted: true } : {}) }, outcome: { ...e.outcome, kcs } } as LearnerEvent);
+    };
+    const skip = (ex: Exercise): void => {
+      const { input: _i, outcome: _o, prediction: _p, ...e } = events.answer(ex, false, 1) as LearnerEvent & { input: unknown; outcome: unknown; prediction?: unknown };
+      out.push({ ...e, type: "exercise_skipped", reason: "skip" } as unknown as LearnerEvent);
+    };
+    return { on, answer, skip, state: (): LearnerState => replay(out) };
+  };
+  const word = (kc: string) => card("choose-translation", [kc]);
+  const sentence = (...kcs: string[]) => card("translate-type.l1-l2", kcs);
+
+  it("shows a skill only on a later day than the word was met", () => {
+    const l = log();
+    l.on(1);
+    l.answer(word(a), [true]);
+    expect(l.state().met[a]).toBe("2026-03-01");
+    expect(l.state().shown).toEqual({});
+    l.on(2);
+    l.answer(word(a), [true]);
+    expect(l.state().shown).toEqual({ [`${a}|recognize`]: "2026-03-02" });
+  });
+
+  it("takes a skill away on a miss, and shows it again only after another night", () => {
+    const l = log();
+    l.on(1);
+    l.answer(word(a), [true]);
+    l.on(2);
+    l.answer(word(a), [true]);
+    l.answer(word(a), [false]);
+    expect(l.state().shown[`${a}|recognize`]).toBeUndefined();
+    expect(l.state().missed[`${a}|recognize`]).toBe("2026-03-02");
+    l.on(2);
+    l.answer(word(a), [true]);
+    expect(l.state().shown[`${a}|recognize`]).toBeUndefined();
+    l.on(3);
+    l.answer(word(a), [true]);
+    expect(l.state().shown[`${a}|recognize`]).toBe("2026-03-03");
+  });
+
+  it("pins a miss on a word only where the grading does", () => {
+    const l = log();
+    l.on(1);
+    l.answer(sentence(a, b, c), [true, true, true]);
+    l.on(2);
+    l.answer(sentence(a, b, c), [true, true, true]);
+    const shown = { [`${a}|produce`]: "2026-03-02", [`${b}|produce`]: "2026-03-02", [`${c}|produce`]: "2026-03-02" };
+    expect(l.state().shown).toEqual(shown);
+    // Missed as a whole: nothing says which word failed.
+    l.answer(sentence(a, b, c), [false, false, false]);
+    expect(l.state().shown).toEqual(shown);
+    // One word typed wrong among words typed right: that word is missed.
+    l.answer(sentence(a, b, c), [true, false, true]);
+    expect(Object.keys(l.state().shown).sort()).toEqual([`${a}|produce`, `${c}|produce`].sort());
+    // A word a pronunciation card does not ask about is given: neither shown nor missed.
+    l.answer(card("translate-type.l1-l2", [a, c]), [undefined, false]);
+    expect(Object.keys(l.state().shown)).toEqual([`${a}|produce`]);
+  });
+
+  it("shows no skill by a hinted first try, and misses none, though it counts as practice (D16)", () => {
+    const l = log();
+    l.on(1);
+    l.answer(word(a), [true]);
+    l.answer(word(b), [true]);
+    l.on(2);
+    // A meaning looked up before answering: right, but nothing shown; wrong, but nothing missed.
+    l.answer(word(a), [true], 1, true);
+    l.answer(word(b), [false], 1, true);
+    expect(l.state().shown).toEqual({});
+    expect(l.state().missed).toEqual({});
+    // Recent practice still has both, as answered (the learning pace reads it).
+    expect(l.state().recent.slice(-2)).toEqual([true, false]);
+    // The same answer without a hint shows the skill.
+    l.answer(word(a), [true]);
+    expect(l.state().shown).toEqual({ [`${a}|recognize`]: "2026-03-02" });
+  });
+
+  it("rates a hinted right answer Hard, and the performance model learns it as right (D16)", () => {
+    const run = (hinted: boolean): LearnerState => {
+      const l = log();
+      l.on(1);
+      l.answer(word(a), [true]);
+      l.on(2);
+      l.answer(word(a), [true], 1, hinted);
+      return l.state();
+    };
+    const plain = run(false);
+    const hinted = run(true);
+    const key = `${a}|recognize`;
+    // Hard grows the card's stability less than Good.
+    expect(hinted.cards[key]?.stability).toBeLessThan(plain.cards[key]?.stability ?? 0);
+    expect(hinted.performance).toEqual(plain.performance);
+    expect(hinted.xp).toEqual(plain.xp);
+  });
+
+  it("rates a speaking card as rated, looked up or not (D16c)", () => {
+    const run = (hinted: boolean): LearnerState => {
+      const l = log();
+      l.on(1);
+      l.answer(card("speak.tier-0", [a]), [true]);
+      l.on(2);
+      l.answer(card("speak.tier-0", [a]), [true], 1, hinted);
+      return l.state();
+    };
+    expect(run(true).cards).toEqual(run(false).cards);
+  });
+
+  it("counts first tries only, and a revealed answer on a word card as a miss", () => {
+    const l = log();
+    l.on(1);
+    l.answer(word(a), [true]);
+    l.answer(word(b), [true]);
+    l.on(2);
+    l.answer(word(a), [true], 2);
+    expect(l.state().shown).toEqual({});
+    l.answer(word(b), [true]);
+    l.skip(word(b));
+    expect(l.state().shown).toEqual({});
+    expect(l.state().missed[`${b}|recognize`]).toBe("2026-03-02");
+  });
+
+  it("asks every word to be recognized and produced, and heard where the voice may be relied on", () => {
+    const asked = skillsAsked(fa);
+    const heard = words.find((k) => fa.audio[k.id] !== undefined);
+    if (heard === undefined) throw new Error("fa has word clips");
+    expect(asked(heard.id)).toEqual(["recognize", "produce", "listen"]);
+    // A word no sentence uses cannot be produced, nor heard without a clip of its own.
+    const sentences = fa.units.flatMap((u) => u.sentences);
+    const unwritten = words.find((k) => !sentences.some((s) => s.kcs.includes(k.id)));
+    if (unwritten !== undefined) expect(asked(unwritten.id)).not.toContain("produce");
+    // Only words are known: a construction, a letter or an id the course lacks asks nothing.
+    expect(asked("sense:no-such-word")).toEqual([]);
+    // An iffy voice (ADR 0091) plans no listening; Classical Chinese practises recognize and produce.
+    for (const id of ["hbo", "tok", "lzh"]) {
+      const course = loadCourse(id);
+      const ask = skillsAsked(course);
+      const kcs = course.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense");
+      expect(kcs.some((k) => ask(k.id).includes("produce")), id).toBe(true);
+      expect(kcs.some((k) => ask(k.id).includes("listen")), id).toBe(false);
+    }
+  });
+
+  it("knows a word once it has shown every skill asked of it", () => {
+    const heard = words.find((k) => fa.audio[k.id] !== undefined && skillsAsked(fa)(k.id).length === 3);
+    if (heard === undefined) throw new Error("fa has a word asked all three skills");
+    const reviewed = { due: "2026-03-05T08:00:00.000Z", stability: 4, difficulty: 5, elapsed_days: 0, scheduled_days: 4, learning_steps: 0, reps: 1, lapses: 0, state: 2, last_review: NOW };
+    const base = { ...emptyLearnerState(), cards: { [`${heard.id}|recognize`]: reviewed } };
+    const shown = (...skills: string[]) => Object.fromEntries(skills.map((s) => [`${heard.id}|${s}`, "2026-03-02"]));
+    const learning = learnedWords(fa, { ...base, shown: shown("recognize", "produce") }, NOW);
+    expect(learning.map((w) => [w.known, w.skills])).toEqual([
+      [false, [{ skill: "recognize", shown: true }, { skill: "produce", shown: true }, { skill: "listen", shown: false }]],
+    ]);
+    expect(wordCounts(learning)).toEqual({ known: 0, learning: 1, due: 0 });
+    const known = learnedWords(fa, { ...base, shown: shown("recognize", "produce", "listen") }, NOW);
+    expect(known.map((w) => w.known)).toEqual([true]);
+    expect(wordCounts(known)).toEqual({ known: 1, learning: 0, due: 0 });
+  });
+});
+
+describe("listening turned off for good (D41)", () => {
+  const fa = loadCourse("fa");
+  const LISTEN: ReadonlySet<Facet> = new Set<Facet>(["listen"]);
+  const heard = fa.units.flatMap((u) => u.kcs).find((k) => k.kind === "sense" && k.forms?.[fa.orthography] !== undefined && skillsAsked(fa)(k.id).length === 3);
+  if (heard === undefined) throw new Error("fa has a word asked all three skills");
+  const kc = String(heard.id);
+  /** A card last reviewed `daysAgo` with this stability: recall falls as the days pass. */
+  const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
+    const last = new Date(Date.parse(NOW) - daysAgo * 86_400_000).toISOString();
+    return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 2, lapses: 0, state: 2, last_review: last };
+  };
+  // Read and written yesterday; heard a month ago, its listening forgotten.
+  const state: LearnerState = {
+    ...emptyLearnerState(),
+    cards: { [`${kc}|recognize`]: cardAt(1, 60), [`${kc}|produce`]: cardAt(1, 60), [`${kc}|listen`]: cardAt(30, 2) },
+    met: { [kc]: "2026-01-30" },
+    shown: { [`${kc}|recognize`]: "2026-02-28", [`${kc}|produce`]: "2026-02-28" },
+  };
+
+  it("asks no word to be heard; the course's own answer stays as it was", () => {
+    expect(skillsAsked(fa, LISTEN)(kc)).toEqual(["recognize", "produce"]);
+    expect(skillsAsked(fa)(kc)).toEqual(["recognize", "produce", "listen"]);
+    // Memoised per course and per skills turned off, whichever set says so.
+    expect(skillsAsked(fa, new Set<Facet>(["listen"]))).toBe(skillsAsked(fa, LISTEN));
+    expect(skillsAsked(fa, new Set<Facet>())).toBe(skillsAsked(fa));
+    // Speaking is no skill a word is known by: turning it off asks the same.
+    expect(skillsAsked(fa, new Set<Facet>(["speak"]))).toBe(skillsAsked(fa));
+  });
+
+  it("knows a word once it is recognized and produced", () => {
+    const [on] = learnedWords(fa, state, NOW);
+    expect([on?.known, on?.skills.map((s) => s.skill)]).toEqual([false, ["recognize", "produce", "listen"]]);
+    const off = learnedWords(fa, state, NOW, DESIRED_RETENTION, LISTEN);
+    expect(off.map((w) => [w.known, w.skills])).toEqual([
+      [true, [{ skill: "recognize", shown: true }, { skill: "produce", shown: true }]],
+    ]);
+    expect(wordCounts(off)).toEqual({ known: 1, learning: 0, due: 0 });
+  });
+
+  it("never counts a listening card as due, nor in a word's strength", () => {
+    const [on] = learnedWords(fa, state, NOW);
+    const [off] = learnedWords(fa, state, NOW, DESIRED_RETENTION, LISTEN);
+    expect([on?.due, off?.due]).toEqual([true, false]);
+    expect(off?.strength).toBeCloseTo(retrievability(state, kc, "recognize", fa.orthography, NOW));
+    expect(off?.strength).toBeGreaterThan(on?.strength ?? 1);
+    // The reviews it had are history: they stay.
+    expect(off?.reviews).toBe(on?.reviews);
+    // The planner's due cards say the same (W8).
+    expect(dueFacets(state, fa.orthography, NOW).map((f) => f.key)).toEqual([`${kc}|listen`]);
+    expect(dueFacets(state, fa.orthography, NOW, DESIRED_RETENTION, LISTEN)).toEqual([]);
+    // A word practised by listening alone stays listed, with the strength it has, and is not due.
+    const onlyHeard: LearnerState = { ...emptyLearnerState(), cards: { [`${kc}|listen`]: cardAt(30, 2) } };
+    const [listed] = learnedWords(fa, onlyHeard, NOW, DESIRED_RETENTION, LISTEN);
+    expect([listed?.kc, listed?.due]).toEqual([kc, false]);
+    expect(listed?.strength).toBeCloseTo(retrievability(onlyHeard, kc, "listen", fa.orthography, NOW));
+  });
+
+  it("changes nothing when nothing is turned off", () => {
+    for (const at of [NOW, "2026-04-01T08:00:00.000Z"]) {
+      expect(learnedWords(fa, state, at, DESIRED_RETENTION, new Set())).toEqual(learnedWords(fa, state, at));
+      expect(dueFacets(state, fa.orthography, at, DESIRED_RETENTION, new Set())).toEqual(dueFacets(state, fa.orthography, at));
+    }
+  });
+});
+
+describe("finding a word by its reading", () => {
+  const yue = loadCourse("yue");
+  const kcs = yue.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense" && k.forms?.[yue.orthography] !== undefined);
+  const card = { due: "2026-03-05T08:00:00.000Z", stability: 4, difficulty: 5, elapsed_days: 0, scheduled_days: 4, learning_steps: 0, reps: 1, lapses: 0, state: 2, last_review: NOW };
+  const words = learnedWords(yue, { ...emptyLearnerState(), cards: Object.fromEntries(kcs.map((k) => [`${k.id}|recognize`, card])) }, NOW);
+  const found = (q: string): readonly string[] => words.filter(wordMatcher(yue, q)).map((w) => w.kc);
+
+  it("finds it with or without tones and spaces, in any case", () => {
+    expect(words.map((w) => w.kc)).toContain("sense:早晨");
+    for (const q of ["zou2 san4", "zou2san4", "zousan", "ZOU SAN", "zou2"]) expect(found(q), q).toContain("sense:早晨");
+    expect(found("zou3 san4")).not.toContain("sense:早晨");
   });
 });

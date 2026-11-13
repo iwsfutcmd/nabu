@@ -67,12 +67,14 @@ test("learners see no sign-off controls", async ({ page }) => {
   await expect(page.locator("[data-action=sign-off], [data-action=sign-off-unit]")).toHaveCount(0);
 });
 
-test("the demo says how much of a course no native speaker has checked yet", async ({ page }) => {
+test("the demo says how much of a course no expert has checked yet (S16, D14)", async ({ page }) => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const { drafts, total } = draftCount(course.units);
   expect(drafts).toBeGreaterThan(0);
   await page.goto("/?sound=off#/apc/apc-Arab.standard");
   const note = page.locator("[data-drafts]");
   await expect(note).toHaveAttribute("data-drafts", String(drafts));
-  await expect(note).toContainText(`${drafts} of ${total}`);
+  await expect(note).toBeVisible();
+  // A course partly checked says how much; one entirely a draft says so without counting.
+  if (drafts < total) await expect(note).toContainText(`${drafts} of ${total}`);
 });

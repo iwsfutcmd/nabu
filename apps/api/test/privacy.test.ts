@@ -3,6 +3,7 @@
  * the account does, deleting it leaves nothing that names the learner, and sign-up, sign-in and
  * uploads are limited.
  */
+import { DEFAULT_LEAGUE } from "@nabu/core/game";
 import { emptyLearnerState, plan } from "@nabu/core/learner";
 import type { LearnerEvent } from "@nabu/schema";
 import { count, eq } from "drizzle-orm";
@@ -12,7 +13,7 @@ import { createAccounts } from "../src/accounts.ts";
 import { createApp, type App } from "../src/app.ts";
 import type { Database } from "../src/db/index.ts";
 import { testDatabase } from "./database.ts";
-import { answerReports, authSessions, correctionVotes, events, llmUsage, reportVotes, sentenceCorrections, users } from "../src/db/schema.ts";
+import { answerReports, authSessions, correctionVotes, events, leagueOptOuts, llmUsage, reminderSettings, reportVotes, sentenceCorrections, users } from "../src/db/schema.ts";
 import { DEFAULT_LIMITS, limitsFromEnv } from "../src/limits.ts";
 import { deleteAccount } from "../src/privacy.ts";
 
@@ -78,8 +79,23 @@ describe("export", () => {
     expect(data.events.map((e) => e.id)).toEqual(log.map((e) => e.id));
     expect(data.courses).toEqual([expect.objectContaining({ course: "fa", events: log.length })]);
     expect(data.game).toBeDefined();
-    expect(data.reminders).toEqual({ web: 0, android: 0, ios: 0 });
+    expect(data.reminders).toEqual({ web: 0, android: 0, ios: 0, time: null });
     expect(data.reports).toEqual([]);
+    // The reminder time the learner chose (ADR 0103) is theirs too.
+    expect((await app.request("/v1/push/reminder", json({ time: "21:15" }, token, "PUT"))).status).toBe(200);
+    const again = (await (await app.request("/v1/export", auth(token))).json()) as { reminders: unknown };
+    expect(again.reminders).toEqual({ web: 0, android: 0, ios: 0, time: "21:15" });
+  });
+
+  it("holds the learner's league weeks, and their no to leagues (ADR 0122)", async () => {
+    const { token } = await signUp(app, "league-export@example.com");
+    const leagues = createApp({ db: database.db, accounts: createAccounts(database.db), leagues: DEFAULT_LEAGUE });
+    expect((await leagues.request("/v1/events", json({ events: oneLesson() }, token))).status).toBe(200);
+    const before = (await (await app.request("/v1/export", auth(token))).json()) as { leagues: { optedOut: string | null } };
+    expect(before.leagues.optedOut).toBeNull();
+    expect((await leagues.request("/v1/league", json({ optedOut: true }, token, "PUT"))).status).toBe(200);
+    const after = (await (await app.request("/v1/export", auth(token))).json()) as { leagues: { optedOut: string | null; memberships: unknown[] } };
+    expect(Date.parse(after.leagues.optedOut ?? "")).not.toBeNaN();
   });
 
   it("needs a session", async () => {
@@ -91,6 +107,10 @@ describe("deleting an account", () => {
   it("asks for the password, then leaves nothing of the learner", async () => {
     const { token, id } = await signUp(app, "leaving@example.com");
     expect((await app.request("/v1/events", json({ events: oneLesson() }, token))).status).toBe(200);
+    expect((await app.request("/v1/push/reminder", json({ time: "07:00" }, token, "PUT"))).status).toBe(200);
+    const leagues = createApp({ db: database.db, accounts: createAccounts(database.db), leagues: DEFAULT_LEAGUE });
+    expect((await leagues.request("/v1/league", json({ optedOut: true }, token, "PUT"))).status).toBe(200);
+    expect(await database.db.select().from(leagueOptOuts).where(eq(leagueOptOuts.userId, id))).toHaveLength(1);
 
     expect((await app.request("/v1/account", json({ password: "not the password" }, token, "DELETE"))).status).toBe(403);
     expect((await app.request("/v1/account", json({}, token, "DELETE"))).status).toBe(403);
@@ -102,6 +122,8 @@ describe("deleting an account", () => {
     expect(await db.select().from(authSessions).where(eq(authSessions.userId, id))).toEqual([]);
     const [left] = await db.select({ n: count() }).from(events).where(eq(events.userId, id));
     expect(Number(left?.n)).toBe(0);
+    expect(await db.select().from(reminderSettings).where(eq(reminderSettings.userId, id))).toEqual([]);
+    expect(await db.select().from(leagueOptOuts).where(eq(leagueOptOuts.userId, id))).toEqual([]);
     expect((await app.request("/v1/auth/me", auth(token))).status).toBe(401);
     expect((await app.request("/v1/auth/sign-in", json({ email: "leaving@example.com", password: PASSWORD }))).status).toBe(401);
     // The address is free again.

@@ -54,6 +54,8 @@ interface Common {
   readonly kcs: readonly KcId[];
   /** The orthography the learner answers in (target or support). */
   readonly orthography: string;
+  /** Older material a lesson brings back because it is due (ADR 0097): the player marks the card. */
+  readonly review?: true | undefined;
 }
 
 /** A support-language gloss; pick the picture and word that match it. */
@@ -149,7 +151,11 @@ export interface GapFill extends Common {
  */
 export interface CharRead extends Common {
   readonly template: "char-read" | "letter-read" | "word-read";
+  /** A char-read card's sentence without ruby (ADR 0098); a script track's letter or word. */
   readonly prompt: TaggedText;
+  /** char-read: the word asked about, its token in the prompt, and what the sentence means. */
+  readonly word?: number | undefined;
+  readonly translation?: TaggedText | undefined;
   readonly options: readonly TaggedText[];
   readonly answer: number;
 }
@@ -165,30 +171,41 @@ export interface ReadingDisambiguation extends Common {
 }
 
 /**
- * An abjad word without its vowel marks, with its meaning; write the marks in (ADR 0054). The
- * field starts from the letters. Grading compares the marks letter by letter (`gradeVowels`).
+ * A word of a sentence, in context, without its vowel marks: choose it with its marks among wrong
+ * ones (ADR 0054; in context, ADR 0095; multiple choice, ADR 0098). The sentence says which form the
+ * word takes; typing an abjad's marks is a chore, and a word has few plausible vocalizations.
  */
 export interface Vocalize extends Common {
   readonly template: "vocalize";
-  /** The word's letters: what the learner starts from. */
+  /** The sentence without vowel marks, as a reader of the script sees it. */
   readonly prompt: TaggedText;
-  readonly meaning: TaggedText;
+  /** The word asked about: its token in the prompt. */
+  readonly word: number;
+  /** What the sentence means. */
+  readonly translation: TaggedText;
   /** The word with its vowel marks (the course's vocalization). */
   readonly vocalized: TaggedText;
-  /** The orthography's vowel marks, one code point each (the profile's `match.marks`). */
-  readonly marks: readonly string[];
-  /** Marks that may be written or left out (sukun). */
-  readonly optional: readonly string[];
+  /** The vocalized word among other vocalizations of its letters; `answer` is its index. */
+  readonly options: readonly TaggedText[];
+  readonly answer: number;
+  /**
+   * The word as another orthography of the course writes it, vowels and all (the profile's
+   * `marks.spelledIn`: Arabizi for Lebanese Arabic): typing it so is a vocalization too.
+   */
+  readonly spelled?: TaggedText | undefined;
 }
 
-/** An ideographic word with its meaning; type its reading (Jyutping) (ADR 0054). */
+/** A Han word of a sentence, in context: type its reading (Jyutping) (ADR 0054; in context, ADR 0095). */
 export interface Transcribe extends Common {
   readonly template: "transcribe";
-  /** The word, without its ruby. */
+  /** The sentence without ruby: the word's reading is the answer. */
   readonly prompt: TaggedText;
-  readonly meaning: TaggedText;
+  /** The word asked about: its token in the prompt. */
+  readonly word: number;
+  /** What the sentence means. */
+  readonly translation: TaggedText;
   readonly scheme: string;
-  /** The pinned reading, tagged as the scheme (yue-Latn-HK-jyutping). */
+  /** The word's pinned reading, tagged as the scheme (yue-Latn-HK-jyutping). */
   readonly reading: TaggedText;
 }
 
@@ -359,6 +376,12 @@ export interface Outcome {
    */
   readonly closestIsSolution?: boolean | undefined;
   readonly skipped?: SkipReason | undefined;
+  /**
+   * The learner rated their own speaking (tier 0, or no microphone for scored speaking): nothing was
+   * checked, so it is no verdict. It goes to scheduling (Again for "Couldn't say it") but not to the
+   * score, the perfect bonus or the gate, and the feedback is neutral.
+   */
+  readonly selfRated?: true | undefined;
   /** Speech: tokens of the prompt said wrong (their KCs are debited, the others credited). */
   readonly offTokens?: readonly number[] | undefined;
 }

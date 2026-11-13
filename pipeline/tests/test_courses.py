@@ -15,6 +15,7 @@ from nabu.analyzers import analyzers_by_tool
 from nabu.compiler import Diagnostics, compile_course, load_profiles, write_bundle
 from nabu.compiler.build import Compiled
 from nabu.drills.rbnf import icu_version
+from nabu.items import unit_json
 
 from .conftest import REQUIRE_TOOLS, ROOT, CoreCli
 
@@ -86,8 +87,13 @@ def build(cli: CoreCli, course: str) -> tuple[Diagnostics, Compiled]:
     return diags, compiled
 
 
+def bundled(compiled: Compiled) -> list[dict[str, Any]]:
+    """The compiled units as the bundle holds them (JSON)."""
+    return [unit_json(u) for u in compiled.units]
+
+
 def sentences(compiled: Compiled) -> list[dict[str, Any]]:
-    return [s for u in compiled.units for s in u["sentences"]]
+    return [s for u in bundled(compiled) for s in u["sentences"]]
 
 
 def surface(diag_message: str) -> str:
@@ -103,7 +109,7 @@ def test_course_builds_clean(core_cli: CoreCli, course: str) -> None:
         d.format() for d in diags.items if d.severity == "warning"
     ]
     taught = [s for s in sentences(compiled) if not s["id"].startswith("drill.")]
-    kcs = {k["id"] for u in compiled.units for k in u["kcs"]}
+    kcs = {k["id"] for u in bundled(compiled) for k in u["kcs"]}
     assert len(taught) >= 20 and len(kcs) >= 20, (len(taught), len(kcs))
 
 
@@ -134,7 +140,7 @@ def test_every_sentence_in_both_orthographies_with_a_script_track(
     for s in sentences(compiled):
         assert sorted(s["forms"]) == sorted(orthographies), s["id"]
         assert all("reverse" in f for f in s["forms"].values()), s["id"]
-    tracks = [n for u in compiled.units for n in u["nodes"] if n["kind"] == "script"]
+    tracks = [n for u in bundled(compiled) for n in u["nodes"] if n["kind"] == "script"]
     assert [(n["convert"]["from"], n["convert"]["to"]) for n in tracks] == [convert]
     assert tracks[0]["sentences"] and all(
         kc.startswith("grapheme:") for kc in tracks[0]["introduces"]
@@ -171,7 +177,7 @@ def test_cantonese_words_carry_the_readings_their_sentences_pin(core_cli: CoreCl
     _, compiled = build(core_cli, "yue")
     forms = {
         (k["id"], t["surface"]): t
-        for u in compiled.units
+        for u in bundled(compiled)
         for k in u["kcs"]
         for f in k.get("forms", {}).get("yue-Hant-HK/standard", [])
         for t in f["tokens"]
@@ -210,7 +216,7 @@ def test_course_dirs_are_all_tested() -> None:
 def test_select_image_has_licensed_pictures(core_cli: CoreCli, course: str) -> None:
     """At least three pictured senses per course, so select-image has distractors."""
     _, compiled = build(core_cli, course)
-    pictured = [k for u in compiled.units for k in u["kcs"] if "image" in k]
+    pictured = [k for u in bundled(compiled) for k in u["kcs"] if "image" in k]
     assert len(pictured) >= 3, [k["id"] for k in pictured]
     assert all(k["image"] in compiled.images for k in pictured)
     assert all(license_ == "CC0-1.0" for _, license_, _ in compiled.images.values())
@@ -254,7 +260,7 @@ def test_every_word_the_vocalization_knows_is_marked(core_cli: CoreCli, course: 
     }
     unmarked: list[str] = []
     seen = 0
-    for unit in compiled.units:
+    for unit in bundled(compiled):
         for tokens in _texts(unit, orth):
             for t in tokens:
                 if t["kind"] != "word" or t["surface"] in pinned:
@@ -306,7 +312,7 @@ def test_classical_chinese_pins_three_reading_layers(core_cli: CoreCli) -> None:
 
     words = sum(check(s["forms"][LZH]["text"]["tokens"], s["id"]) for s in sentences(compiled))
     assert words > 1000
-    for u in compiled.units:
+    for u in bundled(compiled):
         for kc in u["kcs"]:
             for form in kc.get("forms", {}).get(LZH, []):
                 assert check(form["tokens"], kc["id"]) == 1, kc["id"]
@@ -339,15 +345,15 @@ def test_cuban_spanish_runs_thirty_units_each_ending_in_a_story(
     syllabus promises are all taught; the placement test types its answers (ADR 0076)."""
     _, compiled = build(core_cli, "es")
     assert compiled.course.target == "es-Latn-CU"
-    assert [u["id"] for u in compiled.units] == [f"u{n:02d}" for n in range(1, 31)]
-    assert (compiled.units[0]["cefr"], compiled.units[-1]["cefr"]) == ("A1", "B2")
-    for u in compiled.units:
+    assert [u["id"] for u in bundled(compiled)] == [f"u{n:02d}" for n in range(1, 31)]
+    assert (bundled(compiled)[0]["cefr"], bundled(compiled)[-1]["cefr"]) == ("A1", "B2")
+    for u in bundled(compiled):
         assert len(u["stories"]) == 1, u["id"]
         assert u["nodes"][-1]["kind"] == "story", u["id"]
     used = {kc for s in sentences(compiled) for kc in s["kcs"]}
     assert [f for f in ES_FORMS if f"form:{f}" not in used] == []
     # The voices clone people's recordings: every clip's credit names the recording (CC BY asks it).
-    credits = {clip["credit"] for entry in compiled.audio_items.values() for clip in entry.values()}
+    credits = {clip.credit for entry in compiled.audio_items.values() for clip in entry.values()}
     assert credits and all("cloning" in c and "archive.org/details/" in c for c in credits)
     manifest = write_bundle(compiled, PROFILES, ANALYZERS, tmp_path)
     assert manifest["placement"] == {"production": "typed"}
@@ -363,14 +369,15 @@ def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> No
     Piper voice), never Hebrew text, and no voice is a Hebrew (Modern Hebrew) one; every clip's
     input is phonemes."""
     from nabu.audio import tiberian
-    from nabu.audio.course import PHONEME_SCHEMES, PIPER_PHONEME_SCHEMES, read_index
+    from nabu.audio.course import read_index
+    from nabu.schemes import plugins
 
     _, compiled = build(core_cli, "hbo")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
-        assert voice.reading == "tiberian" and voice.reading in PHONEME_SCHEMES
-        assert voice.reading in PIPER_PHONEME_SCHEMES or voice.provider != "piper"
+        assert voice.reading == "tiberian" and plugins(voice.reading).espeak is not None
+        assert plugins(voice.reading).piper is not None or voice.provider != "piper"
         assert not voice.voice.startswith("he")
     index = read_index(COURSES / "hbo" / "audio")
     assert len(index.clips) > 300
@@ -395,7 +402,7 @@ def test_biblical_hebrew_pins_a_tiberian_reading_on_every_word(core_cli: CoreCli
 
     _, compiled = build(core_cli, "hbo")
     words = 0
-    for unit in compiled.units:
+    for unit in bundled(compiled):
         lines = [s["forms"][HBO] for s in unit["sentences"]] + [
             step["line"]["forms"][HBO]
             for story in unit.get("stories", [])
@@ -469,14 +476,15 @@ def test_toki_pona_pins_every_sentence_in_sitelen_lasina_and_sitelen_pona(
 def test_toki_pona_is_said_as_phonemes(core_cli: CoreCli) -> None:
     """No synthesizer speaks Toki Pona: every voice says the pinned sitelen Lasina as eSpeak NG
     phonemes (nabu.audio.toki_pona), and every clip's input is phonemes of Toki Pona's sounds."""
-    from nabu.audio.course import PHONEME_SCHEMES, read_index
+    from nabu.audio.course import read_index
+    from nabu.schemes import plugins
 
     _, compiled = build(core_cli, "tok")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
         assert voice.provider == "espeak-ng" and voice.reading == "lasina"
-        assert voice.reading in PHONEME_SCHEMES
+        assert plugins(voice.reading).espeak is not None
     index = read_index(COURSES / "tok" / "audio")
     assert len(index.clips) > 300
     for clip in index.clips:
@@ -493,14 +501,15 @@ GREEK_LETTER = regex.compile(r"\p{Script=Greek}")
 def test_attic_greek_is_never_read_as_modern_greek(core_cli: CoreCli) -> None:
     """grc (ADR 0087): every voice says the pinned Attic reading as phonemes (IPA for its Piper
     voice), never Greek text, which a Greek voice would read as Modern Greek."""
-    from nabu.audio.course import PHONEME_SCHEMES, PIPER_PHONEME_SCHEMES, read_index
+    from nabu.audio.course import read_index
+    from nabu.schemes import plugins
 
     _, compiled = build(core_cli, "grc")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
-        assert voice.reading == "attic" and voice.reading in PHONEME_SCHEMES
-        assert voice.reading in PIPER_PHONEME_SCHEMES or voice.provider != "piper"
+        assert voice.reading == "attic" and plugins(voice.reading).espeak is not None
+        assert plugins(voice.reading).piper is not None or voice.provider != "piper"
     index = read_index(COURSES / "grc" / "audio")
     assert len(index.clips) > 400
     for clip in index.clips:
@@ -519,7 +528,7 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
 
     _, compiled = build(core_cli, "grc")
     words = 0
-    for unit in compiled.units:
+    for unit in bundled(compiled):
         lines = [s["forms"][GRC] for s in unit["sentences"]] + [
             step["line"]["forms"][GRC]
             for story in unit.get("stories", [])
@@ -541,23 +550,24 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
 def test_greek_alphabet_track(core_cli: CoreCli) -> None:
     """grc's script track (ADR 0088): eight alphabet nodes, each word spelled with the letters
     taught by then, every letter and word with its Latin spelling, tagged grc-Latn/romanized."""
-    from nabu.compiler.script import letters_of
+    from nabu.compiler.script import Reader
 
     _, compiled = build(core_cli, "grc")
-    nodes = [n for u in compiled.units for n in u["nodes"] if n["kind"] == "script"]
+    read = Reader.of(core_cli, GRC, PROFILES[GRC])
+    nodes = [n for u in compiled.units for n in u.nodes if n.kind == "script"]
     assert len(nodes) == 8
     taught: set[str] = set()
     for n in nodes:
-        alphabet = n["alphabet"]
-        assert alphabet["orthography"] == GRC and n["sentences"] == []
-        for letter in alphabet["letters"]:
-            assert letter["latin"]["orthography"] == "grc-Latn/romanized"
-            taught |= set(letters_of(letter["text"]["tokens"][0]["surface"]))
-        assert alphabet["words"], n["id"]
-        for word in alphabet["words"]:
-            surface = "".join(t["surface"] for t in word["text"]["tokens"])
-            assert set(letters_of(surface)) <= taught, (n["id"], surface)
-            assert word["letters"], surface
+        alphabet = n.alphabet
+        assert alphabet is not None and alphabet.orthography == GRC and n.sentences == []
+        for letter in alphabet.letters:
+            assert letter.latin.orthography == "grc-Latn/romanized"
+            taught |= set(read(letter.text.tokens[0].surface).letters)
+        assert alphabet.words, n.id
+        for word in alphabet.words:
+            surface = "".join(t.surface for t in word.text.tokens)
+            assert set(read(surface).letters) <= taught, (n.id, surface)
+            assert word.letters, surface
 
 
 @pytest.mark.parametrize(

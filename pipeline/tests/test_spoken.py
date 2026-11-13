@@ -8,7 +8,7 @@ import pytest
 
 from nabu.audio.course import plan
 from nabu.compiler import compile_course
-from nabu.schema.models import AudioVoice
+from nabu.schema.models import AudioVoice, BundleUnit
 
 from .conftest import ROOT, CoreCli
 
@@ -31,13 +31,13 @@ def voice(**extra: Any) -> AudioVoice:
 
 
 @pytest.fixture(scope="module")
-def units(core_cli: CoreCli) -> list[dict[str, Any]]:
+def units(core_cli: CoreCli) -> list[BundleUnit]:
     _diags, compiled = compile_course(ROOT / "courses" / "fa", core_cli)
     assert compiled is not None
     return compiled.units
 
 
-def test_a_homograph_is_read_as_spoken(units: list[dict[str, Any]]) -> None:
+def test_a_homograph_is_read_as_spoken(units: list[BundleUnit]) -> None:
     nine = "ن" + DAMMA + "ه"
     plain = {i.item: i for i in plan(units, voice())[0]}
     said = {i.item: i for i in plan(units, voice(spoken={"drill.numbers.9": nine}))[0]}
@@ -51,11 +51,11 @@ def test_a_homograph_is_read_as_spoken(units: list[dict[str, Any]]) -> None:
     assert said["drill.numbers.9"].expected == plain["drill.numbers.9"].expected
 
 
-def test_spoken_for_an_unknown_item_is_refused(units: list[dict[str, Any]]) -> None:
+def test_spoken_for_an_unknown_item_is_refused(units: list[BundleUnit]) -> None:
     with pytest.raises(ValueError, match=r"no item drill\.numbers\.99"):
         plan(units, voice(spoken={"drill.numbers.99": "نود و نه"}))
 
 
-def test_spoken_with_other_words_than_the_item_is_refused(units: list[dict[str, Any]]) -> None:
+def test_spoken_with_other_words_than_the_item_is_refused(units: list[BundleUnit]) -> None:
     with pytest.raises(ValueError, match="1 words, its spoken text 2"):
         plan(units, voice(spoken={"drill.numbers.9": "نُه تا"}))

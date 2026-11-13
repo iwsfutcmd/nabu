@@ -1,5 +1,5 @@
 /* The story reader. Logical properties only: the same rules lay out LTR, RTL and vertical
-   text (gameplan §11.4, §11.9). The transcript is the one surface that may turn vertical. */
+   text (gameplan §11.4, §11.9). The lines' text is the one thing that may turn vertical. */
 
 .reader {
   min-block-size: 36rem;
@@ -17,20 +17,25 @@
   border-radius: var(--nabu-radius-tile);
 }
 
-/* Vertical reading (§11.4): lines become columns, read from the right; the transcript keeps
-   the card's width (its block size, in its own writing mode) and scrolls along it. */
-.transcript[data-writing-mode="vertical-rl"] {
+/* The whole story read again (S15): it grows with the story, and the page scrolls. */
+.whole {
+  max-block-size: none;
+}
+
+/* Vertical reading (§11.4, ADR 0118): each line's text turns into columns, read from the right,
+   its ruby beside them. The speaker's name, the play buttons, the translation and its button stay
+   horizontal, as the chrome does, and the transcript keeps its size and scrolls as in horizontal text. */
+.transcript[data-writing-mode="vertical-rl"] .lineText {
   writing-mode: vertical-rl;
 }
 
-.transcript[data-writing-mode="vertical-lr"] {
+.transcript[data-writing-mode="vertical-lr"] .lineText {
   writing-mode: vertical-lr;
 }
 
-.transcript:is([data-writing-mode="vertical-rl"], [data-writing-mode="vertical-lr"]) {
-  inline-size: 22rem;
-  block-size: 100%;
-  max-block-size: none;
+/* A column is at most this long: a longer line goes on in the next column. */
+.transcript:is([data-writing-mode="vertical-rl"], [data-writing-mode="vertical-lr"]) .lineText {
+  max-inline-size: 16rem;
   text-orientation: mixed;
 }
 
@@ -63,6 +68,13 @@
   font-size: 1.375rem;
 }
 
+.lineControls {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  gap: var(--nabu-space-2);
+}
+
 .translate {
   display: inline-flex;
   align-items: center;
@@ -81,53 +93,6 @@
 
 .translation {
   margin: 0;
-  color: var(--nabu-color-muted);
-}
-
-/* Inside a vertical transcript everything follows the column: names and lines read top to
-   bottom, and Latin text (a translation, its button) turns sideways, as in vertical CJK print.
-   Forcing it horizontal would make orthogonal boxes that overflow their column. */
-
-.gloss {
-  box-sizing: border-box;
-  min-block-size: 4.5rem;
-  padding-block: var(--nabu-space-2);
-  padding-inline: var(--nabu-space-3);
-  border: 1px dashed var(--nabu-color-border);
-  border-radius: var(--nabu-radius-tile);
-}
-
-.glossHint {
-  margin: 0;
-  color: var(--nabu-color-muted);
-}
-
-.glossList {
-  display: grid;
-  gap: var(--nabu-space-2);
-  margin: 0;
-}
-
-.glossEntry {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--nabu-space-3);
-}
-
-.glossEntry dt {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.glossEntry dd {
-  margin: 0;
-}
-
-.glossNote {
-  margin-inline-start: var(--nabu-space-2);
-  font-size: 0.875rem;
-  font-style: italic;
   color: var(--nabu-color-muted);
 }
 

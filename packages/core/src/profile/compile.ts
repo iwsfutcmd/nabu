@@ -7,6 +7,7 @@
 import type { DataTable, KeyboardLayout, OrthographyProfile, Policy } from "@nabu/schema";
 import { compileNormalizer, literalMap, type StepFn } from "../normalize/steps.ts";
 import { err, ok, type Result } from "../result.ts";
+import { readingScheme } from "./schemes.ts";
 import { asciiLowercase } from "../text/ascii.ts";
 import { caseFold } from "../text/case.ts";
 import { graphemes } from "../text/graphemes.ts";
@@ -93,6 +94,7 @@ export type ProfileError =
   | { readonly code: "unknown-table"; readonly table: string }
   | { readonly code: "wrong-table-kind"; readonly table: string; readonly expected: DataTable["kind"] }
   | { readonly code: "unknown-keyboard"; readonly keyboard: string }
+  | { readonly code: "unknown-scheme"; readonly scheme: string }
   | { readonly code: "bad-step"; readonly message: string }
   | { readonly code: "bad-unicode-set"; readonly message: string };
 
@@ -205,6 +207,11 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     for (const eq of equivalences) k = eq.apply(k);
     return (marks?.strip(k) ?? k).normalize("NFC");
   });
+
+  // A reading layer names a scheme whose data says how its readings are written (ADR 0109).
+  for (const layer of profile.annotations ?? []) {
+    if (layer.kind === "reading" && layer.scheme !== undefined && readingScheme(layer.scheme) === undefined) errors.push({ code: "unknown-scheme", scheme: layer.scheme });
+  }
 
   let typo: CompiledProfile["typo"];
   if (match.typo !== undefined) {

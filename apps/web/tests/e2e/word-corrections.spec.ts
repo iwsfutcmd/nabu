@@ -26,7 +26,9 @@ test("match-the-pairs: choose the wrong word, then correct its meaning", async (
   await answer(page, ex, "keyboard");
   await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "feedback");
 
-  await page.locator("[data-action=mark-incorrect]").click();
+  // The one report button beside the feedback (M6), then "One of these is wrong".
+  await page.locator("[data-action=report-problem]").click();
+  await page.locator("[data-report-dialog] [data-action=mark-incorrect]").click();
   const choose = page.locator("[data-correction-choose]");
   await expect(choose.getByRole("heading")).toHaveText("Which one is wrong?");
   await expect(choose.locator("[data-choose]")).toHaveCount(ex.kcs.length);

@@ -1,7 +1,7 @@
 /**
  * Debug mode: ?debug=1 turns on, for this device, a gallery with one card of every kind the
  * course can make, and a label on every card saying which kind it is. Nothing played in the
- * gallery is recorded.
+ * gallery is recorded. Every screen says it is on, with a way out.
  */
 import { cardGallery } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
@@ -32,15 +32,27 @@ test("every kind of card can be tried from the gallery, and none of it is record
     await expect(page.locator("[data-lesson-player]")).toBeVisible();
     await expect(page.locator("[data-debug-template]")).toHaveAttribute("data-debug-template", template);
     await page.locator("[data-action=quit]").click();
+    // Quitting goes straight back (P8): no stopped screen to tap through.
     await page.locator("[data-action=quit-confirm]").click();
-    await page.locator("[data-action=exit]").click();
     await expect(page.locator("[data-cards-page=yue]")).toBeVisible();
   }
   await page.locator("[data-action=play-all-cards]").click();
   await expect(page.locator("[data-debug-template]")).toHaveAttribute("data-debug-template", gallery.find((c) => c.exercise !== undefined)?.template ?? "");
   expect((await logOf(page, "yue")).length).toBe(before);
 
-  // ?debug=0 turns it off again.
+  // Every screen says debug mode is on, with the way out. Leaving also drops ?debug=1 from the
+  // address (it would turn debug mode straight back on) and opens the page again without it.
+  await page.goto("/?sound=off&debug=1#/yue/yue-Hant-HK.standard");
+  await expect(page.locator("[data-debug-notice]")).toBeVisible();
+  await page.locator("[data-action=leave-debug]").click();
+  await expect(page).toHaveURL(/\/\?sound=off#\/yue\/yue-Hant-HK\.standard$/u);
+  await expect(page.locator("[data-course-path]")).toBeVisible();
+  await expect(page.locator("[data-cards-link]")).toHaveCount(0);
+  await expect(page.locator("[data-debug-notice]")).toHaveCount(0);
+
+  // ?debug=0 turns it off too.
+  await page.goto("/?sound=off&debug=1#/yue/yue-Hant-HK.standard");
+  await expect(page.locator("[data-cards-link]")).toBeVisible();
   await page.goto("/?sound=off&debug=0#/yue/yue-Hant-HK.standard");
   await expect(page.locator("[data-course-path]")).toBeVisible();
   await expect(page.locator("[data-cards-link]")).toHaveCount(0);

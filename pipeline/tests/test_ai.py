@@ -17,7 +17,7 @@ import yaml
 
 from nabu.ai.author import draft, load_course, prompt_values
 from nabu.ai.llm import PROMPTS, Model, NoModel, load_prompt, model_from_env, render
-from nabu.ai.reports import escape_notation, locate, pr_body, promote, read_export
+from nabu.ai.reports import locate, pr_body, promote, read_export
 from nabu.compiler import compile_course
 from nabu.corecli import CoreCli
 from nabu.paths import REPO
@@ -92,12 +92,6 @@ def test_each_provider_returns_the_json_it_was_asked_for(
 
 
 # --------------------------------------------------------------------------------- reports
-
-
-def test_escape_notation_keeps_an_answer_literal() -> None:
-    assert escape_notation("I (really) am | not @home") == "I \\(really\\) am \\| not \\@home"
-    assert escape_notation("# not a comment") == "\\# not a comment"
-    assert escape_notation("  two   spaces ") == "two spaces"
 
 
 def report(

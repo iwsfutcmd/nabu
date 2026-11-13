@@ -24,3 +24,11 @@ input:
 layout: { vertical: vertical-rl, verticalScope: [prompt, reading, wordbank] }
 strokeOrder: { target: hk, interim: tw, label: true }   # §6.9: TW order until HK data exists; always labeled
 fonts: { stack: [Noto Sans HK, Noto Sans CJK HK], lineHeight: 1.6 }
+# What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
+# Whisper's own writes Cantonese as written Mandarin: a fine-tune (Apache-2.0) hears it, learners and the round trip of
+# the clips alike (ADR 0094). Expected phones come from the pinned Jyutping.
+speech:
+  tiers: [1, 2]
+  recognizer:
+    fineTuned: { model: alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d, token: zh }
+  phones: { reading: jyutping }

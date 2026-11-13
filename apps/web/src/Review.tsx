@@ -10,7 +10,7 @@
  * Everything goes through the API with the account's token; nothing here touches the device's
  * learner log except "This is wrong", which files a correction like anywhere else in the app.
  */
-import { correctionKey, type Correctable, type SignOffKind, type UnitCorrectables } from "@nabu/core/corrections";
+import { openCorrection, type Correctable, type SignOffKind, type UnitCorrectables } from "@nabu/core/corrections";
 import type { AnswerReport, SentenceCorrection, SentenceReported, SignOff, SignOffs } from "@nabu/schema";
 import { useTranslator } from "@nabu/ui";
 import { SentenceList, signOffKey } from "@nabu/ui/corrections";
@@ -21,6 +21,8 @@ import { Tab, TabList, TabPanel, Tabs } from "react-aria-components";
 import styles from "./App.module.css";
 import { CorrectionDialog, Sent, signOffOf, unitSignOffs, type Recording } from "./Corrections.tsx";
 import { isHttpError, request } from "./http.ts";
+import type { Names } from "./screen.tsx";
+import { storedReading } from "./readings.ts";
 import type { Account, Sync } from "./sync.ts";
 
 export interface ReviewerInfo {
@@ -28,6 +30,15 @@ export interface ReviewerInfo {
   /** Course ids, or ["*"]: every course. */
   readonly courses: readonly string[];
 }
+
+/** What GET /v1/review/me answers: the role, or none (D11: {role: null}, not a refusal). */
+type RoleAnswer = { readonly role?: "reviewer" | null; readonly handle?: unknown; readonly courses?: unknown } | undefined;
+
+/** The reviewer an answer names, or null for an account that reviews nothing. */
+export const reviewerIn = (answer: RoleAnswer): ReviewerInfo | null =>
+  answer !== undefined && answer.role !== null && typeof answer.handle === "string" && Array.isArray(answer.courses) && answer.courses.every((c) => typeof c === "string")
+    ? { handle: answer.handle, courses: answer.courses }
+    : null;
 
 export type ReviewerState =
   | { readonly kind: "loading" }
@@ -38,8 +49,37 @@ export const reviews = (info: ReviewerInfo, course: string): boolean => info.cou
 
 const noSync = { subscribe: () => () => undefined };
 
-/** Whether the signed-in account reviews courses, and which. */
-export const useReviewer = (sync: Sync | null): ReviewerState => {
+/**
+ * The server's answer about an account's role, kept for this browser session (null: not a
+ * reviewer). Only the server knows the role, and an admin may grant it at any time, so the app
+ * asks; but most accounts review nothing, and the course list should not ask (and be refused)
+ * every time it opens. The workspace asks afresh and keeps its answer here.
+ */
+const ROLE = "nabu.reviewer:";
+const roleKey = (account: Account): string => `${ROLE}${account.server} ${account.user.id}`;
+
+const rememberedRole = (account: Account): ReviewerInfo | null | undefined => {
+  try {
+    const value = sessionStorage.getItem(roleKey(account));
+    return value === null ? undefined : (JSON.parse(value) as ReviewerInfo | null);
+  } catch {
+    return undefined;
+  }
+};
+
+const rememberRole = (account: Account, info: ReviewerInfo | null): void => {
+  try {
+    sessionStorage.setItem(roleKey(account), JSON.stringify(info));
+  } catch {
+    // No session storage: the next screen asks again.
+  }
+};
+
+/**
+ * Whether the signed-in account reviews courses, and which. `fresh` (the workspace itself) asks
+ * the server every time; otherwise an answer from earlier in this browser session stands.
+ */
+export const useReviewer = (sync: Sync | null, fresh = false): ReviewerState => {
   const server = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().server);
   const account = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().account);
   const [state, setState] = useState<ReviewerState>({ kind: "loading" });
@@ -47,16 +87,29 @@ export const useReviewer = (sync: Sync | null): ReviewerState => {
     if (sync === null) return;
     if (server === undefined) return setState({ kind: "none", why: "no-server" });
     if (account === undefined) return setState({ kind: "none", why: "signed-out" });
+    const known = fresh ? undefined : rememberedRole(account);
+    if (known !== undefined) return setState(known === null ? { kind: "none", why: "not-reviewer" } : { kind: "reviewer", info: known, account });
     let live = true;
     setState({ kind: "loading" });
-    request<ReviewerInfo>(account.server, "/v1/review/me", { token: account.token }).then(
-      (info) => live && setState({ kind: "reviewer", info, account }),
-      (e: unknown) => live && setState({ kind: "none", why: isHttpError(e) && e.status === 403 ? "not-reviewer" : "error" }),
+    request<RoleAnswer>(account.server, "/v1/review/me", { token: account.token }).then(
+      (answer) => {
+        // No role (D11) is an answer too: the account reviews nothing.
+        const info = reviewerIn(answer);
+        rememberRole(account, info);
+        if (live) setState(info === null ? { kind: "none", why: "not-reviewer" } : { kind: "reviewer", info, account });
+      },
+      (e: unknown) => {
+        // A server from before D11 refuses instead (403): that is the same answer. Anything else
+        // is asked again next time.
+        const refused = isHttpError(e) && e.status === 403;
+        if (refused) rememberRole(account, null);
+        if (live) setState({ kind: "none", why: refused ? "not-reviewer" : "error" });
+      },
     );
     return () => {
       live = false;
     };
-  }, [sync, server, account]);
+  }, [sync, server, account, fresh]);
   return state;
 };
 
@@ -73,12 +126,10 @@ const Status = ({ state }: { state: ReviewerState }): JSX.Element | null => {
   );
 };
 
-type Names = { readonly course: (id: string) => string; readonly orthography: (id: string) => string };
-
 /** #/review: the courses this account reviews, one link per orthography. */
 export const ReviewHome = ({ courses, sync, names, back, hrefOf }: { courses: readonly CourseIndexEntry[]; sync: Sync; names: Names; back: string; hrefOf: (course: string, orthography: string) => string }): JSX.Element => {
   const t = useTranslator();
-  const state = useReviewer(sync);
+  const state = useReviewer(sync, true);
   const mine = state.kind === "reviewer" ? courses.filter((c) => reviews(state.info, c.id)) : [];
   return (
     <main className={styles.page} data-review-home="">
@@ -101,7 +152,7 @@ export const ReviewHome = ({ courses, sync, names, back, hrefOf }: { courses: re
                 <div className={styles.links}>
                   {c.orthographies.map((o) => (
                     <a key={o} className={styles.link} href={hrefOf(c.id, o)} data-orthography={o}>
-                      {names.orthography(o)}
+                      {names.orthography(c.id, o)}
                     </a>
                   ))}
                 </div>
@@ -207,7 +258,7 @@ const useQueue = (account: Account | undefined, course: string): { reports: Answ
 /** #/review/<course>/<orthography>: one course's workspace. */
 export const ReviewPage = ({ loaded, sync, corrections, back, ...recording }: PageProps): JSX.Element => {
   const t = useTranslator();
-  const state = useReviewer(sync);
+  const state = useReviewer(sync, true);
   const { course } = loaded;
   const allowed = state.kind === "reviewer" && reviews(state.info, course.id);
   const account = allowed ? state.account : undefined;
@@ -293,6 +344,7 @@ export const ReviewPage = ({ loaded, sync, corrections, back, ...recording }: Pa
                 }}
                 review={controls}
                 details={details}
+                reading={storedReading(course.orthography)}
               />
             </TabPanel>
             <TabPanel id="queue">
@@ -304,7 +356,7 @@ export const ReviewPage = ({ loaded, sync, corrections, back, ...recording }: Pa
               {...recording}
               course={course}
               target={target}
-              previous={corrections.get(correctionKey(target.item, target.step))}
+              previous={openCorrection(course, corrections, target.item, target.step)}
               onClose={(done) => {
                 setTarget(undefined);
                 if (done) setSent(true);

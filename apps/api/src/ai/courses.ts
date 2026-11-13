@@ -4,7 +4,7 @@
  * from here, never from the request: a client cannot hand the judge its own accept set.
  */
 import { existsSync, readFileSync } from "node:fs";
-import { assembleCourse, MEDIA_ROLES, type CourseView } from "@nabu/core/lesson";
+import { readCourse, type CourseView } from "@nabu/core/lesson";
 import type { BundleManifest } from "@nabu/schema";
 
 export const DEFAULT_BUNDLES = new URL("../../../web/public/bundles/", import.meta.url);
@@ -35,10 +35,8 @@ export const createCourses = (dir: URL = DEFAULT_BUNDLES): Courses => {
       const manifest = manifestOf(course);
       let view: CourseView | undefined;
       if (manifest !== undefined && (manifest.orthographies as readonly string[]).includes(orthography)) {
-        const files = new Map<string, unknown>(
-          manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(new URL(`${course}/${f.path}`, dir), "utf8")) as unknown]),
-        );
-        const assembled = assembleCourse({ manifest, files, numberingSystems }, orthography);
+        const read = (path: string): unknown => (path === "manifest.json" ? manifest : JSON.parse(readFileSync(new URL(`${course}/${path}`, dir), "utf8")));
+        const assembled = readCourse(read, numberingSystems, orthography);
         view = assembled.ok ? assembled.value : undefined;
       }
       views.set(key, view);

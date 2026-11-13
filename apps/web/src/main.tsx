@@ -9,17 +9,23 @@
  *   ?drafts=1            also offer draft UI catalogs (reviewers, ADR 0070): ?ui=fa&drafts=1
  *   ?seed=7              session seed (with a fixed clock and log, reproducible sessions for tests)
  *   ?sound=off           no feedback sounds
- *   ?target=yue-Hant-HK  the Phase 0 demo exercise card instead (fa, yue-Hant-HK, uz-Latn, apc-Arab)
+ *   ?target=yue-Hant-HK  the Phase 0 demo exercise card instead (fa, yue-Hant-HK, uz-Latn, apc-Arab),
+ *                        loaded only then (it parses its profiles' YAML)
  *   ?mode=vertical-rl    the demo card's requested writing mode
+ *
+ * Course text takes its profiles from the course it belongs to (CourseUiProvider), so the app-wide
+ * provider has none.
  */
 import { DEFAULT_UI_LOCALE, DRAFT_UI_LOCALES, loadTranslator, negotiateLocale, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import { NabuUiProvider, UiRoot } from "@nabu/ui";
-import { DEMO_ORTHOGRAPHIES, DEMO_TARGETS, DemoExerciseCard, type DemoTarget, type WritingMode } from "@nabu/ui/demo";
+import type { DemoTarget, WritingMode } from "@nabu/ui/demo";
 import "@nabu/ui/fonts.css";
 import "@nabu/ui/tokens.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App.tsx";
+import { DebugNotice, debugMode } from "./Debug.tsx";
+import { ErrorBoundary } from "./ErrorBoundary.tsx";
 import { applyTextSize, applyTheme, storedTextSize, storedTheme } from "./Preferences.tsx";
 
 // The learner's text size and theme, before the first paint (Preferences; index.html sets the theme earlier still).
@@ -41,14 +47,32 @@ document.documentElement.lang = translator.locale;
 document.documentElement.dir = translator.dir;
 document.title = translator.format("app.name");
 
+const root = createRoot(document.getElementById("root")!);
 const requested = params.get("target");
-const target: DemoTarget | undefined = requested !== null && requested in DEMO_TARGETS ? (requested as DemoTarget) : undefined;
-const mode = (params.get("mode") ?? "horizontal-tb") as WritingMode;
-
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <NabuUiProvider translator={translator} orthographies={DEMO_ORTHOGRAPHIES}>
-      <UiRoot>{target === undefined ? <App /> : <DemoExerciseCard target={target} writingMode={mode} />}</UiRoot>
-    </NabuUiProvider>
-  </StrictMode>,
-);
+const demo = requested === null ? undefined : await import("@nabu/ui/demo");
+if (demo !== undefined && requested !== null && requested in demo.DEMO_TARGETS) {
+  const { DEMO_ORTHOGRAPHIES, DemoExerciseCard } = demo;
+  const mode = (params.get("mode") ?? "horizontal-tb") as WritingMode;
+  root.render(
+    <StrictMode>
+      <NabuUiProvider translator={translator} orthographies={DEMO_ORTHOGRAPHIES}>
+        <UiRoot>
+          <DemoExerciseCard target={requested as DemoTarget} writingMode={mode} />
+        </UiRoot>
+      </NabuUiProvider>
+    </StrictMode>,
+  );
+} else {
+  root.render(
+    <StrictMode>
+      <NabuUiProvider translator={translator}>
+        <UiRoot>
+          {debugMode && <DebugNotice />}
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
+        </UiRoot>
+      </NabuUiProvider>
+    </StrictMode>,
+  );
+}

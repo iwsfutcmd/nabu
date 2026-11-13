@@ -91,3 +91,25 @@ Acceptance:
 - The visual matrix gains 60 story baselines (two screens; vertical yue cells on the reading
   screen). The e2e suite reads a story per orthography by keyboard and touch, and checks that a
   vocalized word glosses to its unvocalized entry.
+
+## Amendment: tap-for-gloss in lessons, and a lookup before answering is a hint (2026-11-12)
+
+Lessons now gloss tapped words too (the 2026-11 review's P1), through the same `glossAt` and a shared
+panel. A card's target text can be tapped wherever a meaning gives nothing away:
+- before answering: the words around a gap, and a sentence to say (its translation is on the card);
+- once answered: what a sentence means, how a word is read or vocalized, and what was heard;
+- never: options, tiles and pairs, which are the answer.
+
+The owner decided (D16) that looking a word up on a card before its answer is checked is a hint, as
+§9.2's "Good: right with no hint" has it:
+- The lesson player marks that card's answer `hinted` (`input.hinted` on answer_submitted). A lookup
+  once the card is checked is learning, and marks nothing. Story lines stay free to look up: they are
+  the reading, not a question's answer.
+- The fold rates a hinted right answer Hard at best (`ratingOf`), and a hinted first try shows no
+  skill and misses none ([ADR 0100](0100-known-words.md)'s amendment). It still counts in recent
+  practice (the learning pace), and the performance model learns it as right or wrong, as it was.
+- The owner settled three edges (D16a–c): a wrong answer after a lookup misses nothing either (the
+  lookup may have been another word, and it is still rated Again); story lines stay free to look up;
+  and a speaking card is never hinted, since it shows what the sentence means anyway and asks for it
+  to be said. The player marks no lookup on a speaking card, and the fold ignores `hinted` on one
+  (`SPEAKING`), so answers logged before this rule count the same way.

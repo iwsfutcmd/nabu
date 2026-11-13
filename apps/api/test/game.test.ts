@@ -4,24 +4,39 @@
  * against the RFC's own example; notifications localized for every UI locale).
  */
 import { createDecipheriv, createECDH, createHmac, createPublicKey, verify } from "node:crypto";
-import { DEFAULT_LEAGUE, leagueWeek, localDateOf, type GameState, type LeagueConfig } from "@nabu/core/game";
+import { DEFAULT_GAME, DEFAULT_LEAGUE, gameConfig, leagueWeek, localDateOf, type GameState, type LeagueConfig } from "@nabu/core/game";
 import { directionOf, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAccounts } from "../src/accounts.ts";
 import { createApp, type App } from "../src/app.ts";
 import type { Database } from "../src/db/index.ts";
 import { testDatabase } from "./database.ts";
-import { leagueResults, pushLog } from "../src/db/schema.ts";
+import { leagueMembers, leagueResults, nativePushTokens, pushLog } from "../src/db/schema.ts";
 import { rollover } from "../src/leagues.ts";
-import { chooseTemplate, decide, habitualMinute, renderReminder, sendReminders, TEMPLATES, type Notification } from "../src/reminders.ts";
+import {
+  chooseTemplate,
+  decide,
+  ignoredInARow,
+  practicesOf,
+  reminderMinute,
+  renderReminder,
+  sendReminders,
+  TEMPLATES,
+  usualStart,
+  type Notification,
+  type Sent,
+  type Template,
+} from "../src/reminders.ts";
 import { base64url, encrypt, fromBase64url, sendPush, vapidAuthorization, vapidKeys, type Subscription } from "../src/webpush.ts";
 
 let database: Database;
 let app: App;
 let clock = Date.parse("2026-06-03T10:00:00Z"); // a Wednesday
 const LEAGUE: LeagueConfig = { ...DEFAULT_LEAGUE, cohortSize: 4, promote: [1, 1, 1, 1, 1, 1, 1, 1, 1, 0], demote: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1] };
+/** A deployment's game.json with one quest a day. */
+const ONE_QUEST = gameConfig({ quests: { daily: 1, pool: [{ id: "right-50", count: { type: "answer", correct: true }, target: 50 }] } });
 
 beforeAll(async () => {
   database = await testDatabase();
@@ -177,13 +192,73 @@ describe("leagues", () => {
     expect(rows).toHaveLength(5);
     expect(await rollover(database.db, after + 86_400_000, LEAGUE)).toEqual([]); // and again: nothing
     expect(await database.db.select().from(leagueResults).where(eq(leagueResults.week, week.id))).toEqual(rows);
-    // The promoted learner plays tier 2 next week.
+    // The promoted learner plays tier 2 next week, and the league says how last week ended (M8).
     const top = rows.find((r) => r.cohort === 1 && r.rank === 1);
     expect(top).toMatchObject({ outcome: "promoted", nextTier: 2 });
     clock = week.end + 2 * 86_400_000;
     const winner = tokens[views.findIndex((v) => v.standings.find((s) => s.you)?.rank === 1 && v.cohort === 1)] as string;
+    const last = { week: week.id, tier: 1, rank: 1, of: 4, outcome: "promoted", nextTier: 2 };
+    // Before practising this week: not in a league yet, last week's result all the same.
+    expect(await (await app.request("/v1/league", request("GET", undefined, winner))).json()).toMatchObject({ member: false, optedOut: false, last });
     await upload(winner, session(clock - 3_600_000, 3));
-    expect(await (await app.request("/v1/league", request("GET", undefined, winner))).json()).toMatchObject({ member: true, tier: 2 });
+    expect(await (await app.request("/v1/league", request("GET", undefined, winner))).json()).toMatchObject({ member: true, tier: 2, last });
+    // The learner alone in cohort 2 was first of one; a learner who did not play last week has no result.
+    const alone = tokens[4] as string;
+    expect(((await (await app.request("/v1/league", request("GET", undefined, alone))).json()) as { last?: unknown }).last).toMatchObject({ rank: 1, of: 1 });
+    const newcomer = await signUp();
+    expect(((await (await app.request("/v1/league", request("GET", undefined, newcomer))).json()) as { last?: unknown }).last).toBeUndefined();
+  });
+
+  it("a learner can say no to leagues: out of the standings at once, in none after, and back when they choose (M8)", async () => {
+    const week = leagueWeek(clock, LEAGUE);
+    const token = await signUp();
+    const me = ((await (await app.request("/v1/auth/me", request("GET", undefined, token))).json()) as { user: { id: string } }).user.id;
+    const view = async (): Promise<{ member: boolean; optedOut: boolean; standings?: { you: boolean; xp: number }[] }> =>
+      (await (await app.request("/v1/league", request("GET", undefined, token))).json()) as { member: boolean; optedOut: boolean; standings?: { you: boolean; xp: number }[] };
+    const membership = async (): Promise<number> => (await database.db.select().from(leagueMembers).where(and(eq(leagueMembers.userId, me), eq(leagueMembers.week, week.id)))).length;
+    await upload(token, session(week.start + 3_600_000, 4));
+    expect(await view()).toMatchObject({ member: true, optedOut: false });
+    expect(await membership()).toBe(1);
+
+    const no = await app.request("/v1/league", request("PUT", { optedOut: true }, token));
+    expect(no.status).toBe(200);
+    expect(await no.json()).toMatchObject({ member: false, optedOut: true });
+    expect(await membership()).toBe(0);
+    // More practice joins no league.
+    await upload(token, session(week.start + 7_200_000, 4));
+    expect(await view()).toMatchObject({ member: false, optedOut: true });
+    expect(await membership()).toBe(0);
+    for (const bad of [{}, { optedOut: "yes" }, { optedOut: null }]) expect((await app.request("/v1/league", request("PUT", bad, token))).status).toBe(400);
+
+    // Taking part again: back in this week's league at once, with all the week's XP: the lesson's
+    // answers and a point a card, then its replay's answers (ADR 0107).
+    const yes = (await (await app.request("/v1/league", request("PUT", { optedOut: false }, token))).json()) as { member: boolean; optedOut: boolean; standings: { you: boolean; xp: number }[] };
+    expect(yes).toMatchObject({ member: true, optedOut: false });
+    expect(yes.standings.find((s) => s.you)?.xp).toBe(4 + 4 + 4);
+    // An instance without leagues has nothing to say no to.
+    const plain = createApp({ db: database.db, accounts: createAccounts(database.db), now: () => clock });
+    expect((await plain.request("/v1/league", request("PUT", { optedOut: true }, token))).status).toBe(404);
+  });
+
+  it("league XP is the deployment's XP (M8)", async () => {
+    const generous = createApp({ db: database.db, accounts: createAccounts(database.db), leagues: LEAGUE, now: () => clock, game: gameConfig({ xp: { ...DEFAULT_GAME.xp, answer: 3 } }) });
+    const res = await generous.request("/v1/auth/sign-up", request("POST", { email: `generous${++accounts}@example.org`, password: "correct horse battery" }));
+    const { token } = (await res.json()) as { token: string };
+    const week = leagueWeek(clock, LEAGUE);
+    await generous.request("/v1/events", request("POST", { events: session(week.start + 3_600_000, 5) }, token));
+    const view = (await (await generous.request("/v1/league", request("GET", undefined, token))).json()) as { standings: { you: boolean; xp: number }[] };
+    // Five right answers at 3 each, a point a card for the session, the perfect bonus.
+    expect(view.standings.find((s) => s.you)?.xp).toBe(5 * 3 + 5 + 5);
+  });
+
+  it("a lesson finished before the week and replayed in it earns its answers only (ADR 0107)", async () => {
+    const week = leagueWeek(clock, LEAGUE);
+    const token = await signUp();
+    await upload(token, session(week.start - 2 * 86_400_000, 6)); // fa.greetings, the week before
+    await upload(token, session(week.start + 3_600_000, 6)); // the same lesson again
+    const view = (await (await app.request("/v1/league", request("GET", undefined, token))).json()) as { member: boolean; standings: { you: boolean; xp: number }[] };
+    expect(view.member).toBe(true);
+    expect(view.standings.find((s) => s.you)?.xp).toBe(6);
   });
 });
 
@@ -191,27 +266,81 @@ describe("leagues", () => {
 
 describe("reminders", () => {
   const at = (iso: string): number => Date.parse(iso);
+  const tz = "Europe/Berlin";
+  /** A wall-clock time in Berlin in May or June (CEST, UTC+2). */
+  const berlin = (date: string, time: string): number => at(`${date}T${time}:00+02:00`);
+  /** Someone who starts between 18:00 and 19:00, every day of the first week of May. */
+  const usual = ["18:00", "18:10", "18:20", "18:30", "18:40", "18:50", "19:00"].flatMap((time, i) => session(berlin(`2026-05-0${i + 1}`, time), 3, 3000, tz));
+  const sent = (localDate: string, time: string, template: Template = "gentle"): Sent => ({ template, localDate, sentAt: new Date(berlin(localDate, time)).toISOString() });
+  const day = (n: number): string => `2026-05-${String(n).padStart(2, "0")}`;
 
-  it("come at the habitual hour, only on a day without practice, at most once a day", () => {
-    const log = [0, 1, 2].flatMap((d) => session(at(`2026-05-0${d + 1}T18:30:00Z`), 3, 3000, "Europe/Berlin")); // 20:30 in Berlin
-    expect(habitualMinute(log, at("2026-05-04T12:00:00Z"))).toBe(20 * 60 + 30);
-    expect(decide(log, [], at("2026-05-04T17:00:00Z"))).toMatchObject({ send: false, reason: "too-early" });
-    const due = decide(log, [], at("2026-05-04T19:00:00Z"));
-    // On a streak, the streak template comes first; the gentle one is never off the table.
-    expect(due).toMatchObject({ send: true, template: "streak", values: { days: 3 } });
-    expect(decide(log, [{ template: "gentle", localDate: "2026-05-04" }], at("2026-05-04T20:00:00Z"))).toMatchObject({ send: false, reason: "already-sent" });
-    const practised = [...log, ...session(at("2026-05-04T09:00:00Z"), 3, 3000, "Europe/Berlin")];
-    expect(decide(practised, [], at("2026-05-04T19:00:00Z"))).toMatchObject({ send: false, reason: "practised" });
+  it("come after the usual window, not at the usual time", () => {
+    const noon = berlin("2026-05-08", "12:00");
+    expect(usualStart(usual, noon)).toBe(18 * 60 + 50); // the 80th percentile of the start times
+    expect(reminderMinute(usual, noon)).toBe(19 * 60 + 20); // and half an hour more
+    expect(reminderMinute([], noon)).toBe(19 * 60); // no habit yet
+    // At 18:30 (the median, where reminders used to come) they would have begun anyway; at 19:10 too, most days.
+    expect(decide(usual, [], berlin("2026-05-08", "18:30"), DEFAULT_GAME)).toMatchObject({ send: false, reason: "too-early" });
+    expect(decide(usual, [], berlin("2026-05-08", "19:10"), DEFAULT_GAME)).toMatchObject({ send: false, reason: "too-early" });
+    // By 19:30 nothing yet: due. On a streak, the streak template comes first; the gentle one is never off the table.
+    expect(decide(usual, [], berlin("2026-05-08", "19:30"), DEFAULT_GAME)).toMatchObject({ send: true, template: "streak", values: { days: 7 } });
+    // A late habit still hears that evening.
+    const owl = session(berlin("2026-05-07", "23:50"), 3, 3000, tz);
+    expect(reminderMinute(owl, noon)).toBe(23 * 60 + 30);
   });
 
-  it("rotate templates with novelty decay, and back off when ignored", () => {
+  it("come at the time the learner chose, instead", () => {
+    // The learner who practises 18:00–19:00 asks for mornings…
+    expect(decide(usual, [], berlin("2026-05-08", "07:55"), DEFAULT_GAME, 8 * 60)).toMatchObject({ send: false, reason: "too-early" });
+    expect(decide(usual, [], berlin("2026-05-08", "08:00"), DEFAULT_GAME, 8 * 60)).toMatchObject({ send: true, template: "streak" });
+    // …or for late evenings: nothing at 19:30, when the automatic time would have come.
+    expect(decide(usual, [], berlin("2026-05-08", "19:30"), DEFAULT_GAME, 21 * 60)).toMatchObject({ send: false, reason: "too-early" });
+    expect(decide(usual, [], berlin("2026-05-08", "21:00"), DEFAULT_GAME, 21 * 60)).toMatchObject({ send: true });
+    // A day already practised still gets none.
+    const practised = [...usual, ...session(berlin("2026-05-08", "07:00"), 3, 3000, tz)];
+    expect(decide(practised, [], berlin("2026-05-08", "08:00"), DEFAULT_GAME, 8 * 60)).toMatchObject({ send: false, reason: "practised" });
+  });
+
+  it("come only on a day without practice, at most once a day", () => {
+    const practised = [...usual, ...session(berlin("2026-05-08", "09:00"), 3, 3000, tz)];
+    expect(decide(practised, [], berlin("2026-05-08", "21:00"), DEFAULT_GAME)).toMatchObject({ send: false, reason: "practised" });
+    expect(decide(usual, [sent("2026-05-08", "19:20")], berlin("2026-05-08", "21:00"), DEFAULT_GAME)).toMatchObject({ send: false, reason: "already-sent" });
+  });
+
+  it("count as answered only when practice came after them, and back off when it did not", () => {
+    const history = [sent(day(8), "19:20"), sent(day(9), "19:20"), sent(day(10), "19:20")];
+    // On the 9th the learner had practised at 18:00, offline, and synced later: the reminder brought about nothing.
+    const before = [...usual, ...session(berlin(day(9), "18:00"), 3, 3000, tz)];
+    expect(ignoredInARow(history, practicesOf(before))).toBe(3);
+    expect(decide(before, history, berlin(day(11), "20:00"), DEFAULT_GAME)).toMatchObject({ send: false, reason: "resting" });
+    expect(decide(before, history.slice(0, 2), berlin(day(11), "20:00"), DEFAULT_GAME)).toMatchObject({ send: true });
+    // Practice after the reminder, that evening, answers it.
+    const after = [...usual, ...session(berlin(day(10), "20:15"), 3, 3000, tz)];
+    expect(ignoredInARow(history, practicesOf(after))).toBe(0);
+    expect(decide(after, history, berlin(day(11), "20:00"), DEFAULT_GAME)).toMatchObject({ send: true });
+  });
+
+  it("stop after seven unanswered, until the learner practises again", () => {
+    const week = Array.from({ length: 7 }, (_, i) => sent(day(8 + i), "19:20"));
+    expect(decide(usual, week, berlin(day(15), "20:00"), DEFAULT_GAME)).toMatchObject({ send: false, reason: "stopped" });
+    expect(decide(usual, week, berlin(day(20), "20:00"), DEFAULT_GAME)).toMatchObject({ send: false, reason: "stopped" });
+    // Back on the 16th, on their own: reminders come again.
+    const back = [...usual, ...session(berlin(day(16), "08:00"), 3, 3000, tz)];
+    expect(decide(back, week, berlin(day(17), "21:00"), DEFAULT_GAME)).toMatchObject({ send: true });
+  });
+
+  it("rotate templates with novelty decay", () => {
     expect(chooseTemplate(["gentle", "streak"], [], "2026-05-04")).toBe("streak");
     expect(chooseTemplate(["gentle", "streak"], [{ template: "streak", localDate: "2026-05-03" }], "2026-05-04")).toBe("gentle");
-    const ignored = (n: number) => Array.from({ length: n }, (_, i) => ({ template: "gentle" as const, localDate: `2026-05-${String(10 - i).padStart(2, "0")}` }));
-    const log = session(at("2026-04-20T18:30:00Z"), 3);
-    expect(decide(log, ignored(7), at("2026-05-11T20:00:00Z"))).toMatchObject({ send: false, reason: "stopped" });
-    expect(decide(log, ignored(3), at("2026-05-11T20:00:00Z"))).toMatchObject({ send: false, reason: "resting" });
-    expect(decide(log, ignored(3).slice(1), at("2026-05-11T20:00:00Z"))).toMatchObject({ send: true });
+  });
+
+  it("speak of the deployment's quests, not the defaults", () => {
+    // An unfinished lesson today with five right answers: quests under way, the day not practised yet.
+    const started = session(berlin("2026-05-08", "18:00"), 5, 3000, tz).filter((e) => e.type !== "session_completed");
+    const evening = berlin("2026-05-08", "19:00");
+    expect(decide(started, [], evening, ONE_QUEST)).toMatchObject({ send: true, template: "quest", values: { count: 1 } });
+    expect(decide(started, [], evening, DEFAULT_GAME).values?.count).toBe(3);
+    expect(decide(started, [], evening, gameConfig({ quests: { daily: 0 } }))).toMatchObject({ send: true, template: "gentle", values: { count: 0 } });
   });
 
   it("are localized for every UI locale (§16 Phase 7)", async () => {
@@ -259,20 +388,73 @@ describe("reminders", () => {
     };
     const send = (s: Subscription, p: Notification) => sendPush(s, p, vapid, clock, fakeFetch);
     const evening = at("2026-07-01T19:30:00Z");
-    expect((await sendReminders(database.db, evening, send)).sent).toBeGreaterThanOrEqual(1);
+    expect((await sendReminders(database.db, evening, { send, game: DEFAULT_GAME })).sent).toBeGreaterThanOrEqual(1);
     const mine = delivered.filter((d) => d.url === sub.endpoint);
     expect(mine).toHaveLength(1);
     expect(mine[0]?.headers["Content-Encoding"]).toBe("aes128gcm");
     expect(mine[0]?.payload).toMatchObject({ lang: "en-XA", dir: "ltr", tag: "nabu-reminder" });
     expect(mine[0]?.payload.title).not.toMatch(/^Your|^Ready/u); // pseudo-localized, not English
     // Overlapping runs never send a second reminder the same day.
-    await sendReminders(database.db, evening + 60_000, send);
+    await sendReminders(database.db, evening + 60_000, { send, game: DEFAULT_GAME });
     expect(delivered.filter((d) => d.url === sub.endpoint)).toHaveLength(1);
     expect(await database.db.select().from(pushLog)).not.toHaveLength(0);
     // A subscription the push service says is gone is dropped.
     const gone = () => Promise.resolve({ status: 410 });
-    await sendReminders(database.db, at("2026-07-02T19:30:00Z"), (s, p) => sendPush(s, p, vapid, clock, gone));
+    await sendReminders(database.db, at("2026-07-02T19:30:00Z"), { send: (s, p) => sendPush(s, p, vapid, clock, gone), game: DEFAULT_GAME });
     expect((await app.request("/v1/push/unsubscribe", request("POST", { endpoint: sub.endpoint }, token))).status).toBe(204);
+  });
+
+  it("go out with the deployment's game rules, and remember when they went", async () => {
+    const res = await app.request("/v1/auth/sign-up", request("POST", { email: "quests@example.org", password: "correct horse battery" }));
+    expect(res.status).toBe(201);
+    const { token, user } = (await res.json()) as { token: string; user: { id: string } };
+    // An unfinished lesson this morning: quests under way, no practice yet, no streak.
+    await upload(token, session(at("2026-08-03T08:00:00Z"), 5).filter((e) => e.type !== "session_completed"));
+    await database.db.insert(nativePushTokens).values({ token: "deployment-rules", userId: user.id, platform: "android" });
+    const received: Notification[] = [];
+    const android = (device: string, n: Notification): Promise<"sent"> => {
+      if (device === "deployment-rules") received.push(n);
+      return Promise.resolve("sent");
+    };
+    const jobsAt = at("2026-08-03T10:00:00Z");
+    await sendReminders(database.db, jobsAt, { native: { android }, game: ONE_QUEST });
+    expect(received.map((n) => n.title)).toEqual(["1 quest left today"]);
+    // Sent at the jobs' clock: whether practice came after it is what answering it means.
+    const [log] = await database.db.select().from(pushLog).where(eq(pushLog.userId, user.id));
+    expect(log).toMatchObject({ localDate: "2026-08-03", template: "quest" });
+    expect(log?.sentAt.getTime()).toBe(jobsAt);
+  });
+
+  it("keep the time the learner chose, and come then", async () => {
+    const res = await app.request("/v1/auth/sign-up", request("POST", { email: "mornings@example.org", password: "correct horse battery" }));
+    const { token, user } = (await res.json()) as { token: string; user: { id: string } };
+    const put = (body: unknown) => app.request("/v1/push/reminder", request("PUT", body, token));
+    const get = async (): Promise<unknown> => (await app.request("/v1/push/reminder", request("GET", undefined, token))).json();
+    expect(await get()).toEqual({ available: true, time: null }); // automatic until chosen
+    for (const bad of [{ time: "24:00" }, { time: "7:30" }, { time: "07:30:00" }, { time: 450 }, {}]) expect((await put(bad)).status).toBe(400);
+    expect(await (await put({ time: "07:30" })).json()).toEqual({ available: true, time: "07:30" });
+    expect(await get()).toEqual({ available: true, time: "07:30" });
+    expect((await app.request("/v1/push/reminder", request("GET", undefined))).status).toBe(401);
+
+    // They practise in the evening and asked for mornings: the reminder comes at 07:30, not before.
+    await upload(token, session(at("2026-08-10T19:00:00Z"), 3));
+    await database.db.insert(nativePushTokens).values({ token: "chosen-time", userId: user.id, platform: "android" });
+    const received: Notification[] = [];
+    const android = (device: string, n: Notification): Promise<"sent"> => {
+      if (device === "chosen-time") received.push(n);
+      return Promise.resolve("sent");
+    };
+    await sendReminders(database.db, at("2026-08-11T07:25:00Z"), { native: { android }, game: DEFAULT_GAME });
+    expect(received).toHaveLength(0);
+    await sendReminders(database.db, at("2026-08-11T07:30:00Z"), { native: { android }, game: DEFAULT_GAME });
+    expect(received).toHaveLength(1);
+
+    // Automatic again.
+    expect(await (await put({ time: null })).json()).toEqual({ available: true, time: null });
+    expect(await get()).toEqual({ available: true, time: null });
+    // An instance that sends no reminders says so.
+    const quiet = createApp({ db: database.db, accounts: createAccounts(database.db) });
+    expect(await (await quiet.request("/v1/push/reminder", request("GET", undefined, token))).json()).toEqual({ available: false, time: null });
   });
 });
 

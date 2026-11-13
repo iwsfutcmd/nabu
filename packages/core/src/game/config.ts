@@ -19,7 +19,16 @@ export interface QuestTemplate {
   readonly id: string;
   readonly count: Predicate;
   readonly target: number;
+  /**
+   * The practice the quest needs, where not every learner can do it (ADR 0107): listening (not in
+   * every course, nor on a listening break), writing, a story, something to review. The quest is
+   * drawn only for a learner whose log shows it in the QUEST_WINDOW days before the date.
+   */
+  readonly requires?: Predicate;
 }
+
+/** How far back a quest's `requires` is looked for: two weeks of the learner's own practice. */
+export const QUEST_WINDOW = 14;
 
 export type AchievementTemplate =
   | { readonly id: string; readonly kind: "streak"; readonly days: number }
@@ -38,8 +47,26 @@ export type GatePolicy =
       readonly fullRechargeHours: number;
     };
 
+/**
+ * XP (ADR 0107): pay for practice, not for the shortest sessions or replays.
+ * - `answer` for each right answer;
+ * - a finished session pays a point a card, up to `session`;
+ * - `perfect` more when every card of a session of at least `perfectFrom` cards was right the
+ *   first time;
+ * - a lesson or story finished before (since the course was last started over, placement
+ *   included) pays for its answers only;
+ * - `quest` for each daily quest completed.
+ */
+export interface XpRules {
+  readonly answer: number;
+  readonly session: number;
+  readonly perfect: number;
+  readonly perfectFrom: number;
+  readonly quest: number;
+}
+
 export interface GameConfig {
-  readonly xp: { readonly answer: number; readonly session: number; readonly perfect: number; readonly quest: number };
+  readonly xp: XpRules;
   readonly streak: {
     /** Events that reach the server later than this after they happened do not count for their day. */
     readonly graceHours: number;
@@ -54,7 +81,7 @@ export interface GameConfig {
 }
 
 export const DEFAULT_GAME: GameConfig = {
-  xp: { answer: 1, session: 10, perfect: 5, quest: 10 },
+  xp: { answer: 1, session: 10, perfect: 5, perfectFrom: 5, quest: 10 },
   streak: { graceHours: 72, maxTzChangesPerWeek: 3, freeze: { every: 7, max: 2 } },
   quests: {
     daily: 3,
@@ -62,11 +89,12 @@ export const DEFAULT_GAME: GameConfig = {
       { id: "xp-30", count: { type: "xp" }, target: 30 },
       { id: "sessions-2", count: { type: "session" }, target: 2 },
       { id: "right-20", count: { type: "answer", correct: true }, target: 20 },
-      { id: "listen-5", count: { type: "answer", correct: true, facet: "listen" }, target: 5 },
-      { id: "produce-5", count: { type: "answer", correct: true, facet: "produce" }, target: 5 },
+      { id: "listen-5", count: { type: "answer", correct: true, facet: "listen" }, target: 5, requires: { type: "answer", facet: "listen" } },
+      { id: "produce-5", count: { type: "answer", correct: true, facet: "produce" }, target: 5, requires: { type: "answer", facet: "produce" } },
       { id: "perfect-1", count: { type: "session", perfect: true }, target: 1 },
-      { id: "story-1", count: { type: "session", modes: ["story"] }, target: 1 },
-      { id: "review-1", count: { type: "session", modes: ["review", "mistakes"] }, target: 1 },
+      { id: "story-1", count: { type: "session", modes: ["story"] }, target: 1, requires: { type: "session", modes: ["story"] } },
+      // Something to review: any session finished before the day.
+      { id: "review-1", count: { type: "session", modes: ["review", "mistakes"] }, target: 1, requires: { type: "session" } },
     ],
   },
   achievements: [

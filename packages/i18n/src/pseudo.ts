@@ -56,6 +56,12 @@ const transformPattern = (pattern: Model.Pattern, locale: PseudoLocale): Model.P
   return out;
 };
 
+/** Pseudo-localizes plain text as a message's literal text is: a name from course data (ADR 0109). */
+export const pseudoLocalizeText = (text: string, locale: PseudoLocale): string =>
+  transformPattern([text], locale)
+    .map((part) => (typeof part === "string" ? part : ""))
+    .join("");
+
 /** Pseudo-localizes one MF2 message (data model in, data model out). */
 export const pseudoLocalizeMessage = (message: Model.Message, locale: PseudoLocale): Model.Message =>
   message.type === "message"

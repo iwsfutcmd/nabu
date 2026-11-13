@@ -2,7 +2,9 @@
  * Nabu's service worker (gameplan §12.6, §16 Phase 10), built from this file by vite-sw.ts:
  *
  * - **The app offline.** The shell (HTML, script, styles) of this build is cached when the worker
- *   installs; navigations fall back to it with no network. Fonts are kept as they are fetched.
+ *   installs, with the UI catalogs the learner's pages read and no other locale's; navigations
+ *   fall back to it with no network. Fonts, the stylesheets of fonts loaded with their text and
+ *   the rest of the build's files are kept as they are fetched (ADR 0119).
  * - **Courses offline.** Course files are content-addressed, so a stored copy is always right:
  *   they are served from the cache first. Manifests and the course index change, so the network
  *   comes first and the stored copy stands in offline. The app stores whole units on request.
@@ -12,14 +14,20 @@
  *   uploads the outbox with the account the app saved.
  * - **Reminders.** Web Push (RFC 8291): the server sends {title, body, lang, dir, tag, url},
  *   already in the learner's UI locale, and the notification keeps its language and direction.
+ *   Tapped, it opens the app at its url (Home, where Continue leads, S1), in the window open
+ *   already if there is one.
  */
-import { BUNDLE_CACHE, OUTBOX_SYNC, RUNTIME_CACHE, SHELL_PREFIX, type SyncedMessage } from "../src/caches.ts";
+import { BUNDLE_CACHE, OUTBOX_SYNC, RUNTIME_CACHE, SHELL_PREFIX, UI_CATALOGS, type OpenMessage, type SyncedMessage } from "../src/caches.ts";
 import { openDb, outboxOf, readMeta } from "../src/idb.ts";
 import { uploadOutbox, type Destination } from "../src/outbox.ts";
 
 declare const self: ServiceWorkerGlobalScope;
-/** Set by vite-sw.ts: the shell's files (relative to the scope), a version for them, and dev mode. */
+/**
+ * Set by vite-sw.ts: the shell's files (relative to the scope), each UI catalog's files by locale,
+ * a version for them, and dev mode.
+ */
 declare const __NABU_PRECACHE__: readonly string[];
+declare const __NABU_CATALOGS__: Readonly<Record<string, readonly string[]>>;
 declare const __NABU_VERSION__: string;
 declare const __NABU_DEV__: boolean;
 
@@ -33,12 +41,39 @@ const SHELL = `${SHELL_PREFIX}${__NABU_VERSION__}`;
 const scope = (): string => self.registration.scope;
 const at = (path: string): string => new URL(path, scope()).href;
 
+/**
+ * The files of the UI catalogs the app noted it reads (UI_CATALOGS, by locale), to keep with the
+ * shell: English is in the app's own script, and no learner needs every locale (R8). None if the
+ * note cannot be read; a catalog fetched later is kept then.
+ */
+const catalogFiles = async (): Promise<string[]> => {
+  try {
+    const db = await openDb();
+    try {
+      const locales = await readMeta(db, UI_CATALOGS);
+      return Array.isArray(locales) ? [...new Set(locales.flatMap((l) => (typeof l === "string" ? (__NABU_CATALOGS__[l] ?? []) : [])))] : [];
+    } finally {
+      db.close();
+    }
+  } catch {
+    return [];
+  }
+};
+
+/**
+ * Vite names everything under assets/ by its content ([name]-[hash]): whatever copy the HTTP cache
+ * holds is this build's, and the page has just loaded most of them (R8: no second download).
+ */
+const HASHED = "assets/";
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(SHELL);
-      // Past the HTTP cache: the shell must be this build's.
-      await cache.addAll(__NABU_PRECACHE__.map((p) => new Request(at(p), { cache: "reload" })));
+      // The files whose names stay the same from build to build (index.html, the web app manifest,
+      // the icons) come past the HTTP cache: the shell must be this build's.
+      const files = [...__NABU_PRECACHE__, ...(await catalogFiles())];
+      await cache.addAll(files.map((p) => new Request(at(p), p.startsWith(HASHED) ? {} : { cache: "reload" })));
       await self.skipWaiting();
     })(),
   );
@@ -134,7 +169,8 @@ self.addEventListener("fetch", (event) => {
   else if (path.startsWith("bundles/")) event.respondWith(MUTABLE.test(path) ? networkFirst(request, BUNDLE_CACHE) : cacheFirst(request, BUNDLE_CACHE));
   else if (path === "game.json") event.respondWith(networkFirst(request, RUNTIME_CACHE));
   else if (__NABU_PRECACHE__.includes(path)) event.respondWith(caches.match(request.url, { cacheName: SHELL }).then((r) => r ?? fetch(request)));
-  else if (path.startsWith("assets/")) event.respondWith(cacheFirst(request, RUNTIME_CACHE));
+  // The rest of the build: the UI catalog kept with the shell, else kept as fetched (fonts, their stylesheets, another locale).
+  else if (path.startsWith(HASHED)) event.respondWith(caches.match(request.url, { cacheName: SHELL }).then((r) => r ?? cacheFirst(request, RUNTIME_CACHE)));
 });
 
 /** Uploads the outbox with the saved account, then tells open windows. Throws to be retried. */
@@ -185,8 +221,15 @@ self.addEventListener("notificationclick", (event) => {
     (async () => {
       const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
       const open = windows.find((w) => w.url.startsWith(scope()));
-      if (open !== undefined) await open.focus();
-      else await self.clients.openWindow(url);
+      if (open === undefined) {
+        await self.clients.openWindow(url);
+        return;
+      }
+      // The app open already goes where the reminder points (Home, whose Continue card leads, S1):
+      // a new navigation there, so a session under way is kept (ADR 0108).
+      await open.focus();
+      const message: OpenMessage = { type: "nabu-open", url };
+      open.postMessage(message);
     })(),
   );
 });

@@ -72,8 +72,8 @@
       "state": 1,
       "last_review": "2026-03-01T08:01:45.000Z"
     },
-    "sense:bale|speak": {
-      "due": "2026-03-01T08:12:45.000Z",
+    "sense:khodahafez|listen": {
+      "due": "2026-03-01T08:13:45.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
       "elapsed_days": 0,
@@ -82,9 +82,9 @@
       "reps": 1,
       "lapses": 0,
       "state": 1,
-      "last_review": "2026-03-01T08:02:45.000Z"
+      "last_review": "2026-03-01T08:03:45.000Z"
     },
-    "sense:mamnun|listen": {
+    "sense:na|read-script|fa-Arab/standard": {
       "due": "2026-03-01T08:14:15.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
@@ -96,19 +96,7 @@
       "state": 1,
       "last_review": "2026-03-01T08:04:15.000Z"
     },
-    "sense:na|produce": {
-      "due": "2026-03-01T08:14:45.000Z",
-      "stability": 2.3065,
-      "difficulty": 2.11810397,
-      "elapsed_days": 0,
-      "scheduled_days": 0,
-      "learning_steps": 1,
-      "reps": 1,
-      "lapses": 0,
-      "state": 1,
-      "last_review": "2026-03-01T08:04:45.000Z"
-    },
-    "sense:khodahafez|listen": {
+    "sense:mamnun|listen": {
       "due": "2026-03-01T08:15:15.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
@@ -122,45 +110,46 @@
     }
   },
   "performance": {
-    "theta": 1.4184954945264203,
+    "theta": 1.4058013969148544,
     "facet": {
-      "recognize": -0.2530363382485121,
-      "speak": 0.039135233873060477,
-      "listen": 0.07995140703074835,
-      "produce": 0.05330005683065594
+      "recognize": -0.2349931345945761,
+      "speak": 0.019196483028508397,
+      "listen": 0.07644964071982341,
+      "read-script": 0.04643024795402343
     },
     "template": {
       "match-pairs": -0.01951627115444968,
-      "choose-translation": 0.2777140743459301,
-      "speak.tier-0": -0.039135233873060477,
-      "select-image": -0.004861728252086389,
-      "listen-select": -0.07995140703074835,
-      "gap-fill": -0.05330005683065594
+      "choose-translation": 0.1275617640751398,
+      "speak.tier-0": -0.019196483028508397,
+      "select-image": 0.14630516759514717,
+      "listen-select": -0.07644964071982341,
+      "vocalize": -0.04643024795402343,
+      "translate-tap.l2-l1": -0.018437069017197605
     },
     "kc": {
-      "sense:bale": -0.02386494491863845,
-      "sense:mamnun": 0.06148637464342563,
-      "sense:salam": 0.13679078696980512,
-      "sense:na": -0.035932392849264465,
-      "sense:khodahafez": -0.05765275914008365
+      "sense:bale": -0.01266053200264474,
+      "sense:mamnun": -0.07119485637402619,
+      "sense:salam": 0.2690886772756155,
+      "sense:na": -0.027112523326555317,
+      "sense:khodahafez": -0.06442945278681941
     },
     "item": {
       "sense:bale": -0.01951627115444968,
-      "s.1": 0.14576271254122264,
+      "s.1": 0.1271069994552132,
       "s.2": -0.019196483028508397,
-      "s.3": 0.14340124293610973,
-      "s.4": -0.019967545569094847,
-      "s.5": -0.06408167919749036,
-      "sense:salam": -0.004861728252086389,
-      "sense:mamnun": -0.04542602848788144,
-      "sense:khodahafez": -0.03459351758559873
+      "sense:salam": 0.14630516759514717,
+      "s.3": -0.009014377207272167,
+      "s.4": -0.00876313265310114,
+      "sense:khodahafez": -0.041370211232334496,
+      "s.5": -0.04643024795402343,
+      "sense:mamnun": -0.03514148480433741
     },
-    "w": 1.769131483815265
+    "w": 1.793091960197718
   },
   "xp": {
-    "total": 20,
+    "total": 19,
     "byDate": {
-      "2026-03-01": 20
+      "2026-03-01": 19
     }
   },
   "completedNodes": [
@@ -173,35 +162,35 @@
       "at": "2026-03-01T08:01:15.000Z"
     },
     {
-      "item": "s.3",
-      "template": "choose-translation",
+      "item": "sense:salam",
+      "template": "select-image",
       "at": "2026-03-01T08:02:15.000Z"
     }
   ],
   "latencies": {
     "match-pairs": [
-      4000
+      571.4285714285714
     ],
     "choose-translation": [
-      4000,
-      4000,
-      4000,
-      4000,
-      4000
+      1333.3333333333333,
+      1333.3333333333333,
+      1333.3333333333333
     ],
     "speak.tier-0": [
-      4000,
-      4000
+      1333.3333333333333
     ],
     "select-image": [
-      4000
+      1333.3333333333333
     ],
     "listen-select": [
-      4000,
-      4000
+      1333.3333333333333,
+      1333.3333333333333
     ],
-    "gap-fill": [
-      4000
+    "vocalize": [
+      1000
+    ],
+    "translate-tap.l2-l1": [
+      1333.3333333333333
     ]
   },
   "rated": {
@@ -213,10 +202,31 @@
       "sense:na|recognize",
       "sense:khodahafez|recognize",
       "sense:khodahafez|speak",
-      "sense:bale|speak",
-      "sense:mamnun|listen",
-      "sense:na|produce",
-      "sense:khodahafez|listen"
+      "sense:khodahafez|listen",
+      "sense:na|read-script|fa-Arab/standard",
+      "sense:mamnun|listen"
     ]
-  }
+  },
+  "met": {
+    "sense:bale": "2026-03-01",
+    "sense:mamnun": "2026-03-01",
+    "sense:salam": "2026-03-01",
+    "sense:na": "2026-03-01",
+    "sense:khodahafez": "2026-03-01"
+  },
+  "shown": {},
+  "missed": {
+    "sense:salam|recognize": "2026-03-01"
+  },
+  "recent": [
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
 }

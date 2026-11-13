@@ -11,11 +11,27 @@
  * Appearance: match the browser (the default: light or dark as the browser or device is set), or
  * light or dark whatever it is set to. A chosen theme is data-theme on <html> (tokens.css);
  * index.html sets it before the first paint, so a dark page never flashes light.
+ *
+ * Sound: on, or off (nothing plays by itself in lessons and stories). The player's header has the
+ * same switch.
+ *
+ * Listening and speaking exercises: on, or off until turned back on (S8), for a learner who cannot
+ * hear the clips or has no microphone. Off, new sessions leave them out, as after "Can't listen now"
+ * (which lasts an hour), and with listening off nothing plays by itself (breaks.ts).
+ *
+ * The time of the daily reminder is the one preference that is the account's, not the device's:
+ * the server sends the reminders, so it keeps the time (ADR 0103) for every device that gets them.
+ * It shows when signed in to a server that sends reminders.
  */
-import { useTranslator } from "@nabu/ui";
-import { useState, type JSX } from "react";
-import { Label, Radio, RadioGroup, Text } from "react-aria-components";
+import { parseTime, Time } from "@internationalized/date";
+import type { CourseView } from "@nabu/core/lesson";
+import type { TaggedText } from "@nabu/schema";
+import { CourseUiProvider, T, useTranslator } from "@nabu/ui";
+import { useEffect, useState, type FormEvent, type JSX, type MouseEvent } from "react";
+import { Button, DateInput, DateSegment, Form, Label, Radio, RadioGroup, Text, TimeField, type TimeValue } from "react-aria-components";
 import styles from "./App.module.css";
+import { setTurnedOff, turnedOff, turnOn, type Modality } from "./breaks.ts";
+import { request, type Account } from "./sync.ts";
 
 export const TEXT_SIZES = ["smaller", "default", "large", "larger", "largest"] as const;
 export type TextSize = (typeof TEXT_SIZES)[number];
@@ -110,11 +126,215 @@ export const applyTheme = (theme: Theme): void => {
   }
 };
 
-/** The preferences screen: appearance and the size of the language being learned, applied as the learner chooses. */
-export const PreferencesPage = ({ back }: { readonly back: string }): JSX.Element => {
+/**
+ * Sound in lessons and stories (P6): on, or off. Off, nothing plays by itself (feedback tones, clips
+ * said as a card opens or is answered, story lines read out); the play buttons still work. The
+ * player's own sound button changes the same setting.
+ */
+const SOUND_KEY = "nabu.sound";
+let soundFallback = true;
+
+/** Whether sound is on on this device (on until the learner turns it off). */
+export const storedSound = (): boolean => {
+  try {
+    return localStorage.getItem(SOUND_KEY) !== "off";
+  } catch {
+    return soundFallback;
+  }
+};
+
+export const storeSound = (on: boolean): void => {
+  soundFallback = on;
+  try {
+    if (on) localStorage.removeItem(SOUND_KEY);
+    else localStorage.setItem(SOUND_KEY, "off");
+  } catch {
+    // Storage unavailable: the choice lasts this page.
+  }
+};
+
+const EXERCISES = {
+  listening: { label: "preferences.listening.label", hint: "preferences.listening.hint", on: "preferences.listening.on", off: "preferences.listening.off" },
+  speaking: { label: "preferences.speaking.label", hint: "preferences.speaking.hint", on: "preferences.speaking.on", off: "preferences.speaking.off" },
+} as const;
+
+/**
+ * Listening or speaking exercises (S8): on, or off on this device until turned back on. It shows the
+ * learner's choice, not a break ("Can't listen now" lasts an hour): a learner on a break who chooses
+ * Off keeps them off for good. On again ends a break too.
+ */
+const ExercisesChoice = ({ modality }: { readonly modality: Modality }): JSX.Element => {
+  const t = useTranslator();
+  const [on, setOn] = useState(() => !turnedOff(modality));
+  const copy = EXERCISES[modality];
+  return (
+    <RadioGroup
+      className={styles.preferenceOptions}
+      value={on ? "on" : "off"}
+      onChange={(value) => {
+        const next = value !== "off";
+        setOn(next);
+        if (next) turnOn(modality);
+        else setTurnedOff(modality, true);
+      }}
+      data-preference={modality}
+    >
+      <Label className={styles.subheading}>{t.format(copy.label)}</Label>
+      <Text slot="description" className={styles.muted}>
+        {t.format(copy.hint)}
+      </Text>
+      <Radio value="on" className={styles.preferenceOption} data-exercises-choice="on">
+        {t.format(copy.on)}
+      </Radio>
+      <Radio value="off" className={styles.preferenceOption} data-exercises-choice="off">
+        {t.format(copy.off)}
+      </Radio>
+    </RadioGroup>
+  );
+};
+
+/** What the server says of the reminder time: whether it sends reminders at all, and the time chosen ("HH:MM"; null: automatic). */
+interface ReminderSetting {
+  readonly available: boolean;
+  readonly time: string | null;
+}
+
+/** Automatic (after the time the learner usually practises) or a time they choose. */
+type ReminderMode = "automatic" | "chosen";
+
+/** "07:30" from a time field's value: the 24-hour form the API takes, whatever the field shows. */
+const hhmm = (value: TimeValue): string => `${String(value.hour).padStart(2, "0")}:${String(value.minute).padStart(2, "0")}`;
+
+/**
+ * When the daily reminder comes: a little after the time the learner usually practises, or at a
+ * time they choose. The field shows the time as the UI locale writes it (12 or 24 hours, its
+ * digits); the account keeps it as hours and minutes of the learner's own day.
+ */
+const ReminderTime = ({ account }: { readonly account: Account }): JSX.Element | null => {
+  const t = useTranslator();
+  const [setting, setSetting] = useState<ReminderSetting | null>(null);
+  const [mode, setMode] = useState<ReminderMode>("automatic");
+  const [time, setTime] = useState<TimeValue | null>(() => new Time(19, 0));
+  const [status, setStatus] = useState<"saved" | "failed" | null>(null);
+  const [busy, setBusy] = useState(false);
+  useEffect(() => {
+    void request<ReminderSetting>(account.server, "/v1/push/reminder", { token: account.token }).then(
+      (s) => {
+        setSetting(s);
+        setMode(s.time === null ? "automatic" : "chosen");
+        if (s.time !== null) setTime(parseTime(s.time));
+      },
+      // An older server, or none reachable: nothing to set.
+      () => setSetting(null),
+    );
+  }, [account]);
+  if (setting === null || !setting.available) return null;
+  const save = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    if (busy || (mode === "chosen" && time === null)) return;
+    setBusy(true);
+    const body = { time: mode === "chosen" && time !== null ? hhmm(time) : null };
+    void request<ReminderSetting>(account.server, "/v1/push/reminder", { token: account.token, method: "PUT", body }).then(
+      (s) => {
+        setSetting(s);
+        setStatus("saved");
+        setBusy(false);
+      },
+      () => {
+        setStatus("failed");
+        setBusy(false);
+      },
+    );
+  };
+  return (
+    <Form className={styles.preferenceOptions} onSubmit={save} data-preference="reminder-time">
+      <RadioGroup
+        className={styles.reminderModes}
+        value={mode}
+        onChange={(value) => {
+          if (value !== "automatic" && value !== "chosen") return;
+          setMode(value);
+          setStatus(null);
+        }}
+      >
+        <Label className={styles.subheading}>{t.format("preferences.reminder.label")}</Label>
+        <Text slot="description" className={styles.muted}>
+          {t.format("preferences.reminder.hint")}
+        </Text>
+        <Radio value="automatic" className={styles.preferenceOption} data-reminder-mode="automatic">
+          {t.format("preferences.reminder.automatic")}
+        </Radio>
+        <Radio value="chosen" className={styles.preferenceOption} data-reminder-mode="chosen">
+          {t.format("preferences.reminder.chosen")}
+        </Radio>
+      </RadioGroup>
+      {mode === "chosen" && (
+        <TimeField
+          className={styles.field}
+          value={time}
+          onChange={(value) => {
+            setTime(value);
+            setStatus(null);
+          }}
+          isRequired
+          data-field="reminder-time"
+        >
+          <Label className={styles.label}>{t.format("preferences.reminder.time")}</Label>
+          <DateInput className={styles.timeInput}>{(segment) => <DateSegment segment={segment} className={styles.timeSegment} />}</DateInput>
+        </TimeField>
+      )}
+      <div className={styles.links}>
+        <Button className={styles.button} type="submit" isDisabled={busy} data-action="reminder-time-save">
+          {t.format("preferences.reminder.save")}
+        </Button>
+      </div>
+      {status === "saved" && (
+        <p className={styles.muted} role="status" data-reminder-time-saved="">
+          {t.format("preferences.reminder.saved")}
+        </p>
+      )}
+      {status === "failed" && (
+        <p className={styles.notice} role="alert" data-reminder-time-error="">
+          {t.format("preferences.reminder.failed")}
+        </p>
+      )}
+    </Form>
+  );
+};
+
+/** A sentence of a course, to show the text size chosen (S8): it grows, and its translation stays as it is. */
+export interface TextSample {
+  /** The course it is from: its profiles set the font, and say which text is the language being learned. */
+  readonly course: CourseView;
+  /** What the course is called (course data, ADR 0109). */
+  readonly language: string;
+  readonly text: TaggedText;
+  readonly translation: TaggedText | undefined;
+}
+
+/** What the way back says, by where the screen was opened from (S8): the course list, a course's page, or a session. */
+export type PreferencesBack = "preferences.back" | "preferences.back.course" | "preferences.back.lesson" | "preferences.back.practice" | "preferences.back.placement";
+
+export interface PreferencesPageProps {
+  readonly back: string;
+  readonly backLabel: PreferencesBack;
+  /** Going back (navigation.ts): to the entry the screen came from, so Back never returns here. */
+  readonly onBack?: ((e: MouseEvent<HTMLAnchorElement>) => void) | undefined;
+  readonly account?: Account | undefined;
+  /** A sentence of the course the learner came from, if any, for the text size. */
+  readonly sample?: TextSample | undefined;
+}
+
+/**
+ * The preferences screen: appearance, the size of the language being learned (with a sample of it,
+ * where the learner came from a course), sound, and listening and speaking exercises, applied as the
+ * learner chooses; with an account, the time of the daily reminder.
+ */
+export const PreferencesPage = ({ back, backLabel, onBack, account, sample }: PreferencesPageProps): JSX.Element => {
   const t = useTranslator();
   const [size, setSize] = useState<TextSize>(storedTextSize);
   const [theme, setTheme] = useState<Theme>(storedTheme);
+  const [sound, setSound] = useState<boolean>(storedSound);
   const choose = (value: string): void => {
     if (!isTextSize(value)) return;
     setSize(value);
@@ -127,8 +347,17 @@ export const PreferencesPage = ({ back }: { readonly back: string }): JSX.Elemen
     storeTheme(value);
     applyTheme(value);
   };
+  // The way back at the top, as other screens have it, and again at the foot of this long one.
+  const backLink = (end: boolean): JSX.Element => (
+    <p>
+      <a className={styles.back} href={back} onClick={onBack} data-preferences-back={end ? "end" : ""}>
+        {t.format(backLabel)}
+      </a>
+    </p>
+  );
   return (
     <main className={styles.page} data-preferences="">
+      {backLink(false)}
       <h1 className={styles.heading}>{t.format("preferences.title")}</h1>
       <RadioGroup className={styles.preferenceOptions} value={theme} onChange={chooseTheme} data-preference="theme">
         <Label className={styles.subheading}>{t.format("preferences.theme.label")}</Label>
@@ -152,11 +381,41 @@ export const PreferencesPage = ({ back }: { readonly back: string }): JSX.Elemen
           </Radio>
         ))}
       </RadioGroup>
-      <p>
-        <a className={styles.back} href={back} data-preferences-back="">
-          {t.format("preferences.back")}
-        </a>
-      </p>
+      {/* The size chosen, on a sentence of the course: <T> sets it as lessons do (--nabu-target-scale). */}
+      {sample !== undefined && (
+        <CourseUiProvider course={sample.course}>
+          <figure className={styles.sizeSample} data-target-size-sample={sample.course.id}>
+            <figcaption className={styles.sampleCaption}>{t.format("preferences.target-size.sample", { language: sample.language })}</figcaption>
+            <T as="p" className={styles.sampleText} text={sample.text} />
+            {sample.translation !== undefined && <T as="p" className={styles.sampleTranslation} text={sample.translation} />}
+          </figure>
+        </CourseUiProvider>
+      )}
+      <RadioGroup
+        className={styles.preferenceOptions}
+        value={sound ? "on" : "off"}
+        onChange={(value) => {
+          const on = value !== "off";
+          setSound(on);
+          storeSound(on);
+        }}
+        data-preference="sound"
+      >
+        <Label className={styles.subheading}>{t.format("preferences.sound.label")}</Label>
+        <Text slot="description" className={styles.muted}>
+          {t.format("preferences.sound.hint")}
+        </Text>
+        <Radio value="on" className={styles.preferenceOption} data-sound-choice="on">
+          {t.format("preferences.sound.on")}
+        </Radio>
+        <Radio value="off" className={styles.preferenceOption} data-sound-choice="off">
+          {t.format("preferences.sound.off")}
+        </Radio>
+      </RadioGroup>
+      <ExercisesChoice modality="listening" />
+      <ExercisesChoice modality="speaking" />
+      {account !== undefined && <ReminderTime account={account} />}
+      {backLink(true)}
     </main>
   );
 };

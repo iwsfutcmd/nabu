@@ -107,8 +107,9 @@ test("can't speak now: a speaking card can be put off, and speaking stays out fo
   if (ex === undefined) throw new Error("no exercise");
   await waitFor(page, ex);
   await page.locator("[data-action=cant-speak]").click();
-  // The card moves on, and no speaking card comes up again in this session.
+  // The card moves on, and no speaking card comes up again in this session; the lesson says so (P13).
   await expect(page.locator("[data-lesson-player]")).not.toHaveAttribute("data-exercise", ex.id);
+  await expect(page.locator("[data-put-off=speaking]")).toContainText("No speaking exercises for the next hour");
   await page.locator("[data-action=quit]").click();
   await page.goto(pathUrl(course, SEED));
   await expect(page.locator("[data-speaking-off]")).toBeVisible();

@@ -106,6 +106,14 @@ export const leagueWeeks = pgTable("league_weeks", {
   rolledAt: timestamp("rolled_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
+/** Learners who said no to leagues (ADR 0122): they join no cohort. No row: they take part. */
+export const leagueOptOuts = pgTable("league_opt_outs", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  optedOutAt: timestamp("opted_out_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const pushSubscriptions = pgTable("push_subscriptions", {
   endpoint: text("endpoint").primaryKey(),
   userId: uuid("user_id")
@@ -124,6 +132,14 @@ export const nativePushTokens = pgTable("native_push_tokens", {
     .references(() => users.id, { onDelete: "cascade" }),
   platform: text("platform").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/** The time a learner chose for the daily reminder (ADR 0103), in minutes after local midnight. No row: automatic. */
+export const reminderSettings = pgTable("reminder_settings", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  minute: smallint("minute").notNull(),
 });
 
 /** Reminders sent, at most one per user and local date. */

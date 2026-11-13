@@ -3,6 +3,8 @@
 - Status: Proposed
 - Date: 2026-11-09
 - Amends: gameplan §3 and §6.3 (`script` nodes); [0087](0087-attic-greek.md) (the grc course)
+- Amended by: [0124](0124-script-tracks-from-the-profile.md) (letters and marks from the profile;
+  `romanize: {scheme, orthography}`)
 
 ## Context
 
@@ -46,9 +48,10 @@ support language's script, with `alphabet` in place of `convert`:
   nabu.greek_translit, the scholarly scheme set to Attic sounds (η ē, ω ō, υ y, θ φ χ th ph ch, h for the
   rough breathing, accents left out). Latin text is tagged `<lang>-Latn` (`grc-Latn`) and set in the
   support language's font. It is not an orthography a learner can pick.
-- **Lint `script.untaught-letter`** (error): a word whose base letters the track has not taught by then,
-  or an orthography whose profile names no romanization. Marks are not checked: the words are shown as
-  the course writes them.
+- **Lint `script.untaught-letter`** (error): a word whose base letters the track has not taught by then.
+  Marks are not checked: the words are shown as the course writes them. An orthography whose profile
+  names no romanization (or has no profile for the Latin spellings) is `script.no-romanization`, and a
+  word with no form in the orthography `script.missing-form`.
 - **Bundled:** the node carries `alphabet: {orthography, letters: [{kc, letters, text, latin}], words: [{kc,
   letters, text, latin}]}`. `text` and `latin` are TaggedText; `letters` lists the grapheme KCs taught by
   then that the item is written with, which its exercises credit. The romanized orthography's profile

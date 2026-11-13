@@ -6,7 +6,7 @@
 /** A failed request: the HTTP status and the server's error code. */
 export type HttpError = Error & { readonly kind: "http"; readonly status: number; readonly code: string | undefined; readonly detail: unknown };
 
-const httpError = (status: number, code: string | undefined, detail?: unknown): HttpError => Object.assign(new Error(`HTTP ${status}`), { kind: "http" as const, status, code, detail });
+export const httpError = (status: number, code: string | undefined, detail?: unknown): HttpError => Object.assign(new Error(`HTTP ${status}`), { kind: "http" as const, status, code, detail });
 
 export const isHttpError = (e: unknown): e is HttpError => e instanceof Error && (e as Partial<HttpError>).kind === "http";
 

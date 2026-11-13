@@ -2,18 +2,20 @@
  * The sentence list (ADR 0051): every sentence and story line of a course, one unit at a time,
  * each with a way to mark it as wrong. The learner's orthography comes first (with its ruby
  * readings, where the profile has them), then the course's other orthographies and the
- * translation, all through <T>. Items this device already corrected say so.
+ * translation, all through <T>. Items this device already corrected say so, and what came of it
+ * (ADR 0115): in the course now, or changed since some other way. Only a correction still open
+ * offers to change it; once the course took it up or moved past it, a new one starts afresh.
  *
  * With `review` (a reviewer, ADR 0072), each sentence and each story can be signed off ("Looks
  * right"), and a whole unit at once; items the source already marks reviewed say so instead.
  */
-import { correctablesByUnit, correctionKey, signedOff, type Correctable, type SignOffKind, type UnitCorrectables } from "@nabu/core/corrections";
+import { correctablesByUnit, correctionKey, correctionStatus, signedOff, type Correctable, type CorrectionStatus, type SignOffKind, type UnitCorrectables } from "@nabu/core/corrections";
 import type { CourseView } from "@nabu/core/lesson";
-import type { SentenceReported, TaggedText } from "@nabu/schema";
+import type { SchemeId, SentenceReported, TaggedText } from "@nabu/schema";
 import { useId, useMemo, type JSX, type ReactNode } from "react";
 import { Button, ToggleButton } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
-import { rubySchemeOf } from "../player/shared.ts";
+import { defaultRuby } from "../player/Readings.tsx";
 import { T } from "../T.tsx";
 import styles from "./Corrections.module.css";
 
@@ -39,6 +41,8 @@ export interface SentenceListProps {
   readonly review?: ReviewControls | undefined;
   /** More under each item: the review workspace's clip, accept sets and answer field (ADR 0074). */
   readonly details?: ((target: Correctable) => ReactNode) | undefined;
+  /** The reading layer the learner chose for the orthography (ADR 0071), if any: shown as ruby as the player shows it. */
+  readonly reading?: SchemeId | false | undefined;
 }
 
 /** A sign-off toggle, or the badge of an item the source already marks reviewed. */
@@ -59,36 +63,40 @@ const SignOff = ({ kind, item, reviewed, review, label, describedBy }: { kind: S
   );
 };
 
+/** What a corrected item says of the device's correction (ADR 0115). */
+export const CORRECTION_BADGES = { pending: "corrections.pending", adopted: "corrections.adopted", changed: "corrections.changed" } as const;
+
 interface ItemProps {
   readonly course: CourseView;
   readonly target: Correctable;
-  readonly corrected: boolean;
+  readonly ruby: SchemeId | false;
+  /** What came of this device's correction of the item, if it made one. */
+  readonly corrected: Exclude<CorrectionStatus, "gone"> | undefined;
   readonly onCorrect: (target: Correctable) => void;
   /** For a sentence, with a reviewer's controls: whether the source marks it reviewed. */
   readonly review?: { readonly controls: ReviewControls; readonly reviewed: boolean } | undefined;
   readonly details?: ((target: Correctable) => ReactNode) | undefined;
 }
 
-const Item = ({ course, target, corrected, onCorrect, review, details }: ItemProps): JSX.Element | null => {
+const Item = ({ course, target, ruby, corrected, onCorrect, review, details }: ItemProps): JSX.Element | null => {
   const t = useTranslator();
   const textId = useId();
   const own = target.forms[course.orthography];
-  const ruby = useMemo(() => rubySchemeOf(course.profiles.get(course.orthography)?.source) ?? false, [course]);
   if (own === undefined) return null;
   const others = Object.entries(target.forms)
     .filter(([o]) => o !== course.orthography)
     .sort(([a], [b]) => (a < b ? -1 : 1));
   return (
-    <li className={styles.item} data-correctable={correctionKey(target.item, target.step)} data-corrected={corrected || undefined}>
+    <li className={styles.item} data-correctable={correctionKey(target.item, target.step)} data-corrected={corrected === undefined ? undefined : true} data-correction-status={corrected}>
       <div className={styles.texts} id={textId} data-ink-container={correctionKey(target.item, target.step)}>
         <T as="p" className={styles.target} text={own} ruby={ruby} />
         {others.map(([o, text]) => (
           <T key={o} as="p" className={styles.other} text={text} />
         ))}
         {target.translation !== undefined && <T as="p" className={styles.translation} text={target.translation} />}
-        {corrected && (
-          <p className={styles.badge} data-correction-pending="">
-            {t.format("corrections.pending")}
+        {corrected !== undefined && (
+          <p className={styles.badge} data-correction-pending={corrected === "pending" ? "" : undefined} data-correction-status={corrected}>
+            {t.format(CORRECTION_BADGES[corrected])}
           </p>
         )}
         {details?.(target)}
@@ -98,7 +106,7 @@ const Item = ({ course, target, corrected, onCorrect, review, details }: ItemPro
           <SignOff kind="sentence" item={target.item} reviewed={review.reviewed} review={review.controls} label={t.format("review.looks-right")} describedBy={textId} />
         )}
         <Button className={styles.small} onPress={() => onCorrect(target)} aria-describedby={textId} data-action="mark-incorrect">
-          {t.format(corrected ? "corrections.edit" : "corrections.mark")}
+          {t.format(corrected === "pending" ? "corrections.edit" : "corrections.mark")}
         </Button>
       </div>
     </li>
@@ -107,19 +115,27 @@ const Item = ({ course, target, corrected, onCorrect, review, details }: ItemPro
 
 const titleOf = (title: Readonly<Record<string, TaggedText>> | undefined, key: string): TaggedText | undefined => title?.[key];
 
-export const SentenceList = ({ course, corrections, unit, onUnit, onCorrect, review, details }: SentenceListProps): JSX.Element => {
+export const SentenceList = ({ course, corrections, unit, onUnit, onCorrect, review, details, reading }: SentenceListProps): JSX.Element => {
   const t = useTranslator();
+  const ruby = useMemo(() => defaultRuby(course.profiles.get(course.orthography)?.source, reading), [course, reading]);
   // Units with nothing to correct (the generated number drills) are left out.
   const units = useMemo(() => correctablesByUnit(course).filter((u) => u.sentences.length > 0 || u.stories.some((s) => s.lines.length > 0)), [course]);
   const current = units.find((u) => u.unit.id === unit) ?? units[0];
   const unitName = (n: number, title: TaggedText | undefined): JSX.Element => (title === undefined ? <>{t.format("corrections.page.unit", { number: n + 1 })}</> : <T text={title} />);
   const reviewedSentences = useMemo(() => new Set(course.units.flatMap((u) => u.sentences.filter((s) => signedOff(s.provenance)).map((s) => s.id))), [course]);
+  const statusOf = (target: Correctable): Exclude<CorrectionStatus, "gone"> | undefined => {
+    const report = corrections.get(correctionKey(target.item, target.step));
+    // The item is in the course, so its correction is never "gone".
+    const status = report === undefined ? undefined : correctionStatus(course, report, target);
+    return status === "gone" ? undefined : status;
+  };
   const item = (target: Correctable): JSX.Element => (
     <Item
       key={correctionKey(target.item, target.step)}
       course={course}
       target={target}
-      corrected={corrections.has(correctionKey(target.item, target.step))}
+      ruby={ruby}
+      corrected={statusOf(target)}
       onCorrect={onCorrect}
       review={review === undefined ? undefined : { controls: review, reviewed: reviewedSentences.has(target.item) }}
       details={details}

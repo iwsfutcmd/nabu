@@ -8,22 +8,28 @@
  * - Tap-for-gloss runs the runtime glossary (longest match, exact and folded passes), so a
  *   vocalized كِيفَك finds its unvocalized entry; the meaning appears in a live panel, not a
  *   floating popover, so it reads the same in RTL, LTR and vertical text.
- * - Vertical reading (§11.4): where the profile allows it, the transcript turns into columns
- *   (vertical-rl); the chrome stays horizontal, and ruby is off by default there.
+ * - Vertical reading (§11.4, ADR 0118): where the profile allows it, each line's text turns into
+ *   columns (vertical-rl) with the reading layer the learner chose beside them; names, play
+ *   buttons, translations and the chrome stay horizontal, and the lines follow one another down.
  */
-import { draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
-import { courseGlossary, glossAt, glossLine, storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
+import type { Verdict } from "@nabu/core";
+import { countsAs, draftOf, emptyDraft, isCorrect, missedOf, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
+import { storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
-import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
+import { useEffect, useId, useMemo, useRef, useState, type JSX, type ReactNode } from "react";
+import { Button } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
-import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
+import { ArrowForwardIcon } from "../icons.tsx";
+import { WordStatusProvider, type Marks } from "../marks.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
+import type { DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
+import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
-import { ReadingsControl, useReadings } from "../player/Readings.tsx";
-import { digitIndex, effectiveWritingMode, hasMarksLayer, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
+import { effectiveWritingMode, focusInReach, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { HeaderToggles, QuitDialog, SessionHeader, usePlayerKeys, useQuitRequest, useToggles } from "../player/Shell.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
 import { useStoryPlayer } from "./useStoryPlayer.ts";
@@ -38,38 +44,53 @@ export interface StoryReaderProps {
   readonly language: string;
   readonly onEvent?: (event: LessonEvent) => void;
   readonly onExit?: () => void;
+  /** Sound as the story opens (default on). Off, no line is read out and no tone sounds by itself (P6). */
   readonly sound?: boolean;
+  /** The learner switched sound on or off in the story's header: the app keeps the choice. */
+  readonly onSoundChange?: ((on: boolean) => void) | undefined;
+  /** False while the learner is on a listening break ("Can't listen now"): nothing plays by itself then either. */
+  readonly listening?: boolean | undefined;
   /** Initial writing mode for the transcript (vertical where allowed). */
   readonly writingMode?: WritingMode;
   /** XP the story earned, shown when it ends. */
   readonly xpEarned?: number | undefined;
+  /** How reading it moved the learner's progress, shown when it ends (the app works it out from the log, P9). */
+  readonly progress?: SessionProgress | undefined;
+  /** Where to go next, as the course page's Continue has it (ADR 0105): offered when the story ends. */
+  readonly next?: NextStep | undefined;
   /** The reading layer the learner chose before (false: none), which the app keeps (ADR 0071). */
   readonly reading?: SchemeId | false | undefined;
   /** The learner chose a reading layer, or none. */
   readonly onReadingChange?: ((scheme: SchemeId | false) => void) | undefined;
+  /** Vowel marks and vertical text as the learner chose them for this course (P12); else the profile's. */
+  readonly display?: DisplayChoice | undefined;
+  /** The learner chose vowel marks or vertical text: the app keeps the choice for the course. */
+  readonly onDisplayChange?: ((choice: DisplayChoice) => void) | undefined;
+  /** The words (KC ids) the learner knows (ADR 0100), for vowel marks on new words only (P12). */
+  readonly known?: ReadonlySet<string> | undefined;
   /** For Storybook and tests: lines whose translation starts open, and a token whose gloss starts open. */
   readonly initial?: { readonly translations?: readonly number[]; readonly gloss?: { readonly line: number; readonly token: number } };
   /** For Storybook and tests: start from this state instead of the story's beginning. */
   readonly initialState?: StoryState;
+  /** For Storybook and tests: a finished story opens read again (S15). */
+  readonly rereading?: boolean | undefined;
+  /** A story the learner finished before (ADR 0107): leaving it loses nothing more, and the dialog says so (D13). */
+  readonly replay?: boolean | undefined;
   /** Something the app adds under each line, such as "This line is wrong" (ADR 0051). */
   readonly lineAction?: ((line: StoryLine) => ReactNode) | undefined;
-  /** Something the app adds under a question's feedback, such as "My answer should be accepted". */
-  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null) => ReactNode) | undefined;
+  /**
+   * Something the app adds under a question's feedback, such as "My answer should be accepted".
+   * `revise` takes a claim's or the judge's verdict on the answer into the story (ADR 0113).
+   */
+  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null, revise: (verdict: Verdict) => void) => ReactNode) | undefined;
+  /** The app bumps this to ask, as the quit button does, whether to stop reading (S3: Back mid-story). */
+  readonly quitRequest?: number | undefined;
 }
-
-const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
-  <Switch className={playerStyles.switch} isSelected={selected} onChange={onChange} data-toggle={id}>
-    <span className={playerStyles.switchTrack} aria-hidden="true">
-      <span className={playerStyles.switchThumb} />
-    </span>
-    {label}
-  </Switch>
-);
 
 interface LineProps {
   readonly line: StoryLine;
   readonly ruby: SchemeId | false;
-  readonly marks: "show" | "hide";
+  readonly marks: Marks;
   readonly pressed: number | undefined;
   readonly onToken: (token: number) => void;
   readonly translated: boolean;
@@ -81,9 +102,11 @@ interface LineProps {
   readonly url: (path: string) => string;
   /** Say the line as it appears (the newest line, with sound on). */
   readonly autoPlay: boolean;
+  /** Say "Synthetic voice" beside this line's buttons (its clip is synthesized): one line of the story at a time. */
+  readonly labelled: boolean;
 }
 
-const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, latest, action, audio, url, autoPlay }: LineProps): JSX.Element => {
+const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, latest, action, audio, url, autoPlay, labelled }: LineProps): JSX.Element => {
   const t = useTranslator();
   const translationId = `story-line-${line.index}-translation`;
   const player = useClipPlayer(audio, url);
@@ -101,7 +124,7 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
       ) : (
         <span className={styles.narration} aria-label={t.format("story.narration")} />
       )}
-      {audio !== undefined && <AudioButtons player={player} audio={audio} label={false} />}
+      {audio !== undefined && <AudioButtons player={player} audio={audio} label={labelled} />}
       <T
         as="p"
         className={styles.lineText}
@@ -110,68 +133,83 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
         marks={marks}
         onTokenPress={onToken}
         pressed={pressed}
-        {...(player.token === undefined ? {} : { highlight: [player.token] })}
+        current={player.token}
       />
-      {line.translation !== undefined && (
-        <>
-          <Button className={styles.translate} onPress={onTranslate} aria-expanded={translated} aria-controls={translationId} data-action="translate">
-            {t.format(translated ? "story.translation.hide" : "story.translation.show")}
-          </Button>
-          <div id={translationId} hidden={!translated}>
-            {translated && <T as="p" className={styles.translation} text={line.translation} />}
-          </div>
-        </>
+      {/* The line's controls share a row: the translation toggle at the start, the action (a report flag) at the end. */}
+      {(line.translation !== undefined || (action !== undefined && action !== null)) && (
+        <div className={styles.lineControls}>
+          {line.translation !== undefined && (
+            <Button className={styles.translate} onPress={onTranslate} aria-expanded={translated} aria-controls={translationId} data-action="translate">
+              {t.format(translated ? "story.translation.hide" : "story.translation.show")}
+            </Button>
+          )}
+          {action}
+        </div>
       )}
-      {action}
+      {line.translation !== undefined && (
+        <div id={translationId} hidden={!translated}>
+          {translated && <T as="p" className={styles.translation} text={line.translation} />}
+        </div>
+      )}
     </div>
   );
 };
 
 const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, script, grader, imageUrl, language, onEvent, onExit, sound, profile, xpEarned } = props;
+  const { course, script, grader, imageUrl, language, onEvent, onExit, profile, xpEarned } = props;
   const t = useTranslator();
-  const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound, initialState: props.initialState });
-  const glossary = useMemo(() => courseGlossary(course), [course]);
-  const verticalMode = profile?.layout?.vertical;
-  const canVertical = verticalMode !== undefined && verticalMode !== "none" && effectiveWritingMode(profile, verticalMode, "reading") !== "horizontal-tb";
-  const [mode, setMode] = useState<WritingMode>(props.writingMode ?? "horizontal-tb");
-  const transcriptMode = effectiveWritingMode(profile, mode, "reading");
-  // Rotated Latin ruby reads badly in vertical text: off by default there (§11.4).
-  const readings = useReadings(profile, transcriptMode, props.reading, props.onReadingChange);
-  // A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue).
-  const glossRuby = readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false;
-  const [vowels, setVowels] = useState(true);
+  // Sound, the reading layer, vowel marks and vertical reading: the learner's choices for the course,
+  // else the profile's (P6, P12; vertical text in the story's lines).
+  const toggles = useToggles(profile, "reading", props);
+  const { display, readings } = toggles;
+  // Nothing plays by itself with sound off or while the learner can't listen (P6).
+  const quiet = !toggles.sound || props.listening === false;
+  const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound: !quiet, initialState: props.initialState });
+  const transcriptMode = effectiveWritingMode(profile, display.mode, "reading");
   const [translations, setTranslations] = useState<ReadonlySet<number>>(new Set(props.initial?.translations ?? []));
   const [selected, setSelected] = useState(props.initial?.gloss);
   const [confirming, setConfirming] = useState(false);
+  // Leaving mid-story (S3) asks as the quit button does; not once the story is over.
+  useQuitRequest(props.quitRequest, () => {
+    if (state.tag !== "finished") setConfirming(true);
+  });
+  // After the end, the whole story again, to read at leisure (S15): no questions, nothing recorded.
+  const [rereading, setRereading] = useState(props.rereading === true);
+  const rereadHeading = useRef<HTMLHeadingElement>(null);
   const ruby = readings.shown;
-  const marks = vowels ? "show" : "hide";
+  const marks = display.marks;
   const continueButton = useRef<HTMLButtonElement>(null);
+  const checkButton = useRef<HTMLButtonElement>(null);
+  // A question's instruction and prompt describe the control it focuses first (P10).
+  const base = useId();
+  const ids = { instruction: `${base}-instruction`, base };
   const transcript = useRef<HTMLDivElement>(null);
   const shortcuts = useRef<Shortcuts | null>(null);
-  const keys = useRef<(e: globalThis.KeyboardEvent) => void>(() => undefined);
+  // Keyboard (§11.3, §11.7): Enter reads on, checks and continues; number keys and Backspace go to a question's view.
+  const keys = usePlayerKeys();
 
   const asking = state.tag === "asking" ? state.player : undefined;
   const active = asking === undefined || asking.tag === "finished" ? undefined : asking.tag === "interrupted" ? asking.resume : asking;
 
   useEffect(() => {
     if (active?.tag === "presenting") dispatch({ tag: "player", event: { tag: "ready" } });
-    if (state.tag === "reading" || active?.tag === "feedback") continueButton.current?.focus({ preventScroll: true });
   });
+  // Continue takes the focus once a line is read or a question's feedback opens (P11), never on a
+  // later render (every recorded event is one): a correction's form keeps the focus it has.
+  const continueOf = state.tag === "reading" ? `line:${state.at}` : active?.tag === "feedback" ? `feedback:${active.ex.id}` : undefined;
+  useEffect(() => {
+    if (continueOf !== undefined) continueButton.current?.focus({ preventScroll: true });
+  }, [continueOf]);
 
-  // The newest line is the last one: the transcript scrolls to its block end (the bottom; the left
-  // in vertical-rl), and again whenever the layout settles under it, since web fonts change line
-  // heights after the first layout and a question opening below resizes the transcript. Scrolling
-  // to the end, not "nearest", gives the same position whatever the scroll was before.
+  // The newest line is the last one: the transcript scrolls to its end (the bottom, in vertical
+  // reading too: only the lines' text turns), and again whenever the layout settles under it, since
+  // web fonts change line heights after the first layout and a question opening below resizes the
+  // transcript. Scrolling to the end, not "nearest", gives the same position whatever the scroll was.
   const shownCount = state.shown.length;
   useEffect(() => {
     const box = transcript.current;
     const reveal = (): void => {
-      if (box === null) return;
-      const mode = getComputedStyle(box).writingMode;
-      if (mode === "vertical-rl") box.scrollLeft = -box.scrollWidth;
-      else if (mode === "vertical-lr") box.scrollLeft = box.scrollWidth;
-      else box.scrollTop = box.scrollHeight;
+      if (box !== null) box.scrollTop = box.scrollHeight;
     };
     reveal();
     let live = true;
@@ -186,41 +224,117 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     };
   }, [shownCount]);
 
+  // Rereading starts at its heading, so the story is read from its beginning.
   useEffect(() => {
-    const onKeyDown = (e: globalThis.KeyboardEvent): void => keys.current(e);
-    window.addEventListener("keydown", onKeyDown, { capture: true });
-    return () => window.removeEventListener("keydown", onKeyDown, { capture: true });
-  }, []);
+    if (rereading) rereadHeading.current?.focus();
+  }, [rereading]);
 
   const lines = state.shown.map((i) => script.lines[i]).filter((l) => l !== undefined);
   // A story line's clip is the course's audio of "<story>#<step>" (ADR 0058's audio items).
   const lineAudio = (line: StoryLine): AudioRef | undefined => course.audio[`${script.id}#${String(line.step)}`];
-  const synthetic = script.lines.some((line) => lineAudio(line)?.normal.synthetic === true);
   const glossLineAt = selected === undefined ? undefined : script.lines[selected.line];
-  const glosses = useMemo(
-    () => (glossLineAt === undefined || selected === undefined ? [] : glossAt(course, glossary, glossLine(course, glossary, glossLineAt.text), glossLineAt.text, selected.token)),
-    [course, glossary, glossLineAt, selected],
-  );
+  const tapped = useMemo(() => (glossLineAt === undefined || selected === undefined ? undefined : { text: glossLineAt.text, token: selected.token }), [glossLineAt, selected]);
+  const glosses = useGlosses(course, tapped);
   const progress = storyProgress(state);
   const progressLabel = t.format("exercise.progress", { current: progress.done, total: progress.total });
 
+  /**
+   * The story's lines with their translations, buttons and glosses; `live` reads the newest out as it
+   * appears. "Synthetic voice" is said once, beside a synthesized clip's buttons, as a lesson says it
+   * beside its prompt's (W6), never on a line of its own: the newest such line's while the story is
+   * read (the one in sight), the first one's when it is read again from the top.
+   */
+  const lineViews = (list: readonly StoryLine[], live: boolean): JSX.Element[] => {
+    const synthetic = (line: StoryLine): boolean => lineAudio(line)?.normal.synthetic === true;
+    const labelled = live ? list.findLastIndex(synthetic) : list.findIndex(synthetic);
+    return list.map((line, k) => (
+      <Line
+        key={line.index}
+        line={line}
+        ruby={ruby}
+        marks={marks}
+        latest={live && k === list.length - 1}
+        audio={lineAudio(line)}
+        url={imageUrl}
+        autoPlay={live && k === list.length - 1 && !quiet}
+        labelled={k === labelled}
+        pressed={selected?.line === line.index ? selected.token : undefined}
+        onToken={(token) => setSelected(selected?.line === line.index && selected.token === token ? undefined : { line: line.index, token })}
+        translated={translations.has(line.index)}
+        action={props.lineAction?.(line)}
+        onTranslate={() => {
+          const next = new Set(translations);
+          if (!next.delete(line.index)) next.add(line.index);
+          setTranslations(next);
+        }}
+      />
+    ));
+  };
+
+  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} ruby={toggles.glossRuby} marks={marks} />;
+
+  // Readings, vowel marks, vertical reading and sound: in the header, taking no room above the story (P12).
+  const headerTools = <HeaderToggles profile={profile} toggles={toggles} />;
+
   if (state.tag === "finished") {
-    keys.current = () => undefined;
+    keys.current = undefined;
+    const done = state.summary.completed;
+    if (done && rereading) {
+      // The whole story, as it was read, to read again (S15): its translations, glosses and clips;
+      // no questions, and nothing recorded (the session is over).
+      return (
+        <section className={`${playerStyles.card} ${styles.reader}`} data-story-reader="" data-story={script.id} data-state="rereading">
+          <SessionHeader close={{ label: t.format("story.reread.close"), action: "close-reread", onPress: () => setRereading(false) }} progress={undefined}>
+            {headerTools}
+          </SessionHeader>
+          <h2 ref={rereadHeading} tabIndex={-1} className={playerStyles.instruction} data-reread-heading="">
+            {script.title === undefined ? t.format("story.reread.title") : <T text={script.title} />}
+          </h2>
+          <div className={`${styles.transcript} ${styles.whole}`} role="region" aria-label={t.format("story.reread.label")} data-story-transcript="" data-writing-mode={transcriptMode} data-ink-container="transcript">
+            {lineViews(script.lines, false)}
+          </div>
+          {glossPanel}
+          <footer className={playerStyles.footer}>
+            {onExit !== undefined ? (
+              <Button className={playerStyles.primary} onPress={onExit} data-action="exit">
+                {t.format("player.action.continue")}
+                <ArrowForwardIcon />
+              </Button>
+            ) : (
+              <Button className={playerStyles.primary} onPress={() => setRereading(false)} data-action="close-reread">
+                {t.format("story.reread.done")}
+              </Button>
+            )}
+          </footer>
+        </section>
+      );
+    }
+    // The questions missed the first time, progress and the next step, as a lesson's end has them (P9).
+    const questions = script.steps.flatMap((s) => (s.tag === "question" ? [s.ex] : []));
     return (
       <section className={playerStyles.card} data-story-reader="" data-story={script.id} data-state="finished">
-        <h2 className={playerStyles.instruction}>{t.format(state.summary.completed ? "story.finished.title" : "story.finished.stopped")}</h2>
-        {state.summary.exercises > 0 && <p data-summary="">{t.format("player.finished.score", { correct: state.summary.correctFirstTry, total: state.summary.exercises })}</p>}
-        {xpEarned !== undefined && xpEarned > 0 && (
-          <p className={playerStyles.xp} data-xp-earned={xpEarned}>
-            {t.format("player.finished.xp", { xp: xpEarned })}
-          </p>
-        )}
-        {onExit !== undefined && (
-          <Button className={playerStyles.primary} onPress={onExit} autoFocus data-action="exit">
-            {t.format("player.action.continue")}
-            <ArrowForwardIcon />
-          </Button>
-        )}
+        <SessionEnd
+          course={course}
+          grader={grader}
+          imageUrl={imageUrl}
+          title={t.format(done ? "story.finished.title" : "story.finished.stopped")}
+          summary={state.summary}
+          words={[]}
+          missed={missedOf({ results: state.results, queue: questions })}
+          progress={props.progress}
+          xp={xpEarned}
+          next={props.next}
+          onExit={onExit}
+          ruby={ruby}
+          marks={marks}
+          actions={
+            done && (
+              <Button className={playerStyles.secondary} onPress={() => setRereading(true)} data-action="reread">
+                {t.format("story.reread.action")}
+              </Button>
+            )
+          }
+        />
       </section>
     );
   }
@@ -228,77 +342,38 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const ex = active?.ex;
   const draft = asking === undefined || ex === undefined ? undefined : (draftOf(asking) ?? emptyDraft(ex));
   const locked = active === undefined || (active.tag !== "answering" && active.tag !== "presenting");
-  const canCheck = active?.tag === "answering" && !active.composing && responseOf(active.ex, active.draft) !== undefined;
+  // As in a lesson (ADR 0118): Check takes a press mid-composition, which waits for compositionend; Enter never does.
+  const canCheck = active?.tag === "answering" && responseOf(active.ex, active.draft) !== undefined;
+  const composing = active?.tag === "answering" && active.composing;
   const feedback = active?.tag === "feedback" ? active : undefined;
   const forward = (): void => {
     if (state.tag === "reading") dispatch({ tag: "continue" });
     else if (feedback !== undefined) dispatch({ tag: "player", event: { tag: "continue" } });
-    else if (canCheck) dispatch({ tag: "player", event: { tag: "submit" } });
+    else if (canCheck && !composing) dispatch({ tag: "player", event: { tag: "submit" } });
+  };
+  const check = (): void => {
+    dispatch({ tag: "player", event: { tag: "submit" } });
+    // Focus on Check ends the composition, as a tap anywhere else does.
+    if (composing) focusInReach(checkButton.current, null);
   };
 
-  keys.current = (e) => {
-    if (confirming || e.isComposing || e.keyCode === 229 || typingInField(e.target)) return;
-    const control = e.target instanceof HTMLElement ? e.target.closest("button, a, [role=switch]") : null;
-    if (e.key === "Enter") {
-      if (control !== null && control !== continueButton.current) return;
-      if (state.tag === "reading" || feedback !== undefined || canCheck) {
-        e.preventDefault();
-        e.stopPropagation();
-        forward();
-      }
-      return;
-    }
-    if (e.ctrlKey || e.metaKey || e.altKey || state.tag !== "asking") return;
-    const digit = digitIndex(e.key);
-    if (digit !== undefined && shortcuts.current?.digit !== undefined) {
-      e.preventDefault();
-      shortcuts.current.digit(digit);
-    } else if (e.key === "Backspace" && shortcuts.current?.backspace !== undefined) {
-      e.preventDefault();
-      shortcuts.current.backspace();
-    }
-  };
+  // Enter reads on, continues from a question's feedback and checks an answer (never mid-composition),
+  // from Continue too, which takes the focus as each line is read; the quit dialog's keys are its own.
+  keys.current = confirming
+    ? undefined
+    : {
+        enter: state.tag === "reading" || feedback !== undefined || (canCheck && !composing) ? forward : undefined,
+        enterFrom: continueButton,
+        shortcuts: state.tag === "asking" ? shortcuts : undefined,
+      };
 
   return (
     <section className={`${playerStyles.card} ${styles.reader}`} data-story-reader="" data-story={script.id} data-state={state.tag} data-template={ex?.template} data-exercise={ex?.id}>
-      <header className={playerStyles.header}>
-        <Button className={playerStyles.iconButton} aria-label={t.format("exercise.action.quit")} onPress={() => setConfirming(true)} data-action="quit">
-          <CloseIcon />
-        </Button>
-        <ProgressBar className={playerStyles.progress} value={progress.done} minValue={0} maxValue={progress.total} aria-label={progressLabel} valueLabel={progressLabel}>
-          {({ percentage }) => (
-            <div className={playerStyles.track} data-progress-track="">
-              <div className={playerStyles.fill} data-progress-fill="" style={{ "--nabu-progress": `${percentage ?? 0}%` } as CSSProperties} />
-            </div>
-          )}
-        </ProgressBar>
-      </header>
+      <SessionHeader close={{ label: t.format("story.action.quit"), action: "quit", onPress: () => setConfirming(true) }} progress={{ ...progress, label: progressLabel, value: progressLabel }}>
+        {headerTools}
+      </SessionHeader>
 
       {script.title !== undefined && <T as="div" className={playerStyles.instruction} text={script.title} />}
-
-      {synthetic && (
-        <p className={playerStyles.synthetic} data-story-synthetic="">
-          {t.format("player.audio.synthetic")}
-        </p>
-      )}
-
-      {(readings.layers.length > 0 || hasMarksLayer(profile) || canVertical) && (
-        <div className={playerStyles.toggles}>
-          <ReadingsControl readings={readings} />
-          {hasMarksLayer(profile) && <Toggle id="marks" selected={vowels} onChange={setVowels} label={t.format("player.toggle.marks")} />}
-          {canVertical && verticalMode !== undefined && (
-            <Toggle
-              id="vertical"
-              selected={mode !== "horizontal-tb"}
-              onChange={(v) => {
-                setMode(v ? verticalMode : "horizontal-tb");
-                readings.onVertical(v);
-              }}
-              label={t.format("player.toggle.vertical")}
-            />
-          )}
-        </div>
-      )}
 
       <div
         ref={transcript}
@@ -309,59 +384,16 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         data-writing-mode={transcriptMode}
         data-ink-container="transcript"
       >
-        {lines.map((line, k) => (
-          <Line
-            key={line.index}
-            line={line}
-            ruby={ruby}
-            marks={marks}
-            latest={k === lines.length - 1}
-            audio={lineAudio(line)}
-            url={imageUrl}
-            autoPlay={k === lines.length - 1 && sound !== false}
-            pressed={selected?.line === line.index ? selected.token : undefined}
-            onToken={(token) => setSelected(selected?.line === line.index && selected.token === token ? undefined : { line: line.index, token })}
-            translated={translations.has(line.index)}
-            action={props.lineAction?.(line)}
-            onTranslate={() => {
-              const next = new Set(translations);
-              if (!next.delete(line.index)) next.add(line.index);
-              setTranslations(next);
-            }}
-          />
-        ))}
+        {lineViews(lines, true)}
       </div>
 
-      <div className={styles.gloss} role="status" aria-live="polite" aria-label={t.format("story.gloss.label")} data-gloss-panel="" data-gloss-open={selected === undefined ? undefined : ""}>
-        {selected === undefined ? (
-          <p className={styles.glossHint}>{t.format("story.gloss.hint")}</p>
-        ) : glosses.length === 0 ? (
-          <p className={styles.glossHint}>{t.format("story.gloss.none")}</p>
-        ) : (
-          <dl className={styles.glossList}>
-            {glosses.map((g, i) => (
-              <div key={i} className={styles.glossEntry} data-gloss-kc={g.kc}>
-                <dt>
-                  <T text={g.form} ruby={glossRuby} marks={marks} />
-                </dt>
-                <dd>
-                  {g.meaning !== undefined && <T text={g.meaning} />}
-                  {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
-                  {g.lemma !== undefined && (
-                    <span className={styles.glossNote} data-gloss-lemma="">
-                      {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={glossRuby} marks={marks} />
-                    </span>
-                  )}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        )}
-      </div>
+      {glossPanel}
 
       {asking !== undefined && ex !== undefined && draft !== undefined && (
         <div className={styles.question} data-story-question="" data-state={active?.tag}>
-          <h2 className={playerStyles.instruction}>{t.format(INSTRUCTIONS[ex.template], { language })}</h2>
+          <h2 className={playerStyles.instruction} id={ids.instruction}>
+            {t.format(INSTRUCTIONS[ex.template], { language })}
+          </h2>
           <ExerciseView
             key={ex.id}
             ex={ex}
@@ -373,15 +405,16 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             marks={marks}
             writingMode="horizontal-tb"
             imageUrl={imageUrl}
-            sound={sound !== false}
+            sound={!quiet}
             outcome={feedback?.outcome}
             language={language}
             shortcuts={shortcuts}
+            ids={ids}
           />
           <div className={playerStyles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
-            {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} course={course} ruby={ruby} marks={marks} />}
+            {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} response={feedback.response} course={course} ruby={ruby} marks={marks === "hide" ? "hide" : "show"} />}
           </div>
-          {feedback !== undefined && props.feedbackExtra?.(feedback.ex, feedback.outcome, feedback.response)}
+          {feedback !== undefined && props.feedbackExtra?.(feedback.ex, feedback.outcome, feedback.response, (verdict) => dispatch({ tag: "player", event: { tag: "revise", exercise: feedback.ex.id, verdict } }))}
         </div>
       )}
 
@@ -389,44 +422,39 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         {state.tag === "reading" || feedback !== undefined ? (
           <Button
             ref={continueButton}
-            className={`${playerStyles.primary} ${feedback !== undefined && !isCorrect(feedback.outcome.verdict) ? playerStyles.primaryWrong : ""}`}
+            className={`${playerStyles.primary} ${feedback !== undefined && !isCorrect(countsAs(feedback)) ? playerStyles.primaryWrong : ""}`}
             onPress={forward}
             data-action="continue"
+            data-counts-as={feedback === undefined ? undefined : countsAs(feedback)}
           >
             {t.format("player.action.continue")}
             <ArrowForwardIcon />
           </Button>
         ) : (
-          <Button className={playerStyles.primary} onPress={forward} isDisabled={!canCheck} data-action="check">
+          <Button ref={checkButton} className={playerStyles.primary} onPress={check} isDisabled={!canCheck} data-action="check">
             {t.format("exercise.action.check")}
             <ArrowForwardIcon />
           </Button>
         )}
       </footer>
 
-      <Modal className={playerStyles.modal} isOpen={confirming} isDismissable onOpenChange={setConfirming}>
-        <Dialog className={playerStyles.dialog} data-quit-dialog="">
-          <Heading slot="title" className={playerStyles.instruction}>
-            {t.format("player.quit.title")}
-          </Heading>
-          <p>{t.format("player.quit.body")}</p>
-          <div className={playerStyles.footer}>
-            <Button
-              className={playerStyles.secondary}
-              onPress={() => {
-                setConfirming(false);
-                dispatch({ tag: "quit" });
-              }}
-              data-action="quit-confirm"
-            >
-              {t.format("player.quit.confirm")}
-            </Button>
-            <Button className={playerStyles.primary} onPress={() => setConfirming(false)} autoFocus data-action="resume">
-              {t.format("player.quit.cancel")}
-            </Button>
-          </div>
-        </Dialog>
-      </Modal>
+      {/* It says what leaving keeps (P8): a story done before loses nothing more (D13). */}
+      <QuitDialog
+        open={confirming}
+        copy={{
+          title: t.format("story.quit.title"),
+          body: t.format(props.replay === true ? "story.quit.kept.replay" : "story.quit.kept"),
+          confirm: t.format("story.quit.confirm"),
+          cancel: t.format("story.quit.cancel"),
+        }}
+        replay={props.replay === true}
+        onConfirm={() => {
+          setConfirming(false);
+          dispatch({ tag: "quit" });
+          onExit?.();
+        }}
+        onCancel={() => setConfirming(false)}
+      />
     </section>
   );
 };
@@ -435,7 +463,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
 export const StoryReader = (props: StoryReaderProps): JSX.Element => {
   return (
     <CourseUiProvider course={props.course}>
-      <ReaderBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
+      <WordStatusProvider course={props.course} known={props.known}>
+        <ReaderBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
+      </WordStatusProvider>
     </CourseUiProvider>
   );
 };

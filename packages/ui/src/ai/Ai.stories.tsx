@@ -3,7 +3,7 @@
  * The acceptance case of Phase 8 lives here: an Arabic-UI learner (ar, ar-XB) reading an English
  * explanation that quotes Cantonese, each segment isolated in its own language and direction.
  */
-import { autoTokens, explanationOf } from "@nabu/core/ai";
+import { autoTokens, explanationOf, textBase, type TextBase } from "@nabu/core/ai";
 import { allSentences } from "@nabu/core/lesson";
 import { directionOf } from "@nabu/i18n";
 import type { AiProvenance, Explanation, ExplanationOutput, TaggedText } from "@nabu/schema";
@@ -16,7 +16,7 @@ import { ExplanationView, type Rating } from "./Explanation.tsx";
 import { RoleplayChat, type ChatTurn, type ScenarioCard } from "./Roleplay.tsx";
 
 type Target = NabuGlobals["target"];
-type Base = Pick<TaggedText, "lang" | "orthography">;
+type Base = TextBase;
 
 const EN: Base = { lang: "en-Latn", orthography: "en-Latn/standard" } as Base;
 const COURSES: Readonly<Record<Target, readonly [string, string]>> = {
@@ -30,7 +30,7 @@ const COURSES: Readonly<Record<Target, readonly [string, string]>> = {
 const baseOf = ({ course }: LoadedCourse): Base => {
   const text = allSentences(course)[0]?.forms[course.orthography]?.text;
   if (text === undefined) throw new Error(`${course.id} has no sentence`);
-  return { lang: text.lang, orthography: text.orthography };
+  return textBase(course.profiles, text);
 };
 
 const FIXTURE: AiProvenance = { provider: "fixture", model: "fixture", prompt: "explain", promptHash: "000000000000", createdAt: "2026-06-01T00:00:00Z" };

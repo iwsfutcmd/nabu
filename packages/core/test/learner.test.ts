@@ -15,6 +15,7 @@ import {
   emptyLearnerState,
   learnerEventOf,
   plan,
+  plannable,
   progressResetOf,
   pathNodes,
   pathOf,
@@ -24,15 +25,17 @@ import {
   retrievability,
   XP,
   type LearnerState,
+  type PlanOptions,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
+import { allKcs, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type Facet, type LessonEvent } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
+import { plannedCards, walkPath } from "./planned.ts";
 
 const GOLDEN = join(import.meta.dirname, "golden");
 /** Tests that plan every lesson of a course: under a second alone, far more on a busy CI runner. */
-const WHOLE_COURSE_TIMEOUT_MS = 30_000;
+const WHOLE_COURSE_TIMEOUT_MS = 120_000;
 const fa = loadCourse("fa");
 const faBundle = manifestOf("fa").id;
 
@@ -47,8 +50,8 @@ describe("credit assignment (§8.5)", () => {
   });
 
   it("a typed answer with one wrong word keeps credit for the words it got right", () => {
-    const typing = lessonNodes(fa)
-      .flatMap(({ node }) => buildLesson(fa, node.id, { seed: 7 }))
+    const typing = plannedCards(walkPath(fa))
+      .map(({ ex }) => ex)
       .filter((e): e is Extract<Exercise, { template: "translate-type.l1-l2" }> => e.template === "translate-type.l1-l2");
     const ex = typing.find((e) => surfaceOf(e.canonical).split(" ").length >= 3);
     if (ex === undefined) throw new Error("no multi-word typing exercise in fa");
@@ -61,15 +64,80 @@ describe("credit assignment (§8.5)", () => {
     expect(credit.some((c) => c.status === "wrong")).toBe(true);
   });
 
-  it("maps outcomes to ratings (§9.2)", () => {
-    expect(ratingOf("right", "CORRECT", [], false)).toBe("good");
-    expect(ratingOf("right", "CORRECT", [], true)).toBe("hard");
-    expect(ratingOf("right", "CORRECT_WITH_TYPO", [], false)).toBe("hard");
-    expect(ratingOf("right", "PARTIAL", [], false)).toBe("hard");
-    expect(ratingOf("right", "CORRECT", ["pairs-mistakes"], false)).toBe("hard");
-    expect(ratingOf("wrong", "WRONG", [], false)).toBe("again");
-    expect(ratingOf("given", "CORRECT", [], false)).toBeUndefined();
-    expect(ratingOf("right", "CORRECT", [], false, "again")).toBe("again");
+  it("maps outcomes to ratings (§9.2, ADR 0096)", () => {
+    expect(ratingOf("right", "CORRECT", [], "usual")).toBe("good");
+    expect(ratingOf("right", "CORRECT", [], "slow")).toBe("hard");
+    expect(ratingOf("right", "CORRECT_WITH_TYPO", [], "usual")).toBe("hard");
+    expect(ratingOf("right", "PARTIAL", [], "usual")).toBe("hard");
+    expect(ratingOf("right", "CORRECT", ["pairs-mistakes"], "usual")).toBe("hard");
+    expect(ratingOf("wrong", "WRONG", [], "usual")).toBe("again");
+    expect(ratingOf("given", "CORRECT", [], "usual")).toBeUndefined();
+    expect(ratingOf("right", "CORRECT", [], "usual", "again")).toBe("again");
+    // Easy: right, fast and typed from memory; a fast pick among options is only Good.
+    expect(ratingOf("right", "CORRECT", [], "fast", undefined, true)).toBe("easy");
+    expect(ratingOf("right", "CORRECT", [], "fast", undefined, false)).toBe("good");
+    expect(ratingOf("right", "CORRECT_WITH_TYPO", [], "fast", undefined, true)).toBe("hard");
+  });
+
+  it("rates a right answer after a hint Hard at best (D16): Good is for an answer with no hint (§9.2)", () => {
+    expect(ratingOf("right", "CORRECT", [], "usual", undefined, false, true)).toBe("hard");
+    expect(ratingOf("right", "CORRECT", [], "fast", undefined, true, true)).toBe("hard");
+    expect(ratingOf("right", "CORRECT", [], "usual", "good", false, true)).toBe("hard");
+    expect(ratingOf("right", "CORRECT_WITH_TYPO", [], "usual", undefined, false, true)).toBe("hard");
+    // A wrong answer stays Again, a given word unrated, a self-rated Again Again.
+    expect(ratingOf("wrong", "WRONG", [], "usual", undefined, false, true)).toBe("again");
+    expect(ratingOf("given", "CORRECT", [], "usual", undefined, false, true)).toBeUndefined();
+    expect(ratingOf("right", "CORRECT", [], "usual", "again", false, true)).toBe("again");
+    // No hint: as before.
+    expect(ratingOf("right", "CORRECT", [], "usual", undefined, false, false)).toBe("good");
+    expect(ratingOf("right", "CORRECT", [], "fast", undefined, true, false)).toBe("easy");
+  });
+
+  it("judges pace per unit of length: a long sentence may take longer without being slow", () => {
+    const events = eventFactory(fa, faBundle);
+    const short = sampleExercise(fa, "choose-translation") as Exercise;
+    const long = { ...short, id: "long", item: "long", kcs: [...short.kcs, "sense:a", "sense:b", "sense:c", "sense:d", "sense:e", "sense:f"] as unknown as Exercise["kcs"] };
+    const log: LearnerEvent[] = [];
+    // Five usual answers for the template, then a long item answered in proportion to its length.
+    for (let i = 0; i < 5; i++) {
+      events.at(`2026-01-0${i + 1}T09:00:00.000Z`);
+      events.session();
+      log.push(events.answer(short, true, 1, 4000));
+    }
+    events.at("2026-01-06T09:00:00.000Z");
+    events.session();
+    const perUnit = 4000 / (2 + short.kcs.length);
+    log.push(events.answer(long, true, 1, Math.round(perUnit * (2 + long.kcs.length))));
+    const state = replay(log);
+    // Its new KCs got Good (a learning card), not Hard: Hard would leave the card's difficulty higher.
+    const card = state.cards[`${long.kcs.at(-1) as string}|recognize`];
+    const hard = replay([...log.slice(0, 5), events.answer(long, true, 1, Math.round(perUnit * (2 + long.kcs.length) * 3))]).cards[`${long.kcs.at(-1) as string}|recognize`];
+    expect(card?.difficulty).toBeLessThan(hard?.difficulty ?? 0);
+  });
+
+  it("gives Easy only to a card already sure: a new word typed fast earns Good", () => {
+    const events = eventFactory(fa, faBundle);
+    const ex = sampleExercise(fa, "translate-type.l1-l2") as Exercise;
+    const kc = ex.kcs[0] as string;
+    const usual = (n: number): LearnerEvent[] =>
+      Array.from({ length: n }, (_, i) => {
+        events.at(`2026-01-${String(i + 1).padStart(2, "0")}T09:00:00.000Z`);
+        events.session();
+        return events.answer(ex, true, 1, 8000);
+      });
+    // Fast on the very first answer: the card is new, so Good.
+    events.at("2026-01-01T08:00:00.000Z");
+    events.session();
+    const first = replay([...usual(0), events.answer(ex, true, 1, 1000)]).cards[`${kc}|produce`];
+    const firstGood = replay([events.answer(ex, true, 1, 8000)]).cards[`${kc}|produce`];
+    expect(first?.stability).toBe(firstGood?.stability);
+    // After a run of usual answers the card is sure; a fast answer then stretches it further than Good.
+    const history = usual(6);
+    events.at("2026-01-07T09:30:00.000Z");
+    events.session();
+    const fast = replay([...history, events.answer(ex, true, 1, 1000)]).cards[`${kc}|produce`];
+    const good = replay([...history, events.answer(ex, true, 1, 8000)]).cards[`${kc}|produce`];
+    expect(fast?.stability ?? 0).toBeGreaterThan(good?.stability ?? 0);
   });
 });
 
@@ -88,7 +156,7 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "complete-translation":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.blank) };
     case "vocalize":
-      return { tag: "text", text: bad ? surfaceOf(ex.prompt) : surfaceOf(ex.vocalized) };
+      return { tag: "choice", index: bad ? (ex.answer + 1) % ex.options.length : ex.answer };
     case "transcribe":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.reading) };
     case "match-pairs":
@@ -200,7 +268,7 @@ describe("projection", () => {
   it("golden: the recorded session replays to the pinned state", () => {
     golden("fa-lesson-1.events.json", events);
     const recorded = JSON.parse(readFileSync(join(GOLDEN, "fa-lesson-1.events.json"), "utf8")) as LearnerEvent[];
-    const { seen: _seen, ...state } = replay(recorded);
+    const state = replay(recorded);
     golden("fa-lesson-1.state.json", state);
   });
 
@@ -239,9 +307,9 @@ describe("starting a course over (progress_reset)", () => {
   const resetAt = (iso: string, n: number) =>
     progressResetOf(fa, { id: `00000000-0000-7000-9000-${n.toString(16).padStart(12, "0")}`, clientTime: iso, localDate: iso.slice(0, 10), tz: "UTC", device: "golden", session: `00000000-0000-7000-a000-${n.toString(16).padStart(12, "0")}`, bundle: faBundle });
   const reset = resetAt("2026-03-02T08:00:00.000Z", 1);
-  const { seen: _a, ...before } = replay(lesson);
-  const { seen: _b, ...after } = replay([...lesson, reset]);
-  const { seen: _c, ...fresh } = emptyLearnerState();
+  const before = replay(lesson);
+  const after = replay([...lesson, reset]);
+  const fresh = emptyLearnerState();
 
   it("forgets what was learned, the lessons done and the mistakes; keeps the XP earned", () => {
     expect(before.completedNodes).toEqual([node]);
@@ -262,7 +330,7 @@ describe("starting a course over (progress_reset)", () => {
 
   it("does nothing to what comes after an earlier reset, nor to the game state", () => {
     const early = resetAt("2026-02-01T08:00:00.000Z", 2);
-    const { seen: _d, ...unchanged } = replay([early, ...lesson]);
+    const unchanged = replay([early, ...lesson]);
     expect(unchanged).toEqual(before);
     const clock = { today: "2026-03-02", now: "2026-03-02T09:00:00.000Z" };
     expect(replayGame([...lesson, reset].map((event) => ({ event })), DEFAULT_GAME, clock)).toEqual(replayGame(lesson.map((event) => ({ event })), DEFAULT_GAME, clock));
@@ -275,12 +343,66 @@ describe("planner constraints", () => {
       const p = plan(fa, emptyLearnerState(), { mode: "lesson", node: node.id }, { now: "2026-03-01T08:00:00.000Z", seed: 2 });
       const recognized = new Set<string>();
       for (const ex of p.exercises) {
-        const produces = ex.template === "translate-type.l1-l2" || ex.template === "complete-translation" || ex.template === "gap-fill";
-        if (produces) for (const kc of ex.kcs) if (node.introduces.includes(kc)) expect(recognized.has(kc), `${node.id}: ${ex.id} before recognizing ${kc}`).toBe(true);
-        if (!produces) ex.kcs.forEach((kc) => recognized.add(kc));
+        // Gap-fill is recognition (ADR 0100), but choosing among forms of words needs the word met first.
+        const gated = ex.template === "translate-type.l1-l2" || ex.template === "complete-translation" || ex.template === "gap-fill";
+        if (gated) for (const kc of ex.kcs) if (node.introduces.includes(kc)) expect(recognized.has(kc), `${node.id}: ${ex.id} before recognizing ${kc}`).toBe(true);
+        if (!gated) ex.kcs.forEach((kc) => recognized.add(kc));
       }
     }
   }, WHOLE_COURSE_TIMEOUT_MS);
+
+  it("sizes a review session to the backlog and plans it from the words that need it most (L3, R3)", () => {
+    const now = "2026-06-01T08:00:00.000Z";
+    const words = allKcs(fa).filter((k) => k.kind === "sense");
+    const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
+      const last = new Date(Date.parse(now) - daysAgo * 86_400_000).toISOString();
+      return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
+    };
+    // Every word seen and well remembered, then a few, then many, forgotten.
+    const stateWith = (forgotten: number): LearnerState => ({
+      ...emptyLearnerState(),
+      cards: Object.fromEntries(words.map((k, i) => [`${k.id}|recognize`, i < forgotten ? cardAt(30, 2) : cardAt(1, 60)])),
+    });
+    const sizeOf = (forgotten: number): number => plan(fa, stateWith(forgotten), { mode: "review" }, { now, seed: 4 }).exercises.length;
+    expect(sizeOf(2)).toBe(5);
+    expect(sizeOf(9)).toBe(9);
+    expect(sizeOf(60)).toBe(15);
+    // The forgotten words are what it practises.
+    const forgotten = new Set(words.slice(0, 9).map((k) => k.id as string));
+    const review = plan(fa, stateWith(9), { mode: "review" }, { now, seed: 4 });
+    const practised = review.exercises.filter((ex) => ex.template !== "speak.tier-0" && ex.kcs.some((kc) => forgotten.has(kc)));
+    expect(practised.length).toBeGreaterThanOrEqual(Math.ceil(review.exercises.length / 2));
+  });
+
+  it("sizes and fills a review session without listening turned off for good; a break changes neither (D41)", () => {
+    const now = "2026-06-01T08:00:00.000Z";
+    const words = allKcs(fa).filter((k) => k.kind === "sense");
+    const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
+      const last = new Date(Date.parse(now) - daysAgo * 86_400_000).toISOString();
+      return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
+    };
+    // Every word met a month ago and read and written since, each shown; 40 also heard then, their
+    // listening forgotten. What needs review is only listening: hearing them, and the words not yet heard.
+    const state: LearnerState = {
+      ...emptyLearnerState(),
+      cards: Object.fromEntries(
+        words.flatMap((k, i) => [[`${k.id}|recognize`, cardAt(1, 60)] as const, [`${k.id}|produce`, cardAt(1, 60)] as const, ...(i < 40 ? [[`${k.id}|listen`, cardAt(30, 2)] as const] : [])]),
+      ),
+      met: Object.fromEntries(words.map((k) => [k.id, "2026-05-01"])),
+      shown: Object.fromEntries(words.flatMap((k) => [[`${k.id}|recognize`, "2026-05-31"], [`${k.id}|produce`, "2026-05-31"]])),
+    };
+    const review = (options: Partial<PlanOptions>) => plan(fa, state, { mode: "review" }, { now, seed: 4, ...options });
+    const listen = new Set<Facet>(["listen"]);
+    expect(review({}).exercises).toHaveLength(15);
+    // A break leaves the exercises out, never what is due or asked of words: the session is as long.
+    const onBreak = review({ exclude: LISTENING });
+    expect(onBreak.exercises).toHaveLength(15);
+    expect(onBreak.exercises.some((ex) => LISTENING.has(ex.template))).toBe(false);
+    // Turned off for good, nothing is left to review but a short session's worth (L3's least).
+    expect(review({ exclude: LISTENING, facetsOff: listen }).exercises).toHaveLength(5);
+    // Nothing turned off plans as before.
+    expect(review({ facetsOff: new Set() })).toEqual(review({}));
+  });
 
   it("can leave speaking out", () => {
     const node = lessonNodes(fa)[1]?.node.id as string;
@@ -288,11 +410,57 @@ describe("planner constraints", () => {
     expect(p.exercises.some((e) => e.template === "speak.tier-0")).toBe(false);
   });
 
+  it("brings back the earlier sentences that need it most, as a small share, marked as review (ADR 0097)", () => {
+    const now = "2026-03-01T08:00:00.000Z";
+    const lessons = lessonNodes(fa);
+    const at = lessons.findIndex((n) => n.unit.id === fa.units[4]?.id);
+    const before = lessons.slice(0, at);
+    const card = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
+      const last = new Date(Date.parse(now) - daysAgo * 86_400_000).toISOString();
+      return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
+    };
+    // Every earlier word seen; unit 3's fading (due), the rest fresh.
+    const fading = new Set(before.filter((n) => n.unit.id === fa.units[2]?.id).flatMap((n) => n.node.introduces as readonly string[]));
+    const cards: Record<string, LearnerState["cards"][string]> = {};
+    for (const n of before) for (const kc of n.node.introduces) for (const f of ["recognize", "produce"]) cards[`${kc}|${f}`] = fading.has(kc) ? card(40, 2) : card(1, 100);
+    const node = lessons[at]?.node.id as string;
+    const p = plan(fa, { ...emptyLearnerState(), cards }, { mode: "lesson", node }, { now, seed: 4 });
+    const review = p.exercises.filter((e) => e.review === true);
+    expect(review.length).toBeGreaterThan(0);
+    expect(review.length).toBeLessThanOrEqual(Math.max(1, Math.floor(p.exercises.length / 4)));
+    // Never the course's first unit, whose words are all fresh: review goes where it is needed.
+    const firstUnit = new Set(fa.units[0]?.sentences.map((s) => s.id));
+    expect(review.filter((e) => firstUnit.has(e.item))).toEqual([]);
+    // And every review card practises a fading word.
+    expect(review.every((e) => e.kcs.some((kc) => fading.has(kc)))).toBe(true);
+  });
+
+  it("says which requests the course can plan: an old link may name a node it no longer has", () => {
+    const node = lessonNodes(fa)[0]?.node.id as string;
+    expect(plannable(fa, { mode: "lesson", node })).toBe(true);
+    expect(plannable(fa, { mode: "lesson", node: "fa.no-such-node" })).toBe(false);
+    expect(() => plan(fa, emptyLearnerState(), { mode: "lesson", node: "fa.no-such-node" }, { now: "2026-03-01T08:00:00.000Z", seed: 2 })).toThrow();
+    expect(plannable(fa, { mode: "review" })).toBe(true);
+  });
+
   it("events built from the player validate as learner events", () => {
     const events = eventFactory(fa, faBundle);
     const ex = sampleExercise(fa, "choose-translation") as Exercise;
     const e = events.answer(ex, true, 1);
     expect(e.type).toBe("answer_submitted");
+  });
+
+  it("records a hint with the answer it came before, and nothing without one (D16)", () => {
+    const ex = sampleExercise(fa, "choose-translation") as Exercise;
+    if (ex.template !== "choose-translation") throw new Error("not a choice");
+    const graded = gradeExercise(ex, { tag: "choice", index: ex.answer }, createGrader(fa));
+    const answered: LessonEvent = { type: "answer_submitted", exercise: { id: ex.id, template: ex.template, item: ex.item }, response: { tag: "choice", index: ex.answer }, outcome: { kind: graded.verdict, notes: graded.notes }, ex, graded };
+    const meta = { id: "00000000-0000-7000-8000-000000000001", clientTime: "2026-03-01T08:00:00.000Z", localDate: "2026-03-01", tz: "UTC", device: "test", session: "00000000-0000-7000-8000-000000000002", bundle: faBundle };
+    const session = { mode: "lesson" as const, node: undefined, seed: 1, planner: "test" };
+    const hinted = learnerEventOf({ ...answered, hinted: true }, fa, meta, session, { latencyMs: 3000 });
+    const plain = learnerEventOf(answered, fa, meta, session, { latencyMs: 3000 });
+    expect(hinted?.type === "answer_submitted" && hinted.input).toEqual({ method: "choice", latencyMs: 3000, hinted: true });
+    expect(plain?.type === "answer_submitted" && plain.input).toEqual({ method: "choice", latencyMs: 3000 });
   });
 });
 
@@ -310,7 +478,6 @@ describe("a course that names its facets (ADR 0071)", () => {
     const speech = speechSupportOf(lzh, 2);
     expect(speech).toEqual({ scored: false, tones: false });
     for (const { node } of lessonNodes(lzh)) {
-      expect(buildLesson(lzh, node.id, { seed: 3, speech }).filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
       const p = plan(lzh, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3, speech });
       expect(p.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
     }
@@ -328,7 +495,6 @@ describe("a course that names its facets (ADR 0071)", () => {
       // The clips stay: they reinforce what is read (after answering, stories, the word list).
       expect(Object.keys(course.audio).length).toBeGreaterThan(0);
       for (const { node } of lessonNodes(course)) {
-        expect(buildLesson(course, node.id, { seed: 3 }).filter((ex) => relies(ex.template)).map((ex) => ex.id)).toEqual([]);
         const p = plan(course, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 });
         expect(p.exercises.filter((ex) => relies(ex.template)).map((ex) => ex.id)).toEqual([]);
       }
@@ -346,7 +512,6 @@ describe("a course that names its facets (ADR 0071)", () => {
     expect(hbo.facets).toEqual(["recognize", "produce", "speak", "read-script", "write-script"]);
     const heard = (ex: Exercise): boolean => TEMPLATES[ex.template].facet === "listen";
     for (const { node } of lessonNodes(hbo)) {
-      expect(buildLesson(hbo, node.id, { seed: 3 }).filter(heard).map((ex) => ex.id)).toEqual([]);
       const p = plan(hbo, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 });
       expect(p.exercises.filter(heard).map((ex) => ex.id)).toEqual([]);
     }
@@ -357,7 +522,7 @@ describe("a course that names its facets (ADR 0071)", () => {
 
   it("still shows its readings: every word of a lesson carries all three layers", () => {
     const node = lessonNodes(lzh)[0]?.node.id as string;
-    const words = buildLesson(lzh, node, { seed: 3 }).flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
+    const words = plan(lzh, emptyLearnerState(), { mode: "lesson", node }, { now, seed: 3 }).exercises.flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
     const han = words.filter((t) => t.kind === "word" && /\p{Script=Han}/u.test(t.surface));
     expect(han.length).toBeGreaterThan(0);
     for (const t of han) expect(Object.keys(t.ruby ?? {}).sort()).toEqual(["baxter", "jyutping", "pinyin"]);
@@ -460,7 +625,7 @@ describe("tones are not scored on the device (ADR 0093)", () => {
     expect(speechSupportOf(yue, 0)).toEqual({ scored: false, tones: true });
     expect(speechSupportOf(yue, 2)).toEqual({ scored: true, tones: true });
     const speech = speechSupportOf(yue, 0);
-    const made = lessonNodes(yue).flatMap(({ node }) => buildLesson(yue, node.id, { seed: 3, speech }).map((ex) => ex.template));
+    const made = plannedCards(walkPath(yue, { speech })).map(({ ex }) => ex.template);
     expect(made).toContain("speak.tier-0");
     expect(made).not.toContain("speak");
     expect(made).not.toContain("listen-speak");

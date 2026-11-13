@@ -10,7 +10,7 @@ import { localDateOf, replayGame, type GameConfig, type GameState } from "@nabu/
 import { replay, type LearnerState } from "@nabu/core/learner";
 import type { LearnerEvent } from "@nabu/schema";
 import { Ajv2020, type ErrorObject } from "ajv/dist/2020.js";
-import { and, asc, eq, gt, inArray, max } from "drizzle-orm";
+import { and, asc, eq, gt, inArray, max, notInArray } from "drizzle-orm";
 import type { Db } from "./db/index.ts";
 import { events } from "./db/schema.ts";
 
@@ -25,16 +25,26 @@ const ajv = new Ajv2020({ strict: true, allErrors: false });
 ajv.addKeyword({ keyword: "tsType", schemaType: "string" });
 ajv.addSchema(schema("common.schema.json"));
 ajv.addSchema(schema("correction.schema.json"));
-const validate = ajv.compile<LearnerEvent>(schema("learner-event.schema.json"));
+const eventSchema = schema("learner-event.schema.json") as { readonly $id: string };
+const validate = ajv.compile<LearnerEvent>(eventSchema);
 
 /** Whether a value is a valid learner event (schemas/learner-event.schema.json). */
 export const validEvent = (value: unknown): value is LearnerEvent => validate(value);
 
-export type UploadError =
-  | { readonly code: "invalid-batch" }
-  | { readonly code: "batch-too-large"; readonly max: number }
-  | { readonly code: "invalid-event"; readonly index: number; readonly errors: readonly ErrorObject[] }
-  | { readonly code: "foreign-event"; readonly index: number };
+/** A batch the server cannot read at all: nothing in it is taken. */
+export type UploadError = { readonly code: "invalid-batch" } | { readonly code: "batch-too-large"; readonly max: number };
+
+/**
+ * An event of a batch the server rejected (S13 in the 2026-11 review): not a valid learner event, or
+ * stamped with another user. The rest of the batch is taken; the device sets these aside, so one
+ * bad event never holds back the ones after it.
+ */
+export type Rejected =
+  | { readonly index: number; readonly id?: string; readonly code: "invalid-event"; readonly errors: readonly ErrorObject[] }
+  | { readonly index: number; readonly id: string; readonly code: "foreign-event" };
+
+/** How many of a rejected event's schema errors the answer names: enough to see what drifted. */
+const ERRORS_SHOWN = 5;
 
 export interface UploadResult {
   readonly accepted: number;
@@ -42,6 +52,12 @@ export interface UploadResult {
   readonly cursor: number;
   /** When the server first received each event of the batch (ISO): devices fold it into the streak's grace window as the server does (§12.2). */
   readonly received: Readonly<Record<string, string>>;
+  /**
+   * For an upload that said where the device's pulls are (`since`), when every event of the user's
+   * log after there is in this batch: the cursor the device may pull from next, as it holds every
+   * event up to it (ADR 0112). So a device never pulls back what it just uploaded.
+   */
+  readonly caughtUp?: number;
 }
 
 /** When the server first received each of these events (ids it does not hold are left out). */
@@ -57,20 +73,98 @@ const cursorOf = async (db: Db, user: string): Promise<number> => {
   return Number(row?.seq ?? 0);
 };
 
-export const checkBatch = (body: unknown, user: string): { ok: true; events: readonly LearnerEvent[] } | { ok: false; error: UploadError } => {
+/** The id a rejected value carries, if it has one that could be an event's. */
+const idOf = (value: unknown): { readonly id?: string } => {
+  const id = typeof value === "object" && value !== null ? (value as { id?: unknown }).id : undefined;
+  return typeof id === "string" ? { id } : {};
+};
+
+/** Each event type's definition in the schema, where the errors that explain a rejection are. */
+const DEFINITIONS: Readonly<Record<string, string>> = {
+  session_started: "SessionStarted",
+  exercise_presented: "ExercisePresented",
+  answer_submitted: "AnswerSubmitted",
+  exercise_skipped: "ExerciseSkipped",
+  session_completed: "SessionCompleted",
+  outcome_revised: "OutcomeRevised",
+  answer_reported: "AnswerReported",
+  progress_reset: "ProgressReset",
+  sentence_reported: "SentenceReported",
+};
+
+/**
+ * Why a value is not a learner event: checked against its own type's definition, where it names
+ * one. The schema is a oneOf, so the errors of the whole schema say why it is not every other kind
+ * of event too, and the first of them would seldom be the one that matters.
+ */
+const explaining = (value: unknown, errors: readonly ErrorObject[]): readonly ErrorObject[] => {
+  const type = typeof value === "object" && value !== null ? (value as { type?: unknown }).type : undefined;
+  const definition = typeof type === "string" ? DEFINITIONS[type] : undefined;
+  const own = definition === undefined ? undefined : ajv.getSchema(`${eventSchema.$id}#/$defs/${definition}`);
+  return own !== undefined && !own(value) && own.errors !== null && own.errors !== undefined && own.errors.length > 0 ? own.errors : errors;
+};
+
+/**
+ * What the server logs of a rejected event (D10): its code, its id and the schema error that
+ * explains it (where, which rule, the rule's own words and parameters), never the event's values,
+ * so no learner text reaches the log.
+ */
+export const rejectionEntry = (r: Rejected): Readonly<Record<string, unknown>> => {
+  const error = r.code === "invalid-event" ? r.errors[0] : undefined;
+  return {
+    event: "upload-rejected",
+    code: r.code,
+    id: r.id ?? null,
+    ...(error === undefined ? {} : { error: { path: error.instancePath, keyword: error.keyword, message: error.message ?? null, params: error.params } }),
+  };
+};
+
+/**
+ * Splits an upload into the events the server takes and those it rejects, by their index in the
+ * batch. Only a batch that is not a list, or is too long, is refused whole.
+ */
+export const checkBatch = (
+  body: unknown,
+  user: string,
+): { ok: true; events: readonly LearnerEvent[]; rejected: readonly Rejected[] } | { ok: false; error: UploadError } => {
   const batch = typeof body === "object" && body !== null ? (body as { events?: unknown }).events : undefined;
   if (!Array.isArray(batch)) return { ok: false, error: { code: "invalid-batch" } };
   if (batch.length > MAX_BATCH) return { ok: false, error: { code: "batch-too-large", max: MAX_BATCH } };
-  for (const [index, e] of batch.entries()) {
-    if (!validate(e)) return { ok: false, error: { code: "invalid-event", index, errors: validate.errors ?? [] } };
+  const events: LearnerEvent[] = [];
+  const rejected: Rejected[] = [];
+  for (const [index, e] of (batch as unknown[]).entries()) {
+    if (!validate(e)) rejected.push({ index, ...idOf(e), code: "invalid-event", errors: explaining(e, validate.errors ?? []).slice(0, ERRORS_SHOWN) });
     // Events recorded before sign-up carry no user; any that do must be this user's.
-    if (e.user !== undefined && e.user !== user) return { ok: false, error: { code: "foreign-event", index } };
+    else if (e.user !== undefined && e.user !== user) rejected.push({ index, id: e.id, code: "foreign-event" });
+    else events.push(e);
   }
-  return { ok: true, events: batch as LearnerEvent[] };
+  return { ok: true, events, rejected };
 };
 
-/** Appends events, stamped with when the server received them; an id already in the log is a duplicate and changes nothing. */
-export const append = async (db: Db, user: string, batch: readonly LearnerEvent[], receivedAt: Date = new Date()): Promise<UploadResult> => {
+/** Whether the user's log holds an event after cursor `since` that is not one of `ids`. */
+const othersSince = async (db: Db, user: string, since: number, ids: readonly string[]): Promise<boolean> => {
+  const after = and(eq(events.userId, user), gt(events.seq, since));
+  const rows = await db
+    .select({ id: events.id })
+    .from(events)
+    .where(ids.length === 0 ? after : and(after, notInArray(events.id, [...ids])))
+    .limit(1);
+  return rows.length > 0;
+};
+
+/** The cursor an upload may carry (`since`): where the device's pulls are. */
+export const sinceOf = (body: unknown): number | undefined => {
+  const since = typeof body === "object" && body !== null ? (body as { since?: unknown }).since : undefined;
+  return typeof since === "number" && Number.isSafeInteger(since) && since >= 0 ? since : undefined;
+};
+
+/**
+ * Appends events, stamped with when the server received them; an id already in the log is a duplicate and changes nothing.
+ * An event of the account rather than a course (goal_set, ADR 0107) is kept with an empty course and bundle: no course's
+ * log holds it, and the whole log does. Given `since`, where the uploading device's pulls are, it says whether the device
+ * is caught up (UploadResult.caughtUp).
+ */
+export const append = async (db: Db, user: string, batch: readonly LearnerEvent[], receivedAt: Date = new Date(), since?: number): Promise<UploadResult> => {
   const rows = batch.map((e) => ({
     serverTime: receivedAt,
     id: e.id,
@@ -78,15 +172,18 @@ export const append = async (db: Db, user: string, batch: readonly LearnerEvent[
     deviceId: e.device,
     type: e.type,
     schema: e.schema,
-    course: e.course,
-    bundle: e.bundle,
+    course: e.type === "goal_set" ? "" : e.course,
+    bundle: e.type === "goal_set" ? "" : e.bundle,
     clientTime: new Date(e.clientTime),
     localDate: e.localDate,
     tz: e.tz,
     payload: e,
   }));
   const inserted = rows.length === 0 ? [] : await db.insert(events).values(rows).onConflictDoNothing({ target: events.id }).returning({ id: events.id });
-  return { accepted: inserted.length, duplicates: batch.length - inserted.length, cursor: await cursorOf(db, user), received: await receivedOf(db, user, batch.map((e) => e.id)) };
+  const ids = batch.map((e) => e.id);
+  const cursor = await cursorOf(db, user);
+  const caughtUp = since === undefined || (await othersSince(db, user, since, ids)) ? undefined : cursor;
+  return { accepted: inserted.length, duplicates: batch.length - inserted.length, cursor, received: await receivedOf(db, user, ids), ...(caughtUp === undefined ? {} : { caughtUp }) };
 };
 
 export interface Page {
@@ -119,10 +216,9 @@ export const eventsOf = async (db: Db, user: string, course: string): Promise<Le
   (await db.select({ payload: events.payload }).from(events).where(and(eq(events.userId, user), eq(events.course, course)))).map((r) => r.payload as LearnerEvent);
 
 /** The state a user's log for one course projects to: core's replay, as on the device. */
-export const stateOf = async (db: Db, user: string, course: string): Promise<{ readonly events: number; readonly state: Omit<LearnerState, "seen"> }> => {
+export const stateOf = async (db: Db, user: string, course: string): Promise<{ readonly events: number; readonly state: LearnerState }> => {
   const log = await eventsOf(db, user, course);
-  const { seen: _seen, ...state } = replay(log);
-  return { events: log.length, state };
+  return { events: log.length, state: replay(log) };
 };
 
 /**

@@ -119,6 +119,25 @@
               "type": "string",
               "minLength": 1
             },
+            "recast": {
+              "description": "The designed voice first read `text` (seed `seed` above); the reference is that reading cloned, transcript and all, saying the reference's own text with this seed (VoxCPM2, ADR 0094): a designed voice moved to another register.",
+              "type": "object",
+              "required": [
+                "text",
+                "seed"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "seed": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
             "prompt": {
               "description": "A recording the voice was cloned from, for a model that clones rather than designs (Navoiy, ADR 0059): where it is, its sha256 and its license. It is not kept in the course.",
               "type": "object",
@@ -317,7 +336,7 @@
           "type": "string"
         },
         "cer": {
-          "description": "Character error rate of the recognized text against the expected text.",
+          "description": "Character error rate of the recognized text against the expected text. Cantonese counts characters that differ by their readings: one said alike is no error, one a tone apart half an error (ADR 0094).",
           "type": "number",
           "minimum": 0
         },

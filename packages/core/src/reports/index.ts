@@ -7,6 +7,9 @@
  * - **The GitHub issue** (`issueOf`, `reportSection`): one issue per sentence or story line,
  *   quoting it from the bundle with its accept sets, and one section per report.
  *
+ * - **What came of them** (`reportsOf`, status.ts, ADR 0115): each of a device's reports compared
+ *   with the course its bundle has now, on the device.
+ *
  * Learner text goes into issues inside code spans, so it cannot mention anyone, link an issue or
  * inject markup. Language data is bidi-isolated (FSI…PDI), so right-to-left text stays readable in
  * left-to-right Markdown.
@@ -206,3 +209,5 @@ export const reportSection = (s: ReportSubmission): string => {
   }
   return lines.join("\n");
 };
+
+export { claimStatus, reportsOf, takenUp, type ClaimStatus, type ReportEntry } from "./status.ts";

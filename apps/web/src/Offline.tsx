@@ -1,10 +1,12 @@
 /**
- * The course's offline panel (Phase 10): what works on this device with no network, each unit's
- * media (audio and pictures) to download or remove, with sizes in the UI locale, and progress.
- * Plus the notice shown while the device is offline.
+ * A course's offline page (Phase 10), #/<course>/<orthography>/offline, linked near the top of the
+ * course page (S2): what works on this device with no network, each unit's media (audio and
+ * pictures) to download or remove, with sizes in the UI locale, and progress. Plus the notice shown
+ * while the device is offline.
  */
 import type { LoadedCourse } from "@nabu/ui/player";
 import { offlineStatus, downloadPlan, type UnitState } from "@nabu/core/offline";
+import { fontStackFor } from "@nabu/i18n";
 import { T, useTranslator } from "@nabu/ui";
 import { useState, type CSSProperties, type JSX } from "react";
 import { Button, ProgressBar } from "react-aria-components";
@@ -22,16 +24,47 @@ const sizeOf = (t: Translator, bytes: number): string => {
 const STATE = { ready: "app.offline.state.ready", partial: "app.offline.state.partial", missing: "app.offline.state.missing" } as const satisfies Record<UnitState, string>;
 const ERROR = { network: "app.offline.error.network", integrity: "app.offline.error.integrity", quota: "app.offline.error.quota" } as const satisfies Record<DownloadError, string>;
 
-export const OfflineNotice = (): JSX.Element => {
+/** While the device is offline: lessons go on; progress syncs later only for a learner with an account. */
+export const OfflineNotice = ({ synced }: { synced: boolean }): JSX.Element => {
   const t = useTranslator();
   return (
-    <p className={styles.notice} role="status" data-offline-notice="">
-      {t.format("app.offline.notice")}
+    <p className={styles.notice} role="status" data-offline-notice="" data-synced={synced}>
+      {t.format(synced ? "app.offline.notice" : "app.offline.notice-local")}
     </p>
   );
 };
 
-export const OfflinePanel = ({ loaded, root, stored, onChange }: { loaded: LoadedCourse; root: string; stored: ReadonlySet<string>; onChange: () => void }): JSX.Element => {
+interface OfflineProps {
+  readonly loaded: LoadedCourse;
+  /** Where the course's files are: what the worker stores them by. */
+  readonly root: string;
+  /**
+   * What of them this device has; undefined where this build keeps no course offline (the dev
+   * server, and the native apps, which ship every course).
+   */
+  readonly stored: ReadonlySet<string> | undefined;
+  /** A download or a removal finished: what is stored is read again. */
+  readonly onChange: () => void;
+  /** The course page. */
+  readonly back: string;
+}
+
+export const OfflinePage = ({ loaded, root, stored, onChange, back }: OfflineProps): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <main className={styles.page} data-offline-page={loaded.course.id}>
+      <p>
+        <a className={styles.back} href={back}>
+          {t.format("corrections.page.back")}
+        </a>
+      </p>
+      <h1 className={styles.heading}>{t.format("app.offline.title")}</h1>
+      {stored !== undefined && <OfflinePanel loaded={loaded} root={root} stored={stored} onChange={onChange} />}
+    </main>
+  );
+};
+
+const OfflinePanel = ({ loaded, root, stored, onChange }: { loaded: LoadedCourse; root: string; stored: ReadonlySet<string>; onChange: () => void }): JSX.Element => {
   const t = useTranslator();
   const { course, manifest } = loaded;
   const [progress, setProgress] = useState<Progress | undefined>(undefined);
@@ -44,7 +77,8 @@ export const OfflinePanel = ({ loaded, root, stored, onChange }: { loaded: Loade
     if (busy) return;
     setError(undefined);
     setProgress({ done: 0, total: 0 });
-    void downloadCourse(root, manifest, JSON.stringify(course.units), units, setProgress).then((e) => {
+    const fonts = [...course.profiles.values()].map((p) => fontStackFor(p.source.lang, p.source.fonts).family);
+    void downloadCourse(root, manifest, JSON.stringify(course.units), fonts, units, setProgress).then((e) => {
       setProgress(undefined);
       setError(e);
       onChange();
@@ -56,10 +90,7 @@ export const OfflinePanel = ({ loaded, root, stored, onChange }: { loaded: Loade
   };
 
   return (
-    <section className={styles.offline} aria-labelledby="offline-title" data-offline={course.id} data-offline-core={String(status.core)} data-offline-complete={String(status.complete)}>
-      <h2 className={styles.subheading} id="offline-title">
-        {t.format("app.offline.title")}
-      </h2>
+    <div className={styles.offline} data-offline={course.id} data-offline-core={String(status.core)} data-offline-complete={String(status.complete)}>
       <p className={styles.muted}>{t.format(status.core ? "app.offline.core-ready" : "app.offline.core-missing")}</p>
       <ul className={styles.offlineUnits}>
         {status.units.map((u, i) => {
@@ -110,6 +141,6 @@ export const OfflinePanel = ({ loaded, root, stored, onChange }: { loaded: Loade
           {t.format(ERROR[error])}
         </p>
       )}
-    </section>
+    </div>
   );
 };

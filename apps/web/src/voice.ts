@@ -1,9 +1,9 @@
 /**
  * Speech in the web app (gameplan §10.4): what can score a course's speaking, and the learner's
- * privacy choices. Tones are scored on this device; words and phones by the server's speech
- * service when it has one and the learner allows it. Recordings are never kept anywhere. The only
- * thing remembered is the learner's pitch range (three numbers), on this device, until they
- * forget it.
+ * privacy choices. Words and phones are scored by the server's speech service when it has one and
+ * the learner allows it; tones would be scored on this device, but that is off (ADR 0093).
+ * Recordings are never kept anywhere. The only thing ever remembered is the learner's pitch range
+ * (three numbers), on this device, until they forget it, and only while tones are scored here.
  */
 import type { CourseView, ListenSpeak, SpeakScored } from "@nabu/core/lesson";
 import type { Calibration } from "@nabu/core/speech";

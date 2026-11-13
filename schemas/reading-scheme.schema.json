@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/reading-scheme.schema.json",
+  "title": "ReadingScheme",
+  "description": "A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).",
+  "$comment": "v0. A profile's reading layer (`annotations`, kind reading) and a course voice's `reading` and `pronounce` name a scheme by its id.",
+  "type": "object",
+  "required": ["id", "names", "language"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/SchemeId" },
+    "names": {
+      "description": "What the UI calls it and its tones, by the language they are written in (a BCP 47 tag; ADR 0109), as a course's names are: data, never app messages.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "common.schema.json#/$defs/LangTag" },
+      "additionalProperties": { "$ref": "#/$defs/SchemeNames" }
+    },
+    "language": {
+      "description": "The language whose sounds it writes: yue for Jyutping, cmn for Pinyin, ltc for Baxter's Middle Chinese. The audio round trip compares a language's characters by their readings where a scheme of that language can read written text (nabu.schemes).",
+      "$ref": "common.schema.json#/$defs/LangTag"
+    },
+    "lang": {
+      "description": "The language tag of its text where it stands on its own, as an option or an answer: yue-Latn-HK-jyutping. A profile's reading layer may tag its ruby otherwise (`lang`, ADR 0071).",
+      "$ref": "common.schema.json#/$defs/ScriptedLangTag"
+    },
+    "answer": {
+      "description": "The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese.",
+      "$ref": "common.schema.json#/$defs/OrthographyId"
+    },
+    "typed": {
+      "description": "A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.",
+      "type": "object",
+      "required": ["syllable", "locale", "between"],
+      "additionalProperties": false,
+      "properties": {
+        "syllable": {
+          "description": "One syllable, as a regular expression that JavaScript and Python's `regex` read alike (letters, character classes, quantifiers): [a-z]+[1-6].",
+          "type": "string",
+          "minLength": 1
+        },
+        "locale": { "$ref": "common.schema.json#/$defs/LangTag" },
+        "between": {
+          "description": "A character class of what may stand between syllables and is dropped: spaces, apostrophes, dots, hyphens.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "tones": {
+      "description": "Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use.",
+      "type": "object",
+      "required": ["system", "marks", "values"],
+      "additionalProperties": false,
+      "properties": {
+        "system": {
+          "description": "The tone system's id, as tone exercises name it: yue-jyutping.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+        },
+        "marks": {
+          "description": "A character class of what marks a tone in a syllable: [0-9]. A syllable's tone is its marks; a typed answer with none has no tones.",
+          "type": "string",
+          "minLength": 1
+        },
+        "values": {
+          "description": "Each tone, keyed by its marks, in the order a learner meets them.",
+          "type": "object",
+          "minProperties": 2,
+          "additionalProperties": { "$ref": "#/$defs/Tone" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "SchemeNames": {
+      "title": "SchemeNames",
+      "description": "A reading scheme's names in one language.",
+      "type": "object",
+      "required": ["scheme"],
+      "additionalProperties": false,
+      "properties": {
+        "scheme": {
+          "description": "The scheme's name: Jyutping, Middle Chinese (Baxter).",
+          "type": "string",
+          "minLength": 1
+        },
+        "tones": {
+          "description": "Each tone's pitch, by its marks, where the scheme has tones: high level, low rising.",
+          "type": "object",
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "provenance": {
+          "description": "Who wrote the names in this language, where not the scheme's authors: an LLM's translation awaiting review (status draft).",
+          "$ref": "course-source.schema.json#/$defs/Provenance"
+        }
+      }
+    },
+    "Tone": {
+      "title": "Tone",
+      "type": "object",
+      "required": ["letters", "shape", "template"],
+      "additionalProperties": false,
+      "properties": {
+        "letters": {
+          "description": "Its contour in Chao's tone letters, 1 lowest to 5 highest: 55, 35, 21. Voices that take IPA get them as ˥˧˩.",
+          "type": "string",
+          "pattern": "^[1-5]{1,3}$"
+        },
+        "checked": {
+          "description": "Its shorter contour in a checked syllable (one ending in a stop), where it has one: 5.",
+          "type": "string",
+          "pattern": "^[1-5]{1,3}$"
+        },
+        "shape": {
+          "description": "Its pitch's movement, which the device judges when it cannot tell the speaker's register.",
+          "type": "string",
+          "enum": ["level", "rising", "falling"]
+        },
+        "template": {
+          "description": "Chao letters at the start, middle and end of a syllable that the device's tone classifier compares a heard contour with. REVIEW: from the standard descriptions; tune on native recordings.",
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "number", "minimum": 1, "maximum": 5 }
+        }
+      }
+    }
+  }
+}

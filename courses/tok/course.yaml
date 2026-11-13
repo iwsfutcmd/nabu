@@ -8,6 +8,50 @@ id: tok
 target: tok-Latn
 orthographies: [tok-Latn/standard, tok-Qaap/sitelen-pona]
 support: [en-Latn/standard]
+# What the app calls the course and its orthographies, and what the course list says of them, by
+# language (ADR 0109).
+names:
+  en:
+    course: Toki Pona
+    blurb: "A small language of a little over a hundred words, in Latin letters or in its own signs."
+    orthographies:
+      tok-Latn/standard: "Latin letters (sitelen Lasina)"
+      tok-Qaap/sitelen-pona: "sitelen pona (logographs)"
+    hints:
+      tok-Latn/standard: "The usual way to write Toki Pona."
+      tok-Qaap/sitelen-pona: "Toki Pona's own script: one sign for each word."
+  # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
+  # await review as those do.
+  ar:
+    course: "توكي بونا"
+    orthographies:
+      tok-Latn/standard: "الحروف اللاتينية (sitelen Lasina)"
+      tok-Qaap/sitelen-pona: "sitelen pona (كتابة رمزية)"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    course: "توکی پونا"
+    orthographies:
+      tok-Latn/standard: "حروف لاتین (sitelen Lasina)"
+      tok-Qaap/sitelen-pona: "sitelen pona (نشانه\u200cنگاری)"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    course: "Toki Pona"
+    orthographies:
+      tok-Latn/standard: "Lotin harflari (sitelen Lasina)"
+      tok-Qaap/sitelen-pona: "sitelen pona (logografik yozuv)"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    course: "Токи Пона"
+    orthographies:
+      tok-Latn/standard: "Лотин ҳарфлари (sitelen Lasina)"
+      tok-Qaap/sitelen-pona: "sitelen pona (логографик ёзув)"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    course: "道本語"
+    orthographies:
+      tok-Latn/standard: "拉丁字母（sitelen Lasina）"
+      tok-Qaap/sitelen-pona: "sitelen pona（語素文字）"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@tok-draft-v1', status: draft}
 # A Toki Pona sentence is short and every word is a KC: a sentence may bring in two new words.

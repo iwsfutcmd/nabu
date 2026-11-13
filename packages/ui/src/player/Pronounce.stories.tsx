@@ -1,9 +1,10 @@
 /**
- * Writing in a word's pronunciation (ADR 0054): vowel marks for the abjads (fa, apc-Arab), a
- * Jyutping reading for Cantonese. uz writes its vowels and has no such card.
+ * A word's pronunciation (ADR 0054): its vowel marks chosen for the abjads (fa, apc-Arab, ADR 0098),
+ * its Jyutping reading typed for Cantonese. uz writes its vowels and has no such card.
  */
 import { createGrader, gradeExercise, sampleExercise, start, step, type Exercise, type Grader, type PlayerState } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
+import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -22,9 +23,8 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
 type Screen = "typing" | "feedback";
 const SEED = 7;
 
-/** A wrong answer: the letters with no marks, or the reading with its last tone changed. */
+/** A wrong typed answer: the reading with its last tone changed. (A vocalize card takes a wrong option.) */
 const wrongAnswer = (ex: Exercise): string => {
-  if (ex.template === "vocalize") return surfaceOf(ex.prompt);
   if (ex.template === "transcribe") return surfaceOf(ex.reading).replace(/([1-6])$/u, (d) => String((Number(d) % 6) + 1));
   return "?";
 };
@@ -33,7 +33,8 @@ const stateFor = (screen: Screen, ex: Exercise, grader: Grader): PlayerState => 
   const [presenting] = start("story", [ex]);
   const [answering] = step(presenting, { tag: "ready" });
   if (screen === "typing") return answering;
-  const typed = step(answering, { tag: "input", draft: { tag: "text", text: wrongAnswer(ex) } })[0];
+  const draft = ex.template === "vocalize" ? { tag: "choice" as const, index: (ex.answer + 1) % ex.options.length } : { tag: "text" as const, text: wrongAnswer(ex) };
+  const typed = step(answering, { tag: "input", draft })[0];
   const [checking] = step(typed, { tag: "submit" });
   if (checking.tag !== "checking") return typed;
   return step(checking, { tag: "graded", outcome: gradeExercise(ex, checking.response, grader) })[0];
@@ -46,7 +47,6 @@ const Card = ({ loaded, screen }: { loaded: LoadedCourse; screen: Screen }): JSX
   const ex = useMemo(() => sampleExercise(course, "vocalize", SEED) ?? sampleExercise(course, "transcribe", SEED), [course]);
   const initialState = useMemo(() => (ex === undefined ? undefined : stateFor(screen, ex, grader)), [screen, ex, grader]);
   if (ex === undefined || initialState === undefined) return <p data-no-pronunciation="">{t.format("debug.cards.none")}</p>;
-  const name = `course.name.${course.id}`;
   return (
     <LessonPlayer
       key={`${course.id}:${screen}`}
@@ -55,7 +55,7 @@ const Card = ({ loaded, screen }: { loaded: LoadedCourse; screen: Screen }): JSX
       exercises={[ex]}
       grader={grader}
       imageUrl={imageUrl}
-      language={t.has(name) ? t.format(name) : course.id}
+      language={courseName(t, course)}
       sound={false}
       initialState={initialState}
     />
@@ -80,7 +80,7 @@ const story = (screen: Screen): Story => ({
   render: (_args, { loaded }) => <Card loaded={loaded["course"] as LoadedCourse} screen={screen} />,
 });
 
-/** The word's letters in the field, the vowel-mark keys under it (or a Jyutping field). */
+/** The word's vocalizations to choose from (or a Jyutping field). */
 export const Typing: Story = story("typing");
 /** A wrong answer: no marks, or a wrong tone; the note says which, and the solution shows. */
 export const Feedback: Story = story("feedback");

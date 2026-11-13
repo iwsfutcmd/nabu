@@ -2,6 +2,7 @@ import { uiFontStack, type Direction } from "@nabu/i18n";
 import { type CSSProperties, type JSX, type ReactNode } from "react";
 import { I18nProvider } from "react-aria-components";
 import { useTranslator } from "./context.tsx";
+import { useFonts } from "./fonts.ts";
 import styles from "./UiRoot.module.css";
 
 export interface UiRootProps {
@@ -33,6 +34,8 @@ export const UiRoot = ({ children, dir }: UiRootProps): JSX.Element => {
 export const useChrome = (): { readonly lang: string; readonly dir: Direction; readonly style: CSSProperties } => {
   const t = useTranslator();
   const font = uiFontStack(t.locale);
+  // A UI font stack that names a family loaded with its text (fonts.ts) loads it too.
+  useFonts(font.family);
   return { lang: t.locale, dir: t.dir, style: { "--nabu-ui-font": font.family, "--nabu-ui-line-height": String(font.lineHeight) } as CSSProperties };
 };
 

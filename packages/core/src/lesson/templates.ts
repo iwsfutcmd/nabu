@@ -4,9 +4,11 @@
  * not eligible), `grade` turns a response into an outcome. Randomness comes
  * from the injected seeded Rng only.
  */
-import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, ScriptedLangTag, TaggedText, Token } from "@nabu/schema";
+import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, TaggedText, Token } from "@nabu/schema";
+import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
-import { gradeReading, gradeVowels, hasVowelMarks, transcribable, withoutMarks } from "../match/pronounce.ts";
+import { readingTag } from "../profile/schemes.ts";
+import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, toneVariants, transcribable, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
 import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
 import { allKcs, allSentences, profileOf, type CourseView, type Grader } from "./course.ts";
 import type {
@@ -40,6 +42,10 @@ import type { Rng } from "./rng.ts";
 import { gradeSpeech, toneSystemOf } from "../speech/score.ts";
 import { expectedSyllables } from "../speech/tone.ts";
 
+/**
+ * Everything about a template in one place (C11): what it exercises, how it is answered, and what the
+ * planner and the performance model need to know of it.
+ */
 export interface TemplateInfo {
   readonly facet: Facet;
   readonly modality: {
@@ -47,41 +53,68 @@ export interface TemplateInfo {
     readonly mic: boolean;
     readonly input: "choice" | "pairs" | "tiles" | "text" | "voice";
   };
+  /**
+   * The performance model's cold-start difficulty (§9.3): choosing among three is easier than
+   * building from tiles, which is easier than typing; hearing is harder than reading the same item.
+   * Tuned on the 30-day simulation (test/simulation.test.ts), to be replaced by fitted values.
+   */
+  readonly prior: number;
+  /** At most this many a session (§9.4 variety); three where unset. */
+  readonly perSession?: number;
+  /** It can present a word for the first time: a new KC is recognized before it is produced or read. */
+  readonly presents?: true;
+  /** The learner rates it themselves (tier-0 speaking): no verdict, never a filler (P5, L6). */
+  readonly selfRated?: true;
+  /** Explain My Answer covers it (§13.3): a translation, typed or built from tiles. */
+  readonly explained?: true;
+  /**
+   * Its options are words of the course, in the orthography being learned: the feedback on a wrong
+   * one says what it means (P3, ADR 0121). Not a word's vocalizations or readings.
+   */
+  readonly wordOptions?: true;
 }
 
 export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
-  "select-image": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "match-pairs": { facet: "recognize", modality: { audioOut: false, mic: false, input: "pairs" } },
-  "choose-translation": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "translate-tap.l2-l1": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
+  "select-image": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.6, perSession: 2, presents: true, wordOptions: true },
+  "match-pairs": { facet: "recognize", modality: { audioOut: false, mic: false, input: "pairs" }, prior: -1.4, perSession: 1, presents: true },
+  "choose-translation": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.0, presents: true },
+  "translate-tap.l2-l1": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.4, presents: true, explained: true },
   // The tiles are handed to the learner, so no production credit (§8.5).
-  "translate-tap.l1-l2": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
-  "translate-type.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" } },
-  "complete-translation": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" } },
-  "gap-fill": { facet: "produce", modality: { audioOut: false, mic: false, input: "choice" } },
-  "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  // A word's pronunciation as its script leaves it out (ADR 0054): reading the script, typed.
-  vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" } },
-  transcribe: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" } },
-  "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
+  "translate-tap.l1-l2": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: 0.0, presents: true, explained: true },
+  "translate-type.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 1.0, explained: true },
+  "complete-translation": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.6 },
+  // Picking the missing word among options is recognizing it, as tiles are (D4 in the 2026-11 review,
+  // ADR 0100): producing a word means supplying it.
+  "gap-fill": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.2, wordOptions: true },
+  "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.4 },
+  "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: 0.4 },
+  // A word's pronunciation as its script leaves it out (ADR 0054). Its vowel marks, chosen among other
+  // vocalizations of its letters, are like a reading among a few (ADR 0098); its reading typed is all
+  // or nothing, every tone counting.
+  vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.4, perSession: 1 },
+  transcribe: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.8, perSession: 1 },
+  // Self-rated speaking checks nothing (P5): one card a session, never a filler (L6).
+  "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" }, prior: -1.5, perSession: 1, selfRated: true },
   // Phase 9: scored speaking (tiers 1–3) and hearing tones.
-  speak: { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
-  "listen-speak": { facet: "speak", modality: { audioOut: true, mic: true, input: "voice" } },
-  "tone-identify": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
-  "listen-tap": { facet: "listen", modality: { audioOut: true, mic: false, input: "tiles" } },
-  "listen-type": { facet: "listen", modality: { audioOut: true, mic: false, input: "text" } },
-  "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
-  "minimal-pair": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
+  // Scored speaking: saying it well is harder than rating yourself; repeating a clip is a little harder
+  // again (no text). Naming one of six tones is hard for beginners.
+  speak: { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" }, prior: 0.2, perSession: 2 },
+  "listen-speak": { facet: "speak", modality: { audioOut: true, mic: true, input: "voice" }, prior: 0.4, perSession: 2 },
+  "tone-identify": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: 0.6 },
+  // Hearing is harder than reading the same item: the listening priors sit above their reading twins.
+  "listen-tap": { facet: "listen", modality: { audioOut: true, mic: false, input: "tiles" }, prior: 0.3, perSession: 2 },
+  "listen-type": { facet: "listen", modality: { audioOut: true, mic: false, input: "text" }, prior: 1.2, perSession: 2 },
+  "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: -0.6, perSession: 2, wordOptions: true },
+  "minimal-pair": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: -0.2, perSession: 1, wordOptions: true },
   // Stories (Phase 6): reading comprehension exercises recognition of the line's words.
-  "story-choose": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
-  "story-arrange": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
+  "story-choose": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.0 },
+  "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.6, wordOptions: true },
+  "story-arrange": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.2 },
   // Script tracks (ADR 0088): built only for script nodes (lesson/script.ts), never for sentences.
-  "letter-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  "letter-pairs": { facet: "read-script", modality: { audioOut: false, mic: false, input: "pairs" } },
-  "word-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
-  "word-write": { facet: "write-script", modality: { audioOut: false, mic: false, input: "tiles" } },
+  "letter-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.4, perSession: 4, presents: true },
+  "letter-pairs": { facet: "read-script", modality: { audioOut: false, mic: false, input: "pairs" }, prior: -1.4, perSession: 1, presents: true },
+  "word-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.8, presents: true },
+  "word-write": { facet: "write-script", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.2 },
 };
 
 /** Templates that play audio: "can't listen now" leaves them out (§10, §11.5). */
@@ -102,6 +135,11 @@ export interface MakeContext {
   readonly rng: Rng;
   /** KCs the current node introduces: new words get the recognition templates first. */
   readonly introduced: readonly KcId[];
+  /**
+   * Words the session wants typed (ADR 0101): a sentence's blank is one of them where it has one,
+   * before a word the node introduces.
+   */
+  readonly focus?: ReadonlySet<string> | undefined;
 }
 
 const id = (template: TemplateId, item: string): string => `${template}:${item}`;
@@ -163,8 +201,23 @@ const single = (text: TaggedText, token: Token): TaggedText => {
   return { ...text, tokens: [rest] };
 };
 
+/** Texts' comparison keys, per course: distractor picking asks for the same texts again and again. */
+const keys = new WeakMap<CourseView, WeakMap<TaggedText, string>>();
+
 /** Normalized, folded, mark-insensitive comparison key: two options must never collide on it. */
-const keyOf = (course: CourseView, text: TaggedText): string => glossUnits(profileOf(course, text.orthography), surfaceOf(text)).join(" ");
+const keyOf = (course: CourseView, text: TaggedText): string => {
+  let byText = keys.get(course);
+  if (byText === undefined) {
+    byText = new WeakMap();
+    keys.set(course, byText);
+  }
+  let key = byText.get(text);
+  if (key === undefined) {
+    key = glossUnits(profileOf(course, text.orthography), surfaceOf(text)).join(" ");
+    byText.set(text, key);
+  }
+  return key;
+};
 
 const formOf = (course: CourseView, s: BundleSentence): { readonly text: TaggedText; readonly reverse?: string | undefined } | undefined =>
   s.forms[course.orthography];
@@ -189,6 +242,88 @@ const pickDistinct = (ctx: MakeContext, pool: readonly TaggedText[], taken: read
     out.push(candidate);
   }
   return out;
+};
+
+/**
+ * Up to `n` distractors from `pool`, the best-matched first (P2): `score` ranks candidates, ties in a
+ * random order, and none collides with `taken` or each other (by key).
+ */
+const pickRanked = (ctx: MakeContext, pool: readonly TaggedText[], taken: readonly TaggedText[], n: number, score: (t: TaggedText) => number): readonly TaggedText[] => {
+  const shuffled = ctx.rng.shuffle(pool).map((t) => ({ t, s: score(t) }));
+  return pickDistinctInOrder(ctx, [...shuffled].sort((a, b) => b.s - a.s).map((x) => x.t), taken, n);
+};
+
+/** Up to `n` of `ordered`, in that order, none colliding with `taken` or each other (by key). */
+const pickDistinctInOrder = (ctx: MakeContext, ordered: readonly TaggedText[], taken: readonly TaggedText[], n: number): readonly TaggedText[] => {
+  const seen = new Set(taken.map((t) => keyOf(ctx.course, t)));
+  const out: TaggedText[] = [];
+  for (const candidate of ordered) {
+    if (out.length === n) break;
+    const key = keyOf(ctx.course, candidate);
+    if (key === "" || seen.has(key)) continue;
+    seen.add(key);
+    out.push(candidate);
+  }
+  return out;
+};
+
+/** A text's last punctuation (its sentence type: "?", "!", "."), or "" if it ends without one. */
+const finalPunct = (text: TaggedText): string => {
+  const last = [...text.tokens].reverse().find((t) => t.kind !== "space");
+  return last?.kind === "punct" ? last.surface : "";
+};
+
+/**
+ * Words as their language lowercases them, per course and language. Ranking distractors asks this
+ * of every word in the earlier units for each card a plan considers, and lowercasing for a tag with
+ * a script (es-Latn) takes V8 microseconds a call: most of a review's planning with a year of
+ * history, before it was remembered.
+ */
+const lowered = new WeakMap<CourseView, Map<string, Map<string, string>>>();
+
+const lowerIn = (course: CourseView, lang: string, surface: string): string => {
+  let byLang = lowered.get(course);
+  if (byLang === undefined) {
+    byLang = new Map();
+    lowered.set(course, byLang);
+  }
+  let bySurface = byLang.get(lang);
+  if (bySurface === undefined) {
+    bySurface = new Map();
+    byLang.set(lang, bySurface);
+  }
+  let lower = bySurface.get(surface);
+  if (lower === undefined) {
+    lower = surface.toLocaleLowerCase(lang);
+    bySurface.set(surface, lower);
+  }
+  return lower;
+};
+
+const wordSurfaces = (course: CourseView, text: TaggedText): readonly string[] => text.tokens.filter((t) => t.kind === "word").map((t) => lowerIn(course, text.lang, t.surface));
+
+/**
+ * How well a distractor sentence matches the answer's shape (P2): the same final punctuation, about
+ * as many words, and words in common, so neither punctuation nor length gives the answer away.
+ */
+const shapeScore = (course: CourseView, answer: TaggedText): ((t: TaggedText) => number) => {
+  const end = finalPunct(answer);
+  const words = wordSurfaces(course, answer);
+  const own = new Set(words);
+  return (t) => {
+    const theirs = wordSurfaces(course, t);
+    const shared = theirs.filter((w) => own.has(w)).length;
+    return (finalPunct(t) === end ? 3 : 0) - Math.min(3, Math.abs(theirs.length - words.length)) * 0.5 + Math.min(2, shared) * 0.5;
+  };
+};
+
+/**
+ * Whether a text's first word has a capital (in its own language's case; never in a caseless script):
+ * what a sentence-initial word, a name or a sentence's first tile shows.
+ */
+const capitalized = (course: CourseView, text: TaggedText): boolean => {
+  const word = text.tokens.find((t) => t.kind === "word")?.surface ?? "";
+  return word !== lowerIn(course, text.lang, word);
 };
 
 /** Places `answer` among `others` at a random position. */
@@ -223,9 +358,22 @@ const known = (course: CourseView, item: string): ((other: string) => boolean) =
   return (other) => unitOf(course, other) <= at;
 };
 
+/** The sentences a distractor may come from, by the unit they reach up to (built once per course and unit). */
+const sentencesUpTo = new WeakMap<CourseView, Map<number, readonly BundleSentence[]>>();
+
 const otherSentences = (ctx: MakeContext, s: BundleSentence): readonly BundleSentence[] => {
-  const before = known(ctx.course, s.id);
-  return allSentences(ctx.course).filter((o) => o.id !== s.id && !o.id.startsWith("drill.") && before(o.id) && formOf(ctx.course, o) !== undefined);
+  const at = unitOf(ctx.course, s.id);
+  let byUnit = sentencesUpTo.get(ctx.course);
+  if (byUnit === undefined) {
+    byUnit = new Map();
+    sentencesUpTo.set(ctx.course, byUnit);
+  }
+  let pool = byUnit.get(at);
+  if (pool === undefined) {
+    pool = allSentences(ctx.course).filter((o) => !o.id.startsWith("drill.") && unitOf(ctx.course, o.id) <= at && formOf(ctx.course, o) !== undefined);
+    byUnit.set(at, pool);
+  }
+  return pool.filter((o) => o.id !== s.id);
 };
 
 const otherKcs = (ctx: MakeContext, kc: BundleKc): readonly BundleKc[] => {
@@ -259,6 +407,29 @@ export const makeSelectImage = (ctx: MakeContext, kc: BundleKc): SelectImage | u
   };
 };
 
+const OPENING = /^[(（[]$/u;
+const CLOSING = /^[)）\]]$/u;
+const SENSE_BREAK = /^[;；]$/u;
+const DANGLING = /^[,:;，：；]$/u;
+
+/**
+ * A gloss short enough for a card (W7): its first sense, without notes in parentheses. A course's
+ * full gloss can run to a grammar note (yue 呀), and one that names the word's reading gives the
+ * match away; tap-for-gloss shows it whole. A gloss with nothing left keeps its full text.
+ */
+export const cardGloss = (text: TaggedText): TaggedText => {
+  const out: Token[] = [];
+  let depth = 0;
+  for (const t of text.tokens) {
+    if (depth === 0 && ((t.kind === "punct" && SENSE_BREAK.test(t.surface)) || (t.kind === "space" && t.surface.includes("\n")))) break;
+    if (t.kind === "punct" && OPENING.test(t.surface)) depth += 1;
+    else if (t.kind === "punct" && CLOSING.test(t.surface)) depth = Math.max(0, depth - 1);
+    else if (depth === 0 && !(t.kind === "space" && out.at(-1)?.kind === "space")) out.push(t);
+  }
+  while (out.length > 0 && (out.at(-1)?.kind === "space" || (out.at(-1)?.kind === "punct" && DANGLING.test(out.at(-1)?.surface ?? "")))) out.pop();
+  return out.some((t) => t.kind === "word") ? { ...text, tokens: out } : text;
+};
+
 export const makeMatchPairs = (ctx: MakeContext, kcs: readonly BundleKc[]): MatchPairs | undefined => {
   const { orthography, supportKey } = ctx.course;
   const usable = kcs.filter((k) => k.kind === "sense" && (k.forms?.[orthography]?.length ?? 0) > 0 && k.gloss?.[supportKey] !== undefined);
@@ -272,14 +443,15 @@ export const makeMatchPairs = (ctx: MakeContext, kcs: readonly BundleKc[]): Matc
   for (const candidate of ctx.rng.shuffle(usable.map((k) => k.forms?.[orthography]?.[0] as TaggedText))) {
     if (chosen.length === 5) break;
     const word = keyOf(ctx.course, candidate);
-    const meaning = keyOf(ctx.course, byText(candidate).gloss?.[supportKey] as TaggedText);
+    const meaning = keyOf(ctx.course, cardGloss(byText(candidate).gloss?.[supportKey] as TaggedText));
     if (word === "" || words.has(word) || meanings.has(meaning)) continue;
     words.add(word);
     meanings.add(meaning);
     chosen.push(candidate);
   }
   if (chosen.length < 3) return undefined;
-  const glosses = chosen.map((t) => byText(t).gloss?.[supportKey] as TaggedText);
+  // Short card glosses (W7): the first sense, without notes.
+  const glosses = chosen.map((t) => cardGloss(byText(t).gloss?.[supportKey] as TaggedText));
   const order = ctx.rng.shuffle(glosses.map((_, i) => i));
   return {
     template: "match-pairs",
@@ -300,7 +472,7 @@ export const makeChooseTranslation = (ctx: MakeContext, s: BundleSentence): Choo
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
   const pool = otherSentences(ctx, s).flatMap((o) => translationOf(ctx.course, o)?.text ?? []);
-  const others = pickDistinct(ctx, pool, [translation.text], 2);
+  const others = pickRanked(ctx, pool, [translation.text], 2, shapeScore(ctx.course, translation.text));
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, translation.text, others);
   return {
@@ -326,7 +498,12 @@ const makeTap = (
 ): TranslateTap | undefined => {
   const tiles = tileGroups(answer);
   if (tiles.length === 0) return undefined;
-  const distractors = pickDistinct(ctx, pool.flatMap((t) => tileGroups(t)), tiles, Math.min(3, Math.max(2, tiles.length)));
+  // Three or four distractors (P2); where the answer starts with a capital, a capitalized one comes
+  // first, so the capital doesn't mark the sentence's first tile.
+  const capital = tiles[0] !== undefined && capitalized(ctx.course, tiles[0]);
+  const bank = pool.flatMap((t) => tileGroups(t));
+  const count = Math.min(4, Math.max(3, tiles.length));
+  const distractors = capital ? pickRanked(ctx, bank, tiles, count, (t) => (capitalized(ctx.course, t) ? 1 : 0)) : pickDistinct(ctx, bank, tiles, count);
   const all = [...tiles, ...distractors];
   const order = ctx.rng.shuffle(all.map((_, i) => i));
   return {
@@ -381,16 +558,17 @@ export const makeTranslateType = (ctx: MakeContext, s: BundleSentence): Translat
   };
 };
 
-/** The word to blank out: the one carrying a KC this node introduces, else the last word. */
+/**
+ * The word to blank out: one the session wants typed (ADR 0101), else one carrying a KC this node
+ * introduces, else the last word.
+ */
 const blankIndex = (ctx: MakeContext, text: TaggedText): number | undefined => {
   const indexes = words(text);
   if (indexes.length < 2) return undefined;
-  const fresh = indexes.find((i) => {
-    const t = text.tokens[i] as Token;
-    const kcs = [...(t.sense === undefined ? [] : [`sense:${t.sense}`]), ...(t.morphs ?? []).map((m) => m.kc as string)];
-    return kcs.some((k) => ctx.introduced.includes(k as KcId));
-  });
-  return fresh ?? indexes[indexes.length - 1];
+  const kcsAt = (i: number): readonly string[] => tokenKcs(text.tokens[i] as Token);
+  const focus = ctx.focus === undefined ? undefined : indexes.find((i) => kcsAt(i).some((k) => ctx.focus?.has(k) === true));
+  const fresh = indexes.find((i) => kcsAt(i).some((k) => ctx.introduced.includes(k as KcId)));
+  return focus ?? fresh ?? indexes[indexes.length - 1];
 };
 
 export const makeCompleteTranslation = (ctx: MakeContext, s: BundleSentence): CompleteTranslation | undefined => {
@@ -428,10 +606,13 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
     const text = formOf(ctx.course, o)?.text;
     return text === undefined ? [] : words(text).map((i) => ({ token: text.tokens[i] as Token, text }));
   });
-  // Same lexeme in another form first (هستم / هستی / هستند), then any other word.
+  // Same lexeme in another form first (هستم / هستی / هستند), then any other word; each with the
+  // answer's case (P2): a capital that only marks the sentence's first word must not mark the answer.
+  const capital = capitalized(ctx.course, correct);
+  const sameCase = (t: TaggedText): number => (capitalized(ctx.course, t) === capital ? 1 : 0);
   const sameSense = candidates.filter((c) => target.sense !== undefined && c.token.sense === target.sense);
-  const preferred = pickDistinct(ctx, sameSense.map((c) => single(c.text, c.token)), [correct], 2);
-  const rest = pickDistinct(ctx, candidates.map((c) => single(c.text, c.token)), [correct, ...preferred], 2 - preferred.length);
+  const preferred = pickRanked(ctx, sameSense.map((c) => single(c.text, c.token)), [correct], 2, sameCase);
+  const rest = pickRanked(ctx, candidates.map((c) => single(c.text, c.token)), [correct, ...preferred], 2 - preferred.length, sameCase);
   const others = [...preferred, ...rest];
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, correct, others);
@@ -452,26 +633,23 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
 
 // ------------------------------------------------------------------------------------ reading templates
 
-/** How a reading scheme is tagged when its readings are shown as options (Jyutping: yue-Latn-HK-jyutping). */
-export const READING_TAGS: Readonly<Record<string, { readonly lang: string; readonly orthography: string }>> = {
-  jyutping: { lang: "yue-Latn-HK-jyutping", orthography: "yue-Latn/jyutping" },
-  // A sitelen pona logograph's word in sitelen Lasina (ADR 0086): options are the course's own Latin orthography.
-  lasina: { lang: "tok-Latn", orthography: "tok-Latn/standard" },
-};
-
-/** The profile's ruby reading scheme (Jyutping for yue), if it is one we can show as options. */
+/**
+ * The scheme reading cards ask about: the profile's first ruby layer, where its scheme's data says
+ * how its readings stand as options (`answer`, ADR 0109): Jyutping for yue, sitelen Lasina for
+ * sitelen pona; none for Classical Chinese (Pinyin first, only shown).
+ */
 export const rubySchemeOf = (ctx: MakeContext): SchemeId | undefined => {
   const scheme = profileOf(ctx.course, ctx.course.orthography).source.annotations?.find((a) => a.kind === "reading" && a.render === "ruby")?.scheme;
-  return scheme !== undefined && READING_TAGS[scheme] !== undefined ? scheme : undefined;
+  return scheme !== undefined && readingTag(scheme) !== undefined ? scheme : undefined;
 };
 
 const readingText = (scheme: SchemeId, reading: string): TaggedText => {
-  const tag = READING_TAGS[scheme] as { readonly lang: string; readonly orthography: string };
+  const tag = readingTag(scheme) as Pick<TaggedText, "lang" | "orthography">;
   const tokens: Token[] = reading.split(" ").flatMap((syllable, i) => [
     ...(i === 0 ? [] : [{ surface: " ", kind: "space" as const }]),
     { surface: syllable, kind: "word" as const },
   ]);
-  return { lang: tag.lang as ScriptedLangTag, orthography: tag.orthography as TaggedText["orthography"], tokens };
+  return { lang: tag.lang, orthography: tag.orthography, tokens };
 };
 
 const stripRuby = (token: Token): Token => {
@@ -479,29 +657,55 @@ const stripRuby = (token: Token): Token => {
   return rest;
 };
 
+/** Every syllable the course's readings use in a scheme (ADR 0098): what tone distractors may be. Per course. */
+const syllablesOf = new WeakMap<CourseView, Map<string, ReadonlySet<string>>>();
+const courseSyllables = (course: CourseView, scheme: SchemeId): ReadonlySet<string> => {
+  const byScheme = syllablesOf.get(course) ?? new Map<string, ReadonlySet<string>>();
+  syllablesOf.set(course, byScheme);
+  let found = byScheme.get(scheme);
+  if (found === undefined) {
+    found = new Set(allSentences(course).flatMap((s) => (formOf(course, s)?.text.tokens ?? []).flatMap((t) => t.readings?.[scheme]?.split(" ") ?? [])));
+    byScheme.set(scheme, found);
+  }
+  return found;
+};
+
+/**
+ * How a word of a sentence is read, chosen (ADR 0098): the sentence without ruby, the word marked (a
+ * word the lesson introduces where it can), and its reading among others. Where the scheme can be
+ * typed, two of them are the same syllables in another tone the course uses (tones are what a
+ * learner gets wrong); the rest are readings of other words with as many syllables. The typed card
+ * is `transcribe`.
+ */
 export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | undefined => {
   const scheme = rubySchemeOf(ctx);
   const form = formOf(ctx.course, s);
   if (scheme === undefined || form === undefined) return undefined;
   const readable = (t: Token): boolean => t.kind === "word" && t.readings?.[scheme] !== undefined;
-  const target = form.text.tokens.find((t) => readable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`)) ?? form.text.tokens.find(readable);
+  const fresh = form.text.tokens.findIndex((t) => readable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
+  const word = fresh >= 0 ? fresh : form.text.tokens.findIndex(readable);
+  const target = form.text.tokens[word];
   if (target === undefined) return undefined;
   const reading = target.readings?.[scheme] as string;
   const syllables = reading.split(" ").length;
+  const tones = ctx.rng.shuffle([...toneVariants(scheme, reading, courseSyllables(ctx.course, scheme))]).slice(0, 2);
   const pool = otherSentences(ctx, s)
     .flatMap((o) => formOf(ctx.course, o)?.text.tokens ?? [])
     .flatMap((t) => (readable(t) ? [t.readings?.[scheme] as string] : []))
-    .filter((r) => r.split(" ").length === syllables && r !== reading);
-  const others = [...new Set(ctx.rng.shuffle(pool))].slice(0, 2);
+    .filter((r) => r.split(" ").length === syllables && r !== reading && !tones.includes(r));
+  const others = [...new Set([...tones, ...ctx.rng.shuffle(pool)])].slice(0, 3);
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, readingText(scheme, reading), others.map((r) => readingText(scheme, r)));
+  const translation = translationOf(ctx.course, s);
   return {
     template: "char-read",
     id: id("char-read", `${s.id}:${target.surface}`),
     item: s.id,
-    kcs: target.sense === undefined ? s.kcs : [`sense:${target.sense}` as KcId],
+    kcs: s.kcs,
     orthography: options[0]?.orthography ?? ctx.course.orthography,
-    prompt: { ...form.text, tokens: [stripRuby(target)] },
+    prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
+    word,
+    ...(translation === undefined ? {} : { translation: translation.text }),
     options,
     answer,
   };
@@ -615,18 +819,25 @@ export const makeToneIdentify = (ctx: MakeContext, s: BundleSentence): ToneIdent
   };
 };
 
+/**
+ * Dictation is graded against what the clip says, and nothing else: the sentence's own text. Its
+ * `reverse` set takes every wording that would translate the same (ADR 0085), and a learner who
+ * heard "Estoy bien." has not heard "Yo estoy bien.".
+ */
+const heardAccept = (text: TaggedText): string => literalAccept(surfaceOf(text));
+
 export const makeListenTap = (ctx: MakeContext, s: BundleSentence): ListenTap | undefined => {
   const audio = audioOf(ctx, s.id);
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
-  if (audio === undefined || form?.reverse === undefined || translation === undefined) return undefined;
+  if (audio === undefined || form === undefined || translation === undefined) return undefined;
   const tap = makeTap(
     ctx,
     s,
     "translate-tap.l1-l2",
     translation.text,
     form.text,
-    form.reverse,
+    heardAccept(form.text),
     otherSentences(ctx, s).flatMap((o) => formOf(ctx.course, o)?.text ?? []),
   );
   if (tap === undefined) return undefined;
@@ -638,7 +849,7 @@ export const makeListenType = (ctx: MakeContext, s: BundleSentence): ListenType 
   const audio = audioOf(ctx, s.id);
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
-  if (audio === undefined || form?.reverse === undefined || translation === undefined) return undefined;
+  if (audio === undefined || form === undefined || translation === undefined) return undefined;
   return {
     template: "listen-type",
     id: id("listen-type", s.id),
@@ -646,7 +857,7 @@ export const makeListenType = (ctx: MakeContext, s: BundleSentence): ListenType 
     kcs: s.kcs,
     orthography: ctx.course.orthography,
     audio,
-    accept: form.reverse,
+    accept: heardAccept(form.text),
     canonical: form.text,
     translation: translation.text,
   };
@@ -682,32 +893,13 @@ const distance = <T>(a: readonly T[], b: readonly T[]): number => {
 };
 
 /**
- * Pinned readings by surface, per course view and scheme: the first sentence token (in course
- * order) that spells the word gives its reading. Indexed once, as a course has hundreds of
- * sentences and minimal pairs compare every word with every other.
+ * A word's pinned reading in a scheme: its words' readings, as the compiler pins them on a KC's
+ * forms (ADR 0117), the reading its card shows and its clip was read from; undefined where a word
+ * has none.
  */
-const readingIndex = new WeakMap<CourseView, Map<SchemeId, ReadonlyMap<string, string>>>();
-
-/** The pinned reading of a written word, from any sentence token that spells it. */
-const readingOf = (ctx: MakeContext, scheme: SchemeId, surface: string): string | undefined => {
-  let byScheme = readingIndex.get(ctx.course);
-  if (byScheme === undefined) {
-    byScheme = new Map();
-    readingIndex.set(ctx.course, byScheme);
-  }
-  let index = byScheme.get(scheme);
-  if (index === undefined) {
-    const built = new Map<string, string>();
-    for (const s of allSentences(ctx.course)) {
-      for (const t of formOf(ctx.course, s)?.text.tokens ?? []) {
-        const reading = t.readings?.[scheme];
-        if (reading !== undefined && !built.has(t.surface)) built.set(t.surface, reading);
-      }
-    }
-    index = built;
-    byScheme.set(scheme, index);
-  }
-  return index.get(surface);
+const pinnedReading = (text: TaggedText, scheme: SchemeId): string | undefined => {
+  const readings = text.tokens.filter((t) => t.kind === "word" || t.kind === "number").map((t) => t.readings?.[scheme]);
+  return readings.length === 0 || readings.includes(undefined) ? undefined : readings.join(" ");
 };
 
 /**
@@ -718,8 +910,8 @@ const readingOf = (ctx: MakeContext, scheme: SchemeId, surface: string): string 
 const minimallyApart = (ctx: MakeContext, a: TaggedText, b: TaggedText): boolean => {
   const scheme = rubySchemeOf(ctx);
   if (scheme !== undefined) {
-    const ra = readingOf(ctx, scheme, surfaceOf(a))?.split(" ");
-    const rb = readingOf(ctx, scheme, surfaceOf(b))?.split(" ");
+    const ra = pinnedReading(a, scheme)?.split(" ");
+    const rb = pinnedReading(b, scheme)?.split(" ");
     if (ra === undefined || rb === undefined || ra.length !== rb.length) return false;
     const differing = ra.flatMap((syllable, i) => (syllable === rb[i] ? [] : [[[...syllable], [...(rb[i] ?? "")]] as const]));
     const [only] = differing;
@@ -731,34 +923,130 @@ const minimallyApart = (ctx: MakeContext, a: TaggedText, b: TaggedText): boolean
   return la.length >= 2 && lb.length >= 2 && distance(la, lb) === 1;
 };
 
+/**
+ * The earlier words minimally apart from each KC's word, per course: they depend on the course
+ * alone, and finding them compares the word with every earlier word's letters, which a plan did
+ * for every word card it considered.
+ */
+const rivalsOf = new WeakMap<CourseView, Map<string, readonly TaggedText[]>>();
+
+const rivals = (ctx: MakeContext, kc: BundleKc, word: TaggedText): readonly TaggedText[] => {
+  let byKc = rivalsOf.get(ctx.course);
+  if (byKc === undefined) {
+    byKc = new Map();
+    rivalsOf.set(ctx.course, byKc);
+  }
+  let found = byKc.get(kc.id);
+  if (found === undefined) {
+    found = otherKcs(ctx, kc).flatMap((k) => {
+      const other = writtenForm(ctx, k);
+      return other !== undefined && keyOf(ctx.course, other) !== keyOf(ctx.course, word) && minimallyApart(ctx, word, other) ? [other] : [];
+    });
+    byKc.set(kc.id, found);
+  }
+  return found;
+};
+
 export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | undefined => {
   const audio = audioOf(ctx, kc.id);
   const word = writtenForm(ctx, kc);
   if (audio === undefined || word === undefined) return undefined;
-  const rivals = otherKcs(ctx, kc).flatMap((k) => {
-    const other = writtenForm(ctx, k);
-    return other !== undefined && keyOf(ctx.course, other) !== keyOf(ctx.course, word) && minimallyApart(ctx, word, other) ? [other] : [];
-  });
-  const rival = ctx.rng.shuffle(rivals)[0];
+  const rival = ctx.rng.shuffle(rivals(ctx, kc, word))[0];
   if (rival === undefined) return undefined;
   const { options, answer } = withAnswer(ctx, word, [rival]);
   return { template: "minimal-pair", id: id("minimal-pair", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, kc) };
 };
 
-// ------------------------------------------------------------------------------------ pronunciation (ADR 0054)
+// ------------------------------------------------------------------------------------ pronunciation in context (ADR 0054, 0095)
 
-/** A word KC with its meaning: its first form in the course's orthography and its gloss. */
-const wordWithMeaning = (ctx: MakeContext, kc: BundleKc): { readonly word: TaggedText; readonly meaning: TaggedText } | undefined => {
-  const word = writtenForm(ctx, kc);
-  const meaning = kc.gloss?.[ctx.course.supportKey];
-  return kc.kind === "sense" && word !== undefined && meaning !== undefined ? { word, meaning } : undefined;
+/** The KCs a token carries: its sense and its morphs. */
+const tokenKcs = (t: Token): readonly string[] => [...(t.sense === undefined ? [] : [`sense:${t.sense}`]), ...(t.morphs ?? []).map((m) => m.kc as string)];
+
+/**
+ * The word of a sentence a pronunciation card asks about, among those that qualify: the first the
+ * lesson introduces, else the sentence's last. Words `preferred` says yes to come first in each.
+ */
+const pronouncedWord = (ctx: MakeContext, text: TaggedText, qualifies: (t: Token, index: number) => boolean, preferred: (index: number) => boolean = () => true): number | undefined => {
+  const all = text.tokens.flatMap((t, i) => (t.kind === "word" && tokenKcs(t).length > 0 && qualifies(t, i) ? [i] : []));
+  const pick = (pool: readonly number[]): number | undefined => {
+    const fresh = pool.find((i) => tokenKcs(text.tokens[i] as Token).some((k) => ctx.introduced.includes(k as KcId)));
+    return fresh ?? pool.at(-1);
+  };
+  return pick(all.filter(preferred)) ?? pick(all);
 };
 
-/** An abjad word without its vowel marks: write them in. Only words the vocalization marks. */
-export const makeVocalize = (ctx: MakeContext, kc: BundleKc): Vocalize | undefined => {
-  const marks = profileOf(ctx.course, ctx.course.orthography).marks;
-  const found = wordWithMeaning(ctx, kc);
-  if (marks === undefined || found === undefined || !hasVowelMarks(marks, surfaceOf(found.word))) return undefined;
+/**
+ * The same word in another orthography of the sentence: the token with the same sense and morphs,
+ * at the same occurrence. Undefined where the orthographies split the sentence into other words.
+ */
+const twinOf = (s: BundleSentence, text: TaggedText, index: number, orthography: string): TaggedText | undefined => {
+  const other = s.forms[orthography]?.text;
+  const target = text.tokens[index];
+  if (other === undefined || target === undefined) return undefined;
+  const key = (t: Token): string => JSON.stringify(tokenKcs(t));
+  const occurrence = text.tokens.slice(0, index).filter((t) => t.kind === "word" && key(t) === key(target)).length;
+  const twin = other.tokens.filter((t) => t.kind === "word" && key(t) === key(target))[occurrence];
+  return twin === undefined ? undefined : single(other, twin);
+};
+
+/** Which marks each letter takes in the course's words, by its place in the word (ADR 0098). Per course and orthography. */
+const attestedOf = new WeakMap<CourseView, Map<string, ReturnType<typeof attestedMarks>>>();
+const attestedIn = (course: CourseView, marks: VowelMarks): ReturnType<typeof attestedMarks> => {
+  const byOrthography = attestedOf.get(course) ?? new Map<string, ReturnType<typeof attestedMarks>>();
+  attestedOf.set(course, byOrthography);
+  const known = byOrthography.get(course.orthography);
+  if (known !== undefined) return known;
+  const words = allSentences(course).flatMap((s) => (formOf(course, s)?.text.tokens ?? []).flatMap((t) => (t.kind === "word" ? [t.surface] : [])));
+  const found = attestedMarks(marks, words);
+  byOrthography.set(course.orthography, found);
+  return found;
+};
+
+/**
+ * The course's other spellings of a word's letters (homographs): the best wrong options, being real
+ * words (ADR 0098). Every word the course writes, keyed by its letters.
+ */
+const homographsOf = new WeakMap<CourseView, Map<string, ReadonlyMap<string, readonly string[]>>>();
+const homographs = (course: CourseView, marks: VowelMarks, word: string): readonly string[] => {
+  const byOrthography = homographsOf.get(course) ?? new Map<string, ReadonlyMap<string, readonly string[]>>();
+  homographsOf.set(course, byOrthography);
+  let byLetters = byOrthography.get(course.orthography);
+  if (byLetters === undefined) {
+    const found = new Map<string, Set<string>>();
+    for (const s of allSentences(course)) {
+      for (const t of formOf(course, s)?.text.tokens ?? []) {
+        if (t.kind !== "word") continue;
+        const letters = withoutMarks(marks, t.surface);
+        found.set(letters, (found.get(letters) ?? new Set()).add(t.surface.normalize("NFC")));
+      }
+    }
+    byLetters = new Map([...found].map(([k, v]) => [k, [...v].sort()]));
+    byOrthography.set(course.orthography, byLetters);
+  }
+  return (byLetters.get(withoutMarks(marks, word)) ?? []).filter((w) => gradeVowels(marks, word, w).verdict === "WRONG");
+};
+
+/**
+ * An abjad word in its sentence, the sentence without vowel marks: choose the word with its marks
+ * among other vocalizations of its letters (ADR 0098: typing an abjad's marks is a chore, and a word
+ * has few plausible vocalizations). The course's homographs come first, then the word with one or
+ * two letters' marks changed to marks the course writes most. Only words the vocalization marks.
+ * Where the profile names an orthography of the course that spells the vowels (`marks.spelledIn`:
+ * Arabizi for Lebanese), the learner may type the word in it instead, and words it can be found for
+ * are asked first.
+ */
+export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | undefined => {
+  const profile = profileOf(ctx.course, ctx.course.orthography);
+  const marks = profile.marks;
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  // Only marks ordinary writing leaves out (an abjad's vowels: the profile ignores them in answers),
+  // never accents that are part of the spelling (es, grc), which alphabets write anyway (ADR 0054).
+  if (marks === undefined || marks.policy !== "ignore" || form === undefined || translation === undefined) return undefined;
+  const spelledIn = (profile.source.match?.marks?.spelledIn ?? []).filter((o) => o !== ctx.course.orthography);
+  const spelledAt = (i: number): TaggedText | undefined => spelledIn.map((o) => twinOf(s, form.text, i, o)).find((t) => t !== undefined);
+  const word = pronouncedWord(ctx, form.text, (t) => hasVowelMarks(marks, t.surface), (i) => spelledAt(i) !== undefined);
+  if (word === undefined) return undefined;
   const bare = (t: Token): Token => {
     const { ruby: _ruby, ...rest } = t;
     return {
@@ -767,39 +1055,66 @@ export const makeVocalize = (ctx: MakeContext, kc: BundleKc): Vocalize | undefin
       ...(t.morphs === undefined ? {} : { morphs: t.morphs.map((m) => ({ ...m, surface: withoutMarks(marks, m.surface) })) }),
     };
   };
+  const token = form.text.tokens[word] as Token;
+  const vocalized = single(form.text, token);
+  const real = homographs(ctx.course, marks, token.surface);
+  const made = ctx.rng.shuffle([...vocalizationVariants(marks, token.surface, attestedIn(ctx.course, marks))]).filter((v) => !real.includes(v));
+  const others = [...real, ...made].slice(0, 3);
+  if (others.length < 2) return undefined;
+  const { options, answer } = withAnswer(ctx, vocalized, others.map((v) => single(form.text, { surface: v, kind: "word" })));
+  const spelled = spelledAt(word);
   return {
     template: "vocalize",
-    id: id("vocalize", kc.id),
-    item: kc.id,
-    kcs: [kc.id],
+    id: id("vocalize", s.id),
+    item: s.id,
+    kcs: s.kcs,
     orthography: ctx.course.orthography,
-    prompt: { ...found.word, tokens: found.word.tokens.map(bare) },
-    meaning: found.meaning,
-    vocalized: found.word,
-    marks: [...marks.set],
-    optional: [...marks.optional],
+    prompt: { ...form.text, tokens: form.text.tokens.map(bare) },
+    word,
+    translation: translation.text,
+    vocalized,
+    options,
+    answer,
+    ...(spelled === undefined ? {} : { spelled }),
   };
 };
 
-/** An ideographic word: type its reading. Only where every word of it has a pinned reading. */
-export const makeTranscribe = (ctx: MakeContext, kc: BundleKc): Transcribe | undefined => {
+/** A Han word in its sentence, the sentence without ruby: type the word's reading. Only words with a pinned reading. */
+export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe | undefined => {
   const scheme = rubySchemeOf(ctx);
-  const found = wordWithMeaning(ctx, kc);
-  if (scheme === undefined || !transcribable(scheme) || found === undefined) return undefined;
-  const readings = found.word.tokens.filter((t) => t.kind === "word").map((t) => t.readings?.[scheme]);
-  if (readings.length === 0 || readings.some((r) => r === undefined)) return undefined;
-  const reading = readingText(scheme, readings.join(" "));
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  if (scheme === undefined || !transcribable(scheme) || form === undefined || translation === undefined) return undefined;
+  const word = pronouncedWord(ctx, form.text, (t) => t.readings?.[scheme] !== undefined);
+  if (word === undefined) return undefined;
+  const reading = readingText(scheme, (form.text.tokens[word] as Token).readings?.[scheme] as string);
   return {
     template: "transcribe",
-    id: id("transcribe", kc.id),
-    item: kc.id,
-    kcs: [kc.id],
+    id: id("transcribe", s.id),
+    item: s.id,
+    kcs: s.kcs,
     orthography: reading.orthography,
-    prompt: { ...found.word, tokens: found.word.tokens.map(stripRuby) },
-    meaning: found.meaning,
+    prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
+    word,
+    translation: translation.text,
     scheme,
     reading,
   };
+};
+
+/** The script subtag of a language tag (apc-Latn-LB → Latn). */
+const scriptSubtag = (lang: string): string | undefined => /-([A-Z][a-z]{3})(?:-|$)/u.exec(lang)?.[1];
+
+/**
+ * Whether an answer is written in `spelled`'s script rather than the word's own: some letter of
+ * that script and none of the word's (Latin letters for an Arabic word: Arabizi).
+ */
+const writtenIn = (spelled: TaggedText, word: TaggedText, answer: string): boolean => {
+  const theirs = scriptSubtag(spelled.lang);
+  const ours = scriptSubtag(word.lang);
+  if (theirs === undefined || ours === undefined || theirs === ours) return false;
+  const letter = (script: string): RegExp => new RegExp(`\\p{Script_Extensions=${script}}`, "u");
+  return letter(theirs).test(answer) && !letter(ours).test(answer);
 };
 
 /** KC templates that need a clip of the word. */
@@ -810,8 +1125,6 @@ export const KC_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext
   "select-image": makeSelectImage,
   "listen-select": makeListenSelect,
   "minimal-pair": makeMinimalPair,
-  vocalize: makeVocalize,
-  transcribe: makeTranscribe,
 };
 
 export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, s: BundleSentence) => Exercise | undefined>>> = {
@@ -823,6 +1136,8 @@ export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeC
   "gap-fill": makeGapFill,
   "char-read": makeCharRead,
   "reading-disambiguation": makeReadingDisambiguation,
+  vocalize: makeVocalize,
+  transcribe: makeTranscribe,
   "speak.tier-0": makeSpeak,
   speak: makeSpeakScored,
   "listen-speak": makeListenSpeak,
@@ -839,16 +1154,24 @@ const choice = (index: number, answer: number, solution: TaggedText | undefined)
   solution,
 });
 
+/**
+ * Grades through the accept set. The wording the card shows as the answer is the canonical one:
+ * the notation's own canonical path includes every optional part ([Yo] me llamo…), which the shown
+ * text may leave out. An answer on the shown wording's path is CORRECT (not "another correct
+ * solution" that repeats it); another accepted wording is CORRECT_ALT, with the shown one beside it.
+ */
 const graded = (grader: Grader, ex: { readonly orthography: string; readonly accept: string }, answer: string, solution: TaggedText): Outcome => {
   const g = grader.grade(ex.orthography, ex.accept, answer);
-  return { verdict: g.verdict, notes: g.notes, solution, alignment: g.alignment, closestIsSolution: g.canonical };
+  // The accepted wording nearest the shown text: the shown text itself, which every set holds.
+  const onShown = g.matched === grader.grade(ex.orthography, ex.accept, surfaceOf(solution)).matched;
+  const verdict = g.verdict === "CORRECT_ALT" && onShown ? "CORRECT" : g.verdict === "CORRECT" && !onShown ? "CORRECT_ALT" : g.verdict;
+  return { verdict, notes: g.notes, solution, alignment: g.alignment, closestIsSolution: onShown };
 };
 
 const mismatch = (ex: Exercise, response: Response): never => {
   throw new Error(`${ex.template} cannot take a ${response.tag} response`);
 };
 
-/** Pure: the outcome of a response (§8.3). Grading of typed and tiled answers goes through the grader. */
 /**
  * What the learner answered, as text: typed, built from tiles, or the option chosen (in its
  * sentence, where the exercise fills a gap). A report of a choice or a tile order needs it,
@@ -864,6 +1187,18 @@ export const answerTextOf = (ex: Exercise, response: Response): string | undefin
   return "before" in ex && "after" in ex ? `${surfaceOf(ex.before)}${chosen}${surfaceOf(ex.after)}` : chosen;
 };
 
+/**
+ * The word a wrong choice chose, on a card whose options are words of the course
+ * (`TemplateInfo.wordOptions`): what the feedback says the meaning of (P3, ADR 0121). None for a
+ * right choice, or another card.
+ */
+export const chosenWordOf = (ex: Exercise, response: Response | null | undefined): TaggedText | undefined => {
+  if (response?.tag !== "choice" || TEMPLATES[ex.template].wordOptions !== true || !("options" in ex) || !("answer" in ex) || response.index === ex.answer) return undefined;
+  const option: TaggedText | { readonly text: TaggedText } | undefined = ex.options[response.index];
+  return option === undefined ? undefined : "tokens" in option ? option : option.text;
+};
+
+/** Pure: the outcome of a response (§8.3). Grading of typed and tiled answers goes through the grader. */
 export const gradeExercise = (ex: Exercise, response: Response, grader: Grader): Outcome => {
   switch (ex.template) {
     case "select-image":
@@ -882,9 +1217,16 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "tone-identify":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.syllable) : mismatch(ex, response);
     case "vocalize": {
+      if (response.tag === "choice") return choice(response.index, ex.answer, ex.options[ex.answer]);
       if (response.tag !== "text") return mismatch(ex, response);
-      const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional) }, surfaceOf(ex.vocalized), response.text);
-      return { verdict: g.verdict, notes: g.notes, solution: ex.vocalized };
+      // Typed in an orthography that spells the vowels (Arabizi): the word as it writes it, exactly
+      // as the profile compares letters, since a slip there may be a vowel. Anything else is wrong.
+      if (ex.spelled !== undefined && writtenIn(ex.spelled, ex.vocalized, response.text)) {
+        const verdict = grader.grade(ex.spelled.orthography, literalAccept(surfaceOf(ex.spelled)), response.text).verdict;
+        const right = verdict === "CORRECT" || verdict === "CORRECT_ALT" || verdict === "CORRECT_VARIANT" || verdict === "CORRECT_MARKS";
+        return { verdict: right ? "CORRECT" : "WRONG", notes: [], solution: ex.spelled };
+      }
+      return { verdict: "WRONG", notes: [], solution: ex.spelled ?? ex.vocalized };
     }
     case "transcribe": {
       if (response.tag !== "text") return mismatch(ex, response);
@@ -894,7 +1236,7 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "speak":
     case "listen-speak": {
       // Without a microphone the learner rates themselves, as at tier 0.
-      if (response.tag === "self-rating") return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [], solution: ex.prompt };
+      if (response.tag === "self-rating") return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [], solution: ex.prompt, selfRated: true };
       if (response.tag !== "speech") return mismatch(ex, response);
       const { verdict, notes, offTokens } = gradeSpeech(response.result);
       return { verdict, notes, solution: ex.prompt, offTokens };
@@ -923,7 +1265,7 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
         : mismatch(ex, response);
     case "speak.tier-0":
       if (response.tag !== "self-rating") return mismatch(ex, response);
-      return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [] };
+      return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [], selfRated: true };
   }
 };
 
@@ -963,6 +1305,47 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
       return ex.vocalized;
     case "transcribe":
       return ex.reading;
+    case "match-pairs":
+    case "letter-pairs":
+      return undefined;
+  }
+};
+
+/**
+ * What a card showed to ask its question, where that was text other than its answer (the end of a
+ * session lists a missed card with it, P9): its prompt, a gap's hint, the word in its context. None
+ * for a card asked by ear, a sentence to say (its prompt is its answer), a story's gap or the pairs.
+ */
+export const promptOf = (ex: Exercise): TaggedText | undefined => {
+  switch (ex.template) {
+    case "select-image":
+    case "choose-translation":
+    case "translate-tap.l2-l1":
+    case "translate-tap.l1-l2":
+    case "word-write":
+    case "translate-type.l1-l2":
+    case "complete-translation":
+    case "char-read":
+    case "letter-read":
+    case "word-read":
+    case "vocalize":
+    case "transcribe":
+    case "story-choose":
+    case "story-arrange":
+      return ex.prompt;
+    case "gap-fill":
+      return ex.hint;
+    case "reading-disambiguation":
+      return ex.context;
+    case "speak.tier-0":
+    case "speak":
+    case "listen-speak":
+    case "listen-tap":
+    case "listen-type":
+    case "listen-select":
+    case "minimal-pair":
+    case "tone-identify":
+    case "story-complete":
     case "match-pairs":
     case "letter-pairs":
       return undefined;

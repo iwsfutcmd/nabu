@@ -5,7 +5,7 @@
  * practice and rereading.
  */
 import type { BundleNode, BundleUnit } from "@nabu/schema";
-import { lessonNodes } from "../lesson/build.ts";
+import { lessonNodes } from "../lesson/nodes.ts";
 import { scriptNodes } from "../lesson/script.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { LearnerState } from "./state.ts";
@@ -34,6 +34,43 @@ export const pathNodes = (course: CourseView): readonly PathEntry[] => {
       if (lessons.has(node.id)) return [{ unit, node, kind: "lesson" }];
       return node.kind === "story" && stories.has(node.id) ? [{ unit, node, kind: "story" }] : [];
     });
+  });
+};
+
+/** A path entry as the course page numbers it (S11 in the 2026-11 review). */
+export interface NumberedEntry extends PathEntry {
+  /** A lesson's number within its unit, from 1; none for a story or a practice node (a drill). */
+  readonly number: number | undefined;
+}
+
+/** A unit on the path: its entries in order, numbered as the course page shows them. */
+export interface PathUnit {
+  readonly unit: BundleUnit;
+  /**
+   * Its number among the course's units with lessons, from 1, as the course list counts units; none
+   * for a unit without one (a generated drill, such as numbers, is a unit of practice nodes only).
+   */
+  readonly number: number | undefined;
+  readonly entries: readonly NumberedEntry[];
+}
+
+/**
+ * The path by unit (S11): a lesson is numbered within its unit, so a learner reads "Unit 7, lesson 2"
+ * rather than "Lesson 43". Units without entries (a script track's, ADR 0088) are not on it.
+ */
+export const pathUnits = (course: CourseView): readonly PathUnit[] => {
+  const byUnit: { unit: BundleUnit; entries: PathEntry[] }[] = [];
+  for (const entry of pathNodes(course)) {
+    const last = byUnit.at(-1);
+    if (last?.unit === entry.unit) last.entries.push(entry);
+    else byUnit.push({ unit: entry.unit, entries: [entry] });
+  }
+  let units = 0;
+  return byUnit.map(({ unit, entries }) => {
+    const lesson = (e: PathEntry): boolean => e.kind === "lesson" && e.node.kind === "lesson";
+    const number = entries.some(lesson) ? ++units : undefined;
+    let lessons = 0;
+    return { unit, number, entries: entries.map((e) => ({ ...e, number: lesson(e) ? ++lessons : undefined })) };
   });
 };
 

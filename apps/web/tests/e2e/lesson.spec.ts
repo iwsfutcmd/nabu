@@ -9,8 +9,9 @@
  * page's clock, writes the history of a learner who finished the earlier
  * lessons into the device's log, and plans the same session the app plans.
  */
+import { lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
-import { historyBefore, loadCourse, logOf, planned, playSession, seedLog, sessionUrl, type Mode } from "./solver.ts";
+import { answer, expectRightAndContinue, graded, historyBefore, loadCourse, logOf, planned, playSession, seedLog, sessionUrl, waitFor, type Mode } from "./solver.ts";
 
 const SEED = 7;
 const NOW = new Date("2026-03-10T09:00:00Z");
@@ -66,7 +67,7 @@ for (const mode of ["keyboard", "touch"] as const) {
       // The device's log holds the session, credited and summarized.
       await expect
         .poll(async () => (await logOf(page, id)).find((e) => e.type === "session_completed" && e.node === node))
-        .toMatchObject({ mode: "lesson", orthography, summary: { completed: true, exercises: exercises.length, correctFirstTry: exercises.length, retries: 0, skipped: 0 } });
+        .toMatchObject({ mode: "lesson", orthography, summary: { completed: true, exercises: graded(exercises), correctFirstTry: graded(exercises), retries: 0, skipped: 0 } });
       expect(violations).toEqual([]);
       expect(errors).toEqual([]);
     });
@@ -87,7 +88,9 @@ test("Cantonese words show their Jyutping, as sentences do, and the toggle hides
   const words = player.locator("[data-pair^=left]");
   await expect(words).not.toHaveCount(0);
   for (const word of await words.all()) await expect(word.locator("rt")).not.toHaveCount(0);
-  await page.locator("[data-toggle=readings]").click();
+  // The readings switch is in the header's display menu (P12).
+  await page.locator("[data-lesson-player] [data-action=display]").click();
+  await page.locator("[data-display-menu] [data-toggle=readings]").click();
   await expect(player.locator("rt")).toHaveCount(0);
 });
 
@@ -103,7 +106,9 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   const player = page.locator("[data-lesson-player]");
   await expect(player).toHaveAttribute("data-state", "answering");
   await expect(player.locator("rt")).toHaveCount(0);
-  const readings = page.locator("[data-toggle=readings]");
+  // The choice is in the header's display menu (P12).
+  await page.locator("[data-lesson-player] [data-action=display]").click();
+  const readings = page.locator("[data-display-menu] [data-toggle=readings]");
   await expect(readings.locator("[data-reading]")).toHaveText(["Off", "Pinyin", "Jyutping", "Middle Chinese (Baxter)"]);
   await readings.locator("[data-reading=pinyin]").click();
   await expect(player.locator("rt").first()).toHaveAttribute("lang", "zh-Latn-pinyin");
@@ -115,7 +120,111 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   await page.goto(sessionUrl(course, { mode: "lesson", node: "lzh.u01.it-is" }, SEED));
   await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "answering");
   await expect(page.locator("[data-lesson-player] rt").first()).toHaveAttribute("lang", "ltc-Latn-x-baxter");
-  await page.locator("[data-toggle=readings] [data-reading=off]").click();
+  await page.locator("[data-lesson-player] [data-action=display]").click();
+  await page.locator("[data-display-menu] [data-toggle=readings] [data-reading=off]").click();
   await expect(page.locator("[data-lesson-player] rt")).toHaveCount(0);
 });
 
+test("vertical text on a phone keeps the readings, turns only the Cantonese and leaves Check in sight (W6)", async ({ page }, info) => {
+  test.skip(info.project.name !== "touch", "a phone: the touch pass");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("yue", "yue-Hant-HK/standard");
+  const node = "yue.yum-cha";
+  const history = historyBefore(course, node, NOW);
+  if (history.length > 0) await seedLog(page, history);
+  const exercises = planned(course, history, { mode: "lesson", node }, NOW, SEED);
+  const [first] = exercises;
+  if (first?.template !== "translate-tap.l1-l2") throw new Error("yue.yum-cha opens on a word bank");
+  expect(first.tiles.length).toBeGreaterThan(6);
+  await page.goto(sessionUrl(course, { mode: "lesson", node }, SEED));
+  const player = page.locator("[data-lesson-player]");
+  await expect(player).toHaveAttribute("data-state", "answering");
+  const bank = player.locator("[data-word-bank]");
+  const readings = await bank.locator("rt").count();
+  expect(readings).toBeGreaterThan(0);
+
+  // Vertical text, from the header's display menu.
+  await player.locator("[data-action=display]").tap();
+  await page.locator("[data-display-menu] [data-toggle=vertical]").tap();
+  await page.keyboard.press("Escape");
+  await expect(page.locator("[data-display-menu]")).toHaveCount(0);
+  const region = player.locator("[data-target-region]");
+  await expect(region).toHaveAttribute("data-writing-mode", "vertical-rl");
+  expect(await region.evaluate((el) => getComputedStyle(el).writingMode)).toBe("vertical-rl");
+  // The readings stay, beside the columns.
+  await expect(bank.locator("rt")).toHaveCount(readings);
+  // The bank goes on in columns beside the answer, not down the screen: Check is in sight.
+  const viewport = page.viewportSize();
+  const check = await player.locator("[data-action=check]").boundingBox();
+  expect(check!.y + check!.height).toBeLessThanOrEqual(viewport!.height);
+
+  // On through the lesson's banks to a card whose prompt is Cantonese.
+  const at = exercises.findIndex((e) => e.template === "translate-tap.l2-l1");
+  expect(at).toBeGreaterThan(0);
+  for (const ex of exercises.slice(0, at)) {
+    await waitFor(page, ex);
+    if (ex.template === "translate-tap.l1-l2") await expect(region).toHaveAttribute("data-writing-mode", "vertical-rl");
+    await answer(page, ex, "touch");
+    await expectRightAndContinue(page, "touch", ex);
+  }
+  const prompted = exercises[at];
+  if (prompted === undefined) throw new Error("no card with a Cantonese prompt");
+  await waitFor(page, prompted);
+  // Its text turns into a column with its readings; its play buttons and their label stay horizontal.
+  const prompt = player.locator("[data-ink-container=prompt]");
+  await expect(prompt).toHaveAttribute("data-writing-mode", "vertical-rl");
+  expect(await prompt.locator("p[data-nabu-text]").evaluate((el) => getComputedStyle(el).writingMode)).toBe("vertical-rl");
+  await expect(prompt.locator("rt").first()).toBeVisible();
+  for (const chrome of await prompt.locator("[data-audio-buttons]").all()) expect(await chrome.evaluate((el) => getComputedStyle(el).writingMode)).toBe("horizontal-tb");
+});
+
+test("Persian marks vowels on new words until the learner chooses, and the choice holds for the course (P12)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const [first, second] = lessonNodes(course).map((n) => n.node.id);
+  if (first === undefined || second === undefined) throw new Error("fa has two lessons");
+  const player = page.locator("[data-lesson-player]");
+  const menu = page.locator("[data-display-menu] [data-toggle=marks]");
+  await page.goto(sessionUrl(course, { mode: "lesson", node: first }, SEED));
+  await expect(player).toHaveAttribute("data-state", "answering");
+  // The profile's default (on-for-new-words): marks on the words not yet known.
+  await player.locator("[data-action=display]").click();
+  await expect(menu).toHaveAttribute("data-marks-shown", "new");
+  await expect(menu.locator("[data-marks]")).toHaveText(["All words", "New words", "None"]);
+  await menu.locator("[data-marks=hide]").click();
+  await expect(menu).toHaveAttribute("data-marks-shown", "hide");
+  // Another lesson of the course starts from the learner's choice.
+  await page.goto(sessionUrl(course, { mode: "lesson", node: second }, SEED));
+  await expect(player).toHaveAttribute("data-state", "answering");
+  await player.locator("[data-action=display]").click();
+  await expect(menu).toHaveAttribute("data-marks-shown", "hide");
+});
+
+
+test("quitting says what is kept, in the app's face, and goes straight back to the path (P8)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("es", "es-Latn/standard");
+  const node = "es.u01.como-estas";
+  const history = historyBefore(course, node, NOW);
+  if (history.length > 0) await seedLog(page, history);
+  const [first] = planned(course, history, { mode: "lesson", node }, NOW, SEED);
+  if (first === undefined) throw new Error("the lesson has cards");
+  await page.goto(sessionUrl(course, { mode: "lesson", node }, SEED));
+  await waitFor(page, first);
+  await answer(page, first, "keyboard");
+  await expectRightAndContinue(page, "keyboard", first);
+  await page.locator("[data-lesson-player] [data-action=quit]").click();
+  const dialog = page.locator("[data-quit-dialog]");
+  await expect(dialog).toHaveAttribute("data-mode", "lesson");
+  await expect(dialog.locator("[data-quit-kept]")).toContainText("Your answers so far are kept");
+  // The chrome's face, not the browser's serif fallback: the dialog is portalled out of the app's root.
+  expect(await dialog.evaluate((el) => getComputedStyle(el).fontFamily)).toContain("Noto Sans");
+  await page.locator("[data-action=quit-confirm]").click();
+  await expect(page.locator("[data-course-path]")).toBeVisible();
+  // The session ends unfinished, scored over what was answered.
+  await expect
+    .poll(async () => (await logOf(page, "es")).find((e) => e.type === "session_completed" && e.node === node))
+    .toMatchObject({ summary: { completed: false, exercises: graded([first]) } });
+});

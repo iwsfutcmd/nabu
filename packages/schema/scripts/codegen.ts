@@ -1,14 +1,17 @@
 /**
- * schemas/*.schema.json → src/generated/schema.ts
+ * schemas/*.schema.json → src/generated/schema.ts, and profiles/schemes/*.yaml →
+ * src/generated/schemes.json
  *
  * json-schema-to-typescript does the translation; a post-pass then makes every
  * property, index signature, array and tuple readonly, so generated types match
  * gameplan §6.1. Run `pnpm codegen` from the repo root; CI fails if the output
  * differs from what is checked in.
  */
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { Ajv2020 } from "ajv/dist/2020.js";
 import { compile } from "json-schema-to-typescript";
+import { parse } from "yaml";
 import { bundle, readSchemas } from "./bundle.ts";
 import { makeReadonly } from "./readonly.ts";
 
@@ -44,4 +47,28 @@ const generated = await compile(schema as Parameters<typeof compile>[0], "NabuSc
 mkdirSync(resolve(OUT, ".."), { recursive: true });
 writeFileSync(OUT, BANNER + makeReadonly(generated));
 console.log(`wrote ${OUT}`);
+
+// profiles/schemes/*.yaml → src/generated/schemes.json (ADR 0109): the reading schemes, validated
+// against their schema, for core (`@nabu/schema/schemes`). The pipeline reads the YAML itself.
+const SCHEMES_DIR = resolve(import.meta.dirname, "../../../profiles/schemes");
+const SCHEMES_OUT = resolve(import.meta.dirname, "../src/generated/schemes.json");
+const ajv = new Ajv2020({ strict: true, allErrors: true });
+ajv.addKeyword({ keyword: "tsType", schemaType: "string" });
+for (const { schema: s } of readSchemas()) ajv.addSchema(s);
+const validate = ajv.getSchema("https://nabu.invalid/schemas/v0/reading-scheme.schema.json");
+if (validate === undefined) throw new Error("no reading-scheme schema");
+const schemes = readdirSync(SCHEMES_DIR)
+  .filter((f) => /\.ya?ml$/u.test(f))
+  .sort()
+  .map((f) => {
+    const data = parse(readFileSync(resolve(SCHEMES_DIR, f), "utf8")) as { readonly id?: unknown };
+    if (!validate(data)) throw new Error(`profiles/schemes/${f}: ${ajv.errorsText(validate.errors)}`);
+    if (`${String(data.id)}.yaml` !== f) throw new Error(`profiles/schemes/${f}: its id is ${String(data.id)}`);
+    return data;
+  });
+// Invisible characters (a Persian name's ZWNJ) as escapes, never literal, as the UI catalogs keep them.
+const escaped = (json: string): string =>
+  json.replace(/[\u00AD\u061C\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u2069\uFEFF]/gu, (c) => `\\u${(c.codePointAt(0) ?? 0).toString(16).padStart(4, "0")}`);
+writeFileSync(SCHEMES_OUT, escaped(`${JSON.stringify(schemes, null, 2)}\n`));
+console.log(`wrote ${SCHEMES_OUT}`);
 

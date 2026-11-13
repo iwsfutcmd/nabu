@@ -22,6 +22,7 @@ from typing import Any, cast
 import yaml
 
 from nabu import yamlio
+from nabu.notation import escape
 
 SLUG = re.compile(r"[^a-z0-9]+")
 WORD = re.compile(r"[\w\u200cʻʼ'’-]+")
@@ -49,11 +50,6 @@ def _alternatives(item: dict[str, Any], main: str, alt: str) -> list[str]:
     return [first, *[r for r in rest if r and r != first]]
 
 
-def _escape(text: str) -> str:
-    """Accept-set notation treats ( ) [ ] | \\ as syntax."""
-    return re.sub(r"([()\[\]|\\])", r"\\\1", text)
-
-
 def import_course(
     root: Path, course_id: str, orthography: str, support: str = "en-Latn/standard"
 ) -> Imported:
@@ -70,6 +66,8 @@ def import_course(
             else f"{target}-{orthography.split('/')[0].split('-')[1]}",
             "orthographies": [orthography],
             "support": [support],
+            # What the app calls it (ADR 0109): LibreLingo names the language, in the support one.
+            "names": {support_key: {"course": str(meta["Language"]["Name"])}},
             "license": license_,
             "provenance": {
                 "author": f"human:librelingo-{slug(str(meta['Language']['Name']))}",
@@ -128,14 +126,14 @@ def import_course(
                                 "text": text,
                                 "tokens": tokens,
                                 "reverse": "\n".join(
-                                    _escape(a)
+                                    escape(a)
                                     for a in _alternatives(phrase, "Phrase", "Alternative versions")
                                 ),
                             }
                         },
                         "translations": {
                             support_key: "\n".join(
-                                _escape(a)
+                                escape(a)
                                 for a in _alternatives(
                                     phrase, "Translation", "Alternative translations"
                                 )

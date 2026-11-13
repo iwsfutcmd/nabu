@@ -7,8 +7,9 @@
 import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
-import { facetOf, ratingOf, type Rating } from "./credit.ts";
-import { initialPerformance, update, type Performance } from "./performance.ts";
+import { SPEAKING, TEMPLATES } from "../lesson/templates.ts";
+import { facetOf, ratingOf, type Pace, type Rating } from "./credit.ts";
+import { initialPerformance, learn, type Performance, type PerformanceDraft } from "./performance.ts";
 import { withRevisions } from "./revisions.ts";
 
 /** An FSRS card as plain JSON: dates as ISO strings. */
@@ -32,27 +33,62 @@ export interface Mistake {
 }
 
 export interface LearnerState {
-  /** Ids of applied events: replaying a duplicate changes nothing. */
-  readonly seen: Readonly<Record<string, true>>;
   readonly cards: Readonly<Record<string, StoredCard>>;
   readonly performance: Performance;
   readonly xp: { readonly total: number; readonly byDate: Readonly<Record<string, number>> };
   readonly completedNodes: readonly string[];
   readonly mistakes: readonly Mistake[];
-  /** Recent answer latencies per template (ms), for "slow" in the rating map (§9.2). */
+  /**
+   * Recent first-try answer times per template, per unit of length (ms per (PACE_OVERHEAD + KCs)): the
+   * learner's usual, which an answer's pace is judged against (§9.2, ADR 0096).
+   */
   readonly latencies: Readonly<Partial<Record<TemplateId, readonly number[]>>>;
   /** Facets already rated in the current session: each at most once per session (§9.2). */
   readonly rated: { readonly session: string; readonly keys: readonly string[] };
+  /** Known words (ADR 0100): the local date each KC was first met (its first answer). */
+  readonly met: Readonly<Record<string, string>>;
+  /**
+   * Known words (ADR 0100): the local date each skill (a recognize, produce or listen card) was
+   * last shown: a first try right, not self-rated, on a later day than the KC was met and than the
+   * skill was last missed. A miss takes it away.
+   */
+  readonly shown: Readonly<Record<string, string>>;
+  /** The local date each skill was last missed (a first try wrong, or the answer revealed). */
+  readonly missed: Readonly<Record<string, string>>;
+  /**
+   * The last RECENT_WINDOW graded first tries, right or not, oldest first (self-ratings left out, a
+   * revealed answer counted as missed): how recent practice went, for the learning pace (ADR 0105).
+   */
+  readonly recent: readonly boolean[];
 }
 
+/** How many graded first tries the learning pace looks back over (ADR 0105): about four sessions. */
+export const RECENT_WINDOW = 60;
+
 export const DESIRED_RETENTION = 0.9;
-export const XP = { answer: 1, session: 10, perfect: 5 } as const;
+/**
+ * XP as the game's default rules pay it (ADR 0107; the game projection is the one the app shows): a
+ * point a right answer; a point a card for a finished session, up to `session`; `perfect` more for a
+ * session of at least `perfectFrom` cards all right the first time; a lesson done before, its answers only.
+ */
+export const XP = { answer: 1, session: 10, perfect: 5, perfectFrom: 5 } as const;
 const LATENCY_WINDOW = 25;
+/**
+ * Pace (ADR 0096). An answer's time is compared per unit of length, its KCs plus a fixed part for
+ * reading the card and deciding (PACE_OVERHEAD KCs' worth), against the learner's usual for the
+ * template: more than PACE_SLOW times it is slow (Hard), at most PACE_FAST times it is fast (Easy
+ * on a typed card already sure). Being slower than one's own median, as before, made half of all
+ * right answers Hard.
+ */
+const PACE_OVERHEAD = 2;
+const PACE_SLOW = 2;
+const PACE_FAST = 0.5;
+/** Easy only for a card this sure before the answer: a new or fading card earns Good at most. */
+const EASY_RECALL = 0.9;
 const STORY_TEMPLATES: ReadonlySet<TemplateId> = new Set(["story-choose", "story-complete", "story-arrange"]);
 const MISTAKES_KEPT = 50;
 
 export const emptyLearnerState = (): LearnerState => ({
-  seen: {},
   cards: {},
   performance: initialPerformance(),
   xp: { total: 0, byDate: {} },
@@ -60,6 +96,10 @@ export const emptyLearnerState = (): LearnerState => ({
   mistakes: [],
   latencies: {},
   rated: { session: "", keys: [] },
+  met: {},
+  shown: {},
+  missed: {},
+  recent: [],
 });
 
 /**
@@ -112,7 +152,7 @@ export const retrievability = (state: LearnerState, kc: string, facet: Facet, or
 export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string): number =>
   kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now), 0) / kcs.length;
 
-const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good };
+const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good, easy: FsrsRating.Easy };
 
 const median = (xs: readonly number[]): number | undefined => {
   if (xs.length < 5) return undefined;
@@ -120,16 +160,22 @@ const median = (xs: readonly number[]): number | undefined => {
   return sorted[Math.floor(sorted.length / 2)];
 };
 
-/** Mutable working copy used inside one fold; never escapes. */
+/**
+ * Mutable working copy used inside one fold: a deep copy of the state it starts from, changed in
+ * place event by event (ADR 0119), and handed back as the new state when the fold is done.
+ */
 interface Draft {
-  seen: Record<string, true>;
   cards: Record<string, StoredCard>;
-  performance: Performance;
+  performance: PerformanceDraft;
   xp: { total: number; byDate: Record<string, number> };
   completedNodes: string[];
   mistakes: Mistake[];
   latencies: Partial<Record<TemplateId, number[]>>;
   rated: { session: string; keys: string[] };
+  met: Record<string, string>;
+  shown: Record<string, string>;
+  missed: Record<string, string>;
+  recent: boolean[];
 }
 
 const draftOf = (s: LearnerState): Draft => structuredClone(s) as Draft;
@@ -139,7 +185,7 @@ const addXp = (d: Draft, date: string, amount: number): void => {
   d.xp.byDate[date] = (d.xp.byDate[date] ?? 0) + amount;
 };
 
-const rate = (d: Draft, e: LearnerEvent, kc: string, facet: Facet, rating: Rating): void => {
+const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, rating: Rating): void => {
   const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
   const key = cardKey(kc, facet, e.orthography);
@@ -147,7 +193,30 @@ const rate = (d: Draft, e: LearnerEvent, kc: string, facet: Facet, rating: Ratin
   d.rated.keys.push(key);
   const now = new Date(at);
   const card = d.cards[key] === undefined ? createEmptyCard(now) : toCard(d.cards[key]);
-  d.cards[key] = fromCard(scheduler.next(card, now, GRADES[rating]).card);
+  // Easy is for recall that was already sure (ADR 0096): a new or fading card earns Good at most.
+  const sure = d.cards[key] !== undefined && scheduler.get_retrievability(card, now, false) >= EASY_RECALL;
+  const grade = rating === "easy" && !sure ? "good" : rating;
+  d.cards[key] = fromCard(scheduler.next(card, now, GRADES[grade]).card);
+};
+
+/** The skills a word is known by (ADR 0100): recognizing it, producing it, hearing it. */
+export const SKILL_FACETS: ReadonlySet<Facet> = new Set<Facet>(["recognize", "produce", "listen"]);
+
+/**
+ * A skill shown or missed (ADR 0100). It is shown only on a later day than the word was met and
+ * than the skill was last missed: after a night, and again after a night once it slips (D2, D3).
+ */
+const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
+  if (!SKILL_FACETS.has(facet)) return;
+  const key = cardKey(kc, facet, e.orthography);
+  if (!right) {
+    delete d.shown[key];
+    d.missed[key] = e.localDate;
+    return;
+  }
+  const met = d.met[kc];
+  const missed = d.missed[key];
+  if (met !== undefined && e.localDate > met && (missed === undefined || e.localDate > missed)) d.shown[key] = e.localDate;
 };
 
 const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean): void => {
@@ -159,19 +228,39 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   const { template, item, kcs } = e.exercise;
   const facet = facetOf(template);
   const correct = e.outcome.kind.startsWith("CORRECT");
-  // The performance model learns from first tries only; retries are biased.
+  // The performance model learns from first tries only; retries are biased. Its memory feature is
+  // the recall of what the answer is credited to (a blank's word), as the planner predicts it.
   if (e.attempt === 1) {
-    const r = meanRetrievability(d, kcs, facet, e.orthography, e.clientTime);
-    d.performance = update(d.performance, { template, facet, item, kcs, r }, correct);
+    const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
+    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime);
+    learn(d.performance, { template, facet, item, kcs, r }, correct);
   }
+  // Pace: this answer's time per unit of length against the learner's usual for the template. Only
+  // first tries make the usual (a retry is quicker for having just seen the answer).
   const recent = d.latencies[template] ?? [];
   const typical = median(recent);
-  const slow = typical !== undefined && e.input.latencyMs > typical;
-  d.latencies[template] = [...recent, e.input.latencyMs].slice(-LATENCY_WINDOW);
+  const perUnit = e.input.latencyMs / (PACE_OVERHEAD + kcs.length);
+  const pace: Pace = typical === undefined ? "usual" : perUnit > PACE_SLOW * typical ? "slow" : perUnit <= PACE_FAST * typical ? "fast" : "usual";
+  if (e.attempt === 1) d.latencies[template] = [...recent, perUnit].slice(-LATENCY_WINDOW);
+  const typed = TEMPLATES[template].modality.input === "text";
+  // A word's meaning looked up on the card before answering (D16): a hint, except on a speaking card,
+  // which shows what the sentence means anyway and asks for it to be said (D16c).
+  const hinted = e.input.hinted === true && !SPEAKING.has(template);
   for (const credit of e.outcome.kcs) {
-    const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, slow, e.input.selfRating);
+    const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, pace, e.input.selfRating, typed, hinted);
     if (rating !== undefined) rate(d, e, credit.kc, facet, rating);
   }
+  // Known words (ADR 0100): which skills a first try showed or missed, then what the learner has met.
+  // A miss counts against a word only where the grading pins it there: a word card, or a sentence
+  // with other words right. A sentence missed as a whole says nothing about which word failed. A
+  // hinted first try (D16) shows no skill and misses none; it still counts in recent practice.
+  if (e.attempt === 1 && e.input.selfRating === undefined) {
+    d.recent = [...d.recent, correct].slice(-RECENT_WINDOW);
+    const credited = e.outcome.kcs.filter((c) => c.status !== "given");
+    const pinned = credited.length === 1 || credited.some((c) => c.status === "right");
+    if (!hinted) for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.kc, facet, c.status === "right");
+  }
+  for (const credit of e.outcome.kcs) d.met[credit.kc] ??= e.localDate;
   if (correct) addXp(d, e.localDate, XP.answer);
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
   // Story questions are not mistakes to practice: they only make sense inside their story.
@@ -182,16 +271,35 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
   if (e.reason !== "skip") return; // can't listen / can't speak: no update
   const facet = facetOf(e.exercise.template);
-  for (const kc of e.exercise.kcs) rate(d, e, kc, facet, "again"); // the answer was revealed
+  if (e.attempt === 1) d.recent = [...d.recent, false].slice(-RECENT_WINDOW);
+  for (const kc of e.exercise.kcs) {
+    rate(d, e, kc, facet, "again"); // the answer was revealed
+    if (e.exercise.kcs.length === 1) witness(d, e, kc, facet, false); // pinned on the word (ADR 0100)
+    d.met[kc] ??= e.localDate;
+  }
   noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true);
 };
 
 const completed = (d: Draft, e: SessionCompleted): void => {
+  // A placement test marks the nodes the learner placed out of as done (§9.5), and seeds their KCs
+  // (ADR 0111): a recognize card each, as if recalled with ease at the end of the test, so the
+  // planner counts them as seen, review brings them back at long intervals and the word list shows
+  // them. A KC with a card already keeps it. A test the learner stopped part-way places by its
+  // answers so far too (D9), as a stopped session: without the session's XP below.
+  if (e.mode === "placement") {
+    for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
+    const at = new Date(e.clientTime);
+    for (const kc of e.seeded ?? []) {
+      d.met[kc] ??= e.localDate;
+      const key = cardKey(kc, "recognize", e.orthography);
+      if (d.cards[key] === undefined) d.cards[key] = fromCard(scheduler.next(createEmptyCard(at), at, GRADES.easy).card);
+    }
+  }
   if (!e.summary.completed) return;
-  addXp(d, e.localDate, XP.session + (e.summary.exercises > 0 && e.summary.correctFirstTry === e.summary.exercises ? XP.perfect : 0));
+  const { exercises, correctFirstTry } = e.summary;
+  const replay = (e.mode === "lesson" || e.mode === "story") && e.node !== undefined && d.completedNodes.includes(e.node);
+  if (!replay) addXp(d, e.localDate, Math.min(XP.session, exercises) + (exercises >= XP.perfectFrom && correctFirstTry === exercises ? XP.perfect : 0));
   if ((e.mode === "lesson" || e.mode === "story") && e.node !== undefined && !d.completedNodes.includes(e.node)) d.completedNodes.push(e.node);
-  // A placement test marks the nodes the learner placed out of as done (§9.5).
-  if (e.mode === "placement") for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
 };
 
 /**
@@ -208,11 +316,13 @@ const startOver = (d: Draft): void => {
   d.mistakes = fresh.mistakes;
   d.latencies = fresh.latencies;
   d.rated = fresh.rated;
+  d.met = fresh.met;
+  d.shown = fresh.shown;
+  d.missed = fresh.missed;
+  d.recent = fresh.recent;
 };
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {
-  if (d.seen[e.id] === true) return;
-  d.seen[e.id] = true;
   switch (e.type) {
     case "answer_submitted":
       answered(d, e);
@@ -226,12 +336,14 @@ const applyOne = (d: Draft, e: LearnerEvent): void => {
     case "progress_reset":
       startOver(d);
       return;
-    // Revisions rewrite earlier answers: replay applies them (withRevisions), not this fold.
+    // Revisions rewrite earlier answers: replay applies them (withRevisions), not this fold. The
+    // weekly goal is the game's (ADR 0107): it changes nothing the learner model holds.
     case "session_started":
     case "exercise_presented":
     case "answer_reported":
     case "sentence_reported":
     case "outcome_revised":
+    case "goal_set":
       return;
   }
 };
@@ -242,12 +354,43 @@ export const compareEvents = (a: LearnerEvent, b: LearnerEvent): number => {
   return t !== 0 ? t : a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
 };
 
-/** Applies events in order to a state. For a log that may contain late arrivals or revisions, use replay. */
+/**
+ * Which events the fold reads (applyOne); the rest change nothing it holds. Revisions reach it
+ * through replay's withRevisions. Every event type is listed, so a new one has to be placed here.
+ */
+const FOLDS: Readonly<Record<LearnerEvent["type"], boolean>> = {
+  answer_submitted: true,
+  exercise_skipped: true,
+  session_completed: true,
+  progress_reset: true,
+  session_started: false,
+  exercise_presented: false,
+  answer_reported: false,
+  sentence_reported: false,
+  outcome_revised: false,
+  goal_set: false,
+};
+
+/**
+ * Applies new events, in order, to a state: the events a device has just recorded, which are the
+ * newest in its log. An event appears once however often it is given here, but one the state has
+ * already folded in would count again: the state keeps no record of the events it holds (R1 in
+ * the 2026-11 review: copying that record cost every recorded event as much as the whole log). A
+ * log that may repeat events, arrive late or hold revisions is replayed. Events that change nothing
+ * (an exercise shown, a report) give back the same state, uncopied.
+ */
 export const applyEvents = (state: LearnerState, events: readonly LearnerEvent[]): LearnerState => {
+  const folded = events.filter((e) => FOLDS[e.type]);
+  if (folded.length === 0) return state;
   const d = draftOf(state);
-  for (const e of events) applyOne(d, e);
+  const applied = new Set<string>();
+  for (const e of folded) {
+    if (applied.has(e.id)) continue;
+    applied.add(e.id);
+    applyOne(d, e);
+  }
   return d;
 };
 
-/** The state a whole event log projects to: order-independent and idempotent. */
+/** The state a whole event log projects to: order-independent and idempotent (a duplicate counts once). */
 export const replay = (events: readonly LearnerEvent[]): LearnerState => applyEvents(emptyLearnerState(), withRevisions(events).sort(compareEvents));

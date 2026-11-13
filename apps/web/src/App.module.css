@@ -46,6 +46,91 @@
   font-size: 1.25rem;
 }
 
+/* The home screen's first words, for a learner who has not started yet (S4). */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
+}
+
+.intro > p {
+  margin: 0;
+}
+
+/*
+ * A course in the list (S4): the whole card is its link (the name's link reaches over the card);
+ * a course's writing systems are links of their own above it.
+ */
+.courseCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.courseCard:hover {
+  border-color: var(--nabu-color-accent);
+}
+
+.courseLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.courseLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--nabu-radius-card);
+}
+
+.courseLink:focus-visible {
+  outline: none;
+}
+
+.courseLink:focus-visible::after {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.courseLine {
+  margin: 0;
+}
+
+/* What a course leaves out (no listening): a note, not an error. */
+.courseTag {
+  align-self: flex-start;
+  margin: 0;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-2);
+  font-size: 0.875rem;
+  background-color: var(--nabu-color-info-bg);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.scripts {
+  margin-block-start: var(--nabu-space-2);
+}
+
+.scripts .links {
+  margin-block-start: var(--nabu-space-2);
+}
+
+/* Above the card's own link; the name, then the hint, at the start. */
+.scripts .scriptLink {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.scriptHint {
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
 .muted {
   margin-block: var(--nabu-space-1) 0;
   color: var(--nabu-color-muted);
@@ -87,12 +172,63 @@
 .preview {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--nabu-space-2);
+  gap: var(--nabu-space-2) var(--nabu-space-3);
   font-size: 1.125rem;
+}
+
+/* A previewed word (S11): the word, and under it what it means (or a letter's Latin spelling). */
+.previewItem {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  max-inline-size: 10rem;
+  text-align: center;
+}
+
+/* Two lines at most: a meaning can run to a grammar note (yue's particles). Screen readers get it all. */
+.previewGloss {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .back {
   color: var(--nabu-color-accent);
+}
+
+/* A course page's top row (S8): back to the courses. */
+.pageLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--nabu-space-2) var(--nabu-space-4);
+}
+
+/*
+ * A course page's other pages, under its title (S2): the words learned, the sentence list, the
+ * learner's reports, Preferences and Offline, in a row that wraps. Each a full-height touch target.
+ */
+.courseLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--nabu-space-4);
+  margin-block: 0 var(--nabu-space-3);
+}
+
+.courseLinks a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  min-block-size: 2.75rem;
+  color: var(--nabu-color-accent);
+}
+
+.courseLinks a:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
 }
 
 /* Preferences: one choice of several, each a full-width row. */
@@ -125,11 +261,110 @@
   outline-offset: 2px;
 }
 
+/*
+ * The text size's sample (Preferences, S8): a sentence of the course at the size chosen, under the
+ * choices; its translation keeps its size.
+ */
+.sizeSample {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin-block: 0 var(--nabu-space-4);
+  margin-inline: 0;
+  padding: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.sampleCaption {
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+.sampleText {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.sampleTranslation {
+  margin: 0;
+}
+
+/* The reminder time (Preferences, ADR 0103): two choices, then a time field, hour and minute. */
+.reminderModes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
+.timeInput {
+  display: flex;
+  align-items: center;
+  inline-size: fit-content;
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.timeInput[data-focus-within] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 1px;
+}
+
+.timeSegment {
+  padding-inline: 0.125rem;
+  font-variant-numeric: tabular-nums;
+  border-radius: 0.25rem;
+}
+
+.timeSegment[data-placeholder] {
+  color: var(--nabu-color-muted);
+}
+
+/* The segment being typed into: the field's own outline marks the field, this the segment. */
+.timeSegment[data-focused] {
+  color: var(--nabu-color-accent-text);
+  background-color: var(--nabu-color-accent);
+  outline: none;
+}
+
 .link:focus-visible,
 .lesson:focus-visible,
 .back:focus-visible {
   outline: 3px solid var(--nabu-color-accent);
   outline-offset: 2px;
+}
+
+/*
+ * A screen's heading takes focus as the screen opens (screen.tsx). As everywhere, it shows a ring
+ * only after keyboard use; a screen without a heading takes focus itself, with no ring around it all.
+ */
+.page h1:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.page:focus,
+.player:focus {
+  outline: none;
+}
+
+/* Read by assistive tech, never seen: the heading of a screen whose design shows none (the lesson player). */
+.visuallyHidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* The course path (Phase 4). */
@@ -149,10 +384,19 @@
   border-radius: var(--nabu-radius-tile);
 }
 
+/*
+ * A note the learner should know about (a draft course, a break from listening, offline) is
+ * neutral. Only an error (role="alert") or a warning about losing progress takes the wrong colours.
+ */
 .notice {
   padding: var(--nabu-space-3);
-  background-color: var(--nabu-color-wrong-bg);
+  background-color: var(--nabu-color-info-bg);
   border-radius: var(--nabu-radius-tile);
+}
+
+.notice[role="alert"],
+.warning {
+  background-color: var(--nabu-color-wrong-bg);
 }
 
 .count {
@@ -170,9 +414,79 @@
   margin-block-start: var(--nabu-space-4);
 }
 
+/* A unit's heading on the path (S11): its number over its title, then its level and what is done. */
+.unitHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  margin-block-end: var(--nabu-space-3);
+}
+
 .unitTitle {
   margin-block: 0 var(--nabu-space-2);
   font-size: 1.125rem;
+}
+
+.unitName {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.unitNumber {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--nabu-color-muted);
+}
+
+.unitMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+.level {
+  padding-block: 0.125rem;
+  padding-inline: var(--nabu-space-2);
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-info-bg);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.unitAdvice {
+  margin: 0;
+}
+
+/* A finished unit's heading (S2): a button across the unit that shows its lessons again, or folds them away. */
+.unitToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nabu-space-3);
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: 2.75rem;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.unitToggle:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+/* A folded unit's lessons stay in the page, out of sight. */
+.list[hidden] {
+  display: none;
 }
 
 .lessonHead {
@@ -208,6 +522,17 @@
   color: var(--nabu-color-muted);
   background-color: transparent;
   border-style: dashed;
+}
+
+/* The placement test's result, on the player's end screen (Placement.tsx): titled as the player titles it. */
+.resultTitle {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.resultUnit {
+  font-weight: 700;
 }
 
 /* Your progress and the optional account (Phase 4). */
@@ -304,11 +629,22 @@
   outline-offset: 2px;
 }
 
+/*
+ * A notice's actions (a break's: back on, or kept off): apart, so they read as two, and on a line of
+ * their own where they don't fit after the text, never indented by the space between them.
+ */
+.noticeActions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+}
+
 /* The game panel (§12): streak, freezes, quests, achievements. */
 .game {
   display: flex;
   flex-direction: column;
   gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
 }
 
 .streak {
@@ -321,6 +657,32 @@
 
 .streakCount {
   font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* The weekly goal (ADR 0107): the week's progress, or the choice of how many days. */
+.goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+  margin: 0;
+}
+
+.goalProgress {
+  font-weight: 700;
+}
+
+.goalChoices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+}
+
+.goalChoice {
+  box-sizing: border-box;
+  justify-content: center;
+  min-inline-size: 2.75rem;
   font-weight: 700;
 }
 
@@ -409,6 +771,32 @@
   border-inline-start: 3px solid var(--nabu-color-wrong);
 }
 
+/* The standings in their zones (M8): a zone that moves is named over its rows, not only coloured. */
+.zones,
+.zone {
+  display: flex;
+  flex-direction: column;
+}
+
+.zones {
+  gap: var(--nabu-space-3);
+}
+
+.zoneTitle {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+}
+
+/* Saying no to leagues, or taking part again (M8): who sees what, then the button. */
+.leagueChoice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--nabu-space-1);
+}
+
 /* Your voice (Phase 9): privacy statement and choices. */
 .voice {
   display: flex;
@@ -425,12 +813,11 @@
   min-block-size: 2.75rem;
 }
 
-/* The course's offline section (Phase 10). */
+/* A course's offline page (Phase 10): under its heading, no longer after the whole path (S2). */
 .offline {
   display: flex;
   flex-direction: column;
   gap: var(--nabu-space-3);
-  margin-block-start: var(--nabu-space-5);
 }
 
 .offlineUnits {
@@ -605,4 +992,197 @@
 .tab[data-focus-visible] {
   outline: 3px solid var(--nabu-color-accent);
   outline-offset: 2px;
+}
+
+/* Debug mode (Debug.tsx): a strip above every screen that says so and offers the way out. */
+.debugNotice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-4);
+  background-color: var(--nabu-color-focus-bg);
+}
+
+/* Continue (ADR 0105): the course page's main action, the line saying why, and the pace choice. */
+.continue {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+  margin-block: var(--nabu-space-4);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 3rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-5);
+  font-weight: 700;
+  color: var(--nabu-color-accent-text);
+  text-decoration: none;
+  background-color: var(--nabu-color-accent);
+  border: 2px solid var(--nabu-color-accent);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.primary:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 3px;
+}
+
+/* Home's Continue card (S1): the course studied last, its next step, and the button that starts it. */
+.continueCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
+  border-color: var(--nabu-color-accent);
+}
+
+/* The next step's line keeps its room while the course loads, so nothing under it moves when it comes. */
+.continueStep {
+  min-block-size: 1.5em;
+  margin: 0;
+}
+
+.continueActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+}
+
+.paceLine {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.paceChoice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+.paceChoice select {
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-2);
+  font: inherit;
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+/*
+ * Under an answer's feedback (the review's M6): AI help at the inline start, and one small report
+ * button at the inline end, an icon in a full-size touch target with no frame until it is pointed at.
+ */
+.answerTools {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.answerToolsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2);
+}
+
+.toolsStatus {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.reportButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  margin-inline-start: auto;
+  padding: 0;
+  color: var(--nabu-color-muted);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.reportButton[data-hovered],
+.reportButton[data-pressed] {
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-track);
+}
+
+.reportButton[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+/* A story line's flag and, once sent, the note beside it: at the inline end of the line's controls. */
+.lineReport {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-1);
+  margin-inline-start: auto;
+}
+
+.reportPopover {
+  max-inline-size: min(22rem, calc(100vi - 2 * var(--nabu-space-4)));
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  box-shadow: 0 0.25rem 1rem var(--nabu-color-backdrop);
+}
+
+.reportDialog {
+  padding: var(--nabu-space-3);
+  outline: none;
+}
+
+.reportTitle {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.reportOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
+.reportOption {
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  color: var(--nabu-color-text);
+  text-align: start;
+  background-color: var(--nabu-color-tile);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.reportOption[data-hovered] {
+  border-color: var(--nabu-color-accent);
+}
+
+.reportOption[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.reportOption[data-disabled] {
+  color: var(--nabu-color-muted);
+  cursor: default;
 }

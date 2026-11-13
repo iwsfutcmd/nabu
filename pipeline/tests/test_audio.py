@@ -16,7 +16,7 @@ import shutil
 import wave
 from collections.abc import Iterator
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import pytest
 
@@ -24,6 +24,7 @@ from nabu.audio import espeak, jyutping
 from nabu.audio.course import (
     Item,
     audio_dir,
+    check_course,
     encode_mp3,
     plan,
     read_index,
@@ -33,9 +34,10 @@ from nabu.audio.course import (
 from nabu.audio.ingest import Recording, ingest
 from nabu.audio.providers import Clip, EspeakProvider, Request
 from nabu.compiler import compile_course
-from nabu.schema.models import AudioVoice
+from nabu.schema.models import AudioVoice, BundleUnit
 
 from .conftest import REQUIRE_TOOLS, ROOT, CoreCli
+from .units import kc, sentence, token, unit
 
 SPEECH = os.environ.get("NABU_SPEECH") == "1"
 YUE_VOICE = AudioVoice(
@@ -104,6 +106,12 @@ def test_timings_map_word_onsets_to_tokens() -> None:
     ]
 
 
+ESPEAK_AUDIO = (
+    "audio:\n  voices:\n  - {id: narrator, provider: espeak-ng, voice: yue-Latn-jyutping, "
+    "orthography: yue-Hant-HK/standard, reading: jyutping, license: CC0-1.0}\n"
+)
+
+
 @pytest.fixture
 def yue_copy(tmp_path: Path) -> Path:
     """The yue course's first unit, without audio: enough to synthesize, round-trip and
@@ -112,6 +120,9 @@ def yue_copy(tmp_path: Path) -> Path:
     shutil.copytree(ROOT / "courses" / "yue", course, ignore=shutil.ignore_patterns("audio"))
     path = course / "course.yaml"  # edited as text: other tests rewrite its lines verbatim
     text, n = re.subn(r"(?m)^units: \[.*\]$", "units: [units/intro.yaml]", path.read_text("utf-8"))
+    assert n == 1
+    # These tests are about eSpeak NG reading pinned Jyutping, whatever voice the course ships.
+    text, n = re.subn(r"(?ms)^audio:\n.*\Z", ESPEAK_AUDIO, text)
     assert n == 1
     path.write_text(text, encoding="utf-8")
     (tmp_path / "images").symlink_to(ROOT / "courses" / "images")
@@ -146,35 +157,48 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
     assert [d for d in diags.items if d.lint.startswith("audio.")] == []
     assert len(recompiled.audio_items) == len(items)
     sentence = recompiled.audio_items["s.1"]["normal"]
-    assert sentence["synthetic"] and sentence["timings"][0]["startMs"] == 0
+    assert sentence.synthetic and sentence.timings is not None
+    assert sentence.timings[0].startMs == 0
 
 
-def test_a_word_met_only_inside_longer_words_reads_its_share_of_them() -> None:
-    """禮拜 (week) appears only in 禮拜一 (Monday): its clip reads lai5 baai3, the first two of
-    禮拜一's pinned syllables. A word whose characters do not each take a syllable is not split."""
+def test_a_word_card_reads_the_reading_its_form_pins() -> None:
+    """A word KC's clip reads the reading the compiler pinned on its form (ADR 0117), the one its
+    card shows, never one the planner looks up in the sentences: here the sentence says 呢 ne1
+    (the particle) and the form pins ni1 ("this"). A form without one is skipped."""
     orth = "yue-Hant-HK/standard"
-    token = {
-        "surface": "禮拜一",
-        "kind": "word",
-        "readings": {"jyutping": "lai5 baai3 jat1"},
-        "morphs": [{"surface": "禮拜"}, {"surface": "一"}],
-    }
-    loan = {
-        "surface": "OK",
-        "kind": "word",
-        "readings": {"jyutping": "ou1 kei1"},
-        "morphs": [{"surface": "O"}, {"surface": "K"}],
-    }
-    unit = {
-        "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [token, loan]}}}}],
-        "kcs": [
-            {"id": "sense:禮拜", "forms": {orth: ["禮拜"]}},
-            {"id": "sense:O", "forms": {orth: ["O"]}},
-        ],
-    }
-    items, skipped = plan([unit], YUE_VOICE)
-    assert {i.item: i.input for i in items}["sense:禮拜"] == "lai5 baai3"
+    particle = token("呢", sense="呢-sfp", readings={"jyutping": "ne1"})
+    this = token("呢", sense="呢", readings={"jyutping": "ni1"})
+    course = unit(
+        sentences=[sentence("s.1", {orth: [particle]})],
+        kcs=[kc("sense:呢", {orth: [[this]]}), kc("sense:O", {orth: [[token("O")]]})],
+    )
+    items, skipped = plan([course], YUE_VOICE)
+    assert {i.item: i.input for i in items}["sense:呢"] == "ni1"
     assert skipped == ["sense:O"]
+
+
+@needs_espeak
+def test_check_runs_the_round_trip_again_and_keeps_the_clips(
+    core_cli: CoreCli, yue_copy: Path
+) -> None:
+    """`nabu audio check`: a new recognizer's verdicts, the clips and their trace untouched."""
+    _, compiled = _compiled(core_cli, yue_copy)
+    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    before = read_index(audio_dir(yue_copy)).clips
+    heard: list[tuple[str, int]] = []
+
+    def check(item: Item, clip: Clip) -> dict[str, Any]:
+        heard.append((item.item, clip.sample_rate))
+        return {"asrModel": "stand-in", "asrText": item.expected, "cer": 0.0, "status": "pass"}
+
+    counts = check_course(yue_copy, compiled.units, [YUE_VOICE], check)
+    after = read_index(audio_dir(yue_copy)).clips
+    assert counts == {"pass": len(before)} and len(heard) == len(before)
+    assert {rate for _, rate in heard} == {16_000}
+    for old, new in zip(before, after, strict=True):
+        assert (new.file, new.sha256, new.synthesis) == (old.file, old.sha256, old.synthesis)
+        assert new.qa is not None and new.qa.asrModel == "stand-in"
+        assert new.qa.trace == (old.qa.trace if old.qa is not None else None)
 
 
 @needs_espeak
@@ -358,12 +382,122 @@ def test_forced_alignment_finds_token_onsets_within_80_ms() -> None:
 
 @needs_speech
 def test_the_round_trip_check_rejects_what_a_recognizer_cannot_understand() -> None:
-    """eSpeak NG's Cantonese: Whisper does not recognize it, so its clips stay out (§10.1)."""
+    """A clip that says something else stays out (§10.1): eSpeak NG reading 三 for 銀行."""
     from nabu.audio.qa import round_trip
+    from nabu.speech.setup import profiles, recognizer_of
 
-    [bank] = EspeakProvider().synthesize([Request("ngan4 hong4", "yue-Latn-jyutping")])
-    result = round_trip(bank, "銀行", "yue")
+    [three] = EspeakProvider().synthesize([Request("saam1", "yue-Latn-jyutping")])
+    result = round_trip(three, "銀行", recognizer_of(profiles()["yue-Hant-HK/standard"]))
     assert result["status"] == "fail", result
+
+
+@pytest.mark.parametrize(
+    ("heard", "expected", "rate"),
+    [
+        ("我哋一齊去飲茶啦", "我哋一齊去飲茶啦。", 0.0),
+        ("你答唔答小巴", "你搭唔搭小巴？", 0.0),  # 答 is said as 搭 (daap3): a homophone
+        ("是", "試", 0.5),  # si6 for si3: a tone apart, half an error
+        ("滿", "碗", 1.0),  # mun5 for wun2: another syllable
+        ("All right.", "太", 8.0),  # Latin has no reading: every letter is an error
+    ],
+)
+def test_cantonese_transcripts_are_compared_by_reading(
+    heard: str, expected: str, rate: float
+) -> None:
+    """A transcript writes homophones and spellings for one another (ADR 0094): characters that
+    differ count by their readings."""
+    from nabu.audio.qa import cer, reading_error_rate
+
+    assert reading_error_rate(heard, expected, "jyutping") == rate
+    assert reading_error_rate(heard, expected, "jyutping") <= cer(heard, expected)
+
+
+def test_cantonese_is_heard_by_its_fine_tuned_recognizer(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Whisper's own writes Cantonese as written Mandarin; yue's clips go to the Cantonese
+    fine-tune its profile names (ADR 0116), without the sentence (no prompt), and the index
+    names it."""
+    import contextlib
+    import types
+
+    from nabu.audio import qa
+    from nabu.speech.setup import Recognizer, profiles, recognizer_of
+
+    asked: list[dict[str, object]] = []
+    loaded: list[str] = []
+
+    class Model:
+        def generate(self, features: object, **kwargs: object) -> list[int]:
+            asked.append(kwargs)
+            return [1]
+
+    class Features:
+        def to(self, _device: str) -> Features:
+            return self
+
+    class Processor:
+        def __call__(self, _audio: object, **_kwargs: object) -> object:
+            return types.SimpleNamespace(input_features=Features())
+
+        def batch_decode(self, _ids: object, **_kwargs: object) -> list[str]:
+            return ["你答唔答小巴"]
+
+    def fine_tuned(model: str) -> tuple[Processor, Model, str]:
+        loaded.append(model)
+        return Processor(), Model(), "cpu"
+
+    def to_16k(pcm: bytes, _rate: int) -> bytes:
+        return pcm
+
+    torch = types.SimpleNamespace(no_grad=contextlib.nullcontext)
+
+    def optional(name: str) -> object:
+        return torch if name == "torch" else None
+
+    monkeypatch.setattr(qa, "fine_tuned", fine_tuned)
+    monkeypatch.setattr(qa, "to_16k", to_16k)
+    monkeypatch.setattr(qa, "optional", optional)
+    yue = recognizer_of(profiles()["yue-Hant-HK/standard"])
+    result = qa.round_trip(Clip(b"\0\0" * 160, 16_000, None, None), "你搭唔搭小巴？", yue)
+    assert loaded == ["alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d"]
+    assert asked == [{"language": "zh", "task": "transcribe", "max_new_tokens": 128}]
+    assert result == {
+        "asrModel": "alvanlii/whisper-small-cantonese@b03a4e5d482f",
+        "asrText": "你答唔答小巴",
+        "cer": 0.0,
+        "status": "pass",
+    }
+    assert qa.model_name(Recognizer("fa")) == "whisper-large-v3-turbo"
+
+
+def test_whisper_hears_a_language_it_has_no_model_for_as_its_macrolanguage(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Whisper has no Lebanese Arabic (apc): the round trip and learners' speech are heard as
+    Arabic, its macrolanguage (ADR 0116). A language Whisper has is heard as itself."""
+    import types
+
+    from nabu.audio import qa
+    from nabu.speech.setup import Recognizer
+
+    heard: list[object] = []
+
+    class Whisper:
+        supported_languages: ClassVar[list[str]] = ["ar", "en", "fa", "yue", "zh"]
+
+        def transcribe(self, _audio: object, **kwargs: object) -> tuple[list[object], None]:
+            heard.append(kwargs["language"])
+            return [types.SimpleNamespace(text=" أنا منيح ")], None
+
+    def to_16k(pcm: bytes, _rate: int) -> bytes:
+        return pcm
+
+    monkeypatch.setattr(qa, "recognizer", Whisper)
+    monkeypatch.setattr(qa, "to_16k", to_16k)
+    clip = Clip(b"\0\0" * 160, 16_000, None, None)
+    assert qa.transcribe(clip, Recognizer("apc")) == "أنا منيح"
+    assert qa.transcribe(clip, Recognizer("fa")) == "أنا منيح"
+    assert qa.transcribe(clip, Recognizer("yue")) == "أنا منيح"
+    assert heard == ["ar", "fa", "yue"]
 
 
 class _Whisper:
@@ -498,17 +632,18 @@ def voice(monkeypatch: pytest.MonkeyPatch) -> _Voice:
     return fake
 
 
-def _twins_course(root: Path) -> list[dict[str, object]]:
-    """A sentence and a word said alike: 早晨 (zou2 san4), so one identity and one file."""
+def _twins_course(root: Path) -> list[BundleUnit]:
+    """A sentence and a word said alike: 早晨 (zou2 san4), so one identity and one file. Units
+    as the compiler gives them: the word's form pins its reading (ADR 0117)."""
     (root / "audio").mkdir(parents=True)
     (root / "course.yaml").write_text("id: twins\n", encoding="utf-8")
     orth = "yue-Hant-HK/standard"
-    token = {"surface": "早晨", "kind": "word", "readings": {"jyutping": "zou2 san4"}}
+    morning = token("早晨", readings={"jyutping": "zou2 san4"})
     return [
-        {
-            "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [token]}}}}],
-            "kcs": [{"id": "sense:早晨", "forms": {orth: ["早晨"]}}],
-        }
+        unit(
+            sentences=[sentence("s.1", {orth: [morning]})],
+            kcs=[kc("sense:早晨", {orth: [[morning]]})],
+        )
     ]
 
 

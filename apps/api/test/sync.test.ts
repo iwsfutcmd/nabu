@@ -4,6 +4,7 @@
  * the device's. Runs on PGlite, and on Postgres in CI (test/database.ts).
  */
 import { emptyLearnerState, plan, progressResetOf, replay, applyEvents, type LearnerState } from "@nabu/core/learner";
+import { goalSetOf } from "@nabu/core/game";
 import type { LearnerEvent } from "@nabu/schema";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { eventFactory, loadCourse, manifestOf } from "../../../packages/core/test/learner-fixtures.ts";
@@ -14,10 +15,12 @@ import { testDatabase } from "./database.ts";
 
 let database: Database;
 let app: App;
+/** What the server logged (D10): kept here rather than printed. */
+const logged: Record<string, unknown>[] = [];
 
 beforeAll(async () => {
   database = await testDatabase();
-  app = createApp({ db: database.db, accounts: createAccounts(database.db) });
+  app = createApp({ db: database.db, accounts: createAccounts(database.db), log: (entry) => logged.push({ ...entry }) });
 });
 afterAll(async () => database.close());
 
@@ -115,12 +118,41 @@ describe("event log", () => {
     expect((await app.request("/v1/state?course=fa")).status).toBe(401);
   });
 
-  it("rejects events that do not match the schema, naming the first", async () => {
+  it("takes the valid events of a batch and names the ones it rejects (S13)", async () => {
     const token = await signUp("schema@example.com");
-    const [first, second] = threeSessions();
-    const res = await app.request("/v1/events", json({ events: [first, { ...second, clientTime: "yesterday" }] }, token));
-    expect(res.status).toBe(400);
-    expect(await res.json()).toMatchObject({ error: { code: "invalid-event", index: 1 } });
+    const [first, second, third, fourth] = threeSessions();
+    if (first === undefined || second === undefined || third === undefined || fourth === undefined) throw new Error("a short log");
+    // A device whose app and server have drifted: one event the schema no longer takes, and a value that is not an event.
+    const res = await app.request("/v1/events", json({ events: [first, { ...second, clientTime: "yesterday" }, third, 42] }, token));
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { accepted: number; duplicates: number; received: Record<string, string>; rejected: { index: number; id?: string; code: string; errors?: unknown[] }[] };
+    expect(body).toMatchObject({ accepted: 2, duplicates: 0, rejected: [{ index: 1, id: second.id, code: "invalid-event" }, { index: 3, code: "invalid-event" }] });
+    expect(body.rejected[1]).not.toHaveProperty("id");
+    expect(body.rejected[0]?.errors?.length).toBeGreaterThan(0);
+    expect(Object.keys(body.received).sort()).toEqual([first.id, third.id].sort());
+    // The log holds what was taken, and the next batch goes in as usual.
+    const after = (await (await app.request("/v1/events", json({ events: [fourth] }, token))).json()) as { accepted: number; rejected: unknown[] };
+    expect(after).toMatchObject({ accepted: 1, rejected: [] });
+    expect(((await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number }).events).toBe(3);
+    // A batch that is not a list of events at all is still refused whole.
+    expect(await (await app.request("/v1/events", json({ events: "everything" }, token))).json()).toEqual({ error: { code: "invalid-batch" } });
+  });
+
+  it("logs each rejection, with the error that explains it and no learner text (D10)", async () => {
+    const token = await signUp("drift-log@example.com");
+    const answer = threeSessions().find((e) => e.type === "answer_submitted");
+    if (answer?.type !== "answer_submitted") throw new Error("no answer");
+    // A newer app's answer: a field this server's schema does not know, around an answer the learner typed.
+    const typed = { ...answer, id: "00000000-0000-7000-8000-0000000d0e1a", input: { ...answer.input, raw: "my very own words" }, appVersion: "2" };
+    logged.length = 0;
+    const res = (await (await app.request("/v1/events", json({ events: [typed, 42] }, token))).json()) as { rejected: { errors?: { instancePath: string; keyword: string }[] }[] };
+    // The answer's own kind of event explains it first: the schema is a oneOf over every kind.
+    expect(res.rejected[0]?.errors?.[0]).toMatchObject({ instancePath: "", keyword: "additionalProperties" });
+    expect(logged).toEqual([
+      { event: "upload-rejected", code: "invalid-event", id: typed.id, error: { path: "", keyword: "additionalProperties", message: "must NOT have additional properties", params: { additionalProperty: "appVersion" } } },
+      expect.objectContaining({ event: "upload-rejected", code: "invalid-event", id: null }),
+    ]);
+    expect(JSON.stringify(logged)).not.toContain("my very own words");
   });
 
   it("is idempotent: a duplicate upload changes nothing", async () => {
@@ -148,7 +180,7 @@ describe("event log", () => {
     await app.request("/v1/events", json({ events: log.slice(20) }, token));
     await app.request("/v1/events", json({ events: log.slice(0, 20) }, token));
     const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: unknown };
-    const { seen: _seen, ...local } = replay(log);
+    const local = replay(log);
     expect(server.events).toBe(log.length);
     expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
     expect(local.completedNodes).toEqual(["fa.greetings", "fa.names"]);
@@ -164,12 +196,41 @@ describe("event log", () => {
     const reset = progressResetOf(fa, { id: "0000ffff-0000-7000-9000-000000000001", clientTime: at, localDate: at.slice(0, 10), tz: "UTC", device: "phone", session: "0000ffff-0000-7000-a000-000000000001", bundle: manifestOf("fa").id });
     expect((await app.request("/v1/events", json({ events: [reset] }, token))).status).toBe(200);
     const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: { completedNodes: string[]; cards: object; xp: { total: number } } };
-    const { seen: _seen, ...local } = replay([...log, reset]);
+    const local = replay([...log, reset]);
     expect(server.events).toBe(log.length + 1); // the log keeps everything
     expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
     expect(server.state.completedNodes).toEqual([]);
     expect(server.state.cards).toEqual({});
     expect(server.state.xp.total).toBe(replay(log).xp.total);
+  });
+
+  it("the weekly goal is the account's: a goal_set syncs, the game state holds it, no course's state changes (ADR 0107, D12)", async () => {
+    const token = await signUp("goal@example.com");
+    const log = threeSessions();
+    await app.request("/v1/events", json({ events: log }, token));
+    const at = new Date(Date.parse((log.at(-1) as LearnerEvent).clientTime) + 60_000).toISOString();
+    const goal = goalSetOf(5, { id: "0000eeee-0000-7000-9000-000000000001", device: "laptop", clientTime: at, localDate: at.slice(0, 10), tz: "UTC" });
+    const res = await app.request("/v1/events", json({ events: [goal] }, token));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ accepted: 1, rejected: [] });
+    // Another device pulls it with the rest of the log.
+    const page = (await (await app.request("/v1/events?since=0", auth(token))).json()) as { events: LearnerEvent[] };
+    expect(page.events.find((e) => e.id === goal.id)).toEqual(goal);
+    // The game state reads it; the course's own state is what it was.
+    const game = (await (await app.request("/v1/game", auth(token))).json()) as { game: { goal?: number | null } };
+    expect(game.game.goal).toBe(5);
+    const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: unknown };
+    const local = replay(log);
+    expect(server.events).toBe(log.length);
+    expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
+    // The export holds it, and names no course for it.
+    const exported = (await (await app.request("/v1/export", auth(token))).json()) as { events: LearnerEvent[]; courses: { course: string }[]; game: { goal?: number | null } };
+    expect(exported.events.some((e) => e.id === goal.id)).toBe(true);
+    expect(exported.courses.map((c) => c.course)).toEqual(["fa"]);
+    expect(exported.game.goal).toBe(5);
+    // A goal of more days than a week has is no goal_set.
+    const tooMany = await app.request("/v1/events", json({ events: [{ ...goal, id: "0000eeee-0000-7000-9000-000000000002", days: 8 }] }, token));
+    expect(await tooMany.json()).toMatchObject({ accepted: 0, rejected: [{ index: 0, code: "invalid-event" }] });
   });
 
   it("pages a user's events by cursor, and keeps users apart", async () => {
@@ -195,10 +256,40 @@ describe("event log", () => {
     expect(await (await app.request("/v1/events?since=0", auth(b))).json()).toEqual({ events: [], cursor: 0, more: false, received: {} });
     const bState = (await (await app.request("/v1/state?course=fa", auth(b))).json()) as { events: number };
     expect(bState.events).toBe(0);
-    // An event stamped with another user is refused.
+    // An event stamped with another user is rejected; the rest of its batch is taken.
     const me = (await (await app.request("/v1/auth/me", auth(a))).json()) as { user: { id: string } };
     const stolen = { ...log[0], id: "00000000-0000-7000-8000-00000000dead", user: me.user.id };
-    expect(await (await app.request("/v1/events", json({ events: [stolen] }, b))).json()).toMatchObject({ error: { code: "foreign-event", index: 0 } });
+    const own = { ...log[1], id: "00000000-0000-7000-8000-00000000beef" };
+    const res = await app.request("/v1/events", json({ events: [stolen, own] }, b));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ accepted: 1, rejected: [{ index: 0, id: stolen.id, code: "foreign-event" }] });
+    expect(((await (await app.request("/v1/state?course=fa", auth(b))).json()) as { events: number }).events).toBe(1);
+  });
+
+  it("tells a device whose upload says where its pulls are whether it is caught up past it (ADR 0112)", async () => {
+    const token = await signUp("caught-up@example.com");
+    const log = threeSessions();
+    const upload = async (events: readonly LearnerEvent[], since?: unknown): Promise<{ cursor: number; caughtUp?: number }> =>
+      (await (await app.request("/v1/events", json(since === undefined ? { events } : { events, since }, token))).json()) as { cursor: number; caughtUp?: number };
+    const pull = async (since: number): Promise<{ events: LearnerEvent[]; cursor: number }> =>
+      (await (await app.request(`/v1/events?since=${since}`, auth(token))).json()) as { events: LearnerEvent[]; cursor: number };
+    // A device that has pulled everything (an empty log: cursor 0) uploads: caught up past its batch.
+    const first = await upload(log.slice(0, 10), 0);
+    expect(first.caughtUp).toBe(first.cursor);
+    // Its next batch, from there: caught up again, and a pull from there brings nothing back.
+    const second = await upload(log.slice(10, 20), first.caughtUp);
+    expect(second.caughtUp).toBe(second.cursor);
+    expect((await pull(second.cursor)).events).toEqual([]);
+    // Another device uploads in between (saying nothing of its pulls): the next upload is not caught
+    // up, and the pull brings down the other device's events and this batch's.
+    expect(await upload(log.slice(20, 25))).not.toHaveProperty("caughtUp");
+    expect(await upload(log.slice(25, 30), second.caughtUp)).not.toHaveProperty("caughtUp");
+    const page = await pull(second.cursor);
+    expect(page.events.map((e) => e.id)).toEqual(log.slice(20, 30).map((e) => e.id));
+    // A batch sent again after that pull is caught up: its events are the device's already.
+    expect((await upload(log.slice(25, 30), page.cursor)).caughtUp).toBe(page.cursor);
+    // A cursor that is not one says nothing.
+    for (const since of [-1, 1.5, "7", null]) expect(await upload(log.slice(30, 31), since)).not.toHaveProperty("caughtUp");
   });
 
   it("answers CORS preflights for any origin", async () => {

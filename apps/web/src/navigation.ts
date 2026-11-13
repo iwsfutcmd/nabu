@@ -1,0 +1,145 @@
+/**
+ * Going back, and leaving a session (S3 in the 2026-11 review). Routes live in the URL hash
+ * (App.tsx); this module watches it for the app.
+ *
+ * - Every history entry the app makes or lands on notes the route before it
+ *   (`history.state.nabu.from`). Leaving a finished session goes back to the course page it was
+ *   opened from, instead of adding an entry after the lesson, from which Back would plan the
+ *   lesson again. With some other page before it (a link from a reminder), the session's own
+ *   entry becomes the course page.
+ * - While a session runs it holds the route against Back and Forward (the browser's buttons, the
+ *   phone's back button): going to an entry the app has been on puts the session's URL back as a new
+ *   entry after the one reached, and the session asks, as its quit button does, whether to quit.
+ *   Quitting then goes where Back was going. A new navigation (a link, an address typed, a tapped
+ *   reminder) is the learner's own choice and goes ahead: the session is kept (open-session.ts) and
+ *   picked up again where it was when its lesson is opened next.
+ *
+ * Browser only (history, location): the service worker never imports it.
+ */
+
+/** The mark the app leaves in `history.state`: the route of the entry before this one (null: none). */
+interface Mark {
+  readonly from: string | null;
+}
+
+const markOf = (state: unknown): Mark | undefined => {
+  const nabu = typeof state === "object" && state !== null ? (state as { nabu?: unknown }).nabu : undefined;
+  return typeof nabu === "object" && nabu !== null && "from" in nabu ? (nabu as Mark) : undefined;
+};
+
+const marked = (state: unknown, from: string | null): object => ({ ...(typeof state === "object" && state !== null ? state : {}), nabu: { from } });
+
+/** A route as the address bar spells it, or as the app's links do: compared decoded, "" as "#/". */
+const routeOf = (hash: string): string => {
+  const h = hash === "" || hash === "#" ? "#/" : hash;
+  try {
+    return decodeURIComponent(h);
+  } catch {
+    return h;
+  }
+};
+
+const hashOf = (url: string): string => {
+  const at = url.indexOf("#");
+  return routeOf(at < 0 ? "" : url.slice(at));
+};
+
+/** Notes the route before the current entry, unless the entry says already (one gone back or forward to). */
+const mark = (from: string | null): void => {
+  if (markOf(history.state) !== undefined) return;
+  history.replaceState(marked(history.state, from), "");
+};
+
+interface Hold {
+  /** The session's route. */
+  readonly at: string;
+  /** Asks whether to quit; `to` is where the learner was going (undefined: out of the app). */
+  readonly ask: (to: string | undefined) => void;
+}
+
+let hold: Hold | undefined;
+const listeners = new Set<() => void>();
+const changed = (): void => {
+  for (const listener of listeners) listener();
+};
+
+const onHashChange = (e: HashChangeEvent): void => {
+  const here = routeOf(location.hash);
+  // Back or Forward reached an entry the app marked as it came to it; a new one has no mark yet.
+  const traversed = markOf(history.state) !== undefined;
+  if (hold !== undefined && traversed && here !== routeOf(hold.at)) {
+    // Back to the session, as a new entry after the one reached: quitting goes back to that one.
+    history.pushState(marked(null, here), "", hold.at);
+    hold.ask(here);
+    return;
+  }
+  mark(hashOf(e.oldURL));
+  changed();
+};
+
+let watching = false;
+
+/** Calls `listener` whenever the route changes (and is not held). The first call starts watching. */
+export const watchRoute = (listener: () => void): (() => void) => {
+  if (!watching) {
+    watching = true;
+    mark(null);
+    window.addEventListener("hashchange", onHashChange);
+  }
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+};
+
+/**
+ * Holds the route while a session at `at` runs: Back or Forward asks first (`ask`, with where the
+ * learner was going). Returns the release; the latest hold wins.
+ */
+export const holdRoute = (at: string, ask: (to: string | undefined) => void): (() => void) => {
+  const mine: Hold = { at, ask };
+  hold = mine;
+  return () => {
+    if (hold === mine) hold = undefined;
+  };
+};
+
+/**
+ * The phone's back button with no entry to go back to: a running session asks whether to quit
+ * (true); otherwise the app may close (false).
+ */
+export const askToLeave = (): boolean => {
+  if (hold === undefined) return false;
+  hold.ask(undefined);
+  return true;
+};
+
+/**
+ * The route of the entry before this one, as the app noted it on coming here (null: none, or a page
+ * outside the app): where a screen opened from several places goes back to (Preferences, S8).
+ */
+export const cameFrom = (): string | null => markOf(history.state)?.from ?? null;
+
+/**
+ * Opens an address handed to the app from outside it: a tapped reminder, by Web Push (the service
+ * worker's message) or in the native app. Only its route is taken (a reminder's opens Home, S1): a
+ * new navigation, so a running session is kept and the screen goes ahead (ADR 0108).
+ */
+export const openAddress = (url: string): void => {
+  window.location.hash = new URL(url, window.location.href).hash || "#/";
+};
+
+/**
+ * Leaves the screen for `to`: back, when `to` is the entry before this one, so Back from there
+ * goes on to what came before; else `to` takes this entry's place.
+ */
+export const leave = (to: string): void => {
+  // The screen leaving is the one holding the route, if any: it lets go first.
+  hold = undefined;
+  if (markOf(history.state)?.from === routeOf(to)) {
+    history.back();
+    return;
+  }
+  history.replaceState(history.state, "", to);
+  changed();
+};

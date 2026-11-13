@@ -9,7 +9,7 @@ import { DEFAULT_LEAGUE, leagueWeek } from "@nabu/core/game";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, test, type Page } from "@playwright/test";
 import { API_PORT } from "./ports.ts";
-import { activate, loadCourse, logOf, planned, playSession, seedLog, seriousAxeViolations } from "./solver.ts";
+import { activate, canMiss, loadCourse, logOf, planned, playSession, seedLog, seriousAxeViolations } from "./solver.ts";
 
 const API = `http://127.0.0.1:${API_PORT}`;
 const DAY = 86_400_000;
@@ -82,25 +82,162 @@ test.describe("game", () => {
     expect(moved.some((p) => p > 0)).toBe(true);
   });
 
+  test("Home opens on the courses for a new learner; then a freeze says what it covered, and a weekly goal can be set (ADR 0107)", async ({ page }) => {
+    const now = Date.parse("2026-05-20T15:00:00Z"); // a Wednesday
+    await page.clock.setFixedTime(new Date(now));
+    await page.goto("/?sound=off#/");
+    await expect(page.locator("[data-course-list]")).toBeVisible();
+    await expect(page.locator("[data-game]")).toHaveCount(0); // no empty streak before the first session
+    // Eight days in a row, Monday missed (a freeze covers it), then yesterday.
+    await seedLog(page, [...Array.from({ length: 8 }, (_, i) => practice(now - (10 - i) * DAY, 6)).flat(), ...practice(now - DAY, 6)]);
+    await page.reload();
+    await expect(page.locator("[data-streak]")).toHaveAttribute("data-streak", "9");
+    await expect(page.locator("[data-freeze-covered]")).toHaveAttribute("data-freeze-covered", "1");
+    await expect(page.locator("[data-freezes]")).toHaveCount(0); // spent, and none held
+    // The goal: asked once, then this week's progress toward it. It is the account's (D12): a
+    // goal_set event in the log, which syncs to every device, not a setting of this one.
+    await page.locator('[data-goal-choice] [data-goal-days="5"]').click();
+    await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "5");
+    const goals = (): Promise<(number | null)[]> => page.evaluate(async () => ((await window.nabu?.allEvents()) ?? []).flatMap((e) => (e.type === "goal_set" ? [e.days] : [])));
+    await expect.poll(goals).toEqual([5]);
+    await page.reload();
+    await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "5");
+    // A minute later, as a learner's second choice would be: the later goal_set is the goal.
+    await page.clock.setFixedTime(new Date(now + 60_000));
+    await page.locator("[data-action=change-goal]").click();
+    await page.locator('[data-goal-choice] [data-goal-days="3"]').click();
+    await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "3");
+    await expect.poll(goals).toEqual([5, 3]);
+    expect(await seriousAxeViolations(page, "[data-game]")).toEqual([]);
+  });
+
+  test("a page left open overnight turns the streak and today's quests over by itself", async ({ page }) => {
+    const evening = Date.parse("2026-05-20T23:59:00Z");
+    await page.clock.install({ time: new Date(evening) });
+    // Yesterday and an hour ago.
+    await seedLog(page, [...practice(evening - DAY, 6), ...practice(evening - 3_600_000, 6)]);
+    await page.reload();
+    const streak = page.locator("[data-streak]");
+    await expect(streak).toHaveAttribute("data-streak", "2");
+    await expect(streak).toHaveAttribute("data-practiced-today", "true");
+
+    // Past midnight, nothing reloaded: a new day with nothing practised yet.
+    await page.clock.runFor(2 * 60_000);
+    await expect(streak).toHaveAttribute("data-practiced-today", "false");
+    await expect(streak).toHaveAttribute("data-streak", "2");
+    await expect(page.locator('[data-quests] [data-quest][data-quest-progress="0"]')).toHaveCount(3);
+
+    // A whole day missed, the page still open: the streak is gone.
+    await page.clock.runFor(DAY);
+    await expect(streak).toHaveAttribute("data-streak", "0");
+  });
+
   test.describe("deployment rules", () => {
     // The deployment's game.json is stubbed with page.route, which does not see requests the
     // service worker makes: these tests run without it.
     test.use({ serviceWorkers: "block" });
 
+    const HEARTS = { gate: { policy: "hearts", max: 5, regenMinutes: 300, refillByPractice: true } };
+    /** When the first heart lost in `practice(at, 2, …)` comes back: its first mistake (11 s in), plus 300 minutes. */
+    const firstHeartBack = (at: number): number => at + 11_000 + 300 * 60_000;
+
     test("a deployment can turn on hearts; practice stays open", async ({ page }) => {
-      await page.route("**/game.json", (route) => route.fulfill({ json: { gate: { policy: "hearts", max: 5, regenMinutes: 300, refillByPractice: true } } }));
+      await page.route("**/game.json", (route) => route.fulfill({ json: HEARTS }));
       const now = Date.parse("2026-05-21T10:00:00Z");
       await page.clock.setFixedTime(new Date(now));
       await seedLog(page, practice(now - 3_600_000, 2, 5)); // five mistakes an hour ago: no hearts left
       await page.reload();
       await expect(page.locator("[data-gate]")).toHaveAttribute("data-gate-value", "0");
+      // When the next comes back (M5).
+      await expect(page.locator("[data-gate-next]")).toHaveAttribute("data-gate-next", new Date(firstHeartBack(now - 3_600_000)).toISOString());
       await page.goto("/?sound=off#/fa/fa-Arab.standard/fa.names");
       await expect(page.locator("[data-gate-empty]")).toBeVisible();
       await activate(page, "keyboard", '[data-gate-empty] ~ div [data-practice-mode="review"]');
       await expect(page.locator("[data-lesson-player], [data-empty-session]").first()).toBeVisible();
       await expect(page.locator("[data-gate-empty]")).toHaveCount(0);
     });
+
+    test("the empty gate says when a lesson may start, and starts it then (M5)", async ({ page }) => {
+      await page.route("**/game.json", (route) => route.fulfill({ json: HEARTS }));
+      const now = Date.parse("2026-05-21T10:00:00Z");
+      await page.clock.install({ time: new Date(now) });
+      const earlier = now - 3_600_000;
+      await seedLog(page, practice(earlier, 2, 5)); // no hearts left
+      await page.reload();
+      await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard/fa.names"));
+      const empty = page.locator("[data-gate-empty]");
+      await expect(empty).toHaveAttribute("data-gate-opens", new Date(firstHeartBack(earlier)).toISOString());
+      await expect(empty).toContainText("You're out of hearts for now. Practise reviews or mistakes to refill, or start your next lesson at");
+      await expect(page.locator("[data-action=gate-start]")).toHaveCount(0);
+      // Four hours on, the page still open: the lesson may start.
+      await page.clock.runFor(firstHeartBack(earlier) - now + 1_000);
+      await expect(page.locator("[data-gate-open]")).toBeVisible();
+      await page.locator("[data-action=gate-start]").click();
+      await expect(page.locator("[data-lesson-player]")).toBeVisible();
+      await expect(page.locator("[data-gate-empty], [data-gate-open]")).toHaveCount(0);
+    });
+
+    test("a lesson that spends the last heart ends saying when the next may start, and offers practice (M5)", async ({ page }) => {
+      await page.route("**/game.json", (route) => route.fulfill({ json: HEARTS }));
+      const now = Date.parse("2026-05-21T10:00:00Z");
+      await page.clock.setFixedTime(new Date(now));
+      const earlier = now - 3_600_000;
+      await seedLog(page, practice(earlier, 2, 4)); // four mistakes an hour ago: one heart left
+      await page.reload();
+      await expect(page.locator("[data-gate]")).toHaveAttribute("data-gate-value", "1");
+      const request = { mode: "lesson", node: "fa.names" } as const;
+      const exercises = planned(course, await logOf(page, "fa"), request, new Date(now), 3);
+      const missed = exercises.find(canMiss);
+      if (missed === undefined) throw new Error("no card to miss");
+      await page.goto(`/?seed=3&sound=off#/fa/fa-Arab.standard/${request.node}`);
+      await playSession(page, exercises, "keyboard", { miss: new Set([missed.id]) });
+      const end = page.locator('[data-lesson-player][data-state="finished"]');
+      const gate = end.locator("[data-end-gate]");
+      await expect(gate).toHaveAttribute("data-gate-opens", new Date(firstHeartBack(earlier)).toISOString());
+      await expect(gate).toContainText("You're out of hearts for now.");
+      // The next step is practice, which refills them; no lesson beside it.
+      await expect(end.locator("[data-action=next]")).toHaveAttribute("data-next", "practice");
+      await expect(end.locator("[data-action=next-anyway]")).toHaveCount(0);
+      expect(await seriousAxeViolations(page)).toEqual([]);
+    });
   });
+});
+
+test("the league says how last week ended, and names its zones (M8)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  const now = Date.now();
+  // A real account, so the app syncs as it would; the league itself is a fixture, as the server would give it a week on.
+  const { token, user } = (await (await page.request.post(`${API}/v1/auth/sign-up`, { data: { email: `zones-${now}@example.org`, password: "long enough pass" } })).json()) as { token: string; user: { id: string; email: string } };
+  const week = leagueWeek(now, DEFAULT_LEAGUE);
+  const row = (rank: number, outcome: "promoted" | "stayed" | "demoted", you = false) => ({ rank, xp: 100 - rank * 10, username: `learner${String(rank)}`, displayName: null, you, outcome });
+  const view = {
+    enabled: true,
+    week: week.id,
+    endsAt: new Date(week.end).toISOString(),
+    optedOut: false,
+    last: { week: new Date(week.start - 7 * DAY).toISOString().slice(0, 10), tier: 1, rank: 3, of: 12, xp: 40, outcome: "promoted", nextTier: 2 },
+    member: true,
+    tier: 2,
+    cohort: 1,
+    zones: { promote: 1, demote: 1 },
+    standings: [row(1, "promoted"), row(2, "stayed", true), row(3, "stayed"), row(4, "demoted")],
+  };
+  await page.route(`${API}/v1/league`, (route) => route.fulfill({ json: view }));
+  await page.goto(`/?sound=off&api=${encodeURIComponent(API)}#/`);
+  await page.waitForFunction(() => window.nabu !== undefined);
+  await page.evaluate(async ({ account }) => window.nabu?.setMeta("account", account), { account: { server: API, token, user } });
+  await page.reload();
+  const league = page.locator("[data-league]");
+  const last = league.locator("[data-league-last]");
+  await expect(last).toHaveAttribute("data-league-last", "promoted");
+  await expect(last).toContainText("Last week: place");
+  await expect(last).toContainText("You moved up to tier");
+  // Each zone that moves is named over its rows; the ranks run on through them.
+  await expect(league.locator('[data-zone="promoted"] h3')).toHaveText("Promotion zone");
+  await expect(league.locator('[data-zone="demoted"] h3')).toHaveText("Demotion zone");
+  await expect(league.locator('[data-zone="stayed"] h3')).toHaveCount(0);
+  await expect(league.locator('[data-zone="demoted"] ol')).toHaveAttribute("start", "4");
+  expect(await seriousAxeViolations(page, "[data-league]")).toEqual([]);
 });
 
 /** RFC 8291 decryption: what the browser does with the push message (written from the RFC). */
@@ -179,9 +316,21 @@ test("with an account: a username, the league, and a reminder by Web Push", asyn
   const me = league.locator('[data-you="true"]');
   await expect(me).toContainText("Maryam J.");
   await expect(me.locator("bdi")).toHaveCount(1);
+  // The top of the table is named as the promotion zone, not only coloured (M8).
+  await expect(league.locator('[data-zone="promoted"] h3').first()).toHaveText("Promotion zone");
 
   // The home screen with every panel passes axe.
   expect(await seriousAxeViolations(page, "main")).toEqual([]);
+
+  // Leagues can be declined (M8): out of the table at once, in none after a reload, and back on asking.
+  await page.locator("[data-action=league-leave]").click();
+  await expect(league).toHaveAttribute("data-league", "opted-out");
+  await expect(league.locator("[data-standings]")).toHaveCount(0);
+  await page.reload();
+  await expect(league).toHaveAttribute("data-league", "opted-out");
+  await page.locator("[data-action=league-rejoin]").click();
+  await expect(league).toHaveAttribute("data-league", "member");
+  await expect(me).toContainText("Maryam J.");
 
   // Reminders on: the browser subscribes and the server keeps the subscription.
   await page.locator("[data-action=reminders]").click();

@@ -1,14 +1,15 @@
 /**
  * The audio check (ADR 0060): every clip of a course, held-back ones too, to listen to and
- * judge. Verdicts are kept on the device and download as a file for `nabu audio verdicts`.
- * The preview server serves the clips from courses/ (audio-check.ts).
+ * judge, each saying whether learners get it and, if not, why. Verdicts are kept on the device
+ * and download as a file for `nabu audio verdicts`. The preview server serves the clips from
+ * courses/ (audio-check.ts).
  */
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import AxeBuilder from "@axe-core/playwright";
-import type { AudioVerdicts } from "@nabu/schema";
+import type { AudioVerdicts, BundleAudio, BundleManifest } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
 import { parse } from "yaml";
 import { writeAudioCheck, type AudioCheckData } from "../../audio-check.ts";
@@ -29,15 +30,23 @@ interface IndexClip {
 const indexOf = (course: string): { clips: IndexClip[] } =>
   parse(readFileSync(new URL(`../../../../courses/${course}/audio/index.yaml`, import.meta.url), "utf8")) as never;
 
+/** The items whose clips a course's bundle carries: what learners get. */
+const bundledAudioOf = (course: string): Readonly<Record<string, unknown>> => {
+  const bundle = new URL(`../../public/bundles/${course}/`, import.meta.url);
+  const manifest = JSON.parse(readFileSync(new URL("manifest.json", bundle), "utf8")) as BundleManifest;
+  const file = manifest.files.find((f) => f.role === "audio-index");
+  return file === undefined ? {} : (JSON.parse(readFileSync(new URL(file.path, bundle), "utf8")) as BundleAudio).items;
+};
+
 test("every item with a clip can be heard and judged, and the verdicts download", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(String(e)));
   const index = indexOf("fa");
   const items = new Set(index.clips.map((c) => c.item));
   const failed = index.clips.filter((c) => c.speed === "normal" && c.qa?.status === "fail").length;
-  // Held back (as the compiler holds them): a failed clip nobody has passed, or a rejected one.
-  const passed = (c: IndexClip): boolean => c.provenance?.status === "reviewed" || c.provenance?.status === "published";
-  const held = new Set(index.clips.filter((c) => (c.speed === "normal" && c.qa?.status === "fail" && !passed(c)) || c.rejected !== undefined).map((c) => c.item)).size;
+  // Held back: what the compiler left out of the learners' bundle.
+  const shipped = bundledAudioOf("fa");
+  const held = [...items].filter((item) => shipped[item] === undefined).length;
 
   await page.goto("/?sound=off&debug=1#/fa/fa-Arab.standard");
   await page.locator("[data-audio-check-link]").click();
@@ -45,9 +54,13 @@ test("every item with a clip can be heard and judged, and the verdicts download"
   await expect(page.locator("[data-audio-item]")).toHaveCount(items.size);
   await expect(page.locator("[data-count=fail] dd")).toHaveText(String(failed));
 
-  // Held-back items are listed too: the filter shows exactly those.
+  // Held-back items are listed too: the filter shows exactly those, each saying so. fa ships its
+  // clips: none says it is not shipped.
+  await expect(page.locator("[data-count=held] dd")).toHaveText(String(held));
   await page.locator("[data-filter=status]").selectOption("held");
   await expect(page.locator("[data-audio-item]")).toHaveCount(held);
+  await expect(page.locator("[data-audio-item] [data-badge=held]")).toHaveCount(held);
+  await expect(page.locator("[data-badge=not-shipped], [data-count=not-shipped]")).toHaveCount(0);
   await page.locator("[data-filter=status]").selectOption("all");
 
   // Keys move and judge; a click on "Sounds wrong" opens the note.
@@ -83,6 +96,28 @@ test("every item with a clip can be heard and judged, and the verdicts download"
   expect(errors).toEqual([]);
 });
 
+test("a course whose voice is rated bad says its clips are not shipped, not held back (ADR 0091)", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  // grc ships no clip: its voice is rated bad. Its clips are only here, to be judged.
+  expect((parse(readFileSync(new URL("../../../../courses/grc/course.yaml", import.meta.url), "utf8")) as { audio: { quality?: string } }).audio.quality).toBe("bad");
+  expect(Object.keys(bundledAudioOf("grc"))).toEqual([]);
+  const items = new Set(indexOf("grc").clips.map((c) => c.item)).size;
+
+  await page.goto("/#/grc/grc-Grek.polytonic/audio");
+  await expect(page.locator("[data-audio-check=grc]")).toBeVisible();
+  await expect(page.locator("[data-audio-item]")).toHaveCount(items);
+  const badges = page.locator("[data-audio-item] [data-badge=not-shipped]");
+  await expect(badges).toHaveCount(items);
+  await expect(badges.first()).toHaveText("Not shipped: this course's voice is rated bad");
+  await expect(page.locator("[data-badge=held], [data-count=held]")).toHaveCount(0);
+  await expect(page.locator("[data-count=not-shipped] dt")).toHaveText("Not shipped: this course's voice is rated bad");
+  await expect(page.locator("[data-count=not-shipped] dd")).toHaveText(String(items));
+  // The filter says the same.
+  await expect(page.locator("[data-filter=status] option[value=held]")).toHaveText("Not shipped: this course's voice is rated bad");
+  expect(errors).toEqual([]);
+});
+
 test("a course still keeping an older voice opens on its own voice; the voice filter shows the others", async ({ page }) => {
   const cast = (parse(readFileSync(new URL("../../../../courses/uz/course.yaml", import.meta.url), "utf8")) as { audio: { voices: { provider: string; voice: string }[] } }).audio.voices.map((v) => `${v.provider}:${v.voice}`);
   const clips = (indexOf("uz") as { clips: { item: string; speed: string; synthesis?: { provider: string; voice: string } }[] }).clips;
@@ -92,8 +127,10 @@ test("a course still keeping an older voice opens on its own voice; the voice fi
   const made = new Set(byItem.values());
   const count = (voice: string): number => [...byItem.values()].filter((v) => v === voice).length;
 
-  await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
+  // Straight to the check, as the landing page links to it: it needs no debug mode.
+  await page.goto("/#/uz/uz-Latn.standard/audio");
   await expect(page.locator("[data-audio-item]").first()).toBeVisible();
+  await expect(page.locator("[data-debug-notice]")).toHaveCount(0);
   if (made.size < 2) {
     await expect(page.locator("[data-filter=voice]")).toHaveCount(0);
     await expect(page.locator("[data-audio-item]")).toHaveCount(byItem.size);
@@ -122,7 +159,7 @@ test("slow plays the same clip, slowed with its pitch kept (ADR 0062)", async ({
       return play.call(this);
     };
   });
-  await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
+  await page.goto("/#/uz/uz-Latn.standard/audio");
   const row = page.locator("[data-audio-item]").first();
   await row.locator("[data-action=play]").click();
   await row.locator("[data-action=play-slow]").click();
@@ -134,7 +171,7 @@ test("slow plays the same clip, slowed with its pitch kept (ADR 0062)", async ({
 });
 
 test("a clip plays from the audio check", async ({ page }) => {
-  await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
+  await page.goto("/#/uz/uz-Latn.standard/audio");
   const row = page.locator("[data-audio-item]").first();
   await row.locator("[data-action=play]").click();
   await expect(row.locator("[data-action=play]")).toHaveAttribute("data-playing", "true");
