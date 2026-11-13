@@ -18,9 +18,10 @@ from typing import Any
 
 import pytest
 
-from nabu.audio.course import identity, item_settings
+from nabu.audio.course import caster_of, identity, item_settings
 from nabu.audio.phones import Timing
 from nabu.audio.providers import (
+    Caster,
     Reference,
     Request,
     VoxCPMProvider,
@@ -106,7 +107,7 @@ def make(engine: FakeEngine, **kw: Any) -> tuple[VoxCPMProvider, dict[str, Any]]
 def test_every_clip_clones_the_reference_with_its_transcript_and_its_own_seed() -> None:
     engine = FakeEngine()
     tts, _ = make(engine)
-    requests = [Request("你好！", "anchor-f"), Request("銀行", "anchor-f")]
+    requests = [Request("你好！", "anchor-f"), Request("銀行", "anchor-f", kind="word")]
     tts.synthesize(requests)
     assert [(a[1], a[2]) for a in engine.asked] == [(str(REF.path), REF.text)] * 2
     assert [a[3] for a in engine.asked] == [seed_of(r) for r in requests]
@@ -117,7 +118,7 @@ def test_every_clip_clones_the_reference_with_its_transcript_and_its_own_seed() 
 def test_a_word_card_is_said_after_the_carrier_and_cut_where_the_aligner_puts_it() -> None:
     engine = FakeEngine(per_syllable=0.25)  # 2 s for the carrier and the word
     tts, seen = make(engine)
-    (clip,) = tts.synthesize([Request("銀行", "anchor-f")])
+    (clip,) = tts.synthesize([Request("銀行", "anchor-f", kind="word")])
     assert engine.asked[0][0] == "跟住我讀：銀行。"
     # The carrier and the word are aligned as two words, the word at 1000-1500 ms; the cut keeps
     # 40 ms before it and 150 ms after it: 960 to 1650 ms.
@@ -144,7 +145,8 @@ def test_a_sentence_is_slowed_toward_the_pace_and_never_past_its_limit() -> None
 
 def test_each_route_is_in_its_own_clips_identity() -> None:
     tts, _ = make(FakeEngine())
-    word, sentence = item_settings(tts, "銀行"), item_settings(tts, "你好！")
+    word = item_settings(tts, Request("銀行", "anchor-f", kind="word"))
+    sentence = item_settings(tts, Request("你好！", "anchor-f"))
     assert word == {"carrier": {"text": "跟住我讀：", "method": VoxCPMProvider.CARRIER_METHOD}}
     assert sentence == {
         "pace": {"target": 4.3, "maxStretch": 1.6, "method": VoxCPMProvider.PACE_METHOD}
@@ -152,13 +154,13 @@ def test_each_route_is_in_its_own_clips_identity() -> None:
     # Changing the pace makes the sentences' clips stale, never the word cards'.
     slower, _ = make(FakeEngine(), pace={"target": 4.0, "maxStretch": 1.6})
 
-    def ident(t: VoxCPMProvider, text: str) -> str:
-        return identity(
-            t.name, t.version(), "anchor-f", text, 1.0, t.settings() | item_settings(t, text)
-        )
+    def ident(t: VoxCPMProvider, r: Request) -> str:
+        settings = t.settings() | item_settings(t, r)
+        return identity(t.name, t.version(), "anchor-f", r.input, 1.0, settings)
 
-    assert ident(tts, "銀行") == ident(slower, "銀行")
-    assert ident(tts, "你好！") != ident(slower, "你好！")
+    word_card, said = Request("銀行", "anchor-f", kind="word"), Request("你好！", "anchor-f")
+    assert ident(tts, word_card) == ident(slower, word_card)
+    assert ident(tts, said) != ident(slower, said)
 
 
 def test_the_speech_span_skips_the_silence_around_it() -> None:
@@ -170,6 +172,48 @@ def test_the_speech_span_skips_the_silence_around_it() -> None:
 def test_it_needs_a_reference_voice() -> None:
     with pytest.raises(ValueError, match="no reference voice"):
         VoxCPMProvider(voice(), None)
+
+
+def test_a_word_card_ends_with_the_full_stop_of_its_orthographys_script() -> None:
+    """The stop after a carried word is the orthography's (punctuation.py), not chosen by the
+    letters of the word: a yue word card in Latin letters still ends with 。, a Hindi one with
+    the danda, and a Thai one with nothing."""
+    engine = FakeEngine(per_syllable=0.25)
+    tts, _ = make(engine)
+    tts.synthesize([Request("OK", "anchor-f", kind="word")])
+    hindi, _ = make(engine, orthography="hi-Deva/standard", language="hi", pace=None)
+    hindi.synthesize([Request("नमस्ते", "anchor-f", kind="word")])
+    thai, _ = make(engine, orthography="th-Thai/standard", language="th", pace=None)
+    thai.synthesize([Request("สวัสดี", "anchor-f", kind="word")])
+    assert [a[0] for a in engine.asked] == ["跟住我讀：OK。", "跟住我讀：नमस्ते।", "跟住我讀：สวัสดี"]
+
+
+def test_the_pace_is_only_for_a_script_whose_syllables_it_counts() -> None:
+    """`pace` counts Han characters as syllables: a voice of another script cannot be paced, and
+    says so, rather than being left silently unpaced."""
+    with pytest.raises(ValueError, match="counts syllables as Han characters"):
+        make(FakeEngine(), orthography="es-Latn/standard", language="es")
+    unpaced, seen = make(FakeEngine(), orthography="es-Latn/standard", language="es", pace=None)
+    unpaced.synthesize([Request("¡Hola!", "anchor-f")])
+    assert seen["stretched"] == []
+
+
+def test_cast_goes_by_what_the_provider_declares() -> None:
+    """`nabu audio cast` asks a provider how its reference is made (CASTS), never its name."""
+    tts, _ = make(FakeEngine())
+    assert isinstance(tts, Caster) and frozenset({"designed"}) == tts.CASTS
+    assert isinstance(caster_of(voice()), VoxCPMProvider)
+    espeak = AudioVoice.model_validate(
+        {
+            "id": "e",
+            "provider": "espeak-ng",
+            "voice": "yue",
+            "orthography": "yue-Hant-HK/standard",
+            "reading": "text",
+            "license": "CC0-1.0",
+        }
+    )
+    assert caster_of(espeak) is None
 
 
 @pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")

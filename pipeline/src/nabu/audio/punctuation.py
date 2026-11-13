@@ -9,6 +9,9 @@ The stop is chosen by the orthography's script subtag (ISO 15924), and by the la
 script has several (Urdu ends sentences with U+06D4). Scripts that end sentences with no mark
 (Thai, Lao) get none, and neither does text ending in a digit: "12." is an ordinal in Uzbek,
 Turkish and German.
+
+The same marks say where a text's sentences end (`sentences`: a carrier voice's routes, ADR 0065)
+and whether text closes as a sentence or is a word card (`closed`, ADR 0094), in any script.
 """
 
 from __future__ import annotations
@@ -41,6 +44,24 @@ NO_STOP = frozenset(["Thai", "Laoo"])
 _ENDED = regex.compile(r"\p{P}[\s\p{Cf}]*$")
 _TAIL = regex.compile(r"[\s\p{Cf}]*$")
 _DIGIT_END = regex.compile(r"\p{Nd}[\s\p{Cf}]*$")
+#: Text closed as a sentence is (ADR 0094): by a full stop, a question or exclamation mark, or a
+#: closing quote or bracket. Text without it is said as a word card.
+_CLOSED = regex.compile(r"[\p{Po}\p{Pe}\p{Pf}][\s\p{Cf}]*$")
+#: Where one sentence of a text ends and the next begins: a sentence terminal (Unicode's: . ! ?
+#: ؟ ۔ । 。 and the rest) or a script's full stop (the Tibetan shad is not one of Unicode's),
+#: then a space.
+_STOPS = "".join(sorted({*FULL_STOP.values(), *BY_LANGUAGE.values()}))
+_SENTENCE_BREAK = regex.compile(rf"(?<=[\p{{Sentence_Terminal}}{regex.escape(_STOPS)}])\s+")
+
+
+def closed(text: str) -> bool:
+    """Whether `text` ends as a sentence does, with closing punctuation; a word card does not."""
+    return _CLOSED.search(text) is not None
+
+
+def sentences(text: str) -> list[str]:
+    """The sentences of `text`, split after each one's closing mark and the space that follows."""
+    return [s for s in _SENTENCE_BREAK.split(text.strip()) if s]
 
 
 def full_stop(tag: str) -> str | None:

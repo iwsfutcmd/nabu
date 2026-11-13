@@ -158,6 +158,34 @@ def test_a_pronouncing_voice_reads_text_with_ipa_where_the_spelling_is_not_enoug
     assert by_id["sense:學生"].input == f"/{jyutping.ipa('hok6 saang1')}/"
 
 
+def test_each_item_says_what_it_is_and_how_many_words_it_has(
+    yue_units: list[dict[str, Any]],
+) -> None:
+    """A word card is text with no closing punctuation as written (ADR 0094), whatever a voice
+    is given (here IPA between slashes); its words are its word tokens, so a Cantonese sentence,
+    written without spaces, has several."""
+    items, _ = plan(yue_units, voice("elevenlabs", pronounce="jyutping"))
+    by_id = {i.item: i for i in items}
+    kcs = {kc["id"] for u in yue_units for kc in u.get("kcs", [])}
+    assert by_id["sense:學生"].input.endswith("/") and by_id["sense:學生"].kind == "word"
+    assert all(i.kind == "word" for i in items if i.item in kcs)
+    tokens = {
+        s["id"]: s["forms"]["yue-Hant-HK/standard"]["text"]["tokens"]
+        for u in yue_units
+        for s in u["sentences"]
+        if "yue-Hant-HK/standard" in s["forms"]
+    }
+    sentences = [by_id[k] for k in tokens if k in by_id and not k.startswith("drill.")]
+    assert sentences and all(i.kind == "sentence" for i in sentences)
+    for i in sentences:
+        assert i.words == sum(t["kind"] in ("word", "number") for t in tokens[i.item])
+    assert any(" " not in i.input and i.words > 2 for i in sentences)
+    # The numbers drill says each number alone, unpunctuated: a word card too.
+    assert by_id["drill.numbers.1"].kind == "word"
+    request = by_id["sense:學生"].request("v", 1.0, 2)
+    assert (request.kind, request.words, request.take) == ("word", 1, 2)
+
+
 def test_an_unknown_pronounce_scheme_is_refused(yue_units: list[dict[str, Any]]) -> None:
     with pytest.raises(ValueError, match="no IPA conversion"):
         plan(yue_units, voice("elevenlabs", pronounce="yale"))
