@@ -2103,7 +2103,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     "P9": {
       "state": "done",
       "commit": "b74ae7e5",
-      "note": "Merged: the end of a session has a title per kind, the new words with meaning and audio, what was missed with the answer and the learner’s, then progress (words now known, a unit finished, streak, the week’s goal, quests, XP last) and the next step from Continue (ADR 0113). Choices D29–D34."
+      "note": "Merged: the end of a session has a title per kind, the new words with meaning and audio, what was missed with the answer and the learner’s, then progress (words now known, a unit finished, streak, the week’s goal, quests, XP last) and the next step from Continue (ADR 0113). Choices D29–D34. D34 (d289bfaf): right after a review or practice session, the next step is the next lesson or story, with “Keep practising” beside it."
     },
     "P14": {
       "state": "done",
@@ -2143,7 +2143,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     "P16": {
       "state": "done",
       "commit": "0b62aea7",
-      "note": "Merged: Check stays enabled while a keyboard composes; a press waits for the composition to end, then checks the settled text (never mid-composition); Enter never checks while composing; the field has an Enter-key hint (ADR 0118). Reproduced and fixed in Chromium’s touch emulation; not yet tried on a real Android phone. Choices D36, D37, D39."
+      "note": "Merged: Check stays enabled while a keyboard composes; a press waits for the composition to end, then checks the settled text (never mid-composition); Enter never checks while composing; the field has an Enter-key hint (ADR 0118). Reproduced and fixed in Chromium’s touch emulation; not yet tried on a real Android phone. Choices D36, D37, D39. D39 (89166736): roleplay’s Send, the correction form’s Send and Start over’s confirmation take a press while composing too (`useSettledSubmit`)."
     },
     "C4": {
       "state": "done",
@@ -2464,7 +2464,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
-    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9, P14, W6, P16, S11, S8, C6 and C10. R1/R4 is still with its helper. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. All decisions through D44 are answered; D41 is merged (with the word list counting due at the learner’s pace again), D34, D39 and D44 are under way, and D45 is open."
+    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9, P14, W6, P16, S11, S8, C6 and C10. R1/R4 is still with its helper. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. All decisions through D44 are answered: D34, D39 and D41 are merged (and the word list counts due at the learner’s pace again); D44 is under way; D45 is open."
   ]
 }
 </script>

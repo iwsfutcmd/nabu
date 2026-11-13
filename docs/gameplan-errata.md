@@ -272,4 +272,5 @@ ADR is linked. The gameplan text itself is left as written.
 69. **§11.5 "submit is ignored while composing":** on Android, keyboards compose Latin words until they
     are committed, so an ignored press made every typed answer take two taps. A Check pressed while
     composing is now held until `compositionend` and goes ahead with the settled text; nothing is ever
-    submitted mid-composition ([ADR 0118](adr/0118-the-player-on-a-phone.md)).
+    submitted mid-composition ([ADR 0118](adr/0118-the-player-on-a-phone.md)). Roleplay's Send, the correction
+    form's Send and Start over's confirmation take a press the same way (D39).

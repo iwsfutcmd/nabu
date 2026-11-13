@@ -86,6 +86,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
 - Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
   Check; Enter never checks while composing (ADR 0118).
+- Any other button that submits typed text (roleplay Send, the correction form, Start over) takes a press while
+  composing through `useSettledSubmit` (@nabu/ui); never disable a button while composing (ADR 0118, D39).
 - Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
   shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
