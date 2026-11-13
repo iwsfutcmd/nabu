@@ -8,7 +8,7 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
@@ -68,6 +68,10 @@ export interface LessonPlayerProps {
    * back button, in the middle of a lesson). Ignored once the lesson is over.
    */
   readonly quitRequest?: number | undefined;
+  /** What the quit dialog says, where quitting means something else (stopping a placement test, S5). */
+  readonly quitCopy?: { readonly title: string; readonly body: string; readonly confirm: string; readonly cancel: string } | undefined;
+  /** What the end screen says above its XP and Continue, in place of the score (a placement test's result, S5). */
+  readonly summary?: ((summary: SessionSummary) => ReactNode) | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -129,8 +133,14 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
     keys.current = () => undefined;
     return (
       <section className={styles.card} data-lesson-player="" data-state="finished">
-        <h2 className={styles.instruction}>{t.format(state.summary.completed ? "player.finished.title" : "player.finished.stopped")}</h2>
-        <p data-summary="">{t.format("player.finished.score", { correct: state.summary.correctFirstTry, total: state.summary.exercises })}</p>
+        {props.summary !== undefined ? (
+          props.summary(state.summary)
+        ) : (
+          <>
+            <h2 className={styles.instruction}>{t.format(state.summary.completed ? "player.finished.title" : "player.finished.stopped")}</h2>
+            <p data-summary="">{t.format("player.finished.score", { correct: state.summary.correctFirstTry, total: state.summary.exercises })}</p>
+          </>
+        )}
         {xpEarned !== undefined && xpEarned > 0 && (
           <p className={styles.xp} data-xp-earned={xpEarned}>
             {t.format("player.finished.xp", { xp: xpEarned })}
@@ -308,15 +318,15 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       <Modal className={styles.modal} isOpen={state.tag === "interrupted"} isDismissable onOpenChange={(open) => !open && dispatch({ tag: "resume" })}>
         <Dialog className={styles.dialog} data-quit-dialog="">
           <Heading slot="title" className={styles.instruction}>
-            {t.format("player.quit.title")}
+            {props.quitCopy?.title ?? t.format("player.quit.title")}
           </Heading>
-          <p>{t.format("player.quit.body")}</p>
+          <p>{props.quitCopy?.body ?? t.format("player.quit.body")}</p>
           <div className={styles.footer}>
             <Button className={styles.secondary} onPress={() => dispatch({ tag: "quit" })} data-action="quit-confirm">
-              {t.format("player.quit.confirm")}
+              {props.quitCopy?.confirm ?? t.format("player.quit.confirm")}
             </Button>
             <Button className={styles.primary} onPress={() => dispatch({ tag: "resume" })} autoFocus data-action="resume">
-              {t.format("player.quit.cancel")}
+              {props.quitCopy?.cancel ?? t.format("player.quit.cancel")}
             </Button>
           </div>
         </Dialog>

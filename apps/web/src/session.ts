@@ -4,7 +4,7 @@
  * from presentation to answer; and it logs the planner's p̂ for first tries in
  * shadow mode (§9.3). Core builds the event and assigns credit. For a
  * placement test it also notes each first try, and reports where the learner
- * placed when the test ends (§9.5).
+ * placed when the test ends (§9.5), or when the learner stops it (S5).
  */
 import { learnerEventOf, PERFORMANCE_MODEL, placementOf, progressResetOf, type SessionMeta, type SessionPlan } from "@nabu/core/learner";
 import { isCorrect, type CourseView, type LessonEvent } from "@nabu/core/lesson";
@@ -75,12 +75,17 @@ const eventRecorder = ({
     if (e.type === "exercise_presented") presentedAt = performance.now();
     if (e.type === "answer_submitted" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, isCorrect(e.graded.verdict));
     if (e.type === "exercise_skipped" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, false);
-    const placed =
-      e.type === "session_completed" && plan?.placement !== undefined && request?.mode === "placement" && e.summary.completed ? placementOf(plan.placement, firstTry) : undefined;
+    const test = e.type === "session_completed" && request?.mode === "placement" ? plan?.placement : undefined;
+    const reached = test === undefined ? undefined : placementOf(test, firstTry);
+    // A placement test stopped part-way still places by the answers so far (S5): it ends there,
+    // complete as far as it went, over the questions answered. Where they place nothing, it stopped.
+    const stopped = e.type === "session_completed" && !e.summary.completed;
+    const placed = reached !== undefined && (!stopped || reached.length > 0) ? reached : undefined;
+    const ended = e.type === "session_completed" && stopped && placed !== undefined ? { ...e, summary: { ...e.summary, completed: true, exercises: firstTry.size } } : e;
     const p = e.type === "exercise_presented" || e.type === "answer_submitted" ? predictions.get(e.ex.id) : undefined;
     const prediction: Prediction | undefined = p === undefined ? undefined : { p, model: PERFORMANCE_MODEL };
     const event = learnerEventOf(
-      e,
+      ended,
       course,
       { id: uuidv7(now.getTime()), clientTime: localIso(now), localDate: localDate(now), tz: timeZone(), device, session, bundle },
       meta,

@@ -58,6 +58,8 @@ declare const styles: {
   readonly questHead: string;
   readonly quests: string;
   readonly reminderModes: string;
+  readonly resultTitle: string;
+  readonly resultUnit: string;
   readonly standing: string;
   readonly standings: string;
   readonly startOver: string;

@@ -64,11 +64,12 @@ import { PreferencesPage } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { startNative } from "./native.ts";
 import { holdRoute, leave, watchRoute } from "./navigation.ts";
-import { closeOpen, keepOpen, reopen } from "./open-session.ts";
+import { closeOpen, keepOpen, reopen, type OpenSession } from "./open-session.ts";
+import { mostQuestions, PlacementIntro, PlacementResult } from "./Placement.tsx";
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, resetEvent, storyRecorder } from "./session.ts";
-import { Loading, ScreenHeading, sessionName, titleOf, useScreen } from "./screen.tsx";
+import { focusScreen, Loading, ScreenHeading, sessionName, titleOf, useScreen } from "./screen.tsx";
 import { StartOver } from "./StartOver.tsx";
 import { openStore, type EventStore } from "./store.ts";
 import { createSync, type Account, type Sync } from "./sync.ts";
@@ -369,10 +370,11 @@ const CoursePath = ({
         </p>
       )}
 
-      {state.completedNodes.length === 0 && (
+      {/* Placement can be taken again (S5): it only ever adds lessons done, so it is offered until all are. */}
+      {[...status.values()].some((s) => s !== "done") && (
         <p>
-          <a className={styles.back} href={to({ mode: "placement" })} data-practice-mode="placement">
-            {t.format("app.practice.placement", { language: courseName(t, course.id) })}
+          <a className={styles.back} href={to({ mode: "placement" })} data-practice-mode="placement" data-again={state.completedNodes.length > 0 ? "" : undefined}>
+            {t.format(state.completedNodes.length === 0 ? "app.practice.placement" : "app.practice.placement-again", { language: courseName(t, course.id) })}
           </a>
         </p>
       )}
@@ -739,14 +741,16 @@ interface Setup {
   readonly xpBefore: number;
   /** Picked up again: where the session stands, what reopens it, and its first tries so far. */
   readonly resumed?: { readonly from: readonly [PlayerState, readonly Effect[]]; readonly firstTries: ReadonlyMap<string, boolean> } | undefined;
+  /** A new session's plan, kept on the device once the session starts (S3). */
+  readonly open?: OpenSession | undefined;
 }
 
 /** What the player starts a session's exercises with: retries, or the placement test's search. */
 const startOptions = (request: SessionRequest, planned: SessionPlan) => ({ retries: request.mode !== "placement", ...(planned.placement === undefined ? {} : { adaptive: planned.placement.test }) });
 
-/** Plans a new session from the learner's state as it opens (§9.4), and keeps its plan until it ends (S3). */
+/** Plans a new session from the learner's state as it opens (§9.4); its plan is kept from when it starts until it ends (S3). */
 const plannedSetup = (props: SessionProps, route: string): Setup => {
-  const { loaded, request, state, store, speechTiers } = props;
+  const { loaded, request, state, speechTiers } = props;
   const { course } = loaded;
   const seed = seedFor();
   // Speaking is scored where tones can be judged here or the server scores it (§10.4).
@@ -758,8 +762,8 @@ const plannedSetup = (props: SessionProps, route: string): Setup => {
   const pace = paceOf(course, state, now.toISOString(), paceChoiceOf(course.id)).band;
   const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, ...(exclude.size > 0 ? { exclude } : {}) });
   const session = uuidv7(now.getTime());
-  if (planned.exercises.length > 0) void keepOpen(store, { route, course: course.id, session, seed, bundle: loaded.manifest.id, opened: now.getTime(), plan: planned });
-  return { seed, planned, session, xpBefore: state.xp.total };
+  const open: OpenSession | undefined = planned.exercises.length === 0 ? undefined : { route, course: course.id, session, seed, bundle: loaded.manifest.id, opened: now.getTime(), plan: planned };
+  return { seed, planned, session, xpBefore: state.xp.total, open };
 };
 
 /**
@@ -843,8 +847,18 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
   const back = href({ tag: "course", course: course.id, orthography: course.orthography });
-  const playing = setup.planned.exercises.length > 0;
+  const placement = request.mode === "placement";
+  // A placement test starts once the learner has read what it does (S5); one picked up again goes on.
+  const [started, setStarted] = useState(!placement || setup.resumed !== undefined);
+  const playing = started && setup.planned.exercises.length > 0;
   const routing = useSessionRoute(route, back, playing);
+  // The plan is kept from the start until the session ends, so a reload picks it up (S3).
+  useEffect(() => {
+    if (playing && setup.open !== undefined) void keepOpen(store, setup.open);
+  }, [playing, setup.open, store]);
+  // What was done before the session, and what a placement test placed: its result says what changed.
+  const [before] = useState(() => new Set(state.completedNodes));
+  const [placed, setPlaced] = useState<readonly string[] | undefined>(undefined);
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   const [onEvent] = useState(() => {
@@ -853,7 +867,9 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
       record(event);
       if (event.type === "session_completed") {
         void closeOpen(store, setup.session);
-        routing.ended(event.summary.completed);
+        if (event.mode === "placement") setPlaced(event.placed);
+        // A placement test's end screen says where the learner placed, however it ended.
+        routing.ended(event.summary.completed, placement);
       }
     };
     return recorder({ course, bundle: manifest.id, device, plan: setup.planned, seed: setup.seed, record: keep, session: setup.session, firstTries: setup.resumed?.firstTries });
@@ -861,6 +877,14 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
+  if (!started) {
+    const start = (): void => {
+      setStarted(true);
+      // The player opens on the same screen: focus goes to it, as a new screen's does.
+      requestAnimationFrame(focusScreen);
+    };
+    return <PlacementIntro language={courseName(t, course.id)} most={mostQuestions(setup.planned)} onStart={start} back={back} onBack={leaving(back)} />;
+  }
   if (!playing) {
     return (
       <main className={styles.page}>
@@ -887,6 +911,12 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         adaptive={setup.planned.placement?.test}
         resumed={setup.resumed?.from}
         quitRequest={routing.quitRequest}
+        quitCopy={
+          placement
+            ? { title: t.format("app.placement.quit.title"), body: t.format("app.placement.quit.body"), confirm: t.format("app.placement.quit.confirm"), cancel: t.format("app.placement.quit.cancel") }
+            : undefined
+        }
+        summary={placement ? () => <PlacementResult course={course} state={state} before={before} placed={placed} /> : undefined}
         debug={DEBUG}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}

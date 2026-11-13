@@ -526,6 +526,62 @@
       "message": "Story",
       "description": "Label on a story node of the learning path; the story's title follows it."
     },
+    "app.placement.about": {
+      "message": ".input {$most :number}\n{{A short test of what you know already. It goes through the course's units in order and skips ahead while you get most questions right, so it asks {$most} questions at most, and often far fewer.}}",
+      "description": "Placement test introduction: what the test does and how long it is. $most is the most questions it can ask (more than a few)."
+    },
+    "app.placement.all": {
+      "message": "You placed out of the whole course.",
+      "description": "Placement test end screen, when every lesson of the course is now done."
+    },
+    "app.placement.done": {
+      "message": "Placement test done",
+      "description": "Heading of the placement test's end screen."
+    },
+    "app.placement.next": {
+      "message": "You start at {$step}.",
+      "description": "Placement test end screen: the next thing to do on the course page. $step is a path node's name (app.lessons.lesson, Lesson 7; or app.path.story, Story); the unit's title follows on its own line."
+    },
+    "app.placement.outcome": {
+      "message": "Lessons you show you know are marked done, and you start after them. Nothing you have done is undone, and you can take the test again later.",
+      "description": "Placement test introduction: what the result changes."
+    },
+    "app.placement.placed": {
+      "message": ".input {$count :number}\n.match $count\none {{You placed out of {$count} lesson: it is marked done.}}\n* {{You placed out of {$count} lessons: they are marked done.}}",
+      "description": "Placement test end screen: how many lessons the test newly marked done. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.placement.placed-none": {
+      "message": "This time your answers marked no more lessons done.",
+      "description": "Placement test end screen, when the test marked no lesson done that was not done already."
+    },
+    "app.placement.quit.body": {
+      "message": "Lessons your answers so far show you know are marked done; the rest stays as it is.",
+      "description": "Body of the dialog shown when the learner closes the placement test part-way."
+    },
+    "app.placement.quit.cancel": {
+      "message": "Keep going",
+      "description": "Button that closes the stop dialog and goes back to the placement test."
+    },
+    "app.placement.quit.confirm": {
+      "message": "Stop the test",
+      "description": "Button that stops the placement test, keeping what the answers so far show."
+    },
+    "app.placement.quit.title": {
+      "message": "Stop the test?",
+      "description": "Title of the dialog shown when the learner closes the placement test part-way (or goes back)."
+    },
+    "app.placement.start": {
+      "message": "Start the test",
+      "description": "Button that starts the placement test after its introduction."
+    },
+    "app.placement.stop-anytime": {
+      "message": "You can stop at any time: what your answers show so far still counts.",
+      "description": "Placement test introduction: stopping part-way keeps what the answers so far show."
+    },
+    "app.placement.title": {
+      "message": "Find your level in {$language}",
+      "description": "Heading of the placement test's introduction. $language is a course name (course.name.*)."
+    },
     "app.practice.back": {
       "message": "Back to the course",
       "description": "Link from an empty practice session back to the course path."
@@ -548,7 +604,11 @@
     },
     "app.practice.placement": {
       "message": "Already know some {$language}? Find your level",
-      "description": "Link to a short placement test, shown before any lesson is done. $language is a course name (course.name.*)."
+      "description": "Link to a short placement test, on the course page before any lesson is done. $language is a course name (course.name.*)."
+    },
+    "app.practice.placement-again": {
+      "message": "Know more {$language} than this? Take the placement test",
+      "description": "Link to the placement test on the course page once some lessons are done: it can be taken again, and only ever marks more lessons done. $language is a course name (course.name.*)."
     },
     "app.practice.review": {
       "message": "Review",

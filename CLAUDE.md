@@ -107,6 +107,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   quit button does. Leave a session with `leave()`, never `location.hash =`, so Back never plays it again. A reload
   picks a session up: its plan is kept on the device until it ends (open-session.ts), and core `resume` folds the
   session's logged answers through the player. Never re-plan a session that is under way.
+- Placement (ADR 0039, 0077) says what it does before it starts and what it placed after; stopped part-way, it is
+  recorded complete over the questions answered when those answers place anything (session.ts). It is offered until
+  every node is done: a placement only ever adds nodes done, in the fold.
 - e2e sessions depend on the log and clock: fix the clock (page.clock.setFixedTime), seed history through
   window.nabu, and plan with the solver's `planned()`. Seeded history that gets uploaded needs `freshIds()`.
 - The API (apps/api) runs on PGlite unless DATABASE_URL is set; migrations are SQL in src/db/migrations.ts

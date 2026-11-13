@@ -82,12 +82,21 @@ export const useScreen = (screen: string, title: string): void => {
     const main = document.querySelector("main");
     if (main === null || main.querySelector("[data-loading]") !== null) return;
     pending.current = false;
-    // The screen put focus somewhere of its own as it opened (the first answer of a lesson).
-    if (main.contains(document.activeElement)) return;
-    const target = main.querySelector("h1") ?? main;
-    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
-    target.focus({ preventScroll: true });
+    focusScreen();
   });
+};
+
+/**
+ * Focus to the screen's heading (its main, if it has none): on a new screen, and where a screen
+ * changes in place (a placement test starting after its introduction). Not when the screen put
+ * focus somewhere of its own as it opened (the first answer of a lesson).
+ */
+export const focusScreen = (): void => {
+  const main = document.querySelector("main");
+  if (main === null || main.contains(document.activeElement)) return;
+  const target = main.querySelector("h1") ?? main;
+  if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+  target.focus({ preventScroll: true });
 };
 
 /** A screen that is still loading: inside <main>, and said politely. */

@@ -13,7 +13,7 @@
 import { emptyLearnerState, pathNodes, placementOf, plan } from "@nabu/core/learner";
 import { lessonNodes, runTest, type Exercise } from "@nabu/core/lesson";
 import { expect, test, type Page } from "@playwright/test";
-import { activate, canMiss, historyBefore, loadCourse, logOf, pathUrl, planned, playSession, seedLog, type Mode } from "./solver.ts";
+import { activate, answer, canMiss, expectRightAndContinue, historyBefore, loadCourse, logOf, pathUrl, planned, playSession, seedLog, type Mode } from "./solver.ts";
 
 const SEED = 11;
 const DAY = 86_400_000;
@@ -173,17 +173,84 @@ test("placement: a learner who knows the first units starts after them", async (
   if (next === undefined) throw new Error("this learner should not place out of everything");
   const nodeAt = (id: string) => page.locator(`[data-lesson="${id}"], [data-story-node="${id}"]`);
 
+  // It says what it does before it starts (S5).
   await activate(page, mode, '[data-practice-mode="placement"]');
+  await expect(page.locator("[data-placement-intro]")).toBeVisible();
+  await activate(page, mode, "[data-action=placement-start]");
   const played = await playSession(page, asked, mode, { miss: new Set(asked.filter((e) => !knows(e)).map((e) => e.id)) });
   expect(played.seen).toEqual(asked.map((e) => e.id)); // asked once each, as the answers decided
+  // And what it placed the learner out of, and where they start, when it ends.
+  const result = page.locator("[data-placement-result]");
+  const lessons = path.filter((n) => n.kind === "lesson");
+  await expect(result).toHaveAttribute("data-placed", String(lessons.filter((n) => placed.includes(n.node.id)).length));
+  await expect(result).toHaveAttribute("data-next", next.node.id);
   await activate(page, mode, "[data-action=exit]");
 
   // Lessons and stories: a unit passed places out of both.
   for (const node of placed) await expect(nodeAt(node)).toHaveAttribute("data-status", "done");
   await expect(nodeAt(next.node.id)).toHaveAttribute("data-status", "available");
-  await expect(page.locator('[data-practice-mode="placement"]')).toHaveCount(0);
+  // It can be taken again.
+  await expect(page.locator('[data-practice-mode="placement"]')).toHaveAttribute("data-again", "");
   await page.reload();
   await expect(nodeAt(next.node.id)).toHaveAttribute("data-status", "available");
+});
+
+test("placement stopped part-way places by the answers so far, and can be taken again (S5)", async ({ page }, info) => {
+  const mode = info.project.name as Mode;
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const now = new Date("2026-03-12T08:30:00Z");
+  await page.clock.setFixedTime(now);
+  await page.goto(pathUrl(course, SEED));
+  const planned = plan(course, emptyLearnerState(), { mode: "placement" }, { now: now.toISOString(), seed: SEED }).placement;
+  if (planned === undefined) throw new Error("no placement test");
+  const units = planned.test.blocks.map((b) => b.id);
+  const unitOf = new Map(course.units.flatMap((u) => u.sentences.map((s) => [s.id, u.id] as const)));
+  // A learner who knows the first two units: their two blocks, then stop.
+  const knows = (e: Exercise): boolean => units.indexOf(unitOf.get(e.item) ?? "") < 2;
+  const answers = new Map<string, boolean>();
+  const asked: Exercise[] = [];
+  for (let run = runTest(planned.test, answers); run.passed < 1 && run.next.length > 0; run = runTest(planned.test, answers)) {
+    const ex = run.next[0] as Exercise;
+    asked.push(ex);
+    answers.set(ex.id, knows(ex));
+  }
+  const placed = placementOf(planned, answers);
+  expect(placed.length).toBeGreaterThan(0);
+
+  await activate(page, mode, '[data-practice-mode="placement"]');
+  await activate(page, mode, "[data-action=placement-start]");
+  for (const ex of asked) {
+    await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-exercise", ex.id);
+    await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "answering");
+    await answer(page, ex, mode);
+    await expectRightAndContinue(page, mode, ex);
+  }
+  // A reload goes on with the test where it was, without its introduction.
+  await page.clock.setFixedTime(new Date(now.getTime() + 30_000));
+  await page.reload();
+  await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-exercise", runTest(planned.test, answers).next[0]?.id ?? "");
+  await expect(page.locator("[data-placement-intro]")).toHaveCount(0);
+
+  // Stopping asks in the test's own words, then places by what the answers showed.
+  await activate(page, mode, "[data-action=quit]");
+  await expect(page.locator("[data-quit-dialog]")).toBeVisible();
+  await activate(page, mode, "[data-action=quit-confirm]");
+  const lessons = pathNodes(course).filter((n) => n.kind === "lesson");
+  await expect(page.locator("[data-placement-result]")).toHaveAttribute("data-placed", String(lessons.filter((n) => placed.includes(n.node.id)).length));
+  await expect
+    .poll(async () => (await logOf(page, "fa")).find((e) => e.type === "session_completed"))
+    .toMatchObject({ mode: "placement", summary: { completed: true, exercises: asked.length }, placed: [...placed] });
+  await activate(page, mode, "[data-action=exit]");
+  for (const node of placed) await expect(page.locator(`[data-lesson="${node}"], [data-story-node="${node}"]`)).toHaveAttribute("data-status", "done");
+
+  // Again: the introduction, and nothing done is undone by stopping at once.
+  await activate(page, mode, '[data-practice-mode="placement"][data-again]');
+  await activate(page, mode, "[data-action=placement-start]");
+  await activate(page, mode, "[data-action=quit]");
+  await activate(page, mode, "[data-action=quit-confirm]");
+  await expect(page.locator("[data-placement-result]")).toHaveAttribute("data-placed", "0");
+  await activate(page, mode, "[data-action=exit]");
+  for (const node of placed) await expect(page.locator(`[data-lesson="${node}"], [data-story-node="${node}"]`)).toHaveAttribute("data-status", "done");
 });
 
 

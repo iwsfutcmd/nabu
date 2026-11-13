@@ -78,6 +78,8 @@ test.describe("starting a course over", () => {
     await expect(page.locator(`[data-lesson="${first}"]`)).toHaveAttribute("data-status", "available");
     await expect(page.locator(`[data-lesson="${second}"]`)).toHaveAttribute("data-status", "locked");
     await expect(page.locator('[data-practice-mode="placement"]')).toBeVisible();
+    // As to a new learner: "Find your level", not "take it again" (S5).
+    await expect(page.locator('[data-practice-mode="placement"]')).not.toHaveAttribute("data-again");
     await expect(page.locator("[data-xp]")).toHaveAttribute("data-xp", xp ?? "");
     const log = await logOf(page, "fa");
     expect(log.filter((e) => e.type === "progress_reset")).toHaveLength(1);
