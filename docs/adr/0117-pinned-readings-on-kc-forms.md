@@ -5,6 +5,7 @@
 - Amends: [0040](0040-audio-pipeline.md) (how a word KC's clip finds its reading),
   [0054](0054-pronunciation-exercises.md) and [0071](0071-classical-chinese.md) (KC forms carry
   ruby), [0109](0109-names-and-schemes-are-data.md) (reading schemes are data)
+- Amended: below (2026-11-12, the owner's D44: a KC's own reading)
 
 ## Context
 
@@ -106,3 +107,31 @@ schemes, which no card shows.
 - `pipeline/tests/test_readings.py` pins the order. `test_no_clip_of_any_course_is_stale` checks
   every course's clips against what their voices read now, including grc, whose `bad` voice makes
   the compiler skip its audio check (ADR 0091).
+
+## Amendment: a KC's own reading (2026-11-12)
+
+The owner chose (D44) that עַד's card show the free form ʿaḏ, and that its one clip be made again.
+
+**A KC's entry may choose its card's reading** (`readings` on the KC in the course source, by
+scheme, as on a token): `sense:ad` has `readings: {tiberian: ʿaḏ}`. It comes before step 1 of the
+order, on the KC's first form, in each orthography whose words pin the scheme. Variants keep the
+order's reading.
+
+**It chooses; it never adds.** The reading must be one the course's tokens give the word: any
+step's, or any token's spelled as the form. Nothing is guessed: hbo's readings still come from
+tokens taken from the Codex. A reading no token gives, a first form of several words, or a scheme
+no orthography of the KC's forms pins is the error `kc.reading`.
+
+**Why an entry rather than a rule.** Checked over every course, עַד is the only word whose reading
+a tie decides. A rule preferring a word's free form would also change two words the lesson
+sentences mostly bind by maqaf: כִּי (kî-, ten times to four) and עַל (ʿal-, fourteen to one). The
+owner decided only עַד. The entry is the course's own data and names no scheme in code (ADR 0109).
+
+**What changed.** One reading in all nine courses: hbo `sense:ad`, tiberian ʿaḏ- to ʿaḏ. Its clip
+was made again with Piper on a CPU, `[[ʕað]].` (243 ms) to `[[ʕˈaːð]].` (417 ms), Khan's stressed
+long vowel. The other 1,024 hbo clips were kept. The source format gains one optional field; the
+bundle format is unchanged, the reading landing on the form's token as before.
+
+**Still open.** The cards of כִּי and עַל say kî- and ʿal-. Both have a free reading in a lesson
+(kî, ʿal), so each could take one with the same one-line entry and one new clip. That is the
+owner's call.
