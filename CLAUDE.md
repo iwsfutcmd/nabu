@@ -271,7 +271,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Game state on the server: GET /v1/game; devices replay with the server's receipt times (store.receivedTimes).
   Instances set NABU_GAME to the game.json the web app is deployed with.
 - e2e that needs Background Sync uses `channel: "chromium"` (the headless shell has none); the CI image has it.
-- Tests import projection helpers from src/compare.ts (src/sync.ts pulls in React and CSS).
+- Tests import projection helpers from src/compare.ts. sync.ts imports no React (the game state comes from
+  game-log.ts), so sync is tested from Node; the daily check of the server's projections runs in check-worker.ts (ADR 0112).
 - Native apps (ADR 0048): apps/mobile (Capacitor 8; android/ and ios/ are committed, generated projects). After a web
   change: `pnpm --filter @nabu/mobile build`. Capacitor plugins load only in the native shell (src/native.ts, dynamic
   imports). Native reminders: apps/api/src/nativepush.ts; credentials only as file paths in the environment

@@ -5,6 +5,7 @@
  * The deployment configures the rules in `game.json` next to the app (optional; the defaults
  * keep the gate off and streaks, XP and quests on).
  */
+import type { LearnerEvent } from "@nabu/schema";
 import { canStart, daysBetween, daysThisWeek, DEFAULT_GAME, GOAL_DAYS, gameConfig, isGoalDays, type GameConfig, type GameState, type Mode } from "@nabu/core/game";
 import { useTranslator } from "@nabu/ui";
 import { useEffect, useState, type CSSProperties, type JSX } from "react";
@@ -26,9 +27,13 @@ export const loadGameConfig = async (base: string): Promise<GameConfig> => {
 };
 
 /** The game state of the whole device log (all courses) as of now (game-log.ts). */
-const gameOf = async (store: EventStore, config: GameConfig): Promise<GameState> => {
+/**
+ * The game state of the device's log (every course's) as of `now`, of the events `keep` allows: the end
+ * of a session (session-end.ts) works out the state before it by leaving the session's events out.
+ */
+export const gameOf = async (store: EventStore, config: GameConfig, now = new Date(), keep: (event: LearnerEvent) => boolean = () => true): Promise<GameState> => {
   const received = await store.receivedTimes();
-  return gameOfLog(await store.allEvents(), received, config);
+  return gameOfLog((await store.allEvents()).filter(keep), received, config, now);
 };
 
 /**
