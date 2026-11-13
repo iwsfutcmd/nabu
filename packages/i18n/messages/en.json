@@ -704,7 +704,7 @@
     },
     "app.preferences.link": {
       "message": "Preferences",
-      "description": "Link from the course list to the preferences screen (text size and other settings for this device)."
+      "description": "Link to the preferences screen (text size, sound, listening and speaking exercises, and other settings for this device): at the foot of the course list, and at the top of a course's page."
     },
     "app.profile.display-name": {
       "message": "Display name (optional)",
@@ -2166,6 +2166,10 @@
       "message": "a man speaking",
       "description": "Tag under a prompt in the learner's language: the sentence is said by a man, so the answer uses the forms that agree with a male speaker (e.g. Arabic adjectives)."
     },
+    "player.preferences": {
+      "message": "Preferences",
+      "description": "Accessible name of the link with a cog-wheel icon in the header of a lesson: it opens the preferences screen (text size, sound, listening and speaking exercises). The lesson waits where it was, and goes on when the learner comes back."
+    },
     "player.progress.label": {
       "message": "Lesson progress",
       "description": "Accessible name of the progress bar at the top of a lesson, review or practice."
@@ -2408,7 +2412,23 @@
     },
     "preferences.back": {
       "message": "Back to your courses",
-      "description": "Link from the preferences screen back to the course list."
+      "description": "Link from the preferences screen back to the course list (where it was opened from, or opened directly)."
+    },
+    "preferences.back.course": {
+      "message": "Back to the course",
+      "description": "Link from the preferences screen back to the course page it was opened from."
+    },
+    "preferences.back.lesson": {
+      "message": "Back to the lesson",
+      "description": "Link from the preferences screen back to the lesson it was opened from; the lesson goes on where it was."
+    },
+    "preferences.back.placement": {
+      "message": "Back to the placement test",
+      "description": "Link from the preferences screen back to the placement test it was opened from; the test goes on where it was."
+    },
+    "preferences.back.practice": {
+      "message": "Back to practice",
+      "description": "Link from the preferences screen back to the review or mistakes session it was opened from; the session goes on where it was."
     },
     "preferences.listening.hint": {
       "message": "Off: no listening exercises in any course on this device, and nothing plays by itself; the play buttons still work. “Can't listen now” in a lesson puts them off for an hour only.",
@@ -2513,6 +2533,10 @@
     "preferences.target-size.largest": {
       "message": "Largest",
       "description": "Size choice for the language being learned: the largest offered (three quarters larger)."
+    },
+    "preferences.target-size.sample": {
+      "message": "{$language} at this size:",
+      "description": "Caption of a sample sentence under the text size choices: a sentence of the course the learner came from, at the size chosen, and its translation, which keeps its size. $language is a course name (course.name.*, such as Persian)."
     },
     "preferences.target-size.smaller": {
       "message": "Smaller",

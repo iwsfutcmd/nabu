@@ -11,10 +11,10 @@
 import { allKcs, cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, TEMPLATES, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
-import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
+import { Button, Dialog, Heading, Link, Modal, ProgressBar } from "react-aria-components";
 import type { MessageId } from "@nabu/i18n";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
-import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
+import { ArrowForwardIcon, CloseIcon, SettingsIcon } from "../icons.tsx";
 import { WordStatusProvider } from "../marks.tsx";
 import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "./Display.tsx";
@@ -115,6 +115,11 @@ export interface LessonPlayerProps {
   readonly known?: ReadonlySet<string> | undefined;
   /** For Storybook and tests: the display menu starts open. */
   readonly displayOpen?: boolean | undefined;
+  /**
+   * The app's preferences screen (S8): a link in the header. Following it leaves the lesson, which the
+   * app picks up again where it was when the learner comes back (ADR 0108).
+   */
+  readonly preferences?: string | undefined;
 }
 
 /** A session's kind, as the app plans it. */
@@ -338,6 +343,12 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
             props.onSoundChange?.(on);
           }}
         />
+        {/* Text size, listening and speaking, and the rest, without going back to the course list (S8). */}
+        {props.preferences !== undefined && (
+          <Link className={styles.iconButton} href={props.preferences} aria-label={t.format("player.preferences")} data-action="preferences">
+            <SettingsIcon />
+          </Link>
+        )}
       </header>
 
       {/* "Can't listen now" and "Can't speak now" say what they did, for as long as the lesson lasts (P13). */}

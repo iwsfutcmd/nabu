@@ -199,6 +199,14 @@
   color: var(--nabu-color-accent);
 }
 
+/* A course page's top row (S8): back to the courses at the start, Preferences at the end. */
+.pageLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--nabu-space-2) var(--nabu-space-4);
+}
+
 /* Preferences: one choice of several, each a full-width row. */
 .preferenceOptions {
   display: flex;
@@ -227,6 +235,36 @@
 .preferenceOption[data-focus-visible] {
   outline: 3px solid var(--nabu-color-accent);
   outline-offset: 2px;
+}
+
+/*
+ * The text size's sample (Preferences, S8): a sentence of the course at the size chosen, under the
+ * choices; its translation keeps its size.
+ */
+.sizeSample {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin-block: 0 var(--nabu-space-4);
+  margin-inline: 0;
+  padding: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.sampleCaption {
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+.sampleText {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.sampleTranslation {
+  margin: 0;
 }
 
 /* The reminder time (Preferences, ADR 0103): two choices, then a time field, hour and minute. */

@@ -24,8 +24,10 @@
  * It shows when signed in to a server that sends reminders.
  */
 import { parseTime, Time } from "@internationalized/date";
-import { useTranslator } from "@nabu/ui";
-import { useEffect, useState, type FormEvent, type JSX } from "react";
+import type { CourseView } from "@nabu/core/lesson";
+import type { TaggedText } from "@nabu/schema";
+import { CourseUiProvider, T, useTranslator } from "@nabu/ui";
+import { useEffect, useState, type FormEvent, type JSX, type MouseEvent } from "react";
 import { Button, DateInput, DateSegment, Form, Label, Radio, RadioGroup, Text, TimeField, type TimeValue } from "react-aria-components";
 import styles from "./App.module.css";
 import { setTurnedOff, turnedOff, turnOn, type Modality } from "./breaks.ts";
@@ -300,11 +302,35 @@ const ReminderTime = ({ account }: { readonly account: Account }): JSX.Element |
   );
 };
 
+/** A sentence of a course, to show the text size chosen (S8): it grows, and its translation stays as it is. */
+export interface TextSample {
+  /** The course it is from: its profiles set the font, and say which text is the language being learned. */
+  readonly course: CourseView;
+  /** What the course is called (course data, ADR 0109). */
+  readonly language: string;
+  readonly text: TaggedText;
+  readonly translation: TaggedText | undefined;
+}
+
+/** What the way back says, by where the screen was opened from (S8): the course list, a course's page, or a session. */
+export type PreferencesBack = "preferences.back" | "preferences.back.course" | "preferences.back.lesson" | "preferences.back.practice" | "preferences.back.placement";
+
+export interface PreferencesPageProps {
+  readonly back: string;
+  readonly backLabel: PreferencesBack;
+  /** Going back (navigation.ts): to the entry the screen came from, so Back never returns here. */
+  readonly onBack?: ((e: MouseEvent<HTMLAnchorElement>) => void) | undefined;
+  readonly account?: Account | undefined;
+  /** A sentence of the course the learner came from, if any, for the text size. */
+  readonly sample?: TextSample | undefined;
+}
+
 /**
- * The preferences screen: appearance, the size of the language being learned, sound, and listening and
- * speaking exercises, applied as the learner chooses; with an account, the time of the daily reminder.
+ * The preferences screen: appearance, the size of the language being learned (with a sample of it,
+ * where the learner came from a course), sound, and listening and speaking exercises, applied as the
+ * learner chooses; with an account, the time of the daily reminder.
  */
-export const PreferencesPage = ({ back, account }: { readonly back: string; readonly account?: Account | undefined }): JSX.Element => {
+export const PreferencesPage = ({ back, backLabel, onBack, account, sample }: PreferencesPageProps): JSX.Element => {
   const t = useTranslator();
   const [size, setSize] = useState<TextSize>(storedTextSize);
   const [theme, setTheme] = useState<Theme>(storedTheme);
@@ -321,8 +347,17 @@ export const PreferencesPage = ({ back, account }: { readonly back: string; read
     storeTheme(value);
     applyTheme(value);
   };
+  // The way back at the top, as other screens have it, and again at the foot of this long one.
+  const backLink = (end: boolean): JSX.Element => (
+    <p>
+      <a className={styles.back} href={back} onClick={onBack} data-preferences-back={end ? "end" : ""}>
+        {t.format(backLabel)}
+      </a>
+    </p>
+  );
   return (
     <main className={styles.page} data-preferences="">
+      {backLink(false)}
       <h1 className={styles.heading}>{t.format("preferences.title")}</h1>
       <RadioGroup className={styles.preferenceOptions} value={theme} onChange={chooseTheme} data-preference="theme">
         <Label className={styles.subheading}>{t.format("preferences.theme.label")}</Label>
@@ -346,6 +381,16 @@ export const PreferencesPage = ({ back, account }: { readonly back: string; read
           </Radio>
         ))}
       </RadioGroup>
+      {/* The size chosen, on a sentence of the course: <T> sets it as lessons do (--nabu-target-scale). */}
+      {sample !== undefined && (
+        <CourseUiProvider course={sample.course}>
+          <figure className={styles.sizeSample} data-target-size-sample={sample.course.id}>
+            <figcaption className={styles.sampleCaption}>{t.format("preferences.target-size.sample", { language: sample.language })}</figcaption>
+            <T as="p" className={styles.sampleText} text={sample.text} />
+            {sample.translation !== undefined && <T as="p" className={styles.sampleTranslation} text={sample.translation} />}
+          </figure>
+        </CourseUiProvider>
+      )}
       <RadioGroup
         className={styles.preferenceOptions}
         value={sound ? "on" : "off"}
@@ -370,11 +415,7 @@ export const PreferencesPage = ({ back, account }: { readonly back: string; read
       <ExercisesChoice modality="listening" />
       <ExercisesChoice modality="speaking" />
       {account !== undefined && <ReminderTime account={account} />}
-      <p>
-        <a className={styles.back} href={back} data-preferences-back="">
-          {t.format("preferences.back")}
-        </a>
-      </p>
+      {backLink(true)}
     </main>
   );
 };
