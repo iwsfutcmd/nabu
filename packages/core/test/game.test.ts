@@ -13,6 +13,7 @@ import {
   canStart,
   countable,
   daysBetween,
+  daysThisWeek,
   DEFAULT_GAME,
   DEFAULT_LEAGUE,
   leagueWeek,
@@ -136,6 +137,19 @@ describe("local dates", () => {
     expect(addDays("2026-01-01", -1)).toBe("2025-12-31");
     expect(weekStart("2026-11-08")).toBe("2026-11-02"); // Sunday → Monday
     expect(weekStart("2026-11-02")).toBe("2026-11-02");
+    // Weeks that start on Sunday (7) or Saturday (6), as some locales have them.
+    expect(weekStart("2026-11-08", 7)).toBe("2026-11-08");
+    expect(weekStart("2026-11-07", 7)).toBe("2026-11-01");
+    expect(weekStart("2026-11-07", 6)).toBe("2026-11-07");
+    expect(weekStart("2026-11-06", 6)).toBe("2026-10-31");
+  });
+
+  it("counts this week's practice days from the week's first day (ADR 0107)", () => {
+    const days = ["2026-10-30", "2026-11-01", "2026-11-02", "2026-11-04"];
+    expect(daysThisWeek(days, "2026-11-05")).toBe(2); // Monday 2 November on
+    expect(daysThisWeek(days, "2026-11-05", 7)).toBe(3); // Sunday 1 November on
+    expect(daysThisWeek(days, "2026-11-01", 7)).toBe(1); // a new week, practised today
+    expect(daysThisWeek([], "2026-11-05")).toBe(0);
   });
 
   it("an instant's local date depends on the zone, across the date line", () => {

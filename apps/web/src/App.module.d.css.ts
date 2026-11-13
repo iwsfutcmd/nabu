@@ -26,6 +26,10 @@ declare const styles: {
   readonly form: string;
   readonly formIntro: string;
   readonly game: string;
+  readonly goal: string;
+  readonly goalChoice: string;
+  readonly goalChoices: string;
+  readonly goalProgress: string;
   readonly heading: string;
   readonly inlineButton: string;
   readonly input: string;

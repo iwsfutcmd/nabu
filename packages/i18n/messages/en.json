@@ -1530,6 +1530,10 @@
       "message": "Achievements",
       "description": "Heading of the unlocked achievements."
     },
+    "game.freeze.covered": {
+      "message": ".input {$count :number}\n.match $count\none {{A streak freeze covered {$days}, so your streak goes on.}}\n* {{Streak freezes covered {$days}, so your streak goes on.}}",
+      "description": "A missed day in the last week was covered by a streak freeze, spent on it automatically. $days is the day or days of the week, as a list in the interface language (Tuesday; Monday and Tuesday); $count is how many. Select plural forms as your language needs; drop the selection if it needs none."
+    },
     "game.freezes": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} streak freeze}}\n* {{{$count} streak freezes}}",
       "description": "Streak freezes held: each covers one missed day automatically."
@@ -1545,6 +1549,26 @@
     "game.gate.hearts": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} heart}}\n* {{{$count} hearts}}",
       "description": "Hearts left (only on instances that turn the hearts gate on)."
+    },
+    "game.goal.change": {
+      "message": "Change goal",
+      "description": "Button beside the week's progress: choose another weekly goal."
+    },
+    "game.goal.days": {
+      "message": ".input {$days :number}\n.match $days\none {{{$days} day}}\n* {{{$days} days}}",
+      "description": "One choice of the weekly goal: this many practice days a week ($days, 3 to 7). Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "game.goal.met": {
+      "message": "Goal met. Well done!",
+      "description": "Beside the week's progress once the learner has practised on as many days this week as their goal."
+    },
+    "game.goal.question": {
+      "message": "How many days a week would you like to practise?",
+      "description": "Label of the choice of a weekly goal on the home screen (ADR 0107): the learner picks a number of practice days a week. Shown until they choose; they can change it later."
+    },
+    "game.goal.week": {
+      "message": ".input {$done :number}\n.input {$goal :number}\n.match $goal\none {{This week: {$done} of {$goal} day}}\n* {{This week: {$done} of {$goal} days}}",
+      "description": "Progress toward the learner's weekly goal: $done practice days so far this week, of the $goal they aim for. The week starts on the day the interface language's region starts it. Select plural forms as your language needs; drop the selection if it needs none."
     },
     "game.quests.done": {
       "message": "Done",
@@ -1566,6 +1590,10 @@
       "message": ".input {$days :number}\n{{Longest: {$days}}}",
       "description": "The learner's longest streak ever, in days."
     },
+    "game.streak.restart": {
+      "message": "Start a new streak today.",
+      "description": "In place of the streak's length when the streak has ended (a day was missed with no streak freeze to cover it): a kind invitation, never a zero and never guilt-tripping."
+    },
     "game.streak.today-done": {
       "message": "You practised today.",
       "description": "Shown when today already counts for the streak."
@@ -1575,8 +1603,8 @@
       "description": "Shown when today does not count yet; kind, never guilt-tripping."
     },
     "game.title": {
-      "message": "Your streak",
-      "description": "Heading of the panel with the streak, freezes, quests and achievements."
+      "message": "Your practice",
+      "description": "Heading of the panel on the home screen with the streak, the weekly goal, today's quests and the achievements. It shows only once the learner has finished a session."
     },
     "landing.contribute.audio": {
       "message": "Audio check: listen to every clip of a course and say whether it sounds right:",

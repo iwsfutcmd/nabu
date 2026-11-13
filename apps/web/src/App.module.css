@@ -413,6 +413,31 @@
   font-weight: 700;
 }
 
+/* The weekly goal (ADR 0107): the week's progress, or the choice of how many days. */
+.goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+  margin: 0;
+}
+
+.goalProgress {
+  font-weight: 700;
+}
+
+.goalChoices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+}
+
+.goalChoice {
+  justify-content: center;
+  min-inline-size: 2.75rem;
+  font-weight: 700;
+}
+
 .quests,
 .achievements {
   display: flex;

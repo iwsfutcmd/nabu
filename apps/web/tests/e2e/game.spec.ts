@@ -82,6 +82,26 @@ test.describe("game", () => {
     expect(moved.some((p) => p > 0)).toBe(true);
   });
 
+  test("Home opens on the courses for a new learner; then a freeze says what it covered, and a weekly goal can be set (ADR 0107)", async ({ page }) => {
+    const now = Date.parse("2026-05-20T15:00:00Z"); // a Wednesday
+    await page.clock.setFixedTime(new Date(now));
+    await page.goto("/?sound=off#/");
+    await expect(page.locator("[data-course-list]")).toBeVisible();
+    await expect(page.locator("[data-game]")).toHaveCount(0); // no empty streak before the first session
+    // Eight days in a row, Monday missed (a freeze covers it), then yesterday.
+    await seedLog(page, [...Array.from({ length: 8 }, (_, i) => practice(now - (10 - i) * DAY, 6)).flat(), ...practice(now - DAY, 6)]);
+    await page.reload();
+    await expect(page.locator("[data-streak]")).toHaveAttribute("data-streak", "9");
+    await expect(page.locator("[data-freeze-covered]")).toHaveAttribute("data-freeze-covered", "1");
+    await expect(page.locator("[data-freezes]")).toHaveCount(0); // spent, and none held
+    // The goal: asked once, then this week's progress toward it.
+    await page.locator('[data-goal-choice] [data-goal-days="5"]').click();
+    await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "5");
+    await page.reload();
+    await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "5");
+    expect(await seriousAxeViolations(page, "[data-game]")).toEqual([]);
+  });
+
   test("a page left open overnight turns the streak and today's quests over by itself", async ({ page }) => {
     const evening = Date.parse("2026-05-20T23:59:00Z");
     await page.clock.install({ time: new Date(evening) });
