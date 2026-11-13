@@ -10,16 +10,36 @@
  *
  * A report is a choice two steps away, never a line under every verdict that reads like one.
  */
-import { correctable, correctionKey, type Correctable } from "@nabu/core/corrections";
+import { correctable, openCorrection, type Correctable } from "@nabu/core/corrections";
 import type { SentenceReported } from "@nabu/schema";
 import { chromeClass, FlagIcon, useChrome, useTranslator } from "@nabu/ui";
 import { useState, type JSX } from "react";
 import { Button, Dialog, DialogTrigger, Heading, Popover } from "react-aria-components";
 import styles from "./App.module.css";
 import { ChooseDialog, CorrectionDialog, Sent, type Recording } from "./Corrections.tsx";
-import { useReportsPublic } from "./reports.ts";
+import { useReportsPublic, useReportsReach } from "./reports.ts";
 
 export type Claim = "accept" | "reject";
+
+const CLAIMED = {
+  accept: { reviewers: "ai.report.done", "sign-in": "ai.report.done.sign-in", device: "ai.report.done.device" },
+  reject: { reviewers: "ai.report.rejected", "sign-in": "ai.report.rejected.sign-in", device: "ai.report.rejected.device" },
+} as const;
+
+/**
+ * After a claim: how it counts for the learner, and where the report goes (ADR 0115): to the
+ * course's reviewers, to them once the learner signs in, or nowhere. Present from the claim on, and
+ * filled once the app knows where reports go, so what it says is announced.
+ */
+export const Claimed = ({ claim }: { readonly claim: Claim }): JSX.Element => {
+  const t = useTranslator();
+  const reach = useReportsReach();
+  return (
+    <p className={styles.toolsStatus} role="status" data-reported={claim} data-reach={reach}>
+      {reach === undefined ? null : t.format(CLAIMED[claim][reach])}
+    </p>
+  );
+};
 
 /** What the card was built from, to correct, and the corrections this device made in the course. */
 export interface Correcting extends Recording {
@@ -50,7 +70,8 @@ export const ReportButton = ({ claim, spoken, claimed, onClaim, correcting, onSe
   const targets = correcting?.targets ?? [];
   const [first] = targets;
   if (claim === undefined && first === undefined) return null;
-  const previousOf = (c: Correctable): SentenceReported | undefined => correcting?.corrections.get(correctionKey(c.item, c.step));
+  // A correction still open (ADR 0115): one the course took up or moved past leaves a new one to start afresh.
+  const previousOf = (c: Correctable): SentenceReported | undefined => (correcting === undefined ? undefined : openCorrection(correcting.course, correcting.corrections, c.item, c.step));
   const several = targets.length > 1;
   const correction =
     first === undefined ? undefined : several ? "corrections.mark.pairs" : previousOf(first) !== undefined ? "corrections.edit" : first.kind === "word" ? "corrections.mark.word" : "corrections.mark";

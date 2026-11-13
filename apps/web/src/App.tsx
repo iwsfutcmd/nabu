@@ -57,7 +57,8 @@ import { LineReport } from "./Report.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
 import { storedReading, storeReading } from "./readings.ts";
-import { reportIntake } from "./reports.ts";
+import { reportIntake, reportsThrough } from "./reports.ts";
+import { ReportsLink, ReportsPage } from "./YourReports.tsx";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
@@ -101,6 +102,7 @@ export type Route =
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "reports"; readonly course: string; readonly orthography: string }
   | { readonly tag: "review" }
   | { readonly tag: "review-course"; readonly course: string; readonly orthography: string };
 
@@ -123,6 +125,7 @@ const parse = (hash: string): Route => {
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
   if (session === "words") return { tag: "words", course, orthography: unslug(orthography) };
+  if (session === "reports") return { tag: "reports", course, orthography: unslug(orthography) };
   if (session === "story" && node !== undefined) return { tag: "story", course, orthography: unslug(orthography), node };
   if (session === "roleplay" && node !== undefined) return { tag: "roleplay", course, orthography: unslug(orthography), scenario: node };
   return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
@@ -145,7 +148,7 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words"
+          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
@@ -330,6 +333,7 @@ const CoursePath = ({
   speechTiers,
   game,
   onReset,
+  reports,
 }: {
   loaded: LoadedCourse;
   state: LearnerState;
@@ -340,6 +344,8 @@ const CoursePath = ({
   /** The game state: XP comes from it alone, with the deployment's rules and quests (ADR 0107). */
   game: GameState | null;
   onReset: () => void;
+  /** The link to Your reports, beside the sentence list's (ADR 0115). */
+  reports: JSX.Element;
 }): JSX.Element => {
   const t = useTranslator();
   const [off, setOff] = useState(() => ({ listening: onBreak("listening"), speaking: onBreak("speaking") }));
@@ -647,11 +653,13 @@ const CoursePath = ({
           </section>
         );
       })}
-      <p>
+      {/* The course's sentences to correct, and what came of the learner's reports (ADR 0115). */}
+      <div className={styles.links}>
         <a className={styles.link} href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
           {t.format("corrections.page.open")}
         </a>
-      </p>
+        {reports}
+      </div>
       {DEBUG && (
         <p>
           <a className={styles.link} href={href({ tag: "cards", course: course.id, orthography })} data-cards-link="">
@@ -1110,6 +1118,8 @@ const ready = openStore().then(async (store) => {
   const sync = await createSync(store, apiBase(), { gameConfig: () => gameRules });
   window.nabu = store;
   window.nabuSync = sync;
+  // Where a report goes depends on the server and the account (ADR 0115).
+  reportsThrough(sync);
   return { store, sync };
 });
 
@@ -1284,9 +1294,10 @@ export const App = (): JSX.Element => {
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
     // The path's words and titles take the course's profiles (fonts, target text size), as its pages do.
+    const reports = <ReportsLink loaded={value} store={store} version={version} href={href({ tag: "reports", course: value.course.id, orthography: value.course.orthography })} />;
     return (
       <CourseUiProvider course={value.course}>
-        <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} game={game} onReset={onReset} />
+        <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} game={game} onReset={onReset} reports={reports} />
       </CourseUiProvider>
     );
   }
@@ -1321,6 +1332,14 @@ export const App = (): JSX.Element => {
     return (
       <CourseUiProvider course={course}>
         <WordsPage loaded={loaded.value} state={log.state} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+      </CourseUiProvider>
+    );
+  }
+  if (route.tag === "reports") {
+    const { course } = loaded.value;
+    return (
+      <CourseUiProvider course={course}>
+        <ReportsPage loaded={loaded.value} store={store} version={version} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
       </CourseUiProvider>
     );
   }
