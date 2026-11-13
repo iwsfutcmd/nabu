@@ -264,6 +264,7 @@ LIVE = os.environ.get("NABU_OMNIVOICE") == "1"
 @pytest.mark.skipif(not LIVE, reason="NABU_OMNIVOICE=1, the omnivoice group and the checkpoint")
 def test_live_the_course_voice_speaks_lebanese() -> None:
     from nabu.audio.qa import cer, transcribe
+    from nabu.speech.setup import profiles, recognizer_of
 
     source = yaml.safe_load((ROOT / "courses" / "apc" / "course.yaml").read_text("utf-8"))
     v = AudioVoice.model_validate(source["audio"]["voices"][0])
@@ -271,7 +272,8 @@ def test_live_the_course_voice_speaks_lebanese() -> None:
     tts = OmniVoiceProvider(v, reference_of(adir, read_index(adir), v.voice))
     [clip] = tts.synthesize([Request("أَنا مْنيح.", v.voice, 1.0)])
     assert 0.3 < len(clip.pcm) / 2 / clip.sample_rate < 5
-    assert cer(transcribe(clip, "ar"), "أنا منيح") <= 0.15
+    lebanese = recognizer_of(profiles()[v.orthography])  # heard as Arabic, its macrolanguage
+    assert cer(transcribe(clip, lebanese), "أنا منيح") <= 0.15
 
 
 def test_story_lines_are_read_too(apc: Any) -> None:

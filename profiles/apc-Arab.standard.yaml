@@ -48,3 +48,8 @@ input:
   keyboard: cldr-kbd:ar
 layout: { vertical: none }
 fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9 }
+# What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
+# Whisper has no Lebanese Arabic and hears it as Arabic, its macrolanguage, written in Arabic script: the words (tier 1).
+# Not the phones: eSpeak NG's Arabic says Standard Arabic, not Lebanese.
+speech:
+  tiers: [1]

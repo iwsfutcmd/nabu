@@ -37,3 +37,7 @@ match:
 input:
   extraKeys: ["\u02BB", "\u02BC"]
 transliterate: { to: uz-Cyrl/standard, via: cldr-transform }       # powers script-convert exercises
+# What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
+# Whisper writes Uzbek in Latin letters (tier 1); eSpeak NG's uz reads the spelling for the expected phones (tier 2).
+speech:
+  tiers: [1, 2]

@@ -280,6 +280,7 @@ LIVE = os.environ.get("NABU_NAVOIY") == "1"
 @pytest.mark.skipif(not LIVE, reason="NABU_NAVOIY=1, the CosyVoice runtime and the checkpoint")
 def test_live_the_course_voice_speaks_uzbek() -> None:
     from nabu.audio.qa import cer, transcribe
+    from nabu.speech.setup import profiles, recognizer_of
 
     source = yaml.safe_load((ROOT / "courses" / "uz" / "course.yaml").read_text("utf-8"))
     v = AudioVoice.model_validate(source["audio"]["voices"][0])
@@ -287,4 +288,5 @@ def test_live_the_course_voice_speaks_uzbek() -> None:
     tts = NavoiyProvider(v, reference_of(adir, read_index(adir), v.voice))
     [clip] = tts.synthesize([Request("Men choy ichaman.", v.voice, 1.0)])
     assert 0.5 < len(clip.pcm) / 2 / clip.sample_rate < 6
-    assert cer(transcribe(clip, "uz"), "Men choy ichaman.") <= 0.2
+    uzbek = recognizer_of(profiles()[v.orthography])
+    assert cer(transcribe(clip, uzbek), "Men choy ichaman.") <= 0.2

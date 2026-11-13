@@ -159,6 +159,15 @@ def version() -> str:
     return _library().version
 
 
+def has_voice(name: str) -> bool:
+    """Whether eSpeak NG has a voice by this name (a language code: fa, yue, ar)."""
+    try:
+        _library().voice(name)
+    except ValueError:
+        return False
+    return True
+
+
 def synthesize(text: str, voice: str, rate: int = RATE_NORMAL) -> Synthesis:
     """Speaks `text` (UTF-8; `[[...]]` spans are eSpeak phoneme mnemonics) with word onsets."""
     lib = _library()

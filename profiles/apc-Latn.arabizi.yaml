@@ -35,3 +35,7 @@ match:
       - { id: agreement, note: contrast-ending, inflected: true, members: ["", [e, a, i], [o, u]] }
 layout: { vertical: none }
 transliterate: { to: apc-Arab/standard, via: hand-pinned }
+# What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
+# Nothing: Whisper writes Lebanese Arabic in Arabic script, never in Arabizi.
+speech:
+  tiers: []

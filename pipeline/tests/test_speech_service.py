@@ -52,6 +52,64 @@ def test_parse_bounds_the_audio() -> None:
         parse(json.dumps({**body, "audio": base64.b64encode(b"\0" * 3).decode()}).encode())
 
 
+CANTONESE = "alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d"
+
+
+def test_parse_takes_the_profile_s_recognizer_and_loads_only_a_fine_tune_a_profile_names() -> None:
+    """The API sends the orthography's language and its profile's recognizer (ADR 0116). A
+    fine-tune no profile names is refused: loading one would run code from wherever it came."""
+    from nabu.speech.setup import Recognizer
+
+    body: dict[str, Any] = {
+        "audio": base64.b64encode(b"\0\0" * 1600).decode(),
+        "sampleRate": 16000,
+        "language": "apc",
+        "tokens": [],
+    }
+    assert parse(json.dumps(body).encode()).heard_by == Recognizer("apc")
+    yue = {
+        **body,
+        "language": "yue",
+        "recognizer": {"fineTuned": {"model": CANTONESE, "token": "zh"}},
+    }
+    assert parse(json.dumps(yue).encode()).heard_by == Recognizer("yue", CANTONESE, "zh")
+    other = {"fineTuned": {"model": "someone/whisper-anything@" + "0" * 40, "token": "zh"}}
+    with pytest.raises(ValueError, match="no profile names"):
+        parse(json.dumps({**body, "recognizer": other}).encode())
+    with pytest.raises(ValueError):
+        parse(json.dumps({**body, "recognizer": {"model": CANTONESE}}).encode())
+    with pytest.raises(ValueError):
+        parse(json.dumps({**body, "voice": 7}).encode())
+
+
+def test_tier_two_reads_the_spelling_with_the_language_s_espeak_voice(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Without a voice from the profile, the expected phones are eSpeak NG's in the language's
+    voice, or its macrolanguage's where eSpeak NG has none (apc → ar)."""
+    from nabu.audio import espeak, phones
+    from nabu.speech import service
+
+    voices: list[str] = []
+
+    def expected(_tokens: object, _reading: object, voice: str) -> list[tuple[int, str]]:
+        voices.append(voice)
+        return [(0, "a")]
+
+    def recognize(_pcm: bytes, _rate: int) -> list[str]:
+        return ["a"]
+
+    monkeypatch.setattr(espeak, "has_voice", {"ar", "fa"}.__contains__)
+    monkeypatch.setattr(phones, "recognize", recognize)
+    monkeypatch.setattr(service, "expected_by_token", expected)
+    pcm = b"\0\0" * 1600
+    out = service.score(Request(pcm, 16000, "apc", [], None, None, (2,)))
+    assert out["phones"]["errorRate"] == 0.0
+    service.score(Request(pcm, 16000, "fa", [], None, None, (2,)))
+    service.score(Request(pcm, 16000, "apc", [], None, "ar-x-test", (2,)))
+    assert voices == ["ar", "fa", "ar-x-test"]
+
+
 def test_the_service_scores_in_memory_and_answers_json() -> None:
     seen: list[Request] = []
 

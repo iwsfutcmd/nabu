@@ -391,9 +391,10 @@ def test_forced_alignment_finds_token_onsets_within_80_ms() -> None:
 def test_the_round_trip_check_rejects_what_a_recognizer_cannot_understand() -> None:
     """A clip that says something else stays out (§10.1): eSpeak NG reading 三 for 銀行."""
     from nabu.audio.qa import round_trip
+    from nabu.speech.setup import profiles, recognizer_of
 
     [three] = EspeakProvider().synthesize([Request("saam1", "yue-Latn-jyutping")])
-    result = round_trip(three, "銀行", "yue")
+    result = round_trip(three, "銀行", recognizer_of(profiles()["yue-Hant-HK/standard"]))
     assert result["status"] == "fail", result
 
 
@@ -420,13 +421,16 @@ def test_cantonese_transcripts_are_compared_by_reading(
 
 def test_cantonese_is_heard_by_its_fine_tuned_recognizer(monkeypatch: pytest.MonkeyPatch) -> None:
     """Whisper's own writes Cantonese as written Mandarin; yue's clips go to the Cantonese
-    fine-tune, without the sentence (no prompt), and the index names it."""
+    fine-tune its profile names (ADR 0116), without the sentence (no prompt), and the index
+    names it."""
     import contextlib
     import types
 
     from nabu.audio import qa
+    from nabu.speech.setup import Recognizer, profiles, recognizer_of
 
     asked: list[dict[str, object]] = []
+    loaded: list[str] = []
 
     class Model:
         def generate(self, features: object, **kwargs: object) -> list[int]:
@@ -444,7 +448,8 @@ def test_cantonese_is_heard_by_its_fine_tuned_recognizer(monkeypatch: pytest.Mon
         def batch_decode(self, _ids: object, **_kwargs: object) -> list[str]:
             return ["你答唔答小巴"]
 
-    def fine_tuned(_language: str) -> tuple[Processor, Model, str]:
+    def fine_tuned(model: str) -> tuple[Processor, Model, str]:
+        loaded.append(model)
         return Processor(), Model(), "cpu"
 
     def to_16k(pcm: bytes, _rate: int) -> bytes:
@@ -458,7 +463,9 @@ def test_cantonese_is_heard_by_its_fine_tuned_recognizer(monkeypatch: pytest.Mon
     monkeypatch.setattr(qa, "fine_tuned", fine_tuned)
     monkeypatch.setattr(qa, "to_16k", to_16k)
     monkeypatch.setattr(qa, "optional", optional)
-    result = qa.round_trip(Clip(b"\0\0" * 160, 16_000, None, None), "你搭唔搭小巴？", "yue")
+    yue = recognizer_of(profiles()["yue-Hant-HK/standard"])
+    result = qa.round_trip(Clip(b"\0\0" * 160, 16_000, None, None), "你搭唔搭小巴？", yue)
+    assert loaded == ["alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d"]
     assert asked == [{"language": "zh", "task": "transcribe", "max_new_tokens": 128}]
     assert result == {
         "asrModel": "alvanlii/whisper-small-cantonese@b03a4e5d482f",
@@ -466,7 +473,38 @@ def test_cantonese_is_heard_by_its_fine_tuned_recognizer(monkeypatch: pytest.Mon
         "cer": 0.0,
         "status": "pass",
     }
-    assert qa.model_name("fa") == "whisper-large-v3-turbo"
+    assert qa.model_name(Recognizer("fa")) == "whisper-large-v3-turbo"
+
+
+def test_whisper_hears_a_language_it_has_no_model_for_as_its_macrolanguage(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Whisper has no Lebanese Arabic (apc): the round trip and learners' speech are heard as
+    Arabic, its macrolanguage (ADR 0116). A language Whisper has is heard as itself."""
+    import types
+
+    from nabu.audio import qa
+    from nabu.speech.setup import Recognizer
+
+    heard: list[object] = []
+
+    class Whisper:
+        supported_languages: ClassVar[list[str]] = ["ar", "en", "fa", "yue", "zh"]
+
+        def transcribe(self, _audio: object, **kwargs: object) -> tuple[list[object], None]:
+            heard.append(kwargs["language"])
+            return [types.SimpleNamespace(text=" أنا منيح ")], None
+
+    def to_16k(pcm: bytes, _rate: int) -> bytes:
+        return pcm
+
+    monkeypatch.setattr(qa, "recognizer", Whisper)
+    monkeypatch.setattr(qa, "to_16k", to_16k)
+    clip = Clip(b"\0\0" * 160, 16_000, None, None)
+    assert qa.transcribe(clip, Recognizer("apc")) == "أنا منيح"
+    assert qa.transcribe(clip, Recognizer("fa")) == "أنا منيح"
+    assert qa.transcribe(clip, Recognizer("yue")) == "أنا منيح"
+    assert heard == ["ar", "fa", "yue"]
 
 
 class _Whisper:
