@@ -25,3 +25,4 @@ export {
 } from "./state.ts";
 export { learnedWords, orderWords, skillsAsked, wordCounts, wordMatcher, type LearnedWord, type Skill, type WordOrder, type WordSkill } from "./words.ts";
 export { continueOf, PACE, paceOf, practiceFirst, type ContinueTo, type Pace, type PaceBand, type PaceChoice, type PaceSettings } from "./pacing.ts";
+export { isStart, studiedCourses, type Studied } from "./studied.ts";
