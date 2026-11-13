@@ -1255,6 +1255,12 @@ class Input(BaseModel):
         Literal["good", "hard", "again"] | None,
         Field(description="Speak tier 0 only: the learner's own rating."),
     ] = None
+    hinted: Annotated[
+        Literal[True] | None,
+        Field(
+            description="The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up."
+        ),
+    ] = None
 
 
 class Outcome(BaseModel):

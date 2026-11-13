@@ -2418,6 +2418,10 @@ export interface AnswerSubmitted {
      * Speak tier 0 only: the learner's own rating.
      */
     readonly selfRating?: "good" | "hard" | "again";
+    /**
+     * The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up.
+     */
+    readonly hinted?: true;
   };
   readonly outcome: {
     readonly kind:

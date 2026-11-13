@@ -20,6 +20,7 @@ import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
 import { GlossPanel, useGlosses, type WordTap } from "./Gloss.tsx";
+import { lookupIsHint, withHint } from "./hints.ts";
 import { NewWordsAnswered, NewWordsTag, newOnCard } from "./NewWords.tsx";
 import styles from "./Player.module.css";
 import { useReadings } from "./Readings.tsx";
@@ -151,7 +152,10 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
   // Nothing plays by itself with sound off, or while the learner can't listen (P6): no tones, no clips.
   const quiet = !sound || putOff.listening || props.listening === false;
-  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound: !quiet, retries, adaptive, resumed: props.resumed });
+  // The cards whose meanings were looked up before their answer was checked (D16): their answers are hinted.
+  const hinted = useRef(new Set<string>());
+  const report = onEvent === undefined ? undefined : (event: LessonEvent): void => onEvent(withHint(event, hinted.current));
+  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent: report, sound: !quiet, retries, adaptive, resumed: props.resumed });
   const [override, setOverride] = useState(props.initialState);
   const state = override ?? shell.state;
   const dispatch = (event: Parameters<typeof shell.dispatch>[0]): void => {
@@ -254,8 +258,12 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const fresh = newOnCard(ex, state.session.queue.slice(0, state.session.position), introduces, kinds);
   const glossing = {
     tapped,
-    onTap: (word: WordTap): void =>
-      setTap((now) => (now !== undefined && now.card === ex.id && now.word.key === word.key && now.word.token === word.token ? undefined : { card: ex.id, word })),
+    onTap: (word: WordTap): void => {
+      const closing = tapped !== undefined && tapped.key === word.key && tapped.token === word.token;
+      // Opening a meaning before the answer is checked is a hint (D16); after it, it is learning.
+      if (!closing && lookupIsHint(state)) hinted.current.add(ex.id);
+      setTap(closing ? undefined : { card: ex.id, word });
+    },
   };
   const canCheck = active.tag === "answering" && !active.composing && responseOf(ex, active.draft) !== undefined;
   const instruction = t.format(INSTRUCTIONS[ex.template], { language });

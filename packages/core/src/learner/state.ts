@@ -244,18 +244,21 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   const pace: Pace = typical === undefined ? "usual" : perUnit > PACE_SLOW * typical ? "slow" : perUnit <= PACE_FAST * typical ? "fast" : "usual";
   if (e.attempt === 1) d.latencies[template] = [...recent, perUnit].slice(-LATENCY_WINDOW);
   const typed = TEMPLATES[template].modality.input === "text";
+  // A word's meaning looked up on the card before answering (D16): a hint.
+  const hinted = e.input.hinted === true;
   for (const credit of e.outcome.kcs) {
-    const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, pace, e.input.selfRating, typed);
+    const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, pace, e.input.selfRating, typed, hinted);
     if (rating !== undefined) rate(d, e, credit.kc, facet, rating);
   }
   // Known words (ADR 0100): which skills a first try showed or missed, then what the learner has met.
   // A miss counts against a word only where the grading pins it there: a word card, or a sentence
-  // with other words right. A sentence missed as a whole says nothing about which word failed.
+  // with other words right. A sentence missed as a whole says nothing about which word failed. A
+  // hinted first try (D16) shows no skill and misses none; it still counts in recent practice.
   if (e.attempt === 1 && e.input.selfRating === undefined) {
     d.recent = [...d.recent, correct].slice(-RECENT_WINDOW);
     const credited = e.outcome.kcs.filter((c) => c.status !== "given");
     const pinned = credited.length === 1 || credited.some((c) => c.status === "right");
-    for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.kc, facet, c.status === "right");
+    if (!hinted) for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.kc, facet, c.status === "right");
   }
   for (const credit of e.outcome.kcs) d.met[credit.kc] ??= e.localDate;
   if (correct) addXp(d, e.localDate, XP.answer);

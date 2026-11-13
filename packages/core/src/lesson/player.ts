@@ -106,6 +106,11 @@ export type LessonEvent =
       /** The exercise and the full outcome (alignment included), for credit assignment. */
       readonly ex: Exercise;
       readonly graded: Outcome;
+      /**
+       * The learner looked up a word's meaning on the card before this answer was checked (D16): a
+       * hint. The shell that shows the lookups marks it; the state machine never does.
+       */
+      readonly hinted?: true | undefined;
     }
   | { readonly type: "exercise_skipped"; readonly exercise: ExerciseRef; readonly reason: SkipReason; readonly ex: Exercise }
   | { readonly type: "session_completed"; readonly lesson: string; readonly summary: SessionSummary };

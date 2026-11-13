@@ -112,6 +112,8 @@ export const learnerEventOf = (
           latencyMs: Math.max(0, Math.round(extra.latencyMs ?? 0)),
           ...(response.tag === "text" ? { raw: response.text } : {}),
           ...(response.tag === "self-rating" ? { selfRating: response.rating } : {}),
+          // A word looked up on the card before answering (D16): the fold rates the answer Hard at best.
+          ...(e.hinted === true ? { hinted: true as const } : {}),
         },
         outcome: { kind: e.graded.verdict, notes: [...e.graded.notes], kcs: [...creditOf(e.ex, e.graded, course.profiles)] },
         ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }),

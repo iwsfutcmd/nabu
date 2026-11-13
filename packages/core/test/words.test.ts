@@ -126,10 +126,14 @@ describe("known words (ADR 0100)", () => {
       events.at(day(n));
       events.session();
     };
-    /** A first try (or `attempt`), with each KC's credit (true: right; false: wrong; undefined: given). */
-    const answer = (ex: Exercise, credits: readonly (boolean | undefined)[], attempt = 1): void => {
-      const e = events.answer(ex, credits.every((x) => x !== false), attempt) as LearnerEvent & { outcome: { kcs: KcCredit[] } };
-      out.push({ ...e, outcome: { ...e.outcome, kcs: ex.kcs.map((kc, i): KcCredit => ({ kc, status: credits[i] === undefined ? "given" : credits[i] ? "right" : "wrong" })) } } as LearnerEvent);
+    /**
+     * A first try (or `attempt`), with each KC's credit (true: right; false: wrong; undefined: given);
+     * `hinted`: a word's meaning was looked up on the card before answering (D16).
+     */
+    const answer = (ex: Exercise, credits: readonly (boolean | undefined)[], attempt = 1, hinted = false): void => {
+      const e = events.answer(ex, credits.every((x) => x !== false), attempt) as LearnerEvent & { input: object; outcome: { kcs: KcCredit[] } };
+      const kcs = ex.kcs.map((kc, i): KcCredit => ({ kc, status: credits[i] === undefined ? "given" : credits[i] ? "right" : "wrong" }));
+      out.push({ ...e, input: { ...e.input, ...(hinted ? { hinted: true } : {}) }, outcome: { ...e.outcome, kcs } } as LearnerEvent);
     };
     const skip = (ex: Exercise): void => {
       const { input: _i, outcome: _o, prediction: _p, ...e } = events.answer(ex, false, 1) as LearnerEvent & { input: unknown; outcome: unknown; prediction?: unknown };
@@ -185,6 +189,42 @@ describe("known words (ADR 0100)", () => {
     // A word a pronunciation card does not ask about is given: neither shown nor missed.
     l.answer(card("translate-type.l1-l2", [a, c]), [undefined, false]);
     expect(Object.keys(l.state().shown)).toEqual([`${a}|produce`]);
+  });
+
+  it("shows no skill by a hinted first try, and misses none, though it counts as practice (D16)", () => {
+    const l = log();
+    l.on(1);
+    l.answer(word(a), [true]);
+    l.answer(word(b), [true]);
+    l.on(2);
+    // A meaning looked up before answering: right, but nothing shown; wrong, but nothing missed.
+    l.answer(word(a), [true], 1, true);
+    l.answer(word(b), [false], 1, true);
+    expect(l.state().shown).toEqual({});
+    expect(l.state().missed).toEqual({});
+    // Recent practice still has both, as answered (the learning pace reads it).
+    expect(l.state().recent.slice(-2)).toEqual([true, false]);
+    // The same answer without a hint shows the skill.
+    l.answer(word(a), [true]);
+    expect(l.state().shown).toEqual({ [`${a}|recognize`]: "2026-03-02" });
+  });
+
+  it("rates a hinted right answer Hard, and the performance model learns it as right (D16)", () => {
+    const run = (hinted: boolean): LearnerState => {
+      const l = log();
+      l.on(1);
+      l.answer(word(a), [true]);
+      l.on(2);
+      l.answer(word(a), [true], 1, hinted);
+      return l.state();
+    };
+    const plain = run(false);
+    const hinted = run(true);
+    const key = `${a}|recognize`;
+    // Hard grows the card's stability less than Good.
+    expect(hinted.cards[key]?.stability).toBeLessThan(plain.cards[key]?.stability ?? 0);
+    expect(hinted.performance).toEqual(plain.performance);
+    expect(hinted.xp).toEqual(plain.xp);
   });
 
   it("counts first tries only, and a revealed answer on a word card as a miss", () => {

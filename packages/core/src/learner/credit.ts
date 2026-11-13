@@ -111,7 +111,8 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
  * The rating that goes to FSRS (§9.2, ADR 0096). Learners never rate themselves, except speaking at
  * tier 0: the answer says how recall went. Right is Good; right but slow, or with a slip (typo,
  * marks, variant, provisional, IME), is Hard; right, fast and typed from memory is Easy, which the
- * fold grants only to a card already sure.
+ * fold grants only to a card already sure. A right answer after a hint (a word's meaning looked up
+ * on the card before answering, D16) is Hard at best: §9.2's Good is for an answer with no hint.
  */
 export const ratingOf = (
   status: KcCredit["status"],
@@ -120,7 +121,13 @@ export const ratingOf = (
   pace: Pace,
   selfRating?: SelfRating,
   typed = false,
+  hinted = false,
 ): Rating | undefined => {
+  const rating = unhintedRating(status, verdict, notes, pace, selfRating, typed);
+  return hinted && (rating === "good" || rating === "easy") ? "hard" : rating;
+};
+
+const unhintedRating = (status: KcCredit["status"], verdict: Verdict, notes: readonly string[], pace: Pace, selfRating: SelfRating | undefined, typed: boolean): Rating | undefined => {
   if (status === "given") return undefined;
   if (status === "wrong") return "again";
   if (selfRating !== undefined) return selfRating === "again" ? "again" : selfRating;

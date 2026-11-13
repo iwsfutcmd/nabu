@@ -27,7 +27,7 @@ import {
   type LearnerState,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { allKcs, buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
+import { allKcs, buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type LessonEvent } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -75,6 +75,20 @@ describe("credit assignment (§8.5)", () => {
     expect(ratingOf("right", "CORRECT", [], "fast", undefined, true)).toBe("easy");
     expect(ratingOf("right", "CORRECT", [], "fast", undefined, false)).toBe("good");
     expect(ratingOf("right", "CORRECT_WITH_TYPO", [], "fast", undefined, true)).toBe("hard");
+  });
+
+  it("rates a right answer after a hint Hard at best (D16): Good is for an answer with no hint (§9.2)", () => {
+    expect(ratingOf("right", "CORRECT", [], "usual", undefined, false, true)).toBe("hard");
+    expect(ratingOf("right", "CORRECT", [], "fast", undefined, true, true)).toBe("hard");
+    expect(ratingOf("right", "CORRECT", [], "usual", "good", false, true)).toBe("hard");
+    expect(ratingOf("right", "CORRECT_WITH_TYPO", [], "usual", undefined, false, true)).toBe("hard");
+    // A wrong answer stays Again, a given word unrated, a self-rated Again Again.
+    expect(ratingOf("wrong", "WRONG", [], "usual", undefined, false, true)).toBe("again");
+    expect(ratingOf("given", "CORRECT", [], "usual", undefined, false, true)).toBeUndefined();
+    expect(ratingOf("right", "CORRECT", [], "usual", "again", false, true)).toBe("again");
+    // No hint: as before.
+    expect(ratingOf("right", "CORRECT", [], "usual", undefined, false, false)).toBe("good");
+    expect(ratingOf("right", "CORRECT", [], "fast", undefined, true, false)).toBe("easy");
   });
 
   it("judges pace per unit of length: a long sentence may take longer without being slow", () => {
@@ -402,6 +416,19 @@ describe("planner constraints", () => {
     const ex = sampleExercise(fa, "choose-translation") as Exercise;
     const e = events.answer(ex, true, 1);
     expect(e.type).toBe("answer_submitted");
+  });
+
+  it("records a hint with the answer it came before, and nothing without one (D16)", () => {
+    const ex = sampleExercise(fa, "choose-translation") as Exercise;
+    if (ex.template !== "choose-translation") throw new Error("not a choice");
+    const graded = gradeExercise(ex, { tag: "choice", index: ex.answer }, createGrader(fa));
+    const answered: LessonEvent = { type: "answer_submitted", exercise: { id: ex.id, template: ex.template, item: ex.item }, response: { tag: "choice", index: ex.answer }, outcome: { kind: graded.verdict, notes: graded.notes }, ex, graded };
+    const meta = { id: "00000000-0000-7000-8000-000000000001", clientTime: "2026-03-01T08:00:00.000Z", localDate: "2026-03-01", tz: "UTC", device: "test", session: "00000000-0000-7000-8000-000000000002", bundle: faBundle };
+    const session = { mode: "lesson" as const, node: undefined, seed: 1, planner: "test" };
+    const hinted = learnerEventOf({ ...answered, hinted: true }, fa, meta, session, { latencyMs: 3000 });
+    const plain = learnerEventOf(answered, fa, meta, session, { latencyMs: 3000 });
+    expect(hinted?.type === "answer_submitted" && hinted.input).toEqual({ method: "choice", latencyMs: 3000, hinted: true });
+    expect(plain?.type === "answer_submitted" && plain.input).toEqual({ method: "choice", latencyMs: 3000 });
   });
 });
 

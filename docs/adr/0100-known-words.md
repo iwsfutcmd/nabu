@@ -86,3 +86,9 @@ known words (S14).
 - **No server change.** Known status is replayed from the device's log like the rest of the state.
 - **"Practise these" from the word list (S14) is not part of this.** It waits for L3's review
   sessions.
+
+## Amendment: hinted answers (2026-11-12)
+
+A first try after a word's meaning was looked up on the card before answering (D16, `input.hinted`;
+[ADR 0043](0043-stories.md)'s amendment) shows nothing and misses nothing, as retries and
+self-ratings do; FSRS rates a hinted right answer Hard at best. It still counts in recent practice.
