@@ -228,6 +228,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every judge gate until `pnpm --filter @nabu/api evals -- --run` with a model writes new ones.
 - evals/gates.json: never hand-write a gate or a result. Golden items must stay real judge cases (check mode, in CI).
 - A judge accept is an outcome_revised event the server issues; projections fold logs through withRevisions.
+- A claim or the judge's accept revises the running session too (`revise`, ADR 0113): Continue, the retry and the score
+  follow it, and a reload agrees. The end screen's progress is the log with the session against without it
+  (apps/web/src/session-end.ts); never store it.
   A learner's answer_reported is their own revision (claim accept or reject, ADR 0052); it counts at once.
 - Reports are answer_reported events. Review: /admin/v1 (NABU_ADMIN_TOKEN); `nabu reports promote` edits accept sets.
 - Roleplay scenarios are course content (`scenarios:`, no target text); model turns are checked before shown.
@@ -304,6 +307,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Firebase keys and the service account live only in repo settings (variables/secrets): never in chat or commits.
   The rules in deploy/firebase/ are merged into a shared project's rules, never deployed on their own.
 - Learner text in issues stays in code spans (no mentions, links, markup); keep it so when changing the rendering.
+- What came of a report is the device's own comparison with its bundle (ADR 0115): `correctionStatus`/`openCorrection`,
+  `claimStatus`/`reportsOf`; never a server route, never stored. Confirmations say where a report goes (`useReportsReach`).
 
 ## Morphology notes (see docs/adr/0061)
 - A KC's forms are its lemma (first: what word cards show) and its variants, never an inflected word; the compiler's

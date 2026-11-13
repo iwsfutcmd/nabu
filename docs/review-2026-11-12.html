@@ -1349,6 +1349,214 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "Keep a run of Latin letters together as one word, even in Han-script courses"
       }
     ]
+  },
+  {
+    "id": "D22",
+    "title": "Where “Your reports” lives (M2)",
+    "context": "A learner’s reports, with what came of each, now have a page of their own.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Its own page, linked from the course page once there is a report (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "A section of the sentence list"
+      }
+    ]
+  },
+  {
+    "id": "D23",
+    "title": "A report nothing has come of yet (M2)",
+    "context": "The device cannot know whether a report made before the deployment had an intake ever reached anyone.",
+    "options": [
+      {
+        "v": "a",
+        "label": "No status line: only what came of it, once something has (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "“Waiting for a reviewer” on every open report"
+      }
+    ]
+  },
+  {
+    "id": "D24",
+    "title": "A correction the course fixed differently (M2)",
+    "context": "The course changed the sentence, but not to what the learner suggested.",
+    "options": [
+      {
+        "v": "a",
+        "label": "“Changed since your correction” (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "“In the course now”, as if taken up"
+      }
+    ]
+  },
+  {
+    "id": "D25",
+    "title": "Which claims get a status (M2)",
+    "context": "A claim’s status comes from grading the claimed answer again against the course’s accept set.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Only claims whose text is the whole graded answer (typed, tiles, dictation); choices, filled blanks, story questions and “I said it right” show none (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Store more with each claim so every kind can be checked (a schema change)"
+      }
+    ]
+  },
+  {
+    "id": "D26",
+    "title": "A correction the course took up (M2)",
+    "context": "Once the course has it (or changed the sentence since), the learner’s correction is settled.",
+    "options": [
+      {
+        "v": "a",
+        "label": "No longer open: the form starts fresh and the download leaves it out (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Still editable and downloaded until the learner clears it"
+      }
+    ]
+  },
+  {
+    "id": "D27",
+    "title": "Telling the learner a report was taken up (M2)",
+    "context": "Today the course page shows a count (“2 in the course now”) beside the link to Your reports.",
+    "options": [
+      {
+        "v": "a",
+        "label": "The count only (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Also a one-time notice the next time the learner opens the course"
+      }
+    ]
+  },
+  {
+    "id": "D28",
+    "title": "“This should have been wrong” during feedback (P14)",
+    "context": "A claim now counts at once in its session.",
+    "options": [
+      {
+        "v": "a",
+        "label": "The card comes back at the end like any miss, and the progress bar steps back one (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Count it in the score only; the card does not come back"
+      }
+    ]
+  },
+  {
+    "id": "D29",
+    "title": "Enter at the end of a session (P9)",
+    "context": "The end screen now offers the next step from Continue (next lesson, or practice first).",
+    "options": [
+      {
+        "v": "a",
+        "label": "The next step has the focus: Enter starts it (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "“Back to the course” keeps the focus, as before"
+      }
+    ]
+  },
+  {
+    "id": "D30",
+    "title": "“Your answer” for missed cards after a reload (P9)",
+    "context": "The log keeps typed answers, but not which option or tile order was chosen.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Shown only for typed answers after a reload (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Log choices and tile orders too, so every missed card can show it (a schema change)"
+      }
+    ]
+  },
+  {
+    "id": "D31",
+    "title": "The end of a placement test and of a replayed lesson (P9)",
+    "context": "A placement test’s result replaces the title and score.",
+    "options": [
+      {
+        "v": "a",
+        "label": "A placement test lists no misses; a replayed lesson shows no new words (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "List the placement test’s misses too"
+      }
+    ]
+  },
+  {
+    "id": "D32",
+    "title": "Streak and weekly-goal lines at the end (P9)",
+    "context": "“Your progress” lists words now known, a unit finished, the streak, the week’s practice days, quests and XP.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Streak and goal only when this session changed them (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Always shown"
+      }
+    ]
+  },
+  {
+    "id": "D33",
+    "title": "XP at the end of a session (P9, ADR 0107)",
+    "context": "Practice over points: the end screen leads with what was learned.",
+    "options": [
+      {
+        "v": "a",
+        "label": "XP last, a little smaller (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "XP beside the title, as before"
+      }
+    ]
+  },
+  {
+    "id": "D34",
+    "title": "“Practise first” right after a practice session (P9)",
+    "context": "The end screen’s next step is Continue’s: practice first when many words are slipping.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Whatever Continue says, even right after a review (what the helper built)"
+      },
+      {
+        "v": "b",
+        "label": "Right after a review or practice session, the next step is the next lesson, with practice beside it",
+        "rec": true
+      }
+    ]
   }
 ]
 </script>
@@ -1690,12 +1898,14 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
       "note": "With a helper (fix/speed, ADR 0112): sync compares less often or by digest, and an upload moves the cursor on."
     },
     "P9": {
-      "state": "in-progress",
-      "note": "With a helper (fix/session-end, ADR 0113): a title per mode, missed items, new and known words, the game before and after, and a next step that agrees with Continue."
+      "state": "done",
+      "commit": "b74ae7e5",
+      "note": "Merged: the end of a session has a title per kind, the new words with meaning and audio, what was missed with the answer and the learner’s, then progress (words now known, a unit finished, streak, the week’s goal, quests, XP last) and the next step from Continue (ADR 0113). Choices D29–D34."
     },
     "P14": {
-      "state": "in-progress",
-      "note": "With a helper (fix/session-end, ADR 0113): a revise event during feedback drops the retry and corrects the summary."
+      "state": "done",
+      "commit": "5301260c",
+      "note": "Merged: a claim or the judge’s accept counts at once in its session (a pure revise event: Continue, the retry and the score follow it; a reload agrees). ADR 0113 and ADR 0052’s amendment. Choice D28."
     },
     "S11": {
       "state": "in-progress",
@@ -1706,8 +1916,9 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
       "note": "With a helper (fix/course-page): lasting Listening and Speaking switches, Preferences reachable from the course and the player, a text-size sample."
     },
     "M2": {
-      "state": "in-progress",
-      "note": "With a helper (fix/reports-status): the confirmation says where a report goes; “Your reports” shows what the course has taken up."
+      "state": "done",
+      "commit": "ac218917",
+      "note": "Merged: a report’s confirmation says where it goes (reviewers; them once the learner signs in; or this device only); the sentence list and a new “Your reports” page say what came of each report, compared on the device with the bundle it has (ADR 0115). Choices D22–D27."
     },
     "C6": {
       "state": "in-progress",
