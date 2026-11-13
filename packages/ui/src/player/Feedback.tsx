@@ -22,7 +22,7 @@ import { FormNote, GlossEntry, GlossList } from "./Gloss.tsx";
 import styles from "./Player.module.css";
 
 /** Marks where a word goes in a message: a private-use character no message holds. */
-const SLOT = "";
+const SLOT = "\uE000";
 
 /**
  * A message with words of the answer's language in it (cómo and como): each word through <T>, with

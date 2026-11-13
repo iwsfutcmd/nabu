@@ -89,7 +89,7 @@ describe("a note about the words an answer's marks made into others (W4)", () =>
     expect(items[1]).toContain("esta");
     expect(html).not.toContain("“is”");
     // The words are isolated by <T>, not by the message's own isolation marks.
-    expect(html).not.toMatch(/[⁨⁩]/u);
+    expect(html).not.toMatch(/[\u2068\u2069]/u);
   });
 
   it("says the plain note when no unit carries it", () => {
