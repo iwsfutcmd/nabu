@@ -21,6 +21,11 @@
  * (where the browser supports it). The app also syncs when it comes back online, when it is shown
  * again (a phone unlocked, the native app resumed), and every minute while events are pending.
  *
+ * A server that no longer takes the session (it expired after 180 days, or the account was deleted on
+ * another device) signs the device out: the session goes as when the learner signs out, and the device
+ * remembers who was signed in (`signedOut`), so Home says so, across reloads, and the form asks them to
+ * sign in again, until they do or choose to stay signed out (ADR 0123).
+ *
  * Events the server rejects are set aside (outbox.ts): kept on the device, counted in `held`, and
  * sent again only when the learner asks, signs in again, or first runs an updated app (D10). The
  * check against the server's projections leaves them out, since the server never took them.
@@ -44,6 +49,15 @@ export interface Account {
   readonly server: string;
   readonly token: string;
   readonly user: { readonly id: string; readonly email: string };
+}
+
+/**
+ * Who was signed in when the server ended the device's session (ADR 0123): it expired, or the
+ * account was deleted on another device. Kept until the learner signs in again or stays signed out.
+ */
+export interface SignedOut {
+  readonly server: string;
+  readonly email: string;
 }
 
 /** Error codes from the server, plus the client's own. The UI turns them into messages. */
@@ -83,6 +97,8 @@ export interface SyncState {
   readonly revised: number;
   /** This server's age gate turned the person away (ADR 0069): the device remembers, and offers no new account there. */
   readonly ageRefused: boolean;
+  /** The server ended the session (ADR 0123): Home says so, across reloads, and the form asks to sign in again. */
+  readonly signedOut: SignedOut | undefined;
 }
 
 export interface Sync {
@@ -92,6 +108,8 @@ export interface Sync {
   readonly signUp: (email: string, password: string, age?: number) => Promise<SyncError | undefined>;
   readonly signIn: (email: string, password: string) => Promise<SyncError | undefined>;
   readonly signOut: () => Promise<void>;
+  /** After the server ended the session: the learner lets it go, and the device forgets who was signed in. */
+  readonly staySignedOut: () => Promise<void>;
   /** Everything the server holds for the account (§14.4), as GET /v1/export gives it. */
   readonly exportAccount: () => Promise<{ readonly ok: true; readonly data: unknown } | { readonly ok: false; readonly error: SyncError }>;
   /** Deletes the account and its data on the server (the password confirms it); this device keeps its progress. */
@@ -120,6 +138,8 @@ const CURSOR = "cursor";
 const CHECKED = "checked";
 /** The courses with events uploaded or pulled since the last check: the next check compares them. */
 const UNCHECKED = "unchecked";
+/** Who the server signed out (SignedOut), until they sign in again or stay signed out. */
+const SIGNED_OUT = "signed-out";
 
 interface Checked {
   readonly user: string;
@@ -208,6 +228,8 @@ export const createSync = async (store: EventStore, server: string | undefined, 
   const saved = (await store.getMeta(ACCOUNT)) as Account | undefined;
   const refused = ((await store.getMeta(AGE_REFUSED)) ?? []) as string[];
   const checked = (await store.getMeta(CHECKED)) as Checked | undefined;
+  // Who the server signed out, if it is this build's server and no one has signed in since.
+  const ended = (await store.getMeta(SIGNED_OUT)) as SignedOut | undefined;
   // An updated app sends once more what the server rejected before (D10).
   await retryAfterUpdate(store, typeof __NABU_BUILD__ === "string" ? __NABU_BUILD__ : "unknown");
   const heldCount = async (): Promise<number> => Object.keys(await store.held()).length;
@@ -222,6 +244,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     pulled: 0,
     revised: 0,
     ageRefused: refused.includes(saved?.server ?? server ?? ""),
+    signedOut: saved === undefined && ended !== undefined && ended.server === server ? ended : undefined,
   };
   const listeners = new Set<() => void>();
   const set = (patch: Partial<SyncState>): void => {
@@ -297,6 +320,29 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     });
   };
 
+  /** This device no longer has an account: the session, the sync cursor and the last check go; its own log stays. */
+  const forget = async (): Promise<void> => {
+    await store.deleteMeta(ACCOUNT);
+    await store.deleteMeta(CURSOR);
+    await store.deleteMeta(CHECKED);
+    await store.deleteMeta(UNCHECKED);
+    set({ account: undefined, phase: "idle", error: undefined, verified: undefined });
+  };
+
+  /**
+   * The server no longer takes the session `account` signed in with (it expired, or the account was
+   * deleted on another device): forget it as signing out does, and remember who it was, so Home says
+   * so until the learner signs in again or stays signed out (ADR 0123). A session the learner has left
+   * since (a pass that was under way as they signed out) is not theirs to end.
+   */
+  const endedByServer = async (account: Account): Promise<void> => {
+    if (state.account?.token !== account.token) return;
+    await forget();
+    const signedOut: SignedOut = { server: account.server, email: account.user.email };
+    await store.setMeta(SIGNED_OUT, signedOut);
+    set({ signedOut });
+  };
+
   const syncNow = async (): Promise<void> => {
     if (running !== undefined) {
       again = true;
@@ -309,8 +355,8 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       .catch(async (e: unknown) => {
         const error = errorOf(e);
         if (error === "signed-out") {
-          await store.deleteMeta(ACCOUNT);
-          set({ account: undefined });
+          await endedByServer(account);
+          return;
         }
         const pending = await store.pendingCount();
         if (error === "unreachable" && pending > 0) void requestBackgroundSync();
@@ -333,6 +379,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       const result = await request<{ user: Account["user"]; token: string }>(base, path, { body: age === undefined ? { email, password } : { email, password, age } });
       const account: Account = { server: base, token: result.token, user: result.user };
       await store.setMeta(ACCOUNT, account);
+      await store.deleteMeta(SIGNED_OUT);
       // The cursor and the last check were the last account's: this one starts from the beginning, and is checked at once.
       await store.deleteMeta(CURSOR);
       await store.deleteMeta(CHECKED);
@@ -343,7 +390,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       // last one rejected: send it again.
       if (path === SIGN_UP) await store.requeue();
       else await store.releaseHeld();
-      set({ account, error: undefined, held: 0, verified: undefined, pending: await store.pendingCount() });
+      set({ account, signedOut: undefined, error: undefined, held: 0, verified: undefined, pending: await store.pendingCount() });
       await syncNow();
       return undefined;
     } catch (e) {
@@ -355,15 +402,6 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       }
       return error;
     }
-  };
-
-  /** This device no longer has an account: the session, the sync cursor and the last check go; its own log stays. */
-  const forget = async (): Promise<void> => {
-    await store.deleteMeta(ACCOUNT);
-    await store.deleteMeta(CURSOR);
-    await store.deleteMeta(CHECKED);
-    await store.deleteMeta(UNCHECKED);
-    set({ account: undefined, phase: "idle", error: undefined, verified: undefined });
   };
 
   let timer: ReturnType<typeof setTimeout> | undefined;
@@ -403,13 +441,19 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       if (account !== undefined) await request(account.server, "/v1/auth/sign-out", { token: account.token, body: {} }).catch(() => undefined);
       await forget();
     },
+    staySignedOut: async () => {
+      await store.deleteMeta(SIGNED_OUT);
+      set({ signedOut: undefined });
+    },
     exportAccount: async () => {
       const account = state.account;
       if (account === undefined) return { ok: false, error: "signed-out" };
       try {
         return { ok: true, data: await request<unknown>(account.server, "/v1/export", { token: account.token }) };
       } catch (e) {
-        return { ok: false, error: errorOf(e) };
+        const error = errorOf(e);
+        if (error === "signed-out") await endedByServer(account);
+        return { ok: false, error };
       }
     },
     deleteAccount: async (password) => {
@@ -418,7 +462,9 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       try {
         await request(account.server, "/v1/account", { token: account.token, method: "DELETE", body: { password } });
       } catch (e) {
-        return errorOf(e);
+        const error = errorOf(e);
+        if (error === "signed-out") await endedByServer(account);
+        return error;
       }
       // The session went with the account: forget it here too, as signing out does.
       await forget();

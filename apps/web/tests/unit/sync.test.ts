@@ -203,6 +203,71 @@ describe("sync passes (ADR 0112)", () => {
   });
 });
 
+describe("signed out by the server (ADR 0123)", () => {
+  const who = { server: SERVER, email: "a@example.org" };
+
+  it("forgets the session, says who across a reload, and keeps what is recorded meanwhile for the next sign-in", async () => {
+    const remote = server();
+    const store = await deviceWith([event(1, "2026-11-11T09:00:00.000Z")]);
+    const sync = await createSync(store, SERVER, options);
+    await sync.signUp("a@example.org", "a long password");
+    // The session expires (or the account is deleted on another device); the learner keeps going.
+    remote.end();
+    const meanwhile = event(2, "2026-11-12T11:00:00.000Z");
+    await store.append([meanwhile]);
+    await sync.syncNow();
+    expect(sync.get()).toMatchObject({ account: undefined, phase: "idle", error: undefined, verified: undefined, signedOut: who });
+    expect(await store.pendingCount()).toBe(1);
+    const reloaded = await createSync(store, SERVER, options);
+    expect(reloaded.get()).toMatchObject({ account: undefined, signedOut: who });
+    // Signing in again forgets it, and sends what was recorded meanwhile.
+    expect(await reloaded.signIn("a@example.org", "a long password")).toBeUndefined();
+    expect(reloaded.get()).toMatchObject({ signedOut: undefined, pending: 0, verified: true });
+    expect(remote.ids()).toContain(meanwhile.id);
+    expect((await createSync(store, SERVER, options)).get().signedOut).toBeUndefined();
+  });
+
+  it("staying signed out forgets who it was; signing out by choice remembers no one", async () => {
+    const remote = server();
+    const store = await deviceWith([event(1, "2026-11-11T09:00:00.000Z")]);
+    const sync = await createSync(store, SERVER, options);
+    await sync.signUp("a@example.org", "a long password");
+    remote.end();
+    await sync.syncNow();
+    expect(sync.get().signedOut).toEqual(who);
+    await sync.staySignedOut();
+    expect(sync.get().signedOut).toBeUndefined();
+    expect((await createSync(store, SERVER, options)).get().signedOut).toBeUndefined();
+    await sync.signIn("a@example.org", "a long password");
+    await sync.signOut();
+    expect(sync.get()).toMatchObject({ account: undefined, signedOut: undefined });
+  });
+
+  it("an ended session found by the account's download or deletion signs out the same way", async () => {
+    const remote = server();
+    const store = await deviceWith([event(1, "2026-11-11T09:00:00.000Z")]);
+    const sync = await createSync(store, SERVER, options);
+    await sync.signUp("a@example.org", "a long password");
+    remote.end();
+    expect(await sync.exportAccount()).toEqual({ ok: false, error: "signed-out" });
+    expect(sync.get()).toMatchObject({ account: undefined, signedOut: who });
+    await sync.signIn("a@example.org", "a long password");
+    remote.end();
+    expect(await sync.deleteAccount("a long password")).toBe("signed-out");
+    expect(sync.get()).toMatchObject({ account: undefined, signedOut: who });
+  });
+
+  it("says nothing of a sign-out by another server than this build's", async () => {
+    const remote = server();
+    const store = await deviceWith([event(1, "2026-11-11T09:00:00.000Z")]);
+    const sync = await createSync(store, SERVER, options);
+    await sync.signUp("a@example.org", "a long password");
+    remote.end();
+    await sync.syncNow();
+    expect((await createSync(store, "https://elsewhere.invalid", options)).get()).toMatchObject({ server: "https://elsewhere.invalid", signedOut: undefined });
+  });
+});
+
 describe("the account the device enters (ADR 0123)", () => {
   it("a new account after a deletion takes the device's whole log, not only what was recorded since", async () => {
     const remote = server();
@@ -300,6 +365,6 @@ describe("the check in a worker (ADR 0112)", () => {
     workerAnswering({ failed: { status: 401, code: "unauthorized" } });
     const signedOut = await createSync(await persistent(), SERVER, options);
     await signedOut.signUp("a@example.org", "a long password");
-    expect(signedOut.get()).toMatchObject({ account: undefined, error: "signed-out" });
+    expect(signedOut.get()).toMatchObject({ account: undefined, signedOut: { server: SERVER, email: "a@example.org" } });
   });
 });

@@ -63,7 +63,7 @@ import { AudioCheckPage } from "./AudioCheck.tsx";
 import { CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
-import { Progress } from "./Progress.tsx";
+import { Progress, SignedOutNotice } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
 import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
 import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
@@ -297,6 +297,7 @@ const Home = ({
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
       {!online && <OfflineNotice synced={account !== undefined} />}
+      <SignedOutNotice sync={sync} />
       {fresh && (
         <div className={styles.intro} data-home-intro="">
           <p>{t.format("app.home.intro")}</p>

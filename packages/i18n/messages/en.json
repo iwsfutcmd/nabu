@@ -238,6 +238,10 @@
       "message": "Sign in",
       "description": "Button that signs in to an existing account."
     },
+    "app.account.sign-in-again": {
+      "message": "Sign in again",
+      "description": "Button after app.account.signed-out: takes the learner to the sign-in form under Your progress, with their email address filled in."
+    },
     "app.account.sign-out": {
       "message": "Sign out",
       "description": "Button that signs out. Progress stays on this device."
@@ -245,6 +249,14 @@
     "app.account.signed-in": {
       "message": "Signed in as {$email}",
       "description": "Who is signed in. $email is the account's email address."
+    },
+    "app.account.signed-out": {
+      "message": "You've been signed out of {$email}. Your progress stays on this device, and syncs again when you sign in.",
+      "description": "At the top of the home screen when the server ended the device's session: it expired, or the account was deleted on another device. It stays, across reloads, until the learner signs in again or chooses Stay signed out (app.account.stay-signed-out). $email is the account's email address."
+    },
+    "app.account.stay-signed-out": {
+      "message": "Stay signed out",
+      "description": "Button after app.account.signed-out: the learner lets the account go and the notice goes away. Progress stays on this device; they can still sign in or create an account later."
     },
     "app.account.welcome-back": {
       "message": "Sign in to bring your progress from your other devices.",
@@ -308,7 +320,7 @@
     },
     "app.error.account.signed-out": {
       "message": "You've been signed out. Sign in again to keep syncing.",
-      "description": "Shown when the server no longer accepts the saved sign-in."
+      "description": "Shown when the server no longer accepts the saved sign-in (it expired, or the account was deleted on another device): above the sign-in form, which then has the email address filled in."
     },
     "app.error.account.unknown": {
       "message": "Something went wrong. Try again.",

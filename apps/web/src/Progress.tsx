@@ -13,6 +13,10 @@
  * A server with an age gate (ADR 0069) answers the first sign-up with "age-required": the form then
  * asks the person's age, neutrally (no threshold shown), in any script's digits. If the server turns
  * them away, the device remembers and offers no new account there; learning on the device goes on.
+ *
+ * When the server ends the session (ADR 0123), Home says so at its top (SignedOutNotice) until the
+ * learner signs in again or stays signed out, and the form here asks them to sign in again, their
+ * address filled in.
  */
 import { parseDigits, type Named } from "@nabu/i18n";
 import { useTranslator } from "@nabu/ui";
@@ -23,7 +27,7 @@ import { DeviceCopy, Restore } from "./Restore.tsx";
 import { ProfileForm, Reminders } from "./social.tsx";
 import { forgetCalibration, loadCalibration, serverAllowed, setServerAllowed } from "./voice.ts";
 import type { EventStore } from "./store.ts";
-import type { Sync, SyncError, SyncState } from "./sync.ts";
+import type { SignedOut, Sync, SyncError, SyncState } from "./sync.ts";
 
 /** Left-to-right isolate (LRI … PDI): keeps an address in its own order inside any paragraph. */
 const ltr = (text: string): string => `\u2066${text}\u2069`;
@@ -185,10 +189,43 @@ const Held = ({ sync, count }: { sync: Sync; count: number }): JSX.Element => {
   );
 };
 
-const AccountForm = ({ sync, ageRefused }: { sync: Sync; ageRefused: boolean }): JSX.Element => {
+/** The form's password field: where Sign in again takes the learner, their address filled in. */
+const toSignIn = (): void => {
+  const field = document.querySelector<HTMLInputElement>("[data-account-form] [data-field=password]");
+  if (field === null) return;
+  field.focus({ preventScroll: true });
+  // The middle of the screen, clear of a phone browser's bottom toolbar.
+  field.scrollIntoView({ block: "center" });
+};
+
+/**
+ * The server ended the session (ADR 0123): said at the top of Home, across reloads, until the learner
+ * signs in again or stays signed out. Progress stays on the device either way.
+ */
+export const SignedOutNotice = ({ sync }: { sync: Sync }): JSX.Element | null => {
   const t = useTranslator();
-  const [mode, setMode] = useState<"create" | "sign-in">("create");
-  const [email, setEmail] = useState("");
+  const signedOut = useSyncExternalStore(sync.subscribe, () => sync.get().signedOut);
+  if (signedOut === undefined) return null;
+  return (
+    <p className={styles.notice} role="status" data-signed-out={signedOut.email}>
+      {t.format("app.account.signed-out", { email: ltr(signedOut.email) })}{" "}
+      <span className={styles.noticeActions}>
+        <Button className={styles.inlineButton} onPress={toSignIn} data-action="sign-in-again">
+          {t.format("app.account.sign-in-again")}
+        </Button>
+        <Button className={styles.inlineButton} onPress={() => void sync.staySignedOut()} data-action="stay-signed-out">
+          {t.format("app.account.stay-signed-out")}
+        </Button>
+      </span>
+    </p>
+  );
+};
+
+/** `signedOut`: the server ended this person's session, so the form asks them to sign in again (ADR 0123). */
+const AccountForm = ({ sync, ageRefused, signedOut }: { sync: Sync; ageRefused: boolean; signedOut: SignedOut | undefined }): JSX.Element => {
+  const t = useTranslator();
+  const [mode, setMode] = useState<"create" | "sign-in">(signedOut === undefined ? "create" : "sign-in");
+  const [email, setEmail] = useState(signedOut?.email ?? "");
   const [password, setPassword] = useState("");
   // Only once the server asks (ADR 0069); the answer goes with the sign-up and nowhere else.
   const [askAge, setAskAge] = useState(false);
@@ -219,7 +256,17 @@ const AccountForm = ({ sync, ageRefused }: { sync: Sync; ageRefused: boolean }):
           {t.format("app.account.age-refused")}
         </p>
       ) : (
-        <AccountFields mode={mode} email={email} setEmail={setEmail} password={password} setPassword={setPassword} askAge={askAge} age={age} setAge={setAge} />
+        <AccountFields
+          mode={mode}
+          again={signedOut !== undefined}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          askAge={askAge}
+          age={age}
+          setAge={setAge}
+        />
       )}
       {error !== undefined && !(turnedAway && error === "age") && (
         <p className={styles.notice} role="alert" data-account-error={error}>
@@ -249,6 +296,8 @@ const AccountForm = ({ sync, ageRefused }: { sync: Sync; ageRefused: boolean }):
 
 interface FieldsProps {
   readonly mode: "create" | "sign-in";
+  /** The server signed this person out: signing in is signing in again. */
+  readonly again: boolean;
   readonly email: string;
   readonly setEmail: (v: string) => void;
   readonly password: string;
@@ -258,11 +307,11 @@ interface FieldsProps {
   readonly setAge: (v: string) => void;
 }
 
-const AccountFields = ({ mode, email, setEmail, password, setPassword, askAge, age, setAge }: FieldsProps): JSX.Element => {
+const AccountFields = ({ mode, again, email, setEmail, password, setPassword, askAge, age, setAge }: FieldsProps): JSX.Element => {
   const t = useTranslator();
   return (
     <>
-      <p className={styles.formIntro}>{t.format(mode === "create" ? "app.account.pitch" : "app.account.welcome-back")}</p>
+      <p className={styles.formIntro}>{t.format(mode === "create" ? "app.account.pitch" : again ? "app.error.account.signed-out" : "app.account.welcome-back")}</p>
       <TextField className={styles.field} value={email} onChange={setEmail} isRequired autoComplete="email" name="email">
         <Label className={styles.label}>{t.format("app.account.email")}</Label>
         <Input className={styles.input} inputMode="email" dir="ltr" spellCheck={false} autoCapitalize="none" data-field="email" />
@@ -307,7 +356,8 @@ export const Progress = ({ store, sync, courses }: { store: EventStore; sync: Sy
       )}
       {state.server !== undefined &&
         (state.account === undefined ? (
-          <AccountForm sync={sync} ageRefused={state.ageRefused} />
+          // A sign-out by the server while the page is open starts the form afresh, on sign-in.
+          <AccountForm key={state.signedOut?.email ?? ""} sync={sync} ageRefused={state.ageRefused} signedOut={state.signedOut} />
         ) : (
           <div data-account={state.account.user.email}>
             <p>
