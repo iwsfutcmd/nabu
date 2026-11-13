@@ -811,6 +811,11 @@
   gap: var(--nabu-space-2) var(--nabu-space-3);
 }
 
+/* A word's first letter may overhang its box (the hook of a j): room enough to keep its ink inside. */
+.endWord {
+  padding-inline: var(--nabu-space-1);
+}
+
 .endWordForm {
   font-size: 1.25rem;
 }
