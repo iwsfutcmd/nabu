@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { BundleManifest } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { assembleCourse, MEDIA_ROLES, type CourseView } from "../src/lesson/index.ts";
+import { assembleCourse, type CourseView } from "../src/lesson/index.ts";
 import { coreFiles, downloadPlan, offlineStatus, stalePaths } from "../src/offline/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -30,7 +30,7 @@ interface Bundle {
 /** A committed bundle: its manifest and every file the app parses (media are URLs). */
 const load = (id: string): Bundle => {
   const manifest = JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as Bundle["manifest"];
-  const files = new Map(manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]));
+  const files = new Map(coreFiles(manifest as unknown as BundleManifest).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]));
   return { manifest, files };
 };
 
