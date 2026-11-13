@@ -342,7 +342,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     <span class="refs"><a class="ref" href="#f-R1">R1</a><a class="ref" href="#f-R2">R2</a><a class="ref" href="#f-R3">R3</a><a class="ref" href="#f-R4">R4</a><a class="ref" href="#f-R5">R5</a><a class="ref" href="#f-R6">R6</a><a class="ref" href="#f-R7">R7</a><a class="ref" href="#f-R8">R8</a></span></div></div>
 
   <h2 id="decisions">Decisions for you</h2>
-  <p>Your answers go into the copied plan.</p>
+  <p>Your answers go into the copied plan. D1–D6 are answered; D7–D11 came up while the fixes were made and are open (the recommended option comes first).</p>
   <div id="decision-list"></div>
 
   <h2 id="findings">All findings</h2>
@@ -942,45 +942,202 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
 
 <script type="application/json" id="decisions-data">
 [
-  {"id":"D1","title":"Should lessons include review of older material at all?",
-   "context":"Today up to half of a lesson can be earlier sentences (L1). Some review inside lessons is how a learner who only ever presses Continue keeps old material alive; too much makes lessons feel like repeats.",
-   "options":[
-     {"v":"a","label":"Yes, a small share picked by need and marked as review on the card","rec":true},
-     {"v":"b","label":"No: lessons are only new material; review happens in Review sessions (and Continue routes there when needed)"},
-     {"v":"c","label":"Let the learner choose (a setting), defaulting to a small share"}
-   ]},
-  {"id":"D2","title":"Does getting a word right in the session you first met it count toward “known”?",
-   "context":"Right after a word is introduced, producing it is mostly short-term memory.",
-   "options":[
-     {"v":"a","label":"No: each skill must be shown in a later session (after at least a night)","rec":true},
-     {"v":"b","label":"Yes: any first-try success counts"}
-   ]},
-  {"id":"D3","title":"If a known word is later forgotten (missed on review), does it stop being known?",
-   "context":"Recall strength is shown separately either way.",
-   "options":[
-     {"v":"a","label":"Yes: it goes back to learning until that skill is shown again","rec":true},
-     {"v":"b","label":"No: known is a milestone; strength shows the fading"}
-   ]},
-  {"id":"D4","title":"Which exercises count as production?",
-   "context":"Today gap-fill (picking from options) is production, while building the sentence from tiles is recognition (L10). Scored speaking only reads a shown sentence aloud.",
-   "options":[
-     {"v":"a","label":"Only supplying the form: typing it, or saying it from the meaning once scored speech exists. Gap-fill becomes recognition","rec":true},
-     {"v":"b","label":"Typing, plus picking the right form (gap-fill) and tiles from L1 to L2"},
-     {"v":"c","label":"Keep today’s split"}
-   ]},
-  {"id":"D5","title":"Should the app change your pace automatically?",
-   "context":"The pace bands (consolidate, steady, accelerate) could act on their own or only when asked.",
-   "options":[
-     {"v":"a","label":"Automatically, with a visible line saying why and a way to override it","rec":true},
-     {"v":"b","label":"Only offer it (“More practice?”, “Skip ahead?”) and let the learner decide each time"},
-     {"v":"c","label":"A setting (relaxed, regular, intense) that sets the range, with automatic tuning inside it"}
-   ]},
-  {"id":"D6","title":"Can a large backlog ever block new lessons?",
-   "context":"A hard gate is effective but can feel punishing.",
-   "options":[
-     {"v":"a","label":"Never block: Continue suggests practice first, and “New lesson anyway” is always there","rec":true},
-     {"v":"b","label":"A soft gate past a threshold (for example two lessons’ worth of unknown words)"}
-   ]}
+  {
+    "id": "D1",
+    "title": "Should lessons include review of older material at all?",
+    "context": "Today up to half of a lesson can be earlier sentences (L1). Some review inside lessons is how a learner who only ever presses Continue keeps old material alive; too much makes lessons feel like repeats.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Yes, a small share picked by need and marked as review on the card",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "No: lessons are only new material; review happens in Review sessions (and Continue routes there when needed)"
+      },
+      {
+        "v": "c",
+        "label": "Let the learner choose (a setting), defaulting to a small share"
+      }
+    ]
+  },
+  {
+    "id": "D2",
+    "title": "Does getting a word right in the session you first met it count toward “known”?",
+    "context": "Right after a word is introduced, producing it is mostly short-term memory.",
+    "options": [
+      {
+        "v": "a",
+        "label": "No: each skill must be shown in a later session (after at least a night)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Yes: any first-try success counts"
+      }
+    ]
+  },
+  {
+    "id": "D3",
+    "title": "If a known word is later forgotten (missed on review), does it stop being known?",
+    "context": "Recall strength is shown separately either way.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Yes: it goes back to learning until that skill is shown again",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "No: known is a milestone; strength shows the fading"
+      }
+    ]
+  },
+  {
+    "id": "D4",
+    "title": "Which exercises count as production?",
+    "context": "Today gap-fill (picking from options) is production, while building the sentence from tiles is recognition (L10). Scored speaking only reads a shown sentence aloud.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Only supplying the form: typing it, or saying it from the meaning once scored speech exists. Gap-fill becomes recognition",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Typing, plus picking the right form (gap-fill) and tiles from L1 to L2"
+      },
+      {
+        "v": "c",
+        "label": "Keep today’s split"
+      }
+    ]
+  },
+  {
+    "id": "D5",
+    "title": "Should the app change your pace automatically?",
+    "context": "The pace bands (consolidate, steady, accelerate) could act on their own or only when asked.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Automatically, with a visible line saying why and a way to override it",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Only offer it (“More practice?”, “Skip ahead?”) and let the learner decide each time"
+      },
+      {
+        "v": "c",
+        "label": "A setting (relaxed, regular, intense) that sets the range, with automatic tuning inside it"
+      }
+    ]
+  },
+  {
+    "id": "D6",
+    "title": "Can a large backlog ever block new lessons?",
+    "context": "A hard gate is effective but can feel punishing.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Never block: Continue suggests practice first, and “New lesson anyway” is always there",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "A soft gate past a threshold (for example two lessons’ worth of unknown words)"
+      }
+    ]
+  },
+  {
+    "id": "D7",
+    "title": "After a reload, how should a lesson in progress come back? (S3)",
+    "context": "A reload or a closed tab used to restart the lesson. The planner depends on things the log doesn’t record (listening and speaking breaks, what the speech server can score, the exact time), so planning again gives a different lesson.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Keep the lesson’s plan on the device and resume it from the answers logged so far (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Plan it again from the log, which means recording the breaks and speech settings in the session’s start event (a schema change)"
+      }
+    ]
+  },
+  {
+    "id": "D8",
+    "title": "How long does a lesson in progress stay resumable? (S3)",
+    "context": "A half-done lesson from yesterday is stale: the reviews it planned may no longer be due, and the new words may need presenting again.",
+    "options": [
+      {
+        "v": "a",
+        "label": "12 hours (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Until the end of the learner’s day (local midnight)"
+      },
+      {
+        "v": "c",
+        "label": "No limit: always resume the last lesson left open"
+      }
+    ]
+  },
+  {
+    "id": "D9",
+    "title": "A placement test stopped part-way: what does it count as? (S5)",
+    "context": "Stopping part-way still says something about what the learner knows. Today it counts as a completed session, so it also earns the session’s XP, which rewards stopping.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Place by the answers so far, without the session’s XP",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Place by the answers so far, as a completed session with XP (what it does now)"
+      },
+      {
+        "v": "c",
+        "label": "Place nothing until the test is finished"
+      }
+    ]
+  },
+  {
+    "id": "D10",
+    "title": "Updates the server rejected: what happens to them? (S13)",
+    "context": "An event the server rejects is usually one an older app version wrote wrongly. A fixed app may make it valid, and logged rejections would show such drift early. The server logs nothing today.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Kept on the device and resent from a button and at sign-in; also retried after an app update; the server logs rejections",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Kept on the device and resent only from a button and at sign-in (what it does now)"
+      }
+    ]
+  },
+  {
+    "id": "D11",
+    "title": "The check for the reviewer role: make it quiet for everyone else? (W10)",
+    "context": "The course list asks /v1/review/me once per browser session. A learner who isn’t a reviewer gets a 403, which the browser logs as an error.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Yes: the API answers non-reviewers with “not a reviewer” (200 with no role) instead of an error (an API change)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Leave it: one 403 per browser session"
+      }
+    ]
+  }
 ]
 </script>
 
