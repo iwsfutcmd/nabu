@@ -1,8 +1,9 @@
 /**
  * The site's landing page (landing.ts), written from the bundles and the catalog: every course of
  * the demo with its scripts, lessons and stories; each script's sample in its own language and
- * direction, in its own font; its links open the app. It meets contrast in light and dark, and
- * fits a phone. The test serves it beside the app, as the site does.
+ * direction, in its own font; its links open the app, and download the Android preview when there
+ * is one. It meets contrast in light and dark, and fits a phone. The test serves it beside the app,
+ * as the site does.
  */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -30,13 +31,18 @@ const DIRECTION: Readonly<Record<string, "ltr" | "rtl">> = {
   "uz-Cyrl/standard": "ltr",
 };
 
+const APK = { href: "https://example.invalid/nabu/releases/download/android-preview/nabu-preview.apk", bytes: 92_040_933 };
+
+const options = (android: typeof APK | undefined): Parameters<typeof landingPage>[0] => ({
+  bundles: BUNDLES,
+  demo: "/",
+  stylesheets: demoStylesheets(join(WEB, "dist/index.html"), "/"),
+  repository: "https://example.invalid/nabu",
+  ...(android === undefined ? {} : { android }),
+});
+
 const open = async (page: Page): Promise<void> => {
-  const html = await landingPage({
-    bundles: BUNDLES,
-    demo: "/",
-    stylesheets: demoStylesheets(join(WEB, "dist/index.html"), "/"),
-    repository: "https://example.invalid/nabu",
-  });
+  const html = await landingPage(options(APK));
   await page.route("**/landing.html", (route) => route.fulfill({ body: html, contentType: "text/html; charset=utf-8" }));
   await page.goto("/landing.html");
   await page.evaluate(async () => document.fonts.ready);
@@ -97,6 +103,14 @@ test("the landing page lists every course with its scripts, and its links open t
   await page.emulateMedia({ colorScheme: "dark" });
   expect(await serious(page)).toEqual([]);
   await page.emulateMedia({ colorScheme: "light" });
+
+  // The Android preview: a download link beside the app's, and its size (92 MB) under them.
+  const android = page.locator("[data-android]");
+  await expect(android).toHaveAttribute("href", APK.href);
+  await expect(android).toHaveText(t.format("landing.android"));
+  await expect(page.locator("[data-android-note]")).toHaveText(t.format("landing.android.note", { size: "92 MB" }));
+  // No release, no link.
+  expect(await landingPage(options(undefined))).not.toContain("data-android");
 
   // Its links open the app: the app itself, and a course in one of its scripts.
   await expect(page.locator("[data-open-app]")).toHaveAttribute("href", "/");
