@@ -9,7 +9,7 @@ import { useTranslator } from "@nabu/ui";
 import { useEffect, useState, type CSSProperties, type JSX } from "react";
 import { ProgressBar } from "react-aria-components";
 import styles from "./App.module.css";
-import { localDate } from "./clock.ts";
+import { localDate, msUntilNextLocalDate } from "./clock.ts";
 import type { EventStore } from "./store.ts";
 
 /** The deployment's rules: game.json overrides on the defaults, or the defaults. */
@@ -36,9 +36,44 @@ export const gameOf = async (store: EventStore, config: GameConfig, now = new Da
   );
 };
 
-/** Recomputes the game state whenever `version` changes (an event was recorded or pulled). */
+/**
+ * Counts the times the game state may have changed with nothing recorded: the page shown again
+ * (a phone unlocked, a tab come back to), and the local date turning over while it stays open.
+ */
+const useClockTurns = (): number => {
+  const [turns, setTurns] = useState(0);
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    // Set from the clock again each time: a timer can fire late (a computer asleep), and early by
+    // the clock (set back), when the date has not changed yet and it waits again.
+    const arm = (): void => {
+      const today = localDate(new Date());
+      timer = setTimeout(() => {
+        if (localDate(new Date()) !== today) setTurns((n) => n + 1);
+        arm();
+      }, msUntilNextLocalDate(new Date()));
+    };
+    arm();
+    const onVisibility = (): void => {
+      if (document.visibilityState === "visible") setTurns((n) => n + 1);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
+  }, []);
+  return turns;
+};
+
+/**
+ * Recomputes the game state whenever `version` changes (an event was recorded or pulled), when
+ * the page is shown again, and when the local date changes: a page left open overnight shows the
+ * new day (the streak, today's quests, the gate) without a new event.
+ */
 export const useGame = (store: EventStore | null, config: GameConfig | null, version: unknown): GameState | null => {
   const [state, setState] = useState<GameState | null>(null);
+  const turns = useClockTurns();
   useEffect(() => {
     if (store === null || config === null) return;
     let live = true;
@@ -48,7 +83,7 @@ export const useGame = (store: EventStore | null, config: GameConfig | null, ver
     return () => {
       live = false;
     };
-  }, [store, config, version]);
+  }, [store, config, version, turns]);
   return state;
 };
 
