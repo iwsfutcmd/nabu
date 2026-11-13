@@ -3,6 +3,7 @@
 - Status: Proposed
 - Date: 2026-11-06
 - Amends: [0072](0072-sign-off.md)
+- Amended: below (2026-11-13, the owner's D51: script tracks stay in a release)
 
 ## Context
 
@@ -49,3 +50,30 @@ no native speaker has signed off: `draftCount` (@nabu/core/corrections), message
   ADR 0050 keeps distractors within a unit and the ones before it. A unit that loses sentences
   teaches fewer KCs in its lessons, but its KCs stay: they are the unit's word list.
 - **Bundles are unchanged** for full builds: the counting refactor leaves them byte-identical.
+
+## Amendment: script tracks stay in a release (2026-11-13)
+
+An alphabet node (ADR 0088) has no sentences, so it went like a lesson with none reviewed, and
+every release left out grc's Greek alphabet. The owner decided (D51) that a release keeps its
+script tracks:
+
+- **An alphabet node stays, with its letters and their grapheme KCs.** Its letters come from the
+  orthography's profile (ADR 0124), not from content a reviewer signs off.
+- **Its words are those whose KCs the release keeps and its reviewed content uses**: a KC of a
+  kept unit that a kept sentence or story uses (their `kcs`). A word card then shows a word a
+  reviewer has seen in context. A node left with no word teaches its letters alone, and the app
+  builds no word cards for it.
+- **A track goes along with reviewed content.** Script tracks alone are no release: with nothing
+  reviewed the build still fails ("nothing reviewed yet"). A practice node still stays only while
+  its unit keeps a lesson, and an alphabet node is no lesson.
+- **Convert nodes** (uz, apc) keep the lesson rule: their reviewed sentences, and they go when none
+  is left.
+- **The report** also counts the alphabet words a release kept and left out.
+
+**What changed.**
+- Full builds are byte-identical, for every course.
+- Of the release builds, only grc's changes: its alphabet unit ships.
+- In a scratch copy of the courses with every third sentence and every second story and scenario
+  signed off, grc's release keeps all eight nodes with their letters, and 59 of their 61 words.
+  sense:nai and sense:hodos go, because no signed-off sentence or story uses them.
+- Every other course's release is byte-identical.
