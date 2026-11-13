@@ -1253,6 +1253,13 @@ const ready = openStore().then(async (store) => {
 
 const noSync = { subscribe: () => () => undefined, get: () => undefined };
 
+/**
+ * The recorded events after which the game state is worked out again (R1 in the 2026-11 review). It
+ * reads the whole log, so not after each answer: a session's answers show in it only on the end
+ * screen, which reads it after session_completed, and the gate is decided as a session opens.
+ */
+const GAME_EVENTS: ReadonlySet<LearnerEvent["type"]> = new Set<LearnerEvent["type"]>(["session_completed", "goal_set", "progress_reset", "answer_reported", "outcome_revised"]);
+
 /** One course's event log and the state it projects to. */
 interface Log {
   readonly course: string;
@@ -1274,8 +1281,11 @@ export const App = (): JSX.Element => {
   const account = useAccount(sync);
   const [log, setLog] = useState<Log | null>(null);
   const [gameConfig, setGameConfig] = useState<GameConfig | null>(null);
-  const [recorded, setRecorded] = useState(0);
-  const version = `${recorded}:${pulled}:${href(route)}`;
+  // Bumped by the recorded events that change the game state beyond a session's answers (GAME_EVENTS).
+  const [played, setPlayed] = useState(0);
+  // Bumped by a recorded correction: this device's corrections are read again then, not after every event.
+  const [corrected, setCorrected] = useState(0);
+  const version = `${played}:${pulled}:${revised}:${href(route)}`;
   const game = useGame(store, gameConfig, version);
   // A failed load remembers the retry it was, so it is tried again only on the next one (never in a loop).
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string; attempt: number } | null>(null);
@@ -1290,7 +1300,7 @@ export const App = (): JSX.Element => {
   const root = courseId === null ? undefined : `${BUNDLES}${courseId}/`;
   // Re-read after a course loads (the worker keeps what the app fetched) and after a download.
   const stored = useStored(OFFLINE ? root : undefined, `${downloads}:${loaded?.key ?? ""}:${online}`);
-  const corrections = useCorrections(store, courseId, version);
+  const corrections = useCorrections(store, courseId, `${corrected}:${pulled}`);
   // Each screen's title; a new route starts at the top, with focus on its heading.
   // Named from the index, so a title names a course before it loads.
   const named = (id: string): Named => index?.find((c) => c.id === id) ?? { id };
@@ -1349,15 +1359,22 @@ export const App = (): JSX.Element => {
           .then((events) => {
             setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: replay(events) }));
             if (!fromServer) sync?.schedule();
-            setRecorded((n) => n + 1);
+            setPlayed((n) => n + 1);
           });
         return;
       }
       // The weekly goal is the account's, no course's (ADR 0107, D12): kept and synced, read from the game state.
-      if (event.type !== "goal_set") setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: applyEvents(prev.state, [event]) }));
+      // An event that changes nothing the state holds (an exercise shown) leaves it as it is, uncopied.
+      if (event.type !== "goal_set")
+        setLog((prev) => {
+          if (prev === null || prev.course !== event.course) return prev;
+          const state = applyEvents(prev.state, [event]);
+          return state === prev.state ? prev : { course: prev.course, state };
+        });
       void store?.append([event]).then(() => {
         sync?.schedule();
-        setRecorded((n) => n + 1);
+        if (GAME_EVENTS.has(event.type)) setPlayed((n) => n + 1);
+        if (event.type === "sentence_reported") setCorrected((n) => n + 1);
       });
     },
     [store, sync],
