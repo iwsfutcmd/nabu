@@ -39,8 +39,6 @@ export const addDays = (date: string, days: number): string => new Date(toUtc(da
 /** Whole days from `a` to `b` (b − a). */
 export const daysBetween = (a: string, b: string): number => Math.round((toUtc(b) - toUtc(a)) / DAY_MS);
 
-export const isIsoDate = (s: string): boolean => /^\d{4}-\d{2}-\d{2}$/u.test(s) && addDays(s, 0) === s;
-
 /** Monday of the ISO week a date falls in. */
 export const weekStart = (date: string): string => {
   const weekday = (new Date(toUtc(date)).getUTCDay() + 6) % 7; // Monday 0 … Sunday 6

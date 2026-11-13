@@ -164,14 +164,3 @@ export const rollover = async (db: Db, now: number, config: LeagueConfig = DEFAU
   }
   return rolled;
 };
-
-/** Last week's result for a user, if they played. */
-export const lastResult = async (db: Db, user: string): Promise<{ readonly week: string; readonly rank: number; readonly outcome: string; readonly nextTier: number } | undefined> => {
-  const [r] = await db
-    .select({ week: leagueResults.week, rank: leagueResults.rank, outcome: leagueResults.outcome, nextTier: leagueResults.nextTier })
-    .from(leagueResults)
-    .where(eq(leagueResults.userId, user))
-    .orderBy(desc(leagueResults.week))
-    .limit(1);
-  return r;
-};

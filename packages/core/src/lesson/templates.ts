@@ -191,10 +191,10 @@ const single = (text: TaggedText, token: Token): TaggedText => {
   return { ...text, tokens: [rest] };
 };
 
-/** Normalized, folded, mark-insensitive comparison key: two options must never collide on it. */
 /** Texts' comparison keys, per course: distractor picking asks for the same texts again and again. */
 const keys = new WeakMap<CourseView, WeakMap<TaggedText, string>>();
 
+/** Normalized, folded, mark-insensitive comparison key: two options must never collide on it. */
 const keyOf = (course: CourseView, text: TaggedText): string => {
   let byText = keys.get(course);
   if (byText === undefined) {
@@ -922,9 +922,6 @@ export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | u
   return { template: "minimal-pair", id: id("minimal-pair", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, kc) };
 };
 
-// ------------------------------------------------------------------------------------ pronunciation (ADR 0054)
-
-/** A word KC with its meaning: its first form in the course's orthography and its gloss. */
 // ------------------------------------------------------------------------------------ pronunciation in context (ADR 0054, 0095)
 
 /** The KCs a token carries: its sense and its morphs. */
@@ -1140,7 +1137,6 @@ const mismatch = (ex: Exercise, response: Response): never => {
   throw new Error(`${ex.template} cannot take a ${response.tag} response`);
 };
 
-/** Pure: the outcome of a response (§8.3). Grading of typed and tiled answers goes through the grader. */
 /**
  * What the learner answered, as text: typed, built from tiles, or the option chosen (in its
  * sentence, where the exercise fills a gap). A report of a choice or a tile order needs it,
@@ -1156,6 +1152,7 @@ export const answerTextOf = (ex: Exercise, response: Response): string | undefin
   return "before" in ex && "after" in ex ? `${surfaceOf(ex.before)}${chosen}${surfaceOf(ex.after)}` : chosen;
 };
 
+/** Pure: the outcome of a response (§8.3). Grading of typed and tiled answers goes through the grader. */
 export const gradeExercise = (ex: Exercise, response: Response, grader: Grader): Outcome => {
   switch (ex.template) {
     case "select-image":

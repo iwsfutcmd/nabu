@@ -233,7 +233,6 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
   );
 };
 
-/** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
 /** The course's offline state, where this build keeps courses offline. */
 interface OfflineProps {
   readonly online: boolean;
@@ -242,6 +241,7 @@ interface OfflineProps {
   readonly onChange: () => void;
 }
 
+/** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
 const CoursePath = ({
   loaded,
   state,

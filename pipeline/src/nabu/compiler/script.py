@@ -8,6 +8,8 @@ A grapheme KC is a letter, a diphthong or a mark, by its forms:
 
 A word of an alphabet node must be spelled with the letters taught by then
 (`script.untaught-letter`); marks are not checked: the words are shown as the course writes them.
+The orthography needs a romanization and a profile for its Latin spellings
+(`script.no-romanization`), and each word a form in it (`script.missing-form`).
 """
 
 from __future__ import annotations
@@ -120,7 +122,7 @@ def compile_alphabets(
             romanize = ROMANIZERS.get(str(scheme)) if scheme is not None else None
             if romanize is None:
                 diags.report(
-                    "script.untaught-letter",
+                    "script.no-romanization",
                     f"{node.id}: {orth} has no romanization (its profile's `romanize`)",
                     loc,
                 )
@@ -128,7 +130,7 @@ def compile_alphabets(
             latin_orth = romanized(profile)
             if latin_orth not in profiles:
                 diags.report(
-                    "script.untaught-letter",
+                    "script.no-romanization",
                     f"{node.id}: no profile {latin_orth} for the Latin spellings",
                     loc,
                 )
@@ -150,7 +152,7 @@ def compile_alphabets(
                 wloc = unit.doc.loc("nodes", ni, "alphabet", "words", wi)
                 if not forms:
                     diags.report(
-                        "script.untaught-letter", f"{node.id}: {kc_id} has no {orth} form", wloc
+                        "script.missing-form", f"{node.id}: {kc_id} has no {orth} form", wloc
                     )
                     continue
                 word = forms[0]

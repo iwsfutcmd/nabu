@@ -147,7 +147,7 @@ export const draftOf = (state: PlayerState): Draft | undefined => {
       return active.draft;
     case "checking":
     case "feedback": {
-      const response = active.tag === "checking" ? active.response : active.response;
+      const response = active.response;
       if (response === null) return emptyDraft(active.ex);
       switch (response.tag) {
         case "choice":
@@ -227,8 +227,7 @@ export const start = (lesson: string, exercises: readonly Exercise[], options: S
   return [state, [{ tag: "emit", event: { type: "session_started", lesson, exercises: exercises.length } }, ...effects]];
 };
 
-/** Exercises that come back after a mistake: not speaking (self-rated) and not pairs (always completed). */
-/** Speaking is not brought back (a recording is feedback, not a test), nor are pairs. */
+/** Exercises that come back after a mistake: not speaking (a recording is feedback, not a test) and not pairs (always completed). */
 const retryable = (ex: Exercise): boolean => !TEMPLATES[ex.template].modality.mic && TEMPLATES[ex.template].modality.input !== "pairs";
 
 /** First tries so far: exercise id → right. A skip counts as a miss. */

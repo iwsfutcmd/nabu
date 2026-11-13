@@ -262,3 +262,6 @@ ADR is linked. The gameplan text itself is left as written.
     happen, and took the credit, so the back-off never started. Reminders now come half an hour
     after the 80th percentile of the start times, and only practice begun after a reminder answers
     it ([ADR 0103](adr/0103-reminder-timing.md)).
+67. **§5.1 `services/speech/`:** the speech service is part of the pipeline (`nabu speech serve`,
+    `pipeline/src/nabu/speech/service.py`), sharing its uv project and the models Phase 5 already
+    uses; there is no `services/` directory ([ADR 0046](adr/0046-speech.md)).

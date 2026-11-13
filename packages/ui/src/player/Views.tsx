@@ -308,7 +308,6 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
  * back; tiles can also be dragged into the answer row. The answer row and bank
  * run in the answer language's direction, and become columns in vertical text.
  */
-/** The answer row and the bank of tiles (translate-tap and listen-tap). */
 const WordBank = ({ props, ex }: { props: Props<TranslateTap | ListenTap | StoryArrange>; ex: TranslateTap | ListenTap | StoryArrange }): JSX.Element => {
   const { locked, dispatch } = props;
   const t = useTranslator();

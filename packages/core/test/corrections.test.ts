@@ -8,7 +8,7 @@ import { correctable, correctablesByUnit, correctablesOf, correctionKey, correct
 import { replay, type EventMeta } from "../src/learner/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
-const ZWNJ = "‌";
+const ZWNJ = "\u200c";
 const yue = loadCourse("yue");
 const uz = loadCourse("uz", "uz-Latn/standard");
 const fa = loadCourse("fa");
