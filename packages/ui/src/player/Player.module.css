@@ -514,6 +514,12 @@
   scroll-margin-block-end: var(--nabu-space-reach);
 }
 
+/* The main action (Check, then Continue) always sits at the inline end, alone or not, so the thumb
+   finds it in the same place on every card (P15). */
+.footer > .primary {
+  margin-inline-start: auto;
+}
+
 .primary,
 .secondary {
   display: inline-flex;
@@ -603,6 +609,12 @@
   align-items: center;
   gap: var(--nabu-space-2);
   margin-block-end: var(--nabu-space-2);
+}
+
+/* Play buttons that appear once a card is answered: their room is kept from the start (P15), so
+   the card never moves; until then they are hidden, from screen readers and the keyboard too. */
+.answerAudio[data-hidden] {
+  visibility: hidden;
 }
 
 .play,

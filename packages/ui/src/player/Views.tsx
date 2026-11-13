@@ -148,14 +148,17 @@ const useSayWhenAnswered = (player: ClipPlayer, props: ViewProps & ViewExtras, a
 
 /**
  * For a card whose prompt is not the target text (it is the answer): once answered, the target
- * text is said, with buttons to hear it again, normal or slow.
+ * text is said, with buttons to hear it again, normal or slow. The buttons' room is kept from the
+ * start, hidden until the answer, so nothing on the card moves when they appear (P15).
  */
 const AnswerAudio = ({ props }: { props: ViewProps & ViewExtras }): JSX.Element | null => {
   const audio = props.course.audio[props.ex.item];
   const player = useClipPlayer(audio, props.imageUrl, { preload: true });
   useSayWhenAnswered(player, props, audio);
-  return audio === undefined || props.outcome === undefined ? null : (
-    <div data-answer-audio="">
+  if (audio === undefined) return null;
+  const answered = props.outcome !== undefined;
+  return (
+    <div className={styles.answerAudio} data-answer-audio="" data-hidden={answered ? undefined : ""}>
       <AudioButtons player={player} audio={audio} />
     </div>
   );
