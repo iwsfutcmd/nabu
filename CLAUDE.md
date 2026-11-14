@@ -401,7 +401,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A course's `facets` (course.yaml, manifest) rule out every template of another facet (`facetExclusions`, wherever
   speechExclusions applies). lzh is [recognize, produce]: no audio, never spoken, heard or drilled on its readings.
 - An orthography may pin several ruby layers (lzh: pinyin, jyutping, baxter). Every Han word token pins all of them,
-  chosen by sense (說.yue is yuè / jyut6 / ywet); the compiler checks they line up per character. Jyutping is the
+  chosen by sense (說.yue is yuè / jyut6 / ywet), one reading in all three: never Pinyin of one word with Baxter of
+  another (見 "see" jiàn / gin3 / kenH, "appear, have an audience" xiàn / jin6 / henH). The compiler checks they line up per character. Jyutping is the
   literary reading; Baxter is Baxter & Sagart 2014 ASCII from the Guangyun. The player shows one layer or none.
 - A layer's `lang` tags its ruby text (`<rt lang>`): zh-Latn-pinyin, yue-Latn-jyutping, ltc-Latn-x-baxter.
 - Senses spelled alike are KCs with a suffix (知, 知.zhi); a token names its sense, and glossAt glosses it as that.

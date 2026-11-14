@@ -401,14 +401,13 @@ the reference library (`nabu/notes/lzh/`). A reviewer of Classical Chinese shoul
 
 1. **Readings by sense.** Each sense is read one way in all three layers. Before the check, 230 of
    246 characters matched a row of Baxter & Sagart's list, and Kroll gave the same Middle Chinese
-   for 237. Fixed after it: 盾 dwonX, 鯈 dew, 大 daH, 從容 cōng róng, 見 "have an audience with"
-   henH. Confirmed: 說 "pleased" yuè / jyut6 / ywet (= 悅), 女 "you" rǔ / jyu5 / nyoX (= 汝) and
-   知 "wise" zhì / zi3 / trjeH (= 智) by Kroll; 有 "and" in 十有五 yòu / jau6 / hjuwH by Pulleyblank
-   (Kroll files it under yǒu); 強 qiǎng, 舍 shě, 覺 jué, 處 chù, 遠 hjwonX in 叟不遠千里 and 不
-   pjuw by Baxter & Sagart and Kroll. Still the reviewer's call:
-   - 見 in 孟子見梁惠王: the Baxter layer gives the audience reading henH (Kroll's xiàn), while
-     Pinyin and Jyutping keep today's jiàn, gin3;
-   - 劍: Baxter & Sagart kjaemH, Kroll kjomH. The layer follows Baxter & Sagart.
+   for 237. Fixed after it: 盾 dwonX, 鯈 dew, 大 daH, 從容 cōng róng, and 見 "have an audience
+   with", now xiàn / jin6 / henH (the word "appear"; 見 "see" is jiàn / gin3 / kenH; many readers
+   today say jiàn in 孟子見梁惠王). Confirmed: 說 "pleased" yuè / jyut6 / ywet (= 悅), 女 "you"
+   rǔ / jyu5 / nyoX (= 汝) and 知 "wise" zhì / zi3 / trjeH (= 智) by Kroll; 有 "and" in 十有五 yòu /
+   jau6 / hjuwH by Pulleyblank (Kroll files it under yǒu); 強 qiǎng, 舍 shě, 覺 jué, 處 chù, 遠
+   hjwonX in 叟不遠千里 and 不 pjuw by Baxter & Sagart and Kroll; 劍 kjaemH by Baxter & Sagart and
+   the owner (Kroll has kjomH).
 2. **Literary Jyutping.** Van Norden's glossary (Cantonese edition) agrees on the 104 characters it
    shares, except 曰 (it has jyut6, the regular reflex; the course has joek6, the usual Hong Kong
    reading of 子曰) and 生 (it has the colloquial saang1; the course the literary sang1). Also

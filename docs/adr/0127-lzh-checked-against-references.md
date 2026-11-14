@@ -43,15 +43,19 @@ writes Baxter's notation). What they show to be wrong is fixed:
 | 鯈 "minnow" | drjuw (chóu) | dew, as tiáo and tiu4 already were | Kroll p. 453 |
 | 大 "big" | dajH | daH: B&S list both for "big"; Kroll gives dajH only to dài (= 代) | B&S rows 560–561; Kroll p. 73 |
 | 從容 | cóng róng | cōng róng, the reading the pinned tshjowng and sung1 already follow; the note says today's Mandarin is cóngróng | Kroll p. 66 |
-| 見 "have an audience with" | kenH | henH in the Baxter layer, the reading of that sense; Pinyin and Jyutping keep today's jiàn, gin3, and the note says so | Kroll p. 199 (xiàn, sense 2); B&S row 3744 |
+| 見 "have an audience with" | jiàn / gin3 / kenH, the reading of 見 "see" | xiàn / jin6 / henH: presenting oneself to a superior is the word "appear" (later 現). A sense takes one reading in all three layers; the note says many readers today say jiàn | Kroll p. 199 (xiàn, sense 2); B&S row 3744 |
 
 - **Borrowings** take the borrowed character's row: 女 "you" nyoX (汝), 知 "wise" trjeH (智), 有
   "and" hjuwH (又). Kroll lists the first two under 女 and 知 themselves (pp. 329, 604). He files the third under
   yǒu hjuwX (p. 565), but Pulleyblank reads 有 "and" in numbers in the departing tone (VI.4, p. 60),
   as the course does.
+- **One reading per sense, in every layer.** Each sense's Pinyin, Jyutping and Baxter were checked
+  against each other: Pinyin with Baxter by B&S's rows and Kroll's entries, Pinyin with Jyutping by
+  Unihan's kSMSZD2003Readings. Only 見 mixed two readings; 耕 gang1 and 頸 ging2 are literary
+  readings of the same word, where SMSZD gives only the colloquial ones.
 - **Senses B&S's list leaves out** (應 "answer" 'ingH, 從容 tshjowng) agree with Kroll.
-- **劍**: B&S kjaemH, Kroll kjomH (the Guangyun's 梵 rhyme). The layer is B&S's transcription:
-  kjaemH stays.
+- **劍** is kjaemH, as B&S have it and the owner confirms; Kroll's kjomH (the Guangyun's 梵 rhyme)
+  is not followed.
 - **Literary Jyutping**: Van Norden's glossary (Cantonese edition) agrees on the 104 characters it
   shares with the course, except:
   - 曰: jyut6, the regular reflex of 王伐切, where the course has joek6, the reading most Hong Kong
@@ -132,6 +136,6 @@ and its negatives. What he shows to be wrong is fixed.
   - 19 more change only a reading (盾, 大, 鯈, 見, 從容), and s.10.36 takes the word 夜來.
   - Six story lines change: the Han Feizi line's English, the rest in readings or 夜來.
   - There are 232 KCs: 夜來 and `construction:neg-pronoun` are new, and 20 have a new gloss or note.
-- **Not changed, for the reviewer** (courses/REVIEW.md, lzh): 見's two layers; 劍 kjaemH against Kroll's kjomH; 曰 joek6 against Van Norden's jyut6;
+- **Not changed, for the reviewer** (courses/REVIEW.md, lzh): 曰 joek6 against Van Norden's jyut6;
   生 sang1 against saang1.
 - **No other course changes.** lzh has no audio, so no clip is made again.
