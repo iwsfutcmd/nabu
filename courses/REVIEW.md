@@ -409,8 +409,8 @@ the reference library (`nabu/notes/lzh/`). A reviewer of Classical Chinese shoul
    hjwonX in 叟不遠千里 and 不 pjuw by Baxter & Sagart and Kroll; 劍 kjaemH by Baxter & Sagart and
    the owner (Kroll has kjomH).
 2. **Literary Jyutping.** Van Norden's glossary (Cantonese edition) agrees on the 104 characters it
-   shares, except 生 (it has the colloquial saang1; the course the literary sang1) and 曰, which
-   it gives the regular jyut6: 曰 is irregularly joek6, as the course has it (the owner confirms).
+   shares, except 生 (it has the colloquial saang1) and 曰 (the regular jyut6). The owner confirms
+   the course's readings: 生 is sang1 throughout, and 曰 is irregularly joek6.
    Also 聲 sing1, 頸 ging2, 耕 gang1, 復 "again" fau6, 鯈 tiu4 (kSMSZD2003Readings).
 3. **Grammar as taught**, now checked against Pulleyblank:
    - after a negative a pronoun object comes before the verb (`construction:neg-pronoun`):

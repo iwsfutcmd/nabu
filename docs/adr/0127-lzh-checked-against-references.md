@@ -60,7 +60,8 @@ writes Baxter's notation). What they show to be wrong is fixed:
   shares with the course, except:
   - 曰: jyut6, the regular reflex of 王伐切, where the course has joek6. 曰 is read joek6,
     irregularly (the owner confirms; Unihan's kSMSZD2003Readings lists it first). Kept.
-  - 生: the colloquial saang1 against the course's literary sang1. Kept.
+  - 生: the colloquial saang1 against the course's literary sang1. 生 is sang1 throughout (the owner
+    confirms).
 
 **Words: Kroll's dictionary for senses and glosses.** 207 of the 220 senses Kroll has agree. Kroll
 has no entry for 誰 or 濠. Every homograph (知, 說, 女, 有, 子, 之, 從, 見, 利, 是, 自, 強) is tagged
@@ -136,5 +137,6 @@ and its negatives. What he shows to be wrong is fixed.
   - 19 more change only a reading (盾, 大, 鯈, 見, 從容), and s.10.36 takes the word 夜來.
   - Six story lines change: the Han Feizi line's English, the rest in readings or 夜來.
   - There are 232 KCs: 夜來 and `construction:neg-pronoun` are new, and 20 have a new gloss or note.
-- **Not changed, for the reviewer** (courses/REVIEW.md, lzh): 生 sang1 against Van Norden's saang1.
+- **Settled by the owner**: 見 "have an audience" xiàn / jin6 / henH, 劍 kjaemH, 曰 joek6 (irregular)
+  and 生 sang1. No reading is left open for the reviewer.
 - **No other course changes.** lzh has no audio, so no clip is made again.
