@@ -58,8 +58,8 @@ writes Baxter's notation). What they show to be wrong is fixed:
   is not followed.
 - **Literary Jyutping**: Van Norden's glossary (Cantonese edition) agrees on the 104 characters it
   shares with the course, except:
-  - 曰: jyut6, the regular reflex of 王伐切, where the course has joek6, the reading most Hong Kong
-    readers give 子曰. Unihan's kSMSZD2003Readings lists both, joek6 first. Kept, for the reviewer.
+  - 曰: jyut6, the regular reflex of 王伐切, where the course has joek6. 曰 is read joek6,
+    irregularly (the owner confirms; Unihan's kSMSZD2003Readings lists it first). Kept.
   - 生: the colloquial saang1 against the course's literary sang1. Kept.
 
 **Words: Kroll's dictionary for senses and glosses.** 207 of the 220 senses Kroll has agree. Kroll
@@ -136,6 +136,5 @@ and its negatives. What he shows to be wrong is fixed.
   - 19 more change only a reading (盾, 大, 鯈, 見, 從容), and s.10.36 takes the word 夜來.
   - Six story lines change: the Han Feizi line's English, the rest in readings or 夜來.
   - There are 232 KCs: 夜來 and `construction:neg-pronoun` are new, and 20 have a new gloss or note.
-- **Not changed, for the reviewer** (courses/REVIEW.md, lzh): 曰 joek6 against Van Norden's jyut6;
-  生 sang1 against saang1.
+- **Not changed, for the reviewer** (courses/REVIEW.md, lzh): 生 sang1 against Van Norden's saang1.
 - **No other course changes.** lzh has no audio, so no clip is made again.
