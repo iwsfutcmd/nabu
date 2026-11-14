@@ -49,18 +49,18 @@ kcs:
     lzh-Hant/standard: [得]
 - id: sense:可
   gloss:
-    en: can, may; acceptable
+    en: 'possible, acceptable; before a verb, “can be …-ed” (不可得 “cannot be had”)'
   forms:
     lzh-Hant/standard: [可]
   notes:
-    en: 不可 “it will not do; cannot”. 不可得 “cannot be had”.
+    en: '不可 “it will not do”. A verb after 可 is passive: 兔不可得 “the rabbit cannot be caught”. “I can …” is 能.'
 - id: sense:復
   gloss:
     en: again
   forms:
     lzh-Hant/standard: [復]
   notes:
-    en: 'Read as 又 “again”: fù, Cantonese fau6.'
+    en: 'As an adverb, “again”, 復 is read in the departing tone: fù, Cantonese fau6, Middle Chinese bjuwH. The verb “return” is bjuwk (Cantonese fuk6).'
 - id: sense:待
   gloss:
     en: to wait for
@@ -166,7 +166,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 楚，大國也。
-      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: daH}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: 楚大國也
   translations:
     en: |-
@@ -504,17 +504,14 @@ sentences:
   node: lzh.u07.broke-its-neck
   forms:
     lzh-Hant/standard:
-      text: 劍折。
-      tokens: [{surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 折, sense: 折, readings: {pinyin: zhé, jyutping: zit3, baxter: tsyet}}]
-      reverse: 劍折
+      text: 折之。
+      tokens: [{surface: 折, sense: 折, readings: {pinyin: zhé, jyutping: zit3, baxter: tsyet}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 折之
   translations:
     en: |-
-      The sword broke.
-      The sword snapped.
-      The sword is broken.
-      The sword was broken.
-      The sword breaks.
-      The sword has broken.
+      (He|She) broke it.
+      (He|She) (breaks|has broken|snapped|snaps) it.
+      They (broke|break|have broken|snapped|snap) it.
 - id: s.07.25
   node: lzh.u07.broke-its-neck
   forms:
@@ -706,6 +703,7 @@ sentences:
       He was ridiculed by others.
 - id: s.07.36
   node: lzh.u07.laughed-at
+  constructions: ['construction:wei-passive']
   forms:
     lzh-Hant/standard:
       text: 身為宋國笑。
@@ -713,17 +711,20 @@ sentences:
       reverse: 身為宋國(笑|所笑)
   translations:
     en: |-
+      He himself was laughed at by the people of Song.
       He himself became the laughingstock of Song.
       He himself became the laughingstock of the state of Song.
       He himself became the laughingstock of all Song.
       He became the laughingstock of (Song|the state of Song|all Song).
       She (herself |)became the laughingstock of (Song|the state of Song|all Song).
-      He (himself |)was laughed at by (the whole state of Song|the people of Song|all Song).
+      He (himself |)was laughed at by (the whole state of Song|all Song).
+      He was laughed at by the people of Song.
       She (herself |)was laughed at by (the whole state of Song|the people of Song|all Song).
       He became a laughingstock in Song.
       He himself became a laughingstock in the state of Song.
 - id: s.07.37
   node: lzh.u07.laughed-at
+  constructions: ['construction:wei-passive']
   forms:
     lzh-Hant/standard:
       text: 兔不可復得，而身為宋國笑。
@@ -731,6 +732,7 @@ sentences:
       reverse: 兔不可復得而身為宋國(笑|所笑)
   translations:
     en: |-
+      No rabbit could be caught again, and he himself was laughed at by the people of Song.
       No rabbit could be caught again, and he became the laughingstock of Song.
       No rabbit could be caught again, and he became the laughingstock of the state of Song.
       No rabbit could be caught again, and he himself became the laughingstock of (Song|the state of Song).
@@ -787,7 +789,7 @@ stories:
         lzh-Hant/standard:
           text: 兔不可復得，而身為宋國笑。
           tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 身, sense: 身, readings: {pinyin: shēn, jyutping: san1, baxter: syin}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 笑, sense: 笑, readings: {pinyin: xiào, jyutping: siu3, baxter: sjewH}}]
-      translations: {en: 'No rabbit could be caught again, and he became the laughingstock of Song.'}
+      translations: {en: 'No rabbit could be caught again, and he himself was laughed at by the people of Song.'}
   - choose:
       prompt:
         en: What happened in the end?

@@ -7,7 +7,7 @@ cefr: A1
 kcs:
 - id: sense:吾
   gloss:
-    en: I, my (as subject or before a noun, never as an object)
+    en: 'I, my: before the word it goes with (as subject or possessive, or as an object between a negative and its verb: 不吾知); after a verb or alone, 我'
   forms:
     lzh-Hant/standard: [吾]
 - id: sense:汝
@@ -22,7 +22,7 @@ kcs:
     lzh-Hant/standard: [爾]
 - id: sense:其
   gloss:
-    en: his, her, its, their; that
+    en: his, her, its, their; the (one just mentioned)
   forms:
     lzh-Hant/standard: [其]
 - id: sense:是
@@ -39,7 +39,7 @@ kcs:
     lzh-Hant/standard: [此]
 - id: sense:為
   gloss:
-    en: to do, to make; to be, to count as
+    en: to do, to make; to be, to act as, to become
   forms:
     lzh-Hant/standard: [為]
 - id: sense:誰
@@ -133,7 +133,7 @@ kcs:
     lzh-Hant/standard: [則]
 - id: sense:罔
   gloss:
-    en: lost, confused; in vain
+    en: lost, confused, bewildered
   forms:
     lzh-Hant/standard: [罔]
 - id: sense:殆
@@ -179,9 +179,11 @@ sentences:
   node: lzh.u02.i-and-you
   forms:
     lzh-Hant/standard:
-      text: 吾不知汝。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 汝, sense: 汝, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}]
-      reverse: (吾|我)不知(汝|爾|女|子)
+      text: 吾不汝知。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 汝, sense: 汝, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
+      reverse: |-
+        (吾|我)不(汝|爾|女)知[也]
+        (吾|我)不知(汝|爾|女|子)
   translations:
     en: |-
       I (do not|don't) know you.

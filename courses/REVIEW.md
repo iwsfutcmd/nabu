@@ -394,46 +394,56 @@ points below land, and its chapter is cited where it does.
 ## lzh (Classical Chinese)
 
 Drafted after the native-speaker pass above, so it has had no second reading
-([ADR 0071](../docs/adr/0071-classical-chinese.md)). A reviewer of Classical Chinese should check:
+([ADR 0071](../docs/adr/0071-classical-chinese.md)). It has since been checked against Baxter &
+Sagart's list (2015), Kroll's dictionary (2017) and Pulleyblank's grammar (1995)
+([ADR 0127](../docs/adr/0127-lzh-checked-against-references.md)); notes with page references are in
+the reference library (`nabu/notes/lzh/`). A reviewer of Classical Chinese should check:
 
-1. **Readings by sense.** Each sense is read one way in all three layers. They were checked
-   against Wiktionary, whose entries group readings by sense: 242 of 246 characters agree on all
-   three. 生 *sraeng* and 從容 *sung1 jung4* were corrected to Wiktionary. Check the borrowings
-   and polyphones first:
-   - 說 "pleased" yuè / jyut6 / ywet (= 悅);
-   - 女 "you" rǔ / jyu5 / nyoX (= 汝). The Guangyun lists 女 only as nrjoX, so nyoX follows
-     the borrowing;
-   - 有 "and" in 十有五 yòu / jau6 / hjuwH (= 又). The Guangyun lists 有 only as hjuwX;
-   - 知 "wise" zhì / zi3 / trjeH (= 智);
-   - 強 "force oneself" qiǎng / koeng5 / gjangX;
-   - 舍 "give up" shě / se2 / syaeX (= 捨);
-   - 見 "have an audience with" jiàn / kenH, not xiàn;
-   - 覺 jué, 處 chù, 從容 cóng róng / sung1 jung4 / tshjowng yowng;
-   - 不 is pjuw throughout, not pjut;
-   - 遠 in 叟不遠千里 is the rising-tone hjwonX.
-2. **Literary Jyutping where Unihan lists a colloquial reading first:** 生 sang1, 聲 sing1,
-   頸 ging2, 耕 gang1, 復 "again" fau6, 鯈 tiu4 (kSMSZD2003Readings). 曰 is joek6.
-3. **Grammar as taught:**
-   - 為…笑 as a passive (`construction:wei-passive`); some editions read 為 as "become";
-   - the fable opener 楚人有涉江者 (`construction:you-zhe`);
-   - 之 in 吾劍之所從墜 tagged as the genitive 之.de, although it nominalizes a clause;
-   - 上善若水 under 上 "above";
-   - 此是霜, a Tang copula in a made-up sentence.
-4. **Constructed sentences that may not be idiomatic:** 吾為之, 魯小, 人多, 君子少, 弟子十人,
-   吾年十有五, 吾足矣, 吾行矣, 我與子路朋也, 天上有日, 兔身小, 此，矛也.
+1. **Readings by sense.** Each sense is read one way in all three layers. Before the check, 230 of
+   246 characters matched a row of Baxter & Sagart's list, and Kroll gave the same Middle Chinese
+   for 237. Fixed after it: 盾 dwonX, 鯈 dew, 大 daH, 從容 cōng róng, 見 "have an audience with"
+   henH. Confirmed: 說 "pleased" yuè / jyut6 / ywet (= 悅), 女 "you" rǔ / jyu5 / nyoX (= 汝) and
+   知 "wise" zhì / zi3 / trjeH (= 智) by Kroll; 有 "and" in 十有五 yòu / jau6 / hjuwH by Pulleyblank
+   (Kroll files it under yǒu); 強 qiǎng, 舍 shě, 覺 jué, 處 chù, 遠 hjwonX in 叟不遠千里 and 不
+   pjuw by Baxter & Sagart and Kroll. Still the reviewer's call:
+   - 見 in 孟子見梁惠王: the Baxter layer gives the audience reading henH (Kroll's xiàn), while
+     Pinyin and Jyutping keep today's jiàn, gin3;
+   - 劍: Baxter & Sagart kjaemH, Kroll kjomH. The layer follows Baxter & Sagart.
+2. **Literary Jyutping.** Van Norden's glossary (Cantonese edition) agrees on the 104 characters it
+   shares, except 曰 (it has jyut6, the regular reflex; the course has joek6, the usual Hong Kong
+   reading of 子曰) and 生 (it has the colloquial saang1; the course the literary sang1). Also
+   聲 sing1, 頸 ging2, 耕 gang1, 復 "again" fau6, 鯈 tiu4 (kSMSZD2003Readings).
+3. **Grammar as taught**, now checked against Pulleyblank:
+   - after a negative a pronoun object comes before the verb (`construction:neg-pronoun`):
+     王不我知, 吾不汝知, 吾不踰 (之 left out after 不), 人莫之能知也. These four were rewritten
+     from the rarer order (王不知我…), which is still accepted;
+   - 為…笑 is a passive (Pulleyblank IV.9b), now translated "was laughed at by", not "became the
+     laughingstock of";
+   - the fable opener 楚人有涉江者 (`construction:you-zhe`) and 之 in 吾劍之所從墜 (`之.de`, the
+     subject of a 所 phrase) are as Pulleyblank describes them;
+   - 上善若水 under 上 "above": Pulleyblank is silent;
+   - 此是霜 is Tang usage (是 a copula); the note says classical prose would say 此霜也.
+4. **Constructed sentences** (吾為之, 魯小, 人多, 君子少, 弟子十人, 吾年十有五, 吾行矣,
+   我與子路朋也, 天上有日, 兔身小, 此，矛也) follow Pulleyblank's rules. 吾足矣 he does not
+   discuss. 折之 "he broke it" replaced 劍折 (an intransitive 折, read dzyet).
 5. **Texts and editions:**
    - 吾矛之利，於物無不陷也 (with 於);
    - Han Feizi's 楯 is written 盾;
    - Laozi 25 王亦大 (some editions: 人亦大);
+   - Zhuangzi's 鯈魚出遊 (some editions: 儵魚出游);
    - 道不遠人 (Doctrine of the Mean 13);
    - 天何言哉 (Analects 17.19);
    - 知者無不知也 (Mencius 7A46).
-6. **English:** 仁者人也 "To be humane is to be human", 罔 "lost", 殆 "in danger", 耳順 "my ear
-   was attuned", 矩 "the bounds" (carpenter's square accepted), 由 Yu/Zilu, 夜來 "in the night".
-   A few accepted English answers are ungrammatical but harmless.
+6. **English:** 仁者人也 "To be humane is to be human", 殆 "in danger", 耳順 "my ear was
+   attuned", 矩 "the bounds" (carpenter's square accepted), 由 Yu/Zilu. Mencius 1A1's 亦 is now
+   shown as "surely" and 亦有仁義而已矣 as "I have …" (Pulleyblank); "also" and "there is" are
+   still accepted. 夜來 is one word, "in the night" (Kroll). A few accepted English answers are
+   ungrammatical but harmless.
 7. **Accept sets in Chinese** take 吾 or 我 as subject, 汝, 爾 or 子 for "you", optional 也
    where it does not change the meaning, 悅 for 說 "pleased", 捨 for 舍 and 智 for 知 "wise".
-   Older and regional forms (爲, 説) are accepted with a note.
+   吾 is no longer accepted where only 我 can stand (我也, 非我也). 于 is no longer accepted for
+   於 (a different word, and today's simplified spelling); 於 is still accepted for the
+   Analects' 于. Older and regional forms (爲, 説) are accepted with a note.
 8. **Characters outside CLDR zh_Hant** are in the profile's `exemplarsExtra`, marked REVIEW:
    焉 歟 孰 奚 罔 慍 誨 殆 踰 矩 濠 鯈 遽 墜 耕 株 冀 耒 鬻 叟 啼.
 

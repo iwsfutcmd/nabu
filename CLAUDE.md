@@ -409,6 +409,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Target-language text is sized apart from the rest: a profile's `fonts.scale` (lzh 1.25), times the learner's size
   for the language being learned (Preferences; `--nabu-target-scale` on <T> text marked `data-target`). Render course
   pages inside `CourseUiProvider` so <T> knows which orthographies are targets.
+- lzh is checked against Baxter & Sagart's list (2015 xlsx: the Baxter layer is their transcription, row by row),
+  Kroll (2017: senses and glosses) and Pulleyblank (1995: grammar); notes in `nabu/notes/lzh/` (ADR 0127). Kroll's PDF
+  has a clean text layer (printed page = PDF − 16); Pulleyblank's is a scan (OCR, then page images; PDF − 11).
+- Grammar the accept sets keep: after a negative a pronoun object precedes the verb (王不我知; 之 dropped after 不,
+  before the verb after 莫/未: 莫之能知); 吾 only before its head (never 吾也, 非吾); 於, never 于 for it.
 
 ## Cuban Spanish notes (see docs/adr/0076–0077)
 - courses/es: thirty units A1–B2 for heritage speakers; courses/es/README.md is the brief, syllabus and conventions.

@@ -24,9 +24,11 @@ kcs:
     en: A與B “A and B”; 與A遊 “roam with A”.
 - id: sense:遊
   gloss:
-    en: to roam, to stroll, to wander for pleasure; to swim about
+    en: to roam, to stroll, to wander for pleasure
   forms:
     lzh-Hant/standard: [遊]
+  notes:
+    en: 'Zhuangzi’s fish 出遊, “come out and roam about”: in English, they swim about. “To swim” itself is 游, which some editions write here.'
 - id: sense:水
   gloss:
     en: water; river
@@ -93,7 +95,7 @@ kcs:
   forms:
     lzh-Hant/standard: [從容]
   notes:
-    en: 'Read differently from 從 “follow”: the Guangyun gives 七恭切 (tshjowng), and Cantonese says sung1 jung4.'
+    en: 'Read differently from 從 “follow”: cōng róng (Middle Chinese tshjowng, the Guangyun’s 七恭切; Cantonese sung1 jung4). Standard Mandarin today also says cóngróng.'
 - id: sense:子.you
   gloss:
     en: 'you (polite: “sir”, “my friend”)'
@@ -103,7 +105,7 @@ kcs:
     en: 'The same 子 as in 子曰, used to the person spoken to: 子非魚 “you are not a fish”.'
 - id: sense:安
   gloss:
-    en: 'how? (asking how something could be: 安知 “how do you know?”)'
+    en: 'how? where? (安知 “how do you know?”, “where would you know it from?”)'
   forms:
     lzh-Hant/standard: [安]
   notes:
@@ -219,7 +221,6 @@ sentences:
       tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}]
       reverse: |-
         孔子遊於魯
-        孔子遊于魯
   translations:
     en: |-
       Confucius travelled in Lu.
@@ -402,6 +403,7 @@ sentences:
   translations:
     en: |-
       The fish come out and swim about.
+      The fish (come|came) out and (roam|wander) (about|around).
       The fish came out (and swim|to swim) (about|around).
       The fish come out and swim around.
       The fish come out to swim (about|around).
@@ -460,7 +462,6 @@ sentences:
       tokens: [{surface: 莊子, sense: 莊子, readings: {pinyin: zhuāng zǐ, jyutping: zong1 zi2, baxter: tsrjang tsiX}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 惠子, sense: 惠子, readings: {pinyin: huì zǐ, jyutping: wai6 zi2, baxter: hwejH tsiX}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 濠, sense: 濠, readings: {pinyin: háo, jyutping: hou4, baxter: haw}}, {surface: 梁, sense: 梁, readings: {pinyin: liáng, jyutping: loeng4, baxter: ljang}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}]
       reverse: |-
         莊子與惠子遊於濠梁之上
-        莊子與惠子遊于濠梁之上
   translations:
     en: |-
       Zhuangzi and Huizi were strolling on the bridge over the Hao.
@@ -476,11 +477,12 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 鯈魚出遊。
-      tokens: [{surface: 鯈, sense: 鯈, readings: {pinyin: tiáo, jyutping: tiu4, baxter: drjuw}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}]
+      tokens: [{surface: 鯈, sense: 鯈, readings: {pinyin: tiáo, jyutping: tiu4, baxter: dew}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}]
       reverse: 鯈魚出遊
   translations:
     en: |-
       The minnows come out and swim about.
+      The minnows (come|came) out and (roam|wander) (about|around).
       The minnows came out (and swim|to swim) (around|about).
       The minnows come out and swim around.
       The minnows come out to swim (around|about).
@@ -491,11 +493,12 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 鯈魚出遊從容。
-      tokens: [{surface: 鯈, sense: 鯈, readings: {pinyin: tiáo, jyutping: tiu4, baxter: drjuw}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 從容, sense: 從容, readings: {pinyin: cóng róng, jyutping: sung1 jung4, baxter: tshjowng yowng}}]
+      tokens: [{surface: 鯈, sense: 鯈, readings: {pinyin: tiáo, jyutping: tiu4, baxter: dew}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 從容, sense: 從容, readings: {pinyin: cōng róng, jyutping: sung1 jung4, baxter: tshjowng yowng}}]
       reverse: 鯈魚出遊從容
   translations:
     en: |-
       The minnows swim about at their ease.
+      The minnows (come|came) out and (roam|wander) (about|around) (at their ease|at leisure|unhurried|leisurely).
       The minnows (come|came) out and swim (about|around) (at their ease|at leisure|unhurried|leisurely).
       The minnows swim (around|about) (at leisure|unhurried|leisurely).
       The minnows swim around at their ease.
@@ -506,7 +509,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 君子從容。
-      tokens: [{surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 從容, sense: 從容, readings: {pinyin: cóng róng, jyutping: sung1 jung4, baxter: tshjowng yowng}}]
+      tokens: [{surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 從容, sense: 從容, readings: {pinyin: cōng róng, jyutping: sung1 jung4, baxter: tshjowng yowng}}]
       reverse: 君子從容
   translations:
     en: |-
@@ -539,11 +542,12 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 鯈魚出遊從容，是魚之樂也。
-      tokens: [{surface: 鯈, sense: 鯈, readings: {pinyin: tiáo, jyutping: tiu4, baxter: drjuw}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 從容, sense: 從容, readings: {pinyin: cóng róng, jyutping: sung1 jung4, baxter: tshjowng yowng}}, {surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 樂, sense: 樂, readings: {pinyin: lè, jyutping: lok6, baxter: lak}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 鯈, sense: 鯈, readings: {pinyin: tiáo, jyutping: tiu4, baxter: dew}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 從容, sense: 從容, readings: {pinyin: cōng róng, jyutping: sung1 jung4, baxter: tshjowng yowng}}, {surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 樂, sense: 樂, readings: {pinyin: lè, jyutping: lok6, baxter: lak}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: 鯈魚出遊從容是魚之樂也
   translations:
     en: |-
       The minnows swim about at their ease: this is the joy of fish.
+      The minnows (come|came) out and (roam|wander) (about|around) at their ease: (this|that) is (the joy of fish|what fish enjoy|the happiness of fish).
       The minnows (come|came) out and swim (about|around) at their ease: (this|that) is (the joy of fish|what fish enjoy|the happiness of fish).
       The minnows swim (around|about) (at leisure|unhurried|leisurely): (this|that) is (the joy of fish|what fish enjoy|the happiness of fish).
       The minnows swim about at their ease: (that is the joy of fish|this is what fish enjoy|that is what fish enjoy|this is the happiness of fish|that is the happiness of fish).
@@ -649,7 +653,7 @@ sentences:
     lzh-Hant/standard:
       text: 子非我，安知我不知魚之樂？
       tokens: [{surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 安, sense: 安, readings: {pinyin: ān, jyutping: on1, baxter: '''an'}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 樂, sense: 樂, readings: {pinyin: lè, jyutping: lok6, baxter: lak}}]
-      reverse: (子|汝|爾)非(我|吾)安知(我|吾)不知魚之樂
+      reverse: (子|汝|爾)非我安知(我|吾)不知魚之樂
   translations:
     en: |-
       You are not me: how do you know that I do not know the joy of fish?
@@ -709,7 +713,7 @@ stories:
       forms:
         lzh-Hant/standard:
           text: 「鯈魚出遊從容，是魚之樂也。」
-          tokens: [{surface: 鯈, sense: 鯈, readings: {pinyin: tiáo, jyutping: tiu4, baxter: drjuw}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 從容, sense: 從容, readings: {pinyin: cóng róng, jyutping: sung1 jung4, baxter: tshjowng yowng}}, {surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 樂, sense: 樂, readings: {pinyin: lè, jyutping: lok6, baxter: lak}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+          tokens: [{surface: 鯈, sense: 鯈, readings: {pinyin: tiáo, jyutping: tiu4, baxter: dew}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 從容, sense: 從容, readings: {pinyin: cōng róng, jyutping: sung1 jung4, baxter: tshjowng yowng}}, {surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 樂, sense: 樂, readings: {pinyin: lè, jyutping: lok6, baxter: lak}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       translations: {en: '“The minnows swim about at their ease: this is the joy of fish.”'}
   - choose:
       prompt:
