@@ -1,6 +1,6 @@
 /**
- * Debug mode: try every kind of card. `?debug=1` turns it on for this device (`?debug=0` off);
- * the course page then links to a gallery with one card of every kind the course can make, and
+ * Debug mode: try every kind of card. Preferences turns it on for this device, as `?debug=1` does
+ * (`?debug=0` off); the course page then links to a gallery with one card of every kind the course can make, and
  * every card says which kind it is. Nothing played here is recorded: the gallery's sessions go
  * nowhere, so they never touch the learner's progress. While it is on, every screen says so, with
  * a way out (DebugNotice).
@@ -13,41 +13,10 @@ import { useMemo, useState, type JSX } from "react";
 import { Button } from "react-aria-components";
 import styles from "./App.module.css";
 import { storedSound, storeSound } from "./Preferences.tsx";
+import { leaveDebug } from "./debug-mode.ts";
 import { ScreenHeading } from "./screen.tsx";
 
-const DEBUG = "nabu.debug";
-
-/** Reads ?debug=1 / ?debug=0 once and remembers it on this device. */
-export const debugOn = (): boolean => {
-  const asked = new URLSearchParams(window.location.search).get("debug");
-  try {
-    if (asked === "1") localStorage.setItem(DEBUG, "1");
-    if (asked === "0") localStorage.removeItem(DEBUG);
-    return localStorage.getItem(DEBUG) === "1";
-  } catch {
-    return asked === "1";
-  }
-};
-
-/** Debug mode as the page opened: read once, so every screen agrees until the page opens again. */
-export const debugMode = debugOn();
-
-/**
- * Leaves debug mode on this device, and opens the page again without it (and without a
- * ?debug=1 that would turn it straight back on).
- */
-export const leaveDebug = (): void => {
-  try {
-    localStorage.removeItem(DEBUG);
-  } catch {
-    // Storage unavailable: only the address kept it on.
-  }
-  const url = new URL(window.location.href);
-  url.searchParams.delete("debug");
-  // The same address with a fragment would only scroll: load it again instead.
-  if (url.href === window.location.href) window.location.reload();
-  else window.location.replace(url.href);
-};
+export { debugMode, leaveDebug, setDebug } from "./debug-mode.ts";
 
 /** On every screen while debug mode is on: says so, and offers the way out. */
 export const DebugNotice = (): JSX.Element => {

@@ -58,3 +58,30 @@ test("every kind of card can be tried from the gallery, and none of it is record
   await expect(page.locator("[data-cards-link]")).toHaveCount(0);
   expect(errors).toEqual([]);
 });
+
+test("debug mode is turned on and off in Preferences, for this device", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  await page.goto("/?sound=off#/preferences");
+  const choice = page.locator("[data-preference=debug]");
+  await expect(choice.locator("[data-debug-choice=off] input")).toBeChecked();
+  await expect(page.locator("[data-debug-notice]")).toHaveCount(0);
+
+  // On: the page opens again with it, still on Preferences, and every screen says so.
+  await choice.locator("[data-debug-choice=on]").click();
+  await expect(page.locator("[data-debug-notice]")).toBeVisible();
+  await expect(page.locator("[data-preferences]")).toBeVisible();
+  await expect(choice.locator("[data-debug-choice=on] input")).toBeChecked();
+  await page.goto("/?sound=off#/yue/yue-Hant-HK.standard");
+  await expect(page.locator("[data-cards-link]")).toBeVisible();
+
+  // Off: gone again.
+  await page.goto("/?sound=off#/preferences");
+  await choice.locator("[data-debug-choice=off]").click();
+  await expect(page.locator("[data-debug-notice]")).toHaveCount(0);
+  await expect(choice.locator("[data-debug-choice=off] input")).toBeChecked();
+  await page.goto("/?sound=off#/yue/yue-Hant-HK.standard");
+  await expect(page.locator("[data-course-path]")).toBeVisible();
+  await expect(page.locator("[data-cards-link]")).toHaveCount(0);
+  expect(errors).toEqual([]);
+});
