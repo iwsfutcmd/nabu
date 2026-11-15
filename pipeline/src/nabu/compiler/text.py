@@ -128,11 +128,14 @@ def words_of(script: Script | None) -> regex.Pattern[str]:
     return _logograph_words(script.logographs, script.cartouche)
 
 
-def ruby_bearing(surface: str, script: Script | None = None) -> bool:
+def ruby_bearing(surface: str, script: Script | None = None, *, whole: bool = False) -> bool:
     """Whether a word token carries ruby readings: Han characters (a Han word carries its
     Jyutping), the script's logographs (sitelen pona's carry their sitelen Lasina word), or the
     syllables of the scheme the script writes (a Jyutping word carries its characters). A name
-    in a cartouche carries none."""
+    in a cartouche carries none. A scheme read over whole words (`ruby: word`, ADR 0129) stands
+    over every word with a letter: Schluessel's transliteration over a Chaghatay word."""
+    if whole:
+        return any(unicodedata.category(c)[0] == "L" for c in surface)
     if HAN.search(surface):
         return True
     if syllable_bases(surface, script) is not None:
@@ -228,10 +231,13 @@ def auto_tokens(
 
 
 def ruby_segments(
-    surface: str, reading: str, script: Script | None = None
+    surface: str, reading: str, script: Script | None = None, *, whole: bool = False
 ) -> list[dict[str, str]] | None:
     """One ruby segment per grapheme when the syllables line up, else None. A word in its
-    script's reading scheme (Jyutping) takes one character over each syllable instead."""
+    script's reading scheme (Jyutping) takes one character over each syllable instead; a scheme
+    read over whole words (`ruby: word`) takes the word as one segment, whatever its letters."""
+    if whole:
+        return [{"base": surface, "text": reading}] if reading.strip() else None
     syllabic = syllable_bases(surface, script)
     bases = syllabic if syllabic is not None else graphemes(surface)
     texts = graphemes(reading) if syllabic is not None else reading.split()

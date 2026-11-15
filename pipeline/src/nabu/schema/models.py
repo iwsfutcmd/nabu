@@ -2729,7 +2729,7 @@ class KnowledgeComponentSource(BaseModel):
     readings: Annotated[
         dict[SchemeId, ReadingsAdditionalProperty] | None,
         Field(
-            description="How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-."
+            description="How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-. In a scheme read over whole words (`ruby: word`, ADR 0129) it may add one: chg's verb stems (bar-) never stand alone in a sentence."
         ),
     ] = None
     image: ImageAsset | None = None
@@ -3387,6 +3387,12 @@ class ReadingScheme(BaseModel):
             description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese."
         ),
     ] = None
+    ruby: Annotated[
+        Literal["character", "word"],
+        Field(
+            description="What one ruby segment stands over where a profile shows the scheme as ruby (ADR 0129): each character (the default: a Han character's syllable, a logograph's word, a syllable of the script's own scheme) or the whole word, where the script's letters do not line up with the reading's (Schluessel's transliteration over a Chaghatay word in Arabic script, which leaves most vowels unwritten)."
+        ),
+    ] = "character"
     typed: Annotated[
         Typed | None,
         Field(

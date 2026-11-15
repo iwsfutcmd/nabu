@@ -404,8 +404,9 @@ def compile_form(
 
     # stage 3: readings and ruby, for every ruby layer
     for scheme in _ruby_schemes(profile):
+        whole = scheme in schemes() and schemes()[scheme].ruby == "word"
         for t in toks:
-            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"], script):
+            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"], script, whole=whole):
                 continue
             pinned = t.get("readings", {}).get(scheme)
             guessed = analyzer.reading(scheme, t["surface"]) if analyzer is not None else None
@@ -422,7 +423,7 @@ def compile_form(
                     loc,
                 )
             reading = t["readings"][scheme]
-            segments = tx.ruby_segments(t["surface"], reading, script)
+            segments = tx.ruby_segments(t["surface"], reading, script, whole=whole)
             if segments is None:
                 diags.report(
                     "enrich.ruby-unaligned",

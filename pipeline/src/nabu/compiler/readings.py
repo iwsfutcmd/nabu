@@ -9,7 +9,8 @@ from two readings of one word.
 
 Nothing is guessed: a reading comes from the course's own tokens. A KC's entry may choose one of
 them for its first form (its `readings`, ADR 0117's amendment: hbo's sense:ad reads ʿaḏ, free, where
-its lessons tie with the maqaf-bound ʿaḏ-). Otherwise it is, in this order:
+its lessons tie with the maqaf-bound ʿaḏ-); in a scheme read over whole words (`ruby: word`, ADR
+0129) it may give its own, as chg's verb stems do (بار- reads bar). Otherwise it is, in this order:
 
 1. the readings of the KC's sense spelled as the form, in the lesson sentences: the most common, a
    tie going to the first in course order;
@@ -143,10 +144,16 @@ class Refusal:
     message: str
 
 
-def _refused(table: Seen, kc: str, words: Sequence[TokenModel], reading: str) -> str | None:
-    """Why a KC's own reading cannot be pinned on its first form's words, or None."""
+def _refused(
+    table: Seen, kc: str, words: Sequence[TokenModel], reading: str, *, adds: bool = False
+) -> str | None:
+    """Why a KC's own reading cannot be pinned on its first form's words, or None. A scheme read
+    over whole words (`ruby: word`, ADR 0129) lets the KC give a reading no token gives (`adds`):
+    its sentences show a verb's stem only with suffixes (بار in باردی), never alone."""
     if len(words) != 1:
         return f"its first form has {len(words)} words; a KC's own reading is one word's"
+    if adds:
+        return None
     surface = words[0].surface
     given = table.given(kc, surface)
     if reading not in given:
@@ -258,6 +265,7 @@ def pin_kc_readings(
         script = script_of(orth)
         for scheme in pinned_schemes(units, orth):
             table = seen(units, orth, scheme)
+            whole = scheme in schemes() and schemes()[scheme].ruby == "word"
             for ui, u in enumerate(units):
                 for ki, kc in enumerate(u.kcs):
                     for fi, form in enumerate((kc.forms or {}).get(orth, [])):
@@ -267,7 +275,7 @@ def pin_kc_readings(
                         chosen = own.get(kc.id, {}).get(scheme) if fi == 0 else None
                         if chosen is not None:
                             taken.add((kc.id, scheme))
-                            why = _refused(table, kc.id, [t for _, t in words], chosen)
+                            why = _refused(table, kc.id, [t for _, t in words], chosen, adds=whole)
                             if why is not None:
                                 refused.append(Refusal(kc.id, scheme, f"{orth}: {why}"))
                                 chosen = None
@@ -280,10 +288,10 @@ def pin_kc_readings(
                             if (
                                 scheme not in ruby
                                 or t.kind != "word"
-                                or not tx.ruby_bearing(t.surface, script)
+                                or not tx.ruby_bearing(t.surface, script, whole=whole)
                             ):
                                 continue
-                            segments = tx.ruby_segments(t.surface, reading, script)
+                            segments = tx.ruby_segments(t.surface, reading, script, whole=whole)
                             if segments is not None:
                                 pin.ruby[scheme] = [RubySegment.model_validate(s) for s in segments]
     for kc_id, by_scheme in own.items():

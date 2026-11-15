@@ -128,3 +128,17 @@ def test_presentation_forms_of_any_script_are_flagged(core_cli: CoreCli) -> None
     assert [d.message for d in diags.items if d.lint == "text.non-canonical"] == [
         "uses presentation forms, not the characters they stand for: U+FEFB"
     ]
+
+
+def test_a_word_reading_stands_over_the_whole_word() -> None:
+    """A scheme read over whole words (`ruby: word`, ADR 0129) gives one segment, the word, whatever
+    its letters: Schluessel's transliteration over a Chaghatay word in Arabic script, whose vowels
+    the letters leave out. The per-character rule finds nothing to line up there."""
+    zwnj = chr(0x200C)
+    word = "میوه" + zwnj + "سی"  # mewäsi, a half-space after the final vowel heh
+    assert tx.ruby_bearing(word, whole=True) and not tx.ruby_bearing(word)
+    assert tx.ruby_segments(word, "mewäsi", whole=True) == [{"base": word, "text": "mewäsi"}]
+    assert tx.ruby_segments(word, "mewäsi") is None
+    assert tx.ruby_segments(word, " ", whole=True) is None
+    # Punctuation is no word: it carries no reading.
+    assert not tx.ruby_bearing("\u060c", whole=True)

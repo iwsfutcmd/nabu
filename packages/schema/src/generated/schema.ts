@@ -1748,7 +1748,7 @@ export interface KnowledgeComponentSource {
     readonly [k: string]: readonly string[];
   };
   /**
-   * How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-.
+   * How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-. In a scheme read over whole words (`ruby: word`, ADR 0129) it may add one: chg's verb stems (bar-) never stand alone in a sentence.
    */
   readonly readings?: {
     readonly [k: string]: string;
@@ -3376,6 +3376,10 @@ export interface ReadingScheme {
   readonly language: LangTag1;
   readonly lang?: ScriptedLangTag2;
   readonly answer?: OrthographyId3;
+  /**
+   * What one ruby segment stands over where a profile shows the scheme as ruby (ADR 0129): each character (the default: a Han character's syllable, a logograph's word, a syllable of the script's own scheme) or the whole word, where the script's letters do not line up with the reading's (Schluessel's transliteration over a Chaghatay word in Arabic script, which leaves most vowels unwritten).
+   */
+  readonly ruby?: "character" | "word";
   /**
    * A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
    */
