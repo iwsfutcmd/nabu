@@ -6,6 +6,7 @@
   foresaw), [0046](0046-speech.md) (no rotation slot: the planner's exclusions put scored speaking
   in tier 0's place), [0041](0041-listening-in-the-app.md) and [0071](0071-classical-chinese.md)
   (where they name the lesson builder)
+- Amended: below (2026-11-13, the owner's D52: tone cards, from clips a person confirmed)
 
 ## Context
 
@@ -93,3 +94,44 @@ Two limits keep the walks to about half a minute:
   but never picks one: its p̂ is about 0.5, and nothing reserves it a place as one is reserved for a
   pronunciation card. `test/planned.test.ts` keeps the check as `it.fails`. Making lessons plan
   them changes `plan()`, so it is left to a change of its own.
+
+## Amendment: tone cards, from clips a person confirmed (2026-11-13)
+
+The owner decided (D52) that lessons reserve a tone card a place where they can make one, as they do
+a pronunciation card. TTS is not trusted to say a lone syllable's tone, so a tone card may play only
+a clip a person confirmed.
+
+**A confirmed clip** is a recording (`nabu audio ingest`, not synthetic), or a synthetic clip a
+listener marked right in the audio check (`nabu audio verdicts --reviewer human:<id>`, ADR 0060): one
+a human reviewer signed off, reviewed or published. The compiler writes `confirmed: true` on such a
+clip in the bundle's audio index (`BundleClip.confirmed`), and nothing on the others. Absent means
+not confirmed, so `formatVersion` stays 1 (ADR 0110): the field is optional, and a bundle cached
+without it plans no tone card, as before.
+
+**The card.** `makeToneIdentify` makes a tone card only from a confirmed clip of a one-syllable
+sentence (its slow take confirmed too, where it has one).
+
+**Its place.** After its selection, `plan()` gives a lesson that can make a tone card one, as it
+gives a pronunciation card. It takes an empty place, or the last card no new word depends on, and
+never the pronunciation card's. A lesson gets no tone card where:
+
+- the app offers no tones (`speechSupportOf`);
+- the course is not heard (its facets, an iffy voice: `courseExclusions`);
+- the learner is not listening: a break, or listening turned off for good (D41). Those leave the
+  template out, and the planner checks `facetsOff` as well.
+
+**What changed.**
+- No yue clip is confirmed yet, so no lesson of the committed courses plans a tone card. The numbers
+  drill's synthetic clips no longer make tone cards at all.
+- One plan of 4,924 compared changed: yue's numbers drill, planned with scored speech after a walk
+  with speech support. Its calibration had picked a tone card from an unconfirmed synthetic clip;
+  that place now holds a translate-tap card. Plans without speech support, which the golden files
+  and the simulation make, are unchanged.
+- In the bundles, es, grc, hbo, lzh, tok and yue build byte for byte as before. apc, fa and uz have
+  synthetic clips a listener marked right (82, 37 and 29). Those clips gain `confirmed: true`, and
+  their audio index files and manifests change with it, nothing else.
+- `test/planned.test.ts` replaces the finding's `it.fails`:
+  - a yue view with one confirmed one-syllable clip (係！) plans its tone card in the copula
+    lesson, one a lesson at most, and keeps every lesson's length;
+  - an unconfirmed clip plans none, and neither do the cases above;
+  - nor does the walk over the committed courses.

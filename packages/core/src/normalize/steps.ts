@@ -98,6 +98,18 @@ const detach = (prefixes: readonly string[], minRest: number): StepFn => {
   return (text) => text.replace(/[^\s]+/gu, split);
 };
 
+/**
+ * A space after any of `after` when a letter follows it (ADR 0095): Jyutping's tone numbers end
+ * its syllables, so a learner may write them joined (hok6saang1) or spaced (hok6 saang1).
+ */
+const split = (after: string): StepFn => {
+  const ends = new Set(Array.from(after));
+  return (text) => {
+    const cps = Array.from(text);
+    return cps.map((c, i) => (ends.has(c) && i + 1 < cps.length && /\p{L}/u.test(cps[i + 1] ?? "") ? `${c} ` : c)).join("");
+  };
+};
+
 /** A word as a run of letters and marks: what a learner types between spaces and punctuation. */
 const WORD = /[\p{L}\p{M}]+/gu;
 
@@ -144,6 +156,7 @@ export const compileStep = (step: NormalizeStep, numberingSystems: Readonly<Reco
   if ("digits" in step) return digits(step.digits.canonical, step.digits.accept, numberingSystems);
   if ("punctuation" in step) return step.punctuation === "strip" ? (t) => t.replace(PUNCTUATION, "") : (t) => t;
   if ("detach" in step) return detach(step.detach.prefixes, step.detach.minRest ?? 2);
+  if ("split" in step) return split(step.split.after);
   if ("logographs" in step) return logographs(step.logographs.words, step.logographs.cartouche);
   // whitespace
   if (step.whitespace === "collapse") return (t) => t.replace(WHITESPACE, " ").trim();

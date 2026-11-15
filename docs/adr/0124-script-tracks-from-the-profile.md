@@ -3,6 +3,7 @@
 - Status: Proposed
 - Date: 2026-11-13
 - Amends: [0088](0088-script-tracks.md) (what a grapheme KC is; the profile's `romanize`)
+- Amended by: [0128](0128-chaghatay.md) (the romanization scheme `forms`: the KC's own form in another orthography)
 
 ## Context
 

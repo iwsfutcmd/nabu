@@ -20,7 +20,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - What the prompt does not decide, the learner may choose (ADR 0085): accept sets take every order, word choice,
   optional word and form whose translation would be the prompt, in both directions; never one that would translate
   otherwise. The grader stays literal: the answers are listed in the accept set.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc, chg) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -278,7 +278,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   A scored speaking card (speak, listen-speak) can be claimed right ("I said it right", ADR 0052): the claim's
   text is the prompt sentence, never what was heard; `nabu reports promote` skips it.
 - `speak`/`listen-speak` replace tier 0 only with SpeechSupport (speechSupportOf); `tone-identify` needs a one-syllable
-  clip. Speech never changes a lesson's length (the planner's size, golden files): scored speaking takes tier 0's place.
+  clip a person confirmed (`confirmed` in the bundle: a recording, or a synthetic clip a listener marked right in the
+  audio check; never TTS alone, ADR 0125), and a lesson that can make one plans one. Speech never changes a lesson's
+  length (the planner's size, golden files): scored speaking takes tier 0's place.
 - `pnpm --filter @nabu/core tone-eval [set]` reports per-tone accuracy; evals/tones/synthetic-espeak is synthetic.
 - Speech e2e uses Chromium's fake microphone (tests/e2e/fixtures); speech service tests need NABU_SPEECH=1.
 
@@ -399,7 +401,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A course's `facets` (course.yaml, manifest) rule out every template of another facet (`facetExclusions`, wherever
   speechExclusions applies). lzh is [recognize, produce]: no audio, never spoken, heard or drilled on its readings.
 - An orthography may pin several ruby layers (lzh: pinyin, jyutping, baxter). Every Han word token pins all of them,
-  chosen by sense (說.yue is yuè / jyut6 / ywet); the compiler checks they line up per character. Jyutping is the
+  chosen by sense (說.yue is yuè / jyut6 / ywet), one reading in all three: never Pinyin of one word with Baxter of
+  another (見 "see" jiàn / gin3 / kenH, "appear, have an audience" xiàn / jin6 / henH). The compiler checks they line up per character. Jyutping is the
   literary reading; Baxter is Baxter & Sagart 2014 ASCII from the Guangyun. The player shows one layer or none.
 - A layer's `lang` tags its ruby text (`<rt lang>`): zh-Latn-pinyin, yue-Latn-jyutping, ltc-Latn-x-baxter.
 - Senses spelled alike are KCs with a suffix (知, 知.zhi); a token names its sense, and glossAt glosses it as that.
@@ -407,6 +410,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Target-language text is sized apart from the rest: a profile's `fonts.scale` (lzh 1.25), times the learner's size
   for the language being learned (Preferences; `--nabu-target-scale` on <T> text marked `data-target`). Render course
   pages inside `CourseUiProvider` so <T> knows which orthographies are targets.
+- lzh is checked against Baxter & Sagart's list (2015 xlsx: the Baxter layer is their transcription, row by row),
+  Kroll (2017: senses and glosses) and Pulleyblank (1995: grammar); notes in `nabu/notes/lzh/` (ADR 0127). Kroll's PDF
+  has a clean text layer (printed page = PDF − 16); Pulleyblank's is a scan (OCR, then page images; PDF − 11).
+- Grammar the accept sets keep: after a negative a pronoun object precedes the verb (王不我知; 之 dropped after 不,
+  before the verb after 莫/未: 莫之能知); 吾 only before its head (never 吾也, 非吾); 於, never 于 for it.
 
 ## Cuban Spanish notes (see docs/adr/0076–0077)
 - courses/es: thirty units A1–B2 for heritage speakers; courses/es/README.md is the brief, syllabus and conventions.
@@ -491,6 +499,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - The round trip hears yue with a Cantonese Whisper fine-tune (the yue profile's `speech.recognizer`, ADR 0116), never
   Whisper's own (it writes Mandarin), and compares differing characters by reading (homophones free, a tone apart half).
   `nabu audio check <course>` re-runs the check on existing clips.
+- Jyutping (ADR 0126): yue's second orthography, yue-Latn/jyutping, Jyutping the text and the characters its ruby
+  (scheme `characters`). Never written by hand: after changing a yue sentence, word or story line, run
+  `cd pipeline && uv run nabu jyutping ../courses/yue` (it lists readings it took from PyCantonese for a person to
+  check); the compiler and `--check` (tests) catch a stale one. Tones are never typos there (contrast sets).
 
 ## Toki Pona notes (see docs/adr/0086)
 - courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and
@@ -536,6 +548,23 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
 - A script track's letters and marks come from the profile (core-cli `letters` and `unicode-set`), never a list in code;
   `romanize` is `{scheme, orthography}`; a form with no letter is `script.no-letter` (ADR 0124).
+
+## Chaghatay notes (see docs/adr/0128)
+- courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). Two
+  orthographies, every sentence and story line pinned in both, word for word (same senses and suffix morphs; a test
+  checks it): chg-Arab/standard, the baseline, and chg-Latn/schluessel, Schluessel's transliteration (2018).
+- Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
+  joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
+- Suffixes are morphs with form KCs (form:dat, form:past-1s, form:pres, form:mis …); verbs are cited as stems with
+  a hyphen (bar-). Homographs take a suffix (bar.go, at.name, kim.that, yuz.face).
+- Schluessel's book is CC BY-NC-ND: take facts from it (letters, suffixes, spellings, glosses), never his example
+  sentences or the documents he composed (ch. 7). Stories are public-domain passages (Babur, the Tadhkira, Abu
+  'l-Ghazi, Navai, Qasim Beg, the Prophets, a risāla) as he types them, in the source's spellings (فادشاه, پز, tep),
+  with his reading in the Latin. PDF page = book page + 35; check Arabic on page images. Notes in `nabu/notes/chg/`.
+- "You": sän tagged to one person, sizlär to several, siz (polite or plural) untagged; accept sets take the forms
+  that fit. No gender: he/she in English accept sets.
+- The Arabic alphabet track (units/abc.yaml) takes its Latin spellings from each KC's chg-Latn form (`romanize:
+  {scheme: forms}`): a word it drills needs a form in both orthographies; no verb stems (their hyphen).
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

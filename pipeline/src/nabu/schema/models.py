@@ -400,7 +400,19 @@ class BundleClip(BaseModel):
             description="Attribution (the speaker, or the synthetic voice): an entry of the manifest's `credits`."
         ),
     ] = None
+    confirmed: Annotated[
+        bool | None,
+        Field(
+            description="A person confirmed what the clip says (ADR 0125): it is a recording (not synthetic), or a synthetic clip a listener marked right in the audio check (ADR 0060). Present only when true. A tone card (tone-identify) plays only confirmed clips: a synthetic voice is not trusted with a lone syllable's tone."
+        ),
+    ] = None
     timings: list[TokenTiming] | None = None
+    orthography: Annotated[
+        str | None,
+        Field(
+            description="The orthography whose tokens `timings` index: the one the voice read. Another orthography of the course gets them moved to its own tokens, word for word (ADR 0126)."
+        ),
+    ] = None
 
 
 type LangTag = Annotated[
@@ -1751,6 +1763,32 @@ class DetachStep(BaseModel):
     detach: Detach
 
 
+class Split(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    after: Annotated[
+        str,
+        Field(
+            description="The characters that end a unit, each one code point (Jyutping: 123456).",
+            min_length=1,
+        ),
+    ]
+
+
+class SplitStep(BaseModel):
+    """
+    Puts a space after any of the `after` characters when a letter follows it, so joined and spaced spellings compare alike: Jyutping's tone numbers end its syllables, so hok6saang1 = hok6 saang1 (ADR 0126).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    split: Split
+
+
 class Cartouche(BaseModel):
     """
     The marks that open and close a name written with the logographs' first letters.
@@ -1983,9 +2021,9 @@ class Romanization(BaseModel):
         frozen=True,
     )
     scheme: Annotated[
-        Literal["greek"],
+        Literal["greek", "forms"],
         Field(
-            description="A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds."
+            description="A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters."
         ),
     ]
     orthography: Annotated[
@@ -3670,6 +3708,7 @@ type NormalizeStep = Annotated[
     | PunctuationStep
     | WhitespaceStep
     | DetachStep
+    | SplitStep
     | LogographsStep,
     Field(title="NormalizeStep"),
 ]

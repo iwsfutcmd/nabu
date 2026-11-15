@@ -1,0 +1,1108 @@
+# Chaghatay (chg), unit 3: The pears of Andijan (Babur, Bāburnāma: Andijan).
+# The plural -lar; -din "from, than" and -raq "more"; -ǧa "to"; the aorist bolur "is (as a rule)" and bolmas;
+# goes and comes (baradur, kelädur).
+# The passage is Babur's own text (died 1530; the Hyderabad manuscript, in Beveridge's 1905 facsimile), as
+# Schluessel (2018, ch. 11) types it; the rest was drafted by an LLM (provenance llm:…, status draft) and awaits
+# a reviewer.
+id: u03-the-pears-of-andijan
+title:
+  en: The pears of Andijan
+cefr: A1
+kcs:
+- id: sense:bol
+  gloss:
+    en: to be, to become; to be found, grow
+  forms:
+    chg-Arab/standard:
+    - بول-
+    chg-Latn/schluessel:
+    - bol-
+- id: sense:uzum
+  gloss:
+    en: grape, grapes
+  forms:
+    chg-Arab/standard:
+    - اوزوم
+    chg-Latn/schluessel:
+    - üzüm
+- id: sense:nashpati
+  gloss:
+    en: pear, pears
+  forms:
+    chg-Arab/standard:
+    - ناشپاتی
+    chg-Latn/schluessel:
+    - našpati
+- id: sense:wafir
+  gloss:
+    en: abundant, ample
+  forms:
+    chg-Arab/standard:
+    - وافر
+    chg-Latn/schluessel:
+    - wāfir
+- id: sense:el
+  gloss:
+    en: people, nation; the people of a place
+  forms:
+    chg-Arab/standard:
+    - ایل
+    chg-Latn/schluessel:
+    - el
+- id: sense:turk
+  gloss:
+    en: Turk, Turkic; the Turks
+  forms:
+    chg-Arab/standard:
+    - تورک
+    chg-Latn/schluessel:
+    - Türk
+- id: sense:bazar
+  gloss:
+    en: market, bazaar
+  forms:
+    chg-Arab/standard:
+    - بزار
+    chg-Latn/schluessel:
+    - bazār
+- id: sense:bar.go
+  gloss:
+    en: to go
+  forms:
+    chg-Arab/standard:
+    - بار-
+    chg-Latn/schluessel:
+    - bar-
+- id: sense:kal
+  gloss:
+    en: to come
+  forms:
+    chg-Arab/standard:
+    - کل-
+    chg-Latn/schluessel:
+    - käl-
+- id: sense:ulugh
+  gloss:
+    en: great, big
+  forms:
+    chg-Arab/standard:
+    - اولوغ
+    chg-Latn/schluessel:
+    - uluǧ
+- id: sense:qurghan
+  gloss:
+    en: fortress, castle
+  forms:
+    chg-Arab/standard:
+    - قورغان
+    chg-Latn/schluessel:
+    - qurǧan
+- id: sense:paytakht
+  gloss:
+    en: capital city
+  forms:
+    chg-Arab/standard:
+    - "پای\u200cتخت"
+    chg-Latn/schluessel:
+    - pāytaḫt
+- id: sense:samarqand
+  gloss:
+    en: Samarkand
+  forms:
+    chg-Arab/standard:
+    - سمرقند
+    chg-Latn/schluessel:
+    - Samarqand
+- id: form:pl
+  gloss:
+    en: '-lar, -lär: the plural'
+  notes:
+    en: '-lar after a back vowel (a, o, u: atlar "horses"), -lär after a front one (ä, ö, ü, and mostly i, e: öylär "houses"); the script writes both لار. After a number the noun stays singular: üč aṭ "three
+      horses".'
+- id: form:aor
+  gloss:
+    en: '-ur, -ar (-r after a vowel): does, will do; is, as a rule'
+  notes:
+    en: 'The aorist says what is so, or happens, as a rule or in general: üzümi yaḫši bolur "its grapes are (always) good". Babur describes his country in it.'
+- id: form:aor-neg
+  gloss:
+    en: '-mas, -mäs: does not, will not; is not, as a rule'
+  notes:
+    en: 'The aorist''s negative: yaḫširaq našpati bolmas "there are no better pears". emäs "is not" is this form of the old verb e- "to be".'
+- id: form:abl
+  gloss:
+    en: '-din (-dan, -tin): from; than'
+  notes:
+    en: 'Where from: Andijāndin "from Andijan". With -raq it is "than": mundin yaḫširaq "better than this".'
+- id: form:dat
+  gloss:
+    en: '-ǧa, -gä (-qa, -kä): to, for'
+  notes:
+    en: 'Where to: šaharǧa "to the city". Scribes write it غه whatever the vowels (Kašǧarǧa, Ḫotangä), and قه or که after q or k.'
+- id: form:cmp
+  gloss:
+    en: '-raq, -räk: more ..., -er'
+  notes:
+    en: 'yaḫši "good", yaḫširaq "better"; čoŋ "big", čoŋraq "bigger". What it is compared with takes -din: Andijāndin čoŋraq "bigger than Andijan".'
+- id: form:pres
+  gloss:
+    en: '-a, -ä (-y after a vowel): the present-future: does, is doing, will do'
+  notes:
+    en: 'The stem takes -a or -ä, then a person ending: baradur "goes, is going, will go" (-dur for he, she, it). Unit 5 has the other persons.'
+nodes:
+- id: chg.u03.plural
+  kind: lesson
+  introduces:
+  - form:pl
+- id: chg.u03.grapes
+  kind: lesson
+  introduces:
+  - sense:uzum
+  - sense:bol
+  - form:aor
+  - sense:nashpati
+  - sense:wafir
+  - sense:el
+  - sense:turk
+- id: chg.u03.from
+  kind: lesson
+  introduces:
+  - form:abl
+  - sense:samarqand
+  - sense:kal
+  - form:pres
+  - sense:bazar
+- id: chg.u03.to
+  kind: lesson
+  introduces:
+  - form:dat
+  - sense:bar.go
+- id: chg.u03.better
+  kind: lesson
+  introduces:
+  - form:cmp
+  - sense:ulugh
+  - sense:qurghan
+  - form:aor-neg
+  - sense:paytakht
+- id: chg.u03.story
+  kind: story
+sentences:
+- id: s.03.1
+  node: chg.u03.plural
+  forms:
+    chg-Arab/standard:
+      text: آطلار.
+      tokens:
+      - {surface: آطلار, sense: at, morphs: [{surface: آط, kc: 'sense:at'}, {surface: لار, kc: 'form:pl'}]}
+      reverse: (آطلار|آتلار|اتلار)
+    chg-Latn/schluessel:
+      text: Aṭlar.
+      tokens:
+      - {surface: Aṭlar, sense: at, morphs: [{surface: Aṭ, kc: 'sense:at'}, {surface: lar, kc: 'form:pl'}]}
+      reverse: Aṭlar
+  translations:
+    en: (Horses|The horses).
+- id: s.03.2
+  node: chg.u03.plural
+  forms:
+    chg-Arab/standard:
+      text: قویلار تاغده.
+      tokens:
+      - {surface: قویلار, sense: qoy, morphs: [{surface: قوی, kc: 'sense:qoy'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: تاغده, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: ده, kc: 'form:loc'}]}
+      reverse: "قویلار (تاغده|تاغدا)\nقویلار (تاغده\u200cدور|تاغدا\u200cدور)"
+    chg-Latn/schluessel:
+      text: Qoylar taǧda.
+      tokens:
+      - {surface: Qoylar, sense: qoy, morphs: [{surface: Qoy, kc: 'sense:qoy'}, {surface: lar, kc: 'form:pl'}]}
+      - {surface: taǧda, sense: tagh, morphs: [{surface: taǧ, kc: 'sense:tagh'}, {surface: da, kc: 'form:loc'}]}
+      reverse: |-
+        Qoylar taǧda
+        Qoylar taǧdadur
+  translations:
+    en: '[The] sheep are (on the mountain|in the mountains).'
+- id: s.03.3
+  node: chg.u03.plural
+  forms:
+    chg-Arab/standard:
+      text: بلالار باغده.
+      tokens:
+      - {surface: بلالار, sense: bala, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: باغده, sense: bagh, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: ده, kc: 'form:loc'}]}
+      reverse: "(بلالار|بالالار) (باغده|باغدا)\n(بلالار|بالالار) (باغده\u200cدور|باغدا\u200cدور)"
+    chg-Latn/schluessel:
+      text: Balalar bāǧda.
+      tokens:
+      - {surface: Balalar, sense: bala, morphs: [{surface: Bala, kc: 'sense:bala'}, {surface: lar, kc: 'form:pl'}]}
+      - {surface: bāǧda, sense: bagh, morphs: [{surface: bāǧ, kc: 'sense:bagh'}, {surface: da, kc: 'form:loc'}]}
+      reverse: |-
+        Balalar bāǧda
+        Balalar bāǧdadur
+  translations:
+    en: '[The] children are in the (garden|orchard).'
+- id: s.03.4
+  node: chg.u03.plural
+  forms:
+    chg-Arab/standard:
+      text: بو بلالار کچیک.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: بلالار, sense: bala, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: کچیک, sense: kichik}
+      reverse: "بو (بلالار|بالالار) (کچیک|کیچیک)\nبو (بلالار|بالالار) (کچیک\u200cدور|کیچیک\u200cدور)"
+    chg-Latn/schluessel:
+      text: Bu balalar kičik.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: balalar, sense: bala, morphs: [{surface: bala, kc: 'sense:bala'}, {surface: lar, kc: 'form:pl'}]}
+      - {surface: kičik, sense: kichik}
+      reverse: |-
+        Bu balalar kičik
+        Bu balalar kičikdur
+  translations:
+    en: These children are (small|little|young).
+- id: s.03.5
+  node: chg.u03.plural
+  forms:
+    chg-Arab/standard:
+      text: "دروازه\u200cلار چونک\u200cدور."
+      tokens:
+      - {surface: "دروازه\u200cلار", sense: darwaza, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: "چونک\u200cدور", sense: chong, morphs: [{surface: "چونک\u200c", kc: 'sense:chong'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "دروازه\u200cلار چونک\u200cدور"
+    chg-Latn/schluessel:
+      text: Darwāzalär čoŋdur.
+      tokens:
+      - {surface: Darwāzalär, sense: darwaza, morphs: [{surface: Darwāza, kc: 'sense:darwaza'}, {surface: lär, kc: 'form:pl'}]}
+      - {surface: čoŋdur, sense: chong, morphs: [{surface: čoŋ, kc: 'sense:chong'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Darwāzalär čoŋdur
+  translations:
+    en: '[The] gates are (big|large).'
+- id: s.03.6
+  node: chg.u03.plural
+  forms:
+    chg-Arab/standard:
+      text: اویلار اق.
+      tokens:
+      - {surface: اویلار, sense: oy, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: اق, sense: aq}
+      reverse: "اویلار اق\nاویلار اق\u200cدور"
+    chg-Latn/schluessel:
+      text: Öylär aq.
+      tokens:
+      - {surface: Öylär, sense: oy, morphs: [{surface: Öy, kc: 'sense:oy'}, {surface: lär, kc: 'form:pl'}]}
+      - {surface: aq, sense: aq}
+      reverse: |-
+        Öylär aq
+        Öylär aqdur
+  translations:
+    en: '[The] houses are white.'
+- id: s.03.7
+  node: chg.u03.plural
+  forms:
+    chg-Arab/standard:
+      text: شهرنینک باغلاری تولا.
+      tokens:
+      - {surface: شهرنینک, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: باغلاری, sense: bagh, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: لار, kc: 'form:pl'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: تولا, sense: tola}
+      reverse: |-
+        شهرنینک باغلاری تولا
+        شهرنینک باغلاری تولادور
+    chg-Latn/schluessel:
+      text: Šaharniŋ bāǧlari tola.
+      tokens:
+      - {surface: Šaharniŋ, sense: shahar, morphs: [{surface: Šahar, kc: 'sense:shahar'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: bāǧlari, sense: bagh, morphs: [{surface: bāǧ, kc: 'sense:bagh'}, {surface: lar, kc: 'form:pl'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: tola, sense: tola}
+      reverse: |-
+        Šaharniŋ bāǧlari tola
+        Šaharniŋ bāǧlari toladur
+  translations:
+    en: The (city|town) has many (gardens|orchards).
+- id: s.03.8
+  node: chg.u03.plural
+  forms:
+    chg-Arab/standard:
+      text: تاغلاری چونک.
+      tokens:
+      - {surface: تاغلاری, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: لار, kc: 'form:pl'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: چونک, sense: chong}
+      reverse: "تاغلاری چونک\nتاغلاری چونک\u200cدور"
+    chg-Latn/schluessel:
+      text: Taǧlari čoŋ.
+      tokens:
+      - {surface: Taǧlari, sense: tagh, morphs: [{surface: Taǧ, kc: 'sense:tagh'}, {surface: lar, kc: 'form:pl'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: čoŋ, sense: chong}
+      reverse: |-
+        Taǧlari čoŋ
+        Taǧlari čoŋdur
+  translations:
+    en: Its mountains are (big|large|high).
+- id: s.03.9
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: "اوزوم شیرین\u200cدور."
+      tokens:
+      - {surface: اوزوم, sense: uzum}
+      - {surface: "شیرین\u200cدور", sense: shirin, morphs: [{surface: "شیرین\u200c", kc: 'sense:shirin'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "اوزوم شیرین\u200cدور"
+    chg-Latn/schluessel:
+      text: Üzüm širindur.
+      tokens:
+      - {surface: Üzüm, sense: uzum}
+      - {surface: širindur, sense: shirin, morphs: [{surface: širin, kc: 'sense:shirin'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Üzüm širindur
+  translations:
+    en: (Grapes are|The grapes are) sweet.
+- id: s.03.10
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: اوزوم شیرین بولور.
+      tokens:
+      - {surface: اوزوم, sense: uzum}
+      - {surface: شیرین, sense: shirin}
+      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      reverse: اوزوم شیرین بولور
+    chg-Latn/schluessel:
+      text: Üzüm širin bolur.
+      tokens:
+      - {surface: Üzüm, sense: uzum}
+      - {surface: širin, sense: shirin}
+      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+      reverse: Üzüm širin bolur
+  translations:
+    en: (Grapes are|The grapes are) (sweet|always sweet|usually sweet).
+- id: s.03.11
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: بو یرده اوزوم یخشی بولور.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: یرده, sense: yar, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: اوزوم, sense: uzum}
+      - {surface: یخشی, sense: yakhshi}
+      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      reverse: |-
+        بو (یرده|یردا|یارده|یاردا) اوزوم یخشی بولور
+        اوزوم بو (یرده|یردا|یارده|یاردا) یخشی بولور
+    chg-Latn/schluessel:
+      text: Bu yärdä üzüm yaḫši bolur.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: yärdä, sense: yar, morphs: [{surface: yär, kc: 'sense:yar'}, {surface: dä, kc: 'form:loc'}]}
+      - {surface: üzüm, sense: uzum}
+      - {surface: yaḫši, sense: yakhshi}
+      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+      reverse: |-
+        Bu (yärdä|yerdä) üzüm yaḫši bolur
+        Üzüm bu (yärdä|yerdä) yaḫši bolur
+  translations:
+    en: (Here|In this place) the grapes are good.
+- id: s.03.12
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: ناشپاتی شیرین بولور.
+      tokens:
+      - {surface: ناشپاتی, sense: nashpati}
+      - {surface: شیرین, sense: shirin}
+      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      reverse: ناشپاتی شیرین بولور
+    chg-Latn/schluessel:
+      text: Našpati širin bolur.
+      tokens:
+      - {surface: Našpati, sense: nashpati}
+      - {surface: širin, sense: shirin}
+      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+      reverse: Našpati širin bolur
+  translations:
+    en: (Pears are|The pears are) sweet.
+- id: s.03.13
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: اوزومی یخشی بولور.
+      tokens:
+      - {surface: اوزومی, sense: uzum, morphs: [{surface: اوزوم, kc: 'sense:uzum'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: یخشی, sense: yakhshi}
+      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      reverse: اوزومی یخشی بولور
+    chg-Latn/schluessel:
+      text: Üzümi yaḫši bolur.
+      tokens:
+      - {surface: Üzümi, sense: uzum, morphs: [{surface: Üzüm, kc: 'sense:uzum'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: yaḫši, sense: yakhshi}
+      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+      reverse: Üzümi yaḫši bolur
+  translations:
+    en: Its grapes are good.
+- id: s.03.14
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: اشلیغی وافر.
+      tokens:
+      - {surface: اشلیغی, sense: ashligh, morphs: [{surface: اشلیغ, kc: 'sense:ashligh'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: وافر, sense: wafir}
+      reverse: |-
+        اشلیغی وافر
+        اشلیغی وافردور
+    chg-Latn/schluessel:
+      text: Ašliǧi wāfir.
+      tokens:
+      - {surface: Ašliǧi, sense: ashligh, morphs: [{surface: Ašliǧ, kc: 'sense:ashligh'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: wāfir, sense: wafir}
+      reverse: |-
+        Ašliǧi wāfir
+        Ašliǧi wāfirdur
+  translations:
+    en: Its grain is (abundant|plentiful).
+- id: s.03.15
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: "ایلی تورک\u200cدور."
+      tokens:
+      - {surface: ایلی, sense: el, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: "تورک\u200cدور", sense: turk, morphs: [{surface: "تورک\u200c", kc: 'sense:turk'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "ایلی (تورک\u200cدور|ترک\u200cدور)"
+    chg-Latn/schluessel:
+      text: Eli Türkdur.
+      tokens:
+      - {surface: Eli, sense: el, morphs: [{surface: El, kc: 'sense:el'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: Türkdur, sense: turk, morphs: [{surface: Türk, kc: 'sense:turk'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: (Eli|Ili) Türkdur
+  translations:
+    en: Its people are Turks.
+- id: s.03.16
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: ایلی تولا.
+      tokens:
+      - {surface: ایلی, sense: el, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: تولا, sense: tola}
+      reverse: |-
+        ایلی تولا
+        ایلی تولادور
+    chg-Latn/schluessel:
+      text: Eli tola.
+      tokens:
+      - {surface: Eli, sense: el, morphs: [{surface: El, kc: 'sense:el'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: tola, sense: tola}
+      reverse: |-
+        (Eli|Ili) tola
+        (Eli|Ili) toladur
+  translations:
+    en: Its people are many.
+- id: s.03.17
+  node: chg.u03.grapes
+  forms:
+    chg-Arab/standard:
+      text: "میوه\u200cسی فراوان، و اوزومی یخشی بولور."
+      tokens:
+      - {surface: "میوه\u200cسی", sense: mewa, morphs: [{surface: "میوه\u200c", kc: 'sense:mewa'}, {surface: سی, kc: 'form:poss3'}]}
+      - {surface: فراوان, sense: farawan}
+      - {surface: و, sense: wa}
+      - {surface: اوزومی, sense: uzum, morphs: [{surface: اوزوم, kc: 'sense:uzum'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: یخشی, sense: yakhshi}
+      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      reverse: "میوه\u200cسی فراوان و اوزومی یخشی بولور"
+    chg-Latn/schluessel:
+      text: Mewäsi farāwān, wä üzümi yaḫši bolur.
+      tokens:
+      - {surface: Mewäsi, sense: mewa, morphs: [{surface: Mewä, kc: 'sense:mewa'}, {surface: si, kc: 'form:poss3'}]}
+      - {surface: farāwān, sense: farawan}
+      - {surface: wä, sense: wa}
+      - {surface: üzümi, sense: uzum, morphs: [{surface: üzüm, kc: 'sense:uzum'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: yaḫši, sense: yakhshi}
+      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+      reverse: Mewäsi farāwān wä üzümi yaḫši bolur
+  translations:
+    en: Its fruit is (plentiful|abundant), and its grapes are good.
+- id: s.03.18
+  node: chg.u03.from
+  forms:
+    chg-Arab/standard:
+      text: بو اوزوم اندجاندین.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: اوزوم, sense: uzum}
+      - {surface: اندجاندین, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: دین, kc: 'form:abl'}]}
+      reverse: "بو اوزوم (اندجاندین|اندجاندن)\nبو اوزوم (اندجاندین\u200cدور|اندجاندن\u200cدور)"
+    chg-Latn/schluessel:
+      text: Bu üzüm Andijāndin.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: üzüm, sense: uzum}
+      - {surface: Andijāndin, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: din, kc: 'form:abl'}]}
+      reverse: |-
+        Bu üzüm Andijāndin
+        Bu üzüm Andijāndindur
+  translations:
+    en: These grapes are from Andijan.
+- id: s.03.19
+  node: chg.u03.from
+  forms:
+    chg-Arab/standard:
+      text: بو ناشپاتیلار سمرقنددین.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: ناشپاتیلار, sense: nashpati, morphs: [{surface: ناشپاتی, kc: 'sense:nashpati'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: سمرقنددین, sense: samarqand, morphs: [{surface: سمرقند, kc: 'sense:samarqand'}, {surface: دین, kc: 'form:abl'}]}
+      reverse: "بو ناشپاتیلار (سمرقنددین|سمرقنددن)\nبو ناشپاتیلار (سمرقنددین\u200cدور|سمرقنددن\u200cدور)"
+    chg-Latn/schluessel:
+      text: Bu našpatilar Samarqanddin.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: našpatilar, sense: nashpati, morphs: [{surface: našpati, kc: 'sense:nashpati'}, {surface: lar, kc: 'form:pl'}]}
+      - {surface: Samarqanddin, sense: samarqand, morphs: [{surface: Samarqand, kc: 'sense:samarqand'}, {surface: din, kc: 'form:abl'}]}
+      reverse: |-
+        Bu našpatilar Samarqanddin
+        Bu našpatilar Samarqanddindur
+  translations:
+    en: These pears are from Samarkand.
+- id: s.03.20
+  node: chg.u03.from
+  forms:
+    chg-Arab/standard:
+      text: اندجاندین کلادور.
+      tokens:
+      - {surface: اندجاندین, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: کلادور, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: (اندجاندین|اندجاندن) کلادور
+    chg-Latn/schluessel:
+      text: Andijāndin kelädur.
+      tokens:
+      - {surface: Andijāndin, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: kelädur, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ä, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Andijāndin kelädur
+  translations:
+    en: (He|She) (comes|is coming|will come) from Andijan.
+- id: s.03.21
+  node: chg.u03.from
+  forms:
+    chg-Arab/standard:
+      text: بزاردین کلادور.
+      tokens:
+      - {surface: بزاردین, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: کلادور, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: (بزاردین|بزاردن|بازاردین|بازاردن) کلادور
+    chg-Latn/schluessel:
+      text: Bazārdin kelädur.
+      tokens:
+      - {surface: Bazārdin, sense: bazar, morphs: [{surface: Bazār, kc: 'sense:bazar'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: kelädur, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ä, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Bazārdin kelädur
+  translations:
+    en: (He|She) (comes|is coming|will come) from the (market|bazaar).
+- id: s.03.22
+  node: chg.u03.from
+  forms:
+    chg-Arab/standard:
+      text: تاغدین سو کلادور.
+      tokens:
+      - {surface: تاغدین, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: سو, sense: su}
+      - {surface: کلادور, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: |-
+        (تاغدین|تاغدن) سو کلادور
+        سو (تاغدین|تاغدن) کلادور
+    chg-Latn/schluessel:
+      text: Taǧdin su kelädur.
+      tokens:
+      - {surface: Taǧdin, sense: tagh, morphs: [{surface: Taǧ, kc: 'sense:tagh'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: su, sense: su}
+      - {surface: kelädur, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ä, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: |-
+        Taǧdin su kelädur
+        Su taǧdin kelädur
+  translations:
+    en: Water (comes|is coming) from the mountain.
+- id: s.03.23
+  node: chg.u03.from
+  forms:
+    chg-Arab/standard:
+      text: آطلار شهردین کلادور.
+      tokens:
+      - {surface: آطلار, sense: at, morphs: [{surface: آط, kc: 'sense:at'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: شهردین, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: کلادور, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: (آطلار|آتلار|اتلار) (شهردین|شهردن) کلادور
+    chg-Latn/schluessel:
+      text: Aṭlar šahardin kelädur.
+      tokens:
+      - {surface: Aṭlar, sense: at, morphs: [{surface: Aṭ, kc: 'sense:at'}, {surface: lar, kc: 'form:pl'}]}
+      - {surface: šahardin, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: kelädur, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ä, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Aṭlar šahardin kelädur
+  translations:
+    en: The horses (come|are coming|will come) from the (city|town).
+- id: s.03.24
+  node: chg.u03.to
+  forms:
+    chg-Arab/standard:
+      text: بزارغه بارادور.
+      tokens:
+      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارادور, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارادور
+    chg-Latn/schluessel:
+      text: Bazārǧa baradur.
+      tokens:
+      - {surface: Bazārǧa, sense: bazar, morphs: [{surface: Bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: baradur, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: a, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Bazārǧa baradur
+  translations:
+    en: (He|She) (goes|is going|will go) to the (market|bazaar).
+- id: s.03.25
+  node: chg.u03.to
+  forms:
+    chg-Arab/standard:
+      text: باغغه بارادور.
+      tokens:
+      - {surface: باغغه, sense: bagh, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارادور, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: (باغغه|باغکه|باغقه|باغغا) بارادور
+    chg-Latn/schluessel:
+      text: Bāǧǧa baradur.
+      tokens:
+      - {surface: Bāǧǧa, sense: bagh, morphs: [{surface: Bāǧ, kc: 'sense:bagh'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: baradur, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: a, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Bāǧǧa baradur
+  translations:
+    en: (He|She) (goes|is going|will go) to the (garden|orchard).
+- id: s.03.26
+  node: chg.u03.to
+  forms:
+    chg-Arab/standard:
+      text: اندجانغه بارادور.
+      tokens:
+      - {surface: اندجانغه, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارادور, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: (اندجانغه|اندجانکه|اندجانقه|اندجانغا) بارادور
+    chg-Latn/schluessel:
+      text: Andijānǧa baradur.
+      tokens:
+      - {surface: Andijānǧa, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: baradur, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: a, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Andijānǧa baradur
+  translations:
+    en: (He|She) (goes|is going|will go) to Andijan.
+- id: s.03.27
+  node: chg.u03.to
+  forms:
+    chg-Arab/standard:
+      text: بلا اویغه بارادور.
+      tokens:
+      - {surface: بلا, sense: bala}
+      - {surface: اویغه, sense: oy, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارادور, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: (بلا|بالا) (اویغه|اویکه|اویقه|اویغا) بارادور
+    chg-Latn/schluessel:
+      text: Bala öygä baradur.
+      tokens:
+      - {surface: Bala, sense: bala}
+      - {surface: öygä, sense: oy, morphs: [{surface: öy, kc: 'sense:oy'}, {surface: gä, kc: 'form:dat'}]}
+      - {surface: baradur, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: a, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Bala öygä baradur
+  translations:
+    en: The child (goes|is going|will go) (home|to the house).
+- id: s.03.28
+  node: chg.u03.to
+  forms:
+    chg-Arab/standard:
+      text: قویلار تاغغه بارادور.
+      tokens:
+      - {surface: قویلار, sense: qoy, morphs: [{surface: قوی, kc: 'sense:qoy'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: تاغغه, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارادور, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: قویلار (تاغغه|تاغکه|تاغقه|تاغغا) بارادور
+    chg-Latn/schluessel:
+      text: Qoylar taǧǧa baradur.
+      tokens:
+      - {surface: Qoylar, sense: qoy, morphs: [{surface: Qoy, kc: 'sense:qoy'}, {surface: lar, kc: 'form:pl'}]}
+      - {surface: taǧǧa, sense: tagh, morphs: [{surface: taǧ, kc: 'sense:tagh'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: baradur, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: a, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Qoylar taǧǧa baradur
+  translations:
+    en: The sheep (go|are going|will go) to the mountain.
+- id: s.03.29
+  node: chg.u03.to
+  forms:
+    chg-Arab/standard:
+      text: سمرقنددین اندجانغه کلادور.
+      tokens:
+      - {surface: سمرقنددین, sense: samarqand, morphs: [{surface: سمرقند, kc: 'sense:samarqand'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: اندجانغه, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: کلادور, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: |-
+        (سمرقنددین|سمرقنددن) (اندجانغه|اندجانکه|اندجانقه|اندجانغا) کلادور
+        (اندجانغه|اندجانکه|اندجانقه|اندجانغا) (سمرقنددین|سمرقنددن) کلادور
+    chg-Latn/schluessel:
+      text: Samarqanddin Andijānǧa kelädur.
+      tokens:
+      - {surface: Samarqanddin, sense: samarqand, morphs: [{surface: Samarqand, kc: 'sense:samarqand'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: Andijānǧa, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: kelädur, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ä, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: |-
+        Samarqanddin Andijānǧa kelädur
+        Andijānǧa Samarqanddin kelädur
+  translations:
+    en: (He|She) (comes|is coming|will come) from Samarkand to Andijan.
+- id: s.03.30
+  node: chg.u03.to
+  forms:
+    chg-Arab/standard:
+      text: اوزوم بزارغه بارادور.
+      tokens:
+      - {surface: اوزوم, sense: uzum}
+      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارادور, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: اوزوم (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارادور
+    chg-Latn/schluessel:
+      text: Üzüm bazārǧa baradur.
+      tokens:
+      - {surface: Üzüm, sense: uzum}
+      - {surface: bazārǧa, sense: bazar, morphs: [{surface: bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: baradur, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: a, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Üzüm bazārǧa baradur
+  translations:
+    en: The grapes (go|are going) to the (market|bazaar).
+- id: s.03.31
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: بو ناشپاتی یخشیراق.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: ناشپاتی, sense: nashpati}
+      - {surface: یخشیراق, sense: yakhshi, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
+      reverse: "بو ناشپاتی یخشیراق\nبو ناشپاتی یخشیراق\u200cدور"
+    chg-Latn/schluessel:
+      text: Bu našpati yaḫširaq.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: našpati, sense: nashpati}
+      - {surface: yaḫširaq, sense: yakhshi, morphs: [{surface: yaḫši, kc: 'sense:yakhshi'}, {surface: raq, kc: 'form:cmp'}]}
+      reverse: |-
+        Bu našpati yaḫširaq
+        Bu našpati yaḫširaqdur
+  translations:
+    en: This pear is better.
+- id: s.03.32
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: بو شهر اندجاندین چونکراق.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: شهر, sense: shahar}
+      - {surface: اندجاندین, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: چونکراق, sense: chong, morphs: [{surface: چونک, kc: 'sense:chong'}, {surface: راق, kc: 'form:cmp'}]}
+      reverse: "بو شهر (اندجاندین|اندجاندن) چونکراق\nبو شهر (اندجاندین|اندجاندن) چونکراق\u200cدور"
+    chg-Latn/schluessel:
+      text: Bu šahar Andijāndin čoŋraq.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: šahar, sense: shahar}
+      - {surface: Andijāndin, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: čoŋraq, sense: chong, morphs: [{surface: čoŋ, kc: 'sense:chong'}, {surface: raq, kc: 'form:cmp'}]}
+      reverse: |-
+        Bu šahar Andijāndin čoŋraq
+        Bu šahar Andijāndin čoŋraqdur
+  translations:
+    en: This (city|town) is (bigger|larger) than Andijan.
+- id: s.03.33
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: سمرقند اولوغ شهردور.
+      tokens:
+      - {surface: سمرقند, sense: samarqand}
+      - {surface: اولوغ, sense: ulugh}
+      - {surface: شهردور, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: سمرقند اولوغ شهردور
+    chg-Latn/schluessel:
+      text: Samarqand uluǧ šahardur.
+      tokens:
+      - {surface: Samarqand, sense: samarqand}
+      - {surface: uluǧ, sense: ulugh}
+      - {surface: šahardur, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Samarqand (uluǧ|uluq) šahardur
+  translations:
+    en: Samarkand is a great (city|town).
+- id: s.03.34
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: بیر قورغان بار.
+      tokens:
+      - {surface: بیر, sense: bir}
+      - {surface: قورغان, sense: qurghan}
+      - {surface: بار, sense: bar}
+      reverse: (بیر|بر) قورغان بار
+    chg-Latn/schluessel:
+      text: Bir qurǧan bar.
+      tokens:
+      - {surface: Bir, sense: bir}
+      - {surface: qurǧan, sense: qurghan}
+      - {surface: bar, sense: bar}
+      reverse: Bir qurǧan bar
+  translations:
+    en: There is a (fortress|castle).
+- id: s.03.35
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: بو قورغان اولوغراق.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: قورغان, sense: qurghan}
+      - {surface: اولوغراق, sense: ulugh, morphs: [{surface: اولوغ, kc: 'sense:ulugh'}, {surface: راق, kc: 'form:cmp'}]}
+      reverse: "بو قورغان اولوغراق\nبو قورغان اولوغراق\u200cدور"
+    chg-Latn/schluessel:
+      text: Bu qurǧan uluǧraq.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: qurǧan, sense: qurghan}
+      - {surface: uluǧraq, sense: ulugh, morphs: [{surface: uluǧ, kc: 'sense:ulugh'}, {surface: raq, kc: 'form:cmp'}]}
+      reverse: |-
+        Bu qurǧan (uluǧraq|uluqraq)
+        Bu qurǧan (uluǧraqdur|uluqraqdur)
+  translations:
+    en: This (fortress|castle) is (greater|bigger|larger).
+- id: s.03.36
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: بو یرده قند بولماس.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: یرده, sense: yar, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: قند, sense: qand}
+      - {surface: بولماس, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ماس, kc: 'form:aor-neg'}]}
+      reverse: بو (یرده|یردا|یارده|یاردا) قند بولماس
+    chg-Latn/schluessel:
+      text: Bu yärdä qand bolmas.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: yärdä, sense: yar, morphs: [{surface: yär, kc: 'sense:yar'}, {surface: dä, kc: 'form:loc'}]}
+      - {surface: qand, sense: qand}
+      - {surface: bolmas, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: mas, kc: 'form:aor-neg'}]}
+      reverse: Bu (yärdä|yerdä) qand bolmas
+  translations:
+    en: There is no sugar (here|in this place).
+- id: s.03.37
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: موندین یخشیراق اوزوم بولماس.
+      tokens:
+      - {surface: موندین, sense: bu, morphs: [{surface: مون, kc: 'sense:bu'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: یخشیراق, sense: yakhshi, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
+      - {surface: اوزوم, sense: uzum}
+      - {surface: بولماس, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ماس, kc: 'form:aor-neg'}]}
+      reverse: (موندین|موندن) یخشیراق اوزوم بولماس
+    chg-Latn/schluessel:
+      text: Mundin yaḫširaq üzüm bolmas.
+      tokens:
+      - {surface: Mundin, sense: bu, morphs: [{surface: Mun, kc: 'sense:bu'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: yaḫširaq, sense: yakhshi, morphs: [{surface: yaḫši, kc: 'sense:yakhshi'}, {surface: raq, kc: 'form:cmp'}]}
+      - {surface: üzüm, sense: uzum}
+      - {surface: bolmas, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: mas, kc: 'form:aor-neg'}]}
+      reverse: Mundin yaḫširaq üzüm bolmas
+  translations:
+    en: There are no (better grapes than these|grapes better than these).
+- id: s.03.38
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: "اندجان فرغانه ولایتینینک پای\u200cتختی\u200cدور."
+      tokens:
+      - {surface: اندجان, sense: andijan}
+      - {surface: فرغانه, sense: farghana}
+      - {surface: ولایتینینک, sense: wilayat, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: ی, kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: "پای\u200cتختی\u200cدور", sense: paytakht, morphs: [{surface: "پای\u200cتخت", kc: 'sense:paytakht'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "اندجان فرغانه ولایتینینک پای\u200cتختی\u200cدور"
+    chg-Latn/schluessel:
+      text: Andijān Farǧāna wilāyatiniŋ pāytaḫtidur.
+      tokens:
+      - {surface: Andijān, sense: andijan}
+      - {surface: Farǧāna, sense: farghana}
+      - {surface: wilāyatiniŋ, sense: wilayat, morphs: [{surface: wilāyat, kc: 'sense:wilayat'}, {surface: i, kc: 'form:poss3'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: pāytaḫtidur, sense: paytakht, morphs: [{surface: pāytaḫt, kc: 'sense:paytakht'}, {surface: i, kc: 'form:poss3'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Andijān Farǧāna wilāyatiniŋ pāytaḫtidur
+  translations:
+    en: Andijan is the capital of (the country of Ferghana|Ferghana).
+- id: s.03.39
+  node: chg.u03.better
+  forms:
+    chg-Arab/standard:
+      text: اندجاننینک ناشپاتیسیدین یخشیراق ناشپاتی یوق.
+      tokens:
+      - {surface: اندجاننینک, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: ناشپاتیسیدین, sense: nashpati, morphs: [{surface: ناشپاتی, kc: 'sense:nashpati'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: یخشیراق, sense: yakhshi, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
+      - {surface: ناشپاتی, sense: nashpati}
+      - {surface: یوق, sense: yoq}
+      reverse: اندجاننینک (ناشپاتیسیدین|ناشپاتیسیدن) یخشیراق ناشپاتی یوق
+    chg-Latn/schluessel:
+      text: Andijānniŋ našpatisidin yaḫširaq našpati yoq.
+      tokens:
+      - {surface: Andijānniŋ, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: našpatisidin, sense: nashpati, morphs: [{surface: našpati, kc: 'sense:nashpati'}, {surface: si, kc: 'form:poss3'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: yaḫširaq, sense: yakhshi, morphs: [{surface: yaḫši, kc: 'sense:yakhshi'}, {surface: raq, kc: 'form:cmp'}]}
+      - {surface: našpati, sense: nashpati}
+      - {surface: yoq, sense: yoq}
+      reverse: Andijānniŋ našpatisidin yaḫširaq našpati yoq
+  translations:
+    en: There are no (pears better than|better pears than) the pears of Andijan.
+stories:
+- id: chg.story.the-pears-of-andijan
+  node: chg.u03.story
+  title:
+    en: 'The pears of Andijan (Babur, Bāburnāma: Andijan)'
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "فرغانه ولایتی\u200cنینک پای\u200cتختی\u200cدور."
+          tokens:
+          - {surface: فرغانه, sense: farghana}
+          - {surface: "ولایتی\u200cنینک", sense: wilayat, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: "پای\u200cتختی\u200cدور", sense: paytakht, morphs: [{surface: "پای\u200cتخت", kc: 'sense:paytakht'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: دور, kc: 'form:dur'}]}
+        chg-Latn/schluessel:
+          text: Farǧāna wilāyatiniŋ pāytaḫtidur.
+          tokens:
+          - {surface: Farǧāna, sense: farghana}
+          - {surface: wilāyatiniŋ, sense: wilayat, morphs: [{surface: wilāyat, kc: 'sense:wilayat'}, {surface: i, kc: 'form:poss3'}, {surface: niŋ, kc: 'form:gen'}]}
+          - {surface: pāytaḫtidur, sense: paytakht, morphs: [{surface: pāytaḫt, kc: 'sense:paytakht'}, {surface: i, kc: 'form:poss3'}, {surface: dur, kc: 'form:dur'}]}
+      translations:
+        en: It is the capital of the country of Ferghana.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: اشلیغی وافر.
+          tokens:
+          - {surface: اشلیغی, sense: ashligh, morphs: [{surface: اشلیغ, kc: 'sense:ashligh'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: وافر, sense: wafir}
+        chg-Latn/schluessel:
+          text: Ašliǧi wāfir.
+          tokens:
+          - {surface: Ašliǧi, sense: ashligh, morphs: [{surface: Ašliǧ, kc: 'sense:ashligh'}, {surface: i, kc: 'form:poss3'}]}
+          - {surface: wāfir, sense: wafir}
+      translations:
+        en: Its grain is abundant.
+  - line:
+      ask: complete
+      gap: sense:uzum
+      distractors:
+      - sense:nashpati
+      - sense:nan
+      forms:
+        chg-Arab/standard:
+          text: "میوه\u200cسی فراوان، و اوزومی یخشی بولور."
+          tokens:
+          - {surface: "میوه\u200cسی", sense: mewa, morphs: [{surface: "میوه\u200c", kc: 'sense:mewa'}, {surface: سی, kc: 'form:poss3'}]}
+          - {surface: فراوان, sense: farawan}
+          - {surface: و, sense: wa}
+          - {surface: اوزومی, sense: uzum, morphs: [{surface: اوزوم, kc: 'sense:uzum'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: یخشی, sense: yakhshi}
+          - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+        chg-Latn/schluessel:
+          text: Mewäsi farāwān, wä üzümi yaḫši bolur.
+          tokens:
+          - {surface: Mewäsi, sense: mewa, morphs: [{surface: Mewä, kc: 'sense:mewa'}, {surface: si, kc: 'form:poss3'}]}
+          - {surface: farāwān, sense: farawan}
+          - {surface: wä, sense: wa}
+          - {surface: üzümi, sense: uzum, morphs: [{surface: üzüm, kc: 'sense:uzum'}, {surface: i, kc: 'form:poss3'}]}
+          - {surface: yaḫši, sense: yakhshi}
+          - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+      translations:
+        en: Its fruit is plentiful, and its grapes are good.
+  - choose:
+      prompt:
+        en: What grows well in Andijan?
+      options:
+      - en: Grapes and other fruit
+      - en: Only grain
+      - en: 'Nothing: the land is poor'
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "اندجان\u200cنینک ناشپاتی\u200cسیدین یخشیراق ناشپاتی بولماس."
+          tokens:
+          - {surface: "اندجان\u200cنینک", sense: andijan, morphs: [{surface: "اندجان\u200c", kc: 'sense:andijan'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: "ناشپاتی\u200cسیدین", sense: nashpati, morphs: [{surface: "ناشپاتی\u200c", kc: 'sense:nashpati'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
+          - {surface: یخشیراق, sense: yakhshi, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
+          - {surface: ناشپاتی, sense: nashpati}
+          - {surface: بولماس, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ماس, kc: 'form:aor-neg'}]}
+        chg-Latn/schluessel:
+          text: Andijānniŋ našpatisidin yaḫširaq našpati bolmas.
+          tokens:
+          - {surface: Andijānniŋ, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: niŋ, kc: 'form:gen'}]}
+          - {surface: našpatisidin, sense: nashpati, morphs: [{surface: našpati, kc: 'sense:nashpati'}, {surface: si, kc: 'form:poss3'}, {surface: din, kc: 'form:abl'}]}
+          - {surface: yaḫširaq, sense: yakhshi, morphs: [{surface: yaḫši, kc: 'sense:yakhshi'}, {surface: raq, kc: 'form:cmp'}]}
+          - {surface: našpati, sense: nashpati}
+          - {surface: bolmas, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: mas, kc: 'form:aor-neg'}]}
+      translations:
+        en: There are no pears better than the pears of Andijan.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: موندین اولوغراق قورغان یوقتور.
+          tokens:
+          - {surface: موندین, sense: bu, morphs: [{surface: مون, kc: 'sense:bu'}, {surface: دین, kc: 'form:abl'}]}
+          - {surface: اولوغراق, sense: ulugh, morphs: [{surface: اولوغ, kc: 'sense:ulugh'}, {surface: راق, kc: 'form:cmp'}]}
+          - {surface: قورغان, sense: qurghan}
+          - {surface: یوقتور, sense: yoq, morphs: [{surface: یوق, kc: 'sense:yoq'}, {surface: تور, kc: 'form:dur'}]}
+        chg-Latn/schluessel:
+          text: Mundin uluǧraq qurǧan yoqtur.
+          tokens:
+          - {surface: Mundin, sense: bu, morphs: [{surface: Mun, kc: 'sense:bu'}, {surface: din, kc: 'form:abl'}]}
+          - {surface: uluǧraq, sense: ulugh, morphs: [{surface: uluǧ, kc: 'sense:ulugh'}, {surface: raq, kc: 'form:cmp'}]}
+          - {surface: qurǧan, sense: qurghan}
+          - {surface: yoqtur, sense: yoq, morphs: [{surface: yoq, kc: 'sense:yoq'}, {surface: tur, kc: 'form:dur'}]}
+      translations:
+        en: There is no greater fortress than this one.
+  - choose:
+      prompt:
+        en: What does Babur say of Andijan's pears?
+      options:
+      - en: None are better.
+      - en: They are bitter.
+      - en: They come from Samarkand.
+      answer: 0
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: "ایلی تورک\u200cدور."
+          tokens:
+          - {surface: ایلی, sense: el, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: "تورک\u200cدور", sense: turk, morphs: [{surface: "تورک\u200c", kc: 'sense:turk'}, {surface: دور, kc: 'form:dur'}]}
+        chg-Latn/schluessel:
+          text: Eli Türkdur.
+          tokens:
+          - {surface: Eli, sense: el, morphs: [{surface: El, kc: 'sense:el'}, {surface: i, kc: 'form:poss3'}]}
+          - {surface: Türkdur, sense: turk, morphs: [{surface: Türk, kc: 'sense:turk'}, {surface: dur, kc: 'form:dur'}]}
+      translations:
+        en: Its people are Turks.
+scenarios:
+- id: chg.in-the-fruit-market
+  after: chg.u03.better
+  title:
+    en: In the fruit market
+  setting:
+    en: The fruit market of Andijan in late summer, about 1500. Pears, grapes and melons are piled high.
+  character:
+    en: A fruit seller from a village near Andijan, proud of his pears, who speaks only Turki.
+  goal:
+    en: Ask where the fruit comes from, say which is sweeter or better, and say where you are going next.

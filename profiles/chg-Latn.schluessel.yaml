@@ -1,0 +1,54 @@
+# Chaghatay in the transliteration of Schluessel, An Introduction to Chaghatay (2018), xii-xxxii (ADR 0128): the chg
+# course's second orthography, every sentence pinned beside its Arabic. A modified IJMES system, one letter for
+# each letter or sound, that writes the vowels the Arabic script leaves out:
+#  - consonants b p ṗ (ف for p) t s̱ (ث) j č ḥ ḫ d ź (ذ) r z ž s š ṣ ż (ض) ṭ ẓ ʿ ǧ (غ) f q k g ŋ l m n w h y, ʾ;
+#  - vowels a ä e i o ö u ü (every [i] is i, Turkic words have no length), ā ī ū in Arabic and Persian words,
+#    à for alef maksura (Mūsà);
+#  - a reading, not letter for letter: Babur's سیکیز is säkkiz, بادشاه pādišāh.
+#  - Capitals begin sentences and names; Latin punctuation; the ezafe after a hyphen (tārīḫ-i).
+# Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+#  - Diacritics left out or misplaced (kisi for kiši, ata for āta) are accepted with a note, unless the answer
+#    then spells another word of the course (bardi "went" for bärdi "gave"): that is WRONG_WORD.
+#  - ŋ and the half rings ʿ and ʾ are letters, not marks: an n for ŋ is a typo at best.
+id: chg-Latn/schluessel
+lang: chg-Latn
+exemplars: cldr:en
+# REVIEW: what Schluessel's letters need beyond English's (ä ö ü ā ī ū à are in its auxiliary set): č š ž ǧ ŋ,
+# the dotted and underdotted letters, ź, the macron below of s̱ (U+0331), and the half rings for ʿayn and hamza.
+exemplarsExtra: ["č", "š", "ž", "ǧ", "ŋ", "ḥ", "ḫ", "ṭ", "ṣ", "ẓ", "ż", "ź", "ṗ", "\u0331", "ʿ", "ʾ"]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  # An apostrophe typed for ʿayn's half ring (’ ' `). The ‘ of an elided Arabic article (Abū ‘l-Ǧāzī) is punctuation.
+  - map: { "\u2019": "\u02BF", "'": "\u02BF", "`": "\u02BF" }
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: { locale: chg }
+  # REVIEW: the marks of Schluessel's letters (diaeresis, macron, caron, dots above and below, the breve below of ḫ,
+  # acute, grave, the macron below), which phones and English keyboards lack: noted, not failed, unless they make
+  # another word.
+  marks: { set: "[\u0300\u0301\u0304\u0307\u0308\u030C\u0323\u032E\u0331]", policy: accept-with-note, note: translit-marks, distinguishes: true, wordNote: translit-marks-word }
+  equivalences:
+    # REVIEW: ng typed for ŋ (Schluessel, xxv: ŋ is n + k in the script), and the hamza's half ring for ʿayn's.
+    - { id: ng, map: { "ng": "ŋ" }, policy: accept-with-note, note: translit-marks }
+    - { id: half-rings, map: { "\u02BE": "\u02BF" }, policy: accept }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:en
+    maxRatio: 0.2
+    # REVIEW (ADR 0066): endings one or two letters apart that change the meaning, compared without marks. A slip
+    # that trades one for another at the end of a word (kördüm for kördi, öydä for öydin) is WRONG_WORD, not a typo.
+    # A list groups the spellings of one ending (by harmony: -ǧa -gä -qa -kä; after a vowel: -m, -im).
+    contrasts:
+      - { id: person, note: contrast-person, members: [män, sän, siz, miz, sizlär, [lar, lär]] }
+      - { id: past, note: contrast-person, members: [[dim, dum, düm, tim, tum, tüm], [diŋ, duŋ, düŋ, tiŋ, tuŋ, tüŋ], [diŋiz, tiŋiz], [di, ti], [duq, dük, tuq, tük], [dilär, dilar, tilär, tilar]] }
+      - { id: possessive, note: contrast-possessive, members: [[im, um, üm, m], [iŋ, uŋ, üŋ, ŋ], [i, si], [imiz, umiz, ümiz, miz], [iŋiz, uŋiz, üŋiz, ŋiz]] }
+      - { id: case, note: contrast-case, members: [ni, niŋ, [ǧa, gä, qa, kä], [da, dä, ta, tä], [din, tin, dan, dän]] }
+      - { id: pronoun, note: contrast-pronoun, members: [män, sän, siz, biz, sizlär, [ular, alar]] }
+input:
+  keyboard: cldr-kbd:en
+  extraKeys: ["ä", "ö", "ü", "ā", "ī", "ū", "č", "š", "ǧ", "ḫ", "ŋ", "ḥ", "ṭ", "ṣ", "ẓ", "ż", "ź", "ṗ", "ʿ"]
+layout: { vertical: none }
+# The Arabic it transliterates, word for word (a test checks it: pipeline/tests/test_courses.py).
+transliterate: { to: chg-Arab/standard, via: hand-pinned }

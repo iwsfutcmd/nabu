@@ -250,6 +250,7 @@ export type NormalizeStep =
   | PunctuationStep
   | WhitespaceStep
   | DetachStep
+  | SplitStep
   | LogographsStep;
 /**
  * Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).
@@ -475,6 +476,7 @@ export interface NabuSchemaIndex {
   readonly PunctuationStep: PunctuationStep;
   readonly WhitespaceStep: WhitespaceStep;
   readonly DetachStep: DetachStep;
+  readonly SplitStep: SplitStep;
   readonly LogographsStep: LogographsStep;
   readonly MatchPolicy: MatchPolicy;
   readonly NoteId: NoteId;
@@ -1467,7 +1469,15 @@ export interface BundleClip {
   readonly synthetic: boolean;
   readonly license: string;
   readonly credit?: CreditId2;
+  /**
+   * A person confirmed what the clip says (ADR 0125): it is a recording (not synthetic), or a synthetic clip a listener marked right in the audio check (ADR 0060). Present only when true. A tone card (tone-identify) plays only confirmed clips: a synthetic voice is not trusted with a lone syllable's tone.
+   */
+  readonly confirmed?: boolean;
   readonly timings?: readonly TokenTiming[];
+  /**
+   * The orthography whose tokens `timings` index: the one the voice read. Another orthography of the course gets them moved to its own tokens, word for word (ADR 0126).
+   */
+  readonly orthography?: string;
 }
 /**
  * How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
@@ -3041,6 +3051,20 @@ export interface DetachStep {
   };
 }
 /**
+ * Puts a space after any of the `after` characters when a letter follows it, so joined and spaced spellings compare alike: Jyutping's tone numbers end its syllables, so hok6saang1 = hok6 saang1 (ADR 0126).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SplitStep".
+ */
+export interface SplitStep {
+  readonly split: {
+    /**
+     * The characters that end a unit, each one code point (Jyutping: 123456).
+     */
+    readonly after: string;
+  };
+}
+/**
  * Words typed in a script that spells them, written as this orthography's logographs (ADR 0086): a learner can type sitelen pona as sitelen Lasina, toki for U+F196C. Each whole word (a run of letters and marks) that is a key, ignoring case, becomes its value. With `cartouche`, a name written inside one reads as the letters its logographs begin with (open, sona, olin, nasin, jan, a, close is sonja), the marks dropped, so a name typed in Latin letters compares alike. Names are read before words, so a name that spells a word (kili) becomes that word's logograph on both sides.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -3266,9 +3290,9 @@ export interface Fonts {
  */
 export interface Romanization {
   /**
-   * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds.
+   * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters.
    */
-  readonly scheme: "greek";
+  readonly scheme: "greek" | "forms";
   readonly orthography: OrthographyId2;
 }
 /**

@@ -46,7 +46,7 @@ kcs:
   forms:
     lzh-Hant/standard: [是]
   notes:
-    en: Early texts use 是 for “this”; by the Tang it is also “to be”, as in 疑是地上霜 “I took it to be frost on the ground”.
+    en: 'Classical texts use 是 for “this”. In speech it became “to be” by the Han, and Tang poems use it so: 疑是地上霜 “I took it to be frost on the ground”. Classical prose would say 此霜也, “this is frost”.'
 - id: sense:疑
   gloss:
     en: to doubt, to suspect; to take for
@@ -114,7 +114,7 @@ kcs:
     lzh-Hant/standard: [眠]
 - id: sense:覺
   gloss:
-    en: to become aware of, to notice; to wake
+    en: to become aware of, to notice; to realize
   forms:
     lzh-Hant/standard: [覺]
 - id: sense:曉
@@ -147,13 +147,20 @@ kcs:
     en: how many, how much
   forms:
     lzh-Hant/standard: [多少]
+- id: sense:夜來
+  gloss:
+    en: in the night, overnight; last night
+  forms:
+    lzh-Hant/standard: [夜來]
+  notes:
+    en: 'A word of medieval poetry: 來 after a time word means “during”, not “come”.'
 nodes:
 - {id: lzh.u10.night, kind: lesson, introduces: ['sense:月', 'sense:光', 'sense:夜', 'sense:地', 'sense:霜']}
 - {id: lzh.u10.bed, kind: lesson, introduces: ['sense:床', 'sense:前', 'sense:是.cop', 'sense:疑']}
 - {id: lzh.u10.looking, kind: lesson, introduces: ['sense:舉', 'sense:頭', 'sense:望', 'sense:低', 'sense:故鄉']}
 - {id: lzh.u10.spring, kind: lesson, introduces: ['sense:春', 'sense:花', 'sense:鳥', 'sense:風', 'sense:雨', 'sense:聲']}
 - {id: lzh.u10.waking, kind: lesson, introduces: ['sense:眠', 'sense:覺', 'sense:曉', 'sense:處']}
-- {id: lzh.u10.listening, kind: lesson, introduces: ['sense:聞', 'sense:啼', 'sense:落', 'sense:多少']}
+- {id: lzh.u10.listening, kind: lesson, introduces: ['sense:聞', 'sense:啼', 'sense:落', 'sense:多少', 'sense:夜來']}
 - {id: lzh.u10.story, kind: story}
 sentences:
 - id: s.10.1
@@ -214,7 +221,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 道大，天大，地大，王亦大。
-      tokens: [{surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 天, sense: 天, readings: {pinyin: tiān, jyutping: tin1, baxter: then}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 地, sense: 地, readings: {pinyin: dì, jyutping: dei6, baxter: dijH}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}]
+      tokens: [{surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: daH}}, {surface: 天, sense: 天, readings: {pinyin: tiān, jyutping: tin1, baxter: then}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: daH}}, {surface: 地, sense: 地, readings: {pinyin: dì, jyutping: dei6, baxter: dijH}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: daH}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: daH}}]
       reverse: 道大天大地大王亦大
   translations:
     en: |-
@@ -664,7 +671,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 夜來風雨聲。
-      tokens: [{surface: 夜, sense: 夜, readings: {pinyin: yè, jyutping: je6, baxter: yaeH}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}, {surface: 風, sense: 風, readings: {pinyin: fēng, jyutping: fung1, baxter: pjuwng}}, {surface: 雨, sense: 雨, readings: {pinyin: yǔ, jyutping: jyu5, baxter: hjuX}}, {surface: 聲, sense: 聲, readings: {pinyin: shēng, jyutping: sing1, baxter: syeng}}]
+      tokens: [{surface: 夜來, sense: 夜來, readings: {pinyin: yè lái, jyutping: je6 loi4, baxter: yaeH loj}}, {surface: 風, sense: 風, readings: {pinyin: fēng, jyutping: fung1, baxter: pjuwng}}, {surface: 雨, sense: 雨, readings: {pinyin: yǔ, jyutping: jyu5, baxter: hjuX}}, {surface: 聲, sense: 聲, readings: {pinyin: shēng, jyutping: sing1, baxter: syeng}}]
       reverse: 夜來風雨聲
   translations:
     en: |-
@@ -781,7 +788,7 @@ stories:
       forms:
         lzh-Hant/standard:
           text: 夜來風雨聲，
-          tokens: [{surface: 夜, sense: 夜, readings: {pinyin: yè, jyutping: je6, baxter: yaeH}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}, {surface: 風, sense: 風, readings: {pinyin: fēng, jyutping: fung1, baxter: pjuwng}}, {surface: 雨, sense: 雨, readings: {pinyin: yǔ, jyutping: jyu5, baxter: hjuX}}, {surface: 聲, sense: 聲, readings: {pinyin: shēng, jyutping: sing1, baxter: syeng}}]
+          tokens: [{surface: 夜來, sense: 夜來, readings: {pinyin: yè lái, jyutping: je6 loi4, baxter: yaeH loj}}, {surface: 風, sense: 風, readings: {pinyin: fēng, jyutping: fung1, baxter: pjuwng}}, {surface: 雨, sense: 雨, readings: {pinyin: yǔ, jyutping: jyu5, baxter: hjuX}}, {surface: 聲, sense: 聲, readings: {pinyin: shēng, jyutping: sing1, baxter: syeng}}]
       translations: {en: 'In the night came the sound of wind and rain:'}
   - line:
       speaker: meng-haoran

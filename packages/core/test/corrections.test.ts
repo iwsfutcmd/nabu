@@ -48,6 +48,14 @@ describe("what can be corrected", () => {
             { token: 1, surface: "呀", scheme: "jyutping", reading: "aa3" },
           ],
         },
+        // The Jyutping orthography (ADR 0095): each word's characters are its reading.
+        "yue-Latn/jyutping": {
+          text: "zou2 san4 aa3!",
+          readings: [
+            { token: 0, surface: "zou2 san4", scheme: "characters", reading: "早晨" },
+            { token: 1, surface: "aa3", scheme: "characters", reading: "呀" },
+          ],
+        },
       },
       translation: "Good morning!",
     });

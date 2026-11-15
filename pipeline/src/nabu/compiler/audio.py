@@ -6,7 +6,9 @@ model. It checks that every clip exists with its recorded hash, carries a licens
 provenance, is not synthetic in a human-required course, still matches what the voice would
 read now (a changed reading makes a clip stale) and the reference voice it cloned (ADR 0058),
 and that its timings point at word tokens of its sentence. Clips the round-trip check failed
-stay out of the bundle until a human marks them reviewed.
+stay out of the bundle until a human marks them reviewed. A clip a person confirmed (a recording,
+or a synthetic clip a listener marked right) says so in the bundle (`confirmed`, ADR 0125): only
+such a clip may ask which tone a lone syllable has.
 """
 
 from __future__ import annotations
@@ -23,6 +25,7 @@ from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, held
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
 from nabu.items import WORD_KINDS, iter_items
+from nabu.provenance import signed_off
 from nabu.schema.models import AudioClip, AudioIndex, BundleClip, CourseSource, TokenTiming
 
 if TYPE_CHECKING:
@@ -40,6 +43,10 @@ class ShippedClip:
     license: str
     credit: str
     timings: tuple[TokenTiming, ...] | None = None
+    #: A person confirmed what it says (confirmed_by_person); the bundle says so only when true.
+    confirmed: bool = False
+    #: The orthography whose tokens the timings index: the one the voice read (ADR 0126).
+    orthography: str | None = None
 
     def bundled(self, credit: str) -> BundleClip:
         """The clip as the audio index lists it, its credit named by `credit` (an id)."""
@@ -50,8 +57,20 @@ class ShippedClip:
             synthetic=self.synthetic,
             license=self.license,
             credit=credit,
+            confirmed=True if self.confirmed else None,
             timings=timings,
+            orthography=self.orthography if timings is not None else None,
         )
+
+
+def confirmed_by_person(clip: AudioClip) -> bool:
+    """Whether a person confirmed what a clip says (ADR 0125): a recording (`nabu audio ingest`),
+    or a synthetic clip a listener marked right in the audio check (`nabu audio verdicts`, ADR
+    0060), which signs it off as a human reviewer. Only such a clip may ask which tone it says."""
+    if not clip.synthetic:
+        return True
+    p = clip.provenance
+    return signed_off(p.status) and (p.reviewedBy or "").startswith("human:")
 
 
 def _credit(clip: AudioClip, recordings: dict[str, str]) -> str:
@@ -130,6 +149,10 @@ def check_audio(
         if not ref.synthetic and ref.source is not None:
             speaker = ref.provenance.author.removeprefix("human:")
             recordings[ref.id] = f"{speaker} ({ref.license}): {ref.source}"
+    # Whose tokens a clip's timings index: the orthography its voice read (ADR 0126); a recording,
+    # the cast's first voice's, else the course's first orthography.
+    read_in = {(v.provider, v.voice): v.orthography for v in voices}
+    default_orth = voices[0].orthography if voices else course.orthographies[0]
     held = 0
     items: dict[str, dict[str, ShippedClip]] = {}
     files: dict[str, dict[str, tuple[bytes, str, str]]] = {}
@@ -225,7 +248,20 @@ def check_audio(
         credit = _credit(clip, recordings)
         files.setdefault(clip.item, {})[rel] = (data, clip.license, credit)
         timings = None if clip.timings is None else tuple(clip.timings)
-        entry = ShippedClip(rel, clip.durationMs, clip.synthetic, clip.license, credit, timings)
+        said_by = (
+            None if clip.synthesis is None else (clip.synthesis.provider, clip.synthesis.voice)
+        )
+        orth = read_in.get(said_by, default_orth) if said_by is not None else default_orth
+        entry = ShippedClip(
+            rel,
+            clip.durationMs,
+            clip.synthetic,
+            clip.license,
+            credit,
+            timings,
+            confirmed=confirmed_by_person(clip),
+            orthography=orth,
+        )
         items.setdefault(clip.item, {})[clip.speed] = entry
         tallies.setdefault(clip.item, []).append(clip)
     if held:

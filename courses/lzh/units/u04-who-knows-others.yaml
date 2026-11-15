@@ -22,18 +22,18 @@ kcs:
     lzh-Hant/standard: [德]
 - id: sense:者
   gloss:
-    en: the one who …, those who … (after a verb phrase)
+    en: 'the one who …, those who … (after a verb phrase); after a noun, marks the topic; after a number, “… things”'
   forms:
     lzh-Hant/standard: [者]
   notes:
-    en: '者 turns what comes before it into a noun: 知人者 “the one who knows others”.'
+    en: '者 turns what comes before it into a noun: 知人者 “the one who knows others”. After a noun it marks what the sentence is about: 仁者，人也 “humaneness: it is [being] human”. After a number it counts things: 二者 “the two”.'
 - id: sense:之.de
   gloss:
     en: ’s, of (joins a noun to what it describes or owns)
   forms:
     lzh-Hant/standard: [之]
   notes:
-    en: 'The same character as 之 “him, it”, read the same: between two nouns it joins them, 孔子之道 “the Way of Confucius”.'
+    en: 'The same character as 之 “him, it”, read the same: between two nouns it joins them, 孔子之道 “the Way of Confucius”. Between a subject and its verb it makes the clause a noun: 吾盾之堅 “the hardness of my shield”, 魚之樂 “the joy of the fish”, 吾劍之所從墜 “the place my sword fell from”.'
 - id: sense:矣
   gloss:
     en: 'sentence-final particle: now, already (a new situation)'
@@ -279,7 +279,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 魯大乎？
-      tokens: [{surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      tokens: [{surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: daH}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
       reverse: 魯大乎
   translations:
     en: |-
@@ -358,7 +358,7 @@ sentences:
     lzh-Hant/standard:
       text: 子路學於孔子。
       tokens: [{surface: 子路, sense: 子路, readings: {pinyin: zǐ lù, jyutping: zi2 lou6, baxter: tsiX luH}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}]
-      reverse: 子路學(於|于)孔子
+      reverse: 子路學於孔子
   translations:
     en: |-
       Zilu (studied|learned) (with|from|under) Confucius.
@@ -368,8 +368,8 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 天大於人。
-      tokens: [{surface: 天, sense: 天, readings: {pinyin: tiān, jyutping: tin1, baxter: then}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
-      reverse: 天大(於|于)人
+      tokens: [{surface: 天, sense: 天, readings: {pinyin: tiān, jyutping: tin1, baxter: then}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: daH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
+      reverse: 天大於人
   translations:
     en: |-
       Heaven is (greater|bigger|larger) than (man|people|humans).
@@ -381,7 +381,7 @@ sentences:
     lzh-Hant/standard:
       text: 吾志於道。
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 志, sense: 志, readings: {pinyin: zhì, jyutping: zi3, baxter: tsyiH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}]
-      reverse: (吾|我)志(於|于)道
+      reverse: (吾|我)志於道
   translations:
     en: |-
       I (set|have set) my heart on the Way.

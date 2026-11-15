@@ -42,6 +42,13 @@
   line-height: 1;
 }
 
+/* Characters over Jyutping (ADR 0126): a Han glyph is a whole word's worth of strokes, unreadable at
+   the size that suits a romanized syllable. */
+.ruby rt:is([data-script="Hant"], [data-script="Hans"], [data-script="Hani"]) {
+  font-size: 0.75em;
+  padding-inline: 0;
+}
+
 /* Parts of an answer that differ: underlined and boxed, never colour alone (§11.7). */
 .token[data-highlight] {
   text-decoration: underline wavy;

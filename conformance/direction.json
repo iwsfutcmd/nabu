@@ -662,6 +662,40 @@
         "script": "Grek",
         "dir": "ltr"
       }
+    },
+    {
+      "id": "direction/chg",
+      "op": "direction",
+      "args": {
+        "tag": "chg"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      },
+      "note": "Chaghatay maximizes to chg-Arab-TM (CLDR 49)."
+    },
+    {
+      "id": "direction/chg-Arab",
+      "op": "direction",
+      "args": {
+        "tag": "chg-Arab"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/chg-Latn",
+      "op": "direction",
+      "args": {
+        "tag": "chg-Latn"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
     }
   ]
 }

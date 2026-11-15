@@ -162,7 +162,8 @@ test.describe("corrections", () => {
   test("a Cantonese word's Jyutping, in every orthography's own tag", async ({ page }) => {
     await page.goto(url("#/yue/yue-Hant-HK.standard/sentences"));
     await page.locator('[data-correctable="s.6"] [data-action=mark-incorrect]').click();
-    const reading = dialog(page).locator("[data-field=correction-reading][data-token='1']");
+    // The characters' form: the Jyutping form (ADR 0126) has its own fields below it.
+    const reading = dialog(page).locator("[data-orthography='yue-Hant-HK/standard'] [data-field=correction-reading][data-token='1']");
     await expect(reading).toHaveValue("aa3");
     await expect(reading).toHaveAttribute("lang", "yue-Latn-HK-jyutping");
     await reading.fill("aa4");

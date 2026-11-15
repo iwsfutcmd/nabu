@@ -1124,6 +1124,105 @@
       },
       "expected": "τὸν ἄνθρωπον ὁρῶ",
       "note": "Accents and breathings stay: the marks policy grades them."
+    },
+    {
+      "id": "normalize/yue-jyutping/joined-syllables",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "hok6saang1"
+      },
+      "expected": "hok6 saang1",
+      "note": "ADR 0126: a tone number ends a syllable, so a word's syllables may be typed joined"
+    },
+    {
+      "id": "normalize/yue-jyutping/sentence",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "Ngo5  hai6 hok6saang1."
+      },
+      "expected": "Ngo5 hai6 hok6 saang1",
+      "note": "punctuation stripped, spaces collapsed, joined syllables split; case is folded when matching, not here"
+    },
+    {
+      "id": "normalize/yue-jyutping/syllabic-nasal",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "m4goi1 ng5"
+      },
+      "expected": "m4 goi1 ng5",
+      "note": "syllabic m and ng are syllables like any other"
+    },
+    {
+      "id": "normalize/yue-jyutping/digits-alone",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "sap6 10"
+      },
+      "expected": "sap6 10",
+      "note": "a tone digit followed by a digit or a space is not split"
+    },
+    {
+      "id": "normalize/chg-Arab/arabic-kaf-yeh",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "text": "كتاب يوق"
+      },
+      "expected": "کتاب یوق",
+      "note": "Arabic kaf and yeh, as an Arabic keyboard types them, are keheh and Farsi yeh."
+    },
+    {
+      "id": "normalize/chg-Arab/ng-letter",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "text": "مڭا"
+      },
+      "expected": "منکا",
+      "note": "ڭ, as Uyghur prints have it, is نک (ŋ)."
+    },
+    {
+      "id": "normalize/chg-Arab/ae-letter",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "text": "میوە"
+      },
+      "expected": "میوه",
+      "note": "The ae letter (U+06D5) of Uyghur and Kurdish keyboards is heh."
+    },
+    {
+      "id": "normalize/chg-Arab/tatweel-punctuation",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "text": "سیز مـلاموسیز؟"
+      },
+      "expected": "سیز ملاموسیز",
+      "note": "Tatweel goes, and so does the Arabic question mark."
+    },
+    {
+      "id": "normalize/chg-Latn/apostrophe-ayn",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "text": "'Arabistān wä ’ālim"
+      },
+      "expected": "ʿArabistān wä ʿālim",
+      "note": "An apostrophe typed for ʿayn is its half ring."
+    },
+    {
+      "id": "normalize/chg-Latn/punctuation",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "text": "Siz mullāmusiz?"
+      },
+      "expected": "Siz mullāmusiz"
     }
   ]
 }

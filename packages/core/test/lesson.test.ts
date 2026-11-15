@@ -44,6 +44,7 @@ import { lessonAt, walkPath } from "./planned.ts";
 const VARIANTS: readonly (readonly [string, string | undefined])[] = [
   ["fa", undefined],
   ["yue", undefined],
+  ["yue", "yue-Latn/jyutping"],
   ["uz", "uz-Latn/standard"],
   ["uz", "uz-Cyrl/standard"],
   ["apc", "apc-Arab/standard"],

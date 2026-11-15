@@ -69,6 +69,43 @@ class Script:
     own: frozenset[str] = frozenset()
     logographs: frozenset[str] = frozenset()
     cartouche: tuple[str, str] | None = None
+    #: The reading scheme this orthography writes its words in: the one whose `answer` it is
+    #: (Jyutping for yue-Latn/jyutping, ADR 0126). Its words are that scheme's syllables, and
+    #: carry their characters as ruby, one above each syllable.
+    syllables: str | None = None
+
+
+def syllable_bases(surface: str, script: Script | None) -> list[str] | None:
+    """A word written in its script's reading scheme, as ruby bases: each syllable with what
+    stands after it before the next (a space), so the bases make up the word. None if the script
+    writes no scheme, or the word is not all that scheme's syllables."""
+    if script is None or script.syllables is None or not surface:
+        return None
+    shape = _syllable_shape(script.syllables)
+    if shape is None:
+        return None
+    syllable, between = shape
+    found = list(syllable.finditer(surface))
+    if not found or found[0].start() != 0:
+        return None
+    bases: list[str] = []
+    for i, m in enumerate(found):
+        end = found[i + 1].start() if i + 1 < len(found) else len(surface)
+        if between.fullmatch(surface[m.end() : end]) is None:
+            return None
+        bases.append(surface[m.start() : end])
+    return bases
+
+
+@cache
+def _syllable_shape(name: str) -> tuple[regex.Pattern[str], regex.Pattern[str]] | None:
+    """A scheme's typed syllable, and what may stand between two (its data, ADR 0109)."""
+    from nabu.schemes import scheme
+
+    typed = scheme(name).typed
+    if typed is None:
+        return None
+    return regex.compile(typed.syllable), regex.compile(f"(?:{typed.between})*")
 
 
 @cache
@@ -93,9 +130,12 @@ def words_of(script: Script | None) -> regex.Pattern[str]:
 
 def ruby_bearing(surface: str, script: Script | None = None) -> bool:
     """Whether a word token carries ruby readings: Han characters (a Han word carries its
-    Jyutping), or the script's logographs (sitelen pona's carry their sitelen Lasina word). A
-    name in a cartouche carries none."""
+    Jyutping), the script's logographs (sitelen pona's carry their sitelen Lasina word), or the
+    syllables of the scheme the script writes (a Jyutping word carries its characters). A name
+    in a cartouche carries none."""
     if HAN.search(surface):
+        return True
+    if syllable_bases(surface, script) is not None:
         return True
     return script is not None and surface != "" and all(c in script.logographs for c in surface)
 
@@ -173,6 +213,9 @@ def auto_tokens(
 ) -> list[dict[str, Any]]:
     """Tokens for text without authored tokens: words (`words_of` the text's script), or an
     analyzer's segmentation of them."""
+    if syllable_bases(text, script) is not None:
+        # A text that is one word of the scheme's syllables (a KC form: hok6 saang1) is one word.
+        return [{"surface": text, "kind": "word"}]
     words: list[dict[str, Any]] = []
     for m in words_of(script).finditer(text):
         pieces = segment(m.group(0)) if segment is not None else None
@@ -184,13 +227,17 @@ def auto_tokens(
     return toks
 
 
-def ruby_segments(surface: str, reading: str) -> list[dict[str, str]] | None:
-    """One ruby segment per grapheme when the syllables line up, else None."""
-    bases = graphemes(surface)
-    syllables = reading.split()
-    if len(syllables) != len(bases):
+def ruby_segments(
+    surface: str, reading: str, script: Script | None = None
+) -> list[dict[str, str]] | None:
+    """One ruby segment per grapheme when the syllables line up, else None. A word in its
+    script's reading scheme (Jyutping) takes one character over each syllable instead."""
+    syllabic = syllable_bases(surface, script)
+    bases = syllabic if syllabic is not None else graphemes(surface)
+    texts = graphemes(reading) if syllabic is not None else reading.split()
+    if len(texts) != len(bases):
         return None
-    return [{"base": b, "text": s} for b, s in zip(bases, syllables, strict=True)]
+    return [{"base": b, "text": s} for b, s in zip(bases, texts, strict=True)]
 
 
 def invisible_chars(text: str, allowed: set[str]) -> list[str]:

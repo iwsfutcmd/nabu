@@ -62,7 +62,7 @@ kcs:
     lzh-Hant/standard: [百]
 - id: sense:有.you
   gloss:
-    en: 'and (between tens and units: 十有五 “fifteen”; read yòu, = 又)'
+    en: 'and (between a round number and what it adds: 十有五 “fifteen”; read yòu, = 又)'
   forms:
     lzh-Hant/standard: [有]
   notes:
@@ -271,6 +271,7 @@ sentences:
     en: |-
       Ten (disciples|students|pupils).
       (There are|There were) ten (disciples|students|pupils).
+      The (disciples|students|pupils) (are|were) ten( in number|).
 - id: s.03.11
   node: lzh.u03.to-a-hundred
   forms:
@@ -293,6 +294,7 @@ sentences:
     en: |-
       Twenty (disciples|students|pupils).
       (There are|There were) twenty (disciples|students|pupils).
+      The (disciples|students|pupils) (are|were) twenty( in number|).
 - id: s.03.13
   node: lzh.u03.years
   forms:
@@ -605,9 +607,11 @@ sentences:
   node: lzh.u03.heart
   forms:
     lzh-Hant/standard:
-      text: 吾不踰之。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 踰, sense: 踰, readings: {pinyin: yú, jyutping: jyu4, baxter: yu}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
-      reverse: (吾|我)不踰之
+      text: 吾不踰。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 踰, sense: 踰, readings: {pinyin: yú, jyutping: jyu4, baxter: yu}}]
+      reverse: |-
+        (吾|我)(不|弗)踰[也]
+        (吾|我)不踰之
   translations:
     en: |-
       I (do not|don't|will not|won't) (overstep|cross|go beyond|transgress) it.

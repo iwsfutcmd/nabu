@@ -3,7 +3,7 @@
  * for one taught orthography and one support language. Assembling it is pure;
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
-import type { BundleAudio, BundleAudioItem, BundleFile, BundleKc, BundleManifest, BundleSentence, BundleUnit, CourseNames, DataTable, Facet, KeyboardLayout, OrthographyProfile, PlacementPolicy, TaggedText } from "@nabu/schema";
+import type { BundleAudio, BundleAudioItem, BundleClip, BundleFile, BundleKc, BundleManifest, BundleSentence, BundleUnit, CourseNames, DataTable, Facet, KeyboardLayout, OrthographyProfile, PlacementPolicy, TaggedText } from "@nabu/schema";
 import { keyboardDistance } from "../match/compare.ts";
 import { compileAcceptSet, grade, lexiconKey, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
@@ -74,6 +74,66 @@ export type CourseError =
 /** The orthography id a support language key resolves to ("en" → "en-Latn/standard"). */
 const supportKeyOf = (orthography: string): string => orthography.split("-")[0] as string;
 
+/** The word (and number) tokens of a text, by index: what clip timings point at. */
+const wordTokens = (text: TaggedText): readonly number[] =>
+  text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
+
+/** Each audio item's text in every orthography: sentences, story lines (`story#step`) and KC forms. */
+const itemTexts = (units: readonly BundleUnit[]): ReadonlyMap<string, Readonly<Record<string, TaggedText>>> => {
+  const out = new Map<string, Readonly<Record<string, TaggedText>>>();
+  for (const unit of units) {
+    for (const s of unit.sentences) out.set(s.id, Object.fromEntries(Object.entries(s.forms).map(([o, f]) => [o, f.text])));
+    for (const story of unit.stories ?? []) {
+      story.steps.forEach((step, i) => {
+        if ("line" in step && step.line !== undefined) out.set(`${story.id}#${String(i)}`, step.line.forms);
+      });
+    }
+    for (const kc of unit.kcs) {
+      const forms = Object.entries(kc.forms ?? {}).flatMap(([o, fs]) => (fs[0] === undefined ? [] : [[o, fs[0]] as const]));
+      out.set(kc.id, Object.fromEntries(forms));
+    }
+  }
+  return out;
+};
+
+/**
+ * A clip's timings for another orthography of its course (ADR 0126): each moves to the same word,
+ * counted in order, of that orthography's text. Where the words do not line up one to one, the
+ * clip keeps no timings: no highlight rather than the wrong word.
+ */
+const retime = (clip: BundleClip, texts: Readonly<Record<string, TaggedText>> | undefined, to: string): BundleClip => {
+  if (clip.timings === undefined || clip.orthography === undefined || clip.orthography === to) return clip;
+  const { timings, orthography, ...rest } = clip;
+  const from = texts?.[orthography];
+  const into = texts?.[to];
+  if (from === undefined || into === undefined) return rest;
+  const a = wordTokens(from);
+  const b = wordTokens(into);
+  if (a.length !== b.length) return rest;
+  const ordinal = new Map(a.map((token, k) => [token, k]));
+  const moved = timings.map((t) => {
+    const k = ordinal.get(t.token);
+    const token = k === undefined ? undefined : b[k];
+    return token === undefined ? undefined : { ...t, token };
+  });
+  return moved.every((t) => t !== undefined) ? { ...rest, orthography: to, timings: moved } : rest;
+};
+
+/** The course's clips with their timings in the chosen orthography. */
+export const audioFor = (
+  audio: Readonly<Record<string, BundleAudioItem>>,
+  units: readonly BundleUnit[],
+  orthography: string,
+): Readonly<Record<string, BundleAudioItem>> => {
+  const texts = itemTexts(units);
+  return Object.fromEntries(
+    Object.entries(audio).map(([item, a]) => {
+      const t = texts.get(item);
+      return [item, { normal: retime(a.normal, t, orthography), ...(a.slow === undefined ? {} : { slow: retime(a.slow, t, orthography) }) }];
+    }),
+  );
+};
+
 export const assembleCourse = (bundle: CourseFiles, orthography?: string): Result<CourseView, CourseError> => {
   const { manifest, files } = bundle;
   const chosen: string = orthography ?? manifest.orthographies[0] ?? "";
@@ -92,7 +152,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
   }
   const support = manifest.support[0] as string;
   const units = manifest.units.map((u) => files.get(u.file) as BundleUnit);
-  const audio = (read("audio-index")[0] as BundleAudio | undefined)?.items ?? {};
+  const audio = audioFor((read("audio-index")[0] as BundleAudio | undefined)?.items ?? {}, units, chosen);
   return ok({
     id: manifest.course,
     target: manifest.target,

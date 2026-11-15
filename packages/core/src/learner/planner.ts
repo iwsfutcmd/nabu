@@ -533,6 +533,21 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     }
   }
 
+  // A tone heard and named (ADR 0046, 0125): one card a lesson where the course can make one, from a
+  // clip a person confirmed. It is hard (p̂ about 0.5), so the calibration alone never picks it, and
+  // it takes a place as a pronunciation card does, never that card's. Where the app offers no tones,
+  // the course is not heard or the learner is not listening (a break, listening turned off for good),
+  // the template is left out of the candidates; listening turned off is checked here as well.
+  if (request.mode === "lesson" && !facetsOff.has(TEMPLATES["tone-identify"].facet) && !chosen.some((c) => c.ex.template === "tone-identify")) {
+    const pick = remaining.filter((c) => c.ex.template === "tone-identify" && allowed(c)).sort((a, b) => score(b) - score(a) || a.order - b.order)[0];
+    if (pick !== undefined) {
+      const presentedBy = (kc: KcId, except: Candidate): boolean => chosen.some((c) => c !== except && presents(c).includes(kc));
+      const spare = [...chosen].reverse().find((c) => !showing.has(c) && !PRONOUNCE.has(c.ex.template) && presents(c).every((kc) => !targets.has(kc) || presentedBy(kc, c)));
+      if (chosen.length < size) chosen.push(pick);
+      else if (spare !== undefined) chosen.splice(chosen.indexOf(spare), 1, pick);
+    }
+  }
+
   // ---- 5. end on a likely success
   if (chosen.length > 2) {
     const tail = chosen.slice(-3);

@@ -21,22 +21,26 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
   keyboard: [
     ["fa", "fa-Arab/standard", "fa.book"],
     ["yue", "yue-Hant-HK/standard", "yue.who"],
+    ["yue", "yue-Latn/jyutping", "yue.names"],
     ["uz", "uz-Latn/standard", "uz.i-am"],
     ["apc", "apc-Arab/standard", "apc.cafe"],
     ["lzh", "lzh-Hant/standard", "lzh.u01.well-said"],
     ["es", "es-Latn/standard", "es.u01.como-estas"],
     ["hbo", "hbo-Hebr/tiberian", "hbo.u01.light"],
     ["tok", "tok-Latn/standard", "tok.u01.hello"],
+    ["chg", "chg-Arab/standard", "chg.u01.bread-and-tea"],
   ],
   touch: [
     ["fa", "fa-Arab/standard", "fa.i-am"],
     ["yue", "yue-Hant-HK/standard", "yue.yum-cha"],
+    ["yue", "yue-Latn/jyutping", "yue.copula"],
     ["uz", "uz-Cyrl/standard", "uz.my"],
     ["apc", "apc-Latn/arabizi", "apc.how-are-you"],
     ["lzh", "lzh-Hant/standard", "lzh.u01.it-is"],
     ["es", "es-Latn/standard", "es.u01.soy"],
     ["hbo", "hbo-Hebr/tiberian", "hbo.u01.the-day"],
     ["tok", "tok-Qaap/sitelen-pona", "tok.u01.person"],
+    ["chg", "chg-Latn/schluessel", "chg.u01.sweet"],
   ],
 };
 

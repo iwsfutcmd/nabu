@@ -219,6 +219,16 @@ What a native speaker should still check:
       artefacts on long vowels and final particles.
     - **Where to start:** `nabu audio report ../courses/yue` lists the clips the round trip held back; the
       audio check (debug mode) plays them all. A rejected clip is made again as its next take.
+11. **Jyutping** ([ADR 0126](../docs/adr/0126-yue-jyutping-orthography.md)). The course in Jyutping is written from the
+    characters' pinned readings, so it is right wherever they are. Check what was chosen rather than read:
+    - **Accept sets.** `cd pipeline && uv run nabu jyutping ../courses/yue` lists every reading taken from PyCantonese or
+      chosen among the course's (313 now). Most are words the course pins nowhere else; look first at the typing variants
+      read as the word they stand for (既 ge3, 無 mou5, 哂 saai3, 岩岩 ngaam1, 訓 fan3), and 咪 mai6, 位 wai2, 會 wui5,
+      頂 deng2, 咁 gam2 (咁你呢), 吓 haa5, 阿 aa3.
+    - **呀 in typed answers.** Where a sentence does not pin it, an alternative's 呀 takes aa3 or aa4: check that no set
+      should take only one.
+    - **Typing.** Lowercase, syllables spaced or joined; a wrong or missing tone is wrong, never a typo. Names are
+      lowercase too (gaa1 ming4).
 
 ## uz (Uzbek)
 
@@ -384,46 +394,55 @@ points below land, and its chapter is cited where it does.
 ## lzh (Classical Chinese)
 
 Drafted after the native-speaker pass above, so it has had no second reading
-([ADR 0071](../docs/adr/0071-classical-chinese.md)). A reviewer of Classical Chinese should check:
+([ADR 0071](../docs/adr/0071-classical-chinese.md)). It has since been checked against Baxter &
+Sagart's list (2015), Kroll's dictionary (2017) and Pulleyblank's grammar (1995)
+([ADR 0127](../docs/adr/0127-lzh-checked-against-references.md)); notes with page references are in
+the reference library (`nabu/notes/lzh/`). A reviewer of Classical Chinese should check:
 
-1. **Readings by sense.** Each sense is read one way in all three layers. They were checked
-   against Wiktionary, whose entries group readings by sense: 242 of 246 characters agree on all
-   three. 生 *sraeng* and 從容 *sung1 jung4* were corrected to Wiktionary. Check the borrowings
-   and polyphones first:
-   - 說 "pleased" yuè / jyut6 / ywet (= 悅);
-   - 女 "you" rǔ / jyu5 / nyoX (= 汝). The Guangyun lists 女 only as nrjoX, so nyoX follows
-     the borrowing;
-   - 有 "and" in 十有五 yòu / jau6 / hjuwH (= 又). The Guangyun lists 有 only as hjuwX;
-   - 知 "wise" zhì / zi3 / trjeH (= 智);
-   - 強 "force oneself" qiǎng / koeng5 / gjangX;
-   - 舍 "give up" shě / se2 / syaeX (= 捨);
-   - 見 "have an audience with" jiàn / kenH, not xiàn;
-   - 覺 jué, 處 chù, 從容 cóng róng / sung1 jung4 / tshjowng yowng;
-   - 不 is pjuw throughout, not pjut;
-   - 遠 in 叟不遠千里 is the rising-tone hjwonX.
-2. **Literary Jyutping where Unihan lists a colloquial reading first:** 生 sang1, 聲 sing1,
-   頸 ging2, 耕 gang1, 復 "again" fau6, 鯈 tiu4 (kSMSZD2003Readings). 曰 is joek6.
-3. **Grammar as taught:**
-   - 為…笑 as a passive (`construction:wei-passive`); some editions read 為 as "become";
-   - the fable opener 楚人有涉江者 (`construction:you-zhe`);
-   - 之 in 吾劍之所從墜 tagged as the genitive 之.de, although it nominalizes a clause;
-   - 上善若水 under 上 "above";
-   - 此是霜, a Tang copula in a made-up sentence.
-4. **Constructed sentences that may not be idiomatic:** 吾為之, 魯小, 人多, 君子少, 弟子十人,
-   吾年十有五, 吾足矣, 吾行矣, 我與子路朋也, 天上有日, 兔身小, 此，矛也.
+1. **Readings by sense.** Each sense is read one way in all three layers. Before the check, 230 of
+   246 characters matched a row of Baxter & Sagart's list, and Kroll gave the same Middle Chinese
+   for 237. Fixed after it: 盾 dwonX, 鯈 dew, 大 daH, 從容 cōng róng, and 見 "have an audience
+   with", now xiàn / jin6 / henH (the word "appear"; 見 "see" is jiàn / gin3 / kenH; many readers
+   today say jiàn in 孟子見梁惠王). Confirmed: 說 "pleased" yuè / jyut6 / ywet (= 悅), 女 "you"
+   rǔ / jyu5 / nyoX (= 汝) and 知 "wise" zhì / zi3 / trjeH (= 智) by Kroll; 有 "and" in 十有五 yòu /
+   jau6 / hjuwH by Pulleyblank (Kroll files it under yǒu); 強 qiǎng, 舍 shě, 覺 jué, 處 chù, 遠
+   hjwonX in 叟不遠千里 and 不 pjuw by Baxter & Sagart and Kroll; 劍 kjaemH by Baxter & Sagart and
+   the owner (Kroll has kjomH).
+2. **Literary Jyutping.** Van Norden's glossary (Cantonese edition) agrees on the 104 characters it
+   shares, except 生 (it has the colloquial saang1) and 曰 (the regular jyut6). The owner confirms
+   the course's readings: 生 is sang1 throughout, and 曰 is irregularly joek6.
+   Also 聲 sing1, 頸 ging2, 耕 gang1, 復 "again" fau6, 鯈 tiu4 (kSMSZD2003Readings).
+3. **Grammar as taught**, now checked against Pulleyblank:
+   - after a negative a pronoun object comes before the verb (`construction:neg-pronoun`):
+     王不我知, 吾不汝知, 吾不踰 (之 left out after 不), 人莫之能知也. These four were rewritten
+     from the rarer order (王不知我…), which is still accepted;
+   - 為…笑 is a passive (Pulleyblank IV.9b), now translated "was laughed at by", not "became the
+     laughingstock of";
+   - the fable opener 楚人有涉江者 (`construction:you-zhe`) and 之 in 吾劍之所從墜 (`之.de`, the
+     subject of a 所 phrase) are as Pulleyblank describes them;
+   - 上善若水 under 上 "above": Pulleyblank is silent;
+   - 此是霜 is Tang usage (是 a copula); the note says classical prose would say 此霜也.
+4. **Constructed sentences** (吾為之, 魯小, 人多, 君子少, 弟子十人, 吾年十有五, 吾行矣,
+   我與子路朋也, 天上有日, 兔身小, 此，矛也) follow Pulleyblank's rules. 吾足矣 he does not
+   discuss. 折之 "he broke it" replaced 劍折 (an intransitive 折, read dzyet).
 5. **Texts and editions:**
    - 吾矛之利，於物無不陷也 (with 於);
    - Han Feizi's 楯 is written 盾;
    - Laozi 25 王亦大 (some editions: 人亦大);
+   - Zhuangzi's 鯈魚出遊 (some editions: 儵魚出游);
    - 道不遠人 (Doctrine of the Mean 13);
    - 天何言哉 (Analects 17.19);
    - 知者無不知也 (Mencius 7A46).
-6. **English:** 仁者人也 "To be humane is to be human", 罔 "lost", 殆 "in danger", 耳順 "my ear
-   was attuned", 矩 "the bounds" (carpenter's square accepted), 由 Yu/Zilu, 夜來 "in the night".
-   A few accepted English answers are ungrammatical but harmless.
+6. **English:** 仁者人也 "To be humane is to be human", 殆 "in danger", 耳順 "my ear was
+   attuned", 矩 "the bounds" (carpenter's square accepted), 由 Yu/Zilu. Mencius 1A1's 亦 is now
+   shown as "surely" and 亦有仁義而已矣 as "I have …" (Pulleyblank); "also" and "there is" are
+   still accepted. 夜來 is one word, "in the night" (Kroll). A few accepted English answers are
+   ungrammatical but harmless.
 7. **Accept sets in Chinese** take 吾 or 我 as subject, 汝, 爾 or 子 for "you", optional 也
    where it does not change the meaning, 悅 for 說 "pleased", 捨 for 舍 and 智 for 知 "wise".
-   Older and regional forms (爲, 説) are accepted with a note.
+   吾 is no longer accepted where only 我 can stand (我也, 非我也). 于 is no longer accepted for
+   於 (a different word, and today's simplified spelling); 於 is still accepted for the
+   Analects' 于. Older and regional forms (爲, 説) are accepted with a note.
 8. **Characters outside CLDR zh_Hant** are in the profile's `exemplarsExtra`, marked REVIEW:
    焉 歟 孰 奚 罔 慍 誨 殆 踰 矩 濠 鯈 遽 墜 耕 株 冀 耒 鬻 叟 啼.
 
@@ -741,3 +760,28 @@ references in the reference library (find them with `nabu refs find`; notes in n
   (nabu/greek_translit.py), and which words each node drills.
 - The voice: Piper's Modern Greek voice saying IPA (a stopgap); aspiration said as a following h.
 
+
+## chg (Chaghatay)
+
+- Every sentence, translation and accept set: no one speaks Chaghatay, so a reviewer who reads it (and Uzbek or
+  Uyghur) should check that the drafted sentences are idiomatic for literary Turki, not modern Uzbek or Uyghur.
+- The spellings of Turkic words in the Arabic script: one convention (Schluessel's typescript: plene vowels in
+  most words, the copula after a half-space), where the manuscripts have many. Accept sets add the commonest
+  variants only.
+- The transliteration: front and back vowels (ä/a) and the e/ä of verbs (käldi but kelädur, bärdi), the ǧ/q and
+  g/k of suffixes, where Schluessel himself varies.
+- The passages: each story line against Schluessel's typescript (ch. 11-14) and, ideally, the manuscripts; the
+  places marked with … where a line was shortened; the English translations, which are the course's own.
+- The grading policies marked REVIEW in profiles/chg-Arab.standard.yaml and profiles/chg-Latn.schluessel.yaml:
+  half-spaces silent, ک/گ as one letter, transliteration marks noted not failed, the contrast sets.
+- "You": siz is drafted as the polite singular and the plural, sän as familiar (Schluessel, 4.3.1); tags follow.
+- The alphabet track (units/abc.yaml): the order of the letter groups, each letter's values and notes, and the words
+  each node drills.
+- Units 11-19 (A2-B1): Navai's kanj is read as Persian ganj "treasure" ("You have found Decius's treasure!"), where
+  Schluessel glosses it "oneself"; Qasim Beg's text is Schluessel's, slightly altered by him from the manuscript; the
+  first line of the Stories of the Prophets leaves out the blessing after Adam's name (marked …); unit 15's story
+  keeps only the Flood, the old woman and the box of its passage (the rest is not for learners), and its Arabic is
+  read from the manuscript (صندوقدا, کیشیکا, برسانک, یغاچی, ایتیکه): check those readings. Unit 17 reads rūy-i ʿālam as Schluessel's glossary has it (his
+  transliteration of the passage has rawī ʿālam) and leaves out the passage's closing threat of a curse. Unit 18's passage is the blacksmiths'
+  manual as Schluessel altered it for clarity; it reads ahangirlik as he does (ahangarlik elsewhere in his book). Unit 19's story leaves out one coarse word (qoŋ) of
+  its passage.

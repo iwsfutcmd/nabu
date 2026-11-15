@@ -67,9 +67,12 @@ const SpeakFeedback = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {
   return <Player loaded={loaded} ex={ex} state={state} />;
 };
 
-/** Tone exercises are Cantonese-only here: the yue course, its one-syllable 係！ given a clip. */
+/**
+ * Tone exercises are Cantonese-only here: the yue course, its one-syllable 係！ given a clip a listener
+ * marked right in the audio check (a tone card plays only a clip a person confirmed, ADR 0125).
+ */
 const ToneChoice = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {
-  const course: CourseView = useMemo(() => ({ ...loaded.course, audio: { ...loaded.course.audio, "s.8": { normal: { path: "audio/fixture-s8.mp3", durationMs: 420, synthetic: true, license: "CC0-1.0" } } } }), [loaded]);
+  const course: CourseView = useMemo(() => ({ ...loaded.course, audio: { ...loaded.course.audio, "s.8": { normal: { path: "audio/fixture-s8.mp3", durationMs: 420, synthetic: true, license: "CC0-1.0", confirmed: true } } } }), [loaded]);
   const ex = useMemo(() => {
     const s = allSentences(course).find((x) => x.id === "s.8");
     return s === undefined ? undefined : makeToneIdentify({ course, rng: seededRng(7), introduced: [] }, s);

@@ -28,6 +28,7 @@ const DIRECTION: Readonly<Record<string, "ltr" | "rtl">> = {
   "lzh-Hant/standard": "ltr",
   "grc-Grek/polytonic": "ltr",
   "tok-Qaap/sitelen-pona": "ltr",
+  "chg-Arab/standard": "rtl",
   "uz-Cyrl/standard": "ltr",
 };
 

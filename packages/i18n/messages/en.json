@@ -1570,6 +1570,18 @@
       "message": "Use the Tajik letters ғ, ӣ, қ, ӯ, ҳ and ҷ.",
       "description": "Feedback note for Tajik: Russian-keyboard letters were typed instead of Tajik ones."
     },
+    "feedback.note.translit-marks": {
+      "message": "Mind the marks on the letters (ä, š, ǧ, ḫ, ā…): they are part of the transliteration.",
+      "description": "Feedback note for Chaghatay in Schluessel's transliteration: the answer left out a mark on a letter (kisi for kiši, ata for āta), put one in the wrong place, or typed ng for ŋ. The answer still counts. The letters in brackets are transliteration letters and stay as they are."
+    },
+    "feedback.note.translit-marks-word": {
+      "message": "With those marks it is another word (bardi “went”, bärdi “gave”).",
+      "description": "Feedback note for Chaghatay in Schluessel's transliteration: with a mark on a letter left out, added or changed, the answer spells a different word of the course (bardi for bärdi), so it does not count. The examples are Chaghatay words and stay as they are."
+    },
+    "feedback.note.translit-marks-word-pair": {
+      "message": "{$expected} and {$answer} are different words: the marks on their letters tell them apart.",
+      "description": "Feedback note for Chaghatay in Schluessel's transliteration, in place of feedback.note.translit-marks-word when the words are known: with a mark on a letter left out, added or changed, the learner wrote $answer (another word of the course, such as bardi) where $expected was asked for (such as bärdi), so the answer does not count. $expected and $answer are Chaghatay words, shown in their own language; put them where your grammar wants them."
+    },
     "feedback.note.use-traditional": {
       "message": "Use Traditional characters.",
       "description": "Feedback note for Cantonese: the answer contains Simplified characters."

@@ -11,7 +11,7 @@ import { comparesPixels, expectNoClipping, platformFonts, settle } from "./check
 import { cellGlobals, cells, storyUrl } from "./matrix.ts";
 
 const JYUTPING = "yue-Latn-HK-jyutping";
-const SECOND_ORTHOGRAPHY: Readonly<Record<string, string>> = { "uz-Latn": "uz-Cyrl", "apc-Arab": "apc-Latn" };
+const SECOND_ORTHOGRAPHY: Readonly<Record<string, string>> = { "uz-Latn": "uz-Cyrl", "apc-Arab": "apc-Latn", "yue-Hant-HK": "yue-Latn" };
 
 for (const cell of cells().filter((c) => c.writingMode === "horizontal-tb")) {
   test(`correction form: ${cell.ui} × ${cell.target}`, async ({ page }) => {
