@@ -16,6 +16,7 @@ import { fontStackFor, scriptOf, type Direction } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { useId, useLayoutEffect, useRef, type CSSProperties, type JSX, type KeyboardEvent } from "react";
 import { useIsTarget, useOrthography, useTranslator } from "../context.tsx";
+import { useFonts } from "../fonts.ts";
 import { T } from "../T.tsx";
 import styles from "./Player.module.css";
 
@@ -125,7 +126,15 @@ export const AnswerInput = ({
 }: AnswerInputProps): JSX.Element => {
   const t = useTranslator();
   const id = useId();
-  const scale = fontStackFor(base.lang, useOrthography(base.orthography)?.fonts).scale;
+  // Typed text is set as the orthography sets its text (its profile's fonts), not in the chrome's face: Chaghatay
+  // is typed in Nastaliq, Persian in Vazirmatn.
+  const fonts = useOrthography(base.orthography)?.fonts;
+  const font = fontStackFor(base.lang, fonts);
+  const scale = font.scale;
+  // and given the profile's line height where it sets one: Nastaliq's letters climb and drop far from the line,
+  // and a field clips what leaves its line box.
+  const lineHeight = fonts?.lineHeight;
+  useFonts(font.family);
   const target = useIsTarget(base.orthography);
   const input = useRef<HTMLInputElement>(null);
   const composing = useRef(false);
@@ -168,7 +177,13 @@ export const AnswerInput = ({
         id={id}
         ref={input}
         className={styles.input}
-        style={scale === 1 ? undefined : ({ "--nabu-input-scale": String(scale) } as CSSProperties)}
+        style={
+          {
+            "--nabu-input-font": font.family,
+            ...(scale === 1 ? {} : { "--nabu-input-scale": String(scale) }),
+            ...(lineHeight === undefined ? {} : { "--nabu-input-line-height": String(lineHeight) }),
+          } as CSSProperties
+        }
         data-target={target ? "" : undefined}
         value={value}
         lang={base.lang}

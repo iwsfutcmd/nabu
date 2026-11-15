@@ -570,6 +570,9 @@
   padding-block: var(--nabu-space-2);
   padding-inline: var(--nabu-space-3);
   font: inherit;
+  /* The orthography's own face (its profile's stack), as <T> sets its text. */
+  font-family: var(--nabu-input-font, inherit);
+  line-height: var(--nabu-input-line-height, inherit);
   /* An orthography set larger than the text around it is typed larger too (fonts.scale). */
   font-size: calc(1.25rem * var(--nabu-input-scale, 1));
   border: 2px solid var(--nabu-color-border);
