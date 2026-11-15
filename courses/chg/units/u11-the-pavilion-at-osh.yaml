@@ -1,0 +1,1060 @@
+# Chaghatay (chg), unit 11: The pavilion at Osh (Babur, Bāburnāma: Osh).
+# The narrative past -ptur (tüšüptur "lies", saliptur "he built"); the aorist as an adjective (aqar su "running
+# water"); ägärčä … walī "although … yet"; roads and leagues; -ī "of" (janūbī "southern").
+# The passage is Babur's own text (died 1530; the Hyderabad manuscript, in Beveridge's 1905 facsimile), as
+# Schluessel (2018, ch. 11) types it; the rest was drafted by an LLM (provenance llm:…, status draft) and awaits
+# a reviewer.
+id: u11-the-pavilion-at-osh
+title:
+  en: The pavilion at Osh
+cefr: A2
+kcs:
+- id: sense:yol
+  gloss:
+    en: road, way; journey
+  forms:
+    chg-Arab/standard:
+    - یول
+    chg-Latn/schluessel:
+    - yol
+- id: sense:yaghach
+  gloss:
+    en: league (a day's march, some 8-10 km); wood
+  forms:
+    chg-Arab/standard:
+    - یغاچ
+    chg-Latn/schluessel:
+    - yaǧač
+- id: sense:uzun
+  gloss:
+    en: long
+  forms:
+    chg-Arab/standard:
+    - اوزون
+    chg-Latn/schluessel:
+    - uzun
+- id: sense:aq.flow
+  gloss:
+    en: to flow
+  forms:
+    chg-Arab/standard:
+    - اق-
+    chg-Latn/schluessel:
+    - aq-
+  notes:
+    en: 'aqar su "flowing water, running water": the aorist as an adjective. Spelled as aq "white".'
+- id: sense:bahar
+  gloss:
+    en: spring (the season)
+  forms:
+    chg-Arab/standard:
+    - بهار
+    chg-Latn/schluessel:
+    - bahār
+- id: sense:mawzun
+  gloss:
+    en: well-shaped, well-proportioned
+  forms:
+    chg-Arab/standard:
+    - موزون
+    chg-Latn/schluessel:
+    - mawzūn
+- id: sense:tush
+  gloss:
+    en: to fall; to dismount; to lie, be situated
+  forms:
+    chg-Arab/standard:
+    - توش-
+    chg-Latn/schluessel:
+    - tüš-
+  notes:
+    en: 'Babur: taǧ tüšüptur "a mountain lies there".'
+- id: sense:qulla
+  gloss:
+    en: peak, summit
+  forms:
+    chg-Arab/standard:
+    - قله
+    chg-Latn/schluessel:
+    - qulla
+- id: sense:mahmud
+  gloss:
+    en: Mahmud (a man's name)
+  forms:
+    chg-Arab/standard:
+    - محمود
+    chg-Latn/schluessel:
+    - Maḥmūd
+- id: sense:khan
+  gloss:
+    en: khan (a ruler's title)
+  forms:
+    chg-Arab/standard:
+    - خان
+    chg-Latn/schluessel:
+    - ḫan
+- id: sense:agarcha
+  gloss:
+    en: although
+  forms:
+    chg-Arab/standard:
+    - اگرچه
+    chg-Latn/schluessel:
+    - ägärčä
+  notes:
+    en: ägärčä …, walī … "although …, (yet) …".
+- id: sense:murtafi
+  gloss:
+    en: high, lofty
+  forms:
+    chg-Arab/standard:
+    - مرتفع
+    chg-Latn/schluessel:
+    - murtafiʿ
+- id: sense:wali
+  gloss:
+    en: but, yet
+  forms:
+    chg-Arab/standard:
+    - ولی
+    chg-Latn/schluessel:
+    - walī
+- id: sense:waqi
+  gloss:
+    en: situated; happening
+  forms:
+    chg-Arab/standard:
+    - واقع
+    chg-Latn/schluessel:
+    - wāqiʿ
+  notes:
+    en: 'wāqiʿ bol- "to lie, be situated; to happen": wāqiʿ boluptur "it lies".'
+- id: sense:tamam
+  gloss:
+    en: all, whole; complete
+  forms:
+    chg-Arab/standard:
+    - تمام
+    chg-Latn/schluessel:
+    - tamām
+- id: sense:mahallat
+  gloss:
+    en: quarters, suburbs (of a town)
+  forms:
+    chg-Arab/standard:
+    - محلات
+    chg-Latn/schluessel:
+    - maḥallāt
+- id: sense:ayaq
+  gloss:
+    en: foot; bottom, foot (of a hill)
+  forms:
+    chg-Arab/standard:
+    - ایاق
+    chg-Latn/schluessel:
+    - ayaq
+- id: sense:ast
+  gloss:
+    en: the underside, the space below
+  forms:
+    chg-Arab/standard:
+    - آست
+    chg-Latn/schluessel:
+    - ast
+  notes:
+    en: 'X-niŋ asti(da) "under X": ayaq astida "at its feet".'
+- id: form:narr
+  gloss:
+    en: '-ptur (-iptur, -uptur, -üptur): did, it is told; is (found)'
+  notes:
+    en: 'The narrative past: the -p converb and -tur. Babur describes his country in it, what is so and what was done there: bir mawzūn taǧ tüšüptur "a well-shaped mountain lies there"; bir ḥujra saliptur
+      "he built a pavilion".'
+nodes:
+- id: chg.u11.the-road
+  kind: lesson
+  introduces:
+  - sense:yol
+  - sense:uzun
+  - sense:yaghach
+- id: chg.u11.it-lies
+  kind: lesson
+  introduces:
+  - form:narr
+  - sense:khan
+  - sense:tush
+  - sense:waqi
+  - sense:mahmud
+- id: chg.u11.running-water
+  kind: lesson
+  introduces:
+  - sense:aq.flow
+  - sense:bahar
+  - sense:mawzun
+  - sense:qulla
+- id: chg.u11.although
+  kind: lesson
+  introduces:
+  - sense:murtafi
+  - sense:agarcha
+  - sense:wali
+- id: chg.u11.at-its-feet
+  kind: lesson
+  introduces:
+  - sense:tamam
+  - sense:mahallat
+  - sense:ayaq
+  - sense:ast
+- id: chg.u11.story
+  kind: story
+sentences:
+- id: s.11.1
+  node: chg.u11.the-road
+  forms:
+    chg-Arab/standard:
+      text: بیر یول.
+      tokens:
+      - {surface: بیر, sense: bir}
+      - {surface: یول, sense: yol}
+      reverse: (بیر|بر) یول
+    chg-Latn/schluessel:
+      text: Bir yol.
+      tokens:
+      - {surface: Bir, sense: bir}
+      - {surface: yol, sense: yol}
+      reverse: Bir yol
+  translations:
+    en: A road.
+- id: s.11.2
+  node: chg.u11.the-road
+  forms:
+    chg-Arab/standard:
+      text: "بو یول اوزون\u200cدور."
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: یول, sense: yol}
+      - {surface: "اوزون\u200cدور", sense: uzun, morphs: [{surface: "اوزون\u200c", kc: 'sense:uzun'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "بو یول اوزون\u200cدور\nبو یول اوزون"
+    chg-Latn/schluessel:
+      text: Bu yol uzundur.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: yol, sense: yol}
+      - {surface: uzundur, sense: uzun, morphs: [{surface: uzun, kc: 'sense:uzun'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: |-
+        Bu yol uzundur
+        Bu yol uzun
+  translations:
+    en: This road is long.
+- id: s.11.3
+  node: chg.u11.the-road
+  forms:
+    chg-Arab/standard:
+      text: یول اوزون ایماس.
+      tokens:
+      - {surface: یول, sense: yol}
+      - {surface: اوزون, sense: uzun}
+      - {surface: ایماس, sense: emas}
+      reverse: یول اوزون (ایماس|ایرماس)
+    chg-Latn/schluessel:
+      text: Yol uzun emäs.
+      tokens:
+      - {surface: Yol, sense: yol}
+      - {surface: uzun, sense: uzun}
+      - {surface: emäs, sense: emas}
+      reverse: Yol uzun (emäs|ermäs)
+  translations:
+    en: The road (is not|isn't) long.
+- id: s.11.4
+  node: chg.u11.the-road
+  forms:
+    chg-Arab/standard:
+      text: تورت یغاچ.
+      tokens:
+      - {surface: تورت, sense: tort}
+      - {surface: یغاچ, sense: yaghach}
+      reverse: تورت (یغاچ|یاغاچ)
+    chg-Latn/schluessel:
+      text: Tört yaǧač.
+      tokens:
+      - {surface: Tört, sense: tort}
+      - {surface: yaǧač, sense: yaghach}
+      reverse: Tört yaǧač
+  translations:
+    en: Four leagues.
+- id: s.11.5
+  node: chg.u11.the-road
+  forms:
+    chg-Arab/standard:
+      text: "اندجاندین تورت یغاچ یول\u200cدور."
+      tokens:
+      - {surface: اندجاندین, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: تورت, sense: tort}
+      - {surface: یغاچ, sense: yaghach}
+      - {surface: "یول\u200cدور", sense: yol, morphs: [{surface: "یول\u200c", kc: 'sense:yol'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "(اندجاندین|اندجاندن) تورت (یغاچ|یاغاچ) یول\u200cدور\n(اندجاندین|اندجاندن) تورت (یغاچ|یاغاچ) یول"
+    chg-Latn/schluessel:
+      text: Andijāndin tört yaǧač yoldur.
+      tokens:
+      - {surface: Andijāndin, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: tört, sense: tort}
+      - {surface: yaǧač, sense: yaghach}
+      - {surface: yoldur, sense: yol, morphs: [{surface: yol, kc: 'sense:yol'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: |-
+        Andijāndin tört yaǧač yoldur
+        Andijāndin tört yaǧač yol
+  translations:
+    en: It is four leagues (by road|'s journey) from Andijan.
+- id: s.11.6
+  node: chg.u11.the-road
+  forms:
+    chg-Arab/standard:
+      text: بو یول اوشقه بارور.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: یول, sense: yol}
+      - {surface: اوشقه, sense: osh, morphs: [{surface: اوش, kc: 'sense:osh'}, {surface: قه, kc: 'form:dat'}]}
+      - {surface: بارور, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ور, kc: 'form:aor'}]}
+      reverse: |-
+        بو یول (اوشقه|اوشغه|اوشکه|اوشقا) بارور
+        بو یول (اوشقه|اوشغه|اوشکه|اوشقا) بارادور
+    chg-Latn/schluessel:
+      text: Bu yol Ošqa barur.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: yol, sense: yol}
+      - {surface: Ošqa, sense: osh, morphs: [{surface: Oš, kc: 'sense:osh'}, {surface: qa, kc: 'form:dat'}]}
+      - {surface: barur, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: ur, kc: 'form:aor'}]}
+      reverse: |-
+        Bu yol Ošqa barur
+        Bu yol Ošqa baradur
+  translations:
+    en: This road goes to Osh.
+- id: s.11.7
+  node: chg.u11.the-road
+  forms:
+    chg-Arab/standard:
+      text: "اندجاننینک شرق جنوبی طرفی\u200cدور."
+      tokens:
+      - {surface: اندجاننینک, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: شرق, sense: sharq}
+      - {surface: جنوبی, sense: janub, morphs: [{surface: جنوب, kc: 'sense:janub'}, {surface: ی, kc: 'form:nisba'}]}
+      - {surface: "طرفی\u200cدور", sense: taraf, morphs: [{surface: طرف, kc: 'sense:taraf'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "اندجاننینک شرق جنوبی طرفی\u200cدور\nاندجاننینک شرق جنوبی طرفی"
+    chg-Latn/schluessel:
+      text: Andijānniŋ šarq janūbī ṭarafidur.
+      tokens:
+      - {surface: Andijānniŋ, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: šarq, sense: sharq}
+      - {surface: janūbī, sense: janub, morphs: [{surface: janūb, kc: 'sense:janub'}, {surface: ī, kc: 'form:nisba'}]}
+      - {surface: ṭarafidur, sense: taraf, morphs: [{surface: ṭaraf, kc: 'sense:taraf'}, {surface: i, kc: 'form:poss3'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: |-
+        Andijānniŋ šarq janūbī ṭarafidur
+        Andijānniŋ šarq janūbī ṭarafi
+  translations:
+    en: It is (to the southeast|on the southeast side) of Andijan.
+- id: s.11.8
+  node: chg.u11.it-lies
+  forms:
+    chg-Arab/standard:
+      text: اول اوشقه باریبتور.
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: اوشقه, sense: osh, morphs: [{surface: اوش, kc: 'sense:osh'}, {surface: قه, kc: 'form:dat'}]}
+      - {surface: باریبتور, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: یبتور, kc: 'form:narr'}]}
+      reverse: اول (اوشقه|اوشغه|اوشکه|اوشقا) باریبتور
+    chg-Latn/schluessel:
+      text: Ul Ošqa bariptur.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: Ošqa, sense: osh, morphs: [{surface: Oš, kc: 'sense:osh'}, {surface: qa, kc: 'form:dat'}]}
+      - {surface: bariptur, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: iptur, kc: 'form:narr'}]}
+      reverse: (Ul|Ol) Ošqa bariptur
+  translations:
+    en: (He|She) went to Osh, (they say|it is told|it seems).
+- id: s.11.9
+  node: chg.u11.it-lies
+  forms:
+    chg-Arab/standard:
+      text: خان بیر حجره سالیبتور.
+      tokens:
+      - {surface: خان, sense: khan}
+      - {surface: بیر, sense: bir}
+      - {surface: حجره, sense: hujra}
+      - {surface: سالیبتور, sense: sal, morphs: [{surface: سال, kc: 'sense:sal'}, {surface: یبتور, kc: 'form:narr'}]}
+      reverse: خان (بیر|بر) حجره سالیبتور
+    chg-Latn/schluessel:
+      text: Ḫan bir ḥujra saliptur.
+      tokens:
+      - {surface: Ḫan, sense: khan}
+      - {surface: bir, sense: bir}
+      - {surface: ḥujra, sense: hujra}
+      - {surface: saliptur, sense: sal, morphs: [{surface: sal, kc: 'sense:sal'}, {surface: iptur, kc: 'form:narr'}]}
+      reverse: Ḫan bir ḥujra saliptur
+  translations:
+    en: The khan built a (pavilion|room), (they say|it is told).
+- id: s.11.10
+  node: chg.u11.it-lies
+  forms:
+    chg-Arab/standard:
+      text: بو یرده بیر تاغ توشوبتور.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: یرده, sense: yar, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: بیر, sense: bir}
+      - {surface: تاغ, sense: tagh}
+      - {surface: توشوبتور, sense: tush, morphs: [{surface: توش, kc: 'sense:tush'}, {surface: وبتور, kc: 'form:narr'}]}
+      reverse: |-
+        بو (یرده|یردا|یارده|یاردا) (بیر|بر) تاغ توشوبتور
+        بو (یرده|یردا|یارده|یاردا) (بیر|بر) تاغ بار
+    chg-Latn/schluessel:
+      text: Bu yärdä bir taǧ tüšüptur.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: yärdä, sense: yar, morphs: [{surface: yär, kc: 'sense:yar'}, {surface: dä, kc: 'form:loc'}]}
+      - {surface: bir, sense: bir}
+      - {surface: taǧ, sense: tagh}
+      - {surface: tüšüptur, sense: tush, morphs: [{surface: tüš, kc: 'sense:tush'}, {surface: üptur, kc: 'form:narr'}]}
+      reverse: |-
+        Bu (yärdä|yerdä) bir taǧ tüšüptur
+        Bu (yärdä|yerdä) bir taǧ bar
+  translations:
+    en: There is a mountain (here|in this place).
+- id: s.11.11
+  node: chg.u11.it-lies
+  forms:
+    chg-Arab/standard:
+      text: قورغان شرق طرفیده واقع بولوبتور.
+      tokens:
+      - {surface: قورغان, sense: qurghan}
+      - {surface: شرق, sense: sharq}
+      - {surface: طرفیده, sense: taraf, morphs: [{surface: طرف, kc: 'sense:taraf'}, {surface: ی, kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: واقع, sense: waqi}
+      - {surface: بولوبتور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: وبتور, kc: 'form:narr'}]}
+      reverse: قورغان شرق (طرفیده|طرفیدا) واقع بولوبتور
+    chg-Latn/schluessel:
+      text: Qurǧan šarq ṭarafida wāqiʿ boluptur.
+      tokens:
+      - {surface: Qurǧan, sense: qurghan}
+      - {surface: šarq, sense: sharq}
+      - {surface: ṭarafida, sense: taraf, morphs: [{surface: ṭaraf, kc: 'sense:taraf'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      - {surface: wāqiʿ, sense: waqi}
+      - {surface: boluptur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: uptur, kc: 'form:narr'}]}
+      reverse: Qurǧan šarq ṭarafida wāqiʿ boluptur
+  translations:
+    en: The fortress (lies|is situated) on the east side.
+- id: s.11.12
+  node: chg.u11.it-lies
+  forms:
+    chg-Arab/standard:
+      text: اولار کلمابتور.
+      tokens:
+      - {surface: اولار, sense: ular}
+      - {surface: کلمابتور, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ما, kc: 'form:neg'}, {surface: بتور, kc: 'form:narr'}]}
+      reverse: (اولار|الار) (کلمابتور|کیلمابتور)
+    chg-Latn/schluessel:
+      text: Ular kälmäptur.
+      tokens:
+      - {surface: Ular, sense: ular}
+      - {surface: kälmäptur, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: mä, kc: 'form:neg'}, {surface: ptur, kc: 'form:narr'}]}
+      reverse: (Ular|Alar) (kälmäptur|kelmäptur)
+  translations:
+    en: They (did not|didn't) come, (they say|it seems).
+- id: s.11.13
+  node: chg.u11.it-lies
+  forms:
+    chg-Arab/standard:
+      text: محمود خان.
+      tokens:
+      - {surface: محمود, sense: mahmud}
+      - {surface: خان, sense: khan}
+      reverse: محمود خان
+    chg-Latn/schluessel:
+      text: Maḥmūd ḫan.
+      tokens:
+      - {surface: Maḥmūd, sense: mahmud}
+      - {surface: ḫan, sense: khan}
+      reverse: Maḥmūd ḫan
+  translations:
+    en: Mahmud Khan.
+- id: s.11.14
+  node: chg.u11.it-lies
+  forms:
+    chg-Arab/standard:
+      text: سلطان محمود خان بیر حجره سالیبتور.
+      tokens:
+      - {surface: سلطان, sense: sultan}
+      - {surface: محمود, sense: mahmud}
+      - {surface: خان, sense: khan}
+      - {surface: بیر, sense: bir}
+      - {surface: حجره, sense: hujra}
+      - {surface: سالیبتور, sense: sal, morphs: [{surface: سال, kc: 'sense:sal'}, {surface: یبتور, kc: 'form:narr'}]}
+      reverse: سلطان محمود خان (بیر|بر) حجره سالیبتور
+    chg-Latn/schluessel:
+      text: Sulṭān Maḥmūd ḫan bir ḥujra saliptur.
+      tokens:
+      - {surface: Sulṭān, sense: sultan}
+      - {surface: Maḥmūd, sense: mahmud}
+      - {surface: ḫan, sense: khan}
+      - {surface: bir, sense: bir}
+      - {surface: ḥujra, sense: hujra}
+      - {surface: saliptur, sense: sal, morphs: [{surface: sal, kc: 'sense:sal'}, {surface: iptur, kc: 'form:narr'}]}
+      reverse: Sulṭān Maḥmūd ḫan bir ḥujra saliptur
+  translations:
+    en: Sultan Mahmud Khan built a (pavilion|room).
+- id: s.11.15
+  node: chg.u11.running-water
+  forms:
+    chg-Arab/standard:
+      text: سو اقادور.
+      tokens:
+      - {surface: سو, sense: su}
+      - {surface: اقادور, sense: aq.flow, morphs: [{surface: اق, kc: 'sense:aq.flow'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: سو اقادور
+    chg-Latn/schluessel:
+      text: Su aqadur.
+      tokens:
+      - {surface: Su, sense: su}
+      - {surface: aqadur, sense: aq.flow, morphs: [{surface: aq, kc: 'sense:aq.flow'}, {surface: a, kc: 'form:pres'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Su aqadur
+  translations:
+    en: (The|) water (flows|is flowing).
+- id: s.11.16
+  node: chg.u11.running-water
+  forms:
+    chg-Arab/standard:
+      text: اقار سو.
+      tokens:
+      - {surface: اقار, sense: aq.flow, morphs: [{surface: اق, kc: 'sense:aq.flow'}, {surface: ار, kc: 'form:aor'}]}
+      - {surface: سو, sense: su}
+      reverse: |-
+        اقار سو
+        اقار سولار
+    chg-Latn/schluessel:
+      text: Aqar su.
+      tokens:
+      - {surface: Aqar, sense: aq.flow, morphs: [{surface: Aq, kc: 'sense:aq.flow'}, {surface: ar, kc: 'form:aor'}]}
+      - {surface: su, sense: su}
+      reverse: |-
+        Aqar su
+        Aqar sular
+  translations:
+    en: Running water.
+- id: s.11.17
+  node: chg.u11.running-water
+  forms:
+    chg-Arab/standard:
+      text: "اقار سویی فراوان\u200cدور."
+      tokens:
+      - {surface: اقار, sense: aq.flow, morphs: [{surface: اق, kc: 'sense:aq.flow'}, {surface: ار, kc: 'form:aor'}]}
+      - {surface: سویی, sense: su, morphs: [{surface: سوی, kc: 'sense:su'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: "فراوان\u200cدور", sense: farawan, morphs: [{surface: "فراوان\u200c", kc: 'sense:farawan'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "اقار سویی فراوان\u200cدور\nاقار سویی فراوان"
+    chg-Latn/schluessel:
+      text: Aqar suyi farāwāndur.
+      tokens:
+      - {surface: Aqar, sense: aq.flow, morphs: [{surface: Aq, kc: 'sense:aq.flow'}, {surface: ar, kc: 'form:aor'}]}
+      - {surface: suyi, sense: su, morphs: [{surface: suy, kc: 'sense:su'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: farāwāndur, sense: farawan, morphs: [{surface: farāwān, kc: 'sense:farawan'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: |-
+        Aqar suyi farāwāndur
+        Aqar süyi farāwāndur
+        Aqar suyi farāwān
+  translations:
+    en: Its running water is (plentiful|abundant).
+- id: s.11.18
+  node: chg.u11.running-water
+  forms:
+    chg-Arab/standard:
+      text: بهار کلدی.
+      tokens:
+      - {surface: بهار, sense: bahar}
+      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: بهار (کلدی|کیلدی)
+    chg-Latn/schluessel:
+      text: Bahār käldi.
+      tokens:
+      - {surface: Bahār, sense: bahar}
+      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: Bahār (käldi|keldi)
+  translations:
+    en: (Spring|The spring) (came|has come).
+- id: s.11.19
+  node: chg.u11.running-water
+  forms:
+    chg-Arab/standard:
+      text: بهاری بسیار یخشی بولور.
+      tokens:
+      - {surface: بهاری, sense: bahar, morphs: [{surface: بهار, kc: 'sense:bahar'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: بسیار, sense: besyar}
+      - {surface: یخشی, sense: yakhshi}
+      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      reverse: بهاری بسیار یخشی بولور
+    chg-Latn/schluessel:
+      text: Bahāri besyār yaḫši bolur.
+      tokens:
+      - {surface: Bahāri, sense: bahar, morphs: [{surface: Bahār, kc: 'sense:bahar'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: besyār, sense: besyar}
+      - {surface: yaḫši, sense: yakhshi}
+      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+      reverse: Bahāri besyār yaḫši bolur
+  translations:
+    en: Its spring is very (good|fine|lovely).
+- id: s.11.20
+  node: chg.u11.running-water
+  forms:
+    chg-Arab/standard:
+      text: بیر موزون تاغ.
+      tokens:
+      - {surface: بیر, sense: bir}
+      - {surface: موزون, sense: mawzun}
+      - {surface: تاغ, sense: tagh}
+      reverse: (بیر|بر) موزون تاغ
+    chg-Latn/schluessel:
+      text: Bir mawzūn taǧ.
+      tokens:
+      - {surface: Bir, sense: bir}
+      - {surface: mawzūn, sense: mawzun}
+      - {surface: taǧ, sense: tagh}
+      reverse: Bir mawzūn taǧ
+  translations:
+    en: A well-(shaped|proportioned) mountain.
+- id: s.11.21
+  node: chg.u11.running-water
+  forms:
+    chg-Arab/standard:
+      text: "تاغنینک قله\u200cسیده."
+      tokens:
+      - {surface: تاغنینک, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: "قله\u200cسیده", sense: qulla, morphs: [{surface: "قله\u200c", kc: 'sense:qulla'}, {surface: سی, kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+      reverse: "تاغنینک (قله\u200cسیده|قله\u200cسیدا)"
+    chg-Latn/schluessel:
+      text: Taǧniŋ qullasida.
+      tokens:
+      - {surface: Taǧniŋ, sense: tagh, morphs: [{surface: Taǧ, kc: 'sense:tagh'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: qullasida, sense: qulla, morphs: [{surface: qulla, kc: 'sense:qulla'}, {surface: si, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      reverse: Taǧniŋ qullasida
+  translations:
+    en: On the (peak|summit) of the mountain.
+- id: s.11.22
+  node: chg.u11.although
+  forms:
+    chg-Arab/standard:
+      text: "اول حجره مرتفع\u200cدور."
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: حجره, sense: hujra}
+      - {surface: "مرتفع\u200cدور", sense: murtafi, morphs: [{surface: "مرتفع\u200c", kc: 'sense:murtafi'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "اول حجره مرتفع\u200cدور\nاول حجره مرتفع"
+    chg-Latn/schluessel:
+      text: Ul ḥujra murtafiʿdur.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: ḥujra, sense: hujra}
+      - {surface: murtafiʿdur, sense: murtafi, morphs: [{surface: murtafiʿ, kc: 'sense:murtafi'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: |-
+        (Ul|Ol) ḥujra murtafiʿdur
+        (Ul|Ol) ḥujra murtafiʿ
+  translations:
+    en: That (pavilion|room) is (high|lofty).
+- id: s.11.23
+  node: chg.u11.although
+  forms:
+    chg-Arab/standard:
+      text: اگرچه بو حجره کچیک، ولی یخشی.
+      tokens:
+      - {surface: اگرچه, sense: agarcha}
+      - {surface: بو, sense: bu}
+      - {surface: حجره, sense: hujra}
+      - {surface: کچیک, sense: kichik}
+      - {surface: ولی, sense: wali}
+      - {surface: یخشی, sense: yakhshi}
+      reverse: "اگرچه بو حجره (کچیک|کیچیک) ولی یخشی\nاگرچه بو حجره (کچیک\u200cدور|کیچیک\u200cدور) ولی یخشی\u200cدور"
+    chg-Latn/schluessel:
+      text: Ägärčä bu ḥujra kičik, walī yaḫši.
+      tokens:
+      - {surface: Ägärčä, sense: agarcha}
+      - {surface: bu, sense: bu}
+      - {surface: ḥujra, sense: hujra}
+      - {surface: kičik, sense: kichik}
+      - {surface: walī, sense: wali}
+      - {surface: yaḫši, sense: yakhshi}
+      reverse: |-
+        Ägärčä bu ḥujra kičik walī yaḫši
+        Ägärčä bu ḥujra kičikdur walī yaḫšidur
+  translations:
+    en: Although this (pavilion|room) is (small|little), (it is good|yet it is good|it is fine).
+- id: s.11.24
+  node: chg.u11.although
+  forms:
+    chg-Arab/standard:
+      text: اگرچه تاغ مرتفع، ولی یول اوزون ایماس.
+      tokens:
+      - {surface: اگرچه, sense: agarcha}
+      - {surface: تاغ, sense: tagh}
+      - {surface: مرتفع, sense: murtafi}
+      - {surface: ولی, sense: wali}
+      - {surface: یول, sense: yol}
+      - {surface: اوزون, sense: uzun}
+      - {surface: ایماس, sense: emas}
+      reverse: اگرچه تاغ مرتفع ولی یول اوزون (ایماس|ایرماس)
+    chg-Latn/schluessel:
+      text: Ägärčä taǧ murtafiʿ, walī yol uzun emäs.
+      tokens:
+      - {surface: Ägärčä, sense: agarcha}
+      - {surface: taǧ, sense: tagh}
+      - {surface: murtafiʿ, sense: murtafi}
+      - {surface: walī, sense: wali}
+      - {surface: yol, sense: yol}
+      - {surface: uzun, sense: uzun}
+      - {surface: emäs, sense: emas}
+      reverse: Ägärčä taǧ murtafiʿ walī yol uzun (emäs|ermäs)
+  translations:
+    en: Although the mountain is high, the road (is not|isn't) long.
+- id: s.11.25
+  node: chg.u11.although
+  forms:
+    chg-Arab/standard:
+      text: بو حجره بسیار یخشیراق واقع بولوبتور.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: حجره, sense: hujra}
+      - {surface: بسیار, sense: besyar}
+      - {surface: یخشیراق, sense: yakhshi, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
+      - {surface: واقع, sense: waqi}
+      - {surface: بولوبتور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: وبتور, kc: 'form:narr'}]}
+      reverse: بو حجره بسیار یخشیراق واقع بولوبتور
+    chg-Latn/schluessel:
+      text: Bu ḥujra besyār yaḫširaq wāqiʿ boluptur.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: ḥujra, sense: hujra}
+      - {surface: besyār, sense: besyar}
+      - {surface: yaḫširaq, sense: yakhshi, morphs: [{surface: yaḫši, kc: 'sense:yakhshi'}, {surface: raq, kc: 'form:cmp'}]}
+      - {surface: wāqiʿ, sense: waqi}
+      - {surface: boluptur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: uptur, kc: 'form:narr'}]}
+      reverse: Bu ḥujra besyār yaḫširaq wāqiʿ boluptur
+  translations:
+    en: This (pavilion|room) is (placed|situated) much better.
+- id: s.11.26
+  node: chg.u11.although
+  forms:
+    chg-Arab/standard:
+      text: "اگرچه اول حجره موندین مرتفع\u200cدور، ولی بو حجره یخشیراق."
+      tokens:
+      - {surface: اگرچه, sense: agarcha}
+      - {surface: اول, sense: ul}
+      - {surface: حجره, sense: hujra}
+      - {surface: موندین, sense: bu, morphs: [{surface: مون, kc: 'sense:bu'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: "مرتفع\u200cدور", sense: murtafi, morphs: [{surface: "مرتفع\u200c", kc: 'sense:murtafi'}, {surface: دور, kc: 'form:dur'}]}
+      - {surface: ولی, sense: wali}
+      - {surface: بو, sense: bu}
+      - {surface: حجره, sense: hujra}
+      - {surface: یخشیراق, sense: yakhshi, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
+      reverse: "اگرچه اول حجره (موندین|موندن) مرتفع\u200cدور ولی بو حجره یخشیراق"
+    chg-Latn/schluessel:
+      text: Ägärčä ul ḥujra mundin murtafiʿdur, walī bu ḥujra yaḫširaq.
+      tokens:
+      - {surface: Ägärčä, sense: agarcha}
+      - {surface: ul, sense: ul}
+      - {surface: ḥujra, sense: hujra}
+      - {surface: mundin, sense: bu, morphs: [{surface: mun, kc: 'sense:bu'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: murtafiʿdur, sense: murtafi, morphs: [{surface: murtafiʿ, kc: 'sense:murtafi'}, {surface: dur, kc: 'form:dur'}]}
+      - {surface: walī, sense: wali}
+      - {surface: bu, sense: bu}
+      - {surface: ḥujra, sense: hujra}
+      - {surface: yaḫširaq, sense: yakhshi, morphs: [{surface: yaḫši, kc: 'sense:yakhshi'}, {surface: raq, kc: 'form:cmp'}]}
+      reverse: Ägärčä (ul|ol) ḥujra mundin murtafiʿdur walī bu ḥujra yaḫširaq
+  translations:
+    en: Although that (pavilion|room) is higher than this one, (this one is better|yet this one is better).
+- id: s.11.27
+  node: chg.u11.at-its-feet
+  forms:
+    chg-Arab/standard:
+      text: تمام شهر.
+      tokens:
+      - {surface: تمام, sense: tamam}
+      - {surface: شهر, sense: shahar}
+      reverse: تمام شهر
+    chg-Latn/schluessel:
+      text: Tamām šahar.
+      tokens:
+      - {surface: Tamām, sense: tamam}
+      - {surface: šahar, sense: shahar}
+      reverse: Tamām šahar
+  translations:
+    en: The whole (city|town).
+- id: s.11.28
+  node: chg.u11.at-its-feet
+  forms:
+    chg-Arab/standard:
+      text: شهرنینک محلاتی.
+      tokens:
+      - {surface: شهرنینک, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: محلاتی, sense: mahallat, morphs: [{surface: محلات, kc: 'sense:mahallat'}, {surface: ی, kc: 'form:poss3'}]}
+      reverse: شهرنینک محلاتی
+    chg-Latn/schluessel:
+      text: Šaharniŋ maḥallāti.
+      tokens:
+      - {surface: Šaharniŋ, sense: shahar, morphs: [{surface: Šahar, kc: 'sense:shahar'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: maḥallāti, sense: mahallat, morphs: [{surface: maḥallāt, kc: 'sense:mahallat'}, {surface: i, kc: 'form:poss3'}]}
+      reverse: Šaharniŋ maḥallāti
+  translations:
+    en: The (quarters|suburbs) of the (city|town).
+- id: s.11.29
+  node: chg.u11.at-its-feet
+  forms:
+    chg-Arab/standard:
+      text: ایاقیم.
+      tokens:
+      - {surface: ایاقیم, sense: ayaq, morphs: [{surface: ایاق, kc: 'sense:ayaq'}, {surface: یم, kc: 'form:poss1s'}]}
+      reverse: ایاقیم
+    chg-Latn/schluessel:
+      text: Ayaqim.
+      tokens:
+      - {surface: Ayaqim, sense: ayaq, morphs: [{surface: Ayaq, kc: 'sense:ayaq'}, {surface: im, kc: 'form:poss1s'}]}
+      reverse: Ayaqim
+  translations:
+    en: My foot.
+- id: s.11.30
+  node: chg.u11.at-its-feet
+  forms:
+    chg-Arab/standard:
+      text: تاغنینک آستیده.
+      tokens:
+      - {surface: تاغنینک, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: آستیده, sense: ast, morphs: [{surface: آست, kc: 'sense:ast'}, {surface: ی, kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+      reverse: تاغنینک (آستیده|آستیدا)
+    chg-Latn/schluessel:
+      text: Taǧniŋ astida.
+      tokens:
+      - {surface: Taǧniŋ, sense: tagh, morphs: [{surface: Taǧ, kc: 'sense:tagh'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: astida, sense: ast, morphs: [{surface: ast, kc: 'sense:ast'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      reverse: Taǧniŋ astida
+  translations:
+    en: (Under|At the foot of|Below) the mountain.
+- id: s.11.31
+  node: chg.u11.at-its-feet
+  forms:
+    chg-Arab/standard:
+      text: تمام شهر و محلات ایاق آستیده.
+      tokens:
+      - {surface: تمام, sense: tamam}
+      - {surface: شهر, sense: shahar}
+      - {surface: و, sense: wa}
+      - {surface: محلات, sense: mahallat}
+      - {surface: ایاق, sense: ayaq}
+      - {surface: آستیده, sense: ast, morphs: [{surface: آست, kc: 'sense:ast'}, {surface: ی, kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+      reverse: تمام شهر و محلات ایاق (آستیده|آستیدا)
+    chg-Latn/schluessel:
+      text: Tamām šahar wä maḥallāt ayaq astida.
+      tokens:
+      - {surface: Tamām, sense: tamam}
+      - {surface: šahar, sense: shahar}
+      - {surface: wä, sense: wa}
+      - {surface: maḥallāt, sense: mahallat}
+      - {surface: ayaq, sense: ayaq}
+      - {surface: astida, sense: ast, morphs: [{surface: ast, kc: 'sense:ast'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      reverse: Tamām šahar wä maḥallāt ayaq astida
+  translations:
+    en: The whole (city|town) and its (quarters|suburbs) are at its feet.
+stories:
+- id: chg.story.the-pavilion-at-osh
+  node: chg.u11.story
+  title:
+    en: 'The pavilion at Osh (Babur, Bāburnāma: Osh)'
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "اندجان\u200cنینک شرق جنوبی طرفی\u200cدور."
+          tokens:
+          - {surface: "اندجان\u200cنینک", sense: andijan, morphs: [{surface: "اندجان\u200c", kc: 'sense:andijan'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: شرق, sense: sharq}
+          - {surface: جنوبی, sense: janub, morphs: [{surface: جنوب, kc: 'sense:janub'}, {surface: ی, kc: 'form:nisba'}]}
+          - {surface: "طرفی\u200cدور", sense: taraf, morphs: [{surface: طرف, kc: 'sense:taraf'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: دور, kc: 'form:dur'}]}
+        chg-Latn/schluessel:
+          text: Andijānniŋ šarq janūbī ṭarafidur.
+          tokens:
+          - {surface: Andijānniŋ, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: niŋ, kc: 'form:gen'}]}
+          - {surface: šarq, sense: sharq}
+          - {surface: janūbī, sense: janub, morphs: [{surface: janūb, kc: 'sense:janub'}, {surface: ī, kc: 'form:nisba'}]}
+          - {surface: ṭarafidur, sense: taraf, morphs: [{surface: ṭaraf, kc: 'sense:taraf'}, {surface: i, kc: 'form:poss3'}, {surface: dur, kc: 'form:dur'}]}
+      translations:
+        en: It lies to the southeast of Andijan.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "اندجان\u200cدین تورت یغاچ یول\u200cدور."
+          tokens:
+          - {surface: "اندجان\u200cدین", sense: andijan, morphs: [{surface: "اندجان\u200c", kc: 'sense:andijan'}, {surface: دین, kc: 'form:abl'}]}
+          - {surface: تورت, sense: tort}
+          - {surface: یغاچ, sense: yaghach}
+          - {surface: "یول\u200cدور", sense: yol, morphs: [{surface: "یول\u200c", kc: 'sense:yol'}, {surface: دور, kc: 'form:dur'}]}
+        chg-Latn/schluessel:
+          text: Andijāndin tört yaǧač yoldur.
+          tokens:
+          - {surface: Andijāndin, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: din, kc: 'form:abl'}]}
+          - {surface: tört, sense: tort}
+          - {surface: yaǧač, sense: yaghach}
+          - {surface: yoldur, sense: yol, morphs: [{surface: yol, kc: 'sense:yol'}, {surface: dur, kc: 'form:dur'}]}
+      translations:
+        en: It is four leagues' journey from Andijan.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "اقار سُوی فراوان\u200cدور."
+          tokens:
+          - {surface: اقار, sense: aq.flow, morphs: [{surface: اق, kc: 'sense:aq.flow'}, {surface: ار, kc: 'form:aor'}]}
+          - {surface: سُوی, sense: su, morphs: [{surface: سُو, kc: 'sense:su'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: "فراوان\u200cدور", sense: farawan, morphs: [{surface: "فراوان\u200c", kc: 'sense:farawan'}, {surface: دور, kc: 'form:dur'}]}
+        chg-Latn/schluessel:
+          text: Aqar süyi farāwāndur.
+          tokens:
+          - {surface: Aqar, sense: aq.flow, morphs: [{surface: Aq, kc: 'sense:aq.flow'}, {surface: ar, kc: 'form:aor'}]}
+          - {surface: süyi, sense: su, morphs: [{surface: sü, kc: 'sense:su'}, {surface: yi, kc: 'form:poss3'}]}
+          - {surface: farāwāndur, sense: farawan, morphs: [{surface: farāwān, kc: 'sense:farawan'}, {surface: dur, kc: 'form:dur'}]}
+      translations:
+        en: Its running water is plentiful.
+  - line:
+      ask: complete
+      gap: sense:mawzun
+      distractors:
+      - sense:kichik
+      - sense:qara
+      forms:
+        chg-Arab/standard:
+          text: "قورغانی\u200cنینک شرق جنوبی جانبی\u200cدا بر موزون تاغ توشوبتور."
+          tokens:
+          - {surface: "قورغانی\u200cنینک", sense: qurghan, morphs: [{surface: قورغان, kc: 'sense:qurghan'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: شرق, sense: sharq}
+          - {surface: جنوبی, sense: janub, morphs: [{surface: جنوب, kc: 'sense:janub'}, {surface: ی, kc: 'form:nisba'}]}
+          - {surface: "جانبی\u200cدا", sense: janib, morphs: [{surface: جانب, kc: 'sense:janib'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: دا, kc: 'form:loc'}]}
+          - {surface: بر, sense: bir}
+          - {surface: موزون, sense: mawzun}
+          - {surface: تاغ, sense: tagh}
+          - {surface: توشوبتور, sense: tush, morphs: [{surface: توش, kc: 'sense:tush'}, {surface: وبتور, kc: 'form:narr'}]}
+        chg-Latn/schluessel:
+          text: Qurǧaniniŋ šarq janūbī jānibida bir mawzūn taǧ tüšüptur.
+          tokens:
+          - {surface: Qurǧaniniŋ, sense: qurghan, morphs: [{surface: Qurǧan, kc: 'sense:qurghan'}, {surface: i, kc: 'form:poss3'}, {surface: niŋ, kc: 'form:gen'}]}
+          - {surface: šarq, sense: sharq}
+          - {surface: janūbī, sense: janub, morphs: [{surface: janūb, kc: 'sense:janub'}, {surface: ī, kc: 'form:nisba'}]}
+          - {surface: jānibida, sense: janib, morphs: [{surface: jānib, kc: 'sense:janib'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+          - {surface: bir, sense: bir}
+          - {surface: mawzūn, sense: mawzun}
+          - {surface: taǧ, sense: tagh}
+          - {surface: tüšüptur, sense: tush, morphs: [{surface: tüš, kc: 'sense:tush'}, {surface: üptur, kc: 'form:narr'}]}
+      translations:
+        en: To the southeast of its fortress lies a well-shaped mountain.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "بو تاغ\u200cنینک قله\u200cسی\u200cدا سلطان محمود خان بر حجره سالیب\u200cتور."
+          tokens:
+          - {surface: بو, sense: bu}
+          - {surface: "تاغ\u200cنینک", sense: tagh, morphs: [{surface: "تاغ\u200c", kc: 'sense:tagh'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: "قله\u200cسی\u200cدا", sense: qulla, morphs: [{surface: "قله\u200c", kc: 'sense:qulla'}, {surface: "سی\u200c", kc: 'form:poss3'}, {surface: دا, kc: 'form:loc'}]}
+          - {surface: سلطان, sense: sultan}
+          - {surface: محمود, sense: mahmud}
+          - {surface: خان, sense: khan}
+          - {surface: بر, sense: bir}
+          - {surface: حجره, sense: hujra}
+          - {surface: "سالیب\u200cتور", sense: sal, morphs: [{surface: "سالیب\u200c", kc: 'sense:sal'}, {surface: تور, kc: 'form:narr'}]}
+        chg-Latn/schluessel:
+          text: Bu taǧniŋ qullasida sulṭān Maḥmūd ḫan bir ḥujra saliptur.
+          tokens:
+          - {surface: Bu, sense: bu}
+          - {surface: taǧniŋ, sense: tagh, morphs: [{surface: taǧ, kc: 'sense:tagh'}, {surface: niŋ, kc: 'form:gen'}]}
+          - {surface: qullasida, sense: qulla, morphs: [{surface: qulla, kc: 'sense:qulla'}, {surface: si, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+          - {surface: sulṭān, sense: sultan}
+          - {surface: Maḥmūd, sense: mahmud}
+          - {surface: ḫan, sense: khan}
+          - {surface: bir, sense: bir}
+          - {surface: ḥujra, sense: hujra}
+          - {surface: saliptur, sense: sal, morphs: [{surface: sal, kc: 'sense:sal'}, {surface: iptur, kc: 'form:narr'}]}
+      translations:
+        en: On the peak of this mountain Sultan Mahmud Khan built a pavilion.
+  - choose:
+      prompt:
+        en: Who built the pavilion on the peak?
+      options:
+      - en: Sultan Mahmud Khan
+      - en: Babur himself
+      - en: The people of Osh
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "اکرچه اول حجره موندین مرتفع\u200cدور، ولی بو حجره بسیار یخشیراق واقع بولوبتور."
+          tokens:
+          - {surface: اکرچه, sense: agarcha}
+          - {surface: اول, sense: ul}
+          - {surface: حجره, sense: hujra}
+          - {surface: موندین, sense: bu, morphs: [{surface: مون, kc: 'sense:bu'}, {surface: دین, kc: 'form:abl'}]}
+          - {surface: "مرتفع\u200cدور", sense: murtafi, morphs: [{surface: "مرتفع\u200c", kc: 'sense:murtafi'}, {surface: دور, kc: 'form:dur'}]}
+          - {surface: ولی, sense: wali}
+          - {surface: بو, sense: bu}
+          - {surface: حجره, sense: hujra}
+          - {surface: بسیار, sense: besyar}
+          - {surface: یخشیراق, sense: yakhshi, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
+          - {surface: واقع, sense: waqi}
+          - {surface: بولوبتور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: وبتور, kc: 'form:narr'}]}
+        chg-Latn/schluessel:
+          text: Ägärčä ul ḥujra mundin murtafiʿdur, walī bu ḥujra besyār yaḫširaq wāqiʿ boluptur.
+          tokens:
+          - {surface: Ägärčä, sense: agarcha}
+          - {surface: ul, sense: ul}
+          - {surface: ḥujra, sense: hujra}
+          - {surface: mundin, sense: bu, morphs: [{surface: mun, kc: 'sense:bu'}, {surface: din, kc: 'form:abl'}]}
+          - {surface: murtafiʿdur, sense: murtafi, morphs: [{surface: murtafiʿ, kc: 'sense:murtafi'}, {surface: dur, kc: 'form:dur'}]}
+          - {surface: walī, sense: wali}
+          - {surface: bu, sense: bu}
+          - {surface: ḥujra, sense: hujra}
+          - {surface: besyār, sense: besyar}
+          - {surface: yaḫširaq, sense: yakhshi, morphs: [{surface: yaḫši, kc: 'sense:yakhshi'}, {surface: raq, kc: 'form:cmp'}]}
+          - {surface: wāqiʿ, sense: waqi}
+          - {surface: boluptur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: uptur, kc: 'form:narr'}]}
+      translations:
+        en: Although that pavilion is higher than this one, this pavilion is placed much better.
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: تمام شهر و محلات ایاق آستیدا.
+          tokens:
+          - {surface: تمام, sense: tamam}
+          - {surface: شهر, sense: shahar}
+          - {surface: و, sense: wa}
+          - {surface: محلات, sense: mahallat}
+          - {surface: ایاق, sense: ayaq}
+          - {surface: آستیدا, sense: ast, morphs: [{surface: آست, kc: 'sense:ast'}, {surface: ی, kc: 'form:poss3'}, {surface: دا, kc: 'form:loc'}]}
+        chg-Latn/schluessel:
+          text: Tamām šahar wä maḥallāt ayaq astida.
+          tokens:
+          - {surface: Tamām, sense: tamam}
+          - {surface: šahar, sense: shahar}
+          - {surface: wä, sense: wa}
+          - {surface: maḥallāt, sense: mahallat}
+          - {surface: ayaq, sense: ayaq}
+          - {surface: astida, sense: ast, morphs: [{surface: ast, kc: 'sense:ast'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      translations:
+        en: The whole city and its quarters lie at its feet.
+  - choose:
+      prompt:
+        en: Why does Babur like his own pavilion better?
+      options:
+      - en: It is placed better, with the whole town at its feet.
+      - en: It is higher than the khan's.
+      - en: It is bigger.
+      answer: 0
+scenarios:
+- id: chg.the-road-to-osh
+  after: chg.u11.although
+  title:
+    en: The road to Osh
+  setting:
+    en: A caravan road out of Andijan in spring, about 1500. You are travelling to Osh.
+  character:
+    en: A carter who drives this road every week and speaks only Turki.
+  goal:
+    en: Ask how far Osh is and which way it lies, what there is to see there (the mountain, the pavilions, the running water), and say which you would rather visit, and why.
