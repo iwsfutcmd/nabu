@@ -81,6 +81,7 @@ declare const styles: {
   readonly segment: string;
   readonly segments: string;
   readonly solution: string;
+  readonly spelled: string;
   readonly spokenName: string;
   readonly switch: string;
   readonly switchThumb: string;

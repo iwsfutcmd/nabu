@@ -471,6 +471,13 @@
   cursor: pointer;
 }
 
+/* Letters placed to build a word (word-write) show as the word they spell, one run of text, so a
+   script whose letters join shows them joined. */
+.spelled {
+  padding-inline: var(--nabu-space-4);
+  font-size: 1.25em;
+}
+
 /* A placed tile leaves its shape behind, so the bank never reflows. */
 .tileSlot {
   visibility: hidden;

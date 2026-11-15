@@ -34,7 +34,7 @@ import type {
 } from "@nabu/core/lesson";
 import { isCorrect } from "@nabu/core/lesson";
 import { hearOnDevice, toneSystemById, toneSystemOf, type SpeechResult, type ToneScore, type ToneSystem } from "@nabu/core/speech";
-import { textOfSurface } from "@nabu/core/text";
+import { surfaceOf, textOfSurface } from "@nabu/core/text";
 import { directionOf, orthographyName, toneName, type MessageId } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useLayoutEffect, useRef, useState, type JSX, type ReactNode } from "react";
@@ -383,7 +383,7 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
  * run in the answer language's direction, and become columns in vertical text.
  */
 /** Where focus goes once the tiles change under it (P10), so it never falls back to the page. */
-type FocusNext = { readonly kind: "bank"; readonly tile: number } | { readonly kind: "placed"; readonly position: number } | { readonly kind: "check" };
+type FocusNext = { readonly kind: "bank"; readonly tile: number } | { readonly kind: "placed"; readonly position: number } | { readonly kind: "spelled" } | { readonly kind: "check" };
 
 /**
  * The answer row and the bank of tiles (translate-tap, listen-tap, story-arrange, word-write).
@@ -392,6 +392,10 @@ type FocusNext = { readonly kind: "bank"; readonly tile: number } | { readonly k
  * empty), so the next Enter never submits half an answer; the bank is described by the instruction
  * and prompt (`parts`), and a placed tile says that pressing it takes it back. Number keys place the
  * bank's tiles in reading order, and the numbers show where a keyboard is likely.
+ *
+ * Letters building a word (word-write) show as the word they spell, one run of text, so a script
+ * whose letters join shows them joined (ت و ز placed read توز), and syllables and marks form as
+ * they would in writing; pressing the word, or Backspace, takes back its last letter.
  */
 const WordBank = ({ props, ex, parts }: { props: Props<TranslateTap | ListenTap | StoryArrange>; ex: TranslateTap | ListenTap | StoryArrange; parts: readonly ("prompt" | "gap" | "hint")[] }): JSX.Element => {
   const { locked, dispatch } = props;
@@ -406,6 +410,7 @@ const WordBank = ({ props, ex, parts }: { props: Props<TranslateTap | ListenTap 
   const intoTarget = ex.template !== "translate-tap.l2-l1";
   const mode = intoTarget ? effectiveWritingMode(answerProfile, props.writingMode, "wordbank") : "horizontal-tb";
   const remaining = ex.tiles.map((_, i) => i).filter((i) => !placed.has(i));
+  const spelling = ex.template === "word-write";
   const set = (next: readonly number[]): void => {
     if (!locked) dispatch({ tag: "input", draft: { tag: "tiles", order: next } });
   };
@@ -423,7 +428,7 @@ const WordBank = ({ props, ex, parts }: { props: Props<TranslateTap | ListenTap 
   const remove = (position: number, handOn: boolean): void => {
     const tile = order[position];
     if (tile === undefined || locked) return;
-    if (handOn) focusNext.current = order.length > 1 ? { kind: "placed", position: Math.min(position, order.length - 2) } : { kind: "bank", tile };
+    if (handOn) focusNext.current = order.length > 1 ? (spelling ? { kind: "spelled" } : { kind: "placed", position: Math.min(position, order.length - 2) }) : { kind: "bank", tile };
     set(order.filter((_, p) => p !== position));
   };
   useLayoutEffect(() => {
@@ -436,7 +441,9 @@ const WordBank = ({ props, ex, parts }: { props: Props<TranslateTap | ListenTap 
         ? root.closest("[data-lesson-player], [data-story-reader]")?.querySelector<HTMLElement>("[data-action=check]")
         : next.kind === "bank"
           ? root.querySelector<HTMLElement>(`[data-tile="${next.tile}"]`)
-          : root.querySelectorAll<HTMLElement>("[data-placed-tile]")[next.position];
+          : next.kind === "spelled"
+            ? root.querySelector<HTMLElement>("[data-spelled-word]")
+            : root.querySelectorAll<HTMLElement>("[data-placed-tile]")[next.position];
     el?.focus({ preventScroll: true });
   });
   useShortcuts(
@@ -445,7 +452,7 @@ const WordBank = ({ props, ex, parts }: { props: Props<TranslateTap | ListenTap 
       const tile = remaining[k];
       if (tile !== undefined) add(tile, has(`[data-tile="${tile}"]`));
     },
-    () => remove(order.length - 1, has(`[data-placed-tile="${order.at(-1) ?? -1}"]`)),
+    () => remove(order.length - 1, has(spelling ? "[data-spelled-word]" : `[data-placed-tile="${order.at(-1) ?? -1}"]`)),
   );
   const tileRuby = intoTarget ? props.ruby : false;
   return (
@@ -463,9 +470,22 @@ const WordBank = ({ props, ex, parts }: { props: Props<TranslateTap | ListenTap 
         }}
       >
         <span id={removeHint} hidden>
-          {t.format("player.wordbank.remove")}
+          {t.format(spelling ? "player.wordbank.remove-last" : "player.wordbank.remove")}
         </span>
-        {order.map((tileIndex, position) => (
+        {spelling && order.length > 0 && (
+          <button
+            type="button"
+            className={`${styles.tile} ${styles.spelled}`}
+            disabled={locked}
+            aria-describedby={removeHint}
+            data-ink-container="tile"
+            data-spelled-word={order.join(" ")}
+            onClick={() => remove(order.length - 1, true)}
+          >
+            <T text={textOfSurface(ex.canonical, order.map((i) => surfaceOf(ex.tiles[i] as TaggedText)).join(ex.joiner).normalize("NFC"))} marks={props.marks} />
+          </button>
+        )}
+        {!spelling && order.map((tileIndex, position) => (
           <button
             key={`${tileIndex}`}
             type="button"
