@@ -777,9 +777,10 @@ references in the reference library (find them with `nabu refs find`; notes in n
 - "You": siz is drafted as the polite singular and the plural, sän as familiar (Schluessel, 4.3.1); tags follow.
 - The alphabet track (units/abc.yaml): the order of the letter groups, each letter's values and notes, and the words
   each node drills.
-- Units 11-17 (A2-B1): Navai's kanj is read as Persian ganj "treasure" ("You have found Decius's treasure!"), where
+- Units 11-18 (A2-B1): Navai's kanj is read as Persian ganj "treasure" ("You have found Decius's treasure!"), where
   Schluessel glosses it "oneself"; Qasim Beg's text is Schluessel's, slightly altered by him from the manuscript; the
   first line of the Stories of the Prophets leaves out the blessing after Adam's name (marked …); unit 15's story
   keeps only the Flood, the old woman and the box of its passage (the rest is not for learners), and its Arabic is
   read from the manuscript (صندوقدا, کیشیکا, برسانک, یغاچی, ایتیکه): check those readings. Unit 17 reads rūy-i ʿālam as Schluessel's glossary has it (his
-  transliteration of the passage has rawī ʿālam) and leaves out the passage's closing threat of a curse.
+  transliteration of the passage has rawī ʿālam) and leaves out the passage's closing threat of a curse. Unit 18's passage is the blacksmiths'
+  manual as Schluessel altered it for clarity; it reads ahangirlik as he does (ahangarlik elsewhere in his book).

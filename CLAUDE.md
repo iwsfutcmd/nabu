@@ -558,9 +558,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Suffixes are morphs with form KCs (form:dat, form:past-1s, form:pres, form:mis …); verbs are cited as stems with
   a hyphen (bar-). Homographs take a suffix (bar.go, at.name, kim.that, yuz.face).
 - Schluessel's book is CC BY-NC-ND: take facts from it (letters, suffixes, spellings, glosses), never his example
-  sentences. Stories are public-domain passages (Babur, the Tadhkira, Abu 'l-Ghazi, Navai, Qasim Beg, the Prophets) as he types them, in the
-  source's spellings (فادشاه, پز, tep), with his reading in the Latin. PDF page = book page + 35; check Arabic on
-  page images. Notes in `nabu/notes/chg/`.
+  sentences or the documents he composed (ch. 7). Stories are public-domain passages (Babur, the Tadhkira, Abu
+  'l-Ghazi, Navai, Qasim Beg, the Prophets, a risāla) as he types them, in the source's spellings (فادشاه, پز, tep),
+  with his reading in the Latin. PDF page = book page + 35; check Arabic on page images. Notes in `nabu/notes/chg/`.
 - "You": sän tagged to one person, sizlär to several, siz (polite or plural) untagged; accept sets take the forms
   that fit. No gender: he/she in English accept sets.
 - The Arabic alphabet track (units/abc.yaml) takes its Latin spellings from each KC's chg-Latn form (`romanize:
