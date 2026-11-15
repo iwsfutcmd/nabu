@@ -775,3 +775,5 @@ references in the reference library (find them with `nabu refs find`; notes in n
 - The grading policies marked REVIEW in profiles/chg-Arab.standard.yaml and profiles/chg-Latn.schluessel.yaml:
   half-spaces silent, ک/گ as one letter, transliteration marks noted not failed, the contrast sets.
 - "You": siz is drafted as the polite singular and the plural, sän as familiar (Schluessel, 4.3.1); tags follow.
+- The alphabet track (units/abc.yaml): the order of the letter groups, each letter's values and notes, and the words
+  each node drills.

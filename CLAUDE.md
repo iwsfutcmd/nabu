@@ -550,7 +550,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `romanize` is `{scheme, orthography}`; a form with no letter is `script.no-letter` (ADR 0124).
 
 ## Chaghatay notes (see docs/adr/0128)
-- courses/chg is Chaghatay (literary Turki), read and written only (`facets: [recognize, produce]`, no audio). Two
+- courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). Two
   orthographies, every sentence and story line pinned in both, word for word (same senses and suffix morphs; a test
   checks it): chg-Arab/standard, the baseline, and chg-Latn/schluessel, Schluessel's transliteration (2018).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
@@ -563,6 +563,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   page images. Notes in `nabu/notes/chg/`.
 - "You": sän tagged to one person, sizlär to several, siz (polite or plural) untagged; accept sets take the forms
   that fit. No gender: he/she in English accept sets.
+- The Arabic alphabet track (units/abc.yaml) takes its Latin spellings from each KC's chg-Latn form (`romanize:
+  {scheme: forms}`): a word it drills needs a form in both orthographies; no verb stems (their hyphen).
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

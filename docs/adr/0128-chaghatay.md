@@ -2,6 +2,7 @@
 
 - Status: Proposed
 - Date: 2026-11-15
+- Amends: [0124](0124-script-tracks-from-the-profile.md) (a romanization scheme `forms`)
 
 ## Context
 
@@ -47,7 +48,18 @@ later chapters read are older texts in the public domain (Babur, Abu 'l-Ghazi, N
 - Conformance vectors pin all of this in both harnesses (normalize, grade, direction).
 - The three new notes are in every UI catalog (drafts outside English, stamped).
 
-**Read and written, never heard**: `facets: [recognize, produce]`, no audio (as lzh, ADR 0071).
+**Read and written, never heard**: `facets: [recognize, produce, read-script, write-script]`, no audio (as lzh,
+ADR 0071); the script facets are the alphabet track's.
+
+**An alphabet track** (units/abc.yaml, ADR 0088), as Schluessel's book opens with one: eight nodes in his groups of
+letters that share a shape (2018, xi-xxxii), reordered so that words can be read from the first node (alif and the
+be family, then the letters that do not join, then ye …), each drilling early words of the course spelled with
+the letters taught by then. It is the Arabic orthography's: a learner of the transliteration has no such row.
+- An abjad's words cannot be romanized from their letters (کوشت is göšt, not kwšt), so the profile's
+  `romanize` names a new scheme, **`forms`**: a letter's and a word's Latin spelling is its KC's own first form in
+  the named orthography (chg-Latn/schluessel), which each then needs (`script.missing-form`). A letter's form there
+  gives all its values (و "w / u / o / ü / ö / ū"; ه "h / a / ä"). A Latin orthography the course teaches is not
+  shipped twice.
 
 **The course** (`courses/chg`): ten units, A1 to A2, each teaching the words of an authentic passage that its
 story reads, in the order of Schluessel's grammar (copula and existence, cases, persons and questions, the
@@ -82,9 +94,7 @@ and accept sets take siz as well; untagged siz sentences accept all three (ADR 0
 - The course was written from a compact source (each word as stem and suffix keys, both scripts built from the
   same pieces), kept in the reference library (`nabu/notes/chg/generator`), not in the repository: the YAML is the
   source now, and the test keeps the two scripts in step.
-- Not done: no alphabet track (ADR 0088) yet, though Schluessel's book opens with one: a Latin spelling for an
-  abjad's words needs the word's transliteration, not a romanization scheme; no ruby: an Arabic word cannot carry
-  its transliteration above it (ruby is per character or syllable today); no vocalization file (harakat); words
-  not checked against the Navai dictionary.
+- Not done: no ruby (an Arabic word cannot carry its transliteration above it: ruby is per character or syllable
+  today); no vocalization file (harakat); words not checked against the Navai dictionary.
 - Every spelling of a Turkic word follows one convention, where the manuscripts have many: accept sets add the
   common ones (plene and defective vowels, the dative's غه که قه گه, ایرماس for ایماس), never all.

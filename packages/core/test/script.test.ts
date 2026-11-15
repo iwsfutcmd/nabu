@@ -128,3 +128,48 @@ describe("script track: the Greek alphabet (grc)", () => {
     for (const t of SCRIPT_TEMPLATES) expect(SENTENCE_TEMPLATES[t]).toBeUndefined();
   });
 });
+
+/**
+ * Chaghatay's Arabic alphabet (ADR 0128): Latin spellings are the course's own transliteration of
+ * each letter and word (`romanize: forms`), and the row is there only for learners of the Arabic.
+ */
+describe("script track: the Arabic alphabet of Chaghatay (chg)", () => {
+  const chg = loadCourse("chg", "chg-Arab/standard");
+  const track = scriptNodes(chg);
+
+  it("has eight alphabet nodes in the Arabic script, none for learners of the transliteration", () => {
+    expect(track.map((n) => n.node.id)).toHaveLength(8);
+    expect(track.every((n) => n.node.alphabet.orthography === "chg-Arab/standard")).toBe(true);
+    expect(scriptNodes(loadCourse("chg", "chg-Latn/schluessel"))).toEqual([]);
+  });
+
+  it("spells letters and words in Schluessel's transliteration, as the course pins them", () => {
+    const first = track[0]?.node.alphabet;
+    expect(first?.letters.map((l) => [surfaceOf(l.text), surfaceOf(l.latin)])).toContainEqual(["ب", "b"]);
+    const latin = new Map(track.flatMap((n) => n.node.alphabet.words).map((w) => [surfaceOf(w.text), surfaceOf(w.latin)]));
+    expect(latin.get("نان")).toBe("nan");
+    expect(latin.get("چای")).toBe("čay");
+  });
+
+  it("plans each node from its letters and words, presents every new letter, and grades its own answers right", () => {
+    const grader = createGrader(chg);
+    const factory = eventFactory(chg, "test");
+    const events: LearnerEvent[] = [];
+    let state = emptyLearnerState();
+    for (const [i, n] of track.entries()) {
+      const session = plan(chg, state, { mode: "lesson", node: n.node.id }, { now: NOW, seed: 3 + i });
+      expect(session.exercises.length).toBeGreaterThan(3);
+      for (const ex of session.exercises) {
+        expect(SCRIPT_TEMPLATES.has(ex.template)).toBe(true);
+        expect(gradeExercise(ex, right(ex), grader).verdict).toBe("CORRECT");
+      }
+      const presented = new Set(session.exercises.flatMap((ex) => ex.kcs));
+      for (const kc of n.node.introduces) expect(presented, `${n.node.id}: ${kc}`).toContain(kc);
+      factory.session();
+      events.push(factory.started("lesson", n.node.id, session.exercises.length));
+      for (const ex of session.exercises) events.push(factory.answer(ex, true, 1));
+      events.push(factory.completed("lesson", n.node.id, { exercises: session.exercises.length, correctFirstTry: session.exercises.length, retries: 0 }));
+      state = replay(events);
+    }
+  });
+});

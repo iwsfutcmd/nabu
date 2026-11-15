@@ -54,4 +54,7 @@ input:
   keyboard: cldr-kbd:fa
   extraKeys: ["\u200C"]          # ZWNJ on the special-character bar
 layout: { vertical: none }
+# The alphabet track's Latin spellings (ADR 0088, 0124, 0128): each letter's and word's own form in Schluessel's
+# transliteration, as the course pins it; an abjad's words cannot be romanized from their letters.
+romanize: { scheme: forms, orthography: chg-Latn/schluessel }
 fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9, scale: 1.1 }

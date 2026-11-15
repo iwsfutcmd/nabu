@@ -17,7 +17,9 @@ A word of an alphabet node must be spelled with the letters taught by then
 A grapheme KC whose first form has no letter would be in every word (`script.no-letter`). The
 orthography's profile names its romanization (`romanize`: a scheme, and the orthography of the
 Latin spellings, which needs a profile: `script.no-romanization`), and each word needs a form in
-the orthography (`script.missing-form`).
+the orthography (`script.missing-form`). The scheme `forms` romanizes nothing: a letter's and a
+word's Latin spelling is its KC's own first form in that orthography (chg's Schluessel
+transliteration, ADR 0128), which each then needs too (`script.missing-form`).
 """
 
 from __future__ import annotations
@@ -25,11 +27,12 @@ from __future__ import annotations
 import unicodedata
 from collections.abc import Callable
 from dataclasses import dataclass, field
+from functools import partial
 from typing import TYPE_CHECKING, Any
 
 from nabu import greek_translit
 from nabu.compiler.diagnostics import Diagnostics, Loc
-from nabu.schema.models import CourseSource, OrthographyProfile
+from nabu.schema.models import CourseSource, KnowledgeComponentSource, OrthographyProfile
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Unit
@@ -126,7 +129,7 @@ def _item(
     tagged: Callable[[str, str], dict[str, Any]],
     orth: str,
     latin_orth: str,
-    romanize: Callable[[str], str],
+    latin: str,
     kc: str,
     text: str,
     letters: list[str],
@@ -136,8 +139,30 @@ def _item(
         "kc": kc,
         "letters": letters,
         "text": tagged(orth, text),
-        "latin": tagged(latin_orth, romanize(text)),
+        "latin": tagged(latin_orth, latin),
     }
+
+
+def _latin(
+    diags: Diagnostics,
+    kcs: dict[str, tuple[Unit, int, KnowledgeComponentSource]],
+    romanize: Callable[[str], str] | None,
+    latin_orth: str,
+    node_id: str,
+    kc_id: str,
+    text: str,
+    where: Loc,
+) -> str | None:
+    """A letter's or word's Latin spelling: romanized from its text, or its KC's own first form in
+    the Latin orthography (the scheme `forms`, ADR 0128)."""
+    if romanize is not None:
+        return romanize(text)
+    found = kcs.get(kc_id)
+    own = (found[2].forms or {}).get(latin_orth, []) if found is not None else []
+    if not own:
+        diags.report("script.missing-form", f"{node_id}: {kc_id} has no {latin_orth} form", where)
+        return None
+    return own[0]
 
 
 def compile_alphabets(
@@ -171,7 +196,7 @@ def compile_alphabets(
             scheme = profile.romanize.scheme if profile.romanize is not None else None
             romanize = ROMANIZERS.get(scheme) if scheme is not None else None
             latin_orth = romanized(profile)
-            if romanize is None or latin_orth is None:
+            if (romanize is None and scheme != "forms") or latin_orth is None:
                 diags.report(
                     "script.no-romanization",
                     f"{node.id}: {orth} has no romanization (its profile's `romanize`)",
@@ -188,6 +213,9 @@ def compile_alphabets(
             read = readers.get(orth)
             if read is None:
                 read = readers[orth] = Reader.of(cli, orth, profile)
+
+            latin_of = partial(_latin, diags, kcs, romanize, str(latin_orth), node.id)
+
             new: list[Grapheme] = []
             for kc_id in node.introduces or []:
                 found = kcs.get(kc_id)
@@ -205,6 +233,8 @@ def compile_alphabets(
                         "of its profile: it would be in every word",
                         kc_unit.doc.loc("kcs", ki, "forms", orth, 0),
                     )
+                    continue
+                if latin_of(kc_id, g.form, kc_unit.doc.loc("kcs", ki, "forms")) is None:
                     continue
                 new.append(g)
             so_far = [*taught.get(orth, []), *new]
@@ -231,12 +261,15 @@ def compile_alphabets(
                         wloc,
                     )
                     continue
+                latin = latin_of(kc_id, word, wloc)
+                if latin is None:
+                    continue
                 words.append(
                     _item(
                         tagged,
                         orth,
                         latin_orth,
-                        romanize,
+                        latin,
                         kc_id,
                         word,
                         [g.kc for g in so_far if g.occurs(spelled)],
@@ -245,7 +278,16 @@ def compile_alphabets(
             out[node.id] = {
                 "orthography": orth,
                 "letters": [
-                    _item(tagged, orth, latin_orth, romanize, g.kc, g.form, [g.kc]) for g in new
+                    _item(
+                        tagged,
+                        orth,
+                        latin_orth,
+                        latin_of(g.kc, g.form, loc) or "",
+                        g.kc,
+                        g.form,
+                        [g.kc],
+                    )
+                    for g in new
                 ],
                 "words": words,
             }
@@ -256,11 +298,16 @@ def romanized_orthographies(
     course: CourseSource, profiles: dict[str, OrthographyProfile]
 ) -> list[str]:
     """The Latin orthographies a course's alphabet nodes tag their spellings with: their profiles
-    ship in the bundle beside the course's own."""
+    ship in the bundle beside the course's own (a course orthography ships anyway)."""
     out: list[str] = []
     for orth in course.orthographies:
         profile = profiles.get(orth)
         latin = romanized(profile) if profile is not None else None
-        if latin is not None and latin in profiles and latin not in out:
+        if (
+            latin is not None
+            and latin in profiles
+            and latin not in out
+            and latin not in course.orthographies
+        ):
             out.append(latin)
     return out

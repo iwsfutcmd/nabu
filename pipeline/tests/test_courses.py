@@ -599,13 +599,14 @@ SCHLUESSEL = regex.compile(rf"{_LETTER}+(?:-{_LETTER}+)*", regex.IGNORECASE)
 
 
 def test_chaghatay_is_read_and_written_in_two_scripts(core_cli: CoreCli) -> None:
-    """chg (ADR 0128): no audio, read and written only. Every sentence and story line is pinned in
+    """chg (ADR 0128): no audio, read and written only (and its alphabet's letters and words read
+    and written: the script facets). Every sentence and story line is pinned in
     the Arabic script and in Schluessel's transliteration, word for word: the same senses and
     suffixes in the same order, the Latin in his letters, the Arabic in Arabic letters (a suffix
     after a zero-width non-joiner)."""
     _, compiled = build(core_cli, "chg")
     assert compiled.course.audio is None and compiled.audio_items == {}
-    assert compiled.course.facets == ["recognize", "produce"]
+    assert compiled.course.facets == ["recognize", "produce", "read-script", "write-script"]
     assert compiled.orthographies == [CHG_AR, CHG_LA]
     arabic = regex.compile(r"[\p{Script_Extensions=Arabic}\u200c]+")
     lines = 0
@@ -636,3 +637,32 @@ def test_chaghatay_is_read_and_written_in_two_scripts(core_cli: CoreCli) -> None
                     check(step["line"]["forms"], story["id"])
                     lines += 1
     assert lines > 50
+
+
+def test_chaghatay_alphabet_track(core_cli: CoreCli) -> None:
+    """chg's script track (ADR 0088, 0128): eight alphabet nodes in the Arabic script, each word
+    spelled with the letters taught by then, every letter and word with its Latin spelling taken
+    from its own form in Schluessel's transliteration (`romanize: forms`), not romanized from its
+    letters."""
+    _, compiled = build(core_cli, "chg")
+    forms = {
+        k["id"]: {o: "".join(t["surface"] for t in f[0]["tokens"]) for o, f in k["forms"].items()}
+        for u in bundled(compiled)
+        for k in u["kcs"]
+        if "forms" in k
+    }
+    nodes = [n for u in bundled(compiled) for n in u["nodes"] if n["kind"] == "script"]
+    assert len(nodes) == 8
+    words = 0
+    for node in nodes:
+        alphabet = node["alphabet"]
+        assert alphabet["orthography"] == CHG_AR
+        for item in [*alphabet["letters"], *alphabet["words"]]:
+            text = "".join(t["surface"] for t in item["text"]["tokens"])
+            latin = "".join(t["surface"] for t in item["latin"]["tokens"])
+            assert item["latin"]["orthography"] == CHG_LA
+            assert forms[item["kc"]][CHG_AR] == text, item["kc"]
+            assert forms[item["kc"]][CHG_LA] == latin, item["kc"]
+        assert len(alphabet["words"]) >= 4, node["id"]
+        words += len(alphabet["words"])
+    assert words >= 40

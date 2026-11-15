@@ -3290,9 +3290,9 @@ export interface Fonts {
  */
 export interface Romanization {
   /**
-   * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds.
+   * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters.
    */
-  readonly scheme: "greek";
+  readonly scheme: "greek" | "forms";
   readonly orthography: OrthographyId2;
 }
 /**

@@ -2021,9 +2021,9 @@ class Romanization(BaseModel):
         frozen=True,
     )
     scheme: Annotated[
-        Literal["greek"],
+        Literal["greek", "forms"],
         Field(
-            description="A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds."
+            description="A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters."
         ),
     ]
     orthography: Annotated[
