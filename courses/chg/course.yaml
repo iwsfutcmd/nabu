@@ -1,16 +1,16 @@
 # Chaghatay (chg): the literary Turkic of Central Asia, "Turki", from Navai and Babur in the fifteenth century to the
 # manuscripts and documents of Xinjiang in the twentieth (ADR 0128). Read and written, never heard: no audio.
-# Written in the Arabo-Persian script, the course's baseline, and in the transliteration of Schluessel, An
-# Introduction to Chaghatay (2018): every sentence pinned in both. Each unit's lessons teach the words of an
-# authentic passage, and its story reads it: Babur's Bāburnāma, the Tadhkira of Jalāl ud-Dīn Katakī, Abu
-# 'l-Ghazi's Shajara-i Turk, Navai's history of the prophets, Qasim Beg's Events in Ghulja and the Stories of the
-# Prophets, all public domain, as Schluessel (2018) types them from their manuscripts. An alphabet track teaches the
-# Arabic letters beside the units. Grammar and words checked against Schluessel (2018) and Eckmann, Chagatay Manual (1966)
-# in the reference library.
+# Written in the Arabo-Persian script, with the transliteration of Schluessel, An Introduction to Chaghatay (2018),
+# pinned on every word as a reading the learner may show over it (as Classical Chinese shows Pinyin). Each unit's
+# lessons teach the words of an authentic passage, and its story reads it: Babur's Bāburnāma, the Tadhkira of Jalāl
+# ud-Dīn Katakī, Abu 'l-Ghazi's Shajara-i Turk, Navai's history of the prophets, Qasim Beg's Events in Ghulja, the
+# Stories of the Prophets and a blacksmiths' risāla, all public domain, as Schluessel (2018) types them from their
+# manuscripts. An alphabet track teaches the Arabic letters beside the units. Grammar and words checked against
+# Schluessel (2018) and Eckmann, Chagatay Manual (1966) in the reference library.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
 id: chg
 target: chg-Arab
-orthographies: [chg-Arab/standard, chg-Latn/schluessel]
+orthographies: [chg-Arab/standard]
 support: [en-Latn/standard]
 # What the app calls the course and its orthographies, and what the course list says of them, by
 # language (ADR 0109).
@@ -20,41 +20,34 @@ names:
     blurb: "The literary Turki of Central Asia, read in the words of Babur, Navai and the manuscripts."
     orthographies:
       chg-Arab/standard: Arabic script
-      chg-Latn/schluessel: Transliteration
     hints:
       chg-Arab/standard: "As the manuscripts write it."
-      chg-Latn/schluessel: "Schluessel's transliteration, with every vowel written."
   # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
   # await review as those do.
   ar:
     course: "الجغتائية"
     orthographies:
       chg-Arab/standard: "الحروف العربية"
-      chg-Latn/schluessel: "النقحرة اللاتينية"
     provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
   fa:
     course: "جغتایی"
     orthographies:
       chg-Arab/standard: "خط عربی"
-      chg-Latn/schluessel: "آوانویسی لاتین"
     provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
   uz:
     course: "Chigʻatoy tili"
     orthographies:
       chg-Arab/standard: "Arab yozuvi"
-      chg-Latn/schluessel: "Lotin transliteratsiyasi"
     provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
   uz-Cyrl:
     course: "Чиғатой тили"
     orthographies:
       chg-Arab/standard: "Араб ёзуви"
-      chg-Latn/schluessel: "Лотин транслитерацияси"
     provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
   zh-Hant-HK:
     course: "察合台文"
     orthographies:
       chg-Arab/standard: "阿拉伯字母"
-      chg-Latn/schluessel: "拉丁轉寫"
     provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@chg-draft-v1', status: draft}

@@ -49,7 +49,6 @@ const COURSES: readonly (readonly [string, string | undefined])[] = [
   ["tok", "tok-Qaap/sitelen-pona"],
   ["grc", undefined],
   ["chg", "chg-Arab/standard"],
-  ["chg", "chg-Latn/schluessel"],
 ];
 
 interface Walked {

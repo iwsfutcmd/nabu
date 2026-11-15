@@ -49,7 +49,6 @@ describe("planner: 30 simulated days", () => {
     ["yue", "yue-Latn/jyutping", 20, 1.3],
     // Chaghatay (ADR 0128): read and written, in the Arabic script and in Schluessel's transliteration.
     ["chg", "chg-Arab/standard", 21, 1.3],
-    ["chg", "chg-Latn/schluessel", 22, 1.6],
   ];
   for (const [course, orthography, seed, ability] of RUNS) {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {

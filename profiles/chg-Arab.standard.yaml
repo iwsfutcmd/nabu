@@ -1,6 +1,7 @@
-# Chaghatay (Turki) in the Arabo-Persian script (ADR 0128), the baseline orthography of the chg course: the
-# literary Turkic of Central Asia from the fifteenth century to the twentieth, written as typeset editions and
-# Schluessel's An Introduction to Chaghatay (2018) set it.
+# Chaghatay (Turki) in the Arabo-Persian script (ADR 0128), the chg course's one orthography: the literary Turkic
+# of Central Asia from the fifteenth century to the twentieth, written as typeset editions and Schluessel's An
+# Introduction to Chaghatay (2018) set it. Every word pins his transliteration as a reading, shown over the word as
+# ruby on request (as Classical Chinese shows Pinyin).
 #  - Persian letters: keheh ک, Farsi yeh ی (dotless at the end of a word, as Chaghatay hands write it), heh ه for
 #    a final -a/-ä (میوه mewä). The g is mostly ک (کوشت göšt), گ where the course's sources write it.
 #  - ŋ is نک, the letters n and k (منکا maŋa); ڭ, as some prints have it, is the same.
@@ -50,6 +51,10 @@ match:
       - { id: case, note: contrast-case, members: [نی, نینک, [غه, گه, قه, که, غا, قا, کا, گا], [ده, دا, ته, تا], [دین, تین, دان, دن]] }
       - { id: past, note: contrast-person, members: [[دیم, دوم, تیم, توم], [دینک, دونک, تینک], [دینکیز, تینکیز], [دی, تی], [دوق, دوک, توق], [دیلار, تیلار]] }
       - { id: pronoun, note: contrast-pronoun, members: [من, سن, سیز, بیز, سیزلار, اولار] }
+annotations:
+  # Schluessel's transliteration of each word, as ruby over the whole word (the scheme's `ruby: word`): off until
+  # the learner asks, and no exercise drills it.
+  - { id: schluessel, kind: reading, scheme: schluessel, lang: chg-Latn, toggle: true, default: "off", render: ruby, fade: none }
 input:
   keyboard: cldr-kbd:fa
   extraKeys: ["\u200C"]          # ZWNJ on the special-character bar
@@ -57,4 +62,7 @@ layout: { vertical: none }
 # The alphabet track's Latin spellings (ADR 0088, 0124, 0128): each letter's and word's own form in Schluessel's
 # transliteration, as the course pins it; an abjad's words cannot be romanized from their letters.
 romanize: { scheme: forms, orthography: chg-Latn/schluessel }
-fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9, scale: 1.1 }
+# Nastaliq, the hand the manuscripts are written in (Noto Nastaliq Urdu, OFL-1.1): every letter and mark the course
+# writes is in its faces. Its letters climb and drop far from the line (1.9 em above, 0.6 below), so the lines are
+# set wide apart, and its text half again as large: at the size of the text around it, Nastaliq reads small.
+fonts: { stack: [Noto Nastaliq Urdu, Noto Naskh Arabic], lineHeight: 2.6, scale: 1.5 }

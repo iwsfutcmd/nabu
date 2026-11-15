@@ -13,7 +13,7 @@ import { SCRIPT_TEMPLATES, scriptNodes } from "../src/lesson/script.ts";
 import { gradeExercise, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { courseGlossary } from "../src/story/story.ts";
 import { surfaceOf } from "../src/text/index.ts";
-import { eventFactory, loadCourse } from "./learner-fixtures.ts";
+import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const grc = loadCourse("grc");
 const NOW = "2026-03-01T09:00:00.000Z";
@@ -137,15 +137,17 @@ describe("script track: the Arabic alphabet of Chaghatay (chg)", () => {
   const chg = loadCourse("chg", "chg-Arab/standard");
   const track = scriptNodes(chg);
 
-  it("has eight alphabet nodes in the Arabic script, none for learners of the transliteration", () => {
+  it("has eight alphabet nodes in the Arabic script, the course's one orthography", () => {
     expect(track.map((n) => n.node.id)).toHaveLength(8);
     expect(track.every((n) => n.node.alphabet.orthography === "chg-Arab/standard")).toBe(true);
-    expect(scriptNodes(loadCourse("chg", "chg-Latn/schluessel"))).toEqual([]);
+    expect(manifestOf("chg").orthographies).toEqual(["chg-Arab/standard"]);
   });
 
   it("spells letters and words in Schluessel's transliteration, as the course pins them", () => {
     const first = track[0]?.node.alphabet;
     expect(first?.letters.map((l) => [surfaceOf(l.text), surfaceOf(l.latin)])).toContainEqual(["ب", "b"]);
+    // The Latin side is tagged with the transliteration's own profile, which the course does not teach.
+    expect(first?.letters.every((l) => l.latin.orthography === "chg-Latn/schluessel")).toBe(true);
     const latin = new Map(track.flatMap((n) => n.node.alphabet.words).map((w) => [surfaceOf(w.text), surfaceOf(w.latin)]));
     expect(latin.get("نان")).toBe("nan");
     expect(latin.get("چای")).toBe("čay");

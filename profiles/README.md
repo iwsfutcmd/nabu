@@ -10,8 +10,9 @@ Phase 1: nine profiles, all executed by the engine in `@nabu/core` and pinned by
 - Policies marked **REVIEW** are proposals awaiting linguistic sign-off.
 - Later: `es-Latn`, `hbo-Hebr` (Tiberian pointing), `lzh-Hant`, and Toki Pona's `tok-Latn` and `tok-Qaap`
   (sitelen pona in the UCSUR's private use block, a private-use script subtag until ISO 15924 assigns one; ADR 0086).
-- `chg-Arab.standard` and `chg-Latn.schluessel`: Chaghatay in the Arabic script and in Schluessel's transliteration
-  (ADR 0128), every sentence pinned in both, word for word.
+- `chg-Arab.standard` and `chg-Latn.schluessel`: Chaghatay in the Arabic script (the course's one orthography, in
+  Nastaliq, with Schluessel's transliteration as ruby: `schemes/schluessel.yaml`, `ruby: word`) and the alphabet
+  track's Latin side in Schluessel's transliteration (ADR 0128, 0129).
 - `yue-Latn.jyutping`: Cantonese in Jyutping, the characters as ruby (ADR 0126). Written from yue's characters by
   `nabu jyutping`; its words are the syllables of the scheme whose `answer` it is.
 

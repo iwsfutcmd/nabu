@@ -1,6 +1,8 @@
-# Chaghatay in the transliteration of Schluessel, An Introduction to Chaghatay (2018), xii-xxxii (ADR 0128): the chg
-# course's second orthography, every sentence pinned beside its Arabic. A modified IJMES system, one letter for
-# each letter or sound, that writes the vowels the Arabic script leaves out:
+# Chaghatay in the transliteration of Schluessel, An Introduction to Chaghatay (2018), xii-xxxii (ADR 0128). Not an
+# orthography a learner can pick: the chg course shows it as ruby over its Arabic words (the reading scheme
+# `schluessel`), and this profile tags and grades the Latin side of the alphabet track's letter and word cards (the
+# chg-Arab profile's `romanize`). A modified IJMES system, one letter for each letter or sound, that writes the
+# vowels the Arabic script leaves out:
 #  - consonants b p ṗ (ف for p) t s̱ (ث) j č ḥ ḫ d ź (ذ) r z ž s š ṣ ż (ض) ṭ ẓ ʿ ǧ (غ) f q k g ŋ l m n w h y, ʾ;
 #  - vowels a ä e i o ö u ü (every [i] is i, Turkic words have no length), ā ī ū in Arabic and Persian words,
 #    à for alef maksura (Mūsà);
@@ -50,5 +52,3 @@ input:
   keyboard: cldr-kbd:en
   extraKeys: ["ä", "ö", "ü", "ā", "ī", "ū", "č", "š", "ǧ", "ḫ", "ŋ", "ḥ", "ṭ", "ṣ", "ẓ", "ż", "ź", "ṗ", "ʿ"]
 layout: { vertical: none }
-# The Arabic it transliterates, word for word (a test checks it: pipeline/tests/test_courses.py).
-transliterate: { to: chg-Arab/standard, via: hand-pinned }

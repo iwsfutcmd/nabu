@@ -549,10 +549,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A script track's letters and marks come from the profile (core-cli `letters` and `unicode-set`), never a list in code;
   `romanize` is `{scheme, orthography}`; a form with no letter is `script.no-letter` (ADR 0124).
 
-## Chaghatay notes (see docs/adr/0128)
-- courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). Two
-  orthographies, every sentence and story line pinned in both, word for word (same senses and suffix morphs; a test
-  checks it): chg-Arab/standard, the baseline, and chg-Latn/schluessel, Schluessel's transliteration (2018).
+## Chaghatay notes (see docs/adr/0128-0129)
+- courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). One
+  orthography, chg-Arab/standard, set in Nastaliq (Noto Nastaliq Urdu). Every word token pins `readings: {schluessel:
+  …}`, Schluessel's transliteration (2018), shown as ruby over the whole word on request (the scheme's `ruby: word`);
+  every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
 - Suffixes are morphs with form KCs (form:dat, form:past-1s, form:pres, form:mis …); verbs are cited as stems with
@@ -563,8 +564,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   with his reading in the Latin. PDF page = book page + 35; check Arabic on page images. Notes in `nabu/notes/chg/`.
 - "You": sän tagged to one person, sizlär to several, siz (polite or plural) untagged; accept sets take the forms
   that fit. No gender: he/she in English accept sets.
-- The Arabic alphabet track (units/abc.yaml) takes its Latin spellings from each KC's chg-Latn form (`romanize:
-  {scheme: forms}`): a word it drills needs a form in both orthographies; no verb stems (their hyphen).
+- The Arabic alphabet track (units/abc.yaml) takes its Latin spellings from each KC's chg-Latn/schluessel form
+  (`romanize: {scheme: forms}`; that profile is the track's Latin side, not a course orthography): a word it drills
+  needs that form; no verb stems (their hyphen).
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

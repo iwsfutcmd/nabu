@@ -3,6 +3,8 @@
 - Status: Proposed
 - Date: 2026-11-15
 - Amends: [0124](0124-script-tracks-from-the-profile.md) (a romanization scheme `forms`)
+- Amended by: [0129](0129-chaghatay-arabic-with-word-ruby.md) (one orthography, the Arabic; Schluessel's
+  transliteration a reading shown as ruby over each word; Nastaliq)
 
 ## Context
 
@@ -19,7 +21,9 @@ later chapters read are older texts in the public domain (Babur, Abu 'l-Ghazi, N
 
 ## Decision
 
-**Two orthographies, every sentence pinned in both** (as uz, apc and tok):
+**Two orthographies, every sentence pinned in both** (as uz, apc and tok). *Since ADR 0129: one, the Arabic, with
+Schluessel's transliteration a reading on every word, shown as ruby on request; chg-Latn/schluessel is the alphabet
+track's Latin side only.*
 
 - **`chg-Arab/standard`** (profiles/chg-Arab.standard.yaml), the baseline and the course's target (`chg-Arab`, right
   to left; CLDR's likely subtags make `chg` chg-Arab-TM).
@@ -42,9 +46,8 @@ later chapters read are older texts in the public domain (Babur, Abu 'l-Ghazi, N
     `translit-marks-word`); ng for ŋ is noted; an apostrophe for ʿayn is its half ring. Contrast sets for person,
     past, possessive and case endings and the pronouns, the past before the possessive (bärdi for bärdim is a
     person slip, not a possessive one).
-  - Its tokens match the Arabic word for word, with the same senses and suffixes; a test checks it
-    (`test_chaghatay_is_read_and_written_in_two_scripts`). The profile says so: `transliterate: {to:
-    chg-Arab/standard, via: hand-pinned}`.
+  - Its tokens matched the Arabic word for word, with the same senses and suffixes. (ADR 0129: they are now the
+    Arabic tokens' readings.)
 - Conformance vectors pin all of this in both harnesses (normalize, grade, direction).
 - The three new notes are in every UI catalog (drafts outside English, stamped).
 
@@ -104,8 +107,8 @@ and accept sets take siz as well; untagged siz sentences accept all three (ADR 0
   alphabet track of eight nodes. LLM drafts (`llm:`, status draft), CC-BY-SA-4.0; the passages are public domain.
 - The course was written from a compact source (each word as stem and suffix keys, both scripts built from the
   same pieces), kept in the reference library (`nabu/notes/chg/generator`), not in the repository: the YAML is the
-  source now, and the test keeps the two scripts in step.
-- Not done: no ruby (an Arabic word cannot carry its transliteration above it: ruby is per character or syllable
-  today); no vocalization file (harakat); words not checked against the Navai dictionary.
+  source now (ADR 0129: the Arabic, each word with its transliteration as a reading).
+- Not done: no vocalization file (harakat); words not checked against the Navai dictionary. (Ruby, which ruby per
+  character could not give an Arabic word, came with ADR 0129: ruby over the whole word.)
 - Every spelling of a Turkic word follows one convention, where the manuscripts have many: accept sets add the
   common ones (plene and defective vowels, the dative's غه که قه گه, ایرماس for ایماس), never all.

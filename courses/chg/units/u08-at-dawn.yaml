@@ -17,6 +17,8 @@ kcs:
     - ایکاولان
     chg-Latn/schluessel:
     - ikkäwlän
+  readings:
+    schluessel: ikkäwlän
 - id: sense:chiq
   gloss:
     en: to go out, come out; to climb
@@ -25,6 +27,8 @@ kcs:
     - چیق-
     chg-Latn/schluessel:
     - čiq-
+  readings:
+    schluessel: čiq
 - id: sense:kir
   gloss:
     en: to go in, enter
@@ -33,6 +37,8 @@ kcs:
     - کیر-
     chg-Latn/schluessel:
     - kir-
+  readings:
+    schluessel: kir
 - id: sense:safar
   gloss:
     en: journey
@@ -41,6 +47,8 @@ kcs:
     - سفر
     chg-Latn/schluessel:
     - safar
+  readings:
+    schluessel: safar
 - id: sense:azm
   gloss:
     en: resolve, intention
@@ -49,6 +57,8 @@ kcs:
     - عزم
     chg-Latn/schluessel:
     - ʿazm
+  readings:
+    schluessel: ʿazm
   notes:
     en: 'ʿazm qil- "to set out (for)": safargä ʿazm qildi "he set out on a journey".'
 - id: sense:nachcha
@@ -59,6 +69,8 @@ kcs:
     - نچه
     chg-Latn/schluessel:
     - näččä
+  readings:
+    schluessel: näččä
   notes:
     en: näččändä kündin keyin "some days later". In the Tadhkira it is näččändä.
 - id: sense:keyin
@@ -69,6 +81,8 @@ kcs:
     - کیین
     chg-Latn/schluessel:
     - keyin
+  readings:
+    schluessel: keyin
   notes:
     en: 'After a noun with -din: üč kündin keyin "after three days".'
 - id: sense:tang
@@ -79,6 +93,8 @@ kcs:
     - تانک
     chg-Latn/schluessel:
     - taŋ
+  readings:
+    schluessel: taŋ
 - id: sense:at.shoot
   gloss:
     en: to shoot; (of the dawn) to break
@@ -87,6 +103,8 @@ kcs:
     - ات-
     chg-Latn/schluessel:
     - at-
+  readings:
+    schluessel: at
   notes:
     en: taŋ at- "dawn breaks".
 - id: sense:yaru
@@ -97,6 +115,8 @@ kcs:
     - یارو-
     chg-Latn/schluessel:
     - yaru-
+  readings:
+    schluessel: yaru
 - id: sense:arta
   gloss:
     en: early morning; the next day
@@ -105,6 +125,8 @@ kcs:
     - ارته
     chg-Latn/schluessel:
     - ärtä
+  readings:
+    schluessel: ärtä
   notes:
     en: ärtäsi "the next morning".
 - id: sense:kanara
@@ -115,6 +137,8 @@ kcs:
     - کناره
     chg-Latn/schluessel:
     - kanāra
+  readings:
+    schluessel: kanāra
 - id: sense:qon
   gloss:
     en: to stop for the night, camp
@@ -123,6 +147,8 @@ kcs:
     - قون-
     chg-Latn/schluessel:
     - qon-
+  readings:
+    schluessel: qon
 - id: sense:qop
   gloss:
     en: to get up, rise
@@ -131,6 +157,8 @@ kcs:
     - قوپ-
     chg-Latn/schluessel:
     - qoṗ-
+  readings:
+    schluessel: qoṗ
 - id: form:pcp
   gloss:
     en: '-ǧan, -gän (-qan, -kän): who did, which was; (with -da) when'
@@ -179,15 +207,9 @@ sentences:
     chg-Arab/standard:
       text: شهردین چیقتیم.
       tokens:
-      - {surface: شهردین, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: چیقتیم, sense: chiq, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تیم, kc: 'form:past-1s'}]}
+      - {surface: شهردین, sense: shahar, readings: {schluessel: šahardin}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: چیقتیم, sense: chiq, readings: {schluessel: čiqtim}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تیم, kc: 'form:past-1s'}]}
       reverse: '[من] (شهردین|شهردن) (چیقتیم|چقتیم|جقتیم)'
-    chg-Latn/schluessel:
-      text: Šahardin čiqtim.
-      tokens:
-      - {surface: Šahardin, sense: shahar, morphs: [{surface: Šahar, kc: 'sense:shahar'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: čiqtim, sense: chiq, morphs: [{surface: čiq, kc: 'sense:chiq'}, {surface: tim, kc: 'form:past-1s'}]}
-      reverse: '[(Män|Men)] šahardin čiqtim'
   translations:
     en: I (went out of|left) the (city|town).
 - id: s.08.2
@@ -196,17 +218,10 @@ sentences:
     chg-Arab/standard:
       text: اول اویغه کیردی.
       tokens:
-      - {surface: اول, sense: ul}
-      - {surface: اویغه, sense: oy, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کیردی, sense: kir, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: اول, sense: ul, readings: {schluessel: ul}}
+      - {surface: اویغه, sense: oy, readings: {schluessel: öygä}, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: کیردی, sense: kir, readings: {schluessel: kirdi}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: اول (اویغه|اویکه|اویقه|اویغا) (کیردی|کردی)
-    chg-Latn/schluessel:
-      text: Ul öygä kirdi.
-      tokens:
-      - {surface: Ul, sense: ul}
-      - {surface: öygä, sense: oy, morphs: [{surface: öy, kc: 'sense:oy'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: kirdi, sense: kir, morphs: [{surface: kir, kc: 'sense:kir'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: (Ul|Ol) öygä kirdi
   translations:
     en: (He|She) (went into|entered) the house.
 - id: s.08.3
@@ -215,17 +230,10 @@ sentences:
     chg-Arab/standard:
       text: ایکاولان بزارغه باردوق.
       tokens:
-      - {surface: ایکاولان, sense: ikkawlan}
-      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردوق, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دوق, kc: 'form:past-1p'}]}
+      - {surface: ایکاولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
+      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردوق, sense: bar.go, readings: {schluessel: barduq}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دوق, kc: 'form:past-1p'}]}
       reverse: '[بیز] (ایکاولان|ایکولان) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) (باردوق|باردوک)'
-    chg-Latn/schluessel:
-      text: Ikkäwlän bazārǧa barduq.
-      tokens:
-      - {surface: Ikkäwlän, sense: ikkawlan}
-      - {surface: bazārǧa, sense: bazar, morphs: [{surface: bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: barduq, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: duq, kc: 'form:past-1p'}]}
-      reverse: '[Biz] ikkäwlän bazārǧa barduq'
   translations:
     en: The two of us went to the (market|bazaar).
 - id: s.08.4
@@ -234,17 +242,10 @@ sentences:
     chg-Arab/standard:
       text: انینک بیلان باردیم.
       tokens:
-      - {surface: انینک, sense: ul, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: بیلان, sense: bila}
-      - {surface: باردیم, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیم, kc: 'form:past-1s'}]}
+      - {surface: انینک, sense: ul, readings: {schluessel: aniŋ}, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: بیلان, sense: bila, readings: {schluessel: bilän}}
+      - {surface: باردیم, sense: bar.go, readings: {schluessel: bardim}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیم, kc: 'form:past-1s'}]}
       reverse: انینک بیلان باردیم
-    chg-Latn/schluessel:
-      text: Aniŋ bilän bardim.
-      tokens:
-      - {surface: Aniŋ, sense: ul, morphs: [{surface: A, kc: 'sense:ul'}, {surface: niŋ, kc: 'form:gen'}]}
-      - {surface: bilän, sense: bila}
-      - {surface: bardim, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: dim, kc: 'form:past-1s'}]}
-      reverse: Aniŋ bilän bardim
   translations:
     en: I went with (him|her).
 - id: s.08.5
@@ -253,21 +254,11 @@ sentences:
     chg-Arab/standard:
       text: "دروازه\u200cدین چیقیب، تاغغه باردیلار."
       tokens:
-      - {surface: "دروازه\u200cدین", sense: darwaza, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: چیقیب, sense: chiq, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: یب, kc: 'form:cv-p'}]}
-      - {surface: تاغغه, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردیلار, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: "دروازه\u200cدین", sense: darwaza, readings: {schluessel: darwāzadin}, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: چیقیب, sense: chiq, readings: {schluessel: čiqip}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: یب, kc: 'form:cv-p'}]}
+      - {surface: تاغغه, sense: tagh, readings: {schluessel: taǧǧa}, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردیلار, sense: bar.go, readings: {schluessel: bardilar}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: "(دروازه\u200cدین|دروازه\u200cدن) (چیقیب|چقیب|جقیب) (تاغغه|تاغکه|تاغقه|تاغغا) باردیلار\n(دروازه\u200cدین|دروازه\u200cدن) (چیقیب|چقیب|جقیب) (تاغغه|تاغکه|تاغقه|تاغغا) باردی"
-    chg-Latn/schluessel:
-      text: Darwāzadin čiqip, taǧǧa bardilar.
-      tokens:
-      - {surface: Darwāzadin, sense: darwaza, morphs: [{surface: Darwāza, kc: 'sense:darwaza'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: čiqip, sense: chiq, morphs: [{surface: čiq, kc: 'sense:chiq'}, {surface: ip, kc: 'form:cv-p'}]}
-      - {surface: taǧǧa, sense: tagh, morphs: [{surface: taǧ, kc: 'sense:tagh'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: bardilar, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: dilar, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Darwāzadin čiqip taǧǧa bardilar
-        Darwāzadin čiqip taǧǧa bardi
   translations:
     en: They went out of the gate and went to the mountain.
 - id: s.08.6
@@ -276,21 +267,12 @@ sentences:
     chg-Arab/standard:
       text: بلالار باغغه کیردیلار.
       tokens:
-      - {surface: بلالار, sense: bala, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: باغغه, sense: bagh, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کیردیلار, sense: kir, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: بلالار, sense: bala, readings: {schluessel: balalar}, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}]}
+      - {surface: باغغه, sense: bagh, readings: {schluessel: bāǧǧa}, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: کیردیلار, sense: kir, readings: {schluessel: kirdilär}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         (بلالار|بالالار) (باغغه|باغکه|باغقه|باغغا) (کیردیلار|کردیلار)
         (بلالار|بالالار) (باغغه|باغکه|باغقه|باغغا) (کیردی|کردی)
-    chg-Latn/schluessel:
-      text: Balalar bāǧǧa kirdilär.
-      tokens:
-      - {surface: Balalar, sense: bala, morphs: [{surface: Bala, kc: 'sense:bala'}, {surface: lar, kc: 'form:pl'}]}
-      - {surface: bāǧǧa, sense: bagh, morphs: [{surface: bāǧ, kc: 'sense:bagh'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: kirdilär, sense: kir, morphs: [{surface: kir, kc: 'sense:kir'}, {surface: dilär, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Balalar bāǧǧa kirdilär
-        Balalar bāǧǧa kirdi
   translations:
     en: The children (went into|entered) the (garden|orchard).
 - id: s.08.7
@@ -299,23 +281,13 @@ sentences:
     chg-Arab/standard:
       text: "انینک بیلان ایکاولان شهرنینک دروازه\u200cسیدین چیقتی."
       tokens:
-      - {surface: انینک, sense: ul, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: بیلان, sense: bila}
-      - {surface: ایکاولان, sense: ikkawlan}
-      - {surface: شهرنینک, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: "دروازه\u200cسیدین", sense: darwaza, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: چیقتی, sense: chiq, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تی, kc: 'form:past-3'}]}
+      - {surface: انینک, sense: ul, readings: {schluessel: aniŋ}, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: بیلان, sense: bila, readings: {schluessel: bilän}}
+      - {surface: ایکاولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
+      - {surface: شهرنینک, sense: shahar, readings: {schluessel: šaharniŋ}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: "دروازه\u200cسیدین", sense: darwaza, readings: {schluessel: darwāzasidin}, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: چیقتی, sense: chiq, readings: {schluessel: čiqti}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تی, kc: 'form:past-3'}]}
       reverse: "انینک بیلان (ایکاولان|ایکولان) شهرنینک (دروازه\u200cسیدین|دروازه\u200cسیدن) (چیقتی|چقتی|جقتی)"
-    chg-Latn/schluessel:
-      text: Aniŋ bilän ikkäwlän šaharniŋ darwāzasidin čiqti.
-      tokens:
-      - {surface: Aniŋ, sense: ul, morphs: [{surface: A, kc: 'sense:ul'}, {surface: niŋ, kc: 'form:gen'}]}
-      - {surface: bilän, sense: bila}
-      - {surface: ikkäwlän, sense: ikkawlan}
-      - {surface: šaharniŋ, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: niŋ, kc: 'form:gen'}]}
-      - {surface: darwāzasidin, sense: darwaza, morphs: [{surface: darwāza, kc: 'sense:darwaza'}, {surface: si, kc: 'form:poss3'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: čiqti, sense: chiq, morphs: [{surface: čiq, kc: 'sense:chiq'}, {surface: ti, kc: 'form:past-3'}]}
-      reverse: Aniŋ bilän ikkäwlän šaharniŋ darwāzasidin čiqti
   translations:
     en: The two of them went out of the city gate together.
 - id: s.08.8
@@ -324,13 +296,8 @@ sentences:
     chg-Arab/standard:
       text: سفر.
       tokens:
-      - {surface: سفر, sense: safar}
+      - {surface: سفر, sense: safar, readings: {schluessel: safar}}
       reverse: سفر
-    chg-Latn/schluessel:
-      text: Safar.
-      tokens:
-      - {surface: Safar, sense: safar}
-      reverse: Safar
   translations:
     en: (A|The) journey.
 - id: s.08.9
@@ -339,17 +306,10 @@ sentences:
     chg-Arab/standard:
       text: سفرغه عزم قیلدیم.
       tokens:
-      - {surface: سفرغه, sense: safar, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: عزم, sense: azm}
-      - {surface: قیلدیم, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیم, kc: 'form:past-1s'}]}
+      - {surface: سفرغه, sense: safar, readings: {schluessel: safargä}, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: عزم, sense: azm, readings: {schluessel: ʿazm}}
+      - {surface: قیلدیم, sense: qil, readings: {schluessel: qildim}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیم, kc: 'form:past-1s'}]}
       reverse: '[من] (سفرغه|سفرکه|سفرقه|سفرغا) عزم (قیلدیم|قلدیم)'
-    chg-Latn/schluessel:
-      text: Safargä ʿazm qildim.
-      tokens:
-      - {surface: Safargä, sense: safar, morphs: [{surface: Safar, kc: 'sense:safar'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: ʿazm, sense: azm}
-      - {surface: qildim, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: dim, kc: 'form:past-1s'}]}
-      reverse: '[(Män|Men)] safargä ʿazm qildim'
   translations:
     en: I set out on a journey.
 - id: s.08.10
@@ -358,17 +318,10 @@ sentences:
     chg-Arab/standard:
       text: نچه کشی کلدی.
       tokens:
-      - {surface: نچه, sense: nachcha}
-      - {surface: کشی, sense: kishi}
-      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: نچه, sense: nachcha, readings: {schluessel: näččä}}
+      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
+      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: (نچه|نچچه) (کشی|کیشی) (کلدی|کیلدی)
-    chg-Latn/schluessel:
-      text: Näččä kiši käldi.
-      tokens:
-      - {surface: Näččä, sense: nachcha}
-      - {surface: kiši, sense: kishi}
-      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Näččä kiši (käldi|keldi)
   translations:
     en: (Some|Several) (people|men) came.
 - id: s.08.11
@@ -377,19 +330,11 @@ sentences:
     chg-Arab/standard:
       text: اوچ کوندین کیین کلدی.
       tokens:
-      - {surface: اوچ, sense: uch}
-      - {surface: کوندین, sense: kun, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کیین, sense: keyin}
-      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: اوچ, sense: uch, readings: {schluessel: üč}}
+      - {surface: کوندین, sense: kun, readings: {schluessel: kündin}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: کیین, sense: keyin, readings: {schluessel: keyin}}
+      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: اوچ (کوندین|کوندن) (کیین|کین) (کلدی|کیلدی)
-    chg-Latn/schluessel:
-      text: Üč kündin keyin käldi.
-      tokens:
-      - {surface: Üč, sense: uch}
-      - {surface: kündin, sense: kun, morphs: [{surface: kün, kc: 'sense:kun'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: keyin, sense: keyin}
-      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Üč kündin keyin (käldi|keldi)
   translations:
     en: (He|She) came (three days later|after three days).
 - id: s.08.12
@@ -398,21 +343,12 @@ sentences:
     chg-Arab/standard:
       text: نچنده کوندین کیین، کاشغرغه باردوق.
       tokens:
-      - {surface: نچنده, sense: nachcha}
-      - {surface: کوندین, sense: kun, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کیین, sense: keyin}
-      - {surface: کاشغرغه, sense: kashghar, morphs: [{surface: کاشغر, kc: 'sense:kashghar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردوق, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دوق, kc: 'form:past-1p'}]}
+      - {surface: نچنده, sense: nachcha, readings: {schluessel: näččändä}}
+      - {surface: کوندین, sense: kun, readings: {schluessel: kündin}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: کیین, sense: keyin, readings: {schluessel: keyin}}
+      - {surface: کاشغرغه, sense: kashghar, readings: {schluessel: Kašǧarǧa}, morphs: [{surface: کاشغر, kc: 'sense:kashghar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردوق, sense: bar.go, readings: {schluessel: barduq}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دوق, kc: 'form:past-1p'}]}
       reverse: نچنده (کوندین|کوندن) (کیین|کین) (کاشغرغه|کاشغرکه|کاشغرقه|کاشغرغا) (باردوق|باردوک)
-    chg-Latn/schluessel:
-      text: Näččändä kündin keyin, Kašǧarǧa barduq.
-      tokens:
-      - {surface: Näččändä, sense: nachcha}
-      - {surface: kündin, sense: kun, morphs: [{surface: kün, kc: 'sense:kun'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: keyin, sense: keyin}
-      - {surface: Kašǧarǧa, sense: kashghar, morphs: [{surface: Kašǧar, kc: 'sense:kashghar'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: barduq, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: duq, kc: 'form:past-1p'}]}
-      reverse: Näččändä kündin keyin Kašǧarǧa barduq
   translations:
     en: (Some|Several) days later we went to Kashgar.
 - id: s.08.13
@@ -421,21 +357,12 @@ sentences:
     chg-Arab/standard:
       text: سفرغه عزم قیلدیلار.
       tokens:
-      - {surface: سفرغه, sense: safar, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: عزم, sense: azm}
-      - {surface: قیلدیلار, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: سفرغه, sense: safar, readings: {schluessel: safargä}, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: عزم, sense: azm, readings: {schluessel: ʿazm}}
+      - {surface: قیلدیلار, sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         (سفرغه|سفرکه|سفرقه|سفرغا) عزم (قیلدیلار|قلدیلار)
         (سفرغه|سفرکه|سفرقه|سفرغا) عزم (قیلدی|قلدی)
-    chg-Latn/schluessel:
-      text: Safargä ʿazm qildilar.
-      tokens:
-      - {surface: Safargä, sense: safar, morphs: [{surface: Safar, kc: 'sense:safar'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: ʿazm, sense: azm}
-      - {surface: qildilar, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: dilar, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Safargä ʿazm qildilar
-        Safargä ʿazm qildi
   translations:
     en: They set out on a journey.
 - id: s.08.14
@@ -444,27 +371,15 @@ sentences:
     chg-Arab/standard:
       text: نچنده کوندین کیین، بیر شهرغه کلدیلار.
       tokens:
-      - {surface: نچنده, sense: nachcha}
-      - {surface: کوندین, sense: kun, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کیین, sense: keyin}
-      - {surface: بیر, sense: bir}
-      - {surface: شهرغه, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کلدیلار, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: نچنده, sense: nachcha, readings: {schluessel: näččändä}}
+      - {surface: کوندین, sense: kun, readings: {schluessel: kündin}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: کیین, sense: keyin, readings: {schluessel: keyin}}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: شهرغه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: کلدیلار, sense: kal, readings: {schluessel: käldilär}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         نچنده (کوندین|کوندن) (کیین|کین) (بیر|بر) (شهرغه|شهرکه|شهرقه|شهرغا) (کلدیلار|کیلدیلار)
         نچنده (کوندین|کوندن) (کیین|کین) (بیر|بر) (شهرغه|شهرکه|شهرقه|شهرغا) (کلدی|کیلدی)
-    chg-Latn/schluessel:
-      text: Näččändä kündin keyin, bir šahargä käldilär.
-      tokens:
-      - {surface: Näččändä, sense: nachcha}
-      - {surface: kündin, sense: kun, morphs: [{surface: kün, kc: 'sense:kun'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: keyin, sense: keyin}
-      - {surface: bir, sense: bir}
-      - {surface: šahargä, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: käldilär, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: dilär, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Näččändä kündin keyin bir šahargä (käldilär|keldilär)
-        Näččändä kündin keyin bir šahargä (käldi|keldi)
   translations:
     en: (Some|Several) days later they came to a (city|town).
 - id: s.08.15
@@ -473,13 +388,8 @@ sentences:
     chg-Arab/standard:
       text: تانک.
       tokens:
-      - {surface: تانک, sense: tang}
+      - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
       reverse: تانک
-    chg-Latn/schluessel:
-      text: Taŋ.
-      tokens:
-      - {surface: Taŋ, sense: tang}
-      reverse: Taŋ
   translations:
     en: (Dawn|The dawn).
 - id: s.08.16
@@ -488,15 +398,9 @@ sentences:
     chg-Arab/standard:
       text: تانک اتتی.
       tokens:
-      - {surface: تانک, sense: tang}
-      - {surface: اتتی, sense: at.shoot, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: تی, kc: 'form:past-3'}]}
+      - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
+      - {surface: اتتی, sense: at.shoot, readings: {schluessel: atti}, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: تی, kc: 'form:past-3'}]}
       reverse: تانک اتتی
-    chg-Latn/schluessel:
-      text: Taŋ atti.
-      tokens:
-      - {surface: Taŋ, sense: tang}
-      - {surface: atti, sense: at.shoot, morphs: [{surface: at, kc: 'sense:at.shoot'}, {surface: ti, kc: 'form:past-3'}]}
-      reverse: Taŋ atti
   translations:
     en: (Dawn|The dawn) broke.
 - id: s.08.17
@@ -505,15 +409,9 @@ sentences:
     chg-Arab/standard:
       text: کون یارودی.
       tokens:
-      - {surface: کون, sense: kun}
-      - {surface: یارودی, sense: yaru, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: کون, sense: kun, readings: {schluessel: kün}}
+      - {surface: یارودی, sense: yaru, readings: {schluessel: yarudi}, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: کون یارودی
-    chg-Latn/schluessel:
-      text: Kün yarudi.
-      tokens:
-      - {surface: Kün, sense: kun}
-      - {surface: yarudi, sense: yaru, morphs: [{surface: yaru, kc: 'sense:yaru'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Kün yarudi
   translations:
     en: (It grew light|The sun shone|The day dawned).
 - id: s.08.18
@@ -522,17 +420,10 @@ sentences:
     chg-Arab/standard:
       text: "ارته\u200cسی تانک یارودی."
       tokens:
-      - {surface: "ارته\u200cسی", sense: arta, morphs: [{surface: "ارته\u200c", kc: 'sense:arta'}, {surface: سی, kc: 'form:poss3'}]}
-      - {surface: تانک, sense: tang}
-      - {surface: یارودی, sense: yaru, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: "ارته\u200cسی", sense: arta, readings: {schluessel: ärtäsi}, morphs: [{surface: "ارته\u200c", kc: 'sense:arta'}, {surface: سی, kc: 'form:poss3'}]}
+      - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
+      - {surface: یارودی, sense: yaru, readings: {schluessel: yarudi}, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: "ارته\u200cسی تانک یارودی"
-    chg-Latn/schluessel:
-      text: Ärtäsi taŋ yarudi.
-      tokens:
-      - {surface: Ärtäsi, sense: arta, morphs: [{surface: Ärtä, kc: 'sense:arta'}, {surface: si, kc: 'form:poss3'}]}
-      - {surface: taŋ, sense: tang}
-      - {surface: yarudi, sense: yaru, morphs: [{surface: yaru, kc: 'sense:yaru'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Ärtäsi taŋ yarudi
   translations:
     en: The next (morning|day) (dawn broke|it grew light).
 - id: s.08.19
@@ -541,15 +432,9 @@ sentences:
     chg-Arab/standard:
       text: کلکان کشی.
       tokens:
-      - {surface: کلکان, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: کان, kc: 'form:pcp'}]}
-      - {surface: کشی, sense: kishi}
+      - {surface: کلکان, sense: kal, readings: {schluessel: kälgän}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: کان, kc: 'form:pcp'}]}
+      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
       reverse: (کلکان|کیلکان) (کشی|کیشی)
-    chg-Latn/schluessel:
-      text: Kälgän kiši.
-      tokens:
-      - {surface: Kälgän, sense: kal, morphs: [{surface: Käl, kc: 'sense:kal'}, {surface: gän, kc: 'form:pcp'}]}
-      - {surface: kiši, sense: kishi}
-      reverse: (Kälgän|Kelgän) kiši
   translations:
     en: The (person|man) who came.
 - id: s.08.20
@@ -558,17 +443,10 @@ sentences:
     chg-Arab/standard:
       text: تانک اتقانده، چیقتوق.
       tokens:
-      - {surface: تانک, sense: tang}
-      - {surface: اتقانده, sense: at.shoot, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: قان, kc: 'form:pcp'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: چیقتوق, sense: chiq, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: توق, kc: 'form:past-1p'}]}
+      - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
+      - {surface: اتقانده, sense: at.shoot, readings: {schluessel: atqanda}, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: قان, kc: 'form:pcp'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: چیقتوق, sense: chiq, readings: {schluessel: čiqtuq}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: توق, kc: 'form:past-1p'}]}
       reverse: تانک (اتقانده|اتقاندا) [بیز] (چیقتوق|چقتوق|جقتوق)
-    chg-Latn/schluessel:
-      text: Taŋ atqanda, čiqtuq.
-      tokens:
-      - {surface: Taŋ, sense: tang}
-      - {surface: atqanda, sense: at.shoot, morphs: [{surface: at, kc: 'sense:at.shoot'}, {surface: qan, kc: 'form:pcp'}, {surface: da, kc: 'form:loc'}]}
-      - {surface: čiqtuq, sense: chiq, morphs: [{surface: čiq, kc: 'sense:chiq'}, {surface: tuq, kc: 'form:past-1p'}]}
-      reverse: Taŋ atqanda [biz] čiqtuq
   translations:
     en: When (dawn|the dawn) broke, we went out.
 - id: s.08.21
@@ -577,19 +455,11 @@ sentences:
     chg-Arab/standard:
       text: شهرغه کلکانده، بزارغه باردیم.
       tokens:
-      - {surface: شهرغه, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کلکانده, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: کان, kc: 'form:pcp'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردیم, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیم, kc: 'form:past-1s'}]}
+      - {surface: شهرغه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: کلکانده, sense: kal, readings: {schluessel: kälgändä}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: کان, kc: 'form:pcp'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردیم, sense: bar.go, readings: {schluessel: bardim}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیم, kc: 'form:past-1s'}]}
       reverse: (شهرغه|شهرکه|شهرقه|شهرغا) (کلکانده|کلکاندا|کیلکانده|کیلکاندا) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باردیم
-    chg-Latn/schluessel:
-      text: Šahargä kälgändä, bazārǧa bardim.
-      tokens:
-      - {surface: Šahargä, sense: shahar, morphs: [{surface: Šahar, kc: 'sense:shahar'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: kälgändä, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: gän, kc: 'form:pcp'}, {surface: dä, kc: 'form:loc'}]}
-      - {surface: bazārǧa, sense: bazar, morphs: [{surface: bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: bardim, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: dim, kc: 'form:past-1s'}]}
-      reverse: Šahargä (kälgändä|kelgändä) bazārǧa bardim
   translations:
     en: When I came to the (city|town), I went to the (market|bazaar).
 - id: s.08.22
@@ -598,17 +468,10 @@ sentences:
     chg-Arab/standard:
       text: بزاردین الغان نان.
       tokens:
-      - {surface: بزاردین, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: الغان, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: غان, kc: 'form:pcp'}]}
-      - {surface: نان, sense: nan}
+      - {surface: بزاردین, sense: bazar, readings: {schluessel: bazārdin}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: الغان, sense: al, readings: {schluessel: alǧan}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: غان, kc: 'form:pcp'}]}
+      - {surface: نان, sense: nan, readings: {schluessel: nan}}
       reverse: (بزاردین|بزاردن|بازاردین|بازاردن) (الغان|آلغان) نان
-    chg-Latn/schluessel:
-      text: Bazārdin alǧan nan.
-      tokens:
-      - {surface: Bazārdin, sense: bazar, morphs: [{surface: Bazār, kc: 'sense:bazar'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: alǧan, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: ǧan, kc: 'form:pcp'}]}
-      - {surface: nan, sense: nan}
-      reverse: Bazārdin alǧan nan
   translations:
     en: The bread (bought|I bought|we bought|that was bought) (in|at|from) the (market|bazaar).
 - id: s.08.23
@@ -617,13 +480,8 @@ sentences:
     chg-Arab/standard:
       text: کیرالی!
       tokens:
-      - {surface: کیرالی, sense: kir, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
+      - {surface: کیرالی, sense: kir, readings: {schluessel: kiräli}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
       reverse: (کیرالی|کرالی)
-    chg-Latn/schluessel:
-      text: Kiräli!
-      tokens:
-      - {surface: Kiräli, sense: kir, morphs: [{surface: Kir, kc: 'sense:kir'}, {surface: äli, kc: 'form:let'}]}
-      reverse: Kiräli
   translations:
     en: Let's (go in|enter)!
 - id: s.08.24
@@ -632,15 +490,9 @@ sentences:
     chg-Arab/standard:
       text: بزارغه بارالی!
       tokens:
-      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارالی, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: الی, kc: 'form:let'}]}
+      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارالی, sense: bar.go, readings: {schluessel: barali}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: الی, kc: 'form:let'}]}
       reverse: (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارالی
-    chg-Latn/schluessel:
-      text: Bazārǧa barali!
-      tokens:
-      - {surface: Bazārǧa, sense: bazar, morphs: [{surface: Bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: barali, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: ali, kc: 'form:let'}]}
-      reverse: Bazārǧa barali
   translations:
     en: Let's go to the (market|bazaar)!
 - id: s.08.25
@@ -649,15 +501,9 @@ sentences:
     chg-Arab/standard:
       text: چای ایچالی.
       tokens:
-      - {surface: چای, sense: chay}
-      - {surface: ایچالی, sense: ich, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: الی, kc: 'form:let'}]}
+      - {surface: چای, sense: chay, readings: {schluessel: čay}}
+      - {surface: ایچالی, sense: ich, readings: {schluessel: ičäli}, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: الی, kc: 'form:let'}]}
       reverse: چای ایچالی
-    chg-Latn/schluessel:
-      text: Čay ičäli.
-      tokens:
-      - {surface: Čay, sense: chay}
-      - {surface: ičäli, sense: ich, morphs: [{surface: ič, kc: 'sense:ich'}, {surface: äli, kc: 'form:let'}]}
-      reverse: Čay ičäli
   translations:
     en: Let's drink (tea|some tea).
 - id: s.08.26
@@ -666,21 +512,12 @@ sentences:
     chg-Arab/standard:
       text: «کیرالی،» دیب، کیردیلار.
       tokens:
-      - {surface: کیرالی, sense: kir, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
-      - {surface: دیب, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: ب, kc: 'form:cv-p'}]}
-      - {surface: کیردیلار, sense: kir, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: کیرالی, sense: kir, readings: {schluessel: kiräli}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
+      - {surface: دیب, sense: de, readings: {schluessel: dep}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: ب, kc: 'form:cv-p'}]}
+      - {surface: کیردیلار, sense: kir, readings: {schluessel: kirdilär}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         (کیرالی|کرالی) دیب (کیردیلار|کردیلار)
         (کیرالی|کرالی) دیب (کیردی|کردی)
-    chg-Latn/schluessel:
-      text: “Kiräli,” dep, kirdilär.
-      tokens:
-      - {surface: Kiräli, sense: kir, morphs: [{surface: Kir, kc: 'sense:kir'}, {surface: äli, kc: 'form:let'}]}
-      - {surface: dep, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: p, kc: 'form:cv-p'}]}
-      - {surface: kirdilär, sense: kir, morphs: [{surface: kir, kc: 'sense:kir'}, {surface: dilär, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Kiräli (dep|däp) kirdilär
-        Kiräli (dep|däp) kirdi
   translations:
     en: “Let's go in,” they said, and they went in.
 - id: s.08.27
@@ -689,17 +526,10 @@ sentences:
     chg-Arab/standard:
       text: "بیر کناره\u200cده قوندوق."
       tokens:
-      - {surface: بیر, sense: bir}
-      - {surface: "کناره\u200cده", sense: kanara, morphs: [{surface: "کناره\u200c", kc: 'sense:kanara'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: قوندوق, sense: qon, morphs: [{surface: قون, kc: 'sense:qon'}, {surface: دوق, kc: 'form:past-1p'}]}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: "کناره\u200cده", sense: kanara, readings: {schluessel: kanārada}, morphs: [{surface: "کناره\u200c", kc: 'sense:kanara'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: قوندوق, sense: qon, readings: {schluessel: qonduq}, morphs: [{surface: قون, kc: 'sense:qon'}, {surface: دوق, kc: 'form:past-1p'}]}
       reverse: "(بیر|بر) (کناره\u200cده|کناره\u200cدا) (قوندوق|قوندوک)"
-    chg-Latn/schluessel:
-      text: Bir kanārada qonduq.
-      tokens:
-      - {surface: Bir, sense: bir}
-      - {surface: kanārada, sense: kanara, morphs: [{surface: kanāra, kc: 'sense:kanara'}, {surface: da, kc: 'form:loc'}]}
-      - {surface: qonduq, sense: qon, morphs: [{surface: qon, kc: 'sense:qon'}, {surface: duq, kc: 'form:past-1p'}]}
-      reverse: Bir kanārada qonduq
   translations:
     en: We (stopped for the night|camped|spent the night) (in an out-of-the-way place|at the edge|on the edge).
 - id: s.08.28
@@ -708,15 +538,9 @@ sentences:
     chg-Arab/standard:
       text: قوپوب، چیقتیم.
       tokens:
-      - {surface: قوپوب, sense: qop, morphs: [{surface: قوپ, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
-      - {surface: چیقتیم, sense: chiq, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تیم, kc: 'form:past-1s'}]}
+      - {surface: قوپوب, sense: qop, readings: {schluessel: qoṗup}, morphs: [{surface: قوپ, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
+      - {surface: چیقتیم, sense: chiq, readings: {schluessel: čiqtim}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تیم, kc: 'form:past-1s'}]}
       reverse: (قوپوب|قوفوب) (چیقتیم|چقتیم|جقتیم)
-    chg-Latn/schluessel:
-      text: Qoṗup, čiqtim.
-      tokens:
-      - {surface: Qoṗup, sense: qop, morphs: [{surface: Qoṗ, kc: 'sense:qop'}, {surface: up, kc: 'form:cv-p'}]}
-      - {surface: čiqtim, sense: chiq, morphs: [{surface: čiq, kc: 'sense:chiq'}, {surface: tim, kc: 'form:past-1s'}]}
-      reverse: Qoṗup čiqtim
   translations:
     en: I got up and went out.
 - id: s.08.29
@@ -725,23 +549,13 @@ sentences:
     chg-Arab/standard:
       text: ایکاولان قوپوب، شهرغه کیردیلار.
       tokens:
-      - {surface: ایکاولان, sense: ikkawlan}
-      - {surface: قوپوب, sense: qop, morphs: [{surface: قوپ, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
-      - {surface: شهرغه, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کیردیلار, sense: kir, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: ایکاولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
+      - {surface: قوپوب, sense: qop, readings: {schluessel: qoṗup}, morphs: [{surface: قوپ, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
+      - {surface: شهرغه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: کیردیلار, sense: kir, readings: {schluessel: kirdilär}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         (ایکاولان|ایکولان) (قوپوب|قوفوب) (شهرغه|شهرکه|شهرقه|شهرغا) (کیردیلار|کردیلار)
         (ایکاولان|ایکولان) (قوپوب|قوفوب) (شهرغه|شهرکه|شهرقه|شهرغا) (کیردی|کردی)
-    chg-Latn/schluessel:
-      text: Ikkäwlän qoṗup, šahargä kirdilär.
-      tokens:
-      - {surface: Ikkäwlän, sense: ikkawlan}
-      - {surface: qoṗup, sense: qop, morphs: [{surface: qoṗ, kc: 'sense:qop'}, {surface: up, kc: 'form:cv-p'}]}
-      - {surface: šahargä, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: kirdilär, sense: kir, morphs: [{surface: kir, kc: 'sense:kir'}, {surface: dilär, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Ikkäwlän qoṗup šahargä kirdilär
-        Ikkäwlän qoṗup šahargä kirdi
   translations:
     en: The two of them got up and (went into|entered) the (city|town).
 stories:
@@ -755,21 +569,12 @@ stories:
         chg-Arab/standard:
           text: "انینک بلان ایکولان شهرنینک دروازه\u200cسیدین جقتی."
           tokens:
-          - {surface: انینک, sense: ul, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
-          - {surface: بلان, sense: bila}
-          - {surface: ایکولان, sense: ikkawlan}
-          - {surface: شهرنینک, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
-          - {surface: "دروازه\u200cسیدین", sense: darwaza, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
-          - {surface: جقتی, sense: chiq, morphs: [{surface: جق, kc: 'sense:chiq'}, {surface: تی, kc: 'form:past-3'}]}
-        chg-Latn/schluessel:
-          text: Aniŋ bilän ikkäwlän šaharniŋ darwāzasidin čiqti.
-          tokens:
-          - {surface: Aniŋ, sense: ul, morphs: [{surface: A, kc: 'sense:ul'}, {surface: niŋ, kc: 'form:gen'}]}
-          - {surface: bilän, sense: bila}
-          - {surface: ikkäwlän, sense: ikkawlan}
-          - {surface: šaharniŋ, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: niŋ, kc: 'form:gen'}]}
-          - {surface: darwāzasidin, sense: darwaza, morphs: [{surface: darwāza, kc: 'sense:darwaza'}, {surface: si, kc: 'form:poss3'}, {surface: din, kc: 'form:abl'}]}
-          - {surface: čiqti, sense: chiq, morphs: [{surface: čiq, kc: 'sense:chiq'}, {surface: ti, kc: 'form:past-3'}]}
+          - {surface: انینک, sense: ul, readings: {schluessel: aniŋ}, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: بلان, sense: bila, readings: {schluessel: bilän}}
+          - {surface: ایکولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
+          - {surface: شهرنینک, sense: shahar, readings: {schluessel: šaharniŋ}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: "دروازه\u200cسیدین", sense: darwaza, readings: {schluessel: darwāzasidin}, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
+          - {surface: جقتی, sense: chiq, readings: {schluessel: čiqti}, morphs: [{surface: جق, kc: 'sense:chiq'}, {surface: تی, kc: 'form:past-3'}]}
       translations:
         en: With him, the two of them went out of the city gate.
   - line:
@@ -777,15 +582,9 @@ stories:
         chg-Arab/standard:
           text: "سفرکا عزم قلدی\u200cلار."
           tokens:
-          - {surface: سفرکا, sense: safar, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: کا, kc: 'form:dat'}]}
-          - {surface: عزم, sense: azm}
-          - {surface: "قلدی\u200cلار", sense: qil, morphs: [{surface: قل, kc: 'sense:qil'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
-        chg-Latn/schluessel:
-          text: Safargä ʿazm qildilar.
-          tokens:
-          - {surface: Safargä, sense: safar, morphs: [{surface: Safar, kc: 'sense:safar'}, {surface: gä, kc: 'form:dat'}]}
-          - {surface: ʿazm, sense: azm}
-          - {surface: qildilar, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: dilar, kc: 'form:past-3pl'}]}
+          - {surface: سفرکا, sense: safar, readings: {schluessel: safargä}, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: کا, kc: 'form:dat'}]}
+          - {surface: عزم, sense: azm, readings: {schluessel: ʿazm}}
+          - {surface: "قلدی\u200cلار", sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قل, kc: 'sense:qil'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
       translations:
         en: They set out on a journey.
   - line:
@@ -798,21 +597,12 @@ stories:
         chg-Arab/standard:
           text: "نجنده کوندین کین، بر شهرکه کلدی\u200cلار."
           tokens:
-          - {surface: نجنده, sense: nachcha}
-          - {surface: کوندین, sense: kun, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
-          - {surface: کین, sense: keyin}
-          - {surface: بر, sense: bir}
-          - {surface: شهرکه, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: که, kc: 'form:dat'}]}
-          - {surface: "کلدی\u200cلار", sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
-        chg-Latn/schluessel:
-          text: Näččändä kündin keyin, bir šahargä käldilär.
-          tokens:
-          - {surface: Näččändä, sense: nachcha}
-          - {surface: kündin, sense: kun, morphs: [{surface: kün, kc: 'sense:kun'}, {surface: din, kc: 'form:abl'}]}
-          - {surface: keyin, sense: keyin}
-          - {surface: bir, sense: bir}
-          - {surface: šahargä, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: gä, kc: 'form:dat'}]}
-          - {surface: käldilär, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: dilär, kc: 'form:past-3pl'}]}
+          - {surface: نجنده, sense: nachcha, readings: {schluessel: näččändä}}
+          - {surface: کوندین, sense: kun, readings: {schluessel: kündin}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
+          - {surface: کین, sense: keyin, readings: {schluessel: keyin}}
+          - {surface: بر, sense: bir, readings: {schluessel: bir}}
+          - {surface: شهرکه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: که, kc: 'form:dat'}]}
+          - {surface: "کلدی\u200cلار", sense: kal, readings: {schluessel: käldilär}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
       translations:
         en: Some days later they came to a city.
   - choose:
@@ -828,23 +618,13 @@ stories:
         chg-Arab/standard:
           text: "«تانک اتقاندا، کرالی،» دیب، بر کناره\u200cدا قوندی\u200cلار."
           tokens:
-          - {surface: تانک, sense: tang}
-          - {surface: اتقاندا, sense: at.shoot, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: قان, kc: 'form:pcp'}, {surface: دا, kc: 'form:loc'}]}
-          - {surface: کرالی, sense: kir, morphs: [{surface: کر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
-          - {surface: دیب, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: ب, kc: 'form:cv-p'}]}
-          - {surface: بر, sense: bir}
-          - {surface: "کناره\u200cدا", sense: kanara, morphs: [{surface: "کناره\u200c", kc: 'sense:kanara'}, {surface: دا, kc: 'form:loc'}]}
-          - {surface: "قوندی\u200cلار", sense: qon, morphs: [{surface: قون, kc: 'sense:qon'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
-        chg-Latn/schluessel:
-          text: “Taŋ atqanda, kiräli,” dep, bir kanārada qondilar.
-          tokens:
-          - {surface: Taŋ, sense: tang}
-          - {surface: atqanda, sense: at.shoot, morphs: [{surface: at, kc: 'sense:at.shoot'}, {surface: qan, kc: 'form:pcp'}, {surface: da, kc: 'form:loc'}]}
-          - {surface: kiräli, sense: kir, morphs: [{surface: kir, kc: 'sense:kir'}, {surface: äli, kc: 'form:let'}]}
-          - {surface: dep, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: p, kc: 'form:cv-p'}]}
-          - {surface: bir, sense: bir}
-          - {surface: kanārada, sense: kanara, morphs: [{surface: kanāra, kc: 'sense:kanara'}, {surface: da, kc: 'form:loc'}]}
-          - {surface: qondilar, sense: qon, morphs: [{surface: qon, kc: 'sense:qon'}, {surface: dilar, kc: 'form:past-3pl'}]}
+          - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
+          - {surface: اتقاندا, sense: at.shoot, readings: {schluessel: atqanda}, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: قان, kc: 'form:pcp'}, {surface: دا, kc: 'form:loc'}]}
+          - {surface: کرالی, sense: kir, readings: {schluessel: kiräli}, morphs: [{surface: کر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
+          - {surface: دیب, sense: de, readings: {schluessel: dep}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: ب, kc: 'form:cv-p'}]}
+          - {surface: بر, sense: bir, readings: {schluessel: bir}}
+          - {surface: "کناره\u200cدا", sense: kanara, readings: {schluessel: kanārada}, morphs: [{surface: "کناره\u200c", kc: 'sense:kanara'}, {surface: دا, kc: 'form:loc'}]}
+          - {surface: "قوندی\u200cلار", sense: qon, readings: {schluessel: qondilar}, morphs: [{surface: قون, kc: 'sense:qon'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
       translations:
         en: “When dawn breaks, let us go in,” they said, and they stopped for the night at the edge of the city.
   - line:
@@ -852,15 +632,9 @@ stories:
         chg-Arab/standard:
           text: "ارته\u200cسی تانک یارودی."
           tokens:
-          - {surface: "ارته\u200cسی", sense: arta, morphs: [{surface: "ارته\u200c", kc: 'sense:arta'}, {surface: سی, kc: 'form:poss3'}]}
-          - {surface: تانک, sense: tang}
-          - {surface: یارودی, sense: yaru, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
-        chg-Latn/schluessel:
-          text: Ärtäsi taŋ yarudi.
-          tokens:
-          - {surface: Ärtäsi, sense: arta, morphs: [{surface: Ärtä, kc: 'sense:arta'}, {surface: si, kc: 'form:poss3'}]}
-          - {surface: taŋ, sense: tang}
-          - {surface: yarudi, sense: yaru, morphs: [{surface: yaru, kc: 'sense:yaru'}, {surface: di, kc: 'form:past-3'}]}
+          - {surface: "ارته\u200cسی", sense: arta, readings: {schluessel: ärtäsi}, morphs: [{surface: "ارته\u200c", kc: 'sense:arta'}, {surface: سی, kc: 'form:poss3'}]}
+          - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
+          - {surface: یارودی, sense: yaru, readings: {schluessel: yarudi}, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
       translations:
         en: The next morning, dawn broke.
   - line:
@@ -869,19 +643,11 @@ stories:
         chg-Arab/standard:
           text: "بو ایکولان قوفوب، شهریکه کردی\u200cلار."
           tokens:
-          - {surface: بو, sense: bu}
-          - {surface: ایکولان, sense: ikkawlan}
-          - {surface: قوفوب, sense: qop, morphs: [{surface: قوف, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
-          - {surface: شهریکه, sense: shahar, morphs: [{surface: شهری, kc: 'sense:shahar'}, {surface: که, kc: 'form:dat'}]}
-          - {surface: "کردی\u200cلار", sense: kir, morphs: [{surface: کر, kc: 'sense:kir'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
-        chg-Latn/schluessel:
-          text: Bu ikkäwlän qoṗup, šahargä kirdilär.
-          tokens:
-          - {surface: Bu, sense: bu}
-          - {surface: ikkäwlän, sense: ikkawlan}
-          - {surface: qoṗup, sense: qop, morphs: [{surface: qoṗ, kc: 'sense:qop'}, {surface: up, kc: 'form:cv-p'}]}
-          - {surface: šahargä, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: gä, kc: 'form:dat'}]}
-          - {surface: kirdilär, sense: kir, morphs: [{surface: kir, kc: 'sense:kir'}, {surface: dilär, kc: 'form:past-3pl'}]}
+          - {surface: بو, sense: bu, readings: {schluessel: bu}}
+          - {surface: ایکولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
+          - {surface: قوفوب, sense: qop, readings: {schluessel: qoṗup}, morphs: [{surface: قوف, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
+          - {surface: شهریکه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهری, kc: 'sense:shahar'}, {surface: که, kc: 'form:dat'}]}
+          - {surface: "کردی\u200cلار", sense: kir, readings: {schluessel: kirdilär}, morphs: [{surface: کر, kc: 'sense:kir'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
       translations:
         en: The two of them got up and went into the city.
   - choose:

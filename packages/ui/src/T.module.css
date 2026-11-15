@@ -44,6 +44,12 @@
 
 /* Characters over Jyutping (ADR 0126): a Han glyph is a whole word's worth of strokes, unreadable at
    the size that suits a romanized syllable. */
+/* A reading over an Arabic-script word (Schluessel's transliteration of Chaghatay, ADR 0129) stands clear of
+   the word's dots and tall strokes, which Nastaliq stacks high above the line. */
+.text[data-script="Arab"] .ruby rt {
+  padding-block-end: 0.45em;
+}
+
 .ruby rt:is([data-script="Hant"], [data-script="Hans"], [data-script="Hani"]) {
   font-size: 0.75em;
   padding-inline: 0;

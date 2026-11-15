@@ -40,7 +40,7 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
     ["es", "es-Latn/standard", "es.u01.soy"],
     ["hbo", "hbo-Hebr/tiberian", "hbo.u01.the-day"],
     ["tok", "tok-Qaap/sitelen-pona", "tok.u01.person"],
-    ["chg", "chg-Latn/schluessel", "chg.u01.sweet"],
+    ["chg", "chg-Arab/standard", "chg.u01.sweet"],
   ],
 };
 
@@ -127,6 +127,27 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   await page.locator("[data-lesson-player] [data-action=display]").click();
   await page.locator("[data-display-menu] [data-toggle=readings] [data-reading=off]").click();
   await expect(page.locator("[data-lesson-player] rt")).toHaveCount(0);
+});
+
+test("Chaghatay is read in Arabic, with Schluessel's transliteration over each word when the learner turns it on (ADR 0129)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("chg", "chg-Arab/standard");
+  const request = { mode: "lesson", node: "chg.u01.bread-and-tea" } as const;
+  await page.goto(sessionUrl(course, request, SEED));
+  const player = page.locator("[data-lesson-player]");
+  await expect(player).toHaveAttribute("data-state", "answering");
+  await expect(player.locator("rt")).toHaveCount(0);
+  // One layer: a switch in the header's display menu (P12).
+  await page.locator("[data-lesson-player] [data-action=display]").click();
+  await page.locator("[data-display-menu] [data-toggle=readings]").click();
+  const rt = player.locator("rt").first();
+  await expect(rt).toHaveAttribute("lang", "chg-Latn");
+  // Over the whole word: one reading per ruby, its base the Arabic word, set in Nastaliq.
+  const ruby = player.locator("ruby").first();
+  await expect(ruby.locator("rt")).toHaveCount(1);
+  expect(await ruby.evaluate((r) => getComputedStyle(r).fontFamily)).toContain("Noto Nastaliq Urdu");
+  expect(await ruby.evaluate((r) => getComputedStyle(r).direction)).toBe("rtl");
 });
 
 test("vertical text on a phone keeps the readings, turns only the Cantonese and leaves Check in sight (W6)", async ({ page }, info) => {
