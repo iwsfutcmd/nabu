@@ -93,6 +93,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   composing through `useSettledSubmit` (@nabu/ui); never disable a button while composing (ADR 0118, D39).
 - Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
   shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
+- Letters placed to build a word (word-write) show as the word they spell: one token, one run of text (`data-spelled-word`),
+  so a script whose letters join shows them joined and marks sit on their letters. Never lay letter tiles side by side as
+  the answer; pressing the word or Backspace takes back the last letter.
 - Word-bank and story-arrange tiles come from `tilesOf` (lesson/tiles.ts, ADR 0130), never `tileGroups`: lower case but
   for words that must be capitalized (a sentence's first word loses its capital where the course writes it in lower
   case; a capital inside a sentence stays). A capital would show the answer's first tile and which tiles are distractors.
