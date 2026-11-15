@@ -1164,6 +1164,65 @@
       },
       "expected": "sap6 10",
       "note": "a tone digit followed by a digit or a space is not split"
+    },
+    {
+      "id": "normalize/chg-Arab/arabic-kaf-yeh",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "text": "كتاب يوق"
+      },
+      "expected": "کتاب یوق",
+      "note": "Arabic kaf and yeh, as an Arabic keyboard types them, are keheh and Farsi yeh."
+    },
+    {
+      "id": "normalize/chg-Arab/ng-letter",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "text": "مڭا"
+      },
+      "expected": "منکا",
+      "note": "ڭ, as Uyghur prints have it, is نک (ŋ)."
+    },
+    {
+      "id": "normalize/chg-Arab/ae-letter",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "text": "میوە"
+      },
+      "expected": "میوه",
+      "note": "The ae letter (U+06D5) of Uyghur and Kurdish keyboards is heh."
+    },
+    {
+      "id": "normalize/chg-Arab/tatweel-punctuation",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "text": "سیز مـلاموسیز؟"
+      },
+      "expected": "سیز ملاموسیز",
+      "note": "Tatweel goes, and so does the Arabic question mark."
+    },
+    {
+      "id": "normalize/chg-Latn/apostrophe-ayn",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "text": "'Arabistān wä ’ālim"
+      },
+      "expected": "ʿArabistān wä ʿālim",
+      "note": "An apostrophe typed for ʿayn is its half ring."
+    },
+    {
+      "id": "normalize/chg-Latn/punctuation",
+      "op": "normalize",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "text": "Siz mullāmusiz?"
+      },
+      "expected": "Siz mullāmusiz"
     }
   ]
 }

@@ -1,0 +1,57 @@
+# Chaghatay (Turki) in the Arabo-Persian script (ADR 0128), the baseline orthography of the chg course: the
+# literary Turkic of Central Asia from the fifteenth century to the twentieth, written as typeset editions and
+# Schluessel's An Introduction to Chaghatay (2018) set it.
+#  - Persian letters: keheh ک, Farsi yeh ی (dotless at the end of a word, as Chaghatay hands write it), heh ه for
+#    a final -a/-ä (میوه mewä). The g is mostly ک (کوشت göšt), گ where the course's sources write it.
+#  - ŋ is نک, the letters n and k (منکا maŋa); ڭ, as some prints have it, is the same.
+#  - Suffixes stand after a zero-width non-joiner (U+200C) where Schluessel's typescript separates them (qattiq-dur,
+#    bala-lar), joined otherwise; manuscripts do either, and so may a learner.
+#  - Manuscripts have no punctuation: the course adds the Persian marks (، ؛ ؟ .) as typeset editions do, and
+#    answers ignore them. Short vowels are rarely marked, and never asked for.
+# Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+id: chg-Arab/standard
+lang: chg-Arab
+# No CLDR locale for Chaghatay. CLDR's Persian has every letter, mark and punctuation mark the texts use.
+exemplars: cldr:fa
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  - fold-compat: arabic-presentation-forms         # U+FB50–U+FDFF, U+FE70–U+FEFF → base letters
+  # Arabic kaf and yeh, alef maksura and the ae letter as Persian keyboards and Uyghur prints have them; ڭ as نک.
+  - map: { "\u0643": "\u06A9", "\u064A": "\u06CC", "\u0649": "\u06CC", "\u06D5": "\u0647", "\u06AD": "\u0646\u06A9" }
+  - remove: ["\u0640"]                            # tatweel
+  - digits: { canonical: latn, accept: [arabext, arab, latn] }
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: none
+  # Harakat (rare in Chaghatay) never decide an answer.
+  marks: { set: "[\u064B-\u0652\u0670]", policy: ignore }
+  # REVIEW: a suffix after a half-space, a space or joined to its word is one spelling (Schluessel, xxx).
+  zwnj: { equivalents: ["\u200C", " ", ""], policy: accept }
+  equivalences:
+    # REVIEW: g is written ک or گ in the same texts (Schluessel, xxv): either is right.
+    - { id: kaf-gaf, map: { "\u06AF": "\u06A9" }, policy: accept }
+    # REVIEW: a hamza seat written as its bare letter, or a hamza left out, as hands often do (Schluessel, xxviii).
+    - { id: hamza-seat, map: { "\u0623": "\u0627", "\u0625": "\u0627", "\u0626": "\u06CC", "\u0624": "\u0648", "\u0621": "" }, policy: accept }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:fa
+    maxRatio: 0.2
+    minLength: 3
+    # REVIEW (ADR 0066): endings a letter or two apart that change the meaning. A slip that trades one for another
+    # at the end of a word is WRONG_WORD, not a typo. A list groups the spellings of one ending (the dative after
+    # a front or back, voiced or voiceless stem; the locative ده or دا).
+    # Person on the predicate and the present: -män, -sän, -siz, -miz, -sizlär; the plural -lar.
+    # Case: the accusative -ni, the genitive -niŋ, the dative, the locative, the ablative.
+    # The simple past: -dim, -diŋ, -diŋiz, -di, -duq, -dilär.
+    contrasts:
+      - { id: person, note: contrast-person, members: [من, سن, سیز, میز, سیزلار, لار] }
+      - { id: case, note: contrast-case, members: [نی, نینک, [غه, گه, قه, که, غا, قا, کا, گا], [ده, دا, ته, تا], [دین, تین, دان, دن]] }
+      - { id: past, note: contrast-person, members: [[دیم, دوم, تیم, توم], [دینک, دونک, تینک], [دینکیز, تینکیز], [دی, تی], [دوق, دوک, توق], [دیلار, تیلار]] }
+      - { id: pronoun, note: contrast-pronoun, members: [من, سن, سیز, بیز, سیزلار, اولار] }
+input:
+  keyboard: cldr-kbd:fa
+  extraKeys: ["\u200C"]          # ZWNJ on the special-character bar
+layout: { vertical: none }
+fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9, scale: 1.1 }

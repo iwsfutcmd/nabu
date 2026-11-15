@@ -3217,6 +3217,221 @@
         "verdict": "WRONG_WORD"
       },
       "note": "sang1 for saang1: vowel length is phonemic, and sang1 is another syllable of the course"
+    },
+    {
+      "id": "grade/chg-Arab/zwnj-as-space",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "قاتیق\u200Cدور",
+        "answer": "قاتیق دور"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "A suffix after a space, a half-space or joined is one spelling: no note."
+    },
+    {
+      "id": "grade/chg-Arab/zwnj-joined",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "قاتیق\u200Cدور",
+        "answer": "قاتیقدور"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/chg-Arab/kaf-gaf",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "کوشت قیمت\u200Cدور",
+        "answer": "گوشت قیمت\u200Cدور"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "g written گ or ک: either is right."
+    },
+    {
+      "id": "grade/chg-Arab/harakat-ignored",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "قند شیرین\u200Cدور",
+        "answer": "قَند شیرین\u200Cدور"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/chg-Arab/contrast-case",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "بزارغه بارادور",
+        "answer": "بزارده بارادور"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-case"
+        ]
+      },
+      "note": "-da (in) for -ǧa (to): another case, not a typo."
+    },
+    {
+      "id": "grade/chg-Arab/case-far",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "اویده نان بار",
+        "answer": "اویدین نان بار"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "Too far for a typo: wrong."
+    },
+    {
+      "id": "grade/chg-Arab/contrast-person",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "من چای ایچامن",
+        "answer": "من چای ایچاسن"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-person"
+        ]
+      },
+      "note": "-sän (you) for -män (I)."
+    },
+    {
+      "id": "grade/chg-Latn/marks-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Kiši öydä",
+        "answer": "Kisi oyda"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "translit-marks"
+        ]
+      },
+      "note": "No marks: noted, and the answer counts."
+    },
+    {
+      "id": "grade/chg-Latn/marks-make-word",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "bärdi",
+        "answer": "bardi",
+        "lexicon": [
+          "bardi",
+          "bärdi"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "translit-marks-word"
+        ]
+      },
+      "note": "bardi \"went\" for bärdi \"gave\"."
+    },
+    {
+      "id": "grade/chg-Latn/ng-for-eng",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "maŋa bär",
+        "answer": "manga bär"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "translit-marks"
+        ]
+      },
+      "note": "ng typed for ŋ: noted."
+    },
+    {
+      "id": "grade/chg-Latn/apostrophe-ayn",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "ʿālim",
+        "answer": "'alim"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "translit-marks"
+        ]
+      }
+    },
+    {
+      "id": "grade/chg-Latn/contrast-case",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Bazārǧa baradur",
+        "answer": "Bazārda baradur"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-case"
+        ]
+      },
+      "note": "-da (in) for -ǧa (to)."
+    },
+    {
+      "id": "grade/chg-Latn/contrast-possessive",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Pādišāhim bar",
+        "answer": "Pādišāhiŋ bar"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "-iŋ (your) for -im (my)."
+    },
+    {
+      "id": "grade/chg-Latn/contrast-past",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Män bärdim",
+        "answer": "Män bärdi"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-person"
+        ]
+      },
+      "note": "-di (he gave) for -dim (I gave)."
     }
   ]
 }

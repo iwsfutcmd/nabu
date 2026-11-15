@@ -20,7 +20,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - What the prompt does not decide, the learner may choose (ADR 0085): accept sets take every order, word choice,
   optional word and form whose translation would be the prompt, in both directions; never one that would translate
   otherwise. The grader stays literal: the answers are listed in the accept set.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc, chg) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -548,6 +548,21 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
 - A script track's letters and marks come from the profile (core-cli `letters` and `unicode-set`), never a list in code;
   `romanize` is `{scheme, orthography}`; a form with no letter is `script.no-letter` (ADR 0124).
+
+## Chaghatay notes (see docs/adr/0128)
+- courses/chg is Chaghatay (literary Turki), read and written only (`facets: [recognize, produce]`, no audio). Two
+  orthographies, every sentence and story line pinned in both, word for word (same senses and suffix morphs; a test
+  checks it): chg-Arab/standard, the baseline, and chg-Latn/schluessel, Schluessel's transliteration (2018).
+- Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
+  joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
+- Suffixes are morphs with form KCs (form:dat, form:past-1s, form:pres, form:mis …); verbs are cited as stems with
+  a hyphen (bar-). Homographs take a suffix (bar.go, at.name, kim.that, yuz.face).
+- Schluessel's book is CC BY-NC-ND: take facts from it (letters, suffixes, spellings, glosses), never his example
+  sentences. Stories are public-domain passages (Babur, the Tadhkira, Abu 'l-Ghazi, Navai) as he types them, in the
+  source's spellings (فادشاه, پز, tep), with his reading in the Latin. PDF page = book page + 35; check Arabic on
+  page images. Notes in `nabu/notes/chg/`.
+- "You": sän tagged to one person, sizlär to several, siz (polite or plural) untagged; accept sets take the forms
+  that fit. No gender: he/she in English accept sets.
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

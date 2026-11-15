@@ -1,0 +1,1241 @@
+# Chaghatay (chg), unit 6: King at twelve (Babur, Bāburnāma: the opening).
+# The simple past (bardim "I went", kälmädi "he did not come") in every person; numbers to a thousand; ages,
+# months and years; ordinals (-inči).
+# The passage is Babur's own text (died 1530; the Hyderabad manuscript, in Beveridge's 1905 facsimile), as
+# Schluessel (2018, ch. 11) types it; the rest was drafted by an LLM (provenance llm:…, status draft) and awaits
+# a reviewer.
+id: u06-king-at-twelve
+title:
+  en: King at twelve
+cefr: A1
+kcs:
+- id: sense:sal
+  gloss:
+    en: to put, throw; to build, set up
+  forms:
+    chg-Arab/standard:
+    - سال-
+    chg-Latn/schluessel:
+    - sal-
+- id: sense:yigirma
+  gloss:
+    en: twenty
+  forms:
+    chg-Arab/standard:
+    - ییکرمه
+    chg-Latn/schluessel:
+    - yigirmä
+- id: sense:ottuz
+  gloss:
+    en: thirty
+  forms:
+    chg-Arab/standard:
+    - اوتوز
+    chg-Latn/schluessel:
+    - ottuz
+- id: sense:qirq
+  gloss:
+    en: forty
+  forms:
+    chg-Arab/standard:
+    - قیرق
+    chg-Latn/schluessel:
+    - qirq
+- id: sense:allik
+  gloss:
+    en: fifty
+  forms:
+    chg-Arab/standard:
+    - الیک
+    chg-Latn/schluessel:
+    - ällik
+- id: sense:toqsan
+  gloss:
+    en: ninety
+  forms:
+    chg-Arab/standard:
+    - توقسان
+    chg-Latn/schluessel:
+    - toqsan
+- id: sense:yuz
+  gloss:
+    en: hundred; face
+  forms:
+    chg-Arab/standard:
+    - یوز
+    chg-Latn/schluessel:
+    - yüz
+- id: sense:ming
+  gloss:
+    en: thousand
+  forms:
+    chg-Arab/standard:
+    - مینک
+    chg-Latn/schluessel:
+    - miŋ
+- id: sense:yash
+  gloss:
+    en: year of age; young
+  forms:
+    chg-Arab/standard:
+    - یاش
+    chg-Latn/schluessel:
+    - yaš
+  notes:
+    en: on ikki yašta "at twelve years of age".
+- id: sense:ay.month
+  gloss:
+    en: month; moon
+  forms:
+    chg-Arab/standard:
+    - آی
+    chg-Latn/schluessel:
+    - ay
+  image:
+    file: ../images/moon.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:yil
+  gloss:
+    en: year
+  forms:
+    chg-Arab/standard:
+    - ییل
+    chg-Latn/schluessel:
+    - yil
+- id: sense:kun
+  gloss:
+    en: day; sun
+  forms:
+    chg-Arab/standard:
+    - کون
+    chg-Latn/schluessel:
+    - kün
+  image:
+    file: ../images/sun.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:tarikh
+  gloss:
+    en: date, year (of an era); history
+  forms:
+    chg-Arab/standard:
+    - تاریخ
+    chg-Latn/schluessel:
+    - tārīḫ
+  notes:
+    en: 'tārīḫ-i 899 "the year 899": the -i is the Persian ezafe "of", which the script does not write. Dates count the years of the Hijra (899 is 1494 CE).'
+- id: sense:ramzan
+  gloss:
+    en: Ramadan (the ninth month)
+  forms:
+    chg-Arab/standard:
+    - رمضان
+    chg-Latn/schluessel:
+    - Ramżān
+- id: sense:iqlim
+  gloss:
+    en: clime (one of the seven zones of the earth)
+  forms:
+    chg-Arab/standard:
+    - اقلیم
+    chg-Latn/schluessel:
+    - iqlīm
+- id: sense:aywan
+  gloss:
+    en: portico, porch
+  forms:
+    chg-Arab/standard:
+    - ایوان
+    chg-Latn/schluessel:
+    - aywān
+- id: sense:hujra
+  gloss:
+    en: room; pavilion
+  forms:
+    chg-Arab/standard:
+    - حجره
+    chg-Latn/schluessel:
+    - ḥujra
+- id: sense:qayda
+  gloss:
+    en: where?
+  forms:
+    chg-Arab/standard:
+    - قایده
+    chg-Latn/schluessel:
+    - qayda
+- id: sense:bibi
+  gloss:
+    en: Mrs., lady (after a woman's name)
+  forms:
+    chg-Arab/standard:
+    - بیبی
+    chg-Latn/schluessel:
+    - bibi
+- id: sense:kashghar
+  gloss:
+    en: Kashgar
+  forms:
+    chg-Arab/standard:
+    - کاشغر
+    chg-Latn/schluessel:
+    - Kašǧar
+- id: form:past-1s
+  gloss:
+    en: '-dim, -dum, -düm (-tim after a voiceless consonant): I did'
+  notes:
+    en: 'The simple past tells what happened: bardim "I went", boldum "I became", ičtim "I drank".'
+- id: form:past-2s
+  gloss:
+    en: '-diŋ, -duŋ, -düŋ: you did, to a friend'
+- id: form:past-2
+  gloss:
+    en: '-diŋiz: you did, politely or to several'
+- id: form:past-3
+  gloss:
+    en: '-di (-ti): he, she, it did; they did'
+  notes:
+    en: bardi "she went". With several people it may be -dilär, or -di alone.
+- id: form:past-1p
+  gloss:
+    en: '-duq, -dük: we did'
+  notes:
+    en: The scribes write -duq far more than -dük, whatever the vowels.
+- id: form:past-2pl
+  gloss:
+    en: '-diŋlar, -duŋlar: you did, to several people'
+- id: form:past-3pl
+  gloss:
+    en: '-dilär, -dilar: they did'
+- id: form:neg
+  gloss:
+    en: '-ma-, -mä-: not (inside the verb)'
+  notes:
+    en: 'körmädim "I did not see", kälmädi "he did not come". After it the past ending always has i: barmaduq.'
+- id: form:liq
+  gloss:
+    en: '-liq, -lik, -luq, -lük: with, having; of (a place); -ness'
+  notes:
+    en: aywānliq ḥujra "a pavilion with a portico"; Kašǧarliq "of Kashgar"; yaḫšiliq "goodness". Scribes write it -liq whatever the vowels.
+- id: form:ord
+  gloss:
+    en: '-nči, -inči, -unči, -ünči: -th (ordinal numbers)'
+  notes:
+    en: bäšinči "fifth", ikkinči "second", toqquzunči "ninth".
+nodes:
+- id: chg.u06.i-went
+  kind: lesson
+  introduces:
+  - form:past-1s
+  - sense:kashghar
+  - form:past-3
+  - sense:bibi
+  - sense:sal
+- id: chg.u06.we-went
+  kind: lesson
+  introduces:
+  - form:past-1p
+  - form:past-2
+  - form:past-2s
+  - sense:qayda
+  - form:past-2pl
+  - form:past-3pl
+- id: chg.u06.did-not
+  kind: lesson
+  introduces:
+  - form:neg
+- id: chg.u06.numbers
+  kind: lesson
+  introduces:
+  - sense:yash
+  - sense:yigirma
+  - sense:ottuz
+  - sense:qirq
+  - sense:kun
+  - sense:allik
+  - sense:yil
+  - sense:toqsan
+  - sense:yuz
+  - sense:ming
+- id: chg.u06.dates
+  kind: lesson
+  introduces:
+  - sense:ramzan
+  - sense:ay.month
+  - form:ord
+  - sense:tarikh
+  - sense:iqlim
+  - sense:aywan
+  - form:liq
+  - sense:hujra
+- id: chg.u06.story
+  kind: story
+sentences:
+- id: s.06.1
+  node: chg.u06.i-went
+  forms:
+    chg-Arab/standard:
+      text: من بزارغه باردیم.
+      tokens:
+      - {surface: من, sense: man}
+      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردیم, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیم, kc: 'form:past-1s'}]}
+      reverse: '[من] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باردیم'
+    chg-Latn/schluessel:
+      text: Män bazārǧa bardim.
+      tokens:
+      - {surface: Män, sense: man}
+      - {surface: bazārǧa, sense: bazar, morphs: [{surface: bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: bardim, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: dim, kc: 'form:past-1s'}]}
+      reverse: '[(Män|Men)] bazārǧa bardim'
+  translations:
+    en: I went to the (market|bazaar).
+- id: s.06.2
+  node: chg.u06.i-went
+  forms:
+    chg-Arab/standard:
+      text: اول کاشغردین کلدی.
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: کاشغردین, sense: kashghar, morphs: [{surface: کاشغر, kc: 'sense:kashghar'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: اول (کاشغردین|کاشغردن) (کلدی|کیلدی)
+    chg-Latn/schluessel:
+      text: Ul Kašǧardin käldi.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: Kašǧardin, sense: kashghar, morphs: [{surface: Kašǧar, kc: 'sense:kashghar'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: (Ul|Ol) Kašǧardin (käldi|keldi)
+  translations:
+    en: (He|She) came from Kashgar.
+- id: s.06.3
+  node: chg.u06.i-went
+  forms:
+    chg-Arab/standard:
+      text: من بیر کتاب الدیم.
+      tokens:
+      - {surface: من, sense: man}
+      - {surface: بیر, sense: bir}
+      - {surface: کتاب, sense: kitab}
+      - {surface: الدیم, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: دیم, kc: 'form:past-1s'}]}
+      reverse: '[من] (بیر|بر) کتاب (الدیم|آلدیم)'
+    chg-Latn/schluessel:
+      text: Män bir kitāb aldim.
+      tokens:
+      - {surface: Män, sense: man}
+      - {surface: bir, sense: bir}
+      - {surface: kitāb, sense: kitab}
+      - {surface: aldim, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: dim, kc: 'form:past-1s'}]}
+      reverse: '[(Män|Men)] bir kitāb aldim'
+  translations:
+    en: I (bought|took|got) a book.
+- id: s.06.4
+  node: chg.u06.i-went
+  forms:
+    chg-Arab/standard:
+      text: من چای ایچتیم.
+      tokens:
+      - {surface: من, sense: man}
+      - {surface: چای, sense: chay}
+      - {surface: ایچتیم, sense: ich, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: تیم, kc: 'form:past-1s'}]}
+      reverse: '[من] چای ایچتیم'
+    chg-Latn/schluessel:
+      text: Män čay ičtim.
+      tokens:
+      - {surface: Män, sense: man}
+      - {surface: čay, sense: chay}
+      - {surface: ičtim, sense: ich, morphs: [{surface: ič, kc: 'sense:ich'}, {surface: tim, kc: 'form:past-1s'}]}
+      reverse: '[(Män|Men)] čay ičtim'
+  translations:
+    en: I drank (tea|the tea|some tea).
+- id: s.06.5
+  node: chg.u06.i-went
+  forms:
+    chg-Arab/standard:
+      text: اول پادشاه بولدی.
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: پادشاه, sense: padishah}
+      - {surface: بولدی, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: اول (پادشاه|بادشاه|فادشاه) بولدی
+    chg-Latn/schluessel:
+      text: Ul pādišāh boldi.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: pādišāh, sense: padishah}
+      - {surface: boldi, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: (Ul|Ol) pādišāh boldi
+  translations:
+    en: (He|She) became (king|the king|ruler).
+- id: s.06.6
+  node: chg.u06.i-went
+  forms:
+    chg-Arab/standard:
+      text: من تاغنی کوردوم.
+      tokens:
+      - {surface: من, sense: man}
+      - {surface: تاغنی, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: کوردوم, sense: kor, morphs: [{surface: کور, kc: 'sense:kor'}, {surface: دوم, kc: 'form:past-1s'}]}
+      reverse: '[من] تاغنی کوردوم'
+    chg-Latn/schluessel:
+      text: Män taǧni kördüm.
+      tokens:
+      - {surface: Män, sense: man}
+      - {surface: taǧni, sense: tagh, morphs: [{surface: taǧ, kc: 'sense:tagh'}, {surface: ni, kc: 'form:acc'}]}
+      - {surface: kördüm, sense: kor, morphs: [{surface: kör, kc: 'sense:kor'}, {surface: düm, kc: 'form:past-1s'}]}
+      reverse: '[(Män|Men)] taǧni kördüm'
+  translations:
+    en: I saw the mountain.
+- id: s.06.7
+  node: chg.u06.i-went
+  forms:
+    chg-Arab/standard:
+      text: خما بیبی بزارغه باردی.
+      tokens:
+      - {surface: خما, sense: khuma}
+      - {surface: بیبی, sense: bibi}
+      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردی, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: خما بیبی (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باردی
+    chg-Latn/schluessel:
+      text: Ḫumā bibi bazārǧa bardi.
+      tokens:
+      - {surface: Ḫumā, sense: khuma}
+      - {surface: bibi, sense: bibi}
+      - {surface: bazārǧa, sense: bazar, morphs: [{surface: bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: bardi, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: Ḫumā bibi bazārǧa bardi
+  translations:
+    en: Mrs. Huma went to the (market|bazaar).
+- id: s.06.8
+  node: chg.u06.i-went
+  forms:
+    chg-Arab/standard:
+      text: اول بیر اوی سالدی.
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: بیر, sense: bir}
+      - {surface: اوی, sense: oy}
+      - {surface: سالدی, sense: sal, morphs: [{surface: سال, kc: 'sense:sal'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: اول (بیر|بر) اوی سالدی
+    chg-Latn/schluessel:
+      text: Ul bir öy saldi.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: bir, sense: bir}
+      - {surface: öy, sense: oy}
+      - {surface: saldi, sense: sal, morphs: [{surface: sal, kc: 'sense:sal'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: (Ul|Ol) bir öy saldi
+  translations:
+    en: (He|She) built a house.
+- id: s.06.9
+  node: chg.u06.we-went
+  forms:
+    chg-Arab/standard:
+      text: بیز اندجانغه باردوق.
+      tokens:
+      - {surface: بیز, sense: biz}
+      - {surface: اندجانغه, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردوق, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دوق, kc: 'form:past-1p'}]}
+      reverse: '[بیز] (اندجانغه|اندجانکه|اندجانقه|اندجانغا) (باردوق|باردوک)'
+    chg-Latn/schluessel:
+      text: Biz Andijānǧa barduq.
+      tokens:
+      - {surface: Biz, sense: biz}
+      - {surface: Andijānǧa, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: barduq, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: duq, kc: 'form:past-1p'}]}
+      reverse: '[Biz] Andijānǧa barduq'
+  translations:
+    en: We went to Andijan.
+- id: s.06.10
+  node: chg.u06.we-went
+  forms:
+    chg-Arab/standard:
+      text: سیز نمه کوردینکیز؟
+      tokens:
+      - {surface: سیز, sense: siz}
+      - {surface: نمه, sense: nema}
+      - {surface: کوردینکیز, sense: kor, morphs: [{surface: کور, kc: 'sense:kor'}, {surface: دینکیز, kc: 'form:past-2'}]}
+      reverse: |-
+        [سیز] (نمه|نیمه) کوردینکیز
+        [سن] (نمه|نیمه) کوردونک
+        [سیزلار] (نمه|نیمه) کوردونکلار
+    chg-Latn/schluessel:
+      text: Siz nemä kördiŋiz?
+      tokens:
+      - {surface: Siz, sense: siz}
+      - {surface: nemä, sense: nema}
+      - {surface: kördiŋiz, sense: kor, morphs: [{surface: kör, kc: 'sense:kor'}, {surface: diŋiz, kc: 'form:past-2'}]}
+      reverse: |-
+        [Siz] (nemä|ne) kördiŋiz
+        [(Sän|Sen)] (nemä|ne) kördüŋ
+        [Sizlär] (nemä|ne) körduŋlar
+  translations:
+    en: What did you see?
+- id: s.06.11
+  node: chg.u06.we-went
+  forms:
+    chg-Arab/standard:
+      text: سن نمه الدینک؟
+      tokens:
+      - {surface: سن, sense: san}
+      - {surface: نمه, sense: nema}
+      - {surface: الدینک, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: دینک, kc: 'form:past-2s'}]}
+      reverse: |-
+        [سن] (نمه|نیمه) (الدینک|آلدینک)
+        [سیز] (نمه|نیمه) (الدینکیز|آلدینکیز)
+    chg-Latn/schluessel:
+      text: Sän nemä aldiŋ?
+      tokens:
+      - {surface: Sän, sense: san}
+      - {surface: nemä, sense: nema}
+      - {surface: aldiŋ, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: diŋ, kc: 'form:past-2s'}]}
+      reverse: |-
+        [(Sän|Sen)] (nemä|ne) aldiŋ
+        [Siz] (nemä|ne) aldiŋiz
+  translations:
+    en: What did you (buy|take|get)?
+  persons: &id001
+    addressee: sg
+- id: s.06.12
+  node: chg.u06.we-went
+  forms:
+    chg-Arab/standard:
+      text: سیزلار قایده باردینکلار؟
+      tokens:
+      - {surface: سیزلار, sense: sizlar}
+      - {surface: قایده, sense: qayda}
+      - {surface: باردینکلار, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دینکلار, kc: 'form:past-2pl'}]}
+      reverse: |-
+        [سیزلار] (قایده|قیده|قایدا) باردینکلار
+        [سیز] (قایده|قیده|قایدا) باردینکیز
+    chg-Latn/schluessel:
+      text: Sizlär qayda bardiŋlar?
+      tokens:
+      - {surface: Sizlär, sense: sizlar}
+      - {surface: qayda, sense: qayda}
+      - {surface: bardiŋlar, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: diŋlar, kc: 'form:past-2pl'}]}
+      reverse: |-
+        [Sizlär] qayda bardiŋlar
+        [Siz] qayda bardiŋiz
+  translations:
+    en: Where did you go?
+  persons:
+    addressee: pl
+- id: s.06.13
+  node: chg.u06.we-went
+  forms:
+    chg-Arab/standard:
+      text: اولار سمرقنددین کلدیلار.
+      tokens:
+      - {surface: اولار, sense: ular}
+      - {surface: سمرقنددین, sense: samarqand, morphs: [{surface: سمرقند, kc: 'sense:samarqand'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: کلدیلار, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      reverse: |-
+        (اولار|الار) (سمرقنددین|سمرقنددن) (کلدیلار|کیلدیلار)
+        (اولار|الار) (سمرقنددین|سمرقنددن) (کلدی|کیلدی)
+    chg-Latn/schluessel:
+      text: Ular Samarqanddin käldilär.
+      tokens:
+      - {surface: Ular, sense: ular}
+      - {surface: Samarqanddin, sense: samarqand, morphs: [{surface: Samarqand, kc: 'sense:samarqand'}, {surface: din, kc: 'form:abl'}]}
+      - {surface: käldilär, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: dilär, kc: 'form:past-3pl'}]}
+      reverse: |-
+        (Ular|Alar) Samarqanddin (käldilär|keldilär)
+        (Ular|Alar) Samarqanddin (käldi|keldi)
+  translations:
+    en: They came from Samarkand.
+- id: s.06.14
+  node: chg.u06.we-went
+  forms:
+    chg-Arab/standard:
+      text: بیز نان و کوشت الدوق.
+      tokens:
+      - {surface: بیز, sense: biz}
+      - {surface: نان, sense: nan}
+      - {surface: و, sense: wa}
+      - {surface: کوشت, sense: gosht}
+      - {surface: الدوق, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: دوق, kc: 'form:past-1p'}]}
+      reverse: '[بیز] نان و کوشت (الدوق|الدوک|آلدوق|آلدوک)'
+    chg-Latn/schluessel:
+      text: Biz nan wä göšt alduq.
+      tokens:
+      - {surface: Biz, sense: biz}
+      - {surface: nan, sense: nan}
+      - {surface: wä, sense: wa}
+      - {surface: göšt, sense: gosht}
+      - {surface: alduq, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: duq, kc: 'form:past-1p'}]}
+      reverse: '[Biz] nan wä göšt alduq'
+  translations:
+    en: We (bought|got) bread and meat.
+- id: s.06.15
+  node: chg.u06.we-went
+  forms:
+    chg-Arab/standard:
+      text: سیز کتابنی اوقودینکیزمو؟
+      tokens:
+      - {surface: سیز, sense: siz}
+      - {surface: کتابنی, sense: kitab, morphs: [{surface: کتاب, kc: 'sense:kitab'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: اوقودینکیزمو, sense: oqu, morphs: [{surface: اوقو, kc: 'sense:oqu'}, {surface: دینکیز, kc: 'form:past-2'}, {surface: مو, kc: 'form:q'}]}
+      reverse: |-
+        [سیز] کتابنی اوقودینکیزمو
+        [سن] کتابنی اوقودونکمو
+        [سیزلار] کتابنی اوقودینکلارمو
+    chg-Latn/schluessel:
+      text: Siz kitābni oqudiŋizmu?
+      tokens:
+      - {surface: Siz, sense: siz}
+      - {surface: kitābni, sense: kitab, morphs: [{surface: kitāb, kc: 'sense:kitab'}, {surface: ni, kc: 'form:acc'}]}
+      - {surface: oqudiŋizmu, sense: oqu, morphs: [{surface: oqu, kc: 'sense:oqu'}, {surface: diŋiz, kc: 'form:past-2'}, {surface: mu, kc: 'form:q'}]}
+      reverse: |-
+        [Siz] kitābni oqudiŋizmu
+        [(Sän|Sen)] kitābni oquduŋmu
+        [Sizlär] kitābni oqudiŋlarmu
+  translations:
+    en: Did you read the book?
+- id: s.06.16
+  node: chg.u06.we-went
+  forms:
+    chg-Arab/standard:
+      text: بلا قایده؟
+      tokens:
+      - {surface: بلا, sense: bala}
+      - {surface: قایده, sense: qayda}
+      reverse: "(بلا|بالا) (قایده|قیده|قایدا)\n(بلا|بالا) (قایده\u200cدور|قیده\u200cدور|قایدادور)"
+    chg-Latn/schluessel:
+      text: Bala qayda?
+      tokens:
+      - {surface: Bala, sense: bala}
+      - {surface: qayda, sense: qayda}
+      reverse: |-
+        Bala qayda
+        Bala qaydadur
+  translations:
+    en: Where is the child?
+- id: s.06.17
+  node: chg.u06.did-not
+  forms:
+    chg-Arab/standard:
+      text: من کورمادیم.
+      tokens:
+      - {surface: من, sense: man}
+      - {surface: کورمادیم, sense: kor, morphs: [{surface: کور, kc: 'sense:kor'}, {surface: ما, kc: 'form:neg'}, {surface: دیم, kc: 'form:past-1s'}]}
+      reverse: '[من] کورمادیم'
+    chg-Latn/schluessel:
+      text: Män körmädim.
+      tokens:
+      - {surface: Män, sense: man}
+      - {surface: körmädim, sense: kor, morphs: [{surface: kör, kc: 'sense:kor'}, {surface: mä, kc: 'form:neg'}, {surface: dim, kc: 'form:past-1s'}]}
+      reverse: '[(Män|Men)] körmädim'
+  translations:
+    en: I (did not|didn't) see (it|him|her).
+- id: s.06.18
+  node: chg.u06.did-not
+  forms:
+    chg-Arab/standard:
+      text: اول کلمادی.
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: کلمادی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ما, kc: 'form:neg'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: اول (کلمادی|کیلمادی)
+    chg-Latn/schluessel:
+      text: Ul kälmädi.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: kälmädi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: mä, kc: 'form:neg'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: (Ul|Ol) (kälmädi|kelmädi)
+  translations:
+    en: (He|She) (did not|didn't) come.
+- id: s.06.19
+  node: chg.u06.did-not
+  forms:
+    chg-Arab/standard:
+      text: بیز شراب ایچمادوق.
+      tokens:
+      - {surface: بیز, sense: biz}
+      - {surface: شراب, sense: sharab}
+      - {surface: ایچمادوق, sense: ich, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: ما, kc: 'form:neg'}, {surface: دوق, kc: 'form:past-1p'}]}
+      reverse: '[بیز] شراب (ایچمادوق|ایچمادوک)'
+    chg-Latn/schluessel:
+      text: Biz šarāb ičmäduq.
+      tokens:
+      - {surface: Biz, sense: biz}
+      - {surface: šarāb, sense: sharab}
+      - {surface: ičmäduq, sense: ich, morphs: [{surface: ič, kc: 'sense:ich'}, {surface: mä, kc: 'form:neg'}, {surface: duq, kc: 'form:past-1p'}]}
+      reverse: '[Biz] šarāb ičmäduq'
+  translations:
+    en: We (did not|didn't) drink wine.
+- id: s.06.20
+  node: chg.u06.did-not
+  forms:
+    chg-Arab/standard:
+      text: سن بزارغه بارمادینکمو؟
+      tokens:
+      - {surface: سن, sense: san}
+      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارمادینکمو, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ما, kc: 'form:neg'}, {surface: دینک, kc: 'form:past-2s'}, {surface: مو, kc: 'form:q'}]}
+      reverse: |-
+        [سن] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارمادینکمو
+        [سیز] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارمادینکیزمو
+    chg-Latn/schluessel:
+      text: Sän bazārǧa barmadiŋmu?
+      tokens:
+      - {surface: Sän, sense: san}
+      - {surface: bazārǧa, sense: bazar, morphs: [{surface: bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: barmadiŋmu, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: ma, kc: 'form:neg'}, {surface: diŋ, kc: 'form:past-2s'}, {surface: mu, kc: 'form:q'}]}
+      reverse: |-
+        [(Sän|Sen)] bazārǧa barmadiŋmu
+        [Siz] bazārǧa barmadiŋizmu
+  translations:
+    en: (Did you not|Didn't you) go to the (market|bazaar)?
+  persons: *id001
+- id: s.06.21
+  node: chg.u06.did-not
+  forms:
+    chg-Arab/standard:
+      text: اولار نماز اوقومادیلار.
+      tokens:
+      - {surface: اولار, sense: ular}
+      - {surface: نماز, sense: namaz}
+      - {surface: اوقومادیلار, sense: oqu, morphs: [{surface: اوقو, kc: 'sense:oqu'}, {surface: ما, kc: 'form:neg'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      reverse: |-
+        (اولار|الار) نماز اوقومادیلار
+        (اولار|الار) نماز اوقومادی
+    chg-Latn/schluessel:
+      text: Ular namāz oqumadilar.
+      tokens:
+      - {surface: Ular, sense: ular}
+      - {surface: namāz, sense: namaz}
+      - {surface: oqumadilar, sense: oqu, morphs: [{surface: oqu, kc: 'sense:oqu'}, {surface: ma, kc: 'form:neg'}, {surface: dilar, kc: 'form:past-3pl'}]}
+      reverse: |-
+        (Ular|Alar) namāz oqumadilar
+        (Ular|Alar) namāz oqumadi
+  translations:
+    en: They (did not|didn't) (pray|say their prayers).
+- id: s.06.22
+  node: chg.u06.did-not
+  forms:
+    chg-Arab/standard:
+      text: اول پادشاه بولمادی.
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: پادشاه, sense: padishah}
+      - {surface: بولمادی, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ما, kc: 'form:neg'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: اول (پادشاه|بادشاه|فادشاه) بولمادی
+    chg-Latn/schluessel:
+      text: Ul pādišāh bolmadi.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: pādišāh, sense: padishah}
+      - {surface: bolmadi, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ma, kc: 'form:neg'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: (Ul|Ol) pādišāh bolmadi
+  translations:
+    en: (He|She) (did not|didn't) become (king|the king|ruler).
+- id: s.06.23
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: اون ایکی.
+      tokens:
+      - {surface: اون, sense: 'on'}
+      - {surface: ایکی, sense: ikki}
+      reverse: اون (ایکی|اکی)
+    chg-Latn/schluessel:
+      text: On ikki.
+      tokens:
+      - {surface: 'On', sense: 'on'}
+      - {surface: ikki, sense: ikki}
+      reverse: On ikki
+  translations:
+    en: Twelve.
+- id: s.06.24
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: اون ایکی یاشته.
+      tokens:
+      - {surface: اون, sense: 'on'}
+      - {surface: ایکی, sense: ikki}
+      - {surface: یاشته, sense: yash, morphs: [{surface: یاش, kc: 'sense:yash'}, {surface: ته, kc: 'form:loc'}]}
+      reverse: اون (ایکی|اکی) (یاشته|یاشده|یاشتا)
+    chg-Latn/schluessel:
+      text: On ikki yašta.
+      tokens:
+      - {surface: 'On', sense: 'on'}
+      - {surface: ikki, sense: ikki}
+      - {surface: yašta, sense: yash, morphs: [{surface: yaš, kc: 'sense:yash'}, {surface: ta, kc: 'form:loc'}]}
+      reverse: On ikki yašta
+  translations:
+    en: At (twelve years of age|the age of twelve|twelve).
+- id: s.06.25
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: اول اون ایکی یاشته پادشاه بولدی.
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: اون, sense: 'on'}
+      - {surface: ایکی, sense: ikki}
+      - {surface: یاشته, sense: yash, morphs: [{surface: یاش, kc: 'sense:yash'}, {surface: ته, kc: 'form:loc'}]}
+      - {surface: پادشاه, sense: padishah}
+      - {surface: بولدی, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: اول اون (ایکی|اکی) (یاشته|یاشده|یاشتا) (پادشاه|بادشاه|فادشاه) بولدی
+    chg-Latn/schluessel:
+      text: Ul on ikki yašta pādišāh boldi.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: 'on', sense: 'on'}
+      - {surface: ikki, sense: ikki}
+      - {surface: yašta, sense: yash, morphs: [{surface: yaš, kc: 'sense:yash'}, {surface: ta, kc: 'form:loc'}]}
+      - {surface: pādišāh, sense: padishah}
+      - {surface: boldi, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: (Ul|Ol) on ikki yašta pādišāh boldi
+  translations:
+    en: (He|She) became (king|the king|ruler) at (the age of twelve|twelve years of age|twelve).
+- id: s.06.26
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: ییکرمه کشی کلدی.
+      tokens:
+      - {surface: ییکرمه, sense: yigirma}
+      - {surface: کشی, sense: kishi}
+      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      reverse: (ییکرمه|یکرمی|ییکرمی) (کشی|کیشی) (کلدی|کیلدی)
+    chg-Latn/schluessel:
+      text: Yigirmä kiši käldi.
+      tokens:
+      - {surface: Yigirmä, sense: yigirma}
+      - {surface: kiši, sense: kishi}
+      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
+      reverse: (Yigirmä|Yigirmi) kiši (käldi|keldi)
+  translations:
+    en: Twenty (people|men) came.
+- id: s.06.27
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: اوتوز قوی بار.
+      tokens:
+      - {surface: اوتوز, sense: ottuz}
+      - {surface: قوی, sense: qoy}
+      - {surface: بار, sense: bar}
+      reverse: اوتوز قوی بار
+    chg-Latn/schluessel:
+      text: Ottuz qoy bar.
+      tokens:
+      - {surface: Ottuz, sense: ottuz}
+      - {surface: qoy, sense: qoy}
+      - {surface: bar, sense: bar}
+      reverse: Ottuz qoy bar
+  translations:
+    en: There are thirty sheep.
+- id: s.06.28
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: قیرق کون.
+      tokens:
+      - {surface: قیرق, sense: qirq}
+      - {surface: کون, sense: kun}
+      reverse: قیرق کون
+    chg-Latn/schluessel:
+      text: Qirq kün.
+      tokens:
+      - {surface: Qirq, sense: qirq}
+      - {surface: kün, sense: kun}
+      reverse: Qirq kün
+  translations:
+    en: Forty days.
+- id: s.06.29
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: الیک ییل.
+      tokens:
+      - {surface: الیک, sense: allik}
+      - {surface: ییل, sense: yil}
+      reverse: (الیک|ایللیک) (ییل|یل)
+    chg-Latn/schluessel:
+      text: Ällik yil.
+      tokens:
+      - {surface: Ällik, sense: allik}
+      - {surface: yil, sense: yil}
+      reverse: Ällik yil
+  translations:
+    en: Fifty years.
+- id: s.06.30
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: توقسان توقوز.
+      tokens:
+      - {surface: توقسان, sense: toqsan}
+      - {surface: توقوز, sense: toqquz}
+      reverse: توقسان (توقوز|توقز)
+    chg-Latn/schluessel:
+      text: Toqsan toqquz.
+      tokens:
+      - {surface: Toqsan, sense: toqsan}
+      - {surface: toqquz, sense: toqquz}
+      reverse: Toqsan toqquz
+  translations:
+    en: Ninety-nine.
+- id: s.06.31
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: یوز ییل.
+      tokens:
+      - {surface: یوز, sense: yuz}
+      - {surface: ییل, sense: yil}
+      reverse: یوز (ییل|یل)
+    chg-Latn/schluessel:
+      text: Yüz yil.
+      tokens:
+      - {surface: Yüz, sense: yuz}
+      - {surface: yil, sense: yil}
+      reverse: Yüz yil
+  translations:
+    en: A hundred years.
+- id: s.06.32
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: بیر مینک آط.
+      tokens:
+      - {surface: بیر, sense: bir}
+      - {surface: مینک, sense: ming}
+      - {surface: آط, sense: at}
+      reverse: |-
+        (بیر|بر) مینک (آط|آت|ات)
+        مینک (آط|آت|ات)
+    chg-Latn/schluessel:
+      text: Bir miŋ aṭ.
+      tokens:
+      - {surface: Bir, sense: bir}
+      - {surface: miŋ, sense: ming}
+      - {surface: aṭ, sense: at}
+      reverse: |-
+        Bir miŋ aṭ
+        Miŋ aṭ
+  translations:
+    en: A thousand horses.
+- id: s.06.33
+  node: chg.u06.numbers
+  forms:
+    chg-Arab/standard:
+      text: سکز یوز توقسان توقوز.
+      tokens:
+      - {surface: سکز, sense: sakkiz}
+      - {surface: یوز, sense: yuz}
+      - {surface: توقسان, sense: toqsan}
+      - {surface: توقوز, sense: toqquz}
+      reverse: (سکز|سیکیز|سکیز) یوز توقسان (توقوز|توقز)
+    chg-Latn/schluessel:
+      text: Säkkiz yüz toqsan toqquz.
+      tokens:
+      - {surface: Säkkiz, sense: sakkiz}
+      - {surface: yüz, sense: yuz}
+      - {surface: toqsan, sense: toqsan}
+      - {surface: toqquz, sense: toqquz}
+      reverse: Säkkiz yüz toqsan toqquz
+  translations:
+    en: Eight hundred and ninety-nine.
+- id: s.06.34
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: رمضان آیی.
+      tokens:
+      - {surface: رمضان, sense: ramzan}
+      - {surface: آیی, sense: ay.month, morphs: [{surface: آی, kc: 'sense:ay.month'}, {surface: ی, kc: 'form:poss3'}]}
+      reverse: رمضان (آیی|ایی)
+    chg-Latn/schluessel:
+      text: Ramżān ayi.
+      tokens:
+      - {surface: Ramżān, sense: ramzan}
+      - {surface: ayi, sense: ay.month, morphs: [{surface: ay, kc: 'sense:ay.month'}, {surface: i, kc: 'form:poss3'}]}
+      reverse: Ramżān ayi
+  translations:
+    en: The month of Ramadan.
+- id: s.06.35
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: ایکینچی کون.
+      tokens:
+      - {surface: ایکینچی, sense: ikki, morphs: [{surface: ایکی, kc: 'sense:ikki'}, {surface: نچی, kc: 'form:ord'}]}
+      - {surface: کون, sense: kun}
+      reverse: (ایکینچی|اکینچی) کون
+    chg-Latn/schluessel:
+      text: Ikkinči kün.
+      tokens:
+      - {surface: Ikkinči, sense: ikki, morphs: [{surface: Ikki, kc: 'sense:ikki'}, {surface: nči, kc: 'form:ord'}]}
+      - {surface: kün, sense: kun}
+      reverse: Ikkinči kün
+  translations:
+    en: The second day.
+- id: s.06.36
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: بیشینچی آی.
+      tokens:
+      - {surface: بیشینچی, sense: bash, morphs: [{surface: بیش, kc: 'sense:bash'}, {surface: ینچی, kc: 'form:ord'}]}
+      - {surface: آی, sense: ay.month}
+      reverse: بیشینچی (آی|ای)
+    chg-Latn/schluessel:
+      text: Bäšinči ay.
+      tokens:
+      - {surface: Bäšinči, sense: bash, morphs: [{surface: Bäš, kc: 'sense:bash'}, {surface: inči, kc: 'form:ord'}]}
+      - {surface: ay, sense: ay.month}
+      reverse: Bäšinči ay
+  translations:
+    en: The fifth month.
+- id: s.06.37
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: تاریخ توقوز یوز ایکیده.
+      tokens:
+      - {surface: تاریخ, sense: tarikh}
+      - {surface: توقوز, sense: toqquz}
+      - {surface: یوز, sense: yuz}
+      - {surface: ایکیده, sense: ikki, morphs: [{surface: ایکی, kc: 'sense:ikki'}, {surface: ده, kc: 'form:loc'}]}
+      reverse: تاریخ (توقوز|توقز) یوز (ایکیده|ایکیدا|اکیده|اکیدا)
+    chg-Latn/schluessel:
+      text: Tārīḫ-i toqquz yüz ikkidä.
+      tokens:
+      - {surface: Tārīḫ-i, sense: tarikh}
+      - {surface: toqquz, sense: toqquz}
+      - {surface: yüz, sense: yuz}
+      - {surface: ikkidä, sense: ikki, morphs: [{surface: ikki, kc: 'sense:ikki'}, {surface: dä, kc: 'form:loc'}]}
+      reverse: Tārīḫ-i toqquz yüz ikkidä
+  translations:
+    en: In the year 902.
+- id: s.06.38
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: "فرغانه ولایتی بیشینچی اقلیمدین\u200cدور."
+      tokens:
+      - {surface: فرغانه, sense: farghana}
+      - {surface: ولایتی, sense: wilayat, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: بیشینچی, sense: bash, morphs: [{surface: بیش, kc: 'sense:bash'}, {surface: ینچی, kc: 'form:ord'}]}
+      - {surface: "اقلیمدین\u200cدور", sense: iqlim, morphs: [{surface: اقلیم, kc: 'sense:iqlim'}, {surface: "دین\u200c", kc: 'form:abl'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "فرغانه ولایتی بیشینچی (اقلیمدین\u200cدور|اقلیمدن\u200cدور)"
+    chg-Latn/schluessel:
+      text: Farǧāna wilāyati bäšinči iqlīmdindur.
+      tokens:
+      - {surface: Farǧāna, sense: farghana}
+      - {surface: wilāyati, sense: wilayat, morphs: [{surface: wilāyat, kc: 'sense:wilayat'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: bäšinči, sense: bash, morphs: [{surface: bäš, kc: 'sense:bash'}, {surface: inči, kc: 'form:ord'}]}
+      - {surface: iqlīmdindur, sense: iqlim, morphs: [{surface: iqlīm, kc: 'sense:iqlim'}, {surface: din, kc: 'form:abl'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Farǧāna wilāyati bäšinči iqlīmdindur
+  translations:
+    en: (Ferghana|The country of Ferghana) is in the fifth clime.
+- id: s.06.39
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: بیر ایوان.
+      tokens:
+      - {surface: بیر, sense: bir}
+      - {surface: ایوان, sense: aywan}
+      reverse: (بیر|بر) ایوان
+    chg-Latn/schluessel:
+      text: Bir aywān.
+      tokens:
+      - {surface: Bir, sense: bir}
+      - {surface: aywān, sense: aywan}
+      reverse: Bir aywān
+  translations:
+    en: A portico.
+- id: s.06.40
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: ایوانلیق حجره.
+      tokens:
+      - {surface: ایوانلیق, sense: aywan, morphs: [{surface: ایوان, kc: 'sense:aywan'}, {surface: لیق, kc: 'form:liq'}]}
+      - {surface: حجره, sense: hujra}
+      reverse: ایوانلیق حجره
+    chg-Latn/schluessel:
+      text: Aywānliq ḥujra.
+      tokens:
+      - {surface: Aywānliq, sense: aywan, morphs: [{surface: Aywān, kc: 'sense:aywan'}, {surface: liq, kc: 'form:liq'}]}
+      - {surface: ḥujra, sense: hujra}
+      reverse: Aywānliq ḥujra
+  translations:
+    en: A (pavilion|room) with a portico.
+- id: s.06.41
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: بیر حجره سالدیم.
+      tokens:
+      - {surface: بیر, sense: bir}
+      - {surface: حجره, sense: hujra}
+      - {surface: سالدیم, sense: sal, morphs: [{surface: سال, kc: 'sense:sal'}, {surface: دیم, kc: 'form:past-1s'}]}
+      reverse: '[من] (بیر|بر) حجره سالدیم'
+    chg-Latn/schluessel:
+      text: Bir ḥujra saldim.
+      tokens:
+      - {surface: Bir, sense: bir}
+      - {surface: ḥujra, sense: hujra}
+      - {surface: saldim, sense: sal, morphs: [{surface: sal, kc: 'sense:sal'}, {surface: dim, kc: 'form:past-1s'}]}
+      reverse: '[(Män|Men)] bir ḥujra saldim'
+  translations:
+    en: I built a (pavilion|room).
+- id: s.06.42
+  node: chg.u06.dates
+  forms:
+    chg-Arab/standard:
+      text: رمضان آییده کاشغرغه باردوق.
+      tokens:
+      - {surface: رمضان, sense: ramzan}
+      - {surface: آییده, sense: ay.month, morphs: [{surface: آی, kc: 'sense:ay.month'}, {surface: ی, kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: کاشغرغه, sense: kashghar, morphs: [{surface: کاشغر, kc: 'sense:kashghar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردوق, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دوق, kc: 'form:past-1p'}]}
+      reverse: رمضان (آییده|آییدا|اییده|اییدا) (کاشغرغه|کاشغرکه|کاشغرقه|کاشغرغا) (باردوق|باردوک)
+    chg-Latn/schluessel:
+      text: Ramżān ayida Kašǧarǧa barduq.
+      tokens:
+      - {surface: Ramżān, sense: ramzan}
+      - {surface: ayida, sense: ay.month, morphs: [{surface: ay, kc: 'sense:ay.month'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      - {surface: Kašǧarǧa, sense: kashghar, morphs: [{surface: Kašǧar, kc: 'sense:kashghar'}, {surface: ǧa, kc: 'form:dat'}]}
+      - {surface: barduq, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: duq, kc: 'form:past-1p'}]}
+      reverse: Ramżān ayida Kašǧarǧa barduq
+  translations:
+    en: In the month of Ramadan we went to Kashgar.
+stories:
+- id: chg.story.king-at-twelve
+  node: chg.u06.story
+  title:
+    en: 'King at twelve (Babur, Bāburnāma: the opening)'
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "رمضان ایی، تاریخ سیکیز یوز توقسان توقوزدا، فرغانه ولایتی\u200cده اون ایکی یاشته بادشاه بولدوم."
+          tokens:
+          - {surface: رمضان, sense: ramzan}
+          - {surface: ایی, sense: ay.month, morphs: [{surface: ای, kc: 'sense:ay.month'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: تاریخ, sense: tarikh}
+          - {surface: سیکیز, sense: sakkiz}
+          - {surface: یوز, sense: yuz}
+          - {surface: توقسان, sense: toqsan}
+          - {surface: توقوزدا, sense: toqquz, morphs: [{surface: توقوز, kc: 'sense:toqquz'}, {surface: دا, kc: 'form:loc'}]}
+          - {surface: فرغانه, sense: farghana}
+          - {surface: "ولایتی\u200cده", sense: wilayat, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+          - {surface: اون, sense: 'on'}
+          - {surface: ایکی, sense: ikki}
+          - {surface: یاشته, sense: yash, morphs: [{surface: یاش, kc: 'sense:yash'}, {surface: ته, kc: 'form:loc'}]}
+          - {surface: بادشاه, sense: padishah}
+          - {surface: بولدوم, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دوم, kc: 'form:past-1s'}]}
+        chg-Latn/schluessel:
+          text: Ramżān ayi, tārīḫ-i säkkiz yüz toqsan toqquzda, Farǧāna wilāyatidä on ikki yašta pādišāh boldum.
+          tokens:
+          - {surface: Ramżān, sense: ramzan}
+          - {surface: ayi, sense: ay.month, morphs: [{surface: ay, kc: 'sense:ay.month'}, {surface: i, kc: 'form:poss3'}]}
+          - {surface: tārīḫ-i, sense: tarikh}
+          - {surface: säkkiz, sense: sakkiz}
+          - {surface: yüz, sense: yuz}
+          - {surface: toqsan, sense: toqsan}
+          - {surface: toqquzda, sense: toqquz, morphs: [{surface: toqquz, kc: 'sense:toqquz'}, {surface: da, kc: 'form:loc'}]}
+          - {surface: Farǧāna, sense: farghana}
+          - {surface: wilāyatidä, sense: wilayat, morphs: [{surface: wilāyat, kc: 'sense:wilayat'}, {surface: i, kc: 'form:poss3'}, {surface: dä, kc: 'form:loc'}]}
+          - {surface: 'on', sense: 'on'}
+          - {surface: ikki, sense: ikki}
+          - {surface: yašta, sense: yash, morphs: [{surface: yaš, kc: 'sense:yash'}, {surface: ta, kc: 'form:loc'}]}
+          - {surface: pādišāh, sense: padishah}
+          - {surface: boldum, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: dum, kc: 'form:past-1s'}]}
+      translations:
+        en: In the month of Ramadan, in the year 899, in the country of Ferghana, I became king at twelve years of age.
+  - choose:
+      prompt:
+        en: How old was Babur when he became king?
+      options:
+      - en: Twelve
+      - en: Twenty
+      - en: Eight
+      answer: 0
+  - line:
+      ask: complete
+      gap: sense:iqlim
+      distractors:
+      - sense:wilayat
+      - sense:shahar
+      forms:
+        chg-Arab/standard:
+          text: "فرغانه ولایتی بیشینجی اقلیم\u200cدین\u200cدور."
+          tokens:
+          - {surface: فرغانه, sense: farghana}
+          - {surface: ولایتی, sense: wilayat, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: بیشینجی, sense: bash, morphs: [{surface: بیش, kc: 'sense:bash'}, {surface: ینجی, kc: 'form:ord'}]}
+          - {surface: "اقلیم\u200cدین\u200cدور", sense: iqlim, morphs: [{surface: "اقلیم\u200c", kc: 'sense:iqlim'}, {surface: "دین\u200c", kc: 'form:abl'}, {surface: دور, kc: 'form:dur'}]}
+        chg-Latn/schluessel:
+          text: Farǧāna wilāyati bäšinči iqlīmdindur.
+          tokens:
+          - {surface: Farǧāna, sense: farghana}
+          - {surface: wilāyati, sense: wilayat, morphs: [{surface: wilāyat, kc: 'sense:wilayat'}, {surface: i, kc: 'form:poss3'}]}
+          - {surface: bäšinči, sense: bash, morphs: [{surface: bäš, kc: 'sense:bash'}, {surface: inči, kc: 'form:ord'}]}
+          - {surface: iqlīmdindur, sense: iqlim, morphs: [{surface: iqlīm, kc: 'sense:iqlim'}, {surface: din, kc: 'form:abl'}, {surface: dur, kc: 'form:dur'}]}
+      translations:
+        en: The country of Ferghana is of the fifth clime.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "تاریخ توقوز یوز ایکی\u200cدا مین بیر ایوانلیق حجره سالدیم."
+          tokens:
+          - {surface: تاریخ, sense: tarikh}
+          - {surface: توقوز, sense: toqquz}
+          - {surface: یوز, sense: yuz}
+          - {surface: "ایکی\u200cدا", sense: ikki, morphs: [{surface: "ایکی\u200c", kc: 'sense:ikki'}, {surface: دا, kc: 'form:loc'}]}
+          - {surface: مین, sense: man}
+          - {surface: بیر, sense: bir}
+          - {surface: ایوانلیق, sense: aywan, morphs: [{surface: ایوان, kc: 'sense:aywan'}, {surface: لیق, kc: 'form:liq'}]}
+          - {surface: حجره, sense: hujra}
+          - {surface: سالدیم, sense: sal, morphs: [{surface: سال, kc: 'sense:sal'}, {surface: دیم, kc: 'form:past-1s'}]}
+        chg-Latn/schluessel:
+          text: Tārīḫ-i toqquz yüz ikkidä men bir aywānliq ḥujra saldim.
+          tokens:
+          - {surface: Tārīḫ-i, sense: tarikh}
+          - {surface: toqquz, sense: toqquz}
+          - {surface: yüz, sense: yuz}
+          - {surface: ikkidä, sense: ikki, morphs: [{surface: ikki, kc: 'sense:ikki'}, {surface: dä, kc: 'form:loc'}]}
+          - {surface: men, sense: man}
+          - {surface: bir, sense: bir}
+          - {surface: aywānliq, sense: aywan, morphs: [{surface: aywān, kc: 'sense:aywan'}, {surface: liq, kc: 'form:liq'}]}
+          - {surface: ḥujra, sense: hujra}
+          - {surface: saldim, sense: sal, morphs: [{surface: sal, kc: 'sense:sal'}, {surface: dim, kc: 'form:past-1s'}]}
+      translations:
+        en: In the year 902 I built a pavilion with a portico.
+  - choose:
+      prompt:
+        en: What did Babur build in the year 902?
+      options:
+      - en: A pavilion with a portico
+      - en: A fortress
+      - en: A mosque
+      answer: 0
+scenarios:
+- id: chg.the-young-king
+  after: chg.u06.dates
+  title:
+    en: The young king
+  setting:
+    en: Andijan, the summer of 1494 (899 of the Hijra). The boy Babur has just become king of Ferghana.
+  character:
+    en: An old courtier of Babur's father, who remembers every date and speaks only Turki.
+  goal:
+    en: Ask the courtier when and where the new king was made king, how old he is, and what he did yesterday; say what you did.

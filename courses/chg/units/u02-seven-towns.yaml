@@ -1,0 +1,1287 @@
+# Chaghatay (chg), unit 2: Seven towns (Babur, Bāburnāma: the towns of Ferghana).
+# bar "there is" and yoq "there is no"; numbers to ten; -da "in, at"; directions; -niŋ "of".
+# The passage is Babur's own text (died 1530; the Hyderabad manuscript, in Beveridge's 1905 facsimile), as
+# Schluessel (2018, ch. 11) types it; the rest was drafted by an LLM (provenance llm:…, status draft) and awaits
+# a reviewer.
+id: u02-seven-towns
+title:
+  en: Seven towns
+cefr: A1
+kcs:
+- id: sense:bar
+  gloss:
+    en: there is, there are; exists
+  forms:
+    chg-Arab/standard:
+    - بار
+    chg-Latn/schluessel:
+    - bar
+  notes:
+    en: 'bar says that something is there: nan bar "there is bread". Its opposite is yoq.'
+- id: sense:yoq
+  gloss:
+    en: there is no, there are no; no
+  forms:
+    chg-Arab/standard:
+    - یوق
+    chg-Latn/schluessel:
+    - yoq
+  notes:
+    en: 'yoq is the opposite of bar, not of -dur: nan yoq "there is no bread", but nan aq emäs "the bread is not white".'
+- id: sense:ikki
+  gloss:
+    en: two
+  forms:
+    chg-Arab/standard:
+    - ایکی
+    chg-Latn/schluessel:
+    - ikki
+- id: sense:uch
+  gloss:
+    en: three
+  forms:
+    chg-Arab/standard:
+    - اوچ
+    chg-Latn/schluessel:
+    - üč
+- id: sense:tort
+  gloss:
+    en: four
+  forms:
+    chg-Arab/standard:
+    - تورت
+    chg-Latn/schluessel:
+    - tört
+- id: sense:bash
+  gloss:
+    en: five
+  forms:
+    chg-Arab/standard:
+    - بش
+    chg-Latn/schluessel:
+    - bäš
+- id: sense:alta
+  gloss:
+    en: six
+  forms:
+    chg-Arab/standard:
+    - الته
+    chg-Latn/schluessel:
+    - altä
+- id: sense:yatti
+  gloss:
+    en: seven
+  forms:
+    chg-Arab/standard:
+    - یتی
+    chg-Latn/schluessel:
+    - yätti
+- id: sense:sakkiz
+  gloss:
+    en: eight
+  forms:
+    chg-Arab/standard:
+    - سکز
+    chg-Latn/schluessel:
+    - säkkiz
+- id: sense:toqquz
+  gloss:
+    en: nine
+  forms:
+    chg-Arab/standard:
+    - توقوز
+    chg-Latn/schluessel:
+    - toqquz
+- id: sense:on
+  gloss:
+    en: ten
+  forms:
+    chg-Arab/standard:
+    - اون
+    chg-Latn/schluessel:
+    - 'on'
+- id: sense:kishi
+  gloss:
+    en: person; someone
+  forms:
+    chg-Arab/standard:
+    - کشی
+    chg-Latn/schluessel:
+    - kiši
+- id: sense:bala
+  gloss:
+    en: child
+  forms:
+    chg-Arab/standard:
+    - بلا
+    chg-Latn/schluessel:
+    - bala
+- id: sense:qoy
+  gloss:
+    en: sheep
+  forms:
+    chg-Arab/standard:
+    - قوی
+    chg-Latn/schluessel:
+    - qoy
+  image:
+    file: ../images/sheep.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:at
+  gloss:
+    en: horse
+  forms:
+    chg-Arab/standard:
+    - آط
+    chg-Latn/schluessel:
+    - aṭ
+- id: sense:oy
+  gloss:
+    en: house; room
+  forms:
+    chg-Arab/standard:
+    - اوی
+    chg-Latn/schluessel:
+    - öy
+  image:
+    file: ../images/house.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:bagh
+  gloss:
+    en: garden, orchard
+  forms:
+    chg-Arab/standard:
+    - باغ
+    chg-Latn/schluessel:
+    - bāǧ
+  image:
+    file: ../images/tree.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:yar
+  gloss:
+    en: place; land, earth
+  forms:
+    chg-Arab/standard:
+    - یر
+    chg-Latn/schluessel:
+    - yär
+- id: sense:ul
+  gloss:
+    en: that; he, she, it
+  forms:
+    chg-Arab/standard:
+    - اول
+    chg-Latn/schluessel:
+    - ul
+  notes:
+    en: 'ul (or ol) is "that" before a noun: ul šahar "that city". Alone it is "he, she, it" (unit 4).'
+- id: sense:janub
+  gloss:
+    en: south
+  forms:
+    chg-Arab/standard:
+    - جنوب
+    chg-Latn/schluessel:
+    - janūb
+- id: sense:shimal
+  gloss:
+    en: north
+  forms:
+    chg-Arab/standard:
+    - شمال
+    chg-Latn/schluessel:
+    - šimāl
+- id: sense:sharq
+  gloss:
+    en: east
+  forms:
+    chg-Arab/standard:
+    - شرق
+    chg-Latn/schluessel:
+    - šarq
+- id: sense:gharb
+  gloss:
+    en: west
+  forms:
+    chg-Arab/standard:
+    - غرب
+    chg-Latn/schluessel:
+    - ǧarb
+- id: sense:taraf
+  gloss:
+    en: side, direction
+  forms:
+    chg-Arab/standard:
+    - طرف
+    chg-Latn/schluessel:
+    - ṭaraf
+- id: sense:janib
+  gloss:
+    en: side, direction (a word of Arabic, as ṭaraf)
+  forms:
+    chg-Arab/standard:
+    - جانب
+    chg-Latn/schluessel:
+    - jānib
+- id: sense:darwaza
+  gloss:
+    en: gate
+  forms:
+    chg-Arab/standard:
+    - دروازه
+    chg-Latn/schluessel:
+    - darwāza
+- id: sense:para
+  gloss:
+    en: 'piece (a counting word: yätti pāra qaṣaba "seven towns")'
+  forms:
+    chg-Arab/standard:
+    - پاره
+    chg-Latn/schluessel:
+    - pāra
+  notes:
+    en: 'Babur counts towns with pāra "piece": yätti pāra qaṣabasi bar "it has seven towns". Most counted nouns need no such word.'
+- id: sense:sayhun
+  gloss:
+    en: the Sayhun, the Jaxartes (the Syr Darya)
+  forms:
+    chg-Arab/standard:
+    - سیحون
+    chg-Latn/schluessel:
+    - Sayḥūn
+- id: sense:andijan
+  gloss:
+    en: Andijan (the capital of Ferghana)
+  forms:
+    chg-Arab/standard:
+    - اندجان
+    chg-Latn/schluessel:
+    - Andijān
+- id: sense:farghana
+  gloss:
+    en: Ferghana (the valley and country of Babur)
+  forms:
+    chg-Arab/standard:
+    - فرغانه
+    chg-Latn/schluessel:
+    - Farǧāna
+- id: form:loc
+  gloss:
+    en: '-da, -dä (-ta, -tä after a voiceless consonant): in, at, on'
+  notes:
+    en: 'Where something is: öydä "in the house", taǧda "on the mountain". With bar it says what a place has: öydä nan bar "there is bread in the house".'
+- id: form:gen
+  gloss:
+    en: '-niŋ: of, ''s'
+  notes:
+    en: 'The owner takes -niŋ, the thing owned -i/-si: šaharniŋ darwāzasi "the city''s gate". The -niŋ may be left out: Sayḥūn suyi "the Sayhun''s water".'
+nodes:
+- id: chg.u02.there-is
+  kind: lesson
+  introduces:
+  - sense:bar
+  - sense:yoq
+- id: chg.u02.numbers
+  kind: lesson
+  introduces:
+  - sense:ikki
+  - sense:kishi
+  - sense:uch
+  - sense:qoy
+  - sense:tort
+  - sense:at
+  - sense:bash
+  - sense:bala
+  - sense:alta
+  - sense:yatti
+  - sense:sakkiz
+  - sense:toqquz
+  - sense:on
+- id: chg.u02.in-the-house
+  kind: lesson
+  introduces:
+  - sense:oy
+  - form:loc
+  - sense:bagh
+  - sense:yar
+  - sense:ul
+- id: chg.u02.sides
+  kind: lesson
+  introduces:
+  - sense:janub
+  - sense:taraf
+  - sense:shimal
+  - sense:sharq
+  - sense:gharb
+  - sense:janib
+  - sense:darwaza
+  - sense:para
+  - sense:andijan
+- id: chg.u02.of-the-city
+  kind: lesson
+  introduces:
+  - form:gen
+  - sense:sayhun
+  - sense:farghana
+- id: chg.u02.story
+  kind: story
+sentences:
+- id: s.02.1
+  node: chg.u02.there-is
+  forms:
+    chg-Arab/standard:
+      text: نان بار.
+      tokens:
+      - {surface: نان, sense: nan}
+      - {surface: بار, sense: bar}
+      reverse: |-
+        نان بار
+        نان باردور
+    chg-Latn/schluessel:
+      text: Nan bar.
+      tokens:
+      - {surface: Nan, sense: nan}
+      - {surface: bar, sense: bar}
+      reverse: |-
+        Nan bar
+        Nan bardur
+  translations:
+    en: There is (bread|some bread).
+- id: s.02.2
+  node: chg.u02.there-is
+  forms:
+    chg-Arab/standard:
+      text: چای یوق.
+      tokens:
+      - {surface: چای, sense: chay}
+      - {surface: یوق, sense: yoq}
+      reverse: "چای یوق\nچای یوق\u200cدور"
+    chg-Latn/schluessel:
+      text: Čay yoq.
+      tokens:
+      - {surface: Čay, sense: chay}
+      - {surface: yoq, sense: yoq}
+      reverse: |-
+        Čay yoq
+        Čay yoqdur
+  translations:
+    en: There is no tea.
+- id: s.02.3
+  node: chg.u02.there-is
+  forms:
+    chg-Arab/standard:
+      text: سو بار، نان یوق.
+      tokens:
+      - {surface: سو, sense: su}
+      - {surface: بار, sense: bar}
+      - {surface: نان, sense: nan}
+      - {surface: یوق, sense: yoq}
+      reverse: سو بار نان یوق
+    chg-Latn/schluessel:
+      text: Su bar, nan yoq.
+      tokens:
+      - {surface: Su, sense: su}
+      - {surface: bar, sense: bar}
+      - {surface: nan, sense: nan}
+      - {surface: yoq, sense: yoq}
+      reverse: Su bar nan yoq
+  translations:
+    en: There is water, (but|and) (there is no bread|no bread).
+- id: s.02.4
+  node: chg.u02.there-is
+  forms:
+    chg-Arab/standard:
+      text: ایسیق چای بار.
+      tokens:
+      - {surface: ایسیق, sense: issiq}
+      - {surface: چای, sense: chay}
+      - {surface: بار, sense: bar}
+      reverse: |-
+        ایسیق چای بار
+        ایسیق چای باردور
+    chg-Latn/schluessel:
+      text: Issiq čay bar.
+      tokens:
+      - {surface: Issiq, sense: issiq}
+      - {surface: čay, sense: chay}
+      - {surface: bar, sense: bar}
+      reverse: |-
+        Issiq čay bar
+        Issiq čay bardur
+  translations:
+    en: There is (hot|warm) tea.
+- id: s.02.5
+  node: chg.u02.there-is
+  forms:
+    chg-Arab/standard:
+      text: ارزان کوشت یوق.
+      tokens:
+      - {surface: ارزان, sense: arzan}
+      - {surface: کوشت, sense: gosht}
+      - {surface: یوق, sense: yoq}
+      reverse: "(ارزان|آرزان) کوشت یوق\n(ارزان|آرزان) کوشت یوق\u200cدور"
+    chg-Latn/schluessel:
+      text: Ärzan göšt yoq.
+      tokens:
+      - {surface: Ärzan, sense: arzan}
+      - {surface: göšt, sense: gosht}
+      - {surface: yoq, sense: yoq}
+      reverse: |-
+        Ärzan göšt yoq
+        Ärzan göšt yoqdur
+  translations:
+    en: There is no cheap meat.
+- id: s.02.6
+  node: chg.u02.there-is
+  forms:
+    chg-Arab/standard:
+      text: قند بار، سوت یوق.
+      tokens:
+      - {surface: قند, sense: qand}
+      - {surface: بار, sense: bar}
+      - {surface: سوت, sense: sut}
+      - {surface: یوق, sense: yoq}
+      reverse: قند بار سوت یوق
+    chg-Latn/schluessel:
+      text: Qand bar, süt yoq.
+      tokens:
+      - {surface: Qand, sense: qand}
+      - {surface: bar, sense: bar}
+      - {surface: süt, sense: sut}
+      - {surface: yoq, sense: yoq}
+      reverse: Qand bar süt yoq
+  translations:
+    en: There is sugar, (but|and) (there is no milk|no milk).
+- id: s.02.7
+  node: chg.u02.there-is
+  forms:
+    chg-Arab/standard:
+      text: بیر تاغ بار.
+      tokens:
+      - {surface: بیر, sense: bir}
+      - {surface: تاغ, sense: tagh}
+      - {surface: بار, sense: bar}
+      reverse: (بیر|بر) تاغ بار
+    chg-Latn/schluessel:
+      text: Bir taǧ bar.
+      tokens:
+      - {surface: Bir, sense: bir}
+      - {surface: taǧ, sense: tagh}
+      - {surface: bar, sense: bar}
+      reverse: Bir taǧ bar
+  translations:
+    en: There is a mountain.
+- id: s.02.8
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: ایکی کشی بار.
+      tokens:
+      - {surface: ایکی, sense: ikki}
+      - {surface: کشی, sense: kishi}
+      - {surface: بار, sense: bar}
+      reverse: (ایکی|اکی) (کشی|کیشی) بار
+    chg-Latn/schluessel:
+      text: Ikki kiši bar.
+      tokens:
+      - {surface: Ikki, sense: ikki}
+      - {surface: kiši, sense: kishi}
+      - {surface: bar, sense: bar}
+      reverse: Ikki kiši bar
+  translations:
+    en: There are two (people|persons|men).
+- id: s.02.9
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: اوچ قوی بار.
+      tokens:
+      - {surface: اوچ, sense: uch}
+      - {surface: قوی, sense: qoy}
+      - {surface: بار, sense: bar}
+      reverse: اوچ قوی بار
+    chg-Latn/schluessel:
+      text: Üč qoy bar.
+      tokens:
+      - {surface: Üč, sense: uch}
+      - {surface: qoy, sense: qoy}
+      - {surface: bar, sense: bar}
+      reverse: Üč qoy bar
+  translations:
+    en: There are three sheep.
+- id: s.02.10
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: تورت آط بار.
+      tokens:
+      - {surface: تورت, sense: tort}
+      - {surface: آط, sense: at}
+      - {surface: بار, sense: bar}
+      reverse: تورت (آط|آت|ات) بار
+    chg-Latn/schluessel:
+      text: Tört aṭ bar.
+      tokens:
+      - {surface: Tört, sense: tort}
+      - {surface: aṭ, sense: at}
+      - {surface: bar, sense: bar}
+      reverse: Tört aṭ bar
+  translations:
+    en: There are four horses.
+- id: s.02.11
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: بش بلا بار.
+      tokens:
+      - {surface: بش, sense: bash}
+      - {surface: بلا, sense: bala}
+      - {surface: بار, sense: bar}
+      reverse: (بش|بیش) (بلا|بالا) بار
+    chg-Latn/schluessel:
+      text: Bäš bala bar.
+      tokens:
+      - {surface: Bäš, sense: bash}
+      - {surface: bala, sense: bala}
+      - {surface: bar, sense: bar}
+      reverse: Bäš bala bar
+  translations:
+    en: There are five children.
+- id: s.02.12
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: الته قوی.
+      tokens:
+      - {surface: الته, sense: alta}
+      - {surface: قوی, sense: qoy}
+      reverse: (الته|آلته|التی) قوی
+    chg-Latn/schluessel:
+      text: Altä qoy.
+      tokens:
+      - {surface: Altä, sense: alta}
+      - {surface: qoy, sense: qoy}
+      reverse: (Altä|Alti) qoy
+  translations:
+    en: Six sheep.
+- id: s.02.13
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: یتی شهر.
+      tokens:
+      - {surface: یتی, sense: yatti}
+      - {surface: شهر, sense: shahar}
+      reverse: (یتی|ییتی|یته) شهر
+    chg-Latn/schluessel:
+      text: Yätti šahar.
+      tokens:
+      - {surface: Yätti, sense: yatti}
+      - {surface: šahar, sense: shahar}
+      reverse: (Yätti|Yättä|Yetti) šahar
+  translations:
+    en: Seven (cities|towns).
+- id: s.02.14
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: سکز تاغ.
+      tokens:
+      - {surface: سکز, sense: sakkiz}
+      - {surface: تاغ, sense: tagh}
+      reverse: (سکز|سیکیز|سکیز) تاغ
+    chg-Latn/schluessel:
+      text: Säkkiz taǧ.
+      tokens:
+      - {surface: Säkkiz, sense: sakkiz}
+      - {surface: taǧ, sense: tagh}
+      reverse: Säkkiz taǧ
+  translations:
+    en: Eight mountains.
+- id: s.02.15
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: توقوز آط یوق.
+      tokens:
+      - {surface: توقوز, sense: toqquz}
+      - {surface: آط, sense: at}
+      - {surface: یوق, sense: yoq}
+      reverse: (توقوز|توقز) (آط|آت|ات) یوق
+    chg-Latn/schluessel:
+      text: Toqquz aṭ yoq.
+      tokens:
+      - {surface: Toqquz, sense: toqquz}
+      - {surface: aṭ, sense: at}
+      - {surface: yoq, sense: yoq}
+      reverse: Toqquz aṭ yoq
+  translations:
+    en: There (are not|aren't) nine horses.
+- id: s.02.16
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: اون کشی بار.
+      tokens:
+      - {surface: اون, sense: 'on'}
+      - {surface: کشی, sense: kishi}
+      - {surface: بار, sense: bar}
+      reverse: اون (کشی|کیشی) بار
+    chg-Latn/schluessel:
+      text: On kiši bar.
+      tokens:
+      - {surface: 'On', sense: 'on'}
+      - {surface: kiši, sense: kishi}
+      - {surface: bar, sense: bar}
+      reverse: On kiši bar
+  translations:
+    en: There are ten (people|persons|men).
+- id: s.02.17
+  node: chg.u02.numbers
+  forms:
+    chg-Arab/standard:
+      text: بلا یوق.
+      tokens:
+      - {surface: بلا, sense: bala}
+      - {surface: یوق, sense: yoq}
+      reverse: (بلا|بالا) یوق
+    chg-Latn/schluessel:
+      text: Bala yoq.
+      tokens:
+      - {surface: Bala, sense: bala}
+      - {surface: yoq, sense: yoq}
+      reverse: Bala yoq
+  translations:
+    en: There (is no child|are no children).
+- id: s.02.18
+  node: chg.u02.in-the-house
+  forms:
+    chg-Arab/standard:
+      text: اویده نان بار.
+      tokens:
+      - {surface: اویده, sense: oy, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: نان, sense: nan}
+      - {surface: بار, sense: bar}
+      reverse: |-
+        (اویده|اویدا) نان بار
+        نان (اویده|اویدا) بار
+    chg-Latn/schluessel:
+      text: Öydä nan bar.
+      tokens:
+      - {surface: Öydä, sense: oy, morphs: [{surface: Öy, kc: 'sense:oy'}, {surface: dä, kc: 'form:loc'}]}
+      - {surface: nan, sense: nan}
+      - {surface: bar, sense: bar}
+      reverse: |-
+        Öydä nan bar
+        Nan öydä bar
+  translations:
+    en: There is bread in the (house|room).
+- id: s.02.19
+  node: chg.u02.in-the-house
+  forms:
+    chg-Arab/standard:
+      text: باغده سو یوق.
+      tokens:
+      - {surface: باغده, sense: bagh, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: سو, sense: su}
+      - {surface: یوق, sense: yoq}
+      reverse: (باغده|باغدا) سو یوق
+    chg-Latn/schluessel:
+      text: Bāǧda su yoq.
+      tokens:
+      - {surface: Bāǧda, sense: bagh, morphs: [{surface: Bāǧ, kc: 'sense:bagh'}, {surface: da, kc: 'form:loc'}]}
+      - {surface: su, sense: su}
+      - {surface: yoq, sense: yoq}
+      reverse: Bāǧda su yoq
+  translations:
+    en: There is no water in the (garden|orchard).
+- id: s.02.20
+  node: chg.u02.in-the-house
+  forms:
+    chg-Arab/standard:
+      text: شهرده بش باغ بار.
+      tokens:
+      - {surface: شهرده, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: بش, sense: bash}
+      - {surface: باغ, sense: bagh}
+      - {surface: بار, sense: bar}
+      reverse: (شهرده|شهردا) (بش|بیش) باغ بار
+    chg-Latn/schluessel:
+      text: Šahardä bäš bāǧ bar.
+      tokens:
+      - {surface: Šahardä, sense: shahar, morphs: [{surface: Šahar, kc: 'sense:shahar'}, {surface: dä, kc: 'form:loc'}]}
+      - {surface: bäš, sense: bash}
+      - {surface: bāǧ, sense: bagh}
+      - {surface: bar, sense: bar}
+      reverse: Šahardä bäš bāǧ bar
+  translations:
+    en: There are five (gardens|orchards) in the (city|town).
+- id: s.02.21
+  node: chg.u02.in-the-house
+  forms:
+    chg-Arab/standard:
+      text: تاغده قوی بار.
+      tokens:
+      - {surface: تاغده, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: قوی, sense: qoy}
+      - {surface: بار, sense: bar}
+      reverse: (تاغده|تاغدا) قوی بار
+    chg-Latn/schluessel:
+      text: Taǧda qoy bar.
+      tokens:
+      - {surface: Taǧda, sense: tagh, morphs: [{surface: Taǧ, kc: 'sense:tagh'}, {surface: da, kc: 'form:loc'}]}
+      - {surface: qoy, sense: qoy}
+      - {surface: bar, sense: bar}
+      reverse: Taǧda qoy bar
+  translations:
+    en: There are sheep on the mountain.
+- id: s.02.22
+  node: chg.u02.in-the-house
+  forms:
+    chg-Arab/standard:
+      text: بلا اویده.
+      tokens:
+      - {surface: بلا, sense: bala}
+      - {surface: اویده, sense: oy, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: ده, kc: 'form:loc'}]}
+      reverse: "(بلا|بالا) (اویده|اویدا)\n(بلا|بالا) (اویده\u200cدور|اویدا\u200cدور)"
+    chg-Latn/schluessel:
+      text: Bala öydä.
+      tokens:
+      - {surface: Bala, sense: bala}
+      - {surface: öydä, sense: oy, morphs: [{surface: öy, kc: 'sense:oy'}, {surface: dä, kc: 'form:loc'}]}
+      reverse: |-
+        Bala öydä
+        Bala öydädur
+  translations:
+    en: The child is (in the house|at home|in the room).
+- id: s.02.23
+  node: chg.u02.in-the-house
+  forms:
+    chg-Arab/standard:
+      text: بو یرده کشی یوق.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: یرده, sense: yar, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: کشی, sense: kishi}
+      - {surface: یوق, sense: yoq}
+      reverse: بو (یرده|یردا|یارده|یاردا) (کشی|کیشی) یوق
+    chg-Latn/schluessel:
+      text: Bu yärdä kiši yoq.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: yärdä, sense: yar, morphs: [{surface: yär, kc: 'sense:yar'}, {surface: dä, kc: 'form:loc'}]}
+      - {surface: kiši, sense: kishi}
+      - {surface: yoq, sense: yoq}
+      reverse: Bu (yärdä|yerdä) kiši yoq
+  translations:
+    en: There is no one (in|at) this place.
+- id: s.02.24
+  node: chg.u02.in-the-house
+  forms:
+    chg-Arab/standard:
+      text: اول شهرده آط یوق.
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: شهرده, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: آط, sense: at}
+      - {surface: یوق, sense: yoq}
+      reverse: اول (شهرده|شهردا) (آط|آت|ات) یوق
+    chg-Latn/schluessel:
+      text: Ul šahardä aṭ yoq.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: šahardä, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: dä, kc: 'form:loc'}]}
+      - {surface: aṭ, sense: at}
+      - {surface: yoq, sense: yoq}
+      reverse: (Ul|Ol) šahardä aṭ yoq
+  translations:
+    en: There are no horses in that (city|town).
+- id: s.02.25
+  node: chg.u02.in-the-house
+  forms:
+    chg-Arab/standard:
+      text: "اول باغ چونک\u200cدور."
+      tokens:
+      - {surface: اول, sense: ul}
+      - {surface: باغ, sense: bagh}
+      - {surface: "چونک\u200cدور", sense: chong, morphs: [{surface: "چونک\u200c", kc: 'sense:chong'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "اول باغ چونک\u200cدور"
+    chg-Latn/schluessel:
+      text: Ul bāǧ čoŋdur.
+      tokens:
+      - {surface: Ul, sense: ul}
+      - {surface: bāǧ, sense: bagh}
+      - {surface: čoŋdur, sense: chong, morphs: [{surface: čoŋ, kc: 'sense:chong'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: (Ul|Ol) bāǧ čoŋdur
+  translations:
+    en: That (garden|orchard) is (big|large).
+- id: s.02.26
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: جنوب طرفی.
+      tokens:
+      - {surface: جنوب, sense: janub}
+      - {surface: طرفی, sense: taraf, morphs: [{surface: طرف, kc: 'sense:taraf'}, {surface: ی, kc: 'form:poss3'}]}
+      reverse: جنوب طرفی
+    chg-Latn/schluessel:
+      text: Janūb ṭarafi.
+      tokens:
+      - {surface: Janūb, sense: janub}
+      - {surface: ṭarafi, sense: taraf, morphs: [{surface: ṭaraf, kc: 'sense:taraf'}, {surface: i, kc: 'form:poss3'}]}
+      reverse: Janūb ṭarafi
+  translations:
+    en: (The|Its) south side.
+- id: s.02.27
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: شمال طرفیده تاغ بار.
+      tokens:
+      - {surface: شمال, sense: shimal}
+      - {surface: طرفیده, sense: taraf, morphs: [{surface: طرف, kc: 'sense:taraf'}, {surface: ی, kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: تاغ, sense: tagh}
+      - {surface: بار, sense: bar}
+      reverse: شمال (طرفیده|طرفیدا) تاغ بار
+    chg-Latn/schluessel:
+      text: Šimāl ṭarafida taǧ bar.
+      tokens:
+      - {surface: Šimāl, sense: shimal}
+      - {surface: ṭarafida, sense: taraf, morphs: [{surface: ṭaraf, kc: 'sense:taraf'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      - {surface: taǧ, sense: tagh}
+      - {surface: bar, sense: bar}
+      reverse: Šimāl ṭarafida taǧ bar
+  translations:
+    en: There are mountains on the north side.
+- id: s.02.28
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: شرق طرفیده شهر یوق.
+      tokens:
+      - {surface: شرق, sense: sharq}
+      - {surface: طرفیده, sense: taraf, morphs: [{surface: طرف, kc: 'sense:taraf'}, {surface: ی, kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: شهر, sense: shahar}
+      - {surface: یوق, sense: yoq}
+      reverse: شرق (طرفیده|طرفیدا) شهر یوق
+    chg-Latn/schluessel:
+      text: Šarq ṭarafida šahar yoq.
+      tokens:
+      - {surface: Šarq, sense: sharq}
+      - {surface: ṭarafida, sense: taraf, morphs: [{surface: ṭaraf, kc: 'sense:taraf'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      - {surface: šahar, sense: shahar}
+      - {surface: yoq, sense: yoq}
+      reverse: Šarq ṭarafida šahar yoq
+  translations:
+    en: There (is no city|are no cities|is no town|are no towns) on the east side.
+- id: s.02.29
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: غرب طرفیده تاغ یوق.
+      tokens:
+      - {surface: غرب, sense: gharb}
+      - {surface: طرفیده, sense: taraf, morphs: [{surface: طرف, kc: 'sense:taraf'}, {surface: ی, kc: 'form:poss3'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: تاغ, sense: tagh}
+      - {surface: یوق, sense: yoq}
+      reverse: غرب (طرفیده|طرفیدا) تاغ یوق
+    chg-Latn/schluessel:
+      text: Ǧarb ṭarafida taǧ yoq.
+      tokens:
+      - {surface: Ǧarb, sense: gharb}
+      - {surface: ṭarafida, sense: taraf, morphs: [{surface: ṭaraf, kc: 'sense:taraf'}, {surface: i, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
+      - {surface: taǧ, sense: tagh}
+      - {surface: yoq, sense: yoq}
+      reverse: Ǧarb ṭarafida taǧ yoq
+  translations:
+    en: There are no mountains on the west side.
+- id: s.02.30
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: شمال جانبی.
+      tokens:
+      - {surface: شمال, sense: shimal}
+      - {surface: جانبی, sense: janib, morphs: [{surface: جانب, kc: 'sense:janib'}, {surface: ی, kc: 'form:poss3'}]}
+      reverse: شمال جانبی
+    chg-Latn/schluessel:
+      text: Šimāl jānibi.
+      tokens:
+      - {surface: Šimāl, sense: shimal}
+      - {surface: jānibi, sense: janib, morphs: [{surface: jānib, kc: 'sense:janib'}, {surface: i, kc: 'form:poss3'}]}
+      reverse: Šimāl jānibi
+  translations:
+    en: (The|Its) north side.
+- id: s.02.31
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: بیر دروازه بار.
+      tokens:
+      - {surface: بیر, sense: bir}
+      - {surface: دروازه, sense: darwaza}
+      - {surface: بار, sense: bar}
+      reverse: (بیر|بر) دروازه بار
+    chg-Latn/schluessel:
+      text: Bir darwāza bar.
+      tokens:
+      - {surface: Bir, sense: bir}
+      - {surface: darwāza, sense: darwaza}
+      - {surface: bar, sense: bar}
+      reverse: Bir darwāza bar
+  translations:
+    en: There is a gate.
+- id: s.02.32
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: "اوچ دروازه\u200cسی بار."
+      tokens:
+      - {surface: اوچ, sense: uch}
+      - {surface: "دروازه\u200cسی", sense: darwaza, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}]}
+      - {surface: بار, sense: bar}
+      reverse: "اوچ دروازه\u200cسی بار"
+    chg-Latn/schluessel:
+      text: Üč darwāzasi bar.
+      tokens:
+      - {surface: Üč, sense: uch}
+      - {surface: darwāzasi, sense: darwaza, morphs: [{surface: darwāza, kc: 'sense:darwaza'}, {surface: si, kc: 'form:poss3'}]}
+      - {surface: bar, sense: bar}
+      reverse: Üč darwāzasi bar
+  translations:
+    en: (It has|There are) three gates.
+- id: s.02.33
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: "یتی پاره قصبه\u200cسی بار."
+      tokens:
+      - {surface: یتی, sense: yatti}
+      - {surface: پاره, sense: para}
+      - {surface: "قصبه\u200cسی", sense: qasaba, morphs: [{surface: "قصبه\u200c", kc: 'sense:qasaba'}, {surface: سی, kc: 'form:poss3'}]}
+      - {surface: بار, sense: bar}
+      reverse: "(یتی|ییتی|یته) پاره قصبه\u200cسی بار\n(یتی|ییتی|یته) قصبه\u200cسی بار"
+    chg-Latn/schluessel:
+      text: Yätti pāra qaṣabasi bar.
+      tokens:
+      - {surface: Yätti, sense: yatti}
+      - {surface: pāra, sense: para}
+      - {surface: qaṣabasi, sense: qasaba, morphs: [{surface: qaṣaba, kc: 'sense:qasaba'}, {surface: si, kc: 'form:poss3'}]}
+      - {surface: bar, sense: bar}
+      reverse: |-
+        (Yätti|Yättä|Yetti) pāra qaṣabasi bar
+        (Yätti|Yättä|Yetti) qaṣabasi bar
+  translations:
+    en: (It has|There are) seven towns.
+- id: s.02.34
+  node: chg.u02.sides
+  forms:
+    chg-Arab/standard:
+      text: اندجان چونک شهردور.
+      tokens:
+      - {surface: اندجان, sense: andijan}
+      - {surface: چونک, sense: chong}
+      - {surface: شهردور, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: اندجان چونک شهردور
+    chg-Latn/schluessel:
+      text: Andijān čoŋ šahardur.
+      tokens:
+      - {surface: Andijān, sense: andijan}
+      - {surface: čoŋ, sense: chong}
+      - {surface: šahardur, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Andijān čoŋ šahardur
+  translations:
+    en: Andijan is a (big|large) (city|town).
+- id: s.02.35
+  node: chg.u02.of-the-city
+  forms:
+    chg-Arab/standard:
+      text: "شهرنینک دروازه\u200cسی."
+      tokens:
+      - {surface: شهرنینک, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: "دروازه\u200cسی", sense: darwaza, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}]}
+      reverse: "شهرنینک دروازه\u200cسی\nشهر دروازه\u200cسی"
+    chg-Latn/schluessel:
+      text: Šaharniŋ darwāzasi.
+      tokens:
+      - {surface: Šaharniŋ, sense: shahar, morphs: [{surface: Šahar, kc: 'sense:shahar'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: darwāzasi, sense: darwaza, morphs: [{surface: darwāza, kc: 'sense:darwaza'}, {surface: si, kc: 'form:poss3'}]}
+      reverse: |-
+        Šaharniŋ darwāzasi
+        Šahar darwāzasi
+  translations:
+    en: The (city's|town's) gate.
+- id: s.02.36
+  node: chg.u02.of-the-city
+  forms:
+    chg-Arab/standard:
+      text: "اندجاننینک اوچ دروازه\u200cسی بار."
+      tokens:
+      - {surface: اندجاننینک, sense: andijan, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: اوچ, sense: uch}
+      - {surface: "دروازه\u200cسی", sense: darwaza, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}]}
+      - {surface: بار, sense: bar}
+      reverse: "اندجاننینک اوچ دروازه\u200cسی بار"
+    chg-Latn/schluessel:
+      text: Andijānniŋ üč darwāzasi bar.
+      tokens:
+      - {surface: Andijānniŋ, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: üč, sense: uch}
+      - {surface: darwāzasi, sense: darwaza, morphs: [{surface: darwāza, kc: 'sense:darwaza'}, {surface: si, kc: 'form:poss3'}]}
+      - {surface: bar, sense: bar}
+      reverse: Andijānniŋ üč darwāzasi bar
+  translations:
+    en: Andijan has three gates.
+- id: s.02.37
+  node: chg.u02.of-the-city
+  forms:
+    chg-Arab/standard:
+      text: اوینینک باغی یوق.
+      tokens:
+      - {surface: اوینینک, sense: oy, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: باغی, sense: bagh, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: یوق, sense: yoq}
+      reverse: اوینینک باغی یوق
+    chg-Latn/schluessel:
+      text: Öyniŋ bāǧi yoq.
+      tokens:
+      - {surface: Öyniŋ, sense: oy, morphs: [{surface: Öy, kc: 'sense:oy'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: bāǧi, sense: bagh, morphs: [{surface: bāǧ, kc: 'sense:bagh'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: yoq, sense: yoq}
+      reverse: Öyniŋ bāǧi yoq
+  translations:
+    en: The house has no (garden|orchard).
+- id: s.02.38
+  node: chg.u02.of-the-city
+  forms:
+    chg-Arab/standard:
+      text: سیحون سویی.
+      tokens:
+      - {surface: سیحون, sense: sayhun}
+      - {surface: سویی, sense: su, morphs: [{surface: سوی, kc: 'sense:su'}, {surface: ی, kc: 'form:poss3'}]}
+      reverse: سیحون سویی
+    chg-Latn/schluessel:
+      text: Sayḥūn suyi.
+      tokens:
+      - {surface: Sayḥūn, sense: sayhun}
+      - {surface: suyi, sense: su, morphs: [{surface: suy, kc: 'sense:su'}, {surface: i, kc: 'form:poss3'}]}
+      reverse: |-
+        Sayḥūn suyi
+        Sayḥūn süyi
+  translations:
+    en: The (water|river) of the Sayhun.
+- id: s.02.39
+  node: chg.u02.of-the-city
+  forms:
+    chg-Arab/standard:
+      text: "سیحون سویی چونک\u200cدور."
+      tokens:
+      - {surface: سیحون, sense: sayhun}
+      - {surface: سویی, sense: su, morphs: [{surface: سوی, kc: 'sense:su'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: "چونک\u200cدور", sense: chong, morphs: [{surface: "چونک\u200c", kc: 'sense:chong'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "سیحون سویی چونک\u200cدور"
+    chg-Latn/schluessel:
+      text: Sayḥūn suyi čoŋdur.
+      tokens:
+      - {surface: Sayḥūn, sense: sayhun}
+      - {surface: suyi, sense: su, morphs: [{surface: suy, kc: 'sense:su'}, {surface: i, kc: 'form:poss3'}]}
+      - {surface: čoŋdur, sense: chong, morphs: [{surface: čoŋ, kc: 'sense:chong'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Sayḥūn suyi čoŋdur
+  translations:
+    en: The Sayhun (river|water) is (big|large|great).
+- id: s.02.40
+  node: chg.u02.of-the-city
+  forms:
+    chg-Arab/standard:
+      text: فرغانه ولایتی.
+      tokens:
+      - {surface: فرغانه, sense: farghana}
+      - {surface: ولایتی, sense: wilayat, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: ی, kc: 'form:poss3'}]}
+      reverse: فرغانه ولایتی
+    chg-Latn/schluessel:
+      text: Farǧāna wilāyati.
+      tokens:
+      - {surface: Farǧāna, sense: farghana}
+      - {surface: wilāyati, sense: wilayat, morphs: [{surface: wilāyat, kc: 'sense:wilayat'}, {surface: i, kc: 'form:poss3'}]}
+      reverse: Farǧāna wilāyati
+  translations:
+    en: The (country|province|land) of Ferghana.
+- id: s.02.41
+  node: chg.u02.of-the-city
+  forms:
+    chg-Arab/standard:
+      text: "اندجان فرغانه ولایتینینک شهری\u200cدور."
+      tokens:
+      - {surface: اندجان, sense: andijan}
+      - {surface: فرغانه, sense: farghana}
+      - {surface: ولایتینینک, sense: wilayat, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: ی, kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: "شهری\u200cدور", sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: دور, kc: 'form:dur'}]}
+      reverse: "اندجان فرغانه ولایتینینک شهری\u200cدور"
+    chg-Latn/schluessel:
+      text: Andijān Farǧāna wilāyatiniŋ šaharidur.
+      tokens:
+      - {surface: Andijān, sense: andijan}
+      - {surface: Farǧāna, sense: farghana}
+      - {surface: wilāyatiniŋ, sense: wilayat, morphs: [{surface: wilāyat, kc: 'sense:wilayat'}, {surface: i, kc: 'form:poss3'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: šaharidur, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: i, kc: 'form:poss3'}, {surface: dur, kc: 'form:dur'}]}
+      reverse: Andijān Farǧāna wilāyatiniŋ šaharidur
+  translations:
+    en: Andijan is a (city|town) of (the country of Ferghana|Ferghana).
+- id: s.02.42
+  node: chg.u02.of-the-city
+  forms:
+    chg-Arab/standard:
+      text: بو شهرنینک هواسی خوب.
+      tokens:
+      - {surface: بو, sense: bu}
+      - {surface: شهرنینک, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: هواسی, sense: hawa, morphs: [{surface: هوا, kc: 'sense:hawa'}, {surface: سی, kc: 'form:poss3'}]}
+      - {surface: خوب, sense: khub}
+      reverse: "بو شهرنینک هواسی خوب\nبو شهرنینک هواسی خوب\u200cدور"
+    chg-Latn/schluessel:
+      text: Bu šaharniŋ hawāsi ḫūb.
+      tokens:
+      - {surface: Bu, sense: bu}
+      - {surface: šaharniŋ, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: niŋ, kc: 'form:gen'}]}
+      - {surface: hawāsi, sense: hawa, morphs: [{surface: hawā, kc: 'sense:hawa'}, {surface: si, kc: 'form:poss3'}]}
+      - {surface: ḫūb, sense: khub}
+      reverse: |-
+        Bu šaharniŋ hawāsi ḫūb
+        Bu šaharniŋ hawāsi ḫūbdur
+  translations:
+    en: The (air|weather) of this (city|town) is (good|fine).
+stories:
+- id: chg.story.seven-towns
+  node: chg.u02.story
+  title:
+    en: 'Seven towns (Babur, Bāburnāma: Ferghana)'
+  steps:
+  - line:
+      ask: complete
+      gap: sense:yatti
+      distractors:
+      - sense:uch
+      - sense:on
+      forms:
+        chg-Arab/standard:
+          text: "ییتی پاره قصبه\u200cسی بار."
+          tokens:
+          - {surface: ییتی, sense: yatti}
+          - {surface: پاره, sense: para}
+          - {surface: "قصبه\u200cسی", sense: qasaba, morphs: [{surface: "قصبه\u200c", kc: 'sense:qasaba'}, {surface: سی, kc: 'form:poss3'}]}
+          - {surface: بار, sense: bar}
+        chg-Latn/schluessel:
+          text: Yätti pāra qaṣabasi bar.
+          tokens:
+          - {surface: Yätti, sense: yatti}
+          - {surface: pāra, sense: para}
+          - {surface: qaṣabasi, sense: qasaba, morphs: [{surface: qaṣaba, kc: 'sense:qasaba'}, {surface: si, kc: 'form:poss3'}]}
+          - {surface: bar, sense: bar}
+      translations:
+        en: It has seven towns.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "بیشی سیحون سوی\u200cنینک جنوب طرفی."
+          tokens:
+          - {surface: بیشی, sense: bash, morphs: [{surface: بیش, kc: 'sense:bash'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: سیحون, sense: sayhun}
+          - {surface: "سوی\u200cنینک", sense: su, morphs: [{surface: سو, kc: 'sense:su'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: جنوب, sense: janub}
+          - {surface: طرفی, sense: taraf, morphs: [{surface: طرف, kc: 'sense:taraf'}, {surface: ی, kc: 'form:poss3'}]}
+        chg-Latn/schluessel:
+          text: Beši Sayḥūn suyiniŋ janūb ṭarafi.
+          tokens:
+          - {surface: Beši, sense: bash, morphs: [{surface: Beš, kc: 'sense:bash'}, {surface: i, kc: 'form:poss3'}]}
+          - {surface: Sayḥūn, sense: sayhun}
+          - {surface: suyiniŋ, sense: su, morphs: [{surface: suy, kc: 'sense:su'}, {surface: i, kc: 'form:poss3'}, {surface: niŋ, kc: 'form:gen'}]}
+          - {surface: janūb, sense: janub}
+          - {surface: ṭarafi, sense: taraf, morphs: [{surface: ṭaraf, kc: 'sense:taraf'}, {surface: i, kc: 'form:poss3'}]}
+      translations:
+        en: Five are on the south side of the Sayhun river.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: ایکی شمال جانبی.
+          tokens:
+          - {surface: ایکی, sense: ikki}
+          - {surface: شمال, sense: shimal}
+          - {surface: جانبی, sense: janib, morphs: [{surface: جانب, kc: 'sense:janib'}, {surface: ی, kc: 'form:poss3'}]}
+        chg-Latn/schluessel:
+          text: Ikki šimāl jānibi.
+          tokens:
+          - {surface: Ikki, sense: ikki}
+          - {surface: šimāl, sense: shimal}
+          - {surface: jānibi, sense: janib, morphs: [{surface: jānib, kc: 'sense:janib'}, {surface: i, kc: 'form:poss3'}]}
+      translations:
+        en: Two are on the north side.
+  - choose:
+      prompt:
+        en: Where are the seven towns of Ferghana?
+      options:
+      - en: Five south of the Sayhun, two north of it
+      - en: All seven on the river's north side
+      - en: Seven in the mountains
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "بیر اندجان\u200cدور."
+          tokens:
+          - {surface: بیر, sense: bir}
+          - {surface: "اندجان\u200cدور", sense: andijan, morphs: [{surface: "اندجان\u200c", kc: 'sense:andijan'}, {surface: دور, kc: 'form:dur'}]}
+        chg-Latn/schluessel:
+          text: Bir Andijāndur.
+          tokens:
+          - {surface: Bir, sense: bir}
+          - {surface: Andijāndur, sense: andijan, morphs: [{surface: Andijān, kc: 'sense:andijan'}, {surface: dur, kc: 'form:dur'}]}
+      translations:
+        en: One is Andijan.
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: "اوچ دروازه\u200cسی بار."
+          tokens:
+          - {surface: اوچ, sense: uch}
+          - {surface: "دروازه\u200cسی", sense: darwaza, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}]}
+          - {surface: بار, sense: bar}
+        chg-Latn/schluessel:
+          text: Üč darwāzasi bar.
+          tokens:
+          - {surface: Üč, sense: uch}
+          - {surface: darwāzasi, sense: darwaza, morphs: [{surface: darwāza, kc: 'sense:darwaza'}, {surface: si, kc: 'form:poss3'}]}
+          - {surface: bar, sense: bar}
+      translations:
+        en: It has three gates.
+  - choose:
+      prompt:
+        en: How many gates does Andijan have?
+      options:
+      - en: Three
+      - en: Seven
+      - en: Five
+      answer: 0
+scenarios:
+- id: chg.at-the-city-gate
+  after: chg.u02.of-the-city
+  title:
+    en: At the city gate
+  setting:
+    en: The gate of Andijan, about 1500. You have just arrived from the south with your horse.
+  character:
+    en: The gatekeeper, an old soldier of the city who speaks only Turki.
+  goal:
+    en: 'Ask what the town has: whether there is water, bread and a garden to rest in, and how many gates the city has.'

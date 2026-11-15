@@ -760,3 +760,18 @@ references in the reference library (find them with `nabu refs find`; notes in n
   (nabu/greek_translit.py), and which words each node drills.
 - The voice: Piper's Modern Greek voice saying IPA (a stopgap); aspiration said as a following h.
 
+
+## chg (Chaghatay)
+
+- Every sentence, translation and accept set: no one speaks Chaghatay, so a reviewer who reads it (and Uzbek or
+  Uyghur) should check that the drafted sentences are idiomatic for literary Turki, not modern Uzbek or Uyghur.
+- The spellings of Turkic words in the Arabic script: one convention (Schluessel's typescript: plene vowels in
+  most words, the copula after a half-space), where the manuscripts have many. Accept sets add the commonest
+  variants only.
+- The transliteration: front and back vowels (ä/a) and the e/ä of verbs (käldi but kelädur, bärdi), the ǧ/q and
+  g/k of suffixes, where Schluessel himself varies.
+- The passages: each story line against Schluessel's typescript (ch. 11-14) and, ideally, the manuscripts; the
+  places marked with … where a line was shortened; the English translations, which are the course's own.
+- The grading policies marked REVIEW in profiles/chg-Arab.standard.yaml and profiles/chg-Latn.schluessel.yaml:
+  half-spaces silent, ک/گ as one letter, transliteration marks noted not failed, the contrast sets.
+- "You": siz is drafted as the polite singular and the plural, sän as familiar (Schluessel, 4.3.1); tags follow.

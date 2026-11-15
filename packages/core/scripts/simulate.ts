@@ -27,6 +27,7 @@ const LEARNERS: readonly (readonly [string, string | undefined, number])[] = [
   ["tok", "tok-Latn/standard", 1.3],
   ["tok", "tok-Qaap/sitelen-pona", 1.6],
   ["grc", undefined, 1.0],
+  ["chg", "chg-Arab/standard", 1.3],
 ];
 const lines: string[] = [];
 for (const [i, [course, orthography, ability]] of LEARNERS.entries()) {
