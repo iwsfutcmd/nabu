@@ -61,14 +61,14 @@ the letters taught by then. It is the Arabic orthography's: a learner of the tra
   gives all its values (و "w / u / o / ü / ö / ū"; ه "h / a / ä"). A Latin orthography the course teaches is not
   shipped twice.
 
-**The course** (`courses/chg`): fourteen units, A1 to B1, each teaching the words of an authentic passage that its
+**The course** (`courses/chg`): fifteen units, A1 to B1, each teaching the words of an authentic passage that its
 story reads, in the order of Schluessel's grammar (copula and existence, cases, persons and questions, the
 present-future, the past, the aorist, converbs and participles, the conditional, the reported past, the narrative
-past, the habitual past, -ǧač). A Chaghatay word is a stem and its suffixes, so suffixes are morphs with their own
-form KCs (`form:dat`, `form:past-1s`, …) and `iPlusOne: 2`. Verbs are cited as Schluessel cites them, the stem with a
-hyphen (bar-). Story lines keep their source's spellings (فادشاه for pādišāh and پز for biz in the tadhkira, tep for
-dep in Abu 'l-Ghazi), with Schluessel's reading in the transliteration; the scribe's بامو is read barmu, as Schluessel
-reads it.
+past, the habitual past, -ǧač, the imperative and requests). A Chaghatay word is a stem and its suffixes, so suffixes
+are morphs with their own form KCs (`form:dat`, `form:past-1s`, …) and `iPlusOne: 2`. Verbs are cited as Schluessel
+cites them, the stem with a hyphen (bar-). Story lines keep their source's spellings (فادشاه for pādišāh and پز for
+biz in the tadhkira, tep for dep in Abu 'l-Ghazi), with Schluessel's reading in the transliteration; the scribe's بامو
+is read barmu, as Schluessel reads it.
 
 | Unit | Passage |
 |---|---|
@@ -86,6 +86,7 @@ reads it.
 | 12 | Qasim Beg, Events in Ghulja (St Petersburg, IOM B 4018): the Kalmyks came |
 | 13 | The Stories of the Prophets (Jarring Prov. 431): the giant ʿĀj |
 | 14 | Navai: a coin of Decius (the end of the Seven Sleepers) |
+| 15 | The Stories of the Prophets (Jarring Prov. 431): the old woman's box |
 
 Chaghatay marks no gender: English accept sets give he/she. "You" is sän to one person one knows well, siz
 politely to one or to several, sizlär to several: sän sentences are tagged "to one person", sizlär "to several",
@@ -94,7 +95,7 @@ and accept sets take siz as well; untagged siz sentences accept all three (ADR 0
 
 ## Consequences
 
-- 517 sentences, 387 KCs (33 of them letters), 69 lessons, fourteen stories, fourteen roleplay scenarios and an
+- 550 sentences, 408 KCs (33 of them letters), 73 lessons, fifteen stories, fifteen roleplay scenarios and an
   alphabet track of eight nodes. LLM drafts (`llm:`, status draft), CC-BY-SA-4.0; the passages are public domain.
 - The course was written from a compact source (each word as stem and suffix keys, both scripts built from the
   same pieces), kept in the reference library (`nabu/notes/chg/generator`), not in the repository: the YAML is the
