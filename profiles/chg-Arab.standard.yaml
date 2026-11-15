@@ -64,5 +64,6 @@ layout: { vertical: none }
 romanize: { scheme: forms, orthography: chg-Latn/schluessel }
 # Nastaliq, the hand the manuscripts are written in (Noto Nastaliq Urdu, OFL-1.1): every letter and mark the course
 # writes is in its faces. Its letters climb and drop far from the line (1.9 em above, 0.6 below), so the lines are
-# set wide apart, and its text half again as large: at the size of the text around it, Nastaliq reads small.
-fonts: { stack: [Noto Nastaliq Urdu, Noto Naskh Arabic], lineHeight: 2.6, scale: 1.5 }
+# set wide apart, and its text a quarter larger (as lzh's): at the size of the text around it Nastaliq reads small,
+# and a learner who wants it larger still has the text-size setting.
+fonts: { stack: [Noto Nastaliq Urdu, Noto Naskh Arabic], lineHeight: 2.6, scale: 1.25 }

@@ -1,6 +1,7 @@
 import type { OrthographyProfile, SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { demoExercise } from "../src/demo/fixtures.ts";
+import { AnswerInput } from "../src/player/AnswerInput.tsx";
 import { T } from "../src/T.tsx";
 import { NabuUiProvider } from "../src/context.tsx";
 import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
@@ -93,6 +94,19 @@ describe("<T>", () => {
     expect(html.match(/<ruby/gu)).toHaveLength(1);
     expect(html).toContain(`${word}<rt lang="chg-Latn" data-script="Latn">mewäsi</rt>`);
     expect(attr(html, "dir")).toBe("rtl");
+  });
+
+  it("sets a typed answer in the orthography's own face, not the chrome's (ADR 0129)", () => {
+    const field = (base: { lang: string; orthography: string }): string =>
+      render(<AnswerInput value="" base={base as unknown as Pick<TaggedText, "lang" | "orthography">} dir="rtl" label="Answer" disabled={false} extraKeys={[]} onInput={() => undefined} onCompositionStart={() => undefined} onCompositionEnd={() => undefined} onSubmit={() => undefined} />);
+    expect(field({ lang: "fa-Arab-IR", orthography: "fa-Arab/standard" })).toContain("--nabu-input-font:&quot;Vazirmatn&quot;, &quot;Noto Naskh Arabic&quot;, sans-serif");
+    // lzh is typed in its Ming face, a quarter larger, as its text is set.
+    const lzh = field({ lang: "lzh-Hant", orthography: "lzh-Hant/standard" });
+    expect(lzh).toContain("--nabu-input-font:&quot;Noto Serif TC&quot;");
+    expect(lzh).toContain("--nabu-input-scale:1.25");
+    // The profile's line height too, so that tall letters (Nastaliq's) are not clipped by the field.
+    expect(lzh).toContain("--nabu-input-line-height:1.7");
+    expect(field({ lang: "uz-Latn", orthography: "uz-Latn/standard" })).not.toContain("--nabu-input-line-height");
   });
 
   it("sets an orthography's text larger where its profile says so (Classical Chinese, ADR 0071)", () => {

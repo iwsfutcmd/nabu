@@ -46,10 +46,13 @@ reading, scheme: schluessel, lang: chg-Latn, toggle, default off, render: ruby}`
   dots and tall strokes high above the line.
 
 **Nastaliq.** The chg-Arab profile sets `fonts: {stack: [Noto Nastaliq Urdu, Noto Naskh Arabic], lineHeight: 2.6,
-scale: 1.5}`; `@fontsource/noto-nastaliq-urdu` (OFL-1.1) joins packages/ui's fonts.css. Its Arabic face covers every
+scale: 1.25}`; `@fontsource/noto-nastaliq-urdu` (OFL-1.1) joins packages/ui's fonts.css. Its Arabic face covers every
 letter, mark and digit the course uses (checked against the woff2's cmap, not its unicode-range); « » and … come from
 its Latin face. Its letters reach 1.9 em above the line and 0.6 below, hence the line height; at the size of the
-text around it Nastaliq reads small, hence the scale.
+text around it Nastaliq reads small, hence the scale (lzh's; 1.5 was too large on a phone, and the learner's
+text-size setting goes further).
+- Typed answers are set in the orthography's face too (`AnswerInput`: the profile's stack, as `<T>` sets text;
+  it was the chrome's face, for every course).
 
 ## Consequences
 
