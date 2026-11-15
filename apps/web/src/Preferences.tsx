@@ -31,6 +31,7 @@ import { useEffect, useState, type FormEvent, type JSX, type MouseEvent } from "
 import { Button, DateInput, DateSegment, Form, Label, Radio, RadioGroup, Text, TimeField, type TimeValue } from "react-aria-components";
 import styles from "./App.module.css";
 import { setTurnedOff, turnedOff, turnOn, type Modality } from "./breaks.ts";
+import { debugMode, setDebug } from "./debug-mode.ts";
 import { request, type Account } from "./sync.ts";
 
 export const TEXT_SIZES = ["smaller", "default", "large", "larger", "largest"] as const;
@@ -328,7 +329,7 @@ export interface PreferencesPageProps {
 /**
  * The preferences screen: appearance, the size of the language being learned (with a sample of it,
  * where the learner came from a course), sound, and listening and speaking exercises, applied as the
- * learner chooses; with an account, the time of the daily reminder.
+ * learner chooses; with an account, the time of the daily reminder; and debug mode.
  */
 export const PreferencesPage = ({ back, backLabel, onBack, account, sample }: PreferencesPageProps): JSX.Element => {
   const t = useTranslator();
@@ -415,6 +416,20 @@ export const PreferencesPage = ({ back, backLabel, onBack, account, sample }: Pr
       <ExercisesChoice modality="listening" />
       <ExercisesChoice modality="speaking" />
       {account !== undefined && <ReminderTime account={account} />}
+      {/* For people who check courses (Debug.tsx). Every screen reads it as the page opens, so a
+          choice opens the page again with it. */}
+      <RadioGroup className={styles.preferenceOptions} value={debugMode ? "on" : "off"} onChange={(value) => setDebug(value === "on")} data-preference="debug">
+        <Label className={styles.subheading}>{t.format("preferences.debug.label")}</Label>
+        <Text slot="description" className={styles.muted}>
+          {t.format("preferences.debug.hint")}
+        </Text>
+        <Radio value="on" className={styles.preferenceOption} data-debug-choice="on">
+          {t.format("preferences.debug.on")}
+        </Radio>
+        <Radio value="off" className={styles.preferenceOption} data-debug-choice="off">
+          {t.format("preferences.debug.off")}
+        </Radio>
+      </RadioGroup>
       {backLink(true)}
     </main>
   );
