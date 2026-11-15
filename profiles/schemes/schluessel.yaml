@@ -1,0 +1,27 @@
+# Schluessel's transliteration of Chaghatay (An Introduction to Chaghatay, 2018): his reading of
+# the Arabic script in Latin letters, the chg course's second orthography (chg-Latn/schluessel,
+# ADR 0128). Over the Arabic it is a reading layer of whole words (ADR 0129), taken from the Latin
+# form pinned word for word; it is shown, never asked for.
+id: schluessel
+# What the UI calls the scheme, by language (ADR 0109). The translations are an LLM's drafts, made
+# for the draft UI catalogs (ADR 0070), and await review as those do.
+names:
+  en:
+    scheme: Transliteration (Schluessel)
+  ar:
+    scheme: "الكتابة اللاتينية (شلوسل)"
+    provenance: {author: 'llm:claude@chg-translit-v1', status: draft}
+  fa:
+    scheme: "آوانویسی (شلوسل)"
+    provenance: {author: 'llm:claude@chg-translit-v1', status: draft}
+  uz:
+    scheme: "Transliteratsiya (Schluessel)"
+    provenance: {author: 'llm:claude@chg-translit-v1', status: draft}
+  uz-Cyrl:
+    scheme: "Транслитерация (Шлюссел)"
+    provenance: {author: 'llm:claude@chg-translit-v1', status: draft}
+  zh-Hant-HK:
+    scheme: "轉寫（Schluessel）"
+    provenance: {author: 'llm:claude@chg-translit-v1', status: draft}
+language: chg
+lang: chg-Latn

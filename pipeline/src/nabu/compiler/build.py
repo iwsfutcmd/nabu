@@ -30,6 +30,7 @@ from nabu.compiler.scenarios import compile_scenarios
 from nabu.compiler.script import compile_alphabets
 from nabu.compiler.source import Doc, load_doc
 from nabu.compiler.stories import LineForm, compile_stories
+from nabu.compiler.transliteration import pin_kc_ruby, transliterate_forms
 from nabu.corecli import CoreCli
 from nabu.drills.rbnf import icu_version, spellout, transform
 from nabu.paths import I18N_GENERATED, PROFILES
@@ -708,6 +709,12 @@ def compile_course(
                         forms[orth] = tagged
             compiled_forms[(ui, si)] = forms
             _transliteration(ctx, unit, si, s)
+            # A reading layer that is another orthography's words (ADR 0129): Schluessel's Latin
+            # over chg's Arabic, word for word.
+            for orth, why in transliterate_forms(forms, ctx.profiles):
+                diags.report(
+                    "enrich.ruby-unaligned", why, unit.doc.loc("sentences", si, "forms", orth)
+                )
 
     # ---- stage 5: curriculum
     sentence_kcs = _curriculum(ctx, course, units, compiled_forms)
@@ -760,6 +767,13 @@ def compile_course(
         unit, ki, _ = entries[r.kc]
         ctx.diags.report(
             "kc.reading", f"{r.kc}: {r.message}", unit.doc.loc("kcs", ki, "readings", r.scheme)
+        )
+    # A KC form's reading layers that are another orthography's words take the KC's form in it.
+    compiled.units, unaligned = pin_kc_ruby(compiled.units, ctx.profiles)
+    for kc_id, orth, why in unaligned:
+        unit, ki, _ = entries[kc_id]
+        ctx.diags.report(
+            "enrich.ruby-unaligned", f"{kc_id}: {why}", unit.doc.loc("kcs", ki, "forms", orth)
         )
     if audio:
         check_audio(ctx, course, course_file, display, compiled)

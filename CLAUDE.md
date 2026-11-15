@@ -567,6 +567,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   that fit. No gender: he/she in English accept sets.
 - The Arabic alphabet track (units/abc.yaml) takes its Latin spellings from each KC's chg-Latn form (`romanize:
   {scheme: forms}`): a word it drills needs a form in both orthographies; no verb stems (their hyphen).
+- The Arabic shows Schluessel's Latin as ruby on request (ADR 0129: the reading layer's `orthography`): the compiler
+  puts each word of the chg-Latn form over the Arabic word in the same place (nabu/compiler/transliteration.py), and
+  a KC's chg-Latn form over its Arabic form. Never pin it by hand; words that do not line up fail the compile.
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

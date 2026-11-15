@@ -129,6 +129,31 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   await expect(page.locator("[data-lesson-player] rt")).toHaveCount(0);
 });
 
+test("Chaghatay's Arabic shows Schluessel's transliteration over each word once the learner asks (ADR 0129)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("chg", "chg-Arab/standard");
+  const request = { mode: "lesson", node: "chg.u01.bread-and-tea" } as const;
+  await page.goto(sessionUrl(course, request, SEED));
+  const player = page.locator("[data-lesson-player]");
+  await expect(player).toHaveAttribute("data-state", "answering");
+  await expect(player.locator("rt")).toHaveCount(0);
+  // One layer: the display menu's readings switch.
+  await player.locator("[data-action=display]").click();
+  await page.locator("[data-display-menu] [data-toggle=readings]").click();
+  await page.keyboard.press("Escape");
+  const ruby = player.locator("ruby");
+  await expect(ruby).not.toHaveCount(0);
+  // Each Arabic word under its Latin, the whole word under one reading, tagged as Latin text.
+  for (const r of await ruby.all()) {
+    await expect(r.locator("rt")).toHaveCount(1);
+    await expect(r.locator("rt")).toHaveAttribute("lang", "chg-Latn");
+    const [base, latin] = await r.evaluate((el) => [[...el.childNodes].filter((n) => n.nodeName !== "RT").map((n) => n.textContent).join(""), el.querySelector("rt")?.textContent ?? ""]);
+    expect(base).toMatch(/^[\p{Script_Extensions=Arabic}\u200c]+$/u);
+    expect(latin).toMatch(/^[\p{Script=Latin}\p{M}ʿʾ-]+$/u);
+  }
+});
+
 test("vertical text on a phone keeps the readings, turns only the Cantonese and leaves Check in sight (W6)", async ({ page }, info) => {
   test.skip(info.project.name !== "touch", "a phone: the touch pass");
   await page.clock.setFixedTime(NOW);

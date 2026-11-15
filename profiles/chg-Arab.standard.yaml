@@ -53,6 +53,10 @@ match:
 input:
   keyboard: cldr-kbd:fa
   extraKeys: ["\u200C"]          # ZWNJ on the special-character bar
+# Schluessel's transliteration over each word, as ruby, off until the learner asks (ADR 0129): the word in the
+# same place in the sentence's chg-Latn/schluessel form, which the course pins word for word.
+annotations:
+  - { id: schluessel, kind: reading, scheme: schluessel, orthography: chg-Latn/schluessel, lang: chg-Latn, toggle: true, default: "off", render: ruby, fade: none }
 layout: { vertical: none }
 # The alphabet track's Latin spellings (ADR 0088, 0124, 0128): each letter's and word's own form in Schluessel's
 # transliteration, as the course pins it; an abjad's words cannot be romanized from their letters.

@@ -320,6 +320,10 @@ export type TableRef = string;
  */
 export type ScriptedLangTag1 = LangTag;
 /**
+ * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ */
+export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "StrokeOrderStandard".
  */
@@ -327,7 +331,7 @@ export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
  * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
  */
-export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
+export type OrthographyId3 = string & { readonly __brand: "OrthographyId" };
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
@@ -339,7 +343,7 @@ export type ScriptedLangTag2 = LangTag;
 /**
  * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
  */
-export type OrthographyId3 = string & { readonly __brand: "OrthographyId" };
+export type OrthographyId4 = string & { readonly __brand: "OrthographyId" };
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReportSubmission".
@@ -3222,6 +3226,7 @@ export interface AnnotationLayer {
   readonly default?: "on" | "off" | "on-for-new-words";
   readonly scheme?: SchemeId;
   readonly lang?: ScriptedLangTag1;
+  readonly orthography?: OrthographyId2;
   readonly render?: "ruby" | "inline" | "interlinear";
   readonly fade?: "none" | "by-facet";
 }
@@ -3293,7 +3298,7 @@ export interface Romanization {
    * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters.
    */
   readonly scheme: "greek" | "forms";
-  readonly orthography: OrthographyId2;
+  readonly orthography: OrthographyId3;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -3375,7 +3380,7 @@ export interface ReadingScheme {
   };
   readonly language: LangTag1;
   readonly lang?: ScriptedLangTag2;
-  readonly answer?: OrthographyId3;
+  readonly answer?: OrthographyId4;
   /**
    * A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
    */

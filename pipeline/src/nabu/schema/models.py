@@ -1877,6 +1877,12 @@ class AnnotationLayer(BaseModel):
             description="The language tag of the layer's own text (ADR 0071), so it is announced and shaped as what it is: Jyutping is yue-Latn-jyutping, Pinyin zh-Latn-pinyin, Baxter's Middle Chinese ltc-Latn-x-baxter. Without it the annotation takes the base text's tag."
         ),
     ] = None
+    orthography: Annotated[
+        OrthographyId | None,
+        Field(
+            description="A reading layer that is another orthography of the course, pinned word for word (ADR 0129): each word reads as the word in the same place in that orthography's form of the sentence, story line or KC form, and its ruby spans the whole word. Chaghatay's Arabic script reads as Schluessel's transliteration (chg-Latn/schluessel). Nothing is pinned by hand: the compiler takes the words, and a form whose words do not line up is an error."
+        ),
+    ] = None
     render: Literal["ruby", "inline", "interlinear"] | None = None
     fade: Literal["none", "by-facet"] | None = None
 
