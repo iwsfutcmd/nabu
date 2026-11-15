@@ -9,7 +9,8 @@ import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { readingTag } from "../profile/schemes.ts";
 import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, toneVariants, transcribable, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
-import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
+import { surfaceOf } from "../text/tagged-text.ts";
+import { tilesOf } from "./tiles.ts";
 import { allKcs, allSentences, profileOf, type CourseView, type Grader } from "./course.ts";
 import type {
   CharRead,
@@ -496,14 +497,15 @@ const makeTap = (
   accept: string,
   pool: readonly TaggedText[],
 ): TranslateTap | undefined => {
-  const tiles = tileGroups(answer);
+  // Tiles in lower case but for words that must be capitalized (ADR 0130): a capital that only
+  // marks a sentence's start would mark the answer's first tile, and every distractor that was
+  // another sentence's first word.
+  const tiles = tilesOf(ctx.course, answer);
   if (tiles.length === 0) return undefined;
-  // Three or four distractors (P2); where the answer starts with a capital, a capitalized one comes
-  // first, so the capital doesn't mark the sentence's first tile.
-  const capital = tiles[0] !== undefined && capitalized(ctx.course, tiles[0]);
-  const bank = pool.flatMap((t) => tileGroups(t));
+  // Three or four distractors (P2).
+  const bank = pool.flatMap((t) => tilesOf(ctx.course, t));
   const count = Math.min(4, Math.max(3, tiles.length));
-  const distractors = capital ? pickRanked(ctx, bank, tiles, count, (t) => (capitalized(ctx.course, t) ? 1 : 0)) : pickDistinct(ctx, bank, tiles, count);
+  const distractors = pickDistinct(ctx, bank, tiles, count);
   const all = [...tiles, ...distractors];
   const order = ctx.rng.shuffle(all.map((_, i) => i));
   return {
