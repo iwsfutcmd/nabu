@@ -17,6 +17,8 @@ kcs:
     - کیمه
     chg-Latn/schluessel:
     - kemä
+  readings:
+    schluessel: kemä
   image:
     file: ../images/ship.svg
     license: CC0-1.0
@@ -32,6 +34,8 @@ kcs:
     - دریا
     chg-Latn/schluessel:
     - daryā
+  readings:
+    schluessel: daryā
   image:
     file: ../images/wave.svg
     license: CC0-1.0
@@ -47,6 +51,8 @@ kcs:
     - یماتو
     chg-Latn/schluessel:
     - Yamatu
+  readings:
+    schluessel: Yamatu
 - id: sense:khabar
   gloss:
     en: news, word
@@ -55,6 +61,8 @@ kcs:
     - خبر
     chg-Latn/schluessel:
     - ḫabar
+  readings:
+    schluessel: ḫabar
   notes:
     en: ḫabar käldi "news came"; ḫabar bär- "to send word".
 - id: sense:nilkha
@@ -65,6 +73,8 @@ kcs:
     - نیلخه
     chg-Latn/schluessel:
     - Nilḫa
+  readings:
+    schluessel: Nilḫa
 - id: sense:lashkar
   gloss:
     en: army; soldiers
@@ -73,6 +83,8 @@ kcs:
     - لشکر
     chg-Latn/schluessel:
     - laškar
+  readings:
+    schluessel: laškar
 - id: sense:qalmaq
   gloss:
     en: Kalmyk, a western Mongol
@@ -81,6 +93,8 @@ kcs:
     - قالماق
     chg-Latn/schluessel:
     - Qalmaq
+  readings:
+    schluessel: Qalmaq
 - id: sense:tash
   gloss:
     en: stone
@@ -89,6 +103,8 @@ kcs:
     - تاش
     chg-Latn/schluessel:
     - taš
+  readings:
+    schluessel: taš
 - id: sense:daban
   gloss:
     en: mountain pass
@@ -97,6 +113,8 @@ kcs:
     - دابان
     chg-Latn/schluessel:
     - daban
+  readings:
+    schluessel: daban
   notes:
     en: Taš Daban "the Stone Pass", a place in the Ili valley.
 - id: sense:tara
@@ -107,6 +125,8 @@ kcs:
     - ترا
     chg-Latn/schluessel:
     - Tara
+  readings:
+    schluessel: Tara
 - id: sense:chapan
   gloss:
     en: Chapan (in Čaṗan Bašin, a place in the Ili valley)
@@ -115,6 +135,8 @@ kcs:
     - چاپان
     chg-Latn/schluessel:
     - Čaṗan
+  readings:
+    schluessel: Čaṗan
 - id: sense:bashin
   gloss:
     en: Bashin (in Čaṗan Bašin)
@@ -123,6 +145,8 @@ kcs:
     - باشین
     chg-Latn/schluessel:
     - Bašin
+  readings:
+    schluessel: Bašin
 - id: sense:qattiq
   gloss:
     en: hard; fierce, heavy
@@ -131,6 +155,8 @@ kcs:
     - قاتیق
     chg-Latn/schluessel:
     - qattiq
+  readings:
+    schluessel: qattiq
 - id: sense:urush
   gloss:
     en: battle, fighting
@@ -139,6 +165,8 @@ kcs:
     - اوروش
     chg-Latn/schluessel:
     - uruš
+  readings:
+    schluessel: uruš
   notes:
     en: uruš qil- "to fight".
 - id: sense:ghalaba
@@ -149,6 +177,8 @@ kcs:
     - غلبه
     chg-Latn/schluessel:
     - ǧalaba
+  readings:
+    schluessel: ǧalaba
   notes:
     en: ǧalaba qil- "to win".
 - id: sense:qash
@@ -159,6 +189,8 @@ kcs:
     - قاش-
     chg-Latn/schluessel:
     - qaš-
+  readings:
+    schluessel: qaš
   notes:
     en: 'Qasim Beg writes qač- "to flee" as qaš-: qašti "they fled".'
 - id: sense:murataba
@@ -169,6 +201,8 @@ kcs:
     - مراتبه
     chg-Latn/schluessel:
     - murātaba
+  readings:
+    schluessel: murātaba
   notes:
     en: ikkinči murātaba "a second time".
 nodes:
@@ -210,15 +244,9 @@ sentences:
     chg-Arab/standard:
       text: بیر کیمه.
       tokens:
-      - {surface: بیر, sense: bir}
-      - {surface: کیمه, sense: kema}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: کیمه, sense: kema, readings: {schluessel: kemä}}
       reverse: (بیر|بر) (کیمه|کمه)
-    chg-Latn/schluessel:
-      text: Bir kemä.
-      tokens:
-      - {surface: Bir, sense: bir}
-      - {surface: kemä, sense: kema}
-      reverse: Bir kemä
   translations:
     en: A boat.
 - id: s.12.2
@@ -227,13 +255,8 @@ sentences:
     chg-Arab/standard:
       text: "کیمه\u200cچی."
       tokens:
-      - {surface: "کیمه\u200cچی", sense: kema, morphs: [{surface: "کیمه\u200c", kc: 'sense:kema'}, {surface: چی, kc: 'form:ci'}]}
+      - {surface: "کیمه\u200cچی", sense: kema, readings: {schluessel: kemäči}, morphs: [{surface: "کیمه\u200c", kc: 'sense:kema'}, {surface: چی, kc: 'form:ci'}]}
       reverse: "(کیمه\u200cچی|کمه\u200cچی)"
-    chg-Latn/schluessel:
-      text: Kemäči.
-      tokens:
-      - {surface: Kemäči, sense: kema, morphs: [{surface: Kemä, kc: 'sense:kema'}, {surface: či, kc: 'form:ci'}]}
-      reverse: Kemäči
   translations:
     en: A (ferryman|boatman).
 - id: s.12.3
@@ -242,17 +265,9 @@ sentences:
     chg-Arab/standard:
       text: "کیمه\u200cچی یوق."
       tokens:
-      - {surface: "کیمه\u200cچی", sense: kema, morphs: [{surface: "کیمه\u200c", kc: 'sense:kema'}, {surface: چی, kc: 'form:ci'}]}
-      - {surface: یوق, sense: yoq}
+      - {surface: "کیمه\u200cچی", sense: kema, readings: {schluessel: kemäči}, morphs: [{surface: "کیمه\u200c", kc: 'sense:kema'}, {surface: چی, kc: 'form:ci'}]}
+      - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
       reverse: "(کیمه\u200cچی|کمه\u200cچی) یوق\n(کیمه\u200cچی|کمه\u200cچی) یوق\u200cتور"
-    chg-Latn/schluessel:
-      text: Kemäči yoq.
-      tokens:
-      - {surface: Kemäči, sense: kema, morphs: [{surface: Kemä, kc: 'sense:kema'}, {surface: či, kc: 'form:ci'}]}
-      - {surface: yoq, sense: yoq}
-      reverse: |-
-        Kemäči yoq
-        Kemäči yoqtur
   translations:
     en: There is no (ferryman|boatman).
 - id: s.12.4
@@ -261,17 +276,9 @@ sentences:
     chg-Arab/standard:
       text: "دریا چونک\u200cدور."
       tokens:
-      - {surface: دریا, sense: darya}
-      - {surface: "چونک\u200cدور", sense: chong, morphs: [{surface: "چونک\u200c", kc: 'sense:chong'}, {surface: دور, kc: 'form:dur'}]}
+      - {surface: دریا, sense: darya, readings: {schluessel: daryā}}
+      - {surface: "چونک\u200cدور", sense: chong, readings: {schluessel: čoŋdur}, morphs: [{surface: "چونک\u200c", kc: 'sense:chong'}, {surface: دور, kc: 'form:dur'}]}
       reverse: "دریا چونک\u200cدور\nدریا چونک"
-    chg-Latn/schluessel:
-      text: Daryā čoŋdur.
-      tokens:
-      - {surface: Daryā, sense: darya}
-      - {surface: čoŋdur, sense: chong, morphs: [{surface: čoŋ, kc: 'sense:chong'}, {surface: dur, kc: 'form:dur'}]}
-      reverse: |-
-        Daryā čoŋdur
-        Daryā čoŋ
   translations:
     en: The river is (big|wide|large).
 - id: s.12.5
@@ -280,17 +287,10 @@ sentences:
     chg-Arab/standard:
       text: کوب کشی قاچتی.
       tokens:
-      - {surface: کوب, sense: kop}
-      - {surface: کشی, sense: kishi}
-      - {surface: قاچتی, sense: qach, morphs: [{surface: قاچ, kc: 'sense:qach'}, {surface: تی, kc: 'form:past-3'}]}
+      - {surface: کوب, sense: kop, readings: {schluessel: köp}}
+      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
+      - {surface: قاچتی, sense: qach, readings: {schluessel: qačti}, morphs: [{surface: قاچ, kc: 'sense:qach'}, {surface: تی, kc: 'form:past-3'}]}
       reverse: (کوب|کوپ) (کشی|کیشی) قاچتی
-    chg-Latn/schluessel:
-      text: Köp kiši qačti.
-      tokens:
-      - {surface: Köp, sense: kop}
-      - {surface: kiši, sense: kishi}
-      - {surface: qačti, sense: qach, morphs: [{surface: qač, kc: 'sense:qach'}, {surface: ti, kc: 'form:past-3'}]}
-      reverse: Köp kiši qačti
   translations:
     en: Many people fled.
 - id: s.12.6
@@ -299,21 +299,12 @@ sentences:
     chg-Arab/standard:
       text: بلالارینی الیب قاچتیلار.
       tokens:
-      - {surface: بلالارینی, sense: bala, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}, {surface: ی, kc: 'form:poss3'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: الیب, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
-      - {surface: قاچتیلار, sense: qach, morphs: [{surface: قاچ, kc: 'sense:qach'}, {surface: تیلار, kc: 'form:past-3pl'}]}
+      - {surface: بلالارینی, sense: bala, readings: {schluessel: balalarini}, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}, {surface: ی, kc: 'form:poss3'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: الیب, sense: al, readings: {schluessel: alip}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
+      - {surface: قاچتیلار, sense: qach, readings: {schluessel: qačtilar}, morphs: [{surface: قاچ, kc: 'sense:qach'}, {surface: تیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         (بلالارینی|بالالارینی) (الیب|آلیب) قاچتیلار
         (بلالارینی|بالالارینی) (الیب|آلیب) قاچتی
-    chg-Latn/schluessel:
-      text: Balalarini alip qačtilar.
-      tokens:
-      - {surface: Balalarini, sense: bala, morphs: [{surface: Bala, kc: 'sense:bala'}, {surface: lar, kc: 'form:pl'}, {surface: i, kc: 'form:poss3'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: alip, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: ip, kc: 'form:cv-p'}]}
-      - {surface: qačtilar, sense: qach, morphs: [{surface: qač, kc: 'sense:qach'}, {surface: tilar, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Balalarini alip qačtilar
-        Balalarini alip qačti
   translations:
     en: They took their children and fled.
 - id: s.12.7
@@ -322,19 +313,11 @@ sentences:
     chg-Arab/standard:
       text: دریاغه کلسه، کیمه یوق.
       tokens:
-      - {surface: دریاغه, sense: darya, morphs: [{surface: دریا, kc: 'sense:darya'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کلسه, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: سه, kc: 'form:cond'}]}
-      - {surface: کیمه, sense: kema}
-      - {surface: یوق, sense: yoq}
+      - {surface: دریاغه, sense: darya, readings: {schluessel: daryāǧa}, morphs: [{surface: دریا, kc: 'sense:darya'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: کلسه, sense: kal, readings: {schluessel: kälsä}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: سه, kc: 'form:cond'}]}
+      - {surface: کیمه, sense: kema, readings: {schluessel: kemä}}
+      - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
       reverse: (دریاغه|دریاکه|دریاقه|دریاغا) (کلسه|کلسا|کیلسه|کیلسا) (کیمه|کمه) یوق
-    chg-Latn/schluessel:
-      text: Daryāǧa kälsä, kemä yoq.
-      tokens:
-      - {surface: Daryāǧa, sense: darya, morphs: [{surface: Daryā, kc: 'sense:darya'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: kälsä, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: sä, kc: 'form:cond'}]}
-      - {surface: kemä, sense: kema}
-      - {surface: yoq, sense: yoq}
-      reverse: Daryāǧa (kälsä|kelsä) kemä yoq
   translations:
     en: When they came to the river, there was no boat.
 - id: s.12.8
@@ -343,19 +326,11 @@ sentences:
     chg-Arab/standard:
       text: "یماتوغه کلسه، کیمه\u200cچی یوق."
       tokens:
-      - {surface: یماتوغه, sense: yamatu, morphs: [{surface: یماتو, kc: 'sense:yamatu'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کلسه, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: سه, kc: 'form:cond'}]}
-      - {surface: "کیمه\u200cچی", sense: kema, morphs: [{surface: "کیمه\u200c", kc: 'sense:kema'}, {surface: چی, kc: 'form:ci'}]}
-      - {surface: یوق, sense: yoq}
+      - {surface: یماتوغه, sense: yamatu, readings: {schluessel: Yamatuǧa}, morphs: [{surface: یماتو, kc: 'sense:yamatu'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: کلسه, sense: kal, readings: {schluessel: kälsä}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: سه, kc: 'form:cond'}]}
+      - {surface: "کیمه\u200cچی", sense: kema, readings: {schluessel: kemäči}, morphs: [{surface: "کیمه\u200c", kc: 'sense:kema'}, {surface: چی, kc: 'form:ci'}]}
+      - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
       reverse: "(یماتوغه|یماتوکه|یماتوقه|یماتوغا) (کلسه|کلسا|کیلسه|کیلسا) (کیمه\u200cچی|کمه\u200cچی) یوق"
-    chg-Latn/schluessel:
-      text: Yamatuǧa kälsä, kemäči yoq.
-      tokens:
-      - {surface: Yamatuǧa, sense: yamatu, morphs: [{surface: Yamatu, kc: 'sense:yamatu'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: kälsä, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: sä, kc: 'form:cond'}]}
-      - {surface: kemäči, sense: kema, morphs: [{surface: kemä, kc: 'sense:kema'}, {surface: či, kc: 'form:ci'}]}
-      - {surface: yoq, sense: yoq}
-      reverse: Yamatuǧa (kälsä|kelsä) kemäči yoq
   translations:
     en: When they came to Yamatu, there was no ferryman.
 - id: s.12.9
@@ -364,15 +339,9 @@ sentences:
     chg-Arab/standard:
       text: خبر کلدی.
       tokens:
-      - {surface: خبر, sense: khabar}
-      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: خبر, sense: khabar, readings: {schluessel: ḫabar}}
+      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: خبر (کلدی|کیلدی)
-    chg-Latn/schluessel:
-      text: Ḫabar käldi.
-      tokens:
-      - {surface: Ḫabar, sense: khabar}
-      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Ḫabar (käldi|keldi)
   translations:
     en: News came.
 - id: s.12.10
@@ -381,17 +350,10 @@ sentences:
     chg-Arab/standard:
       text: یخشی خبر یوق.
       tokens:
-      - {surface: یخشی, sense: yakhshi}
-      - {surface: خبر, sense: khabar}
-      - {surface: یوق, sense: yoq}
+      - {surface: یخشی, sense: yakhshi, readings: {schluessel: yaḫši}}
+      - {surface: خبر, sense: khabar, readings: {schluessel: ḫabar}}
+      - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
       reverse: یخشی خبر یوق
-    chg-Latn/schluessel:
-      text: Yaḫši ḫabar yoq.
-      tokens:
-      - {surface: Yaḫši, sense: yakhshi}
-      - {surface: ḫabar, sense: khabar}
-      - {surface: yoq, sense: yoq}
-      reverse: Yaḫši ḫabar yoq
   translations:
     en: There is no good news.
 - id: s.12.11
@@ -400,17 +362,10 @@ sentences:
     chg-Arab/standard:
       text: "نیلخه\u200cدین خبر کلدی."
       tokens:
-      - {surface: "نیلخه\u200cدین", sense: nilkha, morphs: [{surface: "نیلخه\u200c", kc: 'sense:nilkha'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: خبر, sense: khabar}
-      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: "نیلخه\u200cدین", sense: nilkha, readings: {schluessel: Nilḫadin}, morphs: [{surface: "نیلخه\u200c", kc: 'sense:nilkha'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: خبر, sense: khabar, readings: {schluessel: ḫabar}}
+      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: "(نیلخه\u200cدین|نیلخه\u200cدن) خبر (کلدی|کیلدی)"
-    chg-Latn/schluessel:
-      text: Nilḫadin ḫabar käldi.
-      tokens:
-      - {surface: Nilḫadin, sense: nilkha, morphs: [{surface: Nilḫa, kc: 'sense:nilkha'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: ḫabar, sense: khabar}
-      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Nilḫadin ḫabar (käldi|keldi)
   translations:
     en: News came from Nilkha.
 - id: s.12.12
@@ -419,15 +374,9 @@ sentences:
     chg-Arab/standard:
       text: بیر لشکر.
       tokens:
-      - {surface: بیر, sense: bir}
-      - {surface: لشکر, sense: lashkar}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: لشکر, sense: lashkar, readings: {schluessel: laškar}}
       reverse: (بیر|بر) لشکر
-    chg-Latn/schluessel:
-      text: Bir laškar.
-      tokens:
-      - {surface: Bir, sense: bir}
-      - {surface: laškar, sense: lashkar}
-      reverse: Bir laškar
   translations:
     en: An army.
 - id: s.12.13
@@ -436,21 +385,12 @@ sentences:
     chg-Arab/standard:
       text: قالماق لشکری کلدی.
       tokens:
-      - {surface: قالماق, sense: qalmaq}
-      - {surface: لشکری, sense: lashkar, morphs: [{surface: لشکر, kc: 'sense:lashkar'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: قالماق, sense: qalmaq, readings: {schluessel: Qalmaq}}
+      - {surface: لشکری, sense: lashkar, readings: {schluessel: laškari}, morphs: [{surface: لشکر, kc: 'sense:lashkar'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: |-
         قالماق لشکری (کلدی|کیلدی)
         قالماق لشکری (کلدیلار|کیلدیلار)
-    chg-Latn/schluessel:
-      text: Qalmaq laškari käldi.
-      tokens:
-      - {surface: Qalmaq, sense: qalmaq}
-      - {surface: laškari, sense: lashkar, morphs: [{surface: laškar, kc: 'sense:lashkar'}, {surface: i, kc: 'form:poss3'}]}
-      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: |-
-        Qalmaq laškari (käldi|keldi)
-        Qalmaq laškari (käldilär|keldilär)
   translations:
     en: The Kalmyk army came.
 - id: s.12.14
@@ -459,21 +399,12 @@ sentences:
     chg-Arab/standard:
       text: کوب قالماق کلیب، شهرغه توشتی.
       tokens:
-      - {surface: کوب, sense: kop}
-      - {surface: قالماق, sense: qalmaq}
-      - {surface: کلیب, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: یب, kc: 'form:cv-p'}]}
-      - {surface: شهرغه, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: توشتی, sense: tush, morphs: [{surface: توش, kc: 'sense:tush'}, {surface: تی, kc: 'form:past-3'}]}
+      - {surface: کوب, sense: kop, readings: {schluessel: köp}}
+      - {surface: قالماق, sense: qalmaq, readings: {schluessel: Qalmaq}}
+      - {surface: کلیب, sense: kal, readings: {schluessel: kelip}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: یب, kc: 'form:cv-p'}]}
+      - {surface: شهرغه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: توشتی, sense: tush, readings: {schluessel: tüšti}, morphs: [{surface: توش, kc: 'sense:tush'}, {surface: تی, kc: 'form:past-3'}]}
       reverse: (کوب|کوپ) قالماق کلیب (شهرغه|شهرکه|شهرقه|شهرغا) توشتی
-    chg-Latn/schluessel:
-      text: Köp Qalmaq kelip, šahargä tüšti.
-      tokens:
-      - {surface: Köp, sense: kop}
-      - {surface: Qalmaq, sense: qalmaq}
-      - {surface: kelip, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ip, kc: 'form:cv-p'}]}
-      - {surface: šahargä, sense: shahar, morphs: [{surface: šahar, kc: 'sense:shahar'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: tüšti, sense: tush, morphs: [{surface: tüš, kc: 'sense:tush'}, {surface: ti, kc: 'form:past-3'}]}
-      reverse: Köp Qalmaq kelip šahargä tüšti
   translations:
     en: Many Kalmyks came and (camped at|stopped at|fell upon) the (city|town).
 - id: s.12.15
@@ -482,13 +413,8 @@ sentences:
     chg-Arab/standard:
       text: تاش.
       tokens:
-      - {surface: تاش, sense: tash}
+      - {surface: تاش, sense: tash, readings: {schluessel: taš}}
       reverse: تاش
-    chg-Latn/schluessel:
-      text: Taš.
-      tokens:
-      - {surface: Taš, sense: tash}
-      reverse: Taš
   translations:
     en: (A|) stone.
 - id: s.12.16
@@ -497,19 +423,11 @@ sentences:
     chg-Arab/standard:
       text: تاش دابان دیکان یر.
       tokens:
-      - {surface: تاش, sense: tash}
-      - {surface: دابان, sense: daban}
-      - {surface: دیکان, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: کان, kc: 'form:pcp'}]}
-      - {surface: یر, sense: yar}
+      - {surface: تاش, sense: tash, readings: {schluessel: taš}}
+      - {surface: دابان, sense: daban, readings: {schluessel: daban}}
+      - {surface: دیکان, sense: de, readings: {schluessel: degän}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: کان, kc: 'form:pcp'}]}
+      - {surface: یر, sense: yar, readings: {schluessel: yär}}
       reverse: تاش دابان دیکان (یر|یار)
-    chg-Latn/schluessel:
-      text: Taš daban degän yär.
-      tokens:
-      - {surface: Taš, sense: tash}
-      - {surface: daban, sense: daban}
-      - {surface: degän, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: gän, kc: 'form:pcp'}]}
-      - {surface: yär, sense: yar}
-      reverse: Taš daban (degän|dägän) (yär|yer)
   translations:
     en: A place called (the Stone Pass|Tash Daban).
 - id: s.12.17
@@ -518,21 +436,12 @@ sentences:
     chg-Arab/standard:
       text: توقوز تراغه باردیلار.
       tokens:
-      - {surface: توقوز, sense: toqquz}
-      - {surface: تراغه, sense: tara, morphs: [{surface: ترا, kc: 'sense:tara'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردیلار, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: توقوز, sense: toqquz, readings: {schluessel: toqquz}}
+      - {surface: تراغه, sense: tara, readings: {schluessel: Taraǧa}, morphs: [{surface: ترا, kc: 'sense:tara'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردیلار, sense: bar.go, readings: {schluessel: bardilar}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         (توقوز|توقز) (تراغه|تراکه|تراقه|تراغا) باردیلار
         (توقوز|توقز) (تراغه|تراکه|تراقه|تراغا) باردی
-    chg-Latn/schluessel:
-      text: Toqquz Taraǧa bardilar.
-      tokens:
-      - {surface: Toqquz, sense: toqquz}
-      - {surface: Taraǧa, sense: tara, morphs: [{surface: Tara, kc: 'sense:tara'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: bardilar, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: dilar, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Toqquz Taraǧa bardilar
-        Toqquz Taraǧa bardi
   translations:
     en: They went to Toqquz Tara.
 - id: s.12.18
@@ -541,21 +450,12 @@ sentences:
     chg-Arab/standard:
       text: توقوز تراغه بارسه، قالماق یوق.
       tokens:
-      - {surface: توقوز, sense: toqquz}
-      - {surface: تراغه, sense: tara, morphs: [{surface: ترا, kc: 'sense:tara'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارسه, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: سه, kc: 'form:cond'}]}
-      - {surface: قالماق, sense: qalmaq}
-      - {surface: یوق, sense: yoq}
+      - {surface: توقوز, sense: toqquz, readings: {schluessel: toqquz}}
+      - {surface: تراغه, sense: tara, readings: {schluessel: Taraǧa}, morphs: [{surface: ترا, kc: 'sense:tara'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: بارسه, sense: bar.go, readings: {schluessel: barsa}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: سه, kc: 'form:cond'}]}
+      - {surface: قالماق, sense: qalmaq, readings: {schluessel: Qalmaq}}
+      - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
       reverse: (توقوز|توقز) (تراغه|تراکه|تراقه|تراغا) (بارسه|بارسا) قالماق یوق
-    chg-Latn/schluessel:
-      text: Toqquz Taraǧa barsa, Qalmaq yoq.
-      tokens:
-      - {surface: Toqquz, sense: toqquz}
-      - {surface: Taraǧa, sense: tara, morphs: [{surface: Tara, kc: 'sense:tara'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: barsa, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: sa, kc: 'form:cond'}]}
-      - {surface: Qalmaq, sense: qalmaq}
-      - {surface: yoq, sense: yoq}
-      reverse: Toqquz Taraǧa barsa Qalmaq yoq
   translations:
     en: When they went to Toqquz Tara, there were no Kalmyks.
 - id: s.12.19
@@ -564,21 +464,12 @@ sentences:
     chg-Arab/standard:
       text: چاپان باشین دیکان یرغه توشتی.
       tokens:
-      - {surface: چاپان, sense: chapan}
-      - {surface: باشین, sense: bashin}
-      - {surface: دیکان, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: کان, kc: 'form:pcp'}]}
-      - {surface: یرغه, sense: yar, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: توشتی, sense: tush, morphs: [{surface: توش, kc: 'sense:tush'}, {surface: تی, kc: 'form:past-3'}]}
+      - {surface: چاپان, sense: chapan, readings: {schluessel: Čaṗan}}
+      - {surface: باشین, sense: bashin, readings: {schluessel: Bašin}}
+      - {surface: دیکان, sense: de, readings: {schluessel: degän}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: کان, kc: 'form:pcp'}]}
+      - {surface: یرغه, sense: yar, readings: {schluessel: yärgä}, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: توشتی, sense: tush, readings: {schluessel: tüšti}, morphs: [{surface: توش, kc: 'sense:tush'}, {surface: تی, kc: 'form:past-3'}]}
       reverse: (چاپان|چافان) باشین دیکان (یرغه|یرکه|یرقه|یرغا|یارغه|یارکه|یارقه|یارغا) توشتی
-    chg-Latn/schluessel:
-      text: Čaṗan Bašin degän yärgä tüšti.
-      tokens:
-      - {surface: Čaṗan, sense: chapan}
-      - {surface: Bašin, sense: bashin}
-      - {surface: degän, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: gän, kc: 'form:pcp'}]}
-      - {surface: yärgä, sense: yar, morphs: [{surface: yär, kc: 'sense:yar'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: tüšti, sense: tush, morphs: [{surface: tüš, kc: 'sense:tush'}, {surface: ti, kc: 'form:past-3'}]}
-      reverse: Čaṗan Bašin (degän|dägän) (yärgä|yergä) tüšti
   translations:
     en: (They|He|She) (camped|stopped) at a place called Chapan Bashin.
 - id: s.12.20
@@ -587,15 +478,9 @@ sentences:
     chg-Arab/standard:
       text: قاتیق اوروش.
       tokens:
-      - {surface: قاتیق, sense: qattiq}
-      - {surface: اوروش, sense: urush}
+      - {surface: قاتیق, sense: qattiq, readings: {schluessel: qattiq}}
+      - {surface: اوروش, sense: urush, readings: {schluessel: uruš}}
       reverse: (قاتیق|قاتتیق) اوروش
-    chg-Latn/schluessel:
-      text: Qattiq uruš.
-      tokens:
-      - {surface: Qattiq, sense: qattiq}
-      - {surface: uruš, sense: urush}
-      reverse: Qattiq uruš
   translations:
     en: A (hard|fierce|heavy) battle.
 - id: s.12.21
@@ -604,23 +489,13 @@ sentences:
     chg-Arab/standard:
       text: اوچ کون اوروش قیلدیلار.
       tokens:
-      - {surface: اوچ, sense: uch}
-      - {surface: کون, sense: kun}
-      - {surface: اوروش, sense: urush}
-      - {surface: قیلدیلار, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: اوچ, sense: uch, readings: {schluessel: üč}}
+      - {surface: کون, sense: kun, readings: {schluessel: kün}}
+      - {surface: اوروش, sense: urush, readings: {schluessel: uruš}}
+      - {surface: قیلدیلار, sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         اوچ کون اوروش (قیلدیلار|قلدیلار)
         اوچ کون اوروش (قیلدی|قلدی)
-    chg-Latn/schluessel:
-      text: Üč kün uruš qildilar.
-      tokens:
-      - {surface: Üč, sense: uch}
-      - {surface: kün, sense: kun}
-      - {surface: uruš, sense: urush}
-      - {surface: qildilar, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: dilar, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Üč kün uruš qildilar
-        Üč kün uruš qildi
   translations:
     en: They fought for three days.
 - id: s.12.22
@@ -629,21 +504,12 @@ sentences:
     chg-Arab/standard:
       text: تورتونچی کونی قاچتیلار.
       tokens:
-      - {surface: تورتونچی, sense: tort, morphs: [{surface: تورت, kc: 'sense:tort'}, {surface: ونچی, kc: 'form:ord'}]}
-      - {surface: کونی, sense: kun, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: قاچتیلار, sense: qach, morphs: [{surface: قاچ, kc: 'sense:qach'}, {surface: تیلار, kc: 'form:past-3pl'}]}
+      - {surface: تورتونچی, sense: tort, readings: {schluessel: törtünči}, morphs: [{surface: تورت, kc: 'sense:tort'}, {surface: ونچی, kc: 'form:ord'}]}
+      - {surface: کونی, sense: kun, readings: {schluessel: küni}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: قاچتیلار, sense: qach, readings: {schluessel: qačtilar}, morphs: [{surface: قاچ, kc: 'sense:qach'}, {surface: تیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         تورتونچی کونی قاچتیلار
         تورتونچی کونی قاچتی
-    chg-Latn/schluessel:
-      text: Törtünči küni qačtilar.
-      tokens:
-      - {surface: Törtünči, sense: tort, morphs: [{surface: Tört, kc: 'sense:tort'}, {surface: ünči, kc: 'form:ord'}]}
-      - {surface: küni, sense: kun, morphs: [{surface: kün, kc: 'sense:kun'}, {surface: i, kc: 'form:poss3'}]}
-      - {surface: qačtilar, sense: qach, morphs: [{surface: qač, kc: 'sense:qach'}, {surface: tilar, kc: 'form:past-3pl'}]}
-      reverse: |-
-        Törtünči küni qačtilar
-        Törtünči küni qačti
   translations:
     en: On the fourth day they fled.
 - id: s.12.23
@@ -652,15 +518,9 @@ sentences:
     chg-Arab/standard:
       text: غلبه قیلدی.
       tokens:
-      - {surface: غلبه, sense: ghalaba}
-      - {surface: قیلدی, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: غلبه, sense: ghalaba, readings: {schluessel: ǧalaba}}
+      - {surface: قیلدی, sense: qil, readings: {schluessel: qildi}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: غلبه (قیلدی|قلدی)
-    chg-Latn/schluessel:
-      text: Ǧalaba qildi.
-      tokens:
-      - {surface: Ǧalaba, sense: ghalaba}
-      - {surface: qildi, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Ǧalaba qildi
   translations:
     en: (He|She|They) won.
 - id: s.12.24
@@ -669,17 +529,10 @@ sentences:
     chg-Arab/standard:
       text: غلبه قیلمای قاشتی.
       tokens:
-      - {surface: غلبه, sense: ghalaba}
-      - {surface: قیلمای, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: مای, kc: 'form:cv-may'}]}
-      - {surface: قاشتی, sense: qash, morphs: [{surface: قاش, kc: 'sense:qash'}, {surface: تی, kc: 'form:past-3'}]}
+      - {surface: غلبه, sense: ghalaba, readings: {schluessel: ǧalaba}}
+      - {surface: قیلمای, sense: qil, readings: {schluessel: qilmay}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: مای, kc: 'form:cv-may'}]}
+      - {surface: قاشتی, sense: qash, readings: {schluessel: qašti}, morphs: [{surface: قاش, kc: 'sense:qash'}, {surface: تی, kc: 'form:past-3'}]}
       reverse: غلبه (قیلمای|قلمای) قاشتی
-    chg-Latn/schluessel:
-      text: Ǧalaba qilmay qašti.
-      tokens:
-      - {surface: Ǧalaba, sense: ghalaba}
-      - {surface: qilmay, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: may, kc: 'form:cv-may'}]}
-      - {surface: qašti, sense: qash, morphs: [{surface: qaš, kc: 'sense:qash'}, {surface: ti, kc: 'form:past-3'}]}
-      reverse: Ǧalaba qilmay qašti
   translations:
     en: (They|He|She) (fled without winning|did not win, and fled|could not win and fled).
 - id: s.12.25
@@ -688,17 +541,10 @@ sentences:
     chg-Arab/standard:
       text: ایکینچی مراتبه کلمادی.
       tokens:
-      - {surface: ایکینچی, sense: ikki, morphs: [{surface: ایکی, kc: 'sense:ikki'}, {surface: نچی, kc: 'form:ord'}]}
-      - {surface: مراتبه, sense: murataba}
-      - {surface: کلمادی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ما, kc: 'form:neg'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: ایکینچی, sense: ikki, readings: {schluessel: ikkinči}, morphs: [{surface: ایکی, kc: 'sense:ikki'}, {surface: نچی, kc: 'form:ord'}]}
+      - {surface: مراتبه, sense: murataba, readings: {schluessel: murātaba}}
+      - {surface: کلمادی, sense: kal, readings: {schluessel: kälmädi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ما, kc: 'form:neg'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: (ایکینچی|اکینچی) مراتبه (کلمادی|کیلمادی)
-    chg-Latn/schluessel:
-      text: Ikkinči murātaba kälmädi.
-      tokens:
-      - {surface: Ikkinči, sense: ikki, morphs: [{surface: Ikki, kc: 'sense:ikki'}, {surface: nči, kc: 'form:ord'}]}
-      - {surface: murātaba, sense: murataba}
-      - {surface: kälmädi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: mä, kc: 'form:neg'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Ikkinči murātaba (kälmädi|kelmädi)
   translations:
     en: (They|He|She) (did not|didn't) come a second time.
 stories:
@@ -712,27 +558,16 @@ stories:
         chg-Arab/standard:
           text: "کوب کیشی قاچیب، بلالارینی الیب یماتوغه کلسه، کیمه\u200cجی یوق."
           tokens:
-          - {surface: کوب, sense: kop}
-          - {surface: کیشی, sense: kishi}
-          - {surface: قاچیب, sense: qach, morphs: [{surface: قاچ, kc: 'sense:qach'}, {surface: یب, kc: 'form:cv-p'}]}
-          - {surface: بلالارینی, sense: bala, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}, {surface: ی, kc: 'form:poss3'}, {surface: نی, kc: 'form:acc'}]}
-          - {surface: الیب, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
-          - {surface: یماتوغه, sense: yamatu, morphs: [{surface: یماتو, kc: 'sense:yamatu'}, {surface: غه, kc: 'form:dat'}]}
-          - {surface: کلسه, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: سه, kc: 'form:cond'}]}
-          - {surface: "کیمه\u200cجی", sense: kema, morphs: [{surface: "کیمه\u200c", kc: 'sense:kema'}, {surface: جی, kc: 'form:ci'}]}
-          - {surface: یوق, sense: yoq}
-        chg-Latn/schluessel:
-          text: Köp kiši qačip, balalarini alip Yamatuǧa kälsä, kemäči yoq.
-          tokens:
-          - {surface: Köp, sense: kop}
-          - {surface: kiši, sense: kishi}
-          - {surface: qačip, sense: qach, morphs: [{surface: qač, kc: 'sense:qach'}, {surface: ip, kc: 'form:cv-p'}]}
-          - {surface: balalarini, sense: bala, morphs: [{surface: bala, kc: 'sense:bala'}, {surface: lar, kc: 'form:pl'}, {surface: i, kc: 'form:poss3'}, {surface: ni, kc: 'form:acc'}]}
-          - {surface: alip, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: ip, kc: 'form:cv-p'}]}
-          - {surface: Yamatuǧa, sense: yamatu, morphs: [{surface: Yamatu, kc: 'sense:yamatu'}, {surface: ǧa, kc: 'form:dat'}]}
-          - {surface: kälsä, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: sä, kc: 'form:cond'}]}
-          - {surface: kemäči, sense: kema, morphs: [{surface: kemä, kc: 'sense:kema'}, {surface: či, kc: 'form:ci'}]}
-          - {surface: yoq, sense: yoq}
+          - {surface: کوب, sense: kop, readings: {schluessel: köp}}
+          - {surface: کیشی, sense: kishi, readings: {schluessel: kiši}}
+          - {surface: قاچیب, sense: qach, readings: {schluessel: qačip}, morphs: [{surface: قاچ, kc: 'sense:qach'}, {surface: یب, kc: 'form:cv-p'}]}
+          - {surface: بلالارینی, sense: bala, readings: {schluessel: balalarini}, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}, {surface: ی, kc: 'form:poss3'}, {surface: نی,
+                kc: 'form:acc'}]}
+          - {surface: الیب, sense: al, readings: {schluessel: alip}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
+          - {surface: یماتوغه, sense: yamatu, readings: {schluessel: Yamatuǧa}, morphs: [{surface: یماتو, kc: 'sense:yamatu'}, {surface: غه, kc: 'form:dat'}]}
+          - {surface: کلسه, sense: kal, readings: {schluessel: kälsä}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: سه, kc: 'form:cond'}]}
+          - {surface: "کیمه\u200cجی", sense: kema, readings: {schluessel: kemäči}, morphs: [{surface: "کیمه\u200c", kc: 'sense:kema'}, {surface: جی, kc: 'form:ci'}]}
+          - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
       translations:
         en: Many people fled, and when they came to Yamatu with their children, there was no ferryman.
   - choose:
@@ -748,19 +583,11 @@ stories:
         chg-Arab/standard:
           text: … توقّوز تراغه بارسه، قالماق یوق.
           tokens:
-          - {surface: توقّوز, sense: toqquz}
-          - {surface: تراغه, sense: tara, morphs: [{surface: ترا, kc: 'sense:tara'}, {surface: غه, kc: 'form:dat'}]}
-          - {surface: بارسه, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: سه, kc: 'form:cond'}]}
-          - {surface: قالماق, sense: qalmaq}
-          - {surface: یوق, sense: yoq}
-        chg-Latn/schluessel:
-          text: … Toqquz Taraǧa barsa, Qalmaq yoq.
-          tokens:
-          - {surface: Toqquz, sense: toqquz}
-          - {surface: Taraǧa, sense: tara, morphs: [{surface: Tara, kc: 'sense:tara'}, {surface: ǧa, kc: 'form:dat'}]}
-          - {surface: barsa, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: sa, kc: 'form:cond'}]}
-          - {surface: Qalmaq, sense: qalmaq}
-          - {surface: yoq, sense: yoq}
+          - {surface: توقّوز, sense: toqquz, readings: {schluessel: toqquz}}
+          - {surface: تراغه, sense: tara, readings: {schluessel: Taraǧa}, morphs: [{surface: ترا, kc: 'sense:tara'}, {surface: غه, kc: 'form:dat'}]}
+          - {surface: بارسه, sense: bar.go, readings: {schluessel: barsa}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: سه, kc: 'form:cond'}]}
+          - {surface: قالماق, sense: qalmaq, readings: {schluessel: Qalmaq}}
+          - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
       translations:
         en: … when they went to Toqquz Tara, there were no Kalmyks.
   - line:
@@ -773,35 +600,19 @@ stories:
         chg-Arab/standard:
           text: "نیلخه\u200cدین خبر کلدی: «کوب قالماق لشکری کلیب، چافان باشین دیکان یرکه توشتی،» دیب…"
           tokens:
-          - {surface: "نیلخه\u200cدین", sense: nilkha, morphs: [{surface: "نیلخه\u200c", kc: 'sense:nilkha'}, {surface: دین, kc: 'form:abl'}]}
-          - {surface: خبر, sense: khabar}
-          - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
-          - {surface: کوب, sense: kop}
-          - {surface: قالماق, sense: qalmaq}
-          - {surface: لشکری, sense: lashkar, morphs: [{surface: لشکر, kc: 'sense:lashkar'}, {surface: ی, kc: 'form:poss3'}]}
-          - {surface: کلیب, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: یب, kc: 'form:cv-p'}]}
-          - {surface: چافان, sense: chapan}
-          - {surface: باشین, sense: bashin}
-          - {surface: دیکان, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: کان, kc: 'form:pcp'}]}
-          - {surface: یرکه, sense: yar, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: که, kc: 'form:dat'}]}
-          - {surface: توشتی, sense: tush, morphs: [{surface: توش, kc: 'sense:tush'}, {surface: تی, kc: 'form:past-3'}]}
-          - {surface: دیب, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: ب, kc: 'form:cv-p'}]}
-        chg-Latn/schluessel:
-          text: 'Nilḫadin ḫabar käldi: “Köp Qalmaq laškari kelip, Čaṗan Bašin degän yärgä tüšti,” dep…'
-          tokens:
-          - {surface: Nilḫadin, sense: nilkha, morphs: [{surface: Nilḫa, kc: 'sense:nilkha'}, {surface: din, kc: 'form:abl'}]}
-          - {surface: ḫabar, sense: khabar}
-          - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-          - {surface: Köp, sense: kop}
-          - {surface: Qalmaq, sense: qalmaq}
-          - {surface: laškari, sense: lashkar, morphs: [{surface: laškar, kc: 'sense:lashkar'}, {surface: i, kc: 'form:poss3'}]}
-          - {surface: kelip, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ip, kc: 'form:cv-p'}]}
-          - {surface: Čaṗan, sense: chapan}
-          - {surface: Bašin, sense: bashin}
-          - {surface: degän, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: gän, kc: 'form:pcp'}]}
-          - {surface: yärgä, sense: yar, morphs: [{surface: yär, kc: 'sense:yar'}, {surface: gä, kc: 'form:dat'}]}
-          - {surface: tüšti, sense: tush, morphs: [{surface: tüš, kc: 'sense:tush'}, {surface: ti, kc: 'form:past-3'}]}
-          - {surface: dep, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: p, kc: 'form:cv-p'}]}
+          - {surface: "نیلخه\u200cدین", sense: nilkha, readings: {schluessel: Nilḫadin}, morphs: [{surface: "نیلخه\u200c", kc: 'sense:nilkha'}, {surface: دین, kc: 'form:abl'}]}
+          - {surface: خبر, sense: khabar, readings: {schluessel: ḫabar}}
+          - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+          - {surface: کوب, sense: kop, readings: {schluessel: köp}}
+          - {surface: قالماق, sense: qalmaq, readings: {schluessel: Qalmaq}}
+          - {surface: لشکری, sense: lashkar, readings: {schluessel: laškari}, morphs: [{surface: لشکر, kc: 'sense:lashkar'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: کلیب, sense: kal, readings: {schluessel: kelip}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: یب, kc: 'form:cv-p'}]}
+          - {surface: چافان, sense: chapan, readings: {schluessel: Čaṗan}}
+          - {surface: باشین, sense: bashin, readings: {schluessel: Bašin}}
+          - {surface: دیکان, sense: de, readings: {schluessel: degän}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: کان, kc: 'form:pcp'}]}
+          - {surface: یرکه, sense: yar, readings: {schluessel: yärgä}, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: که, kc: 'form:dat'}]}
+          - {surface: توشتی, sense: tush, readings: {schluessel: tüšti}, morphs: [{surface: توش, kc: 'sense:tush'}, {surface: تی, kc: 'form:past-3'}]}
+          - {surface: دیب, sense: de, readings: {schluessel: dep}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: ب, kc: 'form:cv-p'}]}
       translations:
         en: 'News came from Nilkha: “Many Kalmyk soldiers have come and camped at a place called Chapan Bashin.”'
   - line:
@@ -809,39 +620,21 @@ stories:
         chg-Arab/standard:
           text: … تاش دابان دیکان یرده اوچ کون قاتتیق اوروش قیلیب، تورتونجی کونی قالماقلار غلبه قیلمای قاشتی.
           tokens:
-          - {surface: تاش, sense: tash}
-          - {surface: دابان, sense: daban}
-          - {surface: دیکان, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: کان, kc: 'form:pcp'}]}
-          - {surface: یرده, sense: yar, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
-          - {surface: اوچ, sense: uch}
-          - {surface: کون, sense: kun}
-          - {surface: قاتتیق, sense: qattiq}
-          - {surface: اوروش, sense: urush}
-          - {surface: قیلیب, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: یب, kc: 'form:cv-p'}]}
-          - {surface: تورتونجی, sense: tort, morphs: [{surface: تورت, kc: 'sense:tort'}, {surface: ونجی, kc: 'form:ord'}]}
-          - {surface: کونی, sense: kun, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: ی, kc: 'form:poss3'}]}
-          - {surface: قالماقلار, sense: qalmaq, morphs: [{surface: قالماق, kc: 'sense:qalmaq'}, {surface: لار, kc: 'form:pl'}]}
-          - {surface: غلبه, sense: ghalaba}
-          - {surface: قیلمای, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: مای, kc: 'form:cv-may'}]}
-          - {surface: قاشتی, sense: qash, morphs: [{surface: قاش, kc: 'sense:qash'}, {surface: تی, kc: 'form:past-3'}]}
-        chg-Latn/schluessel:
-          text: … Taš daban degän yärdä üč kün qattiq uruš qilip, törtünči küni Qalmaqlar ǧalaba qilmay qašti.
-          tokens:
-          - {surface: Taš, sense: tash}
-          - {surface: daban, sense: daban}
-          - {surface: degän, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: gän, kc: 'form:pcp'}]}
-          - {surface: yärdä, sense: yar, morphs: [{surface: yär, kc: 'sense:yar'}, {surface: dä, kc: 'form:loc'}]}
-          - {surface: üč, sense: uch}
-          - {surface: kün, sense: kun}
-          - {surface: qattiq, sense: qattiq}
-          - {surface: uruš, sense: urush}
-          - {surface: qilip, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: ip, kc: 'form:cv-p'}]}
-          - {surface: törtünči, sense: tort, morphs: [{surface: tört, kc: 'sense:tort'}, {surface: ünči, kc: 'form:ord'}]}
-          - {surface: küni, sense: kun, morphs: [{surface: kün, kc: 'sense:kun'}, {surface: i, kc: 'form:poss3'}]}
-          - {surface: Qalmaqlar, sense: qalmaq, morphs: [{surface: Qalmaq, kc: 'sense:qalmaq'}, {surface: lar, kc: 'form:pl'}]}
-          - {surface: ǧalaba, sense: ghalaba}
-          - {surface: qilmay, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: may, kc: 'form:cv-may'}]}
-          - {surface: qašti, sense: qash, morphs: [{surface: qaš, kc: 'sense:qash'}, {surface: ti, kc: 'form:past-3'}]}
+          - {surface: تاش, sense: tash, readings: {schluessel: taš}}
+          - {surface: دابان, sense: daban, readings: {schluessel: daban}}
+          - {surface: دیکان, sense: de, readings: {schluessel: degän}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: کان, kc: 'form:pcp'}]}
+          - {surface: یرده, sense: yar, readings: {schluessel: yärdä}, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
+          - {surface: اوچ, sense: uch, readings: {schluessel: üč}}
+          - {surface: کون, sense: kun, readings: {schluessel: kün}}
+          - {surface: قاتتیق, sense: qattiq, readings: {schluessel: qattiq}}
+          - {surface: اوروش, sense: urush, readings: {schluessel: uruš}}
+          - {surface: قیلیب, sense: qil, readings: {schluessel: qilip}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: یب, kc: 'form:cv-p'}]}
+          - {surface: تورتونجی, sense: tort, readings: {schluessel: törtünči}, morphs: [{surface: تورت, kc: 'sense:tort'}, {surface: ونجی, kc: 'form:ord'}]}
+          - {surface: کونی, sense: kun, readings: {schluessel: küni}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: قالماقلار, sense: qalmaq, readings: {schluessel: Qalmaqlar}, morphs: [{surface: قالماق, kc: 'sense:qalmaq'}, {surface: لار, kc: 'form:pl'}]}
+          - {surface: غلبه, sense: ghalaba, readings: {schluessel: ǧalaba}}
+          - {surface: قیلمای, sense: qil, readings: {schluessel: qilmay}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: مای, kc: 'form:cv-may'}]}
+          - {surface: قاشتی, sense: qash, readings: {schluessel: qašti}, morphs: [{surface: قاش, kc: 'sense:qash'}, {surface: تی, kc: 'form:past-3'}]}
       translations:
         en: … at a place called Tash Daban they fought hard for three days, and on the fourth day the Kalmyks fled without winning.
   - line:
@@ -850,15 +643,9 @@ stories:
         chg-Arab/standard:
           text: ایکینچی مراتبه کلمادی.
           tokens:
-          - {surface: ایکینچی, sense: ikki, morphs: [{surface: ایکی, kc: 'sense:ikki'}, {surface: نچی, kc: 'form:ord'}]}
-          - {surface: مراتبه, sense: murataba}
-          - {surface: کلمادی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ما, kc: 'form:neg'}, {surface: دی, kc: 'form:past-3'}]}
-        chg-Latn/schluessel:
-          text: Ikkinči murātaba kälmädi.
-          tokens:
-          - {surface: Ikkinči, sense: ikki, morphs: [{surface: Ikki, kc: 'sense:ikki'}, {surface: nči, kc: 'form:ord'}]}
-          - {surface: murātaba, sense: murataba}
-          - {surface: kälmädi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: mä, kc: 'form:neg'}, {surface: di, kc: 'form:past-3'}]}
+          - {surface: ایکینچی, sense: ikki, readings: {schluessel: ikkinči}, morphs: [{surface: ایکی, kc: 'sense:ikki'}, {surface: نچی, kc: 'form:ord'}]}
+          - {surface: مراتبه, sense: murataba, readings: {schluessel: murātaba}}
+          - {surface: کلمادی, sense: kal, readings: {schluessel: kälmädi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ما, kc: 'form:neg'}, {surface: دی, kc: 'form:past-3'}]}
       translations:
         en: They did not come a second time.
   - choose:

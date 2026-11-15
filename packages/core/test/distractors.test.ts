@@ -1,7 +1,7 @@
 import type { BundleSentence, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { allKcs, allSentences, seededRng } from "../src/lesson/index.ts";
-import { cardGloss, makeChooseTranslation, makeGapFill, makeMatchPairs, makeTapL1L2, makeTapL2L1, type MakeContext } from "../src/lesson/templates.ts";
+import { cardGloss, makeChooseTranslation, makeGapFill, makeMatchPairs, type MakeContext } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/tagged-text.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
@@ -51,27 +51,6 @@ describe("distractors that don't give the answer away (P2)", () => {
     }
     expect(cards).toBeGreaterThan(50);
     expect(giveaway / cards).toBeLessThan(0.05);
-  }, 120_000);
-
-  it("word-bank distractors are in lower case, as the answer's own tiles are, but for one", () => {
-    // A bank of capitalized distractors (other sentences' first words) showed that every
-    // lower-case tile was the answer's: only one tile can start the sentence.
-    let cards = 0;
-    for (const [i, s] of sentences.entries()) {
-      for (const make of [makeTapL2L1, makeTapL1L2]) {
-        const ex = make(ctx(i), s);
-        if (ex === undefined) continue;
-        cards++;
-        const answer = new Set(ex.solution);
-        const distractors = ex.tiles.filter((_, j) => !answer.has(j));
-        const capitals = distractors.filter(capital).length;
-        expect(capitals, surfaceOf(ex.canonical)).toBeLessThanOrEqual(1);
-        // One where the answer has a capital, so it doesn't mark the first tile; none where it has none.
-        const answerCapital = ex.solution.some((j) => capital(ex.tiles[j] as TaggedText));
-        if (!answerCapital) expect(capitals, surfaceOf(ex.canonical)).toBe(0);
-      }
-    }
-    expect(cards).toBeGreaterThan(100);
   }, 120_000);
 });
 

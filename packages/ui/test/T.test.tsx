@@ -1,10 +1,12 @@
-import type { SchemeId, TaggedText } from "@nabu/schema";
+import type { OrthographyProfile, SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { demoExercise } from "../src/demo/fixtures.ts";
 import { T } from "../src/T.tsx";
 import { NabuUiProvider } from "../src/context.tsx";
 import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
 import { render, translator } from "./render.tsx";
+import { parse } from "yaml";
+import chgArab from "../../../profiles/chg-Arab.standard.yaml?raw";
 
 const attr = (html: string, name: string): string | undefined => new RegExp(`${name}="([^"]*)"`).exec(html)?.[1];
 
@@ -71,6 +73,26 @@ describe("<T>", () => {
     // Latin readings are set in the Latin face, whose tone letters (ū, ǖ) the CJK face lacks.
     expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain("--nabu-ruby-font:&quot;Noto Sans&quot;, sans-serif");
     expect(render(<T text={text} />)).not.toContain("--nabu-ruby-font");
+  });
+
+  it("sets a word-level reading over the whole word, right to left (Chaghatay, ADR 0129)", () => {
+    const chg = parse(chgArab) as OrthographyProfile;
+    const zwnj = String.fromCodePoint(0x200c);
+    const word = `میوه${zwnj}سی`;
+    const text = {
+      lang: "chg-Arab",
+      orthography: "chg-Arab/standard",
+      tokens: [{ surface: word, kind: "word", ruby: { schluessel: [{ base: word, text: "mewäsi" }] } }],
+    } as unknown as TaggedText;
+    const html = render(
+      <NabuUiProvider translator={translator()} orthographies={new Map([[chg.id, chg]])}>
+        <T text={text} ruby={"schluessel" as SchemeId} />
+      </NabuUiProvider>,
+    );
+    // One base, the cursive word with its half-space, under one Latin reading tagged as the profile says.
+    expect(html.match(/<ruby/gu)).toHaveLength(1);
+    expect(html).toContain(`${word}<rt lang="chg-Latn" data-script="Latn">mewäsi</rt>`);
+    expect(attr(html, "dir")).toBe("rtl");
   });
 
   it("sets an orthography's text larger where its profile says so (Classical Chinese, ADR 0071)", () => {

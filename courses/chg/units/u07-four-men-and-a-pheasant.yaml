@@ -17,6 +17,8 @@ kcs:
     - قوش
     chg-Latn/schluessel:
     - quš
+  readings:
+    schluessel: quš
   image:
     file: ../images/bird.svg
     license: CC0-1.0
@@ -32,6 +34,8 @@ kcs:
     - قیرغاول
     chg-Latn/schluessel:
     - qirǧawul
+  readings:
+    schluessel: qirǧawul
 - id: sense:kop
   gloss:
     en: many, much
@@ -40,6 +44,8 @@ kcs:
     - کوب
     chg-Latn/schluessel:
     - köp
+  readings:
+    schluessel: köp
 - id: sense:semiz
   gloss:
     en: fat
@@ -48,6 +54,8 @@ kcs:
     - سیمیز
     chg-Latn/schluessel:
     - semiz
+  readings:
+    schluessel: semiz
 - id: sense:daghi
   gloss:
     en: also, too
@@ -56,6 +64,8 @@ kcs:
     - داغی
     chg-Latn/schluessel:
     - daǧi
+  readings:
+    schluessel: daǧi
 - id: sense:awi
   gloss:
     en: for hunting, game (of birds)
@@ -64,6 +74,8 @@ kcs:
     - اوی
     chg-Latn/schluessel:
     - awī
+  readings:
+    schluessel: awī
   notes:
     en: 'Spelled as öy "house": the context tells them apart.'
 - id: sense:behadd
@@ -74,6 +86,8 @@ kcs:
     - بیحد
     chg-Latn/schluessel:
     - bē-ḥadd
+  readings:
+    schluessel: bē-ḥadd
   notes:
     en: The Persian bē- "without" and ḥadd "limit".
 - id: sense:oltur
@@ -84,6 +98,8 @@ kcs:
     - اولتور-
     chg-Latn/schluessel:
     - oltur-
+  readings:
+    schluessel: oltur
 - id: sense:ye
   gloss:
     en: to eat
@@ -92,6 +108,8 @@ kcs:
     - یی-
     chg-Latn/schluessel:
     - ye-
+  readings:
+    schluessel: ye
 - id: sense:tugat
   gloss:
     en: to finish, use up
@@ -100,6 +118,8 @@ kcs:
     - توکات-
     chg-Latn/schluessel:
     - tügät-
+  readings:
+    schluessel: tügät
 - id: sense:andaq
   gloss:
     en: so, thus, like that
@@ -108,6 +128,8 @@ kcs:
     - انداق
     chg-Latn/schluessel:
     - andaq
+  readings:
+    schluessel: andaq
 - id: sense:riwayat
   gloss:
     en: story, account
@@ -116,6 +138,8 @@ kcs:
     - روایت
     chg-Latn/schluessel:
     - riwāyat
+  readings:
+    schluessel: riwāyat
   notes:
     en: riwāyat qil- "to tell, relate".
 - id: sense:kim.that
@@ -126,6 +150,8 @@ kcs:
     - کیم
     chg-Latn/schluessel:
     - kim
+  readings:
+    schluessel: kim
   notes:
     en: 'As Persian ke: andaq riwāyat qildilar kim … "they tell that …". kim is also "who?".'
 - id: sense:ishkina
@@ -136,6 +162,8 @@ kcs:
     - اشکنه
     chg-Latn/schluessel:
     - iškina
+  readings:
+    schluessel: iškina
 - id: sense:bila
   gloss:
     en: with; by means of
@@ -144,6 +172,8 @@ kcs:
     - بیله
     chg-Latn/schluessel:
     - bilä
+  readings:
+    schluessel: bilä
 - id: sense:lafaz
   gloss:
     en: word, speech
@@ -152,6 +182,8 @@ kcs:
     - لفظ
     chg-Latn/schluessel:
     - lafaẓ
+  readings:
+    schluessel: lafaẓ
 - id: sense:qalam
   gloss:
     en: pen; writing
@@ -160,6 +192,8 @@ kcs:
     - قلم
     chg-Latn/schluessel:
     - qalam
+  readings:
+    schluessel: qalam
 - id: sense:rast
   gloss:
     en: true, right, straight
@@ -168,6 +202,8 @@ kcs:
     - راست
     chg-Latn/schluessel:
     - rāst
+  readings:
+    schluessel: rāst
 - id: form:cv-p
   gloss:
     en: '-p, -ip, -up, -üp: and (then); having done'
@@ -229,15 +265,9 @@ sentences:
     chg-Arab/standard:
       text: قوش بار.
       tokens:
-      - {surface: قوش, sense: qush}
-      - {surface: بار, sense: bar}
+      - {surface: قوش, sense: qush, readings: {schluessel: quš}}
+      - {surface: بار, sense: bar, readings: {schluessel: bar}}
       reverse: قوش بار
-    chg-Latn/schluessel:
-      text: Quš bar.
-      tokens:
-      - {surface: Quš, sense: qush}
-      - {surface: bar, sense: bar}
-      reverse: Quš bar
   translations:
     en: There (is a bird|are birds).
 - id: s.07.2
@@ -246,17 +276,10 @@ sentences:
     chg-Arab/standard:
       text: کوب قوش بار.
       tokens:
-      - {surface: کوب, sense: kop}
-      - {surface: قوش, sense: qush}
-      - {surface: بار, sense: bar}
+      - {surface: کوب, sense: kop, readings: {schluessel: köp}}
+      - {surface: قوش, sense: qush, readings: {schluessel: quš}}
+      - {surface: بار, sense: bar, readings: {schluessel: bar}}
       reverse: (کوب|کوپ) قوش بار
-    chg-Latn/schluessel:
-      text: Köp quš bar.
-      tokens:
-      - {surface: Köp, sense: kop}
-      - {surface: quš, sense: qush}
-      - {surface: bar, sense: bar}
-      reverse: Köp quš bar
   translations:
     en: There are many birds.
 - id: s.07.3
@@ -265,13 +288,8 @@ sentences:
     chg-Arab/standard:
       text: قیرغاول.
       tokens:
-      - {surface: قیرغاول, sense: qirghawul}
+      - {surface: قیرغاول, sense: qirghawul, readings: {schluessel: qirǧawul}}
       reverse: قیرغاول
-    chg-Latn/schluessel:
-      text: Qirǧawul.
-      tokens:
-      - {surface: Qirǧawul, sense: qirghawul}
-      reverse: Qirǧawul
   translations:
     en: (A|The) pheasant.
 - id: s.07.4
@@ -280,17 +298,10 @@ sentences:
     chg-Arab/standard:
       text: قیرغاول سیمیز بولور.
       tokens:
-      - {surface: قیرغاول, sense: qirghawul}
-      - {surface: سیمیز, sense: semiz}
-      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      - {surface: قیرغاول, sense: qirghawul, readings: {schluessel: qirǧawul}}
+      - {surface: سیمیز, sense: semiz, readings: {schluessel: semiz}}
+      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
       reverse: قیرغاول (سیمیز|سمیز) بولور
-    chg-Latn/schluessel:
-      text: Qirǧawul semiz bolur.
-      tokens:
-      - {surface: Qirǧawul, sense: qirghawul}
-      - {surface: semiz, sense: semiz}
-      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
-      reverse: Qirǧawul semiz bolur
   translations:
     en: (Pheasants are|The pheasants are) fat.
 - id: s.07.5
@@ -299,25 +310,14 @@ sentences:
     chg-Arab/standard:
       text: بو یرده قوش کوب بولور.
       tokens:
-      - {surface: بو, sense: bu}
-      - {surface: یرده, sense: yar, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: قوش, sense: qush}
-      - {surface: کوب, sense: kop}
-      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      - {surface: بو, sense: bu, readings: {schluessel: bu}}
+      - {surface: یرده, sense: yar, readings: {schluessel: yärdä}, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: قوش, sense: qush, readings: {schluessel: quš}}
+      - {surface: کوب, sense: kop, readings: {schluessel: köp}}
+      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
       reverse: |-
         بو (یرده|یردا|یارده|یاردا) قوش (کوب|کوپ) بولور
         بو (یرده|یردا|یارده|یاردا) (کوب|کوپ) قوش بولور
-    chg-Latn/schluessel:
-      text: Bu yärdä quš köp bolur.
-      tokens:
-      - {surface: Bu, sense: bu}
-      - {surface: yärdä, sense: yar, morphs: [{surface: yär, kc: 'sense:yar'}, {surface: dä, kc: 'form:loc'}]}
-      - {surface: quš, sense: qush}
-      - {surface: köp, sense: kop}
-      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
-      reverse: |-
-        Bu (yärdä|yerdä) quš köp bolur
-        Bu (yärdä|yerdä) köp quš bolur
   translations:
     en: (Here|In this place) there are many birds.
 - id: s.07.6
@@ -326,23 +326,13 @@ sentences:
     chg-Arab/standard:
       text: تاغده داغی قوش بار.
       tokens:
-      - {surface: تاغده, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: داغی, sense: daghi}
-      - {surface: قوش, sense: qush}
-      - {surface: بار, sense: bar}
+      - {surface: تاغده, sense: tagh, readings: {schluessel: taǧda}, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: داغی, sense: daghi, readings: {schluessel: daǧi}}
+      - {surface: قوش, sense: qush, readings: {schluessel: quš}}
+      - {surface: بار, sense: bar, readings: {schluessel: bar}}
       reverse: |-
         (تاغده|تاغدا) داغی قوش بار
         (تاغده|تاغدا) داغی قوش باردور
-    chg-Latn/schluessel:
-      text: Taǧda daǧi quš bar.
-      tokens:
-      - {surface: Taǧda, sense: tagh, morphs: [{surface: Taǧ, kc: 'sense:tagh'}, {surface: da, kc: 'form:loc'}]}
-      - {surface: daǧi, sense: daghi}
-      - {surface: quš, sense: qush}
-      - {surface: bar, sense: bar}
-      reverse: |-
-        Taǧda daǧi quš bar
-        Taǧda daǧi quš bardur
   translations:
     en: There are birds on the mountain too.
 - id: s.07.7
@@ -351,21 +341,12 @@ sentences:
     chg-Arab/standard:
       text: اوی قوشی داغی کوب بولور.
       tokens:
-      - {surface: اوی, sense: awi}
-      - {surface: قوشی, sense: qush, morphs: [{surface: قوش, kc: 'sense:qush'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: داغی, sense: daghi}
-      - {surface: کوب, sense: kop}
-      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      - {surface: اوی, sense: awi, readings: {schluessel: awī}}
+      - {surface: قوشی, sense: qush, readings: {schluessel: quši}, morphs: [{surface: قوش, kc: 'sense:qush'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: داغی, sense: daghi, readings: {schluessel: daǧi}}
+      - {surface: کوب, sense: kop, readings: {schluessel: köp}}
+      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
       reverse: اوی قوشی داغی (کوب|کوپ) بولور
-    chg-Latn/schluessel:
-      text: Awī quši daǧi köp bolur.
-      tokens:
-      - {surface: Awī, sense: awi}
-      - {surface: quši, sense: qush, morphs: [{surface: quš, kc: 'sense:qush'}, {surface: i, kc: 'form:poss3'}]}
-      - {surface: daǧi, sense: daghi}
-      - {surface: köp, sense: kop}
-      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
-      reverse: Awī quši daǧi köp bolur
   translations:
     en: Its game birds are (also|too) (many|plentiful).
 - id: s.07.8
@@ -374,19 +355,11 @@ sentences:
     chg-Arab/standard:
       text: قیرغاولی بیحد سیمیز بولور.
       tokens:
-      - {surface: قیرغاولی, sense: qirghawul, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: بیحد, sense: behadd}
-      - {surface: سیمیز, sense: semiz}
-      - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      - {surface: قیرغاولی, sense: qirghawul, readings: {schluessel: qirǧawuli}, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: بیحد, sense: behadd, readings: {schluessel: bē-ḥadd}}
+      - {surface: سیمیز, sense: semiz, readings: {schluessel: semiz}}
+      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
       reverse: قیرغاولی بیحد (سیمیز|سمیز) بولور
-    chg-Latn/schluessel:
-      text: Qirǧawuli bē-ḥadd semiz bolur.
-      tokens:
-      - {surface: Qirǧawuli, sense: qirghawul, morphs: [{surface: Qirǧawul, kc: 'sense:qirghawul'}, {surface: i, kc: 'form:poss3'}]}
-      - {surface: bē-ḥadd, sense: behadd}
-      - {surface: semiz, sense: semiz}
-      - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
-      reverse: Qirǧawuli bē-ḥadd semiz bolur
   translations:
     en: Its pheasants are (endlessly|enormously|extremely|very) fat.
 - id: s.07.9
@@ -395,17 +368,10 @@ sentences:
     chg-Arab/standard:
       text: من ترکی بیلورمن.
       tokens:
-      - {surface: من, sense: man}
-      - {surface: ترکی, sense: turki}
-      - {surface: بیلورمن, sense: bil, morphs: [{surface: بیل, kc: 'sense:bil'}, {surface: ور, kc: 'form:aor'}, {surface: من, kc: 'form:p1s'}]}
+      - {surface: من, sense: man, readings: {schluessel: män}}
+      - {surface: ترکی, sense: turki, readings: {schluessel: Turkī}}
+      - {surface: بیلورمن, sense: bil, readings: {schluessel: bilürmän}, morphs: [{surface: بیل, kc: 'sense:bil'}, {surface: ور, kc: 'form:aor'}, {surface: من, kc: 'form:p1s'}]}
       reverse: '[من] (ترکی|تورکی) بیلورمن'
-    chg-Latn/schluessel:
-      text: Män Turkī bilürmän.
-      tokens:
-      - {surface: Män, sense: man}
-      - {surface: Turkī, sense: turki}
-      - {surface: bilürmän, sense: bil, morphs: [{surface: bil, kc: 'sense:bil'}, {surface: ür, kc: 'form:aor'}, {surface: män, kc: 'form:p1s'}]}
-      reverse: '[(Män|Men)] Turkī bilürmän'
   translations:
     en: I know Turki.
 - id: s.07.10
@@ -414,17 +380,10 @@ sentences:
     chg-Arab/standard:
       text: اول خط یازار.
       tokens:
-      - {surface: اول, sense: ul}
-      - {surface: خط, sense: khat}
-      - {surface: یازار, sense: yaz, morphs: [{surface: یاز, kc: 'sense:yaz'}, {surface: ار, kc: 'form:aor'}]}
+      - {surface: اول, sense: ul, readings: {schluessel: ul}}
+      - {surface: خط, sense: khat, readings: {schluessel: ḫaṭ}}
+      - {surface: یازار, sense: yaz, readings: {schluessel: yazar}, morphs: [{surface: یاز, kc: 'sense:yaz'}, {surface: ار, kc: 'form:aor'}]}
       reverse: اول خط یازار
-    chg-Latn/schluessel:
-      text: Ul ḫaṭ yazar.
-      tokens:
-      - {surface: Ul, sense: ul}
-      - {surface: ḫaṭ, sense: khat}
-      - {surface: yazar, sense: yaz, morphs: [{surface: yaz, kc: 'sense:yaz'}, {surface: ar, kc: 'form:aor'}]}
-      reverse: (Ul|Ol) ḫaṭ yazar
   translations:
     en: (He|She) writes (letters|a letter).
 - id: s.07.11
@@ -433,17 +392,10 @@ sentences:
     chg-Arab/standard:
       text: بیز شراب ایچماسمیز.
       tokens:
-      - {surface: بیز, sense: biz}
-      - {surface: شراب, sense: sharab}
-      - {surface: ایچماسمیز, sense: ich, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: ماس, kc: 'form:aor-neg'}, {surface: میز, kc: 'form:p1p'}]}
+      - {surface: بیز, sense: biz, readings: {schluessel: biz}}
+      - {surface: شراب, sense: sharab, readings: {schluessel: šarāb}}
+      - {surface: ایچماسمیز, sense: ich, readings: {schluessel: ičmäsmiz}, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: ماس, kc: 'form:aor-neg'}, {surface: میز, kc: 'form:p1p'}]}
       reverse: '[بیز] شراب ایچماسمیز'
-    chg-Latn/schluessel:
-      text: Biz šarāb ičmäsmiz.
-      tokens:
-      - {surface: Biz, sense: biz}
-      - {surface: šarāb, sense: sharab}
-      - {surface: ičmäsmiz, sense: ich, morphs: [{surface: ič, kc: 'sense:ich'}, {surface: mäs, kc: 'form:aor-neg'}, {surface: miz, kc: 'form:p1p'}]}
-      reverse: '[Biz] šarāb ičmäsmiz'
   translations:
     en: We (do not|don't) drink wine.
 - id: s.07.12
@@ -452,21 +404,12 @@ sentences:
     chg-Arab/standard:
       text: اولار بزارده اولتورورلار.
       tokens:
-      - {surface: اولار, sense: ular}
-      - {surface: بزارده, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: اولتورورلار, sense: oltur, morphs: [{surface: اولتور, kc: 'sense:oltur'}, {surface: ور, kc: 'form:aor'}, {surface: لار, kc: 'form:p3pl'}]}
+      - {surface: اولار, sense: ular, readings: {schluessel: ular}}
+      - {surface: بزارده, sense: bazar, readings: {schluessel: bazārda}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: اولتورورلار, sense: oltur, readings: {schluessel: oltururlar}, morphs: [{surface: اولتور, kc: 'sense:oltur'}, {surface: ور, kc: 'form:aor'}, {surface: لار, kc: 'form:p3pl'}]}
       reverse: |-
         (اولار|الار) (بزارده|بزاردا|بازارده|بازاردا) اولتورورلار
         (اولار|الار) (بزارده|بزاردا|بازارده|بازاردا) اولتورور
-    chg-Latn/schluessel:
-      text: Ular bazārda oltururlar.
-      tokens:
-      - {surface: Ular, sense: ular}
-      - {surface: bazārda, sense: bazar, morphs: [{surface: bazār, kc: 'sense:bazar'}, {surface: da, kc: 'form:loc'}]}
-      - {surface: oltururlar, sense: oltur, morphs: [{surface: oltur, kc: 'sense:oltur'}, {surface: ur, kc: 'form:aor'}, {surface: lar, kc: 'form:p3pl'}]}
-      reverse: |-
-        (Ular|Alar) bazārda oltururlar
-        (Ular|Alar) bazārda olturur
   translations:
     en: They sit in the (market|bazaar).
 - id: s.07.13
@@ -475,23 +418,13 @@ sentences:
     chg-Arab/standard:
       text: سیز چای ایچارسیزمو؟
       tokens:
-      - {surface: سیز, sense: siz}
-      - {surface: چای, sense: chay}
-      - {surface: ایچارسیزمو, sense: ich, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: ار, kc: 'form:aor'}, {surface: سیز, kc: 'form:p2'}, {surface: مو, kc: 'form:q'}]}
+      - {surface: سیز, sense: siz, readings: {schluessel: siz}}
+      - {surface: چای, sense: chay, readings: {schluessel: čay}}
+      - {surface: ایچارسیزمو, sense: ich, readings: {schluessel: ičärsizmu}, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: ار, kc: 'form:aor'}, {surface: سیز, kc: 'form:p2'}, {surface: مو, kc: 'form:q'}]}
       reverse: |-
         [سیز] چای ایچارسیزمو
         [سن] چای ایچارسنمو
         [سیزلار] چای ایچارسیزلارمو
-    chg-Latn/schluessel:
-      text: Siz čay ičärsizmu?
-      tokens:
-      - {surface: Siz, sense: siz}
-      - {surface: čay, sense: chay}
-      - {surface: ičärsizmu, sense: ich, morphs: [{surface: ič, kc: 'sense:ich'}, {surface: är, kc: 'form:aor'}, {surface: siz, kc: 'form:p2'}, {surface: mu, kc: 'form:q'}]}
-      reverse: |-
-        [Siz] čay ičärsizmu
-        [(Sän|Sen)] čay ičärsänmu
-        [Sizlär] čay ičärsizlärmu
   translations:
     en: Do you drink tea?
 - id: s.07.14
@@ -500,21 +433,11 @@ sentences:
     chg-Arab/standard:
       text: ترکی بیلماس کشی یوق.
       tokens:
-      - {surface: ترکی, sense: turki}
-      - {surface: بیلماس, sense: bil, morphs: [{surface: بیل, kc: 'sense:bil'}, {surface: ماس, kc: 'form:aor-neg'}]}
-      - {surface: کشی, sense: kishi}
-      - {surface: یوق, sense: yoq}
+      - {surface: ترکی, sense: turki, readings: {schluessel: Turkī}}
+      - {surface: بیلماس, sense: bil, readings: {schluessel: bilmäs}, morphs: [{surface: بیل, kc: 'sense:bil'}, {surface: ماس, kc: 'form:aor-neg'}]}
+      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
+      - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
       reverse: "(ترکی|تورکی) بیلماس (کشی|کیشی) یوق\n(ترکی|تورکی) بیلماس (کشی|کیشی) یوق\u200cتور"
-    chg-Latn/schluessel:
-      text: Turkī bilmäs kiši yoq.
-      tokens:
-      - {surface: Turkī, sense: turki}
-      - {surface: bilmäs, sense: bil, morphs: [{surface: bil, kc: 'sense:bil'}, {surface: mäs, kc: 'form:aor-neg'}]}
-      - {surface: kiši, sense: kishi}
-      - {surface: yoq, sense: yoq}
-      reverse: |-
-        Turkī bilmäs kiši yoq
-        Turkī bilmäs kiši yoqtur
   translations:
     en: There is no one who (does not|doesn't) know Turki.
 - id: s.07.15
@@ -523,17 +446,10 @@ sentences:
     chg-Arab/standard:
       text: اول اویده اولتورماس.
       tokens:
-      - {surface: اول, sense: ul}
-      - {surface: اویده, sense: oy, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: اولتورماس, sense: oltur, morphs: [{surface: اولتور, kc: 'sense:oltur'}, {surface: ماس, kc: 'form:aor-neg'}]}
+      - {surface: اول, sense: ul, readings: {schluessel: ul}}
+      - {surface: اویده, sense: oy, readings: {schluessel: öydä}, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: اولتورماس, sense: oltur, readings: {schluessel: olturmas}, morphs: [{surface: اولتور, kc: 'sense:oltur'}, {surface: ماس, kc: 'form:aor-neg'}]}
       reverse: اول (اویده|اویدا) اولتورماس
-    chg-Latn/schluessel:
-      text: Ul öydä olturmas.
-      tokens:
-      - {surface: Ul, sense: ul}
-      - {surface: öydä, sense: oy, morphs: [{surface: öy, kc: 'sense:oy'}, {surface: dä, kc: 'form:loc'}]}
-      - {surface: olturmas, sense: oltur, morphs: [{surface: oltur, kc: 'sense:oltur'}, {surface: mas, kc: 'form:aor-neg'}]}
-      reverse: (Ul|Ol) öydä olturmas
   translations:
     en: (He|She) (does not|doesn't) (stay|sit|live) (in the house|at home).
 - id: s.07.16
@@ -542,17 +458,10 @@ sentences:
     chg-Arab/standard:
       text: من اوقوی الامن.
       tokens:
-      - {surface: من, sense: man}
-      - {surface: اوقوی, sense: oqu, morphs: [{surface: اوقو, kc: 'sense:oqu'}, {surface: ی, kc: 'form:cv-a'}]}
-      - {surface: الامن, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: ا, kc: 'form:pres'}, {surface: من, kc: 'form:p1s'}]}
+      - {surface: من, sense: man, readings: {schluessel: män}}
+      - {surface: اوقوی, sense: oqu, readings: {schluessel: oquy}, morphs: [{surface: اوقو, kc: 'sense:oqu'}, {surface: ی, kc: 'form:cv-a'}]}
+      - {surface: الامن, sense: al, readings: {schluessel: alamän}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: ا, kc: 'form:pres'}, {surface: من, kc: 'form:p1s'}]}
       reverse: '[من] اوقوی (الامن|آلامن)'
-    chg-Latn/schluessel:
-      text: Män oquy alamän.
-      tokens:
-      - {surface: Män, sense: man}
-      - {surface: oquy, sense: oqu, morphs: [{surface: oqu, kc: 'sense:oqu'}, {surface: y, kc: 'form:cv-a'}]}
-      - {surface: alamän, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: a, kc: 'form:pres'}, {surface: män, kc: 'form:p1s'}]}
-      reverse: '[(Män|Men)] oquy alamän'
   translations:
     en: I can read.
 - id: s.07.17
@@ -561,17 +470,10 @@ sentences:
     chg-Arab/standard:
       text: اول یازا المایدور.
       tokens:
-      - {surface: اول, sense: ul}
-      - {surface: یازا, sense: yaz, morphs: [{surface: یاز, kc: 'sense:yaz'}, {surface: ا, kc: 'form:cv-a'}]}
-      - {surface: المایدور, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: دور, kc: 'form:dur'}]}
+      - {surface: اول, sense: ul, readings: {schluessel: ul}}
+      - {surface: یازا, sense: yaz, readings: {schluessel: yaza}, morphs: [{surface: یاز, kc: 'sense:yaz'}, {surface: ا, kc: 'form:cv-a'}]}
+      - {surface: المایدور, sense: al, readings: {schluessel: almaydur}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: دور, kc: 'form:dur'}]}
       reverse: اول یازا (المایدور|آلمایدور)
-    chg-Latn/schluessel:
-      text: Ul yaza almaydur.
-      tokens:
-      - {surface: Ul, sense: ul}
-      - {surface: yaza, sense: yaz, morphs: [{surface: yaz, kc: 'sense:yaz'}, {surface: a, kc: 'form:cv-a'}]}
-      - {surface: almaydur, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: may, kc: 'form:pres-neg'}, {surface: dur, kc: 'form:dur'}]}
-      reverse: (Ul|Ol) yaza almaydur
   translations:
     en: (He|She) (cannot|can't) write.
 - id: s.07.18
@@ -580,17 +482,10 @@ sentences:
     chg-Arab/standard:
       text: بیز بارا المایمیز.
       tokens:
-      - {surface: بیز, sense: biz}
-      - {surface: بارا, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:cv-a'}]}
-      - {surface: المایمیز, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: میز, kc: 'form:p1p'}]}
+      - {surface: بیز, sense: biz, readings: {schluessel: biz}}
+      - {surface: بارا, sense: bar.go, readings: {schluessel: bara}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:cv-a'}]}
+      - {surface: المایمیز, sense: al, readings: {schluessel: almaymiz}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: میز, kc: 'form:p1p'}]}
       reverse: '[بیز] بارا (المایمیز|آلمایمیز)'
-    chg-Latn/schluessel:
-      text: Biz bara almaymiz.
-      tokens:
-      - {surface: Biz, sense: biz}
-      - {surface: bara, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: a, kc: 'form:cv-a'}]}
-      - {surface: almaymiz, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: may, kc: 'form:pres-neg'}, {surface: miz, kc: 'form:p1p'}]}
-      reverse: '[Biz] bara almaymiz'
   translations:
     en: We (cannot|can't) go.
 - id: s.07.19
@@ -599,25 +494,14 @@ sentences:
     chg-Arab/standard:
       text: سیز تاغنی کورا الاسیزمو؟
       tokens:
-      - {surface: سیز, sense: siz}
-      - {surface: تاغنی, sense: tagh, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: کورا, sense: kor, morphs: [{surface: کور, kc: 'sense:kor'}, {surface: ا, kc: 'form:cv-a'}]}
-      - {surface: الاسیزمو, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: ا, kc: 'form:pres'}, {surface: سیز, kc: 'form:p2'}, {surface: مو, kc: 'form:q'}]}
+      - {surface: سیز, sense: siz, readings: {schluessel: siz}}
+      - {surface: تاغنی, sense: tagh, readings: {schluessel: taǧni}, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: کورا, sense: kor, readings: {schluessel: körä}, morphs: [{surface: کور, kc: 'sense:kor'}, {surface: ا, kc: 'form:cv-a'}]}
+      - {surface: الاسیزمو, sense: al, readings: {schluessel: alasizmu}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: ا, kc: 'form:pres'}, {surface: سیز, kc: 'form:p2'}, {surface: مو, kc: 'form:q'}]}
       reverse: |-
         [سیز] تاغنی کورا (الاسیزمو|آلاسیزمو)
         [سن] تاغنی کورا (الاسنمو|آلاسنمو)
         [سیزلار] تاغنی کورا (الاسیزلارمو|آلاسیزلارمو)
-    chg-Latn/schluessel:
-      text: Siz taǧni körä alasizmu?
-      tokens:
-      - {surface: Siz, sense: siz}
-      - {surface: taǧni, sense: tagh, morphs: [{surface: taǧ, kc: 'sense:tagh'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: körä, sense: kor, morphs: [{surface: kör, kc: 'sense:kor'}, {surface: ä, kc: 'form:cv-a'}]}
-      - {surface: alasizmu, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: a, kc: 'form:pres'}, {surface: siz, kc: 'form:p2'}, {surface: mu, kc: 'form:q'}]}
-      reverse: |-
-        [Siz] taǧni körä alasizmu
-        [(Sän|Sen)] taǧni körä alasänmu
-        [Sizlär] taǧni körä alasizlärmu
   translations:
     en: Can you see the mountain?
 - id: s.07.20
@@ -626,19 +510,11 @@ sentences:
     chg-Arab/standard:
       text: بلا قندنی توکاتا المایدور.
       tokens:
-      - {surface: بلا, sense: bala}
-      - {surface: قندنی, sense: qand, morphs: [{surface: قند, kc: 'sense:qand'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: توکاتا, sense: tugat, morphs: [{surface: توکات, kc: 'sense:tugat'}, {surface: ا, kc: 'form:cv-a'}]}
-      - {surface: المایدور, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: دور, kc: 'form:dur'}]}
+      - {surface: بلا, sense: bala, readings: {schluessel: bala}}
+      - {surface: قندنی, sense: qand, readings: {schluessel: qandni}, morphs: [{surface: قند, kc: 'sense:qand'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: توکاتا, sense: tugat, readings: {schluessel: tügätä}, morphs: [{surface: توکات, kc: 'sense:tugat'}, {surface: ا, kc: 'form:cv-a'}]}
+      - {surface: المایدور, sense: al, readings: {schluessel: almaydur}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: دور, kc: 'form:dur'}]}
       reverse: (بلا|بالا) قندنی توکاتا (المایدور|آلمایدور)
-    chg-Latn/schluessel:
-      text: Bala qandni tügätä almaydur.
-      tokens:
-      - {surface: Bala, sense: bala}
-      - {surface: qandni, sense: qand, morphs: [{surface: qand, kc: 'sense:qand'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: tügätä, sense: tugat, morphs: [{surface: tügät, kc: 'sense:tugat'}, {surface: ä, kc: 'form:cv-a'}]}
-      - {surface: almaydur, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: may, kc: 'form:pres-neg'}, {surface: dur, kc: 'form:dur'}]}
-      reverse: Bala qandni tügätä almaydur
   translations:
     en: The child (cannot|can't) finish the sugar.
 - id: s.07.21
@@ -647,21 +523,12 @@ sentences:
     chg-Arab/standard:
       text: من بو کتابنی اوقوی الماسمن.
       tokens:
-      - {surface: من, sense: man}
-      - {surface: بو, sense: bu}
-      - {surface: کتابنی, sense: kitab, morphs: [{surface: کتاب, kc: 'sense:kitab'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: اوقوی, sense: oqu, morphs: [{surface: اوقو, kc: 'sense:oqu'}, {surface: ی, kc: 'form:cv-a'}]}
-      - {surface: الماسمن, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: ماس, kc: 'form:aor-neg'}, {surface: من, kc: 'form:p1s'}]}
+      - {surface: من, sense: man, readings: {schluessel: män}}
+      - {surface: بو, sense: bu, readings: {schluessel: bu}}
+      - {surface: کتابنی, sense: kitab, readings: {schluessel: kitābni}, morphs: [{surface: کتاب, kc: 'sense:kitab'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: اوقوی, sense: oqu, readings: {schluessel: oquy}, morphs: [{surface: اوقو, kc: 'sense:oqu'}, {surface: ی, kc: 'form:cv-a'}]}
+      - {surface: الماسمن, sense: al, readings: {schluessel: almasmän}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: ماس, kc: 'form:aor-neg'}, {surface: من, kc: 'form:p1s'}]}
       reverse: '[من] بو کتابنی اوقوی (الماسمن|آلماسمن)'
-    chg-Latn/schluessel:
-      text: Män bu kitābni oquy almasmän.
-      tokens:
-      - {surface: Män, sense: man}
-      - {surface: bu, sense: bu}
-      - {surface: kitābni, sense: kitab, morphs: [{surface: kitāb, kc: 'sense:kitab'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: oquy, sense: oqu, morphs: [{surface: oqu, kc: 'sense:oqu'}, {surface: y, kc: 'form:cv-a'}]}
-      - {surface: almasmän, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: mas, kc: 'form:aor-neg'}, {surface: män, kc: 'form:p1s'}]}
-      reverse: '[(Män|Men)] bu kitābni oquy almasmän'
   translations:
     en: I (cannot|can't) read this book.
 - id: s.07.22
@@ -670,21 +537,12 @@ sentences:
     chg-Arab/standard:
       text: من بزارغه باریب، نان الدیم.
       tokens:
-      - {surface: من, sense: man}
-      - {surface: بزارغه, sense: bazar, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باریب, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: یب, kc: 'form:cv-p'}]}
-      - {surface: نان, sense: nan}
-      - {surface: الدیم, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: دیم, kc: 'form:past-1s'}]}
+      - {surface: من, sense: man, readings: {schluessel: män}}
+      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باریب, sense: bar.go, readings: {schluessel: barip}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: یب, kc: 'form:cv-p'}]}
+      - {surface: نان, sense: nan, readings: {schluessel: nan}}
+      - {surface: الدیم, sense: al, readings: {schluessel: aldim}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: دیم, kc: 'form:past-1s'}]}
       reverse: '[من] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باریب نان (الدیم|آلدیم)'
-    chg-Latn/schluessel:
-      text: Män bazārǧa barip, nan aldim.
-      tokens:
-      - {surface: Män, sense: man}
-      - {surface: bazārǧa, sense: bazar, morphs: [{surface: bazār, kc: 'sense:bazar'}, {surface: ǧa, kc: 'form:dat'}]}
-      - {surface: barip, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: ip, kc: 'form:cv-p'}]}
-      - {surface: nan, sense: nan}
-      - {surface: aldim, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: dim, kc: 'form:past-1s'}]}
-      reverse: '[(Män|Men)] bazārǧa barip nan aldim'
   translations:
     en: I went to the (market|bazaar) and (bought|got) bread.
 - id: s.07.23
@@ -693,17 +551,10 @@ sentences:
     chg-Arab/standard:
       text: اول کلیب اولتوردی.
       tokens:
-      - {surface: اول, sense: ul}
-      - {surface: کلیب, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: یب, kc: 'form:cv-p'}]}
-      - {surface: اولتوردی, sense: oltur, morphs: [{surface: اولتور, kc: 'sense:oltur'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: اول, sense: ul, readings: {schluessel: ul}}
+      - {surface: کلیب, sense: kal, readings: {schluessel: kelip}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: یب, kc: 'form:cv-p'}]}
+      - {surface: اولتوردی, sense: oltur, readings: {schluessel: olturdi}, morphs: [{surface: اولتور, kc: 'sense:oltur'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: اول کلیب اولتوردی
-    chg-Latn/schluessel:
-      text: Ul kelip olturdi.
-      tokens:
-      - {surface: Ul, sense: ul}
-      - {surface: kelip, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ip, kc: 'form:cv-p'}]}
-      - {surface: olturdi, sense: oltur, morphs: [{surface: oltur, kc: 'sense:oltur'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: (Ul|Ol) kelip olturdi
   translations:
     en: (He|She) came and sat (down).
 - id: s.07.24
@@ -712,21 +563,12 @@ sentences:
     chg-Arab/standard:
       text: بیز نان ییب، چای ایچتوق.
       tokens:
-      - {surface: بیز, sense: biz}
-      - {surface: نان, sense: nan}
-      - {surface: ییب, sense: ye, morphs: [{surface: یی, kc: 'sense:ye'}, {surface: ب, kc: 'form:cv-p'}]}
-      - {surface: چای, sense: chay}
-      - {surface: ایچتوق, sense: ich, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: توق, kc: 'form:past-1p'}]}
+      - {surface: بیز, sense: biz, readings: {schluessel: biz}}
+      - {surface: نان, sense: nan, readings: {schluessel: nan}}
+      - {surface: ییب, sense: ye, readings: {schluessel: yep}, morphs: [{surface: یی, kc: 'sense:ye'}, {surface: ب, kc: 'form:cv-p'}]}
+      - {surface: چای, sense: chay, readings: {schluessel: čay}}
+      - {surface: ایچتوق, sense: ich, readings: {schluessel: ičtuq}, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: توق, kc: 'form:past-1p'}]}
       reverse: '[بیز] نان ییب چای ایچتوق'
-    chg-Latn/schluessel:
-      text: Biz nan yep, čay ičtuq.
-      tokens:
-      - {surface: Biz, sense: biz}
-      - {surface: nan, sense: nan}
-      - {surface: yep, sense: ye, morphs: [{surface: ye, kc: 'sense:ye'}, {surface: p, kc: 'form:cv-p'}]}
-      - {surface: čay, sense: chay}
-      - {surface: ičtuq, sense: ich, morphs: [{surface: ič, kc: 'sense:ich'}, {surface: tuq, kc: 'form:past-1p'}]}
-      reverse: '[Biz] nan (yep|yäp) čay ičtuq'
   translations:
     en: We ate bread and drank tea.
 - id: s.07.25
@@ -735,25 +577,14 @@ sentences:
     chg-Arab/standard:
       text: اولار کتاب الیب، اویغه باردیلار.
       tokens:
-      - {surface: اولار, sense: ular}
-      - {surface: کتاب, sense: kitab}
-      - {surface: الیب, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
-      - {surface: اویغه, sense: oy, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردیلار, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: اولار, sense: ular, readings: {schluessel: ular}}
+      - {surface: کتاب, sense: kitab, readings: {schluessel: kitāb}}
+      - {surface: الیب, sense: al, readings: {schluessel: alip}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
+      - {surface: اویغه, sense: oy, readings: {schluessel: öygä}, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردیلار, sense: bar.go, readings: {schluessel: bardilar}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       reverse: |-
         (اولار|الار) کتاب (الیب|آلیب) (اویغه|اویکه|اویقه|اویغا) باردیلار
         (اولار|الار) کتاب (الیب|آلیب) (اویغه|اویکه|اویقه|اویغا) باردی
-    chg-Latn/schluessel:
-      text: Ular kitāb alip, öygä bardilar.
-      tokens:
-      - {surface: Ular, sense: ular}
-      - {surface: kitāb, sense: kitab}
-      - {surface: alip, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: ip, kc: 'form:cv-p'}]}
-      - {surface: öygä, sense: oy, morphs: [{surface: öy, kc: 'sense:oy'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: bardilar, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: dilar, kc: 'form:past-3pl'}]}
-      reverse: |-
-        (Ular|Alar) kitāb alip öygä bardilar
-        (Ular|Alar) kitāb alip öygä bardi
   translations:
     en: They (bought|got) a book and went (home|to the house).
 - id: s.07.26
@@ -762,21 +593,12 @@ sentences:
     chg-Arab/standard:
       text: تورت کشی ییب توکاتا المایدور.
       tokens:
-      - {surface: تورت, sense: tort}
-      - {surface: کشی, sense: kishi}
-      - {surface: ییب, sense: ye, morphs: [{surface: یی, kc: 'sense:ye'}, {surface: ب, kc: 'form:cv-p'}]}
-      - {surface: توکاتا, sense: tugat, morphs: [{surface: توکات, kc: 'sense:tugat'}, {surface: ا, kc: 'form:cv-a'}]}
-      - {surface: المایدور, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: دور, kc: 'form:dur'}]}
+      - {surface: تورت, sense: tort, readings: {schluessel: tört}}
+      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
+      - {surface: ییب, sense: ye, readings: {schluessel: yep}, morphs: [{surface: یی, kc: 'sense:ye'}, {surface: ب, kc: 'form:cv-p'}]}
+      - {surface: توکاتا, sense: tugat, readings: {schluessel: tügätä}, morphs: [{surface: توکات, kc: 'sense:tugat'}, {surface: ا, kc: 'form:cv-a'}]}
+      - {surface: المایدور, sense: al, readings: {schluessel: almaydur}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: دور, kc: 'form:dur'}]}
       reverse: تورت (کشی|کیشی) ییب توکاتا (المایدور|آلمایدور)
-    chg-Latn/schluessel:
-      text: Tört kiši yep tügätä almaydur.
-      tokens:
-      - {surface: Tört, sense: tort}
-      - {surface: kiši, sense: kishi}
-      - {surface: yep, sense: ye, morphs: [{surface: ye, kc: 'sense:ye'}, {surface: p, kc: 'form:cv-p'}]}
-      - {surface: tügätä, sense: tugat, morphs: [{surface: tügät, kc: 'sense:tugat'}, {surface: ä, kc: 'form:cv-a'}]}
-      - {surface: almaydur, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: may, kc: 'form:pres-neg'}, {surface: dur, kc: 'form:dur'}]}
-      reverse: Tört kiši (yep|yäp) tügätä almaydur
   translations:
     en: Four (people|men) (cannot|can't) finish (eating it|it).
 - id: s.07.27
@@ -785,17 +607,10 @@ sentences:
     chg-Arab/standard:
       text: قیرغاولنی ییب توکاتتی.
       tokens:
-      - {surface: قیرغاولنی, sense: qirghawul, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: ییب, sense: ye, morphs: [{surface: یی, kc: 'sense:ye'}, {surface: ب, kc: 'form:cv-p'}]}
-      - {surface: توکاتتی, sense: tugat, morphs: [{surface: توکات, kc: 'sense:tugat'}, {surface: تی, kc: 'form:past-3'}]}
+      - {surface: قیرغاولنی, sense: qirghawul, readings: {schluessel: qirǧawulni}, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: ییب, sense: ye, readings: {schluessel: yep}, morphs: [{surface: یی, kc: 'sense:ye'}, {surface: ب, kc: 'form:cv-p'}]}
+      - {surface: توکاتتی, sense: tugat, readings: {schluessel: tügätti}, morphs: [{surface: توکات, kc: 'sense:tugat'}, {surface: تی, kc: 'form:past-3'}]}
       reverse: قیرغاولنی ییب توکاتتی
-    chg-Latn/schluessel:
-      text: Qirǧawulni yep tügätti.
-      tokens:
-      - {surface: Qirǧawulni, sense: qirghawul, morphs: [{surface: Qirǧawul, kc: 'sense:qirghawul'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: yep, sense: ye, morphs: [{surface: ye, kc: 'sense:ye'}, {surface: p, kc: 'form:cv-p'}]}
-      - {surface: tügätti, sense: tugat, morphs: [{surface: tügät, kc: 'sense:tugat'}, {surface: ti, kc: 'form:past-3'}]}
-      reverse: Qirǧawulni (yep|yäp) tügätti
   translations:
     en: (He|She) ate (up|) the pheasant.
 - id: s.07.28
@@ -804,13 +619,8 @@ sentences:
     chg-Arab/standard:
       text: انداق.
       tokens:
-      - {surface: انداق, sense: andaq}
+      - {surface: انداق, sense: andaq, readings: {schluessel: andaq}}
       reverse: انداق
-    chg-Latn/schluessel:
-      text: Andaq.
-      tokens:
-      - {surface: Andaq, sense: andaq}
-      reverse: (Andaq|Undaq)
   translations:
     en: (So|Thus|Like that).
 - id: s.07.29
@@ -819,15 +629,9 @@ sentences:
     chg-Arab/standard:
       text: بیر روایت.
       tokens:
-      - {surface: بیر, sense: bir}
-      - {surface: روایت, sense: riwayat}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: روایت, sense: riwayat, readings: {schluessel: riwāyat}}
       reverse: (بیر|بر) روایت
-    chg-Latn/schluessel:
-      text: Bir riwāyat.
-      tokens:
-      - {surface: Bir, sense: bir}
-      - {surface: riwāyat, sense: riwayat}
-      reverse: Bir riwāyat
   translations:
     en: A (story|tale).
 - id: s.07.30
@@ -836,29 +640,16 @@ sentences:
     chg-Arab/standard:
       text: انداق روایت قیلدیلار کیم، قیرغاول سیمیز.
       tokens:
-      - {surface: انداق, sense: andaq}
-      - {surface: روایت, sense: riwayat}
-      - {surface: قیلدیلار, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
-      - {surface: کیم, sense: kim.that}
-      - {surface: قیرغاول, sense: qirghawul}
-      - {surface: سیمیز, sense: semiz}
+      - {surface: انداق, sense: andaq, readings: {schluessel: andaq}}
+      - {surface: روایت, sense: riwayat, readings: {schluessel: riwāyat}}
+      - {surface: قیلدیلار, sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      - {surface: کیم, sense: kim.that, readings: {schluessel: kim}}
+      - {surface: قیرغاول, sense: qirghawul, readings: {schluessel: qirǧawul}}
+      - {surface: سیمیز, sense: semiz, readings: {schluessel: semiz}}
       reverse: |-
         انداق روایت (قیلدیلار|قلدیلار) کیم قیرغاول (سیمیز|سمیز)
         انداق روایت (قیلدی|قلدی) کیم قیرغاول (سیمیز|سمیز)
         انداق روایت (قیلدیلار|قلدیلار) کیم قیرغاول (سیمیز|سمیز) بولور
-    chg-Latn/schluessel:
-      text: Andaq riwāyat qildilar kim, qirǧawul semiz.
-      tokens:
-      - {surface: Andaq, sense: andaq}
-      - {surface: riwāyat, sense: riwayat}
-      - {surface: qildilar, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: dilar, kc: 'form:past-3pl'}]}
-      - {surface: kim, sense: kim.that}
-      - {surface: qirǧawul, sense: qirghawul}
-      - {surface: semiz, sense: semiz}
-      reverse: |-
-        (Andaq|Undaq) riwāyat qildilar kim qirǧawul semiz
-        (Andaq|Undaq) riwāyat qildi kim qirǧawul semiz
-        (Andaq|Undaq) riwāyat qildilar kim qirǧawul semiz bolur
   translations:
     en: (They tell|They say|It is told) that the pheasants are fat.
 - id: s.07.31
@@ -867,19 +658,11 @@ sentences:
     chg-Arab/standard:
       text: "بیر قیرغاولنی اشکنه\u200cسی بیله."
       tokens:
-      - {surface: بیر, sense: bir}
-      - {surface: قیرغاولنی, sense: qirghawul, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: "اشکنه\u200cسی", sense: ishkina, morphs: [{surface: "اشکنه\u200c", kc: 'sense:ishkina'}, {surface: سی, kc: 'form:poss3'}]}
-      - {surface: بیله, sense: bila}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: قیرغاولنی, sense: qirghawul, readings: {schluessel: qirǧawulni}, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: "اشکنه\u200cسی", sense: ishkina, readings: {schluessel: iškinasi}, morphs: [{surface: "اشکنه\u200c", kc: 'sense:ishkina'}, {surface: سی, kc: 'form:poss3'}]}
+      - {surface: بیله, sense: bila, readings: {schluessel: bilä}}
       reverse: "(بیر|بر) قیرغاولنی اشکنه\u200cسی (بیله|بیلان|بیرله)"
-    chg-Latn/schluessel:
-      text: Bir qirǧawulni iškinasi bilä.
-      tokens:
-      - {surface: Bir, sense: bir}
-      - {surface: qirǧawulni, sense: qirghawul, morphs: [{surface: qirǧawul, kc: 'sense:qirghawul'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: iškinasi, sense: ishkina, morphs: [{surface: iškina, kc: 'sense:ishkina'}, {surface: si, kc: 'form:poss3'}]}
-      - {surface: bilä, sense: bila}
-      reverse: Bir qirǧawulni iškinasi (bilä|bilän|birlä)
   translations:
     en: A pheasant with its stew.
 - id: s.07.32
@@ -888,17 +671,10 @@ sentences:
     chg-Arab/standard:
       text: قلم بیله یازدیم.
       tokens:
-      - {surface: قلم, sense: qalam}
-      - {surface: بیله, sense: bila}
-      - {surface: یازدیم, sense: yaz, morphs: [{surface: یاز, kc: 'sense:yaz'}, {surface: دیم, kc: 'form:past-1s'}]}
+      - {surface: قلم, sense: qalam, readings: {schluessel: qalam}}
+      - {surface: بیله, sense: bila, readings: {schluessel: bilä}}
+      - {surface: یازدیم, sense: yaz, readings: {schluessel: yazdim}, morphs: [{surface: یاز, kc: 'sense:yaz'}, {surface: دیم, kc: 'form:past-1s'}]}
       reverse: '[من] قلم (بیله|بیلان|بیرله) یازدیم'
-    chg-Latn/schluessel:
-      text: Qalam bilä yazdim.
-      tokens:
-      - {surface: Qalam, sense: qalam}
-      - {surface: bilä, sense: bila}
-      - {surface: yazdim, sense: yaz, morphs: [{surface: yaz, kc: 'sense:yaz'}, {surface: dim, kc: 'form:past-1s'}]}
-      reverse: '[(Män|Men)] qalam (bilä|bilän|birlä) yazdim'
   translations:
     en: I wrote with a pen.
 - id: s.07.33
@@ -907,19 +683,10 @@ sentences:
     chg-Arab/standard:
       text: "بو لفظ راست\u200cتور."
       tokens:
-      - {surface: بو, sense: bu}
-      - {surface: لفظ, sense: lafaz}
-      - {surface: "راست\u200cتور", sense: rast, morphs: [{surface: "راست\u200c", kc: 'sense:rast'}, {surface: تور, kc: 'form:dur'}]}
+      - {surface: بو, sense: bu, readings: {schluessel: bu}}
+      - {surface: لفظ, sense: lafaz, readings: {schluessel: lafaẓ}}
+      - {surface: "راست\u200cتور", sense: rast, readings: {schluessel: rāsttur}, morphs: [{surface: "راست\u200c", kc: 'sense:rast'}, {surface: تور, kc: 'form:dur'}]}
       reverse: "بو لفظ راست\u200cتور\nبو لفظ راست"
-    chg-Latn/schluessel:
-      text: Bu lafaẓ rāsttur.
-      tokens:
-      - {surface: Bu, sense: bu}
-      - {surface: lafaẓ, sense: lafaz}
-      - {surface: rāsttur, sense: rast, morphs: [{surface: rāst, kc: 'sense:rast'}, {surface: tur, kc: 'form:dur'}]}
-      reverse: |-
-        Bu lafaẓ rāsttur
-        Bu lafaẓ rāst
   translations:
     en: This (word|speech) is (true|right).
 - id: s.07.34
@@ -928,15 +695,9 @@ sentences:
     chg-Arab/standard:
       text: شهری کشی.
       tokens:
-      - {surface: شهری, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: ی, kc: 'form:nisba'}]}
-      - {surface: کشی, sense: kishi}
+      - {surface: شهری, sense: shahar, readings: {schluessel: šaharī}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: ی, kc: 'form:nisba'}]}
+      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
       reverse: شهری (کشی|کیشی)
-    chg-Latn/schluessel:
-      text: Šaharī kiši.
-      tokens:
-      - {surface: Šaharī, sense: shahar, morphs: [{surface: Šahar, kc: 'sense:shahar'}, {surface: ī, kc: 'form:nisba'}]}
-      - {surface: kiši, sense: kishi}
-      reverse: Šaharī kiši
   translations:
     en: A (city person|townsman|person of the city).
 - id: s.07.35
@@ -945,15 +706,9 @@ sentences:
     chg-Arab/standard:
       text: بازاری کشی.
       tokens:
-      - {surface: بازاری, sense: bazar, morphs: [{surface: بازار, kc: 'sense:bazar'}, {surface: ی, kc: 'form:nisba'}]}
-      - {surface: کشی, sense: kishi}
+      - {surface: بازاری, sense: bazar, readings: {schluessel: bāzārī}, morphs: [{surface: بازار, kc: 'sense:bazar'}, {surface: ی, kc: 'form:nisba'}]}
+      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
       reverse: بازاری (کشی|کیشی)
-    chg-Latn/schluessel:
-      text: Bāzārī kiši.
-      tokens:
-      - {surface: Bāzārī, sense: bazar, morphs: [{surface: Bāzār, kc: 'sense:bazar'}, {surface: ī, kc: 'form:nisba'}]}
-      - {surface: kiši, sense: kishi}
-      reverse: Bāzārī kiši
   translations:
     en: A (market person|person of the market|man of the bazaar).
 - id: s.07.36
@@ -962,21 +717,12 @@ sentences:
     chg-Arab/standard:
       text: "ایلینینک لفظی قلم بیله راست\u200cتور."
       tokens:
-      - {surface: ایلینینک, sense: el, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: ی, kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: لفظی, sense: lafaz, morphs: [{surface: لفظ, kc: 'sense:lafaz'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: قلم, sense: qalam}
-      - {surface: بیله, sense: bila}
-      - {surface: "راست\u200cتور", sense: rast, morphs: [{surface: "راست\u200c", kc: 'sense:rast'}, {surface: تور, kc: 'form:dur'}]}
+      - {surface: ایلینینک, sense: el, readings: {schluessel: eliniŋ}, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: ی, kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: لفظی, sense: lafaz, readings: {schluessel: lafaẓi}, morphs: [{surface: لفظ, kc: 'sense:lafaz'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: قلم, sense: qalam, readings: {schluessel: qalam}}
+      - {surface: بیله, sense: bila, readings: {schluessel: bilä}}
+      - {surface: "راست\u200cتور", sense: rast, readings: {schluessel: rāsttur}, morphs: [{surface: "راست\u200c", kc: 'sense:rast'}, {surface: تور, kc: 'form:dur'}]}
       reverse: "ایلینینک لفظی قلم (بیله|بیلان|بیرله) راست\u200cتور"
-    chg-Latn/schluessel:
-      text: Eliniŋ lafaẓi qalam bilä rāsttur.
-      tokens:
-      - {surface: Eliniŋ, sense: el, morphs: [{surface: El, kc: 'sense:el'}, {surface: i, kc: 'form:poss3'}, {surface: niŋ, kc: 'form:gen'}]}
-      - {surface: lafaẓi, sense: lafaz, morphs: [{surface: lafaẓ, kc: 'sense:lafaz'}, {surface: i, kc: 'form:poss3'}]}
-      - {surface: qalam, sense: qalam}
-      - {surface: bilä, sense: bila}
-      - {surface: rāsttur, sense: rast, morphs: [{surface: rāst, kc: 'sense:rast'}, {surface: tur, kc: 'form:dur'}]}
-      reverse: (Eliniŋ|Iliniŋ) lafaẓi qalam (bilä|bilän|birlä) rāsttur
   translations:
     en: The people's speech (is the same as|agrees with) the (written word|pen).
 stories:
@@ -990,19 +736,11 @@ stories:
         chg-Arab/standard:
           text: اوی قوشی داغی کوب بولور.
           tokens:
-          - {surface: اوی, sense: awi}
-          - {surface: قوشی, sense: qush, morphs: [{surface: قوش, kc: 'sense:qush'}, {surface: ی, kc: 'form:poss3'}]}
-          - {surface: داغی, sense: daghi}
-          - {surface: کوب, sense: kop}
-          - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
-        chg-Latn/schluessel:
-          text: Awī quši daǧi köp bolur.
-          tokens:
-          - {surface: Awī, sense: awi}
-          - {surface: quši, sense: qush, morphs: [{surface: quš, kc: 'sense:qush'}, {surface: i, kc: 'form:poss3'}]}
-          - {surface: daǧi, sense: daghi}
-          - {surface: köp, sense: kop}
-          - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+          - {surface: اوی, sense: awi, readings: {schluessel: awī}}
+          - {surface: قوشی, sense: qush, readings: {schluessel: quši}, morphs: [{surface: قوش, kc: 'sense:qush'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: داغی, sense: daghi, readings: {schluessel: daǧi}}
+          - {surface: کوب, sense: kop, readings: {schluessel: köp}}
+          - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
       translations:
         en: Its game birds are also plentiful.
   - line:
@@ -1015,17 +753,10 @@ stories:
         chg-Arab/standard:
           text: قیرغاولی بیحد سیمیز بولور.
           tokens:
-          - {surface: قیرغاولی, sense: qirghawul, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: ی, kc: 'form:poss3'}]}
-          - {surface: بیحد, sense: behadd}
-          - {surface: سیمیز, sense: semiz}
-          - {surface: بولور, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
-        chg-Latn/schluessel:
-          text: Qirǧawuli bē-ḥadd semiz bolur.
-          tokens:
-          - {surface: Qirǧawuli, sense: qirghawul, morphs: [{surface: Qirǧawul, kc: 'sense:qirghawul'}, {surface: i, kc: 'form:poss3'}]}
-          - {surface: bē-ḥadd, sense: behadd}
-          - {surface: semiz, sense: semiz}
-          - {surface: bolur, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: ur, kc: 'form:aor'}]}
+          - {surface: قیرغاولی, sense: qirghawul, readings: {schluessel: qirǧawuli}, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: بیحد, sense: behadd, readings: {schluessel: bē-ḥadd}}
+          - {surface: سیمیز, sense: semiz, readings: {schluessel: semiz}}
+          - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
       translations:
         en: Its pheasants are endlessly fat.
   - line:
@@ -1033,35 +764,19 @@ stories:
         chg-Arab/standard:
           text: "انداق روایت قیلدیلار کیم، بیر قیرغاولنی اشکنه\u200cسی بیله تورت کیشی ییب توکاتا المایدور."
           tokens:
-          - {surface: انداق, sense: andaq}
-          - {surface: روایت, sense: riwayat}
-          - {surface: قیلدیلار, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
-          - {surface: کیم, sense: kim.that}
-          - {surface: بیر, sense: bir}
-          - {surface: قیرغاولنی, sense: qirghawul, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: نی, kc: 'form:acc'}]}
-          - {surface: "اشکنه\u200cسی", sense: ishkina, morphs: [{surface: "اشکنه\u200c", kc: 'sense:ishkina'}, {surface: سی, kc: 'form:poss3'}]}
-          - {surface: بیله, sense: bila}
-          - {surface: تورت, sense: tort}
-          - {surface: کیشی, sense: kishi}
-          - {surface: ییب, sense: ye, morphs: [{surface: یی, kc: 'sense:ye'}, {surface: ب, kc: 'form:cv-p'}]}
-          - {surface: توکاتا, sense: tugat, morphs: [{surface: توکات, kc: 'sense:tugat'}, {surface: ا, kc: 'form:cv-a'}]}
-          - {surface: المایدور, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: دور, kc: 'form:dur'}]}
-        chg-Latn/schluessel:
-          text: Andaq riwāyat qildilar kim, bir qirǧawulni iškinasi bilä tört kiši yep tügätä almaydur.
-          tokens:
-          - {surface: Andaq, sense: andaq}
-          - {surface: riwāyat, sense: riwayat}
-          - {surface: qildilar, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: dilar, kc: 'form:past-3pl'}]}
-          - {surface: kim, sense: kim.that}
-          - {surface: bir, sense: bir}
-          - {surface: qirǧawulni, sense: qirghawul, morphs: [{surface: qirǧawul, kc: 'sense:qirghawul'}, {surface: ni, kc: 'form:acc'}]}
-          - {surface: iškinasi, sense: ishkina, morphs: [{surface: iškina, kc: 'sense:ishkina'}, {surface: si, kc: 'form:poss3'}]}
-          - {surface: bilä, sense: bila}
-          - {surface: tört, sense: tort}
-          - {surface: kiši, sense: kishi}
-          - {surface: yep, sense: ye, morphs: [{surface: ye, kc: 'sense:ye'}, {surface: p, kc: 'form:cv-p'}]}
-          - {surface: tügätä, sense: tugat, morphs: [{surface: tügät, kc: 'sense:tugat'}, {surface: ä, kc: 'form:cv-a'}]}
-          - {surface: almaydur, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: may, kc: 'form:pres-neg'}, {surface: dur, kc: 'form:dur'}]}
+          - {surface: انداق, sense: andaq, readings: {schluessel: andaq}}
+          - {surface: روایت, sense: riwayat, readings: {schluessel: riwāyat}}
+          - {surface: قیلدیلار, sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+          - {surface: کیم, sense: kim.that, readings: {schluessel: kim}}
+          - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+          - {surface: قیرغاولنی, sense: qirghawul, readings: {schluessel: qirǧawulni}, morphs: [{surface: قیرغاول, kc: 'sense:qirghawul'}, {surface: نی, kc: 'form:acc'}]}
+          - {surface: "اشکنه\u200cسی", sense: ishkina, readings: {schluessel: iškinasi}, morphs: [{surface: "اشکنه\u200c", kc: 'sense:ishkina'}, {surface: سی, kc: 'form:poss3'}]}
+          - {surface: بیله, sense: bila, readings: {schluessel: bilä}}
+          - {surface: تورت, sense: tort, readings: {schluessel: tört}}
+          - {surface: کیشی, sense: kishi, readings: {schluessel: kiši}}
+          - {surface: ییب, sense: ye, readings: {schluessel: yep}, morphs: [{surface: یی, kc: 'sense:ye'}, {surface: ب, kc: 'form:cv-p'}]}
+          - {surface: توکاتا, sense: tugat, readings: {schluessel: tügätä}, morphs: [{surface: توکات, kc: 'sense:tugat'}, {surface: ا, kc: 'form:cv-a'}]}
+          - {surface: المایدور, sense: al, readings: {schluessel: almaydur}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: مای, kc: 'form:pres-neg'}, {surface: دور, kc: 'form:dur'}]}
       translations:
         en: They tell that four men cannot finish one pheasant with its stew.
   - choose:
@@ -1077,23 +792,14 @@ stories:
         chg-Arab/standard:
           text: "شهری و بازاری\u200cسیدا ترکی بیلماس کیشی یوقتور."
           tokens:
-          - {surface: شهری, sense: shahar, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: ی, kc: 'form:nisba'}]}
-          - {surface: و, sense: wa}
-          - {surface: "بازاری\u200cسیدا", sense: bazar, morphs: [{surface: بازار, kc: 'sense:bazar'}, {surface: "ی\u200c", kc: 'form:nisba'}, {surface: سی, kc: 'form:poss3'}, {surface: دا, kc: 'form:loc'}]}
-          - {surface: ترکی, sense: turki}
-          - {surface: بیلماس, sense: bil, morphs: [{surface: بیل, kc: 'sense:bil'}, {surface: ماس, kc: 'form:aor-neg'}]}
-          - {surface: کیشی, sense: kishi}
-          - {surface: یوقتور, sense: yoq, morphs: [{surface: یوق, kc: 'sense:yoq'}, {surface: تور, kc: 'form:dur'}]}
-        chg-Latn/schluessel:
-          text: Šaharī wä bāzārīsida Turkī bilmäs kiši yoqtur.
-          tokens:
-          - {surface: Šaharī, sense: shahar, morphs: [{surface: Šahar, kc: 'sense:shahar'}, {surface: ī, kc: 'form:nisba'}]}
-          - {surface: wä, sense: wa}
-          - {surface: bāzārīsida, sense: bazar, morphs: [{surface: bāzār, kc: 'sense:bazar'}, {surface: ī, kc: 'form:nisba'}, {surface: si, kc: 'form:poss3'}, {surface: da, kc: 'form:loc'}]}
-          - {surface: Turkī, sense: turki}
-          - {surface: bilmäs, sense: bil, morphs: [{surface: bil, kc: 'sense:bil'}, {surface: mäs, kc: 'form:aor-neg'}]}
-          - {surface: kiši, sense: kishi}
-          - {surface: yoqtur, sense: yoq, morphs: [{surface: yoq, kc: 'sense:yoq'}, {surface: tur, kc: 'form:dur'}]}
+          - {surface: شهری, sense: shahar, readings: {schluessel: šaharī}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: ی, kc: 'form:nisba'}]}
+          - {surface: و, sense: wa, readings: {schluessel: wä}}
+          - {surface: "بازاری\u200cسیدا", sense: bazar, readings: {schluessel: bāzārīsida}, morphs: [{surface: بازار, kc: 'sense:bazar'}, {surface: "ی\u200c", kc: 'form:nisba'}, {surface: سی, kc: 'form:poss3'}, {
+                surface: دا, kc: 'form:loc'}]}
+          - {surface: ترکی, sense: turki, readings: {schluessel: Turkī}}
+          - {surface: بیلماس, sense: bil, readings: {schluessel: bilmäs}, morphs: [{surface: بیل, kc: 'sense:bil'}, {surface: ماس, kc: 'form:aor-neg'}]}
+          - {surface: کیشی, sense: kishi, readings: {schluessel: kiši}}
+          - {surface: یوقتور, sense: yoq, readings: {schluessel: yoqtur}, morphs: [{surface: یوق, kc: 'sense:yoq'}, {surface: تور, kc: 'form:dur'}]}
       translations:
         en: There is no one in its city or its market who does not know Turki.
   - line:
@@ -1102,19 +808,11 @@ stories:
         chg-Arab/standard:
           text: "ایلی\u200cنینک لفظی قلم بیله راست\u200cتور."
           tokens:
-          - {surface: "ایلی\u200cنینک", sense: el, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
-          - {surface: لفظی, sense: lafaz, morphs: [{surface: لفظ, kc: 'sense:lafaz'}, {surface: ی, kc: 'form:poss3'}]}
-          - {surface: قلم, sense: qalam}
-          - {surface: بیله, sense: bila}
-          - {surface: "راست\u200cتور", sense: rast, morphs: [{surface: "راست\u200c", kc: 'sense:rast'}, {surface: تور, kc: 'form:dur'}]}
-        chg-Latn/schluessel:
-          text: Eliniŋ lafaẓi qalam bilä rāsttur.
-          tokens:
-          - {surface: Eliniŋ, sense: el, morphs: [{surface: El, kc: 'sense:el'}, {surface: i, kc: 'form:poss3'}, {surface: niŋ, kc: 'form:gen'}]}
-          - {surface: lafaẓi, sense: lafaz, morphs: [{surface: lafaẓ, kc: 'sense:lafaz'}, {surface: i, kc: 'form:poss3'}]}
-          - {surface: qalam, sense: qalam}
-          - {surface: bilä, sense: bila}
-          - {surface: rāsttur, sense: rast, morphs: [{surface: rāst, kc: 'sense:rast'}, {surface: tur, kc: 'form:dur'}]}
+          - {surface: "ایلی\u200cنینک", sense: el, readings: {schluessel: eliniŋ}, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
+          - {surface: لفظی, sense: lafaz, readings: {schluessel: lafaẓi}, morphs: [{surface: لفظ, kc: 'sense:lafaz'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: قلم, sense: qalam, readings: {schluessel: qalam}}
+          - {surface: بیله, sense: bila, readings: {schluessel: bilä}}
+          - {surface: "راست\u200cتور", sense: rast, readings: {schluessel: rāsttur}, morphs: [{surface: "راست\u200c", kc: 'sense:rast'}, {surface: تور, kc: 'form:dur'}]}
       translations:
         en: The people's speech is the same as the written word.
   - choose:

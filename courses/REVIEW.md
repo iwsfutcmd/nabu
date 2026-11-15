@@ -768,8 +768,11 @@ references in the reference library (find them with `nabu refs find`; notes in n
 - The spellings of Turkic words in the Arabic script: one convention (Schluessel's typescript: plene vowels in
   most words, the copula after a half-space), where the manuscripts have many. Accept sets add the commonest
   variants only.
-- The transliteration: front and back vowels (ä/a) and the e/ä of verbs (käldi but kelädur, bärdi), the ǧ/q and
-  g/k of suffixes, where Schluessel himself varies.
+- The transliteration (each word's reading, shown as ruby; ADR 0129): front and back vowels (ä/a) and the e/ä of
+  verbs (käldi but kelädur, bärdi), the ǧ/q and g/k of suffixes, where Schluessel himself varies; the readings of
+  the KCs' citation forms (stems without their hyphen: bar).
+- The Nastaliq face (Noto Nastaliq Urdu): whether its size, line height and the transliteration's place above it
+  read well on a phone.
 - The passages: each story line against Schluessel's typescript (ch. 11-14) and, ideally, the manuscripts; the
   places marked with … where a line was shortened; the English translations, which are the course's own.
 - The grading policies marked REVIEW in profiles/chg-Arab.standard.yaml and profiles/chg-Latn.schluessel.yaml:

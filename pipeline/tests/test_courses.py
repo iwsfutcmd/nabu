@@ -591,6 +591,7 @@ def test_a_voice_s_quality_decides_what_ships(
 
 
 CHG_AR = "chg-Arab/standard"
+# The alphabet track's Latin side (the chg-Arab profile's `romanize`), not a course orthography.
 CHG_LA = "chg-Latn/schluessel"
 # Schluessel's letters (2018, xii-xxxii), decomposed: a reading of the Arabic, one letter a sound.
 # A hyphen joins the Persian ezafe (tārīḫ-i) and bē- "without" to their words.
@@ -598,98 +599,57 @@ _LETTER = r"[a-zŋʿʾ\u0300\u0301\u0304\u0307\u0308\u030c\u0323\u032e\u0331]"
 SCHLUESSEL = regex.compile(rf"{_LETTER}+(?:-{_LETTER}+)*", regex.IGNORECASE)
 
 
-def test_chaghatay_is_read_and_written_in_two_scripts(core_cli: CoreCli) -> None:
+def test_chaghatay_is_arabic_with_schluessels_transliteration_as_ruby(core_cli: CoreCli) -> None:
     """chg (ADR 0128): no audio, read and written only (and its alphabet's letters and words read
-    and written: the script facets). Every sentence and story line is pinned in
-    the Arabic script and in Schluessel's transliteration, word for word: the same senses and
-    suffixes in the same order, the Latin in his letters, the Arabic in Arabic letters (a suffix
-    after a zero-width non-joiner)."""
+    and written: the script facets). One orthography, the Arabic script; every word of every
+    sentence and story line pins Schluessel's transliteration as a reading (in his letters), shown
+    as ruby over the whole word (the scheme's `ruby: word`, ADR 0129), never asked for."""
     _, compiled = build(core_cli, "chg")
     assert compiled.course.audio is None and compiled.audio_items == {}
     assert compiled.course.facets == ["recognize", "produce", "read-script", "write-script"]
-    assert compiled.orthographies == [CHG_AR, CHG_LA]
+    assert compiled.orthographies == [CHG_AR]
     arabic = regex.compile(r"[\p{Script_Extensions=Arabic}\u200c]+")
     lines = 0
 
-    def check(forms: dict[str, Any], where: str) -> None:
-        ar = [t for t in forms[CHG_AR]["tokens"] if t["kind"] == "word"]
-        la = [t for t in forms[CHG_LA]["tokens"] if t["kind"] == "word"]
-        assert [t.get("sense") for t in ar] == [t.get("sense") for t in la], where
-        for a, b in zip(ar, la, strict=True):
-            assert [m["kc"] for m in a.get("morphs", [])] == [
-                m["kc"] for m in b.get("morphs", [])
-            ], (where, a["surface"], b["surface"])
-            assert arabic.fullmatch(a["surface"]), (where, a["surface"])
-            assert SCHLUESSEL.fullmatch(unicodedata.normalize("NFD", b["surface"])), (
-                where,
-                b["surface"],
-            )
+    def check(text: dict[str, Any], where: str) -> None:
+        words = [t for t in text["tokens"] if t["kind"] == "word"]
+        assert words, where
+        for t in words:
+            assert arabic.fullmatch(t["surface"]), (where, t["surface"])
+            reading = t["readings"]["schluessel"]
+            assert SCHLUESSEL.fullmatch(unicodedata.normalize("NFD", reading)), (where, reading)
+            assert t["ruby"]["schluessel"] == [{"base": t["surface"], "text": reading}], where
 
     for s in sentences(compiled):
-        assert sorted(s["forms"]) == sorted([CHG_AR, CHG_LA]), s["id"]
-        assert all("reverse" in f for f in s["forms"].values()), s["id"]
-        check({o: f["text"] for o, f in s["forms"].items()}, s["id"])
+        assert sorted(s["forms"]) == [CHG_AR], s["id"]
+        assert "reverse" in s["forms"][CHG_AR], s["id"]
+        check(s["forms"][CHG_AR]["text"], s["id"])
         lines += 1
     for unit in bundled(compiled):
         for story in unit.get("stories", []):
             for step in story["steps"]:
                 if "line" in step:
-                    check(step["line"]["forms"], story["id"])
+                    assert sorted(step["line"]["forms"]) == [CHG_AR], story["id"]
+                    check(step["line"]["forms"][CHG_AR], story["id"])
                     lines += 1
-    assert lines > 50
-
-
-def test_chaghatay_arabic_reads_as_its_transliteration(core_cli: CoreCli) -> None:
-    """chg's Arabic carries Schluessel's transliteration as a reading layer (ADR 0129): every word
-    of a sentence, story line and KC form has, as ruby over the whole word, the word in the same
-    place in the chg-Latn form (a KC form of one word: its Latin form, a stem's hyphen left out).
-    A script track's letters and items get none: their Latin spelling is what their cards ask."""
-    _, compiled = build(core_cli, "chg")
-    units = bundled(compiled)
-
-    def words(text: dict[str, Any]) -> list[dict[str, Any]]:
-        return [t for t in text["tokens"] if t["kind"] == "word"]
-
-    def check(forms: dict[str, Any], where: str) -> int:
-        ar, la = words(forms[CHG_AR]), words(forms[CHG_LA])
-        for a, b in zip(ar, la, strict=True):
-            assert a["ruby"]["schluessel"] == [{"base": a["surface"], "text": b["surface"]}], where
-        return len(ar)
-
-    shown = sum(
-        check({o: f["text"] for o, f in s["forms"].items()}, s["id"]) for s in sentences(compiled)
-    )
-    for unit in units:
-        for story in unit.get("stories", []):
-            for step in story["steps"]:
-                if "line" in step:
-                    shown += check(step["line"]["forms"], story["id"])
-    assert shown > 2000
-    forms = 0
-    for unit in units:
+    assert lines > 500
+    # Word cards too: every KC form's word, a verb's stem included (بار- reads bar), which no
+    # sentence shows alone: the KC gives its own reading (ADR 0129).
+    stems = 0
+    for unit in bundled(compiled):
         for kc in unit["kcs"]:
-            ar = (kc.get("forms") or {}).get(CHG_AR)
-            if not ar:
-                continue
-            ruby = [t.get("ruby") for t in words(ar[0])]
-            if kc["id"].startswith("grapheme:"):
-                assert ruby == [None], kc["id"]
-                continue
-            assert all(r is not None and "schluessel" in r for r in ruby), kc["id"]
-            forms += 1
-    assert forms > 300
-    stem = next(k for u in units for k in u["kcs"] if k["id"] == "sense:bar.go")
-    assert words(stem["forms"][CHG_AR][0])[0]["ruby"]["schluessel"][0]["text"] == "bar"
-    for node in (n for u in units for n in u["nodes"] if n["kind"] == "script"):
-        for item in [*node["alphabet"]["letters"], *node["alphabet"]["words"]]:
-            assert all("ruby" not in t for t in item["text"]["tokens"]), item["kc"]
+            for form in kc.get("forms", {}).get(CHG_AR, []):
+                if kc["id"].startswith("sense:"):
+                    check(form, kc["id"])
+                    stems += form["tokens"][-1]["surface"] == "-"
+    assert stems > 50
 
 
 def test_chaghatay_alphabet_track(core_cli: CoreCli) -> None:
     """chg's script track (ADR 0088, 0128): eight alphabet nodes in the Arabic script, each word
     spelled with the letters taught by then, every letter and word with its Latin spelling taken
     from its own form in Schluessel's transliteration (`romanize: forms`), not romanized from its
-    letters."""
+    letters. That orthography is the track's Latin side only: the course teaches the Arabic."""
     _, compiled = build(core_cli, "chg")
     forms = {
         k["id"]: {o: "".join(t["surface"] for t in f[0]["tokens"]) for o, f in k["forms"].items()}

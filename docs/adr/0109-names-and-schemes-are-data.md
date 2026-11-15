@@ -5,6 +5,7 @@
 - Amends: gameplan §1 decision 8 (course and orthography names were MF2 messages of the app);
   [0054](0054-pronunciation-exercises.md) and [0071](0071-classical-chinese.md) (what a new reading
   scheme needs: a syllable shape and a `READING_TAGS` entry in code)
+- Amended by: [0129](0129-chaghatay-arabic-with-word-ruby.md) (a scheme's ruby may stand over the whole word)
 
 ## Context
 

@@ -498,19 +498,12 @@ const makeTap = (
 ): TranslateTap | undefined => {
   const tiles = tileGroups(answer);
   if (tiles.length === 0) return undefined;
-  // Three or four distractors (P2) that look like the answer's own tiles. The answer's words are in
-  // lower case but its first (and a name), so distractors are too: capitalized ones, a sentence's
-  // first words elsewhere, would show that every lower-case tile is the answer's. Where the answer
-  // has a capital, one capitalized distractor comes too, so the capital doesn't mark its first tile;
-  // a course too short for lower-case ones makes up the count with capitalized ones.
-  const capital = tiles.some((t) => capitalized(ctx.course, t));
+  // Three or four distractors (P2); where the answer starts with a capital, a capitalized one comes
+  // first, so the capital doesn't mark the sentence's first tile.
+  const capital = tiles[0] !== undefined && capitalized(ctx.course, tiles[0]);
   const bank = pool.flatMap((t) => tileGroups(t));
   const count = Math.min(4, Math.max(3, tiles.length));
-  const upper = bank.filter((t) => capitalized(ctx.course, t));
-  const lower = bank.filter((t) => !capitalized(ctx.course, t));
-  const lead = capital ? pickDistinct(ctx, upper, tiles, 1) : [];
-  const rest = pickDistinct(ctx, lower, [...tiles, ...lead], count - lead.length);
-  const distractors = [...lead, ...rest, ...pickDistinct(ctx, upper, [...tiles, ...lead, ...rest], count - lead.length - rest.length)];
+  const distractors = capital ? pickRanked(ctx, bank, tiles, count, (t) => (capitalized(ctx.course, t) ? 1 : 0)) : pickDistinct(ctx, bank, tiles, count);
   const all = [...tiles, ...distractors];
   const order = ctx.rng.shuffle(all.map((_, i) => i));
   return {

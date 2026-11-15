@@ -19,7 +19,6 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
 from nabu.compiler.source import Doc
-from nabu.compiler.transliteration import transliterate_forms
 from nabu.items import line_item
 
 if TYPE_CHECKING:
@@ -202,9 +201,6 @@ class _Compiler:
                 self.ctx.written[(line_item(story.id, step), orth)] = [
                     str(t.get("_written", t["surface"])) for t in tagged["tokens"]
                 ]
-        # Reading layers that are another orthography's words (ADR 0129), before the line is used.
-        for orth, why in transliterate_forms(forms, self.ctx.profiles):
-            self.report("enrich.ruby-unaligned", f"{story.id}: {why}", doc, (*at, "forms", orth))
         absent = [o for o in self.course.orthographies if o not in line.forms]
         if absent:
             self.report(

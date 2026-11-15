@@ -320,10 +320,6 @@ export type TableRef = string;
  */
 export type ScriptedLangTag1 = LangTag;
 /**
- * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
- */
-export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
-/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "StrokeOrderStandard".
  */
@@ -331,7 +327,7 @@ export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
  * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
  */
-export type OrthographyId3 = string & { readonly __brand: "OrthographyId" };
+export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
@@ -343,7 +339,7 @@ export type ScriptedLangTag2 = LangTag;
 /**
  * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
  */
-export type OrthographyId4 = string & { readonly __brand: "OrthographyId" };
+export type OrthographyId3 = string & { readonly __brand: "OrthographyId" };
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReportSubmission".
@@ -1752,7 +1748,7 @@ export interface KnowledgeComponentSource {
     readonly [k: string]: readonly string[];
   };
   /**
-   * How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-.
+   * How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-. In a scheme read over whole words (`ruby: word`, ADR 0129) it may add one: chg's verb stems (bar-) never stand alone in a sentence.
    */
   readonly readings?: {
     readonly [k: string]: string;
@@ -3226,7 +3222,6 @@ export interface AnnotationLayer {
   readonly default?: "on" | "off" | "on-for-new-words";
   readonly scheme?: SchemeId;
   readonly lang?: ScriptedLangTag1;
-  readonly orthography?: OrthographyId2;
   readonly render?: "ruby" | "inline" | "interlinear";
   readonly fade?: "none" | "by-facet";
 }
@@ -3298,7 +3293,7 @@ export interface Romanization {
    * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters.
    */
   readonly scheme: "greek" | "forms";
-  readonly orthography: OrthographyId3;
+  readonly orthography: OrthographyId2;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -3380,7 +3375,11 @@ export interface ReadingScheme {
   };
   readonly language: LangTag1;
   readonly lang?: ScriptedLangTag2;
-  readonly answer?: OrthographyId4;
+  readonly answer?: OrthographyId3;
+  /**
+   * What one ruby segment stands over where a profile shows the scheme as ruby (ADR 0129): each character (the default: a Han character's syllable, a logograph's word, a syllable of the script's own scheme) or the whole word, where the script's letters do not line up with the reading's (Schluessel's transliteration over a Chaghatay word in Arabic script, which leaves most vowels unwritten).
+   */
+  readonly ruby?: "character" | "word";
   /**
    * A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
    */

@@ -28,6 +28,11 @@
       "description": "The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese.",
       "$ref": "common.schema.json#/$defs/OrthographyId"
     },
+    "ruby": {
+      "description": "What one ruby segment stands over where a profile shows the scheme as ruby (ADR 0129): each character (the default: a Han character's syllable, a logograph's word, a syllable of the script's own scheme) or the whole word, where the script's letters do not line up with the reading's (Schluessel's transliteration over a Chaghatay word in Arabic script, which leaves most vowels unwritten).",
+      "enum": ["character", "word"],
+      "default": "character"
+    },
     "typed": {
       "description": "A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.",
       "type": "object",

@@ -6,6 +6,8 @@
   [0054](0054-pronunciation-exercises.md) and [0071](0071-classical-chinese.md) (KC forms carry
   ruby), [0109](0109-names-and-schemes-are-data.md) (reading schemes are data)
 - Amended: below (2026-11-12, the owner's D44: a KC's own reading)
+- Amended by: [0129](0129-chaghatay-arabic-with-word-ruby.md) (in a `ruby: word` scheme a KC may give a reading no
+  token gives)
 
 ## Context
 

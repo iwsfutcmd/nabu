@@ -18,6 +18,8 @@ kcs:
     - کسب
     chg-Latn/schluessel:
     - kasb
+  readings:
+    schluessel: kasb
 - id: sense:ahangar
   gloss:
     en: smith, blacksmith (Persian āhangar)
@@ -26,6 +28,8 @@ kcs:
     - اهنکر
     chg-Latn/schluessel:
     - ahangir
+  readings:
+    schluessel: ahangir
   notes:
     en: ahangirlik "smithing"; the Turkic word is tömürči.
 - id: sense:asan
@@ -36,6 +40,8 @@ kcs:
     - اسان
     chg-Latn/schluessel:
     - asān
+  readings:
+    schluessel: asān
 - id: sense:mushkil
   gloss:
     en: difficult, hard
@@ -44,6 +50,8 @@ kcs:
     - مشکل
     chg-Latn/schluessel:
     - muškil
+  readings:
+    schluessel: muškil
 - id: sense:kar
   gloss:
     en: work, task; craft
@@ -52,6 +60,8 @@ kcs:
     - کار
     chg-Latn/schluessel:
     - kār
+  readings:
+    schluessel: kār
 - id: sense:yarat
   gloss:
     en: to create
@@ -60,6 +70,8 @@ kcs:
     - یرات-
     chg-Latn/schluessel:
     - yarat-
+  readings:
+    schluessel: yarat
 - id: sense:shul
   gloss:
     en: that (very)
@@ -68,6 +80,8 @@ kcs:
     - شول
     chg-Latn/schluessel:
     - šul
+  readings:
+    schluessel: šul
   notes:
     en: šul sāʿatdä "at that very hour".
 - id: sense:saat
@@ -78,6 +92,8 @@ kcs:
     - ساعت
     chg-Latn/schluessel:
     - sāʿat
+  readings:
+    schluessel: sāʿat
 - id: sense:darhal
   gloss:
     en: immediately, at once (Persian dar ḥāl)
@@ -86,6 +102,8 @@ kcs:
     - درحال
     chg-Latn/schluessel:
     - darḥāl
+  readings:
+    schluessel: darḥāl
 - id: sense:jannat
   gloss:
     en: Paradise
@@ -94,6 +112,8 @@ kcs:
     - جنت
     chg-Latn/schluessel:
     - jannat
+  readings:
+    schluessel: jannat
 - id: sense:farman
   gloss:
     en: order, command
@@ -102,6 +122,8 @@ kcs:
     - فرمان
     chg-Latn/schluessel:
     - farmān
+  readings:
+    schluessel: farmān
   notes:
     en: farmān boldi "an order was given".
 - id: sense:dawud
@@ -112,6 +134,8 @@ kcs:
     - داود
     chg-Latn/schluessel:
     - Dāwud
+  readings:
+    schluessel: Dāwud
 - id: sense:jibrail
   gloss:
     en: Jibrāʾīl (the archangel Gabriel)
@@ -120,6 +144,8 @@ kcs:
     - جبرائیل
     chg-Latn/schluessel:
     - Jibrāʾīl
+  readings:
+    schluessel: Jibrāʾīl
 - id: sense:munajat
   gloss:
     en: prayer (to God)
@@ -128,6 +154,8 @@ kcs:
     - مناجات
     chg-Latn/schluessel:
     - munājāt
+  readings:
+    schluessel: munājāt
   notes:
     en: munājāt qil- "to pray".
 - id: sense:parwardigar
@@ -138,6 +166,8 @@ kcs:
     - پروردگار
     chg-Latn/schluessel:
     - parwardigār
+  readings:
+    schluessel: parwardigār
 - id: sense:dargah
   gloss:
     en: court; presence (of a king or of God)
@@ -146,6 +176,8 @@ kcs:
     - درکاه
     chg-Latn/schluessel:
     - dargāh
+  readings:
+    schluessel: dargāh
   notes:
     en: dargāh-i ḥaqq "the presence of God".
 - id: sense:haqq
@@ -156,6 +188,8 @@ kcs:
     - حق
     chg-Latn/schluessel:
     - ḥaqq
+  readings:
+    schluessel: ḥaqq
 - id: form:juss
   gloss:
     en: '-sun, -sün: let him, her, them; may …'
@@ -201,15 +235,9 @@ sentences:
     chg-Arab/standard:
       text: بیر کسب.
       tokens:
-      - {surface: بیر, sense: bir}
-      - {surface: کسب, sense: kasb}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: کسب, sense: kasb, readings: {schluessel: kasb}}
       reverse: (بیر|بر) کسب
-    chg-Latn/schluessel:
-      text: Bir kasb.
-      tokens:
-      - {surface: Bir, sense: bir}
-      - {surface: kasb, sense: kasb}
-      reverse: Bir kasb
   translations:
     en: A (craft|trade|profession).
 - id: s.18.2
@@ -218,13 +246,8 @@ sentences:
     chg-Arab/standard:
       text: اهنکر.
       tokens:
-      - {surface: اهنکر, sense: ahangar}
+      - {surface: اهنکر, sense: ahangar, readings: {schluessel: ahangir}}
       reverse: (اهنکر|آهنگر)
-    chg-Latn/schluessel:
-      text: Ahangir.
-      tokens:
-      - {surface: Ahangir, sense: ahangar}
-      reverse: (Ahangir|Ahangar)
   translations:
     en: A (smith|blacksmith).
 - id: s.18.3
@@ -233,13 +256,8 @@ sentences:
     chg-Arab/standard:
       text: اهنکرلیک.
       tokens:
-      - {surface: اهنکرلیک, sense: ahangar, morphs: [{surface: اهنکر, kc: 'sense:ahangar'}, {surface: لیک, kc: 'form:liq'}]}
+      - {surface: اهنکرلیک, sense: ahangar, readings: {schluessel: ahangirlik}, morphs: [{surface: اهنکر, kc: 'sense:ahangar'}, {surface: لیک, kc: 'form:liq'}]}
       reverse: (اهنکرلیک|آهنگرلیک)
-    chg-Latn/schluessel:
-      text: Ahangirlik.
-      tokens:
-      - {surface: Ahangirlik, sense: ahangar, morphs: [{surface: Ahangir, kc: 'sense:ahangar'}, {surface: lik, kc: 'form:liq'}]}
-      reverse: (Ahangirlik|Ahangarlik)
   translations:
     en: (Smithing|Blacksmithing).
 - id: s.18.4
@@ -248,19 +266,10 @@ sentences:
     chg-Arab/standard:
       text: اهنکرلیک بیر کسب.
       tokens:
-      - {surface: اهنکرلیک, sense: ahangar, morphs: [{surface: اهنکر, kc: 'sense:ahangar'}, {surface: لیک, kc: 'form:liq'}]}
-      - {surface: بیر, sense: bir}
-      - {surface: کسب, sense: kasb}
+      - {surface: اهنکرلیک, sense: ahangar, readings: {schluessel: ahangirlik}, morphs: [{surface: اهنکر, kc: 'sense:ahangar'}, {surface: لیک, kc: 'form:liq'}]}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: کسب, sense: kasb, readings: {schluessel: kasb}}
       reverse: "(اهنکرلیک|آهنگرلیک) (بیر|بر) کسب\n(اهنکرلیک|آهنگرلیک) (بیر|بر) کسب\u200cدور"
-    chg-Latn/schluessel:
-      text: Ahangirlik bir kasb.
-      tokens:
-      - {surface: Ahangirlik, sense: ahangar, morphs: [{surface: Ahangir, kc: 'sense:ahangar'}, {surface: lik, kc: 'form:liq'}]}
-      - {surface: bir, sense: bir}
-      - {surface: kasb, sense: kasb}
-      reverse: |-
-        (Ahangirlik|Ahangarlik) bir kasb
-        (Ahangirlik|Ahangarlik) bir kasbdur
   translations:
     en: (Smithing|Blacksmithing) is a (craft|trade|profession).
 - id: s.18.5
@@ -269,13 +278,8 @@ sentences:
     chg-Arab/standard:
       text: یغاچچیلیک.
       tokens:
-      - {surface: یغاچچیلیک, sense: yaghach, morphs: [{surface: یغاچ, kc: 'sense:yaghach'}, {surface: چی, kc: 'form:ci'}, {surface: لیک, kc: 'form:liq'}]}
+      - {surface: یغاچچیلیک, sense: yaghach, readings: {schluessel: yaǧaččilik}, morphs: [{surface: یغاچ, kc: 'sense:yaghach'}, {surface: چی, kc: 'form:ci'}, {surface: لیک, kc: 'form:liq'}]}
       reverse: (یغاچچیلیک|یاغاچچیلیک)
-    chg-Latn/schluessel:
-      text: Yaǧaččilik.
-      tokens:
-      - {surface: Yaǧaččilik, sense: yaghach, morphs: [{surface: Yaǧač, kc: 'sense:yaghach'}, {surface: či, kc: 'form:ci'}, {surface: lik, kc: 'form:liq'}]}
-      reverse: Yaǧaččilik
   translations:
     en: (Carpentry|Woodworking).
 - id: s.18.6
@@ -284,19 +288,11 @@ sentences:
     chg-Arab/standard:
       text: اتامنینک کسبی اهنکرلیک ایردی.
       tokens:
-      - {surface: اتامنینک, sense: ata, morphs: [{surface: اتا, kc: 'sense:ata'}, {surface: م, kc: 'form:poss1s'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: کسبی, sense: kasb, morphs: [{surface: کسب, kc: 'sense:kasb'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: اهنکرلیک, sense: ahangar, morphs: [{surface: اهنکر, kc: 'sense:ahangar'}, {surface: لیک, kc: 'form:liq'}]}
-      - {surface: ایردی, sense: er, morphs: [{surface: ایر, kc: 'sense:er'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: اتامنینک, sense: ata, readings: {schluessel: atamniŋ}, morphs: [{surface: اتا, kc: 'sense:ata'}, {surface: م, kc: 'form:poss1s'}, {surface: نینک, kc: 'form:gen'}]}
+      - {surface: کسبی, sense: kasb, readings: {schluessel: kasbi}, morphs: [{surface: کسب, kc: 'sense:kasb'}, {surface: ی, kc: 'form:poss3'}]}
+      - {surface: اهنکرلیک, sense: ahangar, readings: {schluessel: ahangirlik}, morphs: [{surface: اهنکر, kc: 'sense:ahangar'}, {surface: لیک, kc: 'form:liq'}]}
+      - {surface: ایردی, sense: er, readings: {schluessel: erdi}, morphs: [{surface: ایر, kc: 'sense:er'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: (اتامنینک|آتامنینک) کسبی (اهنکرلیک|آهنگرلیک) (ایردی|ایدی)
-    chg-Latn/schluessel:
-      text: Atamniŋ kasbi ahangirlik erdi.
-      tokens:
-      - {surface: Atamniŋ, sense: ata, morphs: [{surface: Ata, kc: 'sense:ata'}, {surface: m, kc: 'form:poss1s'}, {surface: niŋ, kc: 'form:gen'}]}
-      - {surface: kasbi, sense: kasb, morphs: [{surface: kasb, kc: 'sense:kasb'}, {surface: i, kc: 'form:poss3'}]}
-      - {surface: ahangirlik, sense: ahangar, morphs: [{surface: ahangir, kc: 'sense:ahangar'}, {surface: lik, kc: 'form:liq'}]}
-      - {surface: erdi, sense: er, morphs: [{surface: er, kc: 'sense:er'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Atamniŋ kasbi (ahangirlik|ahangarlik) erdi
   translations:
     en: My father's (craft|trade|profession) was (smithing|blacksmithing).
 - id: s.18.7
@@ -305,17 +301,9 @@ sentences:
     chg-Arab/standard:
       text: بو اسان.
       tokens:
-      - {surface: بو, sense: bu}
-      - {surface: اسان, sense: asan}
+      - {surface: بو, sense: bu, readings: {schluessel: bu}}
+      - {surface: اسان, sense: asan, readings: {schluessel: asān}}
       reverse: "بو (اسان|آسان)\nبو (اسان\u200cدور|آسان\u200cدور)"
-    chg-Latn/schluessel:
-      text: Bu asān.
-      tokens:
-      - {surface: Bu, sense: bu}
-      - {surface: asān, sense: asan}
-      reverse: |-
-        Bu asān
-        Bu asāndur
   translations:
     en: (This|It) is easy.
 - id: s.18.8
@@ -324,17 +312,9 @@ sentences:
     chg-Arab/standard:
       text: بو مشکل.
       tokens:
-      - {surface: بو, sense: bu}
-      - {surface: مشکل, sense: mushkil}
+      - {surface: بو, sense: bu, readings: {schluessel: bu}}
+      - {surface: مشکل, sense: mushkil, readings: {schluessel: muškil}}
       reverse: "بو مشکل\nبو مشکل\u200cدور"
-    chg-Latn/schluessel:
-      text: Bu muškil.
-      tokens:
-      - {surface: Bu, sense: bu}
-      - {surface: muškil, sense: mushkil}
-      reverse: |-
-        Bu muškil
-        Bu muškildur
   translations:
     en: (This|It) is (difficult|hard).
 - id: s.18.9
@@ -343,13 +323,8 @@ sentences:
     chg-Arab/standard:
       text: منکا.
       tokens:
-      - {surface: منکا, sense: man, morphs: [{surface: م, kc: 'sense:man'}, {surface: نکا, kc: 'form:dat'}]}
+      - {surface: منکا, sense: man, readings: {schluessel: maŋa}, morphs: [{surface: م, kc: 'sense:man'}, {surface: نکا, kc: 'form:dat'}]}
       reverse: (منکا|منکه)
-    chg-Latn/schluessel:
-      text: Maŋa.
-      tokens:
-      - {surface: Maŋa, sense: man, morphs: [{surface: Ma, kc: 'sense:man'}, {surface: ŋa, kc: 'form:dat'}]}
-      reverse: Maŋa
   translations:
     en: (To|For) me.
 - id: s.18.10
@@ -358,19 +333,11 @@ sentences:
     chg-Arab/standard:
       text: بو کار منکا اسان.
       tokens:
-      - {surface: بو, sense: bu}
-      - {surface: کار, sense: kar}
-      - {surface: منکا, sense: man, morphs: [{surface: م, kc: 'sense:man'}, {surface: نکا, kc: 'form:dat'}]}
-      - {surface: اسان, sense: asan}
+      - {surface: بو, sense: bu, readings: {schluessel: bu}}
+      - {surface: کار, sense: kar, readings: {schluessel: kār}}
+      - {surface: منکا, sense: man, readings: {schluessel: maŋa}, morphs: [{surface: م, kc: 'sense:man'}, {surface: نکا, kc: 'form:dat'}]}
+      - {surface: اسان, sense: asan, readings: {schluessel: asān}}
       reverse: بو کار (منکا|منکه) (اسان|آسان)
-    chg-Latn/schluessel:
-      text: Bu kār maŋa asān.
-      tokens:
-      - {surface: Bu, sense: bu}
-      - {surface: kār, sense: kar}
-      - {surface: maŋa, sense: man, morphs: [{surface: ma, kc: 'sense:man'}, {surface: ŋa, kc: 'form:dat'}]}
-      - {surface: asān, sense: asan}
-      reverse: Bu kār maŋa asān
   translations:
     en: This (task|work|job) is easy for me.
 - id: s.18.11
@@ -379,19 +346,11 @@ sentences:
     chg-Arab/standard:
       text: هر کار سنکا اسان.
       tokens:
-      - {surface: هر, sense: har}
-      - {surface: کار, sense: kar}
-      - {surface: سنکا, sense: san, morphs: [{surface: س, kc: 'sense:san'}, {surface: نکا, kc: 'form:dat'}]}
-      - {surface: اسان, sense: asan}
+      - {surface: هر, sense: har, readings: {schluessel: här}}
+      - {surface: کار, sense: kar, readings: {schluessel: kār}}
+      - {surface: سنکا, sense: san, readings: {schluessel: saŋa}, morphs: [{surface: س, kc: 'sense:san'}, {surface: نکا, kc: 'form:dat'}]}
+      - {surface: اسان, sense: asan, readings: {schluessel: asān}}
       reverse: هر کار (سنکا|سنکه) (اسان|آسان)
-    chg-Latn/schluessel:
-      text: Här kār saŋa asān.
-      tokens:
-      - {surface: Här, sense: har}
-      - {surface: kār, sense: kar}
-      - {surface: saŋa, sense: san, morphs: [{surface: sa, kc: 'sense:san'}, {surface: ŋa, kc: 'form:dat'}]}
-      - {surface: asān, sense: asan}
-      reverse: Här kār saŋa asān
   translations:
     en: Every (task|craft|job) is easy for you.
   persons:
@@ -402,19 +361,11 @@ sentences:
     chg-Arab/standard:
       text: بو کسب بیزلارغه مشکل.
       tokens:
-      - {surface: بو, sense: bu}
-      - {surface: کسب, sense: kasb}
-      - {surface: بیزلارغه, sense: biz, morphs: [{surface: بیز, kc: 'sense:biz'}, {surface: لار, kc: 'form:pl'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: مشکل, sense: mushkil}
+      - {surface: بو, sense: bu, readings: {schluessel: bu}}
+      - {surface: کسب, sense: kasb, readings: {schluessel: kasb}}
+      - {surface: بیزلارغه, sense: biz, readings: {schluessel: bizlärgä}, morphs: [{surface: بیز, kc: 'sense:biz'}, {surface: لار, kc: 'form:pl'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: مشکل, sense: mushkil, readings: {schluessel: muškil}}
       reverse: بو کسب (بیزلارغه|بیزلارکه|بیزلارقه|بیزلارغا) مشکل
-    chg-Latn/schluessel:
-      text: Bu kasb bizlärgä muškil.
-      tokens:
-      - {surface: Bu, sense: bu}
-      - {surface: kasb, sense: kasb}
-      - {surface: bizlärgä, sense: biz, morphs: [{surface: biz, kc: 'sense:biz'}, {surface: lär, kc: 'form:pl'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: muškil, sense: mushkil}
-      reverse: Bu kasb bizlärgä muškil
   translations:
     en: This (craft|trade) is (difficult|hard) for us.
 - id: s.18.13
@@ -423,19 +374,11 @@ sentences:
     chg-Arab/standard:
       text: سنکا بیر کتاب بیردیم.
       tokens:
-      - {surface: سنکا, sense: san, morphs: [{surface: س, kc: 'sense:san'}, {surface: نکا, kc: 'form:dat'}]}
-      - {surface: بیر, sense: bir}
-      - {surface: کتاب, sense: kitab}
-      - {surface: بیردیم, sense: bar.give, morphs: [{surface: بیر, kc: 'sense:bar.give'}, {surface: دیم, kc: 'form:past-1s'}]}
+      - {surface: سنکا, sense: san, readings: {schluessel: saŋa}, morphs: [{surface: س, kc: 'sense:san'}, {surface: نکا, kc: 'form:dat'}]}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: کتاب, sense: kitab, readings: {schluessel: kitāb}}
+      - {surface: بیردیم, sense: bar.give, readings: {schluessel: bärdim}, morphs: [{surface: بیر, kc: 'sense:bar.give'}, {surface: دیم, kc: 'form:past-1s'}]}
       reverse: (سنکا|سنکه) (بیر|بر) کتاب (بیردیم|بردیم)
-    chg-Latn/schluessel:
-      text: Saŋa bir kitāb bärdim.
-      tokens:
-      - {surface: Saŋa, sense: san, morphs: [{surface: Sa, kc: 'sense:san'}, {surface: ŋa, kc: 'form:dat'}]}
-      - {surface: bir, sense: bir}
-      - {surface: kitāb, sense: kitab}
-      - {surface: bärdim, sense: bar.give, morphs: [{surface: bär, kc: 'sense:bar.give'}, {surface: dim, kc: 'form:past-1s'}]}
-      reverse: Saŋa bir kitāb bärdim
   translations:
     en: I gave you a book.
   persons:
@@ -446,17 +389,10 @@ sentences:
     chg-Arab/standard:
       text: تنکری عالمنی یراتتی.
       tokens:
-      - {surface: تنکری, sense: tangri}
-      - {surface: عالمنی, sense: alam, morphs: [{surface: عالم, kc: 'sense:alam'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: یراتتی, sense: yarat, morphs: [{surface: یرات, kc: 'sense:yarat'}, {surface: تی, kc: 'form:past-3'}]}
+      - {surface: تنکری, sense: tangri, readings: {schluessel: Täŋri}}
+      - {surface: عالمنی, sense: alam, readings: {schluessel: ʿālamni}, morphs: [{surface: عالم, kc: 'sense:alam'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: یراتتی, sense: yarat, readings: {schluessel: yaratti}, morphs: [{surface: یرات, kc: 'sense:yarat'}, {surface: تی, kc: 'form:past-3'}]}
       reverse: (تنکری|تانکری) عالمنی (یراتتی|یاراتتی)
-    chg-Latn/schluessel:
-      text: Täŋri ʿālamni yaratti.
-      tokens:
-      - {surface: Täŋri, sense: tangri}
-      - {surface: ʿālamni, sense: alam, morphs: [{surface: ʿālam, kc: 'sense:alam'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: yaratti, sense: yarat, morphs: [{surface: yarat, kc: 'sense:yarat'}, {surface: ti, kc: 'form:past-3'}]}
-      reverse: Täŋri ʿālamni yaratti
   translations:
     en: God created the world.
 - id: s.18.15
@@ -465,17 +401,10 @@ sentences:
     chg-Arab/standard:
       text: بیر صندوق یاساغانمن.
       tokens:
-      - {surface: بیر, sense: bir}
-      - {surface: صندوق, sense: sanduq}
-      - {surface: یاساغانمن, sense: yasa, morphs: [{surface: یاسا, kc: 'sense:yasa'}, {surface: غان, kc: 'form:pcp'}, {surface: من, kc: 'form:p1s'}]}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: صندوق, sense: sanduq, readings: {schluessel: ṣandūq}}
+      - {surface: یاساغانمن, sense: yasa, readings: {schluessel: yasaǧanmän}, morphs: [{surface: یاسا, kc: 'sense:yasa'}, {surface: غان, kc: 'form:pcp'}, {surface: من, kc: 'form:p1s'}]}
       reverse: (بیر|بر) صندوق یاساغانمن
-    chg-Latn/schluessel:
-      text: Bir ṣandūq yasaǧanmän.
-      tokens:
-      - {surface: Bir, sense: bir}
-      - {surface: ṣandūq, sense: sanduq}
-      - {surface: yasaǧanmän, sense: yasa, morphs: [{surface: yasa, kc: 'sense:yasa'}, {surface: ǧan, kc: 'form:pcp'}, {surface: män, kc: 'form:p1s'}]}
-      reverse: Bir ṣandūq yasaǧanmän
   translations:
     en: I have (made|built) a (box|chest).
 - id: s.18.16
@@ -484,17 +413,10 @@ sentences:
     chg-Arab/standard:
       text: بو کتابنی اوقوغانمن.
       tokens:
-      - {surface: بو, sense: bu}
-      - {surface: کتابنی, sense: kitab, morphs: [{surface: کتاب, kc: 'sense:kitab'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: اوقوغانمن, sense: oqu, morphs: [{surface: اوقو, kc: 'sense:oqu'}, {surface: غان, kc: 'form:pcp'}, {surface: من, kc: 'form:p1s'}]}
+      - {surface: بو, sense: bu, readings: {schluessel: bu}}
+      - {surface: کتابنی, sense: kitab, readings: {schluessel: kitābni}, morphs: [{surface: کتاب, kc: 'sense:kitab'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: اوقوغانمن, sense: oqu, readings: {schluessel: oquǧanmän}, morphs: [{surface: اوقو, kc: 'sense:oqu'}, {surface: غان, kc: 'form:pcp'}, {surface: من, kc: 'form:p1s'}]}
       reverse: بو کتابنی اوقوغانمن
-    chg-Latn/schluessel:
-      text: Bu kitābni oquǧanmän.
-      tokens:
-      - {surface: Bu, sense: bu}
-      - {surface: kitābni, sense: kitab, morphs: [{surface: kitāb, kc: 'sense:kitab'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: oquǧanmän, sense: oqu, morphs: [{surface: oqu, kc: 'sense:oqu'}, {surface: ǧan, kc: 'form:pcp'}, {surface: män, kc: 'form:p1s'}]}
-      reverse: Bu kitābni oquǧanmän
   translations:
     en: I have read this book.
 - id: s.18.17
@@ -503,17 +425,10 @@ sentences:
     chg-Arab/standard:
       text: تنکری عالمنی یراتکان.
       tokens:
-      - {surface: تنکری, sense: tangri}
-      - {surface: عالمنی, sense: alam, morphs: [{surface: عالم, kc: 'sense:alam'}, {surface: نی, kc: 'form:acc'}]}
-      - {surface: یراتکان, sense: yarat, morphs: [{surface: یرات, kc: 'sense:yarat'}, {surface: کان, kc: 'form:pcp'}]}
+      - {surface: تنکری, sense: tangri, readings: {schluessel: Täŋri}}
+      - {surface: عالمنی, sense: alam, readings: {schluessel: ʿālamni}, morphs: [{surface: عالم, kc: 'sense:alam'}, {surface: نی, kc: 'form:acc'}]}
+      - {surface: یراتکان, sense: yarat, readings: {schluessel: yaratkan}, morphs: [{surface: یرات, kc: 'sense:yarat'}, {surface: کان, kc: 'form:pcp'}]}
       reverse: (تنکری|تانکری) عالمنی (یراتکان|یراتقان|یراتغان|یاراتکان|یاراتقان|یاراتغان)
-    chg-Latn/schluessel:
-      text: Täŋri ʿālamni yaratkan.
-      tokens:
-      - {surface: Täŋri, sense: tangri}
-      - {surface: ʿālamni, sense: alam, morphs: [{surface: ʿālam, kc: 'sense:alam'}, {surface: ni, kc: 'form:acc'}]}
-      - {surface: yaratkan, sense: yarat, morphs: [{surface: yarat, kc: 'sense:yarat'}, {surface: kan, kc: 'form:pcp'}]}
-      reverse: Täŋri ʿālamni yaratkan
   translations:
     en: God (has created|created) the world.
 - id: s.18.18
@@ -522,13 +437,8 @@ sentences:
     chg-Arab/standard:
       text: جنت.
       tokens:
-      - {surface: جنت, sense: jannat}
+      - {surface: جنت, sense: jannat, readings: {schluessel: jannat}}
       reverse: جنت
-    chg-Latn/schluessel:
-      text: Jannat.
-      tokens:
-      - {surface: Jannat, sense: jannat}
-      reverse: Jannat
   translations:
     en: Paradise.
 - id: s.18.19
@@ -537,15 +447,9 @@ sentences:
     chg-Arab/standard:
       text: بیر ساعت.
       tokens:
-      - {surface: بیر, sense: bir}
-      - {surface: ساعت, sense: saat}
+      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
+      - {surface: ساعت, sense: saat, readings: {schluessel: sāʿat}}
       reverse: (بیر|بر) ساعت
-    chg-Latn/schluessel:
-      text: Bir sāʿat.
-      tokens:
-      - {surface: Bir, sense: bir}
-      - {surface: sāʿat, sense: saat}
-      reverse: Bir sāʿat
   translations:
     en: (An|One) hour.
 - id: s.18.20
@@ -554,17 +458,10 @@ sentences:
     chg-Arab/standard:
       text: شول ساعتده کلدی.
       tokens:
-      - {surface: شول, sense: shul}
-      - {surface: ساعتده, sense: saat, morphs: [{surface: ساعت, kc: 'sense:saat'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: شول, sense: shul, readings: {schluessel: šul}}
+      - {surface: ساعتده, sense: saat, readings: {schluessel: sāʿatdä}, morphs: [{surface: ساعت, kc: 'sense:saat'}, {surface: ده, kc: 'form:loc'}]}
+      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: شول (ساعتده|ساعتدا) (کلدی|کیلدی)
-    chg-Latn/schluessel:
-      text: Šul sāʿatdä käldi.
-      tokens:
-      - {surface: Šul, sense: shul}
-      - {surface: sāʿatdä, sense: saat, morphs: [{surface: sāʿat, kc: 'sense:saat'}, {surface: dä, kc: 'form:loc'}]}
-      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Šul sāʿatdä (käldi|keldi)
   translations:
     en: (He|She) came (at that very hour|at that moment|that very hour).
 - id: s.18.21
@@ -573,15 +470,9 @@ sentences:
     chg-Arab/standard:
       text: درحال کلدی.
       tokens:
-      - {surface: درحال, sense: darhal}
-      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: درحال, sense: darhal, readings: {schluessel: darḥāl}}
+      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: درحال (کلدی|کیلدی)
-    chg-Latn/schluessel:
-      text: Darḥāl käldi.
-      tokens:
-      - {surface: Darḥāl, sense: darhal}
-      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Darḥāl (käldi|keldi)
   translations:
     en: (He|She) came (immediately|at once).
 - id: s.18.22
@@ -590,13 +481,8 @@ sentences:
     chg-Arab/standard:
       text: فرمان.
       tokens:
-      - {surface: فرمان, sense: farman}
+      - {surface: فرمان, sense: farman, readings: {schluessel: farmān}}
       reverse: فرمان
-    chg-Latn/schluessel:
-      text: Farmān.
-      tokens:
-      - {surface: Farmān, sense: farman}
-      reverse: Farmān
   translations:
     en: (An|The) (order|command).
 - id: s.18.23
@@ -605,17 +491,10 @@ sentences:
     chg-Arab/standard:
       text: پادشاهدین فرمان کلدی.
       tokens:
-      - {surface: پادشاهدین, sense: padishah, morphs: [{surface: پادشاه, kc: 'sense:padishah'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: فرمان, sense: farman}
-      - {surface: کلدی, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: پادشاهدین, sense: padishah, readings: {schluessel: pādišāhdin}, morphs: [{surface: پادشاه, kc: 'sense:padishah'}, {surface: دین, kc: 'form:abl'}]}
+      - {surface: فرمان, sense: farman, readings: {schluessel: farmān}}
+      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: (پادشاهدین|پادشاهدن|بادشاهدین|بادشاهدن|فادشاهدین|فادشاهدن) فرمان (کلدی|کیلدی)
-    chg-Latn/schluessel:
-      text: Pādišāhdin farmān käldi.
-      tokens:
-      - {surface: Pādišāhdin, sense: padishah, morphs: [{surface: Pādišāh, kc: 'sense:padishah'}, {surface: din, kc: 'form:abl'}]}
-      - {surface: farmān, sense: farman}
-      - {surface: käldi, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Pādišāhdin farmān (käldi|keldi)
   translations:
     en: (An|The) (order|command) came from the king.
 - id: s.18.24
@@ -624,19 +503,11 @@ sentences:
     chg-Arab/standard:
       text: فرمان بولدیکه، اول کلسون.
       tokens:
-      - {surface: فرمان, sense: farman}
-      - {surface: بولدیکه, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دی, kc: 'form:past-3'}, {surface: که, kc: 'form:ke'}]}
-      - {surface: اول, sense: ul}
-      - {surface: کلسون, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: سون, kc: 'form:juss'}]}
+      - {surface: فرمان, sense: farman, readings: {schluessel: farmān}}
+      - {surface: بولدیکه, sense: bol, readings: {schluessel: boldike}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دی, kc: 'form:past-3'}, {surface: که, kc: 'form:ke'}]}
+      - {surface: اول, sense: ul, readings: {schluessel: ul}}
+      - {surface: کلسون, sense: kal, readings: {schluessel: kälsun}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: سون, kc: 'form:juss'}]}
       reverse: فرمان (بولدیکه|بولدیکی) اول (کلسون|کیلسون)
-    chg-Latn/schluessel:
-      text: Farmān boldike, ul kälsun.
-      tokens:
-      - {surface: Farmān, sense: farman}
-      - {surface: boldike, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: di, kc: 'form:past-3'}, {surface: ke, kc: 'form:ke'}]}
-      - {surface: ul, sense: ul}
-      - {surface: kälsun, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: sun, kc: 'form:juss'}]}
-      reverse: Farmān boldike (ul|ol) (kälsun|kelsun)
   translations:
     en: (The|An) (order|command) (came|was given) that (he|she) should come.
 - id: s.18.25
@@ -645,13 +516,8 @@ sentences:
     chg-Arab/standard:
       text: داود.
       tokens:
-      - {surface: داود, sense: dawud}
+      - {surface: داود, sense: dawud, readings: {schluessel: Dāwud}}
       reverse: داود
-    chg-Latn/schluessel:
-      text: Dāwud.
-      tokens:
-      - {surface: Dāwud, sense: dawud}
-      reverse: Dāwud
   translations:
     en: (David|Dawud).
 - id: s.18.26
@@ -660,13 +526,8 @@ sentences:
     chg-Arab/standard:
       text: جبرائیل.
       tokens:
-      - {surface: جبرائیل, sense: jibrail}
+      - {surface: جبرائیل, sense: jibrail, readings: {schluessel: Jibrāʾīl}}
       reverse: (جبرائیل|جبرئیل)
-    chg-Latn/schluessel:
-      text: Jibrāʾīl.
-      tokens:
-      - {surface: Jibrāʾīl, sense: jibrail}
-      reverse: Jibrāʾīl
   translations:
     en: (Gabriel|Jibrail).
 - id: s.18.27
@@ -675,15 +536,9 @@ sentences:
     chg-Arab/standard:
       text: مناجات قیلدی.
       tokens:
-      - {surface: مناجات, sense: munajat}
-      - {surface: قیلدی, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: مناجات, sense: munajat, readings: {schluessel: munājāt}}
+      - {surface: قیلدی, sense: qil, readings: {schluessel: qildi}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: مناجات (قیلدی|قلدی)
-    chg-Latn/schluessel:
-      text: Munājāt qildi.
-      tokens:
-      - {surface: Munājāt, sense: munajat}
-      - {surface: qildi, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Munājāt qildi
   translations:
     en: (He|She) prayed.
 - id: s.18.28
@@ -692,15 +547,9 @@ sentences:
     chg-Arab/standard:
       text: ای، پروردگاریم!
       tokens:
-      - {surface: ای, sense: ay.voc}
-      - {surface: پروردگاریم, sense: parwardigar, morphs: [{surface: پروردگار, kc: 'sense:parwardigar'}, {surface: یم, kc: 'form:poss1s'}]}
+      - {surface: ای, sense: ay.voc, readings: {schluessel: ay}}
+      - {surface: پروردگاریم, sense: parwardigar, readings: {schluessel: parwardigārim}, morphs: [{surface: پروردگار, kc: 'sense:parwardigar'}, {surface: یم, kc: 'form:poss1s'}]}
       reverse: ای (پروردگاریم|فروردیکاریم|پروردیکاریم)
-    chg-Latn/schluessel:
-      text: Ay, parwardigārim!
-      tokens:
-      - {surface: Ay, sense: ay.voc}
-      - {surface: parwardigārim, sense: parwardigar, morphs: [{surface: parwardigār, kc: 'sense:parwardigar'}, {surface: im, kc: 'form:poss1s'}]}
-      reverse: Ay parwardigārim
   translations:
     en: (Oh|O) my Lord!
 - id: s.18.29
@@ -709,15 +558,9 @@ sentences:
     chg-Arab/standard:
       text: درکاه حق.
       tokens:
-      - {surface: درکاه, sense: dargah}
-      - {surface: حق, sense: haqq}
+      - {surface: درکاه, sense: dargah, readings: {schluessel: dargāh-i}}
+      - {surface: حق, sense: haqq, readings: {schluessel: ḥaqq}}
       reverse: درکاه حق
-    chg-Latn/schluessel:
-      text: Dargāh-i ḥaqq.
-      tokens:
-      - {surface: Dargāh-i, sense: dargah}
-      - {surface: ḥaqq, sense: haqq}
-      reverse: Dargāh-i ḥaqq
   translations:
     en: The presence of God.
 - id: s.18.30
@@ -726,19 +569,11 @@ sentences:
     chg-Arab/standard:
       text: جبرائیل درکاه حقغه باردی.
       tokens:
-      - {surface: جبرائیل, sense: jibrail}
-      - {surface: درکاه, sense: dargah}
-      - {surface: حقغه, sense: haqq, morphs: [{surface: حق, kc: 'sense:haqq'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردی, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دی, kc: 'form:past-3'}]}
+      - {surface: جبرائیل, sense: jibrail, readings: {schluessel: Jibrāʾīl}}
+      - {surface: درکاه, sense: dargah, readings: {schluessel: dargāh-i}}
+      - {surface: حقغه, sense: haqq, readings: {schluessel: ḥaqqgä}, morphs: [{surface: حق, kc: 'sense:haqq'}, {surface: غه, kc: 'form:dat'}]}
+      - {surface: باردی, sense: bar.go, readings: {schluessel: bardi}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دی, kc: 'form:past-3'}]}
       reverse: (جبرائیل|جبرئیل) درکاه (حقغه|حقکه|حققه|حقغا) باردی
-    chg-Latn/schluessel:
-      text: Jibrāʾīl dargāh-i ḥaqqgä bardi.
-      tokens:
-      - {surface: Jibrāʾīl, sense: jibrail}
-      - {surface: dargāh-i, sense: dargah}
-      - {surface: ḥaqqgä, sense: haqq, morphs: [{surface: ḥaqq, kc: 'sense:haqq'}, {surface: gä, kc: 'form:dat'}]}
-      - {surface: bardi, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: di, kc: 'form:past-3'}]}
-      reverse: Jibrāʾīl dargāh-i ḥaqqgä bardi
   translations:
     en: (Gabriel|Jibrail) went (in|) to the presence of God.
 stories:
@@ -752,27 +587,15 @@ stories:
         chg-Arab/standard:
           text: حضرت جبرائیل… درکاه حقکه باریب، حضرت داود سوزینی قیلدیلار.
           tokens:
-          - {surface: حضرت, sense: hazrat}
-          - {surface: جبرائیل, sense: jibrail}
-          - {surface: درکاه, sense: dargah}
-          - {surface: حقکه, sense: haqq, morphs: [{surface: حق, kc: 'sense:haqq'}, {surface: که, kc: 'form:dat'}]}
-          - {surface: باریب, sense: bar.go, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: یب, kc: 'form:cv-p'}]}
-          - {surface: حضرت, sense: hazrat}
-          - {surface: داود, sense: dawud}
-          - {surface: سوزینی, sense: soz, morphs: [{surface: سوز, kc: 'sense:soz'}, {surface: ی, kc: 'form:poss3'}, {surface: نی, kc: 'form:acc'}]}
-          - {surface: قیلدیلار, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
-        chg-Latn/schluessel:
-          text: Ḥażrat-i Jibrāʾīl… dargāh-i ḥaqqgä barip, ḥażrat-i Dāwud sözini qildilar.
-          tokens:
-          - {surface: Ḥażrat-i, sense: hazrat}
-          - {surface: Jibrāʾīl, sense: jibrail}
-          - {surface: dargāh-i, sense: dargah}
-          - {surface: ḥaqqgä, sense: haqq, morphs: [{surface: ḥaqq, kc: 'sense:haqq'}, {surface: gä, kc: 'form:dat'}]}
-          - {surface: barip, sense: bar.go, morphs: [{surface: bar, kc: 'sense:bar.go'}, {surface: ip, kc: 'form:cv-p'}]}
-          - {surface: ḥażrat-i, sense: hazrat}
-          - {surface: Dāwud, sense: dawud}
-          - {surface: sözini, sense: soz, morphs: [{surface: söz, kc: 'sense:soz'}, {surface: i, kc: 'form:poss3'}, {surface: ni, kc: 'form:acc'}]}
-          - {surface: qildilar, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: dilar, kc: 'form:past-3pl'}]}
+          - {surface: حضرت, sense: hazrat, readings: {schluessel: ḥażrat-i}}
+          - {surface: جبرائیل, sense: jibrail, readings: {schluessel: Jibrāʾīl}}
+          - {surface: درکاه, sense: dargah, readings: {schluessel: dargāh-i}}
+          - {surface: حقکه, sense: haqq, readings: {schluessel: ḥaqqgä}, morphs: [{surface: حق, kc: 'sense:haqq'}, {surface: که, kc: 'form:dat'}]}
+          - {surface: باریب, sense: bar.go, readings: {schluessel: barip}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: یب, kc: 'form:cv-p'}]}
+          - {surface: حضرت, sense: hazrat, readings: {schluessel: ḥażrat-i}}
+          - {surface: داود, sense: dawud, readings: {schluessel: Dāwud}}
+          - {surface: سوزینی, sense: soz, readings: {schluessel: sözini}, morphs: [{surface: سوز, kc: 'sense:soz'}, {surface: ی, kc: 'form:poss3'}, {surface: نی, kc: 'form:acc'}]}
+          - {surface: قیلدیلار, sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       translations:
         en: Jibrāʾīl (peace be upon him) went into the presence of God and spoke of Dawud.
   - line:
@@ -785,35 +608,19 @@ stories:
         chg-Arab/standard:
           text: حضرت جبرائیل… حضرت داودغه کلیب دیدیکه، «ای، داود! سنکا اهنکرلیک کسب فرمان بولدیلار.»
           tokens:
-          - {surface: حضرت, sense: hazrat}
-          - {surface: جبرائیل, sense: jibrail}
-          - {surface: حضرت, sense: hazrat}
-          - {surface: داودغه, sense: dawud, morphs: [{surface: داود, kc: 'sense:dawud'}, {surface: غه, kc: 'form:dat'}]}
-          - {surface: کلیب, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: یب, kc: 'form:cv-p'}]}
-          - {surface: دیدیکه, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: دی, kc: 'form:past-3'}, {surface: که, kc: 'form:ke'}]}
-          - {surface: ای, sense: ay.voc}
-          - {surface: داود, sense: dawud}
-          - {surface: سنکا, sense: san, morphs: [{surface: سن, kc: 'sense:san'}, {surface: کا, kc: 'form:dat'}]}
-          - {surface: اهنکرلیک, sense: ahangar, morphs: [{surface: اهنکر, kc: 'sense:ahangar'}, {surface: لیک, kc: 'form:liq'}]}
-          - {surface: کسب, sense: kasb}
-          - {surface: فرمان, sense: farman}
-          - {surface: بولدیلار, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دیلار, kc: 'form:past-3pl'}]}
-        chg-Latn/schluessel:
-          text: Ḥażrat-i Jibrāʾīl… ḥażrat-i Dāwudǧa kelip dedike, “Ay, Dāwud! Saŋa ahangirlik kasb farmān boldilar.”
-          tokens:
-          - {surface: Ḥażrat-i, sense: hazrat}
-          - {surface: Jibrāʾīl, sense: jibrail}
-          - {surface: ḥażrat-i, sense: hazrat}
-          - {surface: Dāwudǧa, sense: dawud, morphs: [{surface: Dāwud, kc: 'sense:dawud'}, {surface: ǧa, kc: 'form:dat'}]}
-          - {surface: kelip, sense: kal, morphs: [{surface: kel, kc: 'sense:kal'}, {surface: ip, kc: 'form:cv-p'}]}
-          - {surface: dedike, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: di, kc: 'form:past-3'}, {surface: ke, kc: 'form:ke'}]}
-          - {surface: Ay, sense: ay.voc}
-          - {surface: Dāwud, sense: dawud}
-          - {surface: Saŋa, sense: san, morphs: [{surface: Sa, kc: 'sense:san'}, {surface: ŋa, kc: 'form:dat'}]}
-          - {surface: ahangirlik, sense: ahangar, morphs: [{surface: ahangir, kc: 'sense:ahangar'}, {surface: lik, kc: 'form:liq'}]}
-          - {surface: kasb, sense: kasb}
-          - {surface: farmān, sense: farman}
-          - {surface: boldilar, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: dilar, kc: 'form:past-3pl'}]}
+          - {surface: حضرت, sense: hazrat, readings: {schluessel: ḥażrat-i}}
+          - {surface: جبرائیل, sense: jibrail, readings: {schluessel: Jibrāʾīl}}
+          - {surface: حضرت, sense: hazrat, readings: {schluessel: ḥażrat-i}}
+          - {surface: داودغه, sense: dawud, readings: {schluessel: Dāwudǧa}, morphs: [{surface: داود, kc: 'sense:dawud'}, {surface: غه, kc: 'form:dat'}]}
+          - {surface: کلیب, sense: kal, readings: {schluessel: kelip}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: یب, kc: 'form:cv-p'}]}
+          - {surface: دیدیکه, sense: de, readings: {schluessel: dedike}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: دی, kc: 'form:past-3'}, {surface: که, kc: 'form:ke'}]}
+          - {surface: ای, sense: ay.voc, readings: {schluessel: ay}}
+          - {surface: داود, sense: dawud, readings: {schluessel: Dāwud}}
+          - {surface: سنکا, sense: san, readings: {schluessel: saŋa}, morphs: [{surface: سن, kc: 'sense:san'}, {surface: کا, kc: 'form:dat'}]}
+          - {surface: اهنکرلیک, sense: ahangar, readings: {schluessel: ahangirlik}, morphs: [{surface: اهنکر, kc: 'sense:ahangar'}, {surface: لیک, kc: 'form:liq'}]}
+          - {surface: کسب, sense: kasb, readings: {schluessel: kasb}}
+          - {surface: فرمان, sense: farman, readings: {schluessel: farmān}}
+          - {surface: بولدیلار, sense: bol, readings: {schluessel: boldilar}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       translations:
         en: Jibrāʾīl came to Dawud and said, “Oh, Dawud! The craft of smithing has been commanded to you.”
   - choose:
@@ -829,41 +636,22 @@ stories:
         chg-Arab/standard:
           text: … حضرت داود مناجات قیلدیلار کیم، دیدیکه، «ای، فروردیکاریم، هر کارلار سنکا اسان، و بزلارکه مشکل ترور!»
           tokens:
-          - {surface: حضرت, sense: hazrat}
-          - {surface: داود, sense: dawud}
-          - {surface: مناجات, sense: munajat}
-          - {surface: قیلدیلار, sense: qil, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
-          - {surface: کیم, sense: kim.that}
-          - {surface: دیدیکه, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: دی, kc: 'form:past-3'}, {surface: که, kc: 'form:ke'}]}
-          - {surface: ای, sense: ay.voc}
-          - {surface: فروردیکاریم, sense: parwardigar, morphs: [{surface: فروردیکار, kc: 'sense:parwardigar'}, {surface: یم, kc: 'form:poss1s'}]}
-          - {surface: هر, sense: har}
-          - {surface: کارلار, sense: kar, morphs: [{surface: کار, kc: 'sense:kar'}, {surface: لار, kc: 'form:pl'}]}
-          - {surface: سنکا, sense: san, morphs: [{surface: سن, kc: 'sense:san'}, {surface: کا, kc: 'form:dat'}]}
-          - {surface: اسان, sense: asan}
-          - {surface: و, sense: wa}
-          - {surface: بزلارکه, sense: biz, morphs: [{surface: بز, kc: 'sense:biz'}, {surface: لار, kc: 'form:pl'}, {surface: که, kc: 'form:dat'}]}
-          - {surface: مشکل, sense: mushkil}
-          - {surface: ترور, sense: turur}
-        chg-Latn/schluessel:
-          text: … Ḥażrat-i Dāwud munājāt qildilar kim, dedike, “Ay, ṗarwardigārim, här kārlar saŋa asān, wä bizlärgä muškil turur!”
-          tokens:
-          - {surface: Ḥażrat-i, sense: hazrat}
-          - {surface: Dāwud, sense: dawud}
-          - {surface: munājāt, sense: munajat}
-          - {surface: qildilar, sense: qil, morphs: [{surface: qil, kc: 'sense:qil'}, {surface: dilar, kc: 'form:past-3pl'}]}
-          - {surface: kim, sense: kim.that}
-          - {surface: dedike, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: di, kc: 'form:past-3'}, {surface: ke, kc: 'form:ke'}]}
-          - {surface: Ay, sense: ay.voc}
-          - {surface: ṗarwardigārim, sense: parwardigar, morphs: [{surface: ṗarwardigār, kc: 'sense:parwardigar'}, {surface: im, kc: 'form:poss1s'}]}
-          - {surface: här, sense: har}
-          - {surface: kārlar, sense: kar, morphs: [{surface: kār, kc: 'sense:kar'}, {surface: lar, kc: 'form:pl'}]}
-          - {surface: saŋa, sense: san, morphs: [{surface: sa, kc: 'sense:san'}, {surface: ŋa, kc: 'form:dat'}]}
-          - {surface: asān, sense: asan}
-          - {surface: wä, sense: wa}
-          - {surface: bizlärgä, sense: biz, morphs: [{surface: biz, kc: 'sense:biz'}, {surface: lär, kc: 'form:pl'}, {surface: gä, kc: 'form:dat'}]}
-          - {surface: muškil, sense: mushkil}
-          - {surface: turur, sense: turur}
+          - {surface: حضرت, sense: hazrat, readings: {schluessel: ḥażrat-i}}
+          - {surface: داود, sense: dawud, readings: {schluessel: Dāwud}}
+          - {surface: مناجات, sense: munajat, readings: {schluessel: munājāt}}
+          - {surface: قیلدیلار, sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+          - {surface: کیم, sense: kim.that, readings: {schluessel: kim}}
+          - {surface: دیدیکه, sense: de, readings: {schluessel: dedike}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: دی, kc: 'form:past-3'}, {surface: که, kc: 'form:ke'}]}
+          - {surface: ای, sense: ay.voc, readings: {schluessel: ay}}
+          - {surface: فروردیکاریم, sense: parwardigar, readings: {schluessel: ṗarwardigārim}, morphs: [{surface: فروردیکار, kc: 'sense:parwardigar'}, {surface: یم, kc: 'form:poss1s'}]}
+          - {surface: هر, sense: har, readings: {schluessel: här}}
+          - {surface: کارلار, sense: kar, readings: {schluessel: kārlar}, morphs: [{surface: کار, kc: 'sense:kar'}, {surface: لار, kc: 'form:pl'}]}
+          - {surface: سنکا, sense: san, readings: {schluessel: saŋa}, morphs: [{surface: سن, kc: 'sense:san'}, {surface: کا, kc: 'form:dat'}]}
+          - {surface: اسان, sense: asan, readings: {schluessel: asān}}
+          - {surface: و, sense: wa, readings: {schluessel: wä}}
+          - {surface: بزلارکه, sense: biz, readings: {schluessel: bizlärgä}, morphs: [{surface: بز, kc: 'sense:biz'}, {surface: لار, kc: 'form:pl'}, {surface: که, kc: 'form:dat'}]}
+          - {surface: مشکل, sense: mushkil, readings: {schluessel: muškil}}
+          - {surface: ترور, sense: turur, readings: {schluessel: turur}}
       translations:
         en: … Dawud prayed, saying, “Oh, my Lord, every craft is easy for you, and hard for us!”
   - line:
@@ -871,43 +659,23 @@ stories:
         chg-Arab/standard:
           text: "شول ساعتده فرمان بولدیکه، «ای، جبرائیل! جنت\u200cده بر قوی و بر تاش یراتکان\u200cمن. انی الیب کلکیل،» دیدی."
           tokens:
-          - {surface: شول, sense: shul}
-          - {surface: ساعتده, sense: saat, morphs: [{surface: ساعت, kc: 'sense:saat'}, {surface: ده, kc: 'form:loc'}]}
-          - {surface: فرمان, sense: farman}
-          - {surface: بولدیکه, sense: bol, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دی, kc: 'form:past-3'}, {surface: که, kc: 'form:ke'}]}
-          - {surface: ای, sense: ay.voc}
-          - {surface: جبرائیل, sense: jibrail}
-          - {surface: "جنت\u200cده", sense: jannat, morphs: [{surface: "جنت\u200c", kc: 'sense:jannat'}, {surface: ده, kc: 'form:loc'}]}
-          - {surface: بر, sense: bir}
-          - {surface: قوی, sense: qoy}
-          - {surface: و, sense: wa}
-          - {surface: بر, sense: bir}
-          - {surface: تاش, sense: tash}
-          - {surface: "یراتکان\u200cمن", sense: yarat, morphs: [{surface: یرات, kc: 'sense:yarat'}, {surface: "کان\u200c", kc: 'form:pcp'}, {surface: من, kc: 'form:p1s'}]}
-          - {surface: انی, sense: ul, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نی, kc: 'form:acc'}]}
-          - {surface: الیب, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
-          - {surface: کلکیل, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: کیل, kc: 'form:imp'}]}
-          - {surface: دیدی, sense: de, morphs: [{surface: دی, kc: 'sense:de'}, {surface: دی, kc: 'form:past-3'}]}
-        chg-Latn/schluessel:
-          text: Šul sāʿatdä farmān boldike, “Ay, Jibrāʾīl! Jannatdä bir qoy wä bir taš yaratkanmän. Ani alip kälgil,” dedi.
-          tokens:
-          - {surface: Šul, sense: shul}
-          - {surface: sāʿatdä, sense: saat, morphs: [{surface: sāʿat, kc: 'sense:saat'}, {surface: dä, kc: 'form:loc'}]}
-          - {surface: farmān, sense: farman}
-          - {surface: boldike, sense: bol, morphs: [{surface: bol, kc: 'sense:bol'}, {surface: di, kc: 'form:past-3'}, {surface: ke, kc: 'form:ke'}]}
-          - {surface: Ay, sense: ay.voc}
-          - {surface: Jibrāʾīl, sense: jibrail}
-          - {surface: Jannatdä, sense: jannat, morphs: [{surface: Jannat, kc: 'sense:jannat'}, {surface: dä, kc: 'form:loc'}]}
-          - {surface: bir, sense: bir}
-          - {surface: qoy, sense: qoy}
-          - {surface: wä, sense: wa}
-          - {surface: bir, sense: bir}
-          - {surface: taš, sense: tash}
-          - {surface: yaratkanmän, sense: yarat, morphs: [{surface: yarat, kc: 'sense:yarat'}, {surface: kan, kc: 'form:pcp'}, {surface: män, kc: 'form:p1s'}]}
-          - {surface: Ani, sense: ul, morphs: [{surface: A, kc: 'sense:ul'}, {surface: ni, kc: 'form:acc'}]}
-          - {surface: alip, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: ip, kc: 'form:cv-p'}]}
-          - {surface: kälgil, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: gil, kc: 'form:imp'}]}
-          - {surface: dedi, sense: de, morphs: [{surface: de, kc: 'sense:de'}, {surface: di, kc: 'form:past-3'}]}
+          - {surface: شول, sense: shul, readings: {schluessel: šul}}
+          - {surface: ساعتده, sense: saat, readings: {schluessel: sāʿatdä}, morphs: [{surface: ساعت, kc: 'sense:saat'}, {surface: ده, kc: 'form:loc'}]}
+          - {surface: فرمان, sense: farman, readings: {schluessel: farmān}}
+          - {surface: بولدیکه, sense: bol, readings: {schluessel: boldike}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: دی, kc: 'form:past-3'}, {surface: که, kc: 'form:ke'}]}
+          - {surface: ای, sense: ay.voc, readings: {schluessel: ay}}
+          - {surface: جبرائیل, sense: jibrail, readings: {schluessel: Jibrāʾīl}}
+          - {surface: "جنت\u200cده", sense: jannat, readings: {schluessel: jannatdä}, morphs: [{surface: "جنت\u200c", kc: 'sense:jannat'}, {surface: ده, kc: 'form:loc'}]}
+          - {surface: بر, sense: bir, readings: {schluessel: bir}}
+          - {surface: قوی, sense: qoy, readings: {schluessel: qoy}}
+          - {surface: و, sense: wa, readings: {schluessel: wä}}
+          - {surface: بر, sense: bir, readings: {schluessel: bir}}
+          - {surface: تاش, sense: tash, readings: {schluessel: taš}}
+          - {surface: "یراتکان\u200cمن", sense: yarat, readings: {schluessel: yaratkanmän}, morphs: [{surface: یرات, kc: 'sense:yarat'}, {surface: "کان\u200c", kc: 'form:pcp'}, {surface: من, kc: 'form:p1s'}]}
+          - {surface: انی, sense: ul, readings: {schluessel: ani}, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نی, kc: 'form:acc'}]}
+          - {surface: الیب, sense: al, readings: {schluessel: alip}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
+          - {surface: کلکیل, sense: kal, readings: {schluessel: kälgil}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: کیل, kc: 'form:imp'}]}
+          - {surface: دیدی, sense: de, readings: {schluessel: dedi}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: دی, kc: 'form:past-3'}]}
       translations:
         en: 'At that very hour the command came: “Oh, Jibrāʾīl! In Paradise I have created a sheep and a stone. Bring them.”'
   - line:
@@ -916,19 +684,11 @@ stories:
         chg-Arab/standard:
           text: درحال حضرت جبرائیل الیب کلدیلار.
           tokens:
-          - {surface: درحال, sense: darhal}
-          - {surface: حضرت, sense: hazrat}
-          - {surface: جبرائیل, sense: jibrail}
-          - {surface: الیب, sense: al, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
-          - {surface: کلدیلار, sense: kal, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دیلار, kc: 'form:past-3pl'}]}
-        chg-Latn/schluessel:
-          text: Darḥāl ḥażrat-i Jibrāʾīl alip käldilär.
-          tokens:
-          - {surface: Darḥāl, sense: darhal}
-          - {surface: ḥażrat-i, sense: hazrat}
-          - {surface: Jibrāʾīl, sense: jibrail}
-          - {surface: alip, sense: al, morphs: [{surface: al, kc: 'sense:al'}, {surface: ip, kc: 'form:cv-p'}]}
-          - {surface: käldilär, sense: kal, morphs: [{surface: käl, kc: 'sense:kal'}, {surface: dilär, kc: 'form:past-3pl'}]}
+          - {surface: درحال, sense: darhal, readings: {schluessel: darḥāl}}
+          - {surface: حضرت, sense: hazrat, readings: {schluessel: ḥażrat-i}}
+          - {surface: جبرائیل, sense: jibrail, readings: {schluessel: Jibrāʾīl}}
+          - {surface: الیب, sense: al, readings: {schluessel: alip}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: یب, kc: 'form:cv-p'}]}
+          - {surface: کلدیلار, sense: kal, readings: {schluessel: käldilär}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دیلار, kc: 'form:past-3pl'}]}
       translations:
         en: Immediately Jibrāʾīl brought them.
   - choose:
