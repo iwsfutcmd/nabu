@@ -61,7 +61,7 @@ the letters taught by then. It is the Arabic orthography's: a learner of the tra
   gives all its values (و "w / u / o / ü / ö / ū"; ه "h / a / ä"). A Latin orthography the course teaches is not
   shipped twice.
 
-**The course** (`courses/chg`): eighteen units, A1 to B1, each teaching the words of an authentic passage that its
+**The course** (`courses/chg`): nineteen units, A1 to B1, each teaching the words of an authentic passage that its
 story reads, in the order of Schluessel's grammar (copula and existence, cases, persons and questions, the
 present-future, the past, the aorist, converbs and participles, the conditional, the reported past, the narrative
 past, the habitual past, -ǧač, the imperative and requests, the passive, -ayin, -ǧay with persons, the perfect -ǧan
@@ -91,6 +91,7 @@ reads it.
 | 16 | The Tadhkira, part two (Jarring Prov. 328, 7r-7v): the call at dawn |
 | 17 | The Tadhkira, part two (3v-4r): "Where are you from?" |
 | 18 | The Manual of the Blacksmiths (Jarring Prov. 1, copied 1929): the first smith |
+| 19 | The Tadhkira, part two (7v): the red tent |
 
 Chaghatay marks no gender: English accept sets give he/she. "You" is sän to one person one knows well, siz
 politely to one or to several, sizlär to several: sän sentences are tagged "to one person", sizlär "to several",
@@ -99,7 +100,7 @@ and accept sets take siz as well; untagged siz sentences accept all three (ADR 0
 
 ## Consequences
 
-- 652 sentences, 472 KCs (33 of them letters), 86 lessons, eighteen stories, eighteen roleplay scenarios and an
+- 679 sentences, 488 KCs (33 of them letters), 90 lessons, nineteen stories, nineteen roleplay scenarios and an
   alphabet track of eight nodes. LLM drafts (`llm:`, status draft), CC-BY-SA-4.0; the passages are public domain.
 - The course was written from a compact source (each word as stem and suffix keys, both scripts built from the
   same pieces), kept in the reference library (`nabu/notes/chg/generator`), not in the repository: the YAML is the
