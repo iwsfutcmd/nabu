@@ -12,7 +12,8 @@ import { allKcs, profileOf } from "../lesson/course.ts";
 import type { Exercise, StoryArrange, StoryChoose, StoryComplete } from "../lesson/exercise.ts";
 import type { Rng } from "../lesson/rng.ts";
 import { compileGlossary, glossesAt, glossTokens, type CompiledGlossary, type TokenGloss } from "../match/glossary.ts";
-import { surfaceOf, textOfSurface, tileGroups } from "../text/tagged-text.ts";
+import { surfaceOf, textOfSurface } from "../text/tagged-text.ts";
+import { tilesOf } from "../lesson/tiles.ts";
 
 export interface StoryLine {
   readonly index: number;
@@ -79,7 +80,8 @@ const complete = (course: CourseView, story: BundleStory, at: number, line: Bund
 };
 
 const arrange = (course: CourseView, story: BundleStory, at: number, line: BundleStoryLine, text: TaggedText, rng: Rng): StoryArrange | undefined => {
-  const tiles = tileGroups(text);
+  // In lower case but for words that must be capitalized (ADR 0130): a capital would mark the first tile.
+  const tiles = tilesOf(course, text);
   const translation = line.translations[course.supportKey];
   if (tiles.length < 2 || translation === undefined) return undefined;
   const order = rng.shuffle(tiles.map((_, i) => i));
