@@ -48,6 +48,8 @@ export interface StoryReaderProps {
   readonly sound?: boolean;
   /** The learner switched sound on or off in the story's header: the app keeps the choice. */
   readonly onSoundChange?: ((on: boolean) => void) | undefined;
+  /** Sound effects (default on): a chime when an answer is right, a tone when wrong, a flourish at the end. */
+  readonly effects?: boolean | undefined;
   /** False while the learner is on a listening break ("Can't listen now"): nothing plays by itself then either. */
   readonly listening?: boolean | undefined;
   /** Initial writing mode for the transcript (vertical where allowed). */
@@ -164,7 +166,8 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const { display, readings } = toggles;
   // Nothing plays by itself with sound off or while the learner can't listen (P6).
   const quiet = !toggles.sound || props.listening === false;
-  const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound: !quiet, initialState: props.initialState });
+  const effects = !quiet && props.effects !== false;
+  const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound: effects, initialState: props.initialState });
   const transcriptMode = effectiveWritingMode(profile, display.mode, "reading");
   const [translations, setTranslations] = useState<ReadonlySet<number>>(new Set(props.initial?.translations ?? []));
   const [selected, setSelected] = useState(props.initial?.gloss);
@@ -406,6 +409,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             writingMode="horizontal-tb"
             imageUrl={imageUrl}
             sound={!quiet}
+            effects={effects}
             outcome={feedback?.outcome}
             language={language}
             shortcuts={shortcuts}
