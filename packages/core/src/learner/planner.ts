@@ -28,7 +28,7 @@ import { askedKcs, creditedKcs, facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
-import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, type LearnerState } from "./state.ts";
+import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, sameAsk, type LearnerState } from "./state.ts";
 import { PACE, type PaceBand } from "./pacing.ts";
 import { NONE_OFF, skillsAsked } from "./words.ts";
 
@@ -277,7 +277,10 @@ const exclusionsOf = (course: CourseView, options: { readonly exclude?: Readonly
 
 /**
  * The open mistakes rebuilt as their exercises, most recent first: those whose template is not
- * excluded, whose item the course still makes that exercise from, and whose KCs are all seen.
+ * excluded, whose item the course still makes that exercise from, and whose KCs are all seen. A
+ * card that asked about one word of its sentence asks that word again (`Mistake.ask`); where the
+ * sentence no longer has it, the course no longer makes that mistake's card. Two mistakes on one
+ * card of a sentence (two of its words) come one at a time: the card's id is the sentence's.
  */
 const mistakeExercises = (ctx: MakeContext, state: LearnerState, exclude: ReadonlySet<TemplateId>, seen: ReadonlySet<string>): Exercise[] => {
   const byId = new Map(allSentences(ctx.course).map((s) => [s.id, s]));
@@ -287,10 +290,18 @@ const mistakeExercises = (ctx: MakeContext, state: LearnerState, exclude: Readon
     if (exclude.has(m.template)) continue;
     const s = byId.get(m.item);
     const kc = kcById.get(m.item);
-    const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(ctx, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(ctx, kc) : undefined;
-    if (ex !== undefined && ex.kcs.every((k) => seen.has(k)) && !out.some((e) => e.id === ex.id)) out.push(ex);
+    const at = { ...ctx, ask: m.ask };
+    const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(at, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(at, kc) : undefined;
+    if (ex === undefined || (m.ask !== undefined && !sameAsk(askedWord(ex), m.ask))) continue;
+    if (ex.kcs.every((k) => seen.has(k)) && !out.some((e) => e.id === ex.id)) out.push(ex);
   }
   return out;
+};
+
+/** The word a card asks about, as a mistake records it (sorted KCs); undefined for a whole sentence. */
+const askedWord = (ex: Exercise): readonly string[] | undefined => {
+  const kcs = askedKcs(ex);
+  return kcs === undefined ? undefined : [...new Set(kcs.map(String))].sort();
 };
 
 /**
