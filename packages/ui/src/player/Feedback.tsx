@@ -11,7 +11,7 @@
 import { answerDiff, chosenWordOf, closestAnswer, diffParts, isCorrect, nearMiss, otherWordsOf, solutionMarks, type AnswerDiff, type CourseView, type Exercise, type Outcome, type Response } from "@nabu/core/lesson";
 import type { Verdict } from "@nabu/core";
 import { wordMeanings, writtenMeanings, type WordMeaning } from "@nabu/core/story";
-import { textOfSurface } from "@nabu/core/text";
+import { hasRuby, textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { Fragment, useMemo, type JSX } from "react";
@@ -144,7 +144,11 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks }: Feedbac
   const neutral = outcome.selfRated === true;
   const right = isCorrect(outcome.verdict);
   const notes = outcome.notes.map((id) => `feedback.note.${id}`).filter((id): id is MessageId => t.has(id));
-  const showSolution = outcome.solution !== undefined && outcome.verdict !== "CORRECT";
+  // A right answer typed where a reading layer is shown (a transliteration, Jyutping): the field shows only
+  // what was typed, so the sentence comes again with its readings. CORRECT is the shown wording itself;
+  // another wording (CORRECT_ALT) gets the solution with its readings anyway.
+  const withReadings = outcome.verdict === "CORRECT" && response?.tag === "text" && ruby !== false && outcome.solution !== undefined && hasRuby(outcome.solution, ruby);
+  const showSolution = outcome.solution !== undefined && (outcome.verdict !== "CORRECT" || withReadings);
   const solutionLabel = right ? undefined : t.format("player.feedback.solution");
   const profile = course.profiles.get(ex.orthography);
   const joiner = profile?.unitKind === "grapheme" ? "" : " ";
