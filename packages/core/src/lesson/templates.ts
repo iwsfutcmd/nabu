@@ -141,7 +141,19 @@ export interface MakeContext {
    * before a word the node introduces.
    */
   readonly focus?: ReadonlySet<string> | undefined;
+  /**
+   * A mistake's word (its KCs, sorted, as its answer credited them): a card about one word of its
+   * sentence asks that word again, before any other.
+   */
+  readonly ask?: readonly string[] | undefined;
 }
+
+/** Whether a token is the word a mistake asks again: exactly its KCs (`MakeContext.ask`). */
+const asked = (ctx: MakeContext, token: Token): boolean => {
+  if (ctx.ask === undefined) return false;
+  const kcs = [...new Set(tokenKcs(token).map(String))].sort();
+  return kcs.length === ctx.ask.length && kcs.every((kc, i) => kc === ctx.ask?.[i]);
+};
 
 const id = (template: TemplateId, item: string): string => `${template}:${item}`;
 
@@ -568,9 +580,10 @@ const blankIndex = (ctx: MakeContext, text: TaggedText): number | undefined => {
   const indexes = words(text);
   if (indexes.length < 2) return undefined;
   const kcsAt = (i: number): readonly string[] => tokenKcs(text.tokens[i] as Token);
+  const again = indexes.find((i) => asked(ctx, text.tokens[i] as Token));
   const focus = ctx.focus === undefined ? undefined : indexes.find((i) => kcsAt(i).some((k) => ctx.focus?.has(k) === true));
   const fresh = indexes.find((i) => kcsAt(i).some((k) => ctx.introduced.includes(k as KcId)));
-  return focus ?? fresh ?? indexes[indexes.length - 1];
+  return again ?? focus ?? fresh ?? indexes[indexes.length - 1];
 };
 
 export const makeCompleteTranslation = (ctx: MakeContext, s: BundleSentence): CompleteTranslation | undefined => {
@@ -684,8 +697,9 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
   const form = formOf(ctx.course, s);
   if (scheme === undefined || form === undefined) return undefined;
   const readable = (t: Token): boolean => t.kind === "word" && t.readings?.[scheme] !== undefined;
+  const again = form.text.tokens.findIndex((t) => readable(t) && asked(ctx, t));
   const fresh = form.text.tokens.findIndex((t) => readable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
-  const word = fresh >= 0 ? fresh : form.text.tokens.findIndex(readable);
+  const word = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(readable);
   const target = form.text.tokens[word];
   if (target === undefined) return undefined;
   const reading = target.readings?.[scheme] as string;
@@ -979,7 +993,8 @@ const pronouncedWord = (ctx: MakeContext, text: TaggedText, qualifies: (t: Token
     const fresh = pool.find((i) => tokenKcs(text.tokens[i] as Token).some((k) => ctx.introduced.includes(k as KcId)));
     return fresh ?? pool.at(-1);
   };
-  return pick(all.filter(preferred)) ?? pick(all);
+  // A mistake's word is asked again wherever it qualifies, preferred or not.
+  return all.find((i) => asked(ctx, text.tokens[i] as Token)) ?? pick(all.filter(preferred)) ?? pick(all);
 };
 
 /**

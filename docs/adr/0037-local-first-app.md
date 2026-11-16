@@ -56,3 +56,24 @@ they cannot collide with `review` or `mistakes`.
 - Clearing site data deletes progress until Phase 4b adds accounts and upload.
 - Replaying a course's whole log when it opens is linear in its length, which is fine for months of
   practice. Snapshots can come later, since projections are derived.
+
+## Amendment: a mistake on one word asks that word again (2026-11-16)
+
+A mistake was kept as its item and template only. A card about one word of its sentence was rebuilt
+without the lesson's new words: a gap-fill, a complete-the-translation, a word's marks or its reading.
+It therefore asked about the sentence's default word, its last or first readable one, and rarely the
+word that was missed. In the first lessons of seven courses, 13 of 51 such cards came back about the
+same word. A right answer about another word of the sentence also closed the mistake.
+
+- **A mistake keeps its word:** `Mistake.ask` holds the KCs its answer credited, where the rest of the
+  sentence was given, sorted. A whole-sentence card keeps none.
+- **The rebuilt card asks that word** before any other (`MakeContext.ask`: the blank, the word to
+  vocalize or read).
+- **The course may no longer have it:** where the sentence no longer has the word, the course no longer
+  makes that mistake's card, and it is not practised or counted.
+- **Only an answer about the same word closes it.** A right answer about another word of the sentence
+  leaves it open.
+- **What stays as it was:** a revealed answer (skip) records no credit, so its mistake keeps no word.
+  Two mistakes on one card of a sentence come back one at a time, since the card's id is the
+  sentence's. The wrong option the learner chose is not kept: the rebuilt card draws its options
+  afresh.

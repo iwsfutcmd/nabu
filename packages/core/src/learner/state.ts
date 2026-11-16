@@ -4,7 +4,7 @@
  * open mistakes. `replay` is a pure fold: the same events, in any order and
  * with any duplicates, give the same state.
  */
-import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
+import type { AnswerSubmitted, ExerciseSkipped, KcCredit, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
 import { SPEAKING, TEMPLATES } from "../lesson/templates.ts";
@@ -30,7 +30,24 @@ export interface Mistake {
   readonly item: string;
   readonly template: TemplateId;
   readonly at: string;
+  /**
+   * The word the card asked about, where it asked about one word of its sentence (a blank, a word's
+   * marks or reading): the KCs its answer credited, sorted. A mistakes session asks that word again,
+   * and only an answer about it closes the mistake. Absent where the card asked the whole sentence.
+   */
+  readonly ask?: readonly string[];
 }
+
+/**
+ * The word an answer was about (`Mistake.ask`): the KCs credited right or wrong, where the rest of the
+ * sentence was given; undefined where nothing was given (the whole sentence was asked).
+ */
+export const askOf = (credits: readonly KcCredit[]): readonly string[] | undefined =>
+  credits.some((c) => c.status === "given") ? [...new Set(credits.filter((c) => c.status !== "given").map((c) => String(c.kc)))].sort() : undefined;
+
+/** Whether two mistakes ask the same thing: the same word, or both the whole sentence. */
+export const sameAsk = (a: readonly string[] | undefined, b: readonly string[] | undefined): boolean =>
+  a === undefined || b === undefined ? a === b : a.length === b.length && a.every((kc, i) => kc === b[i]);
 
 export interface LearnerState {
   readonly cards: Readonly<Record<string, StoredCard>>;
@@ -226,9 +243,13 @@ const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, fac
   if (met !== undefined && e.localDate > met && (missed === undefined || e.localDate > missed)) d.shown[key] = e.localDate;
 };
 
-const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean): void => {
-  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template));
-  if (wrong) d.mistakes = [...d.mistakes, { item, template, at }].slice(-MISTAKES_KEPT);
+/**
+ * A first try (or a wrong retry) on a card: a mistake on the same item, template and word closes,
+ * and a wrong answer opens one. A card about another word of the sentence leaves it open.
+ */
+const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined): void => {
+  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameAsk(m.ask, ask)));
+  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }) }].slice(-MISTAKES_KEPT);
 };
 
 const answered = (d: Draft, e: AnswerSubmitted): void => {
@@ -272,7 +293,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
   // Story questions are not mistakes to practice: they only make sense inside their story.
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
-    noteMistake(d, item, template, e.clientTime, !correct);
+    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs));
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
@@ -284,7 +305,8 @@ const skipped = (d: Draft, e: ExerciseSkipped): void => {
     if (e.exercise.kcs.length === 1) witness(d, e, kc, facet, false); // pinned on the word (ADR 0100)
     d.met[kc] ??= e.localDate;
   }
-  noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true);
+  // A revealed answer records no credit, so not which word the card asked: the sentence's default one.
+  noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true, undefined);
 };
 
 const completed = (d: Draft, e: SessionCompleted): void => {

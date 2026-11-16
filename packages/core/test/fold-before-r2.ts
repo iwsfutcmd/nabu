@@ -10,7 +10,7 @@ import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type 
 import { facetOf, ratingOf, type Pace, type Rating } from "../src/learner/credit.ts";
 import { initialPerformance, predict, type Performance, type PredictionInput } from "../src/learner/performance.ts";
 import { withRevisions } from "../src/learner/revisions.ts";
-import { cardKey, DESIRED_RETENTION, RECENT_WINDOW, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
+import { askOf, cardKey, DESIRED_RETENTION, RECENT_WINDOW, sameAsk, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
 import type { Facet, TemplateId } from "../src/lesson/exercise.ts";
 import { SPEAKING, TEMPLATES } from "../src/lesson/templates.ts";
 
@@ -138,9 +138,9 @@ const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, fac
   if (met !== undefined && e.localDate > met && (missed === undefined || e.localDate > missed)) d.shown[key] = e.localDate;
 };
 
-const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean): void => {
-  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template));
-  if (wrong) d.mistakes = [...d.mistakes, { item, template, at }].slice(-MISTAKES_KEPT);
+const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined): void => {
+  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameAsk(m.ask, ask)));
+  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }) }].slice(-MISTAKES_KEPT);
 };
 
 const answered = (d: Draft, e: AnswerSubmitted): void => {
@@ -172,7 +172,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   for (const credit of e.outcome.kcs) d.met[credit.kc] ??= e.localDate;
   if (correct) addXp(d, e.localDate, XP.answer);
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
-    noteMistake(d, item, template, e.clientTime, !correct);
+    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs));
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
@@ -184,7 +184,7 @@ const skipped = (d: Draft, e: ExerciseSkipped): void => {
     if (e.exercise.kcs.length === 1) witness(d, e, kc, facet, false);
     d.met[kc] ??= e.localDate;
   }
-  noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true);
+  noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true, undefined);
 };
 
 const completed = (d: Draft, e: SessionCompleted): void => {

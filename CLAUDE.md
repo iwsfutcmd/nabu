@@ -153,6 +153,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   or `uv run python notebooks/calibration.py f.jsonl`.
 - Count open mistakes with @nabu/core/learner `practicableMistakes` (the course page does), never `state.mistakes`:
   a session leaves out templates on a break, items the course no longer makes, and items needing unseen KCs.
+  A card about one word of its sentence keeps that word (`Mistake.ask`): the session asks it again (`MakeContext.ask`),
+  and only an answer about it closes the mistake (ADR 0037 amendment).
 - The word list (`#/<course>/<orth>/words`): @nabu/core/learner `learnedWords` (word KCs with a reviewed card; script
   facets count only in their orthography; each known or learning, ADR 0100), `orderWords`, `wordMatcher` (letters as
   the profile compares them, marks stripped; readings with or without tones; glosses folded in their own language);
