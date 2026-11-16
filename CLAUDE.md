@@ -219,9 +219,6 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`translation` on the exercise, shown by ListenPrompt). Never before the answer: it would give it away.
 - Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns
   its clip (never the shell), so nothing plays twice. New views with a clip use the same hook.
-- Sound effects are synthesized (player/sound.ts: `notesOf` plans, `playNotes` plays): a chime on a right answer that
-  climbs with a streak, a soft falling tone on a wrong one, a flourish when a session completes. Their own switch
-  (Preferences, `nabu.effects`; the players' `effects` prop) and off with sound. Never add audio files for them.
 - A clip said on answering waits for the feedback sound (`SAY_AFTER_ANSWER_MS`), never over it. Clip elements load with
   the card and are reused (`useClipElements`); never `new Audio()` at play time (choppy starts, Firefox on Android).
 - fa's voice (ADR 0065): Mana-Persian-Piper (Piper, pinned `model`, MIT). Its `carrier` says items of at most

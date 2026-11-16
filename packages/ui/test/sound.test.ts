@@ -1,46 +1,49 @@
 /**
- * Sound effects (sound.ts): what each plays, as plans of notes. A right answer's chime climbs with a
- * streak of right answers and stops climbing; a wrong answer's tone falls and is quieter; a finished
- * lesson's flourish rises. An answer's sound is over before a clip said on answering starts.
+ * Feedback tones (sound.ts): a phone may suspend the page's audio (a context made before the page
+ * was touched, a call, the app in the background); the next tone wakes it, or none would sound again.
  */
-import { describe, expect, it } from "vitest";
-import { FEEDBACK_SOUND_MS, notesOf } from "../src/player/sound.ts";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
-const first = (streak: number): number => notesOf("correct", streak)[0]?.frequency ?? 0;
+afterEach(() => {
+  vi.unstubAllGlobals();
+  vi.resetModules();
+});
 
-describe("sound effects", () => {
-  it("chimes a note and the fifth above it, higher with each right answer in a row, up to a sixth", () => {
-    const [a, b] = notesOf("correct");
-    expect(a && b && b.frequency / a.frequency).toBeCloseTo(1.5, 5);
-    expect(b && a && b.at).toBeGreaterThan(a?.at ?? 0);
-    const climb = [0, 1, 2, 3, 4].map(first);
-    for (let i = 1; i < climb.length; i++) expect(climb[i]).toBeGreaterThan(climb[i - 1] ?? 0);
-    // It stops climbing: no shriller than a sixth above the first.
-    expect(first(10)).toBe(first(4));
-    expect(first(4) / first(0)).toBeCloseTo(2 ** (9 / 12), 5);
-    expect(notesOf("correct").every((n) => n.bell)).toBe(true);
-  });
-
-  it("answers a wrong answer with two soft notes falling, quieter and lower than the chime", () => {
-    const wrong = notesOf("wrong");
-    expect(wrong).toHaveLength(2);
-    expect(wrong[1]?.frequency).toBeLessThan(wrong[0]?.frequency ?? 0);
-    expect(Math.max(...wrong.map((n) => n.gain))).toBeLessThan(Math.min(...notesOf("correct").map((n) => n.gain)));
-    expect(Math.max(...wrong.map((n) => n.frequency))).toBeLessThan(first(0));
-    expect(wrong.some((n) => n.bell)).toBe(false);
-  });
-
-  it("ends a lesson with a rising flourish", () => {
-    const notes = notesOf("finished");
-    expect(notes.length).toBeGreaterThanOrEqual(3);
-    for (let i = 1; i < notes.length; i++) {
-      expect(notes[i]?.frequency).toBeGreaterThan(notes[i - 1]?.frequency ?? 0);
-      expect(notes[i]?.at).toBeGreaterThan(notes[i - 1]?.at ?? 0);
+/** A stand-in AudioContext that starts suspended and records what is asked of it. */
+const fakeAudio = (): { readonly resumed: () => number; readonly started: () => number } => {
+  let resumes = 0;
+  let starts = 0;
+  const param = { value: 0, setValueAtTime: () => param, exponentialRampToValueAtTime: () => param };
+  class FakeContext {
+    state: "suspended" | "running" = "suspended";
+    currentTime = 0;
+    destination = {};
+    resume(): Promise<void> {
+      resumes += 1;
+      this.state = "running";
+      return Promise.resolve();
     }
-  });
+    createOscillator(): unknown {
+      return { frequency: { value: 0 }, connect: (node: unknown) => node, start: () => (starts += 1), stop: () => undefined };
+    }
+    createGain(): unknown {
+      return { gain: param, connect: (node: unknown) => node };
+    }
+  }
+  vi.stubGlobal("AudioContext", FakeContext);
+  return { resumed: () => resumes, started: () => starts };
+};
 
-  it("stays gentle, and an answer's sound is over before a clip said on answering", () => {
-    for (const effect of ["correct", "wrong", "finished"] as const) for (const n of notesOf(effect, 4)) expect(n.gain).toBeLessThanOrEqual(0.2);
-    for (const effect of ["correct", "wrong"] as const) for (const n of notesOf(effect)) expect(n.at * 1000).toBeLessThan(FEEDBACK_SOUND_MS);
+describe("feedback tones", () => {
+  it("wake audio a phone has suspended, and sound", async () => {
+    const audio = fakeAudio();
+    const { playFeedbackSound } = await import("../src/player/sound.ts");
+    playFeedbackSound("correct");
+    expect(audio.resumed()).toBe(1);
+    expect(audio.started()).toBe(2);
+    // Running now: nothing to wake.
+    playFeedbackSound("wrong");
+    expect(audio.resumed()).toBe(1);
+    expect(audio.started()).toBe(4);
   });
 });
