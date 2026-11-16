@@ -32,8 +32,6 @@ export interface ViewProps<E extends Exercise = Exercise> {
    * buttons work either way.
    */
   readonly sound?: boolean | undefined;
-  /** Sound effects (a tone on a wrong pair); without it, as `sound`. */
-  readonly effects?: boolean | undefined;
   /** Where a view registers its digit and Backspace shortcuts; the player listens on the window. */
   readonly shortcuts: { current: Shortcuts | null };
   /**

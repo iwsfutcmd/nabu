@@ -827,7 +827,7 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
       if (next.length === ex.left.length) dispatch({ tag: "submit" });
     } else {
       setMiss([left, right]);
-      if (props.effects ?? props.sound !== false) playFeedbackSound("wrong");
+      if (props.sound !== false) playFeedbackSound("wrong");
       dispatch({ tag: "input", draft: { tag: "pairs", matched, mistakes: mistakes + 1 } });
     }
   };
