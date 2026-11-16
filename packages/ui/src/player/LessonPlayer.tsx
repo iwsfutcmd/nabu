@@ -41,7 +41,7 @@ import { Button, Link } from "react-aria-components";
 import type { MessageId } from "@nabu/i18n";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, SettingsIcon } from "../icons.tsx";
-import { WordStatusProvider } from "../marks.tsx";
+import { FadeReadings, WordStatusProvider } from "../marks.tsx";
 import type { DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
 import { GlossPanel, useGlosses, type WordTap } from "./Gloss.tsx";
@@ -50,7 +50,7 @@ import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.t
 import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
 import styles from "./Player.module.css";
 import { focusInReach, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
-import { HeaderToggles, QuitDialog, SessionHeader, usePlayerKeys, useQuitRequest, useToggles, type QuitCopy } from "./Shell.tsx";
+import { HeaderToggles, QuitDialog, SessionHeader, usePlayerKeys, useQuitRequest, useToggles, type QuitCopy, type Toggles } from "./Shell.tsx";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
 import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
@@ -128,6 +128,11 @@ export interface LessonPlayerProps {
   readonly replay?: boolean | undefined;
   /** The reading layer the learner chose before (false: none), which the app keeps (ADR 0071). */
   readonly reading?: SchemeId | false | undefined;
+  /**
+   * The words whose reading the learner has shown (core `readingsShown`, ADR 0131): where readings
+   * show on new words only, these go without.
+   */
+  readonly readingsShown?: ReadonlySet<string> | undefined;
   /** The learner chose a reading layer, or none. */
   readonly onReadingChange?: ((scheme: SchemeId | false) => void) | undefined;
   /** A session picked up again after a reload (core `resume`, S3): where it stands, and what reopens it. */
@@ -197,15 +202,24 @@ const QUIT: Readonly<Record<SessionKind, { readonly title: MessageId; readonly k
   placement: { title: "player.quit.title.practice", kept: "player.quit.kept.practice" },
 };
 
+/** The lesson's toggles, and readings faded inside it where the learner shows them on new words only (ADR 0131). */
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak } = props;
+  // Sound, the reading layer, vowel marks and vertical text: the learner's choices for the course,
+  // else the profile's (P6, P12; vertical text in word banks and prompts).
+  const toggles = useToggles(props.profile, "wordbank", props);
+  return (
+    <FadeReadings on={toggles.fade}>
+      <PlayerView {...props} toggles={toggles} />
+    </FadeReadings>
+  );
+};
+
+const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined; readonly toggles: Toggles }): JSX.Element => {
+  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak, toggles } = props;
   const t = useTranslator();
   const kind = props.mode ?? "lesson";
   // What quitting says: a lesson done before loses nothing by it (D13).
   const quit = props.replay === true && kind === "lesson" ? { title: QUIT.lesson.title, kept: "player.quit.kept.replay" as const } : QUIT[kind];
-  // Sound, the reading layer, vowel marks and vertical text: the learner's choices for the course,
-  // else the profile's (P6, P12; vertical text in word banks and prompts).
-  const toggles = useToggles(profile, "wordbank", props);
   const { display, readings } = toggles;
   // Listening or speaking put off in this lesson ("Can't listen now"): said once it happens (P13).
   const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
@@ -484,7 +498,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 /** Plays one lesson. Provides the course's orthography profiles, and its target ones, to <T>. */
 export const LessonPlayer = (props: LessonPlayerProps): JSX.Element => (
   <CourseUiProvider course={props.course}>
-    <WordStatusProvider course={props.course} known={props.known}>
+    <WordStatusProvider course={props.course} known={props.known} readings={props.readingsShown}>
       <SpeechProvider value={props.speech}>
         <PlayerBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
       </SpeechProvider>

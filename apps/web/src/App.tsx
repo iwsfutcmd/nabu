@@ -24,6 +24,7 @@ import {
   plan,
   plannable,
   practicableMistakes,
+  readingsShown,
   replay,
   scriptPathOf,
   wordCounts,
@@ -1170,6 +1171,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   const [facetsOff] = useState(() => facetsOffOf(offNow()));
   // The words the learner knows as the session opens: where a course marks vowels on new words only (P12).
   const [known] = useState(() => knownWords(course, state, new Date(), facetsOff));
+  // And the words whose reading they have shown: where readings show on new words only (ADR 0131).
+  const [readingsKnown] = useState(() => readingsShown(course, state));
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   // The AI help the session's answers got, which its end shows again (M10).
@@ -1244,6 +1247,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         display={storedDisplay(course.id, course.orthography)}
         onDisplayChange={(choice) => storeDisplay(course.id, course.orthography, choice)}
         known={known}
+        readingsShown={readingsKnown}
         onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
         onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
         xpEarned={end.xp}
@@ -1310,6 +1314,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
       session,
       script: storyScript(course, story, seededRng(seed)),
       known: knownWords(course, state, new Date(), facetsOff),
+      readings: readingsShown(course, state),
       onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep, session }),
     };
   });
@@ -1350,6 +1355,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         display={storedDisplay(course.id, course.orthography)}
         onDisplayChange={(choice) => storeDisplay(course.id, course.orthography, choice)}
         known={setup.known}
+        readingsShown={setup.readings}
         replay={state.completedNodes.includes(node)}
         quitRequest={routing.quitRequest}
         onExit={routing.exit}

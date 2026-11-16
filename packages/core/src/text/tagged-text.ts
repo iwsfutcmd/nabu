@@ -76,9 +76,6 @@ export const textOfSurface = (base: Pick<TaggedText, "lang" | "orthography">, su
   tokens: [{ surface, kind: /[\p{L}\p{M}\p{N}]/u.test(surface) ? "word" : "punct" }],
 });
 
-/** Whether any token carries ruby in `scheme` (a reading layer: Jyutping, a transliteration): what `<T ruby>` would add. */
-export const hasRuby = (text: TaggedText, scheme: string): boolean => text.tokens.some((t) => (t.ruby?.[scheme as keyof typeof t.ruby]?.length ?? 0) > 0);
-
 /** Indexes of the word and number tokens, in order: what tap-for-gloss and shortcuts address. */
 export const wordIndexes = (text: TaggedText): readonly number[] =>
   text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));

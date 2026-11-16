@@ -11,13 +11,13 @@
 import { answerDiff, chosenWordOf, closestAnswer, diffParts, isCorrect, nearMiss, otherWordsOf, solutionMarks, type AnswerDiff, type CourseView, type Exercise, type Outcome, type Response } from "@nabu/core/lesson";
 import type { Verdict } from "@nabu/core";
 import { wordMeanings, writtenMeanings, type WordMeaning } from "@nabu/core/story";
-import { hasRuby, textOfSurface } from "@nabu/core/text";
+import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { Fragment, useMemo, type JSX } from "react";
 import { useTranslator } from "../context.tsx";
 import { CorrectIcon, WrongIcon } from "../icons.tsx";
-import { T } from "../T.tsx";
+import { T, useShowsRuby } from "../T.tsx";
 import { FormNote, GlossEntry, GlossList } from "./Gloss.tsx";
 import styles from "./Player.module.css";
 
@@ -152,6 +152,7 @@ export interface FeedbackProps {
 
 export const Feedback = ({ ex, outcome, response, course, ruby, marks }: FeedbackProps): JSX.Element => {
   const t = useTranslator();
+  const showsRuby = useShowsRuby();
   // A self-rating checked nothing (P5): neither right nor wrong, and no solution to compare with.
   const neutral = outcome.selfRated === true;
   const right = isCorrect(outcome.verdict);
@@ -159,7 +160,15 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks }: Feedbac
   // A right answer typed where a reading layer is shown (a transliteration, Jyutping): the field shows only
   // what was typed, so the sentence comes again with its readings. CORRECT is the shown wording itself;
   // another wording (CORRECT_ALT) gets the solution with its readings anyway.
-  const withReadings = outcome.verdict === "CORRECT" && response?.tag === "text" && ruby !== false && outcome.solution !== undefined && hasRuby(outcome.solution, ruby);
+  // Only where a word of it still shows its reading: readings on new words only leave off those the
+  // learner has shown (ADR 0131), and the sentence again without any would say nothing new.
+  const solution = outcome.solution;
+  const withReadings =
+    outcome.verdict === "CORRECT" &&
+    response?.tag === "text" &&
+    ruby !== false &&
+    solution !== undefined &&
+    showsRuby(solution, ruby);
   const showSolution = outcome.solution !== undefined && (outcome.verdict !== "CORRECT" || withReadings);
   const solutionLabel = right ? undefined : t.format("player.feedback.solution");
   const profile = course.profiles.get(ex.orthography);

@@ -10,7 +10,7 @@ import { courseGlossary, glossAt, glossLine, type Gloss } from "@nabu/core/story
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useMemo, type JSX, type ReactNode } from "react";
 import { useTranslator } from "../context.tsx";
-import type { Marks } from "../marks.tsx";
+import { FadeReadings, type Marks } from "../marks.tsx";
 import { T } from "../T.tsx";
 import styles from "./Gloss.module.css";
 
@@ -101,11 +101,14 @@ export const GlossPanel = ({ open, glosses, ruby, marks, quiet = false }: GlossP
       ) : glosses.length === 0 ? (
         <p className={styles.glossHint}>{t.format("story.gloss.none")}</p>
       ) : (
-        <GlossList>
-          {glosses.map((g, i) => (
-            <GlossEntry key={i} gloss={g} ruby={ruby} marks={marks} />
-          ))}
-        </GlossList>
+        // A tapped word's reading shows here even where readings fade (ADR 0131): this is where it is looked up.
+        <FadeReadings on={false}>
+          <GlossList>
+            {glosses.map((g, i) => (
+              <GlossEntry key={i} gloss={g} ruby={ruby} marks={marks} />
+            ))}
+          </GlossList>
+        </FadeReadings>
       )}
     </div>
   );

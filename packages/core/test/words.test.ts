@@ -1,6 +1,6 @@
 import type { KcCredit, LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { DESIRED_RETENTION, dueFacets, emptyLearnerState, learnedWords, orderWords, parseCardKey, plan, replay, retrievability, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
+import { DESIRED_RETENTION, dueFacets, emptyLearnerState, learnedWords, orderWords, parseCardKey, plan, readingsShown, replay, retrievability, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
 import { lessonNodes, type Exercise, type Facet, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -170,6 +170,26 @@ describe("known words (ADR 0100)", () => {
     l.on(3);
     l.answer(word(a), [true]);
     expect(l.state().shown[`${a}|recognize`]).toBe("2026-03-03");
+  });
+
+  it("witnesses a word's reading too (ADR 0131): a reading card right on a later day, until a miss", () => {
+    const l = log();
+    const read = card("char-read", [a, b]);
+    const key = `${a}|read-script|${fa.orthography}`;
+    l.on(1);
+    l.answer(word(a), [true]);
+    // The day the word was met: no reading shown yet, as no skill is.
+    l.answer(read, [true, undefined]);
+    expect(l.state().shown[key]).toBeUndefined();
+    l.on(2);
+    l.answer(read, [true, undefined]);
+    expect(l.state().shown[key]).toBe("2026-03-02");
+    expect(readingsShown(fa, l.state())).toEqual(new Set([a]));
+    // Only the word the card asked about: the sentence around it was given.
+    expect(l.state().shown[`${b}|read-script|${fa.orthography}`]).toBeUndefined();
+    l.answer(read, [false, undefined]);
+    expect(readingsShown(fa, l.state())).toEqual(new Set());
+    expect(l.state().missed[key]).toBe("2026-03-02");
   });
 
   it("pins a miss on a word only where the grading does", () => {
