@@ -957,3 +957,35 @@ describe("a Chaghatay word read in its sentence, by choice (ADR 0131)", () => {
     }
   });
 });
+
+describe("a Chaghatay word's reading typed, once read right by choice (ADR 0131)", () => {
+  const chg = loadCourse("chg");
+  const lessons = lessonNodes(chg).slice(0, 8);
+  const planned = (state: ReturnType<typeof emptyLearnerState>) =>
+    lessons.flatMap((n) => plan(chg, state, { mode: "lesson", node: n.node.id }, { now: "2026-03-01T08:00:00.000Z", seed: 3 }).exercises);
+
+  it("is planned only for words whose reading the learner has shown", () => {
+    expect(planned(emptyLearnerState()).filter((ex) => ex.template === "transcribe")).toEqual([]);
+    const kcs = chg.units.flatMap((u) => u.kcs).map((k) => String(k.id));
+    const shown = { ...emptyLearnerState(), shown: Object.fromEntries(kcs.map((kc) => [`${kc}|read-script|chg-Arab/standard`, "2026-02-01"])) };
+    expect(planned(shown).filter((ex) => ex.template === "transcribe").length).toBeGreaterThan(0);
+  });
+
+  it("is graded by the transliteration's profile: a mark left out is noted, ng stands for ŋ", () => {
+    const grader = createGrader(chg);
+    const cards = allSentences(chg)
+      .flatMap((s) => SENTENCE_TEMPLATES.transcribe?.({ course: chg, rng: seededRng(1), introduced: [] }, s) ?? [])
+      .filter((ex): ex is Extract<Exercise, { template: "transcribe" }> => ex.template === "transcribe");
+    const marked = cards.find((ex) => /[äöüš]/u.test(surfaceOf(ex.reading)));
+    if (marked === undefined) throw new Error("chg has a word whose reading has marks");
+    expect(marked.reading.orthography).toBe("chg-Latn/schluessel");
+    const reading = surfaceOf(marked.reading);
+    const typed = (text: string) => gradeExercise(marked, { tag: "text", text }, grader);
+    expect(typed(reading).verdict).toBe("CORRECT");
+    const bare = typed(reading.normalize("NFD").replace(/[̀-ͯ]/gu, "").normalize("NFC"));
+    expect([bare.verdict, bare.notes]).toEqual(["CORRECT_MARKS", ["translit-marks"]]);
+    expect(isCorrect(typed("xyz").verdict)).toBe(false);
+    const nasal = cards.find((ex) => surfaceOf(ex.reading).includes("ŋ"));
+    if (nasal !== undefined) expect(isCorrect(gradeExercise(nasal, { tag: "text", text: surfaceOf(nasal.reading).replace(/ŋ/gu, "ng") }, grader).verdict)).toBe(true);
+  });
+});

@@ -4,7 +4,7 @@
  * the state machine. Target-language regions take the target script's
  * direction; everything a learner taps is language data rendered through <T>.
  */
-import { readingScheme } from "@nabu/core";
+import { readingScheme, typedByProfile } from "@nabu/core";
 import type {
   AudioRef,
   ChooseTranslation,
@@ -602,7 +602,8 @@ const TypedAnswer = ({
   props: ViewProps & ViewExtras;
   label: string;
   answer: TaggedText;
-  keys?: readonly string[];
+  /** The character bar's letters; by default the answer orthography's profile's extra keys. */
+  keys?: readonly string[] | undefined;
   /** The parts of the prompt the field is described by, after the instruction (P10). */
   parts: readonly ("prompt" | "gap" | "hint")[];
 }): JSX.Element => {
@@ -754,7 +755,8 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
     <div className={styles.body}>
       <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={false} ids={props.ids} taps={tapsOn(props, "sentence", ex.prompt, "answered")} />
       <AnswerAudio props={props} />
-      <TypedAnswer props={props} label={t.format(label)} answer={ex.reading} keys={[]} parts={["prompt", "hint"]} />
+      {/* Typed as text of its answer orthography (Schluessel, ADR 0131): that profile's letters on the bar (ä, ŋ, ḫ…). */}
+      <TypedAnswer props={props} label={t.format(label)} answer={ex.reading} keys={typedByProfile(ex.scheme) ? undefined : []} parts={["prompt", "hint"]} />
     </div>
   );
 };

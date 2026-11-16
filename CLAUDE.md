@@ -566,7 +566,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). One
   orthography, chg-Arab/standard, set in Nastaliq (Noto Nastaliq Urdu). Every word token pins `readings: {schluessel:
   …}`, Schluessel's transliteration (2018), shown as ruby over the whole word (the scheme's `ruby: word`), over new words until the learner chooses, and asked by
-  char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW; ADR 0131);
+  char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW), then typed
+  (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131);
   every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.

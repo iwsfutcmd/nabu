@@ -8,7 +8,7 @@ import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, TaggedText, Tok
 import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { readingTag } from "../profile/schemes.ts";
-import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, letterVariants, toneVariants, transcribable, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
+import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, letterVariants, toneVariants, transcribable, typedByProfile, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
 import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { tilesOf } from "./tiles.ts";
@@ -1148,7 +1148,9 @@ export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe 
   const scheme = rubySchemeOf(ctx);
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
-  if (scheme === undefined || !transcribable(scheme) || form === undefined || translation === undefined) return undefined;
+  // Typed syllable by syllable (Jyutping), or as text its answer orthography's profile grades (ADR 0131).
+  const typed = scheme !== undefined && (transcribable(scheme) || (typedByProfile(scheme) && ctx.course.profiles.has(readingTag(scheme)?.orthography ?? "")));
+  if (scheme === undefined || !typed || form === undefined || translation === undefined) return undefined;
   const word = pronouncedWord(ctx, form.text, (t) => t.readings?.[scheme] !== undefined);
   if (word === undefined) return undefined;
   const reading = readingText(scheme, (form.text.tokens[word] as Token).readings?.[scheme] as string);
@@ -1294,6 +1296,12 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     }
     case "transcribe": {
       if (response.tag !== "text") return mismatch(ex, response);
+      // A reading typed as text (Schluessel, ADR 0131): its answer orthography's profile grades it, so a
+      // mark left out is noted unless it spells another word.
+      if (typedByProfile(ex.scheme)) {
+        const g = grader.grade(ex.reading.orthography, literalAccept(surfaceOf(ex.reading)), response.text);
+        return { verdict: g.verdict, notes: g.notes, solution: ex.reading, alignment: g.alignment };
+      }
       const g = gradeReading(ex.scheme, surfaceOf(ex.reading), response.text);
       return { verdict: g.verdict, notes: g.notes, solution: ex.reading };
     }

@@ -85,4 +85,14 @@ A scheme without `variants` (Jyutping, sitelen Lasina) builds its cards exactly 
 In the first eight chg lessons the planner now plans 11 reading cards, the first lesson three. The simulation
 keeps chg within its target.
 
-Typed reading cards for words already right by choice come next.
+**Typed once read right by choice.** A scheme may say its readings are typed as text of its answer orthography and
+graded by that profile (`typedByProfile`), rather than syllable by syllable as Jyutping is. Schluessel does.
+
+- **When it is asked:** the planner asks a word's reading typed (transcribe) only once that reading has been shown
+  by the fold's rule: read right by choice, on a later day than the word was met.
+- **How it is graded:** chg-Latn/schluessel grades the answer. A mark left out is noted (CORRECT_MARKS, "mind the
+  marks") unless the answer then spells another word of the course. ng is accepted for ŋ. That is the profile's
+  existing policy, marked REVIEW.
+- **One inconsistency:** a vowel the choice card counts wrong (sut for süt) passes typed, with the note.
+- **The field:** it offers that profile's letters on the character bar.
+- **What stays as it was:** Jyutping's typed cards.

@@ -158,6 +158,15 @@ const shapeOf = (scheme: string): Shape | undefined => {
 /** Whether a word's reading in this scheme can be asked for as typed text: the scheme gives a syllable's shape. */
 export const transcribable = (scheme: string): boolean => shapeOf(scheme) !== undefined;
 
+/**
+ * Whether a reading in this scheme is typed as text of its answer orthography and graded by that
+ * profile (ADR 0131: Schluessel's transliteration), rather than syllable by syllable.
+ */
+export const typedByProfile = (scheme: string): boolean => {
+  const data = readingScheme(scheme);
+  return data?.typedByProfile === true && data.answer !== undefined && shapeOf(scheme) === undefined;
+};
+
 /** A typed reading's syllables: lowercased, what may stand between them dropped, end to end; undefined where it is not syllables. */
 const syllablesOf = (scheme: string, text: string): readonly string[] | undefined => {
   const shape = shapeOf(scheme);

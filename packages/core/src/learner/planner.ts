@@ -24,6 +24,7 @@ import { lessonNodes, sentencesOf } from "../lesson/nodes.ts";
 import { seededRng } from "../lesson/rng.ts";
 import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
 import { KC_LISTENING, KC_TEMPLATES, SENTENCE_TEMPLATES, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
+import { typedByProfile } from "../match/pronounce.ts";
 import { askedKcs, creditedKcs, facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
@@ -452,6 +453,9 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
     const gated = PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
+    // A reading typed as text (Schluessel, ADR 0131) is asked only once the word read right by choice:
+    // its reading shown, as the fold witnesses it.
+    if (c.ex.template === "transcribe" && typedByProfile(c.ex.scheme) && !gated.every((kc) => state.shown[key(kc, "read-script")] !== undefined)) return false;
     return gated.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.

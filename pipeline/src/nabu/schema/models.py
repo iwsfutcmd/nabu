@@ -3415,6 +3415,12 @@ class ReadingScheme(BaseModel):
             description="A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end."
         ),
     ] = None
+    typedByProfile: Annotated[
+        Literal[True] | None,
+        Field(
+            description="A learner may type a reading in it as text of its `answer` orthography, graded by that orthography's profile (its marks, equivalences, typos and contrasts; ADR 0131): Schluessel's transliteration, whose words are not syllables of one shape. Asked only once the word's reading was read right by choice. A scheme with `typed` is graded by its syllables instead."
+        ),
+    ] = None
     tones: Annotated[
         Tones | None,
         Field(
