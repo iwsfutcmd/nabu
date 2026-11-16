@@ -198,3 +198,22 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     expect(block(missed, "data-solution")).toContain('data-highlight="true">tienes</span>');
   });
 });
+
+describe("a right answer typed where readings are shown", () => {
+  const right: Outcome = { verdict: "CORRECT", notes: [], solution, closestIsSolution: true };
+  const typed: Response = { tag: "text", text: "我嘅書呢？" };
+
+  it("shows the sentence again with its readings: the field shows only what was typed", () => {
+    const html = render(<Feedback ex={ex} outcome={right} response={typed} course={course} ruby={JYUTPING} marks="show" />);
+    expect(html).toContain("data-solution");
+    expect(html).toContain("呢<rt>ne1</rt>");
+    // No "Correct answer:" label: it is the learner's own answer.
+    expect(html).not.toContain("Correct answer:");
+  });
+
+  it("shows nothing more with the readings off, or for an answer of tiles (they show their readings)", () => {
+    expect(render(<Feedback ex={ex} outcome={right} response={typed} course={course} ruby={false} marks="show" />)).not.toContain("data-solution");
+    const tiles: Response = { tag: "tiles", order: [0, 1, 2, 3] };
+    expect(render(<Feedback ex={ex} outcome={right} response={tiles} course={course} ruby={JYUTPING} marks="show" />)).not.toContain("data-solution");
+  });
+});
