@@ -92,9 +92,12 @@ test("Cantonese words show their Jyutping, as sentences do, and the toggle hides
   const words = player.locator("[data-pair^=left]");
   await expect(words).not.toHaveCount(0);
   for (const word of await words.all()) await expect(word.locator("rt")).not.toHaveCount(0);
-  // The readings switch is in the header's display menu (P12).
+  // The readings choice is in the header's display menu (P12): on new words by default, which for a
+  // learner who has read none yet is every word (ADR 0131).
   await page.locator("[data-lesson-player] [data-action=display]").click();
-  await page.locator("[data-display-menu] [data-toggle=readings]").click();
+  const readings = page.locator("[data-display-menu] [data-toggle=readings]");
+  await expect(readings).toHaveAttribute("data-readings-shown", "new");
+  await readings.locator("[data-reading=off]").click();
   await expect(player.locator("rt")).toHaveCount(0);
 });
 
@@ -129,7 +132,7 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   await expect(page.locator("[data-lesson-player] rt")).toHaveCount(0);
 });
 
-test("Chaghatay is read in Arabic, with Schluessel's transliteration over each word when the learner turns it on (ADR 0129)", async ({ page }, info) => {
+test("Chaghatay is read in Arabic, with Schluessel's transliteration over each new word, or every word or none (ADR 0129, 0131)", async ({ page }, info) => {
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
   await page.clock.setFixedTime(NOW);
   const course = loadCourse("chg", "chg-Arab/standard");
@@ -137,10 +140,15 @@ test("Chaghatay is read in Arabic, with Schluessel's transliteration over each w
   await page.goto(sessionUrl(course, request, SEED));
   const player = page.locator("[data-lesson-player]");
   await expect(player).toHaveAttribute("data-state", "answering");
-  await expect(player.locator("rt")).toHaveCount(0);
-  // One layer: a switch in the header's display menu (P12).
+  // Over the words whose reading is new (ADR 0131): to a new learner, every word. Off, then back on
+  // over every word, from the header's display menu (P12).
+  await expect(player.locator("rt")).not.toHaveCount(0);
   await page.locator("[data-lesson-player] [data-action=display]").click();
-  await page.locator("[data-display-menu] [data-toggle=readings]").click();
+  const readings = page.locator("[data-display-menu] [data-toggle=readings]");
+  await expect(readings).toHaveAttribute("data-readings-shown", "new");
+  await readings.locator("[data-reading=off]").click();
+  await expect(player.locator("rt")).toHaveCount(0);
+  await readings.locator("[data-reading=all]").click();
   const rt = player.locator("rt").first();
   await expect(rt).toHaveAttribute("lang", "chg-Latn");
   // Over the whole word: one reading per ruby, its base the Arabic word, set in Nastaliq.

@@ -10,7 +10,7 @@ import { CloseIcon } from "../icons.tsx";
 import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { DisplayMenu, hasDisplayChoices, useDisplay, type Display, type DisplayChoice } from "./Display.tsx";
 import styles from "./Player.module.css";
-import { useReadings, type Readings } from "./Readings.tsx";
+import { fades, useReadings, type Readings } from "./Readings.tsx";
 import { digitIndex, inDialog, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
 import { SoundToggle } from "./SoundToggle.tsx";
 
@@ -100,6 +100,8 @@ export interface Toggles {
   readonly readings: Readings;
   /** A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue). */
   readonly glossRuby: SchemeId | false;
+  /** Readings on new words only (ADR 0131): the layer shown fades, and the learner shows it so. */
+  readonly fade: boolean;
 }
 
 /**
@@ -120,6 +122,7 @@ export const useToggles = (profile: OrthographyProfile | undefined, scope: "word
     display,
     readings,
     glossRuby: readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false,
+    fade: display.readings === "new" && fades(readings.layers.find((l) => l.scheme === readings.shown)),
   };
 };
 

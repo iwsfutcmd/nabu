@@ -50,7 +50,8 @@ export interface LearnerState {
   /**
    * Known words (ADR 0100): the local date each skill (a recognize, produce or listen card) was
    * last shown: a first try right, not self-rated, on a later day than the KC was met and than the
-   * skill was last missed. A miss takes it away.
+   * skill was last missed. A miss takes it away. A word's reading (read-script, a reading card) is
+   * witnessed the same way (ADR 0131): its ruby fades once shown, though no word needs it to be known.
    */
   readonly shown: Readonly<Record<string, string>>;
   /** The local date each skill was last missed (a first try wrong, or the answer revealed). */
@@ -203,11 +204,17 @@ const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet:
 export const SKILL_FACETS: ReadonlySet<Facet> = new Set<Facet>(["recognize", "produce", "listen"]);
 
 /**
+ * The skills a first try shows or misses: those a word is known by, and reading it (ADR 0131: a
+ * reading card in context or a word's reading card), which says when its reading's ruby may fade.
+ */
+export const WITNESSED_FACETS: ReadonlySet<Facet> = new Set<Facet>([...SKILL_FACETS, "read-script"]);
+
+/**
  * A skill shown or missed (ADR 0100). It is shown only on a later day than the word was met and
  * than the skill was last missed: after a night, and again after a night once it slips (D2, D3).
  */
 const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
-  if (!SKILL_FACETS.has(facet)) return;
+  if (!WITNESSED_FACETS.has(facet)) return;
   const key = cardKey(kc, facet, e.orthography);
   if (!right) {
     delete d.shown[key];

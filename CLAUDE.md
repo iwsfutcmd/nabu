@@ -181,6 +181,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Due means a facet's recall is below the target (`dueFacets`, `LearnedWord.due`): never a card's FSRS due date. The
   course page counts due words. A review session has a card per word needing one (5–15) and plans only from the
   neediest sentences and words plus a few well-known ones: never build candidates from every studied sentence (R3).
+- Readings on new words only (ADR 0131): the fold witnesses the read-script facet too (`WITNESSED_FACETS`, by D2's rule);
+  it is never a skill a word is known by. A reading layer with `fade: by-facet` shows over all words or new ones
+  (`DisplayChoice.readings`); <T> fades a word's ruby only inside `FadeReadings` (lessons, stories), by core
+  `readingsShown`: never in a tapped word's gloss or the word list. Pass `readingsShown` wherever `known` goes.
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 
@@ -558,7 +562,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Chaghatay notes (see docs/adr/0128-0129)
 - courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). One
   orthography, chg-Arab/standard, set in Nastaliq (Noto Nastaliq Urdu). Every word token pins `readings: {schluessel:
-  …}`, Schluessel's transliteration (2018), shown as ruby over the whole word on request (the scheme's `ruby: word`);
+  …}`, Schluessel's transliteration (2018), shown as ruby over the whole word (the scheme's `ruby: word`), over new words until the learner chooses (ADR 0131);
   every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.

@@ -234,3 +234,18 @@ export const wordMatcher = (course: CourseView, query: string): ((word: LearnedW
     return surfaceOf(word.gloss).normalize("NFC").toLocaleLowerCase(lang).includes(q.toLocaleLowerCase(lang));
   };
 };
+
+/**
+ * The words whose reading the learner has shown in the course's orthography (ADR 0131): a reading
+ * card (a word read in its sentence, or on its own) right on a first try, on a later day than the
+ * word was met, and not missed since. Where a reading layer fades (`fade: by-facet`) and the learner
+ * shows it on new words only, these words go without it.
+ */
+export const readingsShown = (course: CourseView, state: LearnerState): ReadonlySet<string> => {
+  const out = new Set<string>();
+  for (const key of Object.keys(state.shown)) {
+    const { kc, facet, orthography } = parseCardKey(key);
+    if (facet === "read-script" && orthography === course.orthography) out.add(kc);
+  }
+  return out;
+};

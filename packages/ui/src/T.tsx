@@ -14,13 +14,14 @@
  * - Vocalization (§6.6): text is stored vocalized; `marks="hide"` strips the
  *   profile's mark set for display only, never in the data.
  */
+import { kcsOfToken } from "@nabu/core/learner";
 import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
 import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
 import { Fragment, useMemo, type CSSProperties, type JSX } from "react";
 import { useIsTarget, useOrthography } from "./context.tsx";
 import { useFonts } from "./fonts.ts";
-import { useWordStatus, type Marks } from "./marks.tsx";
+import { useReadingFaded, useWordStatus, type Marks } from "./marks.tsx";
 import styles from "./T.module.css";
 
 export interface TProps {
@@ -143,15 +144,26 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
   );
 };
 
+/**
+ * Whether <T> shows any reading of a text here in a scheme: a word that has one, and whose reading has
+ * not faded (ADR 0131: readings on new words only, inside a lesson or story).
+ */
+export const useShowsRuby = (): ((text: TaggedText, scheme: SchemeId) => boolean) => {
+  const faded = useReadingFaded();
+  return (text, scheme) => text.tokens.some((t) => (t.ruby?.[scheme]?.length ?? 0) > 0 && !faded(kcsOfToken(t), t.surface, text.orthography));
+};
+
 export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, emphasis, current, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
   const profile = useOrthography(text.orthography);
   const target = useIsTarget(text.orthography);
   const status = useWordStatus();
+  const faded = useReadingFaded();
   const markSet = marks === "show" ? undefined : profile?.match?.marks?.set;
   const strip = useMemo(() => markStripper(markSet), [markSet]);
   // "new": a word the learner knows loses its marks; one still being learned (or unknown) keeps them.
-  const known = (token: Token): boolean =>
-    status !== null && !status.isNew([...(token.sense === undefined ? [] : [`sense:${token.sense}`]), ...(token.morphs ?? []).map((m) => m.kc)], token.surface, text.orthography);
+  const known = (token: Token): boolean => status !== null && !status.isNew(kcsOfToken(token), token.surface, text.orthography);
+  // Readings on new words only (ADR 0131): a word whose reading the learner has shown goes without.
+  const rubyOf = (token: Token): SchemeId | false => (ruby !== false && faded(kcsOfToken(token), token.surface, text.orthography) ? false : ruby);
   const stripOf = (token: Token): RegExp | undefined => (marks === "hide" || (marks === "new" && known(token)) ? strip : undefined);
   const font = fontStackFor(text.lang, profile?.fonts);
   useFonts(font.family);
@@ -184,7 +196,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           key={index}
           token={token}
           index={index}
-          ruby={ruby}
+          ruby={rubyOf(token)}
           rubyLang={rubyLang}
           strip={stripOf(token)}
           highlighted={highlight?.includes(index) ?? false}

@@ -20,7 +20,7 @@ import { useEffect, useId, useMemo, useRef, useState, type JSX, type ReactNode }
 import { Button } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon } from "../icons.tsx";
-import { WordStatusProvider, type Marks } from "../marks.tsx";
+import { FadeReadings, WordStatusProvider, type Marks } from "../marks.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import type { DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
@@ -29,7 +29,7 @@ import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
 import { effectiveWritingMode, focusInReach, type Shortcuts, type WritingMode } from "../player/shared.ts";
-import { HeaderToggles, QuitDialog, SessionHeader, usePlayerKeys, useQuitRequest, useToggles } from "../player/Shell.tsx";
+import { HeaderToggles, QuitDialog, SessionHeader, usePlayerKeys, useQuitRequest, useToggles, type Toggles } from "../player/Shell.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
 import { useStoryPlayer } from "./useStoryPlayer.ts";
@@ -68,6 +68,8 @@ export interface StoryReaderProps {
   readonly onDisplayChange?: ((choice: DisplayChoice) => void) | undefined;
   /** The words (KC ids) the learner knows (ADR 0100), for vowel marks on new words only (P12). */
   readonly known?: ReadonlySet<string> | undefined;
+  /** The words whose reading the learner has shown (ADR 0131), for readings on new words only. */
+  readonly readingsShown?: ReadonlySet<string> | undefined;
   /** For Storybook and tests: lines whose translation starts open, and a token whose gloss starts open. */
   readonly initial?: { readonly translations?: readonly number[]; readonly gloss?: { readonly line: number; readonly token: number } };
   /** For Storybook and tests: start from this state instead of the story's beginning. */
@@ -155,12 +157,21 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
   );
 };
 
+/** The story's toggles, and readings faded inside it where the learner shows them on new words only (ADR 0131). */
 const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, script, grader, imageUrl, language, onEvent, onExit, profile, xpEarned } = props;
-  const t = useTranslator();
   // Sound, the reading layer, vowel marks and vertical reading: the learner's choices for the course,
   // else the profile's (P6, P12; vertical text in the story's lines).
-  const toggles = useToggles(profile, "reading", props);
+  const toggles = useToggles(props.profile, "reading", props);
+  return (
+    <FadeReadings on={toggles.fade}>
+      <ReaderView {...props} toggles={toggles} />
+    </FadeReadings>
+  );
+};
+
+const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyProfile | undefined; readonly toggles: Toggles }): JSX.Element => {
+  const { course, script, grader, imageUrl, language, onEvent, onExit, profile, xpEarned, toggles } = props;
+  const t = useTranslator();
   const { display, readings } = toggles;
   // Nothing plays by itself with sound off or while the learner can't listen (P6).
   const quiet = !toggles.sound || props.listening === false;
@@ -463,7 +474,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
 export const StoryReader = (props: StoryReaderProps): JSX.Element => {
   return (
     <CourseUiProvider course={props.course}>
-      <WordStatusProvider course={props.course} known={props.known}>
+      <WordStatusProvider course={props.course} known={props.known} readings={props.readingsShown}>
         <ReaderBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
       </WordStatusProvider>
     </CourseUiProvider>

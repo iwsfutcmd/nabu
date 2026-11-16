@@ -52,9 +52,9 @@ match:
       - { id: past, note: contrast-person, members: [[دیم, دوم, تیم, توم], [دینک, دونک, تینک], [دینکیز, تینکیز], [دی, تی], [دوق, دوک, توق], [دیلار, تیلار]] }
       - { id: pronoun, note: contrast-pronoun, members: [من, سن, سیز, بیز, سیزلار, اولار] }
 annotations:
-  # Schluessel's transliteration of each word, as ruby over the whole word (the scheme's `ruby: word`): off until
-  # the learner asks, and no exercise drills it.
-  - { id: schluessel, kind: reading, scheme: schluessel, lang: chg-Latn, toggle: true, default: "off", render: ruby, fade: none }
+  # Schluessel's transliteration of each word, as ruby over the whole word (the scheme's `ruby: word`): over the
+  # words whose reading is still new until the learner chooses (ADR 0131), fading once a reading card shows it.
+  - { id: schluessel, kind: reading, scheme: schluessel, lang: chg-Latn, toggle: true, default: on-for-new-words, render: ruby, fade: by-facet }
 input:
   keyboard: cldr-kbd:fa
   extraKeys: ["\u200C"]          # ZWNJ on the special-character bar

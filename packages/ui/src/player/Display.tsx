@@ -12,19 +12,24 @@ import { useTranslator } from "../context.tsx";
 import type { Marks } from "../marks.tsx";
 import { chromeClass, useChrome } from "../UiRoot.tsx";
 import styles from "./Player.module.css";
-import { ReadingsControl, type Readings } from "./Readings.tsx";
+import { defaultReadingWords, ReadingsControl, type Readings, type ReadingWords } from "./Readings.tsx";
 import { defaultMarks, effectiveWritingMode, hasMarksLayer, type WritingMode } from "./shared.ts";
 
 /** What the learner chose for a course on this device: undefined where they have not chosen. */
 export interface DisplayChoice {
   readonly marks?: Marks | undefined;
   readonly vertical?: boolean | undefined;
+  /** Readings over every word or the new ones only, where the layer shown fades (ADR 0131). */
+  readonly readings?: ReadingWords | undefined;
 }
 
 export interface Display {
   /** The vowel marks shown, where the profile has a marks layer. */
   readonly marks: Marks;
   readonly setMarks: (marks: Marks) => void;
+  /** Readings over every word or the new ones only (ADR 0131), where the layer shown fades. */
+  readonly readings: ReadingWords;
+  readonly setReadings: (words: ReadingWords) => void;
   /** The writing mode of the text that may turn vertical (word banks and prompts; a story's transcript). */
   readonly mode: WritingMode;
   /** The profile's vertical mode, where this text may take it. */
@@ -46,18 +51,25 @@ export const useDisplay = (
   const layout = profile?.layout?.vertical;
   const vertical = layout !== undefined && layout !== "none" && effectiveWritingMode(profile, layout, scope) !== "horizontal-tb" ? layout : undefined;
   const [marks, setMarksState] = useState<Marks>(() => chosen?.marks ?? defaultMarks(profile));
+  const [readings, setReadingsState] = useState<ReadingWords>(() => chosen?.readings ?? defaultReadingWords(profile));
   const [mode, setMode] = useState<WritingMode>(() => requested ?? (chosen?.vertical === true && vertical !== undefined ? vertical : "horizontal-tb"));
+  const choice = { marks, vertical: mode !== "horizontal-tb", readings };
   return {
     marks,
     setMarks: (next) => {
       setMarksState(next);
-      onChange?.({ marks: next, vertical: mode !== "horizontal-tb" });
+      onChange?.({ ...choice, marks: next });
+    },
+    readings,
+    setReadings: (next) => {
+      setReadingsState(next);
+      onChange?.({ ...choice, readings: next });
     },
     mode,
     vertical,
     setVertical: (on) => {
       setMode(on && vertical !== undefined ? vertical : "horizontal-tb");
-      onChange?.({ marks, vertical: on });
+      onChange?.({ ...choice, vertical: on });
     },
   };
 };
@@ -139,7 +151,7 @@ export const DisplayMenu = ({
       <Popover className={styles.popover} placement="bottom end" offset={6}>
         <Dialog className={`${styles.menu} ${chromeClass}`} style={chrome.style} aria-label={label} data-display-menu="">
           <div className={styles.menuBody} lang={chrome.lang} dir={chrome.dir}>
-            <ReadingsControl readings={readings} />
+            <ReadingsControl readings={readings} words={{ shown: display.readings, choose: display.setReadings }} />
             {hasMarksLayer(profile) && <MarksControl marks={display.marks} onChange={display.setMarks} />}
             {vertical !== undefined && (
               <Switch

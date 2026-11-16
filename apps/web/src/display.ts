@@ -1,6 +1,6 @@
 /**
- * How a course's text is shown on this device (P12): vowel marks (every word, new words, none) and
- * vertical text, as the learner last chose them in a lesson or story of that course. A per-device
+ * How a course's text is shown on this device (P12): vowel marks (every word, new words, none),
+ * readings over every word or new words only (ADR 0131) and vertical text, as the learner last chose them in a lesson or story of that course. A per-device
  * convenience in localStorage, as the reading layer is (ADR 0071); without storage a choice lasts the
  * page, and before the learner chooses the profile's defaults apply (Persian: marks on new words).
  *
@@ -18,8 +18,12 @@ const keyOf = (course: string, orthography: string): string => `${KEY}${course}:
 
 const isChoice = (value: unknown): value is DisplayChoice => {
   if (typeof value !== "object" || value === null) return false;
-  const { marks, vertical } = value as Record<string, unknown>;
-  return (marks === undefined || marks === "show" || marks === "hide" || marks === "new") && (vertical === undefined || typeof vertical === "boolean");
+  const { marks, vertical, readings } = value as Record<string, unknown>;
+  return (
+    (marks === undefined || marks === "show" || marks === "hide" || marks === "new") &&
+    (vertical === undefined || typeof vertical === "boolean") &&
+    (readings === undefined || readings === "all" || readings === "new")
+  );
 };
 
 /** The learner's display choice for a course in one orthography, if they made one on this device. */

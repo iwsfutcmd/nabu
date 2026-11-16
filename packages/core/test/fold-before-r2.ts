@@ -10,7 +10,7 @@ import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type 
 import { facetOf, ratingOf, type Pace, type Rating } from "../src/learner/credit.ts";
 import { initialPerformance, predict, type Performance, type PredictionInput } from "../src/learner/performance.ts";
 import { withRevisions } from "../src/learner/revisions.ts";
-import { cardKey, DESIRED_RETENTION, RECENT_WINDOW, SKILL_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
+import { cardKey, DESIRED_RETENTION, RECENT_WINDOW, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
 import type { Facet, TemplateId } from "../src/lesson/exercise.ts";
 import { SPEAKING, TEMPLATES } from "../src/lesson/templates.ts";
 
@@ -126,7 +126,7 @@ const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet:
 };
 
 const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
-  if (!SKILL_FACETS.has(facet)) return;
+  if (!WITNESSED_FACETS.has(facet)) return;
   const key = cardKey(kc, facet, e.orthography);
   if (!right) {
     delete d.shown[key];

@@ -19,7 +19,7 @@ test("a right answer typed with the transliteration on shows it again with the t
   const player = page.locator("[data-lesson-player]");
   await expect(player).toHaveAttribute("data-state", "answering");
   await player.locator("[data-action=display]").click();
-  await page.locator("[data-display-menu] [data-toggle=readings]").click();
+  await page.locator("[data-display-menu] [data-toggle=readings] [data-reading=all]").click();
   await page.keyboard.press("Escape");
 
   await player.locator("[data-answer-input]").fill(surfaceOf(ex.canonical));
