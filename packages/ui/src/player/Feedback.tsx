@@ -93,12 +93,24 @@ const useMeant = (course: CourseView, outcome: Outcome, chosen: TaggedText | und
     });
   }, [course, outcome, chosen, wrong]);
 
-/** Each reading of each wrong word, as tap-for-gloss shows a meaning, the form it is pinned as after it. */
-const Meanings = ({ meant, chosen, ruby, marks }: { readonly meant: readonly Meant[]; readonly chosen: boolean; readonly ruby: SchemeId | false; readonly marks: "show" | "hide" }): JSX.Element => {
-  const t = useTranslator();
+/**
+ * What the right word means, where a wrong word was chosen in its place (gap-fill, choose the word):
+ * the missed word's meanings beside the chosen one's. The right option carries its sense, as the
+ * chosen one does.
+ */
+const useMissed = (course: CourseView, outcome: Outcome, chosen: TaggedText | undefined): readonly Meant[] =>
+  useMemo(() => {
+    const right = outcome.solution;
+    if (chosen === undefined || right === undefined) return [];
+    const meanings = wordMeanings(course, right);
+    return meanings.length === 0 ? [] : [{ word: right, meanings }];
+  }, [course, outcome, chosen]);
+
+/** Each reading of each word, as tap-for-gloss shows a meaning, the form it is pinned as after it. */
+const Meanings = ({ meant, label, ruby, marks, data }: { readonly meant: readonly Meant[]; readonly label: string; readonly ruby: SchemeId | false; readonly marks: "show" | "hide"; readonly data: string }): JSX.Element => {
   return (
-    <div className={styles.solution} data-meanings="">
-      <span className={styles.label}>{chosen ? t.format("player.feedback.chosen-meaning") : t.format("player.feedback.marked-meaning", { count: meant.length })}</span>
+    <div className={styles.solution} data-meanings={data}>
+      <span className={styles.label}>{label}</span>
       <GlossList>
         {meant.flatMap(({ word, meanings }, w) =>
           meanings.flatMap((m, r) => {
@@ -172,6 +184,7 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks }: Feedbac
   const wrong = !right && !neutral;
   const chosen = wrong ? chosenWordOf(ex, response) : undefined;
   const meant = useMeant(course, outcome, chosen, wrong);
+  const missed = useMissed(course, outcome, chosen);
   // A note a unit of the answer raised names the words it is about where the catalog has a message
   // for them (feedback.note.<id>-pair): cómo and como, not a canned example (W4). One item a pair.
   const pairsOf = (note: string): readonly (readonly [string, string])[] => {
@@ -218,6 +231,7 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks }: Feedbac
           <T as="p" text={outcome.solution} ruby={ruby} marks={marks} highlight={solutionMarked} />
         </div>
       )}
+      {missed.length > 0 && <Meanings meant={missed} label={t.format("player.feedback.right-meaning")} ruby={ruby} marks={marks} data="right" />}
       {closest !== undefined && (
         <div className={styles.solution} data-closest="">
           <span className={styles.label}>{t.format("player.feedback.closest")}</span>
@@ -231,7 +245,15 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks }: Feedbac
           <span className={styles.muted}>{t.format("player.feedback.marked")}</span>
         </div>
       )}
-      {meant.length > 0 && <Meanings meant={meant} chosen={chosen !== undefined} ruby={ruby} marks={marks} />}
+      {meant.length > 0 && (
+        <Meanings
+          meant={meant}
+          label={chosen !== undefined ? t.format("player.feedback.chosen-meaning") : t.format("player.feedback.marked-meaning", { count: meant.length })}
+          ruby={ruby}
+          marks={marks}
+          data={chosen !== undefined ? "chosen" : "marked"}
+        />
+      )}
     </div>
   );
 };

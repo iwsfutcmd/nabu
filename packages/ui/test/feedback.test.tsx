@@ -171,6 +171,23 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     expect(meaningsOf(feedbackOf(gap, { tag: "choice", index: gap.answer }))).toBe("");
   });
 
+  it("a wrong choice: what the right word means too, before what the chosen one means", () => {
+    // A gap whose right and chosen options are words of different senses.
+    const senseOf = (text: TaggedText | undefined): string | undefined => text?.tokens.find((tk) => tk.kind === "word")?.sense;
+    const cards = Array.from({ length: 30 }, (_, seed) => sampleExercise(es, "gap-fill", seed + 1));
+    const gap = cards.find((c) => c?.template === "gap-fill" && senseOf(c.options[c.answer]) !== undefined && senseOf(c.options[(c.answer + 1) % c.options.length]) !== undefined && senseOf(c.options[c.answer]) !== senseOf(c.options[(c.answer + 1) % c.options.length]));
+    if (gap?.template !== "gap-fill") throw new Error("es has a gap-fill card of two senses");
+    const chosen = (gap.answer + 1) % gap.options.length;
+    const html = feedbackOf(gap, { tag: "choice", index: chosen });
+    const right = block(html, 'data-meanings="right"');
+    expect(right).toContain("The right word means:");
+    expect(right).toContain(`data-gloss-kc="sense:${senseOf(gap.options[gap.answer]) ?? ""}"`);
+    expect(block(html, 'data-meanings="chosen"')).toContain(`data-gloss-kc="sense:${senseOf(gap.options[chosen]) ?? ""}"`);
+    expect(html.indexOf('data-meanings="right"')).toBeLessThan(html.indexOf('data-meanings="chosen"'));
+    // A right choice: no meanings at all.
+    expect(feedbackOf(gap, { tag: "choice", index: gap.answer })).not.toContain("data-meanings");
+  });
+
   it("no meaning where the options are translations", () => {
     const choose = sampleExercise(es, "choose-translation", 1);
     if (choose?.template !== "choose-translation") throw new Error("es has a choose-translation card");

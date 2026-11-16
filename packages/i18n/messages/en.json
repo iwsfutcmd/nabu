@@ -2070,6 +2070,10 @@
       "message": ".input {$count :number}\n.match $count\none {{What the marked word means:}}\n* {{What the marked words mean:}}",
       "description": "Label in the feedback on a wrong answer, after the learner's answer with its differing words marked: a marked word that is another word of the course (hablas where hablo was asked, esta for está) follows, in the language being learned, with its meaning in the learner's language. $count is how many such words follow."
     },
+    "player.feedback.right-meaning": {
+      "message": "The right word means:",
+      "description": "Label in the feedback on a wrong choice among words of the course being learned (a word for a gap): before the meanings of the right word, which the learner missed. 'What you chose means:' follows with the chosen word's."
+    },
     "player.feedback.solution": {
       "message": "Correct answer:",
       "description": "Label before the correct answer in feedback."
