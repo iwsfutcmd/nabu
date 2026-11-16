@@ -12,7 +12,7 @@ import { LessonPlayer, type LoadedCourse } from "@nabu/ui/player";
 import { useMemo, useState, type JSX } from "react";
 import { Button } from "react-aria-components";
 import styles from "./App.module.css";
-import { storedSound, storeSound } from "./Preferences.tsx";
+import { storedEffects, storedSound, storeSound } from "./Preferences.tsx";
 import { leaveDebug } from "./debug-mode.ts";
 import { ScreenHeading } from "./screen.tsx";
 
@@ -60,6 +60,7 @@ export const CardsPage = ({ loaded, language, back }: CardsProps): JSX.Element =
           language={language}
           sound={sound}
           onSoundChange={storeSound}
+          effects={storedEffects()}
           retries={false}
           xpEarned={0}
           debug

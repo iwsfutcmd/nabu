@@ -70,7 +70,7 @@ import { OfflineNotice, OfflinePage } from "./Offline.tsx";
 import { ContinueCard, useStudied, type ContinueLinks } from "./HomeContinue.tsx";
 import { lastPractised, orderCourses, resumeOf } from "./left-off.ts";
 import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
-import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
+import { PreferencesPage, storedEffects, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { UI_CATALOGS } from "./caches.ts";
 import { startNative } from "./native.ts";
@@ -1225,6 +1225,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         onEvent={onEvent}
         sound={sound}
         onSoundChange={storeSound}
+        effects={storedEffects()}
         listening={!isOff("listening")}
         retries={request.mode !== "placement"}
         mode={request.mode}
@@ -1341,6 +1342,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         onEvent={setup.onEvent}
         sound={sound}
         onSoundChange={storeSound}
+        effects={storedEffects()}
         listening={!isOff("listening")}
         xpEarned={end.xp}
         progress={end.progress}

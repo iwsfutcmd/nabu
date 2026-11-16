@@ -74,6 +74,11 @@ export interface LessonPlayerProps {
   /** The learner switched sound on or off in the lesson's header: the app keeps the choice. */
   readonly onSoundChange?: ((on: boolean) => void) | undefined;
   /**
+   * Sound effects (the learner's choice on this device; default on): a chime when an answer is right,
+   * a soft tone when it is wrong, a flourish as the lesson ends. Off, clips still play as sound allows.
+   */
+  readonly effects?: boolean | undefined;
+  /**
    * False while the learner is on a listening break ("Can't listen now" in an earlier session): no clip
    * plays by itself then either, as after "Can't listen now" in this lesson (P6).
    */
@@ -211,10 +216,11 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
   // Nothing plays by itself with sound off, or while the learner can't listen (P6): no tones, no clips.
   const quiet = !toggles.sound || putOff.listening || props.listening === false;
+  const effects = !quiet && props.effects !== false;
   // The cards whose meanings were looked up before their answer was checked (D16): their answers are hinted.
   const hinted = useRef(new Set<string>());
   const report = onEvent === undefined ? undefined : (event: LessonEvent): void => onEvent(withHint(event, hinted.current));
-  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent: report, sound: !quiet, retries, adaptive, resumed: props.resumed });
+  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent: report, sound: effects, retries, adaptive, resumed: props.resumed });
   const [override, setOverride] = useState(props.initialState);
   const state = override ?? shell.state;
   const dispatch = (event: Parameters<typeof shell.dispatch>[0]): void => {
@@ -397,6 +403,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         writingMode={mode}
         imageUrl={imageUrl}
         sound={!quiet}
+        effects={effects}
         outcome={outcome}
         language={language}
         shortcuts={shortcuts}

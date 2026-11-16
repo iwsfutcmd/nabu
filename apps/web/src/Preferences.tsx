@@ -154,6 +154,32 @@ export const storeSound = (on: boolean): void => {
   }
 };
 
+/**
+ * Sound effects in lessons and stories: a chime when an answer is right, a soft tone when it is wrong,
+ * a flourish as a lesson ends. On until the learner turns them off; they play only while sound is on.
+ */
+const EFFECTS_KEY = "nabu.effects";
+let effectsFallback = true;
+
+/** Whether sound effects are on on this device. */
+export const storedEffects = (): boolean => {
+  try {
+    return localStorage.getItem(EFFECTS_KEY) !== "off";
+  } catch {
+    return effectsFallback;
+  }
+};
+
+export const storeEffects = (on: boolean): void => {
+  effectsFallback = on;
+  try {
+    if (on) localStorage.removeItem(EFFECTS_KEY);
+    else localStorage.setItem(EFFECTS_KEY, "off");
+  } catch {
+    // Storage unavailable: the choice lasts this page.
+  }
+};
+
 const EXERCISES = {
   listening: { label: "preferences.listening.label", hint: "preferences.listening.hint", on: "preferences.listening.on", off: "preferences.listening.off" },
   speaking: { label: "preferences.speaking.label", hint: "preferences.speaking.hint", on: "preferences.speaking.on", off: "preferences.speaking.off" },
@@ -329,13 +355,14 @@ export interface PreferencesPageProps {
 /**
  * The preferences screen: appearance, the size of the language being learned (with a sample of it,
  * where the learner came from a course), sound, and listening and speaking exercises, applied as the
- * learner chooses; with an account, the time of the daily reminder; and debug mode.
+ * learner chooses, sound effects among them; with an account, the time of the daily reminder; and debug mode.
  */
 export const PreferencesPage = ({ back, backLabel, onBack, account, sample }: PreferencesPageProps): JSX.Element => {
   const t = useTranslator();
   const [size, setSize] = useState<TextSize>(storedTextSize);
   const [theme, setTheme] = useState<Theme>(storedTheme);
   const [sound, setSound] = useState<boolean>(storedSound);
+  const [effects, setEffects] = useState<boolean>(storedEffects);
   const choose = (value: string): void => {
     if (!isTextSize(value)) return;
     setSize(value);
@@ -411,6 +438,27 @@ export const PreferencesPage = ({ back, backLabel, onBack, account, sample }: Pr
         </Radio>
         <Radio value="off" className={styles.preferenceOption} data-sound-choice="off">
           {t.format("preferences.sound.off")}
+        </Radio>
+      </RadioGroup>
+      <RadioGroup
+        className={styles.preferenceOptions}
+        value={effects ? "on" : "off"}
+        onChange={(value) => {
+          const on = value !== "off";
+          setEffects(on);
+          storeEffects(on);
+        }}
+        data-preference="effects"
+      >
+        <Label className={styles.subheading}>{t.format("preferences.effects.label")}</Label>
+        <Text slot="description" className={styles.muted}>
+          {t.format("preferences.effects.hint")}
+        </Text>
+        <Radio value="on" className={styles.preferenceOption} data-effects-choice="on">
+          {t.format("preferences.effects.on")}
+        </Radio>
+        <Radio value="off" className={styles.preferenceOption} data-effects-choice="off">
+          {t.format("preferences.effects.off")}
         </Radio>
       </RadioGroup>
       <ExercisesChoice modality="listening" />
