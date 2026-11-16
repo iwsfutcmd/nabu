@@ -2123,6 +2123,12 @@ class Contrast(BaseModel):
     ] = None
 
 
+type Variant1Item = Annotated[str, Field(min_length=1)]
+
+
+type Variant1 = Annotated[list[Variant1Item], Field(min_length=2)]
+
+
 class Typed(BaseModel):
     """
     A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
@@ -2356,6 +2362,9 @@ type TokenKind = Annotated[
 
 
 type ReadingsAdditionalProperty3 = Annotated[str, Field(min_length=1)]
+
+
+type Variant2 = Annotated[str, Field(min_length=1)]
 
 
 class RubySegment(BaseModel):
@@ -3387,6 +3396,13 @@ class ReadingScheme(BaseModel):
             description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese."
         ),
     ] = None
+    variants: Annotated[
+        list[Variant1] | None,
+        Field(
+            description="Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.",
+            min_length=1,
+        ),
+    ] = None
     ruby: Annotated[
         Literal["character", "word"],
         Field(
@@ -3476,7 +3492,7 @@ class TokenModel(BaseModel):
         int | None, Field(description="Tokens with the same group form one word-bank tile.", ge=0)
     ] = None
     variants: Annotated[
-        list[Variant] | None,
+        list[Variant2] | None,
         Field(description="Accepted orthographic variants, e.g. HK and TW character forms."),
     ] = None
     morphs: Annotated[

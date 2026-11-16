@@ -195,6 +195,35 @@ export const toneVariants = (scheme: string, reading: string, attested: Readonly
   return out;
 };
 
+/**
+ * A reading with one letter traded for another that the script writes alike (the scheme's `variants`,
+ * ADR 0131): Schluessel's bardi as bärdi, bārdi, barde, bardī; each once, in the reading's order. A
+ * capital is traded for the other letter's capital, in the scheme's language. None for a scheme
+ * without variants.
+ */
+export const letterVariants = (scheme: string, reading: string): readonly string[] => {
+  const data = readingScheme(scheme);
+  if (data?.variants === undefined) return [];
+  const locale = data.lang ?? data.language;
+  const setOf = new Map<string, readonly string[]>();
+  for (const set of data.variants) {
+    const letters = set.map((l) => l.normalize("NFC"));
+    for (const l of letters) setOf.set(l, [...new Set([...(setOf.get(l) ?? []), ...letters])]);
+  }
+  const letters = graphemes(reading.normalize("NFC"), locale);
+  const out: string[] = [];
+  letters.forEach((g, i) => {
+    const lower = g.toLocaleLowerCase(locale);
+    const capital = lower !== g;
+    for (const other of setOf.get(lower) ?? []) {
+      if (other === lower) continue;
+      const variant = letters.map((x, k) => (k !== i ? x : capital ? other.toLocaleUpperCase(locale) : other)).join("");
+      if (!out.includes(variant)) out.push(variant);
+    }
+  });
+  return out;
+};
+
 /** An ideographic word's romanized reading, typed, against the pinned one. */
 export const gradeReading = (scheme: string, expected: string, answer: string): PronunciationGrade => {
   const want = syllablesOf(scheme, expected);

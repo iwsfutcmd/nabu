@@ -33,9 +33,12 @@ import {
   type TemplateId,
 } from "../src/lesson/index.ts";
 import { pathNodes } from "../src/learner/path.ts";
+import { plan } from "../src/learner/planner.ts";
+import { emptyLearnerState } from "../src/learner/state.ts";
 import { placementTest } from "../src/learner/placement.ts";
 import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, makeTranslateType, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { closestAnswer, nearMiss } from "../src/lesson/diff.ts";
+import { letterVariants } from "../src/match/pronounce.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { rightAnswer, wrongAnswer } from "./answers.ts";
 import { loadCourse } from "./learner-fixtures.ts";
@@ -920,5 +923,37 @@ describe("the wording a card shows, and what a clip says", () => {
     expect(isCorrect(gradeExercise(ex, { tag: "text", text: "Yo estoy bien." }, grader).verdict)).toBe(false);
     const tap = SENTENCE_TEMPLATES["listen-tap"]?.(ctx, estoy);
     expect(tap === undefined ? undefined : tap.template === "listen-tap" ? tap.accept : undefined).toBe("Estoy bien.");
+  });
+});
+
+describe("a Chaghatay word read in its sentence, by choice (ADR 0131)", () => {
+  it("trades one letter for another the script writes alike, keeping a capital", () => {
+    expect(letterVariants("schluessel", "bardi")).toEqual(expect.arrayContaining(["bärdi", "bārdi", "barde", "bardī"]));
+    expect(letterVariants("schluessel", "Čay")).toEqual(["Čäy", "Čāy"]);
+    // A scheme whose script writes its letters apart has none: Jyutping's options are tones and other words.
+    expect(letterVariants("jyutping", "nei5")).toEqual([]);
+  });
+
+  it("asks a word's reading among its homographs and vowel variants, all in the answer's case", () => {
+    const chg = loadCourse("chg");
+    const cards = lessonNodes(chg)
+      .slice(0, 8)
+      .flatMap((n) => plan(chg, emptyLearnerState(), { mode: "lesson", node: n.node.id }, { now: "2026-03-01T08:00:00.000Z", seed: 3 }).exercises)
+      .filter((ex) => ex.template === "char-read");
+    expect(cards.length).toBeGreaterThan(5);
+    const grader = createGrader(chg);
+    for (const ex of cards) {
+      if (ex.template !== "char-read" || ex.word === undefined) throw new Error("a char-read card asks about a word");
+      const options = ex.options.map((o) => surfaceOf(o));
+      const answer = options[ex.answer] as string;
+      expect(answer, ex.id).toBe(chg.units.flatMap((u) => u.sentences).find((s) => s.id === ex.item)?.forms["chg-Arab/standard"]?.text.tokens[ex.word]?.readings?.["schluessel" as SchemeId]);
+      expect(ex.options.every((o) => o.orthography === "chg-Latn/schluessel" && o.lang === "chg-Latn"), ex.id).toBe(true);
+      expect(new Set(options.map((o) => o.toLocaleLowerCase("chg-Latn"))).size, ex.id).toBe(options.length);
+      // A wrong option is the word read with another vowel the script leaves open, before any other word.
+      expect(options.some((o) => letterVariants("schluessel", answer).includes(o)), ex.id).toBe(true);
+      const capital = (o: string): boolean => o !== o.toLocaleLowerCase("chg-Latn") && [...o][0] !== [...o.toLocaleLowerCase("chg-Latn")][0];
+      expect(options.every((o) => capital(o) === capital(answer)), ex.id).toBe(true);
+      expect(isCorrect(gradeExercise(ex, rightAnswer(ex), grader).verdict), ex.id).toBe(true);
+    }
   });
 });

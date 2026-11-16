@@ -335,7 +335,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (the source's surfaces), so a vocalization never changes clips.
 - Pronunciation cards (ADR 0054, in context since ADR 0095, answered by choice since ADR 0098): `vocalize` (abjads:
   the word with its marks among attested variants, never typed marks) and `transcribe` (typed; a ruby scheme whose
-  data gives a syllable shape: only Jyutping so far; `char-read` is its multiple-choice twin, tone variants first) are
+  data gives a syllable shape: only Jyutping so far; `char-read` is its multiple-choice twin, tone variants first, or
+  where the scheme lists `variants` (letters the script writes alike: chg's vowels), homographs then those, ADR 0131) are
   sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
   plans one where it can. Optional marks: the profile's `match.marks.optional`; orthographies that spell the vowels
   (apc: Arabizi), `match.marks.spelledIn`.
@@ -564,7 +565,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Chaghatay notes (see docs/adr/0128-0129)
 - courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). One
   orthography, chg-Arab/standard, set in Nastaliq (Noto Nastaliq Urdu). Every word token pins `readings: {schluessel:
-  …}`, Schluessel's transliteration (2018), shown as ruby over the whole word (the scheme's `ruby: word`), over new words until the learner chooses (ADR 0131);
+  …}`, Schluessel's transliteration (2018), shown as ruby over the whole word (the scheme's `ruby: word`), over new words until the learner chooses, and asked by
+  char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW; ADR 0131);
   every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.

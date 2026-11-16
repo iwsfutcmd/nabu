@@ -3377,6 +3377,12 @@ export interface ReadingScheme {
   readonly lang?: ScriptedLangTag2;
   readonly answer?: OrthographyId3;
   /**
+   * Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.
+   *
+   * @minItems 1
+   */
+  readonly variants?: readonly string[][];
+  /**
    * What one ruby segment stands over where a profile shows the scheme as ruby (ADR 0129): each character (the default: a Han character's syllable, a logograph's word, a syllable of the script's own scheme) or the whole word, where the script's letters do not line up with the reading's (Schluessel's transliteration over a Chaghatay word in Arabic script, which leaves most vowels unwritten).
    */
   readonly ruby?: "character" | "word";

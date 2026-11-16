@@ -1,7 +1,8 @@
 # Schluessel's transliteration of Chaghatay (An Introduction to Chaghatay, 2018, xii-xxxii; ADR 0128): a modified
 # IJMES system that writes the vowels the Arabic script leaves out (bardi, bärdi). chg pins it on every Arabic word
-# as a reading and shows it as ruby over the whole word, on request; it is shown, never asked for (the alphabet
-# track's Latin spellings are the KCs' chg-Latn/schluessel forms, graded under that profile).
+# as a reading and shows it as ruby over the whole word, over new words (ADR 0131). Reading cards ask for it: a word
+# of a sentence, its reading among others (ADR 0131), as text of the chg-Latn/schluessel profile, which also tags the
+# alphabet track's Latin spellings (the KCs' chg-Latn/schluessel forms).
 id: schluessel
 # What the UI calls the scheme, by language (ADR 0109). The translations are an LLM's drafts, made for the draft UI
 # catalogs (ADR 0070), and await review as those do.
@@ -25,6 +26,15 @@ names:
     provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
 language: chg
 lang: chg-Latn
+answer: chg-Latn/schluessel
+# REVIEW: the vowels one letter of the script leaves open (Schluessel, xxi-xxv): alif (or nothing) for a, ä and ā;
+# vav for o, ö, u, ü and ū; ye for i, e and ī. A reading card's wrong options trade one for another of its set
+# (bärdi for bardi, köl for kul) after the course's real homographs, so the card asks what the script does not say:
+# a word's vowels, front or back, rounded or not, long or short.
+variants:
+  - [a, ä, ā]
+  - [o, ö, u, ü, ū]
+  - [i, e, ī]
 # A Chaghatay word's letters do not line up with its sounds (most vowels are unwritten): the reading stands over
 # the whole word.
 ruby: word

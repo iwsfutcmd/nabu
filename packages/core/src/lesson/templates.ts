@@ -8,7 +8,8 @@ import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, TaggedText, Tok
 import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { readingTag } from "../profile/schemes.ts";
-import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, toneVariants, transcribable, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
+import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, letterVariants, toneVariants, transcribable, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
+import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { tilesOf } from "./tiles.ts";
 import { allKcs, allSentences, profileOf, type CourseView, type Grader } from "./course.ts";
@@ -685,6 +686,37 @@ const courseSyllables = (course: CourseView, scheme: SchemeId): ReadonlySet<stri
   return found;
 };
 
+/** Every reading the course pins on a spelling in its orthography (a word's homographs: bar, bär). Per course. */
+const spellingsOf = new WeakMap<CourseView, Map<string, ReadonlyMap<string, readonly string[]>>>();
+const spellingReadings = (course: CourseView, scheme: SchemeId, surface: string): readonly string[] => {
+  const byScheme = spellingsOf.get(course) ?? new Map<string, ReadonlyMap<string, readonly string[]>>();
+  spellingsOf.set(course, byScheme);
+  let bySurface = byScheme.get(scheme);
+  if (bySurface === undefined) {
+    const found = new Map<string, string[]>();
+    for (const s of allSentences(course)) {
+      for (const t of formOf(course, s)?.text.tokens ?? []) {
+        const r = t.kind === "word" ? t.readings?.[scheme] : undefined;
+        if (r === undefined) continue;
+        const key = t.surface.normalize("NFC");
+        const readings = found.get(key) ?? [];
+        if (!readings.includes(r)) found.set(key, [...readings, r]);
+      }
+    }
+    bySurface = found;
+    byScheme.set(scheme, bySurface);
+  }
+  return bySurface.get(surface.normalize("NFC")) ?? [];
+};
+
+/** An option in the answer's case: its first letter a capital where the answer's is (a sentence's first word, a name). */
+const likeCase = (option: string, answer: string, lang: string | undefined): string => {
+  const [first = "", ...rest] = graphemes(option, lang);
+  const [lead = ""] = graphemes(answer, lang);
+  const capital = lead !== lead.toLocaleLowerCase(lang);
+  return [capital ? first.toLocaleUpperCase(lang) : first.toLocaleLowerCase(lang), ...rest].join("");
+};
+
 /**
  * How a word of a sentence is read, chosen (ADR 0098): the sentence without ruby, the word marked (a
  * word the lesson introduces where it can), and its reading among others. Where the scheme can be
@@ -705,11 +737,21 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
   const reading = target.readings?.[scheme] as string;
   const syllables = reading.split(" ").length;
   const tones = ctx.rng.shuffle([...toneVariants(scheme, reading, courseSyllables(ctx.course, scheme))]).slice(0, 2);
+  // Where the script writes some of the scheme's letters alike (its `variants`, ADR 0131: Chaghatay's
+  // unwritten vowels), the course's other readings of the word's spelling come first, then the
+  // reading with one such letter traded, every option in the answer's case: what the script leaves open.
+  const traded = letterVariants(scheme, reading);
+  const lang = readingTag(scheme)?.lang;
+  const same = (a: string, b: string): boolean => a.toLocaleLowerCase(lang) === b.toLocaleLowerCase(lang);
+  const cased = traded.length === 0 ? (r: string): string => r : (r: string): string => likeCase(r, reading, lang);
+  const alike =
+    traded.length === 0 ? [] : [...ctx.rng.shuffle(spellingReadings(ctx.course, scheme, target.surface).map(cased)), ...ctx.rng.shuffle([...traded])];
+  const close = [...tones, ...alike].filter((r, i, all) => !same(r, reading) && all.findIndex((x) => same(x, r)) === i);
   const pool = otherSentences(ctx, s)
     .flatMap((o) => formOf(ctx.course, o)?.text.tokens ?? [])
-    .flatMap((t) => (readable(t) ? [t.readings?.[scheme] as string] : []))
-    .filter((r) => r.split(" ").length === syllables && r !== reading && !tones.includes(r));
-  const others = [...new Set([...tones, ...ctx.rng.shuffle(pool)])].slice(0, 3);
+    .flatMap((t) => (readable(t) ? [cased(t.readings?.[scheme] as string)] : []))
+    .filter((r) => r.split(" ").length === syllables && r !== reading && !close.includes(r) && (traded.length === 0 || !same(r, reading)));
+  const others = [...new Set([...close, ...ctx.rng.shuffle(pool)])].slice(0, 3);
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, readingText(scheme, reading), others.map((r) => readingText(scheme, r)));
   const translation = translationOf(ctx.course, s);
