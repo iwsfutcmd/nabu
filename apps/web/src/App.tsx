@@ -1456,8 +1456,12 @@ export const App = (): JSX.Element => {
   const names = { course: (id: string) => courseName(t, named(id)), orthography: (id: string, orthography: string) => orthographyName(t, named(id), orthography) };
   useScreen(href(route), titleOf(t, route, names, loaded !== null && loaded.key === courseKey && "value" in loaded ? loaded.value.course : undefined));
 
+  // Only a connection that comes back: on mount the first loads are still on their way, and a
+  // second try of each would race them (a failed first load tried again by itself).
+  const wasOnline = useRef(online);
   useEffect(() => {
-    if (online) setRetry((n) => n + 1);
+    if (online && !wasOnline.current) setRetry((n) => n + 1);
+    wasOnline.current = online;
   }, [online]);
   useEffect(() => {
     if (index !== null) return;
