@@ -27,11 +27,17 @@ test.describe("links and loads that fail", () => {
 
   test("a course that fails to load can be tried again", async ({ page }) => {
     let fail = true;
-    await page.route("**/bundles/fa/manifest.json", (route) => (fail ? route.abort() : route.continue()));
+    let requests = 0;
+    await page.route("**/bundles/fa/manifest.json", (route) => {
+      requests += 1;
+      return fail ? route.abort() : route.continue();
+    });
     await page.goto("/?sound=off#/fa/fa-Arab.standard");
     await expect(page.locator("[data-load-error]")).toBeVisible();
     fail = false;
     await page.locator("[data-action=retry]").click();
     await expect(page.locator("[data-course-path]")).toBeVisible();
+    // One load, then the learner's try: the app never tries again by itself while online.
+    expect(requests).toBe(2);
   });
 });
