@@ -771,6 +771,9 @@ references in the reference library (find them with `nabu refs find`; notes in n
 - The transliteration (each word's reading, shown as ruby; ADR 0129): front and back vowels (ä/a) and the e/ä of
   verbs (käldi but kelädur, bärdi), the ǧ/q and g/k of suffixes, where Schluessel himself varies; the readings of
   the KCs' citation forms (stems without their hyphen: bar).
+- Names before what they name take no genitive (Sayḥūn suyi "the Sayhun river", Farǧāna wilāyati, Ramżān ayi, Afsus
+  šahari), as Babur writes Sayḥūn daryāsi; answers with -niŋ there (Sayḥūnniŋ suyi, "the Sayhun's water") are not
+  accepted. Check that this is right for the course's register.
 - The Nastaliq face (Noto Nastaliq Urdu): whether its size, line height and the transliteration's place above it
   read well on a phone.
 - The passages: each story line against Schluessel's typescript (ch. 11-14) and, ideally, the manuscripts; the
