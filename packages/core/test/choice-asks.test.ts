@@ -155,7 +155,7 @@ describe("agreement is the token's form (ADR 0132 amendments)", () => {
   it("pins a noun's gender wherever the course writes it", () => {
     for (const [id, both] of Object.entries(BOTH)) {
       const course = loadCourse(id);
-      const nouns = new Set(allKcs(course).filter((k) => k.pos === "NOUN" || k.pos === "PROPN").map((k) => k.id));
+      const nouns = new Set<string>(allKcs(course).filter((k) => k.pos === "NOUN" || k.pos === "PROPN").map((k) => k.id));
       const texts: TaggedText[] = [
         ...allSentences(course).flatMap((s) => Object.values(s.forms).map((f) => f.text)),
         ...allStories(course).flatMap((st) => st.steps.flatMap((step) => Object.values(step.line?.forms ?? {}))),
