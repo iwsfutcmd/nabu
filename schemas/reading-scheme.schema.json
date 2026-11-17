@@ -28,6 +28,10 @@
       "description": "The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese.",
       "$ref": "common.schema.json#/$defs/OrthographyId"
     },
+    "latin": {
+      "description": "The orthography its readings are written in for a learner who cannot read the script yet (ADR 0133): an alphabet track's letters and words (a profile's `scriptTrack`) are tagged with it, and its profile grades them and ships in the bundle beside the course's own. A scheme whose own text is not Latin has a plug-in that writes a reading in it (nabu.schemes `latin`: Attic's χώρᾱ is chōrā); otherwise a reading is its own Latin (Schluessel).",
+      "$ref": "common.schema.json#/$defs/OrthographyId"
+    },
     "variants": {
       "description": "Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.",
       "type": "array",

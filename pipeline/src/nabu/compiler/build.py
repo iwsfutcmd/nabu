@@ -27,7 +27,7 @@ from nabu.compiler.counts import Counted, count
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.compiler.readings import pin_kc_readings
 from nabu.compiler.scenarios import compile_scenarios
-from nabu.compiler.script import compile_alphabets
+from nabu.compiler.script import compile_alphabets, with_alphabets
 from nabu.compiler.source import Doc, load_doc
 from nabu.compiler.stories import LineForm, compile_stories
 from nabu.corecli import CoreCli
@@ -716,16 +716,8 @@ def compile_course(
     scenarios = compile_scenarios(ctx, course, units)
     # ---- stage 6: grading
     _grading(ctx, course, units)
-    # ---- stage 7: glossary, tiles, script tracks
+    # ---- stage 7: glossary, tiles (script tracks once KC readings are pinned, below)
     _glossary(ctx, course, units, compiled_forms, stories.lines)
-    alphabets = compile_alphabets(
-        diags,
-        course,
-        units,
-        ctx.profiles,
-        lambda o, t: support_text(ctx, o, t, course.target),
-        ctx.cli,
-    )
     # ---- stage 9: packaging lints
     compiled = Compiled(
         course=course, orthographies=list(course.orthographies), support=list(course.support)
@@ -738,9 +730,7 @@ def compile_course(
     # fails here, as the course compiles.
     bundled = [
         BundleUnit.model_validate(
-            _bundle_unit(
-                ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths, alphabets
-            )
+            _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths)
             | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
             | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
         )
@@ -762,6 +752,17 @@ def compile_course(
         ctx.diags.report(
             "kc.reading", f"{r.kc}: {r.message}", unit.doc.loc("kcs", ki, "readings", r.scheme)
         )
+    # ---- stage 7: script tracks, which ask a word as its KC's pinned reading (ADR 0133)
+    alphabets = compile_alphabets(
+        diags,
+        course,
+        units,
+        compiled.units,
+        ctx.profiles,
+        lambda o, t: support_text(ctx, o, t, course.target),
+        ctx.cli,
+    )
+    compiled.units = with_alphabets(compiled.units, alphabets)
     if audio:
         check_audio(ctx, course, course_file, display, compiled)
     if diags.errors:
@@ -1505,7 +1506,6 @@ def _bundle_unit(
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
     kcs: dict[tuple[int, int], list[str]],
     images: dict[str, str],
-    alphabets: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     src = unit.source
     target = course.target
@@ -1573,8 +1573,6 @@ def _bundle_unit(
         }
         if node.convert is not None:
             n["convert"] = {"from": node.convert.from_, "to": node.convert.to}
-        if node.id in alphabets:
-            n["alphabet"] = alphabets[node.id]
         nodes.append(n)
 
     kc_out: list[dict[str, Any]] = []

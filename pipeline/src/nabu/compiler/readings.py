@@ -10,7 +10,10 @@ from two readings of one word.
 Nothing is guessed: a reading comes from the course's own tokens. A KC's entry may choose one of
 them for its first form (its `readings`, ADR 0117's amendment: hbo's sense:ad reads ʿaḏ, free, where
 its lessons tie with the maqaf-bound ʿaḏ-); in a scheme read over whole words (`ruby: word`, ADR
-0129) it may give its own, as chg's verb stems do (بار- reads bar). Otherwise it is, in this order:
+0129) it may give its own, as chg's verb stems do (بار- reads bar). So it may for a form no
+token spells, which the course has nothing to take a reading from (ADR 0133: a lemma its
+sentences only inflect, ᾰ̓γορᾱ́ where they have ἀγορᾶς and ἀγορᾷ, which an alphabet track asks).
+Otherwise it is, in this order:
 
 1. the readings of the KC's sense spelled as the form, in the lesson sentences: the most common, a
    tie going to the first in course order;
@@ -128,7 +131,8 @@ class Seen:
 
     def given(self, kc: str, surface: str) -> set[str]:
         """Every reading the course's tokens give a KC's form word: each step's, and every token's
-        spelled as the form (a polyphone's several). A KC's own reading must be one of them."""
+        spelled as the form (a polyphone's several). A KC's own reading must be one of them, where
+        there are any."""
         found = set(self.surfaces.get(surface, []))
         for table, key in self._steps(kc, surface):
             found.update(table.get(key, []))
@@ -149,14 +153,15 @@ def _refused(
 ) -> str | None:
     """Why a KC's own reading cannot be pinned on its first form's words, or None. A scheme read
     over whole words (`ruby: word`, ADR 0129) lets the KC give a reading no token gives (`adds`):
-    its sentences show a verb's stem only with suffixes (بار in باردی), never alone."""
+    its sentences show a verb's stem only with suffixes (بار in باردی), never alone. So does a
+    form no token spells (ADR 0133): there is no reading of the course's for it to contradict."""
     if len(words) != 1:
         return f"its first form has {len(words)} words; a KC's own reading is one word's"
     if adds:
         return None
     surface = words[0].surface
     given = table.given(kc, surface)
-    if reading not in given:
+    if given and reading not in given:
         return (
             f"no token gives {surface} the reading {reading!r}; "
             f"the course's give {', '.join(sorted(given)) or 'none'}"

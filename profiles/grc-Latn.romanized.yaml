@@ -1,12 +1,13 @@
-# Ancient Greek in Latin letters (ADR 0088): the Latin spellings of the alphabet track's letters and words, written by
-# the compiler (nabu.greek_translit, the profile grc-Grek/polytonic's `romanize`): η ē, ω ō, υ y (u in diphthongs),
-# θ φ χ th ph ch, the rough breathing h, the iota subscript written out, accents left out. Not an orthography a
-# learner can pick: it tags and sets the Latin side of letter and word cards.
+# Ancient Greek in Latin letters (ADR 0088, 0133): the Attic scheme's Latin, which the alphabet track asks its letters
+# and words as (the profile grc-Grek/polytonic's `scriptTrack`), written by the compiler from each word's Attic reading
+# (nabu.greek_translit): η ē, ω ō, a long α ι υ ā ī ȳ (χώρᾱ chōrā), υ y (u in diphthongs), θ φ χ th ph ch, the rough
+# breathing h, the iota subscript written out, accents left out. Not an orthography a learner can pick: it tags and
+# sets the Latin side of letter and word cards.
 id: grc-Latn/romanized
 lang: grc-Latn
 exemplars: cldr:en
-# The macrons of ē and ō, and the elision mark.
-exemplarsExtra: ["ē", "ō", "\u2019"]
+# The macrons of the long vowels, and the elision mark.
+exemplarsExtra: ["ā", "ē", "ī", "ō", "ȳ", "\u2019"]
 segmentation: { content: whitespace, runtime: grapheme }
 normalize:
   - nfc

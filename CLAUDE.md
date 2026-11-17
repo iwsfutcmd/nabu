@@ -546,6 +546,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Grave = acute (silent); missing marks are CORRECT_MARKS unless they spell another course word. Write graves and
   enclitic accents as editions do, in every accept-set alternative too. KC forms are lemmas (a grave-only variant
   is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
+- The alphabet track asks a word as its KC's Attic reading in Latin, lengths kept (χώρᾱ chōrā, ADR 0133). A lemma no
+  sentence spells gets `readings: {attic: …}` on its KC entry, with the lengths its inflected tokens show.
 
 ## Voice quality notes (see docs/adr/0091)
 - A course's `audio.quality` says how far learners may rely on its clips. good (default): everywhere. iffy (a stopgap
@@ -556,16 +558,20 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   language is iffy at best. Changing the rating regenerates no clips; run `pnpm bundles` after it.
 - Rule templates out through `courseExclusions`, never by hand in one caller (lessons, practice, placement, gallery).
 
-## Script tracks notes (see docs/adr/0088)
+## Script tracks notes (see docs/adr/0088, 0133)
 - A `script` node with `alphabet: {orthography, words}` teaches an orthography's letters (grapheme KCs, by their forms:
-  letters, diphthongs, marks); the compiler adds each letter's and word's Latin spelling (the profile's `romanize`, e.g.
-  nabu/greek_translit.py) and the graphemes it credits. `script.untaught-letter` stops a word with untaught letters.
+  letters, diphthongs, marks); the compiler adds the graphemes each word credits and its reading in Latin (ADR 0133):
+  the profile's `scriptTrack: {reading}` names the scheme, the scheme's `latin` its Latin orthography. A word is its
+  KC's pinned reading (the word card's), through the scheme's `latin` plug-in where its text is not Latin (Attic:
+  nabu/greek_translit.py); a letter is the plug-in's rendering, or its grapheme KC's form in that orthography (chg).
+  Never a romanization of the spelling. `script.untaught-letter` stops a word with untaught letters.
 - Its four templates (letter-read, letter-pairs, word-read, word-write; @nabu/core/lesson/script.ts) are built only
   for script nodes: never add them to SENTENCE_TEMPLATES (every course's lessons and goldens would change).
 - The row (`scriptPathOf`) sits above the units and never gates them; a script node is planned as `{mode: "lesson"}`.
   Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
 - A script track's letters and marks come from the profile (core-cli `letters` and `unicode-set`), never a list in code;
-  `romanize` is `{scheme, orthography}`; a form with no letter is `script.no-letter` (ADR 0124).
+  a form with no letter is `script.no-letter` (ADR 0124). A word no sentence spells needs its KC entry's `readings`
+  (`script.missing-reading`): a KC may give the reading of a form no token spells (ADR 0133).
 
 ## Chaghatay notes (see docs/adr/0128-0129)
 - courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). One
@@ -585,9 +591,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   with his reading in the Latin. PDF page = book page + 35; check Arabic on page images. Notes in `nabu/notes/chg/`.
 - "You": sän tagged to one person, sizlär to several, siz (polite or plural) untagged; accept sets take the forms
   that fit. No gender: he/she in English accept sets.
-- The Arabic alphabet track (units/abc.yaml) takes its Latin spellings from each KC's chg-Latn/schluessel form
-  (`romanize: {scheme: forms}`; that profile is the track's Latin side, not a course orthography): a word it drills
-  needs that form; no verb stems (their hyphen).
+- The Arabic alphabet track (units/abc.yaml) asks a word as its KC's pinned Schluessel reading, a letter as its grapheme
+  KC's chg-Latn/schluessel form (the scheme's `latin`, ADR 0133; that profile is the track's Latin side, not a course
+  orthography); no verb stems (their hyphen).
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

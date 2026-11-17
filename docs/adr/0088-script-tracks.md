@@ -128,3 +128,10 @@ said?" card can ask about it. They are explained in the letters' notes and the g
   - pipeline: grc's track spells each word with taught letters; a lint fixture for script.untaught-letter;
   - the e2e solver answers the four templates. An e2e run of the first alphabet node and visual
     baselines for the row are left for a run with the app and the pinned container.
+
+## Amendment (ADR 0133)
+
+The Latin spellings are no longer a romanization of the spelling. A profile names the reading its track
+asks (`scriptTrack: {reading}`, replacing `romanize`), and a word is its KC's pinned reading in that
+scheme's Latin: grc's words now carry their vowel lengths (χώρᾱ *chōrā*). `script.no-romanization` is
+now `script.no-reading-scheme`.
