@@ -14,6 +14,7 @@ export {
   type TranslatorOptions,
 } from "./catalog.ts";
 export { parseDigits } from "./digits.ts";
+export { keyboardLanguages } from "./keyboard.ts";
 export { fontStackFor, uiFontStack, type FontStack } from "./fonts.ts";
 export { cldrLocaleId, formatTag, maximize, parentChain, parentOf, parseTag, sameLocale, scriptOf, type ParsedTag } from "./locale.ts";
 export { courseBlurb, courseName, orthographyHint, orthographyName, schemeName, toneName, type Named, type SchemeNamesByLanguage } from "./names.ts";

@@ -1,10 +1,11 @@
 /**
  * The Android and iOS apps (Capacitor, ADR 0048): practice reminders through the platform's push
  * service (FCM or APNs, by the server), opening the app from a reminder, syncing when the app
- * comes back to the foreground, and Android's back button. The plugins load only inside the
- * native shell.
+ * comes back to the foreground, Android's back button, and asking Android's keyboard for each text
+ * field's language (ADR 0143). The plugins load only inside the native shell.
  */
 import type { PluginListenerHandle } from "@capacitor/core";
+import { keyboardFor, type KeyboardLanguagePlugin } from "./keyboard.ts";
 import { askToLeave, openAddress } from "./navigation.ts";
 import { isNative } from "./platform.ts";
 
@@ -44,6 +45,7 @@ const saveToken = (token: string | undefined): void => {
  */
 export const startNative = async (onResume: () => void): Promise<void> => {
   if (!isNative()) return;
+  if (nativePlatform() === "android") await askKeyboards();
   const { App } = await import("@capacitor/app");
   await App.addListener("resume", onResume);
   await App.addListener("backButton", ({ canGoBack }) => {
@@ -54,6 +56,21 @@ export const startNative = async (onResume: () => void): Promise<void> => {
   await PushNotifications.addListener("pushNotificationActionPerformed", (action) => {
     const url = (action.notification.data as { url?: unknown } | undefined)?.url;
     if (typeof url === "string") openAddress(url);
+  });
+};
+
+/**
+ * Each text field the learner moves to asks the keyboard app for its language (ADR 0143): Gboard
+ * switches to Persian for a Persian answer and back to English for an English one, where the
+ * learner has those keyboards. A field that takes no words (a password) leaves the keyboard alone.
+ */
+const askKeyboards = async (): Promise<void> => {
+  const { registerPlugin } = await import("@capacitor/core");
+  const plugin = registerPlugin<KeyboardLanguagePlugin>("KeyboardLanguage");
+  document.addEventListener("focusin", (e) => {
+    if (!(e.target instanceof HTMLElement)) return;
+    const languages = keyboardFor(e.target, document.documentElement.lang);
+    if (languages !== undefined) void plugin.hint({ languages }).catch(() => undefined);
   });
 };
 

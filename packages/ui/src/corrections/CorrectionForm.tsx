@@ -22,6 +22,7 @@ import { useId, useMemo, useRef, useState, type CSSProperties, type JSX } from "
 import { Button, FieldError, Input, Label, Text, TextArea, TextField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { useSettledSubmit } from "../ime.ts";
+import { keyboardHint } from "../keyboard.ts";
 import { T } from "../T.tsx";
 import styles from "./Corrections.module.css";
 
@@ -125,7 +126,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
           <div key={o} className={styles.field} data-orthography={o}>
             <TextField className={styles.field} value={form.text} onChange={(v) => setForm(o, { text: v })} isInvalid={errorOf(`text:${o}`) !== undefined}>
               <Label className={styles.label}>{t.format(word ? "corrections.word.text" : "corrections.text", { orthography: nameOf(o) })}</Label>
-              <TextArea className={styles.input} lang={text.lang} dir={directionOf(text.lang)} rows={2} spellCheck={false} style={fieldStyle(text.lang, profile?.fonts)} data-field="correction-text" {...ime} />
+              <TextArea className={styles.input} lang={text.lang} {...keyboardHint(text.lang, profile)} dir={directionOf(text.lang)} rows={2} spellCheck={false} style={fieldStyle(text.lang, profile?.fonts)} data-field="correction-text" {...ime} />
               <Text slot="description" className={styles.now} data-ink-container={`now:${o}`}>
                 {t.format("corrections.now")} <T text={text} />
               </Text>

@@ -17,6 +17,7 @@ import type { TaggedText } from "@nabu/schema";
 import { useId, useLayoutEffect, useRef, type CSSProperties, type JSX, type KeyboardEvent } from "react";
 import { useIsTarget, useOrthography, useTranslator } from "../context.tsx";
 import { useFonts } from "../fonts.ts";
+import { keyboardHint } from "../keyboard.ts";
 import { T } from "../T.tsx";
 import styles from "./Player.module.css";
 
@@ -128,7 +129,8 @@ export const AnswerInput = ({
   const id = useId();
   // Typed text is set as the orthography sets its text (its profile's fonts), not in the chrome's face: Chaghatay
   // is typed in Nastaliq, Persian in Vazirmatn.
-  const fonts = useOrthography(base.orthography)?.fonts;
+  const profile = useOrthography(base.orthography);
+  const fonts = profile?.fonts;
   const font = fontStackFor(base.lang, fonts);
   const scale = font.scale;
   // and given the profile's line height where it sets one: Nastaliq's letters climb and drop far from the line,
@@ -187,6 +189,7 @@ export const AnswerInput = ({
         data-target={target ? "" : undefined}
         value={value}
         lang={base.lang}
+        {...keyboardHint(base.lang, profile)}
         dir={dir}
         aria-describedby={describedBy}
         autoCapitalize="off"

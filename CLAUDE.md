@@ -87,6 +87,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
+  A new text field for language text spreads `keyboardHint` (ADR 0143), so the Android app can switch the keyboard.
 - Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
   Check; Enter never checks while composing (ADR 0118).
 - Any other button that submits typed text (roleplay Send, the correction form, Start over) takes a press while
@@ -195,8 +196,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   glossed by its parts heads its panel with its own reading.
 - Writing side (ADR 0142): a profile's `soundAlike` sets (fa) make a word apart only by them the right sound with the
   wrong letter: never a typo, WRONG (`sound-alike`) or WRONG_WORD; `spelling-choice` (write-script) offers the word among
-  its sound-alike spellings (yue: homophone characters, the Jyutping given). Name a colloquial spelling in the variants
-  table before a spelling choice can offer it as wrong.
+  its sound-alike spellings (yue: homophone characters, the Jyutping given). A homophone typing (唔洗 for 唔使) is wrong,
+  however common: the course teaches the character the word is written with.
 - Reading side (ADR 0139–0141): a feature card (`reading-feature`) asks one place a script leaves open (`readingFeatures`:
   a scheme's `variants` letter or an attested tone), options differing there alone; homographs (`homographsOf`) are marked
   in lessons and stories (`HomographsProvider`) and a tap lists the other readings; the readings choice Unwritten (`open`)
@@ -215,7 +216,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   spelling. A change to the order can make clips stale: `test_readings.py` checks every course's, grc's too.
 - Readings are fixed by their words (ADR 0135): tokens annotated alike (spelling, sense, form, morphs, `context`,
   bound or not) read alike in every scheme and vocalization. With `consistentReadings: true` (course.yaml; on in apc,
-  es, fa, grc, lzh, tok, uz) a form read two ways is an error, elsewhere a warning: annotate what tells them apart (a
+  es, fa, grc, hbo, lzh, tok, uz) a form read two ways is an error, elsewhere a warning: annotate what tells them apart (a
   sense, a form, a morph, a `context` such as hbo's `pause`/`nesiga`), or mark a free variant `readingVariant`; never
   change a reading to hide it. A token pinning no reading takes its form's, so pin a form once.
 - One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
@@ -340,6 +341,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (NABU_FCM_SERVICE_ACCOUNT, NABU_APNS_*): never in the repo or chat. CI builds the preview APK (`assemblePreview`:
   org.nabu.app.preview, debuggable, signed with the committed public preview key) and replaces the APK on the
   android-preview release from main. Never sign a store release with the preview key.
+- The Android app asks the keyboard app for each text field's languages as it takes focus (ADR 0143: NabuWebView sets
+  `EditorInfo#hintLocales`; native.ts calls the KeyboardLanguage plugin). A field whose orthography is known names them
+  (`{...keyboardHint(lang, profile)}`, @nabu/ui: the profile's `input.keyboard` first); others ask for their `lang`.
+  Browsers and iOS cannot. Keep res/layout/capacitor_bridge_layout_main.xml in step with Capacitor's on upgrades.
 
 ## Corrections notes (see docs/adr/0051)
 - A correction is a `sentence_reported` event: `shown` (what the device displayed) and `correction` (only what
@@ -550,7 +555,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - courses/yue is checked against Matthews & Yip, *Cantonese: A Comprehensive Grammar* (2011); notes in `nabu/notes/yue/`.
   Its text layer's Chinese characters are wrong (read them from page images) and its Yale shows ā ē ī ō ū as A B C D E.
   M&Y write Hong Kong speech (你 léih, the n/l merger): compare tones and changed tones, never the initials.
-- Particles: 呀 aa3 softens a question or statement but never makes one; aa4 (àh) turns a statement into a question.
+- Particles: 呀 aa3 (sense 呀) softens a question or statement but never makes one; aa4 (àh, sense 呀.q) turns a
+  statement into a question.
   No 嘅呀 (ge + a is 㗎, outside the script audit); 嗎 is formal (你好嗎). 喇 laa3 a new situation, 啦 laa1 requests.
 - 俾 puts the thing first (俾錢你). 好 + adjective is a weak "very": English accept sets keep very/really/so optional.
 - Voices (ADR 0094): VoxCPM2 (`voxcpm`, pipeline/runtimes/voxcpm, its own uv project) cloning two designed anchors
