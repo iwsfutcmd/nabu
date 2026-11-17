@@ -13,7 +13,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
 import { lessonNodes, readCourse, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { graphemes, surfaceOf } from "@nabu/core/text";
-import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
+import type { BundleManifest, LearnerEvent, OrthographyId, SchemeId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
 import { exclusionsOf, facetsOffOf, type Off } from "../../src/breaks.ts";
 
@@ -80,15 +80,25 @@ const localDateIn = (now: Date, timeZone: string): string => {
  * plan aims at the skills of words met before the learner's local date (ADR 0101). `off`: why
  * listening or speaking is off on the device, if it is (a break, or turned off in Preferences), from
  * which the app derives what it leaves out: their exercises, and listening turned off for good from
- * known words and what is due (D41).
+ * known words and what is due (D41). `reading`: the reading tradition the learner reads in (ADR 0138), as
+ * the device keeps it; none chosen, the first.
  */
-export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number, timeZone = "UTC", off: Off = {}): readonly Exercise[] => {
+export const planned = (
+  course: CourseView,
+  log: readonly LearnerEvent[],
+  request: SessionRequest,
+  now: Date,
+  seed: number,
+  timeZone = "UTC",
+  off: Off = {},
+  reading?: SchemeId,
+): readonly Exercise[] => {
   const state = replay(log);
   const exclude = exclusionsOf(off);
   const facetsOff = facetsOffOf(off);
   // At the pace the app reads from the same log (ADR 0105); the tests never choose one.
   const pace = paceOf(course, state, now.toISOString(), "auto", facetsOff).band;
-  return plan(course, state, request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0), pace, facetsOff, ...(exclude.size === 0 ? {} : { exclude }) }).exercises;
+  return plan(course, state, request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0), pace, facetsOff, reading, ...(exclude.size === 0 ? {} : { exclude }) }).exercises;
 };
 
 /**

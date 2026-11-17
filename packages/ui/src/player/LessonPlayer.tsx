@@ -53,7 +53,7 @@ import { focusInReach, useActionsInReach, type Shortcuts, type WritingMode } fro
 import { HeaderToggles, QuitDialog, SessionHeader, usePlayerKeys, useQuitRequest, useToggles, type QuitCopy, type Toggles } from "./Shell.tsx";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
-import { ExerciseView, instructionOf } from "./ExerciseView.tsx";
+import { ExerciseView, formatInstruction } from "./ExerciseView.tsx";
 
 export interface LessonPlayerProps {
   readonly course: CourseView;
@@ -331,7 +331,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
     // field (an assistive technology's) would otherwise wait until the learner commits the word.
     if (active.tag === "answering" && active.composing) focusInReach(checkButton.current, footer.current);
   };
-  const instruction = t.format(instructionOf(ex), { language });
+  const instruction = formatInstruction(t, ex, language);
   // Every speaking card can be put off, as every listening card can: rated or scored alike.
   const speaking = SPEAKING.has(ex.template);
   const listening = LISTENING.has(ex.template);

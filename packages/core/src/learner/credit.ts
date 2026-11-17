@@ -7,7 +7,7 @@
  * word: a KC whose word was matched is right even when the answer as a whole
  * was wrong.
  */
-import type { KcCredit, KcId, TaggedText, Token } from "@nabu/schema";
+import type { KcCredit, KcId, SchemeId, TaggedText, Token } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { isCorrect, type Exercise, type Facet, type Outcome, type SelfRating } from "../lesson/exercise.ts";
@@ -37,6 +37,10 @@ const firstToken = (text: TaggedText | undefined): Token | undefined => text?.to
 
 /** The KCs an answer is credited to: those the exercise asks about, else all of its KCs. */
 export const creditedKcs = (ex: Exercise): readonly KcId[] => askedKcs(ex) ?? ex.kcs;
+
+/** The reading tradition a reading card names (ADR 0138): its read-script card is that tradition's. */
+export const readingOf = (ex: Exercise): SchemeId | undefined =>
+  ex.template === "char-read" || ex.template === "reading-disambiguation" || ex.template === "transcribe" ? ex.tradition : undefined;
 
 /** The KCs an exercise asks the learner to produce, pick or pronounce; the rest of its KCs were given. */
 export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {

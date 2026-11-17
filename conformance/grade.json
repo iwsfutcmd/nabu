@@ -3507,6 +3507,146 @@
         ]
       },
       "note": "-di (he gave) for -dim (I gave)."
+    },
+    {
+      "id": "grade/zh-Latn/tone-numbers",
+      "op": "grade",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "accept": "xué",
+        "answer": "xue2"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Tone numbers are as good as tone marks (ADR 0138)."
+    },
+    {
+      "id": "grade/zh-Latn/syllables-together",
+      "op": "grade",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "accept": "zhuāng zǐ",
+        "answer": "Zhuang1zi3"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/zh-Latn/tone-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "accept": "shàn",
+        "answer": "shan"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "reading-tone"
+        ]
+      },
+      "note": "The tone is what the character leaves out (ADR 0134): left out, the reading is wrong, with a note on the tone."
+    },
+    {
+      "id": "grade/zh-Latn/wrong-tone",
+      "op": "grade",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "accept": "xué",
+        "answer": "xuè"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "reading-tone"
+        ]
+      }
+    },
+    {
+      "id": "grade/zh-Latn/u-for-u-umlaut",
+      "op": "grade",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "accept": "lǜ",
+        "answer": "lu4"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "ü is not u: another vowel, not another tone."
+    },
+    {
+      "id": "grade/zh-Latn/v-for-u-umlaut",
+      "op": "grade",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "accept": "lǜ",
+        "answer": "lv4"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/ltc-Latn/case-folded",
+      "op": "grade",
+      "args": {
+        "profile": "ltc-Latn/baxter",
+        "accept": "dzyenX",
+        "answer": "dzyenx"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Baxter's tone letters typed in lower case (ADR 0138)."
+    },
+    {
+      "id": "grade/ltc-Latn/syllables-together",
+      "op": "grade",
+      "args": {
+        "profile": "ltc-Latn/baxter",
+        "accept": "kjun tsiX",
+        "answer": "kjuntsix"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/ltc-Latn/other-tone",
+      "op": "grade",
+      "args": {
+        "profile": "ltc-Latn/baxter",
+        "accept": "dzyenX",
+        "answer": "dzyenH"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "Another tone letter is another reading."
+    },
+    {
+      "id": "grade/ltc-Latn/no-typos",
+      "op": "grade",
+      "args": {
+        "profile": "ltc-Latn/baxter",
+        "accept": "hjwot",
+        "answer": "hjwat"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "No typo leeway: a letter off is another reading."
     }
   ]
 }

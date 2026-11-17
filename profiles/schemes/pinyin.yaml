@@ -1,5 +1,6 @@
 # Hanyu Pinyin: Mandarin readings of Chinese characters, one syllable per character, tones as marks
-# on the vowels (yuè). lzh pins it on every Han word (ADR 0071); it is shown, never asked for.
+# on the vowels (yuè). lzh pins it on every Han word (ADR 0071) and asks it on reading cards when the
+# learner reads in Pinyin (ADR 0138).
 id: pinyin
 # What the UI calls the scheme and its tones, by language (ADR 0109). The translations are an
 # LLM's drafts, made for the draft UI catalogs (ADR 0070), and await review as those do.
@@ -23,3 +24,15 @@ names:
     provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 language: cmn
 lang: zh-Latn-pinyin
+# A reading card offers and grades its readings as zh-Latn/pinyin: typed with marks or tone numbers.
+answer: zh-Latn/pinyin
+typedByProfile: true
+# The characters write no tone: a reading card's wrong options give a syllable another tone, each
+# marked vowel traded for the same vowel with another tone's mark (ADR 0131's sets, ADR 0138).
+variants:
+  - [ā, á, ǎ, à]
+  - [ē, é, ě, è]
+  - [ī, í, ǐ, ì]
+  - [ō, ó, ǒ, ò]
+  - [ū, ú, ǔ, ù]
+  - [ǖ, ǘ, ǚ, ǜ]

@@ -1,7 +1,9 @@
 /** One view per template, and each template's instruction: shared by lessons and stories. */
 import type { Exercise } from "@nabu/core/lesson";
-import type { MessageId } from "@nabu/i18n";
+import type { MessageId, Translator } from "@nabu/i18n";
+import type { SchemeId } from "@nabu/schema";
 import type { JSX } from "react";
+import { schemeName } from "./Readings.tsx";
 import type { ViewProps } from "./shared.ts";
 import {
   CharReadView,
@@ -65,7 +67,23 @@ export const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
 export const instructionOf = (ex: Exercise): MessageId => {
   if (ex.template === "gap-fill" && ex.asks !== undefined) return ex.asks === "form" ? "player.instruction.gap-fill-form" : "player.instruction.gap-fill-word";
   if (ex.template === "story-complete" && ex.asks !== undefined) return ex.asks === "form" ? "player.instruction.story-complete-form" : "player.instruction.story-complete-word";
+  // A reading card of an orthography read in several traditions names the one it asks (ADR 0138).
+  if (traditionOf(ex) !== undefined) {
+    if (ex.template === "char-read") return "player.instruction.char-read-word.tradition";
+    if (ex.template === "reading-disambiguation") return "player.instruction.reading-disambiguation.tradition";
+    if (ex.template === "transcribe") return "player.instruction.transcribe-word.tradition";
+  }
   return INSTRUCTIONS[ex.template];
+};
+
+/** The reading tradition a reading card asks (ADR 0138), where its orthography is read in several. */
+export const traditionOf = (ex: Exercise): SchemeId | undefined =>
+  ex.template === "char-read" || ex.template === "reading-disambiguation" || ex.template === "transcribe" ? ex.tradition : undefined;
+
+/** A card's instruction, formatted: `language` is the course's name; a tradition's name comes from its data. */
+export const formatInstruction = (t: Translator, ex: Exercise, language: string): string => {
+  const tradition = traditionOf(ex);
+  return t.format(instructionOf(ex), { language, ...(tradition === undefined ? {} : { scheme: schemeName(t, tradition) }) });
 };
 
 export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {

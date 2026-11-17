@@ -1,7 +1,9 @@
 # profiles/lzh-Hant.standard.yaml
 # Classical (Literary) Chinese in Traditional characters (ADR 0071). A written language: the course
-# practises reading and writing its characters, never their sounds. Readings are a display aid, three
-# ruby layers the learner picks from (or none), and no exercise drills them.
+# practises reading and writing its characters, never their sounds. Readings are three ruby layers, three
+# reading traditions: the learner shows one or none, and reading cards ask the one they last chose, each
+# with its own progress (ADR 0138). Over new words only, a layer shows where the learner has not yet read
+# the word in that tradition.
 id: lzh-Hant/standard
 lang: lzh-Hant
 exemplars: cldr:zh_Hant
@@ -19,9 +21,9 @@ match:
   variants:       { table: hk-tw-variants, policy: accept-with-note, note: variant-form }
   scriptMismatch: { detect: Hans, table: hans-only, policy: reject-with-note, note: use-traditional }
 annotations:
-  - { id: pinyin, kind: reading, scheme: pinyin, lang: zh-Latn-pinyin, toggle: true, default: "off", render: ruby, fade: none }
-  - { id: jyutping, kind: reading, scheme: jyutping, lang: yue-Latn-jyutping, toggle: true, default: "off", render: ruby, fade: none }
-  - { id: baxter, kind: reading, scheme: baxter, lang: ltc-Latn-x-baxter, toggle: true, default: "off", render: ruby, fade: none }
+  - { id: pinyin, kind: reading, scheme: pinyin, lang: zh-Latn-pinyin, toggle: true, default: "off", render: ruby, fade: by-facet }
+  - { id: jyutping, kind: reading, scheme: jyutping, lang: yue-Latn-jyutping, toggle: true, default: "off", render: ruby, fade: by-facet }
+  - { id: baxter, kind: reading, scheme: baxter, lang: ltc-Latn-x-baxter, toggle: true, default: "off", render: ruby, fade: by-facet }
 input:
   ime: [os]
 layout: { vertical: vertical-rl, verticalScope: [prompt, reading, wordbank] }

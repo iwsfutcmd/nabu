@@ -468,15 +468,16 @@ describe("planner constraints", () => {
 
 describe("a course that names its facets (ADR 0071)", () => {
   const lzh = loadCourse("lzh");
-  const practised = (ex: Exercise): boolean => TEMPLATES[ex.template].facet === "recognize" || TEMPLATES[ex.template].facet === "produce";
+  // Read and written, never spoken or heard; read in the learner's tradition (ADR 0138).
+  const practised = (ex: Exercise): boolean => ["recognize", "produce", "read-script"].includes(TEMPLATES[ex.template].facet);
   const now = "2026-03-01T08:00:00.000Z";
 
   it("reads them from its bundle; the other courses name none and rule nothing out", () => {
-    expect(lzh.facets).toEqual(["recognize", "produce"]);
+    expect(lzh.facets).toEqual(["recognize", "produce", "read-script"]);
     for (const id of ["fa", "yue", "uz", "apc"]) expect(facetExclusions(loadCourse(id)).size).toBe(0);
   });
 
-  it("is never spoken, heard or drilled on its readings, whatever the app can score", () => {
+  it("is never spoken or heard, whatever the app can score", () => {
     const speech = speechSupportOf(lzh, 2);
     expect(speech).toEqual({ scored: false, tones: false });
     for (const { node } of lessonNodes(lzh)) {
@@ -485,7 +486,7 @@ describe("a course that names its facets (ADR 0071)", () => {
     }
     const placement = plan(lzh, emptyLearnerState(), { mode: "placement" }, { now, seed: 3, speech });
     expect(placement.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
-    expect(cardGallery(lzh, 3).filter((c) => !["recognize", "produce"].includes(TEMPLATES[c.template].facet))).toEqual([]);
+    expect(cardGallery(lzh, 3).filter((c) => !["recognize", "produce", "read-script"].includes(TEMPLATES[c.template].facet))).toEqual([]);
     expect(sampleExercise(lzh, "speak.tier-0")).toBeUndefined();
   }, WHOLE_COURSE_TIMEOUT_MS);
 
@@ -524,7 +525,9 @@ describe("a course that names its facets (ADR 0071)", () => {
 
   it("still shows its readings: every word of a lesson carries all three layers", () => {
     const node = lessonNodes(lzh)[0]?.node.id as string;
-    const words = plan(lzh, emptyLearnerState(), { mode: "lesson", node }, { now, seed: 3 }).exercises.flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
+    // A reading card's prompt goes without them: its word's reading is the answer (ADR 0138).
+    const shown = plan(lzh, emptyLearnerState(), { mode: "lesson", node }, { now, seed: 3 }).exercises.filter((ex) => TEMPLATES[ex.template].facet !== "read-script");
+    const words = shown.flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
     const han = words.filter((t) => t.kind === "word" && /\p{Script=Han}/u.test(t.surface));
     expect(han.length).toBeGreaterThan(0);
     for (const t of han) expect(Object.keys(t.ruby ?? {}).sort()).toEqual(["baxter", "jyutping", "pinyin"]);

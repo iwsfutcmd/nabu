@@ -1844,6 +1844,48 @@ class SplitStep(BaseModel):
     split: Split
 
 
+type FirstItem = Annotated[str, Field(min_length=1)]
+
+
+class ToneNumbers(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    marks: Annotated[
+        dict[Annotated[str, StringConstraints(pattern=r"^[0-9]$")], str],
+        Field(
+            description="Each tone number and the combining mark it stands for (\\u0301 for 2), or an empty string where the tone has none.",
+            min_length=1,
+        ),
+    ]
+    vowels: Annotated[
+        str,
+        Field(
+            description="The letters that may carry a tone's mark, each a grapheme: aeiouü.",
+            min_length=1,
+        ),
+    ]
+    first: Annotated[
+        list[FirstItem],
+        Field(
+            description="Where the mark goes before the last vowel: the first of these the syllable has, its first letter (a, e, ou)."
+        ),
+    ]
+
+
+class ToneNumbersStep(BaseModel):
+    """
+    Syllables typed with a tone number after them, written with that tone's mark (ADR 0138): Pinyin typed as xue2 compares as xué. A syllable is the run of letters before the number. Its mark goes on the first letter of the first of `first` the syllable has (a, e, ou: hao3 is hǎo, dou1 is dōu), else on its last letter of `vowels` (liu2 is liú, gui4 is guì); letters compare ignoring case. A number whose mark is empty (the neutral tone) is dropped; a number with no mark, or a syllable with nowhere to put it, is left as it is.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    toneNumbers: ToneNumbers
+
+
 class Cartouche(BaseModel):
     """
     The marks that open and close a name written with the logographs' first letters.
@@ -3003,6 +3045,12 @@ class ExerciseRef(BaseModel):
             description="A fill-in (gap-fill, story-complete): whether it asked which word or which form (ADR 0132). A mistake is asked again as the same question. Absent on events logged before it."
         ),
     ] = None
+    reading: Annotated[
+        SchemeId | None,
+        Field(
+            description="A reading card (char-read, reading-disambiguation, transcribe) of an orthography read in more than one tradition (lzh: Pinyin, Jyutping, Baxter; ADR 0138): the tradition it asked. Its read-script card is that tradition's own. Absent on every other card."
+        ),
+    ] = None
 
 
 class ExercisePresented(BaseModel):
@@ -3510,7 +3558,7 @@ class ReadingScheme(BaseModel):
     answer: Annotated[
         OrthographyId | None,
         Field(
-            description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese."
+            description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked. Where an orthography has several such schemes, each is a reading tradition the learner may read in (ADR 0138: Pinyin, Jyutping and Baxter in Classical Chinese)."
         ),
     ] = None
     latin: Annotated[
@@ -3872,7 +3920,8 @@ type NormalizeStep = Annotated[
     | WhitespaceStep
     | DetachStep
     | SplitStep
-    | LogographsStep,
+    | LogographsStep
+    | ToneNumbersStep,
     Field(title="NormalizeStep"),
 ]
 

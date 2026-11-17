@@ -70,6 +70,7 @@ import {
   type ClipPlayer,
 } from "./Audio.tsx";
 import styles from "./Player.module.css";
+import { schemeName } from "./Readings.tsx";
 import { FEEDBACK_SOUND_MS, playFeedbackSound } from "./sound.ts";
 import {
   toPcm16k,
@@ -1311,7 +1312,11 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
   const { ex } = props;
   const t = useTranslator();
   const scheme = `player.transcribe.label.${ex.scheme}`;
-  const label: MessageId = t.has(scheme) ? scheme : "player.transcribe.label";
+  // Where the orthography is read in several traditions, the label names the one asked (ADR 0138).
+  const label =
+    ex.tradition !== undefined
+      ? t.format("player.transcribe.label.tradition", { scheme: schemeName(t, ex.tradition) })
+      : t.format(t.has(scheme) ? (scheme as MessageId) : "player.transcribe.label");
   return (
     <div className={styles.body}>
       <WordInSentence
@@ -1326,7 +1331,7 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
       {/* Typed as text of its answer orthography (Schluessel, ADR 0131): that profile's letters on the bar (ä, ŋ, ḫ…). */}
       <TypedAnswer
         props={props}
-        label={t.format(label)}
+        label={label}
         answer={ex.reading}
         keys={typedByProfile(ex.scheme) ? undefined : []}
         parts={["prompt", "hint"]}

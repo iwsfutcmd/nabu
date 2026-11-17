@@ -35,4 +35,5 @@ export {
 export { doneOf, firstTriesOf, resume, type Done } from "./resume.ts";
 export { seededRng, type Rng } from "./rng.ts";
 export { answerTextOf, cardGloss, chosenWordOf, facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makeSpeakScored, makeToneIdentify, promptOf, rubySchemeOf, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
+export { chosenTraditionKey, readingTradition, readingTraditions, traditionKey } from "./traditions.ts";
 export { makeLetterPairs, makeLetterRead, makeWordRead, makeWordWrite, SCRIPT_TEMPLATES, scriptCandidates, scriptNodes, type ScriptNode } from "./script.ts";

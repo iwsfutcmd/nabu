@@ -147,6 +147,31 @@ const logographs = (words: Readonly<Record<string, string>>, cartouche: { readon
   return (text) => (open === undefined ? text : readNames(text)).replace(WORD, (word) => glyphOf(word) ?? word);
 };
 
+/**
+ * Syllables typed with a tone number after them, written with that tone's mark (ADR 0138): Pinyin
+ * xue2 is xué. A syllable is the run of letters before the number; its mark goes on the first
+ * letter of the first of `first` it has (a, e, ou), else on its last vowel, letters compared
+ * ignoring case. A number whose mark is empty (the neutral tone) is dropped; one with no mark, or
+ * a syllable with nowhere to put it, is left as it was.
+ */
+const toneNumbers = (opts: { readonly marks: Readonly<Record<string, string>>; readonly vowels: string; readonly first: readonly string[] }): StepFn => {
+  const same = new Intl.Collator("und", { sensitivity: "accent" });
+  const alike = (a: string | undefined, b: string): boolean => a !== undefined && same.compare(a, b) === 0;
+  const vowels = graphemes(opts.vowels.normalize("NFC"));
+  const first = opts.first.map((f) => graphemes(f.normalize("NFC")));
+  const marks = new Map(Object.entries(opts.marks).map(([n, m]) => [n, m.normalize("NFC")]));
+  return (text) =>
+    text.replace(/(\p{L}+)([0-9])/gu, (whole, letters: string, digit: string) => {
+      const mark = marks.get(digit);
+      if (mark === undefined) return whole;
+      const gs = graphemes(letters);
+      if (mark === "") return letters;
+      const lead = first.map((f) => gs.findIndex((_, i) => f.every((x, k) => alike(gs[i + k], x)))).find((i) => i >= 0);
+      const at = lead ?? gs.findLastIndex((g) => vowels.some((v) => alike(g, v)));
+      return at < 0 ? whole : gs.map((g, i) => (i === at ? `${g}${mark}`.normalize("NFC") : g)).join("");
+    });
+};
+
 export const compileStep = (step: NormalizeStep, numberingSystems: Readonly<Record<string, string>>): StepFn => {
   if (step === "nfc") return (t) => t.normalize("NFC");
   if ("fold-compat" in step) return foldArabicPresentationForms;
@@ -158,6 +183,7 @@ export const compileStep = (step: NormalizeStep, numberingSystems: Readonly<Reco
   if ("detach" in step) return detach(step.detach.prefixes, step.detach.minRest ?? 2);
   if ("split" in step) return split(step.split.after);
   if ("logographs" in step) return logographs(step.logographs.words, step.logographs.cartouche);
+  if ("toneNumbers" in step) return toneNumbers(step.toneNumbers);
   // whitespace
   if (step.whitespace === "collapse") return (t) => t.replace(WHITESPACE, " ").trim();
   if (step.whitespace === "remove") return (t) => t.replace(WHITESPACE, "");

@@ -3,7 +3,7 @@
  * Instances are plain data: everything a template needs to render and to
  * grade is in them, so a lesson can be serialized, replayed and tested.
  */
-import type { Asks, BundleAudioItem, KcId, Persons, TaggedText } from "@nabu/schema";
+import type { Asks, BundleAudioItem, KcId, Persons, SchemeId, TaggedText } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
 import type { SpeechResult } from "../speech/score.ts";
 
@@ -168,6 +168,11 @@ export interface CharRead extends Common {
   readonly translation?: TaggedText | undefined;
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /**
+   * The reading tradition asked (ADR 0138), where the orthography is read in more than one (lzh:
+   * pinyin, jyutping, baxter): its read-script card is that tradition's. Absent otherwise.
+   */
+  readonly tradition?: SchemeId | undefined;
 }
 
 /** A polyphonic character in a word; choose the reading it has there (行 in 銀行 vs 行路). */
@@ -178,6 +183,11 @@ export interface ReadingDisambiguation extends Common {
   readonly focus: { readonly token: number; readonly segment: number };
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /**
+   * The reading tradition asked (ADR 0138), where the orthography is read in more than one (lzh:
+   * pinyin, jyutping, baxter): its read-script card is that tradition's. Absent otherwise.
+   */
+  readonly tradition?: SchemeId | undefined;
 }
 
 /**
@@ -246,6 +256,11 @@ export interface Transcribe extends Common {
   readonly scheme: string;
   /** The word's pinned reading, tagged as the scheme (yue-Latn-HK-jyutping). */
   readonly reading: TaggedText;
+  /**
+   * The reading tradition asked (ADR 0138), where the orthography is read in more than one (lzh:
+   * pinyin, jyutping, baxter): its read-script card is that tradition's. Absent otherwise.
+   */
+  readonly tradition?: SchemeId | undefined;
 }
 
 /** Speak tier 0 (§10.4): say it, record it, compare, rate yourself. */

@@ -170,6 +170,9 @@
         },
         {
           "$ref": "#/$defs/LogographsStep"
+        },
+        {
+          "$ref": "#/$defs/ToneNumbersStep"
         }
       ]
     },
@@ -392,6 +395,52 @@
               "description": "The characters that end a unit, each one code point (Jyutping: 123456).",
               "type": "string",
               "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "ToneNumbersStep": {
+      "title": "ToneNumbersStep",
+      "description": "Syllables typed with a tone number after them, written with that tone's mark (ADR 0138): Pinyin typed as xue2 compares as xué. A syllable is the run of letters before the number. Its mark goes on the first letter of the first of `first` the syllable has (a, e, ou: hao3 is hǎo, dou1 is dōu), else on its last letter of `vowels` (liu2 is liú, gui4 is guì); letters compare ignoring case. A number whose mark is empty (the neutral tone) is dropped; a number with no mark, or a syllable with nowhere to put it, is left as it is.",
+      "type": "object",
+      "required": [
+        "toneNumbers"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "toneNumbers": {
+          "type": "object",
+          "required": [
+            "marks",
+            "vowels",
+            "first"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "marks": {
+              "description": "Each tone number and the combining mark it stands for (\\u0301 for 2), or an empty string where the tone has none.",
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": {
+                "pattern": "^[0-9]$"
+              },
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "vowels": {
+              "description": "The letters that may carry a tone's mark, each a grapheme: aeiouü.",
+              "type": "string",
+              "minLength": 1
+            },
+            "first": {
+              "description": "Where the mark goes before the last vowel: the first of these the syllable has, its first letter (a, e, ou).",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
             }
           }
         }

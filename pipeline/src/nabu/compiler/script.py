@@ -360,18 +360,29 @@ def with_alphabets(
 
 
 def latin_orthographies(course: CourseSource, profiles: dict[str, OrthographyProfile]) -> list[str]:
-    """The Latin orthographies a course's alphabet tracks tag their letters and words with (their
-    schemes' `latin`): their profiles ship in the bundle beside the course's own (a course
-    orthography ships anyway)."""
+    """The orthographies a course's cards write in beside its own, whose profiles ship in the bundle
+    with the course's (a course orthography ships anyway): the Latin one its alphabet tracks tag
+    their letters and words with (their schemes' `latin`, ADR 0133), and the one each reading layer
+    typed as text is graded by (a scheme's `answer` with `typedByProfile`: Schluessel, Pinyin,
+    Baxter; ADR 0131, 0138)."""
     out: list[str] = []
+
+    def add(orth: str | None) -> None:
+        if orth is None or orth in out or orth in course.orthographies:
+            return
+        if orth in profiles:
+            out.append(orth)
+
     for orth in course.orthographies:
         profile = profiles.get(orth)
-        t = track(profile) if profile is not None else None
-        if (
-            t is not None
-            and t.latin in profiles
-            and t.latin not in out
-            and t.latin not in course.orthographies
-        ):
-            out.append(t.latin)
+        if profile is None:
+            continue
+        t = track(profile)
+        add(t.latin if t is not None else None)
+        for layer in profile.annotations or []:
+            if layer.kind != "reading" or layer.scheme is None:
+                continue
+            data = schemes().get(str(layer.scheme))
+            if data is not None and data.typedByProfile:
+                add(data.answer)
     return out

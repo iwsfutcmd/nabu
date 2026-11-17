@@ -23,7 +23,7 @@ import { ArrowForwardIcon } from "../icons.tsx";
 import { FadeReadings, WordStatusProvider, type Marks } from "../marks.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import type { DisplayChoice } from "../player/Display.tsx";
-import { ExerciseView, instructionOf } from "../player/ExerciseView.tsx";
+import { ExerciseView, formatInstruction } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
 import { GlossPanel, useGlosses, wordOf } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
@@ -403,7 +403,7 @@ const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyPro
       {asking !== undefined && ex !== undefined && draft !== undefined && (
         <div className={styles.question} data-story-question="" data-state={active?.tag}>
           <h2 className={playerStyles.instruction} id={ids.instruction}>
-            {t.format(instructionOf(ex), { language })}
+            {formatInstruction(t, ex, language)}
           </h2>
           <ExerciseView
             key={ex.id}

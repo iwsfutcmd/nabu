@@ -435,7 +435,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Classical Chinese notes (see docs/adr/0071)
 - A course's `facets` (course.yaml, manifest) rule out every template of another facet (`facetExclusions`, wherever
-  speechExclusions applies). lzh is [recognize, produce]: no audio, never spoken, heard or drilled on its readings.
+  speechExclusions applies). lzh is [recognize, produce, read-script]: no audio, never spoken or heard.
+- Reading traditions (ADR 0138): an orthography's ruby layers whose scheme has an `answer` (`readingTraditions`). Reading
+  cards ask the learner's (the layer last chosen, kept when readings are off: web `storedTradition`; pass it as `reading`
+  to `plan`, `readingsShown`, `practicableMistakes`). Where there are several (lzh: Pinyin, Jyutping, Baxter) a card names
+  its `tradition` and its read-script card is that tradition's (`kc|read-script|orth|scheme`); with one, keys are as
+  before. Typed readings come after a choice card in that tradition. Pinyin is typed with marks or tone numbers
+  (`toneNumbers` step), its tones `required`; Baxter's ASCII is case folded, no typo leeway.
 - An orthography may pin several ruby layers (lzh: pinyin, jyutping, baxter). Every Han word token pins all of them,
   chosen by sense (說.yue is yuè / jyut6 / ywet), one reading in all three: never Pinyin of one word with Baxter of
   another (見 "see" jiàn / gin3 / kenH, "appear, have an audience" xiàn / jin6 / henH). The compiler checks they line up per character. Jyutping is the

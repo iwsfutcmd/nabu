@@ -75,13 +75,13 @@ const fromCard = (c: Card): StoredCard => ({
   last_review: c.last_review?.toISOString(),
 });
 
-const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string): number => {
-  const card = state.cards[cardKey(kc, facet, orthography)];
+const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string, reading?: string): number => {
+  const card = state.cards[cardKey(kc, facet, orthography, reading)];
   return card === undefined ? 0 : scheduler.get_retrievability(toCard(card), new Date(now), false);
 };
 
-const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string): number =>
-  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now), 0) / kcs.length;
+const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string, reading?: string): number =>
+  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now, reading), 0) / kcs.length;
 
 const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good, easy: FsrsRating.Easy };
 
@@ -115,7 +115,7 @@ const addXp = (d: Draft, date: string, amount: number): void => {
 const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, rating: Rating): void => {
   const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
-  const key = cardKey(kc, facet, e.orthography);
+  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
   if (d.rated.keys.includes(key)) return;
   d.rated.keys.push(key);
   const now = new Date(at);
@@ -127,7 +127,7 @@ const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet:
 
 const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
   if (!WITNESSED_FACETS.has(facet)) return;
-  const key = cardKey(kc, facet, e.orthography);
+  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
   if (!right) {
     delete d.shown[key];
     d.missed[key] = e.localDate;
@@ -149,7 +149,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   const correct = e.outcome.kind.startsWith("CORRECT");
   if (e.attempt === 1) {
     const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
-    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime);
+    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime, e.exercise.reading);
     d.performance = update(d.performance, { template, facet, item, kcs, r }, correct);
   }
   const recent = d.latencies[template] ?? [];

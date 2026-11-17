@@ -13,6 +13,7 @@ import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, letterVariants
 import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { tilesOf } from "./tiles.ts";
+import { readingTradition, traditionKey } from "./traditions.ts";
 import { allKcs, allSentences, lexiconOf, profileOf, type CourseView, type Grader } from "./course.ts";
 import { askedOfToken, formSignature, senseKcOf, sameKind } from "./signature.ts";
 import type {
@@ -159,6 +160,11 @@ export interface MakeContext {
    * cards, and for a fill-in's mistake from before ADR 0132 (`ask` is all of the word's KCs).
    */
   readonly asks?: Asks | undefined;
+  /**
+   * The reading tradition the learner reads in (ADR 0138: the ruby layer they last chose), where
+   * the orthography has several: reading cards ask it. Absent or not one of them: the first.
+   */
+  readonly reading?: SchemeId | undefined;
 }
 
 /**
@@ -932,14 +938,11 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
 // ------------------------------------------------------------------------------------ reading templates
 
 /**
- * The scheme reading cards ask about: the profile's first ruby layer, where its scheme's data says
- * how its readings stand as options (`answer`, ADR 0109): Jyutping for yue, sitelen Lasina for
- * sitelen pona; none for Classical Chinese (Pinyin first, only shown).
+ * The scheme reading cards ask about: the learner's reading tradition (ADR 0138), else the
+ * profile's first ruby layer whose scheme's data says how its readings stand as options (`answer`,
+ * ADR 0109): Jyutping for yue, sitelen Lasina for sitelen pona, Pinyin for Classical Chinese.
  */
-export const rubySchemeOf = (ctx: MakeContext): SchemeId | undefined => {
-  const scheme = profileOf(ctx.course, ctx.course.orthography).source.annotations?.find((a) => a.kind === "reading" && a.render === "ruby")?.scheme;
-  return scheme !== undefined && readingTag(scheme) !== undefined ? scheme : undefined;
-};
+export const rubySchemeOf = (ctx: MakeContext): SchemeId | undefined => readingTradition(ctx.course, ctx.reading);
 
 const readingText = (scheme: SchemeId, reading: string): TaggedText => {
   const tag = readingTag(scheme) as Pick<TaggedText, "lang" | "orthography">;
@@ -1037,6 +1040,7 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, readingText(scheme, reading), others.map((r) => readingText(scheme, r)));
   const translation = translationOf(ctx.course, s);
+  const tradition = traditionKey(ctx.course, scheme);
   return {
     template: "char-read",
     id: id("char-read", `${s.id}:${target.surface}`),
@@ -1048,6 +1052,7 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
     ...(translation === undefined ? {} : { translation: translation.text }),
     options,
     answer,
+    ...(tradition === undefined ? {} : { tradition }),
   };
 };
 
@@ -1089,6 +1094,7 @@ export const makeReadingDisambiguation = (ctx: MakeContext, s: BundleSentence): 
         focus: { token: ti, segment: si },
         options,
         answer,
+        ...(traditionKey(ctx.course, scheme) === undefined ? {} : { tradition: scheme }),
       };
     }
   }
@@ -1253,7 +1259,8 @@ const pinnedReading = (text: TaggedText, scheme: SchemeId): string | undefined =
  * in writing (the profile's letters: Uzbek oʻ is one).
  */
 const minimallyApart = (ctx: MakeContext, a: TaggedText, b: TaggedText): boolean => {
-  const scheme = rubySchemeOf(ctx);
+  // Heard apart: in the course's first tradition, whichever the learner reads in.
+  const scheme = readingTradition(ctx.course);
   if (scheme !== undefined) {
     const ra = pinnedReading(a, scheme)?.split(" ");
     const rb = pinnedReading(b, scheme)?.split(" ");
@@ -1477,6 +1484,7 @@ export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe 
   const word = pronouncedWord(ctx, form.text, (t) => t.readings?.[scheme] !== undefined);
   if (word === undefined) return undefined;
   const reading = readingText(scheme, (form.text.tokens[word] as Token).readings?.[scheme] as string);
+  const tradition = traditionKey(ctx.course, scheme);
   return {
     template: "transcribe",
     id: id("transcribe", s.id),
@@ -1488,6 +1496,7 @@ export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe 
     translation: translation.text,
     scheme,
     reading,
+    ...(tradition === undefined ? {} : { tradition }),
   };
 };
 

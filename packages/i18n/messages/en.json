@@ -2122,6 +2122,10 @@
       "message": "How is the marked word read?",
       "description": "Instruction above a char-read exercise: a sentence without readings, one word marked; the learner chooses its reading (e.g. Jyutping) among a few (ADR 0098)."
     },
+    "player.instruction.char-read-word.tradition": {
+      "message": "How is the marked word read in {$scheme}?",
+      "description": "Instruction above a char-read exercise in a course read in several reading traditions (Classical Chinese: Pinyin, Jyutping, Middle Chinese; ADR 0138): a sentence without readings, one word marked; the learner chooses its reading in the tradition they read in. $scheme is the tradition's name, from its data (Pinyin, Middle Chinese (Baxter))."
+    },
     "player.instruction.choose-translation": {
       "message": "What does this mean?",
       "description": "Instruction: choose the translation of the sentence shown."
@@ -2178,6 +2182,10 @@
       "message": "How is the highlighted character read here?",
       "description": "Instruction: choose the reading a character with several readings has in this word."
     },
+    "player.instruction.reading-disambiguation.tradition": {
+      "message": "How is the highlighted character read here in {$scheme}?",
+      "description": "Instruction: choose the reading a character with several readings has in this word, in a course read in several reading traditions (ADR 0138). $scheme is the tradition's name, from its data."
+    },
     "player.instruction.select-image": {
       "message": "Select the right picture",
       "description": "Instruction: pick the picture (and word) that matches the meaning shown."
@@ -2217,6 +2225,10 @@
     "player.instruction.transcribe-word": {
       "message": "Write how the marked word is read",
       "description": "Instruction above a transcribe exercise: a sentence without readings, one word marked; the learner types its reading (ADR 0095)."
+    },
+    "player.instruction.transcribe-word.tradition": {
+      "message": "Write how the marked word is read in {$scheme}",
+      "description": "Instruction above a transcribe exercise in a course read in several reading traditions (ADR 0138): a sentence without readings, one word marked; the learner types its reading in the tradition they read in. $scheme is the tradition's name, from its data (Pinyin, Middle Chinese (Baxter))."
     },
     "player.instruction.translate-into-support": {
       "message": "Translate this sentence",
@@ -2593,6 +2605,10 @@
     "player.transcribe.label.jyutping": {
       "message": "Reading in Jyutping",
       "description": "Label of the field where the learner types a Cantonese word's reading in Jyutping."
+    },
+    "player.transcribe.label.tradition": {
+      "message": "Reading in {$scheme}",
+      "description": "Label of the field where the learner types a word's reading in a reading tradition (ADR 0138). $scheme is the tradition's name, from its data (Pinyin, Middle Chinese (Baxter))."
     },
     "player.vocalize.spelled-label": {
       "message": "The marked word in {$orthography}",

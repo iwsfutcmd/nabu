@@ -10,7 +10,7 @@ import type { CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import type { LessonEvent } from "../lesson/player.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
-import { creditOf } from "./credit.ts";
+import { creditOf, readingOf } from "./credit.ts";
 
 export interface EventMeta {
   readonly id: string;
@@ -66,14 +66,21 @@ export const attemptOf = (exerciseId: string): number => {
 
 const METHOD: Readonly<Record<string, AnswerSubmitted["input"]["method"]>> = { choice: "choice", tiles: "tiles", text: "text", pairs: "pairs", voice: "voice" };
 
-/** What was presented; a fill-in says what it asked (ADR 0132), so its mistake is asked again as the same question. */
-export const exerciseRefOf = (ex: Exercise) => ({
-  id: ex.id,
-  template: ex.template,
-  item: ex.item,
-  kcs: [...ex.kcs],
-  ...((ex.template === "gap-fill" || ex.template === "story-complete") && ex.asks !== undefined ? { asks: ex.asks } : {}),
-});
+/**
+ * What was presented; a fill-in says what it asked (ADR 0132), so its mistake is asked again as the
+ * same question; a reading card its tradition, where it names one (ADR 0138).
+ */
+export const exerciseRefOf = (ex: Exercise) => {
+  const reading = readingOf(ex);
+  return {
+    id: ex.id,
+    template: ex.template,
+    item: ex.item,
+    kcs: [...ex.kcs],
+    ...((ex.template === "gap-fill" || ex.template === "story-complete") && ex.asks !== undefined ? { asks: ex.asks } : {}),
+    ...(reading === undefined ? {} : { reading }),
+  };
+};
 
 /**
  * The learner event for a player event, or undefined for none. `latencyMs` and
