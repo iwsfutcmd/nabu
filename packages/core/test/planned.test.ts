@@ -97,7 +97,8 @@ describe.each(COURSES)("what plan() plans: %s %s", (id, orthography) => {
     for (const s of sessions.filter((_, i) => i % 10 === 0 || i === sessions.length - 1)) {
       expect(JSON.stringify(plan(course, s.state, s.request, s.options)), s.label).toBe(JSON.stringify(s.plan));
     }
-  });
+    // A whole course's walk: chg's nineteen units take about two minutes alone, more on a busy machine.
+  }, 300_000);
 
   it("accepts each card's own solution and rejects a wrong answer", () => {
     const { course, sessions } = walked(id, orthography);

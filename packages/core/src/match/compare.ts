@@ -84,10 +84,15 @@ type Marks = NonNullable<CompiledProfile["marks"]>;
  */
 const requiredMarksDiffer = (marks: Marks, e: string, a: string): boolean => {
   const only = (g: string): string => Array.from(g.normalize("NFD")).filter((c) => marks.required.has(c)).join("");
-  const kept = (t: string): readonly string[] =>
-    graphemes(Array.from(t.normalize("NFD")).filter((c) => !marks.set.has(c) || marks.required.has(c)).join("").normalize("NFC"));
-  const le = kept(e);
-  const la = kept(a);
+  const keptText = (t: string): string =>
+    Array.from(t.normalize("NFD")).filter((c) => !marks.set.has(c) || marks.required.has(c)).join("").normalize("NFC");
+  // Most words have no required mark, or the same ones in the same places: no alignment needed.
+  if (only(e) === "" && only(a) === "") return false;
+  const ke = keptText(e);
+  const ka = keptText(a);
+  if (ke === ka) return false;
+  const le = graphemes(ke);
+  const la = graphemes(ka);
   const be = le.map((g) => marks.strip(g));
   const ba = la.map((g) => marks.strip(g));
   const cols = la.length + 1;
