@@ -63,11 +63,10 @@ sentences:
       I('m| am) living in Tehran.
 - id: s.city.3
   node: fa.city.cities
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: تهران یک شهرِ بزرگ است.
-      tokens: [{surface: تهران, sense: tehran}, {surface: یک, sense: yek}, {surface: شهرِ, sense: shahr}, {surface: بزرگ, sense: bozorg}, {surface: است, sense: budan}]
+      tokens: [{surface: تهران, sense: tehran}, {surface: یک, sense: yek}, {surface: شهرِ, sense: shahr, morphs: [{surface: شهرِ, kc: 'sense:shahr'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: بزرگ, sense: bozorg}, {surface: است, sense: budan}]
       reverse: |-
         تهران [یک] شهر بزرگ است
         تهران شهر بزرگی است
@@ -90,11 +89,10 @@ sentences:
 - id: s.city.5
   node: fa.city.cities
   register: formal
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: شما اهلِ کجا هستید؟
-      tokens: [{surface: شما, sense: shoma}, {surface: اهلِ, sense: ahl}, {surface: کجا, sense: koja}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      tokens: [{surface: شما, sense: shoma}, {surface: اهلِ, sense: ahl, morphs: [{surface: اهلِ, kc: 'sense:ahl'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: کجا, sense: koja}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
       reverse: |-
         [شما] اهل کجا هستید
         [شما] اهل کجایید
@@ -106,11 +104,10 @@ sentences:
       Where do you come from?
 - id: s.city.6
   node: fa.city.cities
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: من اهلِ شیراز هستم.
-      tokens: [{surface: من, sense: man}, {surface: اهلِ, sense: ahl}, {surface: شیراز, sense: shiraz}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: من, sense: man}, {surface: اهلِ, sense: ahl, morphs: [{surface: اهلِ, kc: 'sense:ahl'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: شیراز, sense: shiraz}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: "[من] اهل (شیراز هستم|شیرازم)\n[من] شیرازی (هستم|\u200cام)"
   translations:
     en: |-
@@ -118,11 +115,10 @@ sentences:
       I come from Shiraz.
 - id: s.city.7
   node: fa.city.places
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: خانهٔ ما در این خیابان است.
-      tokens: [{surface: خانهٔ, sense: khane}, {surface: ما, sense: ma}, {surface: در, sense: dar}, {surface: این, sense: in}, {surface: خیابان, sense: khiyaban}, {surface: است, sense: budan}]
+      tokens: [{surface: خانهٔ, sense: khane, morphs: [{surface: خانهٔ, kc: 'sense:khane'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ما, sense: ma}, {surface: در, sense: dar}, {surface: این, sense: in}, {surface: خیابان, sense: khiyaban}, {surface: است, sense: budan}]
       reverse: "خان(هٔ|ه\u200Cی|ه) ما (در|توی) این خیابان است\nخانه\u200Cمان در این خیابان است"
   translations:
     en: Our (house|home) is (on|in) this street.
@@ -202,11 +198,10 @@ sentences:
     en: Excuse me, where('s| is) the (pharmacy|chemist's|chemist|drugstore)?
 - id: s.city.15
   node: fa.city.asking
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: داروخانه نزدیکِ بانک است.
-      tokens: [{surface: داروخانه, sense: darukhane}, {surface: نزدیکِ, sense: nazdik}, {surface: بانک, sense: bank}, {surface: است, sense: budan}]
+      tokens: [{surface: داروخانه, sense: darukhane}, {surface: نزدیکِ, sense: nazdik, morphs: [{surface: نزدیکِ, kc: 'sense:nazdik'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: بانک, sense: bank}, {surface: است, sense: budan}]
       reverse: |-
         داروخانه نزدیک بانک است
         داروخانه نزدیک بانکه
@@ -249,21 +244,19 @@ sentences:
       Will you come by taxi?
 - id: s.city.19
   node: fa.city.transport
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: ایستگاهِ مترو کجاست؟
-      tokens: [{surface: ایستگاهِ, sense: istgah}, {surface: مترو, sense: metro}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
+      tokens: [{surface: ایستگاهِ, sense: istgah, morphs: [{surface: ایستگاهِ, kc: 'sense:istgah'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: مترو, sense: metro}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
       reverse: ایستگاه مترو (کجاست|کجا است)
   translations:
     en: Where('s| is) the (metro|subway|underground) station?
 - id: s.city.20
   node: fa.city.transport
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: ایستگاه کنارِ میدان است.
-      tokens: [{surface: ایستگاه, sense: istgah}, {surface: کنارِ, sense: kenar}, {surface: میدان, sense: meydan}, {surface: است, sense: budan}]
+      tokens: [{surface: ایستگاه, sense: istgah}, {surface: کنارِ, sense: kenar, morphs: [{surface: کنارِ, kc: 'sense:kenar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: میدان, sense: meydan}, {surface: است, sense: budan}]
       reverse: ایستگاه کنار میدان است
   translations:
     en: The station is (next to|by|beside) the square.
@@ -334,11 +327,10 @@ sentences:
     en: Turn (left|to the left).
 - id: s.city.27
   node: fa.city.directions
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: بانک سمتِ چپ است.
-      tokens: [{surface: بانک, sense: bank}, {surface: سمتِ, sense: samt}, {surface: چپ, sense: chap}, {surface: است, sense: budan}]
+      tokens: [{surface: بانک, sense: bank}, {surface: سمتِ, sense: samt, morphs: [{surface: سمتِ, kc: 'sense:samt'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: چپ, sense: chap}, {surface: است, sense: budan}]
       reverse: |-
         بانک (سمت چپ|دست چپ) است
         بانک در سمت چپ است
@@ -362,11 +354,10 @@ sentences:
     en: Go straight [ahead|on], then turn (right|to the right).
 - id: s.city.29
   node: fa.city.directions
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: ببخشید، ایستگاهِ مترو دور است؟
-      tokens: [{surface: ببخشید, sense: bebakhshid}, {surface: ایستگاهِ, sense: istgah}, {surface: مترو, sense: metro}, {surface: دور, sense: dur}, {surface: است, sense: budan}]
+      tokens: [{surface: ببخشید, sense: bebakhshid}, {surface: ایستگاهِ, sense: istgah, morphs: [{surface: ایستگاهِ, kc: 'sense:istgah'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: مترو, sense: metro}, {surface: دور, sense: dur}, {surface: است, sense: budan}]
       reverse: |-
         (ببخشید|ببخشین) ایستگاه مترو (دور است|دوره)
         ببخشید آیا ایستگاه مترو دور است
@@ -413,7 +404,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: ایستگاهِ مترو کجاست؟
-          tokens: [{surface: ایستگاهِ, sense: istgah}, {surface: مترو, sense: metro}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
+          tokens: [{surface: ایستگاهِ, sense: istgah, morphs: [{surface: ایستگاهِ, kc: 'sense:istgah'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: مترو, sense: metro}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
       translations: {en: 'Where''s the metro station?'}
   - line:
       speaker: zahra
@@ -448,14 +439,14 @@ stories:
       forms:
         fa-Arab/standard:
           text: ممنون! شما اهلِ تهران هستید؟
-          tokens: [{surface: ممنون, sense: mamnun}, {surface: شما, sense: shoma}, {surface: اهلِ, sense: ahl}, {surface: تهران, sense: tehran}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+          tokens: [{surface: ممنون, sense: mamnun}, {surface: شما, sense: shoma}, {surface: اهلِ, sense: ahl, morphs: [{surface: اهلِ, kc: 'sense:ahl'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تهران, sense: tehran}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
       translations: {en: 'Thank you! Are you from Tehran?'}
   - line:
       speaker: zahra
       forms:
         fa-Arab/standard:
           text: نه، من اهلِ اصفهان هستم. اصفهان خیلی قشنگ است!
-          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: من, sense: man}, {surface: اهلِ, sense: ahl}, {surface: اصفهان, sense: esfahan}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اصفهان, sense: esfahan}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: من, sense: man}, {surface: اهلِ, sense: ahl, morphs: [{surface: اهلِ, kc: 'sense:ahl'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: اصفهان, sense: esfahan}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اصفهان, sense: esfahan}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
       translations: {en: 'No, I''m from Isfahan. Isfahan is very beautiful!'}
   - line:
       speaker: ali
@@ -463,7 +454,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: من اهلِ شیراز هستم.
-          tokens: [{surface: من, sense: man}, {surface: اهلِ, sense: ahl}, {surface: شیراز, sense: shiraz}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+          tokens: [{surface: من, sense: man}, {surface: اهلِ, sense: ahl, morphs: [{surface: اهلِ, kc: 'sense:ahl'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: شیراز, sense: shiraz}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
       translations: {en: I'm from Shiraz.}
   - line:
       speaker: zahra

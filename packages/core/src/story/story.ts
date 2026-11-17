@@ -195,6 +195,11 @@ export interface Gloss {
   /** The entry covers only part of the tapped token (我 in 我哋), or more than it (唔該). */
   readonly span: "whole" | "part" | "phrase";
   /**
+   * A morph the word does not spell (ADR 0136: the ezafe, its kasra on the noun's last letter in
+   * Persian, nothing at all in Chaghatay): its form is the whole word, and the panel says so.
+   */
+  readonly unwritten?: true;
+  /**
    * A morph's dictionary form, where the word writes the morph otherwise: bor in boraman is
    * bormoq (ADR 0061). The KC's first form in the line's orthography.
    */
@@ -222,6 +227,7 @@ export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: re
     return [
       ...phrases,
       ...morphs.map((m): Gloss => {
+        if (m.surface === "") return { kc: m.kc, form: { ...text, tokens: [own as Token] }, meaning: meaning.get(m.kc), span: "part", unwritten: true };
         const lemma = kcs.get(m.kc)?.forms?.[text.orthography]?.[0];
         const gloss: Gloss = { kc: m.kc, form: textOfSurface(text, m.surface), meaning: meaning.get(m.kc), span: "part" };
         if (lemma === undefined) return gloss;

@@ -2447,7 +2447,12 @@ class Morph(BaseModel):
         extra="forbid",
         frozen=True,
     )
-    surface: Annotated[str, Field(min_length=1)]
+    surface: Annotated[
+        str,
+        Field(
+            description="The morph as the word writes it. Empty for a morpheme the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe, fa کتابِ, chg ملک malik-i): it is the word's last morph, glossed and credited like any other."
+        ),
+    ]
     kc: KcId
 
 
