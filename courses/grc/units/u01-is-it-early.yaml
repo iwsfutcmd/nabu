@@ -8,6 +8,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:chairo
+  pos: VERB
   gloss:
     en: 'to be glad; χαῖρε, χαίρετε: hello! (also goodbye)'
   forms:
@@ -22,6 +23,7 @@ kcs:
   gloss:
     en: 'the imperative, to several people: do!'
 - id: sense:o
+  pos: INTJ
   gloss:
     en: O (before the name of someone you call; not translated)
   forms:
@@ -33,30 +35,35 @@ kcs:
   gloss:
     en: 'the vocative: the form for calling someone (Σώκρατες, from Σωκράτης)'
 - id: sense:sokrates
+  pos: PROPN
   gloss:
     en: Socrates (the Athenian philosopher, 469–399 BCE)
   forms:
     grc-Grek/polytonic:
     - Σωκράτης
 - id: sense:kriton
+  pos: PROPN
   gloss:
     en: Crito (Socrates' friend, of his age)
   forms:
     grc-Grek/polytonic:
     - Κρίτων
 - id: sense:xanthippe
+  pos: PROPN
   gloss:
     en: Xanthippe (Socrates' wife)
   forms:
     grc-Grek/polytonic:
     - Ξανθίππη
 - id: sense:kai
+  pos: CCONJ
   gloss:
     en: and; also, too
   forms:
     grc-Grek/polytonic:
     - καί
 - id: sense:eimi
+  pos: AUX
   gloss:
     en: to be
   forms:
@@ -74,30 +81,43 @@ kcs:
   gloss:
     en: 'the present, he, she, it: does, is doing'
 - id: sense:tis
+  pos: PRON
+  features:
+    PronType: Int
   gloss:
     en: who? which?
   forms:
     grc-Grek/polytonic:
     - τίς
 - id: sense:sy
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: you (one person)
   forms:
     grc-Grek/polytonic:
     - σύ
 - id: sense:ego
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: I
   forms:
     grc-Grek/polytonic:
     - ἐγώ
 - id: sense:nai
+  pos: INTJ
   gloss:
     en: 'yes'
   forms:
     grc-Grek/polytonic:
     - ναί
 - id: sense:ou
+  pos: PART
+  features:
+    Polarity: Neg
   gloss:
     en: not; (alone) no
   forms:
@@ -109,6 +129,7 @@ kcs:
   notes:
     en: 'οὐ before a consonant, οὐκ before a smooth breathing, οὐχ before a rough one: οὐ πρῴ, οὐκ ἔστιν, οὐχ ἡμέρα. Alone, "no", it is οὔ.'
 - id: sense:nyx
+  pos: NOUN
   gloss:
     en: night
   forms:
@@ -122,6 +143,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:hemera
+  pos: NOUN
   gloss:
     en: day
   forms:
@@ -135,54 +157,65 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:nyn
+  pos: ADV
   gloss:
     en: now
   forms:
     grc-Grek/polytonic:
     - νῦν
 - id: sense:ede
+  pos: ADV
   gloss:
     en: already; by now
   forms:
     grc-Grek/polytonic:
     - ἤδη
 - id: sense:eti
+  pos: ADV
   gloss:
     en: still, yet
   forms:
     grc-Grek/polytonic:
     - ἔτι
 - id: sense:proi
+  pos: ADV
   gloss:
     en: early (in the day)
   forms:
     grc-Grek/polytonic:
     - πρῴ
 - id: sense:pany
+  pos: ADV
   gloss:
     en: very, quite
   forms:
     grc-Grek/polytonic:
     - πάνυ
 - id: sense:e
+  pos: CCONJ
   gloss:
     en: or
   forms:
     grc-Grek/polytonic:
     - ἤ
 - id: sense:penika
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: at what time?
   forms:
     grc-Grek/polytonic:
     - πηνίκα
 - id: sense:malista
+  pos: ADV
   gloss:
     en: most, especially; (with a time or a number) about, just
   forms:
     grc-Grek/polytonic:
     - μάλιστα
 - id: sense:orthros
+  pos: NOUN
   gloss:
     en: dawn, the hour before daybreak
   forms:
@@ -196,6 +229,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:bathys
+  pos: ADJ
   gloss:
     en: deep
   forms:
@@ -204,18 +238,25 @@ kcs:
   notes:
     en: 'ὄρθρος βαθύς, "deep dawn": the first grey light, long before the sun is up.'
 - id: sense:ti
+  pos: PRON
+  features:
+    PronType: Int
   gloss:
     en: what? why?
   forms:
     grc-Grek/polytonic:
     - τί
 - id: sense:tenikade
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: at this hour (so early, or so late)
   forms:
     grc-Grek/polytonic:
     - τηνικάδε
 - id: sense:aphikneomai
+  pos: VERB
   gloss:
     en: to arrive, come
   forms:
@@ -227,6 +268,7 @@ kcs:
   gloss:
     en: 'the perfect, you (one person): you have done (and so it stands)'
 - id: sense:men
+  pos: ADV
   gloss:
     en: (marks a first point; δέ answers it)
   forms:
@@ -235,6 +277,7 @@ kcs:
   notes:
     en: 'μέν and οὖν together say "indeed": πάνυ μὲν οὖν, "yes, very much so", is the strongest yes of Plato''s dialogues.'
 - id: sense:oun
+  pos: ADV
   gloss:
     en: so, then, therefore
   forms:
@@ -1562,11 +1605,6 @@ stories:
   steps:
   - line:
       speaker: socrates
-      ask: complete
-      gap: sense:tenikade
-      distractors:
-      - sense:nyx
-      - sense:hemera
       forms:
         grc-Grek/polytonic:
           text: τί τηνικάδε ἀφῖξαι, ὦ Κρίτων;
@@ -1597,6 +1635,11 @@ stories:
         en: “Why have you come at this hour, Crito?
   - line:
       speaker: socrates
+      ask: complete
+      gap: sense:proi
+      distractors:
+      - sense:nyn
+      - sense:malista
       forms:
         grc-Grek/polytonic:
           text: ἢ οὐ πρῲ ἔτι ἐστίν;

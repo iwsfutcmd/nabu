@@ -5,30 +5,30 @@ id: home
 title: {en: At home}
 cefr: A1
 kcs:
-- {id: 'sense:khane', gloss: {en: house; home}, forms: {fa-Arab/standard: [خانه, خانهٔ]}, notes: {en: 'Spoken Tehrani: خونه (khune). The ezafe after its silent -e is written ـٔ: خانهٔ من.'}}
-- {id: 'sense:bozorg', gloss: {en: big; large; (of siblings) older}, forms: {fa-Arab/standard: [بزرگ]}}
-- {id: 'sense:kuchak', gloss: {en: small; little; (of siblings) younger}, forms: {fa-Arab/standard: [کوچک]}}
-- {id: 'sense:aparteman', gloss: {en: apartment; flat}, forms: {fa-Arab/standard: [آپارتمان]}}
-- {id: 'sense:ghashang', gloss: {en: pretty; beautiful; nice}, forms: {fa-Arab/standard: [قشنگ]}}
-- {id: 'sense:jadid', gloss: {en: new}, forms: {fa-Arab/standard: [جدید]}}
-- {id: 'sense:ghadimi', gloss: {en: old (of things)}, forms: {fa-Arab/standard: [قدیمی]}, notes: {en: 'For people, old is پیر (pir).'}}
-- {id: 'sense:otagh', gloss: {en: room}, forms: {fa-Arab/standard: [اتاق]}}
-- {id: 'sense:amma', gloss: {en: but}, forms: {fa-Arab/standard: [اما]}, notes: {en: ولی (vali) is a common alternative.}}
+- {id: 'sense:khane', pos: NOUN, gloss: {en: house; home}, forms: {fa-Arab/standard: [خانه, خانهٔ]}, notes: {en: 'Spoken Tehrani: خونه (khune). The ezafe after its silent -e is written ـٔ: خانهٔ من.'}}
+- {id: 'sense:bozorg', pos: ADJ, gloss: {en: big; large; (of siblings) older}, forms: {fa-Arab/standard: [بزرگ]}}
+- {id: 'sense:kuchak', pos: ADJ, gloss: {en: small; little; (of siblings) younger}, forms: {fa-Arab/standard: [کوچک]}}
+- {id: 'sense:aparteman', pos: NOUN, gloss: {en: apartment; flat}, forms: {fa-Arab/standard: [آپارتمان]}}
+- {id: 'sense:ghashang', pos: ADJ, gloss: {en: pretty; beautiful; nice}, forms: {fa-Arab/standard: [قشنگ]}}
+- {id: 'sense:jadid', pos: ADJ, gloss: {en: new}, forms: {fa-Arab/standard: [جدید]}}
+- {id: 'sense:ghadimi', pos: ADJ, gloss: {en: old (of things)}, forms: {fa-Arab/standard: [قدیمی]}, notes: {en: 'For people, old is پیر (pir).'}}
+- {id: 'sense:otagh', pos: NOUN, gloss: {en: room}, forms: {fa-Arab/standard: [اتاق]}}
+- {id: 'sense:amma', pos: CCONJ, gloss: {en: but}, forms: {fa-Arab/standard: [اما]}, notes: {en: ولی (vali) is a common alternative.}}
 - {id: 'form:poss-2sg', gloss: {en: '-at: your (one person, familiar; joined to a noun)'}, notes: {en: 'اتاقت (otāq-at) means the same as اتاقِ تو. Spoken: -et (otāqet).'}}
-- {id: 'sense:ashpazkhane', gloss: {en: kitchen}, forms: {fa-Arab/standard: [آشپزخانه]}, notes: {en: Literally 'cook-house'.}}
-- {id: 'sense:panjere', gloss: {en: window}, forms: {fa-Arab/standard: [پنجره]}}
-- {id: 'sense:koja', gloss: {en: where}, forms: {fa-Arab/standard: [کجا]}, notes: {en: 'کجاست = کجا + است: where is …?'}}
-- {id: 'sense:inja', gloss: {en: here}, forms: {fa-Arab/standard: [اینجا]}, notes: {en: 'اینجاست = اینجا + است. Spoken: اینجاس (injās).'}}
-- {id: 'sense:anja', gloss: {en: there}, forms: {fa-Arab/standard: [آنجا]}, notes: {en: 'آنجاست = آنجا + است. Spoken: اونجا (unjā).'}}
-- {id: 'sense:dastshui', gloss: {en: toilet; restroom}, forms: {fa-Arab/standard: [دستشویی]}, notes: {en: Literally 'hand-washing'. The bathroom with a shower is حمام (hammām).}}
-- {id: 'sense:dar', gloss: {en: in; at}, forms: {fa-Arab/standard: [در]}, notes: {en: 'Everyday speech uses توی or تو (tu): توی آشپزخانه, in the kitchen.'}}
-- {id: 'sense:miz', gloss: {en: table; desk}, forms: {fa-Arab/standard: [میز]}}
-- {id: 'sense:ruye', gloss: {en: on (top of)}, forms: {fa-Arab/standard: [روی]}}
-- {id: 'sense:zir', gloss: {en: under}, forms: {fa-Arab/standard: [زیر]}, notes: {en: 'With the ezafe: زیرِ میز, under the table.'}}
-- {id: 'sense:sandali', gloss: {en: chair}, forms: {fa-Arab/standard: [صندلی]}}
-- {id: 'sense:takht', gloss: {en: bed}, forms: {fa-Arab/standard: [تخت]}}
-- {id: 'sense:kenar', gloss: {en: next to; beside; by}, forms: {fa-Arab/standard: [کنار]}, notes: {en: 'With the ezafe: کنارِ پنجره, by the window.'}}
-- {id: 'sense:yakhchal', gloss: {en: fridge; refrigerator}, forms: {fa-Arab/standard: [یخچال]}, notes: {en: 'Literally ''ice pit'', the old desert ice-houses.'}}
+- {id: 'sense:ashpazkhane', pos: NOUN, gloss: {en: kitchen}, forms: {fa-Arab/standard: [آشپزخانه]}, notes: {en: Literally 'cook-house'.}}
+- {id: 'sense:panjere', pos: NOUN, gloss: {en: window}, forms: {fa-Arab/standard: [پنجره]}}
+- {id: 'sense:koja', pos: ADV, features: {PronType: Int}, gloss: {en: where}, forms: {fa-Arab/standard: [کجا]}, notes: {en: 'کجاست = کجا + است: where is …?'}}
+- {id: 'sense:inja', pos: ADV, features: {PronType: Dem}, gloss: {en: here}, forms: {fa-Arab/standard: [اینجا]}, notes: {en: 'اینجاست = اینجا + است. Spoken: اینجاس (injās).'}}
+- {id: 'sense:anja', pos: ADV, features: {PronType: Dem}, gloss: {en: there}, forms: {fa-Arab/standard: [آنجا]}, notes: {en: 'آنجاست = آنجا + است. Spoken: اونجا (unjā).'}}
+- {id: 'sense:dastshui', pos: NOUN, gloss: {en: toilet; restroom}, forms: {fa-Arab/standard: [دستشویی]}, notes: {en: Literally 'hand-washing'. The bathroom with a shower is حمام (hammām).}}
+- {id: 'sense:dar', pos: ADP, gloss: {en: in; at}, forms: {fa-Arab/standard: [در]}, notes: {en: 'Everyday speech uses توی or تو (tu): توی آشپزخانه, in the kitchen.'}}
+- {id: 'sense:miz', pos: NOUN, gloss: {en: table; desk}, forms: {fa-Arab/standard: [میز]}}
+- {id: 'sense:ruye', pos: ADP, gloss: {en: on (top of)}, forms: {fa-Arab/standard: [روی]}}
+- {id: 'sense:zir', pos: ADP, gloss: {en: under}, forms: {fa-Arab/standard: [زیر]}, notes: {en: 'With the ezafe: زیرِ میز, under the table.'}}
+- {id: 'sense:sandali', pos: NOUN, gloss: {en: chair}, forms: {fa-Arab/standard: [صندلی]}}
+- {id: 'sense:takht', pos: NOUN, gloss: {en: bed}, forms: {fa-Arab/standard: [تخت]}}
+- {id: 'sense:kenar', pos: ADP, gloss: {en: next to; beside; by}, forms: {fa-Arab/standard: [کنار]}, notes: {en: 'With the ezafe: کنارِ پنجره, by the window.'}}
+- {id: 'sense:yakhchal', pos: NOUN, gloss: {en: fridge; refrigerator}, forms: {fa-Arab/standard: [یخچال]}, notes: {en: 'Literally ''ice pit'', the old desert ice-houses.'}}
 - {id: 'construction:existential-hast', gloss: {en: 'هست: there is, there are'}, forms: {fa-Arab/standard: [هست]}, notes: {en: 'در آشپزخانه یک میز هست: there is a table in the kitchen. The negative is نیست: نان نیست, there is no bread.'}}
 nodes:
 - {id: fa.home.house, kind: lesson, introduces: ['sense:khane', 'sense:bozorg', 'sense:kuchak', 'sense:aparteman', 'sense:ghashang', 'sense:jadid', 'sense:ghadimi']}
@@ -400,6 +400,9 @@ stories:
       translations: {en: Hi! Your flat is really nice!}
   - line:
       speaker: ali
+      ask: complete
+      gap: sense:jadid
+      distractors: ['sense:kuchak', 'sense:bozorg']
       forms:
         fa-Arab/standard:
           text: ممنون. آپارتمانِ من کوچک است، اما جدید است.
@@ -414,9 +417,6 @@ stories:
       translations: {en: 'Where''s the kitchen?'}
   - line:
       speaker: ali
-      ask: complete
-      gap: sense:anja
-      distractors: ['sense:koja', 'sense:kenar']
       forms:
         fa-Arab/standard:
           text: آشپزخانه آنجاست.

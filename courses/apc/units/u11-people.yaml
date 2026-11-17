@@ -7,23 +7,23 @@ id: u11-people
 title: {en: Friends and neighbours}
 cefr: A2
 kcs:
-- {id: 'sense:huwwe', gloss: {en: he}, forms: {apc-Arab/standard: [هو], apc-Latn/arabizi: [huwwe]}}
-- {id: 'sense:hiyye', gloss: {en: she}, forms: {apc-Arab/standard: [هي], apc-Latn/arabizi: [hiyye]}}
-- {id: 'sense:jar', gloss: {en: neighbour}, forms: {apc-Arab/standard: [جار], apc-Latn/arabizi: [jar]}, notes: {en: 'A woman neighbour: جارة, jara; jarti: my neighbour (a woman).'}}
-- {id: 'sense:zalame', gloss: {en: man; guy}, forms: {apc-Arab/standard: [زلمة], apc-Latn/arabizi: [zalame]}}
-- {id: 'sense:mara', gloss: {en: woman; wife}, forms: {apc-Arab/standard: [مرة], apc-Latn/arabizi: [mara]}, notes: {en: 'Also written مرا. Before a name or a noun it is mart: mart Sami, Sami''s wife.'}}
-- {id: 'sense:seken', gloss: {en: 'living (somewhere): I live, you live'}, forms: {apc-Arab/standard: [ساكن], apc-Latn/arabizi: [seken]}, notes: {en: 'An active participle: it agrees like an adjective.
+- {id: 'sense:huwwe', pos: PRON, features: {PronType: Prs}, gloss: {en: he}, forms: {apc-Arab/standard: [هو], apc-Latn/arabizi: [huwwe]}}
+- {id: 'sense:hiyye', pos: PRON, features: {PronType: Prs}, gloss: {en: she}, forms: {apc-Arab/standard: [هي], apc-Latn/arabizi: [hiyye]}}
+- {id: 'sense:jar', pos: NOUN, gloss: {en: neighbour}, forms: {apc-Arab/standard: [جار], apc-Latn/arabizi: [jar]}, notes: {en: 'A woman neighbour: جارة, jara; jarti: my neighbour (a woman).'}}
+- {id: 'sense:zalame', pos: NOUN, gloss: {en: man; guy}, forms: {apc-Arab/standard: [زلمة], apc-Latn/arabizi: [zalame]}}
+- {id: 'sense:mara', pos: NOUN, gloss: {en: woman; wife}, forms: {apc-Arab/standard: [مرة], apc-Latn/arabizi: [mara]}, notes: {en: 'Also written مرا. Before a name or a noun it is mart: mart Sami, Sami''s wife.'}}
+- {id: 'sense:seken', pos: VERB, gloss: {en: 'living (somewhere): I live, you live'}, forms: {apc-Arab/standard: [ساكن], apc-Latn/arabizi: [seken]}, notes: {en: 'An active participle: it agrees like an adjective.
       seken (a man), sekne (a woman), seknin (several people). wen seken? Where do you live?'}}
-- {id: 'sense:bineye', gloss: {en: building (of flats)}, forms: {apc-Arab/standard: [بناية], apc-Latn/arabizi: [bineye]}}
-- {id: 'sense:lebnene', gloss: {en: Lebanese}, forms: {apc-Arab/standard: [لبناني], apc-Latn/arabizi: [lebnene]}, notes: {en: 'A woman: لبنانية, lebneniyye; several people: لبنانيين, lebneniyyin.'}}
-- {id: 'sense:amerkene', gloss: {en: American}, forms: {apc-Arab/standard: [أميركاني], apc-Latn/arabizi: [amerkene]}, notes: {en: 'A woman: أميركانية, amerkeniyye. Also written amarkene, أمركاني.'}}
-- {id: 'sense:henne', gloss: {en: they}, forms: {apc-Arab/standard: [هنّ], apc-Latn/arabizi: [henne]}}
+- {id: 'sense:bineye', pos: NOUN, gloss: {en: building (of flats)}, forms: {apc-Arab/standard: [بناية], apc-Latn/arabizi: [bineye]}}
+- {id: 'sense:lebnene', pos: ADJ, gloss: {en: Lebanese}, forms: {apc-Arab/standard: [لبناني], apc-Latn/arabizi: [lebnene]}, notes: {en: 'A woman: لبنانية, lebneniyye; several people: لبنانيين, lebneniyyin.'}}
+- {id: 'sense:amerkene', pos: ADJ, gloss: {en: American}, forms: {apc-Arab/standard: [أميركاني], apc-Latn/arabizi: [amerkene]}, notes: {en: 'A woman: أميركانية, amerkeniyye. Also written amarkene, أمركاني.'}}
+- {id: 'sense:henne', pos: PRON, features: {PronType: Prs}, gloss: {en: they}, forms: {apc-Arab/standard: [هنّ], apc-Latn/arabizi: [henne]}}
 - {id: 'form:impf-3pl', gloss: {en: 'bi-…-o: they (present)'}, notes: {en: 'byishrabo: they drink; byi7ko: they speak. Arabic script: بي before the verb and وا after it (بيشربوا), also written بيشربو.'}}
-- {id: 'sense:rfi2', gloss: {en: friend}, forms: {apc-Arab/standard: [رفيق], apc-Latn/arabizi: [rfi2]}, notes: {en: 'A woman friend: رفيقة, rfi2a (rfi2ti: my friend). Compare صاحب, sa7eb.'}}
+- {id: 'sense:rfi2', pos: NOUN, gloss: {en: friend}, forms: {apc-Arab/standard: [رفيق], apc-Latn/arabizi: [rfi2]}, notes: {en: 'A woman friend: رفيقة, rfi2a (rfi2ti: my friend). Compare صاحب, sa7eb.'}}
 - {id: 'form:poss-3pl', gloss: {en: '-on: their (ending on a noun)'}, notes: {en: 'beton: their house; 3endon: they have. Arabic script: هن joined to the noun (بيتهن), as Kline (2022) writes it; also written
       ـن (بيتن).'}}
-- {id: 'sense:ahl', gloss: {en: parents; family}, forms: {apc-Arab/standard: [أهل], apc-Latn/arabizi: [ahl]}, notes: {en: 'ahli: my parents; bet ahli: my parents'' house.'}}
-- {id: 'sense:jiren', gloss: {en: neighbours}, forms: {apc-Arab/standard: [جيران], apc-Latn/arabizi: [jiren]}, notes: {en: 'The plural of جار, jar.'}}
+- {id: 'sense:ahl', pos: NOUN, gloss: {en: parents; family}, forms: {apc-Arab/standard: [أهل], apc-Latn/arabizi: [ahl]}, notes: {en: 'ahli: my parents; bet ahli: my parents'' house.'}}
+- {id: 'sense:jiren', pos: NOUN, gloss: {en: neighbours}, forms: {apc-Arab/standard: [جيران], apc-Latn/arabizi: [jiren]}, notes: {en: 'The plural of جار, jar.'}}
 - {id: 'form:past-3pl', gloss: {en: '-o: they (past)'}, notes: {en: 'ra7o: they went; keno: they were; akalo: they ate. Arabic script: وا at the end (راحوا), also written راحو.'}}
 nodes:
 - {id: apc.ppl.he-she, kind: lesson, introduces: ['sense:huwwe', 'sense:hiyye', 'sense:jar', 'sense:zalame', 'sense:mara']}
@@ -838,7 +838,7 @@ stories:
       speaker: sami
       ask: complete
       gap: sense:amerkene
-      distractors: ['sense:lebnene']
+      distractors: ['sense:lebnene', 'sense:b3id']
       forms:
         apc-Arab/standard:
           text: لَأ، هِيّ أَميرْكانِيِّة، بَسّ بْتِحْكي عَرَبي.

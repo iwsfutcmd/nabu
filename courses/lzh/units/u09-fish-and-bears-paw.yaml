@@ -6,11 +6,13 @@ title:
 cefr: A2
 kcs:
 - id: sense:孟子
+  pos: PROPN
   gloss:
     en: Mencius (Master Meng)
   forms:
     lzh-Hant/standard: [孟子]
 - id: sense:見.meet
+  pos: VERB
   gloss:
     en: to call on, to have an audience with (a ruler)
   forms:
@@ -18,11 +20,13 @@ kcs:
   notes:
     en: '見 “present oneself to a superior” is the word “appear” (later written 現): xiàn, Cantonese jin6, Middle Chinese henH. 見 “see” is jiàn, gin3, kenH. Many readers today say jiàn here too.'
 - id: sense:梁惠王
+  pos: PROPN
   gloss:
     en: King Hui of Liang
   forms:
     lzh-Hant/standard: [梁惠王]
 - id: sense:叟
+  pos: NOUN
   gloss:
     en: old man; venerable sir (a term of address)
   forms:
@@ -30,21 +34,29 @@ kcs:
   notes:
     en: In Mencius 1A1 the king calls Mencius 叟, “venerable sir”.
 - id: sense:千
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: thousand
   forms:
     lzh-Hant/standard: [千]
 - id: sense:里
+  pos: NOUN
+  features:
+    NounType: Clf
   gloss:
     en: li, a measure of distance (about half a kilometre)
   forms:
     lzh-Hant/standard: [里]
 - id: sense:將
+  pos: ADV
   gloss:
     en: about to, going to; will
   forms:
     lzh-Hant/standard: [將]
 - id: sense:利.profit
+  pos: NOUN
   gloss:
     en: profit, benefit; to benefit
   forms:
@@ -52,36 +64,47 @@ kcs:
   notes:
     en: The same word as 利 “sharp” in origin; here it is gain.
 - id: sense:何必
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: why must …? what need is there to …?
   forms:
     lzh-Hant/standard: [何必]
 - id: sense:仁
+  pos: NOUN
   gloss:
     en: humaneness, benevolence
   forms:
     lzh-Hant/standard: [仁]
 - id: sense:義
+  pos: NOUN
   gloss:
     en: rightness, righteousness, duty
   forms:
     lzh-Hant/standard: [義]
 - id: sense:而已
+  pos: PART
+  features:
+    PartType: Mod
   gloss:
     en: and that is all; only
   forms:
     lzh-Hant/standard: [而已]
 - id: sense:熊掌
+  pos: NOUN
   gloss:
     en: bear's paw (a delicacy)
   forms:
     lzh-Hant/standard: [熊掌]
 - id: sense:兼
+  pos: VERB
   gloss:
     en: both together; to have both at once
   forms:
     lzh-Hant/standard: [兼]
 - id: sense:舍
+  pos: VERB
   gloss:
     en: to give up, to let go
   forms:
@@ -89,11 +112,13 @@ kcs:
   notes:
     en: Later texts write 捨 for this sense; 舍 shè is also “a house”.
 - id: sense:取
+  pos: VERB
   gloss:
     en: to take, to choose
   forms:
     lzh-Hant/standard: [取]
 - id: sense:生
+  pos: NOUN
   gloss:
     en: life; to live
   forms:
@@ -584,8 +609,8 @@ stories:
   - line:
       speaker: mengzi
       ask: complete
-      gap: sense:熊掌
-      distractors: ['sense:兔', 'sense:劍']
+      gap: sense:欲
+      distractors: ['sense:耕', 'sense:涉']
       forms:
         lzh-Hant/standard:
           text: 熊掌，亦我所欲也。

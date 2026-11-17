@@ -5,31 +5,31 @@ id: time
 title: {en: Time and the week}
 cefr: A1
 kcs:
-- {id: 'sense:saat', gloss: {en: 'hour; o''clock; clock, watch'}, forms: {fa-Arab/standard: [ساعت]}, notes: {en: 'ساعت چند است؟ What time is it? With a number it takes the ezafe: ساعتِ هشت, eight o''clock.'}}
-- {id: 'sense:nim', gloss: {en: half}, forms: {fa-Arab/standard: [نیم]}, notes: {en: 'ده و نیم: half past ten.'}}
-- {id: 'sense:alan', gloss: {en: now}, forms: {fa-Arab/standard: [الان]}}
-- {id: 'sense:kelas', gloss: {en: class}, forms: {fa-Arab/standard: [کلاس]}}
-- {id: 'sense:daghighe', gloss: {en: minute}, forms: {fa-Arab/standard: [دقیقه]}}
-- {id: 'sense:emruz', gloss: {en: today}, forms: {fa-Arab/standard: [امروز]}}
-- {id: 'sense:farda', gloss: {en: tomorrow}, forms: {fa-Arab/standard: [فردا]}}
-- {id: 'sense:vaght', gloss: {en: time (to do something)}, forms: {fa-Arab/standard: [وقت]}, notes: {en: 'وقت دارید؟ Do you have time? Clock time is ساعت.'}}
-- {id: 'sense:zohr', gloss: {en: noon; midday}, forms: {fa-Arab/standard: [ظهر]}}
-- {id: 'sense:asr', gloss: {en: late afternoon; early evening}, forms: {fa-Arab/standard: [عصر]}}
-- {id: 'sense:hafte', gloss: {en: week}, forms: {fa-Arab/standard: [هفته, هفتهٔ]}}
-- {id: 'sense:shanbe', gloss: {en: Saturday}, forms: {fa-Arab/standard: [شنبه]}, notes: {en: The Iranian week starts on Saturday; Friday is the weekly day off.}}
-- {id: 'sense:chandshanbe', gloss: {en: 'which day of the week?'}, forms: {fa-Arab/standard: [چندشنبه]}, notes: {en: 'Literally ''how-many-shanbe'': the weekdays count up from شنبه.'}}
-- {id: 'sense:yekshanbe', gloss: {en: Sunday}, forms: {fa-Arab/standard: [یکشنبه]}}
-- {id: 'sense:doshanbe', gloss: {en: Monday}, forms: {fa-Arab/standard: [دوشنبه]}}
-- {id: 'sense:seshanbe', gloss: {en: Tuesday}, forms: {fa-Arab/standard: ["سه\u200cشنبه"]}}
-- {id: 'sense:chaharshanbe', gloss: {en: Wednesday}, forms: {fa-Arab/standard: [چهارشنبه]}}
-- {id: 'sense:panjshanbe', gloss: {en: Thursday}, forms: {fa-Arab/standard: [پنجشنبه]}, notes: {en: "Also written پنج\u200cشنبه."}}
-- {id: 'sense:jome', gloss: {en: Friday}, forms: {fa-Arab/standard: [جمعه]}}
-- {id: 'sense:tatil', gloss: {en: closed; off (a holiday)}, forms: {fa-Arab/standard: [تعطیل]}}
-- {id: 'sense:az', gloss: {en: from; than}, forms: {fa-Arab/standard: [از]}}
-- {id: 'sense:ta', gloss: {en: until; to (a time or place)}, forms: {fa-Arab/standard: [تا]}, notes: {en: تا فردا! See you tomorrow!}}
-- {id: 'sense:akhar', gloss: {en: end; last}, forms: {fa-Arab/standard: [آخر]}, notes: {en: 'آخرِ هفته: the weekend.'}}
-- {id: 'sense:tavallod', gloss: {en: birth; birthday}, forms: {fa-Arab/standard: [تولد]}}
-- {id: 'sense:mobarak', gloss: {en: blessed; congratulations}, forms: {fa-Arab/standard: [مبارک]}, notes: {en: تولدت مبارک! Happy birthday! عید مبارک! Happy holiday!}}
+- {id: 'sense:saat', pos: NOUN, gloss: {en: 'hour; o''clock; clock, watch'}, forms: {fa-Arab/standard: [ساعت]}, notes: {en: 'ساعت چند است؟ What time is it? With a number it takes the ezafe: ساعتِ هشت, eight o''clock.'}}
+- {id: 'sense:nim', pos: NUM, features: {NumType: Card}, gloss: {en: half}, forms: {fa-Arab/standard: [نیم]}, notes: {en: 'ده و نیم: half past ten.'}}
+- {id: 'sense:alan', pos: ADV, gloss: {en: now}, forms: {fa-Arab/standard: [الان]}}
+- {id: 'sense:kelas', pos: NOUN, gloss: {en: class}, forms: {fa-Arab/standard: [کلاس]}}
+- {id: 'sense:daghighe', pos: NOUN, gloss: {en: minute}, forms: {fa-Arab/standard: [دقیقه]}}
+- {id: 'sense:emruz', pos: ADV, gloss: {en: today}, forms: {fa-Arab/standard: [امروز]}}
+- {id: 'sense:farda', pos: ADV, gloss: {en: tomorrow}, forms: {fa-Arab/standard: [فردا]}}
+- {id: 'sense:vaght', pos: NOUN, gloss: {en: time (to do something)}, forms: {fa-Arab/standard: [وقت]}, notes: {en: 'وقت دارید؟ Do you have time? Clock time is ساعت.'}}
+- {id: 'sense:zohr', pos: NOUN, gloss: {en: noon; midday}, forms: {fa-Arab/standard: [ظهر]}}
+- {id: 'sense:asr', pos: NOUN, gloss: {en: late afternoon; early evening}, forms: {fa-Arab/standard: [عصر]}}
+- {id: 'sense:hafte', pos: NOUN, gloss: {en: week}, forms: {fa-Arab/standard: [هفته, هفتهٔ]}}
+- {id: 'sense:shanbe', pos: PROPN, gloss: {en: Saturday}, forms: {fa-Arab/standard: [شنبه]}, notes: {en: The Iranian week starts on Saturday; Friday is the weekly day off.}}
+- {id: 'sense:chandshanbe', pos: PRON, features: {PronType: Int}, gloss: {en: 'which day of the week?'}, forms: {fa-Arab/standard: [چندشنبه]}, notes: {en: 'Literally ''how-many-shanbe'': the weekdays count up from شنبه.'}}
+- {id: 'sense:yekshanbe', pos: PROPN, gloss: {en: Sunday}, forms: {fa-Arab/standard: [یکشنبه]}}
+- {id: 'sense:doshanbe', pos: PROPN, gloss: {en: Monday}, forms: {fa-Arab/standard: [دوشنبه]}}
+- {id: 'sense:seshanbe', pos: PROPN, gloss: {en: Tuesday}, forms: {fa-Arab/standard: ["سه\u200cشنبه"]}}
+- {id: 'sense:chaharshanbe', pos: PROPN, gloss: {en: Wednesday}, forms: {fa-Arab/standard: [چهارشنبه]}}
+- {id: 'sense:panjshanbe', pos: PROPN, gloss: {en: Thursday}, forms: {fa-Arab/standard: [پنجشنبه]}, notes: {en: "Also written پنج\u200cشنبه."}}
+- {id: 'sense:jome', pos: PROPN, gloss: {en: Friday}, forms: {fa-Arab/standard: [جمعه]}}
+- {id: 'sense:tatil', pos: ADJ, gloss: {en: closed; off (a holiday)}, forms: {fa-Arab/standard: [تعطیل]}}
+- {id: 'sense:az', pos: ADP, gloss: {en: from; than}, forms: {fa-Arab/standard: [از]}}
+- {id: 'sense:ta', pos: ADP, gloss: {en: until; to (a time or place)}, forms: {fa-Arab/standard: [تا]}, notes: {en: تا فردا! See you tomorrow!}}
+- {id: 'sense:akhar', pos: NOUN, gloss: {en: end; last}, forms: {fa-Arab/standard: [آخر]}, notes: {en: 'آخرِ هفته: the weekend.'}}
+- {id: 'sense:tavallod', pos: NOUN, gloss: {en: birth; birthday}, forms: {fa-Arab/standard: [تولد]}}
+- {id: 'sense:mobarak', pos: ADJ, gloss: {en: blessed; congratulations}, forms: {fa-Arab/standard: [مبارک]}, notes: {en: تولدت مبارک! Happy birthday! عید مبارک! Happy holiday!}}
 nodes:
 - {id: fa.time.clock, kind: lesson, introduces: ['sense:saat', 'sense:nim', 'sense:alan', 'sense:kelas', 'sense:daghighe']}
 - {id: fa.time.today, kind: lesson, introduces: ['sense:emruz', 'sense:farda', 'sense:vaght']}
@@ -489,8 +489,8 @@ stories:
   - line:
       speaker: sara
       ask: complete
-      gap: sense:saat
-      distractors: ['sense:hafte', 'sense:sal']
+      gap: sense:khub
+      distractors: ['sense:mehraban', 'sense:khoshmaze']
       forms:
         fa-Arab/standard:
           text: نه، ساعتِ پنج خوب است.

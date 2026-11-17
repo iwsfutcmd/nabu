@@ -9,6 +9,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:bar
+  pos: ADJ
   gloss:
     en: there is, there are; exists
   forms:
@@ -21,6 +22,9 @@ kcs:
   notes:
     en: 'bar says that something is there: nan bar "there is bread". Its opposite is yoq.'
 - id: sense:yoq
+  pos: ADJ
+  features:
+    Polarity: Neg
   gloss:
     en: there is no, there are no; no
   forms:
@@ -33,6 +37,9 @@ kcs:
   notes:
     en: 'yoq is the opposite of bar, not of -dur: nan yoq "there is no bread", but nan aq emäs "the bread is not white".'
 - id: sense:ikki
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: two
   forms:
@@ -43,6 +50,9 @@ kcs:
   readings:
     schluessel: ikki
 - id: sense:uch
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: three
   forms:
@@ -53,6 +63,9 @@ kcs:
   readings:
     schluessel: üč
 - id: sense:tort
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: four
   forms:
@@ -63,6 +76,9 @@ kcs:
   readings:
     schluessel: tört
 - id: sense:bash
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: five
   forms:
@@ -73,6 +89,9 @@ kcs:
   readings:
     schluessel: bäš
 - id: sense:alta
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: six
   forms:
@@ -83,6 +102,9 @@ kcs:
   readings:
     schluessel: altä
 - id: sense:yatti
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: seven
   forms:
@@ -93,6 +115,9 @@ kcs:
   readings:
     schluessel: yätti
 - id: sense:sakkiz
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: eight
   forms:
@@ -103,6 +128,9 @@ kcs:
   readings:
     schluessel: säkkiz
 - id: sense:toqquz
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: nine
   forms:
@@ -113,6 +141,9 @@ kcs:
   readings:
     schluessel: toqquz
 - id: sense:on
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: ten
   forms:
@@ -123,6 +154,7 @@ kcs:
   readings:
     schluessel: 'on'
 - id: sense:kishi
+  pos: NOUN
   gloss:
     en: person; someone
   forms:
@@ -133,6 +165,7 @@ kcs:
   readings:
     schluessel: kiši
 - id: sense:bala
+  pos: NOUN
   gloss:
     en: child
   forms:
@@ -143,6 +176,7 @@ kcs:
   readings:
     schluessel: bala
 - id: sense:qoy
+  pos: NOUN
   gloss:
     en: sheep
   forms:
@@ -160,6 +194,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:at
+  pos: NOUN
   gloss:
     en: horse
   forms:
@@ -170,6 +205,7 @@ kcs:
   readings:
     schluessel: aṭ
 - id: sense:oy
+  pos: NOUN
   gloss:
     en: house; room
   forms:
@@ -187,6 +223,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:bagh
+  pos: NOUN
   gloss:
     en: garden, orchard
   forms:
@@ -204,6 +241,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:yar
+  pos: NOUN
   gloss:
     en: place; land, earth
   forms:
@@ -214,6 +252,9 @@ kcs:
   readings:
     schluessel: yär
 - id: sense:ul
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: that; he, she, it
   forms:
@@ -226,6 +267,7 @@ kcs:
   notes:
     en: 'ul (or ol) is "that" before a noun: ul šahar "that city". Alone it is "he, she, it" (unit 4).'
 - id: sense:janub
+  pos: NOUN
   gloss:
     en: south
   forms:
@@ -236,6 +278,7 @@ kcs:
   readings:
     schluessel: janūb
 - id: sense:shimal
+  pos: NOUN
   gloss:
     en: north
   forms:
@@ -246,6 +289,7 @@ kcs:
   readings:
     schluessel: šimāl
 - id: sense:sharq
+  pos: NOUN
   gloss:
     en: east
   forms:
@@ -256,6 +300,7 @@ kcs:
   readings:
     schluessel: šarq
 - id: sense:gharb
+  pos: NOUN
   gloss:
     en: west
   forms:
@@ -266,6 +311,7 @@ kcs:
   readings:
     schluessel: ǧarb
 - id: sense:taraf
+  pos: NOUN
   gloss:
     en: side, direction
   forms:
@@ -276,6 +322,7 @@ kcs:
   readings:
     schluessel: ṭaraf
 - id: sense:janib
+  pos: NOUN
   gloss:
     en: side, direction (a word of Arabic, as ṭaraf)
   forms:
@@ -286,6 +333,7 @@ kcs:
   readings:
     schluessel: jānib
 - id: sense:darwaza
+  pos: NOUN
   gloss:
     en: gate
   forms:
@@ -296,6 +344,9 @@ kcs:
   readings:
     schluessel: darwāza
 - id: sense:para
+  pos: NOUN
+  features:
+    NounType: Clf
   gloss:
     en: 'piece (a counting word: yätti pāra qaṣaba "seven towns")'
   forms:
@@ -308,6 +359,7 @@ kcs:
   notes:
     en: 'Babur counts towns with pāra "piece": yätti pāra qaṣabasi bar "it has seven towns". Most counted nouns need no such word.'
 - id: sense:sayhun
+  pos: PROPN
   gloss:
     en: the Sayhun, the Jaxartes (the Syr Darya)
   forms:
@@ -318,6 +370,7 @@ kcs:
   readings:
     schluessel: Sayḥūn
 - id: sense:andijan
+  pos: PROPN
   gloss:
     en: Andijan (the capital of Ferghana)
   forms:
@@ -328,6 +381,7 @@ kcs:
   readings:
     schluessel: Andijān
 - id: sense:farghana
+  pos: PROPN
   gloss:
     en: Ferghana (the valley and country of Babur)
   forms:
@@ -919,10 +973,10 @@ stories:
   steps:
   - line:
       ask: complete
-      gap: sense:yatti
+      gap: sense:qasaba
       distractors:
-      - sense:tagh
-      - sense:darwaza
+      - sense:hawa
+      - sense:taraf
       forms:
         chg-Arab/standard:
           text: "ییتی پاره قصبه\u200cسی بار."

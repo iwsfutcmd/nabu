@@ -9,52 +9,62 @@ title:
 cefr: A2
 kcs:
 - id: sense:david
+  pos: PROPN
   gloss:
     en: David
   forms:
     hbo-Hebr/tiberian: [דָּוִד]
 - id: sense:pelishti
+  pos: NOUN
   gloss:
     en: Philistine
   forms:
     hbo-Hebr/tiberian: [פְּלִשְׁתִּי]
 - id: sense:herev
+  pos: NOUN
   gloss:
     en: sword
   forms:
     hbo-Hebr/tiberian: [חֶרֶב]
   image: {file: ../images/sword.svg, license: CC0-1.0, provenance: {author: 'llm:claude@974a394d608f', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:hanit
+  pos: NOUN
   gloss:
     en: spear
   forms:
     hbo-Hebr/tiberian: [חֲנִית]
 - id: sense:kidon
+  pos: NOUN
   gloss:
     en: javelin; or a curved sword
   forms:
     hbo-Hebr/tiberian: [כִּידוֹן]
 - id: sense:tsava
+  pos: NOUN
   gloss:
     en: 'army, host (יְהוָה צְבָאוֹת: the LORD of hosts)'
   forms:
     hbo-Hebr/tiberian: [צָבָא]
 - id: sense:maarakhah
+  pos: NOUN
   gloss:
     en: battle line, rank of an army
   forms:
     hbo-Hebr/tiberian: [מַעֲרָכָה]
 - id: sense:heref
+  pos: VERB
   gloss:
     en: to taunt, defy (piel)
   forms:
     hbo-Hebr/tiberian: [חֵרֵף]
 - id: sense:siggar
+  pos: VERB
   gloss:
     en: to deliver up, hand over (piel)
   forms:
     hbo-Hebr/tiberian: [סִגֵּר]
 - id: sense:yesh
+  pos: VERB
   gloss:
     en: there is, there are
   forms:
@@ -63,16 +73,19 @@ kcs:
   gloss:
     en: 'יֵשׁ לְ…: … has (there is to …); אֵין לְ…: … has no'
 - id: sense:qahal
+  pos: NOUN
   gloss:
     en: assembly, gathering
   forms:
     hbo-Hebr/tiberian: [קָהָל]
 - id: sense:milhamah
+  pos: NOUN
   gloss:
     en: battle, war
   forms:
     hbo-Hebr/tiberian: [מִלְחָמָה]
 - id: sense:hoshia
+  pos: VERB
   gloss:
     en: to save, deliver (hiphil)
   forms:
@@ -444,7 +457,7 @@ stories:
       speaker: david
       ask: complete
       gap: sense:herev
-      distractors: ['sense:yad', 'sense:esh']
+      distractors: ['sense:reshit', 'sense:shem']
       forms:
         hbo-Hebr/tiberian:
           text: אַתָּה בָּא אֵלַי בְּחֶרֶב וּבַחֲנִית וּבְכִידוֹן וְאָנֹכִי
@@ -487,8 +500,8 @@ stories:
   - line:
       speaker: david
       ask: complete
-      gap: sense:milhamah
-      distractors: ['sense:qahal', 'sense:derekh']
+      gap: sense:qahal
+      distractors: ['sense:or', 'sense:ets']
       forms:
         hbo-Hebr/tiberian:
           text: וְיֵדְעוּ כָּל־הַקָּהָל הַזֶּה כִּי־לֹא בְּחֶרֶב וּבַחֲנִית יְהוֹשִׁיעַ יְהוָה כִּי לַיהוָה הַמִּלְחָמָה וְנָתַן אֶתְכֶם בְּיָדֵנוּ׃

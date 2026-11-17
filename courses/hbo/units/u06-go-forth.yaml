@@ -9,11 +9,13 @@ title:
 cefr: A1
 kcs:
 - id: sense:avram
+  pos: PROPN
   gloss:
     en: Abram (later Abraham)
   forms:
     hbo-Hebr/tiberian: [אַבְרָם]
 - id: sense:halakh
+  pos: VERB
   gloss:
     en: to go, walk
   forms:
@@ -28,6 +30,7 @@ kcs:
   gloss:
     en: 'imperative, to several people: do!'
 - id: sense:bayit
+  pos: NOUN
   gloss:
     en: house; household, family
   forms:
@@ -36,6 +39,7 @@ kcs:
   notes:
     en: 'Before another noun: בֵּית bêṯ, ''the house of''. בֵּית אָבִיךָ ''your father''s house'' is your family.'
 - id: sense:av
+  pos: NOUN
   gloss:
     en: father
   forms:
@@ -43,11 +47,13 @@ kcs:
   notes:
     en: 'With suffixes אָבִי- ʾāḇî-: אָבִי ''my father'', אָבִיךָ ''your father''.'
 - id: sense:moledet
+  pos: NOUN
   gloss:
     en: kindred, relatives; birthplace
   forms:
     hbo-Hebr/tiberian: [מוֹלֶדֶת]
 - id: sense:hirah
+  pos: VERB
   gloss:
     en: to show (hiphil of רָאָה)
   forms:
@@ -56,32 +62,38 @@ kcs:
   gloss:
     en: 'I will do: the imperfect (yiqtol), I'
 - id: sense:goy
+  pos: NOUN
   gloss:
     en: nation, people
   forms:
     hbo-Hebr/tiberian: [גּוֹי]
 - id: sense:gadol
+  pos: ADJ
   gloss:
     en: great, big
   forms:
     hbo-Hebr/tiberian: [גָּדוֹל]
 - id: sense:shem
+  pos: NOUN
   gloss:
     en: name
   forms:
     hbo-Hebr/tiberian: [שֵׁם]
   image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:berakhah
+  pos: NOUN
   gloss:
     en: blessing
   forms:
     hbo-Hebr/tiberian: [בְּרָכָה]
 - id: sense:barakh
+  pos: VERB
   gloss:
     en: to bless (piel)
   forms:
     hbo-Hebr/tiberian: [בֵּרַךְ]
 - id: sense:gadal
+  pos: VERB
   gloss:
     en: to make great, magnify; to bring up (a child) (piel)
   forms:
@@ -90,6 +102,7 @@ kcs:
   gloss:
     en: 'let me do, let us do: the cohortative (-â); ''I will …'' after a command'
 - id: sense:ke
+  pos: ADP
   gloss:
     en: like, as (written joined to the next word)
   forms:
@@ -97,6 +110,7 @@ kcs:
   notes:
     en: 'כְּ kə- is written on its noun: כַּיּוֹם ''like the day''. כַּאֲשֶׁר kaʾăšer: ''as, just as''.'
 - id: sense:dibber
+  pos: VERB
   gloss:
     en: to speak (piel)
   forms:
@@ -586,7 +600,7 @@ stories:
       speaker: god
       ask: complete
       gap: sense:av
-      distractors: ['sense:ah', 'sense:adam']
+      distractors: ['sense:qol', 'sense:erets']
       forms:
         hbo-Hebr/tiberian:
           text: לֶךְ־לְךָ מֵאַרְצְךָ וּמִמּוֹלַדְתְּךָ וּמִבֵּית אָבִיךָ
@@ -627,8 +641,8 @@ stories:
   - line:
       speaker: god
       ask: complete
-      gap: sense:shem
-      distractors: ['sense:bayit', 'sense:qol']
+      gap: sense:berakhah
+      distractors: ['sense:hoshekh', 'sense:layla']
       forms:
         hbo-Hebr/tiberian:
           text: וַאֲבָרֶכְךָ וַאֲגַדְּלָה שְׁמֶךָ וֶהְיֵה בְּרָכָה׃

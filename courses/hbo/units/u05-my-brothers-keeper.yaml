@@ -9,6 +9,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:ah
+  pos: NOUN
   gloss:
     en: brother
   forms:
@@ -16,6 +17,7 @@ kcs:
   notes:
     en: 'With suffixes it is אָחִי- ʾāḥî-: אָחִי ''my brother'', אָחִיךָ ''your brother'', אָחִיו ''his brother''. Plural אַחִים ʾaḥîm.'
 - id: sense:ahot
+  pos: NOUN
   gloss:
     en: sister
   forms:
@@ -24,51 +26,63 @@ kcs:
   gloss:
     en: 'your; you (said to a woman: the suffix -ēḵ, -ḵ)'
 - id: sense:qayin
+  pos: PROPN
   gloss:
     en: Cain
   forms:
     hbo-Hebr/tiberian: [קַיִן]
 - id: sense:hevel
+  pos: PROPN
   gloss:
     en: Abel
   forms:
     hbo-Hebr/tiberian: [הֶבֶל]
 - id: sense:sadeh
+  pos: NOUN
   gloss:
     en: field; open country
   forms:
     hbo-Hebr/tiberian: [שָׂדֶה]
 - id: sense:qum
+  pos: VERB
   gloss:
     en: to rise, get up; to stand
   forms:
     hbo-Hebr/tiberian: [קוּם]
 - id: sense:harag
+  pos: VERB
   gloss:
     en: to kill
   forms:
     hbo-Hebr/tiberian: [הָרַג]
 - id: sense:lo
+  pos: PART
+  features:
+    Polarity: Neg
   gloss:
     en: not; no
   forms:
     hbo-Hebr/tiberian: [לֹא]
 - id: sense:yada
+  pos: VERB
   gloss:
     en: to know
   forms:
     hbo-Hebr/tiberian: [יָדַע]
 - id: sense:shamar
+  pos: VERB
   gloss:
     en: to keep, guard, watch
   forms:
     hbo-Hebr/tiberian: [שָׁמַר]
 - id: sense:dam
+  pos: NOUN
   gloss:
     en: 'blood (plural: bloodshed)'
   forms:
     hbo-Hebr/tiberian: [דָּם]
 - id: sense:tsaaq
+  pos: VERB
   gloss:
     en: to cry out
   forms:
@@ -77,6 +91,7 @@ kcs:
   gloss:
     en: 'participle, masculine plural: they are doing; ones who do'
 - id: sense:adamah
+  pos: NOUN
   gloss:
     en: ground, soil; land
   forms:
@@ -531,8 +546,8 @@ stories:
         en: And when they were in the field,
   - line:
       ask: complete
-      gap: sense:harag
-      distractors: ['sense:shamar', 'sense:yada']
+      gap: sense:ah
+      distractors: ['sense:ishah', 'sense:qol']
       forms:
         hbo-Hebr/tiberian:
           text: בַּשָּׂדֶה וַיָּקָם קַיִן אֶל־הֶבֶל אָחִיו וַיַּהַרְגֵהוּ׃
@@ -592,8 +607,8 @@ stories:
   - line:
       speaker: god
       ask: complete
-      gap: sense:dam
-      distractors: ['sense:qol', 'sense:ah']
+      gap: sense:adamah
+      distractors: ['sense:or', 'sense:boqer']
       forms:
         hbo-Hebr/tiberian:
           text: מֶה עָשִׂיתָ קוֹל דְּמֵי אָחִיךָ צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃

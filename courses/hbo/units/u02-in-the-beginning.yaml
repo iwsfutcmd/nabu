@@ -9,6 +9,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:shamayim
+  pos: NOUN
   gloss:
     en: heaven, heavens; sky
   forms:
@@ -17,6 +18,7 @@ kcs:
   notes:
     en: 'Always plural in form: הַשָּׁמַיִם haššāmáyim, ''the heavens'', also ''the sky''.'
 - id: sense:erets
+  pos: NOUN
   gloss:
     en: earth; land, country
   forms:
@@ -24,11 +26,13 @@ kcs:
   notes:
     en: Feminine. With the article הָאָרֶץ hāʾā́reṣ.
 - id: sense:bara
+  pos: VERB
   gloss:
     en: to create (only God creates)
   forms:
     hbo-Hebr/tiberian: [בָּרָא]
 - id: sense:be
+  pos: ADP
   gloss:
     en: in; at; with, by (written joined to the next word)
   forms:
@@ -36,6 +40,7 @@ kcs:
   notes:
     en: 'בְּ bə- is written on its noun; with the article it takes the article''s vowel: בַּיּוֹם bayyôm ''in the day''.'
 - id: sense:reshit
+  pos: NOUN
   gloss:
     en: beginning; first, best part
   forms:
@@ -47,21 +52,25 @@ kcs:
   gloss:
     en: 'feminine adjective (-â or -eṯ): טוֹבָה ''good'' with a feminine noun'
 - id: sense:tohu
+  pos: NOUN
   gloss:
     en: formlessness, emptiness; a waste
   forms:
     hbo-Hebr/tiberian: [תֹּהוּ]
 - id: sense:bohu
+  pos: NOUN
   gloss:
     en: emptiness, void (only in תֹהוּ וָבֹהוּ)
   forms:
     hbo-Hebr/tiberian: [בֹּהוּ]
 - id: sense:al
+  pos: ADP
   gloss:
     en: on, upon; over; about, concerning
   forms:
     hbo-Hebr/tiberian: [עַל]
 - id: sense:panim
+  pos: NOUN
   gloss:
     en: face; front, surface
   forms:
@@ -75,11 +84,13 @@ kcs:
   gloss:
     en: 'plural construct (-ê): ''the …s of''; also of nouns always plural (פְּנֵי ''the face of'')'
 - id: sense:tehom
+  pos: NOUN
   gloss:
     en: the deep, the primeval ocean
   forms:
     hbo-Hebr/tiberian: [תְּהוֹם]
 - id: sense:mayim
+  pos: NOUN
   gloss:
     en: water, waters
   forms:
@@ -88,11 +99,13 @@ kcs:
   notes:
     en: 'Always plural in form: מַיִם máyim, ''water''.'
 - id: sense:ruach
+  pos: NOUN
   gloss:
     en: wind; spirit; breath
   forms:
     hbo-Hebr/tiberian: [רוּחַ]
 - id: sense:rachaf
+  pos: VERB
   gloss:
     en: to hover, flutter (piel)
   forms:
@@ -553,8 +566,9 @@ stories:
       answer: 0
   - line:
       ask: complete
-      gap: sense:erets
-      distractors: ['sense:shamayim', 'sense:mayim']
+      gap: sense:hayah
+      asks: form
+      distractors: ['form:qatal-3ms', 'form:wayyiqtol-3ms']
       forms:
         hbo-Hebr/tiberian:
           text: וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ
@@ -574,7 +588,7 @@ stories:
   - line:
       ask: complete
       gap: sense:mayim
-      distractors: ['sense:erets', 'sense:tehom']
+      distractors: ['sense:yom', 'sense:boqer']
       forms:
         hbo-Hebr/tiberian:
           text: וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם׃

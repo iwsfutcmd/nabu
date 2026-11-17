@@ -9,17 +9,20 @@ title:
 cefr: A1
 kcs:
 - id: sense:gan
+  pos: NOUN
   gloss:
     en: garden
   forms:
     hbo-Hebr/tiberian: [גַּן]
   image: {file: ../images/tree.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3868bb19b496', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:adam
+  pos: NOUN
   gloss:
     en: 'man, a human being; humankind (הָאָדָם: the man, Adam)'
   forms:
     hbo-Hebr/tiberian: [אָדָם]
 - id: sense:ishah
+  pos: NOUN
   gloss:
     en: woman; wife
   forms:
@@ -27,6 +30,7 @@ kcs:
   notes:
     en: 'Before a suffix or another noun: אֵשֶׁת ʾēšeṯ, אִשְׁתּוֹ ʾištô ''his wife''.'
 - id: sense:yhwh
+  pos: PROPN
   gloss:
     en: the LORD (the name of Israel's God)
   forms:
@@ -35,16 +39,19 @@ kcs:
     en: 'The four letters YHWH are not read as written: the Masoretes read the word אֲדֹנָי ʾăḏōnāy, ''my Lord'', and gave the letters its vowels. The course''s reading and audio say ʾăḏōnāy, as the Tiberian
       readers did.'
 - id: sense:el
+  pos: ADP
   gloss:
     en: to, toward (written אֶל־, joined to the next word)
   forms:
     hbo-Hebr/tiberian: [אֵל]
 - id: sense:qol
+  pos: NOUN
   gloss:
     en: voice; sound
   forms:
     hbo-Hebr/tiberian: [קוֹל]
 - id: sense:shama
+  pos: VERB
   gloss:
     en: to hear; to listen, obey
   forms:
@@ -56,16 +63,19 @@ kcs:
   gloss:
     en: 'I did: the perfect (qatal), I (-tî)'
 - id: sense:ets
+  pos: NOUN
   gloss:
     en: tree; wood
   forms:
     hbo-Hebr/tiberian: [עֵץ]
 - id: sense:tokh
+  pos: NOUN
   gloss:
     en: 'middle (בְּתוֹךְ: in the middle of, among)'
   forms:
     hbo-Hebr/tiberian: [תָּוֶךְ]
 - id: sense:hithallekh
+  pos: VERB
   gloss:
     en: to walk about, go to and fro (hithpael of הָלַךְ)
   forms:
@@ -74,16 +84,19 @@ kcs:
   gloss:
     en: 'participle, masculine singular: he/it is doing; one who does (of a verb of state, its adjective: יָרֵא ''afraid'')'
 - id: sense:hava
+  pos: VERB
   gloss:
     en: to hide (oneself) (niphal)
   forms:
     hbo-Hebr/tiberian: [נֶחְבָּא]
 - id: sense:hitchabbe
+  pos: VERB
   gloss:
     en: to hide oneself (hithpael)
   forms:
     hbo-Hebr/tiberian: [הִתְחַבֵּא]
 - id: sense:min
+  pos: ADP
   gloss:
     en: from; out of; than (מִן־, or מִ- joined to the word)
   forms:
@@ -94,6 +107,9 @@ kcs:
   gloss:
     en: his; him (the suffix -ô, -w, -hû)
 - id: sense:ay
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where? (אֵי; with a suffix אַיֶּכָּה 'where are you?')
   forms:
@@ -102,11 +118,15 @@ kcs:
   gloss:
     en: 'your; you (said to a man: the suffix -ḵā)'
 - id: sense:anokhi
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: I
   forms:
     hbo-Hebr/tiberian: [אָנֹכִי]
 - id: sense:yare
+  pos: VERB
   gloss:
     en: to fear, be afraid; (adjective) fearing
   forms:
@@ -115,6 +135,7 @@ kcs:
   gloss:
     en: 'and I did: the narrative past, I'
 - id: sense:erom
+  pos: ADJ
   gloss:
     en: naked
   forms:
@@ -601,7 +622,8 @@ stories:
   - line:
       ask: complete
       gap: sense:qol
-      distractors: ['sense:ruach', 'sense:ets']
+      asks: form
+      distractors: ['sense:ha', 'form:sfx-2ms']
       forms:
         hbo-Hebr/tiberian:
           text: וַיִּשְׁמְעוּ אֶת־קוֹל יְהוָה אֱלֹהִים מִתְהַלֵּךְ בַּגָּן לְרוּחַ

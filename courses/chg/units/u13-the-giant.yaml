@@ -10,6 +10,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:oghul
+  pos: NOUN
   gloss:
     en: son; boy
   forms:
@@ -22,6 +23,7 @@ kcs:
   notes:
     en: 'oǧul loses its second vowel before a vowel: oǧli "his son", oǧlum "my son".'
 - id: sense:adam
+  pos: PROPN
   gloss:
     en: Adam (the first man); man, person
   forms:
@@ -32,6 +34,7 @@ kcs:
   readings:
     schluessel: Ādam
 - id: sense:hazrat
+  pos: NOUN
   gloss:
     en: His Holiness, the great (before the name of a prophet or saint)
   forms:
@@ -44,6 +47,7 @@ kcs:
   notes:
     en: 'With the ezafe: ḥażrat-i Ādam "the great Adam". Translations usually leave it out.'
 - id: sense:ibn
+  pos: NOUN
   gloss:
     en: son (of), in names
   forms:
@@ -56,6 +60,7 @@ kcs:
   notes:
     en: ʿĀj ibn-i ʿAnūq "ʿĀj, son of ʿAnūq".
 - id: sense:aj
+  pos: PROPN
   gloss:
     en: ʿĀj (ʿŪj), a giant of the time before the Flood
   forms:
@@ -66,6 +71,7 @@ kcs:
   readings:
     schluessel: ʿĀj
 - id: sense:anuq
+  pos: PROPN
   gloss:
     en: ʿAnūq, a daughter of Adam and Eve, ʿĀj's mother
   forms:
@@ -76,6 +82,7 @@ kcs:
   readings:
     schluessel: ʿAnūq
 - id: sense:adi
+  pos: NOUN
   gloss:
     en: giant (one of the people of ʿĀd)
   forms:
@@ -86,6 +93,7 @@ kcs:
   readings:
     schluessel: ʿādī
 - id: sense:kimarsa
+  pos: NOUN
   gloss:
     en: someone, a person
   forms:
@@ -96,6 +104,7 @@ kcs:
   readings:
     schluessel: kimärsä
 - id: sense:yur
+  pos: VERB
   gloss:
     en: to walk, go about
   forms:
@@ -106,6 +115,7 @@ kcs:
   readings:
     schluessel: yür
 - id: sense:ara
+  pos: NOUN
   gloss:
     en: the space between
   forms:
@@ -118,6 +128,7 @@ kcs:
   notes:
     en: 'X-niŋ arasi "between X": bu ayaǧiniŋ ul ayaǧiniŋ arasi "between this foot and that foot".'
 - id: sense:khorak
+  pos: NOUN
   gloss:
     en: food
   forms:
@@ -128,6 +139,7 @@ kcs:
   readings:
     schluessel: ḫorāk
 - id: sense:jangal
+  pos: NOUN
   gloss:
     en: wilderness, scrubland
   forms:
@@ -138,6 +150,7 @@ kcs:
   readings:
     schluessel: jaŋgal
 - id: sense:alqat
+  pos: NOUN
   gloss:
     en: scrub, bushes
   forms:
@@ -148,6 +161,7 @@ kcs:
   readings:
     schluessel: alqat
 - id: sense:baliq
+  pos: NOUN
   gloss:
     en: fish
   forms:
@@ -165,6 +179,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:aftab
+  pos: NOUN
   gloss:
     en: sun (Persian)
   forms:
@@ -182,6 +197,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:pishur
+  pos: VERB
   gloss:
     en: to cook
   forms:
@@ -192,6 +208,7 @@ kcs:
   readings:
     schluessel: ṗišür
 - id: sense:yot
+  pos: VERB
   gloss:
     en: to swallow
   forms:
@@ -202,6 +219,7 @@ kcs:
   readings:
     schluessel: yöt
 - id: sense:balke
+  pos: ADV
   gloss:
     en: indeed, even; rather
   forms:
@@ -212,6 +230,7 @@ kcs:
   readings:
     schluessel: balke
 - id: sense:ustikhwan
+  pos: NOUN
   gloss:
     en: bone; skeleton
   forms:
@@ -726,8 +745,8 @@ stories:
       ask: complete
       gap: sense:adi
       distractors:
-      - sense:keyin
-      - sense:bila
+      - sense:nan
+      - sense:darwaza
       forms:
         chg-Arab/standard:
           text: اوزی بسیار اولوغ عادی ایردی.

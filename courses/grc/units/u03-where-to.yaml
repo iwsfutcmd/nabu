@@ -9,6 +9,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:philos
+  pos: NOUN
   gloss:
     en: friend; (as an adjective) dear
   forms:
@@ -17,24 +18,32 @@ kcs:
   notes:
     en: 'ὦ φίλε, "my friend", is how Socrates greets a friend: ὦ φίλε Φαῖδρε.'
 - id: sense:phaidros
+  pos: PROPN
   gloss:
     en: Phaedrus (a young Athenian, Socrates' friend)
   forms:
     grc-Grek/polytonic:
     - Φαῖδρος
 - id: sense:poi
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where to? (to what place)
   forms:
     grc-Grek/polytonic:
     - ποῖ
 - id: sense:pothen
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where from? (from what place)
   forms:
     grc-Grek/polytonic:
     - πόθεν
 - id: sense:de-indeed
+  pos: ADV
   gloss:
     en: indeed, now (gives weight to the word before it)
   forms:
@@ -43,6 +52,7 @@ kcs:
   notes:
     en: 'δή leans on the word before it: ποῖ δή, "where, then?". It is not δέ, "and, but".'
 - id: sense:poreuomai
+  pos: VERB
   gloss:
     en: to go, travel, walk
   forms:
@@ -51,24 +61,28 @@ kcs:
   notes:
     en: 'A middle verb: its endings are -ομαι, -ῃ (or -ει), -εται, but it means a plain "I go".'
 - id: sense:pros
+  pos: ADP
   gloss:
     en: (with the accusative) to, towards
   forms:
     grc-Grek/polytonic:
     - πρός
 - id: sense:peripatos
+  pos: NOUN
   gloss:
     en: a walk; a stroll
   forms:
     grc-Grek/polytonic:
     - περίπατος
 - id: sense:exo
+  pos: ADP
   gloss:
     en: (with the genitive) outside
   forms:
     grc-Grek/polytonic:
     - ἔξω
 - id: sense:teichos
+  pos: NOUN
   gloss:
     en: wall; the city walls
   forms:
@@ -77,12 +91,14 @@ kcs:
   notes:
     en: 'A neuter noun of the third declension: τὸ τεῖχος, of the wall τοῦ τείχους.'
 - id: sense:eis
+  pos: ADP
   gloss:
     en: (with the accusative) into, to
   forms:
     grc-Grek/polytonic:
     - εἰς
 - id: sense:agora
+  pos: NOUN
   gloss:
     en: the agora, the market place
   forms:
@@ -91,6 +107,7 @@ kcs:
   notes:
     en: 'The open square at the heart of Athens: market, law courts and meeting place.'
 - id: sense:oikia
+  pos: NOUN
   gloss:
     en: house; household
   forms:
@@ -104,12 +121,14 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:badizo
+  pos: VERB
   gloss:
     en: to walk, go
   forms:
     grc-Grek/polytonic:
     - βαδίζω
 - id: sense:ek
+  pos: ADP
   gloss:
     en: (with the genitive) out of, from
   forms:
@@ -119,12 +138,16 @@ kcs:
   notes:
     en: 'ἐξ before a vowel: ἐξ ἀγορᾶς.'
 - id: sense:pou
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where? (at what place)
   forms:
     grc-Grek/polytonic:
     - ποῦ
 - id: sense:en
+  pos: ADP
   gloss:
     en: (with the dative) in, at, on
   forms:
@@ -134,18 +157,21 @@ kcs:
   gloss:
     en: 'the dative: to, for; after ἐν, in (ἐν τῇ ἀγορᾷ)'
 - id: sense:oikoi
+  pos: ADV
   gloss:
     en: at home
   forms:
     grc-Grek/polytonic:
     - οἴκοι
 - id: sense:oikade
+  pos: ADV
   gloss:
     en: home, homewards
   forms:
     grc-Grek/polytonic:
     - οἴκαδε
 - id: sense:hodos
+  pos: NOUN
   gloss:
     en: road, way, street
   forms:
@@ -154,24 +180,28 @@ kcs:
   notes:
     en: 'Feminine, though it ends in -ος: ἡ ὁδός.'
 - id: sense:para
+  pos: ADP
   gloss:
     en: (with the genitive) from (a person); (with the accusative) to (a person)
   forms:
     grc-Grek/polytonic:
     - παρά
 - id: sense:lysias
+  pos: PROPN
   gloss:
     en: Lysias (the Athenian speechwriter, son of Cephalus)
   forms:
     grc-Grek/polytonic:
     - Λυσίας
 - id: sense:kephalos
+  pos: PROPN
   gloss:
     en: Cephalus (Lysias' father)
   forms:
     grc-Grek/polytonic:
     - Κέφαλος
 - id: sense:astu
+  pos: NOUN
   gloss:
     en: the town, the city (Athens itself, within the walls)
   forms:
@@ -1219,11 +1249,6 @@ stories:
   steps:
   - line:
       speaker: socrates
-      ask: complete
-      gap: sense:pothen
-      distractors:
-      - sense:hemera
-      - sense:oikia
       forms:
         grc-Grek/polytonic:
           text: ὦ φίλε Φαῖδρε, ποῖ δὴ καὶ πόθεν;
@@ -1262,6 +1287,11 @@ stories:
         en: “Phaedrus, my friend, where are you going, and where have you come from?”
   - line:
       speaker: phaidros
+      ask: complete
+      gap: sense:sokrates
+      distractors:
+      - sense:kriton
+      - sense:phaidros
       forms:
         grc-Grek/polytonic:
           text: παρὰ Λυσίου, ὦ Σώκρατες, τοῦ Κεφάλου,

@@ -9,67 +9,80 @@ title:
 cefr: A2
 kcs:
 - id: sense:yonah
+  pos: PROPN
   gloss:
     en: Jonah
   forms:
     hbo-Hebr/tiberian: [יוֹנָה]
 - id: sense:amittai
+  pos: PROPN
   gloss:
     en: Amittai
   forms:
     hbo-Hebr/tiberian: [אֲמִתַּי]
 - id: sense:ninveh
+  pos: PROPN
   gloss:
     en: Nineveh
   forms:
     hbo-Hebr/tiberian: [נִינְוֵה]
 - id: sense:ir
+  pos: NOUN
   gloss:
     en: city, town
   forms:
     hbo-Hebr/tiberian: [עִיר]
 - id: sense:alah
+  pos: VERB
   gloss:
     en: to go up, come up
   forms:
     hbo-Hebr/tiberian: [עָלָה]
 - id: sense:raah.evil
+  pos: NOUN
   gloss:
     en: evil, wickedness; harm, disaster
   forms:
     hbo-Hebr/tiberian: [רָעָה]
 - id: sense:barach
+  pos: VERB
   gloss:
     en: to flee, run away
   forms:
     hbo-Hebr/tiberian: [בָּרַח]
 - id: sense:tarshish
+  pos: PROPN
   gloss:
     en: Tarshish (a far port to the west)
   forms:
     hbo-Hebr/tiberian: [תַּרְשִׁישׁ]
 - id: sense:yarad
+  pos: VERB
   gloss:
     en: to go down, come down
   forms:
     hbo-Hebr/tiberian: [יָרַד]
 - id: sense:yafo
+  pos: PROPN
   gloss:
     en: Joppa (Jaffa)
   forms:
     hbo-Hebr/tiberian: [יָפוֹ]
 - id: sense:oniyyah
+  pos: NOUN
   gloss:
     en: ship
   forms:
     hbo-Hebr/tiberian: [אֳנִיָּה]
   image: {file: ../images/ship.svg, license: CC0-1.0, provenance: {author: 'llm:claude@f57499d70e8f', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:sakhar
+  pos: NOUN
   gloss:
     en: wages; fare
   forms:
     hbo-Hebr/tiberian: [שָׂכָר]
 - id: sense:im.with
+  pos: ADP
   gloss:
     en: with (with suffixes עִמִּי 'with me', עִמְּךָ 'with you')
   forms:
@@ -450,7 +463,7 @@ stories:
       speaker: god
       ask: complete
       gap: sense:ir
-      distractors: ['sense:bayit', 'sense:har']
+      distractors: ['sense:esh', 'sense:herev']
       forms:
         hbo-Hebr/tiberian:
           text: קוּם לֵךְ אֶל־נִינְוֵה הָעִיר הַגְּדוֹלָה
@@ -490,7 +503,7 @@ stories:
   - line:
       ask: complete
       gap: sense:oniyyah
-      distractors: ['sense:ir', 'sense:bayit']
+      distractors: ['sense:ir', 'sense:milhamah']
       forms:
         hbo-Hebr/tiberian:
           text: יָפוֹ וַיִּמְצָא אָנִיָּה בָּאָה תַרְשִׁישׁ וַיִּתֵּן שְׂכָרָהּ וַיֵּרֶד בָּהּ לָבוֹא עִמָּהֶם תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה׃

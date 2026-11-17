@@ -4,28 +4,28 @@ id: intro
 title: {en: 'Hello, I''m Maryam'}
 cefr: A1
 kcs:
-- {id: 'sense:salam', gloss: {en: hello}, forms: {fa-Arab/standard: [سلام]}, image: {file: ../images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:khodahafez', gloss: {en: goodbye}, forms: {fa-Arab/standard: [خداحافظ]}}
-- {id: 'sense:mamnun', gloss: {en: thank you; thanks}, forms: {fa-Arab/standard: [ممنون]}}
-- {id: 'sense:bale', gloss: {en: 'yes'}, forms: {fa-Arab/standard: [بله]}}
-- {id: 'sense:na', gloss: {en: 'no'}, forms: {fa-Arab/standard: [نه]}}
-- {id: 'sense:maryam', gloss: {en: Maryam (a name)}, forms: {fa-Arab/standard: [مریم]}}
-- {id: 'sense:ali', gloss: {en: Ali (a name)}, forms: {fa-Arab/standard: [علی]}}
-- {id: 'sense:va', gloss: {en: and}, forms: {fa-Arab/standard: [و]}}
-- {id: 'sense:budan', gloss: {en: 'to be: is, am, are'}, forms: {fa-Arab/standard: [بودن, است]}, notes: {en: است is the usual 'is'; the other persons add an ending to هست-.}}
-- {id: 'sense:in', gloss: {en: this; these}, forms: {fa-Arab/standard: [این]}}
+- {id: 'sense:salam', pos: INTJ, gloss: {en: hello}, forms: {fa-Arab/standard: [سلام]}, image: {file: ../images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:khodahafez', pos: INTJ, gloss: {en: goodbye}, forms: {fa-Arab/standard: [خداحافظ]}}
+- {id: 'sense:mamnun', pos: INTJ, gloss: {en: thank you; thanks}, forms: {fa-Arab/standard: [ممنون]}}
+- {id: 'sense:bale', pos: INTJ, gloss: {en: 'yes'}, forms: {fa-Arab/standard: [بله]}}
+- {id: 'sense:na', pos: INTJ, gloss: {en: 'no'}, forms: {fa-Arab/standard: [نه]}}
+- {id: 'sense:maryam', pos: PROPN, gloss: {en: Maryam (a name)}, forms: {fa-Arab/standard: [مریم]}}
+- {id: 'sense:ali', pos: PROPN, gloss: {en: Ali (a name)}, forms: {fa-Arab/standard: [علی]}}
+- {id: 'sense:va', pos: CCONJ, gloss: {en: and}, forms: {fa-Arab/standard: [و]}}
+- {id: 'sense:budan', pos: AUX, gloss: {en: 'to be: is, am, are'}, forms: {fa-Arab/standard: [بودن, است]}, notes: {en: است is the usual 'is'; the other persons add an ending to هست-.}}
+- {id: 'sense:in', pos: DET, features: {PronType: Dem}, gloss: {en: this; these}, forms: {fa-Arab/standard: [این]}}
 - {id: 'form:1sg-am', gloss: {en: '-am: I (verb ending)'}}
-- {id: 'sense:man', gloss: {en: I; me; my (after a noun)}, forms: {fa-Arab/standard: [من]}}
+- {id: 'sense:man', pos: PRON, features: {PronType: Prs}, gloss: {en: I; me; my (after a noun)}, forms: {fa-Arab/standard: [من]}}
 - {id: 'form:2sg-i', gloss: {en: '-i: you, one person (verb ending)'}}
-- {id: 'sense:to', gloss: {en: 'you (one person, familiar)'}, forms: {fa-Arab/standard: [تو]}}
-- {id: 'sense:ketab', gloss: {en: book}, forms: {fa-Arab/standard: [کتاب]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:to', pos: PRON, features: {PronType: Prs}, gloss: {en: 'you (one person, familiar)'}, forms: {fa-Arab/standard: [تو]}}
+- {id: 'sense:ketab', pos: NOUN, gloss: {en: book}, forms: {fa-Arab/standard: [کتاب]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369', status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'construction:ezafe', gloss: {en: 'ezafe: the -e that links a noun to what describes or owns it'}, notes: {en: "Usually unwritten after a consonant (کتاب من, ketāb-e man); written ی after -hā (کتاب\u200cهای من)."}}
-- {id: 'sense:esm', gloss: {en: name}, forms: {fa-Arab/standard: [اسم]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:chist', gloss: {en: 'what is …?'}, forms: {fa-Arab/standard: [چیست]}}
-- {id: 'sense:khub', gloss: {en: good; well}, forms: {fa-Arab/standard: [خوب]}, image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:kheyli', gloss: {en: very; a lot (of)}, forms: {fa-Arab/standard: [خیلی]}}
+- {id: 'sense:esm', pos: NOUN, gloss: {en: name}, forms: {fa-Arab/standard: [اسم]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:chist', pos: PRON, features: {PronType: Int}, gloss: {en: 'what is …?'}, forms: {fa-Arab/standard: [چیست]}}
+- {id: 'sense:khub', pos: ADJ, gloss: {en: good; well}, forms: {fa-Arab/standard: [خوب]}, image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:kheyli', pos: ADV, gloss: {en: very; a lot (of)}, forms: {fa-Arab/standard: [خیلی]}}
 - {id: 'form:2pl-id', gloss: {en: '-id: you, polite or more than one (verb ending)'}}
-- {id: 'sense:shoma', gloss: {en: 'you (polite, or more than one)'}, forms: {fa-Arab/standard: [شما]}}
+- {id: 'sense:shoma', pos: PRON, features: {PronType: Prs}, gloss: {en: 'you (polite, or more than one)'}, forms: {fa-Arab/standard: [شما]}}
 - {id: 'form:3pl-and', gloss: {en: '-and: they (verb ending)'}}
 - {id: 'form:plural-ha', gloss: {en: '-hā: plural'}, notes: {en: "Joined to the noun with a zero-width non-joiner: کتاب\u200cها, not کتابها or کتاب ها."}}
 - {id: 'grapheme:zwnj', gloss: {en: the zero-width non-joiner (nim-fāsele) that keeps -hā visually apart}}
@@ -379,8 +379,9 @@ stories:
   - line:
       speaker: ali
       ask: complete
-      gap: 'sense:man'
-      distractors: ['sense:to', 'sense:in']
+      gap: 'sense:budan'
+      asks: form
+      distractors: ['form:2sg-i', 'form:3pl-and']
       forms:
         fa-Arab/standard:
           text: بله، من علی هستم.

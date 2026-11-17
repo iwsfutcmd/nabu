@@ -9,16 +9,19 @@ title:
 cefr: A2
 kcs:
 - id: sense:eved
+  pos: NOUN
   gloss:
     en: servant, slave
   forms:
     hbo-Hebr/tiberian: [עֶבֶד]
 - id: sense:ruts
+  pos: VERB
   gloss:
     en: to run
   forms:
     hbo-Hebr/tiberian: [רוּץ]
 - id: sense:liqrat
+  pos: VERB
   gloss:
     en: 'to meet; toward, against (לִקְרַאת: the infinitive of קָרָא ''to meet'')'
   forms:
@@ -27,84 +30,102 @@ kcs:
   gloss:
     en: her; it (f.) (the suffix -āh, -hā)
 - id: sense:rivqah
+  pos: PROPN
   gloss:
     en: Rebekah
   forms:
     hbo-Hebr/tiberian: [רִבְקָה]
 - id: sense:kad
+  pos: NOUN
   gloss:
     en: jar, pitcher
   forms:
     hbo-Hebr/tiberian: [כַּד]
 - id: sense:meat
+  pos: DET
+  features:
+    PronType: Ind
   gloss:
     en: a little, a few
   forms:
     hbo-Hebr/tiberian: [מְעַט]
 - id: sense:gama
+  pos: VERB
   gloss:
     en: to let drink, give a sip (hiphil)
   forms:
     hbo-Hebr/tiberian: [הִגְמִיא]
 - id: sense:shatah
+  pos: VERB
   gloss:
     en: to drink
   forms:
     hbo-Hebr/tiberian: [שָׁתָה]
   image: {file: ../images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@e7d707f749db', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:adon
+  pos: NOUN
   gloss:
     en: lord, master; (אֲדֹנִי) sir
   forms:
     hbo-Hebr/tiberian: [אָדוֹן]
 - id: sense:mahar
+  pos: VERB
   gloss:
     en: to hurry, do quickly (piel)
   forms:
     hbo-Hebr/tiberian: [מִהַר]
 - id: sense:horid
+  pos: VERB
   gloss:
     en: to lower, bring down (hiphil of יָרַד)
   forms:
     hbo-Hebr/tiberian: [הוֹרִיד]
 - id: sense:yad
+  pos: NOUN
   gloss:
     en: hand
   forms:
     hbo-Hebr/tiberian: [יָד]
   image: {file: ../images/hand.svg, license: CC0-1.0, provenance: {author: 'llm:claude@b081ec947041', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:hishqah
+  pos: VERB
   gloss:
     en: to give to drink, water (hiphil)
   forms:
     hbo-Hebr/tiberian: [הִשְׁקָה]
 - id: sense:gamal
+  pos: NOUN
   gloss:
     en: camel
   forms:
     hbo-Hebr/tiberian: [גָּמָל]
 - id: sense:gam
+  pos: ADV
   gloss:
     en: also, too; even
   forms:
     hbo-Hebr/tiberian: [גַּם]
 - id: sense:shaav
+  pos: VERB
   gloss:
     en: to draw (water)
   forms:
     hbo-Hebr/tiberian: [שָׁאַב]
 - id: sense:ad
+  pos: ADP
   gloss:
     en: until; as far as
   forms:
     hbo-Hebr/tiberian: [עַד]
   readings: {tiberian: ʿaḏ}
 - id: sense:im
+  pos: SCONJ
   gloss:
     en: if; (עַד אִם) until
   forms:
     hbo-Hebr/tiberian: [אִם]
 - id: sense:killah
+  pos: VERB
   gloss:
     en: to finish, complete (piel)
   forms:
@@ -113,26 +134,33 @@ kcs:
   gloss:
     en: 'they did: the perfect (qatal), they (-û)'
 - id: sense:beer
+  pos: NOUN
   gloss:
     en: well (of water)
   forms:
     hbo-Hebr/tiberian: [בְּאֵר]
 - id: sense:od
+  pos: ADV
   gloss:
     en: again; still; more
   forms:
     hbo-Hebr/tiberian: [עוֹד]
 - id: sense:kol
+  pos: DET
+  features:
+    PronType: Tot
   gloss:
     en: all, every; the whole (כָּל־, כֹּל)
   forms:
     hbo-Hebr/tiberian: [כֹּל]
 - id: sense:arah
+  pos: VERB
   gloss:
     en: to empty, pour out (piel)
   forms:
     hbo-Hebr/tiberian: [עֵרָה]
 - id: sense:shoqet
+  pos: NOUN
   gloss:
     en: watering trough
   forms:
@@ -635,8 +663,8 @@ stories:
   - line:
       speaker: servant
       ask: complete
-      gap: sense:kad
-      distractors: ['sense:yad', 'sense:beer']
+      gap: sense:mayim
+      distractors: ['sense:esh', 'sense:erets']
       forms:
         hbo-Hebr/tiberian:
           text: הַגְמִיאִינִי נָא מְעַט־מַיִם מִכַּדֵּךְ׃
@@ -695,8 +723,8 @@ stories:
   - line:
       speaker: rebekah
       ask: complete
-      gap: sense:gamal
-      distractors: ['sense:eved', 'sense:seh']
+      gap: sense:shaav
+      distractors: ['sense:akhal', 'sense:amar']
       forms:
         hbo-Hebr/tiberian:
           text: גַּם לִגְמַלֶּיךָ אֶשְׁאָב עַד אִם־כִּלּוּ לִשְׁתֹּת׃

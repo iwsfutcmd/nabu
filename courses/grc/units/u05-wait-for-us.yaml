@@ -9,6 +9,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:katabaino
+  pos: VERB
   gloss:
     en: to go down (from Athens to the sea, from the hills to the plain)
   forms:
@@ -20,12 +21,14 @@ kcs:
   gloss:
     en: 'the aorist, I: I did (once, in the past)'
 - id: sense:chthes
+  pos: ADV
   gloss:
     en: yesterday
   forms:
     grc-Grek/polytonic:
     - χθές
 - id: sense:peiraieus
+  pos: PROPN
   gloss:
     en: the Piraeus (the harbour town of Athens)
   forms:
@@ -34,24 +37,28 @@ kcs:
   notes:
     en: 'To the Piraeus: εἰς Πειραιᾶ, usually without the article.'
 - id: sense:meta
+  pos: ADP
   gloss:
     en: (with the genitive) with, together with
   forms:
     grc-Grek/polytonic:
     - μετά
 - id: sense:glaukon
+  pos: PROPN
   gloss:
     en: Glaucon (Plato's elder brother)
   forms:
     grc-Grek/polytonic:
     - Γλαύκων
 - id: sense:ariston
+  pos: PROPN
   gloss:
     en: Ariston (the father of Plato and Glaucon)
   forms:
     grc-Grek/polytonic:
     - Ἀρίστων
 - id: sense:phemi
+  pos: VERB
   gloss:
     en: to say
   forms:
@@ -63,12 +70,14 @@ kcs:
   gloss:
     en: 'the imperfect, he, she, it: was doing, did'
 - id: sense:polemarchos
+  pos: PROPN
   gloss:
     en: Polemarchus (Cephalus' son, Lysias' brother)
   forms:
     grc-Grek/polytonic:
     - Πολέμαρχος
 - id: sense:keleuo
+  pos: VERB
   gloss:
     en: to order, tell (someone to do something)
   forms:
@@ -78,18 +87,23 @@ kcs:
   gloss:
     en: 'the infinitive: to do (κελεύει περιμεῖναι, he tells (you) to wait)'
 - id: sense:perimeno
+  pos: VERB
   gloss:
     en: to wait (for)
   forms:
     grc-Grek/polytonic:
     - περιμένω
 - id: sense:alla
+  pos: CCONJ
   gloss:
     en: but; (opening a reply or a command) well, then
   forms:
     grc-Grek/polytonic:
     - ἀλλά
 - id: sense:houtos
+  pos: PRON
+  features:
+    PronType: Dem
   gloss:
     en: this, this one; he (here)
   forms:
@@ -98,6 +112,7 @@ kcs:
   notes:
     en: 'οὗτος points: "this man here". Called out, it is "there he is!". Its feminine is αὕτη.'
 - id: sense:opisthen
+  pos: ADV
   gloss:
     en: behind
   forms:
@@ -107,12 +122,16 @@ kcs:
   gloss:
     en: 'the future, we: we will do'
 - id: sense:emi
+  pos: VERB
   gloss:
     en: said (only in ἦ δ’ ὅς, "said he")
   forms:
     grc-Grek/polytonic:
     - ἦ
 - id: sense:hos
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: he (only in ἦ δ’ ὅς, "said he")
   forms:
@@ -983,8 +1002,8 @@ stories:
       ask: complete
       gap: sense:chthes
       distractors:
-      - sense:nyx
-      - sense:hemera
+      - sense:oikoi
+      - sense:pany
       forms:
         grc-Grek/polytonic:
           text: κατέβην χθὲς εἰς Πειραιᾶ μετὰ Γλαύκωνος τοῦ Ἀρίστωνος,

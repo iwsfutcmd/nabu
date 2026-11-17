@@ -7,23 +7,23 @@ id: u12-trip
 title: {en: Up to the village}
 cefr: A2
 kcs:
-- {id: 'sense:ra7.fut', gloss: {en: will; going to (before a verb)}, forms: {apc-Arab/standard: [رح], apc-Latn/arabizi: [ra7]}, notes: {en: 'ra7 ru7: I''ll go; ma ra7 ru7: I won''t go. The verb after ra7
+- {id: 'sense:ra7.fut', pos: AUX, gloss: {en: will; going to (before a verb)}, forms: {apc-Arab/standard: [رح], apc-Latn/arabizi: [ra7]}, notes: {en: 'ra7 ru7: I''ll go; ma ra7 ru7: I won''t go. The verb after ra7
       has no b-. Also said la7, or 7a- (Kline 2022).'}}
-- {id: 'sense:nezel', gloss: {en: 'go down (to the city, the beach)'}, forms: {apc-Arab/standard: [ننزل], apc-Latn/arabizi: [nenzal]}, notes: {en: 'Lebanese go down (nezel) to Beirut and the sea, and up
+- {id: 'sense:nezel', pos: VERB, gloss: {en: 'go down (to the city, the beach)'}, forms: {apc-Arab/standard: [ننزل], apc-Latn/arabizi: [nenzal]}, notes: {en: 'Lebanese go down (nezel) to Beirut and the sea, and up
       (tele3) to the mountains and the village. nenzal: we go down.'}}
-- {id: 'sense:day3a', gloss: {en: village; home village}, forms: {apc-Arab/standard: [ضيعة], apc-Latn/arabizi: [day3a]}, notes: {en: 'el day3a: the village a family comes from; many go up there at weekends
+- {id: 'sense:day3a', pos: NOUN, gloss: {en: village; home village}, forms: {apc-Arab/standard: [ضيعة], apc-Latn/arabizi: [day3a]}, notes: {en: 'el day3a: the village a family comes from; many go up there at weekends
       and in summer.'}}
 - {id: 'form:subj-3ms', gloss: {en: 'y-: he (after ra7, baddo, lezem…)'}, notes: {en: 'ra7 yru7: he''ll go; ra7 yishteghel: he''ll work. The present without its b- (byru7 → yru7). Arabic script: ي before
       the verb (يروح).'}}
 - {id: 'form:subj-3fs', gloss: {en: 't-: she (after ra7, badda…)'}, notes: {en: 'ra7 tishrab: she''ll drink. The same form as ''you'' to a man.'}}
-- {id: 'sense:siyyara', gloss: {en: car}, forms: {apc-Arab/standard: [سيّارة], apc-Latn/arabizi: [siyyara]}}
-- {id: 'sense:jeye', gloss: {en: 'coming; next (week, month)'}, forms: {apc-Arab/standard: [جاي], apc-Latn/arabizi: [jey]}, notes: {en: 'The active participle of ''come'': ana jey, I''m coming (a woman:
+- {id: 'sense:siyyara', pos: NOUN, gloss: {en: car}, forms: {apc-Arab/standard: [سيّارة], apc-Latn/arabizi: [siyyara]}}
+- {id: 'sense:jeye', pos: ADJ, gloss: {en: 'coming; next (week, month)'}, forms: {apc-Arab/standard: [جاي], apc-Latn/arabizi: [jey]}, notes: {en: 'The active participle of ''come'': ana jey, I''m coming (a woman:
       jeye, جاية). el shahr el jey: next month; el jem3a el jeye: next week.'}}
-- {id: 'sense:ba3d-bukra', gloss: {en: the day after tomorrow}, forms: {apc-Arab/standard: [بعد بكرا], apc-Latn/arabizi: [ba3d bukra]}}
+- {id: 'sense:ba3d-bukra', pos: ADV, gloss: {en: the day after tomorrow}, forms: {apc-Arab/standard: [بعد بكرا], apc-Latn/arabizi: [ba3d bukra]}}
 - {id: 'form:dual', gloss: {en: '-en: two (on a noun)'}, notes: {en: 'yom → yomen, two days; sa3a → sa3ten, two hours. Arabic script: ين (يومين; ساعتين, with the ة as ت).'}}
-- {id: 'sense:sayfiyye', gloss: {en: summer}, forms: {apc-Arab/standard: [صيفيّة], apc-Latn/arabizi: [sayfiyye]}, notes: {en: 'bel sayfiyye: in the summer.'}}
-- {id: 'sense:shanta', gloss: {en: bag; suitcase}, forms: {apc-Arab/standard: [شنطة], apc-Latn/arabizi: [shanta]}}
-- {id: 'sense:akhad', gloss: {en: take}, forms: {apc-Arab/standard: [آخد, خود], apc-Latn/arabizi: [ekhod, khod]}, notes: {en: 'ekhod: (that) I take; khod!: take! (to a man), khedi! (to a woman). Also written
+- {id: 'sense:sayfiyye', pos: NOUN, gloss: {en: summer}, forms: {apc-Arab/standard: [صيفيّة], apc-Latn/arabizi: [sayfiyye]}, notes: {en: 'bel sayfiyye: in the summer.'}}
+- {id: 'sense:shanta', pos: NOUN, gloss: {en: bag; suitcase}, forms: {apc-Arab/standard: [شنطة], apc-Latn/arabizi: [shanta]}}
+- {id: 'sense:akhad', pos: VERB, gloss: {en: take}, forms: {apc-Arab/standard: [آخد, خود], apc-Latn/arabizi: [ekhod, khod]}, notes: {en: 'ekhod: (that) I take; khod!: take! (to a man), khedi! (to a woman). Also written
       5od.'}}
 - {id: 'form:subj-2fs', gloss: {en: 't-…-i: you (to a woman, after ra7, baddik…)'}, notes: {en: 'ra7 tru7i: you''ll go. Arabic script: ت before the verb and ي after it (تروحي).'}}
 - {id: 'form:subj-2pl', gloss: {en: 't-…-o: you (to several people, after ra7, badkon…)'}, notes: {en: 'ra7 ta3mlo: you''ll do. Arabic script: ت before the verb and وا after it (تعملوا).'}}
@@ -842,8 +842,8 @@ stories:
   - line:
       speaker: sami
       ask: complete
-      gap: sense:siyyara
-      distractors: ['sense:shanta']
+      gap: sense:bayy
+      distractors: ['sense:bet', 'sense:3omr']
       forms:
         apc-Arab/standard:
           text: يومين بَسّ. بَيّي رَح ياخُد السِّيّارَة.

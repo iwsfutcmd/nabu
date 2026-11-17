@@ -5,34 +5,34 @@ id: u04-home
 title: {en: 'Where''s the house?'}
 cefr: A1
 kcs:
-- {id: 'sense:wen', gloss: {en: where}, forms: {apc-Arab/standard: [وين], apc-Latn/arabizi: [wen]}}
-- {id: 'sense:bet', gloss: {en: house; home}, forms: {apc-Arab/standard: [بيت], apc-Latn/arabizi: [bet]}}
-- {id: 'sense:hon', gloss: {en: here}, forms: {apc-Arab/standard: [هون], apc-Latn/arabizi: [hon]}}
-- {id: 'sense:honik', gloss: {en: there; over there}, forms: {apc-Arab/standard: [هونيك], apc-Latn/arabizi: [honik]}}
-- {id: 'sense:beirut', gloss: {en: Beirut}, forms: {apc-Arab/standard: [بيروت], apc-Latn/arabizi: [Beirut]}}
-- {id: 'sense:b', gloss: {en: in; at}, forms: {apc-Latn/arabizi: [b]}, notes: {en: 'Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet.'}}
-- {id: 'sense:lebnen', gloss: {en: Lebanon}, forms: {apc-Arab/standard: [لبنان], apc-Latn/arabizi: [Lebnen]}}
-- {id: 'sense:men', gloss: {en: from; of}, forms: {apc-Arab/standard: [من], apc-Latn/arabizi: [men]}}
-- {id: 'sense:fi', gloss: {en: there is; there are}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'ma fi: there isn''t, there''s no.'}}
-- {id: 'sense:ghorfe', gloss: {en: room; bedroom}, forms: {apc-Arab/standard: [غرفة], apc-Latn/arabizi: [ghorfe]}}
-- {id: 'sense:matbakh', gloss: {en: kitchen}, forms: {apc-Arab/standard: [مطبخ], apc-Latn/arabizi: [matbakh]}}
-- {id: 'sense:salon', gloss: {en: living room}, forms: {apc-Arab/standard: [صالون], apc-Latn/arabizi: [salon]}}
-- {id: 'sense:7ammem', gloss: {en: bathroom; toilet}, forms: {apc-Arab/standard: [حمّام], apc-Latn/arabizi: [7ammem]}}
-- {id: 'sense:shoghl', gloss: {en: work; job}, forms: {apc-Arab/standard: [شغل], apc-Latn/arabizi: [shoghl]}}
-- {id: 'sense:madrase', gloss: {en: school}, forms: {apc-Arab/standard: [مدرسة], apc-Latn/arabizi: [madrase]}}
-- {id: 'sense:dekkene', gloss: {en: corner shop; small grocery}, forms: {apc-Arab/standard: [دكّانة], apc-Latn/arabizi: [dekkene]}}
-- {id: 'sense:shere3', gloss: {en: street}, forms: {apc-Arab/standard: [شارع], apc-Latn/arabizi: [shere3]}}
-- {id: 'sense:2arib', gloss: {en: near; close}, forms: {apc-Arab/standard: [قريب], apc-Latn/arabizi: [2arib]}}
-- {id: 'sense:b3id', gloss: {en: far}, forms: {apc-Arab/standard: [بعيد, بعيدة], apc-Latn/arabizi: [b3id, b3ide]}}
-- {id: 'sense:mish', gloss: {en: not (before a word that is not a verb)}, forms: {apc-Arab/standard: [مش], apc-Latn/arabizi: [mish]}, notes: {en: 'mish b3id: not far. Before verbs: ma.'}}
+- {id: 'sense:wen', pos: ADV, features: {PronType: Int}, gloss: {en: where}, forms: {apc-Arab/standard: [وين], apc-Latn/arabizi: [wen]}}
+- {id: 'sense:bet', pos: NOUN, gloss: {en: house; home}, forms: {apc-Arab/standard: [بيت], apc-Latn/arabizi: [bet]}}
+- {id: 'sense:hon', pos: ADV, features: {PronType: Dem}, gloss: {en: here}, forms: {apc-Arab/standard: [هون], apc-Latn/arabizi: [hon]}}
+- {id: 'sense:honik', pos: ADV, features: {PronType: Dem}, gloss: {en: there; over there}, forms: {apc-Arab/standard: [هونيك], apc-Latn/arabizi: [honik]}}
+- {id: 'sense:beirut', pos: PROPN, gloss: {en: Beirut}, forms: {apc-Arab/standard: [بيروت], apc-Latn/arabizi: [Beirut]}}
+- {id: 'sense:b', pos: ADP, gloss: {en: in; at}, forms: {apc-Latn/arabizi: [b]}, notes: {en: 'Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet.'}}
+- {id: 'sense:lebnen', pos: PROPN, gloss: {en: Lebanon}, forms: {apc-Arab/standard: [لبنان], apc-Latn/arabizi: [Lebnen]}}
+- {id: 'sense:men', pos: ADP, gloss: {en: from; of}, forms: {apc-Arab/standard: [من], apc-Latn/arabizi: [men]}}
+- {id: 'sense:fi', pos: VERB, gloss: {en: there is; there are}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'ma fi: there isn''t, there''s no.'}}
+- {id: 'sense:ghorfe', pos: NOUN, gloss: {en: room; bedroom}, forms: {apc-Arab/standard: [غرفة], apc-Latn/arabizi: [ghorfe]}}
+- {id: 'sense:matbakh', pos: NOUN, gloss: {en: kitchen}, forms: {apc-Arab/standard: [مطبخ], apc-Latn/arabizi: [matbakh]}}
+- {id: 'sense:salon', pos: NOUN, gloss: {en: living room}, forms: {apc-Arab/standard: [صالون], apc-Latn/arabizi: [salon]}}
+- {id: 'sense:7ammem', pos: NOUN, gloss: {en: bathroom; toilet}, forms: {apc-Arab/standard: [حمّام], apc-Latn/arabizi: [7ammem]}}
+- {id: 'sense:shoghl', pos: NOUN, gloss: {en: work; job}, forms: {apc-Arab/standard: [شغل], apc-Latn/arabizi: [shoghl]}}
+- {id: 'sense:madrase', pos: NOUN, gloss: {en: school}, forms: {apc-Arab/standard: [مدرسة], apc-Latn/arabizi: [madrase]}}
+- {id: 'sense:dekkene', pos: NOUN, gloss: {en: corner shop; small grocery}, forms: {apc-Arab/standard: [دكّانة], apc-Latn/arabizi: [dekkene]}}
+- {id: 'sense:shere3', pos: NOUN, gloss: {en: street}, forms: {apc-Arab/standard: [شارع], apc-Latn/arabizi: [shere3]}}
+- {id: 'sense:2arib', pos: ADJ, gloss: {en: near; close}, forms: {apc-Arab/standard: [قريب], apc-Latn/arabizi: [2arib]}}
+- {id: 'sense:b3id', pos: ADJ, gloss: {en: far}, forms: {apc-Arab/standard: [بعيد, بعيدة], apc-Latn/arabizi: [b3id, b3ide]}}
+- {id: 'sense:mish', pos: PART, features: {Polarity: Neg}, gloss: {en: not (before a word that is not a verb)}, forms: {apc-Arab/standard: [مش], apc-Latn/arabizi: [mish]}, notes: {en: 'mish b3id: not far. Before verbs: ma.'}}
 - {id: 'form:poss-1pl', gloss: {en: '-na: our'}, notes: {en: 'betna: our house. Arabic script: نا joined to the noun (بيتنا).'}}
-- {id: 'sense:fo2', gloss: {en: upstairs; up; above}, forms: {apc-Arab/standard: [فوق], apc-Latn/arabizi: [fo2]}}
-- {id: 'sense:ta7t', gloss: {en: downstairs; down; under}, forms: {apc-Arab/standard: [تحت], apc-Latn/arabizi: [ta7t]}}
-- {id: 'sense:7add', gloss: {en: next to}, forms: {apc-Arab/standard: [حدّ], apc-Latn/arabizi: [7add]}}
-- {id: 'sense:3a', gloss: {en: to; on}, forms: {apc-Arab/standard: [ع], apc-Latn/arabizi: [3a]}, notes: {en: 'Before el it is written 3al in Arabizi and عال in Arabic script: 3al bet, عالبيت (home, homeward).'}}
-- {id: 'sense:yamin', gloss: {en: right (side)}, forms: {apc-Arab/standard: [يمين], apc-Latn/arabizi: [yamin]}}
-- {id: 'sense:shmel', gloss: {en: left (side)}, forms: {apc-Arab/standard: [شمال], apc-Latn/arabizi: [shmel]}}
-- {id: 'sense:dighri', gloss: {en: straight ahead}, forms: {apc-Arab/standard: [دغري], apc-Latn/arabizi: [dighri]}}
+- {id: 'sense:fo2', pos: ADV, gloss: {en: upstairs; up; above}, forms: {apc-Arab/standard: [فوق], apc-Latn/arabizi: [fo2]}}
+- {id: 'sense:ta7t', pos: ADV, gloss: {en: downstairs; down; under}, forms: {apc-Arab/standard: [تحت], apc-Latn/arabizi: [ta7t]}}
+- {id: 'sense:7add', pos: ADP, gloss: {en: next to}, forms: {apc-Arab/standard: [حدّ], apc-Latn/arabizi: [7add]}}
+- {id: 'sense:3a', pos: ADP, gloss: {en: to; on}, forms: {apc-Arab/standard: [ع], apc-Latn/arabizi: [3a]}, notes: {en: 'Before el it is written 3al in Arabizi and عال in Arabic script: 3al bet, عالبيت (home, homeward).'}}
+- {id: 'sense:yamin', pos: NOUN, gloss: {en: right (side)}, forms: {apc-Arab/standard: [يمين], apc-Latn/arabizi: [yamin]}}
+- {id: 'sense:shmel', pos: NOUN, gloss: {en: left (side)}, forms: {apc-Arab/standard: [شمال], apc-Latn/arabizi: [shmel]}}
+- {id: 'sense:dighri', pos: ADV, gloss: {en: straight ahead}, forms: {apc-Arab/standard: [دغري], apc-Latn/arabizi: [dighri]}}
 nodes:
 - {id: apc.home.where, kind: lesson, introduces: ['sense:wen', 'sense:bet', 'sense:hon', 'sense:honik']}
 - {id: apc.home.city, kind: lesson, introduces: ['sense:beirut', 'sense:b', 'sense:lebnen', 'sense:men']}
@@ -697,7 +697,7 @@ stories:
       speaker: maya
       ask: complete
       gap: sense:b3id
-      distractors: ['sense:2arib', 'sense:fo2']
+      distractors: ['sense:2arib', 'sense:jou3an']
       forms:
         apc-Arab/standard:
           text: إيه، مِش بْعيد.

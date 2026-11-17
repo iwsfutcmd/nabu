@@ -9,16 +9,19 @@ title:
 cefr: A2
 kcs:
 - id: sense:melekh
+  pos: NOUN
   gloss:
     en: king
   forms:
     hbo-Hebr/tiberian: [מֶלֶךְ]
 - id: sense:chai
+  pos: ADJ
   gloss:
     en: living, alive; (חַי יְהוָה) as the LORD lives
   forms:
     hbo-Hebr/tiberian: [חַי]
 - id: sense:yeled
+  pos: NOUN
   gloss:
     en: child, boy
   forms:
@@ -27,41 +30,49 @@ kcs:
   gloss:
     en: 'and they (f.) did: the narrative past, they (women)'
 - id: sense:hevi
+  pos: VERB
   gloss:
     en: to bring (hiphil of בּוֹא)
   forms:
     hbo-Hebr/tiberian: [הֵבִיא]
 - id: sense:gazar
+  pos: VERB
   gloss:
     en: to cut, divide
   forms:
     hbo-Hebr/tiberian: [גָּזַר]
 - id: sense:hatsi
+  pos: NOUN
   gloss:
     en: half
   forms:
     hbo-Hebr/tiberian: [חֵצִי]
 - id: sense:yalad
+  pos: VERB
   gloss:
     en: to bear, give birth; (passive participle) born, a child
   forms:
     hbo-Hebr/tiberian: [יָלַד]
 - id: sense:nikhmar
+  pos: VERB
   gloss:
     en: to grow warm, be stirred (niphal)
   forms:
     hbo-Hebr/tiberian: [נִכְמַר]
 - id: sense:rahamim
+  pos: NOUN
   gloss:
     en: compassion, mercy
   forms:
     hbo-Hebr/tiberian: [רַחֲמִים]
 - id: sense:bi
+  pos: INTJ
   gloss:
     en: 'please, pardon (בִּי אֲדֹנִי: please, my lord)'
   forms:
     hbo-Hebr/tiberian: [בִּי]
 - id: sense:hemit
+  pos: VERB
   gloss:
     en: to kill, put to death (hiphil of מוּת)
   forms:
@@ -531,7 +542,7 @@ stories:
       speaker: king
       ask: complete
       gap: sense:yeled
-      distractors: ['sense:melekh', 'sense:ben']
+      distractors: ['sense:melekh', 'sense:bayit']
       forms:
         hbo-Hebr/tiberian:
           text: אֶת־הַיֶּלֶד הַחַי לִשְׁנָיִם וּתְנוּ אֶת־הַחֲצִי לְאַחַת וְאֶת־הַחֲצִי לְאֶחָת׃
@@ -568,8 +579,8 @@ stories:
   - line:
       speaker: mother
       ask: complete
-      gap: sense:yalad
-      distractors: ['sense:melekh', 'sense:naar']
+      gap: sense:adon
+      distractors: ['sense:yad', 'sense:qol']
       forms:
         hbo-Hebr/tiberian:
           text: בִּי אֲדֹנִי תְּנוּ־לָהּ אֶת־הַיָּלוּד הַחַי וְהָמֵת אַל־תְּמִיתֻהוּ

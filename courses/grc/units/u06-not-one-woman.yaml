@@ -9,6 +9,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:gyne
+  pos: NOUN
   gloss:
     en: woman; wife
   forms:
@@ -17,6 +18,9 @@ kcs:
   notes:
     en: 'Its other forms are built on γυναικ-: of the woman τῆς γυναικός, the women αἱ γυναῖκες.'
 - id: sense:oudeis
+  pos: PRON
+  features:
+    PronType: Neg
   gloss:
     en: no one, nobody; (with a noun) no, not one
   forms:
@@ -25,12 +29,16 @@ kcs:
   notes:
     en: οὐδείς for a man or a masculine word, οὐδεμία for a woman, οὐδέν for a thing ("nothing").
 - id: sense:pareimi
+  pos: VERB
   gloss:
     en: to be here, be present
   forms:
     grc-Grek/polytonic:
     - πάρειμι
 - id: sense:entautha
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: here, there
   forms:
@@ -40,24 +48,33 @@ kcs:
   notes:
     en: ἐνταυθοῖ, "(to) here", is how the women of Aristophanes say it.
 - id: sense:emos
+  pos: DET
+  features:
+    Poss: 'Yes'
+    PronType: Prs
   gloss:
     en: my, mine
   forms:
     grc-Grek/polytonic:
     - ἐμός
 - id: sense:kometis
+  pos: NOUN
   gloss:
     en: a woman of the same village or quarter; neighbour
   forms:
     grc-Grek/polytonic:
     - κωμῆτις
 - id: sense:plen
+  pos: ADP
   gloss:
     en: (with the genitive) except
   forms:
     grc-Grek/polytonic:
     - πλήν
 - id: sense:hode
+  pos: PRON
+  features:
+    PronType: Dem
   gloss:
     en: this (one) here
   forms:
@@ -66,24 +83,30 @@ kcs:
   notes:
     en: 'ὅδε, ἥδε, τόδε point at what is right in front of you: ἥδε ἐξέρχεται, "here she comes out".'
 - id: sense:exerchomai
+  pos: VERB
   gloss:
     en: to come out, go out
   forms:
     grc-Grek/polytonic:
     - ἐξέρχομαι
 - id: sense:kalonike
+  pos: PROPN
   gloss:
     en: Calonice (Lysistrata's neighbour)
   forms:
     grc-Grek/polytonic:
     - Καλονίκη
 - id: sense:lysistrate
+  pos: PROPN
   gloss:
     en: Lysistrata (the Athenian woman of Aristophanes' play)
   forms:
     grc-Grek/polytonic:
     - Λυσιστράτη
 - id: sense:me
+  pos: PART
+  features:
+    Polarity: Neg
   gloss:
     en: not (in commands and wishes)
   forms:
@@ -92,12 +115,14 @@ kcs:
   notes:
     en: 'μή with an imperative forbids: μὴ σκυ^θρώπαζε, "don''t scowl!". Statements take οὐ.'
 - id: sense:skythropazo
+  pos: VERB
   gloss:
     en: to look sullen, scowl
   forms:
     grc-Grek/polytonic:
     - σκυθρωπάζω
 - id: sense:syntaratto
+  pos: VERB
   gloss:
     en: to throw into confusion, upset
   forms:
@@ -106,6 +131,7 @@ kcs:
   notes:
     en: συ^ντετάραξαι, "you have been upset" (you are upset), is its perfect.
 - id: sense:hetoimos
+  pos: ADJ
   gloss:
     en: ready
   forms:
@@ -1085,8 +1111,8 @@ stories:
       ask: complete
       gap: sense:gyne
       distractors:
-      - sense:oikia
-      - sense:hodos
+      - sense:glotta
+      - sense:nyx
       forms:
         grc-Grek/polytonic:
           text: νῦν δ’ οὐδεμία πάρεστιν ἐνταυθοῖ γυνή·

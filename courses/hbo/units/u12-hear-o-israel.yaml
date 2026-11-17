@@ -12,16 +12,19 @@ kcs:
   gloss:
     en: our; us (the suffix -ēnû, -nû)
 - id: sense:levav
+  pos: NOUN
   gloss:
     en: heart, mind (= לֵב)
   forms:
     hbo-Hebr/tiberian: [לֵבָב]
 - id: sense:nefesh
+  pos: NOUN
   gloss:
     en: soul, life; self; a living being
   forms:
     hbo-Hebr/tiberian: [נֶפֶשׁ]
 - id: sense:meod
+  pos: ADV
   gloss:
     en: very; (as a noun) strength, might
   forms:
@@ -30,21 +33,25 @@ kcs:
   gloss:
     en: 'and they shall: the converted perfect (weqatal), they'
 - id: sense:shinnen
+  pos: VERB
   gloss:
     en: to repeat, say again and again (piel)
   forms:
     hbo-Hebr/tiberian: [שִׁנֵּן]
 - id: sense:yashav
+  pos: VERB
   gloss:
     en: to sit; to dwell, live
   forms:
     hbo-Hebr/tiberian: [יָשַׁב]
 - id: sense:derekh
+  pos: NOUN
   gloss:
     en: way, road; journey
   forms:
     hbo-Hebr/tiberian: [דֶּרֶךְ]
 - id: sense:shakhav
+  pos: VERB
   gloss:
     en: to lie down
   forms:
@@ -497,7 +504,7 @@ stories:
       speaker: moses
       ask: complete
       gap: sense:nefesh
-      distractors: ['sense:levav', 'sense:derekh']
+      distractors: ['sense:ah', 'sense:ben']
       forms:
         hbo-Hebr/tiberian:
           text: וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל־לְבָבְךָ וּבְכָל־נַפְשְׁךָ וּבְכָל־מְאֹדֶךָ׃
@@ -517,6 +524,9 @@ stories:
       answer: 0
   - line:
       speaker: moses
+      ask: complete
+      gap: sense:davar
+      distractors: ['sense:har', 'sense:gamal']
       forms:
         hbo-Hebr/tiberian:
           text: וְהָיוּ הַדְּבָרִים הָאֵלֶּה אֲשֶׁר אָנֹכִי מְצַוְּךָ הַיּוֹם עַל־לְבָבֶךָ׃
@@ -541,9 +551,6 @@ stories:
         en: You shall teach them diligently to your children and talk of them
   - line:
       speaker: moses
-      ask: complete
-      gap: sense:derekh
-      distractors: ['sense:sadeh', 'sense:har']
       forms:
         hbo-Hebr/tiberian:
           text: בְּשִׁבְתְּךָ בְּבֵיתֶךָ וּבְלֶכְתְּךָ בַדֶּרֶךְ וּבְשָׁכְבְּךָ וּבְקוּמֶךָ׃

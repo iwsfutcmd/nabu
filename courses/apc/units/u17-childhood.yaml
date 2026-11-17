@@ -9,15 +9,15 @@ cefr: A2
 kcs:
 - {id: 'construction:used-to', gloss: {en: 'kent + a verb without b-: used to; would'}, notes: {en: 'kent ru7: I used to go; kenna nekol: we used to eat; ken yishteghel: he used to work. Both verbs agree
       with who did it.'}}
-- {id: 'sense:lamma', gloss: {en: when (not a question)}, forms: {apc-Arab/standard: [لمّا], apc-Latn/arabizi: [lamma]}, notes: {en: 'lamma kent zghir: when I was little. In a question, when is emta.'}}
-- {id: 'sense:3ash', gloss: {en: live (one's life); live somewhere}, forms: {apc-Arab/standard: [عاش], apc-Latn/arabizi: [3ash]}, notes: {en: 'kenna n3ish bel day3a: we used to live in the village. Where
+- {id: 'sense:lamma', pos: SCONJ, gloss: {en: when (not a question)}, forms: {apc-Arab/standard: [لمّا], apc-Latn/arabizi: [lamma]}, notes: {en: 'lamma kent zghir: when I was little. In a question, when is emta.'}}
+- {id: 'sense:3ash', pos: VERB, gloss: {en: live (one's life); live somewhere}, forms: {apc-Arab/standard: [عاش], apc-Latn/arabizi: [3ash]}, notes: {en: 'kenna n3ish bel day3a: we used to live in the village. Where
       someone lives now: seken.'}}
 - {id: 'construction:was-doing', gloss: {en: 'kent 3am + verb: was …ing'}, notes: {en: 'kent 3am e2ra: I was reading; keno 3am yeklo: they were eating.'}}
-- {id: 'sense:m3allem', gloss: {en: teacher}, forms: {apc-Arab/standard: [معلّم], apc-Latn/arabizi: [m3allem]}, notes: {en: 'A woman: معلّمة, m3allme.'}}
-- {id: 'sense:ba3d.still', gloss: {en: 'still (with an ending: ba3dni, ba3dak…)'}, forms: {apc-Arab/standard: [بعد], apc-Latn/arabizi: [ba3d]}, notes: {en: 'ba3dni (I''m still), ba3dak / ba3dik (you), ba3do
+- {id: 'sense:m3allem', pos: NOUN, gloss: {en: teacher}, forms: {apc-Arab/standard: [معلّم], apc-Latn/arabizi: [m3allem]}, notes: {en: 'A woman: معلّمة, m3allme.'}}
+- {id: 'sense:ba3d.still', pos: ADV, gloss: {en: 'still (with an ending: ba3dni, ba3dak…)'}, forms: {apc-Arab/standard: [بعد], apc-Latn/arabizi: [ba3d]}, notes: {en: 'ba3dni (I''m still), ba3dak / ba3dik (you), ba3do
       (he), ba3da (she), ba3dna (we), ba3dkon (you, several), ba3don (they). ''I'' takes -ni, as on a verb.'}}
-- {id: 'sense:la7al', gloss: {en: 'alone; by oneself (with an ending: la7ali, la7alo…)'}, forms: {apc-Arab/standard: [لحال], apc-Latn/arabizi: [la7al]}, notes: {en: 'la7ali: by myself; la7alo: by himself.'}}
-- {id: 'sense:ma-3ad', gloss: {en: no longer; not … any more}, forms: {apc-Arab/standard: [ما عاد], apc-Latn/arabizi: [ma 3ad]}, notes: {en: 'ma 3ad 3endi wa2t: I don''t have time any more. Also ma 3ash
+- {id: 'sense:la7al', pos: ADV, gloss: {en: 'alone; by oneself (with an ending: la7ali, la7alo…)'}, forms: {apc-Arab/standard: [لحال], apc-Latn/arabizi: [la7al]}, notes: {en: 'la7ali: by myself; la7alo: by himself.'}}
+- {id: 'sense:ma-3ad', pos: PART, features: {Polarity: Neg}, gloss: {en: no longer; not … any more}, forms: {apc-Arab/standard: [ما عاد], apc-Latn/arabizi: [ma 3ad]}, notes: {en: 'ma 3ad 3endi wa2t: I don''t have time any more. Also ma 3ash
       (Kline 2022).'}}
 nodes:
 - {id: apc.child.used-to, kind: lesson, introduces: ['construction:used-to', 'sense:lamma', 'sense:3ash']}
@@ -676,6 +676,9 @@ stories:
       translations: {en: 'Grandma, what did you use to do when you were little?'}
   - line:
       speaker: teta
+      ask: complete
+      gap: sense:la7al
+      asks: form
       forms:
         apc-Arab/standard:
           text: كِنّا نْعيش بِالضَّيْعَة. كِنْت روح عَالمَدْرَسِة لَحالي.
@@ -692,9 +695,6 @@ stories:
       translations: {en: We used to live in the village. I used to walk to school by myself.}
   - line:
       speaker: maya
-      ask: complete
-      gap: sense:la7al
-      distractors: ['sense:sawa']
       forms:
         apc-Arab/standard:
           text: لَحالِك؟

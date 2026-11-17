@@ -79,6 +79,18 @@ the courses. [accept-doubts.md](accept-doubts.md) lists the 434 it was not sure 
 sentence, and eight questions of policy (English contractions, register, yue spellings, digits).
 Answering a policy question settles many rows at once.
 
+## Choices that ask one thing (ADR 0132, November 2026)
+
+A fill-in now asks which word (every option in the answer's form and of its part of speech) or which form
+(the answer's own word in other forms the course writes): [ADR 0132](../docs/adr/0132-a-choice-asks-one-thing.md).
+
+- **Parts of speech.** Every sense KC of every course has a model-drafted UD `pos` and lexical `features`
+  (`NounType: Clf` for yue's classifiers, `PartType: Mod` for its final particles, `Poss`, `PronType`).
+  A wrong one changes which words a question offers against each other.
+- **Story questions.** All 200 `complete` steps were redone: the wrong options of a word question make the
+  line false or absurd, those of a form question make it ungrammatical, and nothing else marks the answer.
+- [choice-doubts.md](choice-doubts.md) lists the tags and the steps the drafts were least sure of.
+
 ## Marking what is wrong
 
 You can mark mistakes in the app ([ADR 0051](../docs/adr/0051-corrections.md)), with no setup.

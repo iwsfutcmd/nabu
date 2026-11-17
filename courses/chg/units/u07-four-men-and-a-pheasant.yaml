@@ -10,6 +10,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:qush
+  pos: NOUN
   gloss:
     en: bird
   forms:
@@ -27,6 +28,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:qirghawul
+  pos: NOUN
   gloss:
     en: pheasant
   forms:
@@ -37,6 +39,7 @@ kcs:
   readings:
     schluessel: qirǧawul
 - id: sense:kop
+  pos: ADJ
   gloss:
     en: many, much
   forms:
@@ -47,6 +50,7 @@ kcs:
   readings:
     schluessel: köp
 - id: sense:semiz
+  pos: ADJ
   gloss:
     en: fat
   forms:
@@ -57,6 +61,7 @@ kcs:
   readings:
     schluessel: semiz
 - id: sense:daghi
+  pos: ADV
   gloss:
     en: also, too
   forms:
@@ -67,6 +72,7 @@ kcs:
   readings:
     schluessel: daǧi
 - id: sense:awi
+  pos: ADJ
   gloss:
     en: for hunting, game (of birds)
   forms:
@@ -79,6 +85,7 @@ kcs:
   notes:
     en: 'Spelled as öy "house": the context tells them apart.'
 - id: sense:behadd
+  pos: ADV
   gloss:
     en: endless; endlessly, beyond measure
   forms:
@@ -91,6 +98,7 @@ kcs:
   notes:
     en: The Persian bē- "without" and ḥadd "limit".
 - id: sense:oltur
+  pos: VERB
   gloss:
     en: to sit; to stay, live
   forms:
@@ -101,6 +109,7 @@ kcs:
   readings:
     schluessel: oltur
 - id: sense:ye
+  pos: VERB
   gloss:
     en: to eat
   forms:
@@ -111,6 +120,7 @@ kcs:
   readings:
     schluessel: ye
 - id: sense:tugat
+  pos: VERB
   gloss:
     en: to finish, use up
   forms:
@@ -121,6 +131,9 @@ kcs:
   readings:
     schluessel: tügät
 - id: sense:andaq
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: so, thus, like that
   forms:
@@ -131,6 +144,7 @@ kcs:
   readings:
     schluessel: andaq
 - id: sense:riwayat
+  pos: NOUN
   gloss:
     en: story, account
   forms:
@@ -143,6 +157,7 @@ kcs:
   notes:
     en: riwāyat qil- "to tell, relate".
 - id: sense:kim.that
+  pos: SCONJ
   gloss:
     en: that (introducing what is said or told)
   forms:
@@ -155,6 +170,7 @@ kcs:
   notes:
     en: 'As Persian ke: andaq riwāyat qildilar kim … "they tell that …". kim is also "who?".'
 - id: sense:ishkina
+  pos: NOUN
   gloss:
     en: stew, soup (Persian eškene)
   forms:
@@ -165,6 +181,7 @@ kcs:
   readings:
     schluessel: iškina
 - id: sense:bila
+  pos: ADP
   gloss:
     en: with; by means of
   forms:
@@ -175,6 +192,7 @@ kcs:
   readings:
     schluessel: bilä
 - id: sense:lafaz
+  pos: NOUN
   gloss:
     en: word, speech
   forms:
@@ -185,6 +203,7 @@ kcs:
   readings:
     schluessel: lafaẓ
 - id: sense:qalam
+  pos: NOUN
   gloss:
     en: pen; writing
   forms:
@@ -195,6 +214,7 @@ kcs:
   readings:
     schluessel: qalam
 - id: sense:rast
+  pos: ADJ
   gloss:
     en: true, right, straight
   forms:
@@ -747,8 +767,8 @@ stories:
       ask: complete
       gap: sense:semiz
       distractors:
-      - sense:kitab
-      - sense:bazar
+      - sense:sawuq
+      - sense:mukhtasar
       forms:
         chg-Arab/standard:
           text: قیرغاولی بیحد سیمیز بولور.

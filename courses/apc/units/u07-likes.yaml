@@ -6,31 +6,31 @@ id: u07-likes
 title: {en: 'What do you like?'}
 cefr: A2
 kcs:
-- {id: 'sense:7abb', gloss: {en: like; love}, forms: {apc-Arab/standard: [بحبّ, بتحبّ, منحبّ], apc-Latn/arabizi: [b7ebb, bt7ebb, mn7ebb]}}
-- {id: 'sense:ba7r', gloss: {en: sea; the beach}, forms: {apc-Arab/standard: [بحر], apc-Latn/arabizi: [ba7r]}}
-- {id: 'sense:jabal', gloss: {en: mountain; the mountains}, forms: {apc-Arab/standard: [جبل], apc-Latn/arabizi: [jabal]}}
-- {id: 'sense:aw', gloss: {en: or}, forms: {apc-Arab/standard: [أو], apc-Latn/arabizi: [aw]}}
-- {id: 'sense:aktar', gloss: {en: more; most; better}, forms: {apc-Arab/standard: [أكتر], apc-Latn/arabizi: [aktar]}}
-- {id: 'sense:abadan', gloss: {en: (not) at all; never}, forms: {apc-Arab/standard: [أبدا], apc-Latn/arabizi: [abadan]}}
-- {id: 'sense:musi2a', gloss: {en: music}, forms: {apc-Arab/standard: [موسيقى], apc-Latn/arabizi: [musi2a]}}
-- {id: 'sense:sama3', gloss: {en: listen; hear}, forms: {apc-Arab/standard: [بسمع, اسمع], apc-Latn/arabizi: [bisma3, esma3]}}
+- {id: 'sense:7abb', pos: VERB, gloss: {en: like; love}, forms: {apc-Arab/standard: [بحبّ, بتحبّ, منحبّ], apc-Latn/arabizi: [b7ebb, bt7ebb, mn7ebb]}}
+- {id: 'sense:ba7r', pos: NOUN, gloss: {en: sea; the beach}, forms: {apc-Arab/standard: [بحر], apc-Latn/arabizi: [ba7r]}}
+- {id: 'sense:jabal', pos: NOUN, gloss: {en: mountain; the mountains}, forms: {apc-Arab/standard: [جبل], apc-Latn/arabizi: [jabal]}}
+- {id: 'sense:aw', pos: CCONJ, gloss: {en: or}, forms: {apc-Arab/standard: [أو], apc-Latn/arabizi: [aw]}}
+- {id: 'sense:aktar', pos: ADV, gloss: {en: more; most; better}, forms: {apc-Arab/standard: [أكتر], apc-Latn/arabizi: [aktar]}}
+- {id: 'sense:abadan', pos: ADV, gloss: {en: (not) at all; never}, forms: {apc-Arab/standard: [أبدا], apc-Latn/arabizi: [abadan]}}
+- {id: 'sense:musi2a', pos: NOUN, gloss: {en: music}, forms: {apc-Arab/standard: [موسيقى], apc-Latn/arabizi: [musi2a]}}
+- {id: 'sense:sama3', pos: VERB, gloss: {en: listen; hear}, forms: {apc-Arab/standard: [بسمع, اسمع], apc-Latn/arabizi: [bisma3, esma3]}}
 - {id: 'form:subj-1sg', gloss: {en: 'e- / no b-: I (after baddi, b7ebb, 3am…)'}, notes: {en: 'baddi ekol: I want to eat; b7ebb esma3: I like to listen. The b- of the present drops.'}}
-- {id: 'sense:ktab', gloss: {en: book}, forms: {apc-Arab/standard: [كتاب], apc-Latn/arabizi: [ktab]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369',
+- {id: 'sense:ktab', pos: NOUN, gloss: {en: book}, forms: {apc-Arab/standard: [كتاب], apc-Latn/arabizi: [ktab]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369',
       status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:shi', gloss: {en: something; anything}, forms: {apc-Arab/standard: [شي], apc-Latn/arabizi: [shi]}}
+- {id: 'sense:shi', pos: PRON, features: {PronType: Ind}, gloss: {en: something; anything}, forms: {apc-Arab/standard: [شي], apc-Latn/arabizi: [shi]}}
 - {id: 'form:subj-2ms', gloss: {en: 't-: you (after baddak, 3am…; to a man)'}, notes: {en: 'baddak tishrab? Do you want to drink? 3am ta3mel: you are doing.'}}
-- {id: 'sense:badd', gloss: {en: 'want (with an ending: baddo, badda, badna)'}, forms: {apc-Arab/standard: [بدّ], apc-Latn/arabizi: [badd]}, notes: {en: 'badd + the possessive ending says who wants:
+- {id: 'sense:badd', pos: VERB, gloss: {en: 'want (with an ending: baddo, badda, badna)'}, forms: {apc-Arab/standard: [بدّ], apc-Latn/arabizi: [badd]}, notes: {en: 'badd + the possessive ending says who wants:
       baddo (he), badda (she), badna (we), badkon (you, to several people): before -na and -kon the dd is said single, and is written بدنا, بدكن. Compare baddi, baddak.'}}
 - {id: 'form:subj-1pl', gloss: {en: 'n-: we (after badna, ta…)'}, notes: {en: 'badna nru7: we want to go.'}}
-- {id: 'sense:film', gloss: {en: film; movie}, forms: {apc-Arab/standard: [فيلم], apc-Latn/arabizi: [film]}}
-- {id: 'sense:shef', gloss: {en: see; watch}, forms: {apc-Arab/standard: [شوف, منشوف], apc-Latn/arabizi: [shuf, mnshuf]}}
-- {id: 'sense:football', gloss: {en: football; soccer}, forms: {apc-Arab/standard: [فوتبول], apc-Latn/arabizi: [football]}}
-- {id: 'sense:le3eb', gloss: {en: play}, forms: {apc-Arab/standard: [بتلعب], apc-Latn/arabizi: [btil3ab]}}
-- {id: 'sense:3am', gloss: {en: '-ing: right now (before a verb)'}, forms: {apc-Arab/standard: [عم], apc-Latn/arabizi: [3am]}, notes: {en: '3am ta3mel: you''re doing (right now). The verb after
+- {id: 'sense:film', pos: NOUN, gloss: {en: film; movie}, forms: {apc-Arab/standard: [فيلم], apc-Latn/arabizi: [film]}}
+- {id: 'sense:shef', pos: VERB, gloss: {en: see; watch}, forms: {apc-Arab/standard: [شوف, منشوف], apc-Latn/arabizi: [shuf, mnshuf]}}
+- {id: 'sense:football', pos: NOUN, gloss: {en: football; soccer}, forms: {apc-Arab/standard: [فوتبول], apc-Latn/arabizi: [football]}}
+- {id: 'sense:le3eb', pos: VERB, gloss: {en: play}, forms: {apc-Arab/standard: [بتلعب], apc-Latn/arabizi: [btil3ab]}}
+- {id: 'sense:3am', pos: AUX, gloss: {en: '-ing: right now (before a verb)'}, forms: {apc-Arab/standard: [عم], apc-Latn/arabizi: [3am]}, notes: {en: '3am ta3mel: you''re doing (right now). The verb after
       3am usually drops its b-; 3am bta3mel is heard too.'}}
-- {id: 'sense:ghanne', gloss: {en: sing}, forms: {apc-Arab/standard: [غنّي], apc-Latn/arabizi: [ghanne]}}
-- {id: 'sense:ra2as', gloss: {en: dance}, forms: {apc-Arab/standard: [ارقص], apc-Latn/arabizi: [or2os]}}
-- {id: 'sense:a7la', gloss: {en: nicer; prettier; better}, forms: {apc-Arab/standard: [أحلى], apc-Latn/arabizi: [a7la]}, notes: {en: 7elo → a7la.}}
+- {id: 'sense:ghanne', pos: VERB, gloss: {en: sing}, forms: {apc-Arab/standard: [غنّي], apc-Latn/arabizi: [ghanne]}}
+- {id: 'sense:ra2as', pos: VERB, gloss: {en: dance}, forms: {apc-Arab/standard: [ارقص], apc-Latn/arabizi: [or2os]}}
+- {id: 'sense:a7la', pos: ADJ, gloss: {en: nicer; prettier; better}, forms: {apc-Arab/standard: [أحلى], apc-Latn/arabizi: [a7la]}, notes: {en: 7elo → a7la.}}
 nodes:
 - {id: apc.like.like, kind: lesson, introduces: ['sense:7abb', 'sense:ba7r', 'sense:jabal', 'sense:aw', 'sense:aktar', 'sense:abadan']}
 - {id: apc.like.hobbies, kind: lesson, introduces: ['sense:musi2a', 'sense:sama3', 'form:subj-1sg', 'sense:ktab']}
@@ -639,9 +639,6 @@ stories:
       translations: {en: 'Sami, do you like the sea?'}
   - line:
       speaker: sami
-      ask: complete
-      gap: sense:abadan
-      distractors: ['sense:ktir', 'sense:kamen']
       forms:
         apc-Arab/standard:
           text: لأ، ما بْحِبّ البَحِر أَبَداً. بْحِبّ الجَبَل.
@@ -655,6 +652,9 @@ stories:
       translations: {en: 'No, I don''t like the sea at all. I like the mountains.'}
   - line:
       speaker: maya
+      ask: complete
+      gap: sense:7abb
+      distractors: ['sense:akal', 'sense:shereb']
       forms:
         apc-Arab/standard:
           text: أَنا بْحِبّ البَحِر أَكْتَر!
