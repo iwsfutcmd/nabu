@@ -9,6 +9,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:asklepios
+  pos: PROPN
   gloss:
     en: Asclepius (the god of healing)
   forms:
@@ -17,6 +18,7 @@ kcs:
   notes:
     en: A sick man who got well gave Asclepius a rooster. Socrates' last words are a debt to him.
 - id: sense:alektryon
+  pos: NOUN
   gloss:
     en: rooster, cock
   forms:
@@ -30,12 +32,14 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:opheilo
+  pos: VERB
   gloss:
     en: to owe
   forms:
     grc-Grek/polytonic:
     - ὀφείλω
 - id: sense:apodidomi
+  pos: VERB
   gloss:
     en: to give back, pay (what is owed)
   forms:
@@ -44,6 +48,7 @@ kcs:
   notes:
     en: ἀπόδοτε, "pay (it)!" to several people, is its aorist imperative.
 - id: sense:ameleo
+  pos: VERB
   gloss:
     en: to neglect, forget about
   forms:
@@ -56,6 +61,7 @@ kcs:
   gloss:
     en: 'the future, he, she, it: will do, will be'
 - id: sense:horao
+  pos: VERB
   gloss:
     en: to see, look
   forms:
@@ -64,6 +70,7 @@ kcs:
   notes:
     en: ὅρα, "look!, see!", is its imperative.
 - id: sense:ei
+  pos: SCONJ
   gloss:
     en: if; (after see, ask) whether
   forms:
@@ -72,6 +79,9 @@ kcs:
   readings:
     attic: εἰ
 - id: sense:tis.indef
+  pos: PRON
+  features:
+    PronType: Ind
   gloss:
     en: someone, something; a, some (never first; it leans on the word before)
   forms:
@@ -80,12 +90,14 @@ kcs:
   notes:
     en: 'τις, τι is τίς, τί without its accent: εἴ τι, "if anything".'
 - id: sense:allos
+  pos: ADJ
   gloss:
     en: other, another; (ἄλλο) something else
   forms:
     grc-Grek/polytonic:
     - ἄλλος
 - id: sense:theos
+  pos: NOUN
   gloss:
     en: god
   forms:

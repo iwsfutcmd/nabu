@@ -101,6 +101,10 @@
           "items": {
             "$ref": "#/$defs/KcRefLocal"
           }
+        },
+        "asks": {
+          "description": "A fill-in (gap-fill, story-complete): whether it asked which word or which form (ADR 0132). A mistake is asked again as the same question. Absent on events logged before it.",
+          "$ref": "common.schema.json#/$defs/Asks"
         }
       }
     },

@@ -248,6 +248,14 @@
         "cefr": {
           "$ref": "#/$defs/Cefr"
         },
+        "pos": {
+          "description": "The word's part of speech, a UD UPOS tag (ADR 0132): a word question offers only words of the answer's part of speech and features. Sense KCs only.",
+          "$ref": "common.schema.json#/$defs/PartOfSpeech"
+        },
+        "features": {
+          "description": "The word's lexical features, as UD spells them (ADR 0132): NounType Clf (a classifier), PronType Dem, PartType Mod (a sentence-final particle). Matched exactly where the answer has a pos. Needs pos.",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
         "gloss": {
           "description": "Short meaning per support language.",
           "type": "object",
@@ -907,8 +915,12 @@
           "description": "complete: the KC of the missing word (exactly one word token of the line has it).",
           "$ref": "common.schema.json#/$defs/KcId"
         },
+        "asks": {
+          "description": "complete: what the question asks (ADR 0132). word (the default): which word fits, every option in the gap's form, so only the line's sense rules them out. form: which form of the gap's own word fits, so only grammar does.",
+          "$ref": "common.schema.json#/$defs/Asks"
+        },
         "distractors": {
-          "description": "complete: other KCs offered, shown by their first form in the learner's orthography.",
+          "description": "complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,

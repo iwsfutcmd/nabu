@@ -510,6 +510,24 @@ def _story_bad_answer(c: Course) -> None:
     story(c)["steps"][2]["choose"]["answer"] = 5
 
 
+def _story_unattested_form(c: Course) -> None:
+    # The gap is talaba with the copula -man: no sentence writes salom so (ADR 0132).
+    with_story(c)
+    gap = story(c)["steps"][1]["line"]["forms"]["uz-Latn/standard"]["tokens"][1]
+    gap["morphs"] = [
+        {"surface": "talaba", "kc": "sense:talaba"},
+        {"surface": "man", "kc": "construction:copula-man"},
+    ]
+
+
+def _story_other_pos(c: Course) -> None:
+    # A noun's gap offered an interjection: grammar alone rules it out (ADR 0132).
+    with_story(c)
+    kcs = {k["id"]: k for k in unit(c)["kcs"]}
+    kcs["sense:talaba"]["pos"] = "NOUN"
+    kcs["sense:salom"]["pos"] = "INTJ"
+
+
 # ---- roleplay scenario cards: a clean card after the first lesson, then one mutation per lint
 SCENARIO: dict[str, Any] = {
     "id": "basics.cafe",
@@ -832,6 +850,14 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "story.speaker": ("A line spoken by a character the story does not have.", m(_story_stranger)),
     "story.ahead": ("The story uses talaba, which a later node introduces.", m(_story_ahead)),
     "story.question": ("A question whose answer is option 5 of 2.", m(_story_bad_answer)),
+    "story.distractor-form": (
+        "A gap with the copula -man; no sentence writes the distractor salom so.",
+        m(_story_unattested_form),
+    ),
+    "story.distractor-pos": (
+        "A noun's gap (talaba) offered an interjection (salom).",
+        m(_story_other_pos),
+    ),
     "scenario.node": ("A scenario opens after a node that does not exist.", m(_scenario_nowhere)),
     "scenario.missing-text": ("A scenario's goal has no English text.", m(_scenario_untranslated)),
     "package.unreviewed-published": (

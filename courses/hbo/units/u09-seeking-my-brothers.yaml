@@ -10,31 +10,39 @@ title:
 cefr: A2
 kcs:
 - id: sense:yisrael
+  pos: PROPN
   gloss:
     en: Israel (Jacob's other name; the people)
   forms:
     hbo-Hebr/tiberian: [יִשְׂרָאֵל]
 - id: sense:yosef
+  pos: PROPN
   gloss:
     en: Joseph
   forms:
     hbo-Hebr/tiberian: [יוֹסֵף]
 - id: sense:hem
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: they (m.)
   forms:
     hbo-Hebr/tiberian: [הֵם]
 - id: sense:raah.graze
+  pos: VERB
   gloss:
     en: to pasture, tend (a flock); (participle) shepherd
   forms:
     hbo-Hebr/tiberian: [רָעָה]
 - id: sense:tson
+  pos: NOUN
   gloss:
     en: flock; sheep and goats
   forms:
     hbo-Hebr/tiberian: [צֹאן]
 - id: sense:shalom
+  pos: NOUN
   gloss:
     en: peace; welfare, well-being
   forms:
@@ -45,31 +53,37 @@ kcs:
   gloss:
     en: 'your; you (said to several people: the suffix -ḵem)'
 - id: sense:shalach
+  pos: VERB
   gloss:
     en: to send
   forms:
     hbo-Hebr/tiberian: [שָׁלַח]
 - id: sense:heshiv
+  pos: VERB
   gloss:
     en: to bring back, return (hiphil of שׁוּב)
   forms:
     hbo-Hebr/tiberian: [הֵשִׁיב]
 - id: sense:bo
+  pos: VERB
   gloss:
     en: to come; to go in, enter
   forms:
     hbo-Hebr/tiberian: [בּוֹא]
 - id: sense:hevron
+  pos: PROPN
   gloss:
     en: Hebron
   forms:
     hbo-Hebr/tiberian: [חֶבְרוֹן]
 - id: sense:emeq
+  pos: NOUN
   gloss:
     en: valley
   forms:
     hbo-Hebr/tiberian: [עֵמֶק]
 - id: sense:shekhem
+  pos: PROPN
   gloss:
     en: Shechem
   forms:
@@ -78,26 +92,31 @@ kcs:
   gloss:
     en: 'toward: the directional -â (שְׁכֶמָה ''to Shechem'', הַבַּיְתָה ''home'')'
 - id: sense:ish
+  pos: NOUN
   gloss:
     en: man; husband; each one
   forms:
     hbo-Hebr/tiberian: [אִישׁ]
 - id: sense:matsa
+  pos: VERB
   gloss:
     en: to find
   forms:
     hbo-Hebr/tiberian: [מָצָא]
 - id: sense:taah
+  pos: VERB
   gloss:
     en: to wander, go astray
   forms:
     hbo-Hebr/tiberian: [תָּעָה]
 - id: sense:shaal
+  pos: VERB
   gloss:
     en: to ask
   forms:
     hbo-Hebr/tiberian: [שָׁאַל]
 - id: sense:biqqesh
+  pos: VERB
   gloss:
     en: to seek, look for (piel)
   forms:
@@ -109,6 +128,9 @@ kcs:
   gloss:
     en: 'you will do: the imperfect (yiqtol), you (to a woman)'
 - id: sense:eifoh
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where?
   forms:
@@ -639,7 +661,7 @@ stories:
       speaker: israel
       ask: complete
       gap: sense:shalach
-      distractors: ['sense:shaal', 'sense:matsa']
+      distractors: ['sense:asah', 'sense:barakh']
       forms:
         hbo-Hebr/tiberian:
           text: הֲלוֹא אַחֶיךָ רֹעִים בִּשְׁכֶם לְכָה וְאֶשְׁלָחֲךָ אֲלֵיהֶם

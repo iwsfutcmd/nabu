@@ -9,72 +9,90 @@ title:
 cefr: A2
 kcs:
 - id: sense:yam
+  pos: NOUN
   gloss:
     en: sea
   forms:
     hbo-Hebr/tiberian: [יָם]
   image: {file: ../images/fish.svg, license: CC0-1.0, provenance: {author: 'llm:claude@39173f79ba6d', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:saar
+  pos: NOUN
   gloss:
     en: storm, tempest
   forms:
     hbo-Hebr/tiberian: [סַעַר]
 - id: sense:hetil
+  pos: VERB
   gloss:
     en: to hurl, throw (hiphil)
   forms:
     hbo-Hebr/tiberian: [הֵטִיל]
 - id: sense:hishev
+  pos: VERB
   gloss:
     en: to think, intend; be about to (piel)
   forms:
     hbo-Hebr/tiberian: [חִשֵּׁב]
 - id: sense:nishbar
+  pos: VERB
   gloss:
     en: to be broken, break up (niphal of שָׁבַר)
   forms:
     hbo-Hebr/tiberian: [נִשְׁבַּר]
 - id: sense:goral
+  pos: NOUN
   gloss:
     en: lot (for casting)
   forms:
     hbo-Hebr/tiberian: [גּוֹרָל]
 - id: sense:hippil
+  pos: VERB
   gloss:
     en: to cast, make fall (hiphil of נָפַל)
   forms:
     hbo-Hebr/tiberian: [הִפִּיל]
 - id: sense:nafal
+  pos: VERB
   gloss:
     en: to fall
   forms:
     hbo-Hebr/tiberian: [נָפַל]
 - id: sense:she
+  pos: SCONJ
   gloss:
     en: 'who, which, that (the short relative, written joined: שֶׁ־)'
   forms:
     hbo-Hebr/tiberian: [שֶׁ]
 - id: sense:melakhah
+  pos: NOUN
   gloss:
     en: work, occupation
   forms:
     hbo-Hebr/tiberian: [מְלָאכָה]
 - id: sense:ayin.whence
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: 'where? (מֵאַיִן: from where?)'
   forms:
     hbo-Hebr/tiberian: [אַיִן]
 - id: sense:ivri
+  pos: NOUN
   gloss:
     en: Hebrew; a Hebrew
   forms:
     hbo-Hebr/tiberian: [עִבְרִי]
 - id: sense:ani
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: I
   forms:
     hbo-Hebr/tiberian: [אֲנִי]
 - id: sense:yabbashah
+  pos: NOUN
   gloss:
     en: dry land
   forms:
@@ -478,8 +496,8 @@ stories:
         en: and there was a great storm on the sea,
   - line:
       ask: complete
-      gap: sense:oniyyah
-      distractors: ['sense:yam', 'sense:ir']
+      gap: sense:nishbar
+      distractors: ['sense:akhal', 'sense:raah']
       forms:
         hbo-Hebr/tiberian:
           text: וְהָאֳנִיָּה חִשְּׁבָה לְהִשָּׁבֵר׃
@@ -562,8 +580,8 @@ stories:
   - line:
       speaker: jonah
       ask: complete
-      gap: sense:yam
-      distractors: ['sense:har', 'sense:sadeh']
+      gap: sense:ivri
+      distractors: ['sense:gamal', 'sense:kad']
       forms:
         hbo-Hebr/tiberian:
           text: עִבְרִי אָנֹכִי וְאֶת־יְהוָה אֱלֹהֵי הַשָּׁמַיִם אֲנִי יָרֵא אֲשֶׁר־עָשָׂה אֶת־הַיָּם וְאֶת־הַיַּבָּשָׁה׃

@@ -66,7 +66,14 @@ export const attemptOf = (exerciseId: string): number => {
 
 const METHOD: Readonly<Record<string, AnswerSubmitted["input"]["method"]>> = { choice: "choice", tiles: "tiles", text: "text", pairs: "pairs", voice: "voice" };
 
-const refOf = (ex: Exercise) => ({ id: ex.id, template: ex.template, item: ex.item, kcs: [...ex.kcs] });
+/** What was presented; a fill-in says what it asked (ADR 0132), so its mistake is asked again as the same question. */
+export const exerciseRefOf = (ex: Exercise) => ({
+  id: ex.id,
+  template: ex.template,
+  item: ex.item,
+  kcs: [...ex.kcs],
+  ...((ex.template === "gap-fill" || ex.template === "story-complete") && ex.asks !== undefined ? { asks: ex.asks } : {}),
+});
 
 /**
  * The learner event for a player event, or undefined for none. `latencyMs` and
@@ -99,13 +106,13 @@ export const learnerEventOf = (
     case "session_started":
       return { ...base, type: "session_started", mode: session.mode, ...node, seed: session.seed, exercises: e.exercises, planner: session.planner };
     case "exercise_presented":
-      return { ...base, type: "exercise_presented", exercise: refOf(e.ex), ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }) };
+      return { ...base, type: "exercise_presented", exercise: exerciseRefOf(e.ex), ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }) };
     case "answer_submitted": {
       const response = e.response;
       return {
         ...base,
         type: "answer_submitted",
-        exercise: refOf(e.ex),
+        exercise: exerciseRefOf(e.ex),
         attempt: attemptOf(e.ex.id),
         input: {
           method: METHOD[TEMPLATES[e.ex.template].modality.input] ?? "choice",
@@ -120,7 +127,7 @@ export const learnerEventOf = (
       };
     }
     case "exercise_skipped":
-      return { ...base, type: "exercise_skipped", exercise: refOf(e.ex), attempt: attemptOf(e.ex.id), reason: e.reason };
+      return { ...base, type: "exercise_skipped", exercise: exerciseRefOf(e.ex), attempt: attemptOf(e.ex.id), reason: e.reason };
     // The claim or the judge's revision behind it is the learner event (ADR 0052, 0113).
     case "answer_revised":
       return undefined;

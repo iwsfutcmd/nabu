@@ -19,6 +19,7 @@ import { allKcs, allSentences, profileOf, type CourseView } from "../lesson/cour
 import { lexiconKey } from "../match/grade.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
+import { formSignature, senseKcOf } from "../lesson/signature.ts";
 import { allStories, courseGlossary, glossAt, glossLine, type Gloss, type StoryGlossary } from "./story.ts";
 
 /** One reading of a word: what it means, and the form the course pins it as. */
@@ -195,6 +196,32 @@ export const writtenMeanings = (course: CourseView, word: TaggedText): readonly 
   // say it again in parts (Lebanese بدك: baddak, baddik, and badd + -ik).
   const whole = meanings.filter((m) => m.glosses.every((g) => g.span !== "part"));
   return distinct(whole.length > 0 ? whole : meanings).slice(0, MAX_READINGS);
+};
+
+/** What a word's form says (ADR 0132): the feedback on a form question shows it beside the right form's. */
+export interface FormMeanings {
+  /** The word's sense: the same for every option of a form question. */
+  readonly sense: KcId | undefined;
+  /** Each KC of its form, in the order the word writes them (its pinned form last), where the course glosses it. */
+  readonly forms: readonly { readonly kc: KcId; readonly meaning: TaggedText }[];
+}
+
+/**
+ * What each KC of a word's form means (ADR 0132): "-dim: I (past)" for bardim, "-di: he, she (past)"
+ * for bardi. The KCs are the word's form signature, as a form question asks it. A bare word has none.
+ */
+export const formMeanings = (course: CourseView, word: TaggedText): FormMeanings => {
+  const token = word.tokens.find(isWord);
+  if (token === undefined) return { sense: undefined, forms: [] };
+  const sense = senseKcOf(token);
+  const own = new Set<KcId>(formSignature(token));
+  const written = [...(token.morphs ?? []).map((m) => m.kc), ...(token.form === undefined ? [] : [token.form])].filter((kc) => own.has(kc));
+  const kcs = kcsOf(course);
+  const forms = [...new Set(written)].flatMap((kc) => {
+    const meaning = kcs.get(kc)?.gloss?.[course.supportKey];
+    return meaning === undefined ? [] : [{ kc, meaning }];
+  });
+  return { sense, forms };
 };
 
 /**

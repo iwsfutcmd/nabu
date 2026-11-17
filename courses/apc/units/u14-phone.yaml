@@ -7,22 +7,22 @@ id: u14-phone
 title: {en: Call me!}
 cefr: A2
 kcs:
-- {id: 'sense:alo', gloss: {en: 'hello? (on the phone)'}, forms: {apc-Arab/standard: [ألو], apc-Latn/arabizi: [alo]}}
-- {id: 'sense:telefon', gloss: {en: phone; phone call}, forms: {apc-Arab/standard: [تلفون], apc-Latn/arabizi: [telefon]}}
-- {id: 'sense:de22', gloss: {en: call (on the phone); ring; knock}, forms: {apc-Arab/standard: [دقّ], apc-Latn/arabizi: [de22]}, notes: {en: 'de22elli: call me (to a man); de22ili (to a woman); de22uli
+- {id: 'sense:alo', pos: INTJ, gloss: {en: 'hello? (on the phone)'}, forms: {apc-Arab/standard: [ألو], apc-Latn/arabizi: [alo]}}
+- {id: 'sense:telefon', pos: NOUN, gloss: {en: phone; phone call}, forms: {apc-Arab/standard: [تلفون], apc-Latn/arabizi: [telefon]}}
+- {id: 'sense:de22', pos: VERB, gloss: {en: call (on the phone); ring; knock}, forms: {apc-Arab/standard: [دقّ], apc-Latn/arabizi: [de22]}, notes: {en: 'de22elli: call me (to a man); de22ili (to a woman); de22uli
       (to several people).'}}
 - {id: 'form:la-1sg', gloss: {en: '-li: to me; for me (on a verb)'}, notes: {en: '2elli: tell me; de22elli: call me; b3atli: send me. Arabic script: لي joined to the verb (قلّي، دقّلي، بعتلي).'}}
-- {id: 'sense:7ada', gloss: {en: someone; anyone; (with ma) no one}, forms: {apc-Arab/standard: [حدا], apc-Latn/arabizi: [7ada]}, notes: {en: 'fi 7ada? Is anyone there?; ma fi 7ada: there''s no one.'}}
+- {id: 'sense:7ada', pos: PRON, features: {PronType: Ind}, gloss: {en: someone; anyone; (with ma) no one}, forms: {apc-Arab/standard: [حدا], apc-Latn/arabizi: [7ada]}, notes: {en: 'fi 7ada? Is anyone there?; ma fi 7ada: there''s no one.'}}
 - {id: 'form:obj-1sg', gloss: {en: '-ni: me (on a verb)'}, notes: {en: 'sme3tni: you heard me; fhemtni: you understood me. Arabic script: ني (سمعتني).'}}
-- {id: 'sense:fehem', gloss: {en: understand}, forms: {apc-Arab/standard: [فهمت], apc-Latn/arabizi: [fhemt]}, notes: {en: 'fhemt: I understood; ma fhemt: I didn''t understand.'}}
+- {id: 'sense:fehem', pos: VERB, gloss: {en: understand}, forms: {apc-Arab/standard: [فهمت], apc-Latn/arabizi: [fhemt]}, notes: {en: 'fhemt: I understood; ma fhemt: I didn''t understand.'}}
 - {id: 'form:obj-2ms', gloss: {en: '-ak: you (on a verb, to a man)'}, notes: {en: 'b7ebbak: I love you; fhemtak: I understood you. Arabic script: ك.'}}
 - {id: 'form:obj-2fs', gloss: {en: '-ik: you (on a verb, to a woman)'}, notes: {en: 'b7ebbik: I love you. Arabic script: the same ك as -ak.'}}
 - {id: 'form:obj-3ms', gloss: {en: '-o: him; it (on a verb)'}, notes: {en: 'shefto: I saw him; ba3rfo: I know him. Arabic script: ه (شفته), also written و (شفتو).'}}
 - {id: 'form:obj-3fs', gloss: {en: '-a: her; it (on a verb)'}, notes: {en: 'shefta: I saw her. Arabic script: ها (شفتها), also written ا (شفتا).'}}
-- {id: 'sense:2al', gloss: {en: say; tell}, forms: {apc-Arab/standard: [قال], apc-Latn/arabizi: [2al]}, notes: {en: 'shu 2al? What did he say? 2elli!: tell me! (to a woman: 2ulili!).'}}
-- {id: 'sense:wa2t', gloss: {en: time}, forms: {apc-Arab/standard: [وقت], apc-Latn/arabizi: [wa2t]}}
-- {id: 'sense:resele', gloss: {en: message; letter}, forms: {apc-Arab/standard: [رسالة], apc-Latn/arabizi: [resele]}, notes: {en: 'Also msg, masaj.'}}
-- {id: 'sense:b3at', gloss: {en: send}, forms: {apc-Arab/standard: [بعت], apc-Latn/arabizi: [b3at]}, notes: {en: 'b3atli!: send me! ba3atli: he sent me.'}}
+- {id: 'sense:2al', pos: VERB, gloss: {en: say; tell}, forms: {apc-Arab/standard: [قال], apc-Latn/arabizi: [2al]}, notes: {en: 'shu 2al? What did he say? 2elli!: tell me! (to a woman: 2ulili!).'}}
+- {id: 'sense:wa2t', pos: NOUN, gloss: {en: time}, forms: {apc-Arab/standard: [وقت], apc-Latn/arabizi: [wa2t]}}
+- {id: 'sense:resele', pos: NOUN, gloss: {en: message; letter}, forms: {apc-Arab/standard: [رسالة], apc-Latn/arabizi: [resele]}, notes: {en: 'Also msg, masaj.'}}
+- {id: 'sense:b3at', pos: VERB, gloss: {en: send}, forms: {apc-Arab/standard: [بعت], apc-Latn/arabizi: [b3at]}, notes: {en: 'b3atli!: send me! ba3atli: he sent me.'}}
 nodes:
 - {id: apc.phone.call, kind: lesson, introduces: ['sense:alo', 'sense:telefon', 'sense:de22', 'form:la-1sg', 'sense:7ada']}
 - {id: apc.phone.me-you, kind: lesson, introduces: ['form:obj-1sg', 'sense:fehem', 'form:obj-2ms', 'form:obj-2fs']}
@@ -723,8 +723,8 @@ stories:
   - line:
       speaker: teta
       ask: complete
-      gap: sense:de22
-      distractors: ['sense:b3at']
+      gap: sense:telefon
+      distractors: ['sense:shams', 'sense:musi2a']
       forms:
         apc-Arab/standard:
           text: مْنيحَة. ما عِنْدَك تِلِفون؟ ما بْتْدِقِّلّي أَبَداً!

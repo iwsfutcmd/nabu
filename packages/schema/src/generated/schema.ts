@@ -71,6 +71,44 @@ export type CreditId = string;
  */
 export type CreditId1 = string;
 /**
+ * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "PartOfSpeech".
+ */
+export type PartOfSpeech =
+  | "ADJ"
+  | "ADP"
+  | "ADV"
+  | "AUX"
+  | "CCONJ"
+  | "DET"
+  | "INTJ"
+  | "NOUN"
+  | "NUM"
+  | "PART"
+  | "PRON"
+  | "PROPN"
+  | "PUNCT"
+  | "SCONJ"
+  | "SYM"
+  | "VERB"
+  | "X";
+/**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "UdFeatures".
+ */
+export type UdFeatures = Readonly<Record<string, string>>;
+/**
+ * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Asks".
+ */
+export type Asks = "word" | "form";
+/**
  * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
  */
 export type CreditId2 = string;
@@ -128,6 +166,31 @@ export type Spdx1 = string;
  */
 export type Cefr = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 /**
+ * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
+ */
+export type PartOfSpeech1 =
+  | "ADJ"
+  | "ADP"
+  | "ADV"
+  | "AUX"
+  | "CCONJ"
+  | "DET"
+  | "INTJ"
+  | "NOUN"
+  | "NUM"
+  | "PART"
+  | "PRON"
+  | "PROPN"
+  | "PUNCT"
+  | "SCONJ"
+  | "SYM"
+  | "VERB"
+  | "X";
+/**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures1 = Readonly<Record<string, string>>;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId2 = string & { readonly __brand: "KcId" };
@@ -139,6 +202,10 @@ export type Slug1 = string;
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId3 = string & { readonly __brand: "KcId" };
+/**
+ * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ */
+export type Asks1 = "word" | "form";
 /**
  * The path node a learner completes before the scenario opens.
  */
@@ -181,6 +248,10 @@ export type Uuid2 = string;
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcRefLocal = string & { readonly __brand: "KcId" };
+/**
+ * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ */
+export type Asks2 = "word" | "form";
 /**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
@@ -415,6 +486,9 @@ export interface NabuSchemaIndex {
   readonly SchemeId: SchemeId;
   readonly SenseId: SenseId1;
   readonly KcId: KcId1;
+  readonly PartOfSpeech: PartOfSpeech;
+  readonly UdFeatures: UdFeatures;
+  readonly Asks: Asks;
   readonly Persons: Persons;
   readonly Facet: Facet;
   readonly PlacementPolicy: PlacementPolicy1;
@@ -1265,6 +1339,8 @@ export interface BundleKc {
   readonly kind: "sense" | "form" | "construction" | "grapheme" | "reading" | "phone" | "tone";
   readonly prerequisites: readonly KcId1[];
   readonly cefr?: string;
+  readonly pos?: PartOfSpeech;
+  readonly features?: UdFeatures;
   readonly gloss?: {
     readonly [k: string]: TaggedText;
   };
@@ -1426,7 +1502,14 @@ export interface BundleStoryLine {
   readonly kcs: readonly KcId1[];
   readonly ask?: "complete" | "arrange";
   readonly gap?: KcId1;
+  readonly asks?: Asks;
   readonly distractors?: readonly KcId1[];
+  /**
+   * complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one word token the course writes in the story's unit or earlier (the distractor's sense in the gap's form, or the gap's word in another form), analysis and readings kept.
+   */
+  readonly options?: readonly {
+    readonly [k: string]: TaggedText;
+  }[];
 }
 /**
  * A roleplay scenario card (Phase 8, §13.4); its texts per support language.
@@ -1751,6 +1834,8 @@ export interface KnowledgeComponentSource {
   readonly id: KcId1;
   readonly prerequisites?: readonly KcId1[];
   readonly cefr?: Cefr;
+  readonly pos?: PartOfSpeech1;
+  readonly features?: UdFeatures1;
   /**
    * Short meaning per support language.
    */
@@ -1979,8 +2064,9 @@ export interface StoryLineSource {
    */
   readonly ask?: "complete" | "arrange";
   readonly gap?: KcId3;
+  readonly asks?: Asks1;
   /**
-   * complete: other KCs offered, shown by their first form in the learner's orthography.
+   * complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.
    *
    * @minItems 1
    */
@@ -2406,6 +2492,7 @@ export interface ExerciseRef {
    */
   readonly item: string;
   readonly kcs: readonly KcRefLocal[];
+  readonly asks?: Asks2;
 }
 /**
  * Shadow-mode log of the performance model (§9.3): the predicted chance of a right answer.

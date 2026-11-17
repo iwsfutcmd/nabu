@@ -9,76 +9,93 @@ title:
 cefr: A2
 kcs:
 - id: sense:shuv
+  pos: VERB
   gloss:
     en: to return, go back, turn back
   forms:
     hbo-Hebr/tiberian: [שׁוּב]
 - id: sense:am
+  pos: NOUN
   gloss:
     en: people, nation
   forms:
     hbo-Hebr/tiberian: [עַם]
 - id: sense:yevemet
+  pos: NOUN
   gloss:
     en: sister-in-law (a brother's widow; a husband's brother's wife)
   forms:
     hbo-Hebr/tiberian: [יְבֵמֶת]
 - id: sense:naomi
+  pos: PROPN
   gloss:
     en: Naomi
   forms:
     hbo-Hebr/tiberian: [נׇעֳמִי]
 - id: sense:rut
+  pos: PROPN
   gloss:
     en: Ruth
   forms:
     hbo-Hebr/tiberian: [רוּת]
 - id: sense:bat
+  pos: NOUN
   gloss:
     en: daughter
   forms:
     hbo-Hebr/tiberian: [בַּת]
 - id: sense:paga
+  pos: VERB
   gloss:
     en: 'to meet; to press, urge (בְּ: someone)'
   forms:
     hbo-Hebr/tiberian: [פָּגַע]
 - id: sense:azav
+  pos: VERB
   gloss:
     en: to leave, abandon, forsake
   forms:
     hbo-Hebr/tiberian: [עָזַב]
 - id: sense:lun
+  pos: VERB
   gloss:
     en: to lodge, spend the night
   forms:
     hbo-Hebr/tiberian: [לוּן]
 - id: sense:mut
+  pos: VERB
   gloss:
     en: to die
   forms:
     hbo-Hebr/tiberian: [מוּת]
 - id: sense:mawet
+  pos: NOUN
   gloss:
     en: death
   forms:
     hbo-Hebr/tiberian: [מָוֶת]
 - id: sense:nikbar
+  pos: VERB
   gloss:
     en: to be buried (niphal of קָבַר)
   forms:
     hbo-Hebr/tiberian: [נִקְבַּר]
 - id: sense:koh
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: thus, so; here
   forms:
     hbo-Hebr/tiberian: [כֹּה]
 - id: sense:hosif
+  pos: VERB
   gloss:
     en: to add; to do again, do more (hiphil of יָסַף)
   forms:
     hbo-Hebr/tiberian: [הוֹסִיף]
 - id: sense:hifrid
+  pos: VERB
   gloss:
     en: to separate, part (hiphil)
   forms:
@@ -526,7 +543,7 @@ stories:
       speaker: naomi
       ask: complete
       gap: sense:shuv
-      distractors: ['sense:halakh', 'sense:lun']
+      distractors: ['sense:nagad', 'sense:shama']
       forms:
         hbo-Hebr/tiberian:
           text: שׁוּבִי אַחֲרֵי יְבִמְתֵּךְ׃
@@ -577,7 +594,7 @@ stories:
       speaker: ruth
       ask: complete
       gap: sense:nikbar
-      distractors: ['sense:lun', 'sense:azav']
+      distractors: ['sense:shaav', 'sense:akhal']
       forms:
         hbo-Hebr/tiberian:
           text: בַּאֲשֶׁר תָּמוּתִי אָמוּת וְשָׁם אֶקָּבֵר׃

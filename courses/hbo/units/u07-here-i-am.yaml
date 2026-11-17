@@ -9,31 +9,39 @@ title:
 cefr: A2
 kcs:
 - id: sense:davar
+  pos: NOUN
   gloss:
     en: word; thing, matter
   forms:
     hbo-Hebr/tiberian: [דָּבָר]
 - id: sense:elleh
+  pos: DET
+  features:
+    PronType: Dem
   gloss:
     en: these
   forms:
     hbo-Hebr/tiberian: [אֵלֶּה]
 - id: sense:ahar
+  pos: ADP
   gloss:
     en: after; behind
   forms:
     hbo-Hebr/tiberian: [אַחַר]
 - id: sense:avraham
+  pos: PROPN
   gloss:
     en: Abraham
   forms:
     hbo-Hebr/tiberian: [אַבְרָהָם]
 - id: sense:nissah
+  pos: VERB
   gloss:
     en: to test, try (piel)
   forms:
     hbo-Hebr/tiberian: [נִסָּה]
 - id: sense:hinneh
+  pos: INTJ
   gloss:
     en: look!, here is …; (with a suffix) here I am
   forms:
@@ -41,6 +49,7 @@ kcs:
   notes:
     en: 'הִנֵּה hinnēh points to something: ''here is'', ''look''. With ''me'': הִנֵּנִי hinnḗnî ''here I am'', the answer to a call.'
 - id: sense:ben
+  pos: NOUN
   gloss:
     en: son; (בֶּן־ + years) aged
   forms:
@@ -48,69 +57,88 @@ kcs:
   notes:
     en: With suffixes בְּנִי bənî 'my son', בִּנְךָ binḵā 'your son'; plural בָּנִים bānîm 'sons, children'.
 - id: sense:laqach
+  pos: VERB
   gloss:
     en: to take
   forms:
     hbo-Hebr/tiberian: [לָקַח]
 - id: sense:na
+  pos: PART
+  features:
+    PartType: Mod
   gloss:
     en: please, now (softens a command or request)
   forms:
     hbo-Hebr/tiberian: [נָא]
 - id: sense:yahid
+  pos: ADJ
   gloss:
     en: only, only one
   forms:
     hbo-Hebr/tiberian: [יָחִיד]
 - id: sense:ahav
+  pos: VERB
   gloss:
     en: to love
   forms:
     hbo-Hebr/tiberian: [אָהַב]
 - id: sense:yitshaq
+  pos: PROPN
   gloss:
     en: Isaac
   forms:
     hbo-Hebr/tiberian: [יִצְחָק]
 - id: sense:har
+  pos: NOUN
   gloss:
     en: mountain; hill country
   forms:
     hbo-Hebr/tiberian: [הַר]
   image: {file: ../images/mountain.svg, license: CC0-1.0, provenance: {author: 'llm:claude@a8e4d984f938', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:sham
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: there
   forms:
     hbo-Hebr/tiberian: [שָׁם]
 - id: sense:olah
+  pos: NOUN
   gloss:
     en: burnt offering
   forms:
     hbo-Hebr/tiberian: [עֹלָה]
 - id: sense:heelah
+  pos: VERB
   gloss:
     en: to offer up; to bring up (hiphil of עָלָה)
   forms:
     hbo-Hebr/tiberian: [הֶעֱלָה]
 - id: sense:moriyyah
+  pos: PROPN
   gloss:
     en: Moriah
   forms:
     hbo-Hebr/tiberian: [מוֹרִיָּה]
 - id: sense:esh
+  pos: NOUN
   gloss:
     en: fire
   forms:
     hbo-Hebr/tiberian: [אֵשׁ]
   image: {file: ../images/fire.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4aeb9b9d9ea0', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:seh
+  pos: NOUN
   gloss:
     en: lamb, kid; one of the flock
   forms:
     hbo-Hebr/tiberian: [שֶׂה]
   image: {file: ../images/sheep.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4c000b664265', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:ayyeh
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where?
   forms:
@@ -119,11 +147,15 @@ kcs:
   gloss:
     en: 'he will do: the imperfect (yiqtol), he or it'
 - id: sense:shnayim
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: 'two (שְׁנֵיהֶם: the two of them)'
   forms:
     hbo-Hebr/tiberian: [שְׁנַיִם]
 - id: sense:yahdav
+  pos: ADV
   gloss:
     en: together
   forms:
@@ -651,8 +683,8 @@ stories:
   - line:
       speaker: god
       ask: complete
-      gap: sense:ahav
-      distractors: ['sense:laqach', 'sense:yada']
+      gap: sense:ben
+      distractors: ['sense:qol', 'sense:erets']
       forms:
         hbo-Hebr/tiberian:
           text: קַח־נָא אֶת־בִּנְךָ אֶת־יְחִידְךָ אֲשֶׁר־אָהַבְתָּ אֶת־יִצְחָק
@@ -760,7 +792,7 @@ stories:
       speaker: abraham
       ask: complete
       gap: sense:seh
-      distractors: ['sense:esh', 'sense:har']
+      distractors: ['sense:qol', 'sense:gan']
       forms:
         hbo-Hebr/tiberian:
           text: אֱלֹהִים יִרְאֶה־לּוֹ הַשֶּׂה לְעֹלָה בְּנִי

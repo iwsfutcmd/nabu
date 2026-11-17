@@ -50,10 +50,13 @@ A three-way choice that one cue reduces to two, or to one, is also easier than i
   takes first person pasts; a bare word takes bare words.
 - **Every option has the answer's part of speech.** KCs get an optional `pos`, a Universal Dependencies
   UPOS tag (NOUN, PROPN, VERB, AUX, ADJ, ADV, ADP, PRON, DET, NUM, PART, CCONJ, SCONJ, INTJ): a standard
-  that already covers every language the project teaches. Classifiers are an open question (below).
-  Where the answer's KC has one, a candidate must have the same. Where it has none, the form signature
-  alone decides, which is enough only for inflected words: bare words of every class match each other.
-  So `pos` is needed most where words are bare (lzh, tok, and the uninflected words of every course).
+  that already covers every language the project teaches. Beside it, optional `features`: the word's
+  lexical features as UD writes them (`NounType: Clf` for a classifier, `PronType: Dem`), resolved
+  below. Where the answer's KC has a `pos`, a candidate must have the same `pos` and the same
+  `features` (none where the answer has none), so a classifier never stands against a plain noun.
+  Where it has none, the form signature alone decides, which is enough only for inflected words: bare
+  words of every class match each other. So `pos` is needed most where words are bare (lzh, tok, and
+  the uninflected words of every course).
 - **Only meaning tells them apart.** In a lesson, a wrong option is never one the translation could
   also mean. Two checks:
   - a candidate whose sentence, with it in the gap, is in the item's accept set (`producible`) is right
@@ -143,12 +146,54 @@ produce the whole word, so crediting sense and form together is honest there.
    become errors.
 5. Visual baselines from the pinned container.
 
-## Open questions
+## Resolved questions
 
-- **yue classifiers and sentence particles.** UPOS has no classifier tag; Universal Dependencies tags
-  Cantonese classifiers NOUN with a feature (`NounType=Clf`). A choice among 本, 隻, 個 asks which word,
-  and a classifier must only stand against classifiers. Proposed: an optional `class` beside `pos` (here
-  `classifier`), matched like `pos` where the answer has one.
-- **Story distractors the course does not attest.** A story may want a wrong option in a form no
-  sentence writes. Proposed: not allowed at first; the author adds a sentence that teaches it, or picks
-  another option. Revisit if many steps cannot be built.
+The project owner decided both open questions on 2026-11-17.
+
+- **yue classifiers and sentence particles: UD features.** Not a `class` of our own: a KC's optional
+  `features` are UD's (feature name to value, UD's spelling). Classifiers are `pos: NOUN` with
+  `NounType: Clf`, as the Cantonese-HK, Chinese-HK and Classical Chinese (Kyoto) treebanks tag them. UD
+  defines no value for sentence-final particles (`PartType` lists Emp, Inf, Int, Mod, Neg, Vbp, "not
+  exhaustive"; the Cantonese treebank marks its final particles PART with no feature). yue's (呀, 啦,
+  喇, 嗎, 呢) take `PartType: Mod`, the modal particle, so they stand only against each other; the
+  possessive 嘅 is PART with `Poss: Yes`. Both are REVIEW. Features match exactly: a candidate has the
+  answer's `pos` and the same features, no more and no fewer.
+- **Story distractors the course does not attest: not allowed.** `story.distractor-form` is a warning
+  until the courses are clean, then an error. The author picks another option, or adds a sentence that
+  teaches the form.
+
+## Implementation (2026-11-17)
+
+- **Schemas.** KCs (course source and bundle) take `pos` (UPOS) and `features` (UD's spelling; YAML must
+  quote `'Yes'`). Story lines take `asks`; a bundled `complete` line carries `options`, its wrong options
+  resolved per orthography (one token each, analysis and readings kept). The logged exercise
+  (`ExerciseRef`) carries `asks`, so the fold can keep the question with a mistake.
+- **The form signature** is `lesson/signature.ts` (`formSignature`, `sameKind`), and its Python twin in
+  compiler/stories.py. A clitic morph (Hebrew ha- and wə-, Lebanese w-) is part of it, so a gap written
+  with the article takes options written with it.
+- **Gap-fill** tries its blanks in order: a mistake's word, as the question it was, and nothing else; then
+  words in focus, then words the node introduces, each with the question of what made it the choice
+  first and the other second; then the rest, from the last word, word first. The first question that can
+  be built is asked. A blank needs a sense of its own: never a word of a phrase KC or a word its sentence
+  repeats, and such words are never offered either. A form question needs the answer to have a form.
+  "The accept set takes it" is graded with the course's lexicon (a typo that is another word is no
+  match); "shares a meaning" compares the glosses' meanings, split at `;`, `,` and `/`, notes left out.
+- **Credit and mistakes.** `askedKcs` follows `asks`; a card planned before it (a session left part-way)
+  has none, and credits sense and form as before. A fill-in's mistake from before ADR 0132 (no `asks`) is
+  closed by an answer to either question about its word (`sameQuestion`).
+- **Stories.** The compiler resolves a `complete` line once every story is compiled: in the course's
+  first orthography (the gap's case first), then from the same sentence or line in the others. A bundle
+  without `options` (from before) still shows the distractors' first forms.
+- **Feedback.** A wrong form shows each form with its form KCs' glosses (`formMeanings`), the right one
+  first, under "What each form says:"; a wrong word shows the meanings as before.
+- **Courses.** Every sense KC's `pos` and `features` were drafted by a model (REVIEW): about 3,000.
+  chg's live in its generator (`pos.py` in the library's nabu/notes/chg/generator). All 200 story steps
+  were redone and resolve; [courses/choice-doubts.md](../../courses/choice-doubts.md) lists the
+  weakest. Both diagnostics are errors.
+- **Calibration.** Every simulated course stays within ±5pp of 85% (80.8% to 88.9%); CALIBRATION_WEIGHT
+  is unchanged. The planner walks diverge from the drafts' first lessons on, as the learners' histories
+  do: yue's walk with scored speech now plans `speak` but no `listen-speak` (fa's has both).
+- **Not modelled.** Spanish nouns and adjectives have no form KCs, so their gender and number are not
+  in the signature: a lesson's word question can offer a noun of another gender or number. Story options
+  were chosen to agree.
+

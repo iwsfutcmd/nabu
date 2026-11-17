@@ -8,17 +8,20 @@ title:
 cefr: A1
 kcs:
 - id: sense:or
+  pos: NOUN
   gloss:
     en: light
   forms:
     hbo-Hebr/tiberian: [אוֹר]
   image: {file: ../images/sun.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bc6746e0390b', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:hoshekh
+  pos: NOUN
   gloss:
     en: darkness
   forms:
     hbo-Hebr/tiberian: [חֹשֶׁךְ]
 - id: sense:we
+  pos: CCONJ
   gloss:
     en: and (written joined to the next word)
   forms:
@@ -26,11 +29,13 @@ kcs:
   notes:
     en: 'וְ wə- is written on the word it joins: וְחֹשֶׁךְ ''and darkness''. Before a stressed first syllable it is often וָ wā- (יוֹם וָלַיְלָה), before b, m, p and a shewa וּ û-.'
 - id: sense:yom
+  pos: NOUN
   gloss:
     en: day; daytime
   forms:
     hbo-Hebr/tiberian: [יוֹם]
 - id: sense:layla
+  pos: NOUN
   gloss:
     en: night
   forms:
@@ -39,6 +44,7 @@ kcs:
   notes:
     en: 'At a pause in the verse it is לָיְלָה lā́ylâ. The stress is on the first syllable: láylâ.'
 - id: sense:ha
+  pos: DET
   gloss:
     en: the (written joined to the next word)
   forms:
@@ -46,6 +52,7 @@ kcs:
   notes:
     en: 'The article הַ ha- doubles the next letter (a dagesh): הַיּוֹם hayyôm ''the day''. Before א ע ר, which do not double, it is הָ hā-: הָאוֹר.'
 - id: sense:tov
+  pos: ADJ
   gloss:
     en: good; well
   forms:
@@ -55,17 +62,20 @@ kcs:
   gloss:
     en: 'a noun sentence: no verb ''to be'' (הָאוֹר טוֹב ''the light is good'')'
 - id: sense:erev
+  pos: NOUN
   gloss:
     en: evening
   forms:
     hbo-Hebr/tiberian: [עֶרֶב]
 - id: sense:boqer
+  pos: NOUN
   gloss:
     en: morning
   forms:
     hbo-Hebr/tiberian: [בֹּקֶר]
   image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:elohim
+  pos: NOUN
   gloss:
     en: God; gods
   forms:
@@ -73,6 +83,7 @@ kcs:
   notes:
     en: 'Plural in form (-îm), but as the name of Israel''s God it takes singular verbs: וַיֹּאמֶר אֱלֹהִים ''and God said''.'
 - id: sense:amar
+  pos: VERB
   gloss:
     en: to say
   forms:
@@ -81,6 +92,7 @@ kcs:
   gloss:
     en: 'and he did: the narrative past (wayyiqtol), he or it'
 - id: sense:hayah
+  pos: VERB
   gloss:
     en: to be; to become, happen
   forms:
@@ -89,11 +101,13 @@ kcs:
   gloss:
     en: 'let him (it) do: the jussive; with אַל, ''do not …!'''
 - id: sense:raah
+  pos: VERB
   gloss:
     en: to see
   forms:
     hbo-Hebr/tiberian: [רָאָה]
 - id: sense:et
+  pos: ADP
   gloss:
     en: the mark of a definite direct object (not translated)
   forms:
@@ -101,11 +115,13 @@ kcs:
   notes:
     en: 'אֵת ʾēṯ, joined by maqaf אֶת־ ʾeṯ-, stands before a definite object: וַיַּרְא אֶת־הָאוֹר ''he saw the light''.'
 - id: sense:ki
+  pos: SCONJ
   gloss:
     en: that; because, for
   forms:
     hbo-Hebr/tiberian: [כִּי]
 - id: sense:qara
+  pos: VERB
   gloss:
     en: 'to call; to name (call X Y: קָרָא לְX Y)'
   forms:
@@ -114,6 +130,7 @@ kcs:
   gloss:
     en: 'he did: the perfect (qatal), he or it'
 - id: sense:le
+  pos: ADP
   gloss:
     en: to, for (written joined to the next word)
   forms:
@@ -121,16 +138,21 @@ kcs:
   notes:
     en: 'לְ lə- is written on its noun; with the article it takes the article''s vowel: לָאוֹר lāʾôr ''to the light''.'
 - id: sense:ehad
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: one
   forms:
     hbo-Hebr/tiberian: [אֶחָד]
 - id: sense:beyn
+  pos: ADP
   gloss:
     en: 'between (בֵּין X וּבֵין Y: between X and Y)'
   forms:
     hbo-Hebr/tiberian: [בֵּין]
 - id: sense:badal
+  pos: VERB
   gloss:
     en: to separate, divide (hiphil)
   forms:
@@ -588,7 +610,7 @@ stories:
   - line:
       ask: complete
       gap: sense:hoshekh
-      distractors: ['sense:boqer', 'sense:erev']
+      distractors: ['sense:yom', 'sense:boqer']
       forms:
         hbo-Hebr/tiberian:
           text: וַיַּבְדֵּל אֱלֹהִים בֵּין הָאוֹר וּבֵין הַחֹשֶׁךְ׃
@@ -614,7 +636,7 @@ stories:
   - line:
       ask: complete
       gap: sense:layla
-      distractors: ['sense:yom', 'sense:erev']
+      distractors: ['sense:yom', 'sense:or']
       forms:
         hbo-Hebr/tiberian:
           text: וְלַחֹשֶׁךְ קָרָא לָיְלָה

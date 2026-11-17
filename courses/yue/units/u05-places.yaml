@@ -4,33 +4,33 @@ id: u05-places
 title: {en: 'Where is it?'}
 cefr: A1
 kcs:
-- {id: 'sense:邊度', gloss: {en: where}, forms: {yue-Hant-HK/standard: [邊度], yue-Latn/jyutping: [bin1 dou6]}}
-- {id: 'sense:喺', gloss: {en: 'to be at, to be in; at, in'}, forms: {yue-Hant-HK/standard: [喺], yue-Latn/jyutping: [hai2]}, notes: {en: 喺 hai2 (be at) is a different word from 係 hai6 (be). 我喺屋企 'I'm at home'; 我喺公司做嘢 'I work at an office'.}}
-- {id: 'sense:屋企', gloss: {en: home}, forms: {yue-Hant-HK/standard: [屋企], yue-Latn/jyutping: [uk1 kei2]}}
-- {id: 'sense:呢度', gloss: {en: here}, forms: {yue-Hant-HK/standard: [呢度], yue-Latn/jyutping: [ni1 dou6]}, notes: {en: Read ni1 dou6; some speakers say nei1 dou6.}}
-- {id: 'sense:嗰度', gloss: {en: there}, forms: {yue-Hant-HK/standard: [嗰度], yue-Latn/jyutping: [go2 dou6]}}
-- {id: 'sense:嚟', gloss: {en: to come}, forms: {yue-Hant-HK/standard: [嚟], yue-Latn/jyutping: [lai4]}}
-- {id: 'sense:返工', gloss: {en: to go to work}, forms: {yue-Hant-HK/standard: [返工], yue-Latn/jyutping: [faan1 gung1]}}
-- {id: 'sense:公司', gloss: {en: company; office}, forms: {yue-Hant-HK/standard: [公司], yue-Latn/jyutping: [gung1 si1]}}
-- {id: 'sense:學校', gloss: {en: school}, forms: {yue-Hant-HK/standard: [學校], yue-Latn/jyutping: [hok6 haau6]}}
-- {id: 'sense:返學', gloss: {en: to go to school}, forms: {yue-Hant-HK/standard: [返學], yue-Latn/jyutping: [faan1 hok6]}}
-- {id: 'sense:做嘢', gloss: {en: to work}, forms: {yue-Hant-HK/standard: [做嘢], yue-Latn/jyutping: [zou6 je5]}, notes: {en: Literally 'do things'.}}
-- {id: 'sense:醫院', gloss: {en: hospital}, forms: {yue-Hant-HK/standard: [醫院], yue-Latn/jyutping: [ji1 jyun2]}}
-- {id: 'sense:洗手間', gloss: {en: toilet; bathroom}, forms: {yue-Hant-HK/standard: [洗手間], yue-Latn/jyutping: [sai2 sau2 gaan1]}}
-- {id: 'sense:銀行', gloss: {en: bank}, forms: {yue-Hant-HK/standard: [銀行], yue-Latn/jyutping: [ngan4 hong4]}}
-- {id: 'sense:超市', gloss: {en: supermarket}, forms: {yue-Hant-HK/standard: [超市], yue-Latn/jyutping: [ciu1 si5]}}
-- {id: 'sense:餐廳', gloss: {en: restaurant}, forms: {yue-Hant-HK/standard: [餐廳], yue-Latn/jyutping: [caan1 teng1]}}
-- {id: 'sense:附近', gloss: {en: nearby; near}, forms: {yue-Hant-HK/standard: [附近], yue-Latn/jyutping: [fu6 gan6]}, notes: {en: 學校附近 'near the school'.}}
-- {id: 'sense:對面', gloss: {en: 'opposite, across from'}, forms: {yue-Hant-HK/standard: [對面], yue-Latn/jyutping: [deoi3 min6]}, notes: {en: 'Comes after the place: 銀行對面 ''opposite the bank''.'}}
-- {id: 'sense:後面', gloss: {en: behind; at the back}, forms: {yue-Hant-HK/standard: [後面], yue-Latn/jyutping: [hau6 min6]}}
-- {id: 'sense:前面', gloss: {en: in front (of); ahead}, forms: {yue-Hant-HK/standard: [前面], yue-Latn/jyutping: [cin4 min6]}}
-- {id: 'sense:樓上', gloss: {en: upstairs}, forms: {yue-Hant-HK/standard: [樓上], yue-Latn/jyutping: [lau4 soeng6]}}
-- {id: 'sense:樓下', gloss: {en: downstairs}, forms: {yue-Hant-HK/standard: [樓下], yue-Latn/jyutping: [lau4 haa6]}}
-- {id: 'sense:入面', gloss: {en: inside}, forms: {yue-Hant-HK/standard: [入面], yue-Latn/jyutping: [jap6 min6]}}
-- {id: 'sense:住', gloss: {en: to live (somewhere)}, forms: {yue-Hant-HK/standard: [住], yue-Latn/jyutping: [zyu6]}, notes: {en: '住喺 ''to live in'': 我住喺香港.'}}
-- {id: 'sense:香港', gloss: {en: Hong Kong}, forms: {yue-Hant-HK/standard: [香港], yue-Latn/jyutping: [hoeng1 gong2]}}
-- {id: 'sense:中環', gloss: {en: Central (a district of Hong Kong)}, forms: {yue-Hant-HK/standard: [中環], yue-Latn/jyutping: [zung1 waan4]}}
-- {id: 'sense:遠', gloss: {en: far}, forms: {yue-Hant-HK/standard: [遠], yue-Latn/jyutping: [jyun5]}}
+- {id: 'sense:邊度', pos: PRON, features: {PronType: Int}, gloss: {en: where}, forms: {yue-Hant-HK/standard: [邊度], yue-Latn/jyutping: [bin1 dou6]}}
+- {id: 'sense:喺', pos: ADP, gloss: {en: 'to be at, to be in; at, in'}, forms: {yue-Hant-HK/standard: [喺], yue-Latn/jyutping: [hai2]}, notes: {en: 喺 hai2 (be at) is a different word from 係 hai6 (be). 我喺屋企 'I'm at home'; 我喺公司做嘢 'I work at an office'.}}
+- {id: 'sense:屋企', pos: NOUN, gloss: {en: home}, forms: {yue-Hant-HK/standard: [屋企], yue-Latn/jyutping: [uk1 kei2]}}
+- {id: 'sense:呢度', pos: PRON, features: {PronType: Dem}, gloss: {en: here}, forms: {yue-Hant-HK/standard: [呢度], yue-Latn/jyutping: [ni1 dou6]}, notes: {en: Read ni1 dou6; some speakers say nei1 dou6.}}
+- {id: 'sense:嗰度', pos: PRON, features: {PronType: Dem}, gloss: {en: there}, forms: {yue-Hant-HK/standard: [嗰度], yue-Latn/jyutping: [go2 dou6]}}
+- {id: 'sense:嚟', pos: VERB, gloss: {en: to come}, forms: {yue-Hant-HK/standard: [嚟], yue-Latn/jyutping: [lai4]}}
+- {id: 'sense:返工', pos: VERB, gloss: {en: to go to work}, forms: {yue-Hant-HK/standard: [返工], yue-Latn/jyutping: [faan1 gung1]}}
+- {id: 'sense:公司', pos: NOUN, gloss: {en: company; office}, forms: {yue-Hant-HK/standard: [公司], yue-Latn/jyutping: [gung1 si1]}}
+- {id: 'sense:學校', pos: NOUN, gloss: {en: school}, forms: {yue-Hant-HK/standard: [學校], yue-Latn/jyutping: [hok6 haau6]}}
+- {id: 'sense:返學', pos: VERB, gloss: {en: to go to school}, forms: {yue-Hant-HK/standard: [返學], yue-Latn/jyutping: [faan1 hok6]}}
+- {id: 'sense:做嘢', pos: VERB, gloss: {en: to work}, forms: {yue-Hant-HK/standard: [做嘢], yue-Latn/jyutping: [zou6 je5]}, notes: {en: Literally 'do things'.}}
+- {id: 'sense:醫院', pos: NOUN, gloss: {en: hospital}, forms: {yue-Hant-HK/standard: [醫院], yue-Latn/jyutping: [ji1 jyun2]}}
+- {id: 'sense:洗手間', pos: NOUN, gloss: {en: toilet; bathroom}, forms: {yue-Hant-HK/standard: [洗手間], yue-Latn/jyutping: [sai2 sau2 gaan1]}}
+- {id: 'sense:銀行', pos: NOUN, gloss: {en: bank}, forms: {yue-Hant-HK/standard: [銀行], yue-Latn/jyutping: [ngan4 hong4]}}
+- {id: 'sense:超市', pos: NOUN, gloss: {en: supermarket}, forms: {yue-Hant-HK/standard: [超市], yue-Latn/jyutping: [ciu1 si5]}}
+- {id: 'sense:餐廳', pos: NOUN, gloss: {en: restaurant}, forms: {yue-Hant-HK/standard: [餐廳], yue-Latn/jyutping: [caan1 teng1]}}
+- {id: 'sense:附近', pos: NOUN, gloss: {en: nearby; near}, forms: {yue-Hant-HK/standard: [附近], yue-Latn/jyutping: [fu6 gan6]}, notes: {en: 學校附近 'near the school'.}}
+- {id: 'sense:對面', pos: NOUN, gloss: {en: 'opposite, across from'}, forms: {yue-Hant-HK/standard: [對面], yue-Latn/jyutping: [deoi3 min6]}, notes: {en: 'Comes after the place: 銀行對面 ''opposite the bank''.'}}
+- {id: 'sense:後面', pos: NOUN, gloss: {en: behind; at the back}, forms: {yue-Hant-HK/standard: [後面], yue-Latn/jyutping: [hau6 min6]}}
+- {id: 'sense:前面', pos: NOUN, gloss: {en: in front (of); ahead}, forms: {yue-Hant-HK/standard: [前面], yue-Latn/jyutping: [cin4 min6]}}
+- {id: 'sense:樓上', pos: NOUN, gloss: {en: upstairs}, forms: {yue-Hant-HK/standard: [樓上], yue-Latn/jyutping: [lau4 soeng6]}}
+- {id: 'sense:樓下', pos: NOUN, gloss: {en: downstairs}, forms: {yue-Hant-HK/standard: [樓下], yue-Latn/jyutping: [lau4 haa6]}}
+- {id: 'sense:入面', pos: NOUN, gloss: {en: inside}, forms: {yue-Hant-HK/standard: [入面], yue-Latn/jyutping: [jap6 min6]}}
+- {id: 'sense:住', pos: VERB, gloss: {en: to live (somewhere)}, forms: {yue-Hant-HK/standard: [住], yue-Latn/jyutping: [zyu6]}, notes: {en: '住喺 ''to live in'': 我住喺香港.'}}
+- {id: 'sense:香港', pos: PROPN, gloss: {en: Hong Kong}, forms: {yue-Hant-HK/standard: [香港], yue-Latn/jyutping: [hoeng1 gong2]}}
+- {id: 'sense:中環', pos: PROPN, gloss: {en: Central (a district of Hong Kong)}, forms: {yue-Hant-HK/standard: [中環], yue-Latn/jyutping: [zung1 waan4]}}
+- {id: 'sense:遠', pos: ADJ, gloss: {en: far}, forms: {yue-Hant-HK/standard: [遠], yue-Latn/jyutping: [jyun5]}}
 nodes:
 - {id: yue.where, kind: lesson, introduces: ['sense:邊度', 'sense:喺', 'sense:屋企', 'sense:呢度', 'sense:嗰度']}
 - {id: yue.come-go, kind: lesson, introduces: ['sense:嚟', 'sense:返工', 'sense:公司', 'sense:學校', 'sense:返學', 'sense:做嘢']}
@@ -708,7 +708,7 @@ stories:
       speaker: gaa-ming
       ask: complete
       gap: sense:醫院
-      distractors: ['sense:銀行', 'sense:學校']
+      distractors: ['sense:銀行', 'sense:超市']
       forms:
         yue-Hant-HK/standard:
           text: 我喺醫院做嘢，我係醫生。

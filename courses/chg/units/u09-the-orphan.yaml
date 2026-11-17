@@ -10,6 +10,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:er
+  pos: AUX
   gloss:
     en: 'to be (in the past: erdi "was")'
   forms:
@@ -22,6 +23,10 @@ kcs:
   notes:
     en: 'The old verb "to be" lives on in the past: erdim "I was", erdi "he, she, it was, there was"; bar erdi "there was"; emäs erdi "was not". Also written idi.'
 - id: sense:oz
+  pos: PRON
+  features:
+    PronType: Prs
+    Reflex: 'Yes'
   gloss:
     en: self; own
   forms:
@@ -34,6 +39,7 @@ kcs:
   notes:
     en: öz öyüm "my own house"; özüm "I myself"; özimiz aytduq "we told it ourselves".
 - id: sense:tap
+  pos: VERB
   gloss:
     en: to find
   forms:
@@ -44,6 +50,9 @@ kcs:
   readings:
     schluessel: tap
 - id: sense:hech
+  pos: DET
+  features:
+    PronType: Neg
   gloss:
     en: no, not any; ever
   forms:
@@ -56,6 +65,7 @@ kcs:
   notes:
     en: 'With a negative verb: heč kiši tapmaduq "we found no one".'
 - id: sense:munasib
+  pos: ADJ
   gloss:
     en: fitting, suitable
   forms:
@@ -66,6 +76,9 @@ kcs:
   readings:
     schluessel: munāsib
 - id: sense:har
+  pos: DET
+  features:
+    PronType: Tot
   gloss:
     en: every, each
   forms:
@@ -78,6 +91,9 @@ kcs:
   notes:
     en: här čand "however much, however many times".
 - id: sense:chand
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: how many; some (Persian)
   forms:
@@ -88,6 +104,7 @@ kcs:
   readings:
     schluessel: čand
 - id: sense:fikir
+  pos: NOUN
   gloss:
     en: thought; idea
   forms:
@@ -100,6 +117,7 @@ kcs:
   notes:
     en: fikir qil- "to think, consider".
 - id: sense:zurur
+  pos: ADJ
   gloss:
     en: necessary, urgent
   forms:
@@ -110,6 +128,7 @@ kcs:
   readings:
     schluessel: żurūr
 - id: sense:sabab
+  pos: NOUN
   gloss:
     en: reason, cause
   forms:
@@ -122,6 +141,7 @@ kcs:
   notes:
     en: ul sababdin "for that reason".
 - id: sense:mithl
+  pos: NOUN
   gloss:
     en: proverb, saying; likeness
   forms:
@@ -132,6 +152,7 @@ kcs:
   readings:
     schluessel: mis̱l
 - id: sense:turur
+  pos: AUX
   gloss:
     en: is, are (an older form of -dur)
   forms:
@@ -144,6 +165,7 @@ kcs:
   notes:
     en: 'turur, the aorist of tur- "to stand", stands where later texts have -dur: mis̱li turur "there is a proverb".'
 - id: sense:oksuz
+  pos: NOUN
   gloss:
     en: orphan
   forms:
@@ -154,6 +176,7 @@ kcs:
   readings:
     schluessel: öksüz
 - id: sense:kindik
+  pos: NOUN
   gloss:
     en: navel; navel cord
   forms:
@@ -164,6 +187,7 @@ kcs:
   readings:
     schluessel: kindik
 - id: sense:kes
+  pos: VERB
   gloss:
     en: to cut
   forms:
@@ -174,6 +198,7 @@ kcs:
   readings:
     schluessel: kes
 - id: sense:keng
+  pos: ADJ
   gloss:
     en: wide, broad
   forms:
@@ -184,6 +209,7 @@ kcs:
   readings:
     schluessel: keŋ
 - id: sense:yuz.face
+  pos: NOUN
   gloss:
     en: face; surface
   forms:
@@ -196,6 +222,7 @@ kcs:
   notes:
     en: yer yüzi "the face of the earth". Spelled as yüz "hundred".
 - id: sense:ishit
+  pos: VERB
   gloss:
     en: to hear
   forms:
@@ -206,6 +233,7 @@ kcs:
   readings:
     schluessel: išit
 - id: sense:ajab
+  pos: NOUN
   gloss:
     en: wonder; strange, wonderful
   forms:
@@ -218,6 +246,7 @@ kcs:
   notes:
     en: ʿajab ermäs "it is no wonder".
 - id: sense:taqi
+  pos: CCONJ
   gloss:
     en: and; also; again
   forms:
@@ -230,6 +259,7 @@ kcs:
   notes:
     en: 'Abu ''l-Ghazi''s "and": taqi toqquz bāb qilduq "and we made nine chapters".'
 - id: sense:shajara
+  pos: NOUN
   gloss:
     en: tree; family tree, genealogy
   forms:
@@ -240,6 +270,7 @@ kcs:
   readings:
     schluessel: šajara
 - id: sense:qoy.put
+  pos: VERB
   gloss:
     en: to put, place; to give (a name)
   forms:
@@ -810,9 +841,7 @@ stories:
   - line:
       ask: complete
       gap: sense:oz
-      distractors:
-      - sense:nan
-      - sense:tagh
+      asks: form
       forms:
         chg-Arab/standard:
           text: "اول سبب\u200cدین اوزیمز ایتدوق."

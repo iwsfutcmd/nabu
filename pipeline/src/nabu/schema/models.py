@@ -482,6 +482,61 @@ type KcId = Annotated[
 ]
 
 
+type PartOfSpeech = Annotated[
+    Literal[
+        "ADJ",
+        "ADP",
+        "ADV",
+        "AUX",
+        "CCONJ",
+        "DET",
+        "INTJ",
+        "NOUN",
+        "NUM",
+        "PART",
+        "PRON",
+        "PROPN",
+        "PUNCT",
+        "SCONJ",
+        "SYM",
+        "VERB",
+        "X",
+    ],
+    Field(
+        description="A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.",
+        title="PartOfSpeech",
+    ),
+]
+
+
+type UdFeaturesAdditionalProperty = Annotated[
+    str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*(,[A-Z0-9][A-Za-z0-9]*)*$")
+]
+
+
+type UdFeatures = Annotated[
+    dict[
+        Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*(\[[a-z0-9]+\])?$")],
+        UdFeaturesAdditionalProperty,
+    ],
+    Field(
+        description="A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.",
+        examples=[{"NounType": "Clf"}, {"PronType": "Dem"}],
+        min_length=1,
+        title="UdFeatures",
+    ),
+]
+
+
+type Asks = Annotated[
+    Literal["word", "form"],
+    Field(
+        description="What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).",
+        title="Asks",
+    ),
+]
+
+
 class Persons(BaseModel):
     """
     Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).
@@ -2743,6 +2798,18 @@ class KnowledgeComponentSource(BaseModel):
     id: KcId
     prerequisites: list[KcId] | None = None
     cefr: Cefr | None = None
+    pos: Annotated[
+        PartOfSpeech | None,
+        Field(
+            description="The word's part of speech, a UD UPOS tag (ADR 0132): a word question offers only words of the answer's part of speech and features. Sense KCs only."
+        ),
+    ] = None
+    features: Annotated[
+        UdFeatures | None,
+        Field(
+            description="The word's lexical features, as UD spells them (ADR 0132): NounType Clf (a classifier), PronType Dem, PartType Mod (a sentence-final particle). Matched exactly where the answer has a pos. Needs pos."
+        ),
+    ] = None
     gloss: Annotated[
         dict[str, GlossAdditionalProperty] | None,
         Field(description="Short meaning per support language."),
@@ -2930,6 +2997,12 @@ class ExerciseRef(BaseModel):
         str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
     ]
     kcs: list[KcRefLocal]
+    asks: Annotated[
+        Asks | None,
+        Field(
+            description="A fill-in (gap-fill, story-complete): whether it asked which word or which form (ADR 0132). A mistake is asked again as the same question. Absent on events logged before it."
+        ),
+    ] = None
 
 
 class ExercisePresented(BaseModel):
@@ -3755,10 +3828,16 @@ class StoryLineSource(BaseModel):
             description="complete: the KC of the missing word (exactly one word token of the line has it)."
         ),
     ] = None
+    asks: Annotated[
+        Asks | None,
+        Field(
+            description="complete: what the question asks (ADR 0132). word (the default): which word fits, every option in the gap's form, so only the line's sense rules them out. form: which form of the gap's own word fits, so only grammar does."
+        ),
+    ] = None
     distractors: Annotated[
         list[KcId] | None,
         Field(
-            description="complete: other KCs offered, shown by their first form in the learner's orthography.",
+            description="complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.",
             min_length=1,
         ),
     ] = None
@@ -3930,7 +4009,14 @@ class BundleStoryLine(BaseModel):
     kcs: list[KcId]
     ask: Literal["complete", "arrange"] | None = None
     gap: KcId | None = None
+    asks: Asks | None = None
     distractors: list[KcId] | None = None
+    options: Annotated[
+        list[dict[str, TaggedText]] | None,
+        Field(
+            description="complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one word token the course writes in the story's unit or earlier (the distractor's sense in the gap's form, or the gap's word in another form), analysis and readings kept."
+        ),
+    ] = None
 
 
 class BundleKc(BaseModel):
@@ -3942,6 +4028,8 @@ class BundleKc(BaseModel):
     kind: Literal["sense", "form", "construction", "grapheme", "reading", "phone", "tone"]
     prerequisites: list[KcId]
     cefr: str | None = None
+    pos: PartOfSpeech | None = None
+    features: UdFeatures | None = None
     gloss: dict[str, TaggedText] | None = None
     forms: dict[str, list[TaggedText]] | None = None
     image: Annotated[

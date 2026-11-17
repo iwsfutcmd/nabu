@@ -9,31 +9,37 @@ title:
 cefr: A2
 kcs:
 - id: sense:malakh
+  pos: NOUN
   gloss:
     en: messenger; angel
   forms:
     hbo-Hebr/tiberian: [מַלְאָךְ]
 - id: sense:nirah
+  pos: VERB
   gloss:
     en: to appear, be seen (niphal of רָאָה)
   forms:
     hbo-Hebr/tiberian: [נִרְאָה]
 - id: sense:seneh
+  pos: NOUN
   gloss:
     en: bush, thornbush
   forms:
     hbo-Hebr/tiberian: [סְנֶה]
 - id: sense:labbah
+  pos: NOUN
   gloss:
     en: flame
   forms:
     hbo-Hebr/tiberian: [לַבָּה]
 - id: sense:baar
+  pos: VERB
   gloss:
     en: to burn
   forms:
     hbo-Hebr/tiberian: [בָּעַר]
 - id: sense:eyn
+  pos: VERB
   gloss:
     en: there is not; is not (אֵין, with suffixes אֵינֶנּוּ 'he is not')
   forms:
@@ -42,56 +48,75 @@ kcs:
   gloss:
     en: 'passive participle: done, -ed (בָּרוּךְ ''blessed''; אֻכָּל ''consumed'' is an older kind)'
 - id: sense:moshe
+  pos: PROPN
   gloss:
     en: Moses
   forms:
     hbo-Hebr/tiberian: [מֹשֶׁה]
 - id: sense:sur
+  pos: VERB
   gloss:
     en: to turn aside
   forms:
     hbo-Hebr/tiberian: [סוּר]
 - id: sense:marah
+  pos: NOUN
   gloss:
     en: sight, appearance; vision
   forms:
     hbo-Hebr/tiberian: [מַרְאֶה]
 - id: sense:zeh
+  pos: DET
+  features:
+    PronType: Dem
   gloss:
     en: this (m.)
   forms:
     hbo-Hebr/tiberian: [זֶה]
 - id: sense:maddua
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: why?
   forms:
     hbo-Hebr/tiberian: [מַדּוּעַ]
 - id: sense:al.neg
+  pos: PART
+  features:
+    Polarity: Neg
   gloss:
     en: 'do not (with the jussive: אַל־תִּירָא ''do not fear'')'
   forms:
     hbo-Hebr/tiberian: [אַל]
 - id: sense:qarav
+  pos: VERB
   gloss:
     en: to come near, approach
   forms:
     hbo-Hebr/tiberian: [קָרַב]
 - id: sense:halom
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: here, to this place
   forms:
     hbo-Hebr/tiberian: [הֲלֹם]
 - id: sense:nashal
+  pos: VERB
   gloss:
     en: to take off, slip off (sandals)
   forms:
     hbo-Hebr/tiberian: [נָשַׁל]
 - id: sense:naal
+  pos: NOUN
   gloss:
     en: sandal
   forms:
     hbo-Hebr/tiberian: [נַעַל]
 - id: sense:regel
+  pos: NOUN
   gloss:
     en: foot
   forms:
@@ -100,31 +125,37 @@ kcs:
   gloss:
     en: 'dual (-áyim): two of a pair (רַגְלַיִם ''feet'')'
 - id: sense:maqom
+  pos: NOUN
   gloss:
     en: place
   forms:
     hbo-Hebr/tiberian: [מָקוֹם]
 - id: sense:amad
+  pos: VERB
   gloss:
     en: to stand
   forms:
     hbo-Hebr/tiberian: [עָמַד]
 - id: sense:qodesh
+  pos: NOUN
   gloss:
     en: holiness; holy thing (אַדְמַת־קֹדֶשׁ 'holy ground')
   forms:
     hbo-Hebr/tiberian: [קֹדֶשׁ]
 - id: sense:yaaqov
+  pos: PROPN
   gloss:
     en: Jacob
   forms:
     hbo-Hebr/tiberian: [יַעֲקֹב]
 - id: sense:histir
+  pos: VERB
   gloss:
     en: to hide (hiphil)
   forms:
     hbo-Hebr/tiberian: [הִסְתִּיר]
 - id: sense:hibbit
+  pos: VERB
   gloss:
     en: to look (hiphil)
   forms:
@@ -630,7 +661,7 @@ stories:
   - line:
       ask: complete
       gap: sense:baar
-      distractors: ['sense:matsa', 'sense:shamar']
+      distractors: ['sense:shamar', 'sense:raah.graze']
       forms:
         hbo-Hebr/tiberian:
           text: וַיַּרְא וְהִנֵּה הַסְּנֶה בֹּעֵר בָּאֵשׁ וְהַסְּנֶה אֵינֶנּוּ אֻכָּל׃
@@ -720,7 +751,7 @@ stories:
       speaker: god
       ask: complete
       gap: sense:maqom
-      distractors: ['sense:bayit', 'sense:har']
+      distractors: ['sense:qol', 'sense:hoshekh']
       forms:
         hbo-Hebr/tiberian:
           text: אַל־תִּקְרַב הֲלֹם שַׁל־נְעָלֶיךָ מֵעַל רַגְלֶיךָ כִּי הַמָּקוֹם אֲשֶׁר אַתָּה עוֹמֵד עָלָיו אַדְמַת־קֹדֶשׁ הוּא׃

@@ -10,6 +10,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:ikan
+  pos: AUX
   gloss:
     en: it turns out; (they) were, it seems
   forms:
@@ -22,6 +23,7 @@ kcs:
   notes:
     en: 'ikän says what one has found out: musulmān ikändurlar "they were Muslims, it turned out".'
 - id: sense:yunan
+  pos: PROPN
   gloss:
     en: Greece; the Greeks
   forms:
@@ -32,6 +34,7 @@ kcs:
   readings:
     schluessel: Yūnān
 - id: sense:mulk
+  pos: NOUN
   gloss:
     en: kingdom, realm
   forms:
@@ -44,6 +47,7 @@ kcs:
   notes:
     en: 'Spelled as malik "king": the vowels are not written.'
 - id: sense:malik
+  pos: NOUN
   gloss:
     en: king
   forms:
@@ -54,6 +58,7 @@ kcs:
   readings:
     schluessel: malik
 - id: sense:jabbar
+  pos: ADJ
   gloss:
     en: tyrannical; mighty
   forms:
@@ -64,6 +69,7 @@ kcs:
   readings:
     schluessel: jabbār
 - id: sense:afsus
+  pos: PROPN
   gloss:
     en: Ephesus
   forms:
@@ -74,6 +80,7 @@ kcs:
   readings:
     schluessel: Afsūs
 - id: sense:daqyanus
+  pos: PROPN
   gloss:
     en: Decius (Roman emperor, 249-251)
   forms:
@@ -84,6 +91,7 @@ kcs:
   readings:
     schluessel: Daqyānūs
 - id: sense:qach
+  pos: VERB
   gloss:
     en: to flee, run away
   forms:
@@ -94,6 +102,7 @@ kcs:
   readings:
     schluessel: qač
 - id: sense:uchra
+  pos: VERB
   gloss:
     en: to meet, come upon (with -ǧa)
   forms:
@@ -104,6 +113,7 @@ kcs:
   readings:
     schluessel: učra
 - id: sense:qoshul
+  pos: VERB
   gloss:
     en: to join (with -ǧa)
   forms:
@@ -114,6 +124,7 @@ kcs:
   readings:
     schluessel: qošul
 - id: sense:it
+  pos: NOUN
   gloss:
     en: dog
   forms:
@@ -124,6 +135,7 @@ kcs:
   readings:
     schluessel: it
 - id: sense:ghar
+  pos: NOUN
   gloss:
     en: cave
   forms:
@@ -134,6 +146,7 @@ kcs:
   readings:
     schluessel: ǧār
 - id: sense:raqim
+  pos: PROPN
   gloss:
     en: Raqim (the cave of the Sleepers)
   forms:
@@ -144,6 +157,7 @@ kcs:
   readings:
     schluessel: Raqīm
 - id: sense:oyu
+  pos: VERB
   gloss:
     en: to sleep
   forms:
@@ -154,6 +168,7 @@ kcs:
   readings:
     schluessel: oyu
 - id: sense:oyghan
+  pos: VERB
   gloss:
     en: to wake up
   forms:
@@ -164,6 +179,7 @@ kcs:
   readings:
     schluessel: oyǧan
 - id: sense:ashab
+  pos: NOUN
   gloss:
     en: companions
   forms:
@@ -174,6 +190,7 @@ kcs:
   readings:
     schluessel: aṣḥāb
 - id: sense:kahf
+  pos: NOUN
   gloss:
     en: cave (Arabic)
   forms:
@@ -186,6 +203,7 @@ kcs:
   notes:
     en: aṣḥāb-i kahf "the Companions of the Cave", the Seven Sleepers of Ephesus (Qur'ān 18).
 - id: sense:tangri
+  pos: PROPN
   gloss:
     en: God
   forms:
@@ -196,6 +214,7 @@ kcs:
   readings:
     schluessel: Täŋri
 - id: sense:taala
+  pos: ADJ
   gloss:
     en: exalted (after the name of God)
   forms:
@@ -206,6 +225,7 @@ kcs:
   readings:
     schluessel: taʿālà
 - id: sense:amr
+  pos: NOUN
   gloss:
     en: command, order
   forms:
@@ -216,6 +236,7 @@ kcs:
   readings:
     schluessel: amr
 - id: sense:rafiq
+  pos: NOUN
   gloss:
     en: companion, friend
   forms:
@@ -226,6 +247,7 @@ kcs:
   readings:
     schluessel: rafīq
 - id: sense:tamlikha
+  pos: PROPN
   gloss:
     en: Tamlikha (one of the Seven Sleepers)
   forms:
@@ -236,6 +258,7 @@ kcs:
   readings:
     schluessel: Tamlīḫā
 - id: sense:yebar
+  pos: VERB
   gloss:
     en: to send
   forms:
@@ -772,8 +795,8 @@ stories:
       ask: complete
       gap: sense:it
       distractors:
-      - sense:nan
-      - sense:tagh
+      - sense:darwaza
+      - sense:ishkina
       forms:
         chg-Arab/standard:
           text: "شهرلاریدین قاچیب… بر قویچیغه اوچراب، قویچی داغی الارغه قوشولوب، قویچی\u200cنینک ایتی هم قوشولوب، رقیم اتلیغ غارغه کرمیشلار."

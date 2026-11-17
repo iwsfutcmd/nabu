@@ -726,7 +726,7 @@ def compile_course(
 
     # ---- stage 5: curriculum
     sentence_kcs = _curriculum(ctx, course, units, compiled_forms)
-    stories = compile_stories(ctx, course, units)
+    stories = compile_stories(ctx, course, units, compiled_forms)
     scenarios = compile_scenarios(ctx, course, units)
     consistency.report(ctx.observed, diags, course)
     # ---- stage 6: grading
@@ -1599,6 +1599,11 @@ def _bundle_unit(
         }
         if kc.cefr is not None:
             k["cefr"] = kc.cefr
+        # A word question offers only words of the answer's part of speech and features (ADR 0132).
+        if kc.pos is not None:
+            k["pos"] = kc.pos
+        if kc.features:
+            k["features"] = dict(kc.features)
         if kc.gloss:
             k["gloss"] = {lang: support_tt(lang, g) for lang, g in kc.gloss.items()}
         if kc.forms:

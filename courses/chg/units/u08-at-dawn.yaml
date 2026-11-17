@@ -10,6 +10,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:ikkawlan
+  pos: NUM
   gloss:
     en: the two of them, both together
   forms:
@@ -20,6 +21,7 @@ kcs:
   readings:
     schluessel: ikkäwlän
 - id: sense:chiq
+  pos: VERB
   gloss:
     en: to go out, come out; to climb
   forms:
@@ -30,6 +32,7 @@ kcs:
   readings:
     schluessel: čiq
 - id: sense:kir
+  pos: VERB
   gloss:
     en: to go in, enter
   forms:
@@ -40,6 +43,7 @@ kcs:
   readings:
     schluessel: kir
 - id: sense:safar
+  pos: NOUN
   gloss:
     en: journey
   forms:
@@ -50,6 +54,7 @@ kcs:
   readings:
     schluessel: safar
 - id: sense:azm
+  pos: NOUN
   gloss:
     en: resolve, intention
   forms:
@@ -62,6 +67,9 @@ kcs:
   notes:
     en: 'ʿazm qil- "to set out (for)": safargä ʿazm qildi "he set out on a journey".'
 - id: sense:nachcha
+  pos: DET
+  features:
+    PronType: Ind
   gloss:
     en: some, several; how many?
   forms:
@@ -74,6 +82,7 @@ kcs:
   notes:
     en: näččändä kündin keyin "some days later". In the Tadhkira it is näččändä.
 - id: sense:keyin
+  pos: ADP
   gloss:
     en: after, later
   forms:
@@ -86,6 +95,7 @@ kcs:
   notes:
     en: 'After a noun with -din: üč kündin keyin "after three days".'
 - id: sense:tang
+  pos: NOUN
   gloss:
     en: dawn
   forms:
@@ -96,6 +106,7 @@ kcs:
   readings:
     schluessel: taŋ
 - id: sense:at.shoot
+  pos: VERB
   gloss:
     en: to shoot; (of the dawn) to break
   forms:
@@ -108,6 +119,7 @@ kcs:
   notes:
     en: taŋ at- "dawn breaks".
 - id: sense:yaru
+  pos: VERB
   gloss:
     en: to grow light, shine
   forms:
@@ -118,6 +130,7 @@ kcs:
   readings:
     schluessel: yaru
 - id: sense:arta
+  pos: NOUN
   gloss:
     en: early morning; the next day
   forms:
@@ -130,6 +143,7 @@ kcs:
   notes:
     en: ärtäsi "the next morning".
 - id: sense:kanara
+  pos: NOUN
   gloss:
     en: edge, side; an out-of-the-way place
   forms:
@@ -140,6 +154,7 @@ kcs:
   readings:
     schluessel: kanāra
 - id: sense:qon
+  pos: VERB
   gloss:
     en: to stop for the night, camp
   forms:
@@ -150,6 +165,7 @@ kcs:
   readings:
     schluessel: qon
 - id: sense:qop
+  pos: VERB
   gloss:
     en: to get up, rise
   forms:
@@ -589,10 +605,11 @@ stories:
         en: They set out on a journey.
   - line:
       ask: complete
-      gap: sense:keyin
+      gap: sense:kal
+      asks: form
       distractors:
-      - sense:nan
-      - sense:tagh
+      - form:cv-p
+      - form:loc
       forms:
         chg-Arab/standard:
           text: "نجنده کوندین کین، بر شهرکه کلدی\u200cلار."

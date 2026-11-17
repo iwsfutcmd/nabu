@@ -57,14 +57,26 @@ const withAnswer = <T>(rng: Rng, answer: T, others: readonly T[]): { readonly op
   return { options: order.map((i) => all[i] as T), answer: order.indexOf(0) };
 };
 
+/**
+ * The wrong options of a `complete` line as the compiler resolved them (ADR 0132): each a word the
+ * course writes, in the gap's form (a word question) or the gap's word in another form (a form
+ * question). Undefined where the bundle has none for this orthography.
+ */
+const resolvedOptions = (line: BundleStoryLine, orthography: string): readonly TaggedText[] | undefined => {
+  const options = (line.options ?? []).map((o) => o[orthography]);
+  return line.asks === undefined || options.length === 0 || options.some((o) => o === undefined) ? undefined : (options as readonly TaggedText[]);
+};
+
 const complete = (course: CourseView, story: BundleStory, at: number, line: BundleStoryLine, text: TaggedText, rng: Rng): StoryComplete | undefined => {
   const gap = line.gap;
   if (gap === undefined) return undefined;
   const index = text.tokens.findIndex((t) => isWord(t) && tokenKcs(t).includes(gap));
   const token = text.tokens[index];
   if (token === undefined) return undefined;
+  // A bundle from before ADR 0132: each distractor by its KC's first form, the question mixed.
+  const resolved = resolvedOptions(line, course.orthography);
   const kcs = new Map(allKcs(course).map((k) => [k.id, k]));
-  const others = (line.distractors ?? []).flatMap((kc) => kcs.get(kc)?.forms?.[course.orthography]?.[0] ?? []);
+  const others = resolved ?? (line.distractors ?? []).flatMap((kc) => kcs.get(kc)?.forms?.[course.orthography]?.[0] ?? []);
   const { options, answer } = withAnswer(rng, { ...text, tokens: [token] }, others);
   return {
     template: "story-complete",
@@ -76,6 +88,7 @@ const complete = (course: CourseView, story: BundleStory, at: number, line: Bund
     after: slice(text, index + 1, text.tokens.length),
     options,
     answer,
+    ...(resolved === undefined || line.asks === undefined ? {} : { asks: line.asks }),
   };
 };
 

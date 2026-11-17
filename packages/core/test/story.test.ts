@@ -2,11 +2,12 @@
  * Phase 6: stories as the reader plays them, tap-for-gloss on story lines, and stories on the
  * path and in the learner model.
  */
-import type { LearnerEvent, SchemeId, TaggedText } from "@nabu/schema";
+import type { LearnerEvent, SchemeId, TaggedText, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
 import { allKcs, answerTextOf, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
 import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyAt, storyScript, type StoryScript, type StoryState } from "../src/story/index.ts";
+import { signatureKey } from "../src/lesson/signature.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
@@ -120,12 +121,18 @@ describe("story scripts", () => {
     expect(seen.size).toBeGreaterThan(1); // the right option is not always first
   });
 
-  it("a completed line keeps its gap token's sense and the distractors' forms", () => {
+  it("a completed line keeps its gap token's sense, and shows each distractor in the gap's form (ADR 0132)", () => {
     const course = loadCourse("uz", "uz-Cyrl/standard");
     const q = scriptOf(course).steps.find((s) => s.tag === "question" && s.ex.template === "story-complete");
     if (q?.tag !== "question" || q.ex.template !== "story-complete") throw new Error("no complete question");
-    expect(q.ex.options.map(surfaceOf).sort()).toEqual(["китоб", "талабаман"]);
-    expect(surfaceOf(q.ex.options[q.ex.answer] as TaggedText)).toBe("талабаман");
+    const answer = q.ex.options[q.ex.answer] as TaggedText;
+    expect(surfaceOf(answer)).toBe("талабаман");
+    expect(q.ex.asks).toBe("word");
+    // Each option is a word the course writes, in the learner's orthography, analysed as the answer is.
+    for (const o of q.ex.options) {
+      expect(o.orthography).toBe("uz-Cyrl/standard");
+      expect(signatureKey(o.tokens[0] as Token)).toBe(signatureKey(answer.tokens[0] as Token));
+    }
     expect(surfaceOf(q.ex.before)).toBe("Ҳа, мен ");
   });
 });

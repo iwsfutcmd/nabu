@@ -10,6 +10,7 @@ title:
 cefr: B1
 kcs:
 - id: sense:altun
+  pos: NOUN
   gloss:
     en: gold; golden
   forms:
@@ -20,6 +21,7 @@ kcs:
   readings:
     schluessel: altun
 - id: sense:kursi
+  pos: NOUN
   gloss:
     en: chair; throne
   forms:
@@ -30,6 +32,7 @@ kcs:
   readings:
     schluessel: kursī
 - id: sense:et
+  pos: VERB
   gloss:
     en: to make, do; to set up
   forms:
@@ -42,6 +45,7 @@ kcs:
   notes:
     en: ettür- "to have made" is its causative.
 - id: sense:baqish
+  pos: NOUN
   gloss:
     en: frame, structure (of a tent)
   forms:
@@ -52,6 +56,7 @@ kcs:
   readings:
     schluessel: baqiš
 - id: sense:ghurra
+  pos: NOUN
   gloss:
     en: (white) spot
   forms:
@@ -64,6 +69,7 @@ kcs:
   notes:
     en: ǧurra ǧurraliq "spotted all over".
 - id: sense:taygan
+  pos: NOUN
   gloss:
     en: hunting dog, greyhound
   forms:
@@ -74,6 +80,7 @@ kcs:
   readings:
     schluessel: tayǧan
 - id: sense:ald
+  pos: NOUN
   gloss:
     en: the front
   forms:
@@ -86,6 +93,7 @@ kcs:
   notes:
     en: X-niŋ aldida "in front of X"; aldida "before him".
 - id: sense:qol
+  pos: NOUN
   gloss:
     en: hand; arm
   forms:
@@ -98,6 +106,7 @@ kcs:
   notes:
     en: qol baǧla- "to clasp one's hands" (standing to serve).
 - id: sense:bagla
+  pos: VERB
   gloss:
     en: to tie, bind; to clasp
   forms:
@@ -108,6 +117,9 @@ kcs:
   readings:
     schluessel: baǧla
 - id: sense:yatmish
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: seventy
   forms:
@@ -118,6 +130,7 @@ kcs:
   readings:
     schluessel: yätmiš
 - id: sense:uratur
+  pos: VERB
   gloss:
     en: to make (someone) stop, hold back
   forms:
@@ -130,6 +143,7 @@ kcs:
   notes:
     en: urat- "to halt" with the causative -tur.
 - id: sense:mard
+  pos: NOUN
   gloss:
     en: man, fellow (Persian)
   forms:
@@ -140,6 +154,7 @@ kcs:
   readings:
     schluessel: mard
 - id: sense:sharr
+  pos: ADJ
   gloss:
     en: grim; evil (Arabic)
   forms:
@@ -152,6 +167,7 @@ kcs:
   notes:
     en: šarr mard "a grim fellow".
 - id: sense:rubaru
+  pos: ADV
   gloss:
     en: face to face (Persian)
   forms:
@@ -164,6 +180,7 @@ kcs:
   notes:
     en: rū-ba-rūlarida "face to face with them".
 - id: sense:mawlana
+  pos: NOUN
   gloss:
     en: the Master, our master (a title of a Sufi saint)
   forms:
@@ -174,6 +191,9 @@ kcs:
   readings:
     schluessel: Mawlānā
 - id: sense:shubu
+  pos: DET
+  features:
+    PronType: Dem
   gloss:
     en: this (very)
   forms:
@@ -571,8 +591,8 @@ stories:
       ask: complete
       gap: sense:taygan
       distractors:
-      - sense:yatmish
       - sense:qol
+      - sense:sut
       forms:
         chg-Arab/standard:
           text: "بر التون غره غره\u200cلیق تایغان الدیدا یاتیب\u200cدور."

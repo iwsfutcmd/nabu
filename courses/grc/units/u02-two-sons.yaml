@@ -8,6 +8,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:ho
+  pos: DET
   gloss:
     en: the
   forms:
@@ -17,18 +18,21 @@ kcs:
   notes:
     en: ὁ with a man or a masculine word, ἡ with a woman or a feminine one, τό with a neuter one. Greek also puts it with names (ὁ Κῦρος) and where English says "my" or "his" (ὁ πατήρ, "his father").
 - id: sense:pater
+  pos: NOUN
   gloss:
     en: father
   forms:
     grc-Grek/polytonic:
     - πατήρ
 - id: sense:meter
+  pos: NOUN
   gloss:
     en: mother
   forms:
     grc-Grek/polytonic:
     - μήτηρ
 - id: sense:pais
+  pos: NOUN
   gloss:
     en: child; boy, girl; son, daughter
   forms:
@@ -37,12 +41,14 @@ kcs:
   notes:
     en: ὁ παῖς is a boy or a son, ἡ παῖς a girl or a daughter. It is also what a master calls a young slave.
 - id: sense:hyios
+  pos: NOUN
   gloss:
     en: son
   forms:
     grc-Grek/polytonic:
     - υἱός
 - id: sense:teknon
+  pos: NOUN
   gloss:
     en: child
   forms:
@@ -51,18 +57,21 @@ kcs:
   notes:
     en: 'τέκνον is neuter: τὸ τέκνον. A mother calls her child, or an older woman a younger one, ὦ τέκνον.'
 - id: sense:thygater
+  pos: NOUN
   gloss:
     en: daughter
   forms:
     grc-Grek/polytonic:
     - θυγάτηρ
 - id: sense:adelphos
+  pos: NOUN
   gloss:
     en: brother
   forms:
     grc-Grek/polytonic:
     - ἀδελφός
 - id: sense:adelphe
+  pos: NOUN
   gloss:
     en: sister
   forms:
@@ -72,12 +81,16 @@ kcs:
   gloss:
     en: 'the accusative: the object of a verb (ἀδελφὸν ἔχω, I have a brother)'
 - id: sense:echo
+  pos: VERB
   gloss:
     en: to have; to hold
   forms:
     grc-Grek/polytonic:
     - ἔχω
 - id: sense:dyo
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: two
   forms:
@@ -87,6 +100,9 @@ kcs:
   gloss:
     en: 'the plural, as subject: -οι, -αι, -ες (ἀδελφοί, brothers)'
 - id: sense:treis
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: three
   forms:
@@ -96,6 +112,7 @@ kcs:
   gloss:
     en: 'the accusative plural: the objects (παῖδας, children)'
 - id: sense:gignomai
+  pos: VERB
   gloss:
     en: to become; to be born; to happen
   forms:
@@ -107,6 +124,7 @@ kcs:
   gloss:
     en: 'the present, they: they do, they are doing'
 - id: sense:dareios
+  pos: PROPN
   gloss:
     en: Darius (Darius II, king of Persia, 424–404 BCE)
   forms:
@@ -116,36 +134,42 @@ kcs:
   gloss:
     en: 'the genitive: of, ''s (Δαρείου, of Darius)'
 - id: sense:kyros
+  pos: PROPN
   gloss:
     en: Cyrus (the younger son of Darius II)
   forms:
     grc-Grek/polytonic:
     - Κῦρος
 - id: sense:parysatis
+  pos: PROPN
   gloss:
     en: Parysatis (Darius' queen, mother of Cyrus)
   forms:
     grc-Grek/polytonic:
     - Παρύσατις
 - id: sense:artaxerxes
+  pos: PROPN
   gloss:
     en: Artaxerxes (the elder son, king after Darius)
   forms:
     grc-Grek/polytonic:
     - Ἀρταξέρξης
 - id: sense:presbyteros
+  pos: ADJ
   gloss:
     en: older, the elder
   forms:
     grc-Grek/polytonic:
     - πρεσβύτερος
 - id: sense:neoteros
+  pos: ADJ
   gloss:
     en: younger, the younger
   forms:
     grc-Grek/polytonic:
     - νεώτερος
 - id: sense:de
+  pos: CCONJ
   gloss:
     en: and, but (second in its clause; answers μέν)
   forms:
@@ -1411,8 +1435,8 @@ stories:
       ask: complete
       gap: sense:neoteros
       distractors:
-      - sense:pater
-      - sense:meter
+      - sense:presbyteros
+      - sense:bathys
       forms:
         grc-Grek/polytonic:
           text: πρεσβύτερος μὲν Ἀρταξέρξης, νεώτερος δὲ Κῦρος.

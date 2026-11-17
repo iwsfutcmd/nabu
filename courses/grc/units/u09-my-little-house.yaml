@@ -9,6 +9,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:oikidion
+  pos: NOUN
   gloss:
     en: a little house
   forms:
@@ -25,24 +26,28 @@ kcs:
   gloss:
     en: 'ἔστι μοι + a noun: I have (word for word, there is to me)'
 - id: sense:diplous
+  pos: ADJ
   gloss:
     en: double; (of a house) on two floors
   forms:
     grc-Grek/polytonic:
     - διπλοῦς
 - id: sense:ano
+  pos: ADV
   gloss:
     en: up; upstairs
   forms:
     grc-Grek/polytonic:
     - ἄνω
 - id: sense:kato
+  pos: ADV
   gloss:
     en: down; downstairs
   forms:
     grc-Grek/polytonic:
     - κάτω
 - id: sense:isos
+  pos: ADJ
   gloss:
     en: 'equal, the same (as: with the dative)'
   forms:
@@ -52,24 +57,28 @@ kcs:
   gloss:
     en: 'the dative plural: to, for (the) …; after ἐν, in (τοῖς κάτω, to the downstairs rooms)'
 - id: sense:gynaikonitis
+  pos: NOUN
   gloss:
     en: the women's rooms of a house
   forms:
     grc-Grek/polytonic:
     - γυναικωνῖτις
 - id: sense:andronitis
+  pos: NOUN
   gloss:
     en: the men's rooms of a house
   forms:
     grc-Grek/polytonic:
     - ἀνδρωνῖτις
 - id: sense:kata
+  pos: ADP
   gloss:
     en: (with the accusative) by, for, in
   forms:
     grc-Grek/polytonic:
     - κατά
 - id: sense:paidion
+  pos: NOUN
   gloss:
     en: little child, baby
   forms:
@@ -81,24 +90,30 @@ kcs:
   gloss:
     en: 'the aorist, he, she, it: did (once, in the past)'
 - id: sense:epeide
+  pos: SCONJ
   gloss:
     en: when, after; since
   forms:
     grc-Grek/polytonic:
     - ἐπειδή
 - id: sense:autos
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: him, her, it (never first in its clause); self
   forms:
     grc-Grek/polytonic:
     - αὐτός
 - id: sense:thelazo
+  pos: VERB
   gloss:
     en: to nurse, breastfeed
   forms:
     grc-Grek/polytonic:
     - θηλάζω
 - id: sense:diaitaomai
+  pos: VERB
   gloss:
     en: to live, spend one's days
   forms:
@@ -989,7 +1004,7 @@ stories:
       gap: sense:oikidion
       distractors:
       - sense:oros
-      - sense:thalatta
+      - sense:teknon
       forms:
         grc-Grek/polytonic:
           text: οἰκίδιον ἔστι μοι διπλοῦν,

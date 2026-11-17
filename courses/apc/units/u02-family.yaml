@@ -5,35 +5,35 @@ id: u02-family
 title: {en: My family}
 cefr: A1
 kcs:
-- {id: 'sense:hayda', gloss: {en: this (masculine)}, forms: {apc-Arab/standard: [هيدا], apc-Latn/arabizi: [hayda]}, notes: {en: 'Feminine: هيدي, hayde.'}}
-- {id: 'sense:meen', gloss: {en: who}, forms: {apc-Arab/standard: [مين], apc-Latn/arabizi: [meen]}}
-- {id: 'sense:maya', gloss: {en: Maya (a name)}, forms: {apc-Arab/standard: [مايا], apc-Latn/arabizi: [Maya]}}
-- {id: 'sense:hayde', gloss: {en: this (feminine)}, forms: {apc-Arab/standard: [هيدي], apc-Latn/arabizi: [hayde]}}
-- {id: 'sense:bayy', gloss: {en: father; dad}, forms: {apc-Arab/standard: [بيّ], apc-Latn/arabizi: [bayy]}, notes: {en: 'Usually with an ending (bayyi, my dad) or before a name (bayy Sami, Sami''s dad).'}}
+- {id: 'sense:hayda', pos: PRON, features: {PronType: Dem}, gloss: {en: this (masculine)}, forms: {apc-Arab/standard: [هيدا], apc-Latn/arabizi: [hayda]}, notes: {en: 'Feminine: هيدي, hayde.'}}
+- {id: 'sense:meen', pos: PRON, features: {PronType: Int}, gloss: {en: who}, forms: {apc-Arab/standard: [مين], apc-Latn/arabizi: [meen]}}
+- {id: 'sense:maya', pos: PROPN, gloss: {en: Maya (a name)}, forms: {apc-Arab/standard: [مايا], apc-Latn/arabizi: [Maya]}}
+- {id: 'sense:hayde', pos: PRON, features: {PronType: Dem}, gloss: {en: this (feminine)}, forms: {apc-Arab/standard: [هيدي], apc-Latn/arabizi: [hayde]}}
+- {id: 'sense:bayy', pos: NOUN, gloss: {en: father; dad}, forms: {apc-Arab/standard: [بيّ], apc-Latn/arabizi: [bayy]}, notes: {en: 'Usually with an ending (bayyi, my dad) or before a name (bayy Sami, Sami''s dad).'}}
 - {id: 'form:poss-1sg', gloss: {en: '-i: my (ending on a noun)'}, notes: {en: 'Arabic script: ي joined to the noun (بيّي). Often heard and typed -e: bayye, emme.'}}
-- {id: 'sense:emm', gloss: {en: mother; mom}, forms: {apc-Arab/standard: [إمّ], apc-Latn/arabizi: [emm]}}
+- {id: 'sense:emm', pos: NOUN, gloss: {en: mother; mom}, forms: {apc-Arab/standard: [إمّ], apc-Latn/arabizi: [emm]}}
 - {id: 'form:poss-2ms', gloss: {en: '-ak: your (to a man)'}, notes: {en: 'Arabic script: ك joined to the noun (بيّك). To a woman: -ik, written with the same ك.'}}
-- {id: 'sense:khayy', gloss: {en: brother}, forms: {apc-Arab/standard: [خيّ], apc-Latn/arabizi: [khayy]}}
-- {id: 'sense:ekht', gloss: {en: sister}, forms: {apc-Arab/standard: [إخت], apc-Latn/arabizi: [ekht]}}
-- {id: 'sense:3end', gloss: {en: 'at; have (with an ending: 3endi, I have)'}, forms: {apc-Arab/standard: [عند], apc-Latn/arabizi: [3end]}, notes: {en: '3endi: I have; 3endak: you have. Not a verb: the ending
+- {id: 'sense:khayy', pos: NOUN, gloss: {en: brother}, forms: {apc-Arab/standard: [خيّ], apc-Latn/arabizi: [khayy]}}
+- {id: 'sense:ekht', pos: NOUN, gloss: {en: sister}, forms: {apc-Arab/standard: [إخت], apc-Latn/arabizi: [ekht]}}
+- {id: 'sense:3end', pos: ADP, gloss: {en: 'at; have (with an ending: 3endi, I have)'}, forms: {apc-Arab/standard: [عند], apc-Latn/arabizi: [3end]}, notes: {en: '3endi: I have; 3endak: you have. Not a verb: the ending
       says who has.'}}
-- {id: 'sense:ma', gloss: {en: not (before a verb or 3endi)}, forms: {apc-Arab/standard: [ما], apc-Latn/arabizi: [ma]}}
+- {id: 'sense:ma', pos: PART, features: {Polarity: Neg}, gloss: {en: not (before a verb or 3endi)}, forms: {apc-Arab/standard: [ما], apc-Latn/arabizi: [ma]}}
 - {id: 'form:poss-3ms', gloss: {en: '-o: his'}, notes: {en: 'Arabic script: ه joined to the noun (بيّه), also written و (بيّو).'}}
-- {id: 'sense:esm', gloss: {en: name}, forms: {apc-Arab/standard: [اسم], apc-Latn/arabizi: [esm]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931',
+- {id: 'sense:esm', pos: NOUN, gloss: {en: name}, forms: {apc-Arab/standard: [اسم], apc-Latn/arabizi: [esm]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931',
       status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'esmo: his name; esma: her name. Compare اسمي (esmi) and اسمك (esmak).'}}
 - {id: 'form:poss-3fs', gloss: {en: '-a: her'}, notes: {en: 'Arabic script: ها joined to the noun (إمّها), also written ا (إمّا).'}}
-- {id: 'sense:kif', gloss: {en: how}, forms: {apc-Arab/standard: [كيف], apc-Latn/arabizi: [kif]}, notes: {en: 'kifo? how is he?; kifa? how is she?; kifik? how are you? (to a woman); kifkon? (to several people).'}}
+- {id: 'sense:kif', pos: ADV, features: {PronType: Int}, gloss: {en: how}, forms: {apc-Arab/standard: [كيف], apc-Latn/arabizi: [kif]}, notes: {en: 'kifo? how is he?; kifa? how is she?; kifik? how are you? (to a woman); kifkon? (to several people).'}}
 - {id: 'form:poss-2fs', gloss: {en: '-ik: your (to a woman)'}, notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}}
-- {id: 'sense:teta', gloss: {en: grandma}, forms: {apc-Arab/standard: [تيتا], apc-Latn/arabizi: [teta]}}
-- {id: 'sense:jeddo', gloss: {en: grandpa}, forms: {apc-Arab/standard: [جدّو], apc-Latn/arabizi: [jeddo]}}
-- {id: 'sense:3ayle', gloss: {en: family}, forms: {apc-Arab/standard: [عيلة], apc-Latn/arabizi: [3ayle]}}
-- {id: 'sense:kbir', gloss: {en: big; old (of people); older}, forms: {apc-Arab/standard: [كبير, كبيرة], apc-Latn/arabizi: [kbir, kbire]}}
-- {id: 'sense:zghir', gloss: {en: small; little; young}, forms: {apc-Arab/standard: [زغير, زغيرة], apc-Latn/arabizi: [zghir, zghire]}}
+- {id: 'sense:teta', pos: NOUN, gloss: {en: grandma}, forms: {apc-Arab/standard: [تيتا], apc-Latn/arabizi: [teta]}}
+- {id: 'sense:jeddo', pos: NOUN, gloss: {en: grandpa}, forms: {apc-Arab/standard: [جدّو], apc-Latn/arabizi: [jeddo]}}
+- {id: 'sense:3ayle', pos: NOUN, gloss: {en: family}, forms: {apc-Arab/standard: [عيلة], apc-Latn/arabizi: [3ayle]}}
+- {id: 'sense:kbir', pos: ADJ, gloss: {en: big; old (of people); older}, forms: {apc-Arab/standard: [كبير, كبيرة], apc-Latn/arabizi: [kbir, kbire]}}
+- {id: 'sense:zghir', pos: ADJ, gloss: {en: small; little; young}, forms: {apc-Arab/standard: [زغير, زغيرة], apc-Latn/arabizi: [zghir, zghire]}}
 - {id: 'form:fem', gloss: {en: '-e / -a: feminine ending on an adjective'}, notes: {en: 'kbir → kbire, zghir → zghire. Arabic script: ة (كبيرة).'}}
-- {id: 'sense:ebn', gloss: {en: son}, forms: {apc-Arab/standard: [إبن], apc-Latn/arabizi: [ebn]}}
-- {id: 'sense:bent', gloss: {en: daughter; girl}, forms: {apc-Arab/standard: [بنت], apc-Latn/arabizi: [bent]}}
-- {id: 'sense:7elo', gloss: {en: nice; pretty; sweet}, forms: {apc-Arab/standard: [حلو, حلوة], apc-Latn/arabizi: [7elo, 7elwe]}}
-- {id: 'sense:wlad', gloss: {en: children; kids}, forms: {apc-Arab/standard: [ولاد], apc-Latn/arabizi: [wlad]}}
+- {id: 'sense:ebn', pos: NOUN, gloss: {en: son}, forms: {apc-Arab/standard: [إبن], apc-Latn/arabizi: [ebn]}}
+- {id: 'sense:bent', pos: NOUN, gloss: {en: daughter; girl}, forms: {apc-Arab/standard: [بنت], apc-Latn/arabizi: [bent]}}
+- {id: 'sense:7elo', pos: ADJ, gloss: {en: nice; pretty; sweet}, forms: {apc-Arab/standard: [حلو, حلوة], apc-Latn/arabizi: [7elo, 7elwe]}}
+- {id: 'sense:wlad', pos: NOUN, gloss: {en: children; kids}, forms: {apc-Arab/standard: [ولاد], apc-Latn/arabizi: [wlad]}}
 - {id: 'form:poss-2pl', gloss: {en: '-kon: your (to several people)'}, notes: {en: 'kifkon? how are you (all)?; 3endkon: you have. Arabic script: كن joined to the word (كيفكن).'}}
 nodes:
 - {id: apc.fam.this, kind: lesson, introduces: ['sense:hayda', 'sense:meen', 'sense:maya', 'sense:hayde']}
@@ -778,9 +778,6 @@ stories:
       translations: {en: 'And who''s this? Your brother?'}
   - line:
       speaker: maya
-      ask: complete
-      gap: sense:ekht
-      distractors: ['sense:bent', 'sense:teta']
       forms:
         apc-Arab/standard:
           text: إيه، خَيّي. عِنْدي خَيّ وإِخْت.
@@ -808,6 +805,9 @@ stories:
       translations: {en: 'And who''s this?'}
   - line:
       speaker: maya
+      ask: complete
+      gap: sense:teta
+      distractors: ['sense:ekht', 'sense:3ayle']
       forms:
         apc-Arab/standard:
           text: هَيدي تيتا، إِمّ بَيّي.

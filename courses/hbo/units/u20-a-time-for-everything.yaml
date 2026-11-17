@@ -9,96 +9,115 @@ title:
 cefr: A2
 kcs:
 - id: sense:et.time
+  pos: NOUN
   gloss:
     en: time; season, moment
   forms:
     hbo-Hebr/tiberian: [עֵת]
 - id: sense:zeman
+  pos: NOUN
   gloss:
     en: appointed time, season
   forms:
     hbo-Hebr/tiberian: [זְמָן]
 - id: sense:hefets
+  pos: NOUN
   gloss:
     en: matter; delight, desire
   forms:
     hbo-Hebr/tiberian: [חֵפֶץ]
 - id: sense:tahat
+  pos: ADP
   gloss:
     en: under, beneath; instead of
   forms:
     hbo-Hebr/tiberian: [תַּחַת]
 - id: sense:nata
+  pos: VERB
   gloss:
     en: to plant
   forms:
     hbo-Hebr/tiberian: [נָטַע]
 - id: sense:aqar
+  pos: VERB
   gloss:
     en: to uproot, pluck up
   forms:
     hbo-Hebr/tiberian: [עָקַר]
 - id: sense:rafa
+  pos: VERB
   gloss:
     en: to heal
   forms:
     hbo-Hebr/tiberian: [רָפָא]
 - id: sense:parats
+  pos: VERB
   gloss:
     en: to break down, break through
   forms:
     hbo-Hebr/tiberian: [פָּרַץ]
 - id: sense:banah
+  pos: VERB
   gloss:
     en: to build
   forms:
     hbo-Hebr/tiberian: [בָּנָה]
 - id: sense:bakhah
+  pos: VERB
   gloss:
     en: to weep, cry
   forms:
     hbo-Hebr/tiberian: [בָּכָה]
 - id: sense:sachaq
+  pos: VERB
   gloss:
     en: to laugh; to play
   forms:
     hbo-Hebr/tiberian: [שָׂחַק]
 - id: sense:safad
+  pos: VERB
   gloss:
     en: to mourn, lament
   forms:
     hbo-Hebr/tiberian: [סָפַד]
 - id: sense:raqad
+  pos: VERB
   gloss:
     en: to dance, skip
   forms:
     hbo-Hebr/tiberian: [רָקַד]
 - id: sense:barukh
+  pos: ADJ
   gloss:
     en: blessed (a qal passive participle; the verb is piel בֵּרַךְ)
   forms:
     hbo-Hebr/tiberian: [בָּרוּךְ]
 - id: sense:heir
+  pos: VERB
   gloss:
     en: to make shine, give light (hiphil of אוֹר)
   forms:
     hbo-Hebr/tiberian: [הֵאִיר]
 - id: sense:hanan
+  pos: VERB
   gloss:
     en: to be gracious, show favour
   forms:
     hbo-Hebr/tiberian: [חָנַן]
 - id: sense:nasa
+  pos: VERB
   gloss:
     en: to lift, raise; to carry
   forms:
     hbo-Hebr/tiberian: [נָשָׂא]
 - id: sense:sim
+  pos: VERB
   gloss:
     en: to put, set, place
   forms:
     hbo-Hebr/tiberian: [שׂוּם]
 - id: sense:ayin.eye
+  pos: NOUN
   gloss:
     en: eye; spring (of water)
   forms:
@@ -492,7 +511,9 @@ stories:
     en: A time for everything (Ecclesiastes 3:1–4) and the blessing (Numbers 6:24–26)
   steps:
   - line:
-      ask: arrange
+      ask: complete
+      gap: sense:shamayim
+      distractors: ['sense:qol', 'sense:seh']
       forms:
         hbo-Hebr/tiberian:
           text: לַכֹּל זְמָן וְעֵת לְכָל־חֵפֶץ תַּחַת הַשָּׁמָיִם׃
@@ -515,9 +536,7 @@ stories:
       translations:
         en: a time to be born and a time to die, a time to plant and a time to uproot what is planted;
   - line:
-      ask: complete
-      gap: sense:rafa
-      distractors: ['sense:banah', 'sense:harag']
+      ask: arrange
       forms:
         hbo-Hebr/tiberian:
           text: עֵת לַהֲרוֹג וְעֵת לִרְפּוֹא עֵת לִפְרוֹץ וְעֵת לִבְנוֹת׃
@@ -557,7 +576,7 @@ stories:
   - line:
       ask: complete
       gap: sense:panim
-      distractors: ['sense:yad', 'sense:ayin.eye']
+      distractors: ['sense:ah', 'sense:em']
       forms:
         hbo-Hebr/tiberian:
           text: יָאֵר יְהוָה פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ׃

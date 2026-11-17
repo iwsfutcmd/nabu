@@ -3,7 +3,7 @@
  *
  * Each exercise exercises one facet of its KCs. Per KC the outcome is `right`,
  * `wrong`, or `given` (the learner did not have to produce it: the rest of a
- * gap-fill sentence). For typed answers the closest-path alignment decides per
+ * gap-fill sentence, and what the question did not ask of the blank's word, ADR 0132). For typed answers the closest-path alignment decides per
  * word: a KC whose word was matched is right even when the answer as a whole
  * was wrong.
  */
@@ -12,6 +12,7 @@ import type { AlignOp, Verdict } from "../match/grade.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { isCorrect, type Exercise, type Facet, type Outcome, type SelfRating } from "../lesson/exercise.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
+import { askedOfToken } from "../lesson/signature.ts";
 
 export type Rating = "again" | "hard" | "good" | "easy";
 
@@ -43,9 +44,12 @@ export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
     const token = firstToken(ex.blank);
     return token === undefined ? undefined : kcsOfToken(token);
   }
+  // A fill-in asks one thing (ADR 0132): which word (its sense; every option had the form) or which
+  // form (its form KCs; every option was the word). One planned before it asked both, and credits both.
   if (ex.template === "gap-fill" || ex.template === "story-complete") {
     const token = firstToken(ex.options[ex.answer]);
-    return token === undefined ? undefined : kcsOfToken(token);
+    if (token === undefined) return undefined;
+    return ex.asks === undefined ? kcsOfToken(token) : askedOfToken(token, ex.asks);
   }
   // A pronunciation card in context (ADR 0095, 0098) asks about one word; the sentence around it is given.
   if (ex.template === "vocalize" || ex.template === "vocalize-build" || ex.template === "transcribe" || (ex.template === "char-read" && ex.word !== undefined)) {

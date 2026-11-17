@@ -9,6 +9,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:oros
+  pos: NOUN
   gloss:
     en: mountain
   forms:
@@ -24,6 +25,7 @@ kcs:
   notes:
     en: 'Neuter: τὸ ὄρος, to the mountain τῷ ὄρει.'
 - id: sense:epi
+  pos: ADP
   gloss:
     en: (with the accusative) to, onto; (with the genitive) on
   forms:
@@ -33,18 +35,25 @@ kcs:
   gloss:
     en: 'the present, they, with middle endings: -ονται (πορεύονται, they go)'
 - id: sense:pemptos
+  pos: ADJ
+  features:
+    NumType: Ord
   gloss:
     en: fifth
   forms:
     grc-Grek/polytonic:
     - πέμπτος
 - id: sense:protos
+  pos: ADJ
+  features:
+    NumType: Ord
   gloss:
     en: first
   forms:
     grc-Grek/polytonic:
     - πρῶτος
 - id: sense:onoma
+  pos: NOUN
   gloss:
     en: name
   forms:
@@ -53,18 +62,21 @@ kcs:
   notes:
     en: τί ὄνομά σοι; "what is your name?", word for word "what name (is there) to you?".
 - id: sense:theches
+  pos: PROPN
   gloss:
     en: Theches (a mountain near Trapezus, on the Black Sea)
   forms:
     grc-Grek/polytonic:
     - Θήχης
 - id: sense:stratiotes
+  pos: NOUN
   gloss:
     en: soldier
   forms:
     grc-Grek/polytonic:
     - στρατιώτης
 - id: sense:thalatta
+  pos: NOUN
   gloss:
     en: the sea
   forms:
@@ -80,12 +92,14 @@ kcs:
   notes:
     en: Attic θάλαττα; most other Greek says θάλασσα.
 - id: sense:boao
+  pos: VERB
   gloss:
     en: to shout, cry out
   forms:
     grc-Grek/polytonic:
     - βοάω
 - id: sense:tacha
+  pos: ADV
   gloss:
     en: soon; quickly
   forms:
@@ -98,12 +112,16 @@ kcs:
   gloss:
     en: 'the participle: -ing (βοώντων, shouting)'
 - id: sense:entha
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: there; then
   forms:
     grc-Grek/polytonic:
     - ἔνθα
 - id: sense:theo
+  pos: VERB
   gloss:
     en: to run
   forms:
@@ -113,12 +131,16 @@ kcs:
   gloss:
     en: 'the imperfect, they: they were doing, they did'
 - id: sense:pas
+  pos: PRON
+  features:
+    PronType: Tot
   gloss:
     en: all, every; (plural) everyone
   forms:
     grc-Grek/polytonic:
     - πᾶς
 - id: sense:opisthophylax
+  pos: NOUN
   gloss:
     en: a man of the rearguard; (plural) the rearguard
   forms:
@@ -127,6 +149,9 @@ kcs:
   readings:
     attic: ὀπῐσθοφῠ́λᾰξ
 - id: sense:heis
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: one
   forms:
@@ -135,24 +160,36 @@ kcs:
   notes:
     en: εἷς for a man or masculine word, μία feminine, ἕν neuter.
 - id: sense:tettares
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: four
   forms:
     grc-Grek/polytonic:
     - τέτταρες
 - id: sense:pente
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: five
   forms:
     grc-Grek/polytonic:
     - πέντε
 - id: sense:deuteros
+  pos: ADJ
+  features:
+    NumType: Ord
   gloss:
     en: second
   forms:
     grc-Grek/polytonic:
     - δεύτερος
 - id: sense:tritos
+  pos: ADJ
+  features:
+    NumType: Ord
   gloss:
     en: third
   forms:
@@ -1045,10 +1082,10 @@ stories:
   steps:
   - line:
       ask: complete
-      gap: sense:pemptos
+      gap: sense:hemera
       distractors:
-      - sense:protos
-      - sense:tritos
+      - sense:oikia
+      - sense:agora
       forms:
         grc-Grek/polytonic:
           text: καὶ ἀφικνοῦνται ἐπὶ τὸ ὄρος τῇ πέμπτῃ ἡμέρᾳ·

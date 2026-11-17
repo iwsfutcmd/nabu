@@ -5,12 +5,12 @@
  * It shares the fold's pure parts (the rating map, FSRS, revisions, the prediction); what it keeps
  * of its own is the fold itself. A deliberate change to the fold changes this copy too.
  */
-import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
+import type { AnswerSubmitted, Asks, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import { facetOf, ratingOf, type Pace, type Rating } from "../src/learner/credit.ts";
 import { initialPerformance, predict, type Performance, type PredictionInput } from "../src/learner/performance.ts";
 import { withRevisions } from "../src/learner/revisions.ts";
-import { askOf, cardKey, DESIRED_RETENTION, RECENT_WINDOW, sameAsk, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
+import { askOf, cardKey, DESIRED_RETENTION, RECENT_WINDOW, sameQuestion, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
 import type { Facet, TemplateId } from "../src/lesson/exercise.ts";
 import { SPEAKING, TEMPLATES } from "../src/lesson/templates.ts";
 
@@ -138,9 +138,9 @@ const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, fac
   if (met !== undefined && e.localDate > met && (missed === undefined || e.localDate > missed)) d.shown[key] = e.localDate;
 };
 
-const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined): void => {
-  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameAsk(m.ask, ask)));
-  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }) }].slice(-MISTAKES_KEPT);
+const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined, asks?: Asks): void => {
+  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameQuestion(m, ask, asks)));
+  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }), ...(asks === undefined ? {} : { asks }) }].slice(-MISTAKES_KEPT);
 };
 
 const answered = (d: Draft, e: AnswerSubmitted): void => {
@@ -172,7 +172,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   for (const credit of e.outcome.kcs) d.met[credit.kc] ??= e.localDate;
   if (correct) addXp(d, e.localDate, XP.answer);
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
-    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs));
+    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs), askOf(e.outcome.kcs) === undefined ? undefined : e.exercise.asks);
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {

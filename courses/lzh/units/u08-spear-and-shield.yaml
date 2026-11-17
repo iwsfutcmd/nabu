@@ -6,46 +6,57 @@ title:
 cefr: A2
 kcs:
 - id: sense:矛
+  pos: NOUN
   gloss:
     en: spear, lance
   forms:
     lzh-Hant/standard: [矛]
 - id: sense:盾
+  pos: NOUN
   gloss:
     en: shield
   forms:
     lzh-Hant/standard: [盾]
 - id: sense:利
+  pos: ADJ
   gloss:
     en: sharp
   forms:
     lzh-Hant/standard: [利]
 - id: sense:堅
+  pos: ADJ
   gloss:
     en: hard, solid, strong
   forms:
     lzh-Hant/standard: [堅]
 - id: sense:鬻
+  pos: VERB
   gloss:
     en: to sell
   forms:
     lzh-Hant/standard: [鬻]
 - id: sense:譽
+  pos: VERB
   gloss:
     en: to praise, to boast of
   forms:
     lzh-Hant/standard: [譽]
 - id: sense:物
+  pos: NOUN
   gloss:
     en: thing; the things of the world
   forms:
     lzh-Hant/standard: [物]
 - id: sense:能
+  pos: VERB
   gloss:
     en: can, to be able to
   forms:
     lzh-Hant/standard: [能]
 - id: sense:莫
+  pos: PRON
+  features:
+    PronType: Neg
   gloss:
     en: 'no one, nothing (莫能: none can)'
   forms:
@@ -53,41 +64,55 @@ kcs:
   notes:
     en: '莫 says that none of the subject does it: 物莫能陷 “of things, none can pierce [it]”. An object pronoun comes before the verb: 莫之能知 “no one can know it”.'
 - id: sense:無
+  pos: VERB
   gloss:
     en: there is no; to have no, without
   forms:
     lzh-Hant/standard: [無]
 - id: sense:皆
+  pos: ADV
   gloss:
     en: all, every one
   forms:
     lzh-Hant/standard: [皆]
 - id: sense:又
+  pos: ADV
   gloss:
     en: again; also, moreover
   forms:
     lzh-Hant/standard: [又]
 - id: sense:或
+  pos: PRON
+  features:
+    PronType: Ind
   gloss:
     en: someone, some people
   forms:
     lzh-Hant/standard: [或]
 - id: sense:以
+  pos: ADP
   gloss:
     en: to use; with, by means of
   forms:
     lzh-Hant/standard: [以]
 - id: sense:陷
+  pos: VERB
   gloss:
     en: to pierce, to break through
   forms:
     lzh-Hant/standard: [陷]
 - id: sense:何如
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: how is it? what about …?
   forms:
     lzh-Hant/standard: [何如]
 - id: sense:弗
+  pos: ADV
+  features:
+    Polarity: Neg
   gloss:
     en: not (stronger than 不; mostly with the object left out)
   forms:
@@ -95,6 +120,7 @@ kcs:
   notes:
     en: '弗 is a stronger 不. In Warring States prose it mostly stands where an object is understood: 弗能應 “could not answer [him]”; but 不 too usually leaves 之 unsaid.'
 - id: sense:應
+  pos: VERB
   gloss:
     en: to answer, to respond
   forms:
@@ -563,7 +589,7 @@ stories:
       speaker: seller
       ask: complete
       gap: sense:堅
-      distractors: ['sense:利', 'sense:遠']
+      distractors: ['sense:利', 'sense:智']
       forms:
         lzh-Hant/standard:
           text: 吾盾之堅，物莫能陷也。

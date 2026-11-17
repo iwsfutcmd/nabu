@@ -8,6 +8,7 @@ Acceptance:
 from __future__ import annotations
 
 import copy
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -61,6 +62,103 @@ def test_a_clean_story_compiles_without_diagnostics(core_cli: CoreCli, tmp_path:
     }
     assert story["steps"][2]["choose"]["answer"] == 0
     assert story["characters"][0]["name"]["uz-Latn/standard"]["tokens"][0]["surface"] == "Aziz"
+
+
+def _compile_story(
+    core_cli: CoreCli, tmp_path: Path, edit: Callable[[dict[str, Any]], None]
+) -> tuple[Any, Any]:
+    course = copy.deepcopy(CLEAN)
+    with_story(course)
+    edit(course)
+    path = tmp_path / "story.yaml"
+    path.write_text(yamlio.dump(course), encoding="utf-8")
+    return compile_course(path, core_cli)
+
+
+def test_a_word_question_shows_each_distractor_in_the_gaps_form(
+    core_cli: CoreCli, tmp_path: Path
+) -> None:
+    """ADR 0132: the distractor is a word the course writes, in the gap's form (bare talabaman
+    here, so bare salom), taken from a sentence of the unit: its analysis comes with it."""
+
+    def unchanged(_: dict[str, Any]) -> None:
+        return None
+
+    diags, compiled = _compile_story(core_cli, tmp_path, unchanged)
+    assert compiled is not None, [d.format() for d in diags.items]
+    line = unit_json(compiled.units[0])["stories"][0]["steps"][1]["line"]
+    assert line["asks"] == "word"
+    assert line["distractors"] == ["sense:salom"]
+    [option] = line["options"]
+    assert option["uz-Latn/standard"]["tokens"] == [
+        {"surface": "Salom", "sense": "salom", "kind": "word"}
+    ]
+
+
+def _forms_of_talaba(c: dict[str, Any]) -> None:
+    """talaba bare (s.3), with -man (s.4) and plural (a new s.5); the story asks the -man form."""
+    u = c["units"][0]
+    # The KC's forms are its lemma alone once talabaman is analysed (kc.inflected-form).
+    u["kcs"][2]["forms"] = {"uz-Latn/standard": ["talaba"]}
+    u["kcs"].append({"id": "form:pl", "gloss": {"en": "-lar: plural"}})
+    u["nodes"][0]["introduces"].append("form:pl")
+    man = [
+        {"surface": "talaba", "kc": "sense:talaba"},
+        {"surface": "man", "kc": "construction:copula-man"},
+    ]
+    u["sentences"][3]["forms"]["uz-Latn/standard"]["tokens"][1]["morphs"] = man
+    u["sentences"].append(
+        {
+            "id": "s.5",
+            "node": "basics.1",
+            "forms": {
+                "uz-Latn/standard": {
+                    "text": "Salom, talabalar!",
+                    "tokens": [
+                        {"surface": "Salom", "sense": "salom"},
+                        {
+                            "surface": "talabalar",
+                            "sense": "talaba",
+                            "morphs": [
+                                {"surface": "talaba", "kc": "sense:talaba"},
+                                {"surface": "lar", "kc": "form:pl"},
+                            ],
+                        },
+                    ],
+                    "reverse": "Salom, talabalar",
+                }
+            },
+            "translations": {"en": "Hello, students!"},
+        }
+    )
+    line = u["stories"][0]["steps"][1]["line"]
+    line["asks"] = "form"
+    del line["distractors"]
+    line["forms"]["uz-Latn/standard"]["tokens"][1]["morphs"] = man
+
+
+def test_a_form_question_offers_the_gaps_word_in_other_attested_forms(
+    core_cli: CoreCli, tmp_path: Path
+) -> None:
+    """ADR 0132: asks form, distractors left out: the compiler takes two other forms of the gap's
+    sense that the course writes, never the gap's own form again."""
+    diags, compiled = _compile_story(core_cli, tmp_path, _forms_of_talaba)
+    assert compiled is not None, [d.format() for d in diags.items]
+    assert [d.format() for d in diags.items if d.lint.startswith("story.")] == []
+    line = unit_json(compiled.units[0])["stories"][0]["steps"][1]["line"]
+    assert line["asks"] == "form" and "distractors" not in line
+    shown = sorted(o["uz-Latn/standard"]["tokens"][0]["surface"] for o in line["options"])
+    assert shown == ["talaba", "talabalar"]
+
+
+def test_a_form_question_needs_two_other_forms(core_cli: CoreCli, tmp_path: Path) -> None:
+    def one_other(c: dict[str, Any]) -> None:
+        _forms_of_talaba(c)
+        c["units"][0]["sentences"].pop()
+
+    diags, compiled = _compile_story(core_cli, tmp_path, one_other)
+    assert compiled is None, "story.distractor-form is an error"
+    assert [d.lint for d in diags.items if d.lint.startswith("story.")] == ["story.distractor-form"]
 
 
 def test_every_fixture_course_has_stories_in_every_orthography(courses: dict[str, Any]) -> None:

@@ -10,6 +10,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:yol
+  pos: NOUN
   gloss:
     en: road, way; journey
   forms:
@@ -20,6 +21,7 @@ kcs:
   readings:
     schluessel: yol
 - id: sense:yaghach
+  pos: NOUN
   gloss:
     en: league (a day's march, some 8-10 km); wood
   forms:
@@ -30,6 +32,7 @@ kcs:
   readings:
     schluessel: yaǧač
 - id: sense:uzun
+  pos: ADJ
   gloss:
     en: long
   forms:
@@ -40,6 +43,7 @@ kcs:
   readings:
     schluessel: uzun
 - id: sense:aq.flow
+  pos: VERB
   gloss:
     en: to flow
   forms:
@@ -52,6 +56,7 @@ kcs:
   notes:
     en: 'aqar su "flowing water, running water": the aorist as an adjective. Spelled as aq "white".'
 - id: sense:bahar
+  pos: NOUN
   gloss:
     en: spring (the season)
   forms:
@@ -62,6 +67,7 @@ kcs:
   readings:
     schluessel: bahār
 - id: sense:mawzun
+  pos: ADJ
   gloss:
     en: well-shaped, well-proportioned
   forms:
@@ -72,6 +78,7 @@ kcs:
   readings:
     schluessel: mawzūn
 - id: sense:tush
+  pos: VERB
   gloss:
     en: to fall; to dismount; to lie, be situated
   forms:
@@ -84,6 +91,7 @@ kcs:
   notes:
     en: 'Babur: taǧ tüšüptur "a mountain lies there".'
 - id: sense:qulla
+  pos: NOUN
   gloss:
     en: peak, summit
   forms:
@@ -94,6 +102,7 @@ kcs:
   readings:
     schluessel: qulla
 - id: sense:mahmud
+  pos: PROPN
   gloss:
     en: Mahmud (a man's name)
   forms:
@@ -104,6 +113,7 @@ kcs:
   readings:
     schluessel: Maḥmūd
 - id: sense:khan
+  pos: NOUN
   gloss:
     en: khan (a ruler's title)
   forms:
@@ -114,6 +124,7 @@ kcs:
   readings:
     schluessel: ḫan
 - id: sense:agarcha
+  pos: SCONJ
   gloss:
     en: although
   forms:
@@ -126,6 +137,7 @@ kcs:
   notes:
     en: ägärčä …, walī … "although …, (yet) …".
 - id: sense:murtafi
+  pos: ADJ
   gloss:
     en: high, lofty
   forms:
@@ -136,6 +148,7 @@ kcs:
   readings:
     schluessel: murtafiʿ
 - id: sense:wali
+  pos: CCONJ
   gloss:
     en: but, yet
   forms:
@@ -146,6 +159,7 @@ kcs:
   readings:
     schluessel: walī
 - id: sense:waqi
+  pos: ADJ
   gloss:
     en: situated; happening
   forms:
@@ -158,6 +172,9 @@ kcs:
   notes:
     en: 'wāqiʿ bol- "to lie, be situated; to happen": wāqiʿ boluptur "it lies".'
 - id: sense:tamam
+  pos: DET
+  features:
+    PronType: Tot
   gloss:
     en: all, whole; complete
   forms:
@@ -168,6 +185,7 @@ kcs:
   readings:
     schluessel: tamām
 - id: sense:mahallat
+  pos: NOUN
   gloss:
     en: quarters, suburbs (of a town)
   forms:
@@ -178,6 +196,7 @@ kcs:
   readings:
     schluessel: maḥallāt
 - id: sense:ayaq
+  pos: NOUN
   gloss:
     en: foot; bottom, foot (of a hill)
   forms:
@@ -188,6 +207,7 @@ kcs:
   readings:
     schluessel: ayaq
 - id: sense:ast
+  pos: NOUN
   gloss:
     en: the underside, the space below
   forms:
@@ -681,8 +701,8 @@ stories:
       ask: complete
       gap: sense:mawzun
       distractors:
-      - sense:kitab
-      - sense:sut
+      - sense:shirin
+      - sense:semiz
       forms:
         chg-Arab/standard:
           text: "قورغانی\u200cنینک شرق جنوبی جانبی\u200cدا بر موزون تاغ توشوبتور."

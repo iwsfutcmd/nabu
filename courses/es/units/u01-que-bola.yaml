@@ -5,47 +5,47 @@ id: u01
 title: {en: '¿Qué bolá? Hello!'}
 cefr: A1
 kcs:
-- {id: 'sense:hola', gloss: {en: hello; hi}, forms: {es-Latn/standard: [hola]}, image: {file: ../images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:buenos-días', gloss: {en: good morning}, forms: {es-Latn/standard: [buenos días]}, image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'Cubans often shorten every greeting of the day to ¡Buenas!'}}
-- {id: 'sense:buenas-tardes', gloss: {en: good afternoon; good evening (before dark)}, forms: {es-Latn/standard: [buenas tardes]}, notes: {en: 'After dark: buenas noches.'}}
-- {id: 'sense:gracias', gloss: {en: thank you; thanks}, forms: {es-Latn/standard: [gracias]}}
-- {id: 'sense:sí', gloss: {en: 'yes'}, forms: {es-Latn/standard: [sí]}, notes: {en: 'With its accent. Si without one means if.'}}
-- {id: 'sense:no', gloss: {en: 'no; not'}, forms: {es-Latn/standard: ['no']}}
-- {id: 'sense:adiós', gloss: {en: goodbye; bye}, forms: {es-Latn/standard: [adiós]}, notes: {en: 'Among friends Cubans also say chao, or nos vemos.'}}
-- {id: 'sense:qué-bolá', gloss: {en: "what's up? (Cuban)"}, forms: {es-Latn/standard: [qué bolá]}, notes: {en: 'The Cuban greeting among friends and family; also written ¿qué volá? Not for elders you don''t know.'}}
-- {id: 'sense:asere', gloss: {en: buddy; mate; man (Cuban)}, forms: {es-Latn/standard: [asere]}, notes: {en: 'Cuban, informal, mostly between men; also written acere.'}}
-- {id: 'sense:bien', gloss: {en: well; good; fine}, forms: {es-Latn/standard: [bien]}, image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:muy', gloss: {en: very}, forms: {es-Latn/standard: [muy]}}
-- {id: 'sense:y', gloss: {en: and}, forms: {es-Latn/standard: ['y']}}
-- {id: 'sense:tú', gloss: {en: you (familiar)}, forms: {es-Latn/standard: [tú]}, notes: {en: 'Cubans say tú to friends, family and most people their age, and keep it before the verb in questions: ¿Cómo tú estás? Tu without the accent means your.'}}
-- {id: 'sense:estar', gloss: {en: 'to be (how or where): estoy bien'}, forms: {es-Latn/standard: [estar]}, notes: {en: 'Estar says how or where something is; ser says who or what it is.'}}
+- {id: 'sense:hola', pos: INTJ, gloss: {en: hello; hi}, forms: {es-Latn/standard: [hola]}, image: {file: ../images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:buenos-días', pos: INTJ, gloss: {en: good morning}, forms: {es-Latn/standard: [buenos días]}, image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'Cubans often shorten every greeting of the day to ¡Buenas!'}}
+- {id: 'sense:buenas-tardes', pos: INTJ, gloss: {en: good afternoon; good evening (before dark)}, forms: {es-Latn/standard: [buenas tardes]}, notes: {en: 'After dark: buenas noches.'}}
+- {id: 'sense:gracias', pos: INTJ, gloss: {en: thank you; thanks}, forms: {es-Latn/standard: [gracias]}}
+- {id: 'sense:sí', pos: INTJ, gloss: {en: 'yes'}, forms: {es-Latn/standard: [sí]}, notes: {en: 'With its accent. Si without one means if.'}}
+- {id: 'sense:no', pos: ADV, features: {Polarity: Neg}, gloss: {en: 'no; not'}, forms: {es-Latn/standard: ['no']}}
+- {id: 'sense:adiós', pos: INTJ, gloss: {en: goodbye; bye}, forms: {es-Latn/standard: [adiós]}, notes: {en: 'Among friends Cubans also say chao, or nos vemos.'}}
+- {id: 'sense:qué-bolá', pos: INTJ, gloss: {en: "what's up? (Cuban)"}, forms: {es-Latn/standard: [qué bolá]}, notes: {en: 'The Cuban greeting among friends and family; also written ¿qué volá? Not for elders you don''t know.'}}
+- {id: 'sense:asere', pos: NOUN, gloss: {en: buddy; mate; man (Cuban)}, forms: {es-Latn/standard: [asere]}, notes: {en: 'Cuban, informal, mostly between men; also written acere.'}}
+- {id: 'sense:bien', pos: ADV, gloss: {en: well; good; fine}, forms: {es-Latn/standard: [bien]}, image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:muy', pos: ADV, gloss: {en: very}, forms: {es-Latn/standard: [muy]}}
+- {id: 'sense:y', pos: CCONJ, gloss: {en: and}, forms: {es-Latn/standard: ['y']}}
+- {id: 'sense:tú', pos: PRON, features: {PronType: Prs}, gloss: {en: you (familiar)}, forms: {es-Latn/standard: [tú]}, notes: {en: 'Cubans say tú to friends, family and most people their age, and keep it before the verb in questions: ¿Cómo tú estás? Tu without the accent means your.'}}
+- {id: 'sense:estar', pos: AUX, gloss: {en: 'to be (how or where): estoy bien'}, forms: {es-Latn/standard: [estar]}, notes: {en: 'Estar says how or where something is; ser says who or what it is.'}}
 - {id: 'form:pres-1s', gloss: {en: 'present tense: I (yo)'}, notes: {en: 'Estoy, soy, me llamo: I am, I''m called.'}}
-- {id: 'sense:cómo', gloss: {en: how}, forms: {es-Latn/standard: [cómo]}, notes: {en: 'With the accent it asks: ¿cómo? Without it, como means like, as, or I eat.'}}
+- {id: 'sense:cómo', pos: ADV, features: {PronType: Int}, gloss: {en: how}, forms: {es-Latn/standard: [cómo]}, notes: {en: 'With the accent it asks: ¿cómo? Without it, como means like, as, or I eat.'}}
 - {id: 'form:pres-2s', gloss: {en: 'present tense: you (tú)'}, notes: {en: '¿Cómo estás? ¿Tú eres de Cuba?'}}
-- {id: 'sense:usted', gloss: {en: you (polite)}, forms: {es-Latn/standard: [usted]}, notes: {en: 'For elders, strangers and formal settings. Its verb is like él''s: usted está. Cuba has no vosotros: you all is ustedes.'}}
+- {id: 'sense:usted', pos: PRON, features: {PronType: Prs}, gloss: {en: you (polite)}, forms: {es-Latn/standard: [usted]}, notes: {en: 'For elders, strangers and formal settings. Its verb is like él''s: usted está. Cuba has no vosotros: you all is ustedes.'}}
 - {id: 'form:pres-3s', gloss: {en: 'present tense: he, she, it, you (usted)'}, notes: {en: 'Está, es, se llama.'}}
-- {id: 'sense:ser', gloss: {en: 'to be (who or what): soy Daniel'}, forms: {es-Latn/standard: [ser]}, notes: {en: 'Soy, eres, es: I am, you are, he or she is.'}}
-- {id: 'sense:daniel', gloss: {en: Daniel (a name)}, forms: {es-Latn/standard: [Daniel]}}
-- {id: 'sense:yo', gloss: {en: I}, forms: {es-Latn/standard: [yo]}, notes: {en: 'Spanish often leaves it out (soy Daniel); Cubans say it more than most.'}}
-- {id: 'sense:de', gloss: {en: of; from}, forms: {es-Latn/standard: [de]}}
-- {id: 'sense:miami', gloss: {en: Miami}, forms: {es-Latn/standard: [Miami]}}
-- {id: 'sense:cuba', gloss: {en: Cuba}, forms: {es-Latn/standard: [Cuba]}}
-- {id: 'sense:cubano', gloss: {en: Cuban}, forms: {es-Latn/standard: [cubano]}, notes: {en: 'Cubana for a woman. Nationalities take no capital in Spanish.'}}
-- {id: 'sense:llamarse', gloss: {en: "to be called (me llamo: I'm called)"}, forms: {es-Latn/standard: [llamarse]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:me', gloss: {en: 'me; myself'}, forms: {es-Latn/standard: [me]}}
-- {id: 'sense:te', gloss: {en: 'you; yourself (tú)'}, forms: {es-Latn/standard: [te]}, notes: {en: 'Té with an accent is tea.'}}
-- {id: 'sense:yasiel', gloss: {en: Yasiel (a name)}, forms: {es-Latn/standard: [Yasiel]}, notes: {en: 'Cuban names beginning with Y (Yasiel, Yunior, Yanelis) were popular from the 1970s on.'}}
-- {id: 'sense:se', gloss: {en: 'himself, herself, yourself (usted), themselves'}, forms: {es-Latn/standard: [se]}, notes: {en: 'Se llama: his or her name is. Sé with an accent is I know.'}}
-- {id: 'sense:él', gloss: {en: he; him}, forms: {es-Latn/standard: [él]}, notes: {en: 'With its accent. El without one means the.'}}
-- {id: 'sense:ella', gloss: {en: she; her}, forms: {es-Latn/standard: [ella]}}
-- {id: 'sense:cachita', gloss: {en: Cachita (a name)}, forms: {es-Latn/standard: [Cachita]}, notes: {en: 'Short for Caridad, after the Virgen de la Caridad del Cobre, Cuba''s patron saint.'}}
-- {id: 'sense:mi', gloss: {en: my}, forms: {es-Latn/standard: [mi]}, notes: {en: 'Mis before a plural. Mí with an accent means me (para mí).'}}
-- {id: 'sense:abuela', gloss: {en: grandmother; grandma}, forms: {es-Latn/standard: [abuela]}}
-- {id: 'sense:vida', gloss: {en: 'life; mi vida: my darling'}, forms: {es-Latn/standard: [vida]}, notes: {en: 'Mi vida, mi amor, mi cielo: what Cuban grandmothers call everyone.'}}
-- {id: 'sense:mucho-gusto', gloss: {en: nice to meet you}, forms: {es-Latn/standard: [mucho gusto]}}
-- {id: 'sense:encantado', gloss: {en: nice to meet you; delighted}, forms: {es-Latn/standard: [encantado]}, notes: {en: 'A man says encantado, a woman encantada.'}}
-- {id: 'sense:señora', gloss: {en: madam; ma'am; Mrs; lady}, forms: {es-Latn/standard: [señora]}, notes: {en: 'Señor for a man.'}}
-- {id: 'sense:también', gloss: {en: also; too; as well}, forms: {es-Latn/standard: [también]}, notes: {en: 'Yo también: me too.'}}
+- {id: 'sense:ser', pos: AUX, gloss: {en: 'to be (who or what): soy Daniel'}, forms: {es-Latn/standard: [ser]}, notes: {en: 'Soy, eres, es: I am, you are, he or she is.'}}
+- {id: 'sense:daniel', pos: PROPN, gloss: {en: Daniel (a name)}, forms: {es-Latn/standard: [Daniel]}}
+- {id: 'sense:yo', pos: PRON, features: {PronType: Prs}, gloss: {en: I}, forms: {es-Latn/standard: [yo]}, notes: {en: 'Spanish often leaves it out (soy Daniel); Cubans say it more than most.'}}
+- {id: 'sense:de', pos: ADP, gloss: {en: of; from}, forms: {es-Latn/standard: [de]}}
+- {id: 'sense:miami', pos: PROPN, gloss: {en: Miami}, forms: {es-Latn/standard: [Miami]}}
+- {id: 'sense:cuba', pos: PROPN, gloss: {en: Cuba}, forms: {es-Latn/standard: [Cuba]}}
+- {id: 'sense:cubano', pos: ADJ, gloss: {en: Cuban}, forms: {es-Latn/standard: [cubano]}, notes: {en: 'Cubana for a woman. Nationalities take no capital in Spanish.'}}
+- {id: 'sense:llamarse', pos: VERB, gloss: {en: "to be called (me llamo: I'm called)"}, forms: {es-Latn/standard: [llamarse]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:me', pos: PRON, features: {PronType: Prs}, gloss: {en: 'me; myself'}, forms: {es-Latn/standard: [me]}}
+- {id: 'sense:te', pos: PRON, features: {PronType: Prs}, gloss: {en: 'you; yourself (tú)'}, forms: {es-Latn/standard: [te]}, notes: {en: 'Té with an accent is tea.'}}
+- {id: 'sense:yasiel', pos: PROPN, gloss: {en: Yasiel (a name)}, forms: {es-Latn/standard: [Yasiel]}, notes: {en: 'Cuban names beginning with Y (Yasiel, Yunior, Yanelis) were popular from the 1970s on.'}}
+- {id: 'sense:se', pos: PRON, features: {PronType: Prs, Reflex: 'Yes'}, gloss: {en: 'himself, herself, yourself (usted), themselves'}, forms: {es-Latn/standard: [se]}, notes: {en: 'Se llama: his or her name is. Sé with an accent is I know.'}}
+- {id: 'sense:él', pos: PRON, features: {PronType: Prs}, gloss: {en: he; him}, forms: {es-Latn/standard: [él]}, notes: {en: 'With its accent. El without one means the.'}}
+- {id: 'sense:ella', pos: PRON, features: {PronType: Prs}, gloss: {en: she; her}, forms: {es-Latn/standard: [ella]}}
+- {id: 'sense:cachita', pos: PROPN, gloss: {en: Cachita (a name)}, forms: {es-Latn/standard: [Cachita]}, notes: {en: 'Short for Caridad, after the Virgen de la Caridad del Cobre, Cuba''s patron saint.'}}
+- {id: 'sense:mi', pos: DET, features: {Poss: 'Yes', PronType: Prs}, gloss: {en: my}, forms: {es-Latn/standard: [mi]}, notes: {en: 'Mis before a plural. Mí with an accent means me (para mí).'}}
+- {id: 'sense:abuela', pos: NOUN, gloss: {en: grandmother; grandma}, forms: {es-Latn/standard: [abuela]}}
+- {id: 'sense:vida', pos: NOUN, gloss: {en: 'life; mi vida: my darling'}, forms: {es-Latn/standard: [vida]}, notes: {en: 'Mi vida, mi amor, mi cielo: what Cuban grandmothers call everyone.'}}
+- {id: 'sense:mucho-gusto', pos: INTJ, gloss: {en: nice to meet you}, forms: {es-Latn/standard: [mucho gusto]}}
+- {id: 'sense:encantado', pos: INTJ, gloss: {en: nice to meet you; delighted}, forms: {es-Latn/standard: [encantado]}, notes: {en: 'A man says encantado, a woman encantada.'}}
+- {id: 'sense:señora', pos: NOUN, gloss: {en: madam; ma'am; Mrs; lady}, forms: {es-Latn/standard: [señora]}, notes: {en: 'Señor for a man.'}}
+- {id: 'sense:también', pos: ADV, gloss: {en: also; too; as well}, forms: {es-Latn/standard: [también]}, notes: {en: 'Yo también: me too.'}}
 nodes:
 - {id: es.u01.hola, kind: lesson, introduces: ['sense:hola', 'sense:buenos-días', 'sense:buenas-tardes', 'sense:gracias', 'sense:sí', 'sense:no', 'sense:adiós']}
 - {id: es.u01.que-bola, kind: lesson, introduces: ['sense:qué-bolá', 'sense:asere', 'sense:bien', 'sense:muy', 'sense:y', 'sense:tú']}
@@ -672,8 +672,8 @@ stories:
   - line:
       speaker: cachita
       ask: complete
-      gap: sense:encantado
-      distractors: ['sense:adiós', 'sense:gracias']
+      gap: sense:yasiel
+      distractors: ['sense:daniel', 'sense:cachita']
       forms:
         es-Latn/standard:
           text: Encantada, Yasiel. ¿Tú eres de Miami?
@@ -708,7 +708,7 @@ stories:
       speaker: yasiel
       ask: complete
       gap: sense:bien
-      distractors: ['sense:no', 'sense:adiós']
+      distractors: ['sense:muy', 'sense:también']
       forms:
         es-Latn/standard:
           text: Muy bien, señora. ¡Gracias!

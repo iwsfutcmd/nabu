@@ -7,18 +7,18 @@ id: u18-getting-around
 title: {en: Getting around}
 cefr: A2
 kcs:
-- {id: 'sense:servees', gloss: {en: service (a shared taxi on a fixed route)}, forms: {apc-Arab/standard: [سرفيس], apc-Latn/arabizi: [servees]}, notes: {en: A red-plated car that picks up several passengers
+- {id: 'sense:servees', pos: NOUN, gloss: {en: service (a shared taxi on a fixed route)}, forms: {apc-Arab/standard: [سرفيس], apc-Latn/arabizi: [servees]}, notes: {en: A red-plated car that picks up several passengers
       along its route for a fixed fare.}}
-- {id: 'sense:taxi', gloss: {en: taxi}, forms: {apc-Arab/standard: [تاكسي], apc-Latn/arabizi: [taxi]}}
-- {id: 'sense:bus', gloss: {en: bus}, forms: {apc-Arab/standard: [باص], apc-Latn/arabizi: [bus]}, notes: {en: Also written bas or baS; bas alone is 'only; but'.}}
-- {id: 'sense:tari2', gloss: {en: road; way}, forms: {apc-Arab/standard: [طريق], apc-Latn/arabizi: [tari2]}, notes: {en: '3al tari2: on the way.'}}
-- {id: 'sense:3aj2a', gloss: {en: traffic; traffic jam; crowd}, forms: {apc-Arab/standard: [عجقة], apc-Latn/arabizi: [3aj2a]}}
-- {id: 'sense:2a3ed', gloss: {en: sitting; staying (somewhere)}, forms: {apc-Arab/standard: [قاعد], apc-Latn/arabizi: [2a3ed]}, notes: {en: 'An active participle: 2a3de (a woman), 2a3din (several people).
+- {id: 'sense:taxi', pos: NOUN, gloss: {en: taxi}, forms: {apc-Arab/standard: [تاكسي], apc-Latn/arabizi: [taxi]}}
+- {id: 'sense:bus', pos: NOUN, gloss: {en: bus}, forms: {apc-Arab/standard: [باص], apc-Latn/arabizi: [bus]}, notes: {en: Also written bas or baS; bas alone is 'only; but'.}}
+- {id: 'sense:tari2', pos: NOUN, gloss: {en: road; way}, forms: {apc-Arab/standard: [طريق], apc-Latn/arabizi: [tari2]}, notes: {en: '3al tari2: on the way.'}}
+- {id: 'sense:3aj2a', pos: NOUN, gloss: {en: traffic; traffic jam; crowd}, forms: {apc-Arab/standard: [عجقة], apc-Latn/arabizi: [3aj2a]}}
+- {id: 'sense:2a3ed', pos: VERB, gloss: {en: sitting; staying (somewhere)}, forms: {apc-Arab/standard: [قاعد], apc-Latn/arabizi: [2a3ed]}, notes: {en: 'An active participle: 2a3de (a woman), 2a3din (several people).
       wen 2a3ed? Where are you (sitting)?'}}
-- {id: 'sense:wa2ef', gloss: {en: standing; stopped; waiting}, forms: {apc-Arab/standard: [واقف], apc-Latn/arabizi: [wa2ef]}, notes: {en: 'An active participle: wa2fe (a woman), wa2fin (several people).'}}
-- {id: 'sense:laff', gloss: {en: turn}, forms: {apc-Arab/standard: [لفّ], apc-Latn/arabizi: [liff]}, notes: {en: 'liff 3al yamin: turn right (to a man); liffi (to a woman); liffo (to several people).'}}
-- {id: 'sense:ishara', gloss: {en: traffic light; sign}, forms: {apc-Arab/standard: [إشارة], apc-Latn/arabizi: [ishara]}}
-- {id: 'sense:wa22ef', gloss: {en: 'stop (a car, someone)'}, forms: {apc-Arab/standard: [وقّف], apc-Latn/arabizi: [wa22ef]}, notes: {en: 'wa22ef hon!: stop here! (to a driver). To a woman: wa22fi.'}}
+- {id: 'sense:wa2ef', pos: VERB, gloss: {en: standing; stopped; waiting}, forms: {apc-Arab/standard: [واقف], apc-Latn/arabizi: [wa2ef]}, notes: {en: 'An active participle: wa2fe (a woman), wa2fin (several people).'}}
+- {id: 'sense:laff', pos: VERB, gloss: {en: turn}, forms: {apc-Arab/standard: [لفّ], apc-Latn/arabizi: [liff]}, notes: {en: 'liff 3al yamin: turn right (to a man); liffi (to a woman); liffo (to several people).'}}
+- {id: 'sense:ishara', pos: NOUN, gloss: {en: traffic light; sign}, forms: {apc-Arab/standard: [إشارة], apc-Latn/arabizi: [ishara]}}
+- {id: 'sense:wa22ef', pos: VERB, gloss: {en: 'stop (a car, someone)'}, forms: {apc-Arab/standard: [وقّف], apc-Latn/arabizi: [wa22ef]}, notes: {en: 'wa22ef hon!: stop here! (to a driver). To a woman: wa22fi.'}}
 nodes:
 - {id: apc.road.transport, kind: lesson, introduces: ['sense:servees', 'sense:taxi', 'sense:bus', 'sense:tari2', 'sense:3aj2a']}
 - {id: apc.road.where, kind: lesson, introduces: ['sense:2a3ed', 'sense:wa2ef']}
@@ -589,7 +589,7 @@ stories:
       speaker: sami
       ask: complete
       gap: sense:3aj2a
-      distractors: ['sense:tari2']
+      distractors: ['sense:khebz', 'sense:jebne']
       forms:
         apc-Arab/standard:
           text: إيه، في عَجْقَة كْتير!

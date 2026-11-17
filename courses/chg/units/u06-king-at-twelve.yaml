@@ -10,6 +10,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:sal
+  pos: VERB
   gloss:
     en: to put, throw; to build, set up
   forms:
@@ -20,6 +21,9 @@ kcs:
   readings:
     schluessel: sal
 - id: sense:yigirma
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: twenty
   forms:
@@ -30,6 +34,9 @@ kcs:
   readings:
     schluessel: yigirmä
 - id: sense:ottuz
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: thirty
   forms:
@@ -40,6 +47,9 @@ kcs:
   readings:
     schluessel: ottuz
 - id: sense:qirq
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: forty
   forms:
@@ -50,6 +60,9 @@ kcs:
   readings:
     schluessel: qirq
 - id: sense:allik
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: fifty
   forms:
@@ -60,6 +73,9 @@ kcs:
   readings:
     schluessel: ällik
 - id: sense:toqsan
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: ninety
   forms:
@@ -70,6 +86,9 @@ kcs:
   readings:
     schluessel: toqsan
 - id: sense:yuz
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: hundred; face
   forms:
@@ -80,6 +99,9 @@ kcs:
   readings:
     schluessel: yüz
 - id: sense:ming
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: thousand
   forms:
@@ -90,6 +112,7 @@ kcs:
   readings:
     schluessel: miŋ
 - id: sense:yash
+  pos: NOUN
   gloss:
     en: year of age; young
   forms:
@@ -102,6 +125,7 @@ kcs:
   notes:
     en: on ikki yašta "at twelve years of age".
 - id: sense:ay.month
+  pos: NOUN
   gloss:
     en: month; moon
   forms:
@@ -119,6 +143,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:yil
+  pos: NOUN
   gloss:
     en: year
   forms:
@@ -129,6 +154,7 @@ kcs:
   readings:
     schluessel: yil
 - id: sense:kun
+  pos: NOUN
   gloss:
     en: day; sun
   forms:
@@ -146,6 +172,7 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:tarikh
+  pos: NOUN
   gloss:
     en: date, year (of an era); history
   forms:
@@ -158,6 +185,7 @@ kcs:
   notes:
     en: 'tārīḫ-i 899 "the year 899": the -i is the Persian ezafe "of", which the script does not write. Dates count the years of the Hijra (899 is 1494 CE).'
 - id: sense:ramzan
+  pos: PROPN
   gloss:
     en: Ramadan (the ninth month)
   forms:
@@ -168,6 +196,7 @@ kcs:
   readings:
     schluessel: Ramżān
 - id: sense:iqlim
+  pos: NOUN
   gloss:
     en: clime (one of the seven zones of the earth)
   forms:
@@ -178,6 +207,7 @@ kcs:
   readings:
     schluessel: iqlīm
 - id: sense:aywan
+  pos: NOUN
   gloss:
     en: portico, porch
   forms:
@@ -188,6 +218,7 @@ kcs:
   readings:
     schluessel: aywān
 - id: sense:hujra
+  pos: NOUN
   gloss:
     en: room; pavilion
   forms:
@@ -198,6 +229,9 @@ kcs:
   readings:
     schluessel: ḥujra
 - id: sense:qayda
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where?
   forms:
@@ -208,6 +242,7 @@ kcs:
   readings:
     schluessel: qayda
 - id: sense:bibi
+  pos: NOUN
   gloss:
     en: Mrs., lady (after a woman's name)
   forms:
@@ -218,6 +253,7 @@ kcs:
   readings:
     schluessel: bibi
 - id: sense:kashghar
+  pos: PROPN
   gloss:
     en: Kashgar
   forms:
@@ -884,8 +920,8 @@ stories:
       ask: complete
       gap: sense:farghana
       distractors:
-      - sense:nan
-      - sense:at
+      - sense:ramzan
+      - sense:khuma
       forms:
         chg-Arab/standard:
           text: "فرغانه ولایتی بیشینجی اقلیم\u200cدین\u200cدور."

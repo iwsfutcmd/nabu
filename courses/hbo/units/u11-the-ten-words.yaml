@@ -10,26 +10,31 @@ title:
 cefr: A2
 kcs:
 - id: sense:mitsrayim
+  pos: PROPN
   gloss:
     en: Egypt
   forms:
     hbo-Hebr/tiberian: [מִצְרַיִם]
 - id: sense:yatsa
+  pos: VERB
   gloss:
     en: to go out, come out
   forms:
     hbo-Hebr/tiberian: [יָצָא]
 - id: sense:hotsi
+  pos: VERB
   gloss:
     en: to bring out, lead out (hiphil of יָצָא)
   forms:
     hbo-Hebr/tiberian: [הוֹצִיא]
 - id: sense:aher
+  pos: ADJ
   gloss:
     en: other, another
   forms:
     hbo-Hebr/tiberian: [אַחֵר]
 - id: sense:em
+  pos: NOUN
   gloss:
     en: mother
   forms:
@@ -37,6 +42,7 @@ kcs:
   notes:
     en: With suffixes אִמִּי ʾimmî 'my mother', אִמְּךָ / אִמֶּךָ 'your mother'.
 - id: sense:kibbed
+  pos: VERB
   gloss:
     en: to honour (piel of כָּבֵד)
   forms:
@@ -45,11 +51,13 @@ kcs:
   gloss:
     en: 'the infinitive absolute: in laws, ''you shall …'' (כַּבֵּד ''honour''); before its own verb, ''surely'''
 - id: sense:lemaan
+  pos: SCONJ
   gloss:
     en: so that, in order that; for the sake of
   forms:
     hbo-Hebr/tiberian: [מַעַן]
 - id: sense:heerikh
+  pos: VERB
   gloss:
     en: to make long, prolong (hiphil)
   forms:
@@ -58,16 +66,19 @@ kcs:
   gloss:
     en: 'they will do: the imperfect (yiqtol), they'
 - id: sense:ratsach
+  pos: VERB
   gloss:
     en: to kill, murder
   forms:
     hbo-Hebr/tiberian: [רָצַח]
 - id: sense:naaf
+  pos: VERB
   gloss:
     en: to commit adultery
   forms:
     hbo-Hebr/tiberian: [נָאַף]
 - id: sense:ganav
+  pos: VERB
   gloss:
     en: to steal
   forms:
@@ -76,21 +87,25 @@ kcs:
   gloss:
     en: 'you will do: the imperfect (yiqtol), you (to several people)'
 - id: sense:anah
+  pos: VERB
   gloss:
     en: to answer; to testify
   forms:
     hbo-Hebr/tiberian: [עָנָה]
 - id: sense:rea
+  pos: NOUN
   gloss:
     en: neighbour, fellow, friend
   forms:
     hbo-Hebr/tiberian: [רֵעַ]
 - id: sense:ed
+  pos: NOUN
   gloss:
     en: witness
   forms:
     hbo-Hebr/tiberian: [עֵד]
 - id: sense:sheqer
+  pos: NOUN
   gloss:
     en: 'lie, falsehood (עֵד שָׁקֶר: a false witness)'
   forms:
@@ -99,6 +114,7 @@ kcs:
   gloss:
     en: 'and you shall do: the converted perfect (weqatal), you'
 - id: sense:kemo
+  pos: ADP
   gloss:
     en: 'like, as (with suffixes: כָּמוֹךָ ''like you, as yourself'')'
   forms:
@@ -553,7 +569,7 @@ stories:
       speaker: god
       ask: complete
       gap: sense:em
-      distractors: ['sense:ah', 'sense:ben']
+      distractors: ['sense:qol', 'sense:yad']
       forms:
         hbo-Hebr/tiberian:
           text: כַּבֵּד אֶת־אָבִיךָ וְאֶת־אִמֶּךָ לְמַעַן יַאֲרִכוּן יָמֶיךָ עַל הָאֲדָמָה אֲשֶׁר־יְהוָה אֱלֹהֶיךָ נֹתֵן לָךְ׃
@@ -586,9 +602,6 @@ stories:
         en: You shall not commit adultery.
   - line:
       speaker: god
-      ask: complete
-      gap: sense:ganav
-      distractors: ['sense:ratsach', 'sense:naaf']
       forms:
         hbo-Hebr/tiberian:
           text: לֹא תִּגְנֹב׃
@@ -597,6 +610,9 @@ stories:
         en: You shall not steal.
   - line:
       speaker: god
+      ask: complete
+      gap: sense:ed
+      distractors: ['sense:ets', 'sense:erets']
       forms:
         hbo-Hebr/tiberian:
           text: לֹא־תַעֲנֶה בְרֵעֲךָ עֵד שָׁקֶר׃

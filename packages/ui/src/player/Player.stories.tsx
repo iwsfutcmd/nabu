@@ -54,9 +54,8 @@ const stateFor = (screen: PlayerScreen, ex: Exercise, course: CourseView, grader
     const first = ex.template === "translate-tap.l1-l2" ? ex.solution.slice(0, 1) : [];
     return step(answering, { tag: "input", draft: { tag: "tiles", order: first } })[0];
   }
-  // Feedback for a wrong word in the gap: the answer is marked against the solution. The option before
-  // the gap-fill's answer is marked in one place in every target, as the visual matrix checks (yue: 去
-  // for 早晨, where the option after it, 老師, would mark both characters).
+  // Feedback for a wrong word in the gap: the answer is marked against the solution, the option before
+  // the gap-fill's answer in its place (yue: 唔該 for 早晨, both characters marked).
   const gap = sampleExercise(course, "gap-fill", SEED);
   const other = gap?.template === "gap-fill" ? gap.options[(gap.answer + gap.options.length - 1) % gap.options.length] : undefined;
   const wrong = other === undefined ? "?" : surfaceOf(other);

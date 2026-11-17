@@ -6,26 +6,31 @@ title:
 cefr: A1
 kcs:
 - id: sense:楚
+  pos: PROPN
   gloss:
     en: Chu, a large southern state on the Yangzi
   forms:
     lzh-Hant/standard: [楚]
 - id: sense:江
+  pos: NOUN
   gloss:
     en: the (Yangzi) River; a great river
   forms:
     lzh-Hant/standard: [江]
 - id: sense:舟
+  pos: NOUN
   gloss:
     en: boat
   forms:
     lzh-Hant/standard: [舟]
 - id: sense:劍
+  pos: NOUN
   gloss:
     en: sword
   forms:
     lzh-Hant/standard: [劍]
 - id: sense:中
+  pos: ADP
   gloss:
     en: middle; in, inside (after a noun)
   forms:
@@ -33,21 +38,25 @@ kcs:
   notes:
     en: 'After a noun it says where: 舟中 “in the boat”, 水中 “in the water”.'
 - id: sense:入
+  pos: VERB
   gloss:
     en: to enter, to go into
   forms:
     lzh-Hant/standard: [入]
 - id: sense:止
+  pos: VERB
   gloss:
     en: to stop, to halt
   forms:
     lzh-Hant/standard: [止]
 - id: sense:求
+  pos: VERB
   gloss:
     en: to seek, to look for; to ask for
   forms:
     lzh-Hant/standard: [求]
 - id: sense:失
+  pos: VERB
   gloss:
     en: to lose
   forms:
@@ -56,21 +65,25 @@ kcs:
   gloss:
     en: 'X人有…者: “there was a man of X who …”, how a story brings in its hero'
 - id: sense:涉
+  pos: VERB
   gloss:
     en: to wade across, to cross (a river)
   forms:
     lzh-Hant/standard: [涉]
 - id: sense:墜
+  pos: VERB
   gloss:
     en: to fall, to drop
   forms:
     lzh-Hant/standard: [墜]
 - id: sense:遽
+  pos: ADV
   gloss:
     en: hastily, at once
   forms:
     lzh-Hant/standard: [遽]
 - id: sense:契
+  pos: VERB
   gloss:
     en: to carve, to cut a notch
   forms:
@@ -78,11 +91,13 @@ kcs:
   notes:
     en: 'In 刻舟求劍 the man 契 “notches” his boat: the same as 刻 here.'
 - id: sense:刻
+  pos: VERB
   gloss:
     en: to carve, to engrave
   forms:
     lzh-Hant/standard: [刻]
 - id: sense:從.from
+  pos: ADP
   gloss:
     en: from (a place)
   forms:
@@ -90,11 +105,13 @@ kcs:
   notes:
     en: 'The 從 of u03 is “to follow”; as a preposition it is “from”: 從魯來 “come from Lu”, 所從墜 “where it fell from”.'
 - id: sense:已
+  pos: ADV
   gloss:
     en: already
   forms:
     lzh-Hant/standard: [已]
 - id: sense:若
+  pos: VERB
   gloss:
     en: like, as; to be like
   forms:
@@ -699,7 +716,7 @@ stories:
       speaker: chu-ren
       ask: complete
       gap: sense:墜
-      distractors: ['sense:入', 'sense:止']
+      distractors: ['sense:言', 'sense:思']
       forms:
         lzh-Hant/standard:
           text: 「是吾劍之所從墜。」
@@ -718,8 +735,8 @@ stories:
       translations: {en: 'The boat stopped, and from where he had marked it, he went into the water to look for it.'}
   - line:
       ask: complete
-      gap: sense:已
-      distractors: ['sense:亦', 'sense:遽']
+      gap: sense:舟
+      distractors: ['sense:劍', 'sense:山']
       forms:
         lzh-Hant/standard:
           text: 舟已行矣，而劍不行。
