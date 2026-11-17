@@ -596,19 +596,26 @@ A learner told where to look can look there.
 8. **Facets from the graph** (§6.1), after 7.
 9. **Minimal ruby and ambiguity marking** (§5). Medium, UI only, independent of the rest.
 
-## 12. Questions for Ben
+## 12. Decisions (Ben, 2026-11-17)
 
-1. Is "reading = function of (spelling, sense, morphs, persons, sentence type, juncture)" the
-   invariant you want the compiler to enforce, with variation as the only declared exception?
-2. The ezafe as a morph: right for fa and chg both? It changes how ezafe sentences are annotated
-   (a morph on the head noun) and adds a form KC each.
-3. Feature slips: should a missing vowel mark in chg typed readings be wrong (consistent with the
-   choice cards) or noted (kinder on phones)? The same question applies to grc length and yue
-   tones; yue already says wrong.
-4. grc: should the Attic reading be the only stored layer, with the Greek spelling derived from it?
-   It would mean authoring in the reading, which is less natural than authoring in Greek. The
-   alternative is to keep both and check.
-5. Traditions: should learners pick one per course (lzh does), and should cards ever ask in a
-   tradition other than the chosen one?
-6. Which matters more next: reading-side tools (feature cards, minimal ruby) or writing-side tools
-   (spelling choice, homophone letters)?
+1. **The compiler enforces reading = f(spelling, sense, morphs)**, switched on per course once it
+   is clean (a warning before). Checking the data reduced the other inputs to these:
+   - apc's *baddak / baddik* is two tokens missing their gendered morph KCs (the KCs exist);
+   - yue's 呀 is two senses (*aa3* softens, *aa4* makes a question);
+   - hbo's maqaf binding is in the text: a reading ends in "-" exactly where a maqaf follows (270
+     of 270).
+   Free variation is declared, never silent.
+2. **An unwritten morpheme is a morph with no surface** (the ezafe: fa's kasra, chg's unwritten
+   *-i*). fa moves its sentence-level ezafe tags onto the words.
+3. **chg typed readings:** a wrong or missing vowel mark (ä ö ü, ā ī ū ē, à) is wrong; a consonant
+   mark (ṣ ḥ ṭ ẓ ż ź s̱ ḫ č š ž ǧ) is noted. Vowels are what the script leaves out.
+   - **hbo and apc** get a typed mark card: the word's letters are given, and the learner taps the
+     marks onto them from buttons (only on that card), after a choice card has shown the marks.
+4. **grc keeps both layers**; the compiler checks the spelling against the reading, and a form
+   pinned once fills its later tokens (by decision 1).
+5. **The learner picks one tradition per course**; everything follows the pick, and the others show
+   only on request. Reading progress is kept per tradition (switching Jyutping ↔ Baxter keeps
+   both). lzh gets reading cards in the picked tradition, choice first, then typed (Baxter is plain
+   ASCII; Pinyin's tone marks come from the character bar).
+6. **Next: the reading side (feature cards, minimal ruby, homograph marks), then the writing side
+   (spelling choice from sound-alike letters, "right sound, wrong letter").** Both now.
