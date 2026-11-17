@@ -18,7 +18,7 @@ import { kcsOfToken } from "@nabu/core/learner";
 import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
 import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
-import { Fragment, useMemo, type CSSProperties, type JSX } from "react";
+import { Fragment, useCallback, useMemo, useRef, type CSSProperties, type JSX } from "react";
 import { useIsTarget, useOrthography } from "./context.tsx";
 import { useFonts } from "./fonts.ts";
 import { useReadingFaded, useWordStatus, type Marks } from "./marks.tsx";
@@ -185,17 +185,22 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const font = fontStackFor(text.lang, profile?.fonts);
   useFonts(font.family);
   const rubyLang = ruby === false ? undefined : profile?.annotations?.find((a) => a.kind === "reading" && a.scheme === ruby)?.lang;
+  // A layer in another script than its text loads that script's face too: the characters over
+  // Jyutping (ADR 0126) need the Han font that Latin text would never load.
+  const rubyFont = rubyLang === undefined ? undefined : fontStackFor(rubyLang).family;
+  useFonts(rubyFont ?? "");
   // A reading over a script whose ink rises far over the em box (Nastaliq) sits just above its own word.
-  const liftOf = useRubyLift(font.family, font.lineHeight, ruby !== false && INK_LIFTED.has(scriptOf(text.lang) ?? ""));
+  const script = scriptOf(text.lang) ?? "";
+  const element = useRef<HTMLElement | null>(null);
+  const setElement = useCallback((el: HTMLElement | null): void => {
+    element.current = el;
+  }, []);
+  const liftOf = useRubyLift({ family: font.family, lineHeight: font.lineHeight, ruby: rubyFont, script }, ruby !== false && INK_LIFTED.has(script), element);
   const liftFor = (token: Token, index: number): number | undefined => {
     const scheme = rubyOf(token, index);
     const strip = stripOf(token);
     return scheme === false || token.ruby?.[scheme] === undefined ? undefined : liftOf(strip === undefined ? token.surface : token.surface.replace(strip, ""));
   };
-  // A layer in another script than its text loads that script's face too: the characters over
-  // Jyutping (ADR 0126) need the Han font that Latin text would never load.
-  const rubyFont = rubyLang === undefined ? undefined : fontStackFor(rubyLang).family;
-  useFonts(rubyFont ?? "");
   const style = {
     "--nabu-text-font": font.family,
     "--nabu-text-line-height": String(font.lineHeight),
@@ -214,6 +219,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
       data-target={target ? "" : undefined}
       id={id}
       style={style}
+      ref={setElement}
     >
       {text.tokens.map((token, index) => (
         <TokenView
