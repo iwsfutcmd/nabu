@@ -143,6 +143,8 @@ interface Shape {
   readonly locale: string;
   /** A character class of what marks a tone in a syllable, where the scheme has tones. */
   readonly marks: string | undefined;
+  /** `marks`, compiled once: every tone mark of a syllable. */
+  readonly marksAll: RegExp | undefined;
 }
 
 const shapes = new Map<string, Shape | undefined>();
@@ -150,7 +152,13 @@ const shapeOf = (scheme: string): Shape | undefined => {
   if (!shapes.has(scheme)) {
     const data = readingScheme(scheme);
     const typed = data?.typed;
-    shapes.set(scheme, typed === undefined ? undefined : { syllable: new RegExp(typed.syllable, "gu"), between: new RegExp(typed.between, "gu"), locale: typed.locale, marks: data?.tones?.marks });
+    const marks = data?.tones?.marks;
+    shapes.set(
+      scheme,
+      typed === undefined
+        ? undefined
+        : { syllable: new RegExp(typed.syllable, "gu"), between: new RegExp(typed.between, "gu"), locale: typed.locale, marks, marksAll: marks === undefined ? undefined : new RegExp(marks, "gu") },
+    );
   }
   return shapes.get(scheme);
 };
@@ -180,7 +188,25 @@ const syllablesOf = (scheme: string, text: string): readonly string[] | undefine
 export const readingSyllables = (scheme: string, text: string): readonly string[] | undefined => syllablesOf(scheme, text);
 
 /** A syllable without its tone marks: the sounds its tone variants share. */
-const toneless = (shape: Shape, syllable: string): string => (shape.marks === undefined ? syllable : syllable.replace(new RegExp(shape.marks, "gu"), ""));
+const toneless = (shape: Shape, syllable: string): string => (shape.marksAll === undefined ? syllable : syllable.replace(shape.marksAll, ""));
+
+/** The attested syllables by what they are without their tone, per set of syllables (a course's, in a scheme). */
+const tonelessIndex = new WeakMap<ReadonlySet<string>, Map<string, ReadonlyMap<string, readonly string[]>>>();
+const byToneless = (scheme: string, shape: Shape, attested: ReadonlySet<string>): ReadonlyMap<string, readonly string[]> => {
+  const byScheme = tonelessIndex.get(attested) ?? new Map<string, ReadonlyMap<string, readonly string[]>>();
+  tonelessIndex.set(attested, byScheme);
+  let index = byScheme.get(scheme);
+  if (index === undefined) {
+    const out = new Map<string, string[]>();
+    for (const a of [...attested].sort()) {
+      const base = toneless(shape, a.toLocaleLowerCase(shape.locale));
+      out.set(base, [...(out.get(base) ?? []), a]);
+    }
+    index = out;
+    byScheme.set(scheme, index);
+  }
+  return index;
+};
 
 /**
  * Other readings a word could be mistaken for, for a multiple-choice reading card (ADR 0098): one
@@ -263,9 +289,9 @@ export const readingFeatures = (scheme: string, reading: string, attested: Reado
   if (shape !== undefined && shape.marks !== undefined && syllables !== undefined) {
     const own = reading.normalize("NFC").split(" ");
     const parts = own.length === syllables.length ? own : syllables;
+    const index = byToneless(scheme, shape, attested);
     for (const [i, syllable] of parts.entries()) {
-      const base = toneless(shape, syllable.toLocaleLowerCase(shape.locale));
-      const others = [...attested].filter((a) => a !== syllable && toneless(shape, a.toLocaleLowerCase(shape.locale)) === base).sort();
+      const others = (index.get(toneless(shape, syllable.toLocaleLowerCase(shape.locale))) ?? []).filter((a) => a !== syllable);
       if (others.length > 0) out.push(others.map((o) => parts.map((x, k) => (k === i ? o : x)).join(" ")));
     }
   }

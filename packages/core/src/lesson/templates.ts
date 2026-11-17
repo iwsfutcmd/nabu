@@ -1169,16 +1169,17 @@ export const makeReadingFeature = (ctx: MakeContext, s: BundleSentence): CharRea
   const scheme = rubySchemeOf(ctx);
   const form = formOf(ctx.course, s);
   if (scheme === undefined || form === undefined) return undefined;
-  const open = (t: Token): readonly (readonly string[])[] =>
-    t.kind === "word" && t.readings?.[scheme] !== undefined ? readingFeatures(scheme, t.readings[scheme], courseSyllables(ctx.course, scheme)).filter((f) => f.length >= 2) : [];
-  const askable = (t: Token): boolean => open(t).length > 0;
+  // Each word's places open two or more ways, worked out once.
+  const attested = courseSyllables(ctx.course, scheme);
+  const places = form.text.tokens.map((t) => (t.kind === "word" && t.readings?.[scheme] !== undefined ? readingFeatures(scheme, t.readings[scheme], attested).filter((f) => f.length >= 2) : []));
+  const askable = (t: Token): boolean => (places[form.text.tokens.indexOf(t)]?.length ?? 0) > 0;
   const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, t));
   const fresh = form.text.tokens.findIndex((t) => askable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
   const word = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(askable);
   const target = form.text.tokens[word];
   if (target === undefined) return undefined;
-  const places = open(target);
-  const place = places[ctx.rng.int(places.length)] as readonly string[];
+  const open = places[word] ?? [];
+  const place = open[ctx.rng.int(open.length)] as readonly string[];
   const reading = target.readings?.[scheme] as string;
   const others = ctx.rng.shuffle([...place]).slice(0, 3);
   const { options, answer } = withAnswer(ctx, readingText(scheme, reading), others.map((r) => readingText(scheme, r)));
