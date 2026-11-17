@@ -301,10 +301,11 @@ LZH_SCHEMES = ["baxter", "jyutping", "pinyin"]
 
 
 def test_classical_chinese_is_read_and_written_never_spoken(core_cli: CoreCli) -> None:
-    """lzh (ADR 0071): no audio, and it practises recognize and produce only."""
+    """lzh (ADR 0071): no audio, never heard or spoken. It practises recognize and produce, and
+    since ADR 0138 its readings too (read-script: reading cards, one tradition at a time)."""
     _, compiled = build(core_cli, "lzh")
     assert compiled.course.audio is None and compiled.audio_items == {}
-    assert compiled.course.facets == ["recognize", "produce"]
+    assert compiled.course.facets == ["recognize", "produce", "read-script"]
     assert compiled.orthographies == [LZH]
 
 
