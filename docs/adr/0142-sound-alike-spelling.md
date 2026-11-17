@@ -20,7 +20,9 @@ what went wrong. No card asked for the spelling. The project owner chose the wri
 ## Decision
 
 **A profile names the letters its script writes for one sound** (`match.soundAlike: {sets, note}`).
-Persian's are `[س ص ث] [ز ذ ض ظ] [ت ط] [ه ح] [ء ع] [ق غ]` (REVIEW).
+Persian's are `[س ص ث] [ز ذ ض ظ] [ت ط] [ه ح] [ء ع] [ق غ]` (reviewed by the project owner,
+2026-11-17). They are Iranian Persian's: Dari tells ع from ء and ق from غ, so a Dari profile would
+keep only the first four sets.
 
 **Grading: right sound, wrong letter** (core `grade`). Take a word of the answer that differs from
 the expected word only by such letters, each traded within its set. The comparison is of the
