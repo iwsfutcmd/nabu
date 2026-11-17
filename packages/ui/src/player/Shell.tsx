@@ -98,7 +98,10 @@ export interface Toggles {
   readonly display: Display;
   /** The reading layer shown, in horizontal and vertical text alike (ADR 0118). */
   readonly readings: Readings;
-  /** A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue). */
+  /**
+   * A tapped word's gloss always shows its reading, readings off or not (ADR 0131 amendment): the layer
+   * shown, else the profile's first (lzh: Pinyin).
+   */
   readonly glossRuby: SchemeId | false;
   /** Readings on new words only (ADR 0131): the layer shown fades, and the learner shows it so. */
   readonly fade: boolean;
@@ -121,7 +124,7 @@ export const useToggles = (profile: OrthographyProfile | undefined, scope: "word
     },
     display,
     readings,
-    glossRuby: readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false,
+    glossRuby: readings.shown !== false ? readings.shown : (readings.layers[0]?.scheme ?? false),
     fade: display.readings === "new" && fades(readings.layers.find((l) => l.scheme === readings.shown)),
   };
 };

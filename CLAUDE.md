@@ -187,7 +187,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   it is never a skill a word is known by. A reading layer with `fade: by-facet` shows over all words or new ones
   (`DisplayChoice.readings`); <T> fades a word's ruby only inside `FadeReadings` (lessons, stories), by core
   `readingsShown`: never in a tapped word's gloss or the word list, nor on a word tapped (`pressed`) or marked (`highlight`).
-  Pass `readingsShown` wherever `known` goes.
+  Pass `readingsShown` wherever `known` goes. A gloss always shows a reading, readings off or not (`glossRuby`); a word
+  glossed by its parts heads its panel with its own reading.
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 

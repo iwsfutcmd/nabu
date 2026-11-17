@@ -44,7 +44,7 @@ import { ArrowForwardIcon, SettingsIcon } from "../icons.tsx";
 import { FadeReadings, WordStatusProvider } from "../marks.tsx";
 import type { DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
-import { GlossPanel, useGlosses, type WordTap } from "./Gloss.tsx";
+import { GlossPanel, useGlosses, wordOf, type WordTap } from "./Gloss.tsx";
 import { lookupIsHint, withHint } from "./hints.ts";
 import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.tsx";
 import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
@@ -419,7 +419,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       />
 
       {/* What a tapped word means (P1): quiet until a word is tapped. */}
-      <GlossPanel open={tapped !== undefined} glosses={glosses} ruby={toggles.glossRuby} marks={marks} quiet />
+      <GlossPanel open={tapped !== undefined} glosses={glosses} word={wordOf(tapped)} ruby={toggles.glossRuby} marks={marks} quiet />
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
         {/* The solution shows its marks unless the learner hid them (a vocalize card's always: they are its answer). */}

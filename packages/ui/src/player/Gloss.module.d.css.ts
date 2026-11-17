@@ -5,5 +5,6 @@ declare const styles: {
   readonly glossHint: string;
   readonly glossList: string;
   readonly glossNote: string;
+  readonly glossWord: string;
 };
 export default styles;

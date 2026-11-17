@@ -111,15 +111,18 @@ Two words lost their reading where readings fade, though they are the ones the l
 - **A corrected word:** feedback marks the words an answer got wrong or slipped on (a typo, a mark, a word
   left out). In chg, mundin typed without its nun showed the corrected word bare between bolmas, üzüm and
   yaḫširaq.
-- **A tapped word:** the gloss panel shows the reading only of an entry's form. A word glossed by its morphs
+- **A tapped word:** the gloss panel showed the reading only of an entry's form. A word glossed by its parts
   (اشلیغی: اشلیغ "grain", ی "his, her") showed its reading nowhere, above the word or below it.
 
 The rule:
 
 - **Marked or tapped:** a word <T> marks as wrong (`highlight`) or tapped (`pressed`) keeps its reading where
-  readings fade. Other words of the sentence still fade by the fold's rule.
-- **Where it applies:** the solution in feedback, a missed card's solution at the end of a session, and every
-  text that takes taps (story lines, answered cards, gap sentences, sentences to say).
-- **Where it does not:** a card that shows no reading layer (`ruby={false}`: char-read and transcribe ask for
-  it) shows none for a tap or a mark either. A layer the learner turned off stays off.
+  readings fade. Other words of the sentence still fade by the fold's rule. A card that shows no reading
+  layer (`ruby={false}`: char-read and transcribe ask for it) shows none for a tap or a mark either.
+- **The gloss is a glossary entry:** it always shows a reading, readings off or not: the layer shown, else
+  the profile's first (lzh: Pinyin; chg, yue and tok have one).
+  - A part spelled as its dictionary form is that form, with the reading its KC pins (اشلیغ ašliǧ).
+  - Where no entry is the word whole (parts, a phrase, or none), the word comes first with its own reading
+    (اشلیغی ašliǧi).
 - **What it does not change:** the fold, `readingsShown`, and a typed gap's filled word.
+

@@ -23,6 +23,14 @@
   color: var(--nabu-color-muted);
 }
 
+/* The tapped word, with its reading, above entries that are its parts (ADR 0131 amendment). */
+.glossWord {
+  margin: 0;
+  margin-block-end: var(--nabu-space-2);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
 .glossList {
   display: grid;
   gap: var(--nabu-space-2);

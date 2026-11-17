@@ -2,7 +2,7 @@
  * Phase 6: stories as the reader plays them, tap-for-gloss on story lines, and stories on the
  * path and in the learner model.
  */
-import type { LearnerEvent, TaggedText } from "@nabu/schema";
+import type { LearnerEvent, SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
 import { allKcs, answerTextOf, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
@@ -289,6 +289,8 @@ describe("tap-for-gloss on story lines", () => {
     expect(hits.map((h) => [h.kc, surfaceOf(h.form), h.span])).toEqual((token?.morphs ?? []).map((m) => [m.kc, m.surface, "part"]));
     expect(hits.length).toBe(2);
     expect(hits.every((h) => h.meaning !== undefined)).toBe(true);
+    // 我 is spelled as its dictionary form: the entry is that form, with the reading its KC pins.
+    expect(hits[0]?.form.tokens[0]?.ruby?.["jyutping" as SchemeId]?.map((s) => s.text)).toEqual(["ngo5"]);
   });
 
   it("a stem written otherwise than its dictionary form names it (ADR 0061)", () => {
