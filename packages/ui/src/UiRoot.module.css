@@ -11,3 +11,10 @@
   line-height: var(--nabu-ui-line-height);
   color: var(--nabu-color-text);
 }
+
+/* A list item aligns its text as its parent does (start). Firefox's own stylesheet gives li
+   `text-align: match-parent`, which an LTR list computes to left; a right-to-left text inside then
+   inherits left and lines up on the wrong side (chg's sentence list). */
+:where(.root, .chrome) li {
+  text-align: inherit;
+}

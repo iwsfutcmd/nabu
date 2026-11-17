@@ -132,14 +132,26 @@ Nastaliq stacks letters far above the em box a browser sets ruby on. In chg, ی�
 the word's size (یکیتمنمو), and یکیتسن to 2.06 em. Its reading, set 1.05 em up, ran into the ک. One clearance
 for every word would either leave readings in the strokes or float them far over short words (سن).
 
-- **The rule:** a reading over Arabic script sits a gap (0.2 em) over its own word's ink. Readings in one
-  line are at different heights, each close to its word, and the line grows to hold the tallest.
-- **How:** <T> measures each word's ink (canvas `measureText`, once its font is in), and once per font where
-  the browser sets ruby (a hidden probe: Chromium, 0.8 em up). It sets the difference as the word's lift
+- **The rule:** a reading over Arabic script sits with its baseline a gap (0.35 em) over its own word's ink,
+  room for g, y and ǧ to hang. Readings in one line are at different heights, each close to its word, and the
+  line grows to hold the tallest.
+- **How:** <T> measures by what the browser draws and lays out, never by an engine's metrics
   (packages/ui/src/ruby-lift.ts).
-  - A line's readings share one baseline, so the lift pads an inline-block inside the reading, set on the
-    bottom of their row.
+  - **A word's ink:** the top row it inks on a canvas in its font. The read-back must be clean: Firefox may
+    scramble canvas reads against fingerprinting.
+  - **Where an unlifted reading sits:** first from a hidden probe built from T's own classes and fonts, with a
+    zero-size mark on each baseline. The probe trusts the canvas only once it sets a word at the width the
+    page does. Then the text's own readings are measured in place at their size, before paint: browsers
+    round ruby to whole pixels (0.07 em at 20 px in Chromium).
+  - The lift is the difference. A line's readings share one baseline, so the lift pads an inline-block inside
+    the reading, set on the bottom of their row.
+  - The row's own strut is set to nothing (line-height 0 on the reading's row). Otherwise an unlifted reading
+    (padding 0) set every reading in its line 0.09 em higher.
   - Until a word is measured, and where there is no browser (tests), the reading clears the tallest word.
+- **Checked in Chromium and Firefox (160):** every lifted reading on the u04 sentence list, the u03 story's
+  lines and its gloss panel sits exactly 0.35 em over its word's ink, and unlifted ones at least that.
+  - The browsers set an unlifted reading far apart: 1.07 em up in Chromium, 0.64 in Firefox.
+  - The first version, modelled on Chromium alone, left Firefox's readings 0.005 to 0.045 em over their
+    words: on them, as Firefox on Android showed.
 - **Where:** Arabic script only (`INK_LIFTED` in T.tsx, mirrored in T.module.css): Han, Latin and sitelen
   pona keep the browser's own placement, and their visual baselines stay as they are.
-- **Checked in Chromium only.** Firefox and WebKit measure the same way, but no one has looked at them.
