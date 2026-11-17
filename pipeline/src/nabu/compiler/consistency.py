@@ -128,7 +128,7 @@ class Observed:
 
     def prepare(self, units: Sequence[Unit]) -> None:
         self.fill = fills(units)
-        for (key, scheme) in self.fill:
+        for key, scheme in self.fill:
             self.schemes.setdefault(key[0], set()).add(scheme)
 
 
@@ -186,7 +186,9 @@ def observe(
         nxt = toks[i + 1] if i + 1 < len(toks) else None
         written = str(t.get("_written", t["surface"]))
         for scheme, reading in _readings(t).items():
-            at = observed.readings.setdefault((key_of(orth, written, t, _binds(scheme, nxt)), scheme), {})
+            at = observed.readings.setdefault(
+                (key_of(orth, written, t, _binds(scheme, nxt)), scheme), {}
+            )
             at.setdefault(_folded(reading), []).append(loc)
         if marks:
             at = observed.readings.setdefault((key_of(orth, written, t, False), MARKS), {})

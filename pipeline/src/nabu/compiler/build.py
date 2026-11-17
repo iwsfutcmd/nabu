@@ -21,13 +21,13 @@ from pydantic import BaseModel, ValidationError
 
 from nabu import sitelen_pona
 from nabu.analyzers import Analyzer, analyzers_by_tool
+from nabu.compiler import consistency
 from nabu.compiler import text as tx
 from nabu.compiler.audio import ShippedClip, check_audio
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.compiler.readings import pin_kc_readings
 from nabu.compiler.scenarios import compile_scenarios
-from nabu.compiler import consistency
 from nabu.compiler.script import compile_alphabets, with_alphabets
 from nabu.compiler.source import Doc, load_doc
 from nabu.compiler.stories import LineForm, compile_stories

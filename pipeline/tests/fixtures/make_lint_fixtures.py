@@ -800,7 +800,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         "我哋 read ngo5 dei6 and ngo4 dei6, in a course still being cleaned up.",
         m(_yue_read_otherwise, YUE),
     ),
-    "reading.spelling": ("ναί read νεί, which spells another word.", m(_grc_misspelled_reading, GRC)),
+    "reading.spelling": (
+        "ναί read νεί, which spells another word.",
+        m(_grc_misspelled_reading, GRC),
+    ),
     "reading.bound": ("עַל before a maqaf read without its bound mark.", m(_hbo_unbound, HBO)),
     "script.untaught-letter": (
         "A Greek alphabet node's word uses ν before the track teaches it.",
