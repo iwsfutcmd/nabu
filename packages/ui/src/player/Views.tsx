@@ -807,14 +807,14 @@ export const VocalizeBuildView = (props: Props<VocalizeBuild>): JSX.Element => {
         </div>
         <div className={styles.bank} role="group" aria-label={t.format("player.vocalize-build.letters")}>
           {ex.letters.map((_, i) => (
-            <button key={i} type="button" className={styles.tile} aria-pressed={i === at} disabled={locked} data-letter={i} onClick={() => setAt(i)}>
+            <button key={i} type="button" className={`${styles.tile} ${styles.markKey}`} aria-pressed={i === at} disabled={locked} data-letter={i} onClick={() => setAt(i)}>
               <T text={textOfSurface(ex.vocalized, letterWith(i, marks[i] ?? []))} marks="show" ruby={false} />
             </button>
           ))}
         </div>
         <div className={styles.bank} role="group" aria-label={t.format("player.vocalize-build.marks")}>
           {ex.marks.map((m) => (
-            <button key={m} type="button" className={styles.tile} aria-pressed={(marks[at] ?? []).includes(m)} disabled={locked} data-mark={m} onClick={() => toggle(m)}>
+            <button key={m} type="button" className={`${styles.tile} ${styles.markKey}`} aria-pressed={(marks[at] ?? []).includes(m)} disabled={locked} data-mark={m} onClick={() => toggle(m)}>
               <T text={textOfSurface(ex.vocalized, `\u25CC${m}`)} marks="show" ruby={false} />
             </button>
           ))}

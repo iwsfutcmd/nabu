@@ -478,6 +478,14 @@
   font-size: 1.25em;
 }
 
+/* A word's letters and the marks to put on them (vocalize-build, ADR 0137), large enough to tell a
+   fatha from a kasra at a glance and to tap on a phone. */
+.markKey {
+  min-inline-size: 3rem;
+  font-size: 1.5em;
+  line-height: 1.6;
+}
+
 /* The letter being marked, and the marks it has (vocalize-build, ADR 0137). */
 .tile[aria-pressed="true"] {
   border-color: var(--nabu-color-accent);
