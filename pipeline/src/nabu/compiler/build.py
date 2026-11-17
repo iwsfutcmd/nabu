@@ -27,6 +27,7 @@ from nabu.compiler.counts import Counted, count
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.compiler.readings import pin_kc_readings
 from nabu.compiler.scenarios import compile_scenarios
+from nabu.compiler import consistency
 from nabu.compiler.script import compile_alphabets, with_alphabets
 from nabu.compiler.source import Doc, load_doc
 from nabu.compiler.stories import LineForm, compile_stories
@@ -114,6 +115,8 @@ class Ctx:
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
     # Each orthography's script (`script_of`), as it is first needed.
     scripts: dict[str, tx.Script] = field(default_factory=lambda: {})
+    # What each word reads, by how it is annotated (ADR 0135).
+    observed: consistency.Observed = field(default_factory=consistency.Observed)
 
 
 # ------------------------------------------------------------ helpers
@@ -382,6 +385,10 @@ def compile_form(
                 d["form"] = t.form
             if t.vocalized is not None:
                 d["_vocalized"] = t.vocalized
+            if t.readingVariant:
+                d["_readingVariant"] = True
+            if t.context is not None:
+                d["_context"] = t.context
             authored.append(d)
         toks, error = tx.align(text, authored)
         if error is not None:
@@ -402,7 +409,9 @@ def compile_form(
             t["tileGroup"] = next_group
             next_group += 1
 
-    # stage 3: readings and ruby, for every ruby layer
+    # stage 3: readings fixed by their words (ADR 0135), then ruby for every ruby layer
+    if form.tokens:
+        consistency.fill_and_check(ctx.observed, diags, orth, toks, loc)
     for scheme in _ruby_schemes(profile):
         whole = scheme in schemes() and schemes()[scheme].ruby == "word"
         for t in toks:
@@ -435,6 +444,8 @@ def compile_form(
 
     _hygiene(ctx, profile, script, text, toks, doc.loc(*at, "text"))
     mark_vowels(ctx, orth, toks, loc, warn)
+    if form.tokens:
+        consistency.observe(ctx.observed, orth, toks, loc, marks=orth in ctx.vocalization)
     tagged = {"lang": _lang_for(profile, course.target), "orthography": orth, "tokens": toks}
     public = {
         **tagged,
@@ -696,6 +707,9 @@ def compile_course(
                     )
 
     _nfc_and_invisibles(ctx, course, doc, units)
+    # A form pinned once fills its other tokens' readings (ADR 0135).
+    ctx.observed.prepare(units)
+    consistency.check_own(diags, units, list(course.orthographies))
 
     # ---- stages 2–3: forms → TaggedText
     compiled_forms: dict[tuple[int, int], dict[str, dict[str, Any]]] = {}
@@ -714,6 +728,7 @@ def compile_course(
     sentence_kcs = _curriculum(ctx, course, units, compiled_forms)
     stories = compile_stories(ctx, course, units)
     scenarios = compile_scenarios(ctx, course, units)
+    consistency.report(ctx.observed, diags, course)
     # ---- stage 6: grading
     _grading(ctx, course, units)
     # ---- stage 7: glossary, tiles (script tracks once KC readings are pinned, below)

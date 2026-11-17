@@ -201,6 +201,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A word's reading is the one the compiler pins on its KC form (`nabu.compiler.readings`, ADR 0117: every scheme, the
   sense's most common in lessons first): its card, its clip and minimal pairs all read that; never look one up by
   spelling. A change to the order can make clips stale: `test_readings.py` checks every course's, grc's too.
+- Readings are fixed by their words (ADR 0135): tokens annotated alike (spelling, sense, form, morphs, `context`,
+  bound or not) read alike in every scheme and vocalization. With `consistentReadings: true` (course.yaml; on in apc,
+  es, fa, grc, lzh, tok, uz) a form read two ways is an error, elsewhere a warning: annotate what tells them apart (a
+  sense, a form, a morph, a `context` such as hbo's `pause`/`nesiga`), or mark a free variant `readingVariant`; never
+  change a reading to hide it. A token pinning no reading takes its form's, so pin a form once.
 - One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
 - `finalStop: true` on a voice (ADR 0063) ends unpunctuated text (word cards) with its script's full stop
@@ -483,7 +488,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
   normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
 - Every word token pins `readings: {tiberian: …}`, taken from the same pointed form in the Westminster Leningrad
-  Codex (stress from its accent): never guess one. Copy the word with its accents from the WLC and run
+  Codex (stress from its accent): never guess one. A word in pause or with its stress drawn back reads otherwise than
+  the same word elsewhere: label it `context: pause` or `context: nesiga` (ADR 0135); a maqaf-bound word's "-" must
+  match the maqaf (`reading.bound`). Copy the word with its accents from the WLC and run
   `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py); keep a verse's ׃ on its last word (its
   meteg sign is then silluq). The divine name is ʾăḏōnāy (its qere).
 - Readings stay SBL's (šāmərû); `tiberian.ipa` says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long

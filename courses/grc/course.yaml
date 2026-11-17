@@ -63,4 +63,6 @@ audio:
   quality: bad
   voices:
   - {id: attic-el, provider: piper, voice: el_GR-rapunzelina-low, speaker: f, orthography: grc-Grek/polytonic, reading: attic, license: CC-BY-NC-SA-4.0}
+# Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
+consistentReadings: true
 units: [units/abc.yaml, units/u01-is-it-early.yaml, units/u02-two-sons.yaml, units/u03-where-to.yaml, units/u04-does-he-speak-greek.yaml, units/u05-wait-for-us.yaml, units/u06-not-one-woman.yaml, units/u07-the-sea.yaml, units/u08-a-rooster.yaml, units/u09-my-little-house.yaml, units/u10-wiser.yaml]

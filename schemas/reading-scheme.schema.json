@@ -32,6 +32,16 @@
       "description": "The orthography its readings are written in for a learner who cannot read the script yet (ADR 0133): an alphabet track's letters and words (a profile's `scriptTrack`) are tagged with it, and its profile grades them and ships in the bundle beside the course's own. A scheme whose own text is not Latin has a plug-in that writes a reading in it (nabu.schemes `latin`: Attic's χώρᾱ is chōrā); otherwise a reading is its own Latin (Schluessel).",
       "$ref": "common.schema.json#/$defs/OrthographyId"
     },
+    "bound": {
+      "description": "How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free).",
+      "type": "object",
+      "required": ["mark", "before"],
+      "additionalProperties": false,
+      "properties": {
+        "mark": { "type": "string", "minLength": 1 },
+        "before": { "type": "string", "minLength": 1 }
+      }
+    },
     "variants": {
       "description": "Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.",
       "type": "array",

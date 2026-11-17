@@ -1657,6 +1657,10 @@ export interface CourseSource {
   readonly facets?: readonly Facet[];
   readonly placement?: PlacementPolicy1;
   /**
+   * Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.
+   */
+  readonly consistentReadings?: boolean;
+  /**
    * Maximum new knowledge components per sentence (§7.5). Default 1.
    */
   readonly iPlusOne?: number;
@@ -1887,6 +1891,14 @@ export interface SourceToken {
    * This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.
    */
   readonly vocalized?: string;
+  /**
+   * A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.
+   */
+  readonly context?: string;
+  /**
+   * Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading.
+   */
+  readonly readingVariant?: true;
 }
 /**
  * A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. Its words are glossed on tap from the course's glossary (KC forms).
@@ -3387,6 +3399,13 @@ export interface ReadingScheme {
   readonly lang?: ScriptedLangTag2;
   readonly answer?: OrthographyId2;
   readonly latin?: OrthographyId3;
+  /**
+   * How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free).
+   */
+  readonly bound?: {
+    readonly mark: string;
+    readonly before: string;
+  };
   /**
    * Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.
    *

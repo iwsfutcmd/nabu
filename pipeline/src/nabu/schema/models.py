@@ -2117,6 +2117,19 @@ class Contrast(BaseModel):
     ] = None
 
 
+class Bound(BaseModel):
+    """
+    How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    mark: Annotated[str, Field(min_length=1)]
+    before: Annotated[str, Field(min_length=1)]
+
+
 type Variant1Item = Annotated[str, Field(min_length=1)]
 
 
@@ -2763,6 +2776,19 @@ class SourceToken(BaseModel):
             min_length=1,
         ),
     ] = None
+    context: Annotated[
+        str | None,
+        Field(
+            description="A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.",
+            pattern="^[a-z][a-z-]*$",
+        ),
+    ] = None
+    readingVariant: Annotated[
+        Literal[True] | None,
+        Field(
+            description="Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading."
+        ),
+    ] = None
 
 
 class AudioVoice(BaseModel):
@@ -3406,6 +3432,12 @@ class ReadingScheme(BaseModel):
         OrthographyId | None,
         Field(
             description="The orthography its readings are written in for a learner who cannot read the script yet (ADR 0133): an alphabet track's letters and words (a profile's `scriptTrack`) are tagged with it, and its profile grades them and ships in the bundle beside the course's own. A scheme whose own text is not Latin has a plug-in that writes a reading in it (nabu.schemes `latin`: Attic's χώρᾱ is chōrā); otherwise a reading is its own Latin (Schluessel)."
+        ),
+    ] = None
+    bound: Annotated[
+        Bound | None,
+        Field(
+            description="How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free)."
         ),
     ] = None
     variants: Annotated[
@@ -4229,6 +4261,12 @@ class CourseSource(BaseModel):
         ),
     ] = None
     placement: PlacementPolicy | None = None
+    consistentReadings: Annotated[
+        bool | None,
+        Field(
+            description="Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean."
+        ),
+    ] = None
     iPlusOne: Annotated[
         int | None,
         Field(description="Maximum new knowledge components per sentence (§7.5). Default 1.", ge=1),
