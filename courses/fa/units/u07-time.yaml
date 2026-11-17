@@ -52,21 +52,19 @@ sentences:
       What('s| is) the time?
 - id: s.time.2
   node: fa.time.clock
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: ساعتِ هشت است.
-      tokens: [{surface: ساعتِ, sense: saat}, {surface: هشت, sense: hasht}, {surface: است, sense: budan}]
+      tokens: [{surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: هشت, sense: hasht}, {surface: است, sense: budan}]
       reverse: ساعت (هشت است|هشته)
   translations:
     en: It('s| is) (eight|8) [o'clock].
 - id: s.time.3
   node: fa.time.clock
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: ساعتِ ده و نیم است.
-      tokens: [{surface: ساعتِ, sense: saat}, {surface: ده, sense: dah}, {surface: و, sense: va}, {surface: نیم, sense: nim}, {surface: است, sense: budan}]
+      tokens: [{surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ده, sense: dah}, {surface: و, sense: va}, {surface: نیم, sense: nim}, {surface: است, sense: budan}]
       reverse: |-
         ساعت ده و (نیم است|نیمه)
         ساعت ده و سی دقیقه است
@@ -77,11 +75,10 @@ sentences:
       It('s| is) 10:30.
 - id: s.time.4
   node: fa.time.clock
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: الان ساعتِ سه است.
-      tokens: [{surface: الان, sense: alan}, {surface: ساعتِ, sense: saat}, {surface: سه, sense: se}, {surface: است, sense: budan}]
+      tokens: [{surface: الان, sense: alan}, {surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: سه, sense: se}, {surface: است, sense: budan}]
       reverse: |-
         (الان ساعت|ساعت الان) سه است
         حالا ساعت سه است
@@ -91,11 +88,10 @@ sentences:
       Now it('s| is) (three|3) [o'clock].
 - id: s.time.5
   node: fa.time.clock
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: کلاس ساعتِ هشت است.
-      tokens: [{surface: کلاس, sense: kelas}, {surface: ساعتِ, sense: saat}, {surface: هشت, sense: hasht}, {surface: است, sense: budan}]
+      tokens: [{surface: کلاس, sense: kelas}, {surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: هشت, sense: hasht}, {surface: است, sense: budan}]
       reverse: |-
         کلاس ساعت هشت است
         کلاس ساعت هشته
@@ -116,11 +112,10 @@ sentences:
       Class is fifty minutes long.
 - id: s.time.7
   node: fa.time.today
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: "ساعتِ چند می\u200cآیی؟"
-      tokens: [{surface: ساعتِ, sense: saat}, {surface: چند, sense: chand}, {surface: "می\u200cآیی", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      tokens: [{surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: چند, sense: chand}, {surface: "می\u200cآیی", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ی, kc: 'form:2sg-i'}]}]
       reverse: "[تو] ساعت چند می\u200Cآیی\n[شما] ساعت چند می\u200Cآیید\nتو چه ساعتی می\u200Cآیی"
   translations:
     en: |-
@@ -288,11 +283,10 @@ sentences:
       I've got time on Wednesday.
 - id: s.time.21
   node: fa.time.week
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: "پنجشنبه به خانهٔ مادرم می\u200cروم."
-      tokens: [{surface: پنجشنبه, sense: panjshanbe}, {surface: به, sense: be}, {surface: خانهٔ, sense: khane}, {surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: پنجشنبه, sense: panjshanbe}, {surface: به, sense: be}, {surface: خانهٔ, sense: khane, morphs: [{surface: خانهٔ, kc: 'sense:khane'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: "[من] (پنجشنبه|پنج\u200Cشنبه) [به] خان(هٔ|ه\u200Cی|ه) (مادرم|مادر من) می\u200Cروم\nپنجشنبه من به خانه مادرم می\u200Cروم"
   translations:
     en: |-
@@ -345,11 +339,10 @@ sentences:
     en: I work from Saturday (to|until|till|through) Wednesday.
 - id: s.time.26
   node: fa.time.weekend
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: "آخرِ هفته کجا می\u200cروی؟"
-      tokens: [{surface: آخرِ, sense: akhar}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: "می\u200cروی", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      tokens: [{surface: آخرِ, sense: akhar, morphs: [{surface: آخرِ, kc: 'sense:akhar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: "می\u200cروی", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
       reverse: "[تو] آخر هفته کجا می\u200Cروی\n[شما] آخر هفته کجا می\u200Cروید\nآخر هفته تو کجا می\u200Cروی\nآخر هفته شما کجا می\u200Cروید"
   translations:
     en: |-
@@ -358,11 +351,10 @@ sentences:
       Where will you go at the weekend?
 - id: s.time.27
   node: fa.time.plans
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: تولدِ من جمعه است.
-      tokens: [{surface: تولدِ, sense: tavallod}, {surface: من, sense: man}, {surface: جمعه, sense: jome}, {surface: است, sense: budan}]
+      tokens: [{surface: تولدِ, sense: tavallod, morphs: [{surface: تولدِ, kc: 'sense:tavallod'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: جمعه, sense: jome}, {surface: است, sense: budan}]
       reverse: (تولد من|تولدم) جمعه است
   translations:
     en: My birthday is (on|this) Friday.
@@ -377,11 +369,10 @@ sentences:
     en: Happy birthday!
 - id: s.time.29
   node: fa.time.plans
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: ساعتِ چهار خوب است؟
-      tokens: [{surface: ساعتِ, sense: saat}, {surface: چهار, sense: chahar}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      tokens: [{surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: چهار, sense: chahar}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
       reverse: |-
         ساعت چهار (خوب است|خوبه)
         آیا ساعت چهار خوب است
@@ -408,7 +399,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "ساعتِ چند می\u200cآیید؟"
-      tokens: [{surface: ساعتِ, sense: saat}, {surface: چند, sense: chand}, {surface: "می\u200cآیید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ید,
+      tokens: [{surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: چند, sense: chand}, {surface: "می\u200cآیید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ید,
               kc: 'form:2pl-id'}]}]
       reverse: "[شما] ساعت چند می\u200Cآیید\nشما چه ساعتی می\u200Cآیید"
   translations:
@@ -423,7 +414,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "آخرِ هفته کجا می\u200cروید؟"
-      tokens: [{surface: آخرِ, sense: akhar}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: "می\u200cروید", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو,
+      tokens: [{surface: آخرِ, sense: akhar, morphs: [{surface: آخرِ, kc: 'sense:akhar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: "می\u200cروید", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو,
               kc: 'sense:raftan'}, {surface: ید, kc: 'form:2pl-id'}]}]
       reverse: "[شما] آخر هفته کجا می\u200Cروید\nآخر هفته شما کجا می\u200Cروید"
   translations:
@@ -459,7 +450,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: فردا پنجشنبه است. تولدِ من است!
-          tokens: [{surface: فردا, sense: farda}, {surface: پنجشنبه, sense: panjshanbe}, {surface: است, sense: budan}, {surface: تولدِ, sense: tavallod}, {surface: من, sense: man}, {surface: است, sense: budan}]
+          tokens: [{surface: فردا, sense: farda}, {surface: پنجشنبه, sense: panjshanbe}, {surface: است, sense: budan}, {surface: تولدِ, sense: tavallod, morphs: [{surface: تولدِ, kc: 'sense:tavallod'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
       translations: {en: Tomorrow is Thursday. It's my birthday!}
   - line:
       speaker: sara
@@ -484,7 +475,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: ساعتِ چهار خوب است؟
-          tokens: [{surface: ساعتِ, sense: saat}, {surface: چهار, sense: chahar}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+          tokens: [{surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: چهار, sense: chahar}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
       translations: {en: 'Is four o''clock OK?'}
   - line:
       speaker: sara
@@ -494,7 +485,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: نه، ساعتِ پنج خوب است.
-          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: ساعتِ, sense: saat}, {surface: پنج, sense: panj}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: ساعتِ, sense: saat, morphs: [{surface: ساعتِ, kc: 'sense:saat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: پنج, sense: panj}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
       translations: {en: 'No, five o''clock is good.'}
   - line:
       speaker: ali

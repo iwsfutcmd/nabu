@@ -198,11 +198,10 @@ sentences:
     en: '[Some] water, please.'
 - id: s.food.14
   node: fa.food.breakfast
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: آبِ سرد، لطفاً.
-      tokens: [{surface: آبِ, sense: ab}, {surface: سرد, sense: sard}, {surface: لطفاً, sense: lotfan}]
+      tokens: [{surface: آبِ, sense: ab, morphs: [{surface: آبِ, kc: 'sense:ab'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: سرد, sense: sard}, {surface: لطفاً, sense: lotfan}]
       reverse: |-
         آب سرد لطفاً
         لطفاً آب سرد
@@ -232,11 +231,10 @@ sentences:
     en: Bread and cheese, please.
 - id: s.food.17
   node: fa.food.breakfast
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: صبحانهٔ ما نان و پنیر است.
-      tokens: [{surface: صبحانهٔ, sense: sobhane}, {surface: ما, sense: ma}, {surface: نان, sense: nan}, {surface: و, sense: va}, {surface: پنیر, sense: panir}, {surface: است, sense: budan}]
+      tokens: [{surface: صبحانهٔ, sense: sobhane, morphs: [{surface: صبحانهٔ, kc: 'sense:sobhane'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ما, sense: ma}, {surface: نان, sense: nan}, {surface: و, sense: va}, {surface: پنیر, sense: panir}, {surface: است, sense: budan}]
       reverse: "صبحان(هٔ|ه\u200Cی|ه) ما نان و پنیر است\nصبحانه\u200Cمان نان و پنیر است\nصبحانه ما نان و پنیره"
   translations:
     en: |-

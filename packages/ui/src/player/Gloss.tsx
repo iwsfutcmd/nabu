@@ -46,7 +46,13 @@ export const GlossEntry = ({ gloss: g, ruby, marks, note }: GlossEntryProps): JS
   return (
     <div className={styles.glossEntry} data-gloss-kc={g.kc}>
       <dt>
-        <T text={g.form} ruby={ruby} marks={marks} />
+        {g.unwritten === true ? (
+          <span className={styles.glossNote} data-gloss-unwritten="">
+            {t.format("story.gloss.unwritten")}
+          </span>
+        ) : (
+          <T text={g.form} ruby={ruby} marks={marks} />
+        )}
       </dt>
       <dd>
         {g.meaning !== undefined && <T text={g.meaning} />}

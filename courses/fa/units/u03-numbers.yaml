@@ -173,11 +173,10 @@ sentences:
     en: My (mother|mom|mum) has (seven|7) sisters.
 - id: s.numbers.12
   node: fa.numbers.count
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: این دفترِ من است.
-      tokens: [{surface: این, sense: in}, {surface: دفترِ, sense: daftar}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, sense: in}, {surface: دفترِ, sense: daftar, morphs: [{surface: دفترِ, kc: 'sense:daftar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
       reverse: این (دفتر من است|دفترم است|دفتر منه|دفترمه)
   translations:
     en: This is my notebook.
@@ -384,11 +383,10 @@ sentences:
       I haven't got [any] money.
 - id: s.numbers.29
   node: fa.numbers.money
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: قیمتِ این دفتر چند است؟
-      tokens: [{surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: دفتر, sense: daftar}, {surface: چند, sense: chand}, {surface: است, sense: budan}]
+      tokens: [{surface: قیمتِ, sense: gheymat, morphs: [{surface: قیمتِ, kc: 'sense:gheymat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: این, sense: in}, {surface: دفتر, sense: daftar}, {surface: چند, sense: chand}, {surface: است, sense: budan}]
       reverse: |-
         قیمت این دفتر (چند است|چنده|چقدر است|چقدره)
         این دفتر (چند است|چنده|چقدر است|چقدره)
@@ -399,11 +397,10 @@ sentences:
       How much does this notebook cost?
 - id: s.numbers.30
   node: fa.numbers.money
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: قیمتِ این کتاب صد هزار تومان است.
-      tokens: [{surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: صد, sense: sad}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
+      tokens: [{surface: قیمتِ, sense: gheymat, morphs: [{surface: قیمتِ, kc: 'sense:gheymat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: صد, sense: sad}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
       reverse: |-
         قیمت این کتاب صد هزار تومان است
         این کتاب صد هزار تومان است
@@ -413,11 +410,10 @@ sentences:
       (This book costs|This book is|The price of this book is) 100000 (tomans|toman).
 - id: s.numbers.31
   node: fa.numbers.prices
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: قیمتِ آن کتاب چقدر است؟
-      tokens: [{surface: قیمتِ, sense: gheymat}, {surface: آن, sense: an}, {surface: کتاب, sense: ketab}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
+      tokens: [{surface: قیمتِ, sense: gheymat, morphs: [{surface: قیمتِ, kc: 'sense:gheymat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: آن, sense: an}, {surface: کتاب, sense: ketab}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
       reverse: |-
         قیمت آن کتاب (چقدر است|چقدره|چند است|چنده)
         آن کتاب (چقدر است|چقدره|چند است|چنده)
@@ -450,11 +446,10 @@ sentences:
     en: That notebook is (cheap|inexpensive).
 - id: s.numbers.34
   node: fa.numbers.prices
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: قیمتِ این خودکار بیست هزار تومان است.
-      tokens: [{surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: خودکار, sense: khodkar}, {surface: بیست, sense: bist}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
+      tokens: [{surface: قیمتِ, sense: gheymat, morphs: [{surface: قیمتِ, kc: 'sense:gheymat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: این, sense: in}, {surface: خودکار, sense: khodkar}, {surface: بیست, sense: bist}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
       reverse: |-
         قیمت این خودکار بیست هزار تومان است
         این خودکار بیست هزار تومان است
@@ -509,7 +504,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: سلام خانم! حالِ شما چطور است؟
-          tokens: [{surface: سلام, sense: salam}, {surface: خانم, sense: khanom}, {surface: حالِ, sense: hal}, {surface: شما, sense: shoma}, {surface: چطور, sense: chetor}, {surface: است, sense: budan}]
+          tokens: [{surface: سلام, sense: salam}, {surface: خانم, sense: khanom}, {surface: حالِ, sense: hal, morphs: [{surface: حالِ, kc: 'sense:hal'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: شما, sense: shoma}, {surface: چطور, sense: chetor}, {surface: است, sense: budan}]
       translations: {en: 'Hello, madam! How are you?'}
   - line:
       speaker: maryam
@@ -533,7 +528,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: قیمتِ آن چقدر است؟
-          tokens: [{surface: قیمتِ, sense: gheymat}, {surface: آن, sense: an}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
+          tokens: [{surface: قیمتِ, sense: gheymat, morphs: [{surface: قیمتِ, kc: 'sense:gheymat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: آن, sense: an}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
       translations: {en: 'How much is it?'}
   - line:
       speaker: seller
@@ -573,7 +568,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: بله. قیمتِ این خودکار ده هزار تومان است.
-          tokens: [{surface: بله, sense: bale}, {surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: خودکار, sense: khodkar}, {surface: ده, sense: dah}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
+          tokens: [{surface: بله, sense: bale}, {surface: قیمتِ, sense: gheymat, morphs: [{surface: قیمتِ, kc: 'sense:gheymat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: این, sense: in}, {surface: خودکار, sense: khodkar}, {surface: ده, sense: dah}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
       translations: {en: Yes. This pen is ten thousand tomans.}
   - choose:
       prompt: {en: 'Why doesn''t Maryam take the first notebook?'}

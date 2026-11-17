@@ -110,11 +110,10 @@ sentences:
       I('d| would) like a bag.
 - id: s.shopping.7
   node: fa.shop.bazaar
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: بازارِ تهران خیلی بزرگ است.
-      tokens: [{surface: بازارِ, sense: bazar}, {surface: تهران, sense: tehran}, {surface: خیلی, sense: kheyli}, {surface: بزرگ, sense: bozorg}, {surface: است, sense: budan}]
+      tokens: [{surface: بازارِ, sense: bazar, morphs: [{surface: بازارِ, kc: 'sense:bazar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تهران, sense: tehran}, {surface: خیلی, sense: kheyli}, {surface: بزرگ, sense: bozorg}, {surface: است, sense: budan}]
       reverse: |-
         بازار تهران خیلی بزرگ است
         بازار تهران بسیار بزرگ است
@@ -183,11 +182,10 @@ sentences:
       What would you like to buy?
 - id: s.shopping.13
   node: fa.shop.colours
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: رنگِ این پیراهن قشنگ است.
-      tokens: [{surface: رنگِ, sense: rang}, {surface: این, sense: in}, {surface: پیراهن, sense: pirahan}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+      tokens: [{surface: رنگِ, sense: rang, morphs: [{surface: رنگِ, kc: 'sense:rang'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: این, sense: in}, {surface: پیراهن, sense: pirahan}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
       reverse: |-
         رنگ این پیراهن (قشنگ است|قشنگه)
         رنگ این پیراهن زیبا است
@@ -198,21 +196,20 @@ sentences:
       The colour of this shirt is lovely.
 - id: s.shopping.14
   node: fa.shop.colours
-  constructions: ['construction:ezafe', 'construction:doost-dashtan']
+  constructions: ['construction:doost-dashtan']
   forms:
     fa-Arab/standard:
       text: من رنگِ قرمز را دوست دارم.
-      tokens: [{surface: من, sense: man}, {surface: رنگِ, sense: rang}, {surface: قرمز, sense: ghermez}, {surface: را, sense: ra}, {surface: دوست, sense: doost}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: من, sense: man}, {surface: رنگِ, sense: rang, morphs: [{surface: رنگِ, kc: 'sense:rang'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: قرمز, sense: ghermez}, {surface: را, sense: ra}, {surface: دوست, sense: doost}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: "[من] (رنگ قرمز|قرمز) [را] دوست دارم\nمن از رنگ قرمز خوشم می\u200Cآید"
   translations:
     en: I like (the colour red|the color red|red).
 - id: s.shopping.15
   node: fa.shop.colours
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: این پیراهنِ آبی خیلی قشنگ است.
-      tokens: [{surface: این, sense: in}, {surface: پیراهنِ, sense: pirahan}, {surface: آبی, sense: abi}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+      tokens: [{surface: این, sense: in}, {surface: پیراهنِ, sense: pirahan, morphs: [{surface: پیراهنِ, kc: 'sense:pirahan'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: آبی, sense: abi}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
       reverse: |-
         این پیراهن آبی خیلی قشنگ است
         این پیراهن آبی بسیار قشنگ است
@@ -224,11 +221,10 @@ sentences:
       This blue shirt is really pretty.
 - id: s.shopping.16
   node: fa.shop.colours
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: "کفشِ سفید می\u200cخواهم."
-      tokens: [{surface: کفشِ, sense: kafsh}, {surface: سفید, sense: sefid}, {surface: "می\u200cخواهم", sense: khastan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواه, kc: 'sense:khastan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: کفشِ, sense: kafsh, morphs: [{surface: کفشِ, kc: 'sense:kafsh'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: سفید, sense: sefid}, {surface: "می\u200cخواهم", sense: khastan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواه, kc: 'sense:khastan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: "[من] کفش سفید می\u200cخواهم"
   translations:
     en: |-
@@ -237,11 +233,10 @@ sentences:
 - id: s.shopping.17
   node: fa.shop.colours
   register: formal
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: پیراهنِ سیاه دارید؟
-      tokens: [{surface: پیراهنِ, sense: pirahan}, {surface: سیاه, sense: siyah}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      tokens: [{surface: پیراهنِ, sense: pirahan, morphs: [{surface: پیراهنِ, kc: 'sense:pirahan'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: سیاه, sense: siyah}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
       reverse: |-
         [شما] پیراهن سیاه دارید
         [تو] پیراهن سیاه داری
@@ -268,11 +263,10 @@ sentences:
       These trousers are really good.
 - id: s.shopping.19
   node: fa.shop.more
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: "من یک شلوارِ سبز می\u200cخواهم."
-      tokens: [{surface: من, sense: man}, {surface: یک, sense: yek}, {surface: شلوارِ, sense: shalvar}, {surface: سبز, sense: sabz}, {surface: "می\u200cخواهم", sense: khastan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواه, kc: 'sense:khastan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: من, sense: man}, {surface: یک, sense: yek}, {surface: شلوارِ, sense: shalvar, morphs: [{surface: شلوارِ, kc: 'sense:shalvar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: سبز, sense: sabz}, {surface: "می\u200cخواهم", sense: khastan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواه, kc: 'sense:khastan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: "[من] [یک] شلوار سبز می\u200cخواهم"
   translations:
     en: |-
@@ -295,11 +289,10 @@ sentences:
 - id: s.shopping.21
   node: fa.shop.more
   register: formal
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: رنگِ دیگری دارید؟
-      tokens: [{surface: رنگِ, sense: rang}, {surface: دیگری, sense: digar, morphs: [{surface: دیگر, kc: 'sense:digar'}, {surface: ی, kc: 'form:indef-i'}]}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      tokens: [{surface: رنگِ, sense: rang, morphs: [{surface: رنگِ, kc: 'sense:rang'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: دیگری, sense: digar, morphs: [{surface: دیگر, kc: 'sense:digar'}, {surface: ی, kc: 'form:indef-i'}]}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
       reverse: |-
         [شما] رنگ دیگری دارید
         [تو] رنگ دیگری داری
@@ -466,14 +459,14 @@ stories:
       forms:
         fa-Arab/standard:
           text: این پیراهنِ آبی خیلی قشنگ است.
-          tokens: [{surface: این, sense: in}, {surface: پیراهنِ, sense: pirahan}, {surface: آبی, sense: abi}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+          tokens: [{surface: این, sense: in}, {surface: پیراهنِ, sense: pirahan, morphs: [{surface: پیراهنِ, kc: 'sense:pirahan'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: آبی, sense: abi}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
       translations: {en: This blue shirt is very pretty.}
   - line:
       speaker: sara
       forms:
         fa-Arab/standard:
           text: بله، قشنگ است. قیمتِ آن چقدر است؟
-          tokens: [{surface: بله, sense: bale}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}, {surface: قیمتِ, sense: gheymat}, {surface: آن, sense: an}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
+          tokens: [{surface: بله, sense: bale}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}, {surface: قیمتِ, sense: gheymat, morphs: [{surface: قیمتِ, kc: 'sense:gheymat'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: آن, sense: an}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
       translations: {en: 'Yes, it''s pretty. How much is it?'}
   - line:
       speaker: hasan

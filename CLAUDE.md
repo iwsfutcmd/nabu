@@ -371,6 +371,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A KC's forms are its lemma (first: what word cards show) and its variants, never an inflected word; the compiler's
   `kc.inflected-form` catches forms the sentences analyse into several KCs. Verbs: infinitive (ichmoq, خوردن).
 - Taps on analysed words show their morphs (`glossAt`); annotate morphs rather than listing inflected forms.
+- A morpheme the script does not write, or writes only as a mark on a letter it shares (the ezafe: fa کتابِ, chg ملک
+  malik-i), is a morph with an empty surface, last in its word (ADR 0136); a tap glosses it as unwritten. Never a
+  sentence-level tag for something one word carries.
 
 ## Persons and register notes (see docs/adr/0056, 0075)
 - `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags

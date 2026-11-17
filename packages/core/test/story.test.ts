@@ -293,6 +293,21 @@ describe("tap-for-gloss on story lines", () => {
     expect(hits[0]?.form.tokens[0]?.ruby?.["jyutping" as SchemeId]?.map((s) => s.text)).toEqual(["ngo5"]);
   });
 
+  it("a morph the word does not spell is glossed as unwritten: the Persian ezafe (ADR 0136)", () => {
+    const course = loadCourse("fa");
+    const glossary = courseGlossary(course);
+    const line = scriptOf(course).lines.find((l) => l.text.tokens.some((t) => t.morphs?.some((m) => m.surface === "")));
+    if (line === undefined) throw new Error("no line with an ezafe");
+    const at = line.text.tokens.findIndex((t) => t.morphs?.some((m) => m.surface === ""));
+    const hits = glossAt(course, glossary, glossLine(course, glossary, line.text), line.text, at);
+    const ezafe = hits.find((h) => h.kc === "construction:ezafe");
+    expect(ezafe?.unwritten).toBe(true);
+    expect(ezafe?.meaning).toBeDefined();
+    // Its form is the whole word, never an empty one; the word's stem is glossed as written.
+    expect(ezafe?.form.tokens).toEqual([line.text.tokens[at]]);
+    expect(hits.filter((h) => h.unwritten !== true).every((h) => surfaceOf(h.form) !== "")).toBe(true);
+  });
+
   it("a stem written otherwise than its dictionary form names it (ADR 0061)", () => {
     const course = loadCourse("uz", "uz-Latn/standard");
     const glossary = courseGlossary(course);

@@ -130,11 +130,11 @@ sentences:
     en: This (film|movie) is (very|really) good.
 - id: s.past.8
   node: fa.past.did
-  constructions: ['construction:ezafe', 'construction:past']
+  constructions: ['construction:past']
   forms:
     fa-Arab/standard:
       text: دیشب یک فیلمِ ایرانی دیدم.
-      tokens: [{surface: دیشب, sense: dishab}, {surface: یک, sense: yek}, {surface: فیلمِ, sense: film}, {surface: ایرانی, sense: irani}, {surface: دیدم, sense: didan, morphs: [{surface: دید, kc: 'sense:didan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: دیشب, sense: dishab}, {surface: یک, sense: yek}, {surface: فیلمِ, sense: film, morphs: [{surface: فیلمِ, kc: 'sense:film'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ایرانی, sense: irani}, {surface: دیدم, sense: didan, morphs: [{surface: دید, kc: 'sense:didan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: |-
         [من] دیشب یک فیلم ایرانی دیدم
         دیشب یک فیلم ایرانی تماشا کردم
@@ -200,11 +200,11 @@ sentences:
       I slept early last night.
 - id: s.past.13
   node: fa.past.did
-  constructions: ['construction:ezafe', 'construction:past']
+  constructions: ['construction:past']
   forms:
     fa-Arab/standard:
       text: هفتهٔ گذشته به اصفهان رفتیم.
-      tokens: [{surface: هفتهٔ, sense: hafte}, {surface: گذشته, sense: gozashte}, {surface: به, sense: be}, {surface: اصفهان, sense: esfahan}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      tokens: [{surface: هفتهٔ, sense: hafte, morphs: [{surface: هفتهٔ, kc: 'sense:hafte'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: گذشته, sense: gozashte}, {surface: به, sense: be}, {surface: اصفهان, sense: esfahan}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
       reverse: "[ما] هفت(هٔ|ه\u200Cی|ه) گذشته به اصفهان رفتیم\nهفته پیش به اصفهان رفتیم\nهفته قبل به اصفهان رفتیم\nهفته گذشته ما به اصفهان رفتیم\nهفته گذشته اصفهان رفتیم"
   translations:
     en: |-
@@ -394,11 +394,10 @@ sentences:
       We went up north.
 - id: s.past.28
   node: fa.past.trip
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: کنارِ دریا بودیم.
-      tokens: [{surface: کنارِ, sense: kenar}, {surface: دریا, sense: darya}, {surface: بودیم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      tokens: [{surface: کنارِ, sense: kenar, morphs: [{surface: کنارِ, kc: 'sense:kenar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: دریا, sense: darya}, {surface: بودیم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: یم, kc: 'form:1pl-im'}]}]
       reverse: |-
         [ما] کنار دریا بودیم
         ما لب دریا بودیم
@@ -406,11 +405,10 @@ sentences:
     en: We were (by|at) the (sea|seaside).
 - id: s.past.29
   node: fa.past.trip
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: این عکسِ خانوادهٔ من است.
-      tokens: [{surface: این, sense: in}, {surface: عکسِ, sense: aks}, {surface: خانوادهٔ, sense: khanevade}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, sense: in}, {surface: عکسِ, sense: aks, morphs: [{surface: عکسِ, kc: 'sense:aks'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: خانوادهٔ, sense: khanevade, morphs: [{surface: خانوادهٔ, kc: 'sense:khanevade'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
       reverse: "این عکس خانواد(هٔ|ه\u200Cی|ه) من است\nاین عکس خانواده\u200Cام است\nاین عکس خانواده\u200Cی منه"
   translations:
     en: |-
@@ -524,7 +522,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: سلام علی! آخرِ هفته کجا بودی؟
-          tokens: [{surface: سلام, sense: salam}, {surface: علی, sense: ali}, {surface: آخرِ, sense: akhar}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: بودی, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: ی, kc: 'form:2sg-i'}]}]
+          tokens: [{surface: سلام, sense: salam}, {surface: علی, sense: ali}, {surface: آخرِ, sense: akhar, morphs: [{surface: آخرِ, kc: 'sense:akhar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: بودی, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: ی, kc: 'form:2sg-i'}]}]
       translations: {en: 'Hi Ali! Where were you at the weekend?'}
   - line:
       speaker: ali
@@ -545,7 +543,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: بله، خیلی خوش گذشت! کنارِ دریا بودیم.
-          tokens: [{surface: بله, sense: bale}, {surface: خیلی, sense: kheyli}, {surface: خوش, sense: khosh}, {surface: گذشت, sense: gozashtan}, {surface: کنارِ, sense: kenar}, {surface: دریا, sense: darya}, {surface: بودیم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: یم, kc: 'form:1pl-im'}]}]
+          tokens: [{surface: بله, sense: bale}, {surface: خیلی, sense: kheyli}, {surface: خوش, sense: khosh}, {surface: گذشت, sense: gozashtan}, {surface: کنارِ, sense: kenar, morphs: [{surface: کنارِ, kc: 'sense:kenar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: دریا, sense: darya}, {surface: بودیم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: یم, kc: 'form:1pl-im'}]}]
       translations: {en: 'Yes, we had a great time! We were by the sea.'}
   - choose:
       prompt: {en: 'Where was Ali at the weekend?'}
@@ -580,7 +578,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: بله. این عکسِ دریاست. ببین!
-          tokens: [{surface: بله, sense: bale}, {surface: این, sense: in}, {surface: عکسِ, sense: aks}, {surface: دریاست, sense: darya, morphs: [{surface: دریا, kc: 'sense:darya'}, {surface: ست, kc: 'sense:budan'}]}, {surface: ببین, sense: didan, morphs: [{surface: ب, kc: 'form:subj-be'}, {surface: بین, kc: 'sense:didan'}]}]
+          tokens: [{surface: بله, sense: bale}, {surface: این, sense: in}, {surface: عکسِ, sense: aks, morphs: [{surface: عکسِ, kc: 'sense:aks'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: دریاست, sense: darya, morphs: [{surface: دریا, kc: 'sense:darya'}, {surface: ست, kc: 'sense:budan'}]}, {surface: ببین, sense: didan, morphs: [{surface: ب, kc: 'form:subj-be'}, {surface: بین, kc: 'sense:didan'}]}]
       translations: {en: Yes. This is a photo of the sea. Look!}
   - line:
       speaker: maryam
