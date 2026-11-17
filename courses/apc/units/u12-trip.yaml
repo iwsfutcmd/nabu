@@ -70,13 +70,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رح ناكل عند تيتا.
-      tokens: [{surface: رح, sense: ra7.fut}, {surface: ناكل, sense: akal, form: 'form:subj-1pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
+      tokens: [{surface: رح, sense: ra7.fut}, {surface: ناكل, sense: akal, form: 'form:subj-1pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta, form: 'form:fem'}]
       reverse: |-
         (رح|لح) ناكل عند تيتا
         نحنا رح ناكل عند تيتا
     apc-Latn/arabizi:
       text: ra7 nekol 3end teta.
-      tokens: [{surface: ra7, sense: ra7.fut}, {surface: nekol, sense: akal, form: 'form:subj-1pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}]
+      tokens: [{surface: ra7, sense: ra7.fut}, {surface: nekol, sense: akal, form: 'form:subj-1pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta, form: 'form:fem'}]
       reverse: |-
         (ra7|la7|rah) (nekol|nakol|nekul) (3end|3and|3ind) teta
         ne7na ra7 nekol 3end teta
@@ -143,7 +143,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بكرا رح ننزل ع بيروت.
-      tokens: [{surface: بكرا, sense: bukra}, {surface: رح, sense: ra7.fut}, {surface: ننزل, sense: nezel, form: 'form:subj-1pl'}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut}]
+      tokens: [{surface: بكرا, sense: bukra}, {surface: رح, sense: ra7.fut}, {surface: ننزل, sense: nezel, form: 'form:subj-1pl'}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut, form: 'form:fem'}]
       reverse: |-
         (بكرا|بكرة) (رح|لح) ننزل ع بيروت
         رح ننزل ع بيروت بكرا
@@ -152,7 +152,7 @@ sentences:
         بكرا نحنا رح ننزل ع بيروت
     apc-Latn/arabizi:
       text: bukra ra7 nenzal 3a Beirut.
-      tokens: [{surface: bukra, sense: bukra}, {surface: ra7, sense: ra7.fut}, {surface: nenzal, sense: nezel, form: 'form:subj-1pl'}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut}]
+      tokens: [{surface: bukra, sense: bukra}, {surface: ra7, sense: ra7.fut}, {surface: nenzal, sense: nezel, form: 'form:subj-1pl'}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut, form: 'form:fem'}]
       reverse: |-
         (bukra|bokra|bukrah) (ra7|la7|rah) (nenzal|ninzal|nenzel) (3a|3ala) (Beirut|Bayrut|Beyrouth)
         ra7 nenzal 3a Beirut bukra
@@ -192,7 +192,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رح نطلع عالضيعة.
-      tokens: [{surface: رح, sense: ra7.fut}, {surface: نطلع, sense: tele3, form: 'form:subj-1pl'}, {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
+      tokens: [{surface: رح, sense: ra7.fut}, {surface: نطلع, sense: tele3, form: 'form:subj-1pl'}, {surface: عالضيعة, sense: day3a, form: 'form:fem', morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
             {surface: ضيعة, kc: 'sense:day3a'}]}]
       reverse: |-
         (رح|لح) نطلع (عالضيعة|ع الضيعة|على الضيعة)
@@ -200,7 +200,7 @@ sentences:
     apc-Latn/arabizi:
       text: ra7 netla3 3al day3a.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: netla3, sense: tele3, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {
-          surface: day3a, sense: day3a}]
+          surface: day3a, sense: day3a, form: 'form:fem'}]
       reverse: |-
         (ra7|la7|rah) (netla3|nitla3|nutla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
         ne7na ra7 netla3 3al day3a
@@ -214,13 +214,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الضيعة حلوة كتير.
-      tokens: [{surface: الضيعة, sense: day3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: الضيعة, sense: day3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: كتير, sense: ktir}]
       reverse: |-
         الضيعة حلوة كتير
         الضيعة كتير حلوة
     apc-Latn/arabizi:
       text: el day3a 7elwe ktir.
-      tokens: [{surface: el, sense: el}, {surface: day3a, sense: day3a}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: el, sense: el}, {surface: day3a, sense: day3a, form: 'form:fem'}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: ktir, sense: ktir}]
       reverse: |-
         (el|l|il) (day3a|dey3a|day3ah|dai3a) (7elwe|7elwi|7ilwe|helwe) (ktir|kteer)
         el day3a ktir 7elwe
@@ -234,13 +234,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي رح يروح عالضيعة.
-      tokens: [{surface: سامي, sense: sami}, {surface: رح, sense: ra7.fut}, {surface: يروح, sense: ra7, form: 'form:subj-3ms'}, {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'}, {
+      tokens: [{surface: سامي, sense: sami}, {surface: رح, sense: ra7.fut}, {surface: يروح, sense: ra7, form: 'form:subj-3ms'}, {surface: عالضيعة, sense: day3a, form: 'form:fem', morphs: [{surface: ع, kc: 'sense:3a'}, {
               surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
       reverse: سامي (رح|لح) يروح (عالضيعة|ع الضيعة|على الضيعة)
     apc-Latn/arabizi:
       text: Sami ra7 yru7 3al day3a.
       tokens: [{surface: Sami, sense: sami}, {surface: ra7, sense: ra7.fut}, {surface: yru7, sense: ra7, form: 'form:subj-3ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
-              kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+              kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}]
       reverse: Sami (ra7|la7|rah) (yru7|yro7) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
   translations:
     en: |-
@@ -274,11 +274,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا رح تشرب قهوة.
-      tokens: [{surface: مايا, sense: maya}, {surface: رح, sense: ra7.fut}, {surface: تشرب, sense: shereb, form: 'form:subj-3fs'}, {surface: قهوة, sense: ahwe}]
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: رح, sense: ra7.fut}, {surface: تشرب, sense: shereb, form: 'form:subj-3fs'}, {surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: مايا (رح|لح) تشرب قهوة
     apc-Latn/arabizi:
       text: Maya ra7 tishrab ahwe.
-      tokens: [{surface: Maya, sense: maya}, {surface: ra7, sense: ra7.fut}, {surface: tishrab, sense: shereb, form: 'form:subj-3fs'}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: ra7, sense: ra7.fut}, {surface: tishrab, sense: shereb, form: 'form:subj-3fs'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: Maya (ra7|la7|rah) (tishrab|teshrab|tishrob|tshrab) (ahwe|2ahwe)
   translations:
     en: Maya (will|is going to) (drink|have) (a coffee|coffee|some coffee).
@@ -288,13 +288,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا رح تعمل غدا.
-      tokens: [{surface: تيتا, sense: teta}, {surface: رح, sense: ra7.fut}, {surface: تعمل, sense: 3emel, form: 'form:subj-3fs'}, {surface: غدا, sense: ghada}]
+      tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: رح, sense: ra7.fut}, {surface: تعمل, sense: 3emel, form: 'form:subj-3fs'}, {surface: غدا, sense: ghada}]
       reverse: |-
         تيتا (رح|لح) (تعمل|بتعمل) غدا
         تيتا رح تعمل الغدا
     apc-Latn/arabizi:
       text: teta ra7 ta3mel ghada.
-      tokens: [{surface: teta, sense: teta}, {surface: ra7, sense: ra7.fut}, {surface: ta3mel, sense: 3emel, form: 'form:subj-3fs'}, {surface: ghada, sense: ghada}]
+      tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: ra7, sense: ra7.fut}, {surface: ta3mel, sense: 3emel, form: 'form:subj-3fs'}, {surface: ghada, sense: ghada}]
       reverse: |-
         teta (ra7|la7|rah) (ta3mel|te3mel) (ghada|ghade)
         teta ra7 ta3mel el ghada
@@ -309,13 +309,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندنا سيّارة.
-      tokens: [{surface: عندنا, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: سيّارة, sense: siyyara}]
+      tokens: [{surface: عندنا, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: سيّارة, sense: siyyara, form: 'form:fem'}]
       reverse: |-
         (عندنا|عنّا) سيّارة
         نحنا عندنا سيّارة
     apc-Latn/arabizi:
       text: 3enna siyyara.
-      tokens: [{surface: 3enna, sense: 3end, morphs: [{surface: 3en, kc: 'sense:3end'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: siyyara, sense: siyyara}]
+      tokens: [{surface: 3enna, sense: 3end, morphs: [{surface: 3en, kc: 'sense:3end'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: siyyara, sense: siyyara, form: 'form:fem'}]
       reverse: |-
         (3enna|3endna|3anna|3enda) (siyyara|siyara|sayyara|sayara|syara)
         ne7na 3enna siyyara
@@ -329,11 +329,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: السيّارة زغيرة.
-      tokens: [{surface: السيّارة, sense: siyyara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}, {surface: زغيرة, sense: zghir, form: 'form:fem'}]
+      tokens: [{surface: السيّارة, sense: siyyara, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}, {surface: زغيرة, sense: zghir, form: 'form:fem'}]
       reverse: السيّارة (زغيرة|صغيرة)
     apc-Latn/arabizi:
       text: el siyyara zghire.
-      tokens: [{surface: el, sense: el}, {surface: siyyara, sense: siyyara}, {surface: zghire, sense: zghir, form: 'form:fem'}]
+      tokens: [{surface: el, sense: el}, {surface: siyyara, sense: siyyara, form: 'form:fem'}, {surface: zghire, sense: zghir, form: 'form:fem'}]
       reverse: (el|l|il) (siyyara|siyara|sayyara|sayara|syara) (zghire|zghiri|zgheere)
   translations:
     en: |-
@@ -345,7 +345,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رح نروح بالسيّارة.
-      tokens: [{surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: بالسيّارة, sense: siyyara, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
+      tokens: [{surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: بالسيّارة, sense: siyyara, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
             {surface: سيّارة, kc: 'sense:siyyara'}]}]
       reverse: |-
         (رح|لح) نروح بالسيّارة
@@ -353,7 +353,7 @@ sentences:
     apc-Latn/arabizi:
       text: ra7 nru7 bel siyyara.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: siyyara,
-          sense: siyyara}]
+          sense: siyyara, form: 'form:fem'}]
       reverse: |-
         (ra7|la7|rah) (nru7|nro7) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)
         ne7na ra7 nru7 bel siyyara
@@ -396,8 +396,8 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الجمعة الجاية رح نروح عالضيعة.
-      tokens: [{surface: الجمعة, sense: jem3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: الجاية, sense: jeye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
-            {surface: جاية, kc: 'sense:jeye'}]}, {surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'},
+      tokens: [{surface: الجمعة, sense: jem3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: الجاية, sense: jeye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
+            {surface: جاية, kc: 'sense:jeye'}]}, {surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: عالضيعة, sense: day3a, form: 'form:fem', morphs: [{surface: ع, kc: 'sense:3a'},
             {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
       reverse: |-
         الجمعة (الجاية|الجايي) (رح|لح) نروح (عالضيعة|ع الضيعة|على الضيعة)
@@ -405,8 +405,8 @@ sentences:
         الجمعة الجاية منروح عالضيعة
     apc-Latn/arabizi:
       text: el jem3a el jeye ra7 nru7 3al day3a.
-      tokens: [{surface: el, sense: el}, {surface: jem3a, sense: jem3a}, {surface: el, sense: el}, {surface: jeye, sense: jeye, form: 'form:fem'}, {surface: ra7, sense: ra7.fut}, {surface: nru7, sense: ra7,
-          form: 'form:subj-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+      tokens: [{surface: el, sense: el}, {surface: jem3a, sense: jem3a, form: 'form:fem'}, {surface: el, sense: el}, {surface: jeye, sense: jeye, form: 'form:fem'}, {surface: ra7, sense: ra7.fut}, {surface: nru7, sense: ra7,
+          form: 'form:subj-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}]
       reverse: |-
         (el|l) (jem3a|jim3a) (el|l) (jeye|jeyye) (ra7|la7|rah) (nru7|nro7) (3al|3a l|3a el) (day3a|dey3a|day3ah)
         ra7 nru7 3al day3a el jem3a el jeye
@@ -467,11 +467,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّي ساعتين.
-      tokens: [{surface: بدّي, sense: baddi}, {surface: ساعتين, sense: sa3a, morphs: [{surface: ساعت, kc: 'sense:sa3a'}, {surface: ين, kc: 'form:dual'}]}]
+      tokens: [{surface: بدّي, sense: baddi}, {surface: ساعتين, sense: sa3a, form: 'form:fem', morphs: [{surface: ساعت, kc: 'sense:sa3a'}, {surface: ين, kc: 'form:dual'}]}]
       reverse: (بدّي|أنا بدّي) ساعتين
     apc-Latn/arabizi:
       text: baddi sa3ten.
-      tokens: [{surface: baddi, sense: baddi}, {surface: sa3ten, sense: sa3a, morphs: [{surface: sa3t, kc: 'sense:sa3a'}, {surface: en, kc: 'form:dual'}]}]
+      tokens: [{surface: baddi, sense: baddi}, {surface: sa3ten, sense: sa3a, form: 'form:fem', morphs: [{surface: sa3t, kc: 'sense:sa3a'}, {surface: en, kc: 'form:dual'}]}]
       reverse: |-
         (baddi|badde|badi) (sa3ten|se3ten|sa3tein|se3tein)
         ana baddi sa3ten
@@ -485,8 +485,8 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بالصيفيّة منطلع عالضيعة.
-      tokens: [{surface: بالصيفيّة, sense: sayfiyye, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: صيفيّة, kc: 'sense:sayfiyye'}]}, {surface: منطلع, sense: tele3, form: 'form:impf-1pl'},
-        {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
+      tokens: [{surface: بالصيفيّة, sense: sayfiyye, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: صيفيّة, kc: 'sense:sayfiyye'}]}, {surface: منطلع, sense: tele3, form: 'form:impf-1pl'},
+        {surface: عالضيعة, sense: day3a, form: 'form:fem', morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
       reverse: |-
         بالصيفيّة منطلع (عالضيعة|ع الضيعة|على الضيعة)
         منطلع عالضيعة بالصيفيّة
@@ -494,8 +494,8 @@ sentences:
         بالصيفيّة نحنا منطلع عالضيعة
     apc-Latn/arabizi:
       text: bel sayfiyye mnitla3 3al day3a.
-      tokens: [{surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: sayfiyye, sense: sayfiyye}, {surface: mnitla3, sense: tele3, form: 'form:impf-1pl'},
-        {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+      tokens: [{surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: sayfiyye, sense: sayfiyye, form: 'form:fem'}, {surface: mnitla3, sense: tele3, form: 'form:impf-1pl'},
+        {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}]
       reverse: |-
         (bel|bil|b el) (sayfiyye|sayfiye|seyfiyye|sayfiyya|saifiyye) (mnitla3|mnetla3|mnotla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
         mnitla3 3al day3a bel sayfiyye
@@ -511,11 +511,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وين شنطتي؟
-      tokens: [{surface: وين, sense: wen}, {surface: شنطتي, sense: shanta, morphs: [{surface: شنطت, kc: 'sense:shanta'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: وين, sense: wen}, {surface: شنطتي, sense: shanta, form: 'form:fem', morphs: [{surface: شنطت, kc: 'sense:shanta'}, {surface: ي, kc: 'form:poss-1sg'}]}]
       reverse: وين (شنطتي|شنطيتي)
     apc-Latn/arabizi:
       text: wen shantti?
-      tokens: [{surface: wen, sense: wen}, {surface: shantti, sense: shanta, morphs: [{surface: shantt, kc: 'sense:shanta'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: wen, sense: wen}, {surface: shantti, sense: shanta, form: 'form:fem', morphs: [{surface: shantt, kc: 'sense:shanta'}, {surface: i, kc: 'form:poss-1sg'}]}]
       reverse: (wen|wein) (shantti|shanteti|shanti|shantiti)
   translations:
     en: Where('s| is) my (bag|suitcase)?
@@ -525,13 +525,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الشنطة كبيرة كتير!
-      tokens: [{surface: الشنطة, sense: shanta, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شنطة, kc: 'sense:shanta'}]}, {surface: كبيرة, sense: kbir, form: 'form:fem'}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: الشنطة, sense: shanta, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: شنطة, kc: 'sense:shanta'}]}, {surface: كبيرة, sense: kbir, form: 'form:fem'}, {surface: كتير, sense: ktir}]
       reverse: |-
         الشنطة كبيرة كتير
         الشنطة كتير كبيرة
     apc-Latn/arabizi:
       text: el shanta kbire ktir!
-      tokens: [{surface: el, sense: el}, {surface: shanta, sense: shanta}, {surface: kbire, sense: kbir, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: el, sense: el}, {surface: shanta, sense: shanta, form: 'form:fem'}, {surface: kbire, sense: kbir, form: 'form:fem'}, {surface: ktir, sense: ktir}]
       reverse: |-
         (el|l|il) (shanta|shante|shan6a) (kbire|kbeere|kbiri) (ktir|kteer)
         el shanta ktir kbire
@@ -545,13 +545,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رح آخد شنطة زغيرة.
-      tokens: [{surface: رح, sense: ra7.fut}, {surface: آخد, sense: akhad, form: 'form:subj-1sg'}, {surface: شنطة, sense: shanta}, {surface: زغيرة, sense: zghir, form: 'form:fem'}]
+      tokens: [{surface: رح, sense: ra7.fut}, {surface: آخد, sense: akhad, form: 'form:subj-1sg'}, {surface: شنطة, sense: shanta, form: 'form:fem'}, {surface: زغيرة, sense: zghir, form: 'form:fem'}]
       reverse: |-
         (رح|لح) آخد شنطة (زغيرة|صغيرة)
         أنا رح آخد شنطة زغيرة
     apc-Latn/arabizi:
       text: ra7 ekhod shanta zghire.
-      tokens: [{surface: ra7, sense: ra7.fut}, {surface: ekhod, sense: akhad, form: 'form:subj-1sg'}, {surface: shanta, sense: shanta}, {surface: zghire, sense: zghir, form: 'form:fem'}]
+      tokens: [{surface: ra7, sense: ra7.fut}, {surface: ekhod, sense: akhad, form: 'form:subj-1sg'}, {surface: shanta, sense: shanta, form: 'form:fem'}, {surface: zghire, sense: zghir, form: 'form:fem'}]
       reverse: |-
         (ra7|la7|rah) (ekhod|ekhud|akhod|5od) (shanta|shante|shan6a) (zghire|zghiri|zgheere)
         ana ra7 ekhod shanta zghire
@@ -566,11 +566,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: خود السيّارة!
-      tokens: [{surface: خود, sense: akhad}, {surface: السيّارة, sense: siyyara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}]
+      tokens: [{surface: خود, sense: akhad}, {surface: السيّارة, sense: siyyara, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}]
       reverse: (خود|خد) السيّارة
     apc-Latn/arabizi:
       text: khod el siyyara!
-      tokens: [{surface: khod, sense: akhad}, {surface: el, sense: el}, {surface: siyyara, sense: siyyara}]
+      tokens: [{surface: khod, sense: akhad}, {surface: el, sense: el}, {surface: siyyara, sense: siyyara, form: 'form:fem'}]
       reverse: (khod|khud) (el|l|il) (siyyara|siyara|sayyara|sayara|syara)
   translations:
     en: Take the car!
@@ -601,15 +601,15 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رح تروح عالضيعة بالسيّارة؟
-      tokens: [{surface: رح, sense: ra7.fut}, {surface: تروح, sense: ra7, form: 'form:subj-2ms'}, {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
-              surface: ضيعة, kc: 'sense:day3a'}]}, {surface: بالسيّارة, sense: siyyara, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}]
+      tokens: [{surface: رح, sense: ra7.fut}, {surface: تروح, sense: ra7, form: 'form:subj-2ms'}, {surface: عالضيعة, sense: day3a, form: 'form:fem', morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
+              surface: ضيعة, kc: 'sense:day3a'}]}, {surface: بالسيّارة, sense: siyyara, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}]
       reverse: |-
         (رح|لح) تروح (عالضيعة|ع الضيعة|على الضيعة) بالسيّارة
         إنت رح تروح عالضيعة بالسيّارة
     apc-Latn/arabizi:
       text: ra7 tru7 3al day3a bel siyyara?
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: tru7, sense: ra7, form: 'form:subj-2ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a,
-          sense: day3a}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: siyyara, sense: siyyara}]
+          sense: day3a, form: 'form:fem'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: siyyara, sense: siyyara, form: 'form:fem'}]
       reverse: |-
         (ra7|la7|rah) tru7 (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)
         enta ra7 tru7 3al day3a bel siyyara
@@ -649,12 +649,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا، رح تروحي معنا؟
-      tokens: [{surface: مايا, sense: maya}, {surface: رح, sense: ra7.fut}, {surface: تروحي, sense: ra7, form: 'form:subj-2fs'}, {surface: معنا, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: نا,
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: رح, sense: ra7.fut}, {surface: تروحي, sense: ra7, form: 'form:subj-2fs'}, {surface: معنا, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: نا,
               kc: 'form:poss-1pl'}]}]
       reverse: مايا (رح|لح) تروحي معنا
     apc-Latn/arabizi:
       text: Maya, ra7 tru7i ma3na?
-      tokens: [{surface: Maya, sense: maya}, {surface: ra7, sense: ra7.fut}, {surface: tru7i, sense: ra7, form: 'form:subj-2fs'}, {surface: ma3na, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: ra7, sense: ra7.fut}, {surface: tru7i, sense: ra7, form: 'form:subj-2fs'}, {surface: ma3na, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {
               surface: na, kc: 'form:poss-1pl'}]}]
       reverse: Maya (ra7|la7|rah) (tru7i|tro7i|tru7e) ma3na
   translations:
@@ -670,7 +670,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: شو رح تعملوا بالصيفيّة؟
-      tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تعملوا, sense: 3emel, form: 'form:subj-2pl'}, {surface: بالصيفيّة, sense: sayfiyye, morphs: [{surface: ب, kc: 'sense:b'},
+      tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تعملوا, sense: 3emel, form: 'form:subj-2pl'}, {surface: بالصيفيّة, sense: sayfiyye, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'},
             {surface: ال, kc: 'sense:el'}, {surface: صيفيّة, kc: 'sense:sayfiyye'}]}]
       reverse: |-
         شو (رح|لح) (تعملوا|تعملو) بالصيفيّة
@@ -679,7 +679,7 @@ sentences:
     apc-Latn/arabizi:
       text: shu ra7 ta3mlo bel sayfiyye?
       tokens: [{surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: ta3mlo, sense: 3emel, form: 'form:subj-2pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
-              kc: 'sense:el'}]}, {surface: sayfiyye, sense: sayfiyye}]
+              kc: 'sense:el'}]}, {surface: sayfiyye, sense: sayfiyye, form: 'form:fem'}]
       reverse: |-
         (shu|sho) (ra7|la7|rah) (ta3mlo|ta3melo|ta3mlu) (bel|bil|b el) (sayfiyye|sayfiye|seyfiyye|sayfiyya|saifiyye)
         ento shu ra7 ta3mlo bel sayfiyye
@@ -695,13 +695,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رح تاكلوا عند تيتا؟
-      tokens: [{surface: رح, sense: ra7.fut}, {surface: تاكلوا, sense: akal, form: 'form:subj-2pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
+      tokens: [{surface: رح, sense: ra7.fut}, {surface: تاكلوا, sense: akal, form: 'form:subj-2pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta, form: 'form:fem'}]
       reverse: |-
         (رح|لح) (تاكلوا|تاكلو) عند تيتا
         إنتو رح تاكلوا عند تيتا
     apc-Latn/arabizi:
       text: ra7 teklo 3end teta?
-      tokens: [{surface: ra7, sense: ra7.fut}, {surface: teklo, sense: akal, form: 'form:subj-2pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}]
+      tokens: [{surface: ra7, sense: ra7.fut}, {surface: teklo, sense: akal, form: 'form:subj-2pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta, form: 'form:fem'}]
       reverse: |-
         (ra7|la7|rah) (teklo|tekelo|taklo|teklu) (3end|3and|3ind) teta
         ento ra7 teklo 3end teta
@@ -717,16 +717,16 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الجيران رح يسافروا الجمعة الجاية.
-      tokens: [{surface: الجيران, sense: jiren, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: رح, sense: ra7.fut}, {surface: يسافروا, sense: safar, form: 'form:subj-3pl'},
-        {surface: الجمعة, sense: jem3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: الجاية, sense: jeye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
+      tokens: [{surface: الجيران, sense: jiren, form: 'form:pl', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: رح, sense: ra7.fut}, {surface: يسافروا, sense: safar, form: 'form:subj-3pl'},
+        {surface: الجمعة, sense: jem3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: الجاية, sense: jeye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
             {surface: جاية, kc: 'sense:jeye'}]}]
       reverse: |-
         الجيران (رح|لح) (يسافروا|يسافرو) الجمعة (الجاية|الجايي)
         الجمعة الجاية الجيران رح يسافروا
     apc-Latn/arabizi:
       text: el jiren ra7 ysefro el jem3a el jeye.
-      tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren}, {surface: ra7, sense: ra7.fut}, {surface: ysefro, sense: safar, form: 'form:subj-3pl'}, {surface: el, sense: el}, {surface: jem3a,
-          sense: jem3a}, {surface: el, sense: el}, {surface: jeye, sense: jeye, form: 'form:fem'}]
+      tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren, form: 'form:pl'}, {surface: ra7, sense: ra7.fut}, {surface: ysefro, sense: safar, form: 'form:subj-3pl'}, {surface: el, sense: el}, {surface: jem3a,
+          sense: jem3a, form: 'form:fem'}, {surface: el, sense: el}, {surface: jeye, sense: jeye, form: 'form:fem'}]
       reverse: |-
         (el|l) (jiren|jiran) (ra7|la7) (ysefro|ysafro) (el|l) (jem3a|jim3a|jum3a) (el|l|il) (jeye|jeyye|jeyi)
         el jem3a el jeye el jiren ra7 ysefro
@@ -741,13 +741,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أهلي رح يطلعوا عالضيعة.
-      tokens: [{surface: أهلي, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: رح, sense: ra7.fut}, {surface: يطلعوا, sense: tele3, form: 'form:subj-3pl'},
-        {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
+      tokens: [{surface: أهلي, sense: ahl, form: 'form:pl', morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: رح, sense: ra7.fut}, {surface: يطلعوا, sense: tele3, form: 'form:subj-3pl'},
+        {surface: عالضيعة, sense: day3a, form: 'form:fem', morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
       reverse: أهلي (رح|لح) (يطلعوا|يطلعو) (عالضيعة|ع الضيعة|على الضيعة)
     apc-Latn/arabizi:
       text: ahli ra7 yitla3o 3al day3a.
-      tokens: [{surface: ahli, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ra7, sense: ra7.fut}, {surface: yitla3o, sense: tele3, form: 'form:subj-3pl'},
-        {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+      tokens: [{surface: ahli, sense: ahl, form: 'form:pl', morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ra7, sense: ra7.fut}, {surface: yitla3o, sense: tele3, form: 'form:subj-3pl'},
+        {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}]
       reverse: (ahli|ahle|2ahli) (ra7|la7|rah) (yitla3o|yetla3o|yitla3u|yetl3o) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
   translations:
     en: |-
@@ -760,13 +760,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا مبسوطة، رح روح عالضيعة!
-      tokens: [{surface: أنا, sense: ana}, {surface: مبسوطة, sense: mabsout, form: 'form:fem'}, {surface: رح, sense: ra7.fut}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}, {surface: عالضيعة, sense: day3a,
+      tokens: [{surface: أنا, sense: ana}, {surface: مبسوطة, sense: mabsout, form: 'form:fem'}, {surface: رح, sense: ra7.fut}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}, {surface: عالضيعة, sense: day3a, form: 'form:fem',
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
       reverse: '[أنا] مبسوطة (رح|لح) روح (عالضيعة|ع الضيعة|على الضيعة)'
     apc-Latn/arabizi:
       text: ana mabsouta, ra7 ru7 3al day3a!
       tokens: [{surface: ana, sense: ana}, {surface: mabsouta, sense: mabsout, form: 'form:fem'}, {surface: ra7, sense: ra7.fut}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a,
-          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}]
       reverse: '[ana] (mabsouta|mabsoute|mabsoota) (ra7|la7|rah) (ru7|ro7) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)'
   translations:
     en: |-
@@ -780,14 +780,14 @@ sentences:
     apc-Arab/standard:
       text: أنا تعبان، ما رح اطلع الليلة.
       tokens: [{surface: أنا, sense: ana}, {surface: تعبان, sense: ta3ban}, {surface: ما, sense: ma}, {surface: رح, sense: ra7.fut}, {surface: اطلع, sense: tele3, form: 'form:subj-1sg'}, {surface: الليلة,
-          sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}]
+          sense: lele, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}]
       reverse: |-
         [أنا] تعبان ما (رح|لح) اطلع الليلة
         أنا تعبان ما بطلع الليلة
     apc-Latn/arabizi:
       text: ana ta3ban, ma ra7 etla3 el lele.
       tokens: [{surface: ana, sense: ana}, {surface: ta3ban, sense: ta3ban}, {surface: ma, sense: ma}, {surface: ra7, sense: ra7.fut}, {surface: etla3, sense: tele3, form: 'form:subj-1sg'}, {surface: el,
-          sense: el}, {surface: lele, sense: lele}]
+          sense: el}, {surface: lele, sense: lele, form: 'form:fem'}]
       reverse: |-
         [ana] (ta3ban|ta3ben|t3ban) ma (ra7|la7|rah) (etla3|itla3|otla3) (el|l|il) (lele|leile|leyle)
         ana ta3ban ma betla3 el lele
@@ -809,25 +809,25 @@ stories:
       forms:
         apc-Arab/standard:
           text: سامي، شو رَح تَعْمِل الجِمْعَة الجّايِة؟
-          tokens: [{surface: سامي, sense: sami}, {surface: شو, sense: shu}, {surface: رَح, sense: ra7.fut}, {surface: تَعْمِل, sense: 3emel, form: 'form:subj-2ms'}, {surface: الجِمْعَة, sense: jem3a, morphs: [
+          tokens: [{surface: سامي, sense: sami}, {surface: شو, sense: shu}, {surface: رَح, sense: ra7.fut}, {surface: تَعْمِل, sense: 3emel, form: 'form:subj-2ms'}, {surface: الجِمْعَة, sense: jem3a, form: 'form:fem', morphs: [
                 {surface: ال, kc: 'sense:el'}, {surface: جِمْعَة, kc: 'sense:jem3a'}]}, {surface: الجّايِة, sense: jeye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جّايِة, kc: 'sense:jeye'}]}]
         apc-Latn/arabizi:
           text: Sami, shu ra7 ta3mel el jem3a el jeye?
           tokens: [{surface: Sami, sense: sami}, {surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: jem3a,
-              sense: jem3a}, {surface: el, sense: el}, {surface: jeye, sense: jeye, form: 'form:fem'}]
+              sense: jem3a, form: 'form:fem'}, {surface: el, sense: el}, {surface: jeye, sense: jeye, form: 'form:fem'}]
       translations: {en: 'Sami, what are you going to do next week?'}
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: رَح نِطْلَع عَالضَّيْعَة، أَنا وأَهْلي.
-          tokens: [{surface: رَح, sense: ra7.fut}, {surface: نِطْلَع, sense: tele3, form: 'form:subj-1pl'}, {surface: عَالضَّيْعَة, sense: day3a, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
-                {surface: ضَّيْعَة, kc: 'sense:day3a'}]}, {surface: أَنا, sense: ana}, {surface: وأَهْلي, sense: ahl, morphs: [{surface: و, kc: 'sense:w'}, {surface: أَهْل, kc: 'sense:ahl'}, {surface: ي,
+          tokens: [{surface: رَح, sense: ra7.fut}, {surface: نِطْلَع, sense: tele3, form: 'form:subj-1pl'}, {surface: عَالضَّيْعَة, sense: day3a, form: 'form:fem', morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
+                {surface: ضَّيْعَة, kc: 'sense:day3a'}]}, {surface: أَنا, sense: ana}, {surface: وأَهْلي, sense: ahl, form: 'form:pl', morphs: [{surface: و, kc: 'sense:w'}, {surface: أَهْل, kc: 'sense:ahl'}, {surface: ي,
                   kc: 'form:poss-1sg'}]}]
         apc-Latn/arabizi:
           text: ra7 netla3 3al day3a, ana w ahli.
           tokens: [{surface: ra7, sense: ra7.fut}, {surface: netla3, sense: tele3, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]},
-            {surface: day3a, sense: day3a}, {surface: ana, sense: ana}, {surface: w, sense: w}, {surface: ahli, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}]
+            {surface: day3a, sense: day3a, form: 'form:fem'}, {surface: ana, sense: ana}, {surface: w, sense: w}, {surface: ahli, sense: ahl, form: 'form:pl', morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}]
       translations: {en: 'We''re going up to the village, my parents and I.'}
   - line:
       speaker: maya
@@ -842,19 +842,19 @@ stories:
   - line:
       speaker: sami
       ask: complete
-      gap: sense:bayy
+      gap: 'sense:bayy'
       distractors: ['sense:bet', 'sense:3omr']
       forms:
         apc-Arab/standard:
           text: يومين بَسّ. بَيّي رَح ياخُد السِّيّارَة.
           tokens: [{surface: يومين, sense: yom, morphs: [{surface: يوم, kc: 'sense:yom'}, {surface: ين, kc: 'form:dual'}]}, {surface: بَسّ, sense: bas}, {surface: بَيّي, sense: bayy, morphs: [{surface: بَيّ,
-                  kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: رَح, sense: ra7.fut}, {surface: ياخُد, sense: akhad, form: 'form:subj-3ms'}, {surface: السِّيّارَة, sense: siyyara, morphs: [
+                  kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: رَح, sense: ra7.fut}, {surface: ياخُد, sense: akhad, form: 'form:subj-3ms'}, {surface: السِّيّارَة, sense: siyyara, form: 'form:fem', morphs: [
                 {surface: ال, kc: 'sense:el'}, {surface: سِّيّارَة, kc: 'sense:siyyara'}]}]
         apc-Latn/arabizi:
           text: yomen bas. bayyi ra7 yekhod el siyyara.
           tokens: [{surface: yomen, sense: yom, morphs: [{surface: yom, kc: 'sense:yom'}, {surface: en, kc: 'form:dual'}]}, {surface: bas, sense: bas}, {surface: bayyi, sense: bayy, morphs: [{surface: bayy,
                   kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ra7, sense: ra7.fut}, {surface: yekhod, sense: akhad, form: 'form:subj-3ms'}, {surface: el, sense: el}, {surface: siyyara,
-              sense: siyyara}]
+              sense: siyyara, form: 'form:fem'}]
       translations: {en: Just two days. My dad is going to take the car.}
   - choose:
       prompt: {en: 'How long will Sami stay in the village?'}
@@ -866,22 +866,22 @@ stories:
         apc-Arab/standard:
           text: وشو رَح تَعْمْلوا بِالضَّيْعَة؟
           tokens: [{surface: وشو, sense: shu, morphs: [{surface: و, kc: 'sense:w'}, {surface: شو, kc: 'sense:shu'}]}, {surface: رَح, sense: ra7.fut}, {surface: تَعْمْلوا, sense: 3emel, form: 'form:subj-2pl'},
-            {surface: بِالضَّيْعَة, sense: day3a, morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ضَّيْعَة, kc: 'sense:day3a'}]}]
+            {surface: بِالضَّيْعَة, sense: day3a, form: 'form:fem', morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ضَّيْعَة, kc: 'sense:day3a'}]}]
         apc-Latn/arabizi:
           text: w shu ra7 ta3mlo bel day3a?
           tokens: [{surface: w, sense: w}, {surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: ta3mlo, sense: 3emel, form: 'form:subj-2pl'}, {surface: bel, sense: b, morphs: [{surface: b,
-                  kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+                  kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}]
       translations: {en: 'And what are you going to do in the village?'}
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: رَح نْزور تيتا وناكُل عِنْدها.
-          tokens: [{surface: رَح, sense: ra7.fut}, {surface: نْزور, sense: zar, form: 'form:subj-1pl'}, {surface: تيتا, sense: teta}, {surface: وناكُل, sense: akal, form: 'form:subj-1pl', morphs: [{surface: و,
+          tokens: [{surface: رَح, sense: ra7.fut}, {surface: نْزور, sense: zar, form: 'form:subj-1pl'}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: وناكُل, sense: akal, form: 'form:subj-1pl', morphs: [{surface: و,
                   kc: 'sense:w'}, {surface: ناكُل, kc: 'sense:akal'}]}, {surface: عِنْدها, sense: 3end, morphs: [{surface: عِنْد, kc: 'sense:3end'}, {surface: ها, kc: 'form:poss-3fs'}]}]
         apc-Latn/arabizi:
           text: ra7 nzur teta w nekol 3enda.
-          tokens: [{surface: ra7, sense: ra7.fut}, {surface: nzur, sense: zar, form: 'form:subj-1pl'}, {surface: teta, sense: teta}, {surface: w, sense: w}, {surface: nekol, sense: akal, form: 'form:subj-1pl'},
+          tokens: [{surface: ra7, sense: ra7.fut}, {surface: nzur, sense: zar, form: 'form:subj-1pl'}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: w, sense: w}, {surface: nekol, sense: akal, form: 'form:subj-1pl'},
             {surface: 3enda, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: a, kc: 'form:poss-3fs'}]}]
       translations: {en: We're going to visit grandma and eat at her place.}
   - line:
@@ -890,11 +890,11 @@ stories:
         apc-Arab/standard:
           text: يا ريت! أَنا رَح اِشْتِغِل كِلّ الجِمْعَة.
           tokens: [{surface: يا, sense: ya-reit}, {surface: ريت, sense: ya-reit}, {surface: أَنا, sense: ana}, {surface: رَح, sense: ra7.fut}, {surface: اِشْتِغِل, sense: eshteghel, form: 'form:subj-1sg'},
-            {surface: كِلّ, sense: kell}, {surface: الجِمْعَة, sense: jem3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جِمْعَة, kc: 'sense:jem3a'}]}]
+            {surface: كِلّ, sense: kell}, {surface: الجِمْعَة, sense: jem3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جِمْعَة, kc: 'sense:jem3a'}]}]
         apc-Latn/arabizi:
           text: ya reit! ana ra7 eshteghel kell el jem3a.
           tokens: [{surface: ya, sense: ya-reit}, {surface: reit, sense: ya-reit}, {surface: ana, sense: ana}, {surface: ra7, sense: ra7.fut}, {surface: eshteghel, sense: eshteghel, form: 'form:subj-1sg'},
-            {surface: kell, sense: kell}, {surface: el, sense: el}, {surface: jem3a, sense: jem3a}]
+            {surface: kell, sense: kell}, {surface: el, sense: el}, {surface: jem3a, sense: jem3a, form: 'form:fem'}]
       translations: {en: Lucky you! I'm going to be working all week.}
   - line:
       speaker: sami
@@ -902,11 +902,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: مْنْروح سَوا الصَّيْفِيِّة الجّايِة!
-          tokens: [{surface: مْنْروح, sense: ra7, form: 'form:impf-1pl'}, {surface: سَوا, sense: sawa}, {surface: الصَّيْفِيِّة, sense: sayfiyye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صَّيْفِيِّة,
+          tokens: [{surface: مْنْروح, sense: ra7, form: 'form:impf-1pl'}, {surface: سَوا, sense: sawa}, {surface: الصَّيْفِيِّة, sense: sayfiyye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: صَّيْفِيِّة,
                   kc: 'sense:sayfiyye'}]}, {surface: الجّايِة, sense: jeye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جّايِة, kc: 'sense:jeye'}]}]
         apc-Latn/arabizi:
           text: mnru7 sawa el sayfiyye el jeye!
-          tokens: [{surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: sawa, sense: sawa}, {surface: el, sense: el}, {surface: sayfiyye, sense: sayfiyye}, {surface: el, sense: el}, {surface: jeye,
+          tokens: [{surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: sawa, sense: sawa}, {surface: el, sense: el}, {surface: sayfiyye, sense: sayfiyye, form: 'form:fem'}, {surface: el, sense: el}, {surface: jeye,
               sense: jeye, form: 'form:fem'}]
       translations: {en: We'll go together next summer!}
   - line:

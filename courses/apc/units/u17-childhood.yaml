@@ -56,7 +56,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: كنّا ناكل عند تيتا نهار الأحد.
-      tokens: [{surface: كنّا, sense: kan, form: 'form:past-1pl'}, {surface: ناكل, sense: akal, form: 'form:subj-1pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}, {surface: نهار, sense: nhar},
+      tokens: [{surface: كنّا, sense: kan, form: 'form:past-1pl'}, {surface: ناكل, sense: akal, form: 'form:subj-1pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: نهار, sense: nhar},
         {surface: الأحد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أحد, kc: 'sense:a7ad'}]}]
       reverse: |-
         كنّا ناكل عند تيتا نهار الأحد
@@ -64,7 +64,7 @@ sentences:
         نحنا كنّا ناكل عند تيتا نهار الأحد
     apc-Latn/arabizi:
       text: kenna nekol 3end teta nhar el a7ad.
-      tokens: [{surface: kenna, sense: kan, form: 'form:past-1pl'}, {surface: nekol, sense: akal, form: 'form:subj-1pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}, {surface: nhar, sense: nhar},
+      tokens: [{surface: kenna, sense: kan, form: 'form:past-1pl'}, {surface: nekol, sense: akal, form: 'form:subj-1pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: nhar, sense: nhar},
         {surface: el, sense: el}, {surface: a7ad, sense: a7ad}]
       reverse: |-
         (kenna|kinna|kanna|konna) (nekol|nakol|nekul) (3end|3and|3ind) teta (nhar|nehar) (el|l|il) (a7ad|2a7ad|ahad)
@@ -136,7 +136,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: كنّا نعيش بالضيعة.
-      tokens: [{surface: كنّا, sense: kan, form: 'form:past-1pl'}, {surface: نعيش, sense: 3ash, form: 'form:subj-1pl'}, {surface: بالضيعة, sense: day3a, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
+      tokens: [{surface: كنّا, sense: kan, form: 'form:past-1pl'}, {surface: نعيش, sense: 3ash, form: 'form:subj-1pl'}, {surface: بالضيعة, sense: day3a, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
               kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
       reverse: |-
         كنّا نعيش بالضيعة
@@ -144,7 +144,7 @@ sentences:
     apc-Latn/arabizi:
       text: kenna n3ish bel day3a.
       tokens: [{surface: kenna, sense: kan, form: 'form:past-1pl'}, {surface: n3ish, sense: 3ash, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]},
-        {surface: day3a, sense: day3a}]
+        {surface: day3a, sense: day3a, form: 'form:fem'}]
       reverse: |-
         (kenna|kinna|kanna|konna) (n3ish|n3eesh|ne3ish) (bel|bil|b el) (day3a|dey3a|day3ah|dai3a)
         ne7na kenna n3ish bel day3a
@@ -158,12 +158,12 @@ sentences:
     apc-Arab/standard:
       text: بيّي كان يشتغل ببيروت.
       tokens: [{surface: بيّي, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: كان, sense: kan, form: 'form:past-3ms'}, {surface: يشتغل, sense: eshteghel,
-          form: 'form:subj-3ms'}, {surface: ببيروت, sense: beirut, morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+          form: 'form:subj-3ms'}, {surface: ببيروت, sense: beirut, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
       reverse: بيّي كان يشتغل ببيروت
     apc-Latn/arabizi:
       text: bayyi ken yishteghel b Beirut.
       tokens: [{surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ken, sense: kan, form: 'form:past-3ms'}, {surface: yishteghel, sense: eshteghel,
-          form: 'form:subj-3ms'}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+          form: 'form:subj-3ms'}, {surface: b, sense: b}, {surface: Beirut, sense: beirut, form: 'form:fem'}]
       reverse: |-
         (bayyi|baye|bayi|bayye|beyye|beyyi) ken (yishteghel|yeshteghel) (b|bi) (Beirut|Bayrut|Beyrouth)
         bayyi kan yishteghel b Beirut
@@ -176,14 +176,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا كانت تعمل منقوشة كلّ صبح.
-      tokens: [{surface: تيتا, sense: teta}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: تعمل, sense: 3emel, form: 'form:subj-3fs'}, {surface: منقوشة, sense: man2oushe}, {surface: كلّ,
+      tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: تعمل, sense: 3emel, form: 'form:subj-3fs'}, {surface: منقوشة, sense: man2oushe, form: 'form:fem'}, {surface: كلّ,
           sense: kell}, {surface: صبح, sense: sob7}]
       reverse: |-
         تيتا كانت (تعمل|بتعمل) منقوشة كلّ صبح
         كلّ صبح تيتا كانت تعمل منقوشة
     apc-Latn/arabizi:
       text: teta kenet ta3mel man2oushe kell sob7.
-      tokens: [{surface: teta, sense: teta}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: ta3mel, sense: 3emel, form: 'form:subj-3fs'}, {surface: man2oushe, sense: man2oushe}, {surface: kell,
+      tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: ta3mel, sense: 3emel, form: 'form:subj-3fs'}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}, {surface: kell,
           sense: kell}, {surface: sob7, sense: sob7}]
       reverse: |-
         teta (kenet|kanet|kenit) (ta3mel|ta3mal|ta3mil|te3mel) (man2oushe|man2ushi|mankoushe|manoushe) (kell|kel|kull) (sob7|sobe7|sub7)
@@ -266,12 +266,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أهلي كانوا يحكوا عربي بالبيت.
-      tokens: [{surface: أهلي, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: كانوا, sense: kan, form: 'form:past-3pl'}, {surface: يحكوا, sense: 7aka,
+      tokens: [{surface: أهلي, sense: ahl, form: 'form:pl', morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: كانوا, sense: kan, form: 'form:past-3pl'}, {surface: يحكوا, sense: 7aka,
           form: 'form:subj-3pl'}, {surface: عربي, sense: 3arabe}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
       reverse: أهلي (كانوا|كانو) (يحكوا|يحكو) عربي بالبيت
     apc-Latn/arabizi:
       text: ahli keno yi7ko 3arabe bel bet.
-      tokens: [{surface: ahli, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: keno, sense: kan, form: 'form:past-3pl'}, {surface: yi7ko, sense: 7aka,
+      tokens: [{surface: ahli, sense: ahl, form: 'form:pl', morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: keno, sense: kan, form: 'form:past-3pl'}, {surface: yi7ko, sense: 7aka,
           form: 'form:subj-3pl'}, {surface: 3arabe, sense: 3arabe}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
       reverse: (ahli|ahle|2ahli) (keno|kano|kenu|kanu) (yi7ko|ye7ko|yi7ku|y7ko) (3arabe|3arabi|arabi) (bel|bil|b el) (bet|beit)
   constructions: ['construction:used-to']
@@ -348,13 +348,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا كانت عم تحكي مع إمّها.
-      tokens: [{surface: مايا, sense: maya}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: عم, sense: 3am}, {surface: تحكي, sense: 7aka, form: 'form:subj-3fs'}, {surface: مع, sense: ma3},
-        {surface: إمّها, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ها, kc: 'form:poss-3fs'}]}]
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: عم, sense: 3am}, {surface: تحكي, sense: 7aka, form: 'form:subj-3fs'}, {surface: مع, sense: ma3},
+        {surface: إمّها, sense: emm, form: 'form:fem', morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ها, kc: 'form:poss-3fs'}]}]
       reverse: مايا كانت عم تحكي مع (إمّها|إمّا)
     apc-Latn/arabizi:
       text: Maya kenet 3am t7ki ma3 emma.
-      tokens: [{surface: Maya, sense: maya}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: 3am, sense: 3am}, {surface: t7ki, sense: 7aka, form: 'form:subj-3fs'}, {surface: ma3, sense: ma3},
-        {surface: emma, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: a, kc: 'form:poss-3fs'}]}]
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: 3am, sense: 3am}, {surface: t7ki, sense: 7aka, form: 'form:subj-3fs'}, {surface: ma3, sense: ma3},
+        {surface: emma, sense: emm, form: 'form:fem', morphs: [{surface: emm, kc: 'sense:emm'}, {surface: a, kc: 'form:poss-3fs'}]}]
       reverse: Maya (kenet|kanet|kenit) (3am|3a|3m) (t7ki|te7ke|ti7ki|t7ke) (ma3|ma3a) (emma|imma|emha|ema)
   constructions: ['construction:was-doing']
   translations:
@@ -425,13 +425,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إنتي معلّمة؟
-      tokens: [{surface: إنتي, sense: enti}, {surface: معلّمة, sense: m3allem, form: 'form:fem'}]
+      tokens: [{surface: إنتي, sense: enti, form: 'form:fem'}, {surface: معلّمة, sense: m3allem, form: 'form:fem'}]
       reverse: |-
         [(إنتي|إنتِ)] معلّمة
         إنتي أستاذة
     apc-Latn/arabizi:
       text: enti m3allme?
-      tokens: [{surface: enti, sense: enti}, {surface: m3allme, sense: m3allem, form: 'form:fem'}]
+      tokens: [{surface: enti, sense: enti, form: 'form:fem'}, {surface: m3allme, sense: m3allem, form: 'form:fem'}]
       reverse: |-
         [(enti|inti)] (m3allme|m3alme|mo3allme|m3allmi)
         enti esteze
@@ -444,7 +444,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بعدني ساكن بالضيعة.
-      tokens: [{surface: بعدني, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ني, kc: 'form:obj-1sg'}]}, {surface: ساكن, sense: seken}, {surface: بالضيعة, sense: day3a, morphs: [
+      tokens: [{surface: بعدني, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ني, kc: 'form:obj-1sg'}]}, {surface: ساكن, sense: seken}, {surface: بالضيعة, sense: day3a, form: 'form:fem', morphs: [
             {surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
       reverse: |-
         بعدني ساكن بالضيعة
@@ -452,7 +452,7 @@ sentences:
     apc-Latn/arabizi:
       text: ba3dni seken bel day3a.
       tokens: [{surface: ba3dni, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: seken, sense: seken}, {surface: bel, sense: b, morphs: [
-            {surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+            {surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}]
       reverse: |-
         (ba3dni|ba3dne|ba3edni|ba3deni) (seken|saken|sakin) (bel|bil|b el) (day3a|dey3a|day3ah|dai3a)
         ana ba3dni seken bel day3a
@@ -487,13 +487,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هي بعدها مريضة.
-      tokens: [{surface: هي, sense: hiyye}, {surface: بعدها, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: مريضة, sense: mrid, form: 'form:fem'}]
+      tokens: [{surface: هي, sense: hiyye, form: 'form:fem'}, {surface: بعدها, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: مريضة, sense: mrid, form: 'form:fem'}]
       reverse: |-
         هي (بعدها|بعدا) مريضة
         بعدها مريضة
     apc-Latn/arabizi:
       text: hiyye ba3da mrida.
-      tokens: [{surface: hiyye, sense: hiyye}, {surface: ba3da, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mrida, sense: mrid, form: 'form:fem'}]
+      tokens: [{surface: hiyye, sense: hiyye, form: 'form:fem'}, {surface: ba3da, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mrida, sense: mrid, form: 'form:fem'}]
       reverse: |-
         (hiyye|hiye|hiya|heyye) (ba3da|ba3eda|ba3dha) (mrida|mreeda|marida|mride)
         ba3da mrida
@@ -633,7 +633,7 @@ sentences:
     apc-Arab/standard:
       text: لمّا كنت زغيرة، كنت روح عالمدرسة لحالي.
       tokens: [{surface: لمّا, sense: lamma}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: زغيرة, sense: zghir, form: 'form:fem'}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: روح,
-          sense: ra7, form: 'form:subj-1sg'}, {surface: عالمدرسة, sense: madrase, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}, {surface: لحالي,
+          sense: ra7, form: 'form:subj-1sg'}, {surface: عالمدرسة, sense: madrase, form: 'form:fem', morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}, {surface: لحالي,
           sense: la7al, morphs: [{surface: لحال, kc: 'sense:la7al'}, {surface: ي, kc: 'form:poss-1sg'}]}]
       reverse: |-
         لمّا (كنت|أنا كنت) (زغيرة|صغيرة) (كنت|أنا كنت) روح (عالمدرسة|ع المدرسة|على المدرسة) لحالي
@@ -642,7 +642,7 @@ sentences:
     apc-Latn/arabizi:
       text: lamma kent zghire, kent ru7 3al madrase la7ali.
       tokens: [{surface: lamma, sense: lamma}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: zghire, sense: zghir, form: 'form:fem'}, {surface: kent, sense: kan, form: 'form:past-1sg'},
-        {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}, {surface: la7ali,
+        {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase, form: 'form:fem'}, {surface: la7ali,
           sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: i, kc: 'form:poss-1sg'}]}]
       reverse: |-
         (lamma|lama) (kent|kint) (zghire|zghiri) (kent|kint) (ru7|ro7) (3al|3a l|3a el) (madrase|madrasi|madrasse) (la7ali|la7ale|lahali)
@@ -667,30 +667,30 @@ stories:
       forms:
         apc-Arab/standard:
           text: تيتا، شو كِنْتي تَعْمْلي لَمّا كِنْتي زْغيرِة؟
-          tokens: [{surface: تيتا, sense: teta}, {surface: شو, sense: shu}, {surface: كِنْتي, sense: kan, form: 'form:past-2fs'}, {surface: تَعْمْلي, sense: 3emel, form: 'form:subj-2fs'}, {surface: لَمّا,
+          tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: شو, sense: shu}, {surface: كِنْتي, sense: kan, form: 'form:past-2fs'}, {surface: تَعْمْلي, sense: 3emel, form: 'form:subj-2fs'}, {surface: لَمّا,
               sense: lamma}, {surface: كِنْتي, sense: kan, form: 'form:past-2fs'}, {surface: زْغيرِة, sense: zghir, form: 'form:fem'}]
         apc-Latn/arabizi:
           text: teta, shu kenti ta3mli lamma kenti zghire?
-          tokens: [{surface: teta, sense: teta}, {surface: shu, sense: shu}, {surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: ta3mli, sense: 3emel, form: 'form:subj-2fs'}, {surface: lamma,
+          tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: shu, sense: shu}, {surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: ta3mli, sense: 3emel, form: 'form:subj-2fs'}, {surface: lamma,
               sense: lamma}, {surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: zghire, sense: zghir, form: 'form:fem'}]
       translations: {en: 'Grandma, what did you use to do when you were little?'}
   - line:
       speaker: teta
       ask: complete
-      gap: sense:la7al
+      gap: 'sense:la7al'
       asks: form
       forms:
         apc-Arab/standard:
           text: كِنّا نْعيش بِالضَّيْعَة. كِنْت روح عَالمَدْرَسِة لَحالي.
-          tokens: [{surface: كِنّا, sense: kan, form: 'form:past-1pl'}, {surface: نْعيش, sense: 3ash, form: 'form:subj-1pl'}, {surface: بِالضَّيْعَة, sense: day3a, morphs: [{surface: بِ, kc: 'sense:b'},
+          tokens: [{surface: كِنّا, sense: kan, form: 'form:past-1pl'}, {surface: نْعيش, sense: 3ash, form: 'form:subj-1pl'}, {surface: بِالضَّيْعَة, sense: day3a, form: 'form:fem', morphs: [{surface: بِ, kc: 'sense:b'},
                 {surface: ال, kc: 'sense:el'}, {surface: ضَّيْعَة, kc: 'sense:day3a'}]}, {surface: كِنْت, sense: kan, form: 'form:past-1sg'}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}, {surface: عَالمَدْرَسِة,
-              sense: madrase, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}, {surface: لَحالي, sense: la7al, morphs: [{surface: لَحال,
+              sense: madrase, form: 'form:fem', morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}, {surface: لَحالي, sense: la7al, morphs: [{surface: لَحال,
                   kc: 'sense:la7al'}, {surface: ي, kc: 'form:poss-1sg'}]}]
         apc-Latn/arabizi:
           text: kenna n3ish bel day3a. kent ru7 3al madrase la7ali.
           tokens: [{surface: kenna, sense: kan, form: 'form:past-1pl'}, {surface: n3ish, sense: 3ash, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
-                  kc: 'sense:el'}]}, {surface: day3a, sense: day3a}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a, morphs: [
-                {surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}, {surface: la7ali, sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: i,
+                  kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a, morphs: [
+                {surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase, form: 'form:fem'}, {surface: la7ali, sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: i,
                   kc: 'form:poss-1sg'}]}]
       translations: {en: We used to live in the village. I used to walk to school by myself.}
   - line:
@@ -708,13 +708,13 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه. وبَعْد المَدْرَسِة كِنّا نِلْعَب بِالضَّيْعَة.
-          tokens: [{surface: إيه, sense: eh}, {surface: وبَعْد, sense: ba3d, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَعْد, kc: 'sense:ba3d'}]}, {surface: المَدْرَسِة, sense: madrase, morphs: [
+          tokens: [{surface: إيه, sense: eh}, {surface: وبَعْد, sense: ba3d, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَعْد, kc: 'sense:ba3d'}]}, {surface: المَدْرَسِة, sense: madrase, form: 'form:fem', morphs: [
                 {surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}, {surface: كِنّا, sense: kan, form: 'form:past-1pl'}, {surface: نِلْعَب, sense: le3eb, form: 'form:subj-1pl'},
-            {surface: بِالضَّيْعَة, sense: day3a, morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ضَّيْعَة, kc: 'sense:day3a'}]}]
+            {surface: بِالضَّيْعَة, sense: day3a, form: 'form:fem', morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ضَّيْعَة, kc: 'sense:day3a'}]}]
         apc-Latn/arabizi:
           text: eh. w ba3d el madrase kenna nel3ab bel day3a.
-          tokens: [{surface: eh, sense: eh}, {surface: w, sense: w}, {surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: madrase, sense: madrase}, {surface: kenna, sense: kan, form: 'form:past-1pl'},
-            {surface: nel3ab, sense: le3eb, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+          tokens: [{surface: eh, sense: eh}, {surface: w, sense: w}, {surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: madrase, sense: madrase, form: 'form:fem'}, {surface: kenna, sense: kan, form: 'form:past-1pl'},
+            {surface: nel3ab, sense: le3eb, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: day3a, sense: day3a, form: 'form:fem'}]
       translations: {en: Yes. And after school we used to play in the village.}
   - choose:
       prompt: {en: 'Where did Teta live when she was little?'}

@@ -51,7 +51,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Martí es el héroe nacional de Cuba.
-      tokens: [{surface: Martí, sense: martí}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: héroe, sense: héroe}, {surface: nacional, sense: nacional}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Martí, sense: martí}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: héroe, sense: héroe}, {surface: nacional, sense: nacional}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: (Martí|José Martí) es el héroe nacional (de Cuba|cubano)
   translations:
     en: |-
@@ -81,7 +81,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Martí nació en La Habana y murió en Dos Ríos.
-      tokens: [{surface: Martí, sense: martí}, {surface: nació, sense: nacer, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: 'y', sense: 'y'}, {surface: murió, sense: morir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Dos, sense: dos}, {surface: Ríos, sense: río, form: 'form:pl'}]
+      tokens: [{surface: Martí, sense: martí}, {surface: nació, sense: nacer, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: murió, sense: morir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Dos, sense: dos}, {surface: Ríos, sense: río, form: 'form:pl'}]
       reverse: Martí nació en La Habana y murió en Dos Ríos
   translations:
     en: |-
@@ -91,7 +91,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Murió en el noventa y cinco, luchando por la libertad de Cuba.
-      tokens: [{surface: Murió, sense: morir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: noventa, sense: noventa}, {surface: 'y', sense: 'y'}, {surface: cinco, sense: cinco}, {surface: luchando, sense: luchar, form: 'form:ger'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: libertad, sense: libertad, form: 'form:fem'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Murió, sense: morir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: noventa, sense: noventa}, {surface: 'y', sense: 'y'}, {surface: cinco, sense: cinco}, {surface: luchando, sense: luchar, form: 'form:ger'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: libertad, sense: libertad, form: 'form:fem'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: '[Martí] murió en (el noventa y cinco|el 95|mil ochocientos noventa y cinco|1895) luchando por la (libertad de Cuba|independencia de Cuba)'
   translations:
     en: |-
@@ -101,7 +101,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Martí quería que Cuba fuera libre.
-      tokens: [{surface: Martí, sense: martí}, {surface: quería, sense: querer, form: 'form:impf'}, {surface: que, sense: que}, {surface: Cuba, sense: cuba}, {surface: fuera, sense: ser, form: 'form:subj-past'}, {surface: libre, sense: libre, form: 'form:fem'}]
+      tokens: [{surface: Martí, sense: martí}, {surface: quería, sense: querer, form: 'form:impf'}, {surface: que, sense: que}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: fuera, sense: ser, form: 'form:subj-past'}, {surface: libre, sense: libre, form: 'form:fem'}]
       reverse: Martí quería que Cuba (fuera|fuese) libre
   translations:
     en: |-
@@ -237,7 +237,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Cuba, las palmas crecen en todo el campo.
-      tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: palmas, sense: palma, form: 'form:fem-pl'}, {surface: crecen, sense: crecer, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: todo, sense: todo}, {surface: el, sense: el}, {surface: campo, sense: campo}]
+      tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: palmas, sense: palma, form: 'form:fem-pl'}, {surface: crecen, sense: crecer, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: todo, sense: todo}, {surface: el, sense: el}, {surface: campo, sense: campo}]
       reverse: |-
         En Cuba las palmas crecen (en|por) todo el campo
         Las palmas crecen (en|por) todo el campo (en Cuba|cubano)
@@ -251,7 +251,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel creció en Hialeah, lejos de las palmas de Cuba.
-      tokens: [{surface: Daniel, sense: daniel}, {surface: creció, sense: crecer, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: lejos, sense: lejos}, {surface: de, sense: de}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: palmas, sense: palma, form: 'form:fem-pl'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Daniel, sense: daniel}, {surface: creció, sense: crecer, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: lejos, sense: lejos}, {surface: de, sense: de}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: palmas, sense: palma, form: 'form:fem-pl'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: Daniel creció en Hialeah lejos de las palmas (de Cuba|cubanas)
   translations:
     en: |-
@@ -283,7 +283,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todo el mundo conoce la Guantanamera.
-      tokens: [{surface: Todo, sense: todo}, {surface: el, sense: el}, {surface: mundo, sense: mundo}, {surface: conoce, sense: conocer, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera}]
+      tokens: [{surface: Todo, sense: todo}, {surface: el, sense: el}, {surface: mundo, sense: mundo}, {surface: conoce, sense: conocer, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera, form: 'form:fem'}]
       reverse: Todo el mundo (conoce|se sabe) la Guantanamera
   translations:
     en: |-
@@ -293,7 +293,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los versos de la Guantanamera son de Martí.
-      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: versos, sense: verso, form: 'form:pl'}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Martí, sense: martí}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: versos, sense: verso, form: 'form:pl'}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera, form: 'form:fem'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Martí, sense: martí}]
       reverse: Los versos de la Guantanamera son de Martí
   translations:
     en: |-
@@ -304,7 +304,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel canta la Guantanamera, pero nunca ha leído a Martí.
-      tokens: [{surface: Daniel, sense: daniel}, {surface: canta, sense: cantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
+      tokens: [{surface: Daniel, sense: daniel}, {surface: canta, sense: cantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera, form: 'form:fem'}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
       reverse: |-
         Daniel canta la Guantanamera pero nunca ha leído a Martí
         Daniel canta la Guantanamera, pero no ha leído nunca a Martí
@@ -329,7 +329,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El padre de Abuela quería que ella supiera los versos de memoria.
-      tokens: [{surface: El, sense: el}, {surface: padre, sense: padre}, {surface: de, sense: de}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quería, sense: querer, form: 'form:impf'}, {surface: que, sense: que}, {surface: ella, sense: ella}, {surface: supiera, sense: saber, form: 'form:subj-past'}, {surface: los, sense: el, form: 'form:pl'}, {surface: versos, sense: verso, form: 'form:pl'}, {surface: de, sense: de}, {surface: memoria, sense: memoria, form: 'form:fem'}]
+      tokens: [{surface: El, sense: el}, {surface: padre, sense: padre}, {surface: de, sense: de}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quería, sense: querer, form: 'form:impf'}, {surface: que, sense: que}, {surface: ella, sense: ella, form: 'form:fem'}, {surface: supiera, sense: saber, form: 'form:subj-past'}, {surface: los, sense: el, form: 'form:pl'}, {surface: versos, sense: verso, form: 'form:pl'}, {surface: de, sense: de}, {surface: memoria, sense: memoria, form: 'form:fem'}]
       reverse: El (padre|papá) de (Abuela|la abuela|mi abuela) quería que [ella] (supiera|supiese|se supiera|se supiese) los versos de memoria
   translations:
     en: |-
@@ -350,7 +350,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili, ¿tú te sabías los versos de memoria cuando eras niña?
-      tokens: [{surface: Lili, sense: lili}, {surface: tú, sense: tú}, {surface: te, sense: te}, {surface: sabías, sense: saber, form: 'form:impf'}, {surface: los, sense: el, form: 'form:pl'}, {surface: versos, sense: verso, form: 'form:pl'}, {surface: de, sense: de}, {surface: memoria, sense: memoria, form: 'form:fem'}, {surface: cuando, sense: cuando}, {surface: eras, sense: ser, form: 'form:impf'}, {surface: niña, sense: niño, form: 'form:fem'}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: tú, sense: tú}, {surface: te, sense: te}, {surface: sabías, sense: saber, form: 'form:impf'}, {surface: los, sense: el, form: 'form:pl'}, {surface: versos, sense: verso, form: 'form:pl'}, {surface: de, sense: de}, {surface: memoria, sense: memoria, form: 'form:fem'}, {surface: cuando, sense: cuando}, {surface: eras, sense: ser, form: 'form:impf'}, {surface: niña, sense: niño, form: 'form:fem'}]
       reverse: Lili (tú te sabías|te sabías [tú]|tú sabías|sabías [tú]) los versos de memoria cuando eras (niña|chiquita)
   translations:
     en: |-
@@ -466,7 +466,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo me sé la Guantanamera, pero nunca he leído a Martí.
-          tokens: [{surface: Yo, sense: yo}, {surface: me, sense: me}, {surface: sé, sense: saber, form: 'form:pres-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
+          tokens: [{surface: Yo, sense: yo}, {surface: me, sense: me}, {surface: sé, sense: saber, form: 'form:pres-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera, form: 'form:fem'}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
       translations: {en: 'I know Guantanamera by heart, but I''ve never read Martí.'}
   - line:
       speaker: cachita
@@ -519,7 +519,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Pero esos son los versos de la Guantanamera!
-          tokens: [{surface: Pero, sense: pero}, {surface: esos, sense: ese, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: versos, sense: verso, form: 'form:pl'}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera}]
+          tokens: [{surface: Pero, sense: pero}, {surface: esos, sense: ese, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: versos, sense: verso, form: 'form:pl'}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera, form: 'form:fem'}]
       translations: {en: 'But those are the words of Guantanamera!'}
   - line:
       speaker: pepe
@@ -602,5 +602,5 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Bueno, ahora todos a cantar la Guantanamera!
-          tokens: [{surface: Bueno, sense: bueno}, {surface: ahora, sense: ahora}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: a, sense: a}, {surface: cantar, sense: cantar}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera}]
+          tokens: [{surface: Bueno, sense: bueno}, {surface: ahora, sense: ahora}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: a, sense: a}, {surface: cantar, sense: cantar}, {surface: la, sense: el, form: 'form:fem'}, {surface: Guantanamera, sense: guantanamera, form: 'form:fem'}]
       translations: {en: 'Well, now everybody sing Guantanamera!'}

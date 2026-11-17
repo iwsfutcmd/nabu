@@ -160,11 +160,14 @@ kcs:
     en: to look (hiphil)
   forms:
     hbo-Hebr/tiberian: [הִבִּיט]
+- id: form:f-pl
+  gloss:
+    en: 'feminine plural (-ôṯ; some -îm: נָשִׁים ''women'')'
 nodes:
 - {id: hbo.u10.the-angel, kind: lesson, introduces: ['sense:malakh', 'sense:nirah', 'sense:seneh', 'sense:labbah']}
 - {id: hbo.u10.burning, kind: lesson, introduces: ['sense:baar', 'sense:eyn', 'form:ptc-pass', 'sense:moshe']}
 - {id: hbo.u10.this-great-sight, kind: lesson, introduces: ['sense:sur', 'sense:marah', 'sense:zeh', 'sense:maddua']}
-- {id: hbo.u10.do-not-come-near, kind: lesson, introduces: ['sense:al.neg', 'sense:qarav', 'sense:halom', 'sense:nashal', 'sense:naal', 'sense:regel', 'form:du']}
+- {id: hbo.u10.do-not-come-near, kind: lesson, introduces: ['sense:al.neg', 'sense:qarav', 'sense:halom', 'sense:nashal', 'sense:naal', 'sense:regel', 'form:du', 'form:f-pl']}
 - {id: hbo.u10.holy-ground, kind: lesson, introduces: ['sense:maqom', 'sense:amad', 'sense:qodesh', 'sense:yaaqov', 'sense:histir', 'sense:hibbit']}
 - {id: hbo.u10.story, kind: story}
 sentences:
@@ -230,7 +233,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בְּלַבַּת־אֵשׁ
-      tokens: [{surface: בְּלַבַּת, sense: labbah, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: לַבַּת, kc: 'sense:labbah'}], readings: {tiberian: bəlabbaṯ-}}, {surface: אֵשׁ, sense: esh,
+      tokens: [{surface: בְּלַבַּת, sense: labbah, form: 'form:f-cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: לַבַּת, kc: 'sense:labbah'}], readings: {tiberian: bəlabbaṯ-}}, {surface: אֵשׁ, sense: esh, form: 'form:f',
           readings: {tiberian: ʾēš}}]
       reverse: בלבת אש
   translations:
@@ -253,7 +256,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַסְּנֶה בֹּעֵר בָּאֵשׁ׃
       tokens: [{surface: הַסְּנֶה, sense: seneh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: סְּנֶה, kc: 'sense:seneh'}], readings: {tiberian: hassəneh}}, {surface: בֹּעֵר, sense: baar, form: 'form:ptc-ms',
-          readings: {tiberian: bōʿēr}}, {surface: בָּאֵשׁ, sense: esh, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: bāʾēš}}]
+          readings: {tiberian: bōʿēr}}, {surface: בָּאֵשׁ, sense: esh, form: 'form:f', morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: bāʾēš}}]
       reverse: |-
         הסנה (בער|בוער) באש
         (בער|בוער) הסנה באש
@@ -266,7 +269,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֵין מַיִם׃
-      tokens: [{surface: אֵין, sense: eyn, readings: {tiberian: ʾên}}, {surface: מַיִם, sense: mayim, readings: {tiberian: máyim}}]
+      tokens: [{surface: אֵין, sense: eyn, readings: {tiberian: ʾên}}, {surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}}]
       reverse: אין מים
   translations:
     en: |-
@@ -310,7 +313,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיַּרְא מֹשֶׁה אֶת־הָאֵשׁ׃
       tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: מֹשֶׁה, sense: moshe, readings: {tiberian: mōšeh}}, {surface: אֶת, sense: et, readings: {
-            tiberian: ʾeṯ-}}, {surface: הָאֵשׁ, sense: esh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}}]
+            tiberian: ʾeṯ-}}, {surface: הָאֵשׁ, sense: esh, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}}]
       reverse: |-
         וירא (משה|מושה) את האש
         (משה|מושה) ראה את האש
@@ -487,7 +490,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: נְעָלֶיךָ
-      tokens: [{surface: נְעָלֶיךָ, sense: naal, form: 'form:pl', morphs: [{surface: נְעָלֶי, kc: 'sense:naal'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: nəʿālếḵā}}]
+      tokens: [{surface: נְעָלֶיךָ, sense: naal, form: 'form:f-pl', morphs: [{surface: נְעָלֶי, kc: 'sense:naal'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: nəʿālếḵā}}]
       reverse: נעליך
   translations:
     en: your sandals
@@ -497,7 +500,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: שַׁל־נְעָלֶיךָ מֵעַל רַגְלֶיךָ׃
-      tokens: [{surface: שַׁל, sense: nashal, form: 'form:impv-ms', readings: {tiberian: šal-}}, {surface: נְעָלֶיךָ, sense: naal, form: 'form:pl', morphs: [{surface: נְעָלֶי, kc: 'sense:naal'}, {surface: ךָ,
+      tokens: [{surface: שַׁל, sense: nashal, form: 'form:impv-ms', readings: {tiberian: šal-}}, {surface: נְעָלֶיךָ, sense: naal, form: 'form:f-pl', morphs: [{surface: נְעָלֶי, kc: 'sense:naal'}, {surface: ךָ,
               kc: 'form:sfx-2ms'}], readings: {tiberian: nəʿālếḵā}}, {surface: מֵעַל, sense: al, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: עַל, kc: 'sense:al'}], readings: {tiberian: mēʿal}}, {
           surface: רַגְלֶיךָ, sense: regel, form: 'form:du', morphs: [{surface: רַגְלֶי, kc: 'sense:regel'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: raḡlếḵā}}]
       reverse: של נעליך מעל רגליך
@@ -545,7 +548,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַתְּ עֹמֶדֶת׃
-      tokens: [{surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}, {surface: עֹמֶדֶת, sense: amad, form: 'form:ptc-fs', readings: {tiberian: ʿōméḏeṯ}}]
+      tokens: [{surface: אַתְּ, sense: at, form: 'form:f', readings: {tiberian: ʾatt}}, {surface: עֹמֶדֶת, sense: amad, form: 'form:ptc-fs', readings: {tiberian: ʿōméḏeṯ}}]
       reverse: |-
         את (עמדת|עומדת)
         (עמדת|עומדת) את
@@ -559,7 +562,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַדְמַת־קֹדֶשׁ
-      tokens: [{surface: אַדְמַת, sense: adamah, form: 'form:cstr', readings: {tiberian: ʾaḏmaṯ-}}, {surface: קֹדֶשׁ, sense: qodesh, readings: {tiberian: qṓḏeš}}]
+      tokens: [{surface: אַדְמַת, sense: adamah, form: 'form:f-cstr', readings: {tiberian: ʾaḏmaṯ-}}, {surface: קֹדֶשׁ, sense: qodesh, readings: {tiberian: qṓḏeš}}]
       reverse: אדמת (קדש|קודש)
   translations:
     en: |-
@@ -573,7 +576,7 @@ sentences:
       text: הַמָּקוֹם אֲשֶׁר אַתָּה עוֹמֵד עָלָיו אַדְמַת־קֹדֶשׁ הוּא׃
       tokens: [{surface: הַמָּקוֹם, sense: maqom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּקוֹם, kc: 'sense:maqom'}], readings: {tiberian: hammāqôm}}, {surface: אֲשֶׁר, sense: asher, readings: {
             tiberian: ʾăšer}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: עוֹמֵד, sense: amad, form: 'form:ptc-ms', readings: {tiberian: ʿômēḏ}}, {surface: עָלָיו, sense: al,
-          morphs: [{surface: עָלָי, kc: 'sense:al'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʿālāyw}}, {surface: אַדְמַת, sense: adamah, form: 'form:cstr', readings: {tiberian: ʾaḏmaṯ-}},
+          morphs: [{surface: עָלָי, kc: 'sense:al'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʿālāyw}}, {surface: אַדְמַת, sense: adamah, form: 'form:f-cstr', readings: {tiberian: ʾaḏmaṯ-}},
         {surface: קֹדֶשׁ, sense: qodesh, readings: {tiberian: qṓḏeš}}, {surface: הוּא, sense: hu, readings: {tiberian: hûʾ}}]
       reverse: המקום אשר אתה עומד עליו אדמת (קדש|קודש) הוא
   translations:
@@ -616,7 +619,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיַּסְתֵּר מֹשֶׁה פָּנָיו׃
-      tokens: [{surface: וַיַּסְתֵּר, sense: histir, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyastēr}}, {surface: מֹשֶׁה, sense: moshe, readings: {tiberian: mōšeh}}, {surface: פָּנָיו, sense: panim,
+      tokens: [{surface: וַיַּסְתֵּר, sense: histir, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyastēr}}, {surface: מֹשֶׁה, sense: moshe, readings: {tiberian: mōšeh}}, {surface: פָּנָיו, sense: panim, form: 'form:pl',
           morphs: [{surface: פָּנָי, kc: 'sense:panim'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: pānāyw}}]
       reverse: |-
         ויסתר (משה|מושה) פניו
@@ -653,7 +656,7 @@ stories:
           text: וַיֵּרָא מַלְאַךְ יְהֹוָה אֵלָיו בְּלַבַּת־אֵשׁ מִתּוֹךְ הַסְּנֶה׃
           tokens: [{surface: וַיֵּרָא, sense: nirah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyērāʾ}}, {surface: מַלְאַךְ, sense: malakh, form: 'form:cstr', readings: {tiberian: malʾaḵ}}, {surface: יְהֹוָה,
               sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֵלָיו, sense: el, morphs: [{surface: אֵלָי, kc: 'sense:el'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾēlāyw}}, {surface: בְּלַבַּת,
-              sense: labbah, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: לַבַּת, kc: 'sense:labbah'}], readings: {tiberian: bəlabbaṯ-}}, {surface: אֵשׁ, sense: esh, readings: {
+              sense: labbah, form: 'form:f-cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: לַבַּת, kc: 'sense:labbah'}], readings: {tiberian: bəlabbaṯ-}}, {surface: אֵשׁ, sense: esh, form: 'form:f', readings: {
                 tiberian: ʾēš}}, {surface: מִתּוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: תּוֹךְ, kc: 'sense:tokh'}], readings: {tiberian: mittôḵ}}, {surface: הַסְּנֶה,
               sense: seneh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: סְּנֶה, kc: 'sense:seneh'}], readings: {tiberian: hassəneh}}]
       translations:
@@ -667,7 +670,7 @@ stories:
           text: וַיַּרְא וְהִנֵּה הַסְּנֶה בֹּעֵר בָּאֵשׁ וְהַסְּנֶה אֵינֶנּוּ אֻכָּל׃
           tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: וְהִנֵּה, sense: hinneh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הִנֵּה,
                   kc: 'sense:hinneh'}], readings: {tiberian: wəhinnēh}}, {surface: הַסְּנֶה, sense: seneh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: סְּנֶה, kc: 'sense:seneh'}], readings: {tiberian: hassəneh}},
-            {surface: בֹּעֵר, sense: baar, form: 'form:ptc-ms', readings: {tiberian: bōʿēr}}, {surface: בָּאֵשׁ, sense: esh, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {
+            {surface: בֹּעֵר, sense: baar, form: 'form:ptc-ms', readings: {tiberian: bōʿēr}}, {surface: בָּאֵשׁ, sense: esh, form: 'form:f', morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {
                 tiberian: bāʾēš}}, {surface: וְהַסְּנֶה, sense: seneh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הַ, kc: 'sense:ha'}, {surface: סְּנֶה, kc: 'sense:seneh'}], readings: {tiberian: wəhassəneh}},
             {surface: אֵינֶנּוּ, sense: eyn, morphs: [{surface: אֵינֶ, kc: 'sense:eyn'}, {surface: נּוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾênénnû}}, {surface: אֻכָּל, sense: akhal, form: 'form:ptc-pass',
               readings: {tiberian: ʾukkāl}}]
@@ -756,12 +759,12 @@ stories:
         hbo-Hebr/tiberian:
           text: אַל־תִּקְרַב הֲלֹם שַׁל־נְעָלֶיךָ מֵעַל רַגְלֶיךָ כִּי הַמָּקוֹם אֲשֶׁר אַתָּה עוֹמֵד עָלָיו אַדְמַת־קֹדֶשׁ הוּא׃
           tokens: [{surface: אַל, sense: al.neg, readings: {tiberian: ʾal-}}, {surface: תִּקְרַב, sense: qarav, form: 'form:juss', readings: {tiberian: tiqraḇ}}, {surface: הֲלֹם, sense: halom, readings: {
-                tiberian: hălōm}}, {surface: שַׁל, sense: nashal, form: 'form:impv-ms', readings: {tiberian: šal-}}, {surface: נְעָלֶיךָ, sense: naal, form: 'form:pl', morphs: [{surface: נְעָלֶי, kc: 'sense:naal'},
+                tiberian: hălōm}}, {surface: שַׁל, sense: nashal, form: 'form:impv-ms', readings: {tiberian: šal-}}, {surface: נְעָלֶיךָ, sense: naal, form: 'form:f-pl', morphs: [{surface: נְעָלֶי, kc: 'sense:naal'},
                 {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: nəʿālếḵā}}, {surface: מֵעַל, sense: al, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: עַל, kc: 'sense:al'}], readings: {tiberian: mēʿal}},
             {surface: רַגְלֶיךָ, sense: regel, form: 'form:du', morphs: [{surface: רַגְלֶי, kc: 'sense:regel'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: raḡlếḵā}}, {surface: כִּי, sense: ki,
               readings: {tiberian: kî}}, {surface: הַמָּקוֹם, sense: maqom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּקוֹם, kc: 'sense:maqom'}], readings: {tiberian: hammāqôm}}, {surface: אֲשֶׁר,
               sense: asher, readings: {tiberian: ʾăšer}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: עוֹמֵד, sense: amad, form: 'form:ptc-ms', readings: {tiberian: ʿômēḏ}}, {
-              surface: עָלָיו, sense: al, morphs: [{surface: עָלָי, kc: 'sense:al'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʿālāyw}}, {surface: אַדְמַת, sense: adamah, form: 'form:cstr',
+              surface: עָלָיו, sense: al, morphs: [{surface: עָלָי, kc: 'sense:al'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʿālāyw}}, {surface: אַדְמַת, sense: adamah, form: 'form:f-cstr',
               readings: {tiberian: ʾaḏmaṯ-}}, {surface: קֹדֶשׁ, sense: qodesh, readings: {tiberian: qṓḏeš}}, {surface: הוּא, sense: hu, readings: {tiberian: hûʾ}}]
       translations:
         en: “Do not come near. Take your sandals off your feet, for the place on which you are standing is holy ground.”
@@ -789,7 +792,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיַּסְתֵּר מֹשֶׁה פָּנָיו כִּי יָרֵא מֵהַבִּיט אֶל־הָאֱלֹהִים׃
-          tokens: [{surface: וַיַּסְתֵּר, sense: histir, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyastēr}}, {surface: מֹשֶׁה, sense: moshe, readings: {tiberian: mōšeh}}, {surface: פָּנָיו, sense: panim,
+          tokens: [{surface: וַיַּסְתֵּר, sense: histir, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyastēr}}, {surface: מֹשֶׁה, sense: moshe, readings: {tiberian: mōšeh}}, {surface: פָּנָיו, sense: panim, form: 'form:pl',
               morphs: [{surface: פָּנָי, kc: 'sense:panim'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: pānāyw}}, {surface: כִּי, sense: ki, readings: {tiberian: kî}}, {surface: יָרֵא, sense: yare,
               form: 'form:qatal-3ms', readings: {tiberian: yārēʾ}}, {surface: מֵהַבִּיט, sense: hibbit, form: 'form:inf', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: הַבִּיט, kc: 'sense:hibbit'}],
               readings: {tiberian: mēhabbîṭ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאֱלֹהִים, sense: elohim, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֱלֹהִים, kc: 'sense:elohim'}],

@@ -42,7 +42,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela Cachita vivía en Matanzas con su familia.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita}, {surface: vivía, sense: vivir, form: 'form:impf'}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}, {surface: con, sense: con}, {surface: su, sense: su, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita, form: 'form:fem'}, {surface: vivía, sense: vivir, form: 'form:impf'}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}, {surface: con, sense: con}, {surface: su, sense: su, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}]
       reverse: (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) vivía en Matanzas con su familia
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) Cachita (lived|used to live|was living) in Matanzas with her family.
@@ -158,7 +158,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela Cachita era muy penosa y no bailaba mucho.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita}, {surface: era, sense: ser, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: penosa, sense: penoso, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: 'no', sense: 'no'}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: mucho, sense: mucho}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita, form: 'form:fem'}, {surface: era, sense: ser, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: penosa, sense: penoso, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: 'no', sense: 'no'}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: mucho, sense: mucho}]
       reverse: (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) era muy (penosa|tímida) y no bailaba mucho
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) Cachita was (very|really|so) shy and (didn't|did not|wouldn't|would not) dance (much|a lot).
@@ -413,7 +413,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nos casamos un año después.
-      tokens: [{surface: Nos, sense: nos}, {surface: casamos, sense: casarse, form: 'form:pret-1p'}, {surface: un, sense: un}, {surface: año, sense: año}, {surface: después, sense: después}]
+      tokens: [{surface: Nos, sense: nos, form: 'form:pl'}, {surface: casamos, sense: casarse, form: 'form:pret-1p'}, {surface: un, sense: un}, {surface: año, sense: año}, {surface: después, sense: después}]
       reverse: |-
         [Nosotros] nos casamos un año después
         Un año después [nosotros] nos casamos
@@ -560,7 +560,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y cuándo se casaron ustedes?
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: cuándo, sense: cuándo}, {surface: se, sense: se}, {surface: casaron, sense: casarse, form: 'form:pret-3p'}, {surface: ustedes, sense: ustedes}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: cuándo, sense: cuándo}, {surface: se, sense: se}, {surface: casaron, sense: casarse, form: 'form:pret-3p'}, {surface: ustedes, sense: ustedes, form: 'form:pl'}]
       translations: {en: 'And when did you two get married?'}
   - line:
       speaker: pepe
@@ -570,7 +570,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Nos casamos un año después, en Matanzas.
-          tokens: [{surface: Nos, sense: nos}, {surface: casamos, sense: casarse, form: 'form:pret-1p'}, {surface: un, sense: un}, {surface: año, sense: año}, {surface: después, sense: después}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}]
+          tokens: [{surface: Nos, sense: nos, form: 'form:pl'}, {surface: casamos, sense: casarse, form: 'form:pret-1p'}, {surface: un, sense: un}, {surface: año, sense: año}, {surface: después, sense: después}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}]
       translations: {en: 'We got married a year later, in Matanzas.'}
   - line:
       speaker: daniel

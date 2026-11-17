@@ -116,7 +116,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela quiere ir a Matanzas, y quiere que yo vaya con ella.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: ir, sense: ir}, {surface: a, sense: a}, {surface: Matanzas, sense: matanzas}, {surface: 'y', sense: 'y'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: yo, sense: yo}, {surface: vaya, sense: ir, form: 'form:subj'}, {surface: con, sense: con}, {surface: ella, sense: ella}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: ir, sense: ir}, {surface: a, sense: a}, {surface: Matanzas, sense: matanzas}, {surface: 'y', sense: 'y'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: yo, sense: yo}, {surface: vaya, sense: ir, form: 'form:subj'}, {surface: con, sense: con}, {surface: ella, sense: ella, form: 'form:fem'}]
       reverse: (Abuela|La abuela|Mi abuela) quiere ir a Matanzas y [ella] quiere que [yo] vaya con ella
   translations:
     en: |-
@@ -150,7 +150,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ojalá que Lili sea doctora, como ella quiere.
-      tokens: [{surface: Ojalá, sense: ojalá}, {surface: que, sense: que}, {surface: Lili, sense: lili}, {surface: sea, sense: ser, form: 'form:subj'}, {surface: doctora, sense: doctor, form: 'form:fem'}, {surface: como, sense: como.like}, {surface: ella, sense: ella}, {surface: quiere, sense: querer, form: 'form:pres-3s'}]
+      tokens: [{surface: Ojalá, sense: ojalá}, {surface: que, sense: que}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: sea, sense: ser, form: 'form:subj'}, {surface: doctora, sense: doctor, form: 'form:fem'}, {surface: como, sense: como.like}, {surface: ella, sense: ella, form: 'form:fem'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}]
       reverse: |-
         Ojalá [que] Lili sea (doctora|médica|médico) como [ella] quiere
         Espero que Lili sea doctora, como ella quiere
@@ -161,7 +161,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Espero que tía Marisol y Yunior vengan pronto a Miami.
-      tokens: [{surface: Espero, sense: esperar, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: 'y', sense: 'y'}, {surface: Yunior, sense: yunior}, {surface: vengan, sense: venir, form: 'form:subj'}, {surface: pronto, sense: pronto}, {surface: a, sense: a}, {surface: Miami, sense: miami}]
+      tokens: [{surface: Espero, sense: esperar, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Yunior, sense: yunior}, {surface: vengan, sense: venir, form: 'form:subj'}, {surface: pronto, sense: pronto}, {surface: a, sense: a}, {surface: Miami, sense: miami}]
       reverse: |-
         [Yo] espero que (tía|mi tía) Marisol y Yunior vengan (pronto a Miami|a Miami pronto)
         Ojalá que tía Marisol y Yunior vengan pronto a Miami
@@ -266,7 +266,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela quiere que Lili termine la universidad.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: Lili, sense: lili}, {surface: termine, sense: terminar, form: 'form:subj'}, {surface: la, sense: el, form: 'form:fem'}, {surface: universidad, sense: universidad, form: 'form:fem'}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: termine, sense: terminar, form: 'form:subj'}, {surface: la, sense: el, form: 'form:fem'}, {surface: universidad, sense: universidad, form: 'form:fem'}]
       reverse: (Abuela|La abuela|Mi abuela) quiere que Lili termine (la universidad|la carrera)
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) wants Lili to (finish|graduate from|complete) (college|university).
@@ -377,7 +377,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela le manda dinero a Marisol para que compre medicina.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: le, sense: le}, {surface: manda, sense: mandar, form: 'form:pres-3s'}, {surface: dinero, sense: dinero}, {surface: a, sense: a}, {surface: Marisol, sense: marisol}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: compre, sense: comprar, form: 'form:subj'}, {surface: medicina, sense: medicina, form: 'form:fem'}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: le, sense: le}, {surface: manda, sense: mandar, form: 'form:pres-3s'}, {surface: dinero, sense: dinero}, {surface: a, sense: a}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: compre, sense: comprar, form: 'form:subj'}, {surface: medicina, sense: medicina, form: 'form:fem'}]
       reverse: (Abuela|La abuela|Mi abuela) le manda dinero a (Marisol|tía Marisol) para que compre (medicina|medicinas)
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) sends (money to (Marisol|Aunt Marisol)|(Marisol|Aunt Marisol) money) (so [that] she can buy|for her to buy|to buy) medicine.
@@ -407,7 +407,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Quiero que ustedes coman juntos los domingos.
-      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: ustedes, sense: ustedes}, {surface: coman, sense: comer, form: 'form:subj'}, {surface: juntos, sense: junto, form: 'form:pl'}, {surface: los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}]
+      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: coman, sense: comer, form: 'form:subj'}, {surface: juntos, sense: junto, form: 'form:pl'}, {surface: los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}]
       reverse: '[Yo] quiero que [ustedes] coman juntos los domingos'
   translations:
     en: I want (you|you all|you guys) to eat together (on Sundays|every Sunday).
@@ -511,7 +511,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Cachita, el muchacho tiene veinticuatro años.
-          tokens: [{surface: Cachita, sense: cachita}, {surface: el, sense: el}, {surface: muchacho, sense: muchacho}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: veinticuatro, sense: veinticuatro}, {surface: años, sense: año, form: 'form:pl'}]
+          tokens: [{surface: Cachita, sense: cachita, form: 'form:fem'}, {surface: el, sense: el}, {surface: muchacho, sense: muchacho}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: veinticuatro, sense: veinticuatro}, {surface: años, sense: año, form: 'form:pl'}]
       translations: {en: 'Cachita, the boy is twenty-four.'}
   - line:
       speaker: cachita
@@ -553,7 +553,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Cachita! ¡Ahora todo Hialeah lo sabe!
-          tokens: [{surface: Cachita, sense: cachita}, {surface: Ahora, sense: ahora}, {surface: todo, sense: todo}, {surface: Hialeah, sense: hialeah}, {surface: lo, sense: lo}, {surface: sabe, sense: saber, form: 'form:pres-3s'}]
+          tokens: [{surface: Cachita, sense: cachita, form: 'form:fem'}, {surface: Ahora, sense: ahora}, {surface: todo, sense: todo}, {surface: Hialeah, sense: hialeah}, {surface: lo, sense: lo}, {surface: sabe, sense: saber, form: 'form:pres-3s'}]
       translations: {en: 'Cachita! Now all of Hialeah knows!'}
   - choose:
       prompt: {en: 'Where does Abuela keep her money?'}
@@ -572,7 +572,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Quiero que llames a tu tía Marisol y a Yunior.
-          tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: llames, sense: llamar, form: 'form:subj'}, {surface: a, sense: a}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: Yunior, sense: yunior}]
+          tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: llames, sense: llamar, form: 'form:subj'}, {surface: a, sense: a}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: Yunior, sense: yunior}]
       translations: {en: 'I want you to call your Aunt Marisol and Yunior.'}
   - line:
       speaker: daniel

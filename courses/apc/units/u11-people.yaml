@@ -55,11 +55,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هي مايا.
-      tokens: [{surface: هي, sense: hiyye}, {surface: مايا, sense: maya}]
+      tokens: [{surface: هي, sense: hiyye, form: 'form:fem'}, {surface: مايا, sense: maya, form: 'form:fem'}]
       reverse: هي مايا
     apc-Latn/arabizi:
       text: hiyye Maya.
-      tokens: [{surface: hiyye, sense: hiyye}, {surface: Maya, sense: maya}]
+      tokens: [{surface: hiyye, sense: hiyye, form: 'form:fem'}, {surface: Maya, sense: maya, form: 'form:fem'}]
       reverse: (hiyye|hiye|hiya|heyye) Maya
   translations:
     en: |-
@@ -85,11 +85,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هي بالبيت؟
-      tokens: [{surface: هي, sense: hiyye}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      tokens: [{surface: هي, sense: hiyye, form: 'form:fem'}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
       reverse: هي بالبيت
     apc-Latn/arabizi:
       text: hiyye bel bet?
-      tokens: [{surface: hiyye, sense: hiyye}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      tokens: [{surface: hiyye, sense: hiyye, form: 'form:fem'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
       reverse: (hiyye|hiye|hiya|heyye) (bel|bil|b el) (bet|beit)
   translations:
     en: |-
@@ -121,11 +121,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هي جارتي.
-      tokens: [{surface: هي, sense: hiyye}, {surface: جارتي, sense: jar, form: 'form:fem', morphs: [{surface: جارت, kc: 'sense:jar'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: هي, sense: hiyye, form: 'form:fem'}, {surface: جارتي, sense: jar, form: 'form:fem', morphs: [{surface: جارت, kc: 'sense:jar'}, {surface: ي, kc: 'form:poss-1sg'}]}]
       reverse: هي جارتي
     apc-Latn/arabizi:
       text: hiyye jarti.
-      tokens: [{surface: hiyye, sense: hiyye}, {surface: jarti, sense: jar, form: 'form:fem', morphs: [{surface: jart, kc: 'sense:jar'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: hiyye, sense: hiyye, form: 'form:fem'}, {surface: jarti, sense: jar, form: 'form:fem', morphs: [{surface: jart, kc: 'sense:jar'}, {surface: i, kc: 'form:poss-1sg'}]}]
       reverse: (hiyye|hiye|hiya|heyye) (jarti|jarte)
   translations:
     en: She('s| is) my (neighbour|neighbor).
@@ -170,13 +170,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مين هالمرة؟
-      tokens: [{surface: مين, sense: meen}, {surface: هالمرة, sense: mara, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: مرة, kc: 'sense:mara'}]}]
+      tokens: [{surface: مين, sense: meen}, {surface: هالمرة, sense: mara, form: 'form:fem', morphs: [{surface: هال, kc: 'sense:hal'}, {surface: مرة, kc: 'sense:mara'}]}]
       reverse: |-
         مين (هالمرة|هالمرا)
         مين هيدي المرة
     apc-Latn/arabizi:
       text: meen hal mara?
-      tokens: [{surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: mara, sense: mara}]
+      tokens: [{surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: mara, sense: mara, form: 'form:fem'}]
       reverse: |-
         (meen|mien|min) (hal|hel) (mara|mra|mare)
         meen hayde el mara
@@ -190,12 +190,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المرة جارتنا.
-      tokens: [{surface: المرة, sense: mara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مرة, kc: 'sense:mara'}]}, {surface: جارتنا, sense: jar, form: 'form:fem', morphs: [{surface: جارت, kc: 'sense:jar'},
+      tokens: [{surface: المرة, sense: mara, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: مرة, kc: 'sense:mara'}]}, {surface: جارتنا, sense: jar, form: 'form:fem', morphs: [{surface: جارت, kc: 'sense:jar'},
             {surface: نا, kc: 'form:poss-1pl'}]}]
       reverse: (المرة|المرا) جارتنا
     apc-Latn/arabizi:
       text: el mara jaretna.
-      tokens: [{surface: el, sense: el}, {surface: mara, sense: mara}, {surface: jaretna, sense: jar, form: 'form:fem', morphs: [{surface: jaret, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}]
+      tokens: [{surface: el, sense: el}, {surface: mara, sense: mara, form: 'form:fem'}, {surface: jaretna, sense: jar, form: 'form:fem', morphs: [{surface: jaret, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}]
       reverse: (el|l|il) (mara|mra|mare) (jaretna|jaritna|jartna)
   translations:
     en: |-
@@ -229,11 +229,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا ساكن ببيروت.
-      tokens: [{surface: أنا, sense: ana}, {surface: ساكن, sense: seken}, {surface: ببيروت, sense: beirut, morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+      tokens: [{surface: أنا, sense: ana}, {surface: ساكن, sense: seken}, {surface: ببيروت, sense: beirut, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
       reverse: '[أنا] ساكن ببيروت'
     apc-Latn/arabizi:
       text: ana seken b Beirut.
-      tokens: [{surface: ana, sense: ana}, {surface: seken, sense: seken}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+      tokens: [{surface: ana, sense: ana}, {surface: seken, sense: seken}, {surface: b, sense: b}, {surface: Beirut, sense: beirut, form: 'form:fem'}]
       reverse: '[ana] (seken|saken|sakin) (b|bi) (Beirut|Bayrut|Beyrouth)'
   translations:
     en: |-
@@ -284,14 +284,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي ساكن بهيدي البناية.
-      tokens: [{surface: سامي, sense: sami}, {surface: ساكن, sense: seken}, {surface: بهيدي, sense: hayde, morphs: [{surface: ب, kc: 'sense:b'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: البناية,
-          sense: bineye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بناية, kc: 'sense:bineye'}]}]
+      tokens: [{surface: سامي, sense: sami}, {surface: ساكن, sense: seken}, {surface: بهيدي, sense: hayde, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: البناية,
+          sense: bineye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: بناية, kc: 'sense:bineye'}]}]
       reverse: |-
         سامي ساكن بهيدي البناية
         سامي ساكن بهالبناية
     apc-Latn/arabizi:
       text: Sami seken b hayde el bineye.
-      tokens: [{surface: Sami, sense: sami}, {surface: seken, sense: seken}, {surface: b, sense: b}, {surface: hayde, sense: hayde}, {surface: el, sense: el}, {surface: bineye, sense: bineye}]
+      tokens: [{surface: Sami, sense: sami}, {surface: seken, sense: seken}, {surface: b, sense: b}, {surface: hayde, sense: hayde, form: 'form:fem'}, {surface: el, sense: el}, {surface: bineye, sense: bineye, form: 'form:fem'}]
       reverse: |-
         Sami (seken|saken|sakin) (b|bi) (hayde|haide|haydi) (el|l|il) (bineye|binaye|bineyi)
         Sami seken b hal bineye
@@ -305,12 +305,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: البناية حدّ الدكّانة.
-      tokens: [{surface: البناية, sense: bineye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بناية, kc: 'sense:bineye'}]}, {surface: حدّ, sense: 7add}, {surface: الدكّانة, sense: dekkene, morphs: [
+      tokens: [{surface: البناية, sense: bineye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: بناية, kc: 'sense:bineye'}]}, {surface: حدّ, sense: 7add}, {surface: الدكّانة, sense: dekkene, form: 'form:fem', morphs: [
             {surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}]
       reverse: البناية حدّ الدكّانة
     apc-Latn/arabizi:
       text: el bineye 7add el dekkene.
-      tokens: [{surface: el, sense: el}, {surface: bineye, sense: bineye}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene}]
+      tokens: [{surface: el, sense: el}, {surface: bineye, sense: bineye, form: 'form:fem'}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene, form: 'form:fem'}]
       reverse: (el|l|il) (bineye|binaye|bineyi) (7add|7ad|hadd) (el|l|il) (dekkene|dekene|dekkane|dikkene)
   translations:
     en: |-
@@ -336,11 +336,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هي لبنانية.
-      tokens: [{surface: هي, sense: hiyye}, {surface: لبنانية, sense: lebnene, form: 'form:fem'}]
+      tokens: [{surface: هي, sense: hiyye, form: 'form:fem'}, {surface: لبنانية, sense: lebnene, form: 'form:fem'}]
       reverse: هي لبنانية
     apc-Latn/arabizi:
       text: hiyye lebneniyye.
-      tokens: [{surface: hiyye, sense: hiyye}, {surface: lebneniyye, sense: lebnene, form: 'form:fem'}]
+      tokens: [{surface: hiyye, sense: hiyye, form: 'form:fem'}, {surface: lebneniyye, sense: lebnene, form: 'form:fem'}]
       reverse: (hiyye|hiye|hiya|heyye) (lebneniyye|lebnaniyye|libnaniyye|lebnaniye|lebneniye|lebnaniyya)
   translations:
     en: She('s| is) Lebanese.
@@ -351,11 +351,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إنتي لبنانية؟
-      tokens: [{surface: إنتي, sense: enti}, {surface: لبنانية, sense: lebnene, form: 'form:fem'}]
+      tokens: [{surface: إنتي, sense: enti, form: 'form:fem'}, {surface: لبنانية, sense: lebnene, form: 'form:fem'}]
       reverse: '[(إنتي|إنتِ)] لبنانية'
     apc-Latn/arabizi:
       text: enti lebneniyye?
-      tokens: [{surface: enti, sense: enti}, {surface: lebneniyye, sense: lebnene, form: 'form:fem'}]
+      tokens: [{surface: enti, sense: enti, form: 'form:fem'}, {surface: lebneniyye, sense: lebnene, form: 'form:fem'}]
       reverse: '[(enti|inti)] (lebneniyye|lebnaniyye|libnaniyye|lebnaniye|lebneniye|lebnaniyya)'
   translations:
     en: Are you Lebanese?
@@ -416,11 +416,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هنّ بالبيت.
-      tokens: [{surface: هنّ, sense: henne}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      tokens: [{surface: هنّ, sense: henne, form: 'form:pl'}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
       reverse: (هنّ|هني) بالبيت
     apc-Latn/arabizi:
       text: henne bel bet.
-      tokens: [{surface: henne, sense: henne}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      tokens: [{surface: henne, sense: henne, form: 'form:pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
       reverse: (henne|hinne|hene|henneh) (bel|bil|b el) (bet|beit)
   translations:
     en: They('re| are) (at home|home).
@@ -430,11 +430,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هنّ لبنانيين.
-      tokens: [{surface: هنّ, sense: henne}, {surface: لبنانيين, sense: lebnene, form: 'form:pl'}]
+      tokens: [{surface: هنّ, sense: henne, form: 'form:pl'}, {surface: لبنانيين, sense: lebnene, form: 'form:pl'}]
       reverse: (هنّ|هني) لبنانيين
     apc-Latn/arabizi:
       text: henne lebneniyyin.
-      tokens: [{surface: henne, sense: henne}, {surface: lebneniyyin, sense: lebnene, form: 'form:pl'}]
+      tokens: [{surface: henne, sense: henne, form: 'form:pl'}, {surface: lebneniyyin, sense: lebnene, form: 'form:pl'}]
       reverse: (henne|hinne|hene|henneh) (lebneniyyin|lebnaniyyin|libnaniyyin|lebnaniyeen|lebneniyeen|lebnanyin)
   translations:
     en: They('re| are) Lebanese.
@@ -444,13 +444,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بيشربوا قهوة كلّ يوم.
-      tokens: [{surface: بيشربوا, sense: shereb, form: 'form:impf-3pl'}, {surface: قهوة, sense: ahwe}, {surface: كلّ, sense: kell}, {surface: يوم, sense: yom}]
+      tokens: [{surface: بيشربوا, sense: shereb, form: 'form:impf-3pl'}, {surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: كلّ, sense: kell}, {surface: يوم, sense: yom}]
       reverse: |-
         [هنّ] (بيشربوا|بيشربو) قهوة كلّ يوم
         كلّ يوم بيشربوا قهوة
     apc-Latn/arabizi:
       text: byishrabo ahwe kell yom.
-      tokens: [{surface: byishrabo, sense: shereb, form: 'form:impf-3pl'}, {surface: ahwe, sense: ahwe}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      tokens: [{surface: byishrabo, sense: shereb, form: 'form:impf-3pl'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
       reverse: |-
         [(henne|hinne)] (byishrabo|bishrabo|byeshrabo|byishrabu|byeshrabu) (ahwe|2ahwe) (kell|kel|kull) (yom|youm)
         kell yom byishrabo ahwe
@@ -482,12 +482,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي ومايا بيحكوا عربي.
-      tokens: [{surface: سامي, sense: sami}, {surface: ومايا, sense: maya, morphs: [{surface: و, kc: 'sense:w'}, {surface: مايا, kc: 'sense:maya'}]}, {surface: بيحكوا, sense: 7aka, form: 'form:impf-3pl'},
+      tokens: [{surface: سامي, sense: sami}, {surface: ومايا, sense: maya, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: مايا, kc: 'sense:maya'}]}, {surface: بيحكوا, sense: 7aka, form: 'form:impf-3pl'},
         {surface: عربي, sense: 3arabe}]
       reverse: سامي (ومايا|و مايا) (بيحكوا|بيحكو) عربي
     apc-Latn/arabizi:
       text: Sami w Maya byi7ko 3arabe.
-      tokens: [{surface: Sami, sense: sami}, {surface: w, sense: w}, {surface: Maya, sense: maya}, {surface: byi7ko, sense: 7aka, form: 'form:impf-3pl'}, {surface: 3arabe, sense: 3arabe}]
+      tokens: [{surface: Sami, sense: sami}, {surface: w, sense: w}, {surface: Maya, sense: maya, form: 'form:fem'}, {surface: byi7ko, sense: 7aka, form: 'form:impf-3pl'}, {surface: 3arabe, sense: 3arabe}]
       reverse: Sami (w|wa) Maya (byi7ko|bi7ko|bye7ko|byi7ku|bihko) (3arabe|3arabi|arabi)
   translations:
     en: |-
@@ -518,12 +518,12 @@ sentences:
     apc-Arab/standard:
       text: رفيقتي بتشتغل بالمدرسة.
       tokens: [{surface: رفيقتي, sense: rfi2, form: 'form:fem', morphs: [{surface: رفيقت, kc: 'sense:rfi2'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بتشتغل, sense: eshteghel, form: 'form:impf-3fs'},
-        {surface: بالمدرسة, sense: madrase, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
+        {surface: بالمدرسة, sense: madrase, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
       reverse: رفيقتي بتشتغل بالمدرسة
     apc-Latn/arabizi:
       text: rfi2ti btishteghel bel madrase.
       tokens: [{surface: rfi2ti, sense: rfi2, form: 'form:fem', morphs: [{surface: rfi2t, kc: 'sense:rfi2'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: btishteghel, sense: eshteghel, form: 'form:impf-3fs'},
-        {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
+        {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: madrase, sense: madrase, form: 'form:fem'}]
       reverse: (rfi2ti|rfi2te|rfiqti) (btishteghel|bteshteghel) (bel|bil|b el) (madrase|madrasi|madrasse)
   translations:
     en: |-
@@ -536,12 +536,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا ورفيقتها بيحبّوا البحر.
-      tokens: [{surface: مايا, sense: maya}, {surface: ورفيقتها, sense: rfi2, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: رفيقت, kc: 'sense:rfi2'}, {surface: ها, kc: 'form:poss-3fs'}]},
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: ورفيقتها, sense: rfi2, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: رفيقت, kc: 'sense:rfi2'}, {surface: ها, kc: 'form:poss-3fs'}]},
         {surface: بيحبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
       reverse: مايا (ورفيقتها|ورفيقتا|و رفيقتها|و رفيقتا) (بيحبّوا|بيحبّو) البحر
     apc-Latn/arabizi:
       text: Maya w rfi2ta by7ebbo el ba7r.
-      tokens: [{surface: Maya, sense: maya}, {surface: w, sense: w}, {surface: rfi2ta, sense: rfi2, form: 'form:fem', morphs: [{surface: rfi2t, kc: 'sense:rfi2'}, {surface: a, kc: 'form:poss-3fs'}]}, {
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: w, sense: w}, {surface: rfi2ta, sense: rfi2, form: 'form:fem', morphs: [{surface: rfi2t, kc: 'sense:rfi2'}, {surface: a, kc: 'form:poss-3fs'}]}, {
           surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
       reverse: Maya (w|wa) (rfi2ta|rfi2eta|rfiqta) (by7ebbo|bi7ebbo|byi7ebbo|by7ibbo|by7ebbu) (el|l|il) (ba7r|ba7er|bahr)
   translations:
@@ -623,12 +623,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أهلي ساكنين بالجبل.
-      tokens: [{surface: أهلي, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: ساكنين, sense: seken, form: 'form:pl'}, {surface: بالجبل, sense: jabal,
+      tokens: [{surface: أهلي, sense: ahl, form: 'form:pl', morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: ساكنين, sense: seken, form: 'form:pl'}, {surface: بالجبل, sense: jabal,
           morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
       reverse: أهلي ساكنين بالجبل
     apc-Latn/arabizi:
       text: ahli seknin bel jabal.
-      tokens: [{surface: ahli, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: seknin, sense: seken, form: 'form:pl'}, {surface: bel, sense: b, morphs: [
+      tokens: [{surface: ahli, sense: ahl, form: 'form:pl', morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: seknin, sense: seken, form: 'form:pl'}, {surface: bel, sense: b, morphs: [
             {surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
       reverse: (ahli|ahle|2ahli) (seknin|saknin|seknen|saknen) (bel|bil|b el) (jabal|jabel|jbal)
   translations:
@@ -641,12 +641,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أهله بيحبّوا البحر.
-      tokens: [{surface: أهله, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: بيحبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: البحر, sense: ba7r,
+      tokens: [{surface: أهله, sense: ahl, form: 'form:pl', morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: بيحبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: البحر, sense: ba7r,
           morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
       reverse: (أهله|أهلو) (بيحبّوا|بيحبّو) البحر
     apc-Latn/arabizi:
       text: ahlo by7ebbo el ba7r.
-      tokens: [{surface: ahlo, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el},
+      tokens: [{surface: ahlo, sense: ahl, form: 'form:pl', morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el},
         {surface: ba7r, sense: ba7r}]
       reverse: (ahlo|ahlu|2ahlo) (by7ebbo|bi7ebbo|byi7ebbo|by7ibbo|by7ebbu) (el|l|il) (ba7r|ba7er|bahr)
   translations:
@@ -661,11 +661,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الجيران بيحكوا كتير!
-      tokens: [{surface: الجيران, sense: jiren, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: بيحكوا, sense: 7aka, form: 'form:impf-3pl'}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: الجيران, sense: jiren, form: 'form:pl', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: بيحكوا, sense: 7aka, form: 'form:impf-3pl'}, {surface: كتير, sense: ktir}]
       reverse: الجيران (بيحكوا|بيحكو) كتير
     apc-Latn/arabizi:
       text: el jiren byi7ko ktir!
-      tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren}, {surface: byi7ko, sense: 7aka, form: 'form:impf-3pl'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren, form: 'form:pl'}, {surface: byi7ko, sense: 7aka, form: 'form:impf-3pl'}, {surface: ktir, sense: ktir}]
       reverse: (el|l|il) (jiren|jiran|jeeran|jeren) (byi7ko|bi7ko|bye7ko|byi7ku|bihko) (ktir|kteer)
   translations:
     en: |-
@@ -695,13 +695,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الجيران رجعوا مبارح.
-      tokens: [{surface: الجيران, sense: jiren, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: رجعوا, sense: rje3, form: 'form:past-3pl'}, {surface: مبارح, sense: mbere7}]
+      tokens: [{surface: الجيران, sense: jiren, form: 'form:pl', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: رجعوا, sense: rje3, form: 'form:past-3pl'}, {surface: مبارح, sense: mbere7}]
       reverse: |-
         الجيران (رجعوا|رجعو) (مبارح|مبارحة)
         مبارح الجيران رجعوا
     apc-Latn/arabizi:
       text: el jiren rej3o mbere7.
-      tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren}, {surface: rej3o, sense: rje3, form: 'form:past-3pl'}, {surface: mbere7, sense: mbere7}]
+      tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren, form: 'form:pl'}, {surface: rej3o, sense: rje3, form: 'form:past-3pl'}, {surface: mbere7, sense: mbere7}]
       reverse: |-
         (el|l|il) (jiren|jiran|jeeran|jeren) (rej3o|rij3o|reje3o|rej3u) (mbere7|embere7|mbare7|mberi7)
         mbere7 el jiren rej3o
@@ -716,13 +716,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أكلوا عند تيتا.
-      tokens: [{surface: أكلوا, sense: akal, form: 'form:past-3pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
+      tokens: [{surface: أكلوا, sense: akal, form: 'form:past-3pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta, form: 'form:fem'}]
       reverse: |-
         (أكلوا|أكلو) عند تيتا
         هنّ أكلوا عند تيتا
     apc-Latn/arabizi:
       text: akalo 3end teta.
-      tokens: [{surface: akalo, sense: akal, form: 'form:past-3pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}]
+      tokens: [{surface: akalo, sense: akal, form: 'form:past-3pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta, form: 'form:fem'}]
       reverse: |-
         (akalo|akalu|2akalo) (3end|3and|3ind) teta
         henne akalo 3end teta
@@ -778,13 +778,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: زاروا أهلهن.
-      tokens: [{surface: زاروا, sense: zar, form: 'form:past-3pl'}, {surface: أهلهن, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: هن, kc: 'form:poss-3pl'}]}]
+      tokens: [{surface: زاروا, sense: zar, form: 'form:past-3pl'}, {surface: أهلهن, sense: ahl, form: 'form:pl', morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: هن, kc: 'form:poss-3pl'}]}]
       reverse: |-
         (زاروا|زارو) (أهلهن|أهلن)
         هنّ زاروا أهلهن
     apc-Latn/arabizi:
       text: zaro ahlon.
-      tokens: [{surface: zaro, sense: zar, form: 'form:past-3pl'}, {surface: ahlon, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: 'on', kc: 'form:poss-3pl'}]}]
+      tokens: [{surface: zaro, sense: zar, form: 'form:past-3pl'}, {surface: ahlon, sense: ahl, form: 'form:pl', morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: 'on', kc: 'form:poss-3pl'}]}]
       reverse: |-
         (zaro|zaru) (ahlon|ahlhon|ahlun|2ahlon)
         henne zaro ahlon
@@ -807,21 +807,21 @@ stories:
       forms:
         apc-Arab/standard:
           text: سامي، مين هَالمَرَة؟
-          tokens: [{surface: سامي, sense: sami}, {surface: مين, sense: meen}, {surface: هَالمَرَة, sense: mara, morphs: [{surface: هَال, kc: 'sense:hal'}, {surface: مَرَة, kc: 'sense:mara'}]}]
+          tokens: [{surface: سامي, sense: sami}, {surface: مين, sense: meen}, {surface: هَالمَرَة, sense: mara, form: 'form:fem', morphs: [{surface: هَال, kc: 'sense:hal'}, {surface: مَرَة, kc: 'sense:mara'}]}]
         apc-Latn/arabizi:
           text: Sami, meen hal mara?
-          tokens: [{surface: Sami, sense: sami}, {surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: mara, sense: mara}]
+          tokens: [{surface: Sami, sense: sami}, {surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: mara, sense: mara, form: 'form:fem'}]
       translations: {en: 'Sami, who''s that woman?'}
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: هِيّ جارِتْنا. ساكْنِة فوق.
-          tokens: [{surface: هِيّ, sense: hiyye}, {surface: جارِتْنا, sense: jar, form: 'form:fem', morphs: [{surface: جارِتْ, kc: 'sense:jar'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: ساكْنِة,
+          tokens: [{surface: هِيّ, sense: hiyye, form: 'form:fem'}, {surface: جارِتْنا, sense: jar, form: 'form:fem', morphs: [{surface: جارِتْ, kc: 'sense:jar'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: ساكْنِة,
               sense: seken, form: 'form:fem'}, {surface: فوق, sense: fo2}]
         apc-Latn/arabizi:
           text: hiyye jaretna. sekne fo2.
-          tokens: [{surface: hiyye, sense: hiyye}, {surface: jaretna, sense: jar, form: 'form:fem', morphs: [{surface: jaret, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: sekne, sense: seken,
+          tokens: [{surface: hiyye, sense: hiyye, form: 'form:fem'}, {surface: jaretna, sense: jar, form: 'form:fem', morphs: [{surface: jaret, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: sekne, sense: seken,
               form: 'form:fem'}, {surface: fo2, sense: fo2}]
       translations: {en: She's our neighbour. She lives upstairs.}
   - line:
@@ -837,16 +837,16 @@ stories:
   - line:
       speaker: sami
       ask: complete
-      gap: sense:amerkene
+      gap: 'sense:amerkene'
       distractors: ['sense:lebnene', 'sense:b3id']
       forms:
         apc-Arab/standard:
           text: لَأ، هِيّ أَميرْكانِيِّة، بَسّ بْتِحْكي عَرَبي.
-          tokens: [{surface: لَأ, sense: la2}, {surface: هِيّ, sense: hiyye}, {surface: أَميرْكانِيِّة, sense: amerkene, form: 'form:fem'}, {surface: بَسّ, sense: bas}, {surface: بْتِحْكي, sense: 7aka,
+          tokens: [{surface: لَأ, sense: la2}, {surface: هِيّ, sense: hiyye, form: 'form:fem'}, {surface: أَميرْكانِيِّة, sense: amerkene, form: 'form:fem'}, {surface: بَسّ, sense: bas}, {surface: بْتِحْكي, sense: 7aka,
               form: 'form:impf-3fs'}, {surface: عَرَبي, sense: 3arabe}]
         apc-Latn/arabizi:
           text: la2, hiyye amerkeniyye, bas bt7ki 3arabe.
-          tokens: [{surface: la2, sense: la2}, {surface: hiyye, sense: hiyye}, {surface: amerkeniyye, sense: amerkene, form: 'form:fem'}, {surface: bas, sense: bas}, {surface: bt7ki, sense: 7aka, form: 'form:impf-3fs'},
+          tokens: [{surface: la2, sense: la2}, {surface: hiyye, sense: hiyye, form: 'form:fem'}, {surface: amerkeniyye, sense: amerkene, form: 'form:fem'}, {surface: bas, sense: bas}, {surface: bt7ki, sense: 7aka, form: 'form:impf-3fs'},
             {surface: 3arabe, sense: 3arabe}]
       translations: {en: 'No, she''s American, but she speaks Arabic.'}
   - choose:
@@ -869,21 +869,21 @@ stories:
         apc-Arab/standard:
           text: هُوّ لِبْناني. بْيِشْتِغْلوا كِلّ يوم بْبيروت.
           tokens: [{surface: هُوّ, sense: huwwe}, {surface: لِبْناني, sense: lebnene}, {surface: بْيِشْتِغْلوا, sense: eshteghel, form: 'form:impf-3pl'}, {surface: كِلّ, sense: kell}, {surface: يوم, sense: yom},
-            {surface: بْبيروت, sense: beirut, morphs: [{surface: بْ, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+            {surface: بْبيروت, sense: beirut, form: 'form:fem', morphs: [{surface: بْ, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
         apc-Latn/arabizi:
           text: huwwe lebnene. byishteghlo kell yom b Beirut.
           tokens: [{surface: huwwe, sense: huwwe}, {surface: lebnene, sense: lebnene}, {surface: byishteghlo, sense: eshteghel, form: 'form:impf-3pl'}, {surface: kell, sense: kell}, {surface: yom, sense: yom},
-            {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+            {surface: b, sense: b}, {surface: Beirut, sense: beirut, form: 'form:fem'}]
       translations: {en: He's Lebanese. They work in Beirut every day.}
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: عِنْدْهُن وْلاد؟
-          tokens: [{surface: عِنْدْهُن, sense: 3end, morphs: [{surface: عِنْدْ, kc: 'sense:3end'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: وْلاد, sense: wlad}]
+          tokens: [{surface: عِنْدْهُن, sense: 3end, morphs: [{surface: عِنْدْ, kc: 'sense:3end'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: وْلاد, sense: wlad, form: 'form:pl'}]
         apc-Latn/arabizi:
           text: 3endon wlad?
-          tokens: [{surface: 3endon, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: wlad, sense: wlad}]
+          tokens: [{surface: 3endon, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: wlad, sense: wlad, form: 'form:pl'}]
       translations: {en: 'Do they have children?'}
   - line:
       speaker: sami
@@ -891,25 +891,25 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه، إِبِنْهُن وبِنِتْهُن بِالمَدْرَسِة.
-          tokens: [{surface: إيه, sense: eh}, {surface: إِبِنْهُن, sense: ebn, morphs: [{surface: إِبِنْ, kc: 'sense:ebn'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: وبِنِتْهُن, sense: bent, morphs: [
-                {surface: و, kc: 'sense:w'}, {surface: بِنِتْ, kc: 'sense:bent'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: بِالمَدْرَسِة, sense: madrase, morphs: [{surface: بِ, kc: 'sense:b'}, {
+          tokens: [{surface: إيه, sense: eh}, {surface: إِبِنْهُن, sense: ebn, morphs: [{surface: إِبِنْ, kc: 'sense:ebn'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: وبِنِتْهُن, sense: bent, form: 'form:fem', morphs: [
+                {surface: و, kc: 'sense:w'}, {surface: بِنِتْ, kc: 'sense:bent'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: بِالمَدْرَسِة, sense: madrase, form: 'form:fem', morphs: [{surface: بِ, kc: 'sense:b'}, {
                   surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}]
         apc-Latn/arabizi:
           text: eh, ebnon w benton bel madrase.
-          tokens: [{surface: eh, sense: eh}, {surface: ebnon, sense: ebn, morphs: [{surface: ebn, kc: 'sense:ebn'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: w, sense: w}, {surface: benton, sense: bent,
+          tokens: [{surface: eh, sense: eh}, {surface: ebnon, sense: ebn, morphs: [{surface: ebn, kc: 'sense:ebn'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: w, sense: w}, {surface: benton, sense: bent, form: 'form:fem',
               morphs: [{surface: bent, kc: 'sense:bent'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: madrase,
-              sense: madrase}]
+              sense: madrase, form: 'form:fem'}]
       translations: {en: 'Yes, their son and their daughter are at school.'}
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: يَلّا، بُكْرا مْنِشْرَب قَهْوِة عِنْدْهُن؟
-          tokens: [{surface: يَلّا, sense: yalla}, {surface: بُكْرا, sense: bukra}, {surface: مْنِشْرَب, sense: shereb, form: 'form:impf-1pl'}, {surface: قَهْوِة, sense: ahwe}, {surface: عِنْدْهُن, sense: 3end,
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: بُكْرا, sense: bukra}, {surface: مْنِشْرَب, sense: shereb, form: 'form:impf-1pl'}, {surface: قَهْوِة, sense: ahwe, form: 'form:fem'}, {surface: عِنْدْهُن, sense: 3end,
               morphs: [{surface: عِنْدْ, kc: 'sense:3end'}, {surface: هُن, kc: 'form:poss-3pl'}]}]
         apc-Latn/arabizi:
           text: yalla, bukra mnishrab ahwe 3endon?
-          tokens: [{surface: yalla, sense: yalla}, {surface: bukra, sense: bukra}, {surface: mnishrab, sense: shereb, form: 'form:impf-1pl'}, {surface: ahwe, sense: ahwe}, {surface: 3endon, sense: 3end,
+          tokens: [{surface: yalla, sense: yalla}, {surface: bukra, sense: bukra}, {surface: mnishrab, sense: shereb, form: 'form:impf-1pl'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: 3endon, sense: 3end,
               morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: 'on', kc: 'form:poss-3pl'}]}]
       translations: {en: 'Come on, shall we have coffee at their place tomorrow?'}
   - line:
@@ -917,11 +917,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: أَكيد! بْيْحِبّوا القَهْوِة.
-          tokens: [{surface: أَكيد, sense: akid}, {surface: بْيْحِبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: القَهْوِة, sense: ahwe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قَهْوِة,
+          tokens: [{surface: أَكيد, sense: akid}, {surface: بْيْحِبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: القَهْوِة, sense: ahwe, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: قَهْوِة,
                   kc: 'sense:ahwe'}]}]
         apc-Latn/arabizi:
           text: akid! by7ebbo el ahwe.
-          tokens: [{surface: akid, sense: akid}, {surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe}]
+          tokens: [{surface: akid, sense: akid}, {surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       translations: {en: Sure! They love coffee.}
   - choose:
       prompt: {en: 'What will Sami and Maya do tomorrow?'}

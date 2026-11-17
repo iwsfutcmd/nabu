@@ -28,11 +28,12 @@ kcs:
 - {id: 'grapheme:7', gloss: {en: Arabizi 7 for ح}, notes: {en: 'mni7 منيح, mar7aba مرحبا'}}
 - {id: 'grapheme:3', gloss: {en: Arabizi 3 for ع}, notes: {en: ma3 مع}}
 - {id: 'grapheme:2', gloss: {en: 'Arabizi 2 for the glottal stop (ء, or ق in Beirut speech)'}, notes: {en: 'la2 لأ, 2ahwe قهوة'}}
+- {id: 'form:fem', gloss: {en: 'feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending on an adjective with one (kbir → kbire)'}, notes: {en: 'kbir → kbire, zghir → zghire. Arabic script: ة (كبيرة). Most nouns in -e / -a (ة) are feminine (ahwe, قهوة), not all (zalame, a man); some feminines have no ending (emm, mother; shams, the sun).'}}
 nodes:
 - {id: apc.greetings, kind: lesson, introduces: ['sense:marhaba', 'sense:shukran', 'sense:merci', 'sense:ma3-essalame', 'sense:yalla']}
 - {id: apc.how-are-you, kind: lesson, introduces: ['sense:kifak', 'sense:mni7', 'sense:el7amdella', 'sense:ana', 'sense:enta', 'sense:w']}
 - {id: apc.names, kind: lesson, introduces: ['sense:sami', 'sense:shu', 'sense:esmak', 'sense:esmi']}
-- {id: apc.cafe, kind: lesson, introduces: ['sense:ahwe', 'sense:shay', 'sense:baddi', 'sense:baddak', 'sense:la2', 'sense:eh']}
+- {id: apc.cafe, kind: lesson, introduces: ['sense:ahwe', 'sense:shay', 'sense:baddi', 'sense:baddak', 'sense:la2', 'sense:eh', 'form:fem']}
 - {id: apc.story, kind: story}
 - {id: apc.arabizi, kind: script, introduces: ['grapheme:7', 'grapheme:3', 'grapheme:2'], convert: {from: apc-Arab/standard, to: apc-Latn/arabizi, sentences: [s.1, s.4, s.7, s.8, s.21]}}
 sentences:
@@ -327,11 +328,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قهوة؟
-      tokens: [{surface: قهوة, sense: ahwe}]
+      tokens: [{surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: قهوة
     apc-Latn/arabizi:
       text: ahwe?
-      tokens: [{surface: ahwe, sense: ahwe}]
+      tokens: [{surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: (ahwe|2ahwe|ahwi|2ahwi)
   translations:
     en: |-
@@ -359,11 +360,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّي قهوة.
-      tokens: [{surface: بدّي, sense: baddi}, {surface: قهوة, sense: ahwe}]
+      tokens: [{surface: بدّي, sense: baddi}, {surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: (بدّي|أنا بدّي) قهوة
     apc-Latn/arabizi:
       text: baddi ahwe.
-      tokens: [{surface: baddi, sense: baddi}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: baddi, sense: baddi}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (ahwe|2ahwe|ahwi|2ahwi)
   translations:
     en: |-
@@ -512,16 +513,16 @@ stories:
       forms:
         apc-Arab/standard:
           text: شو بَدَّك؟ قَهْوِة؟
-          tokens: [{surface: شو, sense: shu}, {surface: بَدَّك, sense: baddak}, {surface: قَهْوِة, sense: ahwe}]
+          tokens: [{surface: شو, sense: shu}, {surface: بَدَّك, sense: baddak}, {surface: قَهْوِة, sense: ahwe, form: 'form:fem'}]
         apc-Latn/arabizi:
           text: shu baddak? ahwe?
-          tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}, {surface: ahwe, sense: ahwe}]
+          tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       translations: {en: "What do you want? Coffee?"}
   - line:
       speaker: sami
       ask: complete
       gap: 'sense:shay'
-      distractors: ['sense:ahwe', 'sense:esmak']
+      distractors: ['sense:esmak', 'sense:esmi']
       forms:
         apc-Arab/standard:
           text: لأ، بَدّي شاي.

@@ -95,7 +95,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía Marisol vive en La Habana.
-      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
       reverse: Mi tía Marisol vive en La Habana
   translations:
     en: My aunt Marisol lives in Havana.
@@ -104,7 +104,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tenemos familia en Cuba.
-      tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: '[(Nosotros|Nosotras)] tenemos (familia|parientes|familiares) en Cuba'
   translations:
     en: (We have|We've got) (family|relatives) in Cuba.
@@ -319,7 +319,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El baño está al lado del cuarto de Lili.
-      tokens: [{surface: El, sense: el}, {surface: baño, sense: baño}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: del, sense: del}, {surface: cuarto, sense: cuarto}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
+      tokens: [{surface: El, sense: el}, {surface: baño, sense: baño}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: del, sense: del}, {surface: cuarto, sense: cuarto}, {surface: de, sense: de}, {surface: Lili, sense: lili, form: 'form:fem'}]
       reverse: El baño está al lado (del (cuarto|dormitorio)|de la habitación) de Lili
   translations:
     en: |-
@@ -498,7 +498,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y Lili? ¿Dónde está?
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: Lili, sense: lili}, {surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}]
       translations: {en: 'And Lili? Where is she?'}
   - line:
       speaker: cachita
@@ -506,14 +506,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Lili está en su cuarto.
-          tokens: [{surface: Lili, sense: lili}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: cuarto, sense: cuarto}]
+          tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: cuarto, sense: cuarto}]
       translations: {en: Lili is in her room.}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: ¡Lili! ¿Tú tienes el ventilador de abuela?
-          tokens: [{surface: Lili, sense: lili}, {surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: ventilador, sense: ventilador}, {surface: de, sense: de}, {surface: abuela, sense: abuela, form: 'form:fem'}]
+          tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: ventilador, sense: ventilador}, {surface: de, sense: de}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       translations: {en: 'Lili! Do you have Grandma''s fan?'}
   - line:
       speaker: lili
@@ -548,7 +548,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili, Daniel! ¡Al patio!
-          tokens: [{surface: Lili, sense: lili}, {surface: Daniel, sense: daniel}, {surface: Al, sense: al}, {surface: patio, sense: patio}]
+          tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: Daniel, sense: daniel}, {surface: Al, sense: al}, {surface: patio, sense: patio}]
       translations: {en: 'Lili, Daniel! Out to the yard!'}
   - choose:
       prompt: {en: 'Where does the family go at the end?'}

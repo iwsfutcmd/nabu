@@ -132,7 +132,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מִצְרַיִם
-      tokens: [{surface: מִצְרַיִם, sense: mitsrayim, readings: {tiberian: miṣráyim}}]
+      tokens: [{surface: מִצְרַיִם, sense: mitsrayim, form: 'form:f', readings: {tiberian: miṣráyim}}]
       reverse: מצרים
   translations:
     en: Egypt
@@ -141,7 +141,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֶרֶץ מִצְרַיִם
-      tokens: [{surface: אֶרֶץ, sense: erets, readings: {tiberian: ʾéreṣ}}, {surface: מִצְרַיִם, sense: mitsrayim, readings: {tiberian: miṣráyim}}]
+      tokens: [{surface: אֶרֶץ, sense: erets, form: 'form:f', readings: {tiberian: ʾéreṣ}}, {surface: מִצְרַיִם, sense: mitsrayim, form: 'form:f', readings: {tiberian: miṣráyim}}]
       reverse: ארץ מצרים
   translations:
     en: the land of Egypt
@@ -163,7 +163,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיֵּצְאוּ מִמִּצְרַיִם׃
-      tokens: [{surface: וַיֵּצְאוּ, sense: yatsa, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyēṣəʾû}}, {surface: מִמִּצְרַיִם, sense: mitsrayim, morphs: [{surface: מִ, kc: 'sense:min'}, {surface: מִּצְרַיִם,
+      tokens: [{surface: וַיֵּצְאוּ, sense: yatsa, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyēṣəʾû}}, {surface: מִמִּצְרַיִם, sense: mitsrayim, form: 'form:f', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: מִּצְרַיִם,
               kc: 'sense:mitsrayim'}], readings: {tiberian: mimmiṣráyim}}]
       reverse: |-
         ויצאו ממצרים
@@ -214,8 +214,8 @@ sentences:
     hbo-Hebr/tiberian:
       text: אֲשֶׁר הוֹצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם
       tokens: [{surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: הוֹצֵאתִיךָ, sense: hotsi, form: 'form:qatal-1cs', morphs: [{surface: הוֹצֵאתִי, kc: 'sense:hotsi'}, {surface: ךָ,
-              kc: 'form:sfx-2ms'}], readings: {tiberian: hôṣēʾṯî́ḵā}}, {surface: מֵאֶרֶץ, sense: erets, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אֶרֶץ, kc: 'sense:erets'}], readings: {tiberian: mēʾéreṣ}},
-        {surface: מִצְרַיִם, sense: mitsrayim, readings: {tiberian: miṣráyim}}]
+              kc: 'form:sfx-2ms'}], readings: {tiberian: hôṣēʾṯî́ḵā}}, {surface: מֵאֶרֶץ, sense: erets, form: 'form:f', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אֶרֶץ, kc: 'sense:erets'}], readings: {tiberian: mēʾéreṣ}},
+        {surface: מִצְרַיִם, sense: mitsrayim, form: 'form:f', readings: {tiberian: miṣráyim}}]
       reverse: אשר הוצאתיך מארץ מצרים
   translations:
     en: (who|that) (brought|led) you out of the land of Egypt
@@ -282,7 +282,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֵם
-      tokens: [{surface: אֵם, sense: em, readings: {tiberian: ʾēm}}]
+      tokens: [{surface: אֵם, sense: em, form: 'form:f', readings: {tiberian: ʾēm}}]
       reverse: אם
   translations:
     en: |-
@@ -293,7 +293,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אִמִּי
-      tokens: [{surface: אִמִּי, sense: em, morphs: [{surface: אִמִּ, kc: 'sense:em'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾimmî}}]
+      tokens: [{surface: אִמִּי, sense: em, form: 'form:f', morphs: [{surface: אִמִּ, kc: 'sense:em'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾimmî}}]
       reverse: אמי
   translations:
     en: my mother
@@ -303,7 +303,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אִמֶּךָ
-      tokens: [{surface: אִמֶּךָ, sense: em, morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}}]
+      tokens: [{surface: אִמֶּךָ, sense: em, form: 'form:f', morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}}]
       reverse: אמך
   translations:
     en: your mother
@@ -313,7 +313,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אִמֵּךְ
-      tokens: [{surface: אִמֵּךְ, sense: em, morphs: [{surface: אִמֵּ, kc: 'sense:em'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʾimmēḵ}}]
+      tokens: [{surface: אִמֵּךְ, sense: em, form: 'form:f', morphs: [{surface: אִמֵּ, kc: 'sense:em'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʾimmēḵ}}]
       reverse: אמך
   translations:
     en: your mother
@@ -325,7 +325,7 @@ sentences:
       text: כַּבֵּד אֶת־אָבִיךָ וְאֶת־אִמֶּךָ׃
       tokens: [{surface: כַּבֵּד, sense: kibbed, form: 'form:inf-abs', readings: {tiberian: kabbēḏ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אָבִיךָ, sense: av, morphs: [{surface: אָבִי,
               kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḇî́ḵā}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶת, kc: 'sense:et'}], readings: {
-            tiberian: wəʾeṯ-}}, {surface: אִמֶּךָ, sense: em, morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}}]
+            tiberian: wəʾeṯ-}}, {surface: אִמֶּךָ, sense: em, form: 'form:f', morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}}]
       reverse: כבד את אביך ואת אמך
   translations:
     en: |-
@@ -543,8 +543,8 @@ stories:
           text: אָנֹכִי יְהוָה אֱלֹהֶיךָ אֲשֶׁר הוֹצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם מִבֵּית עֲבָדִים׃
           tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי,
                   kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: הוֹצֵאתִיךָ, sense: hotsi,
-              form: 'form:qatal-1cs', morphs: [{surface: הוֹצֵאתִי, kc: 'sense:hotsi'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: hôṣēʾṯî́ḵā}}, {surface: מֵאֶרֶץ, sense: erets, form: 'form:cstr',
-              morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אֶרֶץ, kc: 'sense:erets'}], readings: {tiberian: mēʾéreṣ}}, {surface: מִצְרַיִם, sense: mitsrayim, readings: {tiberian: miṣráyim}}, {surface: מִבֵּית,
+              form: 'form:qatal-1cs', morphs: [{surface: הוֹצֵאתִי, kc: 'sense:hotsi'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: hôṣēʾṯî́ḵā}}, {surface: מֵאֶרֶץ, sense: erets, form: 'form:f-cstr',
+              morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אֶרֶץ, kc: 'sense:erets'}], readings: {tiberian: mēʾéreṣ}}, {surface: מִצְרַיִם, sense: mitsrayim, form: 'form:f', readings: {tiberian: miṣráyim}}, {surface: מִבֵּית,
               sense: bayit, form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: בֵּית, kc: 'sense:bayit'}], readings: {tiberian: mibbêṯ}}, {surface: עֲבָדִים, sense: eved, form: 'form:pl',
               readings: {tiberian: ʿăḇāḏîm}}]
       translations:
@@ -556,7 +556,7 @@ stories:
           text: לֹא יִהְיֶה־לְךָ אֱלֹהִים אֲחֵרִים עַל־פָּנָיַ׃
           tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: יִהְיֶה, sense: hayah, form: 'form:yiqtol-3ms', readings: {tiberian: yihyeh-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ,
                   kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֲחֵרִים, sense: aher, form: 'form:pl',
-              readings: {tiberian: ʾăḥērîm}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פָּנָיַ, sense: panim, morphs: [{surface: פָּנָ, kc: 'sense:panim'}, {surface: יַ, kc: 'form:sfx-1cs'}],
+              readings: {tiberian: ʾăḥērîm}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פָּנָיַ, sense: panim, form: 'form:pl', morphs: [{surface: פָּנָ, kc: 'sense:panim'}, {surface: יַ, kc: 'form:sfx-1cs'}],
               readings: {tiberian: pānā́y}}]
       translations:
         en: You shall have no other gods before me.
@@ -568,17 +568,17 @@ stories:
   - line:
       speaker: god
       ask: complete
-      gap: sense:em
-      distractors: ['sense:qol', 'sense:yad']
+      gap: sense:adamah
+      distractors: ['sense:ruach', 'sense:ishah']
       forms:
         hbo-Hebr/tiberian:
           text: כַּבֵּד אֶת־אָבִיךָ וְאֶת־אִמֶּךָ לְמַעַן יַאֲרִכוּן יָמֶיךָ עַל הָאֲדָמָה אֲשֶׁר־יְהוָה אֱלֹהֶיךָ נֹתֵן לָךְ׃
           tokens: [{surface: כַּבֵּד, sense: kibbed, form: 'form:inf-abs', readings: {tiberian: kabbēḏ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אָבִיךָ, sense: av, morphs: [{
                   surface: אָבִי, kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḇî́ḵā}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶת,
-                  kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: אִמֶּךָ, sense: em, morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}},
+                  kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: אִמֶּךָ, sense: em, form: 'form:f', morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}},
             {surface: לְמַעַן, sense: lemaan, readings: {tiberian: ləmáʿan}}, {surface: יַאֲרִכוּן, sense: heerikh, form: 'form:yiqtol-3mp', readings: {tiberian: yaʾăriḵûn}}, {surface: יָמֶיךָ, sense: yom,
               form: 'form:pl', morphs: [{surface: יָמֶי, kc: 'sense:yom'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yāmếḵā}}, {surface: עַל, sense: al, readings: {tiberian: ʿal}}, {surface: הָאֲדָמָה,
-              sense: adamah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: hāʾăḏāmâ}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer-}},
+              sense: adamah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: hāʾăḏāmâ}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer-}},
             {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי, kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
                 tiberian: ʾĕlōhếḵā}}, {surface: נֹתֵן, sense: natan, form: 'form:ptc-ms', readings: {tiberian: nōṯēn}}, {surface: לָךְ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: ךְ, kc: 'form:sfx-2ms'}],
               readings: {tiberian: lāḵ}}]
@@ -612,7 +612,7 @@ stories:
       speaker: god
       ask: complete
       gap: sense:ed
-      distractors: ['sense:ets', 'sense:erets']
+      distractors: ['sense:ets', 'sense:malakh']
       forms:
         hbo-Hebr/tiberian:
           text: לֹא־תַעֲנֶה בְרֵעֲךָ עֵד שָׁקֶר׃

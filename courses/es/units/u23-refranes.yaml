@@ -48,7 +48,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela Cachita siempre habla con refranes cuando está en la cocina.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita}, {surface: siempre, sense: siempre}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: refranes, sense: refrán, form: 'form:pl'}, {surface: cuando, sense: cuando}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita, form: 'form:fem'}, {surface: siempre, sense: siempre}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: refranes, sense: refrán, form: 'form:pl'}, {surface: cuando, sense: cuando}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}]
       reverse: |-
         (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) siempre habla (con|en) refranes cuando está en la cocina
         Cuando está en la cocina (abuela Cachita|la abuela Cachita|mi abuela Cachita) siempre habla (con|en) refranes
@@ -74,7 +74,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La corriente del río se llevó la pelota de Lili.
-      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: corriente, sense: corriente, form: 'form:fem'}, {surface: del, sense: del}, {surface: río, sense: río}, {surface: se, sense: se}, {surface: llevó, sense: llevarse, form: 'form:pret-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: pelota, sense: pelota, form: 'form:fem'}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: corriente, sense: corriente, form: 'form:fem'}, {surface: del, sense: del}, {surface: río, sense: río}, {surface: se, sense: se}, {surface: llevó, sense: llevarse, form: 'form:pret-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: pelota, sense: pelota, form: 'form:fem'}, {surface: de, sense: de}, {surface: Lili, sense: lili, form: 'form:fem'}]
       reverse: La corriente del río se llevó la pelota de Lili
   translations:
     en: The (current|river current|current of the river|river's current) (carried|took|swept) (away Lili's ball|Lili's ball away).
@@ -112,7 +112,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili estudia por la noche para el examen del lunes.
-      tokens: [{surface: Lili, sense: lili}, {surface: estudia, sense: estudiar, form: 'form:pres-3s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: examen, sense: examen}, {surface: del, sense: del}, {surface: lunes, sense: lunes}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: estudia, sense: estudiar, form: 'form:pres-3s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: examen, sense: examen}, {surface: del, sense: del}, {surface: lunes, sense: lunes}]
       reverse: |-
         Lili estudia (por la noche|en la noche|de noche) para el examen del lunes
         Lili estudia para el examen del lunes (por la noche|en la noche|de noche)
@@ -208,7 +208,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami y Papi trabajan mucho para que Lili pueda estudiar.
-      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Papi, sense: papi}, {surface: trabajan, sense: trabajar, form: 'form:pres-3p'}, {surface: mucho, sense: mucho}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: Lili, sense: lili}, {surface: pueda, sense: poder, form: 'form:subj'}, {surface: estudiar, sense: estudiar}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Papi, sense: papi}, {surface: trabajan, sense: trabajar, form: 'form:pres-3p'}, {surface: mucho, sense: mucho}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: pueda, sense: poder, form: 'form:subj'}, {surface: estudiar, sense: estudiar}]
       reverse: (Mami|Mamá|Mi mamá) y (Papi|Papá|mi papá) trabajan mucho para que Lili pueda estudiar
   translations:
     en: |-
@@ -412,7 +412,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili siempre coge lucha cuando tiene un examen.
-      tokens: [{surface: Lili, sense: lili}, {surface: siempre, sense: siempre}, {surface: coge, sense: coger, form: 'form:pres-3s'}, {surface: lucha, sense: lucha, form: 'form:fem'}, {surface: cuando, sense: cuando}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: examen, sense: examen}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: siempre, sense: siempre}, {surface: coge, sense: coger, form: 'form:pres-3s'}, {surface: lucha, sense: lucha, form: 'form:fem'}, {surface: cuando, sense: cuando}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: examen, sense: examen}]
       reverse: Lili siempre (coge lucha|se estresa|se preocupa) cuando tiene (un examen|exámenes)
   translations:
     en: Lili always (gets stressed|stresses out|gets worked up|worries) when she has (an exam|a test|exams|tests).
@@ -482,7 +482,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es sábado por la mañana. Lili estudia en la cocina para un examen.
-          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: sábado, sense: sábado}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}, {surface: Lili, sense: lili}, {surface: estudia, sense: estudiar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}, {surface: para, sense: para}, {surface: un, sense: un}, {surface: examen, sense: examen}]
+          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: sábado, sense: sábado}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: estudia, sense: estudiar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}, {surface: para, sense: para}, {surface: un, sense: un}, {surface: examen, sense: examen}]
       translations: {en: It's Saturday morning. Lili is studying in the kitchen for an exam.}
   - line:
       speaker: lili
@@ -559,7 +559,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Por y para? Ay, Lili, ahí yo estoy en el aire.
-          tokens: [{surface: Por, sense: por}, {surface: 'y', sense: 'y'}, {surface: para, sense: para}, {surface: Ay, sense: ay}, {surface: Lili, sense: lili}, {surface: ahí, sense: ahí}, {surface: yo, sense: yo}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: aire, sense: aire}]
+          tokens: [{surface: Por, sense: por}, {surface: 'y', sense: 'y'}, {surface: para, sense: para}, {surface: Ay, sense: ay}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: ahí, sense: ahí}, {surface: yo, sense: yo}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: aire, sense: aire}]
       translations: {en: 'Por and para? Oh, Lili, I''m lost there.'}
   - choose:
       prompt: {en: 'What is Lili''s exam about?'}
@@ -570,7 +570,7 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Mira, mi''ja: yo trabajé mucho por ustedes, para que ustedes estudien.'
-          tokens: [{surface: Mira, sense: mirar, form: 'form:imp-tu'}, {surface: mi'ja, sense: mijo, form: 'form:fem'}, {surface: yo, sense: yo}, {surface: trabajé, sense: trabajar, form: 'form:pret-1s'}, {surface: mucho, sense: mucho}, {surface: por, sense: por}, {surface: ustedes, sense: ustedes}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: ustedes, sense: ustedes}, {surface: estudien, sense: estudiar, form: 'form:subj'}]
+          tokens: [{surface: Mira, sense: mirar, form: 'form:imp-tu'}, {surface: mi'ja, sense: mijo, form: 'form:fem'}, {surface: yo, sense: yo}, {surface: trabajé, sense: trabajar, form: 'form:pret-1s'}, {surface: mucho, sense: mucho}, {surface: por, sense: por}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: estudien, sense: estudiar, form: 'form:subj'}]
       translations: {en: 'Look, sweetie: I worked hard for all of you, so that you could study.'}
   - line:
       speaker: lili

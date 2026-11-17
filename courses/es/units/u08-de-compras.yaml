@@ -324,7 +324,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes pagan los pulóveres?
-      tokens: [{surface: Ustedes, sense: ustedes}, {surface: pagan, sense: pagar, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: pulóveres, sense: pulóver, form: 'form:pl'}]
+      tokens: [{surface: Ustedes, sense: ustedes, form: 'form:pl'}, {surface: pagan, sense: pagar, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: pulóveres, sense: pulóver, form: 'form:pl'}]
       reverse: (Ustedes pagan|Pagan [ustedes]) (los pulóveres|las camisetas|las playeras)
   translations:
     en: |-
@@ -395,7 +395,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes venden jabas?
-      tokens: [{surface: Ustedes, sense: ustedes}, {surface: venden, sense: vender, form: 'form:pres-3p'}, {surface: jabas, sense: jaba, form: 'form:fem-pl'}]
+      tokens: [{surface: Ustedes, sense: ustedes, form: 'form:pl'}, {surface: venden, sense: vender, form: 'form:pres-3p'}, {surface: jabas, sense: jaba, form: 'form:fem-pl'}]
       reverse: (Ustedes venden|Venden [ustedes]) (jabas|bolsas)
   translations:
     en: |-
@@ -463,7 +463,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Buenas tardes! ¿Qué ustedes necesitan?
-          tokens: [{surface: Buenas, sense: buenas-tardes}, {surface: tardes, sense: buenas-tardes}, {surface: Qué, sense: qué}, {surface: ustedes, sense: ustedes}, {surface: necesitan, sense: necesitar, form: 'form:pres-3p'}]
+          tokens: [{surface: Buenas, sense: buenas-tardes}, {surface: tardes, sense: buenas-tardes}, {surface: Qué, sense: qué}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: necesitan, sense: necesitar, form: 'form:pres-3p'}]
       translations: {en: 'Good afternoon! What do you need?'}
   - line:
       speaker: cachita
@@ -506,7 +506,7 @@ stories:
       forms:
         es-Latn/standard:
           text: En Cuba los mangos son muy baratos.
-          tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: los, sense: el, form: 'form:pl'}, {surface: mangos, sense: mango, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: baratos, sense: barato, form: 'form:pl'}]
+          tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: los, sense: el, form: 'form:pl'}, {surface: mangos, sense: mango, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: baratos, sense: barato, form: 'form:pl'}]
       translations: {en: In Cuba mangoes are really cheap.}
   - line:
       speaker: yasiel
@@ -555,7 +555,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ustedes no pagan, señora. ¡Usted es mi abuela también!
-          tokens: [{surface: Ustedes, sense: ustedes}, {surface: 'no', sense: 'no'}, {surface: pagan, sense: pagar, form: 'form:pres-3p'}, {surface: señora, sense: señora, form: 'form:fem'}, {surface: Usted, sense: usted}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: también, sense: también}]
+          tokens: [{surface: Ustedes, sense: ustedes, form: 'form:pl'}, {surface: 'no', sense: 'no'}, {surface: pagan, sense: pagar, form: 'form:pres-3p'}, {surface: señora, sense: señora, form: 'form:fem'}, {surface: Usted, sense: usted}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: también, sense: también}]
       translations: {en: 'You''re not paying, ma''am. You''re my grandma too!'}
   - choose:
       prompt: {en: 'Why don''t they pay?'}

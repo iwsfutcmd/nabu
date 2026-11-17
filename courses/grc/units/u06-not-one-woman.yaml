@@ -141,6 +141,9 @@ kcs:
     - ἕτοιμος
   notes:
     en: A woman says ἑτοίμη εἰμί, a man ἕτοιμός εἰμι.
+- id: form:f-pl
+  gloss:
+    en: 'feminine plural, as subject or called: αἱ γυναῖκες, the women'
 nodes:
 - id: grc.u06.women
   kind: lesson
@@ -149,6 +152,7 @@ nodes:
   - sense:pareimi
   - sense:oudeis
   - sense:entautha
+  - form:f-pl
 - id: grc.u06.my-neighbour
   kind: lesson
   introduces:
@@ -183,10 +187,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γυνή
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνή
       reverse: ἡ γυνή
@@ -200,12 +206,12 @@ sentences:
       tokens:
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       reverse: αἱ γυναῖκες
@@ -219,6 +225,7 @@ sentences:
       tokens:
       - surface: γυνὴ
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνὴ
       - surface: πάρεστιν
@@ -245,6 +252,7 @@ sentences:
           attic: οὐδεμῐ́ᾰ
       - surface: γυνὴ
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνὴ
       - surface: πάρεστιν
@@ -319,12 +327,12 @@ sentences:
           attic: εἰσῐν
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       reverse: |-
@@ -341,12 +349,12 @@ sentences:
       tokens:
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       - surface: οὐ
@@ -381,7 +389,7 @@ sentences:
           attic: ὦ
       - surface: Ξανθίππη
         sense: xanthippe
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-
@@ -398,6 +406,7 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ἐμὴ
@@ -407,6 +416,7 @@ sentences:
           attic: ἐμὴ
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       reverse: |-
@@ -445,10 +455,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: κωμῆτις
         sense: kometis
+        form: form:f
         readings:
           attic: κωμῆτῐς
       reverse: ἡ κωμῆτις
@@ -462,6 +474,7 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ἐμὴ
@@ -471,6 +484,7 @@ sentences:
           attic: ἐμὴ
       - surface: κωμῆτις
         sense: kometis
+        form: form:f
         readings:
           attic: κωμῆτῐς
       reverse: |-
@@ -491,10 +505,12 @@ sentences:
           attic: ἥδε
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γυνή
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνή
       reverse: |-
@@ -514,12 +530,12 @@ sentences:
           attic: πλὴν
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: κωμήτιδος
         sense: kometis
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: κωμήτῐδος
       reverse: πλὴν τῆς κωμήτιδος
@@ -547,17 +563,17 @@ sentences:
           attic: πλὴν
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: ἐμῆς
         sense: emos
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: ἐμῆς
       - surface: κωμήτιδος
         sense: kometis
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: κωμήτῐδος
       reverse: |-
@@ -588,10 +604,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γυνὴ
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνὴ
       - surface: ἐξέρχεται
@@ -635,6 +653,7 @@ sentences:
       tokens:
       - surface: Καλονίκη
         sense: kalonike
+        form: form:f
         readings:
           attic: Κᾰλονῑ́κη
       reverse: Καλονίκη
@@ -657,7 +676,7 @@ sentences:
           attic: ὦ
       - surface: Καλονίκη
         sense: kalonike
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Κᾰλονῑ́κη
       reverse: |-
@@ -683,7 +702,7 @@ sentences:
           attic: ὦ
       - surface: Λυσιστράτη
         sense: lysistrate
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Λῡσῐστρᾰ́τη
       reverse: |-
@@ -716,7 +735,7 @@ sentences:
           attic: ὦ
       - surface: Λυσιστράτη
         sense: lysistrate
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Λῡσῐστρᾰ́τη
       reverse: |-
@@ -737,12 +756,12 @@ sentences:
           attic: ἐκ
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: οἰκίας
         sense: oikia
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: οἰκῐ́ᾱς
       - surface: ἐξέρχεται
@@ -752,10 +771,12 @@ sentences:
           attic: ἐξέρχεται
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: Καλονίκη
         sense: kalonike
+        form: form:f
         readings:
           attic: Κᾰλονῑ́κη
       reverse: |-
@@ -869,7 +890,7 @@ sentences:
           attic: ὦ
       - surface: τέκνον
         sense: teknon
-        form: form:voc
+        form: form:n
         readings:
           attic: τέκνον
       reverse: |-
@@ -1020,7 +1041,7 @@ sentences:
       tokens:
       - surface: ἕτοιμαί
         sense: hetoimos
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: ἕτοιμαί
       - surface: ἐσμεν
@@ -1044,17 +1065,17 @@ sentences:
       tokens:
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       - surface: ἕτοιμαί
         sense: hetoimos
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: ἕτοιμαί
       - surface: εἰσιν
@@ -1143,6 +1164,7 @@ stories:
               attic: ἐνταυθοῖ
           - surface: γυνή
             sense: gyne
+            form: form:f
             readings:
               attic: γῠνή
       translations:
@@ -1159,6 +1181,7 @@ stories:
               attic: πλὴν
           - surface: ἥ
             sense: ho
+            form: form:f
             readings:
               attic: ἥ
           - surface: γ’
@@ -1172,6 +1195,7 @@ stories:
               attic: ἐμὴ
           - surface: κωμῆτις
             sense: kometis
+            form: form:f
             readings:
               attic: κωμῆτῐς
           - surface: ἥδ’
@@ -1211,7 +1235,7 @@ stories:
               attic: ὦ
           - surface: Καλονίκη
             sense: kalonike
-            form: form:voc
+            form: form:f-voc
             readings:
               attic: Κᾰλονῑ́κη
       translations:
@@ -1241,7 +1265,7 @@ stories:
               attic: ὦ
           - surface: Λυσιστράτη
             sense: lysistrate
-            form: form:voc
+            form: form:f-voc
             readings:
               attic: Λῡσῐστρᾰ́τη
       translations:
@@ -1276,7 +1300,7 @@ stories:
               attic: ὦ
           - surface: τέκνον
             sense: teknon
-            form: form:voc
+            form: form:n
             readings:
               attic: τέκνον
       translations:

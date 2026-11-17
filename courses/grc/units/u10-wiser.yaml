@@ -66,6 +66,9 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - ὥσπερ
+- id: form:comp-f
+  gloss:
+    en: 'the comparative, feminine: more …, -er (σοφωτέρα, wiser, of a woman)'
 nodes:
 - id: grc.u10.this-man
   kind: lesson
@@ -74,6 +77,7 @@ nodes:
   - sense:sophos
   - form:comp
   - sense:aner
+  - form:comp-f
 - id: grc.u10.i-know
   kind: lesson
   introduces:
@@ -229,7 +233,7 @@ sentences:
           attic: ἐγὼ
       - surface: σοφωτέρα
         sense: sophos
-        form: form:comp
+        form: form:comp-f
         readings:
           attic: σοφωτέρᾱ
       - surface: εἰμί
@@ -315,12 +319,12 @@ sentences:
           attic: ὦ
       - surface: ἄνδρες
         sense: aner
-        form: form:voc
+        form: form:pl
         readings:
           attic: ᾰ̓́νδρες
       - surface: Ἀθηναῖοι
         sense: athenaios
-        form: form:voc
+        form: form:pl
         readings:
           attic: Ᾰ̓θηναῖοι
       reverse: |-
@@ -440,7 +444,7 @@ sentences:
       tokens:
       - surface: τοῦτο
         sense: houtos
-        form: form:acc
+        form: form:n
         readings:
           attic: τοῦτο
       - surface: οὐκ
@@ -548,6 +552,7 @@ sentences:
           attic: οἴεταί
       - surface: τι
         sense: tis.indef
+        form: form:n
         readings:
           attic: τῐ
       - surface: εἰδέναι
@@ -591,6 +596,7 @@ sentences:
           attic: οἴεταί
       - surface: τι
         sense: tis.indef
+        form: form:n
         readings:
           attic: τῐ
       - surface: εἰδέναι
@@ -797,6 +803,7 @@ stories:
               attic: οἴεταί
           - surface: τι
             sense: tis.indef
+            form: form:n
             readings:
               attic: τῐ
           - surface: εἰδέναι

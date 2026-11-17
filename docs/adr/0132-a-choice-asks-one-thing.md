@@ -225,3 +225,46 @@ options), which grammar alone rules out. The owner asked for the gap to be close
   swings about 1.5 points, and es's three new KCs moved its seed's draw from 81% to just under 80%;
   the planner stayed calibrated. The owner chose this over retuning the pace.
 
+
+## Amendment: Lebanese Arabic, Biblical Hebrew and Attic Greek (2026-11-17)
+
+The owner asked for the Spanish model in the other courses whose nouns have a gender. apc pinned gender only
+on adjectives and on nouns that name a man or a woman (*jara*), hbo on adjectives (טוֹבָה), grc on adjectives
+and a few pronouns: ὁ and ἡ were both bare, so a word question could offer a masculine noun after ἡ.
+
+- **The same rule.** A noun pins its own gender and number; an adjective, determiner or demonstrative its
+  noun's, invariable ones too (apc *Beirut akbar*, *awwal marra*); a gendered pronoun its own (apc *hiyye*,
+  *enti*, *hayde*; hbo הִיא, אַתְּ, זֹאת; plurals *henne*, הֵם, אֵלֶּה, ἡμεῖς). Masculine, singular,
+  nominative and absolute are bare. Numbers stay bare, as in es. Names pin theirs (Ξανθίππη, נָעֳמִי, *Maya*;
+  cities and lands are feminine: *Beirut*, נִינְוֵה). First and second person pronouns that show no gender
+  (*ana*, אָנֹכִי, ἐγώ) pin none.
+- **apc.** `form:fem` and `form:pl`, the course's own KCs: Lebanese has no gender in the plural. A dual is its
+  noun's gender beside the dual morph (*sa3ten*: `form:fem`). 364 tokens in each script, decided on the
+  Arabizi and carried to the Arabic-script word of the same sense. apc's first feminine noun (*ahwe*, in the
+  café lesson) now brings `form:fem` with it, so apc's `iPlusOne` is 2, as in es, hbo, grc, chg and tok.
+- **hbo.** Gender joins number and state: `f`, `f-pl`, `f-cstr`, `f-pl-cstr` beside `pl`, `cstr`,
+  `pl-cstr`; the course's duals (feet, eyes) are all feminine and keep `du`; `ptc-pass-fs` (בְּרוּכָה).
+  Nouns always plural take the agreement they get: מַיִם, שָׁמַיִם, פָּנִים, רַחֲמִים plural; אֱלֹהִים as God
+  singular, as before. A noun of common gender takes its usual one (דֶּרֶךְ, אֵשׁ, עֵת, רוּחַ, תְּהוֹם
+  feminine). 337 tokens.
+- **grc.** Gender, case and number make one id, each left out when masculine, nominative or singular, so the
+  old ids keep their meaning (`acc`, `gen-pl`, `f`, now glossed as masculine) and `f-acc`, `f-dat`, `n`,
+  `n-pl` join them. A neuter is one form as subject, object or address (`n`, `n-pl`): Greek always writes
+  them alike. A plural vocative is its nominative. παῖς takes its article's gender. 287 tokens.
+- **es follows.** *ella* pins `form:fem`; *ustedes*, *nos* and *les* `form:pl`, as *nosotros*, *ellos* and
+  *los* already did. Single-word names pin their gender (*Cuba*, *la Habana*, *Lili*, *Marisol*, *la
+  Navidad*); names of several words (*la Calle Ocho*) are never asked alone and stay bare.
+- **Grading.** A contrast set marked `inflected` applies to every word of a sense the course pins a form on,
+  and nouns now count. apc's verb-prefix sets name the verb forms instead (`forms: [form:impf, form:subj,
+  form:past, form:imp]`, as hbo's do), so a noun's or an adjective's first letter stays a typo (a new
+  conformance vector). Its agreement endings (ة, -e) now reach feminine nouns, as they did nouns of both
+  genders (*jara*) and as hbo's reach plural nouns: سيّار for سيّارة, *madras* for *madrase* is WRONG_WORD
+  (the ending), where it was a typo. hbo's endings (`forms: [form:f, …]`) likewise reach feminine nouns;
+  grc's case endings were already meant for nouns.
+- **Stories.** 17 hbo, 7 apc, 3 es and 1 grc story questions got new wrong options in the gap's gender.
+  Where the course writes no two other words in the gap's form, the question asks the form instead (אָחִיו
+  and פָּנָיו against other persons; מִכַּדֵּךְ), or moved: in-the-beginning asks יְהִי אוֹר, as no
+  other plural with the article is written by then.
+- **Kept so** by test/choice-asks.test.ts: a noun keeps one gender wherever its course writes it (but the
+  listed nouns that name a man or a woman), and a word question on a feminine word offers only feminine words.
+  REVIEW: [courses/choice-doubts.md](../../courses/choice-doubts.md) lists the genders chosen by hand.

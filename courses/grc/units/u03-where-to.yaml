@@ -155,9 +155,6 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - ἐν
-- id: form:dat
-  gloss:
-    en: 'the dative: to, for; after ἐν, in (ἐν τῇ ἀγορᾷ)'
 - id: sense:oikoi
   pos: ADV
   gloss:
@@ -211,6 +208,15 @@ kcs:
     - ἄστυ
   notes:
     en: 'A neuter noun: τὸ ἄστυ, in the town ἐν τῷ ἄστει.'
+- id: form:f-dat
+  gloss:
+    en: 'feminine dative: to, for; on (a day); after ἐν, in (ἐν τῇ ἀγορᾷ, in the market place)'
+- id: form:n-gen
+  gloss:
+    en: 'neuter genitive: of; after ἔξω, outside (ἔξω τείχους, outside the wall)'
+- id: form:n-dat
+  gloss:
+    en: 'neuter dative: to, for; after ἐν, in (ἐν τῷ ἄστει, in the town)'
 nodes:
 - id: grc.u03.my-friend
   kind: lesson
@@ -228,6 +234,7 @@ nodes:
   - sense:peripatos
   - sense:exo
   - sense:teichos
+  - form:n-gen
 - id: grc.u03.to-the-agora
   kind: lesson
   introduces:
@@ -241,10 +248,10 @@ nodes:
   introduces:
   - sense:pou
   - sense:en
-  - form:dat
   - sense:oikoi
   - sense:oikade
   - sense:hodos
+  - form:f-dat
 - id: grc.u03.from-lysias
   kind: lesson
   introduces:
@@ -252,6 +259,7 @@ nodes:
   - sense:lysias
   - sense:kephalos
   - sense:astu
+  - form:n-dat
 - id: grc.u03.story
   kind: story
 sentences:
@@ -469,10 +477,12 @@ sentences:
       tokens:
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: τεῖχος
         sense: teichos
+        form: form:n
         readings:
           attic: τεῖχος
       reverse: τὸ τεῖχος
@@ -490,7 +500,7 @@ sentences:
           attic: ἔξω
       - surface: τείχους
         sense: teichos
-        form: form:gen
+        form: form:n-gen
         readings:
           attic: τείχους
       reverse: ἔξω τείχους
@@ -513,7 +523,7 @@ sentences:
           attic: ἔξω
       - surface: τείχους
         sense: teichos
-        form: form:gen
+        form: form:n-gen
         readings:
           attic: τείχους
       reverse: |-
@@ -567,7 +577,7 @@ sentences:
           attic: ἔξω
       - surface: τείχους
         sense: teichos
-        form: form:gen
+        form: form:n-gen
         readings:
           attic: τείχους
       - surface: πορεύομαι
@@ -592,12 +602,12 @@ sentences:
           attic: εἰς
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: ἀγορὰν
         sense: agora
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: ᾰ̓γορᾱ̀ν
       - surface: πορεύομαι
@@ -622,12 +632,12 @@ sentences:
           attic: εἰς
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: οἰκίαν
         sense: oikia
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: οἰκῐ́ᾱν
       - surface: βαδίζω
@@ -652,12 +662,12 @@ sentences:
           attic: ἐκ
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: οἰκίας
         sense: oikia
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: οἰκῐ́ᾱς
       - surface: βαδίζει
@@ -682,12 +692,12 @@ sentences:
           attic: ἐκ
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: ἀγορᾶς
         sense: agora
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: ᾰ̓γορᾶς
       - surface: πορεύομαι
@@ -714,7 +724,7 @@ sentences:
           attic: ἐξ
       - surface: ἀγορᾶς
         sense: agora
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: ᾰ̓γορᾶς
       reverse: |-
@@ -742,12 +752,12 @@ sentences:
           attic: εἰς
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: ἀγορὰν
         sense: agora
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: ᾰ̓γορᾱ̀ν
       - surface: βαδίζει
@@ -786,7 +796,7 @@ sentences:
           attic: ὦ
       - surface: Ξανθίππη
         sense: xanthippe
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-
@@ -831,12 +841,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: ἀγορᾷ
         sense: agora
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ᾰ̓γορᾷ
       - surface: εἰμι
@@ -898,12 +908,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: οἰκίᾳ
         sense: oikia
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: οἰκῐ́ᾳ
       - surface: ἐστίν
@@ -971,12 +981,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: ὁδῷ
         sense: hodos
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ὁδῷ
       reverse: ἐν τῇ ὁδῷ
@@ -990,10 +1000,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ὁδὸς
         sense: hodos
+        form: form:f
         readings:
           attic: ὁδὸς
       - surface: πρὸς
@@ -1002,12 +1014,12 @@ sentences:
           attic: πρὸς
       - surface: τὸ
         sense: ho
-        form: form:acc
+        form: form:n
         readings:
           attic: τὸ
       - surface: τεῖχος
         sense: teichos
-        form: form:acc
+        form: form:n
         readings:
           attic: τεῖχος
       reverse: ἡ ὁδὸς πρὸς τὸ τεῖχος
@@ -1030,10 +1042,12 @@ sentences:
           attic: ἐστῐν
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: οἰκία
         sense: oikia
+        form: form:f
         readings:
           attic: οἰκῐ́ᾱ
       reverse: |-
@@ -1147,12 +1161,12 @@ sentences:
           attic: εἰς
       - surface: τὸ
         sense: ho
-        form: form:acc
+        form: form:n
         readings:
           attic: τὸ
       - surface: ἄστυ
         sense: astu
-        form: form:acc
+        form: form:n
         readings:
           attic: ᾰ̓́στῠ
       - surface: πορεύομαι
@@ -1185,12 +1199,12 @@ sentences:
           attic: ἐν
       - surface: τῷ
         sense: ho
-        form: form:dat
+        form: form:n-dat
         readings:
           attic: τῷ
       - surface: ἄστει
         sense: astu
-        form: form:dat
+        form: form:n-dat
         readings:
           attic: ᾰ̓́στει
       - surface: ἐστίν
@@ -1359,7 +1373,7 @@ stories:
               attic: ἔξω
           - surface: τείχους
             sense: teichos
-            form: form:gen
+            form: form:n-gen
             readings:
               attic: τείχους
       translations:

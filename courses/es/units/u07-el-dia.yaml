@@ -426,7 +426,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili se está bañando.
-      tokens: [{surface: Lili, sense: lili}, {surface: se, sense: se}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bañando, sense: bañarse, form: 'form:ger'}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: se, sense: se}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bañando, sense: bañarse, form: 'form:ger'}]
       reverse: Lili (se está bañando|está bañándose|se está duchando|está duchándose)
   translations:
     en: |-
@@ -437,7 +437,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili está durmiendo.
-      tokens: [{surface: Lili, sense: lili}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: durmiendo, sense: dormir, form: 'form:ger'}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: durmiendo, sense: dormir, form: 'form:ger'}]
       reverse: Lili está durmiendo
   translations:
     en: |-
@@ -523,7 +523,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili! ¡Tú siempre te bañas por la mañana!
-          tokens: [{surface: Lili, sense: lili}, {surface: Tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: te, sense: te}, {surface: bañas, sense: bañarse, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}]
+          tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: Tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: te, sense: te}, {surface: bañas, sense: bañarse, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}]
       translations: {en: 'Lili! You always shower in the morning!'}
   - line:
       speaker: lili

@@ -131,3 +131,48 @@ thought weakest.
     accepted), and a plural for a mixed group (Éramos pobres, pero muy felices: form:pl);
   - feminine by hand: muy feliz (su familia), la más grande (Celia Cruz), tu música, ¡Feliz Nochebuena!,
     que Cuba fuera libre.
+  - Pronouns and names (a later amendment): *ella* `form:fem`; *ustedes*, *nos*, *les* `form:pl`; single-word
+    names by their gender (*Cuba*, *la Habana*, *la Guantanamera*, *la Navidad*, *la Nochebuena*, the women's
+    names). Cities the course writes with no article (*Miami*, *Matanzas*, *Hialeah*) are left bare, and so are
+    teams (*los Marlins*); names of several words (*la Calle Ocho*) are never asked alone.
+  - Story questions with new wrong options: u01 #5 (Daniel, Miami for Yasiel), u15 #3 (Matanzas, Varadero for
+    Miami), u16 #17 (Daniel, Miami for Pepe).
+
+## Agreement in apc, hbo and grc
+
+The same model as es (ADR 0132's second amendment). Genders were chosen by hand; check these first.
+
+### apc
+- Feminine without ة: *emm*, *ekht*, *bent*, *shams*, *teta*; masculine with -e/-a: *zalame*, *masa*, *ghada*,
+  *dawa*, *may*. *Beirut* feminine (a city), *Lebnen* masculine. *3arabe* and *englize* (the languages)
+  masculine, as their spelling (عربي): or feminine, as Arabic treats a language (اللغة)? Nothing in the course
+  agrees with them yet.
+- Plural senses: *wlad*, *jiren*, *shabeb*, *masari*, *tyeb*, *ahl* (my parents: *ahli mabsoutin*).
+- Invariable adjectives that take a feminine noun's form: *Beirut akbar men el day3a*, *ekhti azghar menni*,
+  *awwal marra*, *tene marra*. *mish ghali* (the cheese, apc dekkene #8) stays bare as written: is it the
+  cheese (ghalye) or "it" in general?
+- Grading: a feminine noun without its ة is now WRONG_WORD (the agreement contrast), no longer a typo.
+- Story questions with new wrong options: cafe #5 (اسمك, اسمي), dekkene #5 (jeddo, fenjen), my-day #1 (jebne,
+  ghorfe), saturday-night #9 (ghorfe, jebne), sick-day #3 (dollar, ktab), teta-calls #3 (talj, matar),
+  service #3 (jebne, man2oushe). cafe #5 is weakest: by the café story only "your name" and "my name" are
+  masculine nouns besides tea.
+
+### hbo
+- Common gender, the usual one taken: דֶּרֶךְ, אֵשׁ, עֵת, רוּחַ, תְּהוֹם, צֹאן feminine; גַּיְא, שֶׂה masculine.
+- Cities and lands feminine (נִינְוֵה, חֶבְרוֹן, מִצְרַיִם, תַּרְשִׁישׁ, יָפוֹ, שְׁכֶם, מֹרִיָּה); יִשְׂרָאֵל masculine.
+- רָעָה "evil" feminine, but its masculine רָע (Psalm 23) stays bare under the same sense.
+- Always plural, plural: מַיִם, שָׁמַיִם, פָּנִים (also with a suffix: פָּנָיו), רַחֲמִים. אֱלֹהִים as God stays
+  singular; אֱלֹהֵי keeps `pl-cstr` (its spelling), as ADR 0084 has it.
+- The duals (רַגְלַיִם, עֵינַי) are feminine and keep `du`: no masculine dual is written yet.
+- Story questions: in-the-beginning asks יְהִי אוֹר (חֹשֶׁךְ, תֹהוּ), no longer הַמָּיִם; at-the-well #2 asks the
+  form of מִכַּדֵּךְ (כַּדָּהּ, כַּד); my-brothers-keeper #2 and a-time-for-everything #6 ask the form (אָחִי,
+  אָחִיךָ; פָּנָיַ, מִפְּנֵי); the-ten-words #3 asks הָאֲדָמָה (the wind, the woman), as אִמֶּךָ and אִמֵּךְ
+  read alike unpointed. Weakest: my-shepherd #5 (your brother, your father for your rod: absurd only because
+  the psalm speaks to God), here-i-am #6 and go-forth #1 (your voice, your name).
+
+### grc
+- A neuter is one form as subject, object or address (`n`): Greek always writes them alike, so ἐπὶ τὸ ὄρος
+  is `n`, not `n-acc`. A plural vocative is its nominative (ὦ παῖδες, ὦ ἄνδρες Ἀθηναῖοι: `pl`).
+- παῖς by its article (ἡ παῖς feminine); τοῖς κάτω neuter (the article makes a noun of the adverb).
+- τι (something) `n`; τίς and τί (who, what) stay bare: words of their own.
+- Story question: a-rooster #0 offers περίπατον and ἀδελφόν (we owe Asclepius a walk, a brother).

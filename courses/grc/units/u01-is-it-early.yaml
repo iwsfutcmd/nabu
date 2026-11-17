@@ -33,9 +33,6 @@ kcs:
     - ὦ
   notes:
     en: 'Greek calls a person with ὦ and the vocative: ὦ Σώκρατες. English leaves the ὦ out.'
-- id: form:voc
-  gloss:
-    en: 'the vocative: the form for calling someone (Σώκρατες, from Σωκράτης)'
 - id: sense:sokrates
   pos: PROPN
   gloss:
@@ -289,6 +286,15 @@ kcs:
     - οὖν
   notes:
     en: 'οὖν never comes first: it stands second in its clause (τί οὖν ἀφῖξαι;).'
+- id: form:f
+  gloss:
+    en: 'feminine, as subject: ἡ μήτηρ, the mother; νεωτέρα, younger (of a woman)'
+- id: form:f-voc
+  gloss:
+    en: 'feminine vocative: calling a woman (ὦ Ξανθίππη); in -η and -α as the subject form'
+- id: form:voc
+  gloss:
+    en: 'the vocative (masculine): the form for calling someone (Σώκρατες, from Σωκράτης)'
 nodes:
 - id: grc.u01.hello
   kind: lesson
@@ -297,11 +303,13 @@ nodes:
   - form:impv-2s
   - form:impv-2p
   - sense:o
-  - form:voc
   - sense:sokrates
   - sense:kriton
   - sense:xanthippe
   - sense:kai
+  - form:f
+  - form:f-voc
+  - form:voc
 - id: grc.u01.who-are-you
   kind: lesson
   introduces:
@@ -479,7 +487,7 @@ sentences:
           attic: ὦ
       - surface: Ξανθίππη
         sense: xanthippe
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-
@@ -496,6 +504,7 @@ sentences:
       tokens:
       - surface: Ξανθίππη
         sense: xanthippe
+        form: form:f
         readings:
           attic: Ξᾰνθῐ́ππη
       - surface: καὶ
@@ -525,6 +534,7 @@ sentences:
           attic: καὶ
       - surface: Ξανθίππη
         sense: xanthippe
+        form: form:f
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: Σωκράτης καὶ Ξανθίππη
@@ -591,7 +601,7 @@ sentences:
           attic: καὶ
       - surface: Ξανθίππη
         sense: xanthippe
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-
@@ -654,6 +664,7 @@ sentences:
       tokens:
       - surface: Ξανθίππη
         sense: xanthippe
+        form: form:f
         readings:
           attic: Ξᾰνθῐ́ππη
       - surface: εἰμί
@@ -831,6 +842,7 @@ sentences:
       tokens:
       - surface: Ξανθίππη
         sense: xanthippe
+        form: form:f
         readings:
           attic: Ξᾰνθῐ́ππη
       - surface: ἐστίν
@@ -925,6 +937,7 @@ sentences:
       tokens:
       - surface: νύξ
         sense: nyx
+        form: form:f
         readings:
           attic: νῠ́ξ
       - surface: ἐστιν
@@ -945,6 +958,7 @@ sentences:
       tokens:
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       - surface: ἐστίν
@@ -965,6 +979,7 @@ sentences:
       tokens:
       - surface: νὺξ
         sense: nyx
+        form: form:f
         readings:
           attic: νῠ̀ξ
       - surface: οὐκ
@@ -994,6 +1009,7 @@ sentences:
           attic: οὐχ
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       - surface: ἐστίν
@@ -1019,6 +1035,7 @@ sentences:
           attic: νῦν
       - surface: νύξ
         sense: nyx
+        form: form:f
         readings:
           attic: νῠ́ξ
       - surface: ἐστιν
@@ -1047,6 +1064,7 @@ sentences:
           attic: ἤδη
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       - surface: ἐστίν
@@ -1073,6 +1091,7 @@ sentences:
           attic: ἔτῐ
       - surface: νύξ
         sense: nyx
+        form: form:f
         readings:
           attic: νῠ́ξ
       - surface: ἐστιν
@@ -1103,6 +1122,7 @@ sentences:
           attic: νῦν
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       - surface: ἐστίν
@@ -1135,6 +1155,7 @@ sentences:
           attic: ἔτῐ
       - surface: νύξ
         sense: nyx
+        form: form:f
         readings:
           attic: νῠ́ξ
       - surface: ἐστιν
@@ -1337,6 +1358,7 @@ sentences:
       tokens:
       - surface: νὺξ
         sense: nyx
+        form: form:f
         readings:
           attic: νῠ̀ξ
       - surface: ἢ
@@ -1345,6 +1367,7 @@ sentences:
           attic: ἢ
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       reverse: νὺξ ἢ ἡμέρα
@@ -1358,6 +1381,7 @@ sentences:
       tokens:
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       - surface: ἐστὶν
@@ -1371,6 +1395,7 @@ sentences:
           attic: ἢ
       - surface: νύξ
         sense: nyx
+        form: form:f
         readings:
           attic: νῠ́ξ
       reverse: |-
@@ -1512,7 +1537,7 @@ sentences:
           attic: ὦ
       - surface: Ξανθίππη
         sense: xanthippe
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-

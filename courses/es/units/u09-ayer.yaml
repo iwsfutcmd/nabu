@@ -117,7 +117,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yasiel fue a Cuba.
-      tokens: [{surface: Yasiel, sense: yasiel}, {surface: fue, sense: ir, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Yasiel, sense: yasiel}, {surface: fue, sense: ir, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: Yasiel fue a Cuba
   translations:
     en: Yasiel went to Cuba.
@@ -126,7 +126,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú fuiste a Cuba?
-      tokens: [{surface: Tú, sense: tú}, {surface: fuiste, sense: ir, form: 'form:pret-2s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Tú, sense: tú}, {surface: fuiste, sense: ir, form: 'form:pret-2s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: (Tú fuiste|Fuiste [tú]|Usted fue|Fue [usted]|Ustedes fueron|Fueron [ustedes]) a Cuba
   translations:
     en: Did you go to Cuba?
@@ -166,7 +166,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El domingo Lili no fue.
-      tokens: [{surface: El, sense: el}, {surface: domingo, sense: domingo}, {surface: Lili, sense: lili}, {surface: 'no', sense: 'no'}, {surface: fue, sense: ir, form: 'form:pret-3s'}]
+      tokens: [{surface: El, sense: el}, {surface: domingo, sense: domingo}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: fue, sense: ir, form: 'form:pret-3s'}]
       reverse: |-
         El domingo Lili no fue
         Lili no fue el domingo
@@ -296,7 +296,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes vieron la pelota anoche?
-      tokens: [{surface: Ustedes, sense: ustedes}, {surface: vieron, sense: ver, form: 'form:pret-3p'}, {surface: la, sense: el, form: 'form:fem'}, {surface: pelota, sense: pelota, form: 'form:fem'}, {surface: anoche, sense: anoche}]
+      tokens: [{surface: Ustedes, sense: ustedes, form: 'form:pl'}, {surface: vieron, sense: ver, form: 'form:pret-3p'}, {surface: la, sense: el, form: 'form:fem'}, {surface: pelota, sense: pelota, form: 'form:fem'}, {surface: anoche, sense: anoche}]
       reverse: |-
         (Ustedes vieron|Vieron [ustedes]) (la pelota|el béisbol|el juego) anoche
         Anoche (ustedes vieron|vieron [ustedes]) (la pelota|el béisbol|el juego)
@@ -307,7 +307,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Anoche ganó Cuba.
-      tokens: [{surface: Anoche, sense: anoche}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Anoche, sense: anoche}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: |-
         Anoche ganó Cuba
         Anoche Cuba ganó
@@ -353,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes comieron con Yasiel?
-      tokens: [{surface: Ustedes, sense: ustedes}, {surface: comieron, sense: comer, form: 'form:pret-3p'}, {surface: con, sense: con}, {surface: Yasiel, sense: yasiel}]
+      tokens: [{surface: Ustedes, sense: ustedes, form: 'form:pl'}, {surface: comieron, sense: comer, form: 'form:pret-3p'}, {surface: con, sense: con}, {surface: Yasiel, sense: yasiel}]
       reverse: (Ustedes comieron|Comieron [ustedes]) con Yasiel
   translations:
     en: Did (you|you all|you guys|y'all) (eat|have dinner|have lunch) with Yasiel?
@@ -432,7 +432,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo no fui. ¿Qué hicieron ustedes?
-          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: fui, sense: ir, form: 'form:pret-1s'}, {surface: Qué, sense: qué}, {surface: hicieron, sense: hacer, form: 'form:pret-3p'}, {surface: ustedes, sense: ustedes}]
+          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: fui, sense: ir, form: 'form:pret-1s'}, {surface: Qué, sense: qué}, {surface: hicieron, sense: hacer, form: 'form:pret-3p'}, {surface: ustedes, sense: ustedes, form: 'form:pl'}]
       translations: {en: 'I didn''t go. What did you all do?'}
   - line:
       speaker: daniel
@@ -480,14 +480,14 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y ganó Cuba?
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       translations: {en: 'And did Cuba win?'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: No, Cuba no ganó. ¡Y abuelo habló con la tele!
-          tokens: [{surface: 'No', sense: 'no'}, {surface: Cuba, sense: cuba}, {surface: 'no', sense: 'no'}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: 'Y', sense: 'y'}, {surface: abuelo, sense: abuelo}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: la, sense: el, form: 'form:fem'}, {surface: tele, sense: televisión, form: 'form:fem'}]
+          tokens: [{surface: 'No', sense: 'no'}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: 'Y', sense: 'y'}, {surface: abuelo, sense: abuelo}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: la, sense: el, form: 'form:fem'}, {surface: tele, sense: televisión, form: 'form:fem'}]
       translations: {en: 'No, Cuba didn''t win. And Grandpa talked to the TV!'}
   - choose:
       prompt: {en: 'What did Abuelo Pepe do during the game?'}

@@ -200,7 +200,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַתְּ
-      tokens: [{surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}]
+      tokens: [{surface: אַתְּ, sense: at, form: 'form:f', readings: {tiberian: ʾatt}}]
       reverse: את
   translations:
     en: you
@@ -211,7 +211,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מִי־אָתְּ׃
-      tokens: [{surface: מִי, sense: mi, readings: {tiberian: mî-}}, {surface: אָתְּ, sense: at, readings: {tiberian: ʾātt}}]
+      tokens: [{surface: מִי, sense: mi, readings: {tiberian: mî-}}, {surface: אָתְּ, sense: at, form: 'form:f', readings: {tiberian: ʾātt}}]
       reverse: מי את
   translations:
     en: Who are you?
@@ -237,7 +237,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַתְּ בַּגָּן׃
-      tokens: [{surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      tokens: [{surface: אַתְּ, sense: at, form: 'form:f', readings: {tiberian: ʾatt}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
       reverse: |-
         את בגן
         בגן את
@@ -291,7 +291,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הִיא בַּגָּן׃
-      tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      tokens: [{surface: הִיא, sense: hi, form: 'form:f', readings: {tiberian: hîʾ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
       reverse: |-
         היא בגן
         בגן היא
@@ -427,7 +427,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הִיא נָתְנָה־לִּי׃
-      tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: נָתְנָה, sense: natan, form: 'form:qatal-3fs', readings: {tiberian: nāṯənâ-}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ,
+      tokens: [{surface: הִיא, sense: hi, form: 'form:f', readings: {tiberian: hîʾ}}, {surface: נָתְנָה, sense: natan, form: 'form:qatal-3fs', readings: {tiberian: nāṯənâ-}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ,
               kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}]
       reverse: |-
         היא נתנה לי
@@ -452,7 +452,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאִשָּׁה אֲשֶׁר נָתַתָּה עִמָּדִי
-      tokens: [{surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, sense: asher, readings: {
+      tokens: [{surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, sense: asher, readings: {
             tiberian: ʾăšer}}, {surface: נָתַתָּה, sense: natan, form: 'form:qatal-2ms', readings: {tiberian: nāṯáttâ}}, {surface: עִמָּדִי, sense: immad, morphs: [{surface: עִמָּדִ, kc: 'sense:immad'},
             {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}]
       reverse: האשה אשר נתתה עמדי
@@ -478,7 +478,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מַה־זֹּאת׃
-      tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, readings: {tiberian: zōʾṯ}}]
+      tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, form: 'form:f', readings: {tiberian: zōʾṯ}}]
       reverse: מה (זאת|זואת)
   translations:
     en: |-
@@ -490,7 +490,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מַה־זֹּאת עָשִׂית׃
-      tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, readings: {tiberian: zōʾṯ}}, {surface: עָשִׂית, sense: asah, form: 'form:qatal-2fs', readings: {tiberian: ʿāśîṯ}}]
+      tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, form: 'form:f', readings: {tiberian: zōʾṯ}}, {surface: עָשִׂית, sense: asah, form: 'form:qatal-2fs', readings: {tiberian: ʿāśîṯ}}]
       reverse: מה (זאת|זואת) עשית
   translations:
     en: |-
@@ -513,7 +513,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתֹּאמֶר הָאִשָּׁה׃
-      tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+      tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
               kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}]
       reverse: |-
         (ותאמר|ותואמר) האשה
@@ -527,7 +527,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתֹּאמֶר הָאִשָּׁה אֶל־הָאָדָם׃
-      tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+      tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
               kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
               kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}]
       reverse: |-
@@ -666,9 +666,9 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: הָאִשָּׁה אֲשֶׁר נָתַתָּה עִמָּדִי הִוא נָתְנָה־לִּי מִן־הָעֵץ וָאֹכֵל׃
-          tokens: [{surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, sense: asher, readings: {
+          tokens: [{surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, sense: asher, readings: {
                 tiberian: ʾăšer}}, {surface: נָתַתָּה, sense: natan, form: 'form:qatal-2ms', readings: {tiberian: nāṯáttâ}}, {surface: עִמָּדִי, sense: immad, morphs: [{surface: עִמָּדִ, kc: 'sense:immad'},
-                {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}, {surface: הִוא, sense: hi, readings: {tiberian: hîʾ}}, {surface: נָתְנָה, sense: natan, form: 'form:qatal-3fs', readings: {
+                {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}, {surface: הִוא, sense: hi, form: 'form:f', readings: {tiberian: hîʾ}}, {surface: נָתְנָה, sense: natan, form: 'form:qatal-3fs', readings: {
                 tiberian: nāṯənâ-}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}, {surface: מִן, sense: min, readings: {
                 tiberian: min-}}, {surface: הָעֵץ, sense: ets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֵץ, kc: 'sense:ets'}], readings: {tiberian: hāʿēṣ}}, {surface: וָאֹכֵל, sense: akhal, form: 'form:wayyiqtol-1cs',
               readings: {tiberian: wāʾōḵēl}}]
@@ -684,7 +684,7 @@ stories:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר יְהוָה אֱלֹהִים לָאִשָּׁה
           tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
-              readings: {tiberian: ʾĕlōhîm}}, {surface: לָאִשָּׁה, sense: ishah, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: lāʾiššâ}}]
+              readings: {tiberian: ʾĕlōhîm}}, {surface: לָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: lāʾiššâ}}]
       translations:
         en: And the LORD God said to the woman,
   - line:
@@ -692,14 +692,14 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: מַה־זֹּאת עָשִׂית
-          tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, readings: {tiberian: zōʾṯ}}, {surface: עָשִׂית, sense: asah, form: 'form:qatal-2fs', readings: {tiberian: ʿāśîṯ}}]
+          tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, form: 'form:f', readings: {tiberian: zōʾṯ}}, {surface: עָשִׂית, sense: asah, form: 'form:qatal-2fs', readings: {tiberian: ʿāśîṯ}}]
       translations:
         en: “What is this that you have done?”
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַתֹּאמֶר הָאִשָּׁה
-          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
                   kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}]
       translations:
         en: And the woman said,

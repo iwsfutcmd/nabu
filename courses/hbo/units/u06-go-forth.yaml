@@ -226,7 +226,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיֵּלֶךְ אַבְרָם אֶל־הָאָרֶץ׃
       tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}, {surface: אֶל, sense: el,
-          readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
+          readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: וילך אברם אל הארץ
   translations:
     en: '[(And|So|Then)] Abram went to the land.'
@@ -294,7 +294,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַרְצְךָ
-      tokens: [{surface: אַרְצְךָ, sense: erets, morphs: [{surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾarṣəḵā}}]
+      tokens: [{surface: אַרְצְךָ, sense: erets, form: 'form:f', morphs: [{surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾarṣəḵā}}]
       reverse: ארצך
   translations:
     en: your (land|country)
@@ -305,7 +305,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: לֶךְ־לְךָ מֵאַרְצְךָ׃
       tokens: [{surface: לֶךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: leḵ-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
-            tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: mēʾarṣəḵā}}]
+            tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, form: 'form:f', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: mēʾarṣəḵā}}]
       reverse: לך לך מארצך
   translations:
     en: |-
@@ -318,8 +318,8 @@ sentences:
     hbo-Hebr/tiberian:
       text: לֶךְ־לְךָ מֵאַרְצְךָ וּמִמּוֹלַדְתְּךָ וּמִבֵּית אָבִיךָ׃
       tokens: [{surface: לֶךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: leḵ-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
-            tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: mēʾarṣəḵā}},
-        {surface: וּמִמּוֹלַדְתְּךָ, sense: moledet, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'}, {surface: מּוֹלַדְתְּ, kc: 'sense:moledet'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+            tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, form: 'form:f', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: mēʾarṣəḵā}},
+        {surface: וּמִמּוֹלַדְתְּךָ, sense: moledet, form: 'form:f', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'}, {surface: מּוֹלַדְתְּ, kc: 'sense:moledet'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
           readings: {tiberian: ûmimmôlaḏtəḵā}}, {surface: וּמִבֵּית, sense: bayit, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'}, {surface: בֵּית, kc: 'sense:bayit'}], readings: {
             tiberian: ûmibbêṯ}}, {surface: אָבִיךָ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḇî́ḵā}}]
       reverse: לך לך מארצך וממולדתך ומבית אביך
@@ -333,7 +333,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֶל־הָאָרֶץ אֲשֶׁר אַרְאֶךָּ
-      tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}},
+      tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}},
         {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אַרְאֶךָּ, sense: hirah, form: 'form:yiqtol-1cs', morphs: [{surface: אַרְאֶ, kc: 'sense:hirah'}, {surface: ךָּ, kc: 'form:sfx-2ms'}],
           readings: {tiberian: ʾarʾékkā}}]
       reverse: אל הארץ אשר אראך
@@ -460,7 +460,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בְּרָכָה
-      tokens: [{surface: בְּרָכָה, sense: berakhah, readings: {tiberian: bərāḵâ}}]
+      tokens: [{surface: בְּרָכָה, sense: berakhah, form: 'form:f', readings: {tiberian: bərāḵâ}}]
       reverse: ברכה
   translations:
     en: |-
@@ -472,7 +472,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וֶהְיֵה בְּרָכָה׃
-      tokens: [{surface: וֶהְיֵה, sense: hayah, form: 'form:impv-ms', morphs: [{surface: וֶ, kc: 'sense:we'}, {surface: הְיֵה, kc: 'sense:hayah'}], readings: {tiberian: wehyēh}}, {surface: בְּרָכָה, sense: berakhah,
+      tokens: [{surface: וֶהְיֵה, sense: hayah, form: 'form:impv-ms', morphs: [{surface: וֶ, kc: 'sense:we'}, {surface: הְיֵה, kc: 'sense:hayah'}], readings: {tiberian: wehyēh}}, {surface: בְּרָכָה, sense: berakhah, form: 'form:f',
           readings: {tiberian: bərāḵâ}}]
       reverse: והיה ברכה
   translations:
@@ -600,13 +600,13 @@ stories:
       speaker: god
       ask: complete
       gap: sense:av
-      distractors: ['sense:qol', 'sense:erets']
+      distractors: ['sense:qol', 'sense:shem']
       forms:
         hbo-Hebr/tiberian:
           text: לֶךְ־לְךָ מֵאַרְצְךָ וּמִמּוֹלַדְתְּךָ וּמִבֵּית אָבִיךָ
           tokens: [{surface: לֶךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: leḵ-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
-              readings: {tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
-                tiberian: mēʾarṣəḵā}}, {surface: וּמִמּוֹלַדְתְּךָ, sense: moledet, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'}, {surface: מּוֹלַדְתְּ, kc: 'sense:moledet'}, {
+              readings: {tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, form: 'form:f', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: mēʾarṣəḵā}}, {surface: וּמִמּוֹלַדְתְּךָ, sense: moledet, form: 'form:f', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'}, {surface: מּוֹלַדְתְּ, kc: 'sense:moledet'}, {
                   surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ûmimmôlaḏtəḵā}}, {surface: וּמִבֵּית, sense: bayit, form: 'form:cstr', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'},
                 {surface: בֵּית, kc: 'sense:bayit'}], readings: {tiberian: ûmibbêṯ}}, {surface: אָבִיךָ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
                 tiberian: ʾāḇî́ḵā}}]
@@ -618,7 +618,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: אֶל־הָאָרֶץ אֲשֶׁר אַרְאֶךָּ׃
-          tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}},
+          tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}},
             {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אַרְאֶךָּ, sense: hirah, form: 'form:yiqtol-1cs', morphs: [{surface: אַרְאֶ, kc: 'sense:hirah'}, {surface: ךָּ, kc: 'form:sfx-2ms'}],
               readings: {tiberian: ʾarʾékkā}}]
       translations:
@@ -642,14 +642,14 @@ stories:
       speaker: god
       ask: complete
       gap: sense:berakhah
-      distractors: ['sense:hoshekh', 'sense:layla']
+      distractors: ['sense:tehom', 'sense:ruach']
       forms:
         hbo-Hebr/tiberian:
           text: וַאֲבָרֶכְךָ וַאֲגַדְּלָה שְׁמֶךָ וֶהְיֵה בְּרָכָה׃
           tokens: [{surface: וַאֲבָרֶכְךָ, sense: barakh, form: 'form:yiqtol-1cs', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲבָרֶכְ, kc: 'sense:barakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
                 tiberian: waʾăḇāreḵḵā}}, {surface: וַאֲגַדְּלָה, sense: gadal, form: 'form:coh', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲגַדְּלָה, kc: 'sense:gadal'}], readings: {tiberian: waʾăḡaddəlâ}},
             {surface: שְׁמֶךָ, sense: shem, morphs: [{surface: שְׁמֶ, kc: 'sense:shem'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šəméḵā}}, {surface: וֶהְיֵה, sense: hayah, form: 'form:impv-ms',
-              morphs: [{surface: וֶ, kc: 'sense:we'}, {surface: הְיֵה, kc: 'sense:hayah'}], readings: {tiberian: wehyēh}}, {surface: בְּרָכָה, sense: berakhah, readings: {tiberian: bərāḵâ}}]
+              morphs: [{surface: וֶ, kc: 'sense:we'}, {surface: הְיֵה, kc: 'sense:hayah'}], readings: {tiberian: wehyēh}}, {surface: בְּרָכָה, sense: berakhah, form: 'form:f', readings: {tiberian: bərāḵâ}}]
       translations:
         en: and I will bless you and make your name great, and you will be a blessing.”
   - line:

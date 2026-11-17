@@ -209,13 +209,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا معها وجع راس.
-      tokens: [{surface: تيتا, sense: teta}, {surface: معها, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
+      tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: معها, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
       reverse: |-
         تيتا (معها|معا) وجع راس
         تيتا عندها وجع راس
     apc-Latn/arabizi:
       text: teta ma3a wja3 ras.
-      tokens: [{surface: teta, sense: teta}, {surface: ma3a, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
+      tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: ma3a, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
       reverse: |-
         teta (ma3a|ma3ha) (wja3|waja3|wje3|waje3) (ras|rass)
         teta 3enda wja3 ras
@@ -644,13 +644,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سلامتك، مايا!
-      tokens: [{surface: سلامتك, sense: salemtak, form: 'form:poss-2fs', vocalized: سَلامْتِك}, {surface: مايا, sense: maya}]
+      tokens: [{surface: سلامتك, sense: salemtak, form: 'form:poss-2fs', vocalized: سَلامْتِك}, {surface: مايا, sense: maya, form: 'form:fem'}]
       reverse: |-
         سلامتك مايا
         مايا سلامتك
     apc-Latn/arabizi:
       text: salemtik, Maya!
-      tokens: [{surface: salemtik, sense: salemtak, form: 'form:poss-2fs'}, {surface: Maya, sense: maya}]
+      tokens: [{surface: salemtik, sense: salemtak, form: 'form:poss-2fs'}, {surface: Maya, sense: maya, form: 'form:fem'}]
       reverse: |-
         (salemtik|salamtik|salemtek|salemtike) Maya
         Maya salemtik
@@ -716,10 +716,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مَرْحَبا مايا، كيفِك؟
-          tokens: [{surface: مَرْحَبا, sense: marhaba}, {surface: مايا, sense: maya}, {surface: كيفِك, sense: kif, morphs: [{surface: كيفِ, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: مَرْحَبا, sense: marhaba}, {surface: مايا, sense: maya, form: 'form:fem'}, {surface: كيفِك, sense: kif, morphs: [{surface: كيفِ, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}]
         apc-Latn/arabizi:
           text: mar7aba Maya, kifik?
-          tokens: [{surface: mar7aba, sense: marhaba}, {surface: Maya, sense: maya}, {surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: mar7aba, sense: marhaba}, {surface: Maya, sense: maya, form: 'form:fem'}, {surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}]
       translations: {en: 'Hi Maya, how are you?'}
   - line:
       speaker: maya
@@ -744,8 +744,8 @@ stories:
   - line:
       speaker: maya
       ask: complete
-      gap: sense:ras
-      distractors: ['sense:dollar', 'sense:siyyara']
+      gap: 'sense:ras'
+      distractors: ['sense:dollar', 'sense:ktab']
       forms:
         apc-Arab/standard:
           text: مَعي وْجَع راس، وما فِيّي نام.

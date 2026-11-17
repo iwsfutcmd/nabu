@@ -68,7 +68,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En casa, a nosotros nos encanta la salsa.
-      tokens: [{surface: En, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: a, sense: a}, {surface: nosotros, sense: nosotros, form: 'form:pl'}, {surface: nos, sense: nos}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}]
+      tokens: [{surface: En, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: a, sense: a}, {surface: nosotros, sense: nosotros, form: 'form:pl'}, {surface: nos, sense: nos, form: 'form:pl'}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}]
       reverse: |-
         En casa [a nosotros|a nosotras] nos encanta la salsa
         [A nosotros|A nosotras] nos encanta la salsa en casa
@@ -83,7 +83,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Lili y a Daniel les encanta bailar salsa.
-      tokens: [{surface: A, sense: a}, {surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: Daniel, sense: daniel}, {surface: les, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: bailar, sense: bailar}, {surface: salsa, sense: salsa, form: 'form:fem'}]
+      tokens: [{surface: A, sense: a}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: Daniel, sense: daniel}, {surface: les, sense: le, form: 'form:pl'}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: bailar, sense: bailar}, {surface: salsa, sense: salsa, form: 'form:fem'}]
       reverse: |-
         A Lili y a Daniel les encanta bailar [la] salsa
         A Daniel y a Lili les encanta bailar [la] salsa
@@ -98,7 +98,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿A ustedes les gusta bailar?
-      tokens: [{surface: A, sense: a}, {surface: ustedes, sense: ustedes}, {surface: les, sense: le}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: bailar, sense: bailar}]
+      tokens: [{surface: A, sense: a}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: les, sense: le, form: 'form:pl'}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: bailar, sense: bailar}]
       reverse: (A ustedes les gusta bailar|Les gusta bailar [a ustedes])
   translations:
     en: (Do you|Do you guys|Do you all|Do y'all) like (to dance|dancing)?
@@ -203,7 +203,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Te molesta la música de Lili?
-      tokens: [{surface: Te, sense: te}, {surface: molesta, sense: molestar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: música, sense: música, form: 'form:fem'}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
+      tokens: [{surface: Te, sense: te}, {surface: molesta, sense: molestar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: música, sense: música, form: 'form:fem'}, {surface: de, sense: de}, {surface: Lili, sense: lili, form: 'form:fem'}]
       reverse: |-
         [A ti] te molesta la música de Lili
         [A usted] le molesta la música de Lili
@@ -232,7 +232,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Lili le fascina Celia Cruz.
-      tokens: [{surface: A, sense: a}, {surface: Lili, sense: lili}, {surface: le, sense: le}, {surface: fascina, sense: fascinar, form: 'form:pres-3s'}, {surface: Celia, sense: celia-cruz}, {surface: Cruz, sense: celia-cruz}]
+      tokens: [{surface: A, sense: a}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: le, sense: le}, {surface: fascina, sense: fascinar, form: 'form:pres-3s'}, {surface: Celia, sense: celia-cruz}, {surface: Cruz, sense: celia-cruz}]
       reverse: A Lili le (fascina|encanta) Celia Cruz
   translations:
     en: |-
@@ -256,7 +256,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En La Habana, Yunior toca el bongó los sábados.
-      tokens: [{surface: En, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: Yunior, sense: yunior}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: bongó, sense: bongó}, {surface: los, sense: el, form: 'form:pl'}, {surface: sábados, sense: sábado, form: 'form:pl'}]
+      tokens: [{surface: En, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}, {surface: Yunior, sense: yunior}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: bongó, sense: bongó}, {surface: los, sense: el, form: 'form:pl'}, {surface: sábados, sense: sábado, form: 'form:pl'}]
       reverse: |-
         En La Habana Yunior toca (el bongó|los bongós|el bongo|los bongos) los sábados
         Yunior toca (el bongó|los bongós|el bongo|los bongos) los sábados en La Habana
@@ -294,7 +294,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili toca la clave y yo toco las maracas.
-      tokens: [{surface: Lili, sense: lili}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: clave, sense: clave, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: maracas, sense: maraca, form: 'form:fem-pl'}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: clave, sense: clave, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: maracas, sense: maraca, form: 'form:fem-pl'}]
       reverse: Lili toca (la clave|las claves) y [yo] toco las maracas
   translations:
     en: |-
@@ -316,7 +316,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili baila mucho más que Daniel.
-      tokens: [{surface: Lili, sense: lili}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: más, sense: más}, {surface: que, sense: que.than}, {surface: Daniel, sense: daniel}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: más, sense: más}, {surface: que, sense: que.than}, {surface: Daniel, sense: daniel}]
       reverse: Lili baila mucho más que Daniel
   translations:
     en: Lili dances (a lot|much) more than Daniel [does].
@@ -343,7 +343,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel no baila tan bien como Lili.
-      tokens: [{surface: Daniel, sense: daniel}, {surface: 'no', sense: 'no'}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: tan, sense: tan}, {surface: bien, sense: bien}, {surface: como, sense: como.like}, {surface: Lili, sense: lili}]
+      tokens: [{surface: Daniel, sense: daniel}, {surface: 'no', sense: 'no'}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: tan, sense: tan}, {surface: bien, sense: bien}, {surface: como, sense: como.like}, {surface: Lili, sense: lili, form: 'form:fem'}]
       reverse: Daniel no baila tan bien como Lili
   translations:
     en: Daniel (doesn't|does not) dance as well as Lili [does].
@@ -387,7 +387,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili baila mejor que yo.
-      tokens: [{surface: Lili, sense: lili}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: mejor, sense: mejor}, {surface: que, sense: que.than}, {surface: yo, sense: yo}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: mejor, sense: mejor}, {surface: que, sense: que.than}, {surface: yo, sense: yo}]
       reverse: Lili baila mejor que yo
   translations:
     en: |-
@@ -498,7 +498,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ay, Pepe. A Lili le encanta la salsa, y la salsa también es cubana.
-          tokens: [{surface: Ay, sense: ay}, {surface: Pepe, sense: pepe}, {surface: A, sense: a}, {surface: Lili, sense: lili}, {surface: le, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: también, sense: también}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: cubana, sense: cubano, form: 'form:fem'}]
+          tokens: [{surface: Ay, sense: ay}, {surface: Pepe, sense: pepe}, {surface: A, sense: a}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: le, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: también, sense: también}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: cubana, sense: cubano, form: 'form:fem'}]
       translations: {en: 'Oh, Pepe. Lili loves salsa, and salsa is Cuban too.'}
   - choose:
       prompt: {en: 'Why doesn''t Lili like boleros?'}
@@ -522,7 +522,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela y Lili bailan salsa en la sala.
-          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Lili, sense: lili}, {surface: bailan, sense: bailar, form: 'form:pres-3p'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: sala, sense: sala, form: 'form:fem'}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: bailan, sense: bailar, form: 'form:pres-3p'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: sala, sense: sala, form: 'form:fem'}]
       translations: {en: Grandma and Lili dance salsa in the living room.}
   - line:
       speaker: daniel
@@ -530,7 +530,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili baila tan bien como abuela!
-          tokens: [{surface: Lili, sense: lili}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: tan, sense: tan}, {surface: bien, sense: bien}, {surface: como, sense: como.like}, {surface: abuela, sense: abuela, form: 'form:fem'}]
+          tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: tan, sense: tan}, {surface: bien, sense: bien}, {surface: como, sense: como.like}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       translations: {en: 'Lili dances as well as Grandma!'}
   - line:
       speaker: cachita
@@ -574,7 +574,7 @@ stories:
       speaker: cachita
       ask: complete
       gap: sense:pepe
-      distractors: ['sense:daniel', 'sense:lili']
+      distractors: ['sense:daniel', 'sense:miami']
       forms:
         es-Latn/standard:
           text: ¡Ay, Pepe! Tú cantas peor que Compay Segundo.

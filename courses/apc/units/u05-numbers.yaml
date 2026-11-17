@@ -67,13 +67,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تنين قهوة.
-      tokens: [{surface: تنين, sense: tnen}, {surface: قهوة, sense: ahwe}]
+      tokens: [{surface: تنين, sense: tnen}, {surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: |-
         تنين قهوة
         قهوتين
     apc-Latn/arabizi:
       text: tnen ahwe.
-      tokens: [{surface: tnen, sense: tnen}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: tnen, sense: tnen}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: |-
         (tnen|tnein|tnayn|itnen|tnin) (ahwe|2ahwe|ahwi|2ahwi)
         ahwtein
@@ -235,11 +235,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لأ، بالليرة.
-      tokens: [{surface: لأ, sense: la2}, {surface: بالليرة, sense: lira, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ليرة, kc: 'sense:lira'}]}]
+      tokens: [{surface: لأ, sense: la2}, {surface: بالليرة, sense: lira, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ليرة, kc: 'sense:lira'}]}]
       reverse: (لأ|لا) بالليرة
     apc-Latn/arabizi:
       text: la2, bel lira.
-      tokens: [{surface: la2, sense: la2}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: lira, sense: lira}]
+      tokens: [{surface: la2, sense: la2}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: lira, sense: lira, form: 'form:fem'}]
       reverse: (la2|la) (bel|bil|b el) (lira|lire|leira)
   translations:
     en: No, in (lira|lire|pounds|Lebanese pounds|Lebanese lira).
@@ -266,11 +266,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قدّيش القهوة؟
-      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: القهوة, sense: ahwe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قهوة, kc: 'sense:ahwe'}]}]
+      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: القهوة, sense: ahwe, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: قهوة, kc: 'sense:ahwe'}]}]
       reverse: (قدّيش|أدّيش) القهوة
     apc-Latn/arabizi:
       text: 2addesh el ahwe?
-      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: (2addesh|addesh|2adesh|2addeish) (el|l|il) (ahwe|2ahwe)
   translations:
     en: |-
@@ -283,11 +283,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: معك مصاري؟
-      tokens: [{surface: معك, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: مصاري, sense: masari}]
+      tokens: [{surface: معك, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: مصاري, sense: masari, form: 'form:pl'}]
       reverse: (معك|إنت معك) مصاري
     apc-Latn/arabizi:
       text: ma3ak masari?
-      tokens: [{surface: ma3ak, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: masari, sense: masari}]
+      tokens: [{surface: ma3ak, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: masari, sense: masari, form: 'form:pl'}]
       reverse: ((ma3ak|m3ak)|(enta|inta) (ma3ak|m3ak)) (masari|masare|msari)
   translations:
     en: |-
@@ -299,11 +299,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما معي مصاري.
-      tokens: [{surface: ما, sense: ma}, {surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: مصاري, sense: masari}]
+      tokens: [{surface: ما, sense: ma}, {surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: مصاري, sense: masari, form: 'form:pl'}]
       reverse: (ما معي|أنا ما معي) مصاري
     apc-Latn/arabizi:
       text: ma ma3i masari.
-      tokens: [{surface: ma, sense: ma}, {surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: masari, sense: masari}]
+      tokens: [{surface: ma, sense: ma}, {surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: masari, sense: masari, form: 'form:pl'}]
       reverse: (ma|ana ma) (ma3i|ma3e|m3i|m3e) (masari|masare|msari)
   translations:
     en: |-
@@ -348,11 +348,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ألف ليرة.
-      tokens: [{surface: ألف, sense: alf}, {surface: ليرة, sense: lira}]
+      tokens: [{surface: ألف, sense: alf}, {surface: ليرة, sense: lira, form: 'form:fem'}]
       reverse: ألف ليرة
     apc-Latn/arabizi:
       text: alf lira.
-      tokens: [{surface: alf, sense: alf}, {surface: lira, sense: lira}]
+      tokens: [{surface: alf, sense: alf}, {surface: lira, sense: lira, form: 'form:fem'}]
       reverse: (alf|elf) (lira|lire|leira)
   translations:
     en: |-
@@ -365,11 +365,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: خمسين ألف ليرة.
-      tokens: [{surface: خمسين, sense: khamsin}, {surface: ألف, sense: alf}, {surface: ليرة, sense: lira}]
+      tokens: [{surface: خمسين, sense: khamsin}, {surface: ألف, sense: alf}, {surface: ليرة, sense: lira, form: 'form:fem'}]
       reverse: خمسين ألف ليرة
     apc-Latn/arabizi:
       text: khamsin alf lira.
-      tokens: [{surface: khamsin, sense: khamsin}, {surface: alf, sense: alf}, {surface: lira, sense: lira}]
+      tokens: [{surface: khamsin, sense: khamsin}, {surface: alf, sense: alf}, {surface: lira, sense: lira, form: 'form:fem'}]
       reverse: (khamsin|5amsin|khamseen) (alf|elf) (lira|lire|leira)
   translations:
     en: |-
@@ -426,11 +426,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المنقوشة رخيصة.
-      tokens: [{surface: المنقوشة, sense: man2oushe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: منقوشة, kc: 'sense:man2oushe'}]}, {surface: رخيصة, sense: rkhis, form: 'form:fem'}]
+      tokens: [{surface: المنقوشة, sense: man2oushe, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: منقوشة, kc: 'sense:man2oushe'}]}, {surface: رخيصة, sense: rkhis, form: 'form:fem'}]
       reverse: المنقوشة رخيصة
     apc-Latn/arabizi:
       text: el man2oushe rkhise.
-      tokens: [{surface: el, sense: el}, {surface: man2oushe, sense: man2oushe}, {surface: rkhise, sense: rkhis, form: 'form:fem'}]
+      tokens: [{surface: el, sense: el}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}, {surface: rkhise, sense: rkhis, form: 'form:fem'}]
       reverse: (el|l|il) (man2oushe|manoushe|man2ushi|mankoushe) (rkhise|r5ise|rkheese|rakhise)
   translations:
     en: |-
@@ -443,7 +443,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قهوة، عمول معروف.
-      tokens: [{surface: قهوة, sense: ahwe}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
+      tokens: [{surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
       reverse: |-
         قهوة (عمول|اعمول|عمل) معروف
         قهوة لو سمحت
@@ -452,7 +452,7 @@ sentences:
         عمول معروف قهوة
     apc-Latn/arabizi:
       text: ahwe, 3mol ma3rouf.
-      tokens: [{surface: ahwe, sense: ahwe}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
+      tokens: [{surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
       reverse: |-
         (ahwe|2ahwe) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
         (ahwe|2ahwe) (law|lau|low) (sama7t|samaht|sma7t)
@@ -532,13 +532,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عمري عشرين سنة.
-      tokens: [{surface: عمري, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عشرين, sense: 3eshrin}, {surface: سنة, sense: sene}]
+      tokens: [{surface: عمري, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عشرين, sense: 3eshrin}, {surface: سنة, sense: sene, form: 'form:fem'}]
       reverse: |-
         (عمري|أنا عمري) عشرين سنة
         عمري عشرين
     apc-Latn/arabizi:
       text: 3omri 3eshrin sene.
-      tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3eshrin, sense: 3eshrin}, {surface: sene, sense: sene}]
+      tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3eshrin, sense: 3eshrin}, {surface: sene, sense: sene, form: 'form:fem'}]
       reverse: |-
         ((3omri|3omre|3umri|3umre|3omori|3omore)|ana (3omri|3omre|3umri|3umre)) (3eshrin|3ishrin|3eshreen) (sene|seni|sana)
         3omri 3eshrin
@@ -552,15 +552,15 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا عمرها مية سنة!
-      tokens: [{surface: تيتا, sense: teta}, {surface: عمرها, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye, vocalized: مِية}, {surface: سنة,
-          sense: sene}]
+      tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: عمرها, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye, vocalized: مِية}, {surface: سنة,
+          sense: sene, form: 'form:fem'}]
       reverse: |-
         تيتا (عمرها|عمرا) (مية|مئة|ميت) سنة
         تيتا عمرها مية
     apc-Latn/arabizi:
       text: teta 3omra mit sene!
-      tokens: [{surface: teta, sense: teta}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mit, sense: miyye}, {surface: sene,
-          sense: sene}]
+      tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mit, sense: miyye}, {surface: sene,
+          sense: sene, form: 'form:fem'}]
       reverse: |-
         (teta|tayta) (3omra|3umra|3omora) (mit|miit|meet|miyyet|miyye|mie|miye) (sene|seni|sana)
         teta 3omra miyye
@@ -591,11 +591,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: معكن مصاري؟
-      tokens: [{surface: معكن, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: مصاري, sense: masari}]
+      tokens: [{surface: معكن, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: مصاري, sense: masari, form: 'form:pl'}]
       reverse: معكن مصاري
     apc-Latn/arabizi:
       text: ma3kon masari?
-      tokens: [{surface: ma3kon, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: masari, sense: masari}]
+      tokens: [{surface: ma3kon, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: masari, sense: masari, form: 'form:pl'}]
       reverse: (ma3kon|m3kon|ma3kun) (masari|masare|msari)
   translations:
     en: |-
@@ -608,13 +608,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا، قدّيش عمرك؟
-      tokens: [{surface: مايا, sense: maya}, {surface: قدّيش, sense: 2addesh}, {surface: عمرك, sense: 3omr, vocalized: عُمْرِك, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: قدّيش, sense: 2addesh}, {surface: عمرك, sense: 3omr, vocalized: عُمْرِك, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ك, kc: 'form:poss-2fs'}]}]
       reverse: |-
         مايا (قدّيش|أدّيش) عمرك
         قدّيش عمرك مايا
     apc-Latn/arabizi:
       text: Maya, 2addesh 3omrik?
-      tokens: [{surface: Maya, sense: maya}, {surface: 2addesh, sense: 2addesh}, {surface: 3omrik, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: 2addesh, sense: 2addesh}, {surface: 3omrik, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ik, kc: 'form:poss-2fs'}]}]
       reverse: |-
         Maya (2addesh|addesh|2adesh|2addeish) (3omrik|3umrik|3omorik|3omrek)
         2addesh 3omrik Maya
@@ -657,11 +657,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: وبَدّي جِبْنِة ولَبَن.
-          tokens: [{surface: وبَدّي, sense: baddi, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَدّي, kc: 'sense:baddi'}]}, {surface: جِبْنِة, sense: jebne}, {surface: ولَبَن, sense: laban, morphs: [
+          tokens: [{surface: وبَدّي, sense: baddi, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَدّي, kc: 'sense:baddi'}]}, {surface: جِبْنِة, sense: jebne, form: 'form:fem'}, {surface: ولَبَن, sense: laban, morphs: [
                 {surface: و, kc: 'sense:w'}, {surface: لَبَن, kc: 'sense:laban'}]}]
         apc-Latn/arabizi:
           text: w baddi jebne w laban.
-          tokens: [{surface: w, sense: w}, {surface: baddi, sense: baddi}, {surface: jebne, sense: jebne}, {surface: w, sense: w}, {surface: laban, sense: laban}]
+          tokens: [{surface: w, sense: w}, {surface: baddi, sense: baddi}, {surface: jebne, sense: jebne, form: 'form:fem'}, {surface: w, sense: w}, {surface: laban, sense: laban}]
       translations: {en: And I want cheese and yogurt.}
   - line:
       speaker: abu-ali
@@ -686,8 +686,8 @@ stories:
   - line:
       speaker: abu-ali
       ask: complete
-      gap: sense:dollar
-      distractors: ['sense:teta', 'sense:fenjen']
+      gap: 'sense:dollar'
+      distractors: ['sense:jeddo', 'sense:fenjen']
       forms:
         apc-Arab/standard:
           text: عِشْرين دولار.
@@ -716,11 +716,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: لأ، مِش غالي! الجِبْنِة طَيّْبِة كْتير.
-          tokens: [{surface: لأ, sense: la2}, {surface: مِش, sense: mish}, {surface: غالي, sense: ghali}, {surface: الجِبْنِة, sense: jebne, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جِبْنِة, kc: 'sense:jebne'}]},
+          tokens: [{surface: لأ, sense: la2}, {surface: مِش, sense: mish}, {surface: غالي, sense: ghali}, {surface: الجِبْنِة, sense: jebne, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جِبْنِة, kc: 'sense:jebne'}]},
             {surface: طَيّْبِة, sense: tayyeb, form: 'form:fem'}, {surface: كْتير, sense: ktir}]
         apc-Latn/arabizi:
           text: la2, mish ghali! el jebne tayybe ktir.
-          tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: ghali, sense: ghali}, {surface: el, sense: el}, {surface: jebne, sense: jebne}, {surface: tayybe, sense: tayyeb, form: 'form:fem'},
+          tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: ghali, sense: ghali}, {surface: el, sense: el}, {surface: jebne, sense: jebne, form: 'form:fem'}, {surface: tayybe, sense: tayyeb, form: 'form:fem'},
             {surface: ktir, sense: ktir}]
       translations: {en: 'No, it''s not expensive! The cheese is very good.'}
   - line:
@@ -741,11 +741,11 @@ stories:
         apc-Arab/standard:
           text: يَلّا، عَشْرَة دولار، بَسّ الخِبِز والجِبْنِة.
           tokens: [{surface: يَلّا, sense: yalla}, {surface: عَشْرَة, sense: 3ashra}, {surface: دولار, sense: dollar}, {surface: بَسّ, sense: bas}, {surface: الخِبِز, sense: khebz, morphs: [{surface: ال,
-                  kc: 'sense:el'}, {surface: خِبِز, kc: 'sense:khebz'}]}, {surface: والجِبْنِة, sense: jebne, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: جِبْنِة, kc: 'sense:jebne'}]}]
+                  kc: 'sense:el'}, {surface: خِبِز, kc: 'sense:khebz'}]}, {surface: والجِبْنِة, sense: jebne, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: جِبْنِة, kc: 'sense:jebne'}]}]
         apc-Latn/arabizi:
           text: yalla, 3ashra dollar, bas el khebz w el jebne.
           tokens: [{surface: yalla, sense: yalla}, {surface: 3ashra, sense: 3ashra}, {surface: dollar, sense: dollar}, {surface: bas, sense: bas}, {surface: el, sense: el}, {surface: khebz, sense: khebz}, {
-              surface: w, sense: w}, {surface: el, sense: el}, {surface: jebne, sense: jebne}]
+              surface: w, sense: w}, {surface: el, sense: el}, {surface: jebne, sense: jebne, form: 'form:fem'}]
       translations: {en: 'OK, ten dollars, but just the bread and the cheese.'}
   - choose:
       prompt:

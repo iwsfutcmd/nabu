@@ -133,7 +133,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todavía no he hablado con tía Marisol.
-      tokens: [{surface: Todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: hablado, sense: hablar, form: 'form:part'}, {surface: con, sense: con}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: hablado, sense: hablar, form: 'form:part'}, {surface: con, sense: con}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: |-
         (Todavía|Todavía yo|Yo todavía|Aún|Yo aún) no he hablado con (tía|mi tía) Marisol
         [Yo] no he hablado con (tía|mi tía) Marisol (todavía|aún)
@@ -172,7 +172,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo nunca he ido a Cuba.
-      tokens: [{surface: Yo, sense: yo}, {surface: nunca, sense: nunca}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: ido, sense: ir, form: 'form:part'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Yo, sense: yo}, {surface: nunca, sense: nunca}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: ido, sense: ir, form: 'form:part'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: |-
         [Yo] nunca he (ido a|estado en) Cuba
         [Yo] no he (ido a|estado en) Cuba nunca
@@ -228,7 +228,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ya te he dicho que no, Lili.
-      tokens: [{surface: Ya, sense: ya}, {surface: te, sense: te}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: dicho, sense: decir, form: 'form:part'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: Lili, sense: lili}]
+      tokens: [{surface: Ya, sense: ya}, {surface: te, sense: te}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: dicho, sense: decir, form: 'form:part'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: Lili, sense: lili, form: 'form:fem'}]
       reverse: (Ya te he dicho|Ya yo te he dicho|Te he dicho ya|Ya te dije|Ya yo te dije|Te dije ya) que no Lili
   translations:
     en: |-
@@ -283,7 +283,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pero Daniel y Lili son de los Marlins.
-      tokens: [{surface: Pero, sense: pero}, {surface: Daniel, sense: daniel}, {surface: 'y', sense: 'y'}, {surface: Lili, sense: lili}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: los, sense: el, form: 'form:pl'}, {surface: Marlins, sense: marlins}]
+      tokens: [{surface: Pero, sense: pero}, {surface: Daniel, sense: daniel}, {surface: 'y', sense: 'y'}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: los, sense: el, form: 'form:pl'}, {surface: Marlins, sense: marlins}]
       reverse: Pero Daniel y Lili son (de los|fanáticos de los|fans de los) Marlins
   translations:
     en: But Daniel and Lili (are Marlins fans|are fans of the Marlins|root for the Marlins|support the Marlins).
@@ -314,7 +314,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili ha ponchado a Daniel dos veces.
-      tokens: [{surface: Lili, sense: lili}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: ponchado, sense: ponchar, form: 'form:part'}, {surface: a, sense: a}, {surface: Daniel, sense: daniel}, {surface: dos, sense: dos}, {surface: veces, sense: vez, form: 'form:fem-pl'}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: ponchado, sense: ponchar, form: 'form:part'}, {surface: a, sense: a}, {surface: Daniel, sense: daniel}, {surface: dos, sense: dos}, {surface: veces, sense: vez, form: 'form:fem-pl'}]
       reverse: |-
         Lili (ha ponchado|ponchó) a Daniel dos veces
         Lili (ha ponchado|ponchó) dos veces a Daniel

@@ -150,15 +150,15 @@ sentences:
   forms:
     apc-Arab/standard:
       text: كلّ نهار بشرب قهوة مع تيتا.
-      tokens: [{surface: كلّ, sense: kell}, {surface: نهار, sense: nhar}, {surface: بشرب, sense: shereb, form: 'form:impf-1sg'}, {surface: قهوة, sense: ahwe}, {surface: مع, sense: ma3}, {surface: تيتا, sense: teta}]
+      tokens: [{surface: كلّ, sense: kell}, {surface: نهار, sense: nhar}, {surface: بشرب, sense: shereb, form: 'form:impf-1sg'}, {surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: مع, sense: ma3}, {surface: تيتا, sense: teta, form: 'form:fem'}]
       reverse: |-
         كلّ (نهار|يوم) بشرب قهوة مع تيتا
         بشرب قهوة مع تيتا كلّ (نهار|يوم)
         أنا بشرب قهوة مع تيتا كلّ يوم
     apc-Latn/arabizi:
       text: kell nhar bishrab ahwe ma3 teta.
-      tokens: [{surface: kell, sense: kell}, {surface: nhar, sense: nhar}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe}, {surface: ma3, sense: ma3}, {surface: teta,
-          sense: teta}]
+      tokens: [{surface: kell, sense: kell}, {surface: nhar, sense: nhar}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: ma3, sense: ma3}, {surface: teta,
+          sense: teta, form: 'form:fem'}]
       reverse: |-
         (kell|kil|kel|kull) (nhar|nehar|yom) (bishrab|beshrab|bshrab) (ahwe|2ahwe) (ma3|ma3a) (teta|tayta)
         (bishrab|beshrab|bshrab) (ahwe|2ahwe) (ma3|ma3a) (teta|tayta) (kell|kil|kel|kull) (nhar|nehar|yom)
@@ -196,7 +196,7 @@ sentences:
     apc-Arab/standard:
       text: نهار الأحد مناكل عند تيتا.
       tokens: [{surface: نهار, sense: nhar}, {surface: الأحد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أحد, kc: 'sense:a7ad'}]}, {surface: مناكل, sense: akal, form: 'form:impf-1pl'},
-        {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
+        {surface: عند, sense: 3end}, {surface: تيتا, sense: teta, form: 'form:fem'}]
       reverse: |-
         نهار (الأحد|الاحد) مناكل عند تيتا
         الأحد مناكل عند تيتا
@@ -204,7 +204,7 @@ sentences:
     apc-Latn/arabizi:
       text: nhar el a7ad mnekol 3end teta.
       tokens: [{surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: a7ad, sense: a7ad}, {surface: mnekol, sense: akal, form: 'form:impf-1pl'}, {surface: 3end, sense: 3end}, {surface: teta,
-          sense: teta}]
+          sense: teta, form: 'form:fem'}]
       reverse: |-
         (nhar|nehar) (el|l|il) (a7ad|ahad|2a7ad) (mnekol|mnakol) (3end|3and|3ind) (teta|tayta)
         el a7ad mnekol 3end teta
@@ -220,14 +220,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: نهار الجمعة بشتغل.
-      tokens: [{surface: نهار, sense: nhar}, {surface: الجمعة, sense: jem3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: بشتغل, sense: eshteghel, form: 'form:impf-1sg'}]
+      tokens: [{surface: نهار, sense: nhar}, {surface: الجمعة, sense: jem3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: بشتغل, sense: eshteghel, form: 'form:impf-1sg'}]
       reverse: |-
         نهار الجمعة بشتغل
         بشتغل نهار الجمعة
         نهار الجمعة أنا بشتغل
     apc-Latn/arabizi:
       text: nhar el jem3a bishteghel.
-      tokens: [{surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: jem3a, sense: jem3a}, {surface: bishteghel, sense: eshteghel, form: 'form:impf-1sg'}]
+      tokens: [{surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: jem3a, sense: jem3a, form: 'form:fem'}, {surface: bishteghel, sense: eshteghel, form: 'form:impf-1sg'}]
       reverse: |-
         (nhar|nehar) (el|l|il) (jem3a|jum3a|jim3a) (bishteghel|beshteghel|bishtighil)
         bishteghel nhar el jem3a
@@ -243,14 +243,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هالجمعة أنا مشغول.
-      tokens: [{surface: هالجمعة, sense: jem3a, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: أنا, sense: ana}, {surface: مشغول, sense: mashghoul}]
+      tokens: [{surface: هالجمعة, sense: jem3a, form: 'form:fem', morphs: [{surface: هال, kc: 'sense:hal'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: أنا, sense: ana}, {surface: مشغول, sense: mashghoul}]
       reverse: |-
         هالجمعة [أنا] مشغول
         أنا مشغول هالجمعة
         مشغول هالجمعة
     apc-Latn/arabizi:
       text: hal jem3a ana mashghoul.
-      tokens: [{surface: hal, sense: hal}, {surface: jem3a, sense: jem3a}, {surface: ana, sense: ana}, {surface: mashghoul, sense: mashghoul}]
+      tokens: [{surface: hal, sense: hal}, {surface: jem3a, sense: jem3a, form: 'form:fem'}, {surface: ana, sense: ana}, {surface: mashghoul, sense: mashghoul}]
       reverse: |-
         (hal|hel) (jem3a|jum3a|jim3a) [ana] (mashghoul|mash8oul|mashghol)
         ana mashghoul hal jem3a
@@ -287,11 +287,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قدّيش الساعة؟
-      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: الساعة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}]
+      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: الساعة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}]
       reverse: (قدّيش|أدّيش) الساعة
     apc-Latn/arabizi:
       text: 2addesh el sa3a?
-      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a}]
+      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}]
       reverse: (2addesh|addesh|2adesh|2addeish) (el|l|il) (sa3a|se3a|saa3a)
   translations:
     en: |-
@@ -303,11 +303,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الساعة تلاتة.
-      tokens: [{surface: الساعة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: تلاتة, sense: tlete}]
+      tokens: [{surface: الساعة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: تلاتة, sense: tlete}]
       reverse: الساعة تلاتة
     apc-Latn/arabizi:
       text: el sa3a tlete.
-      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: tlete, sense: tlete}]
+      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: tlete, sense: tlete}]
       reverse: (el|l|il) (sa3a|se3a|saa3a) (tlete|tleti|tlate|tlata)
   translations:
     en: |-
@@ -321,12 +321,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الساعة خمسة ونصّ.
-      tokens: [{surface: الساعة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: خمسة, sense: khamse}, {surface: ونصّ, sense: nos, morphs: [{surface: و,
+      tokens: [{surface: الساعة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: خمسة, sense: khamse}, {surface: ونصّ, sense: nos, morphs: [{surface: و,
               kc: 'sense:w'}, {surface: نصّ, kc: 'sense:nos'}]}]
       reverse: الساعة خمسة (ونصّ|و نصّ)
     apc-Latn/arabizi:
       text: el sa3a khamse w nos.
-      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: khamse, sense: khamse}, {surface: w, sense: w}, {surface: nos, sense: nos}]
+      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: khamse, sense: khamse}, {surface: w, sense: w}, {surface: nos, sense: nos}]
       reverse: (el|l|il) (sa3a|se3a|saa3a) (khamse|khamsi|5amse|khamsa) (w|wa) (nos|noss|nus)
   translations:
     en: |-
@@ -341,12 +341,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الساعة سبعة وربع.
-      tokens: [{surface: الساعة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: سبعة, sense: sab3a}, {surface: وربع, sense: rebe3, morphs: [{surface: و,
+      tokens: [{surface: الساعة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: سبعة, sense: sab3a}, {surface: وربع, sense: rebe3, morphs: [{surface: و,
               kc: 'sense:w'}, {surface: ربع, kc: 'sense:rebe3'}]}]
       reverse: الساعة سبعة (وربع|و ربع)
     apc-Latn/arabizi:
       text: el sa3a sab3a w rebe3.
-      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: sab3a, sense: sab3a}, {surface: w, sense: w}, {surface: rebe3, sense: rebe3}]
+      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: sab3a, sense: sab3a}, {surface: w, sense: w}, {surface: rebe3, sense: rebe3}]
       reverse: (el|l|il) (sa3a|se3a|saa3a) (sab3a|saba3a|sab3e) (w|wa) (rebe3|rob3|rebi3|ribe3)
   translations:
     en: |-
@@ -360,11 +360,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: دقيقة!
-      tokens: [{surface: دقيقة, sense: da2i2a}]
+      tokens: [{surface: دقيقة, sense: da2i2a, form: 'form:fem'}]
       reverse: دقيقة
     apc-Latn/arabizi:
       text: da2i2a!
-      tokens: [{surface: da2i2a, sense: da2i2a}]
+      tokens: [{surface: da2i2a, sense: da2i2a, form: 'form:fem'}]
       reverse: (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
@@ -377,11 +377,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: استنّى دقيقة.
-      tokens: [{surface: استنّى, sense: stanna}, {surface: دقيقة, sense: da2i2a}]
+      tokens: [{surface: استنّى, sense: stanna}, {surface: دقيقة, sense: da2i2a, form: 'form:fem'}]
       reverse: (استنّى|استنا) دقيقة
     apc-Latn/arabizi:
       text: stanna da2i2a.
-      tokens: [{surface: stanna, sense: stanna}, {surface: da2i2a, sense: da2i2a}]
+      tokens: [{surface: stanna, sense: stanna}, {surface: da2i2a, sense: da2i2a, form: 'form:fem'}]
       reverse: (stanna|estanna|stana) (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
@@ -395,14 +395,14 @@ sentences:
     apc-Arab/standard:
       text: قبل الشغل بشرب قهوة.
       tokens: [{surface: قبل, sense: 2abel}, {surface: الشغل, sense: shoghl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}, {surface: بشرب, sense: shereb, form: 'form:impf-1sg'},
-        {surface: قهوة, sense: ahwe}]
+        {surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: |-
         قبل الشغل بشرب قهوة
         بشرب قهوة قبل الشغل
         قبل الشغل أنا بشرب قهوة
     apc-Latn/arabizi:
       text: 2abel el shoghl bishrab ahwe.
-      tokens: [{surface: 2abel, sense: 2abel}, {surface: el, sense: el}, {surface: shoghl, sense: shoghl}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: 2abel, sense: 2abel}, {surface: el, sense: el}, {surface: shoghl, sense: shoghl}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: |-
         (2abel|abel|2abl) (el|l|il) (shoghl|shoghol|sho8l|shughl) (bishrab|beshrab|bshrab) (ahwe|2ahwe)
         bishrab ahwe 2abel el shoghl
@@ -505,11 +505,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بكرا عطلة!
-      tokens: [{surface: بكرا, sense: bukra}, {surface: عطلة, sense: 3otle}]
+      tokens: [{surface: بكرا, sense: bukra}, {surface: عطلة, sense: 3otle, form: 'form:fem'}]
       reverse: (بكرا|بكرة) عطلة
     apc-Latn/arabizi:
       text: bukra 3otle!
-      tokens: [{surface: bukra, sense: bukra}, {surface: 3otle, sense: 3otle}]
+      tokens: [{surface: bukra, sense: bukra}, {surface: 3otle, sense: 3otle, form: 'form:fem'}]
       reverse: (bukra|bokra|bukrah) (3otle|3otli|3otla|3etle)
   translations:
     en: |-
@@ -535,13 +535,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندي عطلة شهر.
-      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عطلة, sense: 3otle}, {surface: شهر, sense: shahr}]
+      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عطلة, sense: 3otle, form: 'form:fem'}, {surface: شهر, sense: shahr}]
       reverse: |-
         (عندي|أنا عندي) عطلة شهر
         (عندي|أنا عندي) شهر عطلة
     apc-Latn/arabizi:
       text: 3endi 3otle shahr.
-      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3otle, sense: 3otle}, {surface: shahr, sense: shahr}]
+      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3otle, sense: 3otle, form: 'form:fem'}, {surface: shahr, sense: shahr}]
       reverse: |-
         ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (3otle|3otli|3otla|3etle) (shahr|shaher)
         ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (shahr|shaher) (3otle|3otli|3otla|3etle)
@@ -557,7 +557,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: شو بتعمل بالعطلة؟
-      tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: بالعطلة, sense: 3otle, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: عطلة,
+      tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: بالعطلة, sense: 3otle, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: عطلة,
               kc: 'sense:3otle'}]}]
       reverse: |-
         شو بتعمل بالعطلة
@@ -565,7 +565,7 @@ sentences:
     apc-Latn/arabizi:
       text: shu bta3mel bel 3otle?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: 3otle,
-          sense: 3otle}]
+          sense: 3otle, form: 'form:fem'}]
       reverse: |-
         (shu|sho) (bta3mel|bte3mel|bta3mil) (bel|bil|b el) (3otle|3otli|3otla|3etle)
         enta shu bta3mel bel 3otle
@@ -595,13 +595,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إنتي فاضية بكرا؟
-      tokens: [{surface: إنتي, sense: enti}, {surface: فاضية, sense: fadi, form: 'form:fem'}, {surface: بكرا, sense: bukra}]
+      tokens: [{surface: إنتي, sense: enti, form: 'form:fem'}, {surface: فاضية, sense: fadi, form: 'form:fem'}, {surface: بكرا, sense: bukra}]
       reverse: |-
         [إنتي] فاضية (بكرا|بكرة)
         بكرا فاضية
     apc-Latn/arabizi:
       text: enti fadye bukra?
-      tokens: [{surface: enti, sense: enti}, {surface: fadye, sense: fadi, form: 'form:fem'}, {surface: bukra, sense: bukra}]
+      tokens: [{surface: enti, sense: enti, form: 'form:fem'}, {surface: fadye, sense: fadi, form: 'form:fem'}, {surface: bukra, sense: bukra}]
       reverse: |-
         [(enti|inti)] (fadye|fadie|fadyi|fadya) (bukra|bokra|bukrah)
         bukra fadye
@@ -614,11 +614,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إنتو فاضيين بكرا؟
-      tokens: [{surface: إنتو, sense: ento}, {surface: فاضيين, sense: fadi, form: 'form:pl'}, {surface: بكرا, sense: bukra}]
+      tokens: [{surface: إنتو, sense: ento, form: 'form:pl'}, {surface: فاضيين, sense: fadi, form: 'form:pl'}, {surface: بكرا, sense: bukra}]
       reverse: '[إنتو] فاضيين (بكرا|بكرة)'
     apc-Latn/arabizi:
       text: ento fadyin bukra?
-      tokens: [{surface: ento, sense: ento}, {surface: fadyin, sense: fadi, form: 'form:pl'}, {surface: bukra, sense: bukra}]
+      tokens: [{surface: ento, sense: ento, form: 'form:pl'}, {surface: fadyin, sense: fadi, form: 'form:pl'}, {surface: bukra, sense: bukra}]
       reverse: '[(ento|into|entu)] (fadyin|fadyeen|fadiyin|fadiyeen) (bukra|bokra|bukrah)'
   translations:
     en: |-
@@ -652,11 +652,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: استنّي دقيقة.
-      tokens: [{surface: استنّي, sense: stanna, form: 'form:imp-2fs'}, {surface: دقيقة, sense: da2i2a}]
+      tokens: [{surface: استنّي, sense: stanna, form: 'form:imp-2fs'}, {surface: دقيقة, sense: da2i2a, form: 'form:fem'}]
       reverse: استنّي دقيقة
     apc-Latn/arabizi:
       text: stanni da2i2a.
-      tokens: [{surface: stanni, sense: stanna, form: 'form:imp-2fs'}, {surface: da2i2a, sense: da2i2a}]
+      tokens: [{surface: stanni, sense: stanna, form: 'form:imp-2fs'}, {surface: da2i2a, sense: da2i2a, form: 'form:fem'}]
       reverse: (stanni|estanni|stanne|stani) (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
@@ -670,11 +670,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: استنّوا دقيقة.
-      tokens: [{surface: استنّوا, sense: stanna, form: 'form:imp-2pl'}, {surface: دقيقة, sense: da2i2a}]
+      tokens: [{surface: استنّوا, sense: stanna, form: 'form:imp-2pl'}, {surface: دقيقة, sense: da2i2a, form: 'form:fem'}]
       reverse: (استنّوا|استنّو) دقيقة
     apc-Latn/arabizi:
       text: stanno da2i2a.
-      tokens: [{surface: stanno, sense: stanna, form: 'form:imp-2pl'}, {surface: da2i2a, sense: da2i2a}]
+      tokens: [{surface: stanno, sense: stanna, form: 'form:imp-2pl'}, {surface: da2i2a, sense: da2i2a, form: 'form:fem'}]
       reverse: (stanno|estanno|stannu|stano) (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
@@ -688,7 +688,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: شو بتعملوا بالعطلة؟
-      tokens: [{surface: شو, sense: shu}, {surface: بتعملوا, sense: 3emel, form: 'form:impf-2pl'}, {surface: بالعطلة, sense: 3otle, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {
+      tokens: [{surface: شو, sense: shu}, {surface: بتعملوا, sense: 3emel, form: 'form:impf-2pl'}, {surface: بالعطلة, sense: 3otle, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {
               surface: عطلة, kc: 'sense:3otle'}]}]
       reverse: |-
         شو (بتعملوا|بتعملو) بالعطلة
@@ -696,7 +696,7 @@ sentences:
     apc-Latn/arabizi:
       text: shu bta3mlo bel 3otle?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mlo, sense: 3emel, form: 'form:impf-2pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: 3otle,
-          sense: 3otle}]
+          sense: 3otle, form: 'form:fem'}]
       reverse: |-
         (shu|sho) (bta3mlo|bte3mlo|bta3mlu) (bel|bil|b el) (3otle|3otli|3otla|3etle)
         ento shu bta3mlo bel 3otle
@@ -718,11 +718,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: مايا، إِنْتي فاضْيِة نْهار السَّبْت؟
-          tokens: [{surface: مايا, sense: maya}, {surface: إِنْتي, sense: enti}, {surface: فاضْيِة, sense: fadi, form: 'form:fem'}, {surface: نْهار, sense: nhar}, {surface: السَّبْت, sense: sabt, morphs: [
+          tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: إِنْتي, sense: enti, form: 'form:fem'}, {surface: فاضْيِة, sense: fadi, form: 'form:fem'}, {surface: نْهار, sense: nhar}, {surface: السَّبْت, sense: sabt, morphs: [
                 {surface: ال, kc: 'sense:el'}, {surface: سَّبْت, kc: 'sense:sabt'}]}]
         apc-Latn/arabizi:
           text: Maya, enti fadye nhar el sabt?
-          tokens: [{surface: Maya, sense: maya}, {surface: enti, sense: enti}, {surface: fadye, sense: fadi, form: 'form:fem'}, {surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: sabt, sense: sabt}]
+          tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: enti, sense: enti, form: 'form:fem'}, {surface: fadye, sense: fadi, form: 'form:fem'}, {surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: sabt, sense: sabt}]
       translations: {en: 'Maya, are you free on Saturday?'}
   - line:
       speaker: maya
@@ -769,25 +769,25 @@ stories:
       forms:
         apc-Arab/standard:
           text: الصُّبْح، السّاعَة تِسْعَة.
-          tokens: [{surface: الصُّبْح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صُّبْح, kc: 'sense:sob7'}]}, {surface: السّاعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'},
+          tokens: [{surface: الصُّبْح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صُّبْح, kc: 'sense:sob7'}]}, {surface: السّاعَة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
                 {surface: سّاعَة, kc: 'sense:sa3a'}]}, {surface: تِسْعَة, sense: tes3a}]
         apc-Latn/arabizi:
           text: el sob7, el sa3a tes3a.
-          tokens: [{surface: el, sense: el}, {surface: sob7, sense: sob7}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: tes3a, sense: tes3a}]
+          tokens: [{surface: el, sense: el}, {surface: sob7, sense: sob7}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: tes3a, sense: tes3a}]
       translations: {en: 'In the morning, at nine o''clock.'}
   - line:
       speaker: maya
       ask: complete
-      gap: sense:tes3a
+      gap: 'sense:tes3a'
       distractors: ['sense:sab3a', 'sense:khamse']
       forms:
         apc-Arab/standard:
           text: تِسْعَة؟! بَكّير كْتير! السّاعَة عَشْرَة ونُصّ.
-          tokens: [{surface: تِسْعَة, sense: tes3a}, {surface: بَكّير, sense: bakkir}, {surface: كْتير, sense: ktir}, {surface: السّاعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سّاعَة,
+          tokens: [{surface: تِسْعَة, sense: tes3a}, {surface: بَكّير, sense: bakkir}, {surface: كْتير, sense: ktir}, {surface: السّاعَة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: سّاعَة,
                   kc: 'sense:sa3a'}]}, {surface: عَشْرَة, sense: 3ashra}, {surface: ونُصّ, sense: nos, morphs: [{surface: و, kc: 'sense:w'}, {surface: نُصّ, kc: 'sense:nos'}]}]
         apc-Latn/arabizi:
           text: tes3a?! bakkir ktir! el sa3a 3ashra w nos.
-          tokens: [{surface: tes3a, sense: tes3a}, {surface: bakkir, sense: bakkir}, {surface: ktir, sense: ktir}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: 3ashra, sense: 3ashra},
+          tokens: [{surface: tes3a, sense: tes3a}, {surface: bakkir, sense: bakkir}, {surface: ktir, sense: ktir}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: 3ashra, sense: 3ashra},
             {surface: w, sense: w}, {surface: nos, sense: nos}]
       translations: {en: 'Nine?! That''s very early! Half past ten.'}
   - line:
