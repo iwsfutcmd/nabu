@@ -1276,7 +1276,7 @@ export interface BundleNode {
   readonly reinforces: readonly KcId1[];
   readonly sentences: readonly string[];
   /**
-   * An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0132).
+   * An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133).
    */
   readonly alphabet?: {
     readonly orthography: string;
@@ -1289,7 +1289,7 @@ export interface BundleNode {
   };
 }
 /**
- * A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0132): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
+ * A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0133): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ScriptItem".
@@ -3287,7 +3287,7 @@ export interface Fonts {
   readonly scale?: number;
 }
 /**
- * What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0132): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
+ * What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0133): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ScriptTrack".

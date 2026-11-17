@@ -2,7 +2,7 @@
 # IJMES system that writes the vowels the Arabic script leaves out (bardi, bärdi). chg pins it on every Arabic word
 # as a reading and shows it as ruby over the whole word, over new words (ADR 0131). Reading cards ask for it: a word
 # of a sentence, its reading among others, then typed (ADR 0131), as text of the chg-Latn/schluessel profile, which
-# also tags the alphabet track's (ADR 0132: words by their readings, letters by their chg-Latn/schluessel forms).
+# also tags the alphabet track's (ADR 0133: words by their readings, letters by their chg-Latn/schluessel forms).
 id: schluessel
 # What the UI calls the scheme, by language (ADR 0109). The translations are an LLM's drafts, made for the draft UI
 # catalogs (ADR 0070), and await review as those do.
@@ -27,7 +27,7 @@ names:
 language: chg
 lang: chg-Latn
 answer: chg-Latn/schluessel
-# Its readings are Latin already: an alphabet track's words are their readings as they stand (ADR 0132).
+# Its readings are Latin already: an alphabet track's words are their readings as they stand (ADR 0133).
 latin: chg-Latn/schluessel
 # REVIEW: what each letter of the script stands for in the course's own words (every Arabic spelling aligned with
 # its reading, 786 words), erring on more options: a reading card's wrong options trade one letter for another the

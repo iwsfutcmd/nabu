@@ -752,7 +752,7 @@ def compile_course(
         ctx.diags.report(
             "kc.reading", f"{r.kc}: {r.message}", unit.doc.loc("kcs", ki, "readings", r.scheme)
         )
-    # ---- stage 7: script tracks, which ask a word as its KC's pinned reading (ADR 0132)
+    # ---- stage 7: script tracks, which ask a word as its KC's pinned reading (ADR 0133)
     alphabets = compile_alphabets(
         diags,
         course,

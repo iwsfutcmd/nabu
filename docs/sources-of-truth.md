@@ -5,7 +5,7 @@
   becomes an ADR.
 - Related: ADR 0053 (vowel marks), 0054/0095/0098 (pronunciation cards), 0071 (several ruby layers),
   0086 (sitelen pona), 0087 (Attic), 0109 (schemes as data), 0117 (KC readings), 0126 (Jyutping as
-  an orthography), 0128/0129 (Chaghatay), 0131 (readings that fade), 0132 (script tracks ask the reading).
+  an orthography), 0128/0129 (Chaghatay), 0131 (readings that fade), 0133 (script tracks ask the reading).
 
 ## The question
 
@@ -48,7 +48,7 @@ layer of its own:
 - as P itself where P is Latin already (Schluessel).
 
 A romanization of O, letter for letter, says nothing O doesn't, so the model doesn't need one. The
-alphabet tracks used one until ADR 0132; they now ask P in its Latin display (a scheme's `latin`).
+alphabet tracks used one until ADR 0133; they now ask P in its Latin display (a scheme's `latin`).
 
 **Determinacy.** A mapping from one layer to another is:
 
@@ -287,7 +287,7 @@ A few hypothetical future courses, to check that the classes hold:
 Profiles already hold pieces of this:
 
 - `transliterate: {to, via}` (uz, tok, yue, apc);
-- `scriptTrack` and a scheme's `latin` (the alphabet tracks ask P in Latin, ADR 0132);
+- `scriptTrack` and a scheme's `latin` (the alphabet tracks ask P in Latin, ADR 0133);
 - `annotations` (ruby and marks layers);
 - reading schemes with `answer`, `typed`, `variants` and `typedByProfile`.
 
@@ -566,7 +566,7 @@ A learner told where to look can look there.
 | fa | O + vocalization (per KC, token overrides) | lexical + contextual (ezafe) | O + vocalization + `form:ezafe` | make the ezafe a morph; residual → 0 |
 | apc | Arabic + vocalization + Arabizi | lexical + contextual (persons) + variable | Arabic + vocalization, Arabizi aligned by morph | vocalize -ak/-ik from `persons`; Arabizi variants as sets |
 | hbo | pointed + Tiberian per token | writing-transparent from the accented text | the accented WLC word (from which `nabu tiberian` already derives the reading) | `bound` and `pausal` token attributes; `form:construct` |
-| chg | Arabic + Schluessel per token; chg-Latn KC forms (now read only for letters, ADR 0132) | lexical + contextual (ezafe) + variable | Arabic + Schluessel | `form:ezafe`; spelling variants as sets; check یر *yer / yär*; drop the word KCs' chg-Latn forms |
+| chg | Arabic + Schluessel per token; chg-Latn KC forms (now read only for letters, ADR 0133) | lexical + contextual (ezafe) + variable | Arabic + Schluessel | `form:ezafe`; spelling variants as sets; check یر *yer / yär*; drop the word KCs' chg-Latn forms |
 | yue | characters + Jyutping per token; Jyutping orthography generated | opaque + contextual (呀) | characters + Jyutping | sentence type for 呀; changed tones and literary readings as declared variation |
 | lzh | characters + three readings per token | opaque, several traditions | characters + Baxter + per-tradition pins | check Pinyin and Jyutping against Baxter by regular correspondence, as a lint only |
 

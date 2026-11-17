@@ -82,7 +82,7 @@ since an empty spelling is found everywhere.
   - the convert nodes (uz, apc), as ADR 0088 says;
   - an alphabet track for any course but grc. None is added here.
 
-## Amendment (ADR 0132)
+## Amendment (ADR 0133)
 
 `romanize: {scheme, orthography}` is replaced by `scriptTrack: {reading}`. The Latin orthography is the
 reading scheme's `latin`, and a word's Latin is its KC's pinned reading.

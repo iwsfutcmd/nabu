@@ -113,7 +113,7 @@ and accept sets take siz as well; untagged siz sentences accept all three (ADR 0
 - Every spelling of a Turkic word follows one convention, where the manuscripts have many: accept sets add the
   common ones (plene and defective vowels, the dative's غه که قه گه, ایرماس for ایماس), never all.
 
-## Amendment (ADR 0132)
+## Amendment (ADR 0133)
 
 The romanization scheme `forms` is gone. The alphabet track asks a word as its KC's pinned Schluessel
 reading (`scriptTrack: {reading: schluessel}`), which equals its chg-Latn/schluessel form in every

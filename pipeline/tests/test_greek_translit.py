@@ -1,4 +1,4 @@
-"""Polytonic Greek in Latin letters (ADR 0088, 0132): nabu.greek_translit."""
+"""Polytonic Greek in Latin letters (ADR 0088, 0133): nabu.greek_translit."""
 
 from __future__ import annotations
 
@@ -37,7 +37,7 @@ def test_word(greek: str, latin: str) -> None:
 @pytest.mark.parametrize(
     ("attic", "latin"),
     [
-        ("χώρᾱ", "chōrā"),  # an Attic reading's long α ι υ are ā ī ȳ (ADR 0132)
+        ("χώρᾱ", "chōrā"),  # an Attic reading's long α ι υ are ā ī ȳ (ADR 0133)
         ("ᾰ̓γορᾱ́", "agorā"),  # a short one stays a i y
         ("ᾰ̓φῑκνοῦνται", "aphīknountai"),
         ("Κῡ́ρου", "Kȳrou"),

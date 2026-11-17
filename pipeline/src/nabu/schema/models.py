@@ -2013,7 +2013,7 @@ class Transliteration(BaseModel):
 
 class ScriptTrack(BaseModel):
     """
-    What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0132): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
+    What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0133): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
     """
 
     model_config = ConfigDict(
@@ -3393,7 +3393,7 @@ class ReadingScheme(BaseModel):
     latin: Annotated[
         OrthographyId | None,
         Field(
-            description="The orthography its readings are written in for a learner who cannot read the script yet (ADR 0132): an alphabet track's letters and words (a profile's `scriptTrack`) are tagged with it, and its profile grades them and ships in the bundle beside the course's own. A scheme whose own text is not Latin has a plug-in that writes a reading in it (nabu.schemes `latin`: Attic's χώρᾱ is chōrā); otherwise a reading is its own Latin (Schluessel)."
+            description="The orthography its readings are written in for a learner who cannot read the script yet (ADR 0133): an alphabet track's letters and words (a profile's `scriptTrack`) are tagged with it, and its profile grades them and ships in the bundle beside the course's own. A scheme whose own text is not Latin has a plug-in that writes a reading in it (nabu.schemes `latin`: Attic's χώρᾱ is chōrā); otherwise a reading is its own Latin (Schluessel)."
         ),
     ] = None
     variants: Annotated[
@@ -3895,7 +3895,7 @@ class BundleKc(BaseModel):
 
 class ScriptItem(BaseModel):
     """
-    A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0132): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
+    A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0133): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
     """
 
     model_config = ConfigDict(
@@ -3915,7 +3915,7 @@ class ScriptItem(BaseModel):
 
 class Alphabet(BaseModel):
     """
-    An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0132).
+    An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133).
     """
 
     model_config = ConfigDict(
@@ -3940,7 +3940,7 @@ class BundleNode(BaseModel):
     alphabet: Annotated[
         Alphabet | None,
         Field(
-            description="An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0132)."
+            description="An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133)."
         ),
     ] = None
     convert: Convert | None = None

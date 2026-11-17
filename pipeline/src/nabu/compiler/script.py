@@ -16,7 +16,7 @@ A word of an alphabet node must be spelled with the letters taught by then
 (`script.untaught-letter`); marks are not checked: the words are shown as the course writes them.
 A grapheme KC whose first form has no letter would be in every word (`script.no-letter`).
 
-What the track asks its letters and words as is their reading (ADR 0132), in Latin letters for a
+What the track asks its letters and words as is their reading (ADR 0133), in Latin letters for a
 learner who cannot read the script yet: the orthography's profile names the scheme
 (`scriptTrack.reading`), and the scheme the orthography of its Latin (`latin`, which needs a
 profile): `script.no-reading-scheme`. A word's Latin is its KC's pinned reading (ADR 0117), the one

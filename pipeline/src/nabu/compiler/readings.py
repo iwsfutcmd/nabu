@@ -11,7 +11,7 @@ Nothing is guessed: a reading comes from the course's own tokens. A KC's entry m
 them for its first form (its `readings`, ADR 0117's amendment: hbo's sense:ad reads ʿaḏ, free, where
 its lessons tie with the maqaf-bound ʿaḏ-); in a scheme read over whole words (`ruby: word`, ADR
 0129) it may give its own, as chg's verb stems do (بار- reads bar). So it may for a form no
-token spells, which the course has nothing to take a reading from (ADR 0132: a lemma its
+token spells, which the course has nothing to take a reading from (ADR 0133: a lemma its
 sentences only inflect, ᾰ̓γορᾱ́ where they have ἀγορᾶς and ἀγορᾷ, which an alphabet track asks).
 Otherwise it is, in this order:
 
@@ -154,7 +154,7 @@ def _refused(
     """Why a KC's own reading cannot be pinned on its first form's words, or None. A scheme read
     over whole words (`ruby: word`, ADR 0129) lets the KC give a reading no token gives (`adds`):
     its sentences show a verb's stem only with suffixes (بار in باردی), never alone. So does a
-    form no token spells (ADR 0132): there is no reading of the course's for it to contradict."""
+    form no token spells (ADR 0133): there is no reading of the course's for it to contradict."""
     if len(words) != 1:
         return f"its first form has {len(words)} words; a KC's own reading is one word's"
     if adds:

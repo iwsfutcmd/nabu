@@ -1,4 +1,4 @@
-"""Polytonic Greek in Latin letters, for learners still learning the alphabet (ADR 0088, 0132).
+"""Polytonic Greek in Latin letters, for learners still learning the alphabet (ADR 0088, 0133).
 
 The scheme is the familiar scholarly one (as ALA-LC and most textbooks romanize Ancient Greek), set
 to the sounds of classical Attic (CGCG §§1.15-33). It is the Attic reading scheme's Latin (its

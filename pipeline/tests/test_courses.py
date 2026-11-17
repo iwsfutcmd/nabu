@@ -545,7 +545,7 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
                 reading = t["readings"]["attic"]
                 assert attic.surface(reading) == t["surface"], (unit["id"], t["surface"], reading)
                 assert attic.unmarked(reading) == [], (unit["id"], reading)
-        # A KC's form takes its reading from these, or its entry gives one (ADR 0132): the same
+        # A KC's form takes its reading from these, or its entry gives one (ADR 0133): the same
         # holds of it, but for the citation's acute (καί for a sentence's καὶ).
         for kc in unit["kcs"]:
             for text in kc.get("forms", {}).get(GRC, []):
@@ -559,7 +559,7 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
 
 
 def test_greek_alphabet_track(core_cli: CoreCli) -> None:
-    """grc's script track (ADR 0088, 0132): eight alphabet nodes, each word spelled with the
+    """grc's script track (ADR 0088, 0133): eight alphabet nodes, each word spelled with the
     letters taught by then, every letter and word in the Attic scheme's Latin (grc-Latn/romanized),
     a word's written from its KC's Attic reading, with the vowel lengths the spelling leaves out
     (ἀγορά, ᾰ̓γορᾱ́: agorā)."""
@@ -615,7 +615,7 @@ def test_a_voice_s_quality_decides_what_ships(
 
 
 CHG_AR = "chg-Arab/standard"
-# The alphabet track's Latin side (the schluessel scheme's `latin`, ADR 0132), not a course
+# The alphabet track's Latin side (the schluessel scheme's `latin`, ADR 0133), not a course
 # orthography.
 CHG_LA = "chg-Latn/schluessel"
 # Schluessel's letters (2018, xii-xxxii), decomposed: a reading of the Arabic, one letter a sound.
@@ -671,7 +671,7 @@ def test_chaghatay_is_arabic_with_schluessels_transliteration_as_ruby(core_cli: 
 
 
 def test_chaghatay_alphabet_track(core_cli: CoreCli) -> None:
-    """chg's script track (ADR 0088, 0128, 0132): eight alphabet nodes in the Arabic script, each
+    """chg's script track (ADR 0088, 0128, 0133): eight alphabet nodes in the Arabic script, each
     word spelled with the letters taught by then and asked as its KC's Schluessel reading, the one
     its word card shows; a letter, which stands for several sounds, as its own form in Schluessel's
     transliteration. That orthography is the track's Latin side only: the course teaches the

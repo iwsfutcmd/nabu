@@ -134,7 +134,7 @@ class Plugins:
     #: compares a transcript by reading where the language has a scheme that reads it.
     read: Callable[[list[str]], list[str | None]] | None = None
     #: A reading, or a letter, in the scheme's `latin` orthography, where the scheme's own text is
-    #: not Latin (Attic: χώρᾱ → chōrā): what an alphabet track asks (ADR 0132). None: a reading is
+    #: not Latin (Attic: χώρᾱ → chōrā): what an alphabet track asks (ADR 0133). None: a reading is
     #: its own Latin (Schluessel).
     latin: Callable[[str], str] | None = None
 

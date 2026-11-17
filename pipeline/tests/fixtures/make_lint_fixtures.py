@@ -145,7 +145,7 @@ GRC: dict[str, Any] = {
     ],
 }
 """A Greek alphabet track (ADR 0088): one node teaching α, ι and ν, and ναί spelled with them,
-which a lesson's sentence gives its Attic reading (ADR 0132)."""
+which a lesson's sentence gives its Attic reading (ADR 0133)."""
 
 Course = dict[str, Any]
 
@@ -266,7 +266,7 @@ def _script_no_letter(c: Course) -> None:
 
 def _script_no_reading_scheme(c: Course) -> None:
     """An alphabet node (ADR 0088) in an orthography whose profile names no reading for its track
-    (ADR 0132)."""
+    (ADR 0133)."""
     unit(c)["kcs"].append({"id": "grapheme:s", "forms": {"uz-Latn/standard": ["s"]}})
     unit(c)["nodes"].append(
         {
@@ -279,7 +279,7 @@ def _script_no_reading_scheme(c: Course) -> None:
 
 
 def _script_no_reading(c: Course) -> None:
-    """No sentence spells ναί, and its KC entry gives no Attic reading (ADR 0132)."""
+    """No sentence spells ναί, and its KC entry gives no Attic reading (ADR 0133)."""
     unit(c)["sentences"].clear()
     unit(c)["nodes"].pop()
 

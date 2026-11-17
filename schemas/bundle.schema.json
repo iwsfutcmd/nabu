@@ -204,7 +204,7 @@
     },
     "ScriptItem": {
       "title": "ScriptItem",
-      "description": "A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0132): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.",
+      "description": "A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0133): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.",
       "type": "object",
       "required": ["kc", "text", "latin", "letters"],
       "additionalProperties": false,
@@ -239,7 +239,7 @@
         "reinforces": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "sentences": { "type": "array", "items": { "type": "string" } },
         "alphabet": {
-          "description": "An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0132).",
+          "description": "An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133).",
           "type": "object",
           "required": ["orthography", "letters", "words"],
           "additionalProperties": false,

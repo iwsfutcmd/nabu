@@ -129,7 +129,7 @@ said?" card can ask about it. They are explained in the letters' notes and the g
   - the e2e solver answers the four templates. An e2e run of the first alphabet node and visual
     baselines for the row are left for a run with the app and the pinned container.
 
-## Amendment (ADR 0132)
+## Amendment (ADR 0133)
 
 The Latin spellings are no longer a romanization of the spelling. A profile names the reading its track
 asks (`scriptTrack: {reading}`, replacing `romanize`), and a word is its KC's pinned reading in that
