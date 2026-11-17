@@ -169,15 +169,20 @@ describe("speech the app can do (§10.4, ADR 0093)", () => {
     const { course } = walked("yue");
     const scored = yueLessons(course, { speech });
     const plain = lessons(walked("yue").sessions).map((s) => s.plan);
+    const fa = walked("fa");
+    const faScored = lessons(fa.sessions).map((s) => plan(fa.course, s.state, s.request, { ...s.options, speech }));
     expect(templatesOf(scored)).toContain("speak");
-    expect(templatesOf(scored)).toContain("listen-speak");
+    // Both kinds of scored speaking take tier 0's place. Which a walk's calibration picks follows its
+    // learner's history (yue's walk, since ADR 0132's questions, picks speak alone): fa's has both.
+    expect([...templatesOf(scored), ...templatesOf(faScored)]).toContain("listen-speak");
     expect(templatesOf(scored)).not.toContain("speak.tier-0");
+    expect(templatesOf(faScored)).not.toContain("speak.tier-0");
     expect(templatesOf(plain)).toContain("speak.tier-0");
     for (const t of ["speak", "listen-speak", "tone-identify"] as const) expect(templatesOf(plain)).not.toContain(t);
     expect(scored.map((p) => p.exercises.length)).toEqual(plain.map((p) => p.exercises.length));
+    expect(faScored.map((p) => p.exercises.length)).toEqual(lessons(fa.sessions).map((s) => s.plan.exercises.length));
     // Persian readings carry no tones.
-    const fa = walked("fa");
-    expect(templatesOf(lessons(fa.sessions).map((s) => plan(fa.course, s.state, s.request, { ...s.options, speech })))).not.toContain("tone-identify");
+    expect(templatesOf(faScored)).not.toContain("tone-identify");
   });
 
   it("can leave speaking out", () => {

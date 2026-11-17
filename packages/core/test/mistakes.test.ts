@@ -88,6 +88,8 @@ describe("a mistake on one word of a sentence", () => {
           const back = practicableMistakes(course, replay(missing(course, n.node.id, ex, p.exercises))).find((e) => e.item === ex.item && e.template === ex.template);
           expect(back, `${id} ${ex.id}`).toBeDefined();
           expect(word(back as Exercise), `${id} ${ex.id}`).toBe(word(ex));
+          // A fill-in comes back as the same question: which word, or which form (ADR 0132).
+          expect("asks" in (back as Exercise) ? (back as { asks?: unknown }).asks : undefined, `${id} ${ex.id}`).toBe("asks" in ex ? ex.asks : undefined);
           checked += 1;
         }
       }

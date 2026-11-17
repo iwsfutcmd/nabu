@@ -56,6 +56,16 @@ export const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
   "word-write": "player.instruction.word-write",
 };
 
+/**
+ * A card's instruction. A fill-in says what it asks (ADR 0132): which word, or which form; one from
+ * before that (a session left part-way) keeps its template's.
+ */
+export const instructionOf = (ex: Exercise): MessageId => {
+  if (ex.template === "gap-fill" && ex.asks !== undefined) return ex.asks === "form" ? "player.instruction.gap-fill-form" : "player.instruction.gap-fill-word";
+  if (ex.template === "story-complete" && ex.asks !== undefined) return ex.asks === "form" ? "player.instruction.story-complete-form" : "player.instruction.story-complete-word";
+  return INSTRUCTIONS[ex.template];
+};
+
 export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
   const { ex } = props;
   switch (ex.template) {

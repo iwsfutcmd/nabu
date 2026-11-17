@@ -4,7 +4,7 @@
  * open mistakes. `replay` is a pure fold: the same events, in any order and
  * with any duplicates, give the same state.
  */
-import type { AnswerSubmitted, ExerciseSkipped, KcCredit, LearnerEvent, SessionCompleted } from "@nabu/schema";
+import type { AnswerSubmitted, Asks, ExerciseSkipped, KcCredit, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
 import { SPEAKING, TEMPLATES } from "../lesson/templates.ts";
@@ -36,6 +36,13 @@ export interface Mistake {
    * and only an answer about it closes the mistake. Absent where the card asked the whole sentence.
    */
   readonly ask?: readonly string[];
+  /**
+   * What a fill-in (gap-fill) asked of that word (ADR 0132): which word (`ask` is its sense) or which
+   * form (`ask` is its form KCs). It is asked again as the same question, and only an answer to that
+   * question closes it. Absent on other cards, and on a fill-in's mistake from before ADR 0132, whose
+   * `ask` is all of the word's KCs.
+   */
+  readonly asks?: Asks;
 }
 
 /**
@@ -48,6 +55,19 @@ export const askOf = (credits: readonly KcCredit[]): readonly string[] | undefin
 /** Whether two mistakes ask the same thing: the same word, or both the whole sentence. */
 export const sameAsk = (a: readonly string[] | undefined, b: readonly string[] | undefined): boolean =>
   a === undefined || b === undefined ? a === b : a.length === b.length && a.every((kc, i) => kc === b[i]);
+
+/**
+ * Whether an answer (its `ask` and `asks`) is about what a mistake asked: the same word and, for a
+ * fill-in, the same question (ADR 0132). A fill-in's mistake from before ADR 0132 asked the word and
+ * its form at once: an answer to either question about that word closes it.
+ */
+export const sameQuestion = (mistake: Pick<Mistake, "ask" | "asks">, ask: readonly string[] | undefined, asks: Asks | undefined): boolean => {
+  if (mistake.asks === undefined && asks !== undefined) {
+    const before = mistake.ask;
+    return before !== undefined && ask !== undefined && ask.length > 0 && ask.every((kc) => before.includes(kc));
+  }
+  return mistake.asks === asks && sameAsk(mistake.ask, ask);
+};
 
 export interface LearnerState {
   readonly cards: Readonly<Record<string, StoredCard>>;
@@ -247,10 +267,13 @@ const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, fac
  * A first try (or a wrong retry) on a card: a mistake on the same item, template and word closes,
  * and a wrong answer opens one. A card about another word of the sentence leaves it open.
  */
-const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined): void => {
-  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameAsk(m.ask, ask)));
-  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }) }].slice(-MISTAKES_KEPT);
+const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined, asks?: Asks): void => {
+  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameQuestion(m, ask, asks)));
+  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }), ...(asks === undefined ? {} : { asks }) }].slice(-MISTAKES_KEPT);
 };
+
+/** What a fill-in's answer asked of its word (ADR 0132), where it asked about one word. */
+const questionOf = (e: AnswerSubmitted): Asks | undefined => (askOf(e.outcome.kcs) === undefined ? undefined : e.exercise.asks);
 
 const answered = (d: Draft, e: AnswerSubmitted): void => {
   const { template, item, kcs } = e.exercise;
@@ -293,7 +316,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
   // Story questions are not mistakes to practice: they only make sense inside their story.
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
-    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs));
+    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs), questionOf(e));
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {

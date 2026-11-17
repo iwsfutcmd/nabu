@@ -15,7 +15,7 @@
  *    (typing them, hearing them; ADR 0101).
  * 5. Order: selection order (new words first), ending on a likely success.
  */
-import type { BundleSentence, KcId } from "@nabu/schema";
+import type { Asks, BundleSentence, KcId } from "@nabu/schema";
 import { candidatesFor, lessonCandidates } from "../lesson/candidates.ts";
 import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
@@ -29,7 +29,7 @@ import { askedKcs, creditedKcs, facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
-import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, sameAsk, type LearnerState } from "./state.ts";
+import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, sameQuestion, type LearnerState } from "./state.ts";
 import { PACE, type PaceBand } from "./pacing.ts";
 import { NONE_OFF, skillsAsked } from "./words.ts";
 
@@ -291,13 +291,16 @@ const mistakeExercises = (ctx: MakeContext, state: LearnerState, exclude: Readon
     if (exclude.has(m.template)) continue;
     const s = byId.get(m.item);
     const kc = kcById.get(m.item);
-    const at = { ...ctx, ask: m.ask };
+    const at = { ...ctx, ask: m.ask, asks: m.asks };
     const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(at, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(at, kc) : undefined;
-    if (ex === undefined || (m.ask !== undefined && !sameAsk(askedWord(ex), m.ask))) continue;
+    if (ex === undefined || (m.ask !== undefined && !sameQuestion(m, askedWord(ex), questionOf(ex)))) continue;
     if (ex.kcs.every((k) => seen.has(k)) && !out.some((e) => e.id === ex.id)) out.push(ex);
   }
   return out;
 };
+
+/** What a fill-in asks of its word (ADR 0132), as a mistake records it. */
+const questionOf = (ex: Exercise): Asks | undefined => (ex.template === "gap-fill" || ex.template === "story-complete" ? ex.asks : undefined);
 
 /** The word a card asks about, as a mistake records it (sorted KCs); undefined for a whole sentence. */
 const askedWord = (ex: Exercise): readonly string[] | undefined => {

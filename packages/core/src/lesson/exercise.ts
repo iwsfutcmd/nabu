@@ -3,7 +3,7 @@
  * Instances are plain data: everything a template needs to render and to
  * grade is in them, so a lesson can be serialized, replayed and tested.
  */
-import type { BundleAudioItem, KcId, Persons, TaggedText } from "@nabu/schema";
+import type { Asks, BundleAudioItem, KcId, Persons, TaggedText } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
 import type { SpeechResult } from "../speech/score.ts";
 
@@ -130,7 +130,11 @@ export interface CompleteTranslation extends Common {
   readonly persons?: Persons | undefined;
 }
 
-/** A target sentence with a gap; choose the word that fits. */
+/**
+ * A target sentence with a gap; choose what fits. It asks one thing (ADR 0132): which word (every
+ * option in the answer's form and part of speech) or which form (the answer's own word in other
+ * forms the course writes).
+ */
 export interface GapFill extends Common {
   readonly template: "gap-fill";
   readonly hint: TaggedText;
@@ -138,6 +142,11 @@ export interface GapFill extends Common {
   readonly after: TaggedText;
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /**
+   * Which word or which form; it decides the instruction, what the answer credits and what feedback
+   * says. Absent on a card planned before ADR 0132 (a session left part-way), which asked both.
+   */
+  readonly asks?: Asks | undefined;
   /**
    * Who speaks and who is spoken to: the options are often the word in other persons (بدّك, بدكن),
    * which the hint alone cannot choose between.
@@ -304,13 +313,15 @@ export interface StoryChoose extends Common {
   readonly answer: number;
 }
 
-/** The next line of a story with one word missing: choose the word. */
+/** The next line of a story with one word missing: choose the word, or its form (ADR 0132). */
 export interface StoryComplete extends Common {
   readonly template: "story-complete";
   readonly before: TaggedText;
   readonly after: TaggedText;
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /** As GapFill's: absent where the bundle predates ADR 0132 (options by their first forms). */
+  readonly asks?: Asks | undefined;
 }
 
 /** The next line of a story, given its translation: build it from its tiles. */

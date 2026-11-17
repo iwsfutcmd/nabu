@@ -53,6 +53,28 @@
       "tsType": "string & { readonly __brand: \"KcId\" }",
       "examples": ["sense:早晨", "construction:sfp-aa3", "form:acc"]
     },
+    "PartOfSpeech": {
+      "title": "PartOfSpeech",
+      "description": "A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.",
+      "type": "string",
+      "enum": ["ADJ", "ADP", "ADV", "AUX", "CCONJ", "DET", "INTJ", "NOUN", "NUM", "PART", "PRON", "PROPN", "PUNCT", "SCONJ", "SYM", "VERB", "X"]
+    },
+    "UdFeatures": {
+      "title": "UdFeatures",
+      "description": "A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$" },
+      "additionalProperties": { "type": "string", "pattern": "^[A-Z0-9][A-Za-z0-9]*(,[A-Z0-9][A-Za-z0-9]*)*$" },
+      "tsType": "Readonly<Record<string, string>>",
+      "examples": [{ "NounType": "Clf" }, { "PronType": "Dem" }]
+    },
+    "Asks": {
+      "title": "Asks",
+      "description": "What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).",
+      "type": "string",
+      "enum": ["word", "form"]
+    },
     "Persons": {
       "title": "Persons",
       "description": "Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).",

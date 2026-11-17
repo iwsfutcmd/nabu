@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { BundleManifest, KcCredit, LearnerEvent, Prediction } from "@nabu/schema";
 import { askedKcs } from "../src/learner/credit.ts";
+import { exerciseRefOf } from "../src/learner/events.ts";
 import { readCourse, type CourseView, type Exercise } from "../src/lesson/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -74,7 +75,7 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
     answer: (ex, correct, attempt, latencyMs = 4000, prediction) => ({
       ...base(),
       type: "answer_submitted",
-      exercise: { id: ex.id, template: ex.template, item: ex.item, kcs: [...ex.kcs] },
+      exercise: exerciseRefOf(ex),
       attempt,
       // Self-rated speaking (tier 0) carries the learner's rating, as the player logs it (ADR 0099).
       input: { method: "choice", latencyMs, ...(ex.template === "speak.tier-0" ? { selfRating: correct ? ("good" as const) : ("again" as const) } : {}) },

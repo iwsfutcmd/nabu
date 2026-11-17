@@ -93,6 +93,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   composing through `useSettledSubmit` (@nabu/ui); never disable a button while composing (ADR 0118, D39).
 - Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
   shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
+- A gap-fill asks one thing (ADR 0132, `asks`): which word (options share the answer's form signature, lesson/signature.ts,
+  and its KC's UD `pos` and `features` exactly; none the accept set takes in the gap, none whose gloss shares a meaning)
+  or which form (the answer's own word in other attested forms; the answer must have a form). It credits the sense or the
+  form KCs; a mistake keeps `asks` and is asked again as the same question. KCs' `pos` and `features` are drafted (REVIEW).
 - Letters placed to build a word (word-write) show as the word they spell: one token, one run of text (`data-spelled-word`),
   so a script whose letters join shows them joined and marks sit on their letters. Never lay letter tiles side by side as
   the answer; pressing the word or Backspace takes back the last letter.
@@ -239,9 +243,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Phase 6 notes (see docs/adr/0043)
 - Stories: `stories:` in a unit (schemas/course-source), each on a node of kind story. Lines compile like sentence
   forms and need every course orthography; questions are `choose` steps or lines with `ask: complete|arrange`.
-- A `complete` line's distractors (shown by their first form) must make the line ungrammatical or absurd, never another
-  sensible line (pears for grapes, tea for wine, three for seven). Put the gap on an uninflected word where the line
-  has one: the answer is the word as written, so its suffix would mark it among bare first forms.
+- A story question asks one thing, and its wrong options fail for that reason only (ADR 0132). A `complete` line asks
+  which word (`asks: word`, the default: distractor KCs of the gap's `pos` and features, each shown as the course writes
+  it in the gap's form, unit or earlier) or which form (`asks: form`: the gap's word in other attested forms). A wrong
+  word makes the line false or absurd, never another sensible line (pears for grapes, tea for wine, three for seven); a
+  wrong form makes it ungrammatical, never one the line also takes. Nothing else may mark the answer (a manuscript
+  spelling, a capital). `story.distractor-form` and `story.distractor-pos` are errors.
 - One glossary matcher: @nabu/core `glossTokens` (exact and folded passes, longer wins). The app's tap-for-gloss and
   stage 7's lints both use it (core-cli `gloss`); never re-implement matching in Python.
 - The story reader nests the lesson player per question (@nabu/core/story); story sessions are mode "story".

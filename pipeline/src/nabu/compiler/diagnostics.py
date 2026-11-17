@@ -193,6 +193,21 @@ _LINTS = [
         "the same, a gap that is not exactly one word, a distractor without a form or that "
         "reads like the answer, or a line with one tile to arrange.",
     ),
+    Lint(
+        "story.distractor-form",
+        "error",
+        6,
+        "A story question's wrong option is not a word the course writes in its unit or an "
+        "earlier one (ADR 0132): no word of the distractor's sense in the gap's form (asks word), "
+        "or not two other forms of the gap's word (asks form).",
+    ),
+    Lint(
+        "story.distractor-pos",
+        "error",
+        6,
+        "A story word question offers a word of another part of speech or other UD features "
+        "than the gap's (ADR 0132): grammar alone rules it out, so it asks less than it seems.",
+    ),
     # roleplay scenario cards (Phase 8)
     Lint(
         "scenario.node",
