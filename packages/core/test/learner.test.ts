@@ -636,5 +636,6 @@ describe("tones are not scored on the device (ADR 0093)", () => {
     expect(made).toContain("speak.tier-0");
     expect(made).not.toContain("speak");
     expect(made).not.toContain("listen-speak");
-  });
+    // A walk of the whole path, every lesson planned: about 90 s alone, more on a loaded runner.
+  }, 300_000);
 });
