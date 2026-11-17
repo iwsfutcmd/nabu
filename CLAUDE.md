@@ -87,6 +87,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
+  A new text field for language text spreads `keyboardHint` (ADR 0143), so the Android app can switch the keyboard.
 - Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
   Check; Enter never checks while composing (ADR 0118).
 - Any other button that submits typed text (roleplay Send, the correction form, Start over) takes a press while
@@ -340,6 +341,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (NABU_FCM_SERVICE_ACCOUNT, NABU_APNS_*): never in the repo or chat. CI builds the preview APK (`assemblePreview`:
   org.nabu.app.preview, debuggable, signed with the committed public preview key) and replaces the APK on the
   android-preview release from main. Never sign a store release with the preview key.
+- The Android app asks the keyboard app for each text field's languages as it takes focus (ADR 0143: NabuWebView sets
+  `EditorInfo#hintLocales`; native.ts calls the KeyboardLanguage plugin). A field whose orthography is known names them
+  (`{...keyboardHint(lang, profile)}`, @nabu/ui: the profile's `input.keyboard` first); others ask for their `lang`.
+  Browsers and iOS cannot. Keep res/layout/capacitor_bridge_layout_main.xml in step with Capacitor's on upgrades.
 
 ## Corrections notes (see docs/adr/0051)
 - A correction is a `sentence_reported` event: `shown` (what the device displayed) and `correction` (only what

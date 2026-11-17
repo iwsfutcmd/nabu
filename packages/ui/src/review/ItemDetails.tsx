@@ -15,6 +15,7 @@ import type { BundleSentence, TaggedText } from "@nabu/schema";
 import { useId, useMemo, useState, type CSSProperties, type JSX } from "react";
 import { Button, Input, Label, TextField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
+import { keyboardHint } from "../keyboard.ts";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import { T } from "../T.tsx";
 import styles from "./Review.module.css";
@@ -81,7 +82,7 @@ const AddAnswer = ({ course, lang, onAccept }: { course: CourseView; lang: strin
         setResult(undefined);
       }}>
         <Label className={styles.label}>{t.format("review.accepted.add-label")}</Label>
-        <Input className={styles.input} lang={lang} dir={directionOf(lang)} spellCheck={false} autoCapitalize="none" style={fieldStyle(lang, profile?.source.fonts)} data-field="accepted-answer" />
+        <Input className={styles.input} lang={lang} {...keyboardHint(lang, profile?.source)} dir={directionOf(lang)} spellCheck={false} autoCapitalize="none" style={fieldStyle(lang, profile?.source.fonts)} data-field="accepted-answer" />
       </TextField>
       <Button className={styles.small} onPress={() => void add()} isDisabled={busy || value.trim() === ""} data-action="add-accepted">
         {t.format("review.accepted.add")}
