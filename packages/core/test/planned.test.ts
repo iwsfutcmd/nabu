@@ -355,9 +355,10 @@ describe("a word's pronunciation in its sentence (ADR 0054, 0095, 0098)", () => 
     for (const [id, orthography] of COURSES) {
       const asked = new Set(plannedCards(walked(id, orthography).sessions).map(({ ex }) => ex.template));
       expect(asked.has("vocalize"), `${id} ${orthography ?? ""}`).toBe(["fa", "apc-Arab/standard", "hbo"].includes(orthography ?? id));
-      // Typing a word's Jyutping: in the characters, not in Jyutping itself (ADR 0126); and a Chaghatay
-      // word's Schluessel, once read right by choice (ADR 0131).
-      expect(asked.has("transcribe"), `${id} ${orthography ?? ""}`).toBe(["yue", "chg-Arab/standard"].includes(orthography ?? id));
+      // Typing a word's Jyutping: in the characters, not in Jyutping itself (ADR 0126); a Chaghatay
+      // word's Schluessel, once read right by choice (ADR 0131); a Classical Chinese word's reading in
+      // the learner's tradition (Pinyin, for a learner who chose none), once read right by choice (ADR 0138).
+      expect(asked.has("transcribe"), `${id} ${orthography ?? ""}`).toBe(["yue", "chg-Arab/standard", "lzh"].includes(orthography ?? id));
     }
   });
 });

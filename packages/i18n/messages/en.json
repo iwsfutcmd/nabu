@@ -1538,6 +1538,10 @@
       "message": "Check that you're writing in the right script.",
       "description": "Generic feedback note: the answer is written in a different script from the course."
     },
+    "feedback.note.sound-alike": {
+      "message": "The right sound, the wrong letter: this word is spelled with another of the letters that sound alike.",
+      "description": "Feedback note (ADR 0142): the answer spells a word with a letter that sounds like the right one but is not the one the word is written with (Persian سد for صد: س, ص and ث are all s). The solution shows the right spelling."
+    },
     "feedback.note.spacing": {
       "message": "Watch the half-space (ZWNJ) inside this word.",
       "description": "Feedback note referenced by orthography profiles (match.zwnj.note = spacing) when the learner typed a space or nothing instead of a zero-width non-joiner."
@@ -2122,6 +2126,10 @@
       "message": "How is the marked word read?",
       "description": "Instruction above a char-read exercise: a sentence without readings, one word marked; the learner chooses its reading (e.g. Jyutping) among a few (ADR 0098)."
     },
+    "player.instruction.char-read-word.tradition": {
+      "message": "How is the marked word read in {$scheme}?",
+      "description": "Instruction above a char-read exercise in a course read in several reading traditions (Classical Chinese: Pinyin, Jyutping, Middle Chinese; ADR 0138): a sentence without readings, one word marked; the learner chooses its reading in the tradition they read in. $scheme is the tradition's name, from its data (Pinyin, Middle Chinese (Baxter))."
+    },
     "player.instruction.choose-translation": {
       "message": "What does this mean?",
       "description": "Instruction: choose the translation of the sentence shown."
@@ -2178,6 +2186,18 @@
       "message": "How is the highlighted character read here?",
       "description": "Instruction: choose the reading a character with several readings has in this word."
     },
+    "player.instruction.reading-disambiguation.tradition": {
+      "message": "How is the highlighted character read here in {$scheme}?",
+      "description": "Instruction: choose the reading a character with several readings has in this word, in a course read in several reading traditions (ADR 0138). $scheme is the tradition's name, from its data."
+    },
+    "player.instruction.reading-feature": {
+      "message": "How is the marked word read? The choices differ in one place only.",
+      "description": "Instruction above a feature card (ADR 0139): a sentence without readings, one word marked; its reading is among the same reading changed in one place the script leaves open (a vowel, a tone), and the learner chooses it."
+    },
+    "player.instruction.reading-feature.tradition": {
+      "message": "How is the marked word read in {$scheme}? The choices differ in one place only.",
+      "description": "Instruction above a feature card (ADR 0139) in a course read in several reading traditions (ADR 0138). $scheme is the tradition's name, from its data (Pinyin, Middle Chinese (Baxter))."
+    },
     "player.instruction.select-image": {
       "message": "Select the right picture",
       "description": "Instruction: pick the picture (and word) that matches the meaning shown."
@@ -2189,6 +2209,10 @@
     "player.instruction.speak-scored": {
       "message": "Say this sentence",
       "description": "Instruction: speak the sentence shown; the app listens and gives feedback."
+    },
+    "player.instruction.spelling-choice": {
+      "message": "Which spelling fits the gap?",
+      "description": "Instruction above a spelling choice (ADR 0142): a sentence with one word left out, what it means (and, in Cantonese, the word's Jyutping); the options are the word and the word spelled with a letter or character that sounds alike. The learner chooses how the word is written."
     },
     "player.instruction.story-arrange": {
       "message": "Tap the words to make what they say",
@@ -2218,9 +2242,33 @@
       "message": "Write how the marked word is read",
       "description": "Instruction above a transcribe exercise: a sentence without readings, one word marked; the learner types its reading (ADR 0095)."
     },
+    "player.instruction.transcribe-word.tradition": {
+      "message": "Write how the marked word is read in {$scheme}",
+      "description": "Instruction above a transcribe exercise in a course read in several reading traditions (ADR 0138): a sentence without readings, one word marked; the learner types its reading in the tradition they read in. $scheme is the tradition's name, from its data (Pinyin, Middle Chinese (Baxter))."
+    },
     "player.instruction.translate-into-support": {
       "message": "Translate this sentence",
       "description": "Instruction: build the translation of a target-language sentence from word tiles."
+    },
+    "player.instruction.vocalize-build": {
+      "message": "Put the vowel marks on the word",
+      "description": "Instruction above a card that shows a sentence without vowel marks, one word marked: the learner puts that word's vowel marks on its letters, choosing a letter and then the marks for it from buttons (Hebrew points, Arabic harakat)."
+    },
+    "player.vocalize-build.word": {
+      "message": "The word with its marks so far",
+      "description": "Accessible name of the area showing the marked word as the learner builds it, on the card where vowel marks are put on a word's letters."
+    },
+    "player.vocalize-build.letters": {
+      "message": "Its letters: choose one to mark",
+      "description": "Accessible name of the row of the word's letters, on the card where vowel marks are put on a word's letters. The chosen letter is the one the next mark goes on."
+    },
+    "player.vocalize-build.marks": {
+      "message": "Vowel marks",
+      "description": "Accessible name of the row of buttons, one per vowel mark (each shown on a dotted circle), on the card where vowel marks are put on a word's letters."
+    },
+    "player.vocalize-build.undo": {
+      "message": "Take back",
+      "description": "Button that removes the last vowel mark the learner put on the word, on the card where vowel marks are put on a word's letters."
     },
     "player.instruction.vocalize-choice": {
       "message": "Choose the marked word with its vowel marks",
@@ -2458,6 +2506,10 @@
       "message": "Off",
       "description": "Choice in the readings control: show no pronunciation guide."
     },
+    "player.readings.open": {
+      "message": "Unwritten",
+      "description": "A choice of where a reading layer shows (ADR 0141), beside \"All words\" and \"New words\": over new words the whole reading; over the words read before, only what the script leaves unwritten (Chaghatay's vowels, Cantonese tones), the rest as dots. Keep it short: it is a segment of a segmented control."
+    },
     "player.readings.words": {
       "message": "Show on",
       "description": "Accessible name of the choice, under a course's pronunciation guides, of which words the guide chosen shows over: all words or only new ones."
@@ -2573,6 +2625,10 @@
     "player.transcribe.label.jyutping": {
       "message": "Reading in Jyutping",
       "description": "Label of the field where the learner types a Cantonese word's reading in Jyutping."
+    },
+    "player.transcribe.label.tradition": {
+      "message": "Reading in {$scheme}",
+      "description": "Label of the field where the learner types a word's reading in a reading tradition (ADR 0138). $scheme is the tradition's name, from its data (Pinyin, Middle Chinese (Baxter))."
     },
     "player.vocalize.spelled-label": {
       "message": "The marked word in {$orthography}",
@@ -3041,6 +3097,10 @@
     "story.finished.title": {
       "message": "Story complete!",
       "description": "Heading when the learner reaches the end of a story."
+    },
+    "story.gloss.also": {
+      "message": "Also read",
+      "description": "In a tapped word's gloss (ADR 0140): heads the other readings the course gives the same spelling, each with what it means (Chaghatay اوزوم: üzüm \"grape\", also read özüm \"myself\")."
     },
     "story.gloss.hint": {
       "message": "Tap a word to see what it means.",

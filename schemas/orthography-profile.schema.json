@@ -170,6 +170,9 @@
         },
         {
           "$ref": "#/$defs/LogographsStep"
+        },
+        {
+          "$ref": "#/$defs/ToneNumbersStep"
         }
       ]
     },
@@ -392,6 +395,52 @@
               "description": "The characters that end a unit, each one code point (Jyutping: 123456).",
               "type": "string",
               "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "ToneNumbersStep": {
+      "title": "ToneNumbersStep",
+      "description": "Syllables typed with a tone number after them, written with that tone's mark (ADR 0138): Pinyin typed as xue2 compares as xué. A syllable is the run of letters before the number. Its mark goes on the first letter of the first of `first` the syllable has (a, e, ou: hao3 is hǎo, dou1 is dōu), else on its last letter of `vowels` (liu2 is liú, gui4 is guì); letters compare ignoring case. A number whose mark is empty (the neutral tone) is dropped; a number with no mark, or a syllable with nowhere to put it, is left as it is.",
+      "type": "object",
+      "required": [
+        "toneNumbers"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "toneNumbers": {
+          "type": "object",
+          "required": [
+            "marks",
+            "vowels",
+            "first"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "marks": {
+              "description": "Each tone number and the combining mark it stands for (\\u0301 for 2), or an empty string where the tone has none.",
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": {
+                "pattern": "^[0-9]$"
+              },
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "vowels": {
+              "description": "The letters that may carry a tone's mark, each a grapheme: aeiouü.",
+              "type": "string",
+              "minLength": 1
+            },
+            "first": {
+              "description": "Where the mark goes before the last vowel: the first of these the syllable has, its first letter (a, e, ou).",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
             }
           }
         }
@@ -662,6 +711,32 @@
             }
           }
         },
+        "soundAlike": {
+          "description": "Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.",
+          "type": "object",
+          "required": [
+            "sets",
+            "note"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sets": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "note": {
+              "$ref": "#/$defs/NoteId"
+            }
+          }
+        },
         "equivalences": {
           "description": "Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.",
           "type": "array",
@@ -747,6 +822,10 @@
       "properties": {
         "keyboard": {
           "$ref": "#/$defs/KeyboardRef"
+        },
+        "markBuilder": {
+          "description": "A vocalize card may also ask the word's vowel marks put on its letters, the letters given and the marks on buttons (`vocalize-build`, ADR 0137), once a choice card has shown them. For an abjad whose marks no phone keyboard has.",
+          "type": "boolean"
         },
         "extraKeys": {
           "description": "Characters for the special-character bar, in addition to the auxiliary exemplars (§6.7).",

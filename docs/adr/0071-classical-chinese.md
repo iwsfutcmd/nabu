@@ -2,6 +2,7 @@
 
 - Status: Proposed
 - Date: 2026-11-06
+- Amended by: [0138](0138-reading-traditions.md) (reading cards in the learner's tradition, each with its own progress)
 
 ## Context
 

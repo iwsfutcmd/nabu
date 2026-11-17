@@ -42,7 +42,7 @@ const faBundle = manifestOf("fa").id;
 describe("credit assignment (§8.5)", () => {
   const grader = createGrader(fa);
   it("a gap-fill credits the blank's KCs and gives the rest", () => {
-    const ex = sampleExercise(fa, "gap-fill", 7) as Extract<Exercise, { template: "gap-fill" }>;
+    const ex = sampleExercise(fa, "gap-fill", 7) as Extract<Exercise, { template: "gap-fill" | "spelling-choice" }>;
     const credit = creditOf(ex, gradeExercise(ex, { tag: "choice", index: ex.answer }, grader), fa.profiles);
     expect(credit.filter((c) => c.status === "right").length).toBeGreaterThan(0);
     expect(credit.some((c) => c.status === "given")).toBe(true);
@@ -157,6 +157,8 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.blank) };
     case "vocalize":
       return { tag: "choice", index: bad ? (ex.answer + 1) % ex.options.length : ex.answer };
+    case "vocalize-build":
+      return { tag: "text", text: bad ? ex.letters.join("") : surfaceOf(ex.vocalized) };
     case "transcribe":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.reading) };
     case "match-pairs":
@@ -172,7 +174,9 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "select-image":
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
@@ -466,15 +470,16 @@ describe("planner constraints", () => {
 
 describe("a course that names its facets (ADR 0071)", () => {
   const lzh = loadCourse("lzh");
-  const practised = (ex: Exercise): boolean => TEMPLATES[ex.template].facet === "recognize" || TEMPLATES[ex.template].facet === "produce";
+  // Read and written, never spoken or heard; read in the learner's tradition (ADR 0138).
+  const practised = (ex: Exercise): boolean => ["recognize", "produce", "read-script"].includes(TEMPLATES[ex.template].facet);
   const now = "2026-03-01T08:00:00.000Z";
 
   it("reads them from its bundle; the other courses name none and rule nothing out", () => {
-    expect(lzh.facets).toEqual(["recognize", "produce"]);
+    expect(lzh.facets).toEqual(["recognize", "produce", "read-script"]);
     for (const id of ["fa", "yue", "uz", "apc"]) expect(facetExclusions(loadCourse(id)).size).toBe(0);
   });
 
-  it("is never spoken, heard or drilled on its readings, whatever the app can score", () => {
+  it("is never spoken or heard, whatever the app can score", () => {
     const speech = speechSupportOf(lzh, 2);
     expect(speech).toEqual({ scored: false, tones: false });
     for (const { node } of lessonNodes(lzh)) {
@@ -483,7 +488,7 @@ describe("a course that names its facets (ADR 0071)", () => {
     }
     const placement = plan(lzh, emptyLearnerState(), { mode: "placement" }, { now, seed: 3, speech });
     expect(placement.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
-    expect(cardGallery(lzh, 3).filter((c) => !["recognize", "produce"].includes(TEMPLATES[c.template].facet))).toEqual([]);
+    expect(cardGallery(lzh, 3).filter((c) => !["recognize", "produce", "read-script"].includes(TEMPLATES[c.template].facet))).toEqual([]);
     expect(sampleExercise(lzh, "speak.tier-0")).toBeUndefined();
   }, WHOLE_COURSE_TIMEOUT_MS);
 
@@ -522,7 +527,9 @@ describe("a course that names its facets (ADR 0071)", () => {
 
   it("still shows its readings: every word of a lesson carries all three layers", () => {
     const node = lessonNodes(lzh)[0]?.node.id as string;
-    const words = plan(lzh, emptyLearnerState(), { mode: "lesson", node }, { now, seed: 3 }).exercises.flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
+    // A reading card's prompt goes without them: its word's reading is the answer (ADR 0138).
+    const shown = plan(lzh, emptyLearnerState(), { mode: "lesson", node }, { now, seed: 3 }).exercises.filter((ex) => TEMPLATES[ex.template].facet !== "read-script");
+    const words = shown.flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
     const han = words.filter((t) => t.kind === "word" && /\p{Script=Han}/u.test(t.surface));
     expect(han.length).toBeGreaterThan(0);
     for (const t of han) expect(Object.keys(t.ruby ?? {}).sort()).toEqual(["baxter", "jyutping", "pinyin"]);
@@ -629,5 +636,6 @@ describe("tones are not scored on the device (ADR 0093)", () => {
     expect(made).toContain("speak.tier-0");
     expect(made).not.toContain("speak");
     expect(made).not.toContain("listen-speak");
-  });
+    // A walk of the whole path, every lesson planned: about 90 s alone, more on a loaded runner.
+  }, 300_000);
 });

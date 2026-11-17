@@ -39,6 +39,7 @@ declare const styles: {
   readonly label: string;
   readonly left: string;
   readonly listen: string;
+  readonly markKey: string;
   readonly menu: string;
   readonly menuBody: string;
   readonly missedCard: string;

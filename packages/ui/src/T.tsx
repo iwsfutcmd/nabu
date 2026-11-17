@@ -14,6 +14,7 @@
  * - Vocalization (§6.6): text is stored vocalized; `marks="hide"` strips the
  *   profile's mark set for display only, never in the data.
  */
+import { openLetters } from "@nabu/core";
 import { kcsOfToken } from "@nabu/core/learner";
 import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
 import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
@@ -21,7 +22,7 @@ import type { SchemeId, TaggedText, Token } from "@nabu/schema";
 import { Fragment, useCallback, useMemo, useRef, type CSSProperties, type JSX } from "react";
 import { useIsTarget, useOrthography } from "./context.tsx";
 import { useFonts } from "./fonts.ts";
-import { useReadingFaded, useWordStatus, type Marks } from "./marks.tsx";
+import { useHomograph, useOpenLettersKept, useReadingFaded, useWordStatus, type Marks } from "./marks.tsx";
 import { useRubyLift } from "./ruby-lift.ts";
 import styles from "./T.module.css";
 
@@ -97,11 +98,18 @@ interface TokenViewProps {
   readonly pressed: boolean;
   /** How far its reading is lifted over where the browser sets it, in its em (ruby-lift.ts), once measured. */
   readonly lift: number | undefined;
+  /** Its reading keeps only what the script leaves unwritten (ADR 0141): the word's reading has faded. */
+  readonly open: boolean;
+  /** Its spelling is read more than one way in the course (ADR 0140). */
+  readonly homograph: boolean;
 }
 
-const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed, lift }: TokenViewProps): JSX.Element => {
+const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed, lift, open, homograph }: TokenViewProps): JSX.Element => {
   const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
-  const segments = ruby === false ? undefined : token.ruby?.[ruby];
+  const full = ruby === false ? undefined : token.ruby?.[ruby];
+  // Minimal ruby (ADR 0141): each segment's unwritten letters, a dot for the rest; none where nothing is open.
+  const minimal = ruby === false || !open || full === undefined ? full : full.map((segment) => ({ ...segment, text: openLetters(ruby, segment.text) }));
+  const segments = minimal !== undefined && minimal.every((segment) => segment.text === "") ? undefined : minimal;
   // A focused character needs the segment bases even when no reading layer is shown.
   const bases = segments ?? (focus === undefined ? undefined : Object.values(token.ruby ?? {})[0]);
   const tcy = token.kind === "number" && graphemeCount(token.surface) <= TATE_CHU_YOKO_MAX;
@@ -135,6 +143,8 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
         data-highlight={highlighted || undefined}
         data-emphasis={emphasized || undefined}
         data-current={spoken || undefined}
+        data-homograph={homograph || undefined}
+        data-open-letters={(open && segments !== undefined) || undefined}
         aria-pressed={pressed}
         onClick={() => onPress(index)}
       >
@@ -152,6 +162,8 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
       data-highlight={highlighted || undefined}
       data-emphasis={emphasized || undefined}
       data-current={spoken || undefined}
+      data-homograph={homograph || undefined}
+      data-open-letters={(open && segments !== undefined) || undefined}
     >
       {content}
     </Tag>
@@ -164,7 +176,11 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
  */
 export const useShowsRuby = (): ((text: TaggedText, scheme: SchemeId) => boolean) => {
   const faded = useReadingFaded();
-  return (text, scheme) => text.tokens.some((t) => (t.ruby?.[scheme]?.length ?? 0) > 0 && !faded(kcsOfToken(t), t.surface, text.orthography));
+  const keepOpen = useOpenLettersKept();
+  // A faded word may keep what the script leaves unwritten (ADR 0141).
+  const shows = (t: Token, scheme: SchemeId, orthography: string): boolean =>
+    !faded(kcsOfToken(t), t.surface, orthography) || (keepOpen && (t.ruby?.[scheme] ?? []).some((segment) => openLetters(scheme, segment.text) !== ""));
+  return (text, scheme) => text.tokens.some((t) => (t.ruby?.[scheme]?.length ?? 0) > 0 && shows(t, scheme, text.orthography));
 };
 
 export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, emphasis, current, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
@@ -172,6 +188,8 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const target = useIsTarget(text.orthography);
   const status = useWordStatus();
   const faded = useReadingFaded();
+  const keepOpen = useOpenLettersKept();
+  const homograph = useHomograph();
   const markSet = marks === "show" ? undefined : profile?.match?.marks?.set;
   const strip = useMemo(() => markStripper(markSet), [markSet]);
   // "new": a word the learner knows loses its marks; one still being learned (or unknown) keeps them.
@@ -179,8 +197,9 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   // Readings on new words only (ADR 0131): a word whose reading the learner has shown goes without,
   // unless it is marked (the word feedback corrects) or tapped (the word looked up): those show it.
   const looked = (index: number): boolean => highlight?.includes(index) === true || pressed === index;
-  const rubyOf = (token: Token, index: number): SchemeId | false =>
-    ruby !== false && !looked(index) && faded(kcsOfToken(token), token.surface, text.orthography) ? false : ruby;
+  const fadedAt = (token: Token, index: number): boolean => ruby !== false && !looked(index) && faded(kcsOfToken(token), token.surface, text.orthography);
+  // A faded reading goes, or keeps only what the script leaves unwritten (ADR 0141).
+  const rubyOf = (token: Token, index: number): SchemeId | false => (fadedAt(token, index) && !keepOpen ? false : ruby);
   const stripOf = (token: Token): RegExp | undefined => (marks === "hide" || (marks === "new" && known(token)) ? strip : undefined);
   const font = fontStackFor(text.lang, profile?.fonts);
   useFonts(font.family);
@@ -236,6 +255,8 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           focus={focus?.token === index ? focus.segment : undefined}
           onPress={onTokenPress}
           pressed={pressed === index}
+          open={keepOpen && fadedAt(token, index)}
+          homograph={token.kind === "word" && homograph(token.surface, text.orthography)}
         />
       ))}
     </Tag>

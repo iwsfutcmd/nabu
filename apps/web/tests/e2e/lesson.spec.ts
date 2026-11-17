@@ -10,6 +10,7 @@
  * lessons into the device's log, and plans the same session the app plans.
  */
 import { lessonNodes } from "@nabu/core/lesson";
+import type { SchemeId } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
 import { answer, expectRightAndContinue, graded, historyBefore, loadCourse, logOf, planned, playSession, seedLog, sessionUrl, waitFor, type Mode } from "./solver.ts";
 
@@ -107,8 +108,8 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   const course = loadCourse("lzh", "lzh-Hant/standard");
   const request = { mode: "lesson", node: "lzh.u01.well-said" } as const;
   const exercises = planned(course, [], request, NOW, SEED);
-  // Read and written only: nothing to hear, say or transcribe.
-  expect(exercises.map((e) => e.template).filter((t) => /speak|listen|tone|char-read|reading|transcribe/u.test(t))).toEqual([]);
+  // Read and written only: nothing to hear or say (its readings are asked, ADR 0138).
+  expect(exercises.map((e) => e.template).filter((t) => /speak|listen|tone/u.test(t))).toEqual([]);
   await page.goto(sessionUrl(course, request, SEED));
   const player = page.locator("[data-lesson-player]");
   await expect(player).toHaveAttribute("data-state", "answering");
@@ -130,6 +131,39 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   await page.locator("[data-lesson-player] [data-action=display]").click();
   await page.locator("[data-display-menu] [data-toggle=readings] [data-reading=off]").click();
   await expect(page.locator("[data-lesson-player] rt")).toHaveCount(0);
+});
+
+test("Classical Chinese asks a word's reading in the tradition the learner reads in, kept with readings off (ADR 0138)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("lzh", "lzh-Hant/standard");
+  const request = { mode: "lesson", node: "lzh.u01.well-said" } as const;
+  // The learner chose Baxter's Middle Chinese, then turned readings off: they still read in Baxter.
+  await page.addInitScript(() => {
+    localStorage.setItem("nabu.tradition.lzh-Hant/standard", "baxter");
+    localStorage.setItem("nabu.reading.lzh-Hant/standard", "");
+  });
+  const exercises = planned(course, [], request, NOW, SEED, "UTC", {}, "baxter" as SchemeId);
+  const asked = exercises.find((e) => e.template === "char-read");
+  if (asked?.template !== "char-read") throw new Error("the lesson asks no reading");
+  expect(asked.tradition).toBe("baxter");
+  await page.goto(sessionUrl(course, request, SEED));
+  for (const ex of exercises) {
+    await waitFor(page, ex);
+    if (ex.id === asked.id) {
+      const player = page.locator("[data-lesson-player]");
+      // The tradition's name, from its data, isolated as MF2 isolates every placeholder.
+      await expect(player.locator("h2").first()).toContainText("Middle Chinese (Baxter)");
+      await expect(player.locator('[data-option] [lang="ltc-Latn-x-baxter"]').first()).toBeVisible();
+    }
+    await answer(page, ex, "keyboard");
+    await expectRightAndContinue(page, "keyboard", ex);
+    if (ex.id === asked.id) break;
+  }
+  // Logged as Baxter's: its progress is that tradition's own.
+  await expect
+    .poll(async () => (await logOf(page, "lzh")).find((e) => e.type === "answer_submitted" && e.exercise.id === asked.id))
+    .toMatchObject({ exercise: { reading: "baxter" } });
 });
 
 test("Chaghatay is read in Arabic, with Schluessel's transliteration over each new word, or every word or none (ADR 0129, 0131)", async ({ page }, info) => {

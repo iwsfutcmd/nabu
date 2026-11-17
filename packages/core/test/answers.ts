@@ -8,7 +8,9 @@ export const rightAnswer = (ex: Exercise): Response => {
     case "select-image":
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
@@ -34,6 +36,8 @@ export const rightAnswer = (ex: Exercise): Response => {
       return { tag: "text", text: surfaceOf(ex.blank) };
     case "vocalize":
       return { tag: "choice", index: ex.answer };
+    case "vocalize-build":
+      return { tag: "text", text: surfaceOf(ex.vocalized) };
     case "transcribe":
       return { tag: "text", text: surfaceOf(ex.reading) };
     case "speak.tier-0":
@@ -50,7 +54,9 @@ export const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "select-image":
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
@@ -76,6 +82,8 @@ export const wrongAnswer = (ex: Exercise): Response | undefined => {
       return { tag: "text", text: "qqqq zzzz" };
     case "vocalize":
       return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
+    case "vocalize-build":
+      return { tag: "text", text: ex.letters.join("") };
     case "transcribe":
       return { tag: "text", text: "qqqq1" };
     case "speak.tier-0":

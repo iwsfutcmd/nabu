@@ -3,7 +3,7 @@
  * Instances are plain data: everything a template needs to render and to
  * grade is in them, so a lesson can be serialized, replayed and tested.
  */
-import type { Asks, BundleAudioItem, KcId, Persons, TaggedText } from "@nabu/schema";
+import type { Asks, BundleAudioItem, KcId, Persons, SchemeId, TaggedText } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
 import type { SpeechResult } from "../speech/score.ts";
 
@@ -16,9 +16,12 @@ export type TemplateId =
   | "translate-type.l1-l2"
   | "complete-translation"
   | "gap-fill"
+  | "spelling-choice"
   | "char-read"
+  | "reading-feature"
   | "reading-disambiguation"
   | "vocalize"
+  | "vocalize-build"
   | "transcribe"
   | "speak.tier-0"
   | "speak"
@@ -135,8 +138,13 @@ export interface CompleteTranslation extends Common {
  * option in the answer's form and part of speech) or which form (the answer's own word in other
  * forms the course writes).
  */
+/**
+ * A sentence with a gap: choose the word that fills it. A spelling choice (`spelling-choice`, ADR
+ * 0142) asks the same of one word's spelling: its options are the word and the word with a letter
+ * (or character) traded for one that sounds alike, the sound given (`reading`) where a scheme writes it.
+ */
 export interface GapFill extends Common {
-  readonly template: "gap-fill";
+  readonly template: "gap-fill" | "spelling-choice";
   readonly hint: TaggedText;
   readonly before: TaggedText;
   readonly after: TaggedText;
@@ -152,14 +160,17 @@ export interface GapFill extends Common {
    * which the hint alone cannot choose between.
    */
   readonly persons?: Persons | undefined;
+  /** A spelling choice's word as read (its Jyutping), where the course's first reading scheme writes it. */
+  readonly reading?: TaggedText | undefined;
 }
 
 /**
  * A word without its reading; choose the reading (Jyutping). On a script track (ADR 0088): a letter
- * or a word, and its Latin spelling to choose.
+ * or a word, and its Latin spelling to choose. A feature card (`reading-feature`, ADR 0139) asks the
+ * same in one place only: its options differ there alone, in every way the script leaves open.
  */
 export interface CharRead extends Common {
-  readonly template: "char-read" | "letter-read" | "word-read";
+  readonly template: "char-read" | "reading-feature" | "letter-read" | "word-read";
   /** A char-read card's sentence without ruby (ADR 0098); a script track's letter or word. */
   readonly prompt: TaggedText;
   /** char-read: the word asked about, its token in the prompt, and what the sentence means. */
@@ -167,6 +178,11 @@ export interface CharRead extends Common {
   readonly translation?: TaggedText | undefined;
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /**
+   * The reading tradition asked (ADR 0138), where the orthography is read in more than one (lzh:
+   * pinyin, jyutping, baxter): its read-script card is that tradition's. Absent otherwise.
+   */
+  readonly tradition?: SchemeId | undefined;
 }
 
 /** A polyphonic character in a word; choose the reading it has there (行 in 銀行 vs 行路). */
@@ -177,6 +193,11 @@ export interface ReadingDisambiguation extends Common {
   readonly focus: { readonly token: number; readonly segment: number };
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /**
+   * The reading tradition asked (ADR 0138), where the orthography is read in more than one (lzh:
+   * pinyin, jyutping, baxter): its read-script card is that tradition's. Absent otherwise.
+   */
+  readonly tradition?: SchemeId | undefined;
 }
 
 /**
@@ -204,6 +225,35 @@ export interface Vocalize extends Common {
   readonly spelled?: TaggedText | undefined;
 }
 
+/**
+ * Vowel marks put on a word's letters (ADR 0137): the sentence without marks, one word marked; its
+ * letters are given and the learner puts the profile's marks on them from buttons, once a vocalize
+ * card has shown the word's marks. The answer is the word with its marks, as text.
+ */
+export interface VocalizeBuild extends Common {
+  readonly template: "vocalize-build";
+  /** The sentence without vowel marks, as a reader of the script sees it. */
+  readonly prompt: TaggedText;
+  /** The word asked about: its token in the prompt. */
+  readonly word: number;
+  /** What the sentence means. */
+  readonly translation: TaggedText;
+  /** The word with its vowel marks (the course's vocalization): the answer. */
+  readonly vocalized: TaggedText;
+  /** The word's letters without marks, grapheme by grapheme: what the marks go on. */
+  readonly letters: readonly string[];
+  /** The marks the learner may put on them: the profile's mark set, in its order. */
+  readonly marks: readonly string[];
+  /** Marks of the set a word may have or not (sukun, ADR 0054): never counted either way. */
+  readonly optional: readonly string[];
+  /**
+   * For each letter, the marks the course's words give that letter where it stands (attested, as
+   * the vocalize card's variants are; ADR 0098): while a letter's marks are part of a longer one,
+   * it stays the letter being marked (a dagesh, then its vowel).
+   */
+  readonly combos: readonly (readonly string[])[];
+}
+
 /** A Han word of a sentence, in context: type its reading (Jyutping) (ADR 0054; in context, ADR 0095). */
 export interface Transcribe extends Common {
   readonly template: "transcribe";
@@ -216,6 +266,11 @@ export interface Transcribe extends Common {
   readonly scheme: string;
   /** The word's pinned reading, tagged as the scheme (yue-Latn-HK-jyutping). */
   readonly reading: TaggedText;
+  /**
+   * The reading tradition asked (ADR 0138), where the orthography is read in more than one (lzh:
+   * pinyin, jyutping, baxter): its read-script card is that tradition's. Absent otherwise.
+   */
+  readonly tradition?: SchemeId | undefined;
 }
 
 /** Speak tier 0 (§10.4): say it, record it, compare, rate yourself. */
@@ -346,6 +401,7 @@ export type Exercise =
   | CharRead
   | ReadingDisambiguation
   | Vocalize
+  | VocalizeBuild
   | Transcribe
   | Speak
   | SpeakScored

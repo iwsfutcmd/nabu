@@ -193,6 +193,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `readingsShown`: never in a tapped word's gloss or the word list, nor on a word tapped (`pressed`) or marked (`highlight`).
   Pass `readingsShown` wherever `known` goes. A gloss always shows a reading, readings off or not (`glossRuby`); a word
   glossed by its parts heads its panel with its own reading.
+- Writing side (ADR 0142): a profile's `soundAlike` sets (fa) make a word apart only by them the right sound with the
+  wrong letter: never a typo, WRONG (`sound-alike`) or WRONG_WORD; `spelling-choice` (write-script) offers the word among
+  its sound-alike spellings (yue: homophone characters, the Jyutping given). Name a colloquial spelling in the variants
+  table before a spelling choice can offer it as wrong.
+- Reading side (ADR 0139–0141): a feature card (`reading-feature`) asks one place a script leaves open (`readingFeatures`:
+  a scheme's `variants` letter or an attested tone), options differing there alone; homographs (`homographsOf`) are marked
+  in lessons and stories (`HomographsProvider`) and a tap lists the other readings; the readings choice Unwritten (`open`)
+  keeps only `openLetters` over words read before. All from scheme data: never a list of letters or tones in code.
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 
@@ -357,6 +365,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
   plans one where it can. Optional marks: the profile's `match.marks.optional`; orthographies that spell the vowels
   (apc: Arabizi), `match.marks.spelledIn`.
+- Where a profile sets `input.markBuilder` (hbo, apc), `vocalize-build` asks the same word's marks put on its letters
+  from buttons (ADR 0137), only once a vocalize card has shown them (`shown`); graded by `gradeVowels`. Never a text
+  field for marks; never a list of marks in code (the letter stays chosen while the course attests more marks on it).
 - Reading schemes are data (ADR 0109): a new scheme is `profiles/schemes/<id>.yaml` (schemas/reading-scheme.schema.json:
   `names` per language, lang, answer orthography, syllable shape, tones), plug-ins in `nabu.schemes` for what voices need, and
   `reading-syllables`/`reading-tone` conformance vectors. Never hard-code a scheme id in TS or Python.
@@ -432,7 +443,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Classical Chinese notes (see docs/adr/0071)
 - A course's `facets` (course.yaml, manifest) rule out every template of another facet (`facetExclusions`, wherever
-  speechExclusions applies). lzh is [recognize, produce]: no audio, never spoken, heard or drilled on its readings.
+  speechExclusions applies). lzh is [recognize, produce, read-script]: no audio, never spoken or heard.
+- Reading traditions (ADR 0138): an orthography's ruby layers whose scheme has an `answer` (`readingTraditions`). Reading
+  cards ask the learner's (the layer last chosen, kept when readings are off: web `storedTradition`; pass it as `reading`
+  to `plan`, `readingsShown`, `practicableMistakes`). Where there are several (lzh: Pinyin, Jyutping, Baxter) a card names
+  its `tradition` and its read-script card is that tradition's (`kc|read-script|orth|scheme`); with one, keys are as
+  before. Typed readings come after a choice card in that tradition. Pinyin is typed with marks or tone numbers
+  (`toneNumbers` step), its tones `required`; Baxter's ASCII is case folded, no typo leeway.
 - An orthography may pin several ruby layers (lzh: pinyin, jyutping, baxter). Every Han word token pins all of them,
   chosen by sense (說.yue is yuè / jyut6 / ywet), one reading in all three: never Pinyin of one word with Baxter of
   another (見 "see" jiàn / gin3 / kenH, "appear, have an audience" xiàn / jin6 / henH). The compiler checks they line up per character. Jyutping is the

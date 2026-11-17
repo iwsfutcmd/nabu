@@ -84,6 +84,8 @@ const rightTo = (ex: Exercise): Draft => {
       return { tag: "text", text: surfaceOf(ex.blank) };
     case "transcribe":
       return { tag: "text", text: surfaceOf(ex.reading) };
+    case "vocalize-build":
+      return { tag: "text", text: surfaceOf(ex.vocalized) };
     case "speak.tier-0":
     case "speak":
     case "listen-speak":

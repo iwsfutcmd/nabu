@@ -59,7 +59,7 @@ import { SentencesPage, useCorrections } from "./Corrections.tsx";
 import { LineReport } from "./Report.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
-import { storedReading, storeReading } from "./readings.ts";
+import { storedReading, storedTradition, storeReading } from "./readings.ts";
 import { reportIntake, reportsThrough } from "./reports.ts";
 import { ReportsLink, ReportsPage } from "./YourReports.tsx";
 import { AudioCheckPage } from "./AudioCheck.tsx";
@@ -605,7 +605,7 @@ const CoursePath = ({
   // What a mistakes session would hold now: a mistake on a listening card waits out a listening
   // break, and one the course no longer makes is not counted (practicableMistakes).
   const mistakes = useMemo(
-    () => practicableMistakes(course, state, { exclude: exclusionsOf(off), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
+    () => practicableMistakes(course, state, { exclude: exclusionsOf(off), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0), reading: storedTradition(course.orthography) }).length,
     [course, state, off, speechTiers],
   );
   const today = game?.xp.byDate[localDate(now)] ?? 0;
@@ -1040,7 +1040,9 @@ const plannedSetup = (props: SessionProps, route: string): Setup => {
   const now = new Date();
   // The learner's pace (ADR 0105): a lesson's share of review and the retention target.
   const pace = paceOf(course, state, now.toISOString(), paceChoiceOf(course.id), facetsOff).band;
-  const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, facetsOff, ...(exclude.size > 0 ? { exclude } : {}) });
+  // Reading cards ask the tradition the learner reads in, with its own progress (ADR 0138).
+  const reading = storedTradition(course.orthography);
+  const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, facetsOff, reading, ...(exclude.size > 0 ? { exclude } : {}) });
   const session = uuidv7(now.getTime());
   const open: OpenSession | undefined = planned.exercises.length === 0 ? undefined : { route, course: course.id, session, seed, bundle: loaded.manifest.id, opened: now.getTime(), plan: planned };
   return { seed, planned, session, open };
@@ -1172,7 +1174,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   // The words the learner knows as the session opens: where a course marks vowels on new words only (P12).
   const [known] = useState(() => knownWords(course, state, new Date(), facetsOff));
   // And the words whose reading they have shown: where readings show on new words only (ADR 0131).
-  const [readingsKnown] = useState(() => readingsShown(course, state));
+  const [readingsKnown] = useState(() => readingsShown(course, state, storedTradition(course.orthography)));
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   // The AI help the session's answers got, which its end shows again (M10).
@@ -1314,7 +1316,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
       session,
       script: storyScript(course, story, seededRng(seed)),
       known: knownWords(course, state, new Date(), facetsOff),
-      readings: readingsShown(course, state),
+      readings: readingsShown(course, state, storedTradition(course.orthography)),
       onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep, session }),
     };
   });

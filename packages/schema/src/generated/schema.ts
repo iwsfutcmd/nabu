@@ -253,6 +253,10 @@ export type KcRefLocal = string & { readonly __brand: "KcId" };
  */
 export type Asks2 = "word" | "form";
 /**
+ * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
+ */
+export type SchemeId1 = string & { readonly __brand: "SchemeId" };
+/**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
 export type Uuid3 = string;
@@ -322,7 +326,8 @@ export type NormalizeStep =
   | WhitespaceStep
   | DetachStep
   | SplitStep
-  | LogographsStep;
+  | LogographsStep
+  | ToneNumbersStep;
 /**
  * Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).
  *
@@ -406,7 +411,7 @@ export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  */
-export type SchemeId1 = string & { readonly __brand: "SchemeId" };
+export type SchemeId2 = string & { readonly __brand: "SchemeId" };
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
@@ -563,6 +568,7 @@ export interface NabuSchemaIndex {
   readonly WhitespaceStep: WhitespaceStep;
   readonly DetachStep: DetachStep;
   readonly SplitStep: SplitStep;
+  readonly ToneNumbersStep: ToneNumbersStep;
   readonly LogographsStep: LogographsStep;
   readonly MatchPolicy: MatchPolicy;
   readonly NoteId: NoteId;
@@ -2467,9 +2473,12 @@ export interface ExerciseRef {
     | "translate-type.l1-l2"
     | "complete-translation"
     | "gap-fill"
+    | "spelling-choice"
     | "char-read"
+    | "reading-feature"
     | "reading-disambiguation"
     | "vocalize"
+    | "vocalize-build"
     | "transcribe"
     | "speak.tier-0"
     | "speak"
@@ -2492,6 +2501,7 @@ export interface ExerciseRef {
   readonly item: string;
   readonly kcs: readonly KcRefLocal[];
   readonly asks?: Asks2;
+  readonly reading?: SchemeId1;
 }
 /**
  * Shadow-mode log of the performance model (§9.3): the predicted chance of a right answer.
@@ -3202,6 +3212,30 @@ export interface LogographsStep {
   };
 }
 /**
+ * Syllables typed with a tone number after them, written with that tone's mark (ADR 0138): Pinyin typed as xue2 compares as xué. A syllable is the run of letters before the number. Its mark goes on the first letter of the first of `first` the syllable has (a, e, ou: hao3 is hǎo, dou1 is dōu), else on its last letter of `vowels` (liu2 is liú, gui4 is guì); letters compare ignoring case. A number whose mark is empty (the neutral tone) is dropped; a number with no mark, or a syllable with nowhere to put it, is left as it is.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ToneNumbersStep".
+ */
+export interface ToneNumbersStep {
+  readonly toneNumbers: {
+    /**
+     * Each tone number and the combining mark it stands for (\u0301 for 2), or an empty string where the tone has none.
+     */
+    readonly marks: {
+      readonly [k: string]: string;
+    };
+    /**
+     * The letters that may carry a tone's mark, each a grapheme: aeiouü.
+     */
+    readonly vowels: string;
+    /**
+     * Where the mark goes before the last vowel: the first of these the syllable has, its first letter (a, e, ou).
+     */
+    readonly first: readonly string[];
+  };
+}
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "MatchPolicy".
  */
@@ -3269,6 +3303,16 @@ export interface MatchPolicy {
   readonly apostrophe?: {
     readonly policy: Policy;
     readonly note?: NoteId;
+  };
+  /**
+   * Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.
+   */
+  readonly soundAlike?: {
+    /**
+     * @minItems 1
+     */
+    readonly sets: readonly string[][];
+    readonly note: NoteId;
   };
   /**
    * Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.
@@ -3348,6 +3392,10 @@ export interface AnnotationLayer {
 export interface InputAids {
   readonly keyboard?: KeyboardRef;
   /**
+   * A vocalize card may also ask the word's vowel marks put on its letters, the letters given and the marks on buttons (`vocalize-build`, ADR 0137), once a choice card has shown them. For an abjad whose marks no phone keyboard has.
+   */
+  readonly markBuilder?: boolean;
+  /**
    * Characters for the special-character bar, in addition to the auxiliary exemplars (§6.7).
    */
   readonly extraKeys?: readonly string[];
@@ -3405,7 +3453,7 @@ export interface Fonts {
  * via the `definition` "ScriptTrack".
  */
 export interface ScriptTrack {
-  readonly reading: SchemeId1;
+  readonly reading: SchemeId2;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

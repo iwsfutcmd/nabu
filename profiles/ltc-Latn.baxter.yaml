@@ -1,0 +1,21 @@
+# profiles/ltc-Latn.baxter.yaml
+# Baxter's ASCII transcription of Middle Chinese as the answer of a reading card (ADR 0138), as Baxter &
+# Sagart (2014) write it. Case is folded: his tone letters X and H come only at a syllable's end, where
+# none of his lowercase letters does. A word's syllables typed together or apart compare alike. No typo
+# leeway: a letter off is another reading.
+id: ltc-Latn/baxter
+lang: ltc-Latn
+exemplars: cldr:en
+exemplarsExtra: ["'", "+"]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  # An apostrophe typed for his glottal stop (’ or ').
+  - map: { "\u2019": "'" }
+  - whitespace: remove
+match:
+  case: { locale: en }
+input:
+  keyboard: cldr-kbd:en
+  extraKeys: ["'", "+"]
+layout: { vertical: none }

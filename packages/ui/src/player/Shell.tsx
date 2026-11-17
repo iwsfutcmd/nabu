@@ -3,6 +3,7 @@
  * header with its progress bar, the toggles in it (the display menu, the sound switch) and the quit
  * dialog. A fix to one of them is made once, for both.
  */
+import { hasOpenLetters } from "@nabu/core";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
@@ -105,6 +106,8 @@ export interface Toggles {
   readonly glossRuby: SchemeId | false;
   /** Readings on new words only (ADR 0131): the layer shown fades, and the learner shows it so. */
   readonly fade: boolean;
+  /** Words read before keep what the script leaves unwritten (ADR 0141): the learner shows the layer so. */
+  readonly open: boolean;
 }
 
 /**
@@ -125,7 +128,8 @@ export const useToggles = (profile: OrthographyProfile | undefined, scope: "word
     display,
     readings,
     glossRuby: readings.shown !== false ? readings.shown : (readings.layers[0]?.scheme ?? false),
-    fade: display.readings === "new" && fades(readings.layers.find((l) => l.scheme === readings.shown)),
+    fade: (display.readings === "new" || display.readings === "open") && fades(readings.layers.find((l) => l.scheme === readings.shown)),
+    open: display.readings === "open" && readings.shown !== false && hasOpenLetters(readings.shown),
   };
 };
 

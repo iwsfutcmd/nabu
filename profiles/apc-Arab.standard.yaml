@@ -46,6 +46,8 @@ annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true. Shadda and harakat where content has them (بدّي)
 input:
   keyboard: cldr-kbd:ar
+  # Its vowel marks put on a word's letters from buttons, once a choice card has shown them (ADR 0137).
+  markBuilder: true
 layout: { vertical: none }
 fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9 }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.

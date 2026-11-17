@@ -25,7 +25,7 @@
       "$ref": "common.schema.json#/$defs/ScriptedLangTag"
     },
     "answer": {
-      "description": "The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese.",
+      "description": "The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked. Where an orthography has several such schemes, each is a reading tradition the learner may read in (ADR 0138: Pinyin, Jyutping and Baxter in Classical Chinese).",
       "$ref": "common.schema.json#/$defs/OrthographyId"
     },
     "latin": {

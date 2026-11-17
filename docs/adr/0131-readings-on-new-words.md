@@ -2,6 +2,7 @@
 
 - Status: Proposed
 - Date: 2026-11-16
+- Amended by: [0141](0141-minimal-ruby.md) (a third choice: what the script leaves unwritten over words read before)
 
 ## Context
 

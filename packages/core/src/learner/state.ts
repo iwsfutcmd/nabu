@@ -147,18 +147,24 @@ export const emptyLearnerState = (): LearnerState => ({
  */
 export const SCRIPT_FACETS: ReadonlySet<Facet> = new Set<Facet>(["read-script", "write-script"]);
 
-/** The card of a (KC, facet): "kc|facet", or "kc|facet|orthography" for a script facet. */
-export const cardKey = (kc: string, facet: Facet, orthography: string): string => (SCRIPT_FACETS.has(facet) ? `${kc}|${facet}|${orthography}` : `${kc}|${facet}`);
+/**
+ * The card of a (KC, facet): "kc|facet", or "kc|facet|orthography" for a script facet; a reading
+ * in one of several traditions (ADR 0138) is "kc|read-script|orthography|tradition".
+ */
+export const cardKey = (kc: string, facet: Facet, orthography: string, reading?: string): string =>
+  !SCRIPT_FACETS.has(facet) ? `${kc}|${facet}` : facet === "read-script" && reading !== undefined ? `${kc}|${facet}|${orthography}|${reading}` : `${kc}|${facet}|${orthography}`;
 
 export interface CardRef {
   readonly kc: string;
   readonly facet: Facet;
   readonly orthography?: string | undefined;
+  /** The reading tradition of a read-script card, where its orthography has several (ADR 0138). */
+  readonly reading?: string | undefined;
 }
 
 export const parseCardKey = (key: string): CardRef => {
-  const [kc = "", facet = "", orthography] = key.split("|");
-  return { kc, facet: facet as Facet, orthography };
+  const [kc = "", facet = "", orthography, reading] = key.split("|");
+  return { kc, facet: facet as Facet, orthography, ...(reading === undefined ? {} : { reading }) };
 };
 
 const scheduler: FSRS = fsrs(generatorParameters({ request_retention: DESIRED_RETENTION, enable_fuzz: false }));
@@ -181,14 +187,14 @@ const fromCard = (c: Card): StoredCard => ({
   last_review: c.last_review?.toISOString(),
 });
 
-/** FSRS retrievability of a (KC, facet) in an orthography at `now`: 0 when never practised. */
-export const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string): number => {
-  const card = state.cards[cardKey(kc, facet, orthography)];
+/** FSRS retrievability of a (KC, facet) in an orthography (and reading tradition, ADR 0138) at `now`: 0 when never practised. */
+export const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string, reading?: string): number => {
+  const card = state.cards[cardKey(kc, facet, orthography, reading)];
   return card === undefined ? 0 : scheduler.get_retrievability(toCard(card), new Date(now), false);
 };
 
-export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string): number =>
-  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now), 0) / kcs.length;
+export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string, reading?: string): number =>
+  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now, reading), 0) / kcs.length;
 
 const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good, easy: FsrsRating.Easy };
 
@@ -226,7 +232,7 @@ const addXp = (d: Draft, date: string, amount: number): void => {
 const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, rating: Rating): void => {
   const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
-  const key = cardKey(kc, facet, e.orthography);
+  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
   if (d.rated.keys.includes(key)) return; // within-session repetitions are learning steps
   d.rated.keys.push(key);
   const now = new Date(at);
@@ -252,7 +258,7 @@ export const WITNESSED_FACETS: ReadonlySet<Facet> = new Set<Facet>([...SKILL_FAC
  */
 const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
   if (!WITNESSED_FACETS.has(facet)) return;
-  const key = cardKey(kc, facet, e.orthography);
+  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
   if (!right) {
     delete d.shown[key];
     d.missed[key] = e.localDate;
@@ -283,7 +289,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   // the recall of what the answer is credited to (a blank's word), as the planner predicts it.
   if (e.attempt === 1) {
     const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
-    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime);
+    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime, e.exercise.reading);
     learn(d.performance, { template, facet, item, kcs, r }, correct);
   }
   // Pace: this answer's time per unit of length against the learner's usual for the template. Only
