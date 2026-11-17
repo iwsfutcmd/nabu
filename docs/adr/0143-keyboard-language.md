@@ -27,14 +27,20 @@ A web page cannot do the same:
 
 **The Android app hands the keyboard app each text field's languages as the field takes focus.**
 
-- **Which languages** (@nabu/i18n `keyboardLanguages`, from data only):
-  - **The keyboard the orthography's profile names** (`input.keyboard`: cldr-kbd:fa, cldr-kbd:he
-    for Biblical Hebrew, cldr-kbd:en for Toki Pona, Jyutping and Pinyin), then the text's own
-    language. A person chose that keyboard as the one the orthography is typed on, so nothing
-    further is guessed: a romanization is never sent to a Chinese keyboard.
-  - **Without one:** the text's own language, then its macrolanguage in the same script and
-    region, from CLDR's data (yue-Hant-HK: yue-HK, zh-Hant-HK; lzh-Hant: lzh, zh-Hant; apc-Arab:
-    apc, ar).
+- **Which languages, best first** (@nabu/i18n `keyboardLanguages`, from data only):
+  1. **The text's own language**, for a keyboard of the language itself.
+  2. **The keyboard the orthography's profile names** (`input.keyboard`: cldr-kbd:fa for
+     Chaghatay, cldr-kbd:he for Biblical Hebrew, cldr-kbd:en for Toki Pona, Jyutping and Pinyin).
+     A person chose that keyboard as the one the orthography is typed on, so nothing further is
+     guessed: a romanization is never sent to a Chinese keyboard.
+     - Where that keyboard is another language's and the text is Latin, a Latin keyboard of no
+       language comes before it (`und-Latn`: Gboard's Alphabet, the project owner's choice). The
+       orthography only borrows that language's letters, and English suggestions do not fit
+       Toki Pona.
+  3. **Without one:** the text's macrolanguage in the same script and region, from CLDR's data
+     (yue-Hant-HK: zh-Hant-HK; lzh-Hant: zh-Hant; apc-Arab: ar).
+  4. **Any keyboard of its script** (`und-Arab`, `und-Latn`, `und-Hant`).
+  - Chaghatay asks for chg, fa, und-Arab; Toki Pona for tok, und-Latn, en.
   - Each is a CLDR locale id, keeping the script only where it is not the language's own (uz-Cyrl,
     but fa), so a Cyrillic Uzbek field never asks for Latin Uzbek.
 - **The page names them.**
@@ -49,6 +55,16 @@ A web page cannot do the same:
     plugin.
   - `NabuWebView`, which replaces Capacitor's web view through its layout, adds the languages to
     the `EditorInfo` it builds.
+  - **Android does the falling back.** Gboard acts on the first hint alone (LatinIME's code says
+    so: its other hints are a TODO), so a list that starts with a language it has no keyboard for
+    would switch nothing.
+    - `KeyboardChoice` puts first the first hint the current keyboard has enabled, as that
+      keyboard's own tag (`getEnabledInputMethodSubtypeList`).
+    - A language matches with its script: zh-Hant never takes the Simplified keyboard, and Jyutping
+      never takes Hong Kong Chinese.
+    - `und-X` takes any keyboard of the script X; for Latin, Alphabet first (Android's `zz`, the
+      tag LatinIME and Gboard give it).
+    - A keyboard that lists no languages gets the hints in order, `und-Latn` as `zz`.
   - The keyboard reads them only when an editor starts. When the languages change, the open editor
     restarts once (`InputMethodManager#restartInput`), at focus, before the learner has typed.
   - A field handed the same languages as the last one never restarts, so moving from card to card

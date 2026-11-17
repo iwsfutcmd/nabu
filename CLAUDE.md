@@ -343,8 +343,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   android-preview release from main. Never sign a store release with the preview key.
 - The Android app asks the keyboard app for each text field's languages as it takes focus (ADR 0143: NabuWebView sets
   `EditorInfo#hintLocales`; native.ts calls the KeyboardLanguage plugin). A field whose orthography is known names them
-  (`{...keyboardHint(lang, profile)}`, @nabu/ui: the profile's `input.keyboard` first); others ask for their `lang`.
-  Browsers and iOS cannot. Keep res/layout/capacitor_bridge_layout_main.xml in step with Capacitor's on upgrades.
+  (`{...keyboardHint(lang, profile)}`, @nabu/ui), best first: its own language, the profile's `input.keyboard`
+  (after `und-Latn`, Gboard's Alphabet, for a Latin orthography on another language's keyboard), else the CLDR
+  macrolanguage, then `und-<Script>`; others ask for their `lang`. The app puts first the first one the keyboard has
+  (KeyboardChoice: Gboard reads only the first). Browsers and iOS cannot. Keep res/layout/capacitor_bridge_layout_main.xml
+  in step with Capacitor's on upgrades.
 
 ## Corrections notes (see docs/adr/0051)
 - A correction is a `sentence_reported` event: `shown` (what the device displayed) and `correction` (only what

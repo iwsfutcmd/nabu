@@ -19,13 +19,13 @@ const field = (tagName: string, attrs: Readonly<Record<string, string>>, above?:
 
 describe("keyboardFor", () => {
   it("takes the languages the field names, from its orthography's profile", () => {
-    expect(keyboardFor(field("INPUT", { lang: "hbo-Hebr", "data-keyboard": "he hbo" }), "en")).toEqual(["he", "hbo"]);
+    expect(keyboardFor(field("INPUT", { lang: "hbo-Hebr", "data-keyboard": "hbo he und-Hebr" }), "en")).toEqual(["hbo", "he", "und-Hebr"]);
   });
 
   it("otherwise asks for the language the field is tagged with, or the one above it, or the page's", () => {
-    expect(keyboardFor(field("TEXTAREA", { lang: "yue-Hant-HK" }), "en")).toEqual(["yue-HK", "zh-Hant-HK"]);
-    expect(keyboardFor(field("INPUT", { type: "search" }, "fa"), "en")).toEqual(["fa"]);
-    expect(keyboardFor(field("INPUT", {}), "ar")).toEqual(["ar"]);
+    expect(keyboardFor(field("TEXTAREA", { lang: "yue-Hant-HK" }), "en")).toEqual(["yue-HK", "zh-Hant-HK", "und-Hant"]);
+    expect(keyboardFor(field("INPUT", { type: "search" }, "fa"), "en")).toEqual(["fa", "und-Arab"]);
+    expect(keyboardFor(field("INPUT", {}), "ar")).toEqual(["ar", "und-Arab"]);
   });
 
   it("leaves the keyboard alone for anything that takes no words", () => {
