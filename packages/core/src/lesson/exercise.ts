@@ -19,6 +19,7 @@ export type TemplateId =
   | "char-read"
   | "reading-disambiguation"
   | "vocalize"
+  | "vocalize-build"
   | "transcribe"
   | "speak.tier-0"
   | "speak"
@@ -195,6 +196,35 @@ export interface Vocalize extends Common {
   readonly spelled?: TaggedText | undefined;
 }
 
+/**
+ * Vowel marks put on a word's letters (ADR 0137): the sentence without marks, one word marked; its
+ * letters are given and the learner puts the profile's marks on them from buttons, once a vocalize
+ * card has shown the word's marks. The answer is the word with its marks, as text.
+ */
+export interface VocalizeBuild extends Common {
+  readonly template: "vocalize-build";
+  /** The sentence without vowel marks, as a reader of the script sees it. */
+  readonly prompt: TaggedText;
+  /** The word asked about: its token in the prompt. */
+  readonly word: number;
+  /** What the sentence means. */
+  readonly translation: TaggedText;
+  /** The word with its vowel marks (the course's vocalization): the answer. */
+  readonly vocalized: TaggedText;
+  /** The word's letters without marks, grapheme by grapheme: what the marks go on. */
+  readonly letters: readonly string[];
+  /** The marks the learner may put on them: the profile's mark set, in its order. */
+  readonly marks: readonly string[];
+  /** Marks of the set a word may have or not (sukun, ADR 0054): never counted either way. */
+  readonly optional: readonly string[];
+  /**
+   * For each letter, the marks the course's words give that letter where it stands (attested, as
+   * the vocalize card's variants are; ADR 0098): while a letter's marks are part of a longer one,
+   * it stays the letter being marked (a dagesh, then its vowel).
+   */
+  readonly combos: readonly (readonly string[])[];
+}
+
 /** A Han word of a sentence, in context: type its reading (Jyutping) (ADR 0054; in context, ADR 0095). */
 export interface Transcribe extends Common {
   readonly template: "transcribe";
@@ -335,6 +365,7 @@ export type Exercise =
   | CharRead
   | ReadingDisambiguation
   | Vocalize
+  | VocalizeBuild
   | Transcribe
   | Speak
   | SpeakScored

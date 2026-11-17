@@ -350,6 +350,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
   plans one where it can. Optional marks: the profile's `match.marks.optional`; orthographies that spell the vowels
   (apc: Arabizi), `match.marks.spelledIn`.
+- Where a profile sets `input.markBuilder` (hbo, apc), `vocalize-build` asks the same word's marks put on its letters
+  from buttons (ADR 0137), only once a vocalize card has shown them (`shown`); graded by `gradeVowels`. Never a text
+  field for marks; never a list of marks in code (the letter stays chosen while the course attests more marks on it).
 - Reading schemes are data (ADR 0109): a new scheme is `profiles/schemes/<id>.yaml` (schemas/reading-scheme.schema.json:
   `names` per language, lang, answer orthography, syllable shape, tones), plug-ins in `nabu.schemes` for what voices need, and
   `reading-syllables`/`reading-tone` conformance vectors. Never hard-code a scheme id in TS or Python.

@@ -12,7 +12,7 @@ import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
 import { lessonNodes, readCourse, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
-import { surfaceOf } from "@nabu/core/text";
+import { graphemes, surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
 import { exclusionsOf, facetsOffOf, type Off } from "../../src/breaks.ts";
@@ -233,6 +233,18 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
         await page.keyboard.insertText(text);
         await page.locator("[data-action=check]").tap();
       }
+      return;
+    }
+    case "vocalize-build": {
+      // Each letter chosen, then its marks pressed (ADR 0137); optional marks (sukun) left off.
+      const want = graphemes(surfaceOf(ex.vocalized).normalize("NFC"));
+      for (const [i, g] of want.entries()) {
+        const marks = Array.from(g.normalize("NFD")).filter((c) => ex.marks.includes(c) && !ex.optional.includes(c));
+        if (marks.length === 0) continue;
+        await press(page, mode, `[data-lesson-player] [data-letter="${i}"]`);
+        for (const m of marks) await press(page, mode, `[data-lesson-player] [data-mark="${m}"]`);
+      }
+      await press(page, mode, "[data-action=check]");
       return;
     }
     case "transcribe": {

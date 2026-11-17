@@ -235,7 +235,7 @@ const reviewSentences = (
 };
 
 /** Pronunciation cards (ADR 0054): a word's vowel marks or its reading. */
-const PRONOUNCE: ReadonlySet<TemplateId> = new Set<TemplateId>(["vocalize", "transcribe"]);
+const PRONOUNCE: ReadonlySet<TemplateId> = new Set<TemplateId>(["vocalize", "vocalize-build", "transcribe"]);
 
 // On a script track (ADR 0088), a new letter is read before it is written.
 /** Templates that can present a new word (`TemplateInfo.presents`). */
@@ -456,6 +456,8 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     // A reading typed as text (Schluessel, ADR 0131) is asked only once the word read right by choice:
     // its reading shown, as the fold witnesses it.
     if (c.ex.template === "transcribe" && typedByProfile(c.ex.scheme) && !gated.every((kc) => state.shown[key(kc, "read-script")] !== undefined)) return false;
+    // So are marks put on a word's letters (ADR 0137): once a choice card has shown them.
+    if (c.ex.template === "vocalize-build" && !gated.every((kc) => state.shown[key(kc, "read-script")] !== undefined)) return false;
     return gated.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.

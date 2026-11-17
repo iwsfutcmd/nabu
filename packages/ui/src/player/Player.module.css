@@ -478,6 +478,12 @@
   font-size: 1.25em;
 }
 
+/* The letter being marked, and the marks it has (vocalize-build, ADR 0137). */
+.tile[aria-pressed="true"] {
+  border-color: var(--nabu-color-accent);
+  box-shadow: inset 0 0 0 1px var(--nabu-color-accent);
+}
+
 /* A placed tile leaves its shape behind, so the bank never reflows. */
 .tileSlot {
   visibility: hidden;

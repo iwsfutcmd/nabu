@@ -1893,6 +1893,12 @@ class InputAids(BaseModel):
         frozen=True,
     )
     keyboard: KeyboardRef | None = None
+    markBuilder: Annotated[
+        bool | None,
+        Field(
+            description="A vocalize card may also ask the word's vowel marks put on its letters, the letters given and the marks on buttons (`vocalize-build`, ADR 0137), once a choice card has shown them. For an abjad whose marks no phone keyboard has."
+        ),
+    ] = None
     extraKeys: Annotated[
         list[ExtraKey] | None,
         Field(
@@ -2902,6 +2908,7 @@ class ExerciseRef(BaseModel):
         "char-read",
         "reading-disambiguation",
         "vocalize",
+        "vocalize-build",
         "transcribe",
         "speak.tier-0",
         "speak",

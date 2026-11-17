@@ -2384,6 +2384,7 @@ export interface ExerciseRef {
     | "char-read"
     | "reading-disambiguation"
     | "vocalize"
+    | "vocalize-build"
     | "transcribe"
     | "speak.tier-0"
     | "speak"
@@ -3260,6 +3261,10 @@ export interface AnnotationLayer {
  */
 export interface InputAids {
   readonly keyboard?: KeyboardRef;
+  /**
+   * A vocalize card may also ask the word's vowel marks put on its letters, the letters given and the marks on buttons (`vocalize-build`, ADR 0137), once a choice card has shown them. For an abjad whose marks no phone keyboard has.
+   */
+  readonly markBuilder?: boolean;
   /**
    * Characters for the special-character bar, in addition to the auxiliary exemplars (§6.7).
    */

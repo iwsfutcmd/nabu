@@ -69,3 +69,31 @@ for (const cell of cells()) {
     });
   }
 }
+
+// Vowel marks put on a word's letters (ADR 0137): Lebanese Arabic's harakat on buttons, the word's
+// letters in its own direction, the letter being marked pressed; no field to type in.
+for (const cell of cells()) {
+  if (cell.writingMode !== "horizontal-tb" || cell.target !== "apc-Arab") continue;
+  test(`pronounce: ${cell.ui} × ${cell.target} × marks`, async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    await page.goto(storyUrl("player-pronunciation--marks", cellGlobals(cell)));
+    await settle(page, "[data-lesson-player]");
+    const player = page.locator("[data-lesson-player]");
+    await expect(page.locator("[data-answer-input]")).toHaveCount(0);
+    const letters = player.locator("[data-letter]");
+    expect(await letters.count()).toBeGreaterThanOrEqual(2);
+    await expect(letters.first()).toHaveAttribute("aria-pressed", "true");
+    await expect(player.locator("[data-target-region]")).toHaveAttribute("dir", cell.targetDir);
+    for (const letter of await letters.locator("[data-nabu-text]").all()) await expect(letter).toHaveAttribute("dir", cell.targetDir);
+    expect(await player.locator("[data-mark]").count()).toBeGreaterThanOrEqual(4);
+    // A mark goes on the chosen letter, and the word shows it.
+    await player.locator("[data-mark]").first().click();
+    expect(HARAKAT.test((await player.locator("[data-spelled-word]").textContent()) ?? "")).toBe(true);
+    await expectNoClipping(page, player);
+    const axe = await new AxeBuilder({ page }).include("[data-lesson-player]").analyze();
+    expect(axe.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    expect(errors).toEqual([]);
+    if (comparesPixels) await expect(player).toHaveScreenshot(`pronounce__${cell.name}__marks.png`);
+  });
+}

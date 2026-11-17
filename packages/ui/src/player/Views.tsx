@@ -11,6 +11,7 @@ import type {
   CharRead,
   Transcribe,
   Vocalize,
+  VocalizeBuild,
   CompleteTranslation,
   GapFill,
   ListenSelect,
@@ -741,6 +742,87 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
           {spelling ? t.format("player.vocalize.use-options") : t.format("player.vocalize.use-spelled", { orthography: name })}
         </button>
       )}
+    </div>
+  );
+};
+
+/**
+ * Vowel marks put on a word's letters (ADR 0137): the sentence with the word marked; the word as it is
+ * being marked, one run of text, so joined letters stay joined and marks sit on their letters; its
+ * letters, the one being marked pressed; and the profile's marks on buttons, each on a dotted circle.
+ * A mark goes on the chosen letter (pressed again, it comes off). The letter stays chosen while the
+ * course's words ever give it more marks (a dagesh, then its vowel); otherwise the next one is chosen.
+ * Backspace, or Take back, removes the last mark put on.
+ */
+export const VocalizeBuildView = (props: Props<VocalizeBuild>): JSX.Element => {
+  const { ex, dispatch, locked } = props;
+  const t = useTranslator();
+  const [marks, setMarks] = useState<readonly (readonly string[])[]>(() => ex.letters.map(() => []));
+  const [at, setAt] = useState(0);
+  const [put, setPut] = useState<readonly number[]>([]);
+  const counted = (ms: readonly string[]): readonly string[] => ms.filter((m) => !ex.optional.includes(m));
+  const letterWith = (i: number, ms: readonly string[]): string => `${ex.letters[i] ?? ""}${ms.join("")}`.normalize("NFC");
+  const built = (all: readonly (readonly string[])[]): string => ex.letters.map((_, i) => letterWith(i, all[i] ?? [])).join("").normalize("NFC");
+  /** Whether the course's words give letter `i` more marks than `ms`, with them. */
+  const more = (i: number, ms: readonly string[]): boolean =>
+    (ex.combos[i] ?? []).some((c) => {
+      const want = new Set(Array.from(c));
+      const have = counted(ms);
+      return want.size > have.length && have.every((m) => want.has(m));
+    });
+  const commit = (next: readonly (readonly string[])[], order: readonly number[]): void => {
+    setMarks(next);
+    setPut(order);
+    dispatch({ tag: "input", draft: { tag: "text", text: order.length === 0 ? "" : built(next) } });
+  };
+  const toggle = (mark: string): void => {
+    if (locked) return;
+    const now = marks[at] ?? [];
+    const on = now.includes(mark);
+    const mine = on ? now.filter((m) => m !== mark) : [...now, mark];
+    const next = marks.map((m, i) => (i === at ? mine : m));
+    const last = put.lastIndexOf(at);
+    commit(next, on ? put.filter((_, k) => k !== last) : [...put, at]);
+    if (!on && !more(at, mine) && at < ex.letters.length - 1) setAt(at + 1);
+  };
+  const undo = (): void => {
+    const i = put.at(-1);
+    if (locked || i === undefined) return;
+    commit(
+      marks.map((m, k) => (k === i ? m.slice(0, -1) : m)),
+      put.slice(0, -1),
+    );
+    setAt(i);
+  };
+  useShortcuts(props, undefined, undo);
+  return (
+    <div className={styles.body}>
+      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={false} ids={props.ids} taps={tapsOn(props, "sentence", ex.prompt, "answered")} />
+      <AnswerAudio props={props} />
+      <div className={styles.target} dir={directionOf(ex.vocalized.lang)} data-target-region="">
+        <div className={styles.answerRow} role="group" aria-label={t.format("player.vocalize-build.word")}>
+          <span className={`${styles.tile} ${styles.spelled}`} data-spelled-word={put.join(" ")} data-ink-container="tile">
+            <T text={textOfSurface(ex.vocalized, built(marks))} marks="show" ruby={false} />
+          </span>
+        </div>
+        <div className={styles.bank} role="group" aria-label={t.format("player.vocalize-build.letters")}>
+          {ex.letters.map((_, i) => (
+            <button key={i} type="button" className={styles.tile} aria-pressed={i === at} disabled={locked} data-letter={i} onClick={() => setAt(i)}>
+              <T text={textOfSurface(ex.vocalized, letterWith(i, marks[i] ?? []))} marks="show" ruby={false} />
+            </button>
+          ))}
+        </div>
+        <div className={styles.bank} role="group" aria-label={t.format("player.vocalize-build.marks")}>
+          {ex.marks.map((m) => (
+            <button key={m} type="button" className={styles.tile} aria-pressed={(marks[at] ?? []).includes(m)} disabled={locked} data-mark={m} onClick={() => toggle(m)}>
+              <T text={textOfSurface(ex.vocalized, `\u25CC${m}`)} marks="show" ruby={false} />
+            </button>
+          ))}
+          <button type="button" className={styles.secondary} disabled={locked || put.length === 0} onClick={undo} data-action="undo-mark">
+            {t.format("player.vocalize-build.undo")}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

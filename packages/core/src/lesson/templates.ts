@@ -31,6 +31,7 @@ import type {
   ReadingDisambiguation,
   Transcribe,
   Vocalize,
+  VocalizeBuild,
   Response,
   SelectImage,
   Speak,
@@ -94,6 +95,8 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   // vocalizations of its letters, are like a reading among a few (ADR 0098); its reading typed is all
   // or nothing, every tone counting.
   vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.4, perSession: 1 },
+  // Marks put on a word's letters (ADR 0137): harder than choosing them, easier than typing them.
+  "vocalize-build": { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.4, perSession: 1 },
   transcribe: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.8, perSession: 1 },
   // Self-rated speaking checks nothing (P5): one card a session, never a filler (L6).
   "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" }, prior: -1.5, perSession: 1, selfRated: true },
@@ -1143,6 +1146,47 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
   };
 };
 
+/**
+ * Vowel marks put on a word's letters (ADR 0137), where the profile asks for it (`input.markBuilder`):
+ * the word a vocalize card would ask, its letters given and the profile's marks on buttons. The
+ * planner asks it only once a choice card has shown the word's marks (the fold's `shown`).
+ */
+export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): VocalizeBuild | undefined => {
+  const profile = profileOf(ctx.course, ctx.course.orthography);
+  const marks = profile.marks;
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  if (profile.source.input?.markBuilder !== true || marks === undefined || marks.policy !== "ignore" || form === undefined || translation === undefined) return undefined;
+  const word = pronouncedWord(ctx, form.text, (t) => hasVowelMarks(marks, t.surface));
+  if (word === undefined) return undefined;
+  const token = form.text.tokens[word] as Token;
+  const bare = (t: Token): Token => {
+    const { ruby: _ruby, ...rest } = t;
+    return {
+      ...rest,
+      surface: withoutMarks(marks, t.surface),
+      ...(t.morphs === undefined ? {} : { morphs: t.morphs.map((m) => ({ ...m, surface: withoutMarks(marks, m.surface) })) }),
+    };
+  };
+  const letters = graphemes(withoutMarks(marks, token.surface));
+  const attested = attestedIn(ctx.course, marks);
+  return {
+    template: "vocalize-build",
+    id: id("vocalize-build", s.id),
+    item: s.id,
+    kcs: s.kcs,
+    orthography: ctx.course.orthography,
+    prompt: { ...form.text, tokens: form.text.tokens.map(bare) },
+    word,
+    translation: translation.text,
+    vocalized: single(form.text, token),
+    letters,
+    marks: [...marks.set],
+    optional: [...marks.optional],
+    combos: letters.map((l, i) => attested(l, i === 0 ? "initial" : i === letters.length - 1 ? "final" : "medial")),
+  };
+};
+
 /** A Han word in its sentence, the sentence without ruby: type the word's reading. Only words with a pinned reading. */
 export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe | undefined => {
   const scheme = rubySchemeOf(ctx);
@@ -1203,6 +1247,7 @@ export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeC
   "char-read": makeCharRead,
   "reading-disambiguation": makeReadingDisambiguation,
   vocalize: makeVocalize,
+  "vocalize-build": makeVocalizeBuild,
   transcribe: makeTranscribe,
   "speak.tier-0": makeSpeak,
   speak: makeSpeakScored,
@@ -1294,6 +1339,12 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       }
       return { verdict: "WRONG", notes: [], solution: ex.spelled ?? ex.vocalized };
     }
+    case "vocalize-build": {
+      if (response.tag !== "text") return mismatch(ex, response);
+      // Letter by letter (ADR 0137): the marks each letter has, optional ones (sukun) not counted.
+      const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional) }, surfaceOf(ex.vocalized), response.text);
+      return { verdict: g.verdict, notes: g.notes, solution: ex.vocalized };
+    }
     case "transcribe": {
       if (response.tag !== "text") return mismatch(ex, response);
       // A reading typed as text (Schluessel, ADR 0131): its answer orthography's profile grades it, so a
@@ -1374,6 +1425,7 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "tone-identify":
       return ex.syllable;
     case "vocalize":
+    case "vocalize-build":
       return ex.vocalized;
     case "transcribe":
       return ex.reading;
@@ -1401,6 +1453,7 @@ export const promptOf = (ex: Exercise): TaggedText | undefined => {
     case "letter-read":
     case "word-read":
     case "vocalize":
+    case "vocalize-build":
     case "transcribe":
     case "story-choose":
     case "story-arrange":

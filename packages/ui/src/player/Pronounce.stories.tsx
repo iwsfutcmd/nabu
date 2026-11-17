@@ -20,7 +20,7 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-type Screen = "typing" | "feedback";
+type Screen = "typing" | "feedback" | "marks";
 const SEED = 7;
 
 /** A wrong typed answer: the reading with its last tone changed. (A vocalize card takes a wrong option.) */
@@ -32,7 +32,7 @@ const wrongAnswer = (ex: Exercise): string => {
 const stateFor = (screen: Screen, ex: Exercise, grader: Grader): PlayerState => {
   const [presenting] = start("story", [ex]);
   const [answering] = step(presenting, { tag: "ready" });
-  if (screen === "typing") return answering;
+  if (screen === "typing" || screen === "marks") return answering;
   const draft = ex.template === "vocalize" ? { tag: "choice" as const, index: (ex.answer + 1) % ex.options.length } : { tag: "text" as const, text: wrongAnswer(ex) };
   const typed = step(answering, { tag: "input", draft })[0];
   const [checking] = step(typed, { tag: "submit" });
@@ -44,7 +44,11 @@ const Card = ({ loaded, screen }: { loaded: LoadedCourse; screen: Screen }): JSX
   const t = useTranslator();
   const { course, imageUrl } = loaded;
   const grader = useMemo(() => createGrader(course), [course]);
-  const ex = useMemo(() => sampleExercise(course, "vocalize", SEED) ?? sampleExercise(course, "transcribe", SEED), [course]);
+  // The marks screen: a word's vowel marks put on its letters (ADR 0137), where the profile asks for it.
+  const ex = useMemo(
+    () => (screen === "marks" ? sampleExercise(course, "vocalize-build", SEED) : (sampleExercise(course, "vocalize", SEED) ?? sampleExercise(course, "transcribe", SEED))),
+    [course, screen],
+  );
   const initialState = useMemo(() => (ex === undefined ? undefined : stateFor(screen, ex, grader)), [screen, ex, grader]);
   if (ex === undefined || initialState === undefined) return <p data-no-pronunciation="">{t.format("debug.cards.none")}</p>;
   return (
@@ -84,3 +88,5 @@ const story = (screen: Screen): Story => ({
 export const Typing: Story = story("typing");
 /** A wrong answer: no marks, or a wrong tone; the note says which, and the solution shows. */
 export const Feedback: Story = story("feedback");
+/** Vowel marks put on a word's letters from buttons (ADR 0137): Lebanese Arabic and Biblical Hebrew. */
+export const Marks: Story = story("marks");
