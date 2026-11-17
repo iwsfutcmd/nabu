@@ -51,6 +51,9 @@ export interface CompiledProfile {
     readonly set: ReadonlySet<string>;
     /** Marks a learner supplying the vowel marks may write or leave out (ADR 0054). */
     readonly optional: ReadonlySet<string>;
+    /** Marks an answer must write as the expected word does: never folded, never a typo (ADR 0134). */
+    readonly required: ReadonlySet<string>;
+    readonly requiredNote?: string | undefined;
     /** Marks that tell words apart (Spanish está/esta, ADR 0076): another word of the course is WRONG_WORD. */
     readonly distinguishes: boolean;
     readonly wordNote?: string | undefined;
@@ -164,12 +167,15 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     try {
       const set = new Set(parseExemplarSet(match.marks.set));
       const optional = new Set(match.marks.optional === undefined ? [] : parseExemplarSet(match.marks.optional));
+      const required = new Set(match.marks.required === undefined ? [] : parseExemplarSet(match.marks.required));
       marks = {
         policy: match.marks.policy,
         note: match.marks.note,
         strip: (t) => Array.from(t.normalize("NFD")).filter((c) => !set.has(c)).join("").normalize("NFC"),
         set,
         optional,
+        required,
+        requiredNote: match.marks.requiredNote,
         distinguishes: match.marks.distinguishes === true,
         wordNote: match.marks.wordNote,
       };

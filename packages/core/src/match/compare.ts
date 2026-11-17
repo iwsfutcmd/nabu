@@ -21,7 +21,14 @@ export interface Fold {
 
 export type Comparison =
   | { readonly kind: MatchKind; readonly cost: number; readonly folds: readonly Fold[] }
-  | { readonly kind: "mismatch"; readonly cost: number; readonly folds: readonly Fold[]; readonly note?: string | undefined };
+  | {
+      readonly kind: "mismatch";
+      readonly cost: number;
+      readonly folds: readonly Fold[];
+      readonly note?: string | undefined;
+      /** The marks an answer must write (the profile's `required`) differ (ADR 0134). */
+      readonly required?: boolean;
+    };
 
 export const COST = { insert: 1, delete: 1, mismatch: 1, fold: 0.001, typo: 0.3, homophone: 0.5 } as const;
 
@@ -67,6 +74,51 @@ const editDistance = (x: string, y: string): number => {
   return prev[b.length] as number;
 };
 
+type Marks = NonNullable<CompiledProfile["marks"]>;
+
+/**
+ * Whether two words' required marks differ letter by letter (ADR 0134): the letters, marks of the
+ * set stripped, aligned by edit distance; a letter left out, added or traded that carries a
+ * required mark, or two aligned letters whose required marks differ (kordü for kördi: the ö lost,
+ * the diaeresis moved), differ. Letters traded without required marks (körti) do not.
+ */
+const requiredMarksDiffer = (marks: Marks, e: string, a: string): boolean => {
+  const only = (g: string): string => Array.from(g.normalize("NFD")).filter((c) => marks.required.has(c)).join("");
+  const kept = (t: string): readonly string[] =>
+    graphemes(Array.from(t.normalize("NFD")).filter((c) => !marks.set.has(c) || marks.required.has(c)).join("").normalize("NFC"));
+  const le = kept(e);
+  const la = kept(a);
+  const be = le.map((g) => marks.strip(g));
+  const ba = la.map((g) => marks.strip(g));
+  const cols = la.length + 1;
+  const d = new Array<number>((le.length + 1) * cols).fill(0);
+  for (let i = 0; i <= le.length; i++) d[i * cols] = i;
+  for (let j = 0; j <= la.length; j++) d[j] = j;
+  for (let i = 1; i <= le.length; i++) {
+    for (let j = 1; j <= la.length; j++) {
+      const sub = (d[(i - 1) * cols + j - 1] as number) + (be[i - 1] === ba[j - 1] ? 0 : 1);
+      d[i * cols + j] = Math.min(sub, (d[(i - 1) * cols + j] as number) + 1, (d[i * cols + j - 1] as number) + 1);
+    }
+  }
+  let i = le.length;
+  let j = la.length;
+  while (i > 0 || j > 0) {
+    const here = d[i * cols + j] as number;
+    if (i > 0 && j > 0 && here === (d[(i - 1) * cols + j - 1] as number) + (be[i - 1] === ba[j - 1] ? 0 : 1)) {
+      if (only(le[i - 1] as string) !== only(la[j - 1] as string)) return true;
+      i--;
+      j--;
+    } else if (i > 0 && here === (d[(i - 1) * cols + j] as number) + 1) {
+      if (only(le[i - 1] as string) !== "") return true;
+      i--;
+    } else {
+      if (only(la[j - 1] as string) !== "") return true;
+      j--;
+    }
+  }
+  return false;
+};
+
 export const compareUnits = (profile: CompiledProfile, expected: string, actual: string): Comparison => {
   if (expected === actual) return { kind: "exact", cost: 0, folds: NONE };
   let e = profile.fold(expected);
@@ -96,6 +148,12 @@ export const compareUnits = (profile: CompiledProfile, expected: string, actual:
   }
 
   if (profile.marks !== undefined) {
+    // Marks an answer must write as the word does (chg's vowel marks, ADR 0134): one left out,
+    // added, changed or moved is neither folded away nor a typo. Noted where it is all that differs.
+    if (profile.marks.required.size > 0 && requiredMarksDiffer(profile.marks, e, a)) {
+      const sameLetters = profile.marks.strip(e) === profile.marks.strip(a);
+      return { kind: "mismatch", cost: COST.mismatch, folds, required: true, ...(sameLetters && { note: profile.marks.requiredNote }) };
+    }
     const me = profile.marks.strip(e);
     const ma = profile.marks.strip(a);
     if (closer(me, ma)) folds.push({ kind: "marks", id: "marks", policy: profile.marks.policy, note: profile.marks.note });

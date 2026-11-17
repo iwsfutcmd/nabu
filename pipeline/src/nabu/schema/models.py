@@ -3189,6 +3189,18 @@ class Marks(BaseModel):
             description="Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
         ),
     ] = None
+    required: Annotated[
+        UnicodeSetPattern | None,
+        Field(
+            description="Marks of the set an answer must write as the expected word does (ADR 0134): one left out, added, changed or moved is never folded away by the policy and never a typo, and the word is wrong (WRONG_WORD where it spells another word of the course, with `wordNote`). Chaghatay's transliteration: the vowel marks (ä ö ü ā ī ū ē à), which say what the Arabic script leaves out; its consonant marks keep the policy."
+        ),
+    ] = None
+    requiredNote: Annotated[
+        NoteId | None,
+        Field(
+            description="The note for an answer whose only difference is in its `required` marks."
+        ),
+    ] = None
     distinguishes: Annotated[
         bool | None,
         Field(
