@@ -3324,7 +3324,7 @@
       "args": {
         "profile": "chg-Latn/schluessel",
         "accept": "Kiši öydä",
-        "answer": "Kisi oyda"
+        "answer": "Kisi öydä"
       },
       "expected": {
         "verdict": "CORRECT_MARKS",
@@ -3332,7 +3332,84 @@
           "translit-marks"
         ]
       },
-      "note": "No marks: noted, and the answer counts."
+      "note": "A consonant's mark left out (s for š): noted, and the answer counts."
+    },
+    {
+      "id": "grade/chg-Latn/vowel-marks-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Kiši öydä",
+        "answer": "Kiši oyda"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-vowels"
+        ]
+      },
+      "note": "A vowel's marks left out (o for ö, a for ä, ADR 0134): the vowels are what the script leaves out, so the answer is wrong."
+    },
+    {
+      "id": "grade/chg-Latn/vowel-length-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "āta",
+        "answer": "ata"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-vowels"
+        ]
+      },
+      "note": "A long vowel's macron left out."
+    },
+    {
+      "id": "grade/chg-Latn/vowel-mark-moved",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "kördi",
+        "answer": "kordü"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "The diaeresis on the wrong vowel: never a typo, though u and i are neighbouring keys."
+    },
+    {
+      "id": "grade/chg-Latn/consonant-typo-kept",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "bazārǧa",
+        "answer": "bazārǧs"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "A slip of the keyboard away from the vowels' marks stays a typo."
+    },
+    {
+      "id": "grade/chg-Latn/both-kinds-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Kiši öydä",
+        "answer": "Kisi oyda"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-marks",
+          "translit-vowels"
+        ]
+      },
+      "note": "Consonant and vowel marks both left out: the vowels make it wrong."
     },
     {
       "id": "grade/chg-Latn/marks-make-word",
@@ -3376,13 +3453,11 @@
       "args": {
         "profile": "chg-Latn/schluessel",
         "accept": "ʿālim",
-        "answer": "'alim"
+        "answer": "'ālim"
       },
       "expected": {
-        "verdict": "CORRECT_MARKS",
-        "notes": [
-          "translit-marks"
-        ]
+        "verdict": "CORRECT",
+        "notes": []
       }
     },
     {

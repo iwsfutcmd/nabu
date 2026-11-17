@@ -585,7 +585,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   orthography, chg-Arab/standard, set in Nastaliq (Noto Nastaliq Urdu). Every word token pins `readings: {schluessel:
   …}`, Schluessel's transliteration (2018), shown as ruby over the whole word (the scheme's `ruby: word`), over new words until the learner chooses, and asked by
   char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW), then typed
-  (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131);
+  (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131): a vowel's
+  marks are `required` there (ä ö ü ā ī ū ē à: left out or moved, wrong), a consonant's noted (ADR 0134);
   every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
   A reading stands on its own word's ink (ruby-lift.ts, ADR 0131 amendment): never one clearance for every word.
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes

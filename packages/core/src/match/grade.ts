@@ -248,10 +248,21 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
   for (const op of ops) {
     raised = undefined;
     if (op.op !== "match") {
-      raise("WRONG");
-      if (op.op === "substitute") {
-        const c = compare(op.expected, op.actual);
-        if (c.kind === "mismatch") note(c.note);
+      const c = op.op === "substitute" ? compare(op.expected, op.actual) : undefined;
+      const actual = op.op === "substitute" ? op.actual : undefined;
+      if (
+        c?.kind === "mismatch" &&
+        c.required === true &&
+        actual !== undefined &&
+        profile.marks?.distinguishes === true &&
+        options.lexicon?.has(lexiconKey(profile, actual)) === true
+      ) {
+        // Required marks that spell another word of the course (bardi for bärdi, ADR 0134).
+        raise("WRONG_WORD");
+        note(profile.marks.wordNote ?? c.note);
+      } else {
+        raise("WRONG");
+        if (c?.kind === "mismatch") note(c.note);
       }
       alignment.push(op.op === "substitute" && raised !== undefined ? { ...op, note: raised } : op);
       continue;
