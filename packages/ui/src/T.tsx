@@ -22,6 +22,7 @@ import { Fragment, useMemo, type CSSProperties, type JSX } from "react";
 import { useIsTarget, useOrthography } from "./context.tsx";
 import { useFonts } from "./fonts.ts";
 import { useReadingFaded, useWordStatus, type Marks } from "./marks.tsx";
+import { useRubyLift } from "./ruby-lift.ts";
 import styles from "./T.module.css";
 
 export interface TProps {
@@ -71,6 +72,12 @@ const markStripper = (set: string | undefined): RegExp | undefined => {
   return chars.length === 0 ? undefined : new RegExp(`[${chars.map(escape).join("")}]`, "gu");
 };
 
+/**
+ * Scripts whose readings are lifted by each word's ink (ruby-lift.ts), as T.module.css lifts them:
+ * Arabic, where Nastaliq stacks letters far over the em box.
+ */
+const INK_LIFTED: ReadonlySet<string> = new Set(["Arab"]);
+
 /** Numbers up to this many graphemes are set horizontally in vertical text (tate-chū-yoko). */
 const TATE_CHU_YOKO_MAX = 2;
 
@@ -88,9 +95,11 @@ interface TokenViewProps {
   readonly focus: number | undefined;
   readonly onPress: ((index: number) => void) | undefined;
   readonly pressed: boolean;
+  /** How far its reading is lifted over where the browser sets it, in its em (ruby-lift.ts), once measured. */
+  readonly lift: number | undefined;
 }
 
-const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
+const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed, lift }: TokenViewProps): JSX.Element => {
   const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
   const segments = ruby === false ? undefined : token.ruby?.[ruby];
   // A focused character needs the segment bases even when no reading layer is shown.
@@ -103,12 +112,13 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
     ) : segments === undefined ? (
       bases.map((segment, i) => <Fragment key={i}>{base(segment.base, i)}</Fragment>)
     ) : (
-      <ruby className={styles.ruby}>
+      <ruby className={styles.ruby} data-lift={lift === undefined ? undefined : ""} style={lift === undefined ? undefined : ({ "--nabu-ruby-lift": lift.toFixed(3) } as CSSProperties)}>
         {segments.map((segment, i) => (
           <Fragment key={i}>
             {base(segment.base, i)}
             <rt lang={rubyLang} data-script={rubyLang === undefined ? undefined : scriptOf(rubyLang)}>
-              {segment.text}
+              {/* A lifted reading stands on its own word, not on the line's other readings (T.module.css). */}
+              {lift === undefined ? segment.text : <span className={styles.reading}>{segment.text}</span>}
             </rt>
           </Fragment>
         ))}
@@ -175,6 +185,13 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const font = fontStackFor(text.lang, profile?.fonts);
   useFonts(font.family);
   const rubyLang = ruby === false ? undefined : profile?.annotations?.find((a) => a.kind === "reading" && a.scheme === ruby)?.lang;
+  // A reading over a script whose ink rises far over the em box (Nastaliq) sits just above its own word.
+  const liftOf = useRubyLift(font.family, font.lineHeight, ruby !== false && INK_LIFTED.has(scriptOf(text.lang) ?? ""));
+  const liftFor = (token: Token, index: number): number | undefined => {
+    const scheme = rubyOf(token, index);
+    const strip = stripOf(token);
+    return scheme === false || token.ruby?.[scheme] === undefined ? undefined : liftOf(strip === undefined ? token.surface : token.surface.replace(strip, ""));
+  };
   // A layer in another script than its text loads that script's face too: the characters over
   // Jyutping (ADR 0126) need the Han font that Latin text would never load.
   const rubyFont = rubyLang === undefined ? undefined : fontStackFor(rubyLang).family;
@@ -206,6 +223,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           ruby={rubyOf(token, index)}
           rubyLang={rubyLang}
           strip={stripOf(token)}
+          lift={liftFor(token, index)}
           highlighted={highlight?.includes(index) ?? false}
           emphasized={emphasis?.includes(index) ?? false}
           spoken={current === index}

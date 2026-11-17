@@ -126,3 +126,20 @@ The rule:
     (اشلیغی ašliǧi).
 - **What it does not change:** the fold, `readingsShown`, and a typed gap's filled word.
 
+## Amendment: a reading stands on its own word (2026-11-17)
+
+Nastaliq stacks letters far above the em box a browser sets ruby on. In chg, یکی cascades rise to 2.44 em of
+the word's size (یکیتمنمو), and یکیتسن to 2.06 em. Its reading, set 1.05 em up, ran into the ک. One clearance
+for every word would either leave readings in the strokes or float them far over short words (سن).
+
+- **The rule:** a reading over Arabic script sits a gap (0.2 em) over its own word's ink. Readings in one
+  line are at different heights, each close to its word, and the line grows to hold the tallest.
+- **How:** <T> measures each word's ink (canvas `measureText`, once its font is in), and once per font where
+  the browser sets ruby (a hidden probe: Chromium, 0.8 em up). It sets the difference as the word's lift
+  (packages/ui/src/ruby-lift.ts).
+  - A line's readings share one baseline, so the lift pads an inline-block inside the reading, set on the
+    bottom of their row.
+  - Until a word is measured, and where there is no browser (tests), the reading clears the tallest word.
+- **Where:** Arabic script only (`INK_LIFTED` in T.tsx, mirrored in T.module.css): Han, Latin and sitelen
+  pona keep the browser's own placement, and their visual baselines stay as they are.
+- **Checked in Chromium only.** Firefox and WebKit measure the same way, but no one has looked at them.

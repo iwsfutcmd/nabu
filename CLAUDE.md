@@ -574,6 +574,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW), then typed
   (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131);
   every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
+  A reading stands on its own word's ink (ruby-lift.ts, ADR 0131 amendment): never one clearance for every word.
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
 - Suffixes are morphs with form KCs (form:dat, form:past-1s, form:pres, form:mis …); verbs are cited as stems with

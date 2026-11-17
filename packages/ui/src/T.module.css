@@ -44,10 +44,22 @@
 
 /* Characters over Jyutping (ADR 0126): a Han glyph is a whole word's worth of strokes, unreadable at
    the size that suits a romanized syllable. */
-/* A reading over an Arabic-script word (Schluessel's transliteration of Chaghatay, ADR 0129) stands clear of
-   the word's dots and tall strokes, which Nastaliq stacks high above the line. */
-.text[data-script="Arab"] .ruby rt {
-  padding-block-end: 0.45em;
+/* A reading over an Arabic-script word (Schluessel's transliteration of Chaghatay, ADR 0129) sits just above
+   its own word: Nastaliq stacks letters far over the em box a browser sets ruby on (یکی cascades rise to
+   2.44 em of the word's size in chg), while سن stays under it. <T> measures each word and sets its lift
+   (`--nabu-ruby-lift`, in the word's em, and `data-lift`; ruby-lift.ts). A line's readings share one
+   baseline, so the lift goes on an inline-block inside the reading, set on the bottom of their row: each
+   stands on its own word, and the line grows to hold the tallest, never overlapping the line before.
+   The padding is in the reading's size, 0.55 of the word's. Until a word is measured, its reading clears
+   the tallest word: 1.7 em over Chromium's em box (0.8 em up) is 2.5 em over the baseline. */
+.text[data-script="Arab"] .ruby:not([data-lift]) rt {
+  padding-block-end: calc(1.7em / 0.55);
+}
+
+.text[data-script="Arab"] .ruby[data-lift] .reading {
+  display: inline-block;
+  vertical-align: bottom;
+  padding-block-end: calc(var(--nabu-ruby-lift) / 0.55 * 1em);
 }
 
 .ruby rt:is([data-script="Hant"], [data-script="Hans"], [data-script="Hani"]) {
