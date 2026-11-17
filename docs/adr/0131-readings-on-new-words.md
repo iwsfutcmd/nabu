@@ -75,8 +75,15 @@ char-read builds for chg: a word of a sentence, its reading among others.
 The wrong options are what the script leaves open, not other words:
 
 - **Variants:** a scheme's `variants` (schemas/reading-scheme.schema.json) lists letters the script writes alike.
-  For Schluessel these are alif or nothing for a, ä and ā; vav for o, ö, u, ü and ū; ye for i, e and ī (REVIEW).
-  `letterVariants` trades one letter of the reading for another of its set: nan → nän, nān; süt → sut, söt, sūt.
+  `letterVariants` trades one letter of the reading for another that shares a set with it.
+- **Schluessel's sets (REVIEW):** they err on more options, by the owner's choice. Each set is what one letter of
+  the script stands for in the course's own words. The 786 word types were aligned with their readings to find this.
+  - alif: a ä ā e i u. vav: o ö u ü ū.
+  - ye: i e ī ä à ē. A final he: a ä e. No letter: a ä e i u ü.
+  - Consonants: ک k g; غ ǧ g; ب پ ف b p ṗ; ج j č; ن n ŋ.
+  - Examples: nan → nin, nun, nān; bir → bür, pir, bar.
+  - Some consonant trades are ones the script rules out (چ is always č). They make an easier wrong option, never
+    a wrong card.
 - **Homographs first:** the course's other readings of the word's spelling come first.
 - **Then other words:** other words' readings fill the card only where those are too few.
 - **Case:** every option takes the answer's case, so a sentence's first word or a name gives nothing away.

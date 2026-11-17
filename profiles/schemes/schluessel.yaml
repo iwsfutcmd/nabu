@@ -27,14 +27,31 @@ names:
 language: chg
 lang: chg-Latn
 answer: chg-Latn/schluessel
-# REVIEW: the vowels one letter of the script leaves open (Schluessel, xxi-xxv): alif (or nothing) for a, ä and ā;
-# vav for o, ö, u, ü and ū; ye for i, e and ī. A reading card's wrong options trade one for another of its set
-# (bärdi for bardi, köl for kul) after the course's real homographs, so the card asks what the script does not say:
-# a word's vowels, front or back, rounded or not, long or short.
+# REVIEW: what each letter of the script stands for in the course's own words (every Arabic spelling aligned with
+# its reading, 786 words), erring on more options: a reading card's wrong options trade one letter for another the
+# same letter (or no letter) is read as, after the course's real homographs. The card asks what the script does not
+# say: a word's vowels (front or back, rounded or not, long or short) and the consonants one letter writes alike.
 variants:
-  - [a, ä, ā]
+  # alif: a, ā, ä, and at the start of a word e, i, u (initial alif carries any vowel)
+  - [a, ä, ā, e, i, u]
+  # vav: u, o, ü, ö, ū
   - [o, ö, u, ü, ū]
-  - [i, e, ī]
+  # ye: i, e, ī, and ä (bär- "give"), à (alif maksura: taʿālà), ē (bē-)
+  - [i, e, ī, ä, à, ē]
+  # a final he: a, ä, e
+  - [a, ä, e]
+  # no letter at all: a, i, ä, u, e, ü
+  - [a, ä, e, i, u, ü]
+  # ک: k, g (göšt, yigit, kälgän: g in 30 of 136 words)
+  - [k, g]
+  # غ: ǧ, g (the dative -gä after front vowels)
+  - [ǧ, g]
+  # ب: b, p (köp, barip: p at the end of a word); پ and ف: p, ṗ
+  - [b, p, ṗ]
+  # ج: j, č (kälgäč)
+  - [j, č]
+  # ن: n, ŋ (ŋ is usually نک)
+  - [n, ŋ]
 # Typed once a word's reading was read right by choice (ADR 0131), graded as text of chg-Latn/schluessel: a mark
 # left out is noted, not failed, unless it spells another word (bardi for bärdi); ng for ŋ is accepted with a note.
 typedByProfile: true

@@ -929,7 +929,9 @@ describe("the wording a card shows, and what a clip says", () => {
 describe("a Chaghatay word read in its sentence, by choice (ADR 0131)", () => {
   it("trades one letter for another the script writes alike, keeping a capital", () => {
     expect(letterVariants("schluessel", "bardi")).toEqual(expect.arrayContaining(["bärdi", "bārdi", "barde", "bardī"]));
-    expect(letterVariants("schluessel", "Čay")).toEqual(["Čäy", "Čāy"]);
+    const cay = letterVariants("schluessel", "Čay");
+    expect(cay).toEqual(expect.arrayContaining(["Čäy", "Čāy", "Jay"]));
+    expect(cay.every((v) => /^\p{Lu}/u.test(v))).toBe(true);
     // A scheme whose script writes its letters apart has none: Jyutping's options are tones and other words.
     expect(letterVariants("jyutping", "nei5")).toEqual([]);
   });
