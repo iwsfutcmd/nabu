@@ -21,8 +21,8 @@ what went wrong. No card asked for the spelling. The project owner chose the wri
 
 **A profile names the letters its script writes for one sound** (`match.soundAlike: {sets, note}`).
 Persian's are `[س ص ث] [ز ذ ض ظ] [ت ط] [ه ح] [ء ع] [ق غ]` (reviewed by the project owner,
-2026-11-17). They are Iranian Persian's: Dari tells ع from ء and ق from غ, so a Dari profile would
-keep only the first four sets.
+2026-11-17). They are Iranian Persian's: Dari tells ق from غ (its ع and ء sound alike, as in
+Iran), so a Dari profile would leave out the last set.
 
 **Grading: right sound, wrong letter** (core `grade`). Take a word of the answer that differs from
 the expected word only by such letters, each traded within its set. The comparison is of the
@@ -48,9 +48,10 @@ Conformance vectors (grade.json) pin the rule in both harnesses.
 
 - **fa and yue** get spelling choices. Other courses get none until their profiles name sound-alike
   sets (chg could take Persian's; its profile is its own course's to decide).
-- **REVIEW.** A character read alike may be an accepted colloquial spelling: 唔洗 for 唔使 is
-  common in written Cantonese. Such a pair belongs in the profile's variants table, accepted with a
-  note, before a spelling choice offers it as wrong.
+- **Homophone typings are wrong** (the project owner, 2026-11-17: "be accurate"). 唔洗 for 唔使 is
+  common in written Cantonese, but the course teaches the character the word is written with, and a
+  spelling choice may offer 洗 there as wrong. A spelling a course does accept (駛 for 使) is in its
+  accept sets and variants, and a spelling choice never offers it.
 - **Feedback** names the slip ("The right sound, the wrong letter"), and the solution shows the
   right spelling.
 - **Plans change** where the cards come: fa and yue lessons may trade a card for a spelling choice.

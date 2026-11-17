@@ -659,7 +659,7 @@ settled in a profile or the grader than in the sets.
 | `s.city.4` (u06-city.yaml) | I'm going to the bazaar. | `Мен бозорга кетаман` | s.city.3 takes ketaman for 'I'm going home'; ketyapman is already here; already passes only as CORRECT_WITH_TYPO in this orthography, listed for parity with the Latin set |
 | `s.city.5` (u06-city.yaml) | Where are you going? | `Сиз қаерга кетасиз` | aorist of ketmoq beside ketyapsiz; natural but more 'where will you go off to'; already passes only as CORRECT_WITH_TYPO in this orthography, listed for parity with the Latin set |
 
-## yue (25)
+## yue (24)
 
 ### Word order (3)
 
@@ -688,13 +688,12 @@ settled in a profile or the grader than in the sets.
 | `s.u10.18` (u10-plans.yaml) | Take an umbrella! | `帶遮` | bare imperative "Take an umbrella!"; curt without 啦 |
 | `s.u10.29` (u10-plans.yaml) | Next time, then. | `下次` | "Next time." without 啦 |
 
-### Forms and spellings (11)
+### Forms and spellings (10)
 
 | Sentence | Shown | Answer | Why |
 | --- | --- | --- | --- |
 | `s.11` (intro.yaml) | 係你呀？ | `Was it you?` | no tense marked; but 係咪你 is likelier for a past question |
 | `s.u03.16` (u03-numbers.yaml) | That cat is very pretty. | `果隻貓好靚` | 果 for 嗰 is a common informal typing (cf. accepted 既/野/黎) |
-| `s.u04.41` (u04-food.yaml) | You're welcome! | `唔洗客氣` | 洗 for 使 (sai2) is a very common typing, like the accepted 駛 |
 | `s.u05.1` (u05-places.yaml) | Where are you going? | `你去邊到呀` | 到 for 度 is a common informal typing |
 | `s.u06.2` (u06-time.yaml) | What time is it now? | `宜家幾點呀` | 宜家 is a common spelling of 而家 (依家 already accepted) |
 | `s.u06.3` (u06-time.yaml) | It's three o'clock now. | `宜家三點` | 宜家 spelling of 而家 |

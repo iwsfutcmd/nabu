@@ -32,8 +32,8 @@ match:
       - { id: copula, note: contrast-person, members: [ام, ای, است, ایم, اید, اند] }
   # Letters Iranian Persian writes for one sound, from the Arabic loanwords (ADR 0142; reviewed by Ben, 2026-11-17).
   # A word spelled with the right sound and the wrong letter (سد for صد, ذهن for زهن) is never a typo: wrong, with a
-  # note, or WRONG_WORD where it spells another word of the course; spelling-choice cards trade them. Dari tells the
-  # last two sets apart (ع from ء, ق from غ): a Dari profile would leave them out.
+  # note, or WRONG_WORD where it spells another word of the course; spelling-choice cards trade them. Dari tells ق
+  # from غ (its ع and ء sound alike, as here): a Dari profile would leave out the last set.
   soundAlike:
     sets: [[س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]]
     note: sound-alike

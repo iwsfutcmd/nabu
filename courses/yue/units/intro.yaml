@@ -9,7 +9,8 @@ kcs:
 - {id: 'sense:唔該', pos: INTJ, gloss: {en: thank you (for a service); please; excuse me}, forms: {yue-Hant-HK/standard: [唔該], yue-Latn/jyutping: [m4 goi1]}}
 - {id: 'sense:多謝', pos: INTJ, gloss: {en: 'thank you (for a gift, a treat or a compliment; a seller, for payment)'}, forms: {yue-Hant-HK/standard: [多謝], yue-Latn/jyutping: [do1 ze6]}}
 - {id: 'sense:拜拜', pos: INTJ, gloss: {en: bye-bye}, forms: {yue-Hant-HK/standard: [拜拜], yue-Latn/jyutping: [baai1 baai3]}}
-- {id: 'sense:呀', pos: PART, features: {PartType: Mod}, gloss: {en: 'sentence-final particle: softens a statement or a question (aa3); turns a statement into a question that expects yes (aa4)'}, forms: {yue-Hant-HK/standard: [呀], yue-Latn/jyutping: [aa3]}}
+- {id: 'sense:呀', pos: PART, features: {PartType: Mod}, gloss: {en: 'sentence-final particle: softens a statement or a question (aa3)'}, forms: {yue-Hant-HK/standard: [呀], yue-Latn/jyutping: [aa3]}}
+- {id: 'sense:呀.q', pos: PART, features: {PartType: Int}, gloss: {en: 'sentence-final particle: turns a statement into a question that expects yes (aa4)'}, forms: {yue-Hant-HK/standard: [呀], yue-Latn/jyutping: [aa4]}}
 - {id: 'sense:係', pos: AUX, gloss: {en: 'to be; yes, that''s right'}, forms: {yue-Hant-HK/standard: [係], yue-Latn/jyutping: [hai6]}}
 - {id: 'sense:唔', pos: ADV, features: {Polarity: Neg}, gloss: {en: not}, forms: {yue-Hant-HK/standard: [唔], yue-Latn/jyutping: [m4]}}
 - {id: 'sense:我', pos: PRON, features: {PronType: Prs}, gloss: {en: I; me}, forms: {yue-Hant-HK/standard: [我], yue-Latn/jyutping: [ngo5]}}
@@ -29,7 +30,7 @@ kcs:
 - {id: 'sense:晒', pos: PART, gloss: {en: all; completely (after a verb)}, forms: {yue-Hant-HK/standard: [晒], yue-Latn/jyutping: [saai3]}}
 nodes:
 - {id: yue.greetings, kind: lesson, introduces: ['sense:早晨', 'sense:你好', 'sense:唔該', 'sense:多謝', 'sense:拜拜', 'sense:呀', 'sense:晒']}
-- {id: yue.copula, kind: lesson, introduces: ['sense:係', 'sense:唔', 'sense:我', 'sense:你', 'sense:學生', 'sense:老師']}
+- {id: yue.copula, kind: lesson, introduces: ['sense:係', 'sense:唔', 'sense:我', 'sense:你', 'sense:呀.q', 'sense:學生', 'sense:老師']}
 - {id: yue.who, kind: lesson, introduces: ['construction:a-not-a', 'sense:佢', 'form:plural-dei']}
 - {id: yue.yum-cha, kind: lesson, introduces: ['sense:去', 'sense:飲茶', 'sense:啦', 'sense:嗎', 'sense:好', 'sense:邊個', 'sense:嘅']}
 - {id: yue.story, kind: story}
@@ -213,12 +214,30 @@ sentences:
       It is me.
       That's me.
       It was me.
+- id: s.28
+  node: yue.copula
+  forms:
+    yue-Hant-HK/standard:
+      text: 係你。
+      tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
+      reverse: 係你(|呀)
+    yue-Latn/jyutping:
+      text: hai6 nei5.
+      tokens: [{surface: hai6, sense: 係, readings: {characters: 係}}, {surface: nei5, sense: 你, readings: {characters: 你}}]
+      reverse: hai6 nei5 (|aa4|aa3)
+  translations:
+    en: |-
+      It's you.
+      It is you.
+      That's you.
+      It was you.
+  persons: {addressee: sg}
 - id: s.11
   node: yue.copula
   forms:
     yue-Hant-HK/standard:
       text: 係你呀？
-      tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa4}}]
+      tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呀, sense: 呀.q, readings: {jyutping: aa4}}]
       reverse: |-
         係你[呀]
         係唔係你[呀]
@@ -226,7 +245,7 @@ sentences:
         係咪你呀
     yue-Latn/jyutping:
       text: hai6 nei5 aa4?
-      tokens: [{surface: hai6, sense: 係, readings: {characters: 係}}, {surface: nei5, sense: 你, readings: {characters: 你}}, {surface: aa4, sense: 呀, readings: {characters: 呀}}]
+      tokens: [{surface: hai6, sense: 係, readings: {characters: 係}}, {surface: nei5, sense: 你, readings: {characters: 你}}, {surface: aa4, sense: 呀.q, readings: {characters: 呀}}]
       reverse: |-
         hai6 nei5 [(aa4|aa3)]
         hai6 m4 hai6 nei5 [(aa4|aa3)]
@@ -238,6 +257,7 @@ sentences:
       It's you?
       Is that you?
       That's you?
+  persons: {addressee: sg}
 - id: s.12
   node: yue.copula
   forms:
