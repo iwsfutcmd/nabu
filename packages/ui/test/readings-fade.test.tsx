@@ -116,6 +116,17 @@ describe("readings on new words only (ADR 0131)", () => {
     expect(rts(solution)).toEqual(["ngo5", "ge3", "syu1"]);
   });
 
+  it("keep the reading of a tapped word: tapping is how a faded reading is looked up", () => {
+    const tapped = (pressed: number | undefined, ruby: SchemeId | false = JYUTPING): readonly string[] =>
+      rts(render(inSession(true, <T text={text} ruby={ruby} onTokenPress={() => undefined} pressed={pressed} />)));
+    expect(tapped(undefined)).toEqual(["ngo5", "ge3"]);
+    expect(tapped(2)).toEqual(["ngo5", "ge3", "syu1"]);
+    // Another word tapped: 書 fades again.
+    expect(tapped(0)).toEqual(["ngo5", "ge3"]);
+    // A card that shows no reading (one asking for it) shows none for a tap either.
+    expect(tapped(2, false)).toEqual([]);
+  });
+
   it("show a right typed answer again only where a word of it still has its reading", () => {
     const ex = { template: "translate-type", orthography: ORTH } as unknown as Exercise;
     const typed: Response = { tag: "text", text: "我嘅書？" };

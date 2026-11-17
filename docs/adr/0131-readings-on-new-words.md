@@ -104,15 +104,22 @@ graded by that profile (`typedByProfile`), rather than syllable by syllable as J
 - **The field:** it offers that profile's letters on the character bar.
 - **What stays as it was:** Jyutping's typed cards.
 
-## Amendment: a corrected word keeps its reading (2026-11-17)
+## Amendment: a corrected or tapped word keeps its reading (2026-11-17)
 
-Feedback marks the words an answer got wrong or slipped on (a typo, a mark, a word left out). Such a word
-lost its reading where readings fade, while the new words around it kept theirs: in chg, mundin typed
-without its nun showed the corrected word bare between bolmas, üzüm and yaḫširaq.
+Two words lost their reading where readings fade, though they are the ones the learner is looking at:
 
-- **The rule:** a word <T> marks as wrong (`highlight`) keeps its reading where readings fade. It is the
-  word to look at again, as a tapped word is.
-- **Where it applies:** the solution in feedback, and a missed card's solution at the end of a session.
-  Other words of the sentence still fade by the fold's rule.
-- **What it does not change:** the fold, `readingsShown`, and a typed gap's filled word. A right answer's
-  feedback marks no word, so it fades as before.
+- **A corrected word:** feedback marks the words an answer got wrong or slipped on (a typo, a mark, a word
+  left out). In chg, mundin typed without its nun showed the corrected word bare between bolmas, üzüm and
+  yaḫširaq.
+- **A tapped word:** the gloss panel shows the reading only of an entry's form. A word glossed by its morphs
+  (اشلیغی: اشلیغ "grain", ی "his, her") showed its reading nowhere, above the word or below it.
+
+The rule:
+
+- **Marked or tapped:** a word <T> marks as wrong (`highlight`) or tapped (`pressed`) keeps its reading where
+  readings fade. Other words of the sentence still fade by the fold's rule.
+- **Where it applies:** the solution in feedback, a missed card's solution at the end of a session, and every
+  text that takes taps (story lines, answered cards, gap sentences, sentences to say).
+- **Where it does not:** a card that shows no reading layer (`ruby={false}`: char-read and transcribe ask for
+  it) shows none for a tap or a mark either. A layer the learner turned off stays off.
+- **What it does not change:** the fold, `readingsShown`, and a typed gap's filled word.

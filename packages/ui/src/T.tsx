@@ -55,7 +55,8 @@ export interface TProps {
   readonly id?: string;
   /**
    * Tap-for-gloss (Phase 6): word tokens become buttons that report their index. The token
-   * stays whole (§6.8); `pressed` marks the one whose gloss is open.
+   * stays whole (§6.8); `pressed` marks the one whose gloss is open. A pressed word keeps its
+   * reading where readings fade (ADR 0131): tapping is how a faded reading is looked up.
    */
   readonly onTokenPress?: (index: number) => void;
   readonly pressed?: number | undefined;
@@ -166,9 +167,10 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   // "new": a word the learner knows loses its marks; one still being learned (or unknown) keeps them.
   const known = (token: Token): boolean => status !== null && !status.isNew(kcsOfToken(token), token.surface, text.orthography);
   // Readings on new words only (ADR 0131): a word whose reading the learner has shown goes without,
-  // unless it is marked: the word feedback corrects shows its reading, as the rest of the sentence does.
+  // unless it is marked (the word feedback corrects) or tapped (the word looked up): those show it.
+  const looked = (index: number): boolean => highlight?.includes(index) === true || pressed === index;
   const rubyOf = (token: Token, index: number): SchemeId | false =>
-    ruby !== false && highlight?.includes(index) !== true && faded(kcsOfToken(token), token.surface, text.orthography) ? false : ruby;
+    ruby !== false && !looked(index) && faded(kcsOfToken(token), token.surface, text.orthography) ? false : ruby;
   const stripOf = (token: Token): RegExp | undefined => (marks === "hide" || (marks === "new" && known(token)) ? strip : undefined);
   const font = fontStackFor(text.lang, profile?.fonts);
   useFonts(font.family);
