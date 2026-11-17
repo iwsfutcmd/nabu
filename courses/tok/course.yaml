@@ -67,4 +67,6 @@ audio:
   voices:
   - {id: lasina-m, provider: espeak-ng, voice: eo, speaker: m, orthography: tok-Latn/standard, reading: lasina, license: CC0-1.0}
   - {id: lasina-f, provider: espeak-ng, voice: eo+f2, speaker: f, orthography: tok-Latn/standard, reading: lasina, license: CC0-1.0}
+# Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
+consistentReadings: true
 units: [units/u01-toki.yaml, units/u02-soweli-li-lape.yaml, units/u03-mi-moku-e-kili.yaml, units/u04-pona-ala-pona.yaml, units/u05-jan-pi-toki-pona.yaml, units/u06-mi-lon-tomo.yaml, units/u07-tenpo-ni-la.yaml, units/u08-o-kama.yaml, units/u09-sijelo-en-kule.yaml, units/u10-toki-pona-li-pona.yaml]

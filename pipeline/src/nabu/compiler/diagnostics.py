@@ -97,6 +97,34 @@ _LINTS = [
         "A reading's syllables do not line up with the word's characters.",
     ),
     Lint(
+        "reading.inconsistent",
+        "error",
+        3,
+        "Words annotated alike (spelling, sense, form, morphs) read two ways, in a course that "
+        "has switched the check on (`consistentReadings`, ADR 0135).",
+    ),
+    Lint(
+        "reading.inconsistent-pending",
+        "warning",
+        3,
+        "Words annotated alike read two ways, in a course that has not switched the check on yet "
+        "(ADR 0135): annotate what tells them apart, or mark a free variant `readingVariant`.",
+    ),
+    Lint(
+        "reading.bound",
+        "error",
+        3,
+        "A reading marks its word bound to the next (the scheme's `bound`: the Tiberian reading's "
+        "final hyphen) where the text does not bind it, or does not where it does (ADR 0135).",
+    ),
+    Lint(
+        "reading.spelling",
+        "error",
+        3,
+        "A reading does not spell its word, in a scheme whose readings do (Attic: the reading "
+        "without its vowel lengths, ADR 0135).",
+    ),
+    Lint(
         "enrich.transliteration-mismatch",
         "info",
         3,

@@ -137,6 +137,9 @@ class Plugins:
     #: not Latin (Attic: χώρᾱ → chōrā): what an alphabet track asks (ADR 0133). None: a reading is
     #: its own Latin (Schluessel).
     latin: Callable[[str], str] | None = None
+    #: A reading's spelling, where the scheme's readings spell their words (Attic: the reading
+    #: without its vowel lengths): the compiler checks each token's against it (ADR 0135).
+    spelling: Callable[[str], str] | None = None
 
 
 @cache
@@ -156,7 +159,11 @@ def plugins(name: str) -> Plugins:
         "tiberian": Plugins(espeak=tiberian.espeak, piper=tiberian.piper),
         "lasina": Plugins(espeak=toki_pona.espeak),
         "attic": Plugins(
-            espeak=attic.espeak, piper=attic.piper, cite=attic.cited, latin=greek_translit.word
+            espeak=attic.espeak,
+            piper=attic.piper,
+            cite=attic.cited,
+            latin=greek_translit.word,
+            spelling=attic.surface,
         ),
     }
     return registry.get(name, Plugins())

@@ -43,4 +43,6 @@ names:
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@52f9ac56dcce', status: draft}
 facets: [recognize, produce]
+# Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
+consistentReadings: true
 units: [units/u01-the-master-said.yaml, units/u02-to-know-what-you-know.yaml, units/u03-at-fifteen.yaml, units/u04-who-knows-others.yaml, units/u05-the-joy-of-fish.yaml, units/u06-the-sword-and-the-boat.yaml, units/u07-waiting-for-rabbits.yaml, units/u08-spear-and-shield.yaml, units/u09-fish-and-bears-paw.yaml, units/u10-moonlight.yaml]

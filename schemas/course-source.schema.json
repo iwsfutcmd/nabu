@@ -62,6 +62,10 @@
     "placement": {
       "$ref": "common.schema.json#/$defs/PlacementPolicy"
     },
+    "consistentReadings": {
+      "description": "Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.",
+      "type": "boolean"
+    },
     "iPlusOne": {
       "description": "Maximum new knowledge components per sentence (§7.5). Default 1.",
       "type": "integer",
@@ -531,6 +535,15 @@
           "description": "This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.",
           "type": "string",
           "minLength": 1
+        },
+        "context": {
+          "description": "A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.",
+          "type": "string",
+          "pattern": "^[a-z][a-z-]*$"
+        },
+        "readingVariant": {
+          "description": "Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading.",
+          "const": true
         }
       }
     },

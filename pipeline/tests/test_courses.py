@@ -51,7 +51,23 @@ EXPECTED_WARNINGS = {
         ("enrich.reading-mismatch", "呢條"),
         ("enrich.reading-mismatch", "呢碗"),
         ("enrich.reading-mismatch", "呢隻"),
-    }
+        # One 呀 reads aa4, the question particle (係你呀？): its own sense, to come (ADR 0135).
+        ("reading.inconsistent-pending", "呀"),
+    },
+    # Read two ways, to be settled before the course switches the check on (ADR 0135).
+    "hbo": {("reading.inconsistent-pending", "וְנֵדְעָה")},  # Jonah 1:7: wənēḏəʿâ or wənēḏʿâ
+    "chg": {
+        # The ezafe, unwritten: a morph with no surface to come (malik-i, faqīr-i, āwāz-i).
+        ("reading.inconsistent-pending", "ملک"),
+        ("reading.inconsistent-pending", "فقیر"),
+        ("reading.inconsistent-pending", "آواز"),
+        # For the course's author: yer/yär, yol/yul, suyi/süyi, šahargä/šaharǧa, tizigä.
+        ("reading.inconsistent-pending", "یر"),
+        ("reading.inconsistent-pending", "یول"),
+        ("reading.inconsistent-pending", "سویی"),
+        ("reading.inconsistent-pending", "شهرغه"),
+        ("reading.inconsistent-pending", "تیزیغه"),
+    },
 }
 TOOLS = {
     "fa": ["hazm", "icu"],

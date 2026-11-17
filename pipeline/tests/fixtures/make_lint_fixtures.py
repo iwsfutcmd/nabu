@@ -147,6 +147,72 @@ GRC: dict[str, Any] = {
 """A Greek alphabet track (ADR 0088): one node teaching α, ι and ν, and ναί spelled with them,
 which a lesson's sentence gives its Attic reading (ADR 0133)."""
 
+HBO_ORTH = "hbo-Hebr/tiberian"
+HA_ARETS = "\u05d4\u05b8\u05d0\u05b8\u05e8\u05b6\u05e5"  # הָאָרֶץ
+AL = "\u05e2\u05b7\u05dc"  # עַל
+HBO: dict[str, Any] = {
+    "id": "clean-hbo",
+    "target": "hbo-Hebr",
+    "orthographies": [HBO_ORTH],
+    "support": ["en-Latn/standard"],
+    "names": {"en": {"course": "Biblical Hebrew"}},
+    "license": "CC0-1.0",
+    "provenance": {"author": "human:fixture", "status": "draft"},
+    "units": [
+        {
+            "id": "basics",
+            "kcs": [
+                {"id": "sense:erets", "gloss": {"en": "earth"}},
+                {"id": "sense:al", "gloss": {"en": "on"}},
+            ],
+            "nodes": [
+                {"id": "basics.1", "kind": "lesson", "introduces": ["sense:erets"]},
+                {"id": "basics.2", "kind": "lesson", "introduces": ["sense:al"]},
+            ],
+            "sentences": [
+                {
+                    "id": "s.1",
+                    "node": "basics.1",
+                    "forms": {
+                        HBO_ORTH: {
+                            "text": HA_ARETS,
+                            "tokens": [
+                                {
+                                    "surface": HA_ARETS,
+                                    "sense": "erets",
+                                    "readings": {"tiberian": "hāʾā́reṣ"},
+                                }
+                            ],
+                            "reverse": "הארץ",
+                        }
+                    },
+                    "translations": {"en": "the earth"},
+                },
+                {
+                    "id": "s.2",
+                    "node": "basics.2",
+                    "forms": {
+                        HBO_ORTH: {
+                            "text": AL + "\u05be" + HA_ARETS,
+                            "tokens": [
+                                {"surface": AL, "sense": "al", "readings": {"tiberian": "ʿal-"}},
+                                {
+                                    "surface": HA_ARETS,
+                                    "sense": "erets",
+                                    "readings": {"tiberian": "hāʾā́reṣ"},
+                                },
+                            ],
+                            "reverse": "על הארץ",
+                        }
+                    },
+                    "translations": {"en": "on the earth"},
+                },
+            ],
+        }
+    ],
+}
+"""A Biblical Hebrew course: עַל bound to הָאָרֶץ by a maqaf, its reading's final hyphen saying so."""
+
 Course = dict[str, Any]
 
 
@@ -245,6 +311,32 @@ def _unused(c: Course) -> None:
 
 def _iplus(c: Course) -> None:
     del unit(c)["sentences"][2]
+
+
+def _yue_read_otherwise(c: Course) -> None:
+    """A second sentence reads 我哋 otherwise than the first."""
+    first = unit(c)["sentences"][0]
+    second = copy.deepcopy(first)
+    second["id"] = "s.2"
+    second["forms"]["yue-Hant-HK/standard"]["tokens"][0]["readings"] = {"jyutping": "ngo4 dei6"}
+    unit(c)["sentences"].append(second)
+
+
+def _yue_read_otherwise_strict(c: Course) -> None:
+    """As _yue_read_otherwise, in a course that has switched the check on (ADR 0135)."""
+    c["consistentReadings"] = True
+    _yue_read_otherwise(c)
+
+
+def _grc_misspelled_reading(c: Course) -> None:
+    """ναί read νεί, which spells another word."""
+    tok = unit(c)["sentences"][0]["forms"][GRC_ORTH]["tokens"][0]
+    tok["readings"] = {"attic": "νεί"}
+
+
+def _hbo_unbound(c: Course) -> None:
+    """עַל before a maqaf read without the bound mark."""
+    unit(c)["sentences"][1]["forms"][HBO_ORTH]["tokens"][0]["readings"] = {"tiberian": "ʿal"}
 
 
 def _script_untaught(c: Course) -> None:
@@ -718,6 +810,19 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
             )
         ),
     ),
+    "reading.inconsistent": (
+        "我哋 read ngo5 dei6 and ngo4 dei6, in a course that has switched the check on.",
+        m(_yue_read_otherwise_strict, YUE),
+    ),
+    "reading.inconsistent-pending": (
+        "我哋 read ngo5 dei6 and ngo4 dei6, in a course still being cleaned up.",
+        m(_yue_read_otherwise, YUE),
+    ),
+    "reading.spelling": (
+        "ναί read νεί, which spells another word.",
+        m(_grc_misspelled_reading, GRC),
+    ),
+    "reading.bound": ("עַל before a maqaf read without its bound mark.", m(_hbo_unbound, HBO)),
     "script.untaught-letter": (
         "A Greek alphabet node's word uses ν before the track teaches it.",
         m(_script_untaught, GRC),
