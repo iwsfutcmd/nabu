@@ -97,10 +97,10 @@ for (const cell of cells()) {
       if (screen === "feedback") {
         await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", /^(WRONG|WRONG_WORD)$/u);
         await expect(page.locator("[data-solution]")).toBeVisible();
-        // The differing word is marked, never by colour alone.
+        // The differing word is marked, never by colour alone: each of its units (a Han word's characters).
         const marked = page.locator("[data-answer-diff] [data-highlight]");
-        await expect(marked).toHaveCount(1);
-        expect(await marked.evaluate((el) => getComputedStyle(el).textDecorationLine)).toContain("underline");
+        await expect(marked.first()).toBeVisible();
+        for (const line of await marked.evaluateAll((els) => els.map((el) => getComputedStyle(el).textDecorationLine))) expect(line).toContain("underline");
       }
 
       // Every glyph from a self-hosted web font: no tofu, no machine-dependent fallback.
