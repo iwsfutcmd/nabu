@@ -325,9 +325,9 @@ export type ScriptedLangTag1 = LangTag;
  */
 export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
- * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  */
-export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
+export type SchemeId1 = string & { readonly __brand: "SchemeId" };
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
@@ -336,6 +336,10 @@ export type LangTag1 = string & { readonly __brand: "LangTag" };
  * A LangTag that carries an explicit script subtag. Every piece of language data uses one (gameplan §1 decision 3, §6.1): direction, fonts, Han glyph selection and input all key off the script.
  */
 export type ScriptedLangTag2 = LangTag;
+/**
+ * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ */
+export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
 /**
  * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
  */
@@ -492,7 +496,7 @@ export interface NabuSchemaIndex {
   readonly FineTunedRecognizer: FineTunedRecognizer;
   readonly SpeechPhones: SpeechPhones;
   readonly Transliteration: Transliteration;
-  readonly Romanization: Romanization;
+  readonly ScriptTrack: ScriptTrack;
   readonly Equivalence: Equivalence;
   readonly TableRef: TableRef;
   readonly Contrast: Contrast;
@@ -1272,7 +1276,7 @@ export interface BundleNode {
   readonly reinforces: readonly KcId1[];
   readonly sentences: readonly string[];
   /**
-   * An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088).
+   * An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0132).
    */
   readonly alphabet?: {
     readonly orthography: string;
@@ -1285,7 +1289,7 @@ export interface BundleNode {
   };
 }
 /**
- * A letter or a word of an alphabet node: its KC, how the orthography writes it, and its Latin spelling.
+ * A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0132): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ScriptItem".
@@ -2949,7 +2953,7 @@ export interface OrthographyProfile {
   readonly layout?: Layout;
   readonly strokeOrder?: StrokeOrder;
   readonly fonts?: Fonts;
-  readonly romanize?: Romanization;
+  readonly scriptTrack?: ScriptTrack;
   readonly transliterate?: Transliteration;
   readonly speech?: SpeechSetup;
 }
@@ -3283,17 +3287,13 @@ export interface Fonts {
   readonly scale?: number;
 }
 /**
- * How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088, 0124): a scheme, and the orthography the Latin spellings are in.
+ * What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0132): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Romanization".
+ * via the `definition` "ScriptTrack".
  */
-export interface Romanization {
-  /**
-   * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters.
-   */
-  readonly scheme: "greek" | "forms";
-  readonly orthography: OrthographyId2;
+export interface ScriptTrack {
+  readonly reading: SchemeId1;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -3375,7 +3375,8 @@ export interface ReadingScheme {
   };
   readonly language: LangTag1;
   readonly lang?: ScriptedLangTag2;
-  readonly answer?: OrthographyId3;
+  readonly answer?: OrthographyId2;
+  readonly latin?: OrthographyId3;
   /**
    * Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.
    *

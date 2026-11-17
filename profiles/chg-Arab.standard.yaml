@@ -59,9 +59,9 @@ input:
   keyboard: cldr-kbd:fa
   extraKeys: ["\u200C"]          # ZWNJ on the special-character bar
 layout: { vertical: none }
-# The alphabet track's Latin spellings (ADR 0088, 0124, 0128): each letter's and word's own form in Schluessel's
-# transliteration, as the course pins it; an abjad's words cannot be romanized from their letters.
-romanize: { scheme: forms, orthography: chg-Latn/schluessel }
+# The alphabet track asks its letters and words as their Schluessel readings (ADR 0132): a word's is its KC's pinned
+# reading; a letter, which stands for several sounds, is its grapheme KC's chg-Latn/schluessel form.
+scriptTrack: { reading: schluessel }
 # Nastaliq, the hand the manuscripts are written in (Noto Nastaliq Urdu, OFL-1.1): every letter and mark the course
 # writes is in its faces. Its letters climb and drop far from the line (1.9 em above, 0.6 below), so the lines are
 # set wide apart, and its text a quarter larger (as lzh's): at the size of the text around it Nastaliq reads small,

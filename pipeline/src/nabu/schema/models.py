@@ -2011,25 +2011,19 @@ class Transliteration(BaseModel):
     via: Annotated[str, Field(pattern="^[a-z0-9-]+(:[A-Za-z0-9_/-]+)?$")]
 
 
-class Romanization(BaseModel):
+class ScriptTrack(BaseModel):
     """
-    How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088, 0124): a scheme, and the orthography the Latin spellings are in.
+    What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0132): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
     """
 
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
-    scheme: Annotated[
-        Literal["greek", "forms"],
+    reading: Annotated[
+        SchemeId,
         Field(
-            description="A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters."
-        ),
-    ]
-    orthography: Annotated[
-        OrthographyId,
-        Field(
-            description="The orthography of the Latin spellings (grc-Latn/romanized): their text is tagged with it, and its profile ships in the bundle beside the course's own."
+            description="The reading scheme the track asks (attic, schluessel): one the orthography's words pin, with a `latin` orthography."
         ),
     ]
 
@@ -3396,6 +3390,12 @@ class ReadingScheme(BaseModel):
             description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese."
         ),
     ] = None
+    latin: Annotated[
+        OrthographyId | None,
+        Field(
+            description="The orthography its readings are written in for a learner who cannot read the script yet (ADR 0132): an alphabet track's letters and words (a profile's `scriptTrack`) are tagged with it, and its profile grades them and ships in the bundle beside the course's own. A scheme whose own text is not Latin has a plug-in that writes a reading in it (nabu.schemes `latin`: Attic's χώρᾱ is chōrā); otherwise a reading is its own Latin (Schluessel)."
+        ),
+    ] = None
     variants: Annotated[
         list[Variant1] | None,
         Field(
@@ -3895,7 +3895,7 @@ class BundleKc(BaseModel):
 
 class ScriptItem(BaseModel):
     """
-    A letter or a word of an alphabet node: its KC, how the orthography writes it, and its Latin spelling.
+    A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0132): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
     """
 
     model_config = ConfigDict(
@@ -3915,7 +3915,7 @@ class ScriptItem(BaseModel):
 
 class Alphabet(BaseModel):
     """
-    An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088).
+    An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0132).
     """
 
     model_config = ConfigDict(
@@ -3940,7 +3940,7 @@ class BundleNode(BaseModel):
     alphabet: Annotated[
         Alphabet | None,
         Field(
-            description="An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088)."
+            description="An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0132)."
         ),
     ] = None
     convert: Convert | None = None
@@ -4073,7 +4073,7 @@ class OrthographyProfile(BaseModel):
     layout: Layout | None = None
     strokeOrder: StrokeOrder | None = None
     fonts: Fonts | None = None
-    romanize: Romanization | None = None
+    scriptTrack: ScriptTrack | None = None
     transliterate: Transliteration | None = None
     speech: SpeechSetup | None = None
 

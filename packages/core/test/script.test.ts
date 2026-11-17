@@ -130,8 +130,8 @@ describe("script track: the Greek alphabet (grc)", () => {
 });
 
 /**
- * Chaghatay's Arabic alphabet (ADR 0128): Latin spellings are the course's own transliteration of
- * each letter and word (`romanize: forms`), and the row is there only for learners of the Arabic.
+ * Chaghatay's Arabic alphabet (ADR 0128, 0132): a word is asked as its Schluessel reading, a letter as
+ * its own form in his transliteration, and the row is there only for learners of the Arabic.
  */
 describe("script track: the Arabic alphabet of Chaghatay (chg)", () => {
   const chg = loadCourse("chg", "chg-Arab/standard");

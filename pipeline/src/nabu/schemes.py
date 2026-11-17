@@ -8,8 +8,9 @@ pinned to core's by the conformance vectors (`syllables`, `tone`: conformance/pr
 
 What the pipeline *does* with a scheme's readings, where it can, is code, registered by scheme in
 `plugins`: eSpeak NG phonemes and IPA for voices, whether a spelling settles a reading, phones for
-alignment, a word card's citation form, and readings of written text for the round trip. A new
-scheme is a data file; it needs code only for what voices and checks do with it.
+alignment, a word card's citation form, readings of written text for the round trip, and a reading
+in Latin letters for an alphabet track. A new scheme is a data file; it needs code only for what
+voices and checks do with it.
 """
 
 from __future__ import annotations
@@ -132,12 +133,17 @@ class Plugins:
     #: Readings of written characters, one per grapheme (None where it has none): the round trip
     #: compares a transcript by reading where the language has a scheme that reads it.
     read: Callable[[list[str]], list[str | None]] | None = None
+    #: A reading, or a letter, in the scheme's `latin` orthography, where the scheme's own text is
+    #: not Latin (Attic: χώρᾱ → chōrā): what an alphabet track asks (ADR 0132). None: a reading is
+    #: its own Latin (Schluessel).
+    latin: Callable[[str], str] | None = None
 
 
 @cache
 def plugins(name: str) -> Plugins:
     """The scheme's plug-ins; ValueError for a scheme with no data."""
     scheme(name)
+    from nabu import greek_translit
     from nabu.audio import attic, jyutping, tiberian, toki_pona
 
     registry = {
@@ -149,7 +155,9 @@ def plugins(name: str) -> Plugins:
         ),
         "tiberian": Plugins(espeak=tiberian.espeak, piper=tiberian.piper),
         "lasina": Plugins(espeak=toki_pona.espeak),
-        "attic": Plugins(espeak=attic.espeak, piper=attic.piper, cite=attic.cited),
+        "attic": Plugins(
+            espeak=attic.espeak, piper=attic.piper, cite=attic.cited, latin=greek_translit.word
+        ),
     }
     return registry.get(name, Plugins())
 

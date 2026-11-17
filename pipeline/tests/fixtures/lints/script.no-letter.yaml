@@ -61,4 +61,21 @@ units:
       orthography: grc-Grek/polytonic
       words:
       - sense:ναί
-  sentences: []
+  - id: abc.2
+    kind: lesson
+    introduces:
+    - sense:ναί
+  sentences:
+  - id: s.1
+    node: abc.2
+    forms:
+      grc-Grek/polytonic:
+        text: ναί.
+        tokens:
+        - surface: ναί
+          sense: ναί
+          readings:
+            attic: ναί
+        reverse: ναί
+    translations:
+      en: Yes.

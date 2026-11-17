@@ -122,13 +122,30 @@ GRC: dict[str, Any] = {
                     "kind": "script",
                     "introduces": ["grapheme:α", "grapheme:ι", "grapheme:ν"],
                     "alphabet": {"orthography": GRC_ORTH, "words": ["sense:ναί"]},
+                },
+                {"id": "abc.2", "kind": "lesson", "introduces": ["sense:ναί"]},
+            ],
+            "sentences": [
+                {
+                    "id": "s.1",
+                    "node": "abc.2",
+                    "forms": {
+                        GRC_ORTH: {
+                            "text": "ναί.",
+                            "tokens": [
+                                {"surface": "ναί", "sense": "ναί", "readings": {"attic": "ναί"}}
+                            ],
+                            "reverse": "ναί",
+                        }
+                    },
+                    "translations": {"en": "Yes."},
                 }
             ],
-            "sentences": [],
         }
     ],
 }
-"""A Greek alphabet track (ADR 0088): one node teaching α, ι and ν, and ναί spelled with them."""
+"""A Greek alphabet track (ADR 0088): one node teaching α, ι and ν, and ναί spelled with them,
+which a lesson's sentence gives its Attic reading (ADR 0132)."""
 
 Course = dict[str, Any]
 
@@ -247,8 +264,9 @@ def _script_no_letter(c: Course) -> None:
     unit(c)["nodes"][0]["introduces"].append("grapheme:rough")
 
 
-def _script_no_romanization(c: Course) -> None:
-    """An alphabet node (ADR 0088) in an orthography with no romanization."""
+def _script_no_reading_scheme(c: Course) -> None:
+    """An alphabet node (ADR 0088) in an orthography whose profile names no reading for its track
+    (ADR 0132)."""
     unit(c)["kcs"].append({"id": "grapheme:s", "forms": {"uz-Latn/standard": ["s"]}})
     unit(c)["nodes"].append(
         {
@@ -258,6 +276,12 @@ def _script_no_romanization(c: Course) -> None:
             "alphabet": {"orthography": "uz-Latn/standard", "words": ["sense:salom"]},
         }
     )
+
+
+def _script_no_reading(c: Course) -> None:
+    """No sentence spells ναί, and its KC entry gives no Attic reading (ADR 0132)."""
+    unit(c)["sentences"].clear()
+    unit(c)["nodes"].pop()
 
 
 def _script_missing(c: Course) -> None:
@@ -684,9 +708,13 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         "A grapheme KC for the rough breathing written as its spacing sign, on no letter.",
         m(_script_no_letter, GRC),
     ),
-    "script.no-romanization": (
-        "An alphabet node in an orthography whose profile names no romanization.",
-        m(_script_no_romanization),
+    "script.no-reading-scheme": (
+        "An alphabet node in an orthography whose profile names no reading scheme for its track.",
+        m(_script_no_reading_scheme),
+    ),
+    "script.missing-reading": (
+        "The alphabet node's word ναί, which no sentence spells and whose KC gives no reading.",
+        m(_script_no_reading, GRC),
     ),
     "script.missing-form": (
         "A script-convert track uses a sentence with no Cyrillic form.",

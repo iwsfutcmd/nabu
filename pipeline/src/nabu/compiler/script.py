@@ -1,7 +1,7 @@
-"""Alphabet nodes (ADR 0088): a script track's letters and words, with their Latin spellings.
+"""Alphabet nodes (ADR 0088): a script track's letters and words, with their readings in Latin.
 
 What a letter and a mark are is the orthography's profile's to say (ADR 0124), so a track in any
-script needs code only for its romanization:
+script needs code only where its reading scheme's text is not Latin:
 - **letters** are the units the profile cuts text into (its `letters`, longest first, else
   grapheme clusters) after its normalization and case folding, without the marks of its mark set
   (`match.marks.set`): Σωκράτης is σ ω κ ρ α τ η σ, the fold making Σ and the final ς one σ;
@@ -14,12 +14,19 @@ script needs code only for its romanization:
 
 A word of an alphabet node must be spelled with the letters taught by then
 (`script.untaught-letter`); marks are not checked: the words are shown as the course writes them.
-A grapheme KC whose first form has no letter would be in every word (`script.no-letter`). The
-orthography's profile names its romanization (`romanize`: a scheme, and the orthography of the
-Latin spellings, which needs a profile: `script.no-romanization`), and each word needs a form in
-the orthography (`script.missing-form`). The scheme `forms` romanizes nothing: a letter's and a
-word's Latin spelling is its KC's own first form in that orthography (chg's Schluessel
-transliteration, ADR 0128), which each then needs too (`script.missing-form`).
+A grapheme KC whose first form has no letter would be in every word (`script.no-letter`).
+
+What the track asks its letters and words as is their reading (ADR 0132), in Latin letters for a
+learner who cannot read the script yet: the orthography's profile names the scheme
+(`scriptTrack.reading`), and the scheme the orthography of its Latin (`latin`, which needs a
+profile): `script.no-reading-scheme`. A word's Latin is its KC's pinned reading (ADR 0117), the one
+its word card shows and its clip says, written in Latin by the scheme's `latin` plug-in where the
+scheme's text is not Latin (Attic: χώρᾱ is chōrā), as it stands otherwise (Schluessel); a word
+whose KC has none is `script.missing-reading` (give the KC entry its `readings`). A letter has no
+reading: it is the plug-in's rendering of the letter (α is a), or, where the scheme has no plug-in
+(an abjad's letter stands for several sounds), its grapheme KC's own first form in the Latin
+orthography (chg's ب is b). Each word needs a form in the orthography, and such a letter one in
+the Latin (`script.missing-form`). The track is compiled once KC readings are pinned.
 """
 
 from __future__ import annotations
@@ -30,22 +37,42 @@ from dataclasses import dataclass, field
 from functools import partial
 from typing import TYPE_CHECKING, Any
 
-from nabu import greek_translit
 from nabu.compiler.diagnostics import Diagnostics, Loc
-from nabu.schema.models import CourseSource, KnowledgeComponentSource, OrthographyProfile
+from nabu.items import WORD_KINDS
+from nabu.schema.models import (
+    Alphabet,
+    BundleUnit,
+    CourseSource,
+    KnowledgeComponentSource,
+    OrthographyProfile,
+)
+from nabu.schemes import plugins, schemes
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Unit
     from nabu.corecli import CoreCli
 
-#: Romanization schemes a profile can name (`romanize.scheme`), each a word → Latin function.
-ROMANIZERS: dict[str, Callable[[str], str]] = {"greek": greek_translit.word}
+
+@dataclass(frozen=True)
+class Track:
+    """What an orthography's alphabet track asks its letters and words as: their reading in
+    `scheme`, written in `latin`, by `write` where the scheme's text is not Latin."""
+
+    scheme: str
+    latin: str
+    write: Callable[[str], str] | None
 
 
-def romanized(profile: OrthographyProfile) -> str | None:
-    """The orthography the profile's Latin spellings are in (grc-Latn/romanized), if it names
-    a romanization."""
-    return None if profile.romanize is None else str(profile.romanize.orthography)
+def track(profile: OrthographyProfile) -> Track | None:
+    """The orthography's track (its profile's `scriptTrack`), if it names a scheme with a Latin
+    orthography."""
+    if profile.scriptTrack is None:
+        return None
+    scheme = str(profile.scriptTrack.reading)
+    found = schemes().get(scheme)
+    if found is None or found.latin is None:
+        return None
+    return Track(scheme, str(found.latin), plugins(scheme).latin)
 
 
 @dataclass(frozen=True)
@@ -134,7 +161,7 @@ def _item(
     text: str,
     letters: list[str],
 ) -> dict[str, Any]:
-    """A bundled ScriptItem: the KC, its written form and its Latin spelling."""
+    """A bundled ScriptItem: the KC, its written form and its Latin."""
     return {
         "kc": kc,
         "letters": letters,
@@ -143,24 +170,43 @@ def _item(
     }
 
 
-def _latin(
+def _readings(units: list[BundleUnit]) -> Callable[[str, str, str], str | None]:
+    """(KC, orthography, scheme) → the reading pinned on the words of the KC's first form in the
+    orthography (ADR 0117), its words' readings joined by spaces; None where a word has none."""
+    firsts = {
+        kc.id: {orth: texts[0] for orth, texts in (kc.forms or {}).items() if texts}
+        for unit in units
+        for kc in unit.kcs
+    }
+
+    def reading(kc: str, orth: str, scheme: str) -> str | None:
+        text = firsts.get(kc, {}).get(orth)
+        if text is None:
+            return None
+        words = [(t.readings or {}).get(scheme) for t in text.tokens if t.kind in WORD_KINDS]
+        if not words or any(r is None for r in words):
+            return None
+        return " ".join(r for r in words if r is not None)
+
+    return reading
+
+
+def _letter_latin(
     diags: Diagnostics,
     kcs: dict[str, tuple[Unit, int, KnowledgeComponentSource]],
-    romanize: Callable[[str], str] | None,
-    latin_orth: str,
+    t: Track,
     node_id: str,
-    kc_id: str,
-    text: str,
+    g: Grapheme,
     where: Loc,
 ) -> str | None:
-    """A letter's or word's Latin spelling: romanized from its text, or its KC's own first form in
-    the Latin orthography (the scheme `forms`, ADR 0128)."""
-    if romanize is not None:
-        return romanize(text)
-    found = kcs.get(kc_id)
-    own = (found[2].forms or {}).get(latin_orth, []) if found is not None else []
+    """A letter's Latin: the scheme's plug-in's rendering of it, or its KC's own first form in the
+    Latin orthography (the module's docstring)."""
+    if t.write is not None:
+        return t.write(g.form)
+    found = kcs.get(g.kc)
+    own = (found[2].forms or {}).get(t.latin, []) if found is not None else []
     if not own:
-        diags.report("script.missing-form", f"{node_id}: {kc_id} has no {latin_orth} form", where)
+        diags.report("script.missing-form", f"{node_id}: {g.kc} has no {t.latin} form", where)
         return None
     return own[0]
 
@@ -169,14 +215,17 @@ def compile_alphabets(
     diags: Diagnostics,
     course: CourseSource,
     units: list[Unit],
+    bundled: list[BundleUnit],
     profiles: dict[str, OrthographyProfile],
     tagged: Callable[[str, str], dict[str, Any]],
     cli: CoreCli,
 ) -> dict[str, dict[str, Any]]:
     """Each alphabet node's bundled `alphabet` (node id → {orthography, letters, words}), in course
-    order, with the lints. `tagged(orthography, text)` makes a TaggedText; `cli` reads text as
-    its profile does."""
+    order, with the lints. `bundled`: the units with their KC readings pinned (ADR 0117), which a
+    word's Latin is written from; `tagged(orthography, text)` makes a TaggedText; `cli` reads text
+    as its profile does."""
     kcs = {kc.id: (unit, ki, kc) for unit in units for ki, kc in enumerate(unit.source.kcs)}
+    reading_of = _readings(bundled)
     out: dict[str, dict[str, Any]] = {}
     taught: dict[str, list[Grapheme]] = {}  # orthography → graphemes taught so far
     readers: dict[str, Reader] = {}
@@ -193,20 +242,19 @@ def compile_alphabets(
                     "parse.unknown-orthography", f"{node.id} teaches {orth}, not the course's", loc
                 )
                 continue
-            scheme = profile.romanize.scheme if profile.romanize is not None else None
-            romanize = ROMANIZERS.get(scheme) if scheme is not None else None
-            latin_orth = romanized(profile)
-            if (romanize is None and scheme != "forms") or latin_orth is None:
+            t = track(profile)
+            if t is None:
                 diags.report(
-                    "script.no-romanization",
-                    f"{node.id}: {orth} has no romanization (its profile's `romanize`)",
+                    "script.no-reading-scheme",
+                    f"{node.id}: {orth} names no reading scheme with a Latin orthography for its "
+                    "track (its profile's `scriptTrack`, the scheme's `latin`)",
                     loc,
                 )
                 continue
-            if latin_orth not in profiles:
+            if t.latin not in profiles:
                 diags.report(
-                    "script.no-romanization",
-                    f"{node.id}: no profile {latin_orth} for the Latin spellings",
+                    "script.no-reading-scheme",
+                    f"{node.id}: no profile {t.latin} for the {t.scheme} scheme's Latin",
                     loc,
                 )
                 continue
@@ -214,9 +262,8 @@ def compile_alphabets(
             if read is None:
                 read = readers[orth] = Reader.of(cli, orth, profile)
 
-            latin_of = partial(_latin, diags, kcs, romanize, str(latin_orth), node.id)
-
-            new: list[Grapheme] = []
+            letter_latin = partial(_letter_latin, diags, kcs, t, node.id)
+            new: list[tuple[Grapheme, str]] = []
             for kc_id in node.introduces or []:
                 found = kcs.get(kc_id)
                 if found is None or not kc_id.startswith("grapheme:"):
@@ -234,10 +281,11 @@ def compile_alphabets(
                         kc_unit.doc.loc("kcs", ki, "forms", orth, 0),
                     )
                     continue
-                if latin_of(kc_id, g.form, kc_unit.doc.loc("kcs", ki, "forms")) is None:
+                latin = letter_latin(g, kc_unit.doc.loc("kcs", ki, "forms"))
+                if latin is None:
                     continue
-                new.append(g)
-            so_far = [*taught.get(orth, []), *new]
+                new.append((g, latin))
+            so_far = [*taught.get(orth, []), *(g for g, _ in new)]
             taught[orth] = so_far
             known = {letter for g in so_far for s in g.spellings for letter in s}
 
@@ -261,14 +309,21 @@ def compile_alphabets(
                         wloc,
                     )
                     continue
-                latin = latin_of(kc_id, word, wloc)
-                if latin is None:
+                reading = reading_of(kc_id, orth, t.scheme)
+                if reading is None:
+                    diags.report(
+                        "script.missing-reading",
+                        f"{node.id}: {word!r} ({kc_id}) has no {t.scheme} reading: no sentence "
+                        "spells it, so give its KC entry `readings`",
+                        wloc,
+                    )
                     continue
+                latin = t.write(reading) if t.write is not None else reading
                 words.append(
                     _item(
                         tagged,
                         orth,
-                        latin_orth,
+                        t.latin,
                         latin,
                         kc_id,
                         word,
@@ -278,36 +333,45 @@ def compile_alphabets(
             out[node.id] = {
                 "orthography": orth,
                 "letters": [
-                    _item(
-                        tagged,
-                        orth,
-                        latin_orth,
-                        latin_of(g.kc, g.form, loc) or "",
-                        g.kc,
-                        g.form,
-                        [g.kc],
-                    )
-                    for g in new
+                    _item(tagged, orth, t.latin, latin, g.kc, g.form, [g.kc]) for g, latin in new
                 ],
                 "words": words,
             }
     return out
 
 
-def romanized_orthographies(
-    course: CourseSource, profiles: dict[str, OrthographyProfile]
-) -> list[str]:
-    """The Latin orthographies a course's alphabet nodes tag their spellings with: their profiles
-    ship in the bundle beside the course's own (a course orthography ships anyway)."""
+def with_alphabets(
+    units: list[BundleUnit], alphabets: dict[str, dict[str, Any]]
+) -> list[BundleUnit]:
+    """The units with each alphabet node's compiled `alphabet`."""
+    out: list[BundleUnit] = []
+    for unit in units:
+        if not any(n.id in alphabets for n in unit.nodes):
+            out.append(unit)
+            continue
+        nodes = [
+            n.model_copy(update={"alphabet": Alphabet.model_validate(alphabets[n.id])})
+            if n.id in alphabets
+            else n
+            for n in unit.nodes
+        ]
+        out.append(unit.model_copy(update={"nodes": nodes}))
+    return out
+
+
+def latin_orthographies(course: CourseSource, profiles: dict[str, OrthographyProfile]) -> list[str]:
+    """The Latin orthographies a course's alphabet tracks tag their letters and words with (their
+    schemes' `latin`): their profiles ship in the bundle beside the course's own (a course
+    orthography ships anyway)."""
     out: list[str] = []
     for orth in course.orthographies:
         profile = profiles.get(orth)
-        latin = romanized(profile) if profile is not None else None
+        t = track(profile) if profile is not None else None
         if (
-            latin is not None
-            and latin in profiles
-            and latin not in out
-            and latin not in course.orthographies
+            t is not None
+            and t.latin in profiles
+            and t.latin not in out
+            and t.latin not in course.orthographies
         ):
-            out.append(latin)
+            out.append(t.latin)
     return out
