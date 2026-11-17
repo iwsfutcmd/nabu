@@ -5,7 +5,7 @@
   becomes an ADR.
 - Related: ADR 0053 (vowel marks), 0054/0095/0098 (pronunciation cards), 0071 (several ruby layers),
   0086 (sitelen pona), 0087 (Attic), 0109 (schemes as data), 0117 (KC readings), 0126 (Jyutping as
-  an orthography), 0128/0129 (Chaghatay), 0131 (readings that fade).
+  an orthography), 0128/0129 (Chaghatay), 0131 (readings that fade), 0133 (script tracks ask the reading).
 
 ## The question
 
@@ -40,9 +40,15 @@ The answer decides what the app presents, what it tests and how it grades. This 
 - **A**, audio: a clip, synthesized or recorded.
 - **M**, meaning: the sense KC, its gloss, the translation.
 - **G**, grammatical annotation: morphs and their form KCs, `persons`, the sentence type.
-- **R**, a romanization of O, letter for letter (grc-Latn/romanized, the grc alphabet track's Latin
-  side). It is derived from O, so it says nothing O doesn't. That makes it different from P. (chg's
-  alphabet track borrows Schluessel instead, which is a P.)
+
+**Displays of P.** A learner who can't read the script yet needs P shown in letters they already read:
+its Latin display, or audio where the voice is good enough. That is P written another way, not a
+layer of its own:
+- by a rule from P where P isn't Latin (Attic → Latin keeps the lengths: χώρᾱ *chōrā*);
+- as P itself where P is Latin already (Schluessel).
+
+A romanization of O, letter for letter, says nothing O doesn't, so the model doesn't need one. The
+alphabet tracks used one until ADR 0133; they now ask P in its Latin display (a scheme's `latin`).
 
 **Determinacy.** A mapping from one layer to another is:
 
@@ -281,7 +287,7 @@ A few hypothetical future courses, to check that the classes hold:
 Profiles already hold pieces of this:
 
 - `transliterate: {to, via}` (uz, tok, yue, apc);
-- `romanize` (the alphabet tracks);
+- `scriptTrack` and a scheme's `latin` (the alphabet tracks ask P in Latin, ADR 0133);
 - `annotations` (ruby and marks layers);
 - reading schemes with `answer`, `typed`, `variants` and `typedByProfile`.
 
@@ -295,7 +301,7 @@ layers:
 edges:
   - { from: chg-Arab/standard, to: schluessel, level: lexicon, context: [sense, morphs, ezafe], pinned: token }
   - { from: schluessel, to: chg-Arab/standard, level: lexicon, variation: true }
-  - { from: schluessel, to: chg-Latn/schluessel, level: rule, via: identity }   # the alphabet track's Latin side
+  # (no edge to Latin: Schluessel is its own Latin display, the scheme's `latin`)
 store: [chg-Arab/standard, schluessel]
 ```
 
@@ -560,7 +566,7 @@ A learner told where to look can look there.
 | fa | O + vocalization (per KC, token overrides) | lexical + contextual (ezafe) | O + vocalization + `form:ezafe` | make the ezafe a morph; residual → 0 |
 | apc | Arabic + vocalization + Arabizi | lexical + contextual (persons) + variable | Arabic + vocalization, Arabizi aligned by morph | vocalize -ak/-ik from `persons`; Arabizi variants as sets |
 | hbo | pointed + Tiberian per token | writing-transparent from the accented text | the accented WLC word (from which `nabu tiberian` already derives the reading) | `bound` and `pausal` token attributes; `form:construct` |
-| chg | Arabic + Schluessel per token, chg-Latn KC forms | lexical + contextual (ezafe) + variable | Arabic + Schluessel | `form:ezafe`; spelling variants as sets; check یر *yer / yär* |
+| chg | Arabic + Schluessel per token; chg-Latn KC forms (now read only for letters, ADR 0133) | lexical + contextual (ezafe) + variable | Arabic + Schluessel | `form:ezafe`; spelling variants as sets; check یر *yer / yär*; drop the word KCs' chg-Latn forms |
 | yue | characters + Jyutping per token; Jyutping orthography generated | opaque + contextual (呀) | characters + Jyutping | sentence type for 呀; changed tones and literary readings as declared variation |
 | lzh | characters + three readings per token | opaque, several traditions | characters + Baxter + per-tradition pins | check Pinyin and Jyutping against Baxter by regular correspondence, as a lint only |
 
@@ -585,24 +591,31 @@ A learner told where to look can look there.
 5. **Feature cards** (§6.2), generalizing tone-identify. Medium. Starts with chg vowels and grc
    length.
 6. **Spelling choice with homophone letter sets** (§6.3). Medium. fa, chg, yue.
-7. **The layer graph in the schema** (§4.1), replacing `transliterate`, `romanize` and the scatter.
+7. **The layer graph in the schema** (§4.1), replacing `transliterate` and the scatter.
    Large: an ADR, codegen, the compiler, the bundle. Worth it once 1–3 show where it pays.
 8. **Facets from the graph** (§6.1), after 7.
 9. **Minimal ruby and ambiguity marking** (§5). Medium, UI only, independent of the rest.
 
-## 12. Questions for Ben
+## 12. Decisions (Ben, 2026-11-17)
 
-1. Is "reading = function of (spelling, sense, morphs, persons, sentence type, juncture)" the
-   invariant you want the compiler to enforce, with variation as the only declared exception?
-2. The ezafe as a morph: right for fa and chg both? It changes how ezafe sentences are annotated
-   (a morph on the head noun) and adds a form KC each.
-3. Feature slips: should a missing vowel mark in chg typed readings be wrong (consistent with the
-   choice cards) or noted (kinder on phones)? The same question applies to grc length and yue
-   tones; yue already says wrong.
-4. grc: should the Attic reading be the only stored layer, with the Greek spelling derived from it?
-   It would mean authoring in the reading, which is less natural than authoring in Greek. The
-   alternative is to keep both and check.
-5. Traditions: should learners pick one per course (lzh does), and should cards ever ask in a
-   tradition other than the chosen one?
-6. Which matters more next: reading-side tools (feature cards, minimal ruby) or writing-side tools
-   (spelling choice, homophone letters)?
+1. **The compiler enforces reading = f(spelling, sense, morphs)**, switched on per course once it
+   is clean (a warning before). Checking the data reduced the other inputs to these:
+   - apc's *baddak / baddik* is two tokens missing their gendered morph KCs (the KCs exist);
+   - yue's 呀 is two senses (*aa3* softens, *aa4* makes a question);
+   - hbo's maqaf binding is in the text: a reading ends in "-" exactly where a maqaf follows (270
+     of 270).
+   Free variation is declared, never silent.
+2. **An unwritten morpheme is a morph with no surface** (the ezafe: fa's kasra, chg's unwritten
+   *-i*). fa moves its sentence-level ezafe tags onto the words.
+3. **chg typed readings:** a wrong or missing vowel mark (ä ö ü, ā ī ū ē, à) is wrong; a consonant
+   mark (ṣ ḥ ṭ ẓ ż ź s̱ ḫ č š ž ǧ) is noted. Vowels are what the script leaves out.
+   - **hbo and apc** get a typed mark card: the word's letters are given, and the learner taps the
+     marks onto them from buttons (only on that card), after a choice card has shown the marks.
+4. **grc keeps both layers**; the compiler checks the spelling against the reading, and a form
+   pinned once fills its later tokens (by decision 1).
+5. **The learner picks one tradition per course**; everything follows the pick, and the others show
+   only on request. Reading progress is kept per tradition (switching Jyutping ↔ Baxter keeps
+   both). lzh gets reading cards in the picked tradition, choice first, then typed (Baxter is plain
+   ASCII; Pinyin's tone marks come from the character bar).
+6. **Next: the reading side (feature cards, minimal ruby, homograph marks), then the writing side
+   (spelling choice from sound-alike letters, "right sound, wrong letter").** Both now.

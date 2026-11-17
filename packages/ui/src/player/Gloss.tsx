@@ -7,6 +7,7 @@
  */
 import type { CourseView } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, type Gloss } from "@nabu/core/story";
+import { hasReading, wordAt } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useMemo, type JSX, type ReactNode } from "react";
 import { useTranslator } from "../context.tsx";
@@ -20,6 +21,9 @@ export interface WordTap {
   readonly text: TaggedText;
   readonly token: number;
 }
+
+/** The tapped word as written, one token of its text (the panel's headword), if it is a word. */
+export const wordOf = (tap: Pick<WordTap, "text" | "token"> | undefined): TaggedText | undefined => (tap === undefined ? undefined : wordAt(tap.text, tap.token));
 
 /** What a tapped word means, by the course glossary. */
 export const useGlosses = (course: CourseView, tap: Pick<WordTap, "text" | "token"> | undefined): readonly Gloss[] => {
@@ -75,6 +79,8 @@ export interface GlossPanelProps {
   /** The reading layer the entries' forms show. */
   readonly ruby: SchemeId | false;
   readonly marks: Marks;
+  /** The tapped word as written (`wordOf`): its headword where no entry is the word whole. */
+  readonly word?: TaggedText | undefined;
   /**
    * A story's panel always shows, with a hint before any word is tapped; a lesson's is quiet (empty,
    * out of sight) until a word is tapped.
@@ -82,8 +88,11 @@ export interface GlossPanelProps {
   readonly quiet?: boolean;
 }
 
-export const GlossPanel = ({ open, glosses, ruby, marks, quiet = false }: GlossPanelProps): JSX.Element => {
+export const GlossPanel = ({ open, glosses, ruby, marks, word, quiet = false }: GlossPanelProps): JSX.Element => {
   const t = useTranslator();
+  // A glossary entry always shows the word's reading (ADR 0131): where the entries are its parts (اشلیغ, ی
+  // of اشلیغی) or a phrase, or none reaches it, the word itself comes first with its reading.
+  const headword = open && word !== undefined && ruby !== false && hasReading(word, ruby) && !glosses.some((g) => g.span === "whole") ? word : undefined;
   return (
     <div
       className={styles.gloss}
@@ -94,6 +103,13 @@ export const GlossPanel = ({ open, glosses, ruby, marks, quiet = false }: GlossP
       data-gloss-open={open ? "" : undefined}
       data-quiet={quiet ? "" : undefined}
     >
+      {headword !== undefined && (
+        <FadeReadings on={false}>
+          <p className={styles.glossWord} data-gloss-word="">
+            <T text={headword} ruby={ruby} marks={marks} />
+          </p>
+        </FadeReadings>
+      )}
       {!open ? (
         quiet ? null : (
           <p className={styles.glossHint}>{t.format("story.gloss.hint")}</p>

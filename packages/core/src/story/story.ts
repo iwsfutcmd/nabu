@@ -185,7 +185,10 @@ export const glossLine = (course: CourseView, glossary: StoryGlossary, text: Tag
 
 export interface Gloss {
   readonly kc: KcId;
-  /** How the entry is written: the matched KC form, or the tapped word itself when no entry reached it. */
+  /**
+   * How the entry is written: the matched KC form, or the tapped word itself when no entry reached it;
+   * a morph as the word writes it, its KC's form (with its readings) where that is spelled alike.
+   */
   readonly form: TaggedText;
   /** Its meaning in the support language. */
   readonly meaning: TaggedText | undefined;
@@ -221,7 +224,9 @@ export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: re
       ...morphs.map((m): Gloss => {
         const lemma = kcs.get(m.kc)?.forms?.[text.orthography]?.[0];
         const gloss: Gloss = { kc: m.kc, form: textOfSurface(text, m.surface), meaning: meaning.get(m.kc), span: "part" };
-        return lemma === undefined || surfaceOf(lemma).normalize("NFC") === m.surface.normalize("NFC") ? gloss : { ...gloss, lemma };
+        if (lemma === undefined) return gloss;
+        // A morph spelled as its dictionary form is that form, with the readings the KC pins (اشلیغ ašliǧ in اشلیغی).
+        return surfaceOf(lemma).normalize("NFC") === m.surface.normalize("NFC") ? { ...gloss, form: lemma } : { ...gloss, lemma };
       }),
     ];
   }

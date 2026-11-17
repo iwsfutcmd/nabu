@@ -25,7 +25,7 @@ import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import type { DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, instructionOf } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
-import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
+import { GlossPanel, useGlosses, wordOf } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
 import { effectiveWritingMode, focusInReach, type Shortcuts, type WritingMode } from "../player/shared.ts";
@@ -282,7 +282,7 @@ const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyPro
     ));
   };
 
-  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} ruby={toggles.glossRuby} marks={marks} />;
+  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} word={wordOf(tapped)} ruby={toggles.glossRuby} marks={marks} />;
 
   // Readings, vowel marks, vertical reading and sound: in the header, taking no room above the story (P12).
   const headerTools = <HeaderToggles profile={profile} toggles={toggles} />;

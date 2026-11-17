@@ -545,19 +545,39 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
                 reading = t["readings"]["attic"]
                 assert attic.surface(reading) == t["surface"], (unit["id"], t["surface"], reading)
                 assert attic.unmarked(reading) == [], (unit["id"], reading)
+        # A KC's form takes its reading from these, or its entry gives one (ADR 0133): the same
+        # holds of it, but for the citation's acute (καί for a sentence's καὶ).
+        for kc in unit["kcs"]:
+            for text in kc.get("forms", {}).get(GRC, []):
+                for t in text["tokens"]:
+                    reading = t.get("readings", {}).get("attic")
+                    if t["kind"] != "word" or reading is None:
+                        continue
+                    assert attic.surface(reading) == attic.cited(t["surface"]), (kc["id"], reading)
+                    assert attic.unmarked(reading) == [], (kc["id"], reading)
     assert words > 1000
 
 
 def test_greek_alphabet_track(core_cli: CoreCli) -> None:
-    """grc's script track (ADR 0088): eight alphabet nodes, each word spelled with the letters
-    taught by then, every letter and word with its Latin spelling, tagged grc-Latn/romanized."""
+    """grc's script track (ADR 0088, 0133): eight alphabet nodes, each word spelled with the
+    letters taught by then, every letter and word in the Attic scheme's Latin (grc-Latn/romanized),
+    a word's written from its KC's Attic reading, with the vowel lengths the spelling leaves out
+    (ἀγορά, ᾰ̓γορᾱ́: agorā)."""
+    from nabu import greek_translit
     from nabu.compiler.script import Reader
 
     _, compiled = build(core_cli, "grc")
     read = Reader.of(core_cli, GRC, PROFILES[GRC])
+    readings = {
+        kc.id: (kc.forms or {})[GRC][0].tokens[0].readings
+        for u in compiled.units
+        for kc in u.kcs
+        if (kc.forms or {}).get(GRC)
+    }
     nodes = [n for u in compiled.units for n in u.nodes if n.kind == "script"]
     assert len(nodes) == 8
     taught: set[str] = set()
+    latin: dict[str, str] = {}
     for n in nodes:
         alphabet = n.alphabet
         assert alphabet is not None and alphabet.orthography == GRC and n.sentences == []
@@ -569,6 +589,10 @@ def test_greek_alphabet_track(core_cli: CoreCli) -> None:
             surface = "".join(t.surface for t in word.text.tokens)
             assert set(read(surface).letters) <= taught, (n.id, surface)
             assert word.letters, surface
+            attic = (readings[word.kc] or {})["attic"]
+            latin[word.kc] = "".join(t.surface for t in word.latin.tokens)
+            assert latin[word.kc] == greek_translit.word(attic), (word.kc, attic)
+    assert latin["sense:agora"] == "agorā" and latin["sense:nyn"] == "nȳn"
 
 
 @pytest.mark.parametrize(
@@ -591,7 +615,8 @@ def test_a_voice_s_quality_decides_what_ships(
 
 
 CHG_AR = "chg-Arab/standard"
-# The alphabet track's Latin side (the chg-Arab profile's `romanize`), not a course orthography.
+# The alphabet track's Latin side (the schluessel scheme's `latin`, ADR 0133), not a course
+# orthography.
 CHG_LA = "chg-Latn/schluessel"
 # Schluessel's letters (2018, xii-xxxii), decomposed: a reading of the Arabic, one letter a sound.
 # A hyphen joins the Persian ezafe (tārīḫ-i) and bē- "without" to their words.
@@ -646,16 +671,27 @@ def test_chaghatay_is_arabic_with_schluessels_transliteration_as_ruby(core_cli: 
 
 
 def test_chaghatay_alphabet_track(core_cli: CoreCli) -> None:
-    """chg's script track (ADR 0088, 0128): eight alphabet nodes in the Arabic script, each word
-    spelled with the letters taught by then, every letter and word with its Latin spelling taken
-    from its own form in Schluessel's transliteration (`romanize: forms`), not romanized from its
-    letters. That orthography is the track's Latin side only: the course teaches the Arabic."""
+    """chg's script track (ADR 0088, 0128, 0133): eight alphabet nodes in the Arabic script, each
+    word spelled with the letters taught by then and asked as its KC's Schluessel reading, the one
+    its word card shows; a letter, which stands for several sounds, as its own form in Schluessel's
+    transliteration. That orthography is the track's Latin side only: the course teaches the
+    Arabic."""
     _, compiled = build(core_cli, "chg")
     forms = {
         k["id"]: {o: "".join(t["surface"] for t in f[0]["tokens"]) for o, f in k["forms"].items()}
         for u in bundled(compiled)
         for k in u["kcs"]
         if "forms" in k
+    }
+    readings = {
+        k["id"]: " ".join(
+            t["readings"]["schluessel"]
+            for t in k["forms"][CHG_AR][0]["tokens"]
+            if t["kind"] == "word"
+        )
+        for u in bundled(compiled)
+        for k in u["kcs"]
+        if CHG_AR in k.get("forms", {}) and k["id"].startswith("sense:")
     }
     nodes = [n for u in bundled(compiled) for n in u["nodes"] if n["kind"] == "script"]
     assert len(nodes) == 8
@@ -668,7 +704,10 @@ def test_chaghatay_alphabet_track(core_cli: CoreCli) -> None:
             latin = "".join(t["surface"] for t in item["latin"]["tokens"])
             assert item["latin"]["orthography"] == CHG_LA
             assert forms[item["kc"]][CHG_AR] == text, item["kc"]
-            assert forms[item["kc"]][CHG_LA] == latin, item["kc"]
+            if item in alphabet["letters"]:
+                assert forms[item["kc"]][CHG_LA] == latin, item["kc"]
+            else:
+                assert readings[item["kc"]] == latin, item["kc"]
         assert len(alphabet["words"]) >= 4, node["id"]
         words += len(alphabet["words"])
     assert words >= 40

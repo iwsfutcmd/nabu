@@ -1,7 +1,7 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
-import type { TaggedText } from "@nabu/schema";
-import { graphemeCount, graphemes, surfaceOf, tileGroups } from "../src/index.ts";
+import type { SchemeId, TaggedText } from "@nabu/schema";
+import { graphemeCount, graphemes, hasReading, surfaceOf, tileGroups, wordAt } from "../src/index.ts";
 
 describe("graphemes", () => {
   it.each([
@@ -41,5 +41,17 @@ describe("TaggedText helpers", () => {
     const tiles = tileGroups(yue);
     expect(tiles.map(surfaceOf)).toEqual(["我哋", "去"]);
     expect(tiles[0]?.lang).toBe("yue-Hant-HK");
+  });
+  it("takes a word out as a text of its own (a tapped word), never punctuation", () => {
+    expect(wordAt(yue, 1)).toEqual({ ...yue, tokens: [yue.tokens[1]] });
+    expect(wordAt(yue, 2)).toBeUndefined();
+    expect(wordAt(yue, 9)).toBeUndefined();
+  });
+  it("says whether a text has a reading in a scheme", () => {
+    const jyutping = "jyutping" as SchemeId;
+    const read: TaggedText = { ...yue, tokens: [{ surface: "去", kind: "word", ruby: { [jyutping]: [{ base: "去", text: "heoi3" }] } }] };
+    expect(hasReading(read, jyutping)).toBe(true);
+    expect(hasReading(read, "pinyin" as SchemeId)).toBe(false);
+    expect(hasReading(yue, jyutping)).toBe(false);
   });
 });

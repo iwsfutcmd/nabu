@@ -1,4 +1,4 @@
-import type { TaggedText, Token } from "@nabu/schema";
+import type { SchemeId, TaggedText, Token } from "@nabu/schema";
 import { graphemes } from "./graphemes.ts";
 
 /** The surface text: token surfaces concatenated in logical order. */
@@ -79,3 +79,12 @@ export const textOfSurface = (base: Pick<TaggedText, "lang" | "orthography">, su
 /** Indexes of the word and number tokens, in order: what tap-for-gloss and shortcuts address. */
 export const wordIndexes = (text: TaggedText): readonly number[] =>
   text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
+
+/** The word or number at a token index as a text of its own (a tapped word), with its readings; none for spaces and punctuation. */
+export const wordAt = (text: TaggedText, index: number): TaggedText | undefined => {
+  const token = text.tokens[index];
+  return token === undefined || (token.kind !== "word" && token.kind !== "number") ? undefined : { ...text, tokens: [token] };
+};
+
+/** Whether any token of a text carries a reading in a scheme, as ruby (ADR 0071). */
+export const hasReading = (text: TaggedText, scheme: SchemeId): boolean => text.tokens.some((t) => (t.ruby?.[scheme]?.length ?? 0) > 0);

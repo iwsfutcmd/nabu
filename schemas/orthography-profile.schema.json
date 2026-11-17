@@ -76,8 +76,8 @@
     "fonts": {
       "$ref": "#/$defs/Fonts"
     },
-    "romanize": {
-      "$ref": "#/$defs/Romanization"
+    "scriptTrack": {
+      "$ref": "#/$defs/ScriptTrack"
     },
     "transliterate": {
       "$ref": "#/$defs/Transliteration"
@@ -957,27 +957,16 @@
         }
       }
     },
-    "Romanization": {
-      "title": "Romanization",
-      "description": "How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088, 0124): a scheme, and the orthography the Latin spellings are in.",
+    "ScriptTrack": {
+      "title": "ScriptTrack",
+      "description": "What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0133): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.",
       "type": "object",
-      "required": [
-        "scheme",
-        "orthography"
-      ],
+      "required": ["reading"],
       "additionalProperties": false,
       "properties": {
-        "scheme": {
-          "description": "A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds; forms takes each letter's and word's own first form in `orthography`, for a course written in two scripts word for word (chg's Arabic and Schluessel's transliteration, ADR 0128): an abjad's words cannot be romanized from their letters.",
-          "type": "string",
-          "enum": [
-            "greek",
-            "forms"
-          ]
-        },
-        "orthography": {
-          "description": "The orthography of the Latin spellings (grc-Latn/romanized): their text is tagged with it, and its profile ships in the bundle beside the course's own.",
-          "$ref": "common.schema.json#/$defs/OrthographyId"
+        "reading": {
+          "description": "The reading scheme the track asks (attic, schluessel): one the orthography's words pin, with a `latin` orthography.",
+          "$ref": "common.schema.json#/$defs/SchemeId"
         }
       }
     },

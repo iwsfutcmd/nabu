@@ -18,10 +18,11 @@ import { kcsOfToken } from "@nabu/core/learner";
 import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
 import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
-import { Fragment, useMemo, type CSSProperties, type JSX } from "react";
+import { Fragment, useCallback, useMemo, useRef, type CSSProperties, type JSX } from "react";
 import { useIsTarget, useOrthography } from "./context.tsx";
 import { useFonts } from "./fonts.ts";
 import { useReadingFaded, useWordStatus, type Marks } from "./marks.tsx";
+import { useRubyLift } from "./ruby-lift.ts";
 import styles from "./T.module.css";
 
 export interface TProps {
@@ -34,7 +35,10 @@ export interface TProps {
    * still learning ("new", P12: WordStatusProvider says which). Shown by default.
    */
   readonly marks?: Marks;
-  /** Token indexes to mark as wrong (the parts of an answer that differ, §11.6): the error style. */
+  /**
+   * Token indexes to mark as wrong (the parts of an answer that differ, §11.6): the error style. A
+   * marked word keeps its reading where readings fade (ADR 0131): it is the word to look at again.
+   */
   readonly highlight?: readonly number[];
   /**
    * The token a clip is saying right now (karaoke): marked in the focus style, never in the error
@@ -52,7 +56,8 @@ export interface TProps {
   readonly id?: string;
   /**
    * Tap-for-gloss (Phase 6): word tokens become buttons that report their index. The token
-   * stays whole (§6.8); `pressed` marks the one whose gloss is open.
+   * stays whole (§6.8); `pressed` marks the one whose gloss is open. A pressed word keeps its
+   * reading where readings fade (ADR 0131): tapping is how a faded reading is looked up.
    */
   readonly onTokenPress?: (index: number) => void;
   readonly pressed?: number | undefined;
@@ -66,6 +71,12 @@ const markStripper = (set: string | undefined): RegExp | undefined => {
   const chars = parseExemplarSet(set);
   return chars.length === 0 ? undefined : new RegExp(`[${chars.map(escape).join("")}]`, "gu");
 };
+
+/**
+ * Scripts whose readings are lifted by each word's ink (ruby-lift.ts), as T.module.css lifts them:
+ * Arabic, where Nastaliq stacks letters far over the em box.
+ */
+const INK_LIFTED: ReadonlySet<string> = new Set(["Arab"]);
 
 /** Numbers up to this many graphemes are set horizontally in vertical text (tate-chū-yoko). */
 const TATE_CHU_YOKO_MAX = 2;
@@ -84,9 +95,11 @@ interface TokenViewProps {
   readonly focus: number | undefined;
   readonly onPress: ((index: number) => void) | undefined;
   readonly pressed: boolean;
+  /** How far its reading is lifted over where the browser sets it, in its em (ruby-lift.ts), once measured. */
+  readonly lift: number | undefined;
 }
 
-const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
+const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed, lift }: TokenViewProps): JSX.Element => {
   const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
   const segments = ruby === false ? undefined : token.ruby?.[ruby];
   // A focused character needs the segment bases even when no reading layer is shown.
@@ -99,12 +112,13 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
     ) : segments === undefined ? (
       bases.map((segment, i) => <Fragment key={i}>{base(segment.base, i)}</Fragment>)
     ) : (
-      <ruby className={styles.ruby}>
+      <ruby className={styles.ruby} data-lift={lift === undefined ? undefined : ""} style={lift === undefined ? undefined : ({ "--nabu-ruby-lift": lift.toFixed(3) } as CSSProperties)}>
         {segments.map((segment, i) => (
           <Fragment key={i}>
             {base(segment.base, i)}
             <rt lang={rubyLang} data-script={rubyLang === undefined ? undefined : scriptOf(rubyLang)}>
-              {segment.text}
+              {/* A lifted reading stands on its own word, not on the line's other readings (T.module.css). */}
+              {lift === undefined ? segment.text : <span className={styles.reading}>{segment.text}</span>}
             </rt>
           </Fragment>
         ))}
@@ -162,8 +176,11 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const strip = useMemo(() => markStripper(markSet), [markSet]);
   // "new": a word the learner knows loses its marks; one still being learned (or unknown) keeps them.
   const known = (token: Token): boolean => status !== null && !status.isNew(kcsOfToken(token), token.surface, text.orthography);
-  // Readings on new words only (ADR 0131): a word whose reading the learner has shown goes without.
-  const rubyOf = (token: Token): SchemeId | false => (ruby !== false && faded(kcsOfToken(token), token.surface, text.orthography) ? false : ruby);
+  // Readings on new words only (ADR 0131): a word whose reading the learner has shown goes without,
+  // unless it is marked (the word feedback corrects) or tapped (the word looked up): those show it.
+  const looked = (index: number): boolean => highlight?.includes(index) === true || pressed === index;
+  const rubyOf = (token: Token, index: number): SchemeId | false =>
+    ruby !== false && !looked(index) && faded(kcsOfToken(token), token.surface, text.orthography) ? false : ruby;
   const stripOf = (token: Token): RegExp | undefined => (marks === "hide" || (marks === "new" && known(token)) ? strip : undefined);
   const font = fontStackFor(text.lang, profile?.fonts);
   useFonts(font.family);
@@ -172,6 +189,18 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   // Jyutping (ADR 0126) need the Han font that Latin text would never load.
   const rubyFont = rubyLang === undefined ? undefined : fontStackFor(rubyLang).family;
   useFonts(rubyFont ?? "");
+  // A reading over a script whose ink rises far over the em box (Nastaliq) sits just above its own word.
+  const script = scriptOf(text.lang) ?? "";
+  const element = useRef<HTMLElement | null>(null);
+  const setElement = useCallback((el: HTMLElement | null): void => {
+    element.current = el;
+  }, []);
+  const liftOf = useRubyLift({ family: font.family, lineHeight: font.lineHeight, ruby: rubyFont, script }, ruby !== false && INK_LIFTED.has(script), element);
+  const liftFor = (token: Token, index: number): number | undefined => {
+    const scheme = rubyOf(token, index);
+    const strip = stripOf(token);
+    return scheme === false || token.ruby?.[scheme] === undefined ? undefined : liftOf(strip === undefined ? token.surface : token.surface.replace(strip, ""));
+  };
   const style = {
     "--nabu-text-font": font.family,
     "--nabu-text-line-height": String(font.lineHeight),
@@ -190,15 +219,17 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
       data-target={target ? "" : undefined}
       id={id}
       style={style}
+      ref={setElement}
     >
       {text.tokens.map((token, index) => (
         <TokenView
           key={index}
           token={token}
           index={index}
-          ruby={rubyOf(token)}
+          ruby={rubyOf(token, index)}
           rubyLang={rubyLang}
           strip={stripOf(token)}
+          lift={liftFor(token, index)}
           highlighted={highlight?.includes(index) ?? false}
           emphasized={emphasis?.includes(index) ?? false}
           spoken={current === index}

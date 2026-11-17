@@ -3,7 +3,7 @@
  * words whose reading the learner has yet to show on a reading card, and leaves the others bare, in
  * a lesson or story that shows readings so. Cantonese and Chaghatay start that way.
  */
-import type { Exercise, Outcome, Response } from "@nabu/core/lesson";
+import { allSentences, type Exercise, type Outcome, type Response } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId, TaggedText, Token } from "@nabu/schema";
 import { readFileSync } from "node:fs";
 import type { JSX } from "react";
@@ -13,7 +13,9 @@ import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
 import { FadeReadings, WordStatusProvider } from "../src/marks.tsx";
 import { useDisplay } from "../src/player/Display.tsx";
 import { Feedback } from "../src/player/Feedback.tsx";
+import { GlossPanel, useGlosses, wordOf } from "../src/player/Gloss.tsx";
 import { defaultReadingWords, defaultRuby, ReadingsControl, useReadings } from "../src/player/Readings.tsx";
+import { useToggles } from "../src/player/Shell.tsx";
 import { T } from "../src/T.tsx";
 import { loadCourse } from "./course.ts";
 import { render } from "./render.tsx";
@@ -85,6 +87,48 @@ describe("readings on new words only (ADR 0131)", () => {
     expect(rts(render(inSession(true, <FadeReadings on={false}>{<T text={text} ruby={JYUTPING} />}</FadeReadings>)))).toEqual(["ngo5", "ge3", "syu1"]);
   });
 
+  it("keep the reading of a word marked as wrong: the word feedback corrects shows it, as the rest of the sentence does", () => {
+    expect(rts(render(inSession(true, <T text={text} ruby={JYUTPING} highlight={[2]} />)))).toEqual(["ngo5", "ge3", "syu1"]);
+    // Only the marked word: another shown reading still fades.
+    const shownToo = new Set(["sense:syu", "sense:ngo"]);
+    const html = render(
+      <WordStatusProvider course={course} known={undefined} readings={shownToo}>
+        <FadeReadings on>
+          <T text={text} ruby={JYUTPING} highlight={[2]} />
+        </FadeReadings>
+      </WordStatusProvider>,
+    );
+    expect(rts(html)).toEqual(["ge3", "syu1"]);
+    // In feedback: 書 slipped (a typo), so the solution marks it, with its reading.
+    const ex = { template: "translate-type", orthography: ORTH } as unknown as Exercise;
+    const outcome: Outcome = {
+      verdict: "CORRECT_WITH_TYPO",
+      notes: [],
+      solution: text,
+      closestIsSolution: true,
+      alignment: [
+        { op: "match", expected: "我", actual: "我", kind: "exact" },
+        { op: "match", expected: "嘅", actual: "嘅", kind: "exact" },
+        { op: "substitute", expected: "書", actual: "樹" },
+      ],
+    };
+    const feedback = render(inSession(true, <Feedback ex={ex} outcome={outcome} response={{ tag: "text", text: "我嘅樹？" }} course={course} ruby={JYUTPING} marks="show" />));
+    const solution = feedback.slice(feedback.indexOf("data-solution"), feedback.indexOf("data-answer-diff"));
+    expect(solution).toContain('data-highlight="true"');
+    expect(rts(solution)).toEqual(["ngo5", "ge3", "syu1"]);
+  });
+
+  it("keep the reading of a tapped word: tapping is how a faded reading is looked up", () => {
+    const tapped = (pressed: number | undefined, ruby: SchemeId | false = JYUTPING): readonly string[] =>
+      rts(render(inSession(true, <T text={text} ruby={ruby} onTokenPress={() => undefined} pressed={pressed} />)));
+    expect(tapped(undefined)).toEqual(["ngo5", "ge3"]);
+    expect(tapped(2)).toEqual(["ngo5", "ge3", "syu1"]);
+    // Another word tapped: 書 fades again.
+    expect(tapped(0)).toEqual(["ngo5", "ge3"]);
+    // A card that shows no reading (one asking for it) shows none for a tap either.
+    expect(tapped(2, false)).toEqual([]);
+  });
+
   it("show a right typed answer again only where a word of it still has its reading", () => {
     const ex = { template: "translate-type", orthography: ORTH } as unknown as Exercise;
     const typed: Response = { tag: "text", text: "我嘅書？" };
@@ -95,5 +139,49 @@ describe("readings on new words only (ADR 0131)", () => {
     expect(rts(html)).toEqual(["ngo5", "ge3"]);
     // Every reading shown: the sentence again would say nothing the field does not.
     expect(feedback({ ...text, tokens: [word("書", "syu1", "syu"), { surface: "？", kind: "punct" }] })).not.toContain("data-solution");
+  });
+});
+
+describe("a tapped word's gloss always shows its reading (ADR 0131 amendment)", () => {
+  const SCHLUESSEL = "schluessel" as SchemeId;
+  const chgCourse = loadCourse("chg");
+  const sentence = allSentences(chgCourse)
+    .map((s) => s.forms["chg-Arab/standard"]?.text)
+    .find((t) => t?.tokens.some((k) => k.surface === "اشلیغی"));
+  if (sentence === undefined) throw new Error("no اشلیغی sentence");
+  const tap = { text: sentence, token: sentence.tokens.findIndex((k) => k.surface === "اشلیغی") };
+  const Panel = ({ ruby }: { readonly ruby: SchemeId | false }): JSX.Element => {
+    const glosses = useGlosses(chgCourse, tap);
+    return <GlossPanel open glosses={glosses} word={wordOf(tap)} ruby={ruby} marks="show" />;
+  };
+  const panel = (ruby: SchemeId | false): string =>
+    render(
+      <WordStatusProvider course={chgCourse} known={undefined} readings={new Set(["sense:ashligh", "form:poss3"])}>
+        <FadeReadings on>
+          <Panel ruby={ruby} />
+        </FadeReadings>
+      </WordStatusProvider>,
+    );
+
+  it("heads a word glossed by its parts with the word and its reading, then each part with its own", () => {
+    const html = panel(SCHLUESSEL);
+    expect(html).toContain("data-gloss-word");
+    // ašliǧi over the word, ašliǧ over its stem (spelled as its dictionary form); the suffix has none.
+    expect(rts(html)).toEqual(["ašliǧi", "ašliǧ"]);
+    expect(html.indexOf("data-gloss-word")).toBeLessThan(html.indexOf("data-gloss-kc"));
+  });
+
+  it("shows no headword for a word an entry glosses whole: the entry's form has the reading", () => {
+    const whole = { text: sentence, token: sentence.tokens.findIndex((k) => k.kind === "word" && k.morphs === undefined) };
+    const Whole = (): JSX.Element => <GlossPanel open glosses={useGlosses(chgCourse, whole)} word={wordOf(whole)} ruby={SCHLUESSEL} marks="show" />;
+    const html = render(<Whole />);
+    expect(html).not.toContain("data-gloss-word");
+    expect(rts(html).length).toBeGreaterThan(0);
+  });
+
+  it("shows the only layer, or the first of several, with readings off", () => {
+    const Gloss = ({ profile }: { readonly profile: OrthographyProfile | undefined }): JSX.Element => <span data-gloss-ruby={String(useToggles(profile, "reading", { reading: false }).glossRuby)} />;
+    expect(render(<Gloss profile={chg} />)).toContain('data-gloss-ruby="schluessel"');
+    expect(render(<Gloss profile={lzh} />)).toContain('data-gloss-ruby="pinyin"');
   });
 });

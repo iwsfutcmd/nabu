@@ -278,11 +278,19 @@ _LINTS = [
         "(ADR 0124).",
     ),
     Lint(
-        "script.no-romanization",
+        "script.no-reading-scheme",
         "error",
         7,
-        "An alphabet node's orthography names no romanization (its profile's `romanize`), or has "
-        "no profile for its Latin spellings (ADR 0088).",
+        "An alphabet node's orthography names no reading scheme with a Latin orthography for its "
+        "track (its profile's `scriptTrack`, the scheme's `latin`), or that orthography has no "
+        "profile (ADR 0133).",
+    ),
+    Lint(
+        "script.missing-reading",
+        "error",
+        7,
+        "An alphabet node's word whose KC has no reading pinned in the track's scheme: no sentence "
+        "spells it, and its KC entry gives none (`readings`, ADR 0133).",
     ),
     Lint(
         "script.missing-form",

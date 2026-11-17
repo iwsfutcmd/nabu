@@ -103,3 +103,55 @@ graded by that profile (`typedByProfile`), rather than syllable by syllable as J
 - **One inconsistency:** a vowel the choice card counts wrong (sut for süt) passes typed, with the note.
 - **The field:** it offers that profile's letters on the character bar.
 - **What stays as it was:** Jyutping's typed cards.
+
+## Amendment: a corrected or tapped word keeps its reading (2026-11-17)
+
+Two words lost their reading where readings fade, though they are the ones the learner is looking at:
+
+- **A corrected word:** feedback marks the words an answer got wrong or slipped on (a typo, a mark, a word
+  left out). In chg, mundin typed without its nun showed the corrected word bare between bolmas, üzüm and
+  yaḫširaq.
+- **A tapped word:** the gloss panel showed the reading only of an entry's form. A word glossed by its parts
+  (اشلیغی: اشلیغ "grain", ی "his, her") showed its reading nowhere, above the word or below it.
+
+The rule:
+
+- **Marked or tapped:** a word <T> marks as wrong (`highlight`) or tapped (`pressed`) keeps its reading where
+  readings fade. Other words of the sentence still fade by the fold's rule. A card that shows no reading
+  layer (`ruby={false}`: char-read and transcribe ask for it) shows none for a tap or a mark either.
+- **The gloss is a glossary entry:** it always shows a reading, readings off or not: the layer shown, else
+  the profile's first (lzh: Pinyin; chg, yue and tok have one).
+  - A part spelled as its dictionary form is that form, with the reading its KC pins (اشلیغ ašliǧ).
+  - Where no entry is the word whole (parts, a phrase, or none), the word comes first with its own reading
+    (اشلیغی ašliǧi).
+- **What it does not change:** the fold, `readingsShown`, and a typed gap's filled word.
+
+## Amendment: a reading stands on its own word (2026-11-17)
+
+Nastaliq stacks letters far above the em box a browser sets ruby on. In chg, یکی cascades rise to 2.44 em of
+the word's size (یکیتمنمو), and یکیتسن to 2.06 em. Its reading, set 1.05 em up, ran into the ک. One clearance
+for every word would either leave readings in the strokes or float them far over short words (سن).
+
+- **The rule:** a reading over Arabic script sits with its baseline a gap (0.35 em) over its own word's ink,
+  room for g, y and ǧ to hang. Readings in one line are at different heights, each close to its word, and the
+  line grows to hold the tallest.
+- **How:** <T> measures by what the browser draws and lays out, never by an engine's metrics
+  (packages/ui/src/ruby-lift.ts).
+  - **A word's ink:** the top row it inks on a canvas in its font. The read-back must be clean: Firefox may
+    scramble canvas reads against fingerprinting.
+  - **Where an unlifted reading sits:** first from a hidden probe built from T's own classes and fonts, with a
+    zero-size mark on each baseline. The probe trusts the canvas only once it sets a word at the width the
+    page does. Then the text's own readings are measured in place at their size, before paint: browsers
+    round ruby to whole pixels (0.07 em at 20 px in Chromium).
+  - The lift is the difference. A line's readings share one baseline, so the lift pads an inline-block inside
+    the reading, set on the bottom of their row.
+  - The row's own strut is set to nothing (line-height 0 on the reading's row). Otherwise an unlifted reading
+    (padding 0) set every reading in its line 0.09 em higher.
+  - Until a word is measured, and where there is no browser (tests), the reading clears the tallest word.
+- **Checked in Chromium and Firefox (160):** every lifted reading on the u04 sentence list, the u03 story's
+  lines and its gloss panel sits exactly 0.35 em over its word's ink, and unlifted ones at least that.
+  - The browsers set an unlifted reading far apart: 1.07 em up in Chromium, 0.64 in Firefox.
+  - The first version, modelled on Chromium alone, left Firefox's readings 0.005 to 0.045 em over their
+    words: on them, as Firefox on Android showed.
+- **Where:** Arabic script only (`INK_LIFTED` in T.tsx, mirrored in T.module.css): Han, Latin and sitelen
+  pona keep the browser's own placement, and their visual baselines stay as they are.
