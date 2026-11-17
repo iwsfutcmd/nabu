@@ -204,7 +204,7 @@ def report(observed: Observed, diags: Diagnostics, course: CourseSource) -> None
             continue
         orth, written, sense, form, morphs, context, bound = key
         parts = (
-            written,
+            repr(written),
             f"({sense})" if sense else "",
             form or "",
             " ".join(morphs),
