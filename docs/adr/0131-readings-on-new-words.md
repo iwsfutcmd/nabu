@@ -103,3 +103,16 @@ graded by that profile (`typedByProfile`), rather than syllable by syllable as J
 - **One inconsistency:** a vowel the choice card counts wrong (sut for süt) passes typed, with the note.
 - **The field:** it offers that profile's letters on the character bar.
 - **What stays as it was:** Jyutping's typed cards.
+
+## Amendment: a corrected word keeps its reading (2026-11-17)
+
+Feedback marks the words an answer got wrong or slipped on (a typo, a mark, a word left out). Such a word
+lost its reading where readings fade, while the new words around it kept theirs: in chg, mundin typed
+without its nun showed the corrected word bare between bolmas, üzüm and yaḫširaq.
+
+- **The rule:** a word <T> marks as wrong (`highlight`) keeps its reading where readings fade. It is the
+  word to look at again, as a tapped word is.
+- **Where it applies:** the solution in feedback, and a missed card's solution at the end of a session.
+  Other words of the sentence still fade by the fold's rule.
+- **What it does not change:** the fold, `readingsShown`, and a typed gap's filled word. A right answer's
+  feedback marks no word, so it fades as before.

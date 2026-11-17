@@ -186,7 +186,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Readings on new words only (ADR 0131): the fold witnesses the read-script facet too (`WITNESSED_FACETS`, by D2's rule);
   it is never a skill a word is known by. A reading layer with `fade: by-facet` shows over all words or new ones
   (`DisplayChoice.readings`); <T> fades a word's ruby only inside `FadeReadings` (lessons, stories), by core
-  `readingsShown`: never in a tapped word's gloss or the word list. Pass `readingsShown` wherever `known` goes.
+  `readingsShown`: never in a tapped word's gloss or the word list, nor on a word feedback marks (`highlight`).
+  Pass `readingsShown` wherever `known` goes.
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 

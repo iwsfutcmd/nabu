@@ -34,7 +34,10 @@ export interface TProps {
    * still learning ("new", P12: WordStatusProvider says which). Shown by default.
    */
   readonly marks?: Marks;
-  /** Token indexes to mark as wrong (the parts of an answer that differ, §11.6): the error style. */
+  /**
+   * Token indexes to mark as wrong (the parts of an answer that differ, §11.6): the error style. A
+   * marked word keeps its reading where readings fade (ADR 0131): it is the word to look at again.
+   */
   readonly highlight?: readonly number[];
   /**
    * The token a clip is saying right now (karaoke): marked in the focus style, never in the error
@@ -162,8 +165,10 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const strip = useMemo(() => markStripper(markSet), [markSet]);
   // "new": a word the learner knows loses its marks; one still being learned (or unknown) keeps them.
   const known = (token: Token): boolean => status !== null && !status.isNew(kcsOfToken(token), token.surface, text.orthography);
-  // Readings on new words only (ADR 0131): a word whose reading the learner has shown goes without.
-  const rubyOf = (token: Token): SchemeId | false => (ruby !== false && faded(kcsOfToken(token), token.surface, text.orthography) ? false : ruby);
+  // Readings on new words only (ADR 0131): a word whose reading the learner has shown goes without,
+  // unless it is marked: the word feedback corrects shows its reading, as the rest of the sentence does.
+  const rubyOf = (token: Token, index: number): SchemeId | false =>
+    ruby !== false && highlight?.includes(index) !== true && faded(kcsOfToken(token), token.surface, text.orthography) ? false : ruby;
   const stripOf = (token: Token): RegExp | undefined => (marks === "hide" || (marks === "new" && known(token)) ? strip : undefined);
   const font = fontStackFor(text.lang, profile?.fonts);
   useFonts(font.family);
@@ -196,7 +201,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           key={index}
           token={token}
           index={index}
-          ruby={rubyOf(token)}
+          ruby={rubyOf(token, index)}
           rubyLang={rubyLang}
           strip={stripOf(token)}
           highlighted={highlight?.includes(index) ?? false}

@@ -85,6 +85,37 @@ describe("readings on new words only (ADR 0131)", () => {
     expect(rts(render(inSession(true, <FadeReadings on={false}>{<T text={text} ruby={JYUTPING} />}</FadeReadings>)))).toEqual(["ngo5", "ge3", "syu1"]);
   });
 
+  it("keep the reading of a word marked as wrong: the word feedback corrects shows it, as the rest of the sentence does", () => {
+    expect(rts(render(inSession(true, <T text={text} ruby={JYUTPING} highlight={[2]} />)))).toEqual(["ngo5", "ge3", "syu1"]);
+    // Only the marked word: another shown reading still fades.
+    const shownToo = new Set(["sense:syu", "sense:ngo"]);
+    const html = render(
+      <WordStatusProvider course={course} known={undefined} readings={shownToo}>
+        <FadeReadings on>
+          <T text={text} ruby={JYUTPING} highlight={[2]} />
+        </FadeReadings>
+      </WordStatusProvider>,
+    );
+    expect(rts(html)).toEqual(["ge3", "syu1"]);
+    // In feedback: 書 slipped (a typo), so the solution marks it, with its reading.
+    const ex = { template: "translate-type", orthography: ORTH } as unknown as Exercise;
+    const outcome: Outcome = {
+      verdict: "CORRECT_WITH_TYPO",
+      notes: [],
+      solution: text,
+      closestIsSolution: true,
+      alignment: [
+        { op: "match", expected: "我", actual: "我", kind: "exact" },
+        { op: "match", expected: "嘅", actual: "嘅", kind: "exact" },
+        { op: "substitute", expected: "書", actual: "樹" },
+      ],
+    };
+    const feedback = render(inSession(true, <Feedback ex={ex} outcome={outcome} response={{ tag: "text", text: "我嘅樹？" }} course={course} ruby={JYUTPING} marks="show" />));
+    const solution = feedback.slice(feedback.indexOf("data-solution"), feedback.indexOf("data-answer-diff"));
+    expect(solution).toContain('data-highlight="true"');
+    expect(rts(solution)).toEqual(["ngo5", "ge3", "syu1"]);
+  });
+
   it("show a right typed answer again only where a word of it still has its reading", () => {
     const ex = { template: "translate-type", orthography: ORTH } as unknown as Exercise;
     const typed: Response = { tag: "text", text: "我嘅書？" };
