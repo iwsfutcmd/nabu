@@ -1316,7 +1316,7 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
   const label =
     ex.tradition !== undefined
       ? t.format("player.transcribe.label.tradition", { scheme: schemeName(t, ex.tradition) })
-      : t.format(t.has(scheme) ? (scheme as MessageId) : "player.transcribe.label");
+      : t.format(t.has(scheme) ? scheme : "player.transcribe.label");
   return (
     <div className={styles.body}>
       <WordInSentence
