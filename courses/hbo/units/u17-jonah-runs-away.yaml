@@ -138,7 +138,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עִיר
-      tokens: [{surface: עִיר, sense: ir, readings: {tiberian: ʿîr}}]
+      tokens: [{surface: עִיר, sense: ir, form: 'form:f', readings: {tiberian: ʿîr}}]
       reverse: עיר
   translations:
     en: |-
@@ -149,7 +149,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָעִיר
-      tokens: [{surface: הָעִיר, sense: ir, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}}]
+      tokens: [{surface: הָעִיר, sense: ir, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}}]
       reverse: העיר
   translations:
     en: |-
@@ -160,7 +160,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָעִיר הַגְּדוֹלָה
-      tokens: [{surface: הָעִיר, sense: ir, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, sense: gadol, form: 'form:f', morphs: [
+      tokens: [{surface: הָעִיר, sense: ir, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, sense: gadol, form: 'form:f', morphs: [
             {surface: הַ, kc: 'sense:ha'}, {surface: גְּדוֹלָה, kc: 'sense:gadol'}], readings: {tiberian: haggəḏôlâ}}]
       reverse: העיר הגדולה
   translations:
@@ -172,7 +172,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: נִינְוֵה הָעִיר הַגְּדוֹלָה
-      tokens: [{surface: נִינְוֵה, sense: ninveh, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, sense: ir, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}},
+      tokens: [{surface: נִינְוֵה, sense: ninveh, form: 'form:f', readings: {tiberian: nînəwēh}}, {surface: הָעִיר, sense: ir, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}},
         {surface: הַגְּדוֹלָה, sense: gadol, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גְּדוֹלָה, kc: 'sense:gadol'}], readings: {tiberian: haggəḏôlâ}}]
       reverse: נינוה העיר הגדולה
   translations:
@@ -186,7 +186,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: קוּם לֵךְ אֶל־נִינְוֵה׃
       tokens: [{surface: קוּם, sense: qum, form: 'form:impv-ms', readings: {tiberian: qûm}}, {surface: לֵךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: lēḵ}}, {surface: אֶל, sense: el, readings: {
-            tiberian: ʾel-}}, {surface: נִינְוֵה, sense: ninveh, readings: {tiberian: nînəwēh}}]
+            tiberian: ʾel-}}, {surface: נִינְוֵה, sense: ninveh, form: 'form:f', readings: {tiberian: nînəwēh}}]
       reverse: קום לך אל נינוה
   translations:
     en: |-
@@ -235,7 +235,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רָעָה
-      tokens: [{surface: רָעָה, sense: raah.evil, readings: {tiberian: rāʿâ}}]
+      tokens: [{surface: רָעָה, sense: raah.evil, form: 'form:f', readings: {tiberian: rāʿâ}}]
       reverse: רעה
   translations:
     en: |-
@@ -246,8 +246,8 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כִּי־עָלְתָה רָעָתָם לְפָנָי׃
-      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, sense: alah, form: 'form:qatal-3fs', readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, sense: raah.evil, morphs: [
-            {surface: רָעָתָ, kc: 'sense:raah.evil'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, sense: panim, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: פָנָ,
+      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, sense: alah, form: 'form:qatal-3fs', readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, sense: raah.evil, form: 'form:f', morphs: [
+            {surface: רָעָתָ, kc: 'sense:raah.evil'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, sense: panim, form: 'form:pl', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: פָנָ,
               kc: 'sense:panim'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ləp̄ānāy}}]
       reverse: כי עלתה רעתם לפני
   translations:
@@ -285,7 +285,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: תַּרְשִׁישָׁה
-      tokens: [{surface: תַּרְשִׁישָׁה, sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ, kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}]
+      tokens: [{surface: תַּרְשִׁישָׁה, sense: tarshish, form: 'form:f', morphs: [{surface: תַּרְשִׁישָׁ, kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}]
       reverse: תרשישה
   translations:
     en: to Tarshish
@@ -294,7 +294,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיֵּרֶד יָפוֹ׃
-      tokens: [{surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: יָפוֹ, sense: yafo, readings: {tiberian: yāp̄ô}}]
+      tokens: [{surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: יָפוֹ, sense: yafo, form: 'form:f', readings: {tiberian: yāp̄ô}}]
       reverse: |-
         וירד יפו
         ירד יפו
@@ -324,7 +324,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיָּקָם יוֹנָה לִבְרֹחַ תַּרְשִׁישָׁה׃
       tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, sense: barach,
-          form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ,
+          form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, sense: tarshish, form: 'form:f', morphs: [{surface: תַּרְשִׁישָׁ,
               kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}]
       reverse: |-
         ויקם יונה (לברח|לברוח) תרשישה
@@ -338,7 +338,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֳנִיָּה
-      tokens: [{surface: אֳנִיָּה, sense: oniyyah, readings: {tiberian: ʾŏniyyâ}}]
+      tokens: [{surface: אֳנִיָּה, sense: oniyyah, form: 'form:f', readings: {tiberian: ʾŏniyyâ}}]
       reverse: אניה
   translations:
     en: |-
@@ -349,7 +349,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּמְצָא אֳנִיָּה׃
-      tokens: [{surface: וַיִּמְצָא, sense: matsa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyimṣāʾ}}, {surface: אֳנִיָּה, sense: oniyyah, readings: {tiberian: ʾŏniyyâ}}]
+      tokens: [{surface: וַיִּמְצָא, sense: matsa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyimṣāʾ}}, {surface: אֳנִיָּה, sense: oniyyah, form: 'form:f', readings: {tiberian: ʾŏniyyâ}}]
       reverse: |-
         וימצא אניה
         מצא אניה
@@ -468,7 +468,7 @@ stories:
         hbo-Hebr/tiberian:
           text: קוּם לֵךְ אֶל־נִינְוֵה הָעִיר הַגְּדוֹלָה
           tokens: [{surface: קוּם, sense: qum, form: 'form:impv-ms', readings: {tiberian: qûm}}, {surface: לֵךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: lēḵ}}, {surface: אֶל, sense: el,
-              readings: {tiberian: ʾel-}}, {surface: נִינְוֵה, sense: ninveh, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, sense: ir, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}],
+              readings: {tiberian: ʾel-}}, {surface: נִינְוֵה, sense: ninveh, form: 'form:f', readings: {tiberian: nînəwēh}}, {surface: הָעִיר, sense: ir, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}],
               readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, sense: gadol, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גְּדוֹלָה, kc: 'sense:gadol'}], readings: {tiberian: haggəḏôlâ}}]
       translations:
         en: “Get up, go to Nineveh, that great city,
@@ -479,8 +479,8 @@ stories:
           text: וּקְרָא עָלֶיהָ כִּי־עָלְתָה רָעָתָם לְפָנָי׃
           tokens: [{surface: וּקְרָא, sense: qara, form: 'form:impv-ms', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: קְרָא, kc: 'sense:qara'}], readings: {tiberian: ûqərāʾ}}, {surface: עָלֶיהָ, sense: al,
               morphs: [{surface: עָלֶי, kc: 'sense:al'}, {surface: הָ, kc: 'form:sfx-3fs'}], readings: {tiberian: ʿālếhā}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, sense: alah,
-              form: 'form:qatal-3fs', readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, sense: raah.evil, morphs: [{surface: רָעָתָ, kc: 'sense:raah.evil'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {
-                tiberian: rāʿāṯām}}, {surface: לְפָנָי, sense: panim, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: פָנָ, kc: 'sense:panim'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ləp̄ānāy}}]
+              form: 'form:qatal-3fs', readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, sense: raah.evil, form: 'form:f', morphs: [{surface: רָעָתָ, kc: 'sense:raah.evil'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {
+                tiberian: rāʿāṯām}}, {surface: לְפָנָי, sense: panim, form: 'form:pl', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: פָנָ, kc: 'sense:panim'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ləp̄ānāy}}]
       translations:
         en: and call out against it, for their wickedness has come up before me.”
   - choose:
@@ -494,7 +494,7 @@ stories:
         hbo-Hebr/tiberian:
           text: וַיָּקָם יוֹנָה לִבְרֹחַ תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה וַיֵּרֶד׃
           tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, sense: barach,
-              form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ,
+              form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, sense: tarshish, form: 'form:f', morphs: [{surface: תַּרְשִׁישָׁ,
                   kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'},
                 {surface: לִּ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיֵּרֶד,
               sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}]
@@ -507,13 +507,13 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: יָפוֹ וַיִּמְצָא אָנִיָּה בָּאָה תַרְשִׁישׁ וַיִּתֵּן שְׂכָרָהּ וַיֵּרֶד בָּהּ לָבוֹא עִמָּהֶם תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה׃
-          tokens: [{surface: יָפוֹ, sense: yafo, readings: {tiberian: yāp̄ô}}, {surface: וַיִּמְצָא, sense: matsa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyimṣāʾ}}, {surface: אָנִיָּה, sense: oniyyah,
-              readings: {tiberian: ʾoniyyâ}}, {surface: בָּאָה, sense: bo, form: 'form:ptc-fs', readings: {tiberian: bāʾâ}}, {surface: תַרְשִׁישׁ, sense: tarshish, readings: {tiberian: ṯaršîš}}, {surface: וַיִּתֵּן,
+          tokens: [{surface: יָפוֹ, sense: yafo, form: 'form:f', readings: {tiberian: yāp̄ô}}, {surface: וַיִּמְצָא, sense: matsa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyimṣāʾ}}, {surface: אָנִיָּה, sense: oniyyah, form: 'form:f',
+              readings: {tiberian: ʾoniyyâ}}, {surface: בָּאָה, sense: bo, form: 'form:ptc-fs', readings: {tiberian: bāʾâ}}, {surface: תַרְשִׁישׁ, sense: tarshish, form: 'form:f', readings: {tiberian: ṯaršîš}}, {surface: וַיִּתֵּן,
               sense: natan, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyittēn}}, {surface: שְׂכָרָהּ, sense: sakhar, morphs: [{surface: שְׂכָרָ, kc: 'sense:sakhar'}, {surface: הּ, kc: 'form:sfx-3fs'}],
               readings: {tiberian: śəḵārāh}}, {surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: בָּהּ, sense: be, morphs: [{surface: בָּ, kc: 'sense:be'},
                 {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bāh}}, {surface: לָבוֹא, sense: bo, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: בוֹא, kc: 'sense:bo'}], readings: {
                 tiberian: lāḇôʾ}}, {surface: עִמָּהֶם, sense: im.with, morphs: [{surface: עִמָּ, kc: 'sense:im.with'}, {surface: הֶם, kc: 'form:sfx-3mp'}], readings: {tiberian: ʿimmāhem}}, {surface: תַּרְשִׁישָׁה,
-              sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ, kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:pl-cstr',
+              sense: tarshish, form: 'form:f', morphs: [{surface: תַּרְשִׁישָׁ, kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:pl-cstr',
               morphs: [{surface: מִ, kc: 'sense:min'}, {surface: לִּ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, sense: yhwh, readings: {
                 tiberian: ʾăḏōnāy}}]
       translations:

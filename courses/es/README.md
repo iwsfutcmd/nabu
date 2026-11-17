@@ -92,6 +92,8 @@ Further back: Daniel's great-grandfather cut cane at a *central* in Matanzas (u2
     `form:fem`), a noun its own (*el agua*: `form:fem`; *la tía*: `sense:tío`, `form:fem`), and a
     first or second person the sentence's `persons` (untagged: the bare form). Words that agree with
     nothing stay bare (*es posible*, *mejor* as an adverb, *quién*). A phrase KC's tokens take none.
+    A pronoun pins its own (*ella*: `form:fem`; *nosotros*, *ustedes*, *nos*, *les*: `form:pl`), and so
+    does a single-word name (*Cuba*, *la Habana*, *Marisol*: `form:fem`).
     A word question offers only words of the answer's form, so *una ___* never offers *carro*.
   - Names are KCs (`sense:daniel`, `sense:cachita`).
   - Every KC has an English gloss. Use `notes` for the Cuban side: what Cubans say and others

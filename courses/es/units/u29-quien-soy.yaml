@@ -70,7 +70,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En la escuela yo era el cubano, y en Cuba soy el americano.
-      tokens: [{surface: En, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: escuela, sense: escuela, form: 'form:fem'}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: el, sense: el}, {surface: cubano, sense: cubano}, {surface: 'y', sense: 'y'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: americano, sense: americano}]
+      tokens: [{surface: En, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: escuela, sense: escuela, form: 'form:fem'}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: el, sense: el}, {surface: cubano, sense: cubano}, {surface: 'y', sense: 'y'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: americano, sense: americano}]
       reverse: En la escuela [yo] era el cubano y en Cuba [yo] soy el americano
   translations:
     en: At school I was the Cuban (one|kid|guy), and in Cuba (I'm|I am) the American (one|guy).
@@ -90,7 +90,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Para abuela, su país es Cuba; para mí, son los dos.
-      tokens: [{surface: Para, sense: para}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: su, sense: su}, {surface: país, sense: país}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Cuba, sense: cuba}, {surface: para, sense: para}, {surface: mí, sense: mí}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: dos, sense: dos}]
+      tokens: [{surface: Para, sense: para}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: su, sense: su}, {surface: país, sense: país}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: para, sense: para}, {surface: mí, sense: mí}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: dos, sense: dos}]
       reverse: Para (abuela|la abuela|mi abuela) su país es Cuba para mí son los dos
   translations:
     en: For (Grandma|Grandmother|Abuela|my grandma|my grandmother), her country is Cuba; for me, (it's|it is) both.
@@ -216,7 +216,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Hialeah decimos carpeta; en Cuba dicen alfombra.
-      tokens: [{surface: En, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: decimos, sense: decir, form: 'form:pres-1p'}, {surface: carpeta, sense: carpeta, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: alfombra, sense: alfombra, form: 'form:fem'}]
+      tokens: [{surface: En, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: decimos, sense: decir, form: 'form:pres-1p'}, {surface: carpeta, sense: carpeta, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: alfombra, sense: alfombra, form: 'form:fem'}]
       reverse: En Hialeah [nosotros] decimos carpeta en Cuba dicen alfombra
   translations:
     en: In Hialeah we say carpeta; in Cuba (they|people) say alfombra.
@@ -254,7 +254,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Hialeah dicen aplicar para un trabajo; en Cuba dicen solicitar un puesto.
-      tokens: [{surface: En, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: aplicar, sense: aplicar}, {surface: para, sense: para}, {surface: un, sense: un}, {surface: trabajo, sense: trabajo}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: solicitar, sense: solicitar}, {surface: un, sense: un}, {surface: puesto, sense: puesto}]
+      tokens: [{surface: En, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: aplicar, sense: aplicar}, {surface: para, sense: para}, {surface: un, sense: un}, {surface: trabajo, sense: trabajo}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: solicitar, sense: solicitar}, {surface: un, sense: un}, {surface: puesto, sense: puesto}]
       reverse: En Hialeah dicen aplicar para un trabajo en Cuba dicen solicitar un puesto
   translations:
     en: In Hialeah (they|people) say aplicar para un trabajo; in Cuba (they|people) say solicitar un puesto.
@@ -298,7 +298,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Del banco me llamaron, y yo les devolví la llamada por la tarde.
-      tokens: [{surface: Del, sense: del}, {surface: banco, sense: banco}, {surface: me, sense: me}, {surface: llamaron, sense: llamar, form: 'form:pret-3p'}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: les, sense: le}, {surface: devolví, sense: devolver, form: 'form:pret-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: llamada, sense: llamada, form: 'form:fem'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: tarde, sense: tarde}]
+      tokens: [{surface: Del, sense: del}, {surface: banco, sense: banco}, {surface: me, sense: me}, {surface: llamaron, sense: llamar, form: 'form:pret-3p'}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: les, sense: le, form: 'form:pl'}, {surface: devolví, sense: devolver, form: 'form:pret-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: llamada, sense: llamada, form: 'form:fem'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: tarde, sense: tarde}]
       reverse: (Del banco me llamaron|Me llamaron del banco) y [yo] les devolví la llamada (por la tarde|en la tarde)
   translations:
     en: |-
@@ -309,7 +309,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Decir te llamo para atrás es espanglish; en Cuba dicen te devuelvo la llamada.
-      tokens: [{surface: Decir, sense: decir}, {surface: te, sense: te}, {surface: llamo, sense: llamar, form: 'form:pres-1s'}, {surface: para, sense: para}, {surface: atrás, sense: atrás}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: espanglish, sense: espanglish}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: te, sense: te}, {surface: devuelvo, sense: devolver, form: 'form:pres-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: llamada, sense: llamada, form: 'form:fem'}]
+      tokens: [{surface: Decir, sense: decir}, {surface: te, sense: te}, {surface: llamo, sense: llamar, form: 'form:pres-1s'}, {surface: para, sense: para}, {surface: atrás, sense: atrás}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: espanglish, sense: espanglish}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: te, sense: te}, {surface: devuelvo, sense: devolver, form: 'form:pres-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: llamada, sense: llamada, form: 'form:fem'}]
       reverse: '[Decir] te llamo para atrás es (espanglish|spanglish) en Cuba dicen te devuelvo la llamada'
   translations:
     en: (Saying te llamo para atrás|Te llamo para atrás) is Spanglish; in Cuba (they|people) say te devuelvo la llamada.

@@ -60,7 +60,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela y abuelo se fueron de Cuba en el ochenta.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: abuelo, sense: abuelo}, {surface: se, sense: se}, {surface: fueron, sense: irse, form: 'form:pret-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: ochenta, sense: ochenta}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: abuelo, sense: abuelo}, {surface: se, sense: se}, {surface: fueron, sense: irse, form: 'form:pret-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: ochenta, sense: ochenta}]
       reverse: (Abuela y abuelo|Los abuelos|Mis abuelos) (se fueron|salieron) de Cuba en (el ochenta|mil novecientos ochenta|1980)
   translations:
     en: (Grandma and Grandpa|My grandparents|The grandparents|Grandmother and Grandfather) left Cuba in (1980|'80|nineteen eighty).
@@ -105,7 +105,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia había llegado a Miami antes que abuela.
-      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: había, sense: haber, form: 'form:impf'}, {surface: llegado, sense: llegar, form: 'form:part'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: antes, sense: antes}, {surface: que, sense: que}, {surface: abuela, sense: abuela, form: 'form:fem'}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: había, sense: haber, form: 'form:impf'}, {surface: llegado, sense: llegar, form: 'form:part'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: antes, sense: antes}, {surface: que, sense: que}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       reverse: |-
         Doña Ofelia había llegado a Miami antes que (abuela|la abuela|mi abuela)
         Doña Ofelia había llegado a Miami antes de la abuela
@@ -116,7 +116,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El puerto del Mariel está cerca de La Habana.
-      tokens: [{surface: El, sense: el}, {surface: puerto, sense: puerto}, {surface: del, sense: del}, {surface: Mariel, sense: mariel}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
+      tokens: [{surface: El, sense: el}, {surface: puerto, sense: puerto}, {surface: del, sense: del}, {surface: Mariel, sense: mariel}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
       reverse: El puerto (del|de) Mariel está cerca de La Habana
   translations:
     en: |-
@@ -191,7 +191,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol se quedó en Cuba con su abuela.
-      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: se, sense: se}, {surface: quedó, sense: quedarse, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: con, sense: con}, {surface: su, sense: su, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}]
+      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: se, sense: se}, {surface: quedó, sense: quedarse, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: con, sense: con}, {surface: su, sense: su, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       reverse: (Tía Marisol|Mi tía Marisol|Marisol) se quedó en Cuba con su abuela
   translations:
     en: (Aunt Marisol|My aunt Marisol|Marisol) stayed in Cuba with her (grandmother|grandma).
@@ -200,7 +200,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando los llamaron, Marisol estaba con su abuela en el campo.
-      tokens: [{surface: Cuando, sense: cuando}, {surface: los, sense: lo, form: 'form:pl'}, {surface: llamaron, sense: llamar, form: 'form:pret-3p'}, {surface: Marisol, sense: marisol}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: con, sense: con}, {surface: su, sense: su, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: campo, sense: campo}]
+      tokens: [{surface: Cuando, sense: cuando}, {surface: los, sense: lo, form: 'form:pl'}, {surface: llamaron, sense: llamar, form: 'form:pret-3p'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: con, sense: con}, {surface: su, sense: su, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: campo, sense: campo}]
       reverse: |-
         Cuando los llamaron Marisol estaba con su abuela en el campo
         Marisol estaba con su abuela en el campo cuando los llamaron
@@ -213,7 +213,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela tuvo que dejar a su hija en Cuba.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: tuvo, sense: tener-que, form: 'form:pret-3s'}, {surface: que, sense: tener-que}, {surface: dejar, sense: dejar}, {surface: a, sense: a}, {surface: su, sense: su, form: 'form:fem'}, {surface: hija, sense: hijo, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: tuvo, sense: tener-que, form: 'form:pret-3s'}, {surface: que, sense: tener-que}, {surface: dejar, sense: dejar}, {surface: a, sense: a}, {surface: su, sense: su, form: 'form:fem'}, {surface: hija, sense: hijo, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: (Abuela|La abuela|Mi abuela) tuvo que dejar a su hija en Cuba
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) had to leave her daughter [behind] in Cuba.
@@ -222,7 +222,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela pensaba que Marisol iba a salir después, pero no pudo.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: pensaba, sense: pensar, form: 'form:impf'}, {surface: que, sense: que}, {surface: Marisol, sense: marisol}, {surface: iba, sense: ir, form: 'form:impf'}, {surface: a, sense: a}, {surface: salir, sense: salir}, {surface: después, sense: después}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: pudo, sense: poder, form: 'form:pret-3s'}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: pensaba, sense: pensar, form: 'form:impf'}, {surface: que, sense: que}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: iba, sense: ir, form: 'form:impf'}, {surface: a, sense: a}, {surface: salir, sense: salir}, {surface: después, sense: después}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: pudo, sense: poder, form: 'form:pret-3s'}]
       reverse: (Abuela|La abuela|Mi abuela) (pensaba|creía) que Marisol iba a salir después pero no pudo
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) (thought|believed) [that] Marisol (was going to|would) (leave|get out|come) later, but she (couldn't|could not|wasn't able to).
@@ -231,7 +231,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando abuela volvió a Cuba, Marisol ya se había casado.
-      tokens: [{surface: Cuando, sense: cuando}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: volvió, sense: volver, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}, {surface: Marisol, sense: marisol}, {surface: ya, sense: ya}, {surface: se, sense: se}, {surface: había, sense: haber, form: 'form:impf'}, {surface: casado, sense: casarse, form: 'form:part'}]
+      tokens: [{surface: Cuando, sense: cuando}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: volvió, sense: volver, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: ya, sense: ya}, {surface: se, sense: se}, {surface: había, sense: haber, form: 'form:impf'}, {surface: casado, sense: casarse, form: 'form:part'}]
       reverse: |-
         Cuando (abuela|la abuela|mi abuela) volvió a Cuba Marisol ya se había casado
         Marisol ya se había casado cuando (abuela|la abuela|mi abuela) volvió a Cuba
@@ -389,7 +389,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela y Marisol se reunieron en La Habana después de quince años.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Marisol, sense: marisol}, {surface: se, sense: se}, {surface: reunieron, sense: reunirse, form: 'form:pret-3p'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: después, sense: después}, {surface: de, sense: de}, {surface: quince, sense: quince}, {surface: años, sense: año, form: 'form:pl'}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: se, sense: se}, {surface: reunieron, sense: reunirse, form: 'form:pret-3p'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}, {surface: después, sense: después}, {surface: de, sense: de}, {surface: quince, sense: quince}, {surface: años, sense: año, form: 'form:pl'}]
       reverse: |-
         (Abuela|La abuela|Mi abuela) y Marisol (se reunieron|se volvieron a ver|se vieron otra vez) en La Habana después de quince años
         Después de quince años (abuela|la abuela|mi abuela) y Marisol (se reunieron|se volvieron a ver|se vieron otra vez) en La Habana
@@ -402,7 +402,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Antes de ese viaje, Marisol nunca había conocido a su hermana.
-      tokens: [{surface: Antes, sense: antes}, {surface: de, sense: de}, {surface: ese, sense: ese}, {surface: viaje, sense: viaje}, {surface: Marisol, sense: marisol}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: conocido, sense: conocer, form: 'form:part'}, {surface: a, sense: a}, {surface: su, sense: su, form: 'form:fem'}, {surface: hermana, sense: hermano, form: 'form:fem'}]
+      tokens: [{surface: Antes, sense: antes}, {surface: de, sense: de}, {surface: ese, sense: ese}, {surface: viaje, sense: viaje}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: conocido, sense: conocer, form: 'form:part'}, {surface: a, sense: a}, {surface: su, sense: su, form: 'form:fem'}, {surface: hermana, sense: hermano, form: 'form:fem'}]
       reverse: |-
         Antes de ese viaje Marisol nunca había conocido a su hermana
         Marisol nunca había conocido a su hermana antes de ese viaje
@@ -416,7 +416,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los domingos, la familia se reúne en casa de abuela y llama a Marisol.
-      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}, {surface: la, sense: el, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: se, sense: se}, {surface: reúne, sense: reunirse, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: de, sense: de}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: llama, sense: llamar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}, {surface: la, sense: el, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: se, sense: se}, {surface: reúne, sense: reunirse, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: de, sense: de}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: llama, sense: llamar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: |-
         Los domingos la familia se reúne en casa de (abuela|la abuela|mi abuela) y llama a Marisol
         La familia se reúne en casa de (abuela|la abuela|mi abuela) los domingos y llama a Marisol
@@ -429,7 +429,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela todavía extraña a Marisol todos los días.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: todavía, sense: todavía}, {surface: extraña, sense: extrañar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: Marisol, sense: marisol}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: los, sense: el, form: 'form:pl'}, {surface: días, sense: día, form: 'form:pl'}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: todavía, sense: todavía}, {surface: extraña, sense: extrañar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: los, sense: el, form: 'form:pl'}, {surface: días, sense: día, form: 'form:pl'}]
       reverse: (Abuela|La abuela|Mi abuela) todavía (extraña|echa de menos) a Marisol todos los días
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) still misses Marisol every day.
@@ -467,7 +467,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, ¿cómo ustedes salieron de Cuba?
-          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: cómo, sense: cómo}, {surface: ustedes, sense: ustedes}, {surface: salieron, sense: salir, form: 'form:pret-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: cómo, sense: cómo}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: salieron, sense: salir, form: 'form:pret-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       translations: {en: 'Grandma, how did you leave Cuba?'}
   - line:
       speaker: cachita
@@ -481,7 +481,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo nunca había salido de Matanzas, y ahora tenía que salir de Cuba.
-          tokens: [{surface: Yo, sense: yo}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: salido, sense: salir, form: 'form:part'}, {surface: de, sense: de}, {surface: Matanzas, sense: matanzas}, {surface: 'y', sense: 'y'}, {surface: ahora, sense: ahora}, {surface: tenía, sense: tener-que, form: 'form:impf'}, {surface: que, sense: tener-que}, {surface: salir, sense: salir}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: Yo, sense: yo}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: salido, sense: salir, form: 'form:part'}, {surface: de, sense: de}, {surface: Matanzas, sense: matanzas}, {surface: 'y', sense: 'y'}, {surface: ahora, sense: ahora}, {surface: tenía, sense: tener-que, form: 'form:impf'}, {surface: que, sense: tener-que}, {surface: salir, sense: salir}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       translations: {en: 'I had never been out of Matanzas, and now I had to leave Cuba.'}
   - line:
       speaker: cachita
@@ -498,21 +498,21 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y tía Marisol? ¿Por qué no salió con ustedes?
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: Por, sense: por}, {surface: qué, sense: qué}, {surface: 'no', sense: 'no'}, {surface: salió, sense: salir, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: ustedes, sense: ustedes}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: Por, sense: por}, {surface: qué, sense: qué}, {surface: 'no', sense: 'no'}, {surface: salió, sense: salir, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: ustedes, sense: ustedes, form: 'form:pl'}]
       translations: {en: 'And Aunt Marisol? Why didn''t she leave with you?'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Cuando nos llamaron, Marisol estaba con su abuela en el campo.
-          tokens: [{surface: Cuando, sense: cuando}, {surface: nos, sense: nos}, {surface: llamaron, sense: llamar, form: 'form:pret-3p'}, {surface: Marisol, sense: marisol}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: con, sense: con}, {surface: su, sense: su, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: campo, sense: campo}]
+          tokens: [{surface: Cuando, sense: cuando}, {surface: nos, sense: nos, form: 'form:pl'}, {surface: llamaron, sense: llamar, form: 'form:pret-3p'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: con, sense: con}, {surface: su, sense: su, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: campo, sense: campo}]
       translations: {en: 'When they called us, Marisol was with her grandmother in the countryside.'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: La lancha salió esa noche, y Marisol se quedó en Cuba.
-          tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: lancha, sense: lancha, form: 'form:fem'}, {surface: salió, sense: salir, form: 'form:pret-3s'}, {surface: esa, sense: ese, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Marisol, sense: marisol}, {surface: se, sense: se}, {surface: quedó, sense: quedarse, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: lancha, sense: lancha, form: 'form:fem'}, {surface: salió, sense: salir, form: 'form:pret-3s'}, {surface: esa, sense: ese, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: se, sense: se}, {surface: quedó, sense: quedarse, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       translations: {en: 'The boat left that night, and Marisol stayed in Cuba.'}
   - choose:
       prompt: {en: 'Why did Marisol stay in Cuba?'}
@@ -523,7 +523,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Pensábamos que Marisol iba a salir después, pero nunca pudo.
-          tokens: [{surface: Pensábamos, sense: pensar, form: 'form:impf'}, {surface: que, sense: que}, {surface: Marisol, sense: marisol}, {surface: iba, sense: ir, form: 'form:impf'}, {surface: a, sense: a}, {surface: salir, sense: salir}, {surface: después, sense: después}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: pudo, sense: poder, form: 'form:pret-3s'}]
+          tokens: [{surface: Pensábamos, sense: pensar, form: 'form:impf'}, {surface: que, sense: que}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: iba, sense: ir, form: 'form:impf'}, {surface: a, sense: a}, {surface: salir, sense: salir}, {surface: después, sense: después}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: pudo, sense: poder, form: 'form:pret-3s'}]
       translations: {en: 'We thought Marisol would leave later, but she never could.'}
   - line:
       speaker: cachita
@@ -579,7 +579,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí. Los guardacostas nos llevaron a Guantánamo, y después llegamos a Miami.
-          tokens: [{surface: Sí, sense: sí}, {surface: Los, sense: el, form: 'form:pl'}, {surface: guardacostas, sense: guardacostas, form: 'form:pl'}, {surface: nos, sense: nos}, {surface: llevaron, sense: llevar, form: 'form:pret-3p'}, {surface: a, sense: a}, {surface: Guantánamo, sense: guantánamo}, {surface: 'y', sense: 'y'}, {surface: después, sense: después}, {surface: llegamos, sense: llegar, form: 'form:pret-1p'}, {surface: a, sense: a}, {surface: Miami, sense: miami}]
+          tokens: [{surface: Sí, sense: sí}, {surface: Los, sense: el, form: 'form:pl'}, {surface: guardacostas, sense: guardacostas, form: 'form:pl'}, {surface: nos, sense: nos, form: 'form:pl'}, {surface: llevaron, sense: llevar, form: 'form:pret-3p'}, {surface: a, sense: a}, {surface: Guantánamo, sense: guantánamo}, {surface: 'y', sense: 'y'}, {surface: después, sense: después}, {surface: llegamos, sense: llegar, form: 'form:pret-1p'}, {surface: a, sense: a}, {surface: Miami, sense: miami}]
       translations: {en: 'Yes. The Coast Guard took us to Guantánamo, and then we got to Miami.'}
   - line:
       speaker: cachita

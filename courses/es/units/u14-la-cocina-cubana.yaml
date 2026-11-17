@@ -292,7 +292,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili y Daniel, vengan a comer.
-      tokens: [{surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: Daniel, sense: daniel}, {surface: vengan, sense: venir, form: 'form:imp-ud'}, {surface: a, sense: a}, {surface: comer, sense: comer}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Daniel, sense: daniel}, {surface: vengan, sense: venir, form: 'form:imp-ud'}, {surface: a, sense: a}, {surface: comer, sense: comer}]
       reverse: |-
         (Lili y Daniel|Daniel y Lili) vengan a comer
         Vengan a comer, Lili y Daniel.
@@ -316,7 +316,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Venga, doña Ofelia, coma con nosotros.
-      tokens: [{surface: Venga, sense: venir, form: 'form:imp-ud'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
+      tokens: [{surface: Venga, sense: venir, form: 'form:imp-ud'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
       reverse: |-
         Venga doña Ofelia [y] coma con nosotros
         Doña Ofelia venga [y] coma con nosotros
@@ -330,7 +330,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, coma un poco de ropa vieja.
-      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
       reverse: |-
         Doña Ofelia (coma|pruebe|sírvase) un (poco|poquito) de ropa vieja
         Coma un poco de ropa vieja, doña Ofelia.
@@ -342,7 +342,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tome un cafecito con nosotros, doña Ofelia.
-      tokens: [{surface: Tome, sense: tomar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}]
+      tokens: [{surface: Tome, sense: tomar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}]
       reverse: |-
         Tome un (cafecito|café) con nosotros doña Ofelia
         Doña Ofelia tome un (cafecito|café) con nosotros
@@ -365,7 +365,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, lleve un poco de picadillo para su casa.
-      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: lleve, sense: llevar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: picadillo, sense: picadillo}, {surface: para, sense: para}, {surface: su, sense: su, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: lleve, sense: llevar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: picadillo, sense: picadillo}, {surface: para, sense: para}, {surface: su, sense: su, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}]
       reverse: |-
         Doña Ofelia (lleve|llévese) un (poco|poquito) de picadillo (para su casa|para la casa|a su casa)
         Lleve un poco de picadillo para su casa, doña Ofelia.
@@ -417,7 +417,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, no abra la olla de presión, por favor.
-      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: 'no', sense: 'no'}, {surface: abra, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: abra, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
       reverse: |-
         Doña Ofelia no abra la olla de presión por favor
         Doña Ofelia por favor no abra la olla de presión

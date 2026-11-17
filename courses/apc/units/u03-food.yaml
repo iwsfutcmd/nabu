@@ -38,7 +38,6 @@ kcs:
 - {id: 'sense:tabbouleh', pos: NOUN, gloss: {en: tabbouleh (parsley salad)}, forms: {apc-Arab/standard: [تبّولة], apc-Latn/arabizi: [tabboule]}}
 - {id: 'sense:sa7n', pos: NOUN, gloss: {en: plate; dish}, forms: {apc-Arab/standard: [صحن], apc-Latn/arabizi: [sa7n]}}
 - {id: 'form:imp-2pl', gloss: {en: '-o: telling several people to do something'}, notes: {en: 'tfaddalo! kilo! eshrabo! Arabic script: وا after the verb (تفضّلوا).'}}
-- {id: 'form:pl', gloss: {en: '-in: plural ending on an adjective'}, notes: {en: 'jou3anin: hungry (several people); mabsoutin: happy. Arabic script: ين (جوعانين).'}}
 nodes:
 - {id: apc.food.welcome, kind: lesson, introduces: ['sense:tfaddal', 'sense:akal', 'sense:shereb', 'sense:sa77tein', 'sense:3a-albak', 'form:imp-2fs']}
 - {id: apc.food.basics, kind: lesson, introduces: ['sense:khebz', 'sense:may', 'sense:sukkar', 'sense:ma3', 'sense:el', 'sense:akl']}
@@ -46,7 +45,7 @@ nodes:
 - {id: apc.food.taste, kind: lesson, introduces: ['sense:tayyeb', 'sense:ktir', 'sense:shway', 'sense:bas']}
 - {id: apc.food.hungry, kind: lesson, introduces: ['sense:jou3an', 'sense:3atshan', 'sense:kamen', 'sense:fenjen']}
 - {id: apc.food.mezze, kind: lesson, introduces: ['sense:7ummus', 'sense:tabbouleh', 'sense:sa7n']}
-- {id: apc.food.you-pl, kind: lesson, introduces: ['form:imp-2pl', 'form:pl']}
+- {id: apc.food.you-pl, kind: lesson, introduces: ['form:imp-2pl']}
 - {id: apc.food.story, kind: story}
 sentences:
 - id: s.food.1
@@ -152,13 +151,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تفضّلي، مايا!
-      tokens: [{surface: تفضّلي, sense: tfaddal, form: 'form:imp-2fs'}, {surface: مايا, sense: maya}]
+      tokens: [{surface: تفضّلي, sense: tfaddal, form: 'form:imp-2fs'}, {surface: مايا, sense: maya, form: 'form:fem'}]
       reverse: |-
         تفضّلي مايا
         مايا تفضّلي
     apc-Latn/arabizi:
       text: tfaddali, Maya!
-      tokens: [{surface: tfaddali, sense: tfaddal, form: 'form:imp-2fs'}, {surface: Maya, sense: maya}]
+      tokens: [{surface: tfaddali, sense: tfaddal, form: 'form:imp-2fs'}, {surface: Maya, sense: maya, form: 'form:fem'}]
       reverse: |-
         (tfaddali|tfadali|tfaddale) Maya
         Maya tfaddali
@@ -229,11 +228,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قهوة مع سكّر؟
-      tokens: [{surface: قهوة, sense: ahwe}, {surface: مع, sense: ma3}, {surface: سكّر, sense: sukkar}]
+      tokens: [{surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: مع, sense: ma3}, {surface: سكّر, sense: sukkar}]
       reverse: قهوة مع سكّر
     apc-Latn/arabizi:
       text: ahwe ma3 sukkar?
-      tokens: [{surface: ahwe, sense: ahwe}, {surface: ma3, sense: ma3}, {surface: sukkar, sense: sukkar}]
+      tokens: [{surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: ma3, sense: ma3}, {surface: sukkar, sense: sukkar}]
       reverse: (ahwe|2ahwe) (ma3|ma3a) (sukkar|sekkar|sokkar|sukar)
   translations:
     en: |-
@@ -277,11 +276,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّي منقوشة.
-      tokens: [{surface: بدّي, sense: baddi}, {surface: منقوشة, sense: man2oushe}]
+      tokens: [{surface: بدّي, sense: baddi}, {surface: منقوشة, sense: man2oushe, form: 'form:fem'}]
       reverse: (بدّي|أنا بدّي) منقوشة
     apc-Latn/arabizi:
       text: baddi man2oushe.
-      tokens: [{surface: baddi, sense: baddi}, {surface: man2oushe, sense: man2oushe}]
+      tokens: [{surface: baddi, sense: baddi}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}]
       reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (man2oushe|manoushe|man2ushi|mankoushe)
   translations:
     en: |-
@@ -293,11 +292,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: منقوشة زعتر؟
-      tokens: [{surface: منقوشة, sense: man2oushe}, {surface: زعتر, sense: za3tar}]
+      tokens: [{surface: منقوشة, sense: man2oushe, form: 'form:fem'}, {surface: زعتر, sense: za3tar}]
       reverse: منقوشة زعتر
     apc-Latn/arabizi:
       text: man2oushe za3tar?
-      tokens: [{surface: man2oushe, sense: man2oushe}, {surface: za3tar, sense: za3tar}]
+      tokens: [{surface: man2oushe, sense: man2oushe, form: 'form:fem'}, {surface: za3tar, sense: za3tar}]
       reverse: (man2oushe|manoushe|man2ushi|mankoushe) (za3tar|zaatar|za3ter)
   translations:
     en: |-
@@ -309,11 +308,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لأ، منقوشة جبنة.
-      tokens: [{surface: لأ, sense: la2}, {surface: منقوشة, sense: man2oushe}, {surface: جبنة, sense: jebne}]
+      tokens: [{surface: لأ, sense: la2}, {surface: منقوشة, sense: man2oushe, form: 'form:fem'}, {surface: جبنة, sense: jebne, form: 'form:fem'}]
       reverse: (لأ|لا) منقوشة جبنة
     apc-Latn/arabizi:
       text: la2, man2oushe jebne.
-      tokens: [{surface: la2, sense: la2}, {surface: man2oushe, sense: man2oushe}, {surface: jebne, sense: jebne}]
+      tokens: [{surface: la2, sense: la2}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}, {surface: jebne, sense: jebne, form: 'form:fem'}]
       reverse: (la2|la) (man2oushe|manoushe|man2ushi|mankoushe) (jebne|jibne|jebni)
   translations:
     en: |-
@@ -343,11 +342,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قهوة بلا سكّر.
-      tokens: [{surface: قهوة, sense: ahwe}, {surface: بلا, sense: bala}, {surface: سكّر, sense: sukkar}]
+      tokens: [{surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: بلا, sense: bala}, {surface: سكّر, sense: sukkar}]
       reverse: قهوة بلا سكّر
     apc-Latn/arabizi:
       text: ahwe bala sukkar.
-      tokens: [{surface: ahwe, sense: ahwe}, {surface: bala, sense: bala}, {surface: sukkar, sense: sukkar}]
+      tokens: [{surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: bala, sense: bala}, {surface: sukkar, sense: sukkar}]
       reverse: (ahwe|2ahwe) (bala|bela) (sukkar|sekkar|sokkar|sukar)
   translations:
     en: |-
@@ -376,11 +375,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المنقوشة طيّبة.
-      tokens: [{surface: المنقوشة, sense: man2oushe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: منقوشة, kc: 'sense:man2oushe'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}]
+      tokens: [{surface: المنقوشة, sense: man2oushe, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: منقوشة, kc: 'sense:man2oushe'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}]
       reverse: المنقوشة طيّبة
     apc-Latn/arabizi:
       text: el man2oushe tayybe.
-      tokens: [{surface: el, sense: el}, {surface: man2oushe, sense: man2oushe}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}]
+      tokens: [{surface: el, sense: el}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}]
       reverse: (el|l|il) (man2oushe|manoushe|man2ushi|mankoushe) (tayybe|tayebe|taybe|tayyibe)
   translations:
     en: |-
@@ -479,11 +478,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا جوعانة.
-      tokens: [{surface: مايا, sense: maya}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
       reverse: مايا جوعانة
     apc-Latn/arabizi:
       text: Maya jou3ane.
-      tokens: [{surface: Maya, sense: maya}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
       reverse: Maya (jou3ane|jo3ane|jou3ani|ju3ane)
   translations:
     en: |-
@@ -512,11 +511,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: كمان فنجان قهوة؟
-      tokens: [{surface: كمان, sense: kamen}, {surface: فنجان, sense: fenjen}, {surface: قهوة, sense: ahwe}]
+      tokens: [{surface: كمان, sense: kamen}, {surface: فنجان, sense: fenjen}, {surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: كمان فنجان قهوة
     apc-Latn/arabizi:
       text: kamen fenjen ahwe?
-      tokens: [{surface: kamen, sense: kamen}, {surface: fenjen, sense: fenjen}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: kamen, sense: kamen}, {surface: fenjen, sense: fenjen}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: (kamen|kaman) (fenjen|finjen|fenjan|finjan) (ahwe|2ahwe)
   translations:
     en: |-
@@ -545,14 +544,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: التبّولة طيّبة كتير!
-      tokens: [{surface: التبّولة, sense: tabbouleh, morphs: [{surface: ال, kc: 'sense:el'}, {surface: تبّولة, kc: 'sense:tabbouleh'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}, {surface: كتير,
+      tokens: [{surface: التبّولة, sense: tabbouleh, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: تبّولة, kc: 'sense:tabbouleh'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}, {surface: كتير,
           sense: ktir}]
       reverse: |-
         التبّولة طيّبة كتير
         التبّولة كتير طيّبة
     apc-Latn/arabizi:
       text: el tabboule tayybe ktir!
-      tokens: [{surface: el, sense: el}, {surface: tabboule, sense: tabbouleh}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: el, sense: el}, {surface: tabboule, sense: tabbouleh, form: 'form:fem'}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}, {surface: ktir, sense: ktir}]
       reverse: |-
         (el|l|il) (tabboule|tabbouli|tabbouleh|tabouleh|taboule) (tayybe|tayebe|taybe|tayyibe) (ktir|kteer|kter|ktiir)
         el tabboule ktir tayybe
@@ -636,13 +635,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا، جوعانة؟
-      tokens: [{surface: مايا, sense: maya}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
       reverse: |-
         مايا [إنتي] جوعانة
         جوعانة مايا
     apc-Latn/arabizi:
       text: Maya, jou3ane?
-      tokens: [{surface: Maya, sense: maya}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
       reverse: |-
         Maya [(enti|inti)] (jou3ane|jo3ane|ju3ane|jou3ana)
         jou3ane Maya
@@ -766,11 +765,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: شُكْرا تيتا. الأَكِل طَيِّب كْتير!
-          tokens: [{surface: شُكْرا, sense: shukran}, {surface: تيتا, sense: teta}, {surface: الأَكِل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَكِل, kc: 'sense:akl'}]}, {surface: طَيِّب,
+          tokens: [{surface: شُكْرا, sense: shukran}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: الأَكِل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَكِل, kc: 'sense:akl'}]}, {surface: طَيِّب,
               sense: tayyeb}, {surface: كْتير, sense: ktir}]
         apc-Latn/arabizi:
           text: shukran teta. el akl tayyeb ktir!
-          tokens: [{surface: shukran, sense: shukran}, {surface: teta, sense: teta}, {surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}, {surface: ktir, sense: ktir}]
+          tokens: [{surface: shukran, sense: shukran}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}, {surface: ktir, sense: ktir}]
       translations: {en: 'Thanks, grandma. The food is really tasty!'}
   - line:
       speaker: teta
@@ -797,23 +796,23 @@ stories:
       forms:
         apc-Arab/standard:
           text: مايا، جوعانة؟ كِلي!
-          tokens: [{surface: مايا, sense: maya}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}, {surface: كِلي, sense: akal, form: 'form:imp-2fs'}]
+          tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}, {surface: كِلي, sense: akal, form: 'form:imp-2fs'}]
         apc-Latn/arabizi:
           text: Maya, jou3ane? kili!
-          tokens: [{surface: Maya, sense: maya}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}, {surface: kili, sense: akal, form: 'form:imp-2fs'}]
+          tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}, {surface: kili, sense: akal, form: 'form:imp-2fs'}]
       translations: {en: 'Maya, are you hungry? Eat!'}
   - line:
       speaker: maya
       ask: complete
-      gap: sense:shway
+      gap: 'sense:shway'
       distractors: ['sense:ktir', 'sense:kamen']
       forms:
         apc-Arab/standard:
           text: لأ تيتا، بَسّ شْوَي.
-          tokens: [{surface: لأ, sense: la2}, {surface: تيتا, sense: teta}, {surface: بَسّ, sense: bas}, {surface: شْوَي, sense: shway}]
+          tokens: [{surface: لأ, sense: la2}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: بَسّ, sense: bas}, {surface: شْوَي, sense: shway}]
         apc-Latn/arabizi:
           text: la2 teta, bas shway.
-          tokens: [{surface: la2, sense: la2}, {surface: teta, sense: teta}, {surface: bas, sense: bas}, {surface: shway, sense: shway}]
+          tokens: [{surface: la2, sense: la2}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: bas, sense: bas}, {surface: shway, sense: shway}]
       translations: {en: 'No, grandma, just a little.'}
   - choose:
       prompt:
@@ -846,10 +845,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: تيتا، بَدّي كَمان مَنْقوشة!
-          tokens: [{surface: تيتا, sense: teta}, {surface: بَدّي, sense: baddi}, {surface: كَمان, sense: kamen}, {surface: مَنْقوشة, sense: man2oushe}]
+          tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: بَدّي, sense: baddi}, {surface: كَمان, sense: kamen}, {surface: مَنْقوشة, sense: man2oushe, form: 'form:fem'}]
         apc-Latn/arabizi:
           text: teta, baddi kamen man2oushe!
-          tokens: [{surface: teta, sense: teta}, {surface: baddi, sense: baddi}, {surface: kamen, sense: kamen}, {surface: man2oushe, sense: man2oushe}]
+          tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: baddi, sense: baddi}, {surface: kamen, sense: kamen}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}]
       translations: {en: 'Grandma, I want another man''oushe!'}
   - line:
       speaker: teta

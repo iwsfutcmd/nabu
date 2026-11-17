@@ -42,7 +42,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a Cuba.
-      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: |-
         [Yo] voy (a|para|pa') Cuba
         Me voy a Cuba.
@@ -55,7 +55,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú vas a Cuba?
-      tokens: [{surface: Tú, sense: tú}, {surface: vas, sense: ir, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Tú, sense: tú}, {surface: vas, sense: ir, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: "(Tú vas|Vas [tú]|Usted va|Va [usted]|Ustedes van|Van [ustedes]) (a|para|pa') Cuba"
   translations:
     en: |-
@@ -66,7 +66,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sí, voy a La Habana.
-      tokens: [{surface: Sí, sense: sí}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Sí, sense: sí}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
       reverse: "Sí [yo] voy (a|para|pa') La Habana"
   translations:
     en: Yes, (I'm|I am) going to Havana.
@@ -76,7 +76,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nosotros vamos a Cuba.
-      tokens: [{surface: Nosotros, sense: nosotros, form: 'form:pl'}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Nosotros, sense: nosotros, form: 'form:pl'}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: "[Nosotros] vamos (a|para|pa') Cuba"
   translations:
     en: |-
@@ -87,7 +87,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami va a La Habana.
-      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
       reverse: "(Mami|Mamá) va (a|para|pa') La Habana"
   translations:
     en: |-
@@ -98,7 +98,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela y mami van a Cuba.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: mami, sense: mami, form: 'form:fem'}, {surface: van, sense: ir, form: 'form:pres-3p'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: mami, sense: mami, form: 'form:fem'}, {surface: van, sense: ir, form: 'form:pres-3p'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: |-
         [La] abuela y (mami|mamá) van (a|para|pa') Cuba
         (Mami|Mamá) y [la] abuela van (a|para|pa') Cuba
@@ -113,7 +113,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a viajar a Cuba.
-      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: "[Yo] voy a viajar (a|para|pa') Cuba"
   translations:
     en: |-
@@ -137,7 +137,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Marisol es mi tía.
-      tokens: [{surface: Marisol, sense: marisol}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}]
+      tokens: [{surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}]
       reverse: Marisol es mi tía
   translations:
     en: |-
@@ -148,7 +148,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vamos a visitar a tía Marisol.
-      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: visitar, sense: visitar}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: visitar, sense: visitar}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: "[Nosotros|Nosotras] vamos a visitar a [mi|la] tía Marisol"
   translations:
     en: |-
@@ -321,7 +321,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili no puede viajar este verano.
-      tokens: [{surface: Lili, sense: lili}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: viajar, sense: viajar}, {surface: este, sense: este}, {surface: verano, sense: verano}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: viajar, sense: viajar}, {surface: este, sense: este}, {surface: verano, sense: verano}]
       reverse: |-
         Lili no puede viajar este verano
         Este verano Lili no puede viajar.
@@ -357,7 +357,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Cuba hace mucho calor.
-      tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}]
+      tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}]
       reverse: |-
         En Cuba hace mucho calor
         Hace mucho calor en Cuba
@@ -372,7 +372,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Qué tiempo hace en La Habana?
-      tokens: [{surface: Qué, sense: qué}, {surface: tiempo, sense: tiempo}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Qué, sense: qué}, {surface: tiempo, sense: tiempo}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
       reverse: |-
         Qué tiempo hace en La Habana
         Cómo está el tiempo en La Habana
@@ -441,7 +441,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El café es para tía Marisol.
-      tokens: [{surface: El, sense: el}, {surface: café, sense: café}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: para, sense: para}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: El, sense: el}, {surface: café, sense: café}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: para, sense: para}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: "El café es (para|pa') [mi|la] tía Marisol"
   translations:
     en: |-
@@ -504,7 +504,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Vamos a viajar a Cuba!
-          tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       translations: {en: 'We''re going to travel to Cuba!'}
   - line:
       speaker: daniel
@@ -518,21 +518,21 @@ stories:
       forms:
         es-Latn/standard:
           text: En el verano. Vamos a visitar a tía Marisol.
-          tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: visitar, sense: visitar}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+          tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: visitar, sense: visitar}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       translations: {en: 'In the summer. We''re going to visit Aunt Marisol.'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: ¿En el verano? ¡En Cuba hace mucho calor!
-          tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}]
+          tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: En, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}]
       translations: {en: 'In the summer? It''s really hot in Cuba!'}
   - line:
       speaker: mami
       forms:
         es-Latn/standard:
           text: Sí, mi vida, y llueve mucho. ¡Pero es Cuba!
-          tokens: [{surface: Sí, sense: sí}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: llueve, sense: llover, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: Pero, sense: pero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: Sí, sense: sí}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: llueve, sense: llover, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: Pero, sense: pero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       translations: {en: 'Yes, darling, and it rains a lot. But it''s Cuba!'}
   - line:
       speaker: papi
@@ -600,7 +600,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué vamos a llevar para tía Marisol?
-          tokens: [{surface: Qué, sense: qué}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: para, sense: para}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+          tokens: [{surface: Qué, sense: qué}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: para, sense: para}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       translations: {en: 'What are we going to take for Aunt Marisol?'}
   - line:
       speaker: cachita

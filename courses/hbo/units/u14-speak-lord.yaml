@@ -366,7 +366,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: פַּעַם
-      tokens: [{surface: פַּעַם, sense: paam, readings: {tiberian: páʿam}}]
+      tokens: [{surface: פַּעַם, sense: paam, form: 'form:f', readings: {tiberian: páʿam}}]
       reverse: פעם
   translations:
     en: |-
@@ -377,7 +377,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כְפַעַם־בְּפַעַם
-      tokens: [{surface: כְפַעַם, sense: paam, morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, morphs: [{
+      tokens: [{surface: כְפַעַם, sense: paam, form: 'form:f', morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, form: 'form:f', morphs: [{
               surface: בְּ, kc: 'sense:be'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: bəp̄áʿam}}]
       reverse: כפעם בפעם
   translations:
@@ -523,8 +523,8 @@ stories:
         hbo-Hebr/tiberian:
           text: וַיָּבֹא יְהוָה וַיִּתְיַצַּב וַיִּקְרָא כְפַעַם־בְּפַעַם
           tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיִּתְיַצַּב, sense: hityatsev,
-              form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯyaṣṣaḇ}}, {surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: כְפַעַם, sense: paam,
-              morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: פַעַם,
+              form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯyaṣṣaḇ}}, {surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: כְפַעַם, sense: paam, form: 'form:f',
+              morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, form: 'form:f', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: פַעַם,
                   kc: 'sense:paam'}], readings: {tiberian: bəp̄áʿam}}]
       translations:
         en: And the LORD came and stood there, and called as at other times,

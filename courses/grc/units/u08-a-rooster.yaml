@@ -103,6 +103,9 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - θεός
+- id: form:n-pl
+  gloss:
+    en: 'neuter plural: one form as subject and as object, in -α (τὰ ἄνω, the upstairs; ταῦτα, these things)'
 nodes:
 - id: grc.u08.we-owe
   kind: lesson
@@ -120,6 +123,7 @@ nodes:
   kind: lesson
   introduces:
   - form:fut-3s
+  - form:n-pl
 - id: grc.u08.see-whether
   kind: lesson
   introduces:
@@ -460,7 +464,7 @@ sentences:
           attic: ὦ
       - surface: παῖδες
         sense: pais
-        form: form:voc
+        form: form:pl
         readings:
           attic: παῖδες
       reverse: |-
@@ -477,7 +481,7 @@ sentences:
       tokens:
       - surface: ταῦτα
         sense: houtos
-        form: form:pl
+        form: form:n-pl
         readings:
           attic: ταῦτᾰ
       reverse: ταῦτα
@@ -505,7 +509,7 @@ sentences:
       tokens:
       - surface: ταῦτα
         sense: houtos
-        form: form:pl
+        form: form:n-pl
         readings:
           attic: ταῦτᾰ
       - surface: ἔσται
@@ -530,7 +534,7 @@ sentences:
           attic: ᾰ̓λλᾰ̀
       - surface: ταῦτα
         sense: houtos
-        form: form:pl
+        form: form:n-pl
         readings:
           attic: ταῦτᾰ
       - surface: ἔσται
@@ -549,7 +553,7 @@ sentences:
       tokens:
       - surface: ταῦτα
         sense: houtos
-        form: form:pl
+        form: form:n-pl
         readings:
           attic: ταῦτᾰ
       - surface: λέγει
@@ -575,6 +579,7 @@ sentences:
           attic: ἔσται
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       reverse: |-
@@ -620,12 +625,12 @@ sentences:
       tokens:
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: θάλατταν
         sense: thalatta
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: θᾰ́λᾰττᾰν
       - surface: ὁρῶ
@@ -646,10 +651,12 @@ sentences:
       tokens:
       - surface: ἄλλο
         sense: allos
+        form: form:n
         readings:
           attic: ᾰ̓́λλο
       - surface: τι
         sense: tis.indef
+        form: form:n
         readings:
           attic: τῐ
       reverse: ἄλλο τι
@@ -672,10 +679,12 @@ sentences:
           attic: εἴ
       - surface: τι
         sense: tis.indef
+        form: form:n
         readings:
           attic: τῐ
       - surface: ἄλλο
         sense: allos
+        form: form:n
         readings:
           attic: ᾰ̓́λλο
       - surface: λέγεις
@@ -765,10 +774,12 @@ sentences:
           attic: ἔστῐν
       - surface: ἄλλο
         sense: allos
+        form: form:n
         readings:
           attic: ᾰ̓́λλο
       - surface: τι
         sense: tis.indef
+        form: form:n
         readings:
           attic: τῐ
       reverse: ἔστιν ἄλλο τι
@@ -792,8 +803,8 @@ stories:
       ask: complete
       gap: sense:alektryon
       distractors:
-      - sense:oros
-      - sense:thalatta
+      - sense:peripatos
+      - sense:adelphos
       forms:
         grc-Grek/polytonic:
           text: ὦ Κρίτων, ἔφη, τῷ Ἀσκληπιῷ ὀφείλομεν ἀλεκτρυόνα·
@@ -885,7 +896,7 @@ stories:
               attic: ᾰ̓λλᾰ̀
           - surface: ταῦτα
             sense: houtos
-            form: form:pl
+            form: form:n-pl
             readings:
               attic: ταῦτᾰ
           - surface: ἔφη
@@ -929,10 +940,12 @@ stories:
               attic: εἴ
           - surface: τι
             sense: tis.indef
+            form: form:n
             readings:
               attic: τῐ
           - surface: ἄλλο
             sense: allos
+            form: form:n
             readings:
               attic: ᾰ̓́λλο
           - surface: λέγεις

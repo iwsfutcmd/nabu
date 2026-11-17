@@ -52,7 +52,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ella es doña Ofelia. Vive al lado.
-      tokens: [{surface: Ella, sense: ella}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: Vive, sense: vivir, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}]
+      tokens: [{surface: Ella, sense: ella, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: Vive, sense: vivir, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}]
       reverse: '[Ella] es doña Ofelia [y] (vive|ella vive) (al lado|aquí al lado)'
   translations:
     en: (She's|She is|This is) (Doña|Miss|Mrs.) Ofelia. She lives next door.
@@ -61,7 +61,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia es la vecina de mi abuela.
-      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: vecina, sense: vecino, form: 'form:fem'}, {surface: de, sense: de}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: vecina, sense: vecino, form: 'form:fem'}, {surface: de, sense: de}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       reverse: Doña Ofelia es [la] vecina de (mi abuela|la abuela|abuela)
   translations:
     en: (Doña|Miss|Mrs.) Ofelia is my (grandmother's|grandma's|granny's) (neighbour|neighbor).
@@ -70,7 +70,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Siempre le hablo de usted a doña Ofelia.
-      tokens: [{surface: Siempre, sense: siempre}, {surface: le, sense: le}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: de, sense: de}, {surface: usted, sense: usted}, {surface: a, sense: a}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}]
+      tokens: [{surface: Siempre, sense: siempre}, {surface: le, sense: le}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: de, sense: de}, {surface: usted, sense: usted}, {surface: a, sense: a}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}]
       reverse: |-
         [Yo] siempre le hablo de usted a doña Ofelia
         A doña Ofelia [yo] siempre le hablo de usted
@@ -86,7 +86,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia me habla de tú, pero yo le hablo de usted.
-      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: me, sense: me}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: tú, sense: tú}, {surface: pero, sense: pero}, {surface: yo, sense: yo}, {surface: le, sense: le}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: de, sense: de}, {surface: usted, sense: usted}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: me, sense: me}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: tú, sense: tú}, {surface: pero, sense: pero}, {surface: yo, sense: yo}, {surface: le, sense: le}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: de, sense: de}, {surface: usted, sense: usted}]
       reverse: |-
         Doña Ofelia me habla de tú pero [yo] le hablo de usted
         Doña Ofelia me trata de tú pero [yo] la trato de usted
@@ -170,7 +170,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes les piden la bendición a sus padres?
-      tokens: [{surface: Ustedes, sense: ustedes}, {surface: les, sense: le}, {surface: piden, sense: pedir, form: 'form:pres-3p'}, {surface: la, sense: el, form: 'form:fem'}, {surface: bendición, sense: bendición, form: 'form:fem'}, {surface: a, sense: a}, {surface: sus, sense: su, form: 'form:pl'}, {surface: padres, sense: padre, form: 'form:pl'}]
+      tokens: [{surface: Ustedes, sense: ustedes, form: 'form:pl'}, {surface: les, sense: le, form: 'form:pl'}, {surface: piden, sense: pedir, form: 'form:pres-3p'}, {surface: la, sense: el, form: 'form:fem'}, {surface: bendición, sense: bendición, form: 'form:fem'}, {surface: a, sense: a}, {surface: sus, sense: su, form: 'form:pl'}, {surface: padres, sense: padre, form: 'form:pl'}]
       reverse: (Ustedes les piden|Les piden [ustedes]|Ustedes le piden|Le piden [ustedes]) la bendición a sus padres
   translations:
     en: Do (you|you all|you guys|y'all) ask your parents for (their|a) blessing?
@@ -211,7 +211,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pase, pase, doña Ofelia. Está en su casa.
-      tokens: [{surface: Pase, sense: pasar, form: 'form:imp-ud'}, {surface: pase, sense: pasar, form: 'form:imp-ud'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: Está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}]
+      tokens: [{surface: Pase, sense: pasar, form: 'form:imp-ud'}, {surface: pase, sense: pasar, form: 'form:imp-ud'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: Está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}]
       reverse: (Pase [pase]|Pase adelante|Adelante|Entre) doña Ofelia (está [usted] en su casa|usted está en su casa|esta es su casa)
   translations:
     en: |-
@@ -252,7 +252,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Quisiera hablar con doña Ofelia.
-      tokens: [{surface: Quisiera, sense: querer, form: 'form:subj-past'}, {surface: hablar, sense: hablar}, {surface: con, sense: con}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}]
+      tokens: [{surface: Quisiera, sense: querer, form: 'form:subj-past'}, {surface: hablar, sense: hablar}, {surface: con, sense: con}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}]
       reverse: ([Yo] quisiera|[Yo] querría|Me gustaría) hablar con doña Ofelia
   translations:
     en: (I'd|I would) like to (speak|talk) (with|to) (Doña|Miss|Mrs.) Ofelia.
@@ -285,7 +285,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Le gustaría un cafecito, doña Ofelia?
-      tokens: [{surface: Le, sense: le}, {surface: gustaría, sense: gustar, form: 'form:cond'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}]
+      tokens: [{surface: Le, sense: le}, {surface: gustaría, sense: gustar, form: 'form:cond'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}]
       reverse: |-
         (Le gustaría|Quisiera [usted]|Usted quisiera|Quiere [usted]|Usted quiere) un (cafecito|café) doña Ofelia
         Doña Ofelia (le gustaría|quisiera [usted]|usted quisiera|quiere [usted]|usted quiere) un (cafecito|café)
@@ -309,7 +309,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes podrían venir el domingo?
-      tokens: [{surface: Ustedes, sense: ustedes}, {surface: podrían, sense: poder, form: 'form:cond'}, {surface: venir, sense: venir}, {surface: el, sense: el}, {surface: domingo, sense: domingo}]
+      tokens: [{surface: Ustedes, sense: ustedes, form: 'form:pl'}, {surface: podrían, sense: poder, form: 'form:cond'}, {surface: venir, sense: venir}, {surface: el, sense: el}, {surface: domingo, sense: domingo}]
       reverse: (Ustedes podrían|Podrían [ustedes]) venir el domingo
   translations:
     en: Could (you|you all|you guys|y'all) come (on Sunday|Sunday)?
@@ -319,7 +319,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Les gustaría comer con nosotros?
-      tokens: [{surface: Les, sense: le}, {surface: gustaría, sense: gustar, form: 'form:cond'}, {surface: comer, sense: comer}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
+      tokens: [{surface: Les, sense: le, form: 'form:pl'}, {surface: gustaría, sense: gustar, form: 'form:cond'}, {surface: comer, sense: comer}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
       reverse: |-
         (Les gustaría|A ustedes les gustaría|Ustedes quisieran) comer con (nosotros|nosotras)
         ¿Quisieran comer con nosotros?
@@ -330,7 +330,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia estaría feliz con un cafecito.
-      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: estaría, sense: estar, form: 'form:cond'}, {surface: feliz, sense: feliz, form: 'form:fem'}, {surface: con, sense: con}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: estaría, sense: estar, form: 'form:cond'}, {surface: feliz, sense: feliz, form: 'form:fem'}, {surface: con, sense: con}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}]
       reverse: Doña Ofelia estaría (feliz|contenta) con un (cafecito|café)
   translations:
     en: (Doña|Miss|Mrs.) Ofelia would be happy with a (Cuban coffee|coffee|cafecito).
@@ -350,7 +350,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo iría con ustedes, pero hoy trabajo.
-      tokens: [{surface: Yo, sense: yo}, {surface: iría, sense: ir, form: 'form:cond'}, {surface: con, sense: con}, {surface: ustedes, sense: ustedes}, {surface: pero, sense: pero}, {surface: hoy, sense: hoy}, {surface: trabajo, sense: trabajar, form: 'form:pres-1s'}]
+      tokens: [{surface: Yo, sense: yo}, {surface: iría, sense: ir, form: 'form:cond'}, {surface: con, sense: con}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: pero, sense: pero}, {surface: hoy, sense: hoy}, {surface: trabajo, sense: trabajar, form: 'form:pres-1s'}]
       reverse: |-
         [Yo] iría con ustedes pero hoy (trabajo|tengo que trabajar|estoy trabajando)
         [Yo] iría con ustedes pero (trabajo|tengo que trabajar|estoy trabajando) hoy
@@ -460,7 +460,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel, ¿me haces el favor de llevar este arroz con pollo a doña Ofelia?
-          tokens: [{surface: Daniel, sense: daniel}, {surface: me, sense: me}, {surface: haces, sense: hacer, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: favor, sense: favor}, {surface: de, sense: de}, {surface: llevar, sense: llevar}, {surface: este, sense: este}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: pollo, sense: pollo}, {surface: a, sense: a}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}]
+          tokens: [{surface: Daniel, sense: daniel}, {surface: me, sense: me}, {surface: haces, sense: hacer, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: favor, sense: favor}, {surface: de, sense: de}, {surface: llevar, sense: llevar}, {surface: este, sense: este}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: pollo, sense: pollo}, {surface: a, sense: a}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}]
       translations: {en: 'Daniel, would you please take this chicken and rice to Doña Ofelia?'}
   - line:
       speaker: daniel
@@ -474,7 +474,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Dios te bendiga, mi'jo. Y con doña Ofelia, tú le hablas de usted.
-          tokens: [{surface: Dios, sense: dios-te-bendiga}, {surface: te, sense: dios-te-bendiga}, {surface: bendiga, sense: dios-te-bendiga}, {surface: "mi'jo", sense: mijo}, {surface: 'Y', sense: 'y'}, {surface: con, sense: con}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: tú, sense: tú}, {surface: le, sense: le}, {surface: hablas, sense: hablar, form: 'form:pres-2s'}, {surface: de, sense: de}, {surface: usted, sense: usted}]
+          tokens: [{surface: Dios, sense: dios-te-bendiga}, {surface: te, sense: dios-te-bendiga}, {surface: bendiga, sense: dios-te-bendiga}, {surface: "mi'jo", sense: mijo}, {surface: 'Y', sense: 'y'}, {surface: con, sense: con}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: tú, sense: tú}, {surface: le, sense: le}, {surface: hablas, sense: hablar, form: 'form:pres-2s'}, {surface: de, sense: de}, {surface: usted, sense: usted}]
       translations: {en: 'God bless you, son. And with Doña Ofelia, you use usted.'}
   - line:
       forms:
@@ -487,14 +487,14 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Hola, Ofelia! ¿Qué bolá? ¿Cómo tú estás?
-          tokens: [{surface: Hola, sense: hola}, {surface: Ofelia, sense: ofelia}, {surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: Cómo, sense: cómo}, {surface: tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}]
+          tokens: [{surface: Hola, sense: hola}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: Cómo, sense: cómo}, {surface: tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}]
       translations: {en: 'Hi, Ofelia! What''s up? How are you doing?'}
   - line:
       speaker: ofelia
       forms:
         es-Latn/standard:
           text: ¿Qué bolá? Mi'jo, yo no soy tu asere. ¡Soy doña Ofelia!
-          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: "Mi'jo", sense: mijo}, {surface: yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: tu, sense: tu}, {surface: asere, sense: asere}, {surface: Soy, sense: ser, form: 'form:pres-1s'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}]
+          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: "Mi'jo", sense: mijo}, {surface: yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: tu, sense: tu}, {surface: asere, sense: asere}, {surface: Soy, sense: ser, form: 'form:pres-1s'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}]
       translations: {en: '"What''s up"? Son, I''m not your buddy. I''m Doña Ofelia!'}
   - choose:
       prompt: {en: 'What does Daniel get wrong?'}
@@ -506,7 +506,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Perdone, doña Ofelia. ¿Cómo está usted?
-          tokens: [{surface: Perdone, sense: perdonar, form: 'form:imp-ud'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: usted, sense: usted}]
+          tokens: [{surface: Perdone, sense: perdonar, form: 'form:imp-ud'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: usted, sense: usted}]
       translations: {en: 'Sorry, Doña Ofelia. How are you?'}
   - line:
       speaker: ofelia
@@ -555,7 +555,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Buenos días. Quisiera hacer una cita para doña Ofelia.
-          tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: Quisiera, sense: querer, form: 'form:subj-past'}, {surface: hacer, sense: hacer}, {surface: una, sense: un, form: 'form:fem'}, {surface: cita, sense: cita, form: 'form:fem'}, {surface: para, sense: para}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}]
+          tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: Quisiera, sense: querer, form: 'form:subj-past'}, {surface: hacer, sense: hacer}, {surface: una, sense: un, form: 'form:fem'}, {surface: cita, sense: cita, form: 'form:fem'}, {surface: para, sense: para}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}]
       translations: {en: 'Good morning. I''d like to make an appointment for Doña Ofelia.'}
   - line:
       speaker: recepcionista
@@ -569,7 +569,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Un momento, por favor. Doña Ofelia, ¿el martes a las diez está bien?
-          tokens: [{surface: Un, sense: un}, {surface: momento, sense: momento}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}, {surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: el, sense: el}, {surface: martes, sense: martes}, {surface: a, sense: a}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: diez, sense: diez}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}]
+          tokens: [{surface: Un, sense: un}, {surface: momento, sense: momento}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}, {surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia, form: 'form:fem'}, {surface: el, sense: el}, {surface: martes, sense: martes}, {surface: a, sense: a}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: diez, sense: diez}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}]
       translations: {en: 'One moment, please. Doña Ofelia, is Tuesday at ten all right?'}
   - line:
       speaker: ofelia

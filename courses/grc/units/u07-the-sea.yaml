@@ -105,9 +105,6 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - τάχα
-- id: form:gen-pl
-  gloss:
-    en: 'the genitive plural: of (the) … (τῶν στρατιωτῶν, of the soldiers); also after ἀκούω, hear'
 - id: form:ptc
   gloss:
     en: 'the participle: -ing (βοώντων, shouting)'
@@ -195,6 +192,12 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - τρίτος
+- id: form:dat
+  gloss:
+    en: 'the dative (masculine; also μοι, σοι): to, for (τῷ Ἀσκληπιῷ, to Asclepius; ὄνομά μοι, my name is)'
+- id: form:gen-pl
+  gloss:
+    en: 'the genitive plural (masculine): of (the) … (τῶν στρατιωτῶν, of the soldiers); also after ἀκούω, hear'
 nodes:
 - id: grc.u07.the-mountain
   kind: lesson
@@ -209,6 +212,7 @@ nodes:
   introduces:
   - sense:onoma
   - sense:theches
+  - form:dat
 - id: grc.u07.soldiers
   kind: lesson
   introduces:
@@ -216,8 +220,8 @@ nodes:
   - sense:thalatta
   - sense:boao
   - sense:tacha
-  - form:gen-pl
   - form:ptc
+  - form:gen-pl
 - id: grc.u07.they-ran
   kind: lesson
   introduces:
@@ -245,10 +249,12 @@ sentences:
       tokens:
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: ὄρος
         sense: oros
+        form: form:n
         readings:
           attic: ὄρος
       reverse: τὸ ὄρος
@@ -266,12 +272,12 @@ sentences:
           attic: ἐπῐ̀
       - surface: τὸ
         sense: ho
-        form: form:acc
+        form: form:n
         readings:
           attic: τὸ
       - surface: ὄρος
         sense: oros
-        form: form:acc
+        form: form:n
         readings:
           attic: ὄρος
       reverse: ἐπὶ τὸ ὄρος
@@ -289,12 +295,12 @@ sentences:
           attic: ἐπῐ̀
       - surface: τὸ
         sense: ho
-        form: form:acc
+        form: form:n
         readings:
           attic: τὸ
       - surface: ὄρος
         sense: oros
-        form: form:acc
+        form: form:n
         readings:
           attic: ὄρος
       - surface: πορεύονται
@@ -324,12 +330,12 @@ sentences:
           attic: ἐπῐ̀
       - surface: τὸ
         sense: ho
-        form: form:acc
+        form: form:n
         readings:
           attic: τὸ
       - surface: ὄρος
         sense: oros
-        form: form:acc
+        form: form:n
         readings:
           attic: ὄρος
       reverse: |-
@@ -345,17 +351,17 @@ sentences:
       tokens:
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: πέμπτῃ
         sense: pemptos
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: πέμπτῃ
       - surface: ἡμέρᾳ
         sense: hemera
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ἡμέρᾳ
       reverse: τῇ πέμπτῃ ἡμέρᾳ
@@ -369,17 +375,17 @@ sentences:
       tokens:
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: πρώτῃ
         sense: protos
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: πρώτῃ
       - surface: ἡμέρᾳ
         sense: hemera
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ἡμέρᾳ
       reverse: τῇ πρώτῃ ἡμέρᾳ
@@ -393,6 +399,7 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: πρώτη
@@ -402,6 +409,7 @@ sentences:
           attic: πρώτη
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       reverse: ἡ πρώτη ἡμέρα
@@ -415,17 +423,17 @@ sentences:
       tokens:
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: πέμπτῃ
         sense: pemptos
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: πέμπτῃ
       - surface: ἡμέρᾳ
         sense: hemera
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ἡμέρᾳ
       - surface: ἀφικνοῦνται
@@ -446,10 +454,12 @@ sentences:
       tokens:
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: ὄνομα
         sense: onoma
+        form: form:n
         readings:
           attic: ὄνομᾰ
       reverse: τὸ ὄνομα
@@ -467,6 +477,7 @@ sentences:
           attic: τῐ́
       - surface: ὄνομά
         sense: onoma
+        form: form:n
         readings:
           attic: ὄνομᾰ́
       - surface: σοι
@@ -491,6 +502,7 @@ sentences:
       tokens:
       - surface: ὄνομά
         sense: onoma
+        form: form:n
         readings:
           attic: ὄνομᾰ́
       - surface: μοι
@@ -517,6 +529,7 @@ sentences:
       tokens:
       - surface: ὄνομά
         sense: onoma
+        form: form:n
         readings:
           attic: ὄνομᾰ́
       - surface: μοι
@@ -526,6 +539,7 @@ sentences:
           attic: μοι
       - surface: Ξανθίππη
         sense: xanthippe
+        form: form:f
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-
@@ -557,6 +571,7 @@ sentences:
       tokens:
       - surface: ὄνομα
         sense: onoma
+        form: form:n
         readings:
           attic: ὄνομᾰ
       - surface: δὲ
@@ -565,12 +580,12 @@ sentences:
           attic: δὲ
       - surface: τῷ
         sense: ho
-        form: form:dat
+        form: form:n-dat
         readings:
           attic: τῷ
       - surface: ὄρει
         sense: oros
-        form: form:dat
+        form: form:n-dat
         readings:
           attic: ὄρει
       - surface: ἦν
@@ -597,6 +612,7 @@ sentences:
       tokens:
       - surface: νὺξ
         sense: nyx
+        form: form:f
         readings:
           attic: νῠ̀ξ
       - surface: ἦν
@@ -683,10 +699,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: θάλαττα
         sense: thalatta
+        form: form:f
         readings:
           attic: θᾰ́λᾰττᾰ
       reverse: ἡ θάλαττα
@@ -700,10 +718,12 @@ sentences:
       tokens:
       - surface: θάλαττα
         sense: thalatta
+        form: form:f
         readings:
           attic: θᾰ́λᾰττᾰ
       - surface: θάλαττα
         sense: thalatta
+        form: form:f
         readings:
           attic: θᾰ́λᾰττᾰ
       reverse: θάλαττα θάλαττα
@@ -1004,7 +1024,7 @@ sentences:
           attic: πέντε
       - surface: ἡμέραι
         sense: hemera
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: ἡμέραι
       reverse: πέντε ἡμέραι
@@ -1036,6 +1056,7 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: δευτέρα
@@ -1045,6 +1066,7 @@ sentences:
           attic: δευτέρᾱ
       - surface: ἡμέρα
         sense: hemera
+        form: form:f
         readings:
           attic: ἡμέρᾱ
       reverse: ἡ δευτέρα ἡμέρα
@@ -1058,17 +1080,17 @@ sentences:
       tokens:
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: τρίτῃ
         sense: tritos
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τρῐ́τῃ
       - surface: ἡμέρᾳ
         sense: hemera
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ἡμέρᾳ
       reverse: τῇ τρίτῃ ἡμέρᾳ
@@ -1105,27 +1127,27 @@ stories:
               attic: ἐπῐ̀
           - surface: τὸ
             sense: ho
-            form: form:acc
+            form: form:n
             readings:
               attic: τὸ
           - surface: ὄρος
             sense: oros
-            form: form:acc
+            form: form:n
             readings:
               attic: ὄρος
           - surface: τῇ
             sense: ho
-            form: form:dat
+            form: form:f-dat
             readings:
               attic: τῇ
           - surface: πέμπτῃ
             sense: pemptos
-            form: form:dat
+            form: form:f-dat
             readings:
               attic: πέμπτῃ
           - surface: ἡμέρᾳ
             sense: hemera
-            form: form:dat
+            form: form:f-dat
             readings:
               attic: ἡμέρᾳ
       translations:
@@ -1137,6 +1159,7 @@ stories:
           tokens:
           - surface: ὄνομα
             sense: onoma
+            form: form:n
             readings:
               attic: ὄνομᾰ
           - surface: δὲ
@@ -1145,12 +1168,12 @@ stories:
               attic: δὲ
           - surface: τῷ
             sense: ho
-            form: form:dat
+            form: form:n-dat
             readings:
               attic: τῷ
           - surface: ὄρει
             sense: oros
-            form: form:dat
+            form: form:n-dat
             readings:
               attic: ὄρει
           - surface: ἦν
@@ -1212,10 +1235,12 @@ stories:
               attic: στρᾰτῐωτῶν
           - surface: θάλαττα
             sense: thalatta
+            form: form:f
             readings:
               attic: θᾰ́λᾰττᾰ
           - surface: θάλαττα
             sense: thalatta
+            form: form:f
             readings:
               attic: θᾰ́λᾰττᾰ
       translations:

@@ -481,7 +481,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `iPlusOne: 2`. A unit that first teaches a tense defines its form KC.
 - Gender and number are `form:` on the token too (ADR 0132 amendment): form:fem, form:pl, form:fem-pl (masculine
   singular bare) on every agreeing noun, adjective, determiner and pronoun, by its agreement in the line (mi casa:
-  mi form:fem; el agua: form:fem), never by its ending alone; a new sentence's tokens need them.
+  mi form:fem; el agua: form:fem), never by its ending alone; a new sentence's tokens need them. Pronouns and
+  single-word names pin theirs (ella form:fem; ustedes, nos, les form:pl; Cuba, Marisol form:fem).
 - es-Latn/standard: a missing accent is CORRECT_MARKS; one that spells another word of the course is WRONG_WORD
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
 - A finished placement seeds the placed nodes' KCs (ADR 0111): `seeded` on the event (`placedKcs`), a recognize card
@@ -512,6 +513,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. New vocalizations mark ج as a sun letter.
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
+- Nouns pin their gender and number as es's do (ADR 0132 amendment): form:fem on a feminine noun (ahwe, teta, Beirut),
+  form:pl on a plural (wlad: no gender in the plural); adjectives, hayde, hiyye, enti agree; in both scripts alike.
+  So `iPlusOne` is 2. The verb-prefix contrast names verb forms (`forms`), so a noun's first letter stays a typo.
 
 ## Biblical Hebrew notes (see docs/adr/0082–0084, 0089)
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
@@ -537,6 +541,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - References (ADR 0084; notes in nabu/notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
   Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
   prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
+- A noun's form joins gender, number and state (ADR 0132 amendment): f, f-pl, f-cstr, f-pl-cstr beside pl, cstr,
+  pl-cstr (masculine bare); nouns always plural pin pl (מַיִם, פָּנָיו), אֱלֹהִים as God none. הִיא, אַתְּ, זֹאת f;
+  הֵם, אֵלֶּה pl. A new sentence's nouns need them; the ending contrast (`forms: [form:f, …]`) reaches them.
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
   stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
 - A sentence's `reverse` lists its own order, then the other order of subject and predicate where Biblical Hebrew has
@@ -594,6 +601,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
 - The alphabet track asks a word as its KC's Attic reading in Latin, lengths kept (χώρᾱ chōrā, ADR 0133). A lemma no
   sentence spells gets `readings: {attic: …}` on its KC entry, with the lengths its inflected tokens show.
+- Nouns, adjectives, pronouns and the article pin gender, case and number as one form (ADR 0132 amendment), each
+  left out when masculine, nominative, singular: ὁ bare, τὴν f-acc, τῶν gen-pl, τὸ n (a neuter is one form as
+  subject, object or address), ὦ παῖδες pl. A new sentence's tokens need them; ἐγώ, σύ pin case only.
 
 ## Voice quality notes (see docs/adr/0091)
 - A course's `audio.quality` says how far learners may rely on its clips. good (default): everywhere. iffy (a stopgap

@@ -45,11 +45,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بحبّ القهوة.
-      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: القهوة, sense: ahwe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قهوة, kc: 'sense:ahwe'}]}]
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: القهوة, sense: ahwe, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: قهوة, kc: 'sense:ahwe'}]}]
       reverse: (بحبّ|أنا بحبّ) القهوة
     apc-Latn/arabizi:
       text: b7ebb el ahwe.
-      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (ahwe|2ahwe)
   translations:
     en: I (like|love) coffee.
@@ -166,11 +166,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بحبّ الموسيقى.
-      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الموسيقى, sense: musi2a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: موسيقى, kc: 'sense:musi2a'}]}]
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الموسيقى, sense: musi2a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: موسيقى, kc: 'sense:musi2a'}]}]
       reverse: (بحبّ|أنا بحبّ) (الموسيقى|الموسيقا)
     apc-Latn/arabizi:
       text: b7ebb el musi2a.
-      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a}]
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a, form: 'form:fem'}]
       reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (musi2a|musika|mousika)
   translations:
     en: I (love|like) music.
@@ -180,14 +180,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بسمع موسيقى كلّ يوم.
-      tokens: [{surface: بسمع, sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a}, {surface: كلّ, sense: kell}, {surface: يوم, sense: yom}]
+      tokens: [{surface: بسمع, sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a, form: 'form:fem'}, {surface: كلّ, sense: kell}, {surface: يوم, sense: yom}]
       reverse: |-
         بسمع (موسيقى|موسيقا) كلّ يوم
         كلّ يوم بسمع (موسيقى|موسيقا)
         أنا بسمع موسيقى كلّ يوم
     apc-Latn/arabizi:
       text: bisma3 musi2a kell yom.
-      tokens: [{surface: bisma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a, sense: musi2a}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      tokens: [{surface: bisma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a, sense: musi2a, form: 'form:fem'}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
       reverse: |-
         (bisma3|besma3|bsma3) (musi2a|musika|mousika) (kell|kil|kel|kull) (yom|yawm|youm)
         (kell|kil|kel|kull) (yom|yawm|youm) (bisma3|besma3|bsma3) (musi2a|musika|mousika)
@@ -202,11 +202,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بحبّ اسمع موسيقى.
-      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: اسمع, sense: sama3, form: 'form:subj-1sg'}, {surface: موسيقى, sense: musi2a}]
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: اسمع, sense: sama3, form: 'form:subj-1sg'}, {surface: موسيقى, sense: musi2a, form: 'form:fem'}]
       reverse: (بحبّ|أنا بحبّ) اسمع (موسيقى|موسيقا)
     apc-Latn/arabizi:
       text: b7ebb esma3 musi2a.
-      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: esma3, sense: sama3, form: 'form:subj-1sg'}, {surface: musi2a, sense: musi2a}]
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: esma3, sense: sama3, form: 'form:subj-1sg'}, {surface: musi2a, sense: musi2a, form: 'form:fem'}]
       reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (esma3|isma3|sma3) (musi2a|musika|mousika)
   translations:
     en: I (like|love) (listening|to listen) to music.
@@ -289,11 +289,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي بدّه قهوة.
-      tokens: [{surface: سامي, sense: sami}, {surface: بدّه, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: قهوة, sense: ahwe}]
+      tokens: [{surface: سامي, sense: sami}, {surface: بدّه, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: سامي (بدّه|بدّو) قهوة
     apc-Latn/arabizi:
       text: Sami baddo ahwe.
-      tokens: [{surface: Sami, sense: sami}, {surface: baddo, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: Sami, sense: sami}, {surface: baddo, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: Sami (baddo|baddu|bado|badu) (ahwe|2ahwe)
   translations:
     en: |-
@@ -305,11 +305,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا بدّها شاي.
-      tokens: [{surface: مايا, sense: maya}, {surface: بدّها, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: شاي, sense: shay}]
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: بدّها, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: شاي, sense: shay}]
       reverse: مايا (بدّها|بدّا) شاي
     apc-Latn/arabizi:
       text: Maya badda shay.
-      tokens: [{surface: Maya, sense: maya}, {surface: badda, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: shay, sense: shay}]
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: badda, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: shay, sense: shay}]
       reverse: |-
         Maya (badda|bada) shay
         Maya badda shai
@@ -475,11 +475,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عم اسمع موسيقى.
-      tokens: [{surface: عم, sense: 3am}, {surface: اسمع, sense: sama3, form: 'form:subj-1sg'}, {surface: موسيقى, sense: musi2a}]
+      tokens: [{surface: عم, sense: 3am}, {surface: اسمع, sense: sama3, form: 'form:subj-1sg'}, {surface: موسيقى, sense: musi2a, form: 'form:fem'}]
       reverse: (عم|أنا عم) (اسمع|بسمع) (موسيقى|موسيقا)
     apc-Latn/arabizi:
       text: 3am esma3 musi2a.
-      tokens: [{surface: 3am, sense: 3am}, {surface: esma3, sense: sama3, form: 'form:subj-1sg'}, {surface: musi2a, sense: musi2a}]
+      tokens: [{surface: 3am, sense: 3am}, {surface: esma3, sense: sama3, form: 'form:subj-1sg'}, {surface: musi2a, sense: musi2a, form: 'form:fem'}]
       reverse: ((3am|3m|3a)|ana (3am|3m|3a)) (esma3|isma3|sma3|bisma3|besma3) (musi2a|musika|mousika)
   translations:
     en: I('m| am) listening to music.
@@ -574,11 +574,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّك قهوة؟
-      tokens: [{surface: بدّك, sense: badd, vocalized: بَدِّك, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: قهوة, sense: ahwe}]
+      tokens: [{surface: بدّك, sense: badd, vocalized: بَدِّك, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: (بدّك|إنتي بدّك) قهوة
     apc-Latn/arabizi:
       text: baddik ahwe?
-      tokens: [{surface: baddik, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: baddik, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: ((baddik|badik|baddek)|(enti|inti) (baddik|badik|baddek)) (ahwe|2ahwe)
   translations:
     en: |-
@@ -653,7 +653,7 @@ stories:
   - line:
       speaker: maya
       ask: complete
-      gap: sense:7abb
+      gap: 'sense:7abb'
       distractors: ['sense:akal', 'sense:shereb']
       forms:
         apc-Arab/standard:
@@ -684,12 +684,12 @@ stories:
       forms:
         apc-Arab/standard:
           text: بْحِبّ الموسيقى. بِسْمَع موسيقى كِلّ يوم.
-          tokens: [{surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الموسيقى, sense: musi2a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: موسيقى, kc: 'sense:musi2a'}]}, {surface: بِسْمَع,
-              sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a}, {surface: كِلّ, sense: kell}, {surface: يوم, sense: yom}]
+          tokens: [{surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الموسيقى, sense: musi2a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: موسيقى, kc: 'sense:musi2a'}]}, {surface: بِسْمَع,
+              sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a, form: 'form:fem'}, {surface: كِلّ, sense: kell}, {surface: يوم, sense: yom}]
         apc-Latn/arabizi:
           text: b7ebb el musi2a. bisma3 musi2a kell yom.
-          tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a}, {surface: bisma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a,
-              sense: musi2a}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+          tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a, form: 'form:fem'}, {surface: bisma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a,
+              sense: musi2a, form: 'form:fem'}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
       translations: {en: I love music. I listen to music every day.}
   - line:
       speaker: sami
@@ -737,12 +737,12 @@ stories:
           text: يَلّا، بَدْنا نْروح عَالبَحِر ونِسْمَع موسيقى!
           tokens: [{surface: يَلّا, sense: yalla}, {surface: بَدْنا, sense: badd, morphs: [{surface: بَدْ, kc: 'sense:badd'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نْروح, sense: ra7, form: 'form:subj-1pl'},
             {surface: عَالبَحِر, sense: ba7r, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بَحِر, kc: 'sense:ba7r'}]}, {surface: ونِسْمَع, sense: sama3, form: 'form:subj-1pl',
-              morphs: [{surface: و, kc: 'sense:w'}, {surface: نِسْمَع, kc: 'sense:sama3'}]}, {surface: موسيقى, sense: musi2a}]
+              morphs: [{surface: و, kc: 'sense:w'}, {surface: نِسْمَع, kc: 'sense:sama3'}]}, {surface: موسيقى, sense: musi2a, form: 'form:fem'}]
         apc-Latn/arabizi:
           text: yalla, badna nru7 3al ba7r w nisma3 musi2a!
           tokens: [{surface: yalla, sense: yalla}, {surface: badna, sense: badd, morphs: [{surface: bad, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'},
             {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}, {surface: w, sense: w}, {surface: nisma3, sense: sama3, form: 'form:subj-1pl'},
-            {surface: musi2a, sense: musi2a}]
+            {surface: musi2a, sense: musi2a, form: 'form:fem'}]
       translations: {en: 'Come on, let''s go to the beach and listen to music!'}
   - line:
       speaker: sami

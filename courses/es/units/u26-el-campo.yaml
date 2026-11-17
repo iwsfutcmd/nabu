@@ -281,7 +281,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En los campos de Cuba hay palmas reales por todos lados.
-      tokens: [{surface: En, sense: en}, {surface: los, sense: el, form: 'form:pl'}, {surface: campos, sense: campo, form: 'form:pl'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}, {surface: hay, sense: hay}, {surface: palmas, sense: palma-real}, {surface: reales, sense: palma-real}, {surface: por, sense: por}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: lados, sense: lado, form: 'form:pl'}]
+      tokens: [{surface: En, sense: en}, {surface: los, sense: el, form: 'form:pl'}, {surface: campos, sense: campo, form: 'form:pl'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: hay, sense: hay}, {surface: palmas, sense: palma-real}, {surface: reales, sense: palma-real}, {surface: por, sense: por}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: lados, sense: lado, form: 'form:pl'}]
       reverse: En (los campos de Cuba|el campo cubano) hay palmas reales por (todos lados|todas partes)
   translations:
     en: |-
@@ -292,7 +292,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La palma real es el árbol nacional de Cuba.
-      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: palma, sense: palma-real}, {surface: real, sense: palma-real}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: árbol, sense: árbol}, {surface: nacional, sense: nacional}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: palma, sense: palma-real}, {surface: real, sense: palma-real}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: árbol, sense: árbol}, {surface: nacional, sense: nacional}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: La palma real es el árbol nacional [de Cuba]
   translations:
     en: The royal palm is (the national tree of Cuba|Cuba's national tree|the national tree).
@@ -313,7 +313,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El tocororo es el ave nacional de Cuba.
-      tokens: [{surface: El, sense: el}, {surface: tocororo, sense: tocororo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: ave, sense: ave, form: 'form:fem'}, {surface: nacional, sense: nacional, form: 'form:fem'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: El, sense: el}, {surface: tocororo, sense: tocororo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: ave, sense: ave, form: 'form:fem'}, {surface: nacional, sense: nacional, form: 'form:fem'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: El tocororo es el (ave|pájaro) nacional [de Cuba]
   translations:
     en: The tocororo is (the national bird of Cuba|Cuba's national bird|the national bird).
@@ -470,7 +470,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Es un tocororo, el ave nacional de Cuba!
-          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: tocororo, sense: tocororo}, {surface: el, sense: el}, {surface: ave, sense: ave, form: 'form:fem'}, {surface: nacional, sense: nacional, form: 'form:fem'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: tocororo, sense: tocororo}, {surface: el, sense: el}, {surface: ave, sense: ave, form: 'form:fem'}, {surface: nacional, sense: nacional, form: 'form:fem'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       translations: {en: 'It''s a tocororo, Cuba''s national bird!'}
   - line:
       speaker: benito

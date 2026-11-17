@@ -192,7 +192,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַדְּבָרִים הָאֵלֶּה
       tokens: [{surface: הַדְּבָרִים, sense: davar, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דְּבָרִים, kc: 'sense:davar'}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה,
-          sense: elleh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}}]
+          sense: elleh, form: 'form:pl', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}}]
       reverse: הדברים האלה
   translations:
     en: (these|the following) (things|words|matters)
@@ -202,7 +202,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: אַחַר הַדְּבָרִים הָאֵלֶּה
       tokens: [{surface: אַחַר, sense: ahar, readings: {tiberian: ʾaḥar}}, {surface: הַדְּבָרִים, sense: davar, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דְּבָרִים, kc: 'sense:davar'}],
-          readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, sense: elleh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}}]
+          readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, sense: elleh, form: 'form:pl', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}}]
       reverse: אחר הדברים האלה
   translations:
     en: |-
@@ -382,7 +382,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: קְחִי־נָא מַיִם׃
-      tokens: [{surface: קְחִי, sense: laqach, form: 'form:impv-fs', readings: {tiberian: qəḥî-}}, {surface: נָא, sense: na, readings: {tiberian: nāʾ}}, {surface: מַיִם, sense: mayim, readings: {tiberian: máyim}}]
+      tokens: [{surface: קְחִי, sense: laqach, form: 'form:impv-fs', readings: {tiberian: qəḥî-}}, {surface: נָא, sense: na, readings: {tiberian: nāʾ}}, {surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}}]
       reverse: קחי נא מים
   translations:
     en: |-
@@ -486,7 +486,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עֹלָה
-      tokens: [{surface: עֹלָה, sense: olah, readings: {tiberian: ʿōlâ}}]
+      tokens: [{surface: עֹלָה, sense: olah, form: 'form:f', readings: {tiberian: ʿōlâ}}]
       reverse: (עלה|עולה)
   translations:
     en: a burnt offering
@@ -507,7 +507,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: וְהַעֲלֵהוּ שָׁם לְעֹלָה׃
       tokens: [{surface: וְהַעֲלֵהוּ, sense: heelah, form: 'form:impv-ms', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הַעֲלֵ, kc: 'sense:heelah'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {
-            tiberian: wəhaʿălḗhû}}, {surface: שָׁם, sense: sham, readings: {tiberian: šām}}, {surface: לְעֹלָה, sense: olah, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
+            tiberian: wəhaʿălḗhû}}, {surface: שָׁם, sense: sham, readings: {tiberian: šām}}, {surface: לְעֹלָה, sense: olah, form: 'form:f', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
           readings: {tiberian: ləʿōlâ}}]
       reverse: והעלהו שם (לעלה|לעולה)
   translations:
@@ -527,7 +527,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֶרֶץ הַמֹּרִיָּה
-      tokens: [{surface: אֶרֶץ, sense: erets, readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, sense: moriyyah, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֹּרִיָּה, kc: 'sense:moriyyah'}], readings: {
+      tokens: [{surface: אֶרֶץ, sense: erets, form: 'form:f', readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, sense: moriyyah, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֹּרִיָּה, kc: 'sense:moriyyah'}], readings: {
             tiberian: hammōriyyâ}}]
       reverse: ארץ (המריה|המוריה)
   translations:
@@ -537,7 +537,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֵשׁ
-      tokens: [{surface: אֵשׁ, sense: esh, readings: {tiberian: ʾēš}}]
+      tokens: [{surface: אֵשׁ, sense: esh, form: 'form:f', readings: {tiberian: ʾēš}}]
       reverse: אש
   translations:
     en: |-
@@ -548,7 +548,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הִנֵּה הָאֵשׁ וְהָעֵצִים׃
-      tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: הָאֵשׁ, sense: esh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}},
+      tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: הָאֵשׁ, sense: esh, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}},
         {surface: וְהָעֵצִים, sense: ets, form: 'form:pl', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: עֵצִים, kc: 'sense:ets'}], readings: {tiberian: wəhāʿēṣîm}}]
       reverse: הנה האש והעצים
   translations:
@@ -636,7 +636,7 @@ stories:
         hbo-Hebr/tiberian:
           text: וַיְהִי אַחַר הַדְּבָרִים הָאֵלֶּה וְהָאֱלֹהִים נִסָּה אֶת־אַבְרָהָם׃
           tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî}}, {surface: אַחַר, sense: ahar, readings: {tiberian: ʾaḥar}}, {surface: הַדְּבָרִים, sense: davar,
-              form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דְּבָרִים, kc: 'sense:davar'}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, sense: elleh, morphs: [{surface: הָ,
+              form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דְּבָרִים, kc: 'sense:davar'}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, sense: elleh, form: 'form:pl', morphs: [{surface: הָ,
                   kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}}, {surface: וְהָאֱלֹהִים, sense: elohim, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'},
                 {surface: אֱלֹהִים, kc: 'sense:elohim'}], readings: {tiberian: wəhāʾĕlōhîm}}, {surface: נִסָּה, sense: nissah, form: 'form:qatal-3ms', readings: {tiberian: nissâ}}, {surface: אֶת, sense: et,
               readings: {tiberian: ʾeṯ-}}, {surface: אַבְרָהָם, sense: avraham, readings: {tiberian: ʾaḇrāhām}}]
@@ -684,7 +684,7 @@ stories:
       speaker: god
       ask: complete
       gap: sense:ben
-      distractors: ['sense:qol', 'sense:erets']
+      distractors: ['sense:qol', 'sense:shem']
       forms:
         hbo-Hebr/tiberian:
           text: קַח־נָא אֶת־בִּנְךָ אֶת־יְחִידְךָ אֲשֶׁר־אָהַבְתָּ אֶת־יִצְחָק
@@ -701,8 +701,7 @@ stories:
         hbo-Hebr/tiberian:
           text: וְלֶךְ־לְךָ אֶל־אֶרֶץ הַמֹּרִיָּה
           tokens: [{surface: וְלֶךְ, sense: halakh, form: 'form:impv-ms', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: לֶךְ, kc: 'sense:halakh'}], readings: {tiberian: wəleḵ-}}, {surface: לְךָ, sense: le,
-              morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: אֶרֶץ, sense: erets,
-              form: 'form:cstr', readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, sense: moriyyah, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֹּרִיָּה, kc: 'sense:moriyyah'}], readings: {tiberian: hammōriyyâ}}]
+              morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: אֶרֶץ, sense: erets, form: 'form:f-cstr', readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, sense: moriyyah, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֹּרִיָּה, kc: 'sense:moriyyah'}], readings: {tiberian: hammōriyyâ}}]
       translations:
         en: and go to the land of Moriah,
   - line:
@@ -711,7 +710,7 @@ stories:
         hbo-Hebr/tiberian:
           text: וְהַעֲלֵהוּ שָׁם לְעֹלָה עַל אַחַד הֶהָרִים אֲשֶׁר אֹמַר אֵלֶיךָ׃
           tokens: [{surface: וְהַעֲלֵהוּ, sense: heelah, form: 'form:impv-ms', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הַעֲלֵ, kc: 'sense:heelah'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {
-                tiberian: wəhaʿălḗhû}}, {surface: שָׁם, sense: sham, readings: {tiberian: šām}}, {surface: לְעֹלָה, sense: olah, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
+                tiberian: wəhaʿălḗhû}}, {surface: שָׁם, sense: sham, readings: {tiberian: šām}}, {surface: לְעֹלָה, sense: olah, form: 'form:f', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
               readings: {tiberian: ləʿōlâ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal}}, {surface: אַחַד, sense: ehad, readings: {tiberian: ʾaḥaḏ}}, {surface: הֶהָרִים, sense: har, form: 'form:pl',
               morphs: [{surface: הֶ, kc: 'sense:ha'}, {surface: הָרִים, kc: 'sense:har'}], readings: {tiberian: hehārîm}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אֹמַר,
               sense: amar, form: 'form:yiqtol-1cs', readings: {tiberian: ʾōmar}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
@@ -769,10 +768,10 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: הִנֵּה הָאֵשׁ וְהָעֵצִים וְאַיֵּה הַשֶּׂה לְעֹלָה׃
-          tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: הָאֵשׁ, sense: esh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}},
+          tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: הָאֵשׁ, sense: esh, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}},
             {surface: וְהָעֵצִים, sense: ets, form: 'form:pl', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: עֵצִים, kc: 'sense:ets'}], readings: {tiberian: wəhāʿēṣîm}},
             {surface: וְאַיֵּה, sense: ayyeh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אַיֵּה, kc: 'sense:ayyeh'}], readings: {tiberian: wəʾayyēh}}, {surface: הַשֶּׂה, sense: seh, morphs: [{surface: הַ,
-                  kc: 'sense:ha'}, {surface: שֶּׂה, kc: 'sense:seh'}], readings: {tiberian: haśśeh}}, {surface: לְעֹלָה, sense: olah, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
+                  kc: 'sense:ha'}, {surface: שֶּׂה, kc: 'sense:seh'}], readings: {tiberian: haśśeh}}, {surface: לְעֹלָה, sense: olah, form: 'form:f', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
               readings: {tiberian: ləʿōlâ}}]
       translations:
         en: “Here are the fire and the wood, but where is the lamb for a burnt offering?”
@@ -798,7 +797,7 @@ stories:
           text: אֱלֹהִים יִרְאֶה־לּוֹ הַשֶּׂה לְעֹלָה בְּנִי
           tokens: [{surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: יִרְאֶה, sense: raah, form: 'form:yiqtol-3ms', readings: {tiberian: yirʾeh-}}, {surface: לּוֹ, sense: le,
               morphs: [{surface: לּ, kc: 'sense:le'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: lô}}, {surface: הַשֶּׂה, sense: seh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שֶּׂה,
-                  kc: 'sense:seh'}], readings: {tiberian: haśśeh}}, {surface: לְעֹלָה, sense: olah, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}], readings: {tiberian: ləʿōlâ}},
+                  kc: 'sense:seh'}], readings: {tiberian: haśśeh}}, {surface: לְעֹלָה, sense: olah, form: 'form:f', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}], readings: {tiberian: ləʿōlâ}},
             {surface: בְּנִי, sense: ben, morphs: [{surface: בְּנִ, kc: 'sense:ben'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bənî}}]
       translations:
         en: “God will provide the lamb for a burnt offering himself, my son.”

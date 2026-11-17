@@ -283,7 +283,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili tiene diecinueve años.
-      tokens: [{surface: Lili, sense: lili}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año, form: 'form:pl'}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año, form: 'form:pl'}]
       reverse: Lili tiene diecinueve [años]
   translations:
     en: (Lili is|Lili's) nineteen [years old].
@@ -505,7 +505,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Son las ocho y media. ¡Y el cumpleaños de Lili es a las nueve!
-          tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: ocho, sense: ocho}, {surface: 'y', sense: 'y'}, {surface: media, sense: medio, form: 'form:fem'}, {surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: cumpleaños, sense: cumpleaños}, {surface: de, sense: de}, {surface: Lili, sense: lili}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: nueve, sense: nueve}]
+          tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: ocho, sense: ocho}, {surface: 'y', sense: 'y'}, {surface: media, sense: medio, form: 'form:fem'}, {surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: cumpleaños, sense: cumpleaños}, {surface: de, sense: de}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: nueve, sense: nueve}]
       translations: {en: 'It''s half past eight. And Lili''s birthday party is at nine!'}
   - choose:
       prompt: {en: 'When is Lili''s birthday party?'}
@@ -567,7 +567,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Lili, ¿cuántos años tú tienes?
-          tokens: [{surface: Lili, sense: lili}, {surface: cuántos, sense: cuánto, form: 'form:pl'}, {surface: años, sense: año, form: 'form:pl'}, {surface: tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}]
+          tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: cuántos, sense: cuánto, form: 'form:pl'}, {surface: años, sense: año, form: 'form:pl'}, {surface: tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}]
       translations: {en: 'Lili, how old are you?'}
   - line:
       speaker: lili

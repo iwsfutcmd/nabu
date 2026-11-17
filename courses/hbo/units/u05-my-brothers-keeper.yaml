@@ -180,7 +180,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֲחֹתִי
-      tokens: [{surface: אֲחֹתִי, sense: ahot, morphs: [{surface: אֲחֹתִ, kc: 'sense:ahot'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḥōṯî}}]
+      tokens: [{surface: אֲחֹתִי, sense: ahot, form: 'form:f', morphs: [{surface: אֲחֹתִ, kc: 'sense:ahot'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḥōṯî}}]
       reverse: (אחתי|אחותי)
   translations:
     en: my sister
@@ -200,7 +200,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֲחֹתִי בַּגָּן׃
-      tokens: [{surface: אֲחֹתִי, sense: ahot, morphs: [{surface: אֲחֹתִ, kc: 'sense:ahot'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḥōṯî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ,
+      tokens: [{surface: אֲחֹתִי, sense: ahot, form: 'form:f', morphs: [{surface: אֲחֹתִ, kc: 'sense:ahot'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḥōṯî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ,
               kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
       reverse: (אחתי|אחותי) בגן
   translations:
@@ -440,7 +440,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַדָּם בָּאֲדָמָה׃
-      tokens: [{surface: הַדָּם, sense: dam, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דָּם, kc: 'sense:dam'}], readings: {tiberian: haddām}}, {surface: בָּאֲדָמָה, sense: adamah, morphs: [{surface: בָּ,
+      tokens: [{surface: הַדָּם, sense: dam, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דָּם, kc: 'sense:dam'}], readings: {tiberian: haddām}}, {surface: בָּאֲדָמָה, sense: adamah, form: 'form:f', morphs: [{surface: בָּ,
               kc: 'sense:be'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: bāʾăḏāmâ}}]
       reverse: |-
         הדם באדמה
@@ -474,7 +474,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאֲדָמָה
-      tokens: [{surface: הָאֲדָמָה, sense: adamah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: hāʾăḏāmâ}}]
+      tokens: [{surface: הָאֲדָמָה, sense: adamah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: hāʾăḏāmâ}}]
       reverse: האדמה
   translations:
     en: the (ground|soil|earth|land)
@@ -498,7 +498,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
       tokens: [{surface: צֹעֲקִים, sense: tsaaq, form: 'form:ptc-mp', readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, sense: el, morphs: [{surface: אֵלַ, kc: 'sense:el'}, {surface: י, kc: 'form:sfx-1cs'}],
-          readings: {tiberian: ʾēlay}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, sense: adamah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}],
+          readings: {tiberian: ʾēlay}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, sense: adamah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}],
           readings: {tiberian: hāʾăḏāmâ}}]
       reverse: (צעקים|צועקים) אלי מן האדמה
   translations:
@@ -547,7 +547,8 @@ stories:
   - line:
       ask: complete
       gap: sense:ah
-      distractors: ['sense:ishah', 'sense:qol']
+      asks: form
+      distractors: ['form:sfx-1cs', 'form:sfx-2ms']
       forms:
         hbo-Hebr/tiberian:
           text: בַּשָּׂדֶה וַיָּקָם קַיִן אֶל־הֶבֶל אָחִיו וַיַּהַרְגֵהוּ׃
@@ -608,14 +609,14 @@ stories:
       speaker: god
       ask: complete
       gap: sense:adamah
-      distractors: ['sense:or', 'sense:boqer']
+      distractors: ['sense:ruach', 'sense:ishah']
       forms:
         hbo-Hebr/tiberian:
           text: מֶה עָשִׂיתָ קוֹל דְּמֵי אָחִיךָ צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
           tokens: [{surface: מֶה, sense: mah, readings: {tiberian: meh}}, {surface: עָשִׂיתָ, sense: asah, form: 'form:qatal-2ms', readings: {tiberian: ʿāśî́ṯā}}, {surface: קוֹל, sense: qol, form: 'form:cstr',
               readings: {tiberian: qôl}}, {surface: דְּמֵי, sense: dam, form: 'form:pl-cstr', readings: {tiberian: dəmê}}, {surface: אָחִיךָ, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ךָ,
                   kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, sense: tsaaq, form: 'form:ptc-mp', readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, sense: el, morphs: [{surface: אֵלַ,
-                  kc: 'sense:el'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾēlay}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, sense: adamah, morphs: [
+                  kc: 'sense:el'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾēlay}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, sense: adamah, form: 'form:f', morphs: [
                 {surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: hāʾăḏāmâ}}]
       translations:
         en: “What have you done? The voice of your brother's blood is crying out to me from the ground.”

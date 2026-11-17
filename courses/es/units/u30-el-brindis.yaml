@@ -45,7 +45,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El sábado abuela Cachita cumple ochenta años.
-      tokens: [{surface: El, sense: el}, {surface: sábado, sense: sábado}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita}, {surface: cumple, sense: cumplir, form: 'form:pres-3s'}, {surface: ochenta, sense: ochenta}, {surface: años, sense: año, form: 'form:pl'}]
+      tokens: [{surface: El, sense: el}, {surface: sábado, sense: sábado}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita, form: 'form:fem'}, {surface: cumple, sense: cumplir, form: 'form:pres-3s'}, {surface: ochenta, sense: ochenta}, {surface: años, sense: año, form: 'form:pl'}]
       reverse: |-
         El sábado (abuela|la abuela|mi abuela) Cachita cumple (ochenta|80) años
         (Abuela|La abuela|Mi abuela) Cachita cumple (ochenta|80) años el sábado
@@ -92,7 +92,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todos sus nietos están aquí, menos Yunior, que vive en La Habana.
-      tokens: [{surface: Todos, sense: todo, form: 'form:pl'}, {surface: sus, sense: su, form: 'form:pl'}, {surface: nietos, sense: nieto, form: 'form:pl'}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: aquí, sense: aquí}, {surface: menos, sense: menos}, {surface: Yunior, sense: yunior}, {surface: que, sense: que}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Todos, sense: todo, form: 'form:pl'}, {surface: sus, sense: su, form: 'form:pl'}, {surface: nietos, sense: nieto, form: 'form:pl'}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: aquí, sense: aquí}, {surface: menos, sense: menos}, {surface: Yunior, sense: yunior}, {surface: que, sense: que}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
       reverse: Todos sus nietos están aquí (menos|excepto|salvo) Yunior que vive en La Habana
   translations:
     en: All (her|of her) grandchildren are here (except|but|except for) Yunior, who lives in Havana.
@@ -169,7 +169,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Estoy muy agradecida con todos ustedes.
-      tokens: [{surface: Estoy, sense: estar, form: 'form:pres-1s'}, {surface: muy, sense: muy}, {surface: agradecida, sense: agradecer, form: 'form:part'}, {surface: con, sense: con}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: ustedes, sense: ustedes}]
+      tokens: [{surface: Estoy, sense: estar, form: 'form:pres-1s'}, {surface: muy, sense: muy}, {surface: agradecida, sense: agradecer, form: 'form:part'}, {surface: con, sense: con}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: ustedes, sense: ustedes, form: 'form:pl'}]
       reverse: '[Yo] estoy muy agradecida (con|a) todos ustedes'
   translations:
     en: (I'm|I am) very grateful to (all of you|you all|everyone|everybody).
@@ -178,7 +178,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela llegó a Miami sin nada. Sin embargo, nos dio todo.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: sin, sense: sin}, {surface: nada, sense: nada}, {surface: Sin, sense: sin-embargo}, {surface: embargo, sense: sin-embargo}, {surface: nos, sense: nos}, {surface: dio, sense: dar, form: 'form:pret-3s'}, {surface: todo, sense: todo}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: sin, sense: sin}, {surface: nada, sense: nada}, {surface: Sin, sense: sin-embargo}, {surface: embargo, sense: sin-embargo}, {surface: nos, sense: nos, form: 'form:pl'}, {surface: dio, sense: dar, form: 'form:pret-3s'}, {surface: todo, sense: todo}]
       reverse: |-
         (Abuela|La abuela|Mi abuela) llegó a Miami sin nada sin embargo nos dio todo
         Abuela llegó a Miami sin nada. No obstante, nos dio todo.
@@ -190,7 +190,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Fue muy difícil dejar a su hija en Cuba.
-      tokens: [{surface: Fue, sense: ser, form: 'form:pret-3s'}, {surface: muy, sense: muy}, {surface: difícil, sense: difícil}, {surface: dejar, sense: dejar}, {surface: a, sense: a}, {surface: su, sense: su, form: 'form:fem'}, {surface: hija, sense: hijo, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Fue, sense: ser, form: 'form:pret-3s'}, {surface: muy, sense: muy}, {surface: difícil, sense: difícil}, {surface: dejar, sense: dejar}, {surface: a, sense: a}, {surface: su, sense: su, form: 'form:fem'}, {surface: hija, sense: hijo, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: |-
         Fue muy difícil dejar a su hija en Cuba
         Dejar a su hija en Cuba fue muy difícil
@@ -203,7 +203,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Aunque vivían lejos, abuela le escribía a Marisol todas las semanas.
-      tokens: [{surface: Aunque, sense: aunque}, {surface: vivían, sense: vivir, form: 'form:impf'}, {surface: lejos, sense: lejos}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: le, sense: le}, {surface: escribía, sense: escribir, form: 'form:impf'}, {surface: a, sense: a}, {surface: Marisol, sense: marisol}, {surface: todas, sense: todo, form: 'form:fem-pl'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: semanas, sense: semana, form: 'form:fem-pl'}]
+      tokens: [{surface: Aunque, sense: aunque}, {surface: vivían, sense: vivir, form: 'form:impf'}, {surface: lejos, sense: lejos}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: le, sense: le}, {surface: escribía, sense: escribir, form: 'form:impf'}, {surface: a, sense: a}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: todas, sense: todo, form: 'form:fem-pl'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: semanas, sense: semana, form: 'form:fem-pl'}]
       reverse: |-
         Aunque vivían lejos (abuela|la abuela|mi abuela) le escribía a Marisol todas las semanas
         A pesar de que vivían lejos, abuela le escribía a Marisol todas las semanas
@@ -279,7 +279,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Su padre construyó el bohío con sus manos, y ella construyó una familia.
-      tokens: [{surface: Su, sense: su}, {surface: padre, sense: padre}, {surface: construyó, sense: construir, form: 'form:pret-3s'}, {surface: el, sense: el}, {surface: bohío, sense: bohío}, {surface: con, sense: con}, {surface: sus, sense: su, form: 'form:fem-pl'}, {surface: manos, sense: mano, form: 'form:fem-pl'}, {surface: 'y', sense: 'y'}, {surface: ella, sense: ella}, {surface: construyó, sense: construir, form: 'form:pret-3s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}]
+      tokens: [{surface: Su, sense: su}, {surface: padre, sense: padre}, {surface: construyó, sense: construir, form: 'form:pret-3s'}, {surface: el, sense: el}, {surface: bohío, sense: bohío}, {surface: con, sense: con}, {surface: sus, sense: su, form: 'form:fem-pl'}, {surface: manos, sense: mano, form: 'form:fem-pl'}, {surface: 'y', sense: 'y'}, {surface: ella, sense: ella, form: 'form:fem'}, {surface: construyó, sense: construir, form: 'form:pret-3s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}]
       reverse: Su (padre|papá) construyó el bohío con sus [propias] manos y ella construyó una familia
   translations:
     en: Her father built the (bohío|hut) with his [own] hands, and she built a family.
@@ -288,7 +288,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Además, abuela nos enseñó a hablar español.
-      tokens: [{surface: Además, sense: además}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: nos, sense: nos}, {surface: enseñó, sense: enseñar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: hablar, sense: hablar}, {surface: español, sense: español}]
+      tokens: [{surface: Además, sense: además}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: nos, sense: nos, form: 'form:pl'}, {surface: enseñó, sense: enseñar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: hablar, sense: hablar}, {surface: español, sense: español}]
       reverse: Además (abuela|la abuela|mi abuela) nos enseñó a hablar [en] español
   translations:
     en: (Besides|Also|In addition|What's more|On top of that), (Grandma|Grandmother|Abuela|my grandma|my grandmother) taught us (to speak|how to speak) Spanish.
@@ -297,7 +297,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela nos enseñó el español; por lo tanto, este brindis es en español.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: nos, sense: nos}, {surface: enseñó, sense: enseñar, form: 'form:pret-3s'}, {surface: el, sense: el}, {surface: español, sense: español}, {surface: por, sense: por-lo-tanto}, {surface: lo, sense: por-lo-tanto}, {surface: tanto, sense: por-lo-tanto}, {surface: este, sense: este}, {surface: brindis, sense: brindis}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: español, sense: español}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: nos, sense: nos, form: 'form:pl'}, {surface: enseñó, sense: enseñar, form: 'form:pret-3s'}, {surface: el, sense: el}, {surface: español, sense: español}, {surface: por, sense: por-lo-tanto}, {surface: lo, sense: por-lo-tanto}, {surface: tanto, sense: por-lo-tanto}, {surface: este, sense: este}, {surface: brindis, sense: brindis}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: español, sense: español}]
       reverse: (Abuela|La abuela|Mi abuela) nos enseñó [el] español (por lo tanto|así que|por eso) este brindis es en español
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) taught us Spanish; (therefore|so|that's why|that is why|for that reason), this toast is in Spanish.
@@ -328,7 +328,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Recuerdo que abuela siempre nos hablaba de su tierra.
-      tokens: [{surface: Recuerdo, sense: recordar, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: siempre, sense: siempre}, {surface: nos, sense: nos}, {surface: hablaba, sense: hablar, form: 'form:impf'}, {surface: de, sense: de}, {surface: su, sense: su, form: 'form:fem'}, {surface: tierra, sense: tierra, form: 'form:fem'}]
+      tokens: [{surface: Recuerdo, sense: recordar, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: siempre, sense: siempre}, {surface: nos, sense: nos, form: 'form:pl'}, {surface: hablaba, sense: hablar, form: 'form:impf'}, {surface: de, sense: de}, {surface: su, sense: su, form: 'form:fem'}, {surface: tierra, sense: tierra, form: 'form:fem'}]
       reverse: '[Yo] (recuerdo|me acuerdo de) que (abuela|la abuela|mi abuela) siempre nos hablaba de su tierra'
   translations:
     en: I remember [that] (Grandma|Grandmother|Abuela|my grandma|my grandmother) always (talked|used to talk|would talk) to us about her (homeland|land|home country|country).
@@ -388,7 +388,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por último, les pido que levanten sus copas.
-      tokens: [{surface: Por, sense: por}, {surface: último, sense: último}, {surface: les, sense: le}, {surface: pido, sense: pedir, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: levanten, sense: levantar, form: 'form:subj'}, {surface: sus, sense: su, form: 'form:fem-pl'}, {surface: copas, sense: copa, form: 'form:fem-pl'}]
+      tokens: [{surface: Por, sense: por}, {surface: último, sense: último}, {surface: les, sense: le, form: 'form:pl'}, {surface: pido, sense: pedir, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: levanten, sense: levantar, form: 'form:subj'}, {surface: sus, sense: su, form: 'form:fem-pl'}, {surface: copas, sense: copa, form: 'form:fem-pl'}]
       reverse: (Por último|Finalmente) [yo] les pido que levanten sus copas
   translations:
     en: (Finally|Lastly|Last of all), I ask (you|you all|all of you) to raise your glasses.
@@ -397,7 +397,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Levantemos las copas por abuela Cachita!
-      tokens: [{surface: Levantemos, sense: levantar, form: 'form:subj'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: copas, sense: copa, form: 'form:fem-pl'}, {surface: por, sense: por}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita}]
+      tokens: [{surface: Levantemos, sense: levantar, form: 'form:subj'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: copas, sense: copa, form: 'form:fem-pl'}, {surface: por, sense: por}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: Cachita, sense: cachita, form: 'form:fem'}]
       reverse: |-
         (Levantemos|Alcemos) las copas por (abuela|la abuela) Cachita
         ¡Vamos a levantar las copas por abuela Cachita!
@@ -482,7 +482,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, tú viniste por el Mariel sin nada. Sin embargo, nos diste todo.
-          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: tú, sense: tú}, {surface: viniste, sense: venir, form: 'form:pret-2s'}, {surface: por, sense: por}, {surface: el, sense: el}, {surface: Mariel, sense: mariel}, {surface: sin, sense: sin}, {surface: nada, sense: nada}, {surface: Sin, sense: sin-embargo}, {surface: embargo, sense: sin-embargo}, {surface: nos, sense: nos}, {surface: diste, sense: dar, form: 'form:pret-2s'}, {surface: todo, sense: todo}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: tú, sense: tú}, {surface: viniste, sense: venir, form: 'form:pret-2s'}, {surface: por, sense: por}, {surface: el, sense: el}, {surface: Mariel, sense: mariel}, {surface: sin, sense: sin}, {surface: nada, sense: nada}, {surface: Sin, sense: sin-embargo}, {surface: embargo, sense: sin-embargo}, {surface: nos, sense: nos, form: 'form:pl'}, {surface: diste, sense: dar, form: 'form:pret-2s'}, {surface: todo, sense: todo}]
       translations: {en: 'Grandma, you came over in the Mariel boatlift with nothing. And yet you gave us everything.'}
   - choose:
       prompt: {en: 'How did Abuela Cachita come to Miami?'}
@@ -496,7 +496,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Tía Marisol, aunque estés lejos, siempre tienes un lugar en esta mesa.
-          tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: aunque, sense: aunque}, {surface: estés, sense: estar, form: 'form:subj'}, {surface: lejos, sense: lejos}, {surface: siempre, sense: siempre}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: un, sense: un}, {surface: lugar, sense: lugar}, {surface: en, sense: en}, {surface: esta, sense: este, form: 'form:fem'}, {surface: mesa, sense: mesa, form: 'form:fem'}]
+          tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: aunque, sense: aunque}, {surface: estés, sense: estar, form: 'form:subj'}, {surface: lejos, sense: lejos}, {surface: siempre, sense: siempre}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: un, sense: un}, {surface: lugar, sense: lugar}, {surface: en, sense: en}, {surface: esta, sense: este, form: 'form:fem'}, {surface: mesa, sense: mesa, form: 'form:fem'}]
       translations: {en: 'Aunt Marisol, even though you''re far away, you always have a place at this table.'}
   - line:
       speaker: marisol
@@ -517,7 +517,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Por ustedes, mi'jo. Todo fue por ustedes.
-          tokens: [{surface: Por, sense: por}, {surface: ustedes, sense: ustedes}, {surface: "mi'jo", sense: mijo}, {surface: Todo, sense: todo}, {surface: fue, sense: ser, form: 'form:pret-3s'}, {surface: por, sense: por}, {surface: ustedes, sense: ustedes}]
+          tokens: [{surface: Por, sense: por}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: "mi'jo", sense: mijo}, {surface: Todo, sense: todo}, {surface: fue, sense: ser, form: 'form:pret-3s'}, {surface: por, sense: por}, {surface: ustedes, sense: ustedes, form: 'form:pl'}]
       translations: {en: 'For you kids, son. It was all for you.'}
   - choose:
       prompt: {en: 'Who left Cuba on a raft as a boy?'}
@@ -543,7 +543,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Salud! ¡Que viva Cachita!
-          tokens: [{surface: Salud, sense: salud}, {surface: Que, sense: que}, {surface: viva, sense: vivir, form: 'form:subj'}, {surface: Cachita, sense: cachita}]
+          tokens: [{surface: Salud, sense: salud}, {surface: Que, sense: que}, {surface: viva, sense: vivir, form: 'form:subj'}, {surface: Cachita, sense: cachita, form: 'form:fem'}]
       translations: {en: 'Cheers! Long live Cachita!'}
   - line:
       speaker: cachita

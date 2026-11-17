@@ -62,7 +62,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili, ¿todavía te duele el estómago?
-      tokens: [{surface: Lili, sense: lili}, {surface: todavía, sense: todavía}, {surface: te, sense: te}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: estómago, sense: estómago}]
+      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: todavía, sense: todavía}, {surface: te, sense: te}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: estómago, sense: estómago}]
       reverse: Lili (todavía te duele el estómago|te duele el estómago todavía|aún te duele el estómago|te sigue doliendo el estómago)
   translations:
     en: |-
@@ -200,7 +200,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Salud! ¿Tú estás bien, Lili?
-      tokens: [{surface: Salud, sense: salud}, {surface: Tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: bien, sense: bien}, {surface: Lili, sense: lili}]
+      tokens: [{surface: Salud, sense: salud}, {surface: Tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: bien, sense: bien}, {surface: Lili, sense: lili, form: 'form:fem'}]
       reverse: (Salud|Jesús) (tú estás bien|estás [tú] bien) Lili
   translations:
     en: (Bless you|Gesundheit)! (Are you okay|Are you OK|Are you all right|Are you alright), Lili?
@@ -267,7 +267,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mañana yo tengo que trabajar, pero Lili puede ir con abuelo.
-      tokens: [{surface: Mañana, sense: mañana}, {surface: yo, sense: yo}, {surface: tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: trabajar, sense: trabajar}, {surface: pero, sense: pero}, {surface: Lili, sense: lili}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: ir, sense: ir}, {surface: con, sense: con}, {surface: abuelo, sense: abuelo}]
+      tokens: [{surface: Mañana, sense: mañana}, {surface: yo, sense: yo}, {surface: tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: trabajar, sense: trabajar}, {surface: pero, sense: pero}, {surface: Lili, sense: lili, form: 'form:fem'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: ir, sense: ir}, {surface: con, sense: con}, {surface: abuelo, sense: abuelo}]
       reverse: |-
         (Mañana [yo]|Yo mañana) tengo que trabajar pero Lili puede ir con (abuelo|mi abuelo|el abuelo)
         [Yo] tengo que trabajar mañana pero Lili puede ir con (abuelo|mi abuelo|el abuelo)
@@ -386,7 +386,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Y ustedes también, coman menos azúcar.
-      tokens: [{surface: 'Y', sense: 'y'}, {surface: ustedes, sense: ustedes}, {surface: también, sense: también}, {surface: coman, sense: comer, form: 'form:imp-ud'}, {surface: menos, sense: menos}, {surface: azúcar, sense: azúcar}]
+      tokens: [{surface: 'Y', sense: 'y'}, {surface: ustedes, sense: ustedes, form: 'form:pl'}, {surface: también, sense: también}, {surface: coman, sense: comer, form: 'form:imp-ud'}, {surface: menos, sense: menos}, {surface: azúcar, sense: azúcar}]
       reverse: |-
         [Y] ustedes también coman menos azúcar
         [Y] coman menos azúcar ustedes también
@@ -463,7 +463,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo me siento bien, Cachita. No tengo que ir.
-          tokens: [{surface: Yo, sense: yo}, {surface: me, sense: me}, {surface: siento, sense: sentirse, form: 'form:pres-1s'}, {surface: bien, sense: bien}, {surface: Cachita, sense: cachita}, {surface: 'No', sense: 'no'}, {surface: tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: ir, sense: ir}]
+          tokens: [{surface: Yo, sense: yo}, {surface: me, sense: me}, {surface: siento, sense: sentirse, form: 'form:pres-1s'}, {surface: bien, sense: bien}, {surface: Cachita, sense: cachita, form: 'form:fem'}, {surface: 'No', sense: 'no'}, {surface: tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: ir, sense: ir}]
       translations: {en: 'I feel fine, Cachita. I don''t have to go.'}
   - line:
       speaker: cachita
@@ -583,7 +583,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Un cocimiento? Cachita, ¡yo quiero un cafecito!
-          tokens: [{surface: Un, sense: un}, {surface: cocimiento, sense: cocimiento}, {surface: Cachita, sense: cachita}, {surface: yo, sense: yo}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}]
+          tokens: [{surface: Un, sense: un}, {surface: cocimiento, sense: cocimiento}, {surface: Cachita, sense: cachita, form: 'form:fem'}, {surface: yo, sense: yo}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}]
       translations: {en: 'An herbal tea? Cachita, I want a cafecito!'}
   - line:
       speaker: daniel

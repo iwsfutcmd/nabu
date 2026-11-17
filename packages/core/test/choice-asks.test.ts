@@ -134,6 +134,58 @@ describe("a gap-fill asks one thing (ADR 0132)", () => {
   }, 300_000);
 });
 
+describe("agreement is the token's form (ADR 0132 amendments)", () => {
+  /** The gender a pinned form says: f…/fem… feminine, n… neuter (grc), else masculine; apc's plural has none. */
+  const genderOf = (course: string, form: string | undefined): string | undefined => {
+    const f = form?.replace(/^form:/u, "") ?? "";
+    if (course === "apc" && f === "pl") return undefined;
+    if (f.startsWith("f")) return "f";
+    if (course === "grc" && f.startsWith("n")) return "n";
+    return "m";
+  };
+  // Nouns whose sense names a man or a woman (hermano, hermana; jar, jara; ὁ, ἡ παῖς), and hbo's רָעָה
+  // "evil" beside the masculine רָע: the only nouns written in two genders.
+  const BOTH: Record<string, readonly string[]> = {
+    es: ["azúcar", "don", "hermano", "hijo", "mecánico", "mijo", "muchacho", "niño", "novio", "primo", "yuma"],
+    apc: ["7abibi", "jar", "m3allem", "mhandes", "rfi2", "tilmiz"],
+    hbo: ["ivri", "raah.evil"],
+    grc: ["pais"],
+  };
+
+  it("pins a noun's gender wherever the course writes it", () => {
+    for (const [id, both] of Object.entries(BOTH)) {
+      const course = loadCourse(id);
+      const nouns = new Set<string>(allKcs(course).filter((k) => k.pos === "NOUN" || k.pos === "PROPN").map((k) => k.id));
+      const texts: TaggedText[] = [
+        ...allSentences(course).flatMap((s) => Object.values(s.forms).map((f) => f.text)),
+        ...allStories(course).flatMap((st) => st.steps.flatMap((step) => Object.values(step.line?.forms ?? {}))),
+      ];
+      const genders = new Map<string, Set<string>>();
+      for (const t of texts.flatMap((x) => x.tokens)) {
+        if (t.sense === undefined || !nouns.has(`sense:${t.sense}`)) continue;
+        const g = genderOf(id, t.form);
+        if (g !== undefined) genders.set(t.sense, (genders.get(t.sense) ?? new Set()).add(g));
+      }
+      const mixed = [...genders].filter(([, gs]) => gs.size > 1).map(([sense]) => sense);
+      expect(mixed.sort(), id).toEqual([...both].sort());
+    }
+  });
+
+  it("asks a word question on a feminine word with feminine words only", () => {
+    for (const [id, least] of [["es", 10], ["apc", 10], ["hbo", 10], ["grc", 1]] as const) {
+      const course = loadCourse(id);
+      let feminine = 0;
+      for (const { ex } of gapFills(course, 1)) {
+        const answer = tokenOf(ex.options[ex.answer] as TaggedText);
+        if (ex.asks !== "word" || genderOf(id, answer.form) !== "f") continue;
+        feminine++;
+        for (const o of ex.options) expect(genderOf(id, tokenOf(o).form), `${id} ${ex.id}: ${surfaceOf(o)}`).toBe("f");
+      }
+      expect(feminine, id).toBeGreaterThanOrEqual(least);
+    }
+  }, 300_000);
+});
+
 describe("a mistake on a fill-in (ADR 0132)", () => {
   const chg = loadCourse("chg");
   const cards = gapFills(chg, 1).map((g) => g.ex);

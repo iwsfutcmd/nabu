@@ -79,7 +79,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol también tiene WhatsApp.
-      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: también, sense: también}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: WhatsApp, sense: whatsapp}]
+      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: también, sense: también}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: WhatsApp, sense: whatsapp}]
       reverse: |-
         (Tía|La tía|Mi tía) Marisol también tiene WhatsApp
         Tía Marisol tiene WhatsApp también.
@@ -93,7 +93,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tengo un mensaje de tía Marisol.
-      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: mensaje, sense: mensaje}, {surface: de, sense: de}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: mensaje, sense: mensaje}, {surface: de, sense: de}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: '[Yo] tengo un mensaje de (tía|la tía|mi tía) Marisol'
   translations:
     en: |-
@@ -130,7 +130,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol me llama los domingos por la noche.
-      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: me, sense: me}, {surface: llama, sense: llamar, form: 'form:pres-3s'}, {surface: los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
+      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: me, sense: me}, {surface: llama, sense: llamar, form: 'form:pres-3s'}, {surface: los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
       reverse: |-
         (Tía|La tía|Mi tía) Marisol me llama los domingos por la noche
         Tía Marisol me llama los domingos en la noche.
@@ -184,7 +184,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami me mandó una foto de tía Marisol.
-      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: me, sense: me}, {surface: mandó, sense: mandar, form: 'form:pret-3s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: foto, sense: foto, form: 'form:fem'}, {surface: de, sense: de}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: me, sense: me}, {surface: mandó, sense: mandar, form: 'form:pret-3s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: foto, sense: foto, form: 'form:fem'}, {surface: de, sense: de}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: (Mami|Mamá|Mi mamá) me (mandó|envió) una foto de (tía|la tía|mi tía) Marisol
   translations:
     en: |-
@@ -195,7 +195,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol no escribe mucho, manda audios.
-      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: 'no', sense: 'no'}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: manda, sense: mandar, form: 'form:pres-3s'}, {surface: audios, sense: audio, form: 'form:pl'}]
+      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: manda, sense: mandar, form: 'form:pres-3s'}, {surface: audios, sense: audio, form: 'form:pl'}]
       reverse: |-
         (Tía|La tía|Mi tía) Marisol no escribe mucho [ella] manda audios
         Tía Marisol no escribe mucho, manda mensajes de voz.
@@ -208,7 +208,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior me escribe más que tía Marisol.
-      tokens: [{surface: Yunior, sense: yunior}, {surface: me, sense: me}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: que, sense: que}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Yunior, sense: yunior}, {surface: me, sense: me}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: que, sense: que}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: Yunior me escribe más que (tía|la tía|mi tía) Marisol
   translations:
     en: |-
@@ -341,7 +341,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Quién te escribió anoche, tía Marisol o Yunior?
-      tokens: [{surface: Quién, sense: quién}, {surface: te, sense: te}, {surface: escribió, sense: escribir, form: 'form:pret-3s'}, {surface: anoche, sense: anoche}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: o, sense: o}, {surface: Yunior, sense: yunior}]
+      tokens: [{surface: Quién, sense: quién}, {surface: te, sense: te}, {surface: escribió, sense: escribir, form: 'form:pret-3s'}, {surface: anoche, sense: anoche}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: o, sense: o}, {surface: Yunior, sense: yunior}]
       reverse: Quién (te|le|les) escribió anoche (tía|la tía) Marisol o Yunior
   translations:
     en: |-
@@ -351,7 +351,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuánto cuesta llamar a Cuba?
-      tokens: [{surface: Cuánto, sense: cuánto}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: llamar, sense: llamar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Cuánto, sense: cuánto}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: llamar, sense: llamar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
       reverse: Cuánto cuesta llamar a Cuba
   translations:
     en: |-
@@ -383,7 +383,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando llego a la casa, le escribo a tía Marisol.
-      tokens: [{surface: Cuando, sense: cuando}, {surface: llego, sense: llegar, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: le, sense: le}, {surface: escribo, sense: escribir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Cuando, sense: cuando}, {surface: llego, sense: llegar, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: le, sense: le}, {surface: escribo, sense: escribir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: |-
         Cuando [yo] llego a [la] casa [yo] le escribo a (tía|la tía|mi tía) Marisol
         [Yo] le escribo a (tía|la tía|mi tía) Marisol cuando [yo] llego a [la] casa
@@ -396,7 +396,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuándo llega tu avión a La Habana?
-      tokens: [{surface: Cuándo, sense: cuándo}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: avión, sense: avión}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Cuándo, sense: cuándo}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: avión, sense: avión}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
       reverse: |-
         Cuándo llega (tu|su) avión a La Habana
         Cuándo (tu|su) avión llega a La Habana
@@ -408,7 +408,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta es la casa donde vive tía Marisol.
-      tokens: [{surface: Esta, sense: este, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: donde, sense: donde}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Esta, sense: este, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: donde, sense: donde}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: |-
         Esta es la casa (donde|en la que|en que) vive (tía|la tía|mi tía) Marisol
         Esta es la casa (donde|en la que|en que) (tía|la tía|mi tía) Marisol vive
@@ -446,7 +446,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy hablo yo con tía Marisol; ayer habló Mami.
-      tokens: [{surface: Hoy, sense: hoy}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: yo, sense: yo}, {surface: con, sense: con}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: ayer, sense: ayer}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: Mami, sense: mami, form: 'form:fem'}]
+      tokens: [{surface: Hoy, sense: hoy}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: yo, sense: yo}, {surface: con, sense: con}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: ayer, sense: ayer}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: Mami, sense: mami, form: 'form:fem'}]
       reverse: Hoy (hablo yo|yo hablo|hablo) con (tía|la tía) Marisol [y] ayer (habló Mami|Mami habló|habló mi mamá|mi mamá habló)
   translations:
     en: |-
@@ -456,7 +456,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami compró café cubano para tía Marisol.
-      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: compró, sense: comprar, form: 'form:pret-3s'}, {surface: café, sense: café}, {surface: cubano, sense: cubano}, {surface: para, sense: para}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: compró, sense: comprar, form: 'form:pret-3s'}, {surface: café, sense: café}, {surface: cubano, sense: cubano}, {surface: para, sense: para}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
       reverse: (Mami|Mamá|Mi mamá) compró café cubano (para|pa') (tía|la tía|mi tía) Marisol
   translations:
     en: |-
@@ -499,7 +499,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel le escribe a tía Marisol por WhatsApp.
-          tokens: [{surface: Daniel, sense: daniel}, {surface: le, sense: le}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: por, sense: por}, {surface: WhatsApp, sense: whatsapp}]
+          tokens: [{surface: Daniel, sense: daniel}, {surface: le, sense: le}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: por, sense: por}, {surface: WhatsApp, sense: whatsapp}]
       translations: {en: Daniel texts Aunt Marisol on WhatsApp.}
   - line:
       speaker: daniel
@@ -538,7 +538,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Cuándo tú llegas a La Habana?
-          tokens: [{surface: Cuándo, sense: cuándo}, {surface: tú, sense: tú}, {surface: llegas, sense: llegar, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
+          tokens: [{surface: Cuándo, sense: cuándo}, {surface: tú, sense: tú}, {surface: llegas, sense: llegar, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
       translations: {en: 'When do you get to Havana?'}
   - line:
       speaker: daniel
@@ -553,14 +553,14 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y tu mami? ¿Ella viene también?
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: mami, sense: mami, form: 'form:fem'}, {surface: Ella, sense: ella}, {surface: viene, sense: venir, form: 'form:pres-3s'}, {surface: también, sense: también}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: mami, sense: mami, form: 'form:fem'}, {surface: Ella, sense: ella, form: 'form:fem'}, {surface: viene, sense: venir, form: 'form:pres-3s'}, {surface: también, sense: también}]
       translations: {en: 'And your mom? Is she coming too?'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: No, ella no puede. Pero te mandó café cubano.
-          tokens: [{surface: 'No', sense: 'no'}, {surface: ella, sense: ella}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: Pero, sense: pero}, {surface: te, sense: te}, {surface: mandó, sense: mandar, form: 'form:pret-3s'}, {surface: café, sense: café}, {surface: cubano, sense: cubano}]
+          tokens: [{surface: 'No', sense: 'no'}, {surface: ella, sense: ella, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: Pero, sense: pero}, {surface: te, sense: te}, {surface: mandó, sense: mandar, form: 'form:pret-3s'}, {surface: café, sense: café}, {surface: cubano, sense: cubano}]
       translations: {en: 'No, she can''t. But she sent you Cuban coffee.'}
   - line:
       speaker: marisol

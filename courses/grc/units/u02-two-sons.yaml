@@ -77,9 +77,6 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - ἀδελφή
-- id: form:acc
-  gloss:
-    en: 'the accusative: the object of a verb (ἀδελφὸν ἔχω, I have a brother)'
 - id: sense:echo
   pos: VERB
   gloss:
@@ -96,9 +93,6 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - δύο
-- id: form:pl
-  gloss:
-    en: 'the plural, as subject: -οι, -αι, -ες (ἀδελφοί, brothers)'
 - id: sense:treis
   pos: NUM
   features:
@@ -108,9 +102,6 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - τρεῖς
-- id: form:acc-pl
-  gloss:
-    en: 'the accusative plural: the objects (παῖδας, children)'
 - id: sense:gignomai
   pos: VERB
   gloss:
@@ -130,9 +121,6 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - Δαρεῖος
-- id: form:gen
-  gloss:
-    en: 'the genitive: of, ''s (Δαρείου, of Darius)'
 - id: sense:kyros
   pos: PROPN
   gloss:
@@ -177,9 +165,30 @@ kcs:
     - δέ
   notes:
     en: 'μέν … δέ sets two things side by side: πρεσβύτερος μὲν Ἀρταξέρξης, νεώτερος δὲ Κῦρος, "Artaxerxes the elder, Cyrus the younger". Neither word comes first in its clause.'
-- id: form:f
+- id: form:f-acc
   gloss:
-    en: 'feminine: an adjective''s form for a woman or a feminine word (νεωτέρα, younger)'
+    en: 'feminine accusative: the object (ἀδελφὴν ἔχω, I have a sister; εἰς τὴν ἀγοράν)'
+- id: form:f-gen
+  gloss:
+    en: 'feminine genitive: of, from (ἐκ τῆς οἰκίας, out of the house; Παρυσάτιδος, of Parysatis)'
+- id: form:f-acc-pl
+  gloss:
+    en: 'feminine accusative plural: the objects (ἀδελφὰς, sisters)'
+- id: form:n
+  gloss:
+    en: 'neuter: one form as subject, as object and when called (τὸ τέκνον, the child; ἐπὶ τὸ ὄρος, onto the mountain)'
+- id: form:acc
+  gloss:
+    en: 'the accusative (masculine; also με, σε): the object of a verb (ἀδελφὸν ἔχω, I have a brother)'
+- id: form:gen
+  gloss:
+    en: 'the genitive (masculine): of, ''s (Δαρείου, of Darius)'
+- id: form:pl
+  gloss:
+    en: 'the plural (masculine; also ἡμεῖς, ὑμεῖς), as subject or called: -οι, -ες (ἀδελφοί, brothers)'
+- id: form:acc-pl
+  gloss:
+    en: 'the accusative plural (masculine; also ἡμᾶς, ὑμᾶς): the objects (παῖδας, children)'
 nodes:
 - id: grc.u02.the-family
   kind: lesson
@@ -191,37 +200,40 @@ nodes:
   - sense:hyios
   - sense:thygater
   - sense:teknon
+  - form:n
 - id: grc.u02.brothers-and-sisters
   kind: lesson
   introduces:
   - sense:adelphos
   - sense:adelphe
-  - form:acc
   - sense:echo
+  - form:f-acc
+  - form:acc
 - id: grc.u02.two-children
   kind: lesson
   introduces:
   - sense:dyo
-  - form:pl
   - sense:treis
-  - form:acc-pl
   - sense:gignomai
   - form:pres-3p
+  - form:f-acc-pl
+  - form:pl
+  - form:acc-pl
 - id: grc.u02.son-of-darius
   kind: lesson
   introduces:
   - sense:dareios
-  - form:gen
   - sense:kyros
   - sense:parysatis
   - sense:artaxerxes
+  - form:f-gen
+  - form:gen
 - id: grc.u02.older-and-younger
   kind: lesson
   introduces:
   - sense:presbyteros
   - sense:neoteros
   - sense:de
-  - form:f
 - id: grc.u02.story
   kind: story
 sentences:
@@ -250,10 +262,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       reverse: ἡ μήτηρ
@@ -279,10 +293,12 @@ sentences:
           attic: καὶ
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       reverse: ὁ πατὴρ καὶ ἡ μήτηρ
@@ -313,10 +329,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: παῖς
         sense: pais
+        form: form:f
         readings:
           attic: παῖς
       reverse: ἡ παῖς
@@ -347,10 +365,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: θυγάτηρ
         sense: thygater
+        form: form:f
         readings:
           attic: θῠγᾰ́τηρ
       reverse: ἡ θυγάτηρ
@@ -376,10 +396,12 @@ sentences:
           attic: καὶ
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: θυγάτηρ
         sense: thygater
+        form: form:f
         readings:
           attic: θῠγᾰ́τηρ
       reverse: ὁ υἱὸς καὶ ἡ θυγάτηρ
@@ -393,10 +415,12 @@ sentences:
       tokens:
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: τέκνον
         sense: teknon
+        form: form:n
         readings:
           attic: τέκνον
       reverse: τὸ τέκνον
@@ -410,10 +434,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       - surface: καὶ
@@ -422,10 +448,12 @@ sentences:
           attic: καὶ
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: τέκνον
         sense: teknon
+        form: form:n
         readings:
           attic: τέκνον
       reverse: ἡ μήτηρ καὶ τὸ τέκνον
@@ -439,10 +467,12 @@ sentences:
       tokens:
       - surface: Ξανθίππη
         sense: xanthippe
+        form: form:f
         readings:
           attic: Ξᾰνθῐ́ππη
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       - surface: ἐστίν
@@ -482,10 +512,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ἀδελφή
         sense: adelphe
+        form: form:f
         readings:
           attic: ᾰ̓δελφή
       reverse: ἡ ἀδελφή
@@ -520,7 +552,7 @@ sentences:
       tokens:
       - surface: ἀδελφὴν
         sense: adelphe
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: ᾰ̓δελφὴν
       - surface: ἔχω
@@ -564,7 +596,7 @@ sentences:
       tokens:
       - surface: ἀδελφὴν
         sense: adelphe
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: ᾰ̓δελφὴν
       - surface: ἔχει
@@ -599,7 +631,7 @@ sentences:
           attic: καὶ
       - surface: ἀδελφήν
         sense: adelphe
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: ᾰ̓δελφήν
       reverse: |-
@@ -673,15 +705,17 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       - surface: θυγατέρα
         sense: thygater
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: θῠγᾰτέρᾰ
       - surface: ἔχει
@@ -805,7 +839,7 @@ sentences:
           attic: δῠ́ο
       - surface: ἀδελφὰς
         sense: adelphe
-        form: form:acc-pl
+        form: form:f-acc-pl
         readings:
           attic: ᾰ̓δελφᾱ̀ς
       - surface: ἔχεις
@@ -958,6 +992,7 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: Κύρου
@@ -967,10 +1002,12 @@ sentences:
           attic: Κῡ́ρου
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       - surface: Παρύσατίς
         sense: parysatis
+        form: form:f
         readings:
           attic: Πᾰρῠ́σᾰτῐ́ς
       - surface: ἐστιν
@@ -1036,7 +1073,7 @@ sentences:
           attic: καὶ
       - surface: Παρυσάτιδος
         sense: parysatis
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: Πᾰρῠσᾰ́τῐδος
       - surface: παῖδες
@@ -1303,10 +1340,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ἀδελφὴ
         sense: adelphe
+        form: form:f
         readings:
           attic: ᾰ̓δελφὴ
       - surface: νεωτέρα
@@ -1412,7 +1451,7 @@ stories:
               attic: καὶ
           - surface: Παρυσάτιδος
             sense: parysatis
-            form: form:gen
+            form: form:f-gen
             readings:
               attic: Πᾰρῠσᾰ́τῐδος
           - surface: γίγνονται

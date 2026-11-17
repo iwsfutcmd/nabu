@@ -195,7 +195,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הֵם בַּשָּׂדֶה׃
-      tokens: [{surface: הֵם, sense: hem, readings: {tiberian: hēm}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
+      tokens: [{surface: הֵם, sense: hem, form: 'form:pl', readings: {tiberian: hēm}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
       reverse: |-
         הם בשדה
         בשדה הם
@@ -219,7 +219,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַצֹּאן
-      tokens: [{surface: הַצֹּאן, sense: tson, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: צֹּאן, kc: 'sense:tson'}], readings: {tiberian: haṣṣōʾn}}]
+      tokens: [{surface: הַצֹּאן, sense: tson, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: צֹּאן, kc: 'sense:tson'}], readings: {tiberian: haṣṣōʾn}}]
       reverse: (הצאן|הצואן)
   translations:
     en: |-
@@ -231,7 +231,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הֶבֶל רֹעֵה צֹאן׃
-      tokens: [{surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: רֹעֵה, sense: raah.graze, form: 'form:ptc-ms', readings: {tiberian: rṓʿēh}}, {surface: צֹאן, sense: tson, readings: {
+      tokens: [{surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: רֹעֵה, sense: raah.graze, form: 'form:ptc-ms', readings: {tiberian: rṓʿēh}}, {surface: צֹאן, sense: tson, form: 'form:f', readings: {
             tiberian: ṣōʾn}}]
       reverse: הבל (רעה|רועה) (צאן|צואן)
   translations:
@@ -246,7 +246,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: אַחֶיךָ רֹעִים אֶת־הַצֹּאן׃
       tokens: [{surface: אַחֶיךָ, sense: ah, form: 'form:pl', morphs: [{surface: אַחֶי, kc: 'sense:ah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾaḥếḵā}}, {surface: רֹעִים, sense: raah.graze,
-          form: 'form:ptc-mp', readings: {tiberian: rōʿîm}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַצֹּאן, sense: tson, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: צֹּאן,
+          form: 'form:ptc-mp', readings: {tiberian: rōʿîm}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַצֹּאן, sense: tson, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: צֹּאן,
               kc: 'sense:tson'}], readings: {tiberian: haṣṣōʾn}}]
       reverse: |-
         אחיך (רעים|רועים) את (הצאן|הצואן)
@@ -437,7 +437,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: שְׁכֶמָה
-      tokens: [{surface: שְׁכֶמָה, sense: shekhem, morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: šəḵémâ}}]
+      tokens: [{surface: שְׁכֶמָה, sense: shekhem, form: 'form:f', morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: šəḵémâ}}]
       reverse: שכמה
   translations:
     en: to Shechem
@@ -446,7 +446,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיָּבֹא שְׁכֶמָה׃
-      tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: שְׁכֶמָה, sense: shekhem, morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'}, {surface: ה,
+      tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: שְׁכֶמָה, sense: shekhem, form: 'form:f', morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'}, {surface: ה,
               kc: 'form:dir'}], readings: {tiberian: šəḵémâ}}]
       reverse: |-
         (ויבא|ויבוא) שכמה
@@ -462,7 +462,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: חֶבְרוֹן
-      tokens: [{surface: חֶבְרוֹן, sense: hevron, readings: {tiberian: ḥeḇrôn}}]
+      tokens: [{surface: חֶבְרוֹן, sense: hevron, form: 'form:f', readings: {tiberian: ḥeḇrôn}}]
       reverse: חברון
   translations:
     en: Hebron
@@ -471,7 +471,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מֵעֵמֶק חֶבְרוֹן
-      tokens: [{surface: מֵעֵמֶק, sense: emeq, form: 'form:cstr', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: עֵמֶק, kc: 'sense:emeq'}], readings: {tiberian: mēʿḗmeq}}, {surface: חֶבְרוֹן, sense: hevron,
+      tokens: [{surface: מֵעֵמֶק, sense: emeq, form: 'form:cstr', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: עֵמֶק, kc: 'sense:emeq'}], readings: {tiberian: mēʿḗmeq}}, {surface: חֶבְרוֹן, sense: hevron, form: 'form:f',
           readings: {tiberian: ḥeḇrôn}}]
       reverse: מעמק חברון
   translations:
@@ -611,7 +611,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֵיפֹה הֵם׃
-      tokens: [{surface: אֵיפֹה, sense: eifoh, readings: {tiberian: ʾêp̄ōh}}, {surface: הֵם, sense: hem, readings: {tiberian: hēm}}]
+      tokens: [{surface: אֵיפֹה, sense: eifoh, readings: {tiberian: ʾêp̄ōh}}, {surface: הֵם, sense: hem, form: 'form:pl', readings: {tiberian: hēm}}]
       reverse: (איפה|איפוה) הם
   translations:
     en: Where are they?
@@ -622,7 +622,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַגִּידָה־נָּא לִי אֵיפֹה הֵם׃
       tokens: [{surface: הַגִּידָה, sense: nagad, form: 'form:impv-ms', readings: {tiberian: haggîḏâ-}}, {surface: נָּא, sense: na, readings: {tiberian: nāʾ}}, {surface: לִי, sense: le, morphs: [{surface: לִ,
-              kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}, {surface: אֵיפֹה, sense: eifoh, readings: {tiberian: ʾêp̄ōh}}, {surface: הֵם, sense: hem, readings: {tiberian: hēm}}]
+              kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}, {surface: אֵיפֹה, sense: eifoh, readings: {tiberian: ʾêp̄ōh}}, {surface: הֵם, sense: hem, form: 'form:pl', readings: {tiberian: hēm}}]
       reverse: הגידה נא לי (איפה|איפוה) הם
   translations:
     en: |-
@@ -667,7 +667,7 @@ stories:
           text: הֲלוֹא אַחֶיךָ רֹעִים בִּשְׁכֶם לְכָה וְאֶשְׁלָחֲךָ אֲלֵיהֶם
           tokens: [{surface: הֲלוֹא, sense: lo, morphs: [{surface: הֲ, kc: 'sense:ha.q'}, {surface: לוֹא, kc: 'sense:lo'}], readings: {tiberian: hălôʾ}}, {surface: אַחֶיךָ, sense: ah, form: 'form:pl', morphs: [
                 {surface: אַחֶי, kc: 'sense:ah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾaḥếḵā}}, {surface: רֹעִים, sense: raah.graze, form: 'form:ptc-mp', readings: {tiberian: rōʿîm}},
-            {surface: בִּשְׁכֶם, sense: shekhem, morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: שְׁכֶם, kc: 'sense:shekhem'}], readings: {tiberian: bišḵem}}, {surface: לְכָה, sense: halakh, form: 'form:impv-ms',
+            {surface: בִּשְׁכֶם, sense: shekhem, form: 'form:f', morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: שְׁכֶם, kc: 'sense:shekhem'}], readings: {tiberian: bišḵem}}, {surface: לְכָה, sense: halakh, form: 'form:impv-ms',
               readings: {tiberian: ləḵâ}}, {surface: וְאֶשְׁלָחֲךָ, sense: shalach, form: 'form:yiqtol-1cs', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶשְׁלָחֲ, kc: 'sense:shalach'}, {surface: ךָ,
                   kc: 'form:sfx-2ms'}], readings: {tiberian: wəʾešlāḥăḵā}}, {surface: אֲלֵיהֶם, sense: el, morphs: [{surface: אֲלֵי, kc: 'sense:el'}, {surface: הֶם, kc: 'form:sfx-3mp'}], readings: {tiberian: ʾălêhem}}]
       translations:
@@ -704,7 +704,7 @@ stories:
           tokens: [{surface: לֶךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: leḵ-}}, {surface: נָא, sense: na, readings: {tiberian: nāʾ}}, {surface: רְאֵה, sense: raah, form: 'form:impv-ms',
               readings: {tiberian: rəʾēh}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: שְׁלוֹם, sense: shalom, form: 'form:cstr', readings: {tiberian: šəlôm}}, {surface: אַחֶיךָ, sense: ah,
               form: 'form:pl', morphs: [{surface: אַחֶי, kc: 'sense:ah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾaḥếḵā}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'},
-                {surface: אֶת, kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: שְׁלוֹם, sense: shalom, form: 'form:cstr', readings: {tiberian: šəlôm}}, {surface: הַצֹּאן, sense: tson, morphs: [
+                {surface: אֶת, kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: שְׁלוֹם, sense: shalom, form: 'form:cstr', readings: {tiberian: šəlôm}}, {surface: הַצֹּאן, sense: tson, form: 'form:f', morphs: [
                 {surface: הַ, kc: 'sense:ha'}, {surface: צֹּאן, kc: 'sense:tson'}], readings: {tiberian: haṣṣōʾn}}, {surface: וַהֲשִׁבֵנִי, sense: heshiv, form: 'form:impv-ms', morphs: [{surface: וַ, kc: 'sense:we'},
                 {surface: הֲשִׁבֵ, kc: 'sense:heshiv'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: wahăšiḇḗnî}}, {surface: דָּבָר, sense: davar, readings: {tiberian: dāḇār}}]
       translations:
@@ -714,8 +714,8 @@ stories:
         hbo-Hebr/tiberian:
           text: וַיִּשְׁלָחֵהוּ מֵעֵמֶק חֶבְרוֹן וַיָּבֹא שְׁכֶמָה׃
           tokens: [{surface: וַיִּשְׁלָחֵהוּ, sense: shalach, form: 'form:wayyiqtol-3ms', morphs: [{surface: וַיִּשְׁלָחֵ, kc: 'sense:shalach'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: wayyišlāḥḗhû}},
-            {surface: מֵעֵמֶק, sense: emeq, form: 'form:cstr', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: עֵמֶק, kc: 'sense:emeq'}], readings: {tiberian: mēʿḗmeq}}, {surface: חֶבְרוֹן, sense: hevron,
-              readings: {tiberian: ḥeḇrôn}}, {surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: שְׁכֶמָה, sense: shekhem, morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'},
+            {surface: מֵעֵמֶק, sense: emeq, form: 'form:cstr', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: עֵמֶק, kc: 'sense:emeq'}], readings: {tiberian: mēʿḗmeq}}, {surface: חֶבְרוֹן, sense: hevron, form: 'form:f',
+              readings: {tiberian: ḥeḇrôn}}, {surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: שְׁכֶמָה, sense: shekhem, form: 'form:f', morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'},
                 {surface: ה, kc: 'form:dir'}], readings: {tiberian: šəḵémâ}}]
       translations:
         en: So he sent him from the valley of Hebron, and he came to Shechem.
@@ -767,7 +767,7 @@ stories:
           tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אַחַי, sense: ah, form: 'form:pl', morphs: [{surface: אַחַ, kc: 'sense:ah'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
                 tiberian: ʾaḥay}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מְבַקֵּשׁ, sense: biqqesh, form: 'form:ptc-ms', readings: {tiberian: məḇaqqēš}}, {surface: הַגִּידָה,
               sense: nagad, form: 'form:impv-ms', readings: {tiberian: haggîḏâ-}}, {surface: נָּא, sense: na, readings: {tiberian: nāʾ}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'},
-                {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}, {surface: אֵיפֹה, sense: eifoh, readings: {tiberian: ʾêp̄ōh}}, {surface: הֵם, sense: hem, readings: {tiberian: hēm}}, {surface: רֹעִים,
+                {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}, {surface: אֵיפֹה, sense: eifoh, readings: {tiberian: ʾêp̄ōh}}, {surface: הֵם, sense: hem, form: 'form:pl', readings: {tiberian: hēm}}, {surface: רֹעִים,
               sense: raah.graze, form: 'form:ptc-mp', readings: {tiberian: rōʿîm}}]
       translations:
         en: “I am looking for my brothers. Please tell me where they are pasturing.”

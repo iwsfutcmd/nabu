@@ -151,11 +151,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندي هديّة!
-      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: هديّة, sense: hdiyye}]
+      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: هديّة, sense: hdiyye, form: 'form:fem'}]
       reverse: (عندي|أنا عندي) هديّة
     apc-Latn/arabizi:
       text: 3endi hdiyye!
-      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: hdiyye, sense: hdiyye}]
+      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: hdiyye, sense: hdiyye, form: 'form:fem'}]
       reverse: |-
         (3endi|3andi|3ende|3indi) (hdiyye|hdiye|hadiyye|hdiyyi|hadiye)
         ana 3endi hdiyye
@@ -169,13 +169,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الهديّة حلوة كتير!
-      tokens: [{surface: الهديّة, sense: hdiyye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: هديّة, kc: 'sense:hdiyye'}]}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: الهديّة, sense: hdiyye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: هديّة, kc: 'sense:hdiyye'}]}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: كتير, sense: ktir}]
       reverse: |-
         الهديّة حلوة كتير
         الهديّة كتير حلوة
     apc-Latn/arabizi:
       text: el hdiyye 7elwe ktir!
-      tokens: [{surface: el, sense: el}, {surface: hdiyye, sense: hdiyye}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: el, sense: el}, {surface: hdiyye, sense: hdiyye, form: 'form:fem'}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: ktir, sense: ktir}]
       reverse: |-
         (el|l|il) (hdiyye|hdiye|hadiyye|hdiyyi|hadiye) (7elwe|7elwi|7ilwe|helwe) (ktir|kteer)
         el hdiyye ktir 7elwe
@@ -189,13 +189,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: اشترينا هديّة.
-      tokens: [{surface: اشترينا, sense: eshtara, form: 'form:past-1pl'}, {surface: هديّة, sense: hdiyye}]
+      tokens: [{surface: اشترينا, sense: eshtara, form: 'form:past-1pl'}, {surface: هديّة, sense: hdiyye, form: 'form:fem'}]
       reverse: |-
         اشترينا هديّة
         نحنا اشترينا هديّة
     apc-Latn/arabizi:
       text: eshtarayna hdiyye.
-      tokens: [{surface: eshtarayna, sense: eshtara, form: 'form:past-1pl'}, {surface: hdiyye, sense: hdiyye}]
+      tokens: [{surface: eshtarayna, sense: eshtara, form: 'form:past-1pl'}, {surface: hdiyye, sense: hdiyye, form: 'form:fem'}]
       reverse: |-
         (eshtarayna|shtarayna|eshtarena|shtarena|eshtareina) (hdiyye|hdiye|hadiyye|hdiyyi|hadiye)
         ne7na eshtarayna hdiyye
@@ -227,12 +227,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا عزمتنا عالغدا.
-      tokens: [{surface: تيتا, sense: teta}, {surface: عزمتنا, sense: 3azam, form: 'form:past-3fs', morphs: [{surface: عزمت, kc: 'sense:3azam'}, {surface: نا, kc: 'form:obj-1pl'}]}, {surface: عالغدا, sense: ghada,
+      tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: عزمتنا, sense: 3azam, form: 'form:past-3fs', morphs: [{surface: عزمت, kc: 'sense:3azam'}, {surface: نا, kc: 'form:obj-1pl'}]}, {surface: عالغدا, sense: ghada,
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: غدا, kc: 'sense:ghada'}]}]
       reverse: تيتا عزمتنا (عالغدا|ع الغدا|على الغدا)
     apc-Latn/arabizi:
       text: teta 3azmetna 3al ghada.
-      tokens: [{surface: teta, sense: teta}, {surface: 3azmetna, sense: 3azam, form: 'form:past-3fs', morphs: [{surface: 3azmet, kc: 'sense:3azam'}, {surface: na, kc: 'form:obj-1pl'}]}, {surface: 3al, sense: 3a,
+      tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: 3azmetna, sense: 3azam, form: 'form:past-3fs', morphs: [{surface: 3azmet, kc: 'sense:3azam'}, {surface: na, kc: 'form:obj-1pl'}]}, {surface: 3al, sense: 3a,
           morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ghada, sense: ghada}]
       reverse: |-
         teta (3azmetna|3azametna|3azmitna) (3al|3a l|3a el) (ghada|ghade)
@@ -248,13 +248,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّي اعزمك عالعشا.
-      tokens: [{surface: بدّي, sense: baddi}, {surface: اعزمك, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: اعزم, kc: 'sense:3azam'}, {surface: ك, kc: 'form:obj-2ms'}]}, {surface: عالعشا, sense: 3asha,
+      tokens: [{surface: بدّي, sense: baddi}, {surface: اعزمك, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: اعزم, kc: 'sense:3azam'}, {surface: ك, kc: 'form:obj-2ms'}]}, {surface: عالعشا, sense: 3asha, form: 'form:fem',
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: عشا, kc: 'sense:3asha'}]}]
       reverse: (بدّي|أنا بدّي) اعزمك (عالعشا|ع العشا|على العشا)
     apc-Latn/arabizi:
       text: baddi e3zmak 3al 3asha.
       tokens: [{surface: baddi, sense: baddi}, {surface: e3zmak, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: e3zm, kc: 'sense:3azam'}, {surface: ak, kc: 'form:obj-2ms'}]}, {surface: 3al, sense: 3a,
-          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 3asha, sense: 3asha}]
+          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 3asha, sense: 3asha, form: 'form:fem'}]
       reverse: |-
         (baddi|badde|badi) (e3zmak|e3zemak|i3zmak|a3zmak) (3al|3a l|3a el) (3asha|3ashe)
         ana baddi e3zmak 3al 3asha
@@ -270,12 +270,12 @@ sentences:
     apc-Arab/standard:
       text: بدّي اعزمك عالعشا.
       tokens: [{surface: بدّي, sense: baddi}, {surface: اعزمك, sense: 3azam, form: 'form:subj-1sg', vocalized: اِعْزْمِك, morphs: [{surface: اعزم, kc: 'sense:3azam'}, {surface: ك, kc: 'form:obj-2fs'}]},
-        {surface: عالعشا, sense: 3asha, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: عشا, kc: 'sense:3asha'}]}]
+        {surface: عالعشا, sense: 3asha, form: 'form:fem', morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: عشا, kc: 'sense:3asha'}]}]
       reverse: (بدّي|أنا بدّي) اعزمك (عالعشا|ع العشا|على العشا)
     apc-Latn/arabizi:
       text: baddi e3zmik 3al 3asha.
       tokens: [{surface: baddi, sense: baddi}, {surface: e3zmik, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: e3zm, kc: 'sense:3azam'}, {surface: ik, kc: 'form:obj-2fs'}]}, {surface: 3al, sense: 3a,
-          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 3asha, sense: 3asha}]
+          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 3asha, sense: 3asha, form: 'form:fem'}]
       reverse: |-
         (baddi|badde|badi) (e3zmik|e3zemik|i3zmik|a3zmik) (3al|3a l|3a el) (3asha|3ashe)
         ana baddi e3zmik 3al 3asha
@@ -312,7 +312,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عجبتني الحفلة.
-      tokens: [{surface: عجبتني, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: عجبت, kc: 'sense:3ajab'}, {surface: ني, kc: 'form:obj-1sg'}]}, {surface: الحفلة, sense: 7afle, morphs: [{surface: ال,
+      tokens: [{surface: عجبتني, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: عجبت, kc: 'sense:3ajab'}, {surface: ني, kc: 'form:obj-1sg'}]}, {surface: الحفلة, sense: 7afle, form: 'form:fem', morphs: [{surface: ال,
               kc: 'sense:el'}, {surface: حفلة, kc: 'sense:7afle'}]}]
       reverse: |-
         عجبتني الحفلة
@@ -320,7 +320,7 @@ sentences:
         حبّيت الحفلة
     apc-Latn/arabizi:
       text: 3ajabetni el 7afle.
-      tokens: [{surface: 3ajabetni, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajabet, kc: 'sense:3ajab'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: el, sense: el}, {surface: 7afle, sense: 7afle}]
+      tokens: [{surface: 3ajabetni, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajabet, kc: 'sense:3ajab'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: el, sense: el}, {surface: 7afle, sense: 7afle, form: 'form:fem'}]
       reverse: |-
         (3ajabetni|3ajbetni|3ajabitni|3ajabetne) (el|l|il) (7afle|7afla|7afli|hafle)
         el 7afle 3ajabetni
@@ -361,7 +361,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عجبتكن الحفلة؟
-      tokens: [{surface: عجبتكن, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: عجبت, kc: 'sense:3ajab'}, {surface: كن, kc: 'form:obj-2pl'}]}, {surface: الحفلة, sense: 7afle, morphs: [{surface: ال,
+      tokens: [{surface: عجبتكن, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: عجبت, kc: 'sense:3ajab'}, {surface: كن, kc: 'form:obj-2pl'}]}, {surface: الحفلة, sense: 7afle, form: 'form:fem', morphs: [{surface: ال,
               kc: 'sense:el'}, {surface: حفلة, kc: 'sense:7afle'}]}]
       reverse: |-
         عجبتكن الحفلة
@@ -370,7 +370,7 @@ sentences:
     apc-Latn/arabizi:
       text: 3ajabetkon el 7afle?
       tokens: [{surface: 3ajabetkon, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajabet, kc: 'sense:3ajab'}, {surface: kon, kc: 'form:obj-2pl'}]}, {surface: el, sense: el}, {surface: 7afle,
-          sense: 7afle}]
+          sense: 7afle, form: 'form:fem'}]
       reverse: |-
         (3ajabetkon|3ajbetkon|3ajabitkon|3ajabetkun) (el|l|il) (7afle|7afla|7afli|hafle)
         el 7afle 3ajabetkon
@@ -547,11 +547,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا مريضة؟ يا حرام!
-      tokens: [{surface: تيتا, sense: teta}, {surface: مريضة, sense: mrid, form: 'form:fem'}, {surface: يا, sense: ya-7aram}, {surface: حرام, sense: ya-7aram}]
+      tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: مريضة, sense: mrid, form: 'form:fem'}, {surface: يا, sense: ya-7aram}, {surface: حرام, sense: ya-7aram}]
       reverse: تيتا مريضة يا حرام
     apc-Latn/arabizi:
       text: teta mrida? ya 7aram!
-      tokens: [{surface: teta, sense: teta}, {surface: mrida, sense: mrid, form: 'form:fem'}, {surface: ya, sense: ya-7aram}, {surface: 7aram, sense: ya-7aram}]
+      tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: mrida, sense: mrid, form: 'form:fem'}, {surface: ya, sense: ya-7aram}, {surface: 7aram, sense: ya-7aram}]
       reverse: |-
         teta (mrida|mreeda|marida|mride) ya (7aram|haram)
         tayta mrida ya 7aram
@@ -606,13 +606,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: شو حلوة هالهديّة!
-      tokens: [{surface: شو, sense: shu}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: هالهديّة, sense: hdiyye, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: هديّة, kc: 'sense:hdiyye'}]}]
+      tokens: [{surface: شو, sense: shu}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: هالهديّة, sense: hdiyye, form: 'form:fem', morphs: [{surface: هال, kc: 'sense:hal'}, {surface: هديّة, kc: 'sense:hdiyye'}]}]
       reverse: |-
         شو حلوة هالهديّة
         شو حلوة هيدي الهديّة
     apc-Latn/arabizi:
       text: shu 7elwe hal hdiyye!
-      tokens: [{surface: shu, sense: shu}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: hal, sense: hal}, {surface: hdiyye, sense: hdiyye}]
+      tokens: [{surface: shu, sense: shu}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: hal, sense: hal}, {surface: hdiyye, sense: hdiyye, form: 'form:fem'}]
       reverse: |-
         (shu|sho) (7elwe|7elwi|7ilwe|helwe) (hal|hel) (hdiyye|hdiye|hadiyye|hdiyyi|hadiye)
         shu 7elwe hayde el hdiyye
@@ -726,11 +726,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: مايا، مَبْروك عِرْس خَيِّك!
-          tokens: [{surface: مايا, sense: maya}, {surface: مَبْروك, sense: mabrouk}, {surface: عِرْس, sense: 3irs}, {surface: خَيِّك, sense: khayy, morphs: [{surface: خَيِّ, kc: 'sense:khayy'}, {surface: ك,
+          tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: مَبْروك, sense: mabrouk}, {surface: عِرْس, sense: 3irs}, {surface: خَيِّك, sense: khayy, morphs: [{surface: خَيِّ, kc: 'sense:khayy'}, {surface: ك,
                   kc: 'form:poss-2fs'}]}]
         apc-Latn/arabizi:
           text: Maya, mabrouk 3irs khayyik!
-          tokens: [{surface: Maya, sense: maya}, {surface: mabrouk, sense: mabrouk}, {surface: 3irs, sense: 3irs}, {surface: khayyik, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: ik,
+          tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: mabrouk, sense: mabrouk}, {surface: 3irs, sense: 3irs}, {surface: khayyik, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: ik,
                   kc: 'form:poss-2fs'}]}]
       translations: {en: 'Maya, congratulations on your brother''s wedding!'}
   - line:
@@ -768,16 +768,16 @@ stories:
   - line:
       speaker: sami
       ask: complete
-      gap: sense:hdiyye
+      gap: 'sense:hdiyye'
       distractors: ['sense:sene', 'sense:da2i2a']
       forms:
         apc-Arab/standard:
           text: أَكيد! رَح اِشْتِري هْدِيِّة حِلْوِة.
-          tokens: [{surface: أَكيد, sense: akid}, {surface: رَح, sense: ra7.fut}, {surface: اِشْتِري, sense: eshtara, form: 'form:subj-1sg'}, {surface: هْدِيِّة, sense: hdiyye}, {surface: حِلْوِة, sense: 7elo,
+          tokens: [{surface: أَكيد, sense: akid}, {surface: رَح, sense: ra7.fut}, {surface: اِشْتِري, sense: eshtara, form: 'form:subj-1sg'}, {surface: هْدِيِّة, sense: hdiyye, form: 'form:fem'}, {surface: حِلْوِة, sense: 7elo,
               form: 'form:fem'}]
         apc-Latn/arabizi:
           text: akid! ra7 eshtiri hdiyye 7elwe.
-          tokens: [{surface: akid, sense: akid}, {surface: ra7, sense: ra7.fut}, {surface: eshtiri, sense: eshtara, form: 'form:subj-1sg'}, {surface: hdiyye, sense: hdiyye}, {surface: 7elwe, sense: 7elo,
+          tokens: [{surface: akid, sense: akid}, {surface: ra7, sense: ra7.fut}, {surface: eshtiri, sense: eshtara, form: 'form:subj-1sg'}, {surface: hdiyye, sense: hdiyye, form: 'form:fem'}, {surface: 7elwe, sense: 7elo,
               form: 'form:fem'}]
       translations: {en: Of course! I'll buy a nice present.}
   - choose:

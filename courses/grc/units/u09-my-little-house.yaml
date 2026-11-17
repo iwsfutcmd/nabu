@@ -53,9 +53,6 @@ kcs:
   forms:
     grc-Grek/polytonic:
     - ἴσος
-- id: form:dat-pl
-  gloss:
-    en: 'the dative plural: to, for (the) …; after ἐν, in (τοῖς κάτω, to the downstairs rooms)'
 - id: sense:gynaikonitis
   pos: NOUN
   gloss:
@@ -124,6 +121,12 @@ kcs:
 - id: form:impf-1s
   gloss:
     en: 'the imperfect, I: I was doing, I used to do'
+- id: form:n-dat-pl
+  gloss:
+    en: 'neuter dative plural: to, for (τοῖς κάτω, to the downstairs rooms)'
+- id: form:dat-pl
+  gloss:
+    en: 'the dative plural (masculine; also ἡμῖν): to, for (ἡμῖν, to us)'
 nodes:
 - id: grc.u09.my-house
   kind: lesson
@@ -137,7 +140,7 @@ nodes:
   - sense:ano
   - sense:kato
   - sense:isos
-  - form:dat-pl
+  - form:n-dat-pl
 - id: grc.u09.the-rooms
   kind: lesson
   introduces:
@@ -152,6 +155,7 @@ nodes:
   - sense:epeide
   - sense:autos
   - sense:thelazo
+  - form:dat-pl
 - id: grc.u09.i-lived
   kind: lesson
   introduces:
@@ -168,6 +172,7 @@ sentences:
       tokens:
       - surface: οἰκίδιον
         sense: oikidion
+        form: form:n
         readings:
           attic: οἰκῐ́δῐον
       reverse: οἰκίδιον
@@ -181,10 +186,12 @@ sentences:
       tokens:
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: οἰκίδιον
         sense: oikidion
+        form: form:n
         readings:
           attic: οἰκῐ́δῐον
       reverse: τὸ οἰκίδιον
@@ -200,6 +207,7 @@ sentences:
       tokens:
       - surface: οἰκίδιον
         sense: oikidion
+        form: form:n
         readings:
           attic: οἰκῐ́δῐον
       - surface: ἔστι
@@ -268,6 +276,7 @@ sentences:
           attic: σοι
       - surface: ἀδελφή
         sense: adelphe
+        form: form:f
         readings:
           attic: ᾰ̓δελφή
       reverse: |-
@@ -286,10 +295,12 @@ sentences:
       tokens:
       - surface: οἰκίδιον
         sense: oikidion
+        form: form:n
         readings:
           attic: οἰκῐ́δῐον
       - surface: διπλοῦν
         sense: diplous
+        form: form:n
         readings:
           attic: δῐπλοῦν
       reverse: οἰκίδιον διπλοῦν
@@ -303,10 +314,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: οἰκία
         sense: oikia
+        form: form:f
         readings:
           attic: οἰκῐ́ᾱ
       - surface: διπλῆ
@@ -388,12 +401,12 @@ sentences:
       tokens:
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       - surface: κάτω
@@ -462,7 +475,7 @@ sentences:
       tokens:
       - surface: τὰ
         sense: ho
-        form: form:pl
+        form: form:n-pl
         readings:
           attic: τᾰ̀
       - surface: ἄνω
@@ -475,7 +488,7 @@ sentences:
           attic: καὶ
       - surface: τὰ
         sense: ho
-        form: form:pl
+        form: form:n-pl
         readings:
           attic: τᾰ̀
       - surface: κάτω
@@ -493,7 +506,7 @@ sentences:
       tokens:
       - surface: τὰ
         sense: ho
-        form: form:pl
+        form: form:n-pl
         readings:
           attic: τᾰ̀
       - surface: ἄνω
@@ -502,7 +515,7 @@ sentences:
           attic: ᾰ̓́νω
       - surface: ἴσα
         sense: isos
-        form: form:pl
+        form: form:n-pl
         readings:
           attic: ῐ̓́σᾰ
       - surface: ἐστὶ
@@ -512,7 +525,7 @@ sentences:
           attic: ἐστῐ̀
       - surface: τοῖς
         sense: ho
-        form: form:dat-pl
+        form: form:n-dat-pl
         readings:
           attic: τοῖς
       - surface: κάτω
@@ -533,10 +546,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γυναικωνῖτις
         sense: gynaikonitis
+        form: form:f
         readings:
           attic: γῠναικωνῖτῐς
       reverse: ἡ γυναικωνῖτις
@@ -550,10 +565,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ἀνδρωνῖτις
         sense: andronitis
+        form: form:f
         readings:
           attic: ᾰ̓νδρωνῖτῐς
       reverse: ἡ ἀνδρωνῖτις
@@ -571,12 +588,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: γυναικωνίτιδι
         sense: gynaikonitis
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: γῠναικωνῑ́τῐδῐ
       reverse: ἐν τῇ γυναικωνίτιδι
@@ -594,12 +611,12 @@ sentences:
           attic: κᾰτᾰ̀
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: γυναικωνῖτιν
         sense: gynaikonitis
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: γῠναικωνῖτῐν
       reverse: κατὰ τὴν γυναικωνῖτιν
@@ -613,10 +630,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γυνὴ
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνὴ
       - surface: ἐν
@@ -625,12 +644,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: γυναικωνίτιδί
         sense: gynaikonitis
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: γῠναικωνῑ́τῐδῐ́
       - surface: ἐστιν
@@ -667,12 +686,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: ἀνδρωνίτιδί
         sense: andronitis
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ᾰ̓νδρωνῑ́τῐδῐ́
       - surface: εἰσιν
@@ -695,10 +714,12 @@ sentences:
       tokens:
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: παιδίον
         sense: paidion
+        form: form:n
         readings:
           attic: παιδῐ́ον
       reverse: τὸ παιδίον
@@ -728,10 +749,12 @@ sentences:
       tokens:
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: παιδίον
         sense: paidion
+        form: form:n
         readings:
           attic: παιδῐ́ον
       - surface: ἐγένετο
@@ -756,10 +779,12 @@ sentences:
           attic: ἐπειδὴ
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: παιδίον
         sense: paidion
+        form: form:n
         readings:
           attic: παιδῐ́ον
       - surface: ἐγένετο
@@ -769,7 +794,7 @@ sentences:
           attic: ἐγένετο
       - surface: ἡμῖν
         sense: hemeis
-        form: form:dat
+        form: form:dat-pl
         readings:
           attic: ἡμῖν
       reverse: ἐπειδὴ τὸ παιδίον ἐγένετο ἡμῖν
@@ -783,15 +808,17 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       - surface: αὐτὸ
         sense: autos
-        form: form:acc
+        form: form:n
         readings:
           attic: αὐτὸ
       - surface: θηλάζει
@@ -813,15 +840,17 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       - surface: αὐτὸ
         sense: autos
-        form: form:acc
+        form: form:n
         readings:
           attic: αὐτὸ
       - surface: ἐθήλαζεν
@@ -865,7 +894,7 @@ sentences:
       tokens:
       - surface: αὐτὴν
         sense: autos
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: αὐτὴν
       - surface: ὁρῶ
@@ -937,7 +966,7 @@ sentences:
           attic: δῐῃτώμην
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: δὲ
@@ -946,7 +975,7 @@ sentences:
           attic: δὲ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       - surface: κάτω
@@ -970,12 +999,12 @@ sentences:
           attic: ἐν
       - surface: τῷ
         sense: ho
-        form: form:dat
+        form: form:n-dat
         readings:
           attic: τῷ
       - surface: ἄστει
         sense: astu
-        form: form:dat
+        form: form:n-dat
         readings:
           attic: ᾰ̓́στει
       - surface: διῃτώμην
@@ -1011,6 +1040,7 @@ stories:
           tokens:
           - surface: οἰκίδιον
             sense: oikidion
+            form: form:n
             readings:
               attic: οἰκῐ́δῐον
           - surface: ἔστι
@@ -1025,6 +1055,7 @@ stories:
               attic: μοι
           - surface: διπλοῦν
             sense: diplous
+            form: form:n
             readings:
               attic: δῐπλοῦν
       translations:
@@ -1037,7 +1068,7 @@ stories:
           tokens:
           - surface: ἴσα
             sense: isos
-            form: form:pl
+            form: form:n-pl
             readings:
               attic: ῐ̓́σᾰ
           - surface: ἔχον
@@ -1047,7 +1078,7 @@ stories:
               attic: ἔχον
           - surface: τὰ
             sense: ho
-            form: form:pl
+            form: form:n-pl
             readings:
               attic: τᾰ̀
           - surface: ἄνω
@@ -1056,7 +1087,7 @@ stories:
               attic: ᾰ̓́νω
           - surface: τοῖς
             sense: ho
-            form: form:dat-pl
+            form: form:n-dat-pl
             readings:
               attic: τοῖς
           - surface: κάτω
@@ -1069,12 +1100,12 @@ stories:
               attic: κᾰτᾰ̀
           - surface: τὴν
             sense: ho
-            form: form:acc
+            form: form:f-acc
             readings:
               attic: τὴν
           - surface: γυναικωνῖτιν
             sense: gynaikonitis
-            form: form:acc
+            form: form:f-acc
             readings:
               attic: γῠναικωνῖτῐν
           - surface: καὶ
@@ -1087,12 +1118,12 @@ stories:
               attic: κᾰτᾰ̀
           - surface: τὴν
             sense: ho
-            form: form:acc
+            form: form:f-acc
             readings:
               attic: τὴν
           - surface: ἀνδρωνῖτιν
             sense: andronitis
-            form: form:acc
+            form: form:f-acc
             readings:
               attic: ᾰ̓νδρωνῖτῐν
       translations:
@@ -1122,10 +1153,12 @@ stories:
               attic: δὲ
           - surface: τὸ
             sense: ho
+            form: form:n
             readings:
               attic: τὸ
           - surface: παιδίον
             sense: paidion
+            form: form:n
             readings:
               attic: παιδῐ́ον
           - surface: ἐγένετο
@@ -1135,7 +1168,7 @@ stories:
               attic: ἐγένετο
           - surface: ἡμῖν
             sense: hemeis
-            form: form:dat
+            form: form:dat-pl
             readings:
               attic: ἡμῖν
       translations:
@@ -1148,15 +1181,17 @@ stories:
           tokens:
           - surface: ἡ
             sense: ho
+            form: form:f
             readings:
               attic: ἡ
           - surface: μήτηρ
             sense: meter
+            form: form:f
             readings:
               attic: μήτηρ
           - surface: αὐτὸ
             sense: autos
-            form: form:acc
+            form: form:n
             readings:
               attic: αὐτὸ
           - surface: ἐθήλαζεν
@@ -1191,7 +1226,7 @@ stories:
               attic: δῐῃτώμην
           - surface: αἱ
             sense: ho
-            form: form:pl
+            form: form:f-pl
             readings:
               attic: αἱ
           - surface: δὲ
@@ -1200,7 +1235,7 @@ stories:
               attic: δὲ
           - surface: γυναῖκες
             sense: gyne
-            form: form:pl
+            form: form:f-pl
             readings:
               attic: γῠναῖκες
           - surface: κάτω

@@ -1102,7 +1102,12 @@
         "answer": "بتشتغل ببيروت",
         "inflected": [
           "بشتغل"
-        ]
+        ],
+        "forms": {
+          "بشتغل": [
+            "form:impf-1sg"
+          ]
+        }
       },
       "expected": {
         "verdict": "WRONG_WORD",
@@ -1121,7 +1126,12 @@
         "answer": "شتغل ببيروت",
         "inflected": [
           "بشتغل"
-        ]
+        ],
+        "forms": {
+          "بشتغل": [
+            "form:impf-1sg"
+          ]
+        }
       },
       "expected": {
         "verdict": "WRONG_WORD",
@@ -1140,7 +1150,12 @@
         "answer": "وبتشتغل ببيروت",
         "inflected": [
           "وبشتغل"
-        ]
+        ],
+        "forms": {
+          "وبشتغل": [
+            "form:impf-1sg"
+          ]
+        }
       },
       "expected": {
         "verdict": "WRONG_WORD",
@@ -1166,6 +1181,28 @@
         "notes": []
       },
       "note": "a noun's first letter is no prefix: the course does not inflect بيروت"
+    },
+    {
+      "id": "grade/apc-arab/prefix-inflected-noun-stays-typo",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بيروت",
+        "answer": "يروت",
+        "inflected": [
+          "بيروت"
+        ],
+        "forms": {
+          "بيروت": [
+            "form:fem"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "a noun's first letter is no prefix, though the noun pins its gender: the prefixes are a verb's forms"
     },
     {
       "id": "grade/apc-arab/agreement-feminine",
@@ -1197,7 +1234,15 @@
         "inflected": [
           "b2ra",
           "be2ra"
-        ]
+        ],
+        "forms": {
+          "b2ra": [
+            "form:impf-1sg"
+          ],
+          "be2ra": [
+            "form:impf-1sg"
+          ]
+        }
       },
       "expected": {
         "verdict": "WRONG_WORD",
@@ -1216,7 +1261,12 @@
         "answer": "bi3mel",
         "inflected": [
           "ba3mel"
-        ]
+        ],
+        "forms": {
+          "ba3mel": [
+            "form:impf-1sg"
+          ]
+        }
       },
       "expected": {
         "verdict": "CORRECT_WITH_TYPO",
