@@ -711,6 +711,32 @@
             }
           }
         },
+        "soundAlike": {
+          "description": "Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.",
+          "type": "object",
+          "required": [
+            "sets",
+            "note"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sets": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "note": {
+              "$ref": "#/$defs/NoteId"
+            }
+          }
+        },
         "equivalences": {
           "description": "Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.",
           "type": "array",

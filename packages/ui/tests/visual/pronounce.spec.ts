@@ -97,3 +97,32 @@ for (const cell of cells()) {
     if (comparesPixels) await expect(player).toHaveScreenshot(`pronounce__${cell.name}__marks.png`);
   });
 }
+
+// A feature card (ADR 0139): a Cantonese word's Jyutping among the same syllables in other tones the
+// course attests, each option in the reading's language, left to right; the word marked, no ruby.
+for (const cell of cells()) {
+  if (cell.writingMode !== "horizontal-tb" || cell.target !== "yue-Hant-HK") continue;
+  test(`pronounce: ${cell.ui} × ${cell.target} × feature`, async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    await page.goto(storyUrl("player-pronunciation--feature", cellGlobals(cell)));
+    await settle(page, "[data-lesson-player]");
+    const player = page.locator("[data-lesson-player]");
+    await expect(page.locator("[data-ui-root]")).toHaveAttribute("dir", cell.uiDir);
+    await expect(page.locator("[data-pronounce-word] rt")).toHaveCount(0);
+    const options = page.locator("[data-options] [data-option] [data-nabu-text]");
+    expect(await options.count()).toBeGreaterThanOrEqual(3);
+    for (const option of await options.all()) {
+      await expect(option).toHaveAttribute("lang", JYUTPING);
+      await expect(option).toHaveAttribute("dir", "ltr");
+    }
+    // The options differ in one tone only: the same letters, tone numbers aside.
+    const written = await options.allTextContents();
+    expect(new Set(written.map((w) => w.replace(/[0-9]/gu, ""))).size).toBe(1);
+    await expectNoClipping(page, player);
+    const axe = await new AxeBuilder({ page }).include("[data-lesson-player]").analyze();
+    expect(axe.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    expect(errors).toEqual([]);
+    if (comparesPixels) await expect(player).toHaveScreenshot(`pronounce__${cell.name}__feature.png`);
+  });
+}

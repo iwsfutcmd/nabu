@@ -73,6 +73,11 @@ export interface CompiledProfile {
     readonly contrasts: readonly CompiledContrast[];
   };
   readonly apostrophe?: Policied;
+  /**
+   * Letters the script writes for one sound (ADR 0142: Persian س ص ث): `alike(a, b)` where two
+   * letters are of one set; a word apart only so is the right sound with the wrong letter.
+   */
+  readonly soundAlike?: { readonly note: string; readonly alike: (a: string, b: string) => boolean; readonly others: (letter: string) => readonly string[] };
 }
 
 export interface CompiledContrast {
@@ -200,6 +205,20 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     homophones = { policy: match.homophones.policy, readings: (c) => readings[c] };
   }
 
+  let soundAlike: CompiledProfile["soundAlike"];
+  if (match.soundAlike !== undefined) {
+    const setsOf = new Map<string, string[]>();
+    for (const set of match.soundAlike.sets) {
+      const letters = set.map((l) => normalize(l));
+      for (const l of letters) setsOf.set(l, [...new Set([...(setsOf.get(l) ?? []), ...letters])]);
+    }
+    soundAlike = {
+      note: match.soundAlike.note,
+      alike: (a, b) => a !== b && (setsOf.get(a)?.includes(b) ?? false),
+      others: (l) => (setsOf.get(l) ?? []).filter((o) => o !== l),
+    };
+  }
+
   let scriptMismatch: CompiledProfile["scriptMismatch"];
   if (match.scriptMismatch !== undefined) {
     const t = table(match.scriptMismatch.table, "charset");
@@ -258,6 +277,7 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     ...(variants && { variants }),
     ...(homophones && { homophones }),
     ...(scriptMismatch && { scriptMismatch }),
+    ...(soundAlike && { soundAlike }),
     ...(typo && { typo }),
     ...(match.apostrophe && { apostrophe: { policy: match.apostrophe.policy, note: match.apostrophe.note } }),
   });

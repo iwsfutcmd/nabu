@@ -619,4 +619,6 @@ A learner told where to look can look there.
    both). lzh gets reading cards in the picked tradition, choice first, then typed (Baxter is plain
    ASCII; Pinyin's tone marks come from the character bar). (ADR 0138.)
 6. **Next: the reading side (feature cards, minimal ruby, homograph marks), then the writing side
-   (spelling choice from sound-alike letters, "right sound, wrong letter").** Both now.
+   (spelling choice from sound-alike letters, "right sound, wrong letter").** Both now. (ADR 0139 feature
+   cards, 0140 homograph marks, 0141 minimal ruby; 0142 spelling choice and "right sound, wrong
+   letter".)

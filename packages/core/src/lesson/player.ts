@@ -371,7 +371,9 @@ export const retryOf = (ex: Exercise, attempt: number): Exercise => {
       return { ...ex, id, ...reshuffled(rng, ex.options, ex.answer) };
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "letter-read":
     case "word-read":
     case "reading-disambiguation":

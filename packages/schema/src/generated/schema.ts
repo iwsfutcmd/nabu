@@ -2473,7 +2473,9 @@ export interface ExerciseRef {
     | "translate-type.l1-l2"
     | "complete-translation"
     | "gap-fill"
+    | "spelling-choice"
     | "char-read"
+    | "reading-feature"
     | "reading-disambiguation"
     | "vocalize"
     | "vocalize-build"
@@ -3301,6 +3303,16 @@ export interface MatchPolicy {
   readonly apostrophe?: {
     readonly policy: Policy;
     readonly note?: NoteId;
+  };
+  /**
+   * Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.
+   */
+  readonly soundAlike?: {
+    /**
+     * @minItems 1
+     */
+    readonly sets: readonly string[][];
+    readonly note: NoteId;
   };
   /**
    * Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.

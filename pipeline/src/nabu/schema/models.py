@@ -1938,6 +1938,12 @@ class Case(BaseModel):
     locale: LangTag
 
 
+type SetItem = Annotated[str, Field(min_length=1)]
+
+
+type Set = Annotated[list[SetItem], Field(min_length=2)]
+
+
 type NoteId = Annotated[
     str,
     Field(
@@ -3014,7 +3020,9 @@ class ExerciseRef(BaseModel):
         "translate-type.l1-l2",
         "complete-translation",
         "gap-fill",
+        "spelling-choice",
         "char-read",
+        "reading-feature",
         "reading-disambiguation",
         "vocalize",
         "vocalize-build",
@@ -3454,6 +3462,19 @@ class Apostrophe(BaseModel):
     note: NoteId | None = None
 
 
+class SoundAlike(BaseModel):
+    """
+    Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    sets: Annotated[list[Set], Field(min_length=1)]
+    note: NoteId
+
+
 class MatchPolicy(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -3467,6 +3488,12 @@ class MatchPolicy(BaseModel):
     scriptMismatch: ScriptMismatch | None = None
     homophones: Homophones | None = None
     apostrophe: Apostrophe | None = None
+    soundAlike: Annotated[
+        SoundAlike | None,
+        Field(
+            description="Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options."
+        ),
+    ] = None
     equivalences: Annotated[
         list[Equivalence] | None,
         Field(

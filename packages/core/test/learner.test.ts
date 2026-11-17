@@ -42,7 +42,7 @@ const faBundle = manifestOf("fa").id;
 describe("credit assignment (§8.5)", () => {
   const grader = createGrader(fa);
   it("a gap-fill credits the blank's KCs and gives the rest", () => {
-    const ex = sampleExercise(fa, "gap-fill", 7) as Extract<Exercise, { template: "gap-fill" }>;
+    const ex = sampleExercise(fa, "gap-fill", 7) as Extract<Exercise, { template: "gap-fill" | "spelling-choice" }>;
     const credit = creditOf(ex, gradeExercise(ex, { tag: "choice", index: ex.answer }, grader), fa.profiles);
     expect(credit.filter((c) => c.status === "right").length).toBeGreaterThan(0);
     expect(credit.some((c) => c.status === "given")).toBe(true);
@@ -174,7 +174,9 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "select-image":
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":

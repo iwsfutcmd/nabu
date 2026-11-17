@@ -59,3 +59,14 @@
   font-style: italic;
   color: var(--nabu-color-muted);
 }
+
+/* The same spelling's other readings (ADR 0140), under the tapped word's meaning. */
+.glossAlso {
+  margin-block-start: var(--nabu-space-2);
+  padding-block-start: var(--nabu-space-2);
+  border-block-start: 1px dashed var(--nabu-color-border);
+}
+
+.glossAlso .glossNote {
+  margin: 0;
+}

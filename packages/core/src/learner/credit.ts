@@ -40,7 +40,7 @@ export const creditedKcs = (ex: Exercise): readonly KcId[] => askedKcs(ex) ?? ex
 
 /** The reading tradition a reading card names (ADR 0138): its read-script card is that tradition's. */
 export const readingOf = (ex: Exercise): SchemeId | undefined =>
-  ex.template === "char-read" || ex.template === "reading-disambiguation" || ex.template === "transcribe" ? ex.tradition : undefined;
+  ex.template === "char-read" || ex.template === "reading-feature" || ex.template === "reading-disambiguation" || ex.template === "transcribe" ? ex.tradition : undefined;
 
 /** The KCs an exercise asks the learner to produce, pick or pronounce; the rest of its KCs were given. */
 export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
@@ -55,8 +55,13 @@ export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
     if (token === undefined) return undefined;
     return ex.asks === undefined ? kcsOfToken(token) : askedOfToken(token, ex.asks);
   }
+  // A spelling choice (ADR 0142) asks how one word is written: the word the gap's right option is.
+  if (ex.template === "spelling-choice") {
+    const token = firstToken(ex.options[ex.answer]);
+    return token === undefined ? undefined : kcsOfToken(token);
+  }
   // A pronunciation card in context (ADR 0095, 0098) asks about one word; the sentence around it is given.
-  if (ex.template === "vocalize" || ex.template === "vocalize-build" || ex.template === "transcribe" || (ex.template === "char-read" && ex.word !== undefined)) {
+  if (ex.template === "vocalize" || ex.template === "vocalize-build" || ex.template === "transcribe" || ((ex.template === "char-read" || ex.template === "reading-feature") && ex.word !== undefined)) {
     const token = ex.word === undefined ? undefined : ex.prompt.tokens[ex.word];
     return token === undefined ? undefined : kcsOfToken(token);
   }

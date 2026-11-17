@@ -97,6 +97,27 @@ const OP_INSERT = 1;
 const OP_DELETE = 2;
 const OP_SUB = 3;
 
+/**
+ * Whether two words differ only in letters the script writes for one sound (ADR 0142), at least one
+ * of them: compared as the profile's letters, case folded and marks stripped.
+ */
+const soundAlikeOnly = (profile: CompiledProfile, expected: string, actual: string): boolean => {
+  const sets = profile.soundAlike;
+  if (sets === undefined) return false;
+  const plain = (t: string): string => (profile.marks?.strip(profile.fold(t)) ?? profile.fold(t)).normalize("NFC");
+  const e = profile.letters(plain(expected));
+  const a = profile.letters(plain(actual));
+  if (e.length !== a.length) return false;
+  let apart = 0;
+  for (const [i, letter] of e.entries()) {
+    const other = a[i] as string;
+    if (letter === other) continue;
+    if (!sets.alike(letter, other)) return false;
+    apart += 1;
+  }
+  return apart > 0;
+};
+
 /** Closest path: minimal-cost alignment of the answer's units against any lattice path. */
 const align = (set: CompiledAcceptSet, units: readonly string[]) => {
   const { nodes } = set.lattice;
@@ -247,6 +268,14 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
   const alignment: AlignOp[] = [];
   for (const op of ops) {
     raised = undefined;
+    // The right sound with the wrong letter (ADR 0142: سد for صد): never a typo, and another word of
+    // the course where it spells one.
+    if ((op.op === "substitute" || op.op === "match") && profile.soundAlike !== undefined && soundAlikeOnly(profile, op.expected, op.actual)) {
+      raise(options.lexicon?.has(lexiconKey(profile, op.actual)) === true ? "WRONG_WORD" : "WRONG");
+      note(profile.soundAlike.note);
+      alignment.push(raised === undefined ? op : { ...op, note: raised });
+      continue;
+    }
     if (op.op !== "match") {
       const c = op.op === "substitute" ? compare(op.expected, op.actual) : undefined;
       const actual = op.op === "substitute" ? op.actual : undefined;

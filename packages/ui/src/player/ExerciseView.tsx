@@ -38,7 +38,9 @@ export const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
   "translate-type.l1-l2": "exercise.instruction.write-in",
   "complete-translation": "player.instruction.complete-translation",
   "gap-fill": "player.instruction.gap-fill",
+  "spelling-choice": "player.instruction.spelling-choice",
   "char-read": "player.instruction.char-read-word",
+  "reading-feature": "player.instruction.reading-feature",
   "reading-disambiguation": "player.instruction.reading-disambiguation",
   vocalize: "player.instruction.vocalize-choice",
   "vocalize-build": "player.instruction.vocalize-build",
@@ -70,6 +72,7 @@ export const instructionOf = (ex: Exercise): MessageId => {
   // A reading card of an orthography read in several traditions names the one it asks (ADR 0138).
   if (traditionOf(ex) !== undefined) {
     if (ex.template === "char-read") return "player.instruction.char-read-word.tradition";
+    if (ex.template === "reading-feature") return "player.instruction.reading-feature.tradition";
     if (ex.template === "reading-disambiguation") return "player.instruction.reading-disambiguation.tradition";
     if (ex.template === "transcribe") return "player.instruction.transcribe-word.tradition";
   }
@@ -78,7 +81,7 @@ export const instructionOf = (ex: Exercise): MessageId => {
 
 /** The reading tradition a reading card asks (ADR 0138), where its orthography is read in several. */
 export const traditionOf = (ex: Exercise): SchemeId | undefined =>
-  ex.template === "char-read" || ex.template === "reading-disambiguation" || ex.template === "transcribe" ? ex.tradition : undefined;
+  ex.template === "char-read" || ex.template === "reading-feature" || ex.template === "reading-disambiguation" || ex.template === "transcribe" ? ex.tradition : undefined;
 
 /** A card's instruction, formatted: `language` is the course's name; a tradition's name comes from its data. */
 export const formatInstruction = (t: Translator, ex: Exercise, language: string): string => {
@@ -105,8 +108,10 @@ export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
     case "complete-translation":
       return <CompleteTranslationView {...props} ex={ex} />;
     case "gap-fill":
+    case "spelling-choice":
       return <GapFillView {...props} ex={ex} />;
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "letter-read":
     case "word-read":

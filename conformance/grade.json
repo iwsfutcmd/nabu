@@ -3647,6 +3647,88 @@
         "notes": []
       },
       "note": "No typo leeway: a letter off is another reading."
+    },
+    {
+      "id": "grade/fa/sound-alike",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "صد",
+        "answer": "سد"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "sound-alike"
+        ]
+      },
+      "note": "س for ص: the right sound, the wrong letter (ADR 0142). Never a typo."
+    },
+    {
+      "id": "grade/fa/sound-alike-another-word",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "صد",
+        "answer": "سد",
+        "lexicon": [
+          "صد",
+          "سد"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ]
+      },
+      "note": "سد 'dam' for صد 'hundred': another word of the course."
+    },
+    {
+      "id": "grade/fa/sound-alike-long-word",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "صندلی",
+        "answer": "سندلی"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "sound-alike"
+        ]
+      },
+      "note": "A word long enough for a typo: a sound-alike letter is still no typo."
+    },
+    {
+      "id": "grade/fa/sound-alike-two-words",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "حال شما چطور است",
+        "answer": "هال شما چتور است"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "sound-alike"
+        ]
+      },
+      "note": "ه for ح and ت for ط in one sentence."
+    },
+    {
+      "id": "grade/fa/not-sound-alike",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب",
+        "answer": "کتب"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "A letter left out is no sound-alike letter."
     }
   ]
 }

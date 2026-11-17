@@ -41,10 +41,10 @@ import { Button, Link } from "react-aria-components";
 import type { MessageId } from "@nabu/i18n";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, SettingsIcon } from "../icons.tsx";
-import { FadeReadings, WordStatusProvider } from "../marks.tsx";
+import { FadeReadings, HomographsProvider, WordStatusProvider } from "../marks.tsx";
 import type { DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
-import { GlossPanel, useGlosses, wordOf, type WordTap } from "./Gloss.tsx";
+import { GlossPanel, useGlosses, useOtherReadings, wordOf, type WordTap } from "./Gloss.tsx";
 import { lookupIsHint, withHint } from "./hints.ts";
 import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.tsx";
 import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
@@ -207,10 +207,14 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   // Sound, the reading layer, vowel marks and vertical text: the learner's choices for the course,
   // else the profile's (P6, P12; vertical text in word banks and prompts).
   const toggles = useToggles(props.profile, "wordbank", props);
+  // Homographs marked in the reading shown, else the first (ADR 0140); words read before keep what
+  // the script leaves unwritten where the learner chose so (ADR 0141).
   return (
-    <FadeReadings on={toggles.fade}>
-      <PlayerView {...props} toggles={toggles} />
-    </FadeReadings>
+    <HomographsProvider course={props.course} scheme={toggles.glossRuby}>
+      <FadeReadings on={toggles.fade} open={toggles.open}>
+        <PlayerView {...props} toggles={toggles} />
+      </FadeReadings>
+    </HomographsProvider>
   );
 };
 
@@ -256,6 +260,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const [tap, setTap] = useState<{ readonly card: string; readonly word: WordTap } | undefined>(undefined);
   const tapped = tap !== undefined && tap.card === shown ? tap.word : undefined;
   const glosses = useGlosses(course, tapped);
+  const also = useOtherReadings(course, tapped, toggles.glossRuby);
   // The words this lesson introduces (P1): the card that first presents one says so.
   const introduces = useMemo(() => new Set<string>(course.units.flatMap((u) => u.nodes).find((n) => n.id === lessonId)?.introduces ?? []), [course, lessonId]);
   const kinds = useMemo(() => new Map(allKcs(course).map((k) => [k.id as string, k.kind])), [course]);
@@ -419,7 +424,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       />
 
       {/* What a tapped word means (P1): quiet until a word is tapped. */}
-      <GlossPanel open={tapped !== undefined} glosses={glosses} word={wordOf(tapped)} ruby={toggles.glossRuby} marks={marks} quiet />
+      <GlossPanel open={tapped !== undefined} glosses={glosses} word={wordOf(tapped)} ruby={toggles.glossRuby} marks={marks} also={also} quiet />
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
         {/* The solution shows its marks unless the learner hid them (a vocalize card's always: they are its answer). */}

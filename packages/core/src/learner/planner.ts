@@ -472,7 +472,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     if (RECOGNITION.has(c.ex.template)) return true;
     // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
-    const gated = PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
+    const gated = PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" || c.ex.template === "reading-feature" || c.ex.template === "spelling-choice" ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
     // A reading typed as text (Schluessel, ADR 0131), or in one of several traditions (ADR 0138), is
     // asked only once the word was read right by choice: its reading shown, as the fold witnesses it.
     const typedAfterChoice = c.ex.template === "transcribe" && (typedByProfile(c.ex.scheme) || c.ex.tradition !== undefined);

@@ -20,12 +20,12 @@ import { useEffect, useId, useMemo, useRef, useState, type JSX, type ReactNode }
 import { Button } from "react-aria-components";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon } from "../icons.tsx";
-import { FadeReadings, WordStatusProvider, type Marks } from "../marks.tsx";
+import { FadeReadings, HomographsProvider, WordStatusProvider, type Marks } from "../marks.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import type { DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, formatInstruction } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
-import { GlossPanel, useGlosses, wordOf } from "../player/Gloss.tsx";
+import { GlossPanel, useGlosses, useOtherReadings, wordOf } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
 import { effectiveWritingMode, focusInReach, type Shortcuts, type WritingMode } from "../player/shared.ts";
@@ -162,10 +162,14 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   // Sound, the reading layer, vowel marks and vertical reading: the learner's choices for the course,
   // else the profile's (P6, P12; vertical text in the story's lines).
   const toggles = useToggles(props.profile, "reading", props);
+  // Homographs marked in the reading shown, else the first (ADR 0140); words read before keep what
+  // the script leaves unwritten where the learner chose so (ADR 0141).
   return (
-    <FadeReadings on={toggles.fade}>
-      <ReaderView {...props} toggles={toggles} />
-    </FadeReadings>
+    <HomographsProvider course={props.course} scheme={toggles.glossRuby}>
+      <FadeReadings on={toggles.fade} open={toggles.open}>
+        <ReaderView {...props} toggles={toggles} />
+      </FadeReadings>
+    </HomographsProvider>
   );
 };
 
@@ -282,7 +286,8 @@ const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyPro
     ));
   };
 
-  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} word={wordOf(tapped)} ruby={toggles.glossRuby} marks={marks} />;
+  const also = useOtherReadings(course, tapped, toggles.glossRuby);
+  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} word={wordOf(tapped)} ruby={toggles.glossRuby} marks={marks} also={also} />;
 
   // Readings, vowel marks, vertical reading and sound: in the header, taking no room above the story (P12).
   const headerTools = <HeaderToggles profile={profile} toggles={toggles} />;

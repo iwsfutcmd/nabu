@@ -8,7 +8,7 @@
  * Chaghatay) may show over every word or only over the words whose reading is still new; one such
  * layer is then a choice of three (All words, New words, Off), as vowel marks are.
  */
-import { readingScheme, readingTag } from "@nabu/core";
+import { hasOpenLetters, readingScheme, readingTag } from "@nabu/core";
 import { schemeName as nameOfScheme } from "@nabu/i18n";
 import type { AnnotationLayer, OrthographyProfile, SchemeId, TaggedText } from "@nabu/schema";
 import { useState, type JSX } from "react";
@@ -31,8 +31,11 @@ export const readingTagIn = (profile: OrthographyProfile | undefined, scheme: st
 export const rubyLayersOf = (profile: OrthographyProfile | undefined): readonly (AnnotationLayer & { readonly scheme: SchemeId })[] =>
   (profile?.annotations ?? []).filter((a): a is AnnotationLayer & { readonly scheme: SchemeId } => a.kind === "reading" && a.render === "ruby" && a.scheme !== undefined);
 
-/** Readings over every word, or only over the words whose reading the learner has yet to show (ADR 0131). */
-export type ReadingWords = "all" | "new";
+/**
+ * Readings over every word, or only over the words whose reading the learner has yet to show (ADR
+ * 0131), or those and, over the words read before, only what the script leaves unwritten (ADR 0141).
+ */
+export type ReadingWords = "all" | "new" | "open";
 
 /** Whether a reading layer may show over new words only: its reading is a skill the fold witnesses (ADR 0131). */
 export const fades = (layer: AnnotationLayer | undefined): boolean => layer?.fade === "by-facet";
@@ -85,10 +88,14 @@ export interface WordsChoice {
   readonly choose: (words: ReadingWords) => void;
 }
 
-const WORDS: readonly (readonly [ReadingWords, "player.readings.all" | "player.readings.new"])[] = [
+const WORDS: readonly (readonly [ReadingWords, "player.readings.all" | "player.readings.new" | "player.readings.open"])[] = [
   ["all", "player.readings.all"],
   ["new", "player.readings.new"],
+  ["open", "player.readings.open"],
 ];
+
+/** The word choices a layer offers: "open" only where its scheme says what the script leaves unwritten (ADR 0141). */
+const wordsFor = (scheme: SchemeId | undefined): typeof WORDS => WORDS.filter(([value]) => value !== "open" || (scheme !== undefined && hasOpenLetters(scheme)));
 
 /** The name of a reading scheme in the UI language, from its data (ADR 0109): Pinyin, Jyutping, Middle Chinese (Baxter). */
 export const schemeName = (t: ReturnType<typeof useTranslator>, scheme: SchemeId): string => nameOfScheme(t, readingScheme(scheme)?.names) ?? scheme;
@@ -119,13 +126,13 @@ export const ReadingsControl = ({ readings, words }: { readonly readings: Readin
           onSelectionChange={(keys: Set<Key>) => {
             const [key] = [...keys];
             if (key === OFF) choose(false);
-            else if (key === "all" || key === "new") {
+            else if (key === "all" || key === "new" || key === "open") {
               words.choose(key);
               choose(only.scheme);
             }
           }}
         >
-          {WORDS.map(([value, message]) => (
+          {wordsFor(only.scheme).map(([value, message]) => (
             <ToggleButton key={value} id={value} className={styles.segment} data-reading={value}>
               {t.format(message)}
             </ToggleButton>
@@ -174,13 +181,13 @@ export const ReadingsControl = ({ readings, words }: { readonly readings: Readin
           </ToggleButton>
         ))}
       </ToggleButtonGroup>
-      {words !== undefined && fades(layers.find((l) => l.scheme === shown)) && <WordsControl words={words} />}
+      {words !== undefined && fades(layers.find((l) => l.scheme === shown)) && <WordsControl words={words} scheme={shown === false ? undefined : shown} />}
     </div>
   );
 };
 
 /** Over which words the layer chosen among several shows (ADR 0131): All words or New words. */
-const WordsControl = ({ words }: { readonly words: WordsChoice }): JSX.Element => {
+const WordsControl = ({ words, scheme }: { readonly words: WordsChoice; readonly scheme: SchemeId | undefined }): JSX.Element => {
   const t = useTranslator();
   const label = t.format("player.readings.words");
   return (
@@ -192,11 +199,11 @@ const WordsControl = ({ words }: { readonly words: WordsChoice }): JSX.Element =
       selectedKeys={[words.shown]}
       onSelectionChange={(keys: Set<Key>) => {
         const [key] = [...keys];
-        if (key === "all" || key === "new") words.choose(key);
+        if (key === "all" || key === "new" || key === "open") words.choose(key);
       }}
       data-reading-words={words.shown}
     >
-      {WORDS.map(([value, message]) => (
+      {wordsFor(scheme).map(([value, message]) => (
         <ToggleButton key={value} id={value} className={styles.segment} data-reading-words-choice={value}>
           {t.format(message)}
         </ToggleButton>

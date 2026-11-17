@@ -202,7 +202,9 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     case "select-image":
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
@@ -290,7 +292,9 @@ export const canMiss = (ex: Exercise): boolean =>
   ex.template === "choose-translation" ||
   ex.template === "select-image" ||
   ex.template === "gap-fill" ||
+  ex.template === "spelling-choice" ||
   ex.template === "char-read" ||
+  ex.template === "reading-feature" ||
   ex.template === "reading-disambiguation" ||
   ex.template === "listen-select" ||
   ex.template === "minimal-pair";

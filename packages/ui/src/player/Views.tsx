@@ -422,10 +422,10 @@ export const CharReadView = (
 ): JSX.Element => {
   const { ex } = props;
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
-  const inSentence = ex.template === "char-read" && ex.word !== undefined;
+  const inSentence = (ex.template === "char-read" || ex.template === "reading-feature") && ex.word !== undefined;
   return (
     <div className={styles.body}>
-      {ex.template === "char-read" && ex.word !== undefined ? (
+      {(ex.template === "char-read" || ex.template === "reading-feature") && ex.word !== undefined ? (
         // A word in its sentence (ADR 0098): the sentence decides the reading.
         <>
           <WordInSentence
@@ -548,6 +548,12 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
       >
         <T as="p" text={ex.hint} />
         <PersonsNote persons={ex.persons} prompt={ex.hint} />
+        {/* A spelling choice gives the word's sound (ADR 0142): which of its spellings is the word's. */}
+        {ex.reading !== undefined && (
+          <p data-spelling-reading="">
+            <T text={ex.reading} />
+          </p>
+        )}
       </div>
       <AnswerAudio props={props} />
       <GapSentence
@@ -1316,7 +1322,7 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
   const label =
     ex.tradition !== undefined
       ? t.format("player.transcribe.label.tradition", { scheme: schemeName(t, ex.tradition) })
-      : t.format(t.has(scheme) ? (scheme as MessageId) : "player.transcribe.label");
+      : t.format(t.has(scheme) ? scheme : "player.transcribe.label");
   return (
     <div className={styles.body}>
       <WordInSentence

@@ -193,6 +193,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `readingsShown`: never in a tapped word's gloss or the word list, nor on a word tapped (`pressed`) or marked (`highlight`).
   Pass `readingsShown` wherever `known` goes. A gloss always shows a reading, readings off or not (`glossRuby`); a word
   glossed by its parts heads its panel with its own reading.
+- Writing side (ADR 0142): a profile's `soundAlike` sets (fa) make a word apart only by them the right sound with the
+  wrong letter: never a typo, WRONG (`sound-alike`) or WRONG_WORD; `spelling-choice` (write-script) offers the word among
+  its sound-alike spellings (yue: homophone characters, the Jyutping given). Name a colloquial spelling in the variants
+  table before a spelling choice can offer it as wrong.
+- Reading side (ADR 0139–0141): a feature card (`reading-feature`) asks one place a script leaves open (`readingFeatures`:
+  a scheme's `variants` letter or an attested tone), options differing there alone; homographs (`homographsOf`) are marked
+  in lessons and stories (`HomographsProvider`) and a tap lists the other readings; the readings choice Unwritten (`open`)
+  keeps only `openLetters` over words read before. All from scheme data: never a list of letters or tones in code.
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 

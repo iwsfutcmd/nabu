@@ -1538,6 +1538,10 @@
       "message": "Check that you're writing in the right script.",
       "description": "Generic feedback note: the answer is written in a different script from the course."
     },
+    "feedback.note.sound-alike": {
+      "message": "The right sound, the wrong letter: this word is spelled with another of the letters that sound alike.",
+      "description": "Feedback note (ADR 0142): the answer spells a word with a letter that sounds like the right one but is not the one the word is written with (Persian سد for صد: س, ص and ث are all s). The solution shows the right spelling."
+    },
     "feedback.note.spacing": {
       "message": "Watch the half-space (ZWNJ) inside this word.",
       "description": "Feedback note referenced by orthography profiles (match.zwnj.note = spacing) when the learner typed a space or nothing instead of a zero-width non-joiner."
@@ -2186,6 +2190,14 @@
       "message": "How is the highlighted character read here in {$scheme}?",
       "description": "Instruction: choose the reading a character with several readings has in this word, in a course read in several reading traditions (ADR 0138). $scheme is the tradition's name, from its data."
     },
+    "player.instruction.reading-feature": {
+      "message": "How is the marked word read? The choices differ in one place only.",
+      "description": "Instruction above a feature card (ADR 0139): a sentence without readings, one word marked; its reading is among the same reading changed in one place the script leaves open (a vowel, a tone), and the learner chooses it."
+    },
+    "player.instruction.reading-feature.tradition": {
+      "message": "How is the marked word read in {$scheme}? The choices differ in one place only.",
+      "description": "Instruction above a feature card (ADR 0139) in a course read in several reading traditions (ADR 0138). $scheme is the tradition's name, from its data (Pinyin, Middle Chinese (Baxter))."
+    },
     "player.instruction.select-image": {
       "message": "Select the right picture",
       "description": "Instruction: pick the picture (and word) that matches the meaning shown."
@@ -2197,6 +2209,10 @@
     "player.instruction.speak-scored": {
       "message": "Say this sentence",
       "description": "Instruction: speak the sentence shown; the app listens and gives feedback."
+    },
+    "player.instruction.spelling-choice": {
+      "message": "Which spelling fits the gap?",
+      "description": "Instruction above a spelling choice (ADR 0142): a sentence with one word left out, what it means (and, in Cantonese, the word's Jyutping); the options are the word and the word spelled with a letter or character that sounds alike. The learner chooses how the word is written."
     },
     "player.instruction.story-arrange": {
       "message": "Tap the words to make what they say",
@@ -2489,6 +2505,10 @@
     "player.readings.off": {
       "message": "Off",
       "description": "Choice in the readings control: show no pronunciation guide."
+    },
+    "player.readings.open": {
+      "message": "Unwritten",
+      "description": "A choice of where a reading layer shows (ADR 0141), beside \"All words\" and \"New words\": over new words the whole reading; over the words read before, only what the script leaves unwritten (Chaghatay's vowels, Cantonese tones), the rest as dots. Keep it short: it is a segment of a segmented control."
     },
     "player.readings.words": {
       "message": "Show on",
@@ -3077,6 +3097,10 @@
     "story.finished.title": {
       "message": "Story complete!",
       "description": "Heading when the learner reaches the end of a story."
+    },
+    "story.gloss.also": {
+      "message": "Also read",
+      "description": "In a tapped word's gloss (ADR 0140): heads the other readings the course gives the same spelling, each with what it means (Chaghatay اوزوم: üzüm \"grape\", also read özüm \"myself\")."
     },
     "story.gloss.hint": {
       "message": "Tap a word to see what it means.",

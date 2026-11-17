@@ -16,7 +16,9 @@ export type TemplateId =
   | "translate-type.l1-l2"
   | "complete-translation"
   | "gap-fill"
+  | "spelling-choice"
   | "char-read"
+  | "reading-feature"
   | "reading-disambiguation"
   | "vocalize"
   | "vocalize-build"
@@ -136,8 +138,13 @@ export interface CompleteTranslation extends Common {
  * option in the answer's form and part of speech) or which form (the answer's own word in other
  * forms the course writes).
  */
+/**
+ * A sentence with a gap: choose the word that fills it. A spelling choice (`spelling-choice`, ADR
+ * 0142) asks the same of one word's spelling: its options are the word and the word with a letter
+ * (or character) traded for one that sounds alike, the sound given (`reading`) where a scheme writes it.
+ */
 export interface GapFill extends Common {
-  readonly template: "gap-fill";
+  readonly template: "gap-fill" | "spelling-choice";
   readonly hint: TaggedText;
   readonly before: TaggedText;
   readonly after: TaggedText;
@@ -153,14 +160,17 @@ export interface GapFill extends Common {
    * which the hint alone cannot choose between.
    */
   readonly persons?: Persons | undefined;
+  /** A spelling choice's word as read (its Jyutping), where the course's first reading scheme writes it. */
+  readonly reading?: TaggedText | undefined;
 }
 
 /**
  * A word without its reading; choose the reading (Jyutping). On a script track (ADR 0088): a letter
- * or a word, and its Latin spelling to choose.
+ * or a word, and its Latin spelling to choose. A feature card (`reading-feature`, ADR 0139) asks the
+ * same in one place only: its options differ there alone, in every way the script leaves open.
  */
 export interface CharRead extends Common {
-  readonly template: "char-read" | "letter-read" | "word-read";
+  readonly template: "char-read" | "reading-feature" | "letter-read" | "word-read";
   /** A char-read card's sentence without ruby (ADR 0098); a script track's letter or word. */
   readonly prompt: TaggedText;
   /** char-read: the word asked about, its token in the prompt, and what the sentence means. */

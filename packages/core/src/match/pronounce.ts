@@ -233,6 +233,79 @@ export const letterVariants = (scheme: string, reading: string): readonly string
   return out;
 };
 
+/**
+ * The places of a reading the script leaves open in two or more ways (ADR 0139), each with the
+ * reading changed there in every way the scheme's data allows: a letter traded for each other
+ * letter of its `variants` set (üzüm: özüm, uzüm, ozüm, ūzüm), or one syllable in each other tone
+ * the course's readings use (`attested`: ngo5: ngo1, ngo4). A capital is traded for a capital. In
+ * a stable order, places first to last: the caller picks.
+ */
+export const readingFeatures = (scheme: string, reading: string, attested: ReadonlySet<string>): readonly (readonly string[])[] => {
+  const out: string[][] = [];
+  const data = readingScheme(scheme);
+  if (data?.variants !== undefined) {
+    const locale = data.lang ?? data.language;
+    const setOf = new Map<string, readonly string[]>();
+    for (const set of data.variants) {
+      const letters = set.map((l) => l.normalize("NFC"));
+      for (const l of letters) setOf.set(l, [...new Set([...(setOf.get(l) ?? []), ...letters])]);
+    }
+    const letters = graphemes(reading.normalize("NFC"), locale);
+    letters.forEach((g, i) => {
+      const lower = g.toLocaleLowerCase(locale);
+      const capital = lower !== g;
+      const others = (setOf.get(lower) ?? []).filter((o) => o !== lower);
+      if (others.length > 0) out.push(others.map((o) => letters.map((x, k) => (k !== i ? x : capital ? o.toLocaleUpperCase(locale) : o)).join("")));
+    });
+  }
+  const shape = shapeOf(scheme);
+  const syllables = shape === undefined ? undefined : syllablesOf(scheme, reading);
+  if (shape !== undefined && shape.marks !== undefined && syllables !== undefined) {
+    const own = reading.normalize("NFC").split(" ");
+    const parts = own.length === syllables.length ? own : syllables;
+    for (const [i, syllable] of parts.entries()) {
+      const base = toneless(shape, syllable.toLocaleLowerCase(shape.locale));
+      const others = [...attested].filter((a) => a !== syllable && toneless(shape, a.toLocaleLowerCase(shape.locale)) === base).sort();
+      if (others.length > 0) out.push(others.map((o) => parts.map((x, k) => (k === i ? o : x)).join(" ")));
+    }
+  }
+  return out;
+};
+
+/** Where a reading's letters the script leaves open are left out: a run of others stands as one dot. */
+const CLOSED = "\u00B7";
+
+/**
+ * Whether a scheme's data says which of its letters the script leaves open (ADR 0141): letters it
+ * writes alike (`variants`) or tone marks (`tones`).
+ */
+export const hasOpenLetters = (scheme: string): boolean => {
+  const data = readingScheme(scheme);
+  return data?.variants !== undefined || data?.tones?.marks !== undefined;
+};
+
+/**
+ * A reading as minimal ruby (ADR 0141): only what the script leaves open (its `variants` letters,
+ * its tone marks), each run of other letters a middle dot (üzüm is ü·ü·, ngo5 is ·5, shàn is ·à·).
+ * Empty where nothing in it is open. Spaces between syllables are kept.
+ */
+export const openLetters = (scheme: string, reading: string): string => {
+  const data = readingScheme(scheme);
+  const locale = data?.lang ?? data?.language;
+  const open = new Set((data?.variants ?? []).flat().map((l) => l.normalize("NFC")));
+  const tone = data?.tones?.marks === undefined ? undefined : new RegExp(`^(?:${data.tones.marks})+$`, "u");
+  let out = "";
+  let kept = false;
+  for (const g of graphemes(reading.normalize("NFC"), locale)) {
+    if (/^\s+$/u.test(g)) out += g;
+    else if (open.has(g.toLocaleLowerCase(locale)) || tone?.test(g) === true) {
+      out += g;
+      kept = true;
+    } else if (!out.endsWith(CLOSED)) out += CLOSED;
+  }
+  return kept ? out : "";
+};
+
 /** An ideographic word's romanized reading, typed, against the pinned one. */
 export const gradeReading = (scheme: string, expected: string, answer: string): PronunciationGrade => {
   const want = syllablesOf(scheme, expected);

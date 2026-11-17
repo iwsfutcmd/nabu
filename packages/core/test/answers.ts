@@ -8,7 +8,9 @@ export const rightAnswer = (ex: Exercise): Response => {
     case "select-image":
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
@@ -52,7 +54,9 @@ export const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "select-image":
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
