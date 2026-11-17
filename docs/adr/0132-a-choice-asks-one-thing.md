@@ -193,7 +193,35 @@ The project owner decided both open questions on 2026-11-17.
 - **Calibration.** Every simulated course stays within ±5pp of 85% (80.8% to 88.9%); CALIBRATION_WEIGHT
   is unchanged. The planner walks diverge from the drafts' first lessons on, as the learners' histories
   do: yue's walk with scored speech now plans `speak` but no `listen-speak` (fa's has both).
-- **Not modelled.** Spanish nouns and adjectives have no form KCs, so their gender and number are not
-  in the signature: a lesson's word question can offer a noun of another gender or number. Story options
-  were chosen to agree.
+- **Not modelled at first.** Spanish nouns and adjectives had no form KCs, so a lesson's word question
+  could offer a noun of another gender or number; the amendment below closes it.
+
+## Amendment: Spanish gender and number (2026-11-17)
+
+The implementation left Spanish nouns and adjectives without forms: es pinned only verb forms, so a
+word question could offer a noun of another gender or number (*una ___* with *carro* among the
+options), which grammar alone rules out. The owner asked for the gap to be closed.
+
+- **Agreement is the token's form.** Every es noun, adjective, determiner and pronoun that agrees
+  pins its gender and number as `form:` (`form:fem`, `form:pl`, `form:fem-pl`; masculine singular
+  is bare), as es already pins verb forms and apc `form:fem`. The form is the word's agreement in its
+  line, not its spelling: an invariable word takes its noun's (*mi casa*, *una casa grande*), a noun
+  its own gender (*el agua* is feminine), a first or second person the sentence's `persons`
+  (untagged: bare); words that agree with nothing stay bare. No KC carries a gender: a lemma such as
+  *tío* covers *tía*, so gender belongs to the token, for nouns as for adjectives.
+- **How it was drafted.** 2,374 tokens, from their spelling where it shows the form (*la*, *cubanas*,
+  *tías*), else from the noun they agree with in a dependency parse (spaCy's es_core_news_lg, used
+  only as a drafting tool: nothing of it ships), else the sentence's `persons`; nouns' own genders
+  and the 48 words the parse left open were decided by hand. REVIEW: courses/choice-doubts.md.
+- **What it changes.** Word questions offer only words of the answer's gender and number; Spanish
+  now has form questions on agreement (*la* among *el*, *los*, *las*; *cubana* among *cubano*,
+  *cubanos*). Feedback on a word the learner wrote says its form (*esta*: feminine). Seven story
+  questions got new wrong options that agree with their gap.
+- **A phrase KC's words are next to each other.** The rule that keeps a word of a phrase KC (*por* of
+  *por favor*) from being blanked or offered alone now looks at neighbouring words only: a word a line
+  repeats apart (*Este es mi papi, y esta es mi mami*) is a word of its own.
+- **The weak learner's pacing check** (test/simulation.test.ts, ADR 0105) averages its success over
+  three seeds against 79%, above where Continue starts consolidating (78%). One seed's success
+  swings about 1.5 points, and es's three new KCs moved its seed's draw from 81% to just under 80%;
+  the planner stayed calibrated. The owner chose this over retuning the pace.
 

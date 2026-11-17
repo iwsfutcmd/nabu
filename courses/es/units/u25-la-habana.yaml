@@ -48,7 +48,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En La Habana, me quedo en casa de mi tía Marisol.
-      tokens: [{surface: En, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: me, sense: me}, {surface: quedo, sense: quedarse, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: En, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: me, sense: me}, {surface: quedo, sense: quedarse, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: de, sense: de}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
       reverse: |-
         En La Habana [yo] (me quedo|me estoy quedando) en (casa|la casa) de (mi tía|tía) Marisol
         [Yo] (me quedo|me estoy quedando) en (casa|la casa) de (mi tía|tía) Marisol en La Habana
@@ -64,7 +64,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía vive en Centro Habana, en un edificio muy viejo.
-      tokens: [{surface: Mi, sense: mi}, {surface: tía, sense: tío}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Centro, sense: centro}, {surface: Habana, sense: habana}, {surface: en, sense: en}, {surface: un, sense: un}, {surface: edificio, sense: edificio}, {surface: muy, sense: muy}, {surface: viejo, sense: viejo}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Centro, sense: centro}, {surface: Habana, sense: habana}, {surface: en, sense: en}, {surface: un, sense: un}, {surface: edificio, sense: edificio}, {surface: muy, sense: muy}, {surface: viejo, sense: viejo}]
       reverse: Mi tía vive en Centro Habana en un edificio muy (viejo|antiguo)
   translations:
     en: My aunt lives in (Centro Habana|Central Havana), in a very old building.
@@ -73,7 +73,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El edificio donde vive mi tía tiene un balcón grande.
-      tokens: [{surface: El, sense: el}, {surface: edificio, sense: edificio}, {surface: donde, sense: donde}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: tía, sense: tío}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: balcón, sense: balcón}, {surface: grande, sense: grande}]
+      tokens: [{surface: El, sense: el}, {surface: edificio, sense: edificio}, {surface: donde, sense: donde}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: balcón, sense: balcón}, {surface: grande, sense: grande}]
       reverse: El edificio (donde|en que|en el que|en el cual) (vive mi tía|mi tía vive) tiene un balcón grande
   translations:
     en: |-
@@ -84,7 +84,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Al lado hay un solar donde viven muchas familias.
-      tokens: [{surface: Al, sense: al}, {surface: lado, sense: lado}, {surface: hay, sense: hay}, {surface: un, sense: un}, {surface: solar, sense: solar}, {surface: donde, sense: donde}, {surface: viven, sense: vivir, form: 'form:pres-3p'}, {surface: muchas, sense: mucho}, {surface: familias, sense: familia}]
+      tokens: [{surface: Al, sense: al}, {surface: lado, sense: lado}, {surface: hay, sense: hay}, {surface: un, sense: un}, {surface: solar, sense: solar}, {surface: donde, sense: donde}, {surface: viven, sense: vivir, form: 'form:pres-3p'}, {surface: muchas, sense: mucho, form: 'form:fem-pl'}, {surface: familias, sense: familia, form: 'form:fem-pl'}]
       reverse: Al lado hay un solar (donde|en que|en el que|en el cual) (viven muchas familias|muchas familias viven)
   translations:
     en: |-
@@ -95,7 +95,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La gente que vive en el solar es muy amable.
-      tokens: [{surface: La, sense: el}, {surface: gente, sense: gente}, {surface: que, sense: que}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: solar, sense: solar}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: amable, sense: amable}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: gente, sense: gente, form: 'form:fem'}, {surface: que, sense: que}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: solar, sense: solar}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: amable, sense: amable, form: 'form:fem'}]
       reverse: |-
         La gente que vive en el solar es muy amable
         Las personas que viven en el solar son muy amables
@@ -108,7 +108,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Marisol tiende la ropa en la azotea del edificio.
-      tokens: [{surface: Marisol, sense: marisol}, {surface: tiende, sense: tender, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: ropa, sense: ropa}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: azotea, sense: azotea}, {surface: del, sense: del}, {surface: edificio, sense: edificio}]
+      tokens: [{surface: Marisol, sense: marisol}, {surface: tiende, sense: tender, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: ropa, sense: ropa, form: 'form:fem'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: azotea, sense: azotea, form: 'form:fem'}, {surface: del, sense: del}, {surface: edificio, sense: edificio}]
       reverse: Marisol tiende la ropa en la azotea [del edificio]
   translations:
     en: |-
@@ -121,7 +121,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La azotea es el lugar que más me gusta del edificio.
-      tokens: [{surface: La, sense: el}, {surface: azotea, sense: azotea}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: lugar, sense: lugar}, {surface: que, sense: que}, {surface: más, sense: más}, {surface: me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: del, sense: del}, {surface: edificio, sense: edificio}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: azotea, sense: azotea, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: lugar, sense: lugar}, {surface: que, sense: que}, {surface: más, sense: más}, {surface: me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: del, sense: del}, {surface: edificio, sense: edificio}]
       reverse: La azotea es el lugar (que más me gusta|que me gusta más) del edificio
   translations:
     en: |-
@@ -132,7 +132,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La Habana es una ciudad que siempre quise conocer.
-      tokens: [{surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: una, sense: un}, {surface: ciudad, sense: ciudad}, {surface: que, sense: que}, {surface: siempre, sense: siempre}, {surface: quise, sense: querer, form: 'form:pret-1s'}, {surface: conocer, sense: conocer}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: ciudad, sense: ciudad, form: 'form:fem'}, {surface: que, sense: que}, {surface: siempre, sense: siempre}, {surface: quise, sense: querer, form: 'form:pret-1s'}, {surface: conocer, sense: conocer}]
       reverse: La Habana es una ciudad que [yo] siempre (quise|he querido|quería) conocer
   translations:
     en: Havana is a city [that|which] (I always wanted|I've always wanted|I have always wanted) to (see|visit|get to know|know).
@@ -141,7 +141,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por la noche, todo el barrio va al Malecón.
-      tokens: [{surface: Por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: todo, sense: todo}, {surface: el, sense: el}, {surface: barrio, sense: barrio}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: Malecón, sense: malecón}]
+      tokens: [{surface: Por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}, {surface: todo, sense: todo}, {surface: el, sense: el}, {surface: barrio, sense: barrio}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: Malecón, sense: malecón}]
       reverse: |-
         (Por la noche|En la noche|De noche) todo el barrio va al Malecón
         Todo el barrio va al Malecón (por la noche|en la noche|de noche)
@@ -155,7 +155,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La gente se sienta en el Malecón a mirar el mar.
-      tokens: [{surface: La, sense: el}, {surface: gente, sense: gente}, {surface: se, sense: se}, {surface: sienta, sense: sentarse, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}, {surface: a, sense: a}, {surface: mirar, sense: mirar}, {surface: el, sense: el}, {surface: mar, sense: mar}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: gente, sense: gente, form: 'form:fem'}, {surface: se, sense: se}, {surface: sienta, sense: sentarse, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}, {surface: a, sense: a}, {surface: mirar, sense: mirar}, {surface: el, sense: el}, {surface: mar, sense: mar}]
       reverse: La gente se sienta en el Malecón a (mirar|ver) el mar
   translations:
     en: |-
@@ -166,7 +166,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hay señores que pescan en el Malecón toda la noche.
-      tokens: [{surface: Hay, sense: hay}, {surface: señores, sense: señor}, {surface: que, sense: que}, {surface: pescan, sense: pescar, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      tokens: [{surface: Hay, sense: hay}, {surface: señores, sense: señor, form: 'form:pl'}, {surface: que, sense: que}, {surface: pescan, sense: pescar, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}, {surface: toda, sense: todo, form: 'form:fem'}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
       reverse: Hay (señores|hombres) que pescan en el Malecón toda la noche
   translations:
     en: |-
@@ -188,7 +188,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol, a quien yo nunca había conocido, me recibió en el aeropuerto.
-      tokens: [{surface: Tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: a, sense: a}, {surface: quien, sense: quien}, {surface: yo, sense: yo}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: conocido, sense: conocer, form: 'form:part'}, {surface: me, sense: me}, {surface: recibió, sense: recibir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: aeropuerto, sense: aeropuerto}]
+      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: a, sense: a}, {surface: quien, sense: quien}, {surface: yo, sense: yo}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: conocido, sense: conocer, form: 'form:part'}, {surface: me, sense: me}, {surface: recibió, sense: recibir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: aeropuerto, sense: aeropuerto}]
       reverse: (Tía|Mi tía) Marisol a (quien|la que|la cual) [yo] nunca había (conocido|visto) me (recibió|fue a buscar) en el aeropuerto
   translations:
     en: |-
@@ -202,7 +202,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lo que más me gusta de La Habana es el Malecón.
-      tokens: [{surface: Lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: más, sense: más}, {surface: me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}]
+      tokens: [{surface: Lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: más, sense: más}, {surface: me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}]
       reverse: Lo que (más me gusta|me gusta más) de La Habana es el Malecón
   translations:
     en: |-
@@ -224,7 +224,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ayer caminamos por La Habana Vieja con Yunior.
-      tokens: [{surface: Ayer, sense: ayer}, {surface: caminamos, sense: caminar, form: 'form:pret-1p'}, {surface: por, sense: por}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: Vieja, sense: viejo}, {surface: con, sense: con}, {surface: Yunior, sense: yunior}]
+      tokens: [{surface: Ayer, sense: ayer}, {surface: caminamos, sense: caminar, form: 'form:pret-1p'}, {surface: por, sense: por}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: Vieja, sense: viejo, form: 'form:fem'}, {surface: con, sense: con}, {surface: Yunior, sense: yunior}]
       reverse: |-
         Ayer [nosotros] caminamos por La Habana Vieja con Yunior
         Ayer [nosotros] caminamos con Yunior por La Habana Vieja
@@ -237,7 +237,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La plaza que más me gusta es la Plaza de la Catedral.
-      tokens: [{surface: La, sense: el}, {surface: plaza, sense: plaza}, {surface: que, sense: que}, {surface: más, sense: más}, {surface: me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: Plaza, sense: plaza}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Catedral, sense: catedral}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: plaza, sense: plaza, form: 'form:fem'}, {surface: que, sense: que}, {surface: más, sense: más}, {surface: me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: Plaza, sense: plaza, form: 'form:fem'}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Catedral, sense: catedral, form: 'form:fem'}]
       reverse: La plaza (que más me gusta|que me gusta más) es la Plaza de la Catedral
   translations:
     en: |-
@@ -248,7 +248,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La Catedral está en una plaza en la que siempre hay turistas.
-      tokens: [{surface: La, sense: el}, {surface: Catedral, sense: catedral}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: una, sense: un}, {surface: plaza, sense: plaza}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: que, sense: que}, {surface: siempre, sense: siempre}, {surface: hay, sense: hay}, {surface: turistas, sense: turista}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: Catedral, sense: catedral, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: una, sense: un, form: 'form:fem'}, {surface: plaza, sense: plaza, form: 'form:fem'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: que, sense: que}, {surface: siempre, sense: siempre}, {surface: hay, sense: hay}, {surface: turistas, sense: turista, form: 'form:pl'}]
       reverse: La Catedral está en una plaza (en la que|en la cual|donde) siempre hay turistas
   translations:
     en: |-
@@ -259,7 +259,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La Bodeguita del Medio es el lugar al que van todos los turistas.
-      tokens: [{surface: La, sense: el}, {surface: Bodeguita, sense: bodeguita-del-medio}, {surface: del, sense: bodeguita-del-medio}, {surface: Medio, sense: bodeguita-del-medio}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: lugar, sense: lugar}, {surface: al, sense: al}, {surface: que, sense: que}, {surface: van, sense: ir, form: 'form:pres-3p'}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: turistas, sense: turista}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: Bodeguita, sense: bodeguita-del-medio}, {surface: del, sense: bodeguita-del-medio}, {surface: Medio, sense: bodeguita-del-medio}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: lugar, sense: lugar}, {surface: al, sense: al}, {surface: que, sense: que}, {surface: van, sense: ir, form: 'form:pres-3p'}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: los, sense: el, form: 'form:pl'}, {surface: turistas, sense: turista, form: 'form:pl'}]
       reverse: La Bodeguita del Medio es el lugar (al que|al cual|adonde|a donde|donde) van todos los turistas
   translations:
     en: |-
@@ -270,7 +270,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El mojito que tomé en la Bodeguita del Medio estaba muy rico.
-      tokens: [{surface: El, sense: el}, {surface: mojito, sense: mojito}, {surface: que, sense: que}, {surface: tomé, sense: tomar, form: 'form:pret-1s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: Bodeguita, sense: bodeguita-del-medio}, {surface: del, sense: bodeguita-del-medio}, {surface: Medio, sense: bodeguita-del-medio}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: rico, sense: rico}]
+      tokens: [{surface: El, sense: el}, {surface: mojito, sense: mojito}, {surface: que, sense: que}, {surface: tomé, sense: tomar, form: 'form:pret-1s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: Bodeguita, sense: bodeguita-del-medio}, {surface: del, sense: bodeguita-del-medio}, {surface: Medio, sense: bodeguita-del-medio}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: rico, sense: rico}]
       reverse: |-
         El mojito que [me] tomé en la Bodeguita del Medio estaba muy (rico|bueno)
         El mojito que yo tomé en la Bodeguita del Medio estaba muy rico
@@ -281,7 +281,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los turistas con los que hablamos no hablaban español.
-      tokens: [{surface: Los, sense: el}, {surface: turistas, sense: turista}, {surface: con, sense: con}, {surface: los, sense: el}, {surface: que, sense: que}, {surface: hablamos, sense: hablar, form: 'form:pret-1p'}, {surface: 'no', sense: 'no'}, {surface: hablaban, sense: hablar, form: 'form:impf'}, {surface: español, sense: español}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: turistas, sense: turista, form: 'form:pl'}, {surface: con, sense: con}, {surface: los, sense: el, form: 'form:pl'}, {surface: que, sense: que}, {surface: hablamos, sense: hablar, form: 'form:pret-1p'}, {surface: 'no', sense: 'no'}, {surface: hablaban, sense: hablar, form: 'form:impf'}, {surface: español, sense: español}]
       reverse: Los turistas con (los que|los cuales|quienes) hablamos no hablaban español
   translations:
     en: |-
@@ -292,7 +292,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Desde el balcón de mi tía se ve el Capitolio.
-      tokens: [{surface: Desde, sense: desde}, {surface: el, sense: el}, {surface: balcón, sense: balcón}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: tía, sense: tío}, {surface: se, sense: se.impersonal}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: Capitolio, sense: capitolio}]
+      tokens: [{surface: Desde, sense: desde}, {surface: el, sense: el}, {surface: balcón, sense: balcón}, {surface: de, sense: de}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: se, sense: se.impersonal}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: Capitolio, sense: capitolio}]
       reverse: |-
         Desde el balcón de mi tía se (ve|puede ver) el Capitolio
         El Capitolio se (ve|puede ver) desde el balcón de mi tía
@@ -306,7 +306,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El Capitolio es el edificio más lindo que he visto en La Habana.
-      tokens: [{surface: El, sense: el}, {surface: Capitolio, sense: capitolio}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: edificio, sense: edificio}, {surface: más, sense: más}, {surface: lindo, sense: lindo}, {surface: que, sense: que}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: visto, sense: ver, form: 'form:part'}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      tokens: [{surface: El, sense: el}, {surface: Capitolio, sense: capitolio}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: edificio, sense: edificio}, {surface: más, sense: más}, {surface: lindo, sense: lindo}, {surface: que, sense: que}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: visto, sense: ver, form: 'form:part'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       reverse: El Capitolio es el edificio más (lindo|bonito|hermoso) que [yo] (he visto|vi) en La Habana
   translations:
     en: (The Capitol|El Capitolio) is the (most beautiful|prettiest|loveliest|nicest) building [that|which] (I've|I have) (seen|ever seen) in Havana.
@@ -315,7 +315,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por la noche, desde el Malecón se ve la luz del Morro.
-      tokens: [{surface: Por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: desde, sense: desde}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}, {surface: se, sense: se.impersonal}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: luz, sense: luz}, {surface: del, sense: del}, {surface: Morro, sense: morro}]
+      tokens: [{surface: Por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}, {surface: desde, sense: desde}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}, {surface: se, sense: se.impersonal}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: luz, sense: luz, form: 'form:fem'}, {surface: del, sense: del}, {surface: Morro, sense: morro}]
       reverse: |-
         (Por la noche|En la noche|De noche) desde el Malecón se (ve|puede ver) la luz del Morro
         Desde el Malecón se (ve|puede ver) la luz del Morro (por la noche|en la noche|de noche)
@@ -329,7 +329,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Fuimos al Morro, desde el cual se ve toda la bahía.
-      tokens: [{surface: Fuimos, sense: ir, form: 'form:pret-1p'}, {surface: al, sense: al}, {surface: Morro, sense: morro}, {surface: desde, sense: desde}, {surface: el, sense: el}, {surface: cual, sense: cual}, {surface: se, sense: se.impersonal}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: bahía, sense: bahía}]
+      tokens: [{surface: Fuimos, sense: ir, form: 'form:pret-1p'}, {surface: al, sense: al}, {surface: Morro, sense: morro}, {surface: desde, sense: desde}, {surface: el, sense: el}, {surface: cual, sense: cual}, {surface: se, sense: se.impersonal}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: toda, sense: todo, form: 'form:fem'}, {surface: la, sense: el, form: 'form:fem'}, {surface: bahía, sense: bahía, form: 'form:fem'}]
       reverse: '[Nosotros] fuimos al Morro desde (el cual|el que|donde) se (ve|puede ver) toda la bahía'
   translations:
     en: We went to (El Morro|the Morro), from (which|where) (you can see|one can see|you see) (the whole bay|the entire bay|all of the bay|all the bay).
@@ -347,7 +347,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El edificio en el cual vive Marisol tiene cien años.
-      tokens: [{surface: El, sense: el}, {surface: edificio, sense: edificio}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: cual, sense: cual}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: Marisol, sense: marisol}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: cien, sense: cien}, {surface: años, sense: año}]
+      tokens: [{surface: El, sense: el}, {surface: edificio, sense: edificio}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: cual, sense: cual}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: Marisol, sense: marisol}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: cien, sense: cien}, {surface: años, sense: año, form: 'form:pl'}]
       reverse: El edificio (en el cual|en el que|en que|donde) (vive Marisol|Marisol vive) tiene (cien|100) años
   translations:
     en: |-
@@ -358,7 +358,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Un almendrón es una máquina vieja que lleva a mucha gente.
-      tokens: [{surface: Un, sense: un}, {surface: almendrón, sense: almendrón}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: una, sense: un}, {surface: máquina, sense: máquina}, {surface: vieja, sense: viejo}, {surface: que, sense: que}, {surface: lleva, sense: llevar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: mucha, sense: mucho}, {surface: gente, sense: gente}]
+      tokens: [{surface: Un, sense: un}, {surface: almendrón, sense: almendrón}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: máquina, sense: máquina, form: 'form:fem'}, {surface: vieja, sense: viejo, form: 'form:fem'}, {surface: que, sense: que}, {surface: lleva, sense: llevar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: mucha, sense: mucho, form: 'form:fem'}, {surface: gente, sense: gente, form: 'form:fem'}]
       reverse: |-
         Un almendrón es una máquina vieja que lleva a mucha gente
         Un almendrón es un carro viejo que lleva a mucha gente
@@ -371,7 +371,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El botero que nos llevó a La Habana Vieja era amigo de Yunior.
-      tokens: [{surface: El, sense: el}, {surface: botero, sense: botero}, {surface: que, sense: que}, {surface: nos, sense: nos}, {surface: llevó, sense: llevar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: Vieja, sense: viejo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: amigo, sense: amigo}, {surface: de, sense: de}, {surface: Yunior, sense: yunior}]
+      tokens: [{surface: El, sense: el}, {surface: botero, sense: botero}, {surface: que, sense: que}, {surface: nos, sense: nos}, {surface: llevó, sense: llevar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: Vieja, sense: viejo, form: 'form:fem'}, {surface: era, sense: ser, form: 'form:impf'}, {surface: amigo, sense: amigo}, {surface: de, sense: de}, {surface: Yunior, sense: yunior}]
       reverse: El botero que nos llevó a La Habana Vieja era (amigo|un amigo|socio|un socio) de Yunior
   translations:
     en: The (driver|taxi driver|botero) (who|that) (took|drove) us to (Old Havana|La Habana Vieja) was (a friend of Yunior's|Yunior's friend|a friend of Yunior).
@@ -390,7 +390,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El botero me cobró cien pesos hasta el Capitolio.
-      tokens: [{surface: El, sense: el}, {surface: botero, sense: botero}, {surface: me, sense: me}, {surface: cobró, sense: cobrar, form: 'form:pret-3s'}, {surface: cien, sense: cien}, {surface: pesos, sense: peso}, {surface: hasta, sense: hasta}, {surface: el, sense: el}, {surface: Capitolio, sense: capitolio}]
+      tokens: [{surface: El, sense: el}, {surface: botero, sense: botero}, {surface: me, sense: me}, {surface: cobró, sense: cobrar, form: 'form:pret-3s'}, {surface: cien, sense: cien}, {surface: pesos, sense: peso, form: 'form:pl'}, {surface: hasta, sense: hasta}, {surface: el, sense: el}, {surface: Capitolio, sense: capitolio}]
       reverse: El botero me cobró (cien|100) pesos hasta el Capitolio
   translations:
     en: The (driver|taxi driver|botero) charged me (a hundred|one hundred|100) pesos (to|as far as|for the ride to) (the Capitol|El Capitolio).
@@ -399,7 +399,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En La Habana Vieja cogimos un bicitaxi hasta la Plaza de la Catedral.
-      tokens: [{surface: En, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: Vieja, sense: viejo}, {surface: cogimos, sense: coger, form: 'form:pret-1p'}, {surface: un, sense: un}, {surface: bicitaxi, sense: bicitaxi}, {surface: hasta, sense: hasta}, {surface: la, sense: el}, {surface: Plaza, sense: plaza}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Catedral, sense: catedral}]
+      tokens: [{surface: En, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: Vieja, sense: viejo, form: 'form:fem'}, {surface: cogimos, sense: coger, form: 'form:pret-1p'}, {surface: un, sense: un}, {surface: bicitaxi, sense: bicitaxi}, {surface: hasta, sense: hasta}, {surface: la, sense: el, form: 'form:fem'}, {surface: Plaza, sense: plaza, form: 'form:fem'}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Catedral, sense: catedral, form: 'form:fem'}]
       reverse: En La Habana Vieja [nosotros] (cogimos|tomamos) un bicitaxi hasta la Plaza de la Catedral
   translations:
     en: In (Old Havana|La Habana Vieja) we (took|caught|got) a (bicycle taxi|bike taxi|pedicab|bicitaxi) to (Cathedral Square|the Cathedral Square|the Plaza de la Catedral).
@@ -429,7 +429,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Daniel, Yunior! El almendrón que va a La Habana Vieja está en la esquina.
-          tokens: [{surface: Daniel, sense: daniel}, {surface: Yunior, sense: yunior}, {surface: El, sense: el}, {surface: almendrón, sense: almendrón}, {surface: que, sense: que}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: Vieja, sense: viejo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: esquina, sense: esquina}]
+          tokens: [{surface: Daniel, sense: daniel}, {surface: Yunior, sense: yunior}, {surface: El, sense: el}, {surface: almendrón, sense: almendrón}, {surface: que, sense: que}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: Vieja, sense: viejo, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: esquina, sense: esquina, form: 'form:fem'}]
       translations: {en: 'Daniel, Yunior! The almendrón that goes to Old Havana is at the corner.'}
   - line:
       speaker: yunior
@@ -453,7 +453,7 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Lo que cobran todos: cien pesos hasta el Capitolio.'
-          tokens: [{surface: Lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: cobran, sense: cobrar, form: 'form:pres-3p'}, {surface: todos, sense: todo}, {surface: cien, sense: cien}, {surface: pesos, sense: peso}, {surface: hasta, sense: hasta}, {surface: el, sense: el}, {surface: Capitolio, sense: capitolio}]
+          tokens: [{surface: Lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: cobran, sense: cobrar, form: 'form:pres-3p'}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: cien, sense: cien}, {surface: pesos, sense: peso, form: 'form:pl'}, {surface: hasta, sense: hasta}, {surface: el, sense: el}, {surface: Capitolio, sense: capitolio}]
       translations: {en: 'What they all charge: a hundred pesos to the Capitolio.'}
   - line:
       speaker: botero
@@ -474,7 +474,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿De Miami? ¿Y qué es lo que más te gusta de La Habana?
-          tokens: [{surface: De, sense: de}, {surface: Miami, sense: miami}, {surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: más, sense: más}, {surface: te, sense: te}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+          tokens: [{surface: De, sense: de}, {surface: Miami, sense: miami}, {surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: más, sense: más}, {surface: te, sense: te}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       translations: {en: 'From Miami? And what do you like most about Havana?'}
   - line:
       speaker: daniel
@@ -493,21 +493,21 @@ stories:
       forms:
         es-Latn/standard:
           text: Esta máquina era de mi abuelo. Tiene setenta años.
-          tokens: [{surface: Esta, sense: este}, {surface: máquina, sense: máquina}, {surface: era, sense: ser, form: 'form:impf'}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: abuelo, sense: abuelo}, {surface: Tiene, sense: tener, form: 'form:pres-3s'}, {surface: setenta, sense: setenta}, {surface: años, sense: año}]
+          tokens: [{surface: Esta, sense: este, form: 'form:fem'}, {surface: máquina, sense: máquina, form: 'form:fem'}, {surface: era, sense: ser, form: 'form:impf'}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: abuelo, sense: abuelo}, {surface: Tiene, sense: tener, form: 'form:pres-3s'}, {surface: setenta, sense: setenta}, {surface: años, sense: año, form: 'form:pl'}]
       translations: {en: 'This car was my grandfather''s. It''s seventy years old.'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: ¡Qué linda! Mi abuelo Pepe, que era mecánico, tenía una máquina como esta.
-          tokens: [{surface: Qué, sense: qué}, {surface: linda, sense: lindo}, {surface: Mi, sense: mi}, {surface: abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: que, sense: que}, {surface: era, sense: ser, form: 'form:impf'}, {surface: mecánico, sense: mecánico}, {surface: tenía, sense: tener, form: 'form:impf'}, {surface: una, sense: un}, {surface: máquina, sense: máquina}, {surface: como, sense: como.like}, {surface: esta, sense: este}]
+          tokens: [{surface: Qué, sense: qué}, {surface: linda, sense: lindo, form: 'form:fem'}, {surface: Mi, sense: mi}, {surface: abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: que, sense: que}, {surface: era, sense: ser, form: 'form:impf'}, {surface: mecánico, sense: mecánico}, {surface: tenía, sense: tener, form: 'form:impf'}, {surface: una, sense: un, form: 'form:fem'}, {surface: máquina, sense: máquina, form: 'form:fem'}, {surface: como, sense: como.like}, {surface: esta, sense: este, form: 'form:fem'}]
       translations: {en: 'How beautiful! My grandfather Pepe, who was a mechanic, had a car like this one.'}
   - line:
       speaker: botero
       forms:
         es-Latn/standard:
           text: Aquí todos somos mecánicos. Si no, ¡el almendrón no camina!
-          tokens: [{surface: Aquí, sense: aquí}, {surface: todos, sense: todo}, {surface: somos, sense: ser, form: 'form:pres-1p'}, {surface: mecánicos, sense: mecánico}, {surface: Si, sense: si}, {surface: 'no', sense: 'no'}, {surface: el, sense: el}, {surface: almendrón, sense: almendrón}, {surface: 'no', sense: 'no'}, {surface: camina, sense: caminar, form: 'form:pres-3s'}]
+          tokens: [{surface: Aquí, sense: aquí}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: somos, sense: ser, form: 'form:pres-1p'}, {surface: mecánicos, sense: mecánico, form: 'form:pl'}, {surface: Si, sense: si}, {surface: 'no', sense: 'no'}, {surface: el, sense: el}, {surface: almendrón, sense: almendrón}, {surface: 'no', sense: 'no'}, {surface: camina, sense: caminar, form: 'form:pres-3s'}]
       translations: {en: 'Here we''re all mechanics. Otherwise, the almendrón doesn''t run!'}
   - choose:
       prompt: {en: 'How do the old almendrones keep running?'}
@@ -531,7 +531,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Cien pesos, como todos. ¡Y vuelve a La Habana!
-          tokens: [{surface: Cien, sense: cien}, {surface: pesos, sense: peso}, {surface: como, sense: como.like}, {surface: todos, sense: todo}, {surface: 'Y', sense: 'y'}, {surface: vuelve, sense: volver, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+          tokens: [{surface: Cien, sense: cien}, {surface: pesos, sense: peso, form: 'form:pl'}, {surface: como, sense: como.like}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: 'Y', sense: 'y'}, {surface: vuelve, sense: volver, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       translations: {en: 'A hundred pesos, same as everyone. And come back to Havana!'}
   - line:
       speaker: yunior
@@ -541,21 +541,21 @@ stories:
       forms:
         es-Latn/standard:
           text: Desde aquí caminamos hasta la Plaza de la Catedral.
-          tokens: [{surface: Desde, sense: desde}, {surface: aquí, sense: aquí}, {surface: caminamos, sense: caminar, form: 'form:pres-1p'}, {surface: hasta, sense: hasta}, {surface: la, sense: el}, {surface: Plaza, sense: plaza}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Catedral, sense: catedral}]
+          tokens: [{surface: Desde, sense: desde}, {surface: aquí, sense: aquí}, {surface: caminamos, sense: caminar, form: 'form:pres-1p'}, {surface: hasta, sense: hasta}, {surface: la, sense: el, form: 'form:fem'}, {surface: Plaza, sense: plaza, form: 'form:fem'}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Catedral, sense: catedral, form: 'form:fem'}]
       translations: {en: From here we walk to Cathedral Square.}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: ¡Qué calor! Primero, un mojito en la Bodeguita del Medio.
-          tokens: [{surface: Qué, sense: qué}, {surface: calor, sense: calor}, {surface: Primero, sense: primero}, {surface: un, sense: un}, {surface: mojito, sense: mojito}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: Bodeguita, sense: bodeguita-del-medio}, {surface: del, sense: bodeguita-del-medio}, {surface: Medio, sense: bodeguita-del-medio}]
+          tokens: [{surface: Qué, sense: qué}, {surface: calor, sense: calor}, {surface: Primero, sense: primero}, {surface: un, sense: un}, {surface: mojito, sense: mojito}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: Bodeguita, sense: bodeguita-del-medio}, {surface: del, sense: bodeguita-del-medio}, {surface: Medio, sense: bodeguita-del-medio}]
       translations: {en: 'It''s so hot! First, a mojito at La Bodeguita del Medio.'}
   - line:
       speaker: yunior
       forms:
         es-Latn/standard:
           text: ¡Primo, son las diez de la mañana!
-          tokens: [{surface: Primo, sense: primo}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: diez, sense: diez}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+          tokens: [{surface: Primo, sense: primo}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: diez, sense: diez}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}]
       translations: {en: 'Cousin, it''s ten in the morning!'}
   - choose:
       prompt: {en: 'What does Daniel want to do first?'}

@@ -48,7 +48,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel, ven a la cocina con tu hermana.
-      tokens: [{surface: Daniel, sense: daniel}, {surface: ven, sense: venir, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: cocina, sense: cocina}, {surface: con, sense: con}, {surface: tu, sense: tu}, {surface: hermana, sense: hermano}]
+      tokens: [{surface: Daniel, sense: daniel}, {surface: ven, sense: venir, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}, {surface: con, sense: con}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: hermana, sense: hermano, form: 'form:fem'}]
       reverse: |-
         Daniel (ven a la cocina con tu hermana|venga a la cocina con su hermana)
         Ven a la cocina con tu hermana, Daniel.
@@ -61,7 +61,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy vamos a cocinar picadillo, mi vida.
-      tokens: [{surface: Hoy, sense: hoy}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: cocinar, sense: cocinar}, {surface: picadillo, sense: picadillo}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+      tokens: [{surface: Hoy, sense: hoy}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: cocinar, sense: cocinar}, {surface: picadillo, sense: picadillo}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}]
       reverse: |-
         Hoy vamos a (cocinar|hacer|preparar) picadillo [mi (vida|amor|cielo)]
         Hoy nosotros vamos a cocinar picadillo, mi vida.
@@ -75,7 +75,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Primero, pica esta cebolla.
-      tokens: [{surface: Primero, sense: primero}, {surface: pica, sense: picar, form: 'form:imp-tu'}, {surface: esta, sense: este}, {surface: cebolla, sense: cebolla}]
+      tokens: [{surface: Primero, sense: primero}, {surface: pica, sense: picar, form: 'form:imp-tu'}, {surface: esta, sense: este, form: 'form:fem'}, {surface: cebolla, sense: cebolla, form: 'form:fem'}]
       reverse: Primero (pica|pique|piquen) esta cebolla
   translations:
     en: First, (chop|dice|cut up) this onion.
@@ -93,7 +93,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela, ¿qué lleva el picadillo cubano?
-      tokens: [{surface: Abuela, sense: abuela}, {surface: qué, sense: qué}, {surface: lleva, sense: llevar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: picadillo, sense: picadillo}, {surface: cubano, sense: cubano}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: qué, sense: qué}, {surface: lleva, sense: llevar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: picadillo, sense: picadillo}, {surface: cubano, sense: cubano}]
       reverse: '[Abuela] qué (lleva|tiene) el picadillo cubano'
   translations:
     en: |-
@@ -104,7 +104,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El picadillo lleva carne, cebolla y ajo.
-      tokens: [{surface: El, sense: el}, {surface: picadillo, sense: picadillo}, {surface: lleva, sense: llevar, form: 'form:pres-3s'}, {surface: carne, sense: carne}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: ajo, sense: ajo}]
+      tokens: [{surface: El, sense: el}, {surface: picadillo, sense: picadillo}, {surface: lleva, sense: llevar, form: 'form:pres-3s'}, {surface: carne, sense: carne, form: 'form:fem'}, {surface: cebolla, sense: cebolla, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: ajo, sense: ajo}]
       reverse: El picadillo (lleva|tiene) carne [molida] cebolla y ajo
   translations:
     en: |-
@@ -116,7 +116,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Toma, mi'jo, pica tú la cebolla y yo pico el ajo.
-      tokens: [{surface: Toma, sense: tomar, form: 'form:imp-tu'}, {surface: "mi'jo", sense: mijo}, {surface: pica, sense: picar, form: 'form:imp-tu'}, {surface: tú, sense: tú}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: pico, sense: picar, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}]
+      tokens: [{surface: Toma, sense: tomar, form: 'form:imp-tu'}, {surface: "mi'jo", sense: mijo}, {surface: pica, sense: picar, form: 'form:imp-tu'}, {surface: tú, sense: tú}, {surface: la, sense: el, form: 'form:fem'}, {surface: cebolla, sense: cebolla, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: pico, sense: picar, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}]
       reverse: "[Toma] (mi'jo|mi hijo) pica [tú] la cebolla y yo pico el ajo"
   translations:
     en: Here, (honey|sweetie|son|kiddo|my boy), you (chop|dice) the onion and (I'll|I will|I) (chop|dice) the garlic.
@@ -125,7 +125,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cómo se hace el picadillo, abuela?
-      tokens: [{surface: Cómo, sense: cómo}, {surface: se, sense: se.impersonal}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: picadillo, sense: picadillo}, {surface: abuela, sense: abuela}]
+      tokens: [{surface: Cómo, sense: cómo}, {surface: se, sense: se.impersonal}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: picadillo, sense: picadillo}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       reverse: (Cómo se hace|Cómo se prepara|Cómo se cocina|Cómo tú haces|Cómo haces [tú]|Cómo usted hace|Cómo hace [usted]) el picadillo [abuela]
   translations:
     en: |-
@@ -137,7 +137,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Primero se pican la cebolla y el ají.
-      tokens: [{surface: Primero, sense: primero}, {surface: se, sense: se.impersonal}, {surface: pican, sense: picar, form: 'form:pres-3p'}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: ají, sense: ají}]
+      tokens: [{surface: Primero, sense: primero}, {surface: se, sense: se.impersonal}, {surface: pican, sense: picar, form: 'form:pres-3p'}, {surface: la, sense: el, form: 'form:fem'}, {surface: cebolla, sense: cebolla, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: ají, sense: ají}]
       reverse: |-
         Primero se (pican|pica) la cebolla y el (ají|pimiento)
         Primero picas la cebolla y el ají.
@@ -162,7 +162,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El sofrito se hace con ajo, cebolla y ají.
-      tokens: [{surface: El, sense: el}, {surface: sofrito, sense: sofrito}, {surface: se, sense: se.impersonal}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: ajo, sense: ajo}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: ají, sense: ají}]
+      tokens: [{surface: El, sense: el}, {surface: sofrito, sense: sofrito}, {surface: se, sense: se.impersonal}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: ajo, sense: ajo}, {surface: cebolla, sense: cebolla, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: ají, sense: ají}]
       reverse: El sofrito se hace con ajo cebolla y (ají|pimiento)
   translations:
     en: |-
@@ -173,7 +173,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ahora échale la carne al sofrito.
-      tokens: [{surface: Ahora, sense: ahora}, {surface: échale, sense: echar, form: 'form:imp-tu'}, {surface: la, sense: el}, {surface: carne, sense: carne}, {surface: al, sense: al}, {surface: sofrito, sense: sofrito}]
+      tokens: [{surface: Ahora, sense: ahora}, {surface: échale, sense: echar, form: 'form:imp-tu'}, {surface: la, sense: el, form: 'form:fem'}, {surface: carne, sense: carne, form: 'form:fem'}, {surface: al, sense: al}, {surface: sofrito, sense: sofrito}]
       reverse: |-
         Ahora (échale|echa|échele|eche|agrégale|agrega|ponle|pon) la carne al sofrito
         Ahora agréguele la carne al sofrito.
@@ -185,7 +185,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Después se echa un poco de sal.
-      tokens: [{surface: Después, sense: después}, {surface: se, sense: se.impersonal}, {surface: echa, sense: echar, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: sal, sense: sal}]
+      tokens: [{surface: Después, sense: después}, {surface: se, sense: se.impersonal}, {surface: echa, sense: echar, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: sal, sense: sal, form: 'form:fem'}]
       reverse: |-
         Después se (echa|pone|le echa|le pone) (un poco|un poquito|un chin) de sal
         Después le echas un poco de sal.
@@ -213,7 +213,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me gusta mucho la yuca con mojo.
-      tokens: [{surface: Me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: la, sense: el}, {surface: yuca, sense: yuca}, {surface: con, sense: con}, {surface: mojo, sense: mojo}]
+      tokens: [{surface: Me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: la, sense: el, form: 'form:fem'}, {surface: yuca, sense: yuca, form: 'form:fem'}, {surface: con, sense: con}, {surface: mojo, sense: mojo}]
       reverse: |-
         Me gusta mucho la yuca con mojo
         Me encanta la yuca con mojo
@@ -239,7 +239,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Miami se vende mojo en pomos, pero Abuela lo hace.
-      tokens: [{surface: En, sense: en}, {surface: Miami, sense: miami}, {surface: se, sense: se.impersonal}, {surface: vende, sense: vender, form: 'form:pres-3s'}, {surface: mojo, sense: mojo}, {surface: en, sense: en}, {surface: pomos, sense: pomo}, {surface: pero, sense: pero}, {surface: Abuela, sense: abuela}, {surface: lo, sense: lo}, {surface: hace, sense: hacer, form: 'form:pres-3s'}]
+      tokens: [{surface: En, sense: en}, {surface: Miami, sense: miami}, {surface: se, sense: se.impersonal}, {surface: vende, sense: vender, form: 'form:pres-3s'}, {surface: mojo, sense: mojo}, {surface: en, sense: en}, {surface: pomos, sense: pomo, form: 'form:pl'}, {surface: pero, sense: pero}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: lo, sense: lo}, {surface: hace, sense: hacer, form: 'form:pres-3s'}]
       reverse: En Miami (se vende|venden) mojo en (pomos|botellas|frascos) pero (Abuela|mi abuela|la abuela) lo hace [en casa]
   translations:
     en: In Miami (they sell mojo|mojo is sold|you can buy mojo) in (bottles|jars), but (Grandma|Abuela|my grandma) makes it [herself].
@@ -248,7 +248,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pica el ajo y échalo en la naranja agria.
-      tokens: [{surface: Pica, sense: picar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}, {surface: 'y', sense: 'y'}, {surface: échalo, sense: echar, form: 'form:imp-tu'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: naranja, sense: naranja-agria}, {surface: agria, sense: naranja-agria}]
+      tokens: [{surface: Pica, sense: picar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}, {surface: 'y', sense: 'y'}, {surface: échalo, sense: echar, form: 'form:imp-tu'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: naranja, sense: naranja-agria}, {surface: agria, sense: naranja-agria}]
       reverse: |-
         (Pica el ajo y échalo|Pique el ajo y échelo|Piquen el ajo y échenlo) en la naranja agria
         Pica el ajo y ponlo en la naranja agria.
@@ -271,7 +271,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ahora échale el mojo a la yuca.
-      tokens: [{surface: Ahora, sense: ahora}, {surface: échale, sense: echar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: mojo, sense: mojo}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: yuca, sense: yuca}]
+      tokens: [{surface: Ahora, sense: ahora}, {surface: échale, sense: echar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: mojo, sense: mojo}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: yuca, sense: yuca, form: 'form:fem'}]
       reverse: Ahora (échale|echa|échele|eche|ponle|pon) el mojo a la yuca
   translations:
     en: Now (pour|put) the mojo (on|over) the (yuca|cassava).
@@ -280,7 +280,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Qué rica está esta yuca, abuela!
-      tokens: [{surface: Qué, sense: qué}, {surface: rica, sense: rico}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: esta, sense: este}, {surface: yuca, sense: yuca}, {surface: abuela, sense: abuela}]
+      tokens: [{surface: Qué, sense: qué}, {surface: rica, sense: rico, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: esta, sense: este, form: 'form:fem'}, {surface: yuca, sense: yuca, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       reverse: Qué rica (está|quedó) esta yuca [abuela]
   translations:
     en: |-
@@ -304,7 +304,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Coman, coman! Hay mucha ropa vieja.
-      tokens: [{surface: Coman, sense: comer, form: 'form:imp-ud'}, {surface: coman, sense: comer, form: 'form:imp-ud'}, {surface: Hay, sense: hay}, {surface: mucha, sense: mucho}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
+      tokens: [{surface: Coman, sense: comer, form: 'form:imp-ud'}, {surface: coman, sense: comer, form: 'form:imp-ud'}, {surface: Hay, sense: hay}, {surface: mucha, sense: mucho, form: 'form:fem'}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
       reverse: Coman [coman] hay mucha ropa vieja
   translations:
     en: |-
@@ -316,7 +316,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Venga, doña Ofelia, coma con nosotros.
-      tokens: [{surface: Venga, sense: venir, form: 'form:imp-ud'}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      tokens: [{surface: Venga, sense: venir, form: 'form:imp-ud'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
       reverse: |-
         Venga doña Ofelia [y] coma con nosotros
         Doña Ofelia venga [y] coma con nosotros
@@ -330,7 +330,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, coma un poco de ropa vieja.
-      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
       reverse: |-
         Doña Ofelia (coma|pruebe|sírvase) un (poco|poquito) de ropa vieja
         Coma un poco de ropa vieja, doña Ofelia.
@@ -342,7 +342,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tome un cafecito con nosotros, doña Ofelia.
-      tokens: [{surface: Tome, sense: tomar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}]
+      tokens: [{surface: Tome, sense: tomar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}]
       reverse: |-
         Tome un (cafecito|café) con nosotros doña Ofelia
         Doña Ofelia tome un (cafecito|café) con nosotros
@@ -353,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La ropa vieja se cocina en la olla de presión.
-      tokens: [{surface: La, sense: el}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}, {surface: se, sense: se.impersonal}, {surface: cocina, sense: cocinar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}, {surface: se, sense: se.impersonal}, {surface: cocina, sense: cocinar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
       reverse: La ropa vieja se (cocina|hace|prepara) en la olla de presión
   translations:
     en: |-
@@ -365,7 +365,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, lleve un poco de picadillo para su casa.
-      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: lleve, sense: llevar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: picadillo, sense: picadillo}, {surface: para, sense: para}, {surface: su, sense: su}, {surface: casa, sense: casa}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: lleve, sense: llevar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: picadillo, sense: picadillo}, {surface: para, sense: para}, {surface: su, sense: su, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}]
       reverse: |-
         Doña Ofelia (lleve|llévese) un (poco|poquito) de picadillo (para su casa|para la casa|a su casa)
         Lleve un poco de picadillo para su casa, doña Ofelia.
@@ -376,7 +376,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No eches mucha sal al picadillo.
-      tokens: [{surface: 'No', sense: 'no'}, {surface: eches, sense: echar, form: 'form:imp-neg'}, {surface: mucha, sense: mucho}, {surface: sal, sense: sal}, {surface: al, sense: al}, {surface: picadillo, sense: picadillo}]
+      tokens: [{surface: 'No', sense: 'no'}, {surface: eches, sense: echar, form: 'form:imp-neg'}, {surface: mucha, sense: mucho, form: 'form:fem'}, {surface: sal, sense: sal, form: 'form:fem'}, {surface: al, sense: al}, {surface: picadillo, sense: picadillo}]
       reverse: |-
         No (le eches|eches|le eche|eche|le echen|echen|le pongas|pongas) (mucha|tanta|demasiada) sal al picadillo
         No eches mucha sal en el picadillo.
@@ -396,7 +396,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pon los frijoles negros en la olla de presión.
-      tokens: [{surface: Pon, sense: poner, form: 'form:imp-tu'}, {surface: los, sense: el}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
+      tokens: [{surface: Pon, sense: poner, form: 'form:imp-tu'}, {surface: los, sense: el, form: 'form:pl'}, {surface: frijoles, sense: frijol, form: 'form:pl'}, {surface: negros, sense: negro, form: 'form:pl'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
       reverse: (Pon|Ponga|Pongan|Echa|Eche|Echen) los frijoles negros en la olla de presión
   translations:
     en: Put the black beans (in|into) the pressure cooker.
@@ -405,7 +405,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No abras la olla de presión ahora, mi vida.
-      tokens: [{surface: 'No', sense: 'no'}, {surface: abras, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: ahora, sense: ahora}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+      tokens: [{surface: 'No', sense: 'no'}, {surface: abras, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: ahora, sense: ahora}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}]
       reverse: No (abras|abra|abran) la olla de presión ahora [mi (vida|amor|cielo)]
   translations:
     en: |-
@@ -417,7 +417,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, no abra la olla de presión, por favor.
-      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: 'no', sense: 'no'}, {surface: abra, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      tokens: [{surface: Doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: 'no', sense: 'no'}, {surface: abra, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
       reverse: |-
         Doña Ofelia no abra la olla de presión por favor
         Doña Ofelia por favor no abra la olla de presión
@@ -431,7 +431,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Haz los frijoles hoy y cómelos mañana.
-      tokens: [{surface: Haz, sense: hacer, form: 'form:imp-tu'}, {surface: los, sense: el}, {surface: frijoles, sense: frijol}, {surface: hoy, sense: hoy}, {surface: 'y', sense: 'y'}, {surface: cómelos, sense: comer, form: 'form:imp-tu'}, {surface: mañana, sense: mañana}]
+      tokens: [{surface: Haz, sense: hacer, form: 'form:imp-tu'}, {surface: los, sense: el, form: 'form:pl'}, {surface: frijoles, sense: frijol, form: 'form:pl'}, {surface: hoy, sense: hoy}, {surface: 'y', sense: 'y'}, {surface: cómelos, sense: comer, form: 'form:imp-tu'}, {surface: mañana, sense: mañana}]
       reverse: (Haz los frijoles hoy y cómelos|Haga los frijoles hoy y cómalos|Hagan los frijoles hoy y cómanlos) mañana
   translations:
     en: (Make|Cook) the beans today and eat them tomorrow.
@@ -440,7 +440,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los frijoles negros dormidos están muy ricos.
-      tokens: [{surface: Los, sense: el}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}, {surface: dormidos, sense: dormido}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: ricos, sense: rico}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: frijoles, sense: frijol, form: 'form:pl'}, {surface: negros, sense: negro, form: 'form:pl'}, {surface: dormidos, sense: dormido, form: 'form:pl'}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: ricos, sense: rico, form: 'form:pl'}]
       reverse: Los frijoles negros dormidos (están muy ricos|están riquísimos|son muy ricos|saben muy ricos)
   translations:
     en: |-
@@ -462,14 +462,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, quiero hacer frijoles negros. ¿Cómo se hacen?
-          tokens: [{surface: Abuela, sense: abuela}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: hacer, sense: hacer}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}, {surface: Cómo, sense: cómo}, {surface: se, sense: se.impersonal}, {surface: hacen, sense: hacer, form: 'form:pres-3p'}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: hacer, sense: hacer}, {surface: frijoles, sense: frijol, form: 'form:pl'}, {surface: negros, sense: negro, form: 'form:pl'}, {surface: Cómo, sense: cómo}, {surface: se, sense: se.impersonal}, {surface: hacen, sense: hacer, form: 'form:pres-3p'}]
       translations: {en: 'Grandma, I want to make black beans. How do you make them?'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Ven a la cocina, mi'jo. Primero, pon los frijoles en la olla de presión.
-          tokens: [{surface: Ven, sense: venir, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: cocina, sense: cocina}, {surface: "mi'jo", sense: mijo}, {surface: Primero, sense: primero}, {surface: pon, sense: poner, form: 'form:imp-tu'}, {surface: los, sense: el}, {surface: frijoles, sense: frijol}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
+          tokens: [{surface: Ven, sense: venir, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}, {surface: "mi'jo", sense: mijo}, {surface: Primero, sense: primero}, {surface: pon, sense: poner, form: 'form:imp-tu'}, {surface: los, sense: el, form: 'form:pl'}, {surface: frijoles, sense: frijol, form: 'form:pl'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
       translations: {en: 'Come to the kitchen, honey. First, put the beans in the pressure cooker.'}
   - line:
       speaker: daniel
@@ -483,7 +483,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Pica la cebolla, el ají y el ajo.
-          tokens: [{surface: Pica, sense: picar, form: 'form:imp-tu'}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}, {surface: el, sense: el}, {surface: ají, sense: ají}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}]
+          tokens: [{surface: Pica, sense: picar, form: 'form:imp-tu'}, {surface: la, sense: el, form: 'form:fem'}, {surface: cebolla, sense: cebolla, form: 'form:fem'}, {surface: el, sense: el}, {surface: ají, sense: ají}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}]
       translations: {en: 'Chop the onion, the pepper and the garlic.'}
   - line:
       speaker: cachita
@@ -498,7 +498,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, ¿cuánto comino se echa?
-          tokens: [{surface: Abuela, sense: abuela}, {surface: cuánto, sense: cuánto}, {surface: comino, sense: comino}, {surface: se, sense: se.impersonal}, {surface: echa, sense: echar, form: 'form:pres-3s'}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: cuánto, sense: cuánto}, {surface: comino, sense: comino}, {surface: se, sense: se.impersonal}, {surface: echa, sense: echar, form: 'form:pres-3s'}]
       translations: {en: 'Grandma, how much cumin do you put in?'}
   - line:
       speaker: cachita
@@ -520,21 +520,21 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, ¿puedo abrir la olla de presión ahora?
-          tokens: [{surface: Abuela, sense: abuela}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: abrir, sense: abrir}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: ahora, sense: ahora}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: abrir, sense: abrir}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: ahora, sense: ahora}]
       translations: {en: 'Grandma, can I open the pressure cooker now?'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: ¡No, no la abras!
-          tokens: [{surface: 'No', sense: 'no'}, {surface: 'no', sense: 'no'}, {surface: la, sense: lo}, {surface: abras, sense: abrir, form: 'form:imp-neg'}]
+          tokens: [{surface: 'No', sense: 'no'}, {surface: 'no', sense: 'no'}, {surface: la, sense: lo, form: 'form:fem'}, {surface: abras, sense: abrir, form: 'form:imp-neg'}]
       translations: {en: 'No, don''t open it!'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: Una vez yo la abrí, y tu abuela no me habló por una semana.
-          tokens: [{surface: Una, sense: un}, {surface: vez, sense: vez}, {surface: yo, sense: yo}, {surface: la, sense: lo}, {surface: abrí, sense: abrir, form: 'form:pret-1s'}, {surface: 'y', sense: 'y'}, {surface: tu, sense: tu}, {surface: abuela, sense: abuela}, {surface: 'no', sense: 'no'}, {surface: me, sense: me}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: por, sense: por}, {surface: una, sense: un}, {surface: semana, sense: semana}]
+          tokens: [{surface: Una, sense: un, form: 'form:fem'}, {surface: vez, sense: vez, form: 'form:fem'}, {surface: yo, sense: yo}, {surface: la, sense: lo, form: 'form:fem'}, {surface: abrí, sense: abrir, form: 'form:pret-1s'}, {surface: 'y', sense: 'y'}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: me, sense: me}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: por, sense: por}, {surface: una, sense: un, form: 'form:fem'}, {surface: semana, sense: semana, form: 'form:fem'}]
       translations: {en: 'I opened it once, and your grandmother didn''t speak to me for a week.'}
   - choose:
       prompt: {en: 'What happened when Abuelo Pepe opened the pressure cooker?'}
@@ -545,7 +545,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Los frijoles no se comen hoy.
-          tokens: [{surface: Los, sense: el}, {surface: frijoles, sense: frijol}, {surface: 'no', sense: 'no'}, {surface: se, sense: se.impersonal}, {surface: comen, sense: comer, form: 'form:pres-3p'}, {surface: hoy, sense: hoy}]
+          tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: frijoles, sense: frijol, form: 'form:pl'}, {surface: 'no', sense: 'no'}, {surface: se, sense: se.impersonal}, {surface: comen, sense: comer, form: 'form:pres-3p'}, {surface: hoy, sense: hoy}]
       translations: {en: 'The beans don''t get eaten today.'}
   - line:
       speaker: lili
@@ -562,14 +562,14 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Mañana. Son frijoles dormidos: duermen toda la noche.'
-          tokens: [{surface: Mañana, sense: mañana}, {surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: frijoles, sense: frijol}, {surface: dormidos, sense: dormido}, {surface: duermen, sense: dormir, form: 'form:pres-3p'}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+          tokens: [{surface: Mañana, sense: mañana}, {surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: frijoles, sense: frijol, form: 'form:pl'}, {surface: dormidos, sense: dormido, form: 'form:pl'}, {surface: duermen, sense: dormir, form: 'form:pres-3p'}, {surface: toda, sense: todo, form: 'form:fem'}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
       translations: {en: 'Tomorrow. They''re frijoles dormidos: they sleep all night.'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: ¡Y mañana están muy ricos!
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: mañana, sense: mañana}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: ricos, sense: rico}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: mañana, sense: mañana}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: ricos, sense: rico, form: 'form:pl'}]
       translations: {en: 'And tomorrow they''re delicious!'}
   - choose:
       prompt: {en: 'Why does the family eat the beans tomorrow?'}
@@ -580,12 +580,12 @@ stories:
       forms:
         es-Latn/standard:
           text: Mañana vengo a comer, abuela.
-          tokens: [{surface: Mañana, sense: mañana}, {surface: vengo, sense: venir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: comer, sense: comer}, {surface: abuela, sense: abuela}]
+          tokens: [{surface: Mañana, sense: mañana}, {surface: vengo, sense: venir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: comer, sense: comer}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       translations: {en: 'I''m coming to eat tomorrow, Grandma.'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: Ven, mi'jo. ¡Pero no abras la olla de presión!
-          tokens: [{surface: Ven, sense: venir, form: 'form:imp-tu'}, {surface: "mi'jo", sense: mijo}, {surface: Pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: abras, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
+          tokens: [{surface: Ven, sense: venir, form: 'form:imp-tu'}, {surface: "mi'jo", sense: mijo}, {surface: Pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: abras, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el, form: 'form:fem'}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
       translations: {en: 'Come, kiddo. But don''t open the pressure cooker!'}

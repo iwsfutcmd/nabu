@@ -160,10 +160,13 @@ class _Compiler:
         words = self.attested.setdefault(orth, [])
         tokens = [t for t in tagged["tokens"] if t.get("kind", "word") in ("word", "number")]
         senses = [t.get("sense") for t in tokens]
-        for t in tokens:
+        for i, t in enumerate(tokens):
             # A word of a phrase KC (مع of مع السلامة, por of por favor) is only part of its sense:
-            # alone, it is no option. A word the text repeats is left out with it.
-            if "sense" in t and senses.count(t["sense"]) == 1:
+            # alone, it is no option. A phrase's words stand next to each other with its sense.
+            phrase = (i > 0 and senses[i - 1] == t.get("sense")) or (
+                i + 1 < len(senses) and senses[i + 1] == t.get("sense")
+            )
+            if "sense" in t and not phrase:
                 words.append(Attested(unit, item, t, str(tagged["lang"])))
 
     def report(self, lint: str, message: str, doc: Doc, at: Path) -> None:

@@ -119,6 +119,15 @@ thought weakest.
   close to ungrammatical).
 - u17 #12: Tranque kept: a tranque can end in a win; it is false here only because the line before says the
   tile fits at both ends (capicúa).
-- Spanish nouns and adjectives carry no form KCs (gender and number are not modelled): their options share no
-  form, so a lesson's gap-fill can offer a noun of another gender or number. The story options were chosen to
-  agree; a lesson's are not checked for it.
+- Gender and number (ADR 0132 amendment): every agreeing noun, adjective, determiner and pronoun pins
+  form:fem, form:pl or form:fem-pl by its agreement in the line, drafted from the spelling and a parse.
+  Check first the choices made by hand:
+  - a noun's own gender where its articles misled: ave, alma feminine (el ave, el alma); azúcar feminine
+    in "el azúcar alta", masculine elsewhere; yuma masculine in "un yuma";
+  - a lemma covering both genders (tío/tía, don/doña, doctor/doctora, vecino/vecina, mi'jo/mi'ja): the
+    masculine is the lemma, the feminine a form:fem token;
+  - invariable words with no noun to agree with (es posible, es importante, mejor and peor as adverbs,
+    quién, cuál) are bare; so is an untagged first or second person (Cuando yo era joven: both genders
+    accepted), and a plural for a mixed group (Éramos pobres, pero muy felices: form:pl);
+  - feminine by hand: muy feliz (su familia), la más grande (Celia Cruz), tu música, ¡Feliz Nochebuena!,
+    que Cuba fuera libre.

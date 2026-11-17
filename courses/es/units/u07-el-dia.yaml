@@ -106,7 +106,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por la mañana, me baño.
-      tokens: [{surface: Por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}, {surface: me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}]
+      tokens: [{surface: Por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}, {surface: me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}]
       reverse: |-
         (Por|En) la mañana [yo] me (baño|ducho)
         [Yo] me (baño|ducho) (por|en) la mañana
@@ -119,7 +119,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami hace café por la mañana.
-      tokens: [{surface: Mami, sense: mami}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: café, sense: café}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: café, sense: café}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}]
       reverse: |-
         (Mami|Mamá) (hace|cuela) (café|el café) (por|en) la mañana
         (Por|En) la mañana (mami|mamá) (hace|cuela) (café|el café)
@@ -132,7 +132,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Trabajo por la tarde.
-      tokens: [{surface: Trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
+      tokens: [{surface: Trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: tarde, sense: tarde}]
       reverse: |-
         [Yo] trabajo (por|en) la tarde
         (Por|En) la tarde [yo] trabajo
@@ -154,7 +154,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me baño por la noche.
-      tokens: [{surface: Me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      tokens: [{surface: Me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
       reverse: |-
         [Yo] me (baño|ducho) (por|en) la noche
         (Por|En) la noche [yo] me (baño|ducho)
@@ -167,7 +167,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hay colada en el trabajo.
-      tokens: [{surface: Hay, sense: hay}, {surface: colada, sense: colada}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: trabajo, sense: trabajo}]
+      tokens: [{surface: Hay, sense: hay}, {surface: colada, sense: colada, form: 'form:fem'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: trabajo, sense: trabajo}]
       reverse: |-
         (Hay colada|Hay una colada) en el trabajo
         En el trabajo hay [una] colada
@@ -228,7 +228,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Qué tú haces los lunes?
-      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: haces, sense: hacer, form: 'form:pres-2s'}, {surface: los, sense: el}, {surface: lunes, sense: lunes}]
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: haces, sense: hacer, form: 'form:pres-2s'}, {surface: los, sense: el, form: 'form:pl'}, {surface: lunes, sense: lunes, form: 'form:pl'}]
       reverse: |-
         (Qué tú haces|Qué haces [tú]|Qué usted hace|Qué hace [usted]|Qué ustedes hacen|Qué hacen [ustedes]) los lunes
         Los lunes (qué tú haces|qué haces [tú]|qué usted hace|qué hace [usted]|qué ustedes hacen|qué hacen [ustedes])
@@ -242,7 +242,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los jueves voy a la Calle Ocho.
-      tokens: [{surface: Los, sense: el}, {surface: jueves, sense: jueves}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: jueves, sense: jueves, form: 'form:pl'}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
       reverse: |-
         Los jueves [yo] voy a la Calle Ocho
         [Yo] voy a la Calle Ocho los jueves
@@ -256,7 +256,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El viernes trabajo por la noche.
-      tokens: [{surface: El, sense: el}, {surface: viernes, sense: viernes}, {surface: trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      tokens: [{surface: El, sense: el}, {surface: viernes, sense: viernes}, {surface: trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
       reverse: |-
         El viernes [yo] trabajo (por|en) la noche
         [Yo] trabajo el viernes (por|en) la noche
@@ -284,7 +284,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los domingos vamos a casa de Abuela.
-      tokens: [{surface: Los, sense: el}, {surface: domingos, sense: domingo}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: Abuela, sense: abuela}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: de, sense: de}, {surface: Abuela, sense: abuela, form: 'form:fem'}]
       reverse: |-
         Los domingos [nosotros] vamos a (casa|la casa) de (Abuela|la abuela|mi abuela)
         [Nosotros] vamos a (casa|la casa) de (Abuela|la abuela|mi abuela) los domingos
@@ -308,7 +308,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela ve la novela.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: novela, sense: novela, form: 'form:fem'}]
       reverse: |-
         (Abuela|Mi abuela|La abuela) ve la (novela|telenovela)
         Abuela mira la novela.
@@ -319,7 +319,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú ves la novela?
-      tokens: [{surface: Tú, sense: tú}, {surface: ves, sense: ver, form: 'form:pres-2s'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+      tokens: [{surface: Tú, sense: tú}, {surface: ves, sense: ver, form: 'form:pres-2s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: novela, sense: novela, form: 'form:fem'}]
       reverse: |-
         (Tú ves|Ves [tú]|Usted ve|Ve [usted]|Ustedes ven|Ven [ustedes]) la (novela|telenovela)
         ¿Tú miras la novela?
@@ -330,7 +330,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela siempre ve la novela por la noche.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: siempre, sense: siempre}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: novela, sense: novela}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: siempre, sense: siempre}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: novela, sense: novela, form: 'form:fem'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
       reverse: |-
         (Abuela|Mi abuela|La abuela) siempre ve la (novela|telenovela) (por|en) la noche
         (Por|En) la noche (abuela|mi abuela|la abuela) siempre ve la (novela|telenovela)
@@ -353,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los domingos me acuesto temprano.
-      tokens: [{surface: Los, sense: el}, {surface: domingos, sense: domingo}, {surface: me, sense: me}, {surface: acuesto, sense: acostarse, form: 'form:pres-1s'}, {surface: temprano, sense: temprano}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}, {surface: me, sense: me}, {surface: acuesto, sense: acostarse, form: 'form:pres-1s'}, {surface: temprano, sense: temprano}]
       reverse: |-
         Los domingos [yo] me acuesto temprano
         [Yo] me acuesto temprano los domingos
@@ -366,7 +366,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Después de la novela, Abuela se acuesta.
-      tokens: [{surface: Después, sense: después}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: novela, sense: novela}, {surface: Abuela, sense: abuela}, {surface: se, sense: se}, {surface: acuesta, sense: acostarse, form: 'form:pres-3s'}]
+      tokens: [{surface: Después, sense: después}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: novela, sense: novela, form: 'form:fem'}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: se, sense: se}, {surface: acuesta, sense: acostarse, form: 'form:pres-3s'}]
       reverse: |-
         Después de la (novela|telenovela) (Abuela|mi abuela|la abuela) se acuesta
         (Abuela|Mi abuela|La abuela) se acuesta después de la (novela|telenovela)
@@ -413,7 +413,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela está viendo la novela.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: viendo, sense: ver, form: 'form:ger'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: viendo, sense: ver, form: 'form:ger'}, {surface: la, sense: el, form: 'form:fem'}, {surface: novela, sense: novela, form: 'form:fem'}]
       reverse: |-
         (Abuela|Mi abuela|La abuela) está viendo la (novela|telenovela)
         Abuela está mirando la novela.
@@ -448,7 +448,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami está haciendo café.
-      tokens: [{surface: Mami, sense: mami}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: haciendo, sense: hacer, form: 'form:ger'}, {surface: café, sense: café}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: haciendo, sense: hacer, form: 'form:ger'}, {surface: café, sense: café}]
       reverse: (Mami|Mamá) está (haciendo|colando) (café|el café)
   translations:
     en: |-
@@ -476,14 +476,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, abuela. Hoy es sábado.
-          tokens: [{surface: Sí, sense: sí}, {surface: abuela, sense: abuela}, {surface: Hoy, sense: hoy}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: sábado, sense: sábado}]
+          tokens: [{surface: Sí, sense: sí}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: Hoy, sense: hoy}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: sábado, sense: sábado}]
       translations: {en: 'Yes, Grandma. Today is Saturday.'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: ¿Y qué? Los sábados yo me levanto temprano.
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: Los, sense: el}, {surface: sábados, sense: sábado}, {surface: yo, sense: yo}, {surface: me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}, {surface: temprano, sense: temprano}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: Los, sense: el, form: 'form:pl'}, {surface: sábados, sense: sábado, form: 'form:pl'}, {surface: yo, sense: yo}, {surface: me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}, {surface: temprano, sense: temprano}]
       translations: {en: 'So what? On Saturdays I get up early.'}
   - line:
       speaker: daniel
@@ -502,14 +502,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Hay café, mi vida.
-          tokens: [{surface: Hay, sense: hay}, {surface: café, sense: café}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+          tokens: [{surface: Hay, sense: hay}, {surface: café, sense: café}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}]
       translations: {en: 'There''s coffee, darling.'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: Voy, abuela. Me baño y después desayuno.
-          tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: abuela, sense: abuela}, {surface: Me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}, {surface: 'y', sense: 'y'}, {surface: después, sense: después}, {surface: desayuno, sense: desayunar, form: 'form:pres-1s'}]
+          tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: Me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}, {surface: 'y', sense: 'y'}, {surface: después, sense: después}, {surface: desayuno, sense: desayunar, form: 'form:pres-1s'}]
       translations: {en: 'Coming, Grandma. I''ll take a shower and then have breakfast.'}
   - line:
       speaker: lili
@@ -523,7 +523,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili! ¡Tú siempre te bañas por la mañana!
-          tokens: [{surface: Lili, sense: lili}, {surface: Tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: te, sense: te}, {surface: bañas, sense: bañarse, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+          tokens: [{surface: Lili, sense: lili}, {surface: Tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: te, sense: te}, {surface: bañas, sense: bañarse, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}]
       translations: {en: 'Lili! You always shower in the morning!'}
   - line:
       speaker: lili
@@ -533,7 +533,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, y tú te bañas por la noche.
-          tokens: [{surface: Sí, sense: sí}, {surface: 'y', sense: 'y'}, {surface: tú, sense: tú}, {surface: te, sense: te}, {surface: bañas, sense: bañarse, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+          tokens: [{surface: Sí, sense: sí}, {surface: 'y', sense: 'y'}, {surface: tú, sense: tú}, {surface: te, sense: te}, {surface: bañas, sense: bañarse, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
       translations: {en: 'Yes, and you shower at night.'}
   - choose:
       prompt: {en: 'Who is in the shower?'}
@@ -551,7 +551,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, mami. Trabajo por la tarde.
-          tokens: [{surface: Sí, sense: sí}, {surface: mami, sense: mami}, {surface: Trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
+          tokens: [{surface: Sí, sense: sí}, {surface: mami, sense: mami, form: 'form:fem'}, {surface: Trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: tarde, sense: tarde}]
       translations: {en: 'Yes, Mom. I work in the afternoon.'}
   - line:
       speaker: mami
@@ -566,7 +566,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ahora estoy desayunando, mami.
-          tokens: [{surface: Ahora, sense: ahora}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: desayunando, sense: desayunar, form: 'form:ger'}, {surface: mami, sense: mami}]
+          tokens: [{surface: Ahora, sense: ahora}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: desayunando, sense: desayunar, form: 'form:ger'}, {surface: mami, sense: mami, form: 'form:fem'}]
       translations: {en: 'Now I''m having breakfast, Mom.'}
   - line:
       speaker: cachita
@@ -576,12 +576,12 @@ stories:
       forms:
         es-Latn/standard:
           text: Y por la noche, ¡la novela!
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}, {surface: la, sense: el, form: 'form:fem'}, {surface: novela, sense: novela, form: 'form:fem'}]
       translations: {en: 'And at night, the soap opera!'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: Abuela, ¡tú siempre ves la novela!
-          tokens: [{surface: Abuela, sense: abuela}, {surface: tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: ves, sense: ver, form: 'form:pres-2s'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: ves, sense: ver, form: 'form:pres-2s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: novela, sense: novela, form: 'form:fem'}]
       translations: {en: 'Grandma, you always watch the soap opera!'}

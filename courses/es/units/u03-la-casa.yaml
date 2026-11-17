@@ -45,7 +45,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta es mi casa.
-      tokens: [{surface: Esta, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: casa, sense: casa}]
+      tokens: [{surface: Esta, sense: este, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}]
       reverse: Esta es mi casa
   translations:
     en: |-
@@ -56,7 +56,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi casa está en Hialeah.
-      tokens: [{surface: Mi, sense: mi}, {surface: casa, sense: casa}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
       reverse: Mi casa está en Hialeah
   translations:
     en: |-
@@ -86,7 +86,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nosotros vivimos en Hialeah.
-      tokens: [{surface: Nosotros, sense: nosotros}, {surface: vivimos, sense: vivir, form: 'form:pres-1p'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      tokens: [{surface: Nosotros, sense: nosotros, form: 'form:pl'}, {surface: vivimos, sense: vivir, form: 'form:pres-1p'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
       reverse: '[Nosotros] vivimos en Hialeah'
   translations:
     en: We live in Hialeah.
@@ -95,7 +95,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía Marisol vive en La Habana.
-      tokens: [{surface: Mi, sense: mi}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       reverse: Mi tía Marisol vive en La Habana
   translations:
     en: My aunt Marisol lives in Havana.
@@ -104,7 +104,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tenemos familia en Cuba.
-      tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: familia, sense: familia}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
       reverse: '[(Nosotros|Nosotras)] tenemos (familia|parientes|familiares) en Cuba'
   translations:
     en: (We have|We've got) (family|relatives) in Cuba.
@@ -113,7 +113,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Dónde está mami?
-      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: mami, sense: mami}]
+      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: mami, sense: mami, form: 'form:fem'}]
       reverse: (Dónde está (mami|mamá)|(Mami|Mamá) dónde está)
   translations:
     en: |-
@@ -124,7 +124,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami está aquí.
-      tokens: [{surface: Mami, sense: mami}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}]
       reverse: ((Mami|Mamá) está aquí|Aquí está (mami|mamá))
   translations:
     en: |-
@@ -155,7 +155,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Dónde están los abuelos?
-      tokens: [{surface: Dónde, sense: dónde}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: abuelos, sense: abuelo}]
+      tokens: [{surface: Dónde, sense: dónde}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: abuelos, sense: abuelo, form: 'form:pl'}]
       reverse: (Dónde están (los|mis) abuelos|(Los|Mis) abuelos dónde están)
   translations:
     en: |-
@@ -183,7 +183,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela tiene calor.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
       reverse: |-
         [La] abuela tiene calor
         Mi abuela tiene calor.
@@ -207,7 +207,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El ventilador está en la sala.
-      tokens: [{surface: El, sense: el}, {surface: ventilador, sense: ventilador}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: sala, sense: sala}]
+      tokens: [{surface: El, sense: el}, {surface: ventilador, sense: ventilador}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: sala, sense: sala, form: 'form:fem'}]
       reverse: El ventilador está en la sala
   translations:
     en: |-
@@ -245,7 +245,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hay café en la cocina.
-      tokens: [{surface: Hay, sense: hay}, {surface: café, sense: café}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}]
+      tokens: [{surface: Hay, sense: hay}, {surface: café, sense: café}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}]
       reverse: (Hay café en la cocina|En la cocina hay café)
   translations:
     en: (There's|There is) coffee in the kitchen.
@@ -265,7 +265,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami y papi están en la cocina.
-      tokens: [{surface: Mami, sense: mami}, {surface: 'y', sense: 'y'}, {surface: papi, sense: papi}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: papi, sense: papi}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}]
       reverse: (Mami|Mamá) y (papi|papá) están en la cocina
   translations:
     en: |-
@@ -275,7 +275,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La cocina está al lado de la sala.
-      tokens: [{surface: La, sense: el}, {surface: cocina, sense: cocina}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: sala, sense: sala}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: sala, sense: sala, form: 'form:fem'}]
       reverse: La cocina está al lado de la sala
   translations:
     en: |-
@@ -286,7 +286,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El café está en la cocina.
-      tokens: [{surface: El, sense: el}, {surface: café, sense: café}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}]
+      tokens: [{surface: El, sense: el}, {surface: café, sense: café}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}]
       reverse: El café está en la cocina
   translations:
     en: |-
@@ -341,7 +341,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La casa es chiquita, pero la familia es grande.
-      tokens: [{surface: La, sense: el}, {surface: casa, sense: casa}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: chiquita, sense: chiquito}, {surface: pero, sense: pero}, {surface: la, sense: el}, {surface: familia, sense: familia}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: grande, sense: grande}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: chiquita, sense: chiquito, form: 'form:fem'}, {surface: pero, sense: pero}, {surface: la, sense: el, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: grande, sense: grande, form: 'form:fem'}]
       reverse: La casa es (chiquita|chiquitica|pequeña) pero la familia es grande
   translations:
     en: |-
@@ -363,7 +363,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela está en el portal.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}]
       reverse: |-
         [La] abuela está en el portal
         Mi abuela está en el portal.
@@ -389,7 +389,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela está en su sillón.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: sillón, sense: sillón}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: sillón, sense: sillón}]
       reverse: |-
         [La] abuela está en su (sillón|mecedora)
         Mi abuela está en su sillón.
@@ -417,7 +417,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hay una mata de mango en el patio.
-      tokens: [{surface: Hay, sense: hay}, {surface: una, sense: un}, {surface: mata, sense: mata}, {surface: de, sense: de}, {surface: mango, sense: mango}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
+      tokens: [{surface: Hay, sense: hay}, {surface: una, sense: un, form: 'form:fem'}, {surface: mata, sense: mata, form: 'form:fem'}, {surface: de, sense: de}, {surface: mango, sense: mango}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
       reverse: (Hay (una mata de mango|un árbol de mango|un mango) en el patio|En el patio hay (una mata de mango|un árbol de mango|un mango))
   translations:
     en: |-
@@ -428,7 +428,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La mata de mango es muy grande.
-      tokens: [{surface: La, sense: el}, {surface: mata, sense: mata}, {surface: de, sense: de}, {surface: mango, sense: mango}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: grande, sense: grande}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: mata, sense: mata, form: 'form:fem'}, {surface: de, sense: de}, {surface: mango, sense: mango}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: grande, sense: grande, form: 'form:fem'}]
       reverse: (La mata de mango|El árbol de mango|El mango) es muy grande
   translations:
     en: |-
@@ -456,14 +456,14 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿No está en la sala, abuela?
-          tokens: [{surface: 'No', sense: 'no'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: sala, sense: sala}, {surface: abuela, sense: abuela}]
+          tokens: [{surface: 'No', sense: 'no'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: sala, sense: sala, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       translations: {en: 'Isn''t it in the living room, Grandma?'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: No, mi vida. En la sala no está.
-          tokens: [{surface: 'No', sense: 'no'}, {surface: mi, sense: mi}, {surface: vida, sense: vida}, {surface: En, sense: en}, {surface: la, sense: el}, {surface: sala, sense: sala}, {surface: 'no', sense: 'no'}, {surface: está, sense: estar, form: 'form:pres-3s'}]
+          tokens: [{surface: 'No', sense: 'no'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}, {surface: En, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: sala, sense: sala, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: está, sense: estar, form: 'form:pres-3s'}]
       translations: {en: 'No, darling. It''s not in the living room.'}
   - line:
       speaker: pepe
@@ -473,7 +473,7 @@ stories:
       forms:
         es-Latn/standard:
           text: En la cocina hay café, pero no hay ventilador.
-          tokens: [{surface: En, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}, {surface: hay, sense: hay}, {surface: café, sense: café}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: ventilador, sense: ventilador}]
+          tokens: [{surface: En, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: cocina, sense: cocina, form: 'form:fem'}, {surface: hay, sense: hay}, {surface: café, sense: café}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: ventilador, sense: ventilador}]
       translations: {en: 'In the kitchen there''s coffee, but there''s no fan.'}
   - choose:
       prompt: {en: 'What is Abuela looking for?'}
@@ -513,7 +513,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili! ¿Tú tienes el ventilador de abuela?
-          tokens: [{surface: Lili, sense: lili}, {surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: ventilador, sense: ventilador}, {surface: de, sense: de}, {surface: abuela, sense: abuela}]
+          tokens: [{surface: Lili, sense: lili}, {surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: ventilador, sense: ventilador}, {surface: de, sense: de}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       translations: {en: 'Lili! Do you have Grandma''s fan?'}
   - line:
       speaker: lili
@@ -534,14 +534,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi'ja, yo también tengo calor.
-          tokens: [{surface: "Mi'ja", sense: mijo}, {surface: yo, sense: yo}, {surface: también, sense: también}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: calor, sense: calor}]
+          tokens: [{surface: "Mi'ja", sense: mijo, form: 'form:fem'}, {surface: yo, sense: yo}, {surface: también, sense: también}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: calor, sense: calor}]
       translations: {en: 'Sweetie, I''m hot too.'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: ¿Calor? Aquí en el patio no hay calor. ¡Hay una mata de mango!
-          tokens: [{surface: Calor, sense: calor}, {surface: Aquí, sense: aquí}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: calor, sense: calor}, {surface: Hay, sense: hay}, {surface: una, sense: un}, {surface: mata, sense: mata}, {surface: de, sense: de}, {surface: mango, sense: mango}]
+          tokens: [{surface: Calor, sense: calor}, {surface: Aquí, sense: aquí}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: calor, sense: calor}, {surface: Hay, sense: hay}, {surface: una, sense: un, form: 'form:fem'}, {surface: mata, sense: mata, form: 'form:fem'}, {surface: de, sense: de}, {surface: mango, sense: mango}]
       translations: {en: 'Hot? Out here in the yard it isn''t hot. There''s a mango tree!'}
   - line:
       speaker: cachita

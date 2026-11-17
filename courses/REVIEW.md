@@ -89,7 +89,10 @@ A fill-in now asks which word (every option in the answer's form and of its part
   A wrong one changes which words a question offers against each other.
 - **Story questions.** All 200 `complete` steps were redone: the wrong options of a word question make the
   line false or absurd, those of a form question make it ungrammatical, and nothing else marks the answer.
-- [choice-doubts.md](choice-doubts.md) lists the tags and the steps the drafts were least sure of.
+- **Spanish agreement.** Every agreeing es noun, adjective, determiner and pronoun now says its gender and
+  number (`form:fem`, `form:pl`, `form:fem-pl`), so a word question offers only words that agree.
+- [choice-doubts.md](choice-doubts.md) lists the tags, the steps and the Spanish agreement choices the drafts
+  were least sure of.
 
 ## Marking what is wrong
 

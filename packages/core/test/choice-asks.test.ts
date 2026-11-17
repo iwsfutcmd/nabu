@@ -90,6 +90,30 @@ describe("a gap-fill asks one thing (ADR 0132)", () => {
     }
   }, 300_000);
 
+  it("never blanks or offers a word of a phrase KC (por of por favor), but a word its line repeats apart", () => {
+    const es = courses.es;
+    const kcs = new Map<string, BundleKc>(allKcs(es).map((k) => [k.id, k]));
+    const phrase = (t: Token): boolean => (kcs.get(senseKcOf(t) ?? "")?.forms?.[es.orthography]?.[0]?.tokens.filter((x) => x.kind === "word").length ?? 1) > 1;
+    let cards = 0;
+    for (const { ex } of gapFills(es, 2)) {
+      cards++;
+      for (const o of ex.options) expect(phrase(tokenOf(o)), `${ex.id}: ${surfaceOf(o)}`).toBe(false);
+    }
+    expect(cards).toBeGreaterThan(300);
+    // A word a sentence repeats apart (el … la, mi … mi) is a word of its own: it may be the blank.
+    let apart = 0;
+    for (const [i, s] of allSentences(es).entries()) {
+      const text = s.forms[es.orthography]?.text;
+      if (text === undefined || s.id.startsWith("drill.")) continue;
+      const ws = text.tokens.filter((t) => t.kind === "word");
+      const repeated = ws.find((t, k) => t.sense !== undefined && ws.some((u, j) => j > k + 1 && u.sense === t.sense) && ws[k + 1]?.sense !== t.sense);
+      if (repeated?.sense === undefined) continue;
+      const ex = makeGapFill({ course: es, rng: seededRng(i), introduced: [`sense:${repeated.sense}` as BundleKc["id"]] }, s);
+      if (ex !== undefined && tokenOf(ex.options[ex.answer] as TaggedText).sense === repeated.sense) apart++;
+    }
+    expect(apart).toBeGreaterThan(20);
+  }, 300_000);
+
   it("credits what it asked: the sense for a word, the form KCs for a form, both on a card from before", () => {
     const chg = courses.chg;
     const all = gapFills(chg, 1).map((g) => g.ex);

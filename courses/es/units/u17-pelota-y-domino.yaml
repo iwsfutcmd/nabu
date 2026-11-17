@@ -51,7 +51,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú has jugado dominó en la Calle Ocho?
-      tokens: [{surface: Tú, sense: tú}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: jugado, sense: jugar, form: 'form:part'}, {surface: dominó, sense: dominó}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      tokens: [{surface: Tú, sense: tú}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: jugado, sense: jugar, form: 'form:part'}, {surface: dominó, sense: dominó}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
       reverse: (Tú has jugado|Has jugado [tú]|Usted ha jugado|Ha jugado [usted]|Ustedes han jugado|Han jugado [ustedes]) [al] dominó en [la] Calle Ocho
   translations:
     en: |-
@@ -62,7 +62,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe ha ganado tres veces hoy.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: ganado, sense: ganar, form: 'form:part'}, {surface: tres, sense: tres}, {surface: veces, sense: vez}, {surface: hoy, sense: hoy}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: ganado, sense: ganar, form: 'form:part'}, {surface: tres, sense: tres}, {surface: veces, sense: vez, form: 'form:fem-pl'}, {surface: hoy, sense: hoy}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) Pepe ha ganado tres veces hoy
         Hoy (abuelo|mi abuelo|el abuelo) Pepe ha ganado tres veces
@@ -75,7 +75,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nosotros hemos jugado muchas veces con sus amigos.
-      tokens: [{surface: Nosotros, sense: nosotros}, {surface: hemos, sense: haber, form: 'form:pres-1p'}, {surface: jugado, sense: jugar, form: 'form:part'}, {surface: muchas, sense: mucho}, {surface: veces, sense: vez}, {surface: con, sense: con}, {surface: sus, sense: su}, {surface: amigos, sense: amigo}]
+      tokens: [{surface: Nosotros, sense: nosotros, form: 'form:pl'}, {surface: hemos, sense: haber, form: 'form:pres-1p'}, {surface: jugado, sense: jugar, form: 'form:part'}, {surface: muchas, sense: mucho, form: 'form:fem-pl'}, {surface: veces, sense: vez, form: 'form:fem-pl'}, {surface: con, sense: con}, {surface: sus, sense: su, form: 'form:pl'}, {surface: amigos, sense: amigo, form: 'form:pl'}]
       reverse: '[Nosotros] hemos jugado (muchas veces con sus amigos|con sus amigos muchas veces)'
   translations:
     en: |-
@@ -86,7 +86,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yasiel y yo hemos perdido dos veces.
-      tokens: [{surface: Yasiel, sense: yasiel}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: hemos, sense: haber, form: 'form:pres-1p'}, {surface: perdido, sense: perder, form: 'form:part'}, {surface: dos, sense: dos}, {surface: veces, sense: vez}]
+      tokens: [{surface: Yasiel, sense: yasiel}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: hemos, sense: haber, form: 'form:pres-1p'}, {surface: perdido, sense: perder, form: 'form:part'}, {surface: dos, sense: dos}, {surface: veces, sense: vez, form: 'form:fem-pl'}]
       reverse: Yasiel y yo hemos perdido dos veces
   translations:
     en: Yasiel and I have lost (twice|two times).
@@ -95,7 +95,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy he tenido mucha suerte.
-      tokens: [{surface: Hoy, sense: hoy}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: tenido, sense: tener, form: 'form:part'}, {surface: mucha, sense: mucho}, {surface: suerte, sense: suerte}]
+      tokens: [{surface: Hoy, sense: hoy}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: tenido, sense: tener, form: 'form:part'}, {surface: mucha, sense: mucho, form: 'form:fem'}, {surface: suerte, sense: suerte, form: 'form:fem'}]
       reverse: |-
         Hoy [yo] he tenido mucha suerte
         [Yo] he tenido mucha suerte hoy
@@ -109,7 +109,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi vida, ¿tú ya has comido?
-      tokens: [{surface: Mi, sense: mi}, {surface: vida, sense: vida}, {surface: tú, sense: tú}, {surface: ya, sense: ya}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: comido, sense: comer, form: 'form:part'}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}, {surface: tú, sense: tú}, {surface: ya, sense: ya}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: comido, sense: comer, form: 'form:part'}]
       reverse: (Mi vida|Mi amor|Mi cielo) (tú ya has comido|ya tú has comido|ya has comido [tú]|has comido [tú] ya|tú ya comiste|ya tú comiste|ya comiste [tú])
   translations:
     en: |-
@@ -121,7 +121,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sí, abuela, ya he comido.
-      tokens: [{surface: Sí, sense: sí}, {surface: abuela, sense: abuela}, {surface: ya, sense: ya}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: comido, sense: comer, form: 'form:part'}]
+      tokens: [{surface: Sí, sense: sí}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: ya, sense: ya}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: comido, sense: comer, form: 'form:part'}]
       reverse: Sí (abuela|mi abuela) (ya [yo] he comido|ya [yo] comí|yo ya he comido|yo ya comí)
   translations:
     en: |-
@@ -133,7 +133,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todavía no he hablado con tía Marisol.
-      tokens: [{surface: Todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: hablado, sense: hablar, form: 'form:part'}, {surface: con, sense: con}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: Todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: hablado, sense: hablar, form: 'form:part'}, {surface: con, sense: con}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}]
       reverse: |-
         (Todavía|Todavía yo|Yo todavía|Aún|Yo aún) no he hablado con (tía|mi tía) Marisol
         [Yo] no he hablado con (tía|mi tía) Marisol (todavía|aún)
@@ -146,7 +146,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ya son las nueve y Yasiel todavía no ha venido.
-      tokens: [{surface: Ya, sense: ya}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: nueve, sense: nueve}, {surface: 'y', sense: 'y'}, {surface: Yasiel, sense: yasiel}, {surface: todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: venido, sense: venir, form: 'form:part'}]
+      tokens: [{surface: Ya, sense: ya}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: nueve, sense: nueve}, {surface: 'y', sense: 'y'}, {surface: Yasiel, sense: yasiel}, {surface: todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: venido, sense: venir, form: 'form:part'}]
       reverse: |-
         Ya son las nueve y Yasiel (todavía no|aún no) ha (venido|llegado)
         Ya son las nueve y Yasiel no ha (venido|llegado) (todavía|aún)
@@ -161,7 +161,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe nunca ha perdido con nosotros.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: perdido, sense: perder, form: 'form:part'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: perdido, sense: perder, form: 'form:part'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) Pepe nunca ha perdido (con|contra) nosotros
         (Abuelo|Mi abuelo|El abuelo) Pepe no ha perdido nunca (con|contra) nosotros
@@ -240,7 +240,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela nunca ha vuelto a Matanzas.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: vuelto, sense: volver, form: 'form:part'}, {surface: a, sense: a}, {surface: Matanzas, sense: matanzas}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: vuelto, sense: volver, form: 'form:part'}, {surface: a, sense: a}, {surface: Matanzas, sense: matanzas}]
       reverse: |-
         (Abuela|Mi abuela|La abuela) nunca ha (vuelto|regresado) a Matanzas
         (Abuela|Mi abuela|La abuela) no ha (vuelto|regresado) nunca a Matanzas
@@ -262,7 +262,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú has visto un juego de pelota en el estadio?
-      tokens: [{surface: Tú, sense: tú}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: visto, sense: ver, form: 'form:part'}, {surface: un, sense: un}, {surface: juego, sense: juego}, {surface: de, sense: de}, {surface: pelota, sense: pelota}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: estadio, sense: estadio}]
+      tokens: [{surface: Tú, sense: tú}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: visto, sense: ver, form: 'form:part'}, {surface: un, sense: un}, {surface: juego, sense: juego}, {surface: de, sense: de}, {surface: pelota, sense: pelota, form: 'form:fem'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: estadio, sense: estadio}]
       reverse: (Tú has visto|Has visto [tú]|Usted ha visto|Ha visto [usted]|Ustedes han visto|Han visto [ustedes]) un juego de (pelota|béisbol) en el estadio
   translations:
     en: |-
@@ -274,7 +274,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe es de los Industriales.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: los, sense: el}, {surface: Industriales, sense: industriales}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: los, sense: el, form: 'form:pl'}, {surface: Industriales, sense: industriales}]
       reverse: (Abuelo|Mi abuelo|El abuelo) Pepe es (de los|fanático de los|fan de los) Industriales
   translations:
     en: (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) Pepe (is an Industriales fan|is a fan of [the] Industriales|roots for [the] Industriales|supports [the] Industriales).
@@ -283,7 +283,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pero Daniel y Lili son de los Marlins.
-      tokens: [{surface: Pero, sense: pero}, {surface: Daniel, sense: daniel}, {surface: 'y', sense: 'y'}, {surface: Lili, sense: lili}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: los, sense: el}, {surface: Marlins, sense: marlins}]
+      tokens: [{surface: Pero, sense: pero}, {surface: Daniel, sense: daniel}, {surface: 'y', sense: 'y'}, {surface: Lili, sense: lili}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: los, sense: el, form: 'form:pl'}, {surface: Marlins, sense: marlins}]
       reverse: Pero Daniel y Lili son (de los|fanáticos de los|fans de los) Marlins
   translations:
     en: But Daniel and Lili (are Marlins fans|are fans of the Marlins|root for the Marlins|support the Marlins).
@@ -305,7 +305,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Jonrón! ¡Los Industriales han ganado!
-      tokens: [{surface: Jonrón, sense: jonrón}, {surface: Los, sense: el}, {surface: Industriales, sense: industriales}, {surface: han, sense: haber, form: 'form:pres-3p'}, {surface: ganado, sense: ganar, form: 'form:part'}]
+      tokens: [{surface: Jonrón, sense: jonrón}, {surface: Los, sense: el, form: 'form:pl'}, {surface: Industriales, sense: industriales}, {surface: han, sense: haber, form: 'form:pres-3p'}, {surface: ganado, sense: ganar, form: 'form:part'}]
       reverse: (Jonrón|Cuadrangular) [los] Industriales (han ganado|ganaron)
   translations:
     en: Home run! (The Industriales|Industriales) (have won|won)!
@@ -314,7 +314,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili ha ponchado a Daniel dos veces.
-      tokens: [{surface: Lili, sense: lili}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: ponchado, sense: ponchar, form: 'form:part'}, {surface: a, sense: a}, {surface: Daniel, sense: daniel}, {surface: dos, sense: dos}, {surface: veces, sense: vez}]
+      tokens: [{surface: Lili, sense: lili}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: ponchado, sense: ponchar, form: 'form:part'}, {surface: a, sense: a}, {surface: Daniel, sense: daniel}, {surface: dos, sense: dos}, {surface: veces, sense: vez, form: 'form:fem-pl'}]
       reverse: |-
         Lili (ha ponchado|ponchó) a Daniel dos veces
         Lili (ha ponchado|ponchó) dos veces a Daniel
@@ -327,7 +327,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo nunca ha ido al estadio de los Marlins.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: ido, sense: ir, form: 'form:part'}, {surface: al, sense: al}, {surface: estadio, sense: estadio}, {surface: de, sense: de}, {surface: los, sense: el}, {surface: Marlins, sense: marlins}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: ido, sense: ir, form: 'form:part'}, {surface: al, sense: al}, {surface: estadio, sense: estadio}, {surface: de, sense: de}, {surface: los, sense: el, form: 'form:pl'}, {surface: Marlins, sense: marlins}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) nunca ha (ido al|estado en el) estadio de los Marlins
         (Abuelo|Mi abuelo|El abuelo) no ha (ido al|estado en el) estadio de los Marlins nunca
@@ -338,7 +338,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los sábados abuelo juega dominó en el parque de la Calle Ocho.
-      tokens: [{surface: Los, sense: el}, {surface: sábados, sense: sábado}, {surface: abuelo, sense: abuelo}, {surface: juega, sense: jugar, form: 'form:pres-3s'}, {surface: dominó, sense: dominó}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: parque, sense: parque}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: sábados, sense: sábado, form: 'form:pl'}, {surface: abuelo, sense: abuelo}, {surface: juega, sense: jugar, form: 'form:pres-3s'}, {surface: dominó, sense: dominó}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: parque, sense: parque}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
       reverse: |-
         Los sábados (abuelo|mi abuelo|el abuelo) juega [al] dominó en el parque de [la] Calle Ocho
         (Abuelo|Mi abuelo|El abuelo) juega [al] dominó en el parque de [la] Calle Ocho los sábados
@@ -352,7 +352,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy Yasiel es mi pareja y vamos a ganar.
-      tokens: [{surface: Hoy, sense: hoy}, {surface: Yasiel, sense: yasiel}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: pareja, sense: pareja}, {surface: 'y', sense: 'y'}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: ganar, sense: ganar}]
+      tokens: [{surface: Hoy, sense: hoy}, {surface: Yasiel, sense: yasiel}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: pareja, sense: pareja, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: ganar, sense: ganar}]
       reverse: |-
         Hoy Yasiel es mi pareja y [nosotros] vamos a ganar
         Yasiel es mi pareja hoy y [nosotros] vamos a ganar
@@ -376,7 +376,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tengo una data con cinco dobles.
-      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: una, sense: un}, {surface: data, sense: data}, {surface: con, sense: con}, {surface: cinco, sense: cinco}, {surface: dobles, sense: doble}]
+      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: data, sense: data, form: 'form:fem'}, {surface: con, sense: con}, {surface: cinco, sense: cinco}, {surface: dobles, sense: doble, form: 'form:pl'}]
       reverse: '[Yo] tengo una data con cinco dobles'
   translations:
     en: (I have|I've got) a hand with five doubles.
@@ -385,7 +385,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No tengo fichas con seis. Paso.
-      tokens: [{surface: 'No', sense: 'no'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: fichas, sense: ficha}, {surface: con, sense: con}, {surface: seis, sense: seis}, {surface: Paso, sense: pasar, form: 'form:pres-1s'}]
+      tokens: [{surface: 'No', sense: 'no'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: fichas, sense: ficha, form: 'form:fem-pl'}, {surface: con, sense: con}, {surface: seis, sense: seis}, {surface: Paso, sense: pasar, form: 'form:pres-1s'}]
       reverse: |-
         [Yo] no tengo (fichas|ninguna ficha) con (seis|un seis) [así que] [yo] paso
         [Yo] paso [porque] no tengo (fichas|ninguna ficha) con (seis|un seis)
@@ -416,7 +416,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Capicúa! ¡Hemos ganado, pareja!
-      tokens: [{surface: Capicúa, sense: capicúa}, {surface: Hemos, sense: haber, form: 'form:pres-1p'}, {surface: ganado, sense: ganar, form: 'form:part'}, {surface: pareja, sense: pareja}]
+      tokens: [{surface: Capicúa, sense: capicúa}, {surface: Hemos, sense: haber, form: 'form:pres-1p'}, {surface: ganado, sense: ganar, form: 'form:part'}, {surface: pareja, sense: pareja, form: 'form:fem'}]
       reverse: Capicúa [nosotros] (hemos ganado|ganamos) pareja
   translations:
     en: Capicúa! (We've won|We have won|We won), partner!
@@ -425,7 +425,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hemos perdido, pero ha sido una tarde muy buena.
-      tokens: [{surface: Hemos, sense: haber, form: 'form:pres-1p'}, {surface: perdido, sense: perder, form: 'form:part'}, {surface: pero, sense: pero}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: sido, sense: ser, form: 'form:part'}, {surface: una, sense: un}, {surface: tarde, sense: tarde}, {surface: muy, sense: muy}, {surface: buena, sense: bueno}]
+      tokens: [{surface: Hemos, sense: haber, form: 'form:pres-1p'}, {surface: perdido, sense: perder, form: 'form:part'}, {surface: pero, sense: pero}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: sido, sense: ser, form: 'form:part'}, {surface: una, sense: un, form: 'form:fem'}, {surface: tarde, sense: tarde}, {surface: muy, sense: muy}, {surface: buena, sense: bueno, form: 'form:fem'}]
       reverse: '[Nosotros] (hemos perdido|perdimos) pero (ha sido|fue) una tarde muy buena'
   translations:
     en: (We've lost|We have lost|We lost), but (it's been|it has been|it was) a (very good|really good|great) afternoon.
@@ -434,7 +434,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los amigos de abuelo siempre han jugado en este parque.
-      tokens: [{surface: Los, sense: el}, {surface: amigos, sense: amigo}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}, {surface: siempre, sense: siempre}, {surface: han, sense: haber, form: 'form:pres-3p'}, {surface: jugado, sense: jugar, form: 'form:part'}, {surface: en, sense: en}, {surface: este, sense: este}, {surface: parque, sense: parque}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: amigos, sense: amigo, form: 'form:pl'}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}, {surface: siempre, sense: siempre}, {surface: han, sense: haber, form: 'form:pres-3p'}, {surface: jugado, sense: jugar, form: 'form:part'}, {surface: en, sense: en}, {surface: este, sense: este}, {surface: parque, sense: parque}]
       reverse: Los amigos (de abuelo|de mi abuelo|del abuelo) (siempre han jugado|han jugado siempre) en este parque
   translations:
     en: (Grandpa's|Abuelo's|Grandfather's|My grandpa's|My grandfather's) friends have always played in this park.
@@ -452,7 +452,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel, mi pareja todavía no ha venido.
-          tokens: [{surface: Daniel, sense: daniel}, {surface: mi, sense: mi}, {surface: pareja, sense: pareja}, {surface: todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: venido, sense: venir, form: 'form:part'}]
+          tokens: [{surface: Daniel, sense: daniel}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: pareja, sense: pareja, form: 'form:fem'}, {surface: todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: venido, sense: venir, form: 'form:part'}]
       translations: {en: 'Daniel, my partner still hasn''t come.'}
   - line:
       speaker: daniel
@@ -465,11 +465,11 @@ stories:
       speaker: pepe
       ask: complete
       gap: sense:pareja
-      distractors: ['sense:estadio', 'sense:parque']
+      distractors: ['sense:ficha', 'sense:esquina']
       forms:
         es-Latn/standard:
           text: Bueno, hoy tú eres mi pareja, mi'jo.
-          tokens: [{surface: Bueno, sense: bueno}, {surface: hoy, sense: hoy}, {surface: tú, sense: tú}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: mi, sense: mi}, {surface: pareja, sense: pareja}, {surface: "mi'jo", sense: mijo}]
+          tokens: [{surface: Bueno, sense: bueno}, {surface: hoy, sense: hoy}, {surface: tú, sense: tú}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: pareja, sense: pareja, form: 'form:fem'}, {surface: "mi'jo", sense: mijo}]
       translations: {en: 'Well, today you''re my partner, son.'}
   - line:
       speaker: yasiel
@@ -495,28 +495,28 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Yo! Y tengo una data muy buena.
-          tokens: [{surface: Yo, sense: yo}, {surface: 'Y', sense: 'y'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: una, sense: un}, {surface: data, sense: data}, {surface: muy, sense: muy}, {surface: buena, sense: bueno}]
+          tokens: [{surface: Yo, sense: yo}, {surface: 'Y', sense: 'y'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: data, sense: data, form: 'form:fem'}, {surface: muy, sense: muy}, {surface: buena, sense: bueno, form: 'form:fem'}]
       translations: {en: 'Me! And I have a very good hand.'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: ¡Mi'jo, la data no se dice!
-          tokens: [{surface: "Mi'jo", sense: mijo}, {surface: la, sense: el}, {surface: data, sense: data}, {surface: 'no', sense: 'no'}, {surface: se, sense: se.impersonal}, {surface: dice, sense: decir, form: 'form:pres-3s'}]
+          tokens: [{surface: "Mi'jo", sense: mijo}, {surface: la, sense: el, form: 'form:fem'}, {surface: data, sense: data, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: se, sense: se.impersonal}, {surface: dice, sense: decir, form: 'form:pres-3s'}]
       translations: {en: 'Son, you don''t tell anyone your hand!'}
   - line:
       speaker: yasiel
       forms:
         es-Latn/standard:
           text: Paso. No tengo fichas con nueve.
-          tokens: [{surface: Paso, sense: pasar, form: 'form:pres-1s'}, {surface: 'No', sense: 'no'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: fichas, sense: ficha}, {surface: con, sense: con}, {surface: nueve, sense: nueve}]
+          tokens: [{surface: Paso, sense: pasar, form: 'form:pres-1s'}, {surface: 'No', sense: 'no'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: fichas, sense: ficha, form: 'form:fem-pl'}, {surface: con, sense: con}, {surface: nueve, sense: nueve}]
       translations: {en: 'I pass. I don''t have any tiles with a nine.'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: Yasiel ya ha pasado dos veces. ¡Vamos bien, pareja!
-          tokens: [{surface: Yasiel, sense: yasiel}, {surface: ya, sense: ya}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: pasado, sense: pasar, form: 'form:part'}, {surface: dos, sense: dos}, {surface: veces, sense: vez}, {surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: bien, sense: bien}, {surface: pareja, sense: pareja}]
+          tokens: [{surface: Yasiel, sense: yasiel}, {surface: ya, sense: ya}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: pasado, sense: pasar, form: 'form:part'}, {surface: dos, sense: dos}, {surface: veces, sense: vez, form: 'form:fem-pl'}, {surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: bien, sense: bien}, {surface: pareja, sense: pareja, form: 'form:fem'}]
       translations: {en: 'Yasiel has already passed twice. We''re doing well, partner!'}
   - choose:
       prompt: {en: 'How is the game going for Daniel and Abuelo?'}
@@ -527,7 +527,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuelo, esta ficha va aquí... ¡y aquí también!
-          tokens: [{surface: Abuelo, sense: abuelo}, {surface: esta, sense: este}, {surface: ficha, sense: ficha}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}, {surface: 'y', sense: 'y'}, {surface: aquí, sense: aquí}, {surface: también, sense: también}]
+          tokens: [{surface: Abuelo, sense: abuelo}, {surface: esta, sense: este, form: 'form:fem'}, {surface: ficha, sense: ficha, form: 'form:fem'}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}, {surface: 'y', sense: 'y'}, {surface: aquí, sense: aquí}, {surface: también, sense: también}]
       translations: {en: 'Grandpa, this tile goes here... and here too!'}
   - line:
       speaker: pepe
@@ -537,7 +537,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Capicúa! ¡Hemos ganado, pareja!
-          tokens: [{surface: Capicúa, sense: capicúa}, {surface: Hemos, sense: haber, form: 'form:pres-1p'}, {surface: ganado, sense: ganar, form: 'form:part'}, {surface: pareja, sense: pareja}]
+          tokens: [{surface: Capicúa, sense: capicúa}, {surface: Hemos, sense: haber, form: 'form:pres-1p'}, {surface: ganado, sense: ganar, form: 'form:part'}, {surface: pareja, sense: pareja, form: 'form:fem'}]
       translations: {en: 'Capicúa! We''ve won, partner!'}
   - line:
       speaker: yasiel
@@ -551,35 +551,35 @@ stories:
       forms:
         es-Latn/standard:
           text: He perdido muchas veces, mi'jo. ¡Pero hoy no!
-          tokens: [{surface: He, sense: haber, form: 'form:pres-1s'}, {surface: perdido, sense: perder, form: 'form:part'}, {surface: muchas, sense: mucho}, {surface: veces, sense: vez}, {surface: "mi'jo", sense: mijo}, {surface: Pero, sense: pero}, {surface: hoy, sense: hoy}, {surface: 'no', sense: 'no'}]
+          tokens: [{surface: He, sense: haber, form: 'form:pres-1s'}, {surface: perdido, sense: perder, form: 'form:part'}, {surface: muchas, sense: mucho, form: 'form:fem-pl'}, {surface: veces, sense: vez, form: 'form:fem-pl'}, {surface: "mi'jo", sense: mijo}, {surface: Pero, sense: pero}, {surface: hoy, sense: hoy}, {surface: 'no', sense: 'no'}]
       translations: {en: 'I''ve lost many times, son. But not today!'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: Abuelo, ¿tú has visto el juego de los Marlins?
-          tokens: [{surface: Abuelo, sense: abuelo}, {surface: tú, sense: tú}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: visto, sense: ver, form: 'form:part'}, {surface: el, sense: el}, {surface: juego, sense: juego}, {surface: de, sense: de}, {surface: los, sense: el}, {surface: Marlins, sense: marlins}]
+          tokens: [{surface: Abuelo, sense: abuelo}, {surface: tú, sense: tú}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: visto, sense: ver, form: 'form:part'}, {surface: el, sense: el}, {surface: juego, sense: juego}, {surface: de, sense: de}, {surface: los, sense: el, form: 'form:pl'}, {surface: Marlins, sense: marlins}]
       translations: {en: 'Grandpa, have you seen the Marlins game?'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: ¿Los Marlins? Yo soy de los Industriales, mi'jo.
-          tokens: [{surface: Los, sense: el}, {surface: Marlins, sense: marlins}, {surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: de, sense: de}, {surface: los, sense: el}, {surface: Industriales, sense: industriales}, {surface: "mi'jo", sense: mijo}]
+          tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: Marlins, sense: marlins}, {surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: de, sense: de}, {surface: los, sense: el, form: 'form:pl'}, {surface: Industriales, sense: industriales}, {surface: "mi'jo", sense: mijo}]
       translations: {en: 'The Marlins? I root for Industriales, son.'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: Abuelo, tú siempre has sido de los Industriales.
-          tokens: [{surface: Abuelo, sense: abuelo}, {surface: tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: sido, sense: ser, form: 'form:part'}, {surface: de, sense: de}, {surface: los, sense: el}, {surface: Industriales, sense: industriales}]
+          tokens: [{surface: Abuelo, sense: abuelo}, {surface: tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: sido, sense: ser, form: 'form:part'}, {surface: de, sense: de}, {surface: los, sense: el, form: 'form:pl'}, {surface: Industriales, sense: industriales}]
       translations: {en: 'Grandpa, you''ve always been an Industriales fan.'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: Siempre. Y tú, mi'jo, ya eres mi pareja de dominó.
-          tokens: [{surface: Siempre, sense: siempre}, {surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}, {surface: "mi'jo", sense: mijo}, {surface: ya, sense: ya}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: mi, sense: mi}, {surface: pareja, sense: pareja}, {surface: de, sense: de}, {surface: dominó, sense: dominó}]
+          tokens: [{surface: Siempre, sense: siempre}, {surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}, {surface: "mi'jo", sense: mijo}, {surface: ya, sense: ya}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: pareja, sense: pareja, form: 'form:fem'}, {surface: de, sense: de}, {surface: dominó, sense: dominó}]
       translations: {en: 'Always. And you, son, are my dominoes partner now.'}
   - choose:
       prompt: {en: 'Which team does Abuelo Pepe root for?'}

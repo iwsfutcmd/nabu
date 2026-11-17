@@ -48,7 +48,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Dos cafecitos, por favor.
-      tokens: [{surface: Dos, sense: dos}, {surface: cafecitos, sense: cafecito}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      tokens: [{surface: Dos, sense: dos}, {surface: cafecitos, sense: cafecito, form: 'form:pl'}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
       reverse: Dos (cafecitos|cafés cubanos|cafés) por favor
   translations:
     en: |-
@@ -58,7 +58,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Quiero tres tostones.
-      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: tres, sense: tres}, {surface: tostones, sense: tostón}]
+      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: tres, sense: tres}, {surface: tostones, sense: tostón, form: 'form:pl'}]
       reverse: '[Yo] quiero tres tostones'
   translations:
     en: |-
@@ -69,7 +69,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuántos tostones tú quieres?
-      tokens: [{surface: Cuántos, sense: cuánto}, {surface: tostones, sense: tostón}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}]
+      tokens: [{surface: Cuántos, sense: cuánto, form: 'form:pl'}, {surface: tostones, sense: tostón, form: 'form:pl'}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}]
       reverse: Cuántos tostones (tú quieres|quieres [tú]|usted quiere|quiere [usted]|ustedes quieren|quieren [ustedes])
   translations:
     en: |-
@@ -89,7 +89,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuántos son?
-      tokens: [{surface: Cuántos, sense: cuánto}, {surface: son, sense: ser, form: 'form:pres-3p'}]
+      tokens: [{surface: Cuántos, sense: cuánto, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}]
       reverse: (Cuántos son [ustedes]|Cuántos ustedes son|Cuántas son [ustedes]|Cuántas ustedes son)
   translations:
     en: |-
@@ -115,7 +115,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela toma seis cafecitos.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: toma, sense: tomar, form: 'form:pres-3s'}, {surface: seis, sense: seis}, {surface: cafecitos, sense: cafecito}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: toma, sense: tomar, form: 'form:pres-3s'}, {surface: seis, sense: seis}, {surface: cafecitos, sense: cafecito, form: 'form:pl'}]
       reverse: (Abuela|La abuela|Mi abuela) (toma|bebe) seis (cafecitos|cafés)
   translations:
     en: |-
@@ -125,7 +125,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel come siete tostones.
-      tokens: [{surface: Daniel, sense: daniel}, {surface: come, sense: comer, form: 'form:pres-3s'}, {surface: siete, sense: siete}, {surface: tostones, sense: tostón}]
+      tokens: [{surface: Daniel, sense: daniel}, {surface: come, sense: comer, form: 'form:pres-3s'}, {surface: siete, sense: siete}, {surface: tostones, sense: tostón, form: 'form:pl'}]
       reverse: Daniel come siete tostones
   translations:
     en: |-
@@ -135,7 +135,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Son las ocho.
-      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: ocho, sense: ocho}]
+      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: ocho, sense: ocho}]
       reverse: Son las ocho [en punto]
   translations:
     en: (It's|It is) eight [o'clock].
@@ -144,7 +144,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Somos nueve con abuela.
-      tokens: [{surface: Somos, sense: ser, form: 'form:pres-1p'}, {surface: nueve, sense: nueve}, {surface: con, sense: con}, {surface: abuela, sense: abuela}]
+      tokens: [{surface: Somos, sense: ser, form: 'form:pres-1p'}, {surface: nueve, sense: nueve}, {surface: con, sense: con}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       reverse: |-
         [Nosotros] somos nueve con (abuela|la abuela)
         Con (abuela|la abuela) somos nueve
@@ -161,7 +161,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Diez tostones y una colada, por favor.
-      tokens: [{surface: Diez, sense: diez}, {surface: tostones, sense: tostón}, {surface: 'y', sense: 'y'}, {surface: una, sense: un}, {surface: colada, sense: colada}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      tokens: [{surface: Diez, sense: diez}, {surface: tostones, sense: tostón, form: 'form:pl'}, {surface: 'y', sense: 'y'}, {surface: una, sense: un, form: 'form:fem'}, {surface: colada, sense: colada, form: 'form:fem'}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
       reverse: Diez tostones y una colada por favor
   translations:
     en: |-
@@ -171,7 +171,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela, ¿cuántos cafecitos tú tomas?
-      tokens: [{surface: Abuela, sense: abuela}, {surface: cuántos, sense: cuánto}, {surface: cafecitos, sense: cafecito}, {surface: tú, sense: tú}, {surface: tomas, sense: tomar, form: 'form:pres-2s'}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: cuántos, sense: cuánto, form: 'form:pl'}, {surface: cafecitos, sense: cafecito, form: 'form:pl'}, {surface: tú, sense: tú}, {surface: tomas, sense: tomar, form: 'form:pres-2s'}]
       reverse: |-
         Abuela cuántos (cafecitos|cafés) (tú tomas|tomas [tú]|usted toma|toma [usted])
         ¿Cuántos cafecitos tú tomas, abuela?
@@ -184,7 +184,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Qué hora es?
-      tokens: [{surface: Qué, sense: qué}, {surface: hora, sense: hora}, {surface: es, sense: ser, form: 'form:pres-3s'}]
+      tokens: [{surface: Qué, sense: qué}, {surface: hora, sense: hora, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}]
       reverse: (Qué hora es|Qué horas son)
   translations:
     en: |-
@@ -196,7 +196,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es la una.
-      tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: una, sense: uno}]
+      tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: una, sense: uno, form: 'form:fem'}]
       reverse: Es la una [en punto]
   translations:
     en: (It's|It is) one [o'clock].
@@ -205,7 +205,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Son las dos y media.
-      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: dos, sense: dos}, {surface: 'y', sense: 'y'}, {surface: media, sense: medio}]
+      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: dos, sense: dos}, {surface: 'y', sense: 'y'}, {surface: media, sense: medio, form: 'form:fem'}]
       reverse: |-
         Son las dos y media
         Son las dos y treinta.
@@ -216,7 +216,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Son las ocho y veinte.
-      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: ocho, sense: ocho}, {surface: 'y', sense: 'y'}, {surface: veinte, sense: veinte}]
+      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: ocho, sense: ocho}, {surface: 'y', sense: 'y'}, {surface: veinte, sense: veinte}]
       reverse: Son las ocho y veinte
   translations:
     en: (It's|It is) (eight twenty|twenty past eight|twenty after eight).
@@ -225,7 +225,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es la una y quince.
-      tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: una, sense: uno}, {surface: 'y', sense: 'y'}, {surface: quince, sense: quince}]
+      tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: una, sense: uno, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: quince, sense: quince}]
       reverse: Es la una y (quince|cuarto)
   translations:
     en: (It's|It is) (one fifteen|quarter past one|a quarter past one|quarter after one|a quarter after one).
@@ -234,7 +234,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Comemos a la una.
-      tokens: [{surface: Comemos, sense: comer, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: una, sense: uno}]
+      tokens: [{surface: Comemos, sense: comer, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: una, sense: uno, form: 'form:fem'}]
       reverse: |-
         [Nosotros] comemos a la una
         Nosotras comemos a la una.
@@ -249,7 +249,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿A qué hora tú comes?
-      tokens: [{surface: A, sense: a}, {surface: qué, sense: qué}, {surface: hora, sense: hora}, {surface: tú, sense: tú}, {surface: comes, sense: comer, form: 'form:pres-2s'}]
+      tokens: [{surface: A, sense: a}, {surface: qué, sense: qué}, {surface: hora, sense: hora, form: 'form:fem'}, {surface: tú, sense: tú}, {surface: comes, sense: comer, form: 'form:pres-2s'}]
       reverse: |-
         A qué hora (tú comes|comes [tú]|usted come|come [usted]|ustedes comen|comen [ustedes])
         ¿Tú a qué hora comes?
@@ -263,7 +263,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuántos años tú tienes?
-      tokens: [{surface: Cuántos, sense: cuánto}, {surface: años, sense: año}, {surface: tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}]
+      tokens: [{surface: Cuántos, sense: cuánto, form: 'form:pl'}, {surface: años, sense: año, form: 'form:pl'}, {surface: tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}]
       reverse: |-
         Cuántos años (tú tienes|tienes [tú]|usted tiene|tiene [usted]|ustedes tienen|tienen [ustedes])
         ¿Tú cuántos años tienes?
@@ -274,7 +274,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tengo veinticuatro años.
-      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: veinticuatro, sense: veinticuatro}, {surface: años, sense: año}]
+      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: veinticuatro, sense: veinticuatro}, {surface: años, sense: año, form: 'form:pl'}]
       reverse: '[Yo] tengo veinticuatro [años]'
   translations:
     en: (I'm|I am) twenty-four [years old].
@@ -283,7 +283,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili tiene diecinueve años.
-      tokens: [{surface: Lili, sense: lili}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año}]
+      tokens: [{surface: Lili, sense: lili}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año, form: 'form:pl'}]
       reverse: Lili tiene diecinueve [años]
   translations:
     en: (Lili is|Lili's) nineteen [years old].
@@ -292,7 +292,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela tiene setenta y nueve años.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: setenta, sense: setenta}, {surface: 'y', sense: 'y'}, {surface: nueve, sense: nueve}, {surface: años, sense: año}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: setenta, sense: setenta}, {surface: 'y', sense: 'y'}, {surface: nueve, sense: nueve}, {surface: años, sense: año, form: 'form:pl'}]
       reverse: (Abuela|La abuela|Mi abuela) tiene setenta y nueve [años]
   translations:
     en: |-
@@ -304,7 +304,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuántos años tiene usted, señora?
-      tokens: [{surface: Cuántos, sense: cuánto}, {surface: años, sense: año}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: usted, sense: usted}, {surface: señora, sense: señora}]
+      tokens: [{surface: Cuántos, sense: cuánto, form: 'form:pl'}, {surface: años, sense: año, form: 'form:pl'}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: usted, sense: usted}, {surface: señora, sense: señora, form: 'form:fem'}]
       reverse: |-
         Cuántos años (tiene [usted]|usted tiene) señora
         Señora, ¿cuántos años tiene usted?
@@ -317,7 +317,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yasiel también tiene veinticuatro años.
-      tokens: [{surface: Yasiel, sense: yasiel}, {surface: también, sense: también}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: veinticuatro, sense: veinticuatro}, {surface: años, sense: año}]
+      tokens: [{surface: Yasiel, sense: yasiel}, {surface: también, sense: también}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: veinticuatro, sense: veinticuatro}, {surface: años, sense: año, form: 'form:pl'}]
       reverse: |-
         Yasiel también tiene veinticuatro [años]
         Yasiel tiene veinticuatro [años] también
@@ -345,7 +345,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Son dos dólares.
-      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: dos, sense: dos}, {surface: dólares, sense: dólar}]
+      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: dos, sense: dos}, {surface: dólares, sense: dólar, form: 'form:pl'}]
       reverse: Son dos dólares
   translations:
     en: (It's|That's|It is|That is|That'll be) two dollars.
@@ -354,7 +354,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Son cien pesos.
-      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: cien, sense: cien}, {surface: pesos, sense: peso}]
+      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: cien, sense: cien}, {surface: pesos, sense: peso, form: 'form:pl'}]
       reverse: Son cien pesos
   translations:
     en: (It's|That's|It is|That is|That'll be) (a hundred|one hundred) pesos.
@@ -363,7 +363,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tengo treinta dólares.
-      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: treinta, sense: treinta}, {surface: dólares, sense: dólar}]
+      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: treinta, sense: treinta}, {surface: dólares, sense: dólar, form: 'form:pl'}]
       reverse: '[Yo] tengo treinta dólares'
   translations:
     en: |-
@@ -374,7 +374,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Son cincuenta pesos, señora.
-      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: cincuenta, sense: cincuenta}, {surface: pesos, sense: peso}, {surface: señora, sense: señora}]
+      tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: cincuenta, sense: cincuenta}, {surface: pesos, sense: peso, form: 'form:pl'}, {surface: señora, sense: señora, form: 'form:fem'}]
       reverse: |-
         Son cincuenta pesos señora
         Señora, son cincuenta pesos.
@@ -416,7 +416,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Qué cola!
-      tokens: [{surface: Qué, sense: qué}, {surface: cola, sense: cola}]
+      tokens: [{surface: Qué, sense: qué}, {surface: cola, sense: cola, form: 'form:fem'}]
       reverse: (Qué cola|Qué fila|Qué cola tan grande|Qué cola más grande|Qué fila tan larga|Qué fila más larga)
   translations:
     en: |-
@@ -454,7 +454,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo soy la última.
-      tokens: [{surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: última, sense: último}]
+      tokens: [{surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: última, sense: último, form: 'form:fem'}]
       reverse: '[Yo] soy la última'
   translations:
     en: |-
@@ -477,7 +477,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Qué cola, asere!
-          tokens: [{surface: Qué, sense: qué}, {surface: cola, sense: cola}, {surface: asere, sense: asere}]
+          tokens: [{surface: Qué, sense: qué}, {surface: cola, sense: cola, form: 'form:fem'}, {surface: asere, sense: asere}]
       translations: {en: 'What a line, man!'}
   - line:
       speaker: daniel
@@ -491,21 +491,21 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo soy la última, mi vida.
-          tokens: [{surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: última, sense: último}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+          tokens: [{surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: última, sense: último, form: 'form:fem'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}]
       translations: {en: 'I''m last, darling.'}
   - line:
       speaker: yasiel
       forms:
         es-Latn/standard:
           text: ¿Qué hora es?
-          tokens: [{surface: Qué, sense: qué}, {surface: hora, sense: hora}, {surface: es, sense: ser, form: 'form:pres-3s'}]
+          tokens: [{surface: Qué, sense: qué}, {surface: hora, sense: hora, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}]
       translations: {en: 'What time is it?'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: Son las ocho y media. ¡Y el cumpleaños de Lili es a las nueve!
-          tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: ocho, sense: ocho}, {surface: 'y', sense: 'y'}, {surface: media, sense: medio}, {surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: cumpleaños, sense: cumpleaños}, {surface: de, sense: de}, {surface: Lili, sense: lili}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: las, sense: el}, {surface: nueve, sense: nueve}]
+          tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: ocho, sense: ocho}, {surface: 'y', sense: 'y'}, {surface: media, sense: medio, form: 'form:fem'}, {surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: cumpleaños, sense: cumpleaños}, {surface: de, sense: de}, {surface: Lili, sense: lili}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: nueve, sense: nueve}]
       translations: {en: 'It''s half past eight. And Lili''s birthday party is at nine!'}
   - choose:
       prompt: {en: 'When is Lili''s birthday party?'}
@@ -516,7 +516,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué tú quieres, mi vida?
-          tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+          tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}]
       translations: {en: 'What would you like, darling?'}
   - line:
       speaker: daniel
@@ -524,21 +524,21 @@ stories:
       forms:
         es-Latn/standard:
           text: Una colada y diez tostones, por favor.
-          tokens: [{surface: Una, sense: un}, {surface: colada, sense: colada}, {surface: 'y', sense: 'y'}, {surface: diez, sense: diez}, {surface: tostones, sense: tostón}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+          tokens: [{surface: Una, sense: un, form: 'form:fem'}, {surface: colada, sense: colada, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: diez, sense: diez}, {surface: tostones, sense: tostón, form: 'form:pl'}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
       translations: {en: 'A colada and ten tostones, please.'}
   - line:
       speaker: dependienta
       forms:
         es-Latn/standard:
           text: Son veinte dólares.
-          tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: veinte, sense: veinte}, {surface: dólares, sense: dólar}]
+          tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: veinte, sense: veinte}, {surface: dólares, sense: dólar, form: 'form:pl'}]
       translations: {en: That's twenty dollars.}
   - line:
       speaker: yasiel
       forms:
         es-Latn/standard:
           text: ¿Veinte dólares? ¡Asere!
-          tokens: [{surface: Veinte, sense: veinte}, {surface: dólares, sense: dólar}, {surface: Asere, sense: asere}]
+          tokens: [{surface: Veinte, sense: veinte}, {surface: dólares, sense: dólar, form: 'form:pl'}, {surface: Asere, sense: asere}]
       translations: {en: 'Twenty dollars? Man!'}
   - choose:
       prompt: {en: 'How much do the colada and the tostones cost?'}
@@ -548,18 +548,18 @@ stories:
       speaker: cachita
       ask: complete
       gap: sense:cumpleaños
-      distractors: ['sense:cola', 'sense:hora']
+      distractors: ['sense:arroz', 'sense:pollo']
       forms:
         es-Latn/standard:
           text: ¡Feliz cumpleaños, mi vida!
-          tokens: [{surface: Feliz, sense: feliz}, {surface: cumpleaños, sense: cumpleaños}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+          tokens: [{surface: Feliz, sense: feliz}, {surface: cumpleaños, sense: cumpleaños}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}]
       translations: {en: 'Happy birthday, darling!'}
   - line:
       speaker: lili
       forms:
         es-Latn/standard:
           text: ¡Gracias, abuela!
-          tokens: [{surface: Gracias, sense: gracias}, {surface: abuela, sense: abuela}]
+          tokens: [{surface: Gracias, sense: gracias}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       translations: {en: 'Thank you, Grandma!'}
   - line:
       speaker: yasiel
@@ -567,7 +567,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Lili, ¿cuántos años tú tienes?
-          tokens: [{surface: Lili, sense: lili}, {surface: cuántos, sense: cuánto}, {surface: años, sense: año}, {surface: tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}]
+          tokens: [{surface: Lili, sense: lili}, {surface: cuántos, sense: cuánto, form: 'form:pl'}, {surface: años, sense: año, form: 'form:pl'}, {surface: tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}]
       translations: {en: 'Lili, how old are you?'}
   - line:
       speaker: lili
@@ -577,7 +577,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Tengo diecinueve años.
-          tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año}]
+          tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año, form: 'form:pl'}]
       translations: {en: 'I''m nineteen.'}
   - line:
       speaker: cachita
@@ -595,7 +595,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, tenemos hambre.
-          tokens: [{surface: Abuela, sense: abuela}, {surface: tenemos, sense: tener, form: 'form:pres-1p'}, {surface: hambre, sense: hambre}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: tenemos, sense: tener, form: 'form:pres-1p'}, {surface: hambre, sense: hambre, form: 'form:fem'}]
       translations: {en: 'Grandma, we''re hungry.'}
   - line:
       speaker: cachita

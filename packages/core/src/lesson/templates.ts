@@ -679,15 +679,15 @@ const attestedFor = (ctx: MakeContext, s: BundleSentence): AttestedWords => {
 
 /**
  * A text's words that are a sense on their own: not a word of a phrase KC (por of por favor, مع of
- * مع السلامة, which alone is only part of its sense) and not a word the text repeats. Only these
- * are blanked or offered (ADR 0132).
+ * مع السلامة), whose words stand next to each other with its sense, and alone are only part of it.
+ * Only these are blanked or offered (ADR 0132). A word the text repeats apart (este … esta) is its own.
  */
 const alone = (text: TaggedText): readonly number[] => {
   const all = words(text);
-  const senses = all.map((i) => (text.tokens[i] as Token).sense);
-  return all.filter((i) => {
-    const sense = (text.tokens[i] as Token).sense;
-    return sense !== undefined && senses.filter((x) => x === sense).length === 1;
+  const senseAt = (k: number): string | undefined => (all[k] === undefined ? undefined : (text.tokens[all[k]] as Token).sense);
+  return all.filter((_, k) => {
+    const sense = senseAt(k);
+    return sense !== undefined && senseAt(k - 1) !== sense && senseAt(k + 1) !== sense;
   });
 };
 

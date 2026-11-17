@@ -45,7 +45,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La Nochebuena es el veinticuatro de diciembre.
-      tokens: [{surface: La, sense: el}, {surface: Nochebuena, sense: nochebuena}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: veinticuatro, sense: veinticuatro}, {surface: de, sense: de}, {surface: diciembre, sense: diciembre}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: Nochebuena, sense: nochebuena}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: veinticuatro, sense: veinticuatro}, {surface: de, sense: de}, {surface: diciembre, sense: diciembre}]
       reverse: '[La] Nochebuena es el (veinticuatro|24) de diciembre'
   translations:
     en: Christmas Eve is [on] (December (24th|24|twenty-fourth)|the (24th|twenty-fourth) of December).
@@ -54,7 +54,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Este año, la Nochebuena será en casa de abuela.
-      tokens: [{surface: Este, sense: este}, {surface: año, sense: año}, {surface: la, sense: el}, {surface: Nochebuena, sense: nochebuena}, {surface: será, sense: ser, form: 'form:fut'}, {surface: en, sense: en}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: abuela, sense: abuela}]
+      tokens: [{surface: Este, sense: este}, {surface: año, sense: año}, {surface: la, sense: el, form: 'form:fem'}, {surface: Nochebuena, sense: nochebuena}, {surface: será, sense: ser, form: 'form:fut'}, {surface: en, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: de, sense: de}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       reverse: |-
         Este año [la] Nochebuena (será|va a ser) en casa de (abuela|la abuela|mi abuela)
         [La] Nochebuena (será|va a ser) en casa de (abuela|la abuela|mi abuela) este año
@@ -68,7 +68,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Para la Nochebuena vendrá toda la familia.
-      tokens: [{surface: Para, sense: para}, {surface: la, sense: el}, {surface: Nochebuena, sense: nochebuena}, {surface: vendrá, sense: venir, form: 'form:fut'}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: familia, sense: familia}]
+      tokens: [{surface: Para, sense: para}, {surface: la, sense: el, form: 'form:fem'}, {surface: Nochebuena, sense: nochebuena}, {surface: vendrá, sense: venir, form: 'form:fut'}, {surface: toda, sense: todo, form: 'form:fem'}, {surface: la, sense: el, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}]
       reverse: |-
         (Para|En) la Nochebuena (vendrá|va a venir) toda la familia
         Toda la familia (vendrá|va a venir) (para|en) la Nochebuena
@@ -82,7 +82,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La familia entera estará en Hialeah.
-      tokens: [{surface: La, sense: el}, {surface: familia, sense: familia}, {surface: entera, sense: entero}, {surface: estará, sense: estar, form: 'form:fut'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: entera, sense: entero, form: 'form:fem'}, {surface: estará, sense: estar, form: 'form:fut'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
       reverse: (La familia entera|Toda la familia) (estará|va a estar) en Hialeah
   translations:
     en: |-
@@ -93,7 +93,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Será una fiesta muy grande.
-      tokens: [{surface: Será, sense: ser, form: 'form:fut'}, {surface: una, sense: un}, {surface: fiesta, sense: fiesta}, {surface: muy, sense: muy}, {surface: grande, sense: grande}]
+      tokens: [{surface: Será, sense: ser, form: 'form:fut'}, {surface: una, sense: un, form: 'form:fem'}, {surface: fiesta, sense: fiesta, form: 'form:fem'}, {surface: muy, sense: muy}, {surface: grande, sense: grande, form: 'form:fem'}]
       reverse: (Será|Va a ser) una (fiesta muy grande|fiesta grandísima)
   translations:
     en: |-
@@ -104,7 +104,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Después de la Nochebuena viene la Navidad.
-      tokens: [{surface: Después, sense: después}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Nochebuena, sense: nochebuena}, {surface: viene, sense: venir, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: Navidad, sense: navidad}]
+      tokens: [{surface: Después, sense: después}, {surface: de, sense: de}, {surface: la, sense: el, form: 'form:fem'}, {surface: Nochebuena, sense: nochebuena}, {surface: viene, sense: venir, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: Navidad, sense: navidad}]
       reverse: |-
         Después de [la] Nochebuena viene [la] Navidad
         [La] Navidad viene después de [la] Nochebuena
@@ -144,7 +144,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo y papi asarán el lechón en la caja china.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'y', sense: 'y'}, {surface: papi, sense: papi}, {surface: asarán, sense: asar, form: 'form:fut'}, {surface: el, sense: el}, {surface: lechón, sense: lechón}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: caja, sense: caja-china}, {surface: china, sense: caja-china}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'y', sense: 'y'}, {surface: papi, sense: papi}, {surface: asarán, sense: asar, form: 'form:fut'}, {surface: el, sense: el}, {surface: lechón, sense: lechón}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: caja, sense: caja-china}, {surface: china, sense: caja-china}]
       reverse: |-
         (Abuelo|El abuelo) y (papi|papá) (asarán|van a asar) el lechón en la caja china
         (Papi|Papá) y (abuelo|el abuelo) (asarán|van a asar) el lechón en la caja china
@@ -157,7 +157,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami preparará la yuca y los frijoles negros.
-      tokens: [{surface: Mami, sense: mami}, {surface: preparará, sense: preparar, form: 'form:fut'}, {surface: la, sense: el}, {surface: yuca, sense: yuca}, {surface: 'y', sense: 'y'}, {surface: los, sense: el}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: preparará, sense: preparar, form: 'form:fut'}, {surface: la, sense: el, form: 'form:fem'}, {surface: yuca, sense: yuca, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: los, sense: el, form: 'form:pl'}, {surface: frijoles, sense: frijol, form: 'form:pl'}, {surface: negros, sense: negro, form: 'form:pl'}]
       reverse: |-
         (Mami|Mamá) (preparará|va a preparar|hará|va a hacer) la yuca y los frijoles negros
         (Mami|Mamá) (preparará|va a preparar|hará|va a hacer) los frijoles negros y la yuca
@@ -171,7 +171,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo prepararé los tostones con Lili.
-      tokens: [{surface: Yo, sense: yo}, {surface: prepararé, sense: preparar, form: 'form:fut'}, {surface: los, sense: el}, {surface: tostones, sense: tostón}, {surface: con, sense: con}, {surface: Lili, sense: lili}]
+      tokens: [{surface: Yo, sense: yo}, {surface: prepararé, sense: preparar, form: 'form:fut'}, {surface: los, sense: el, form: 'form:pl'}, {surface: tostones, sense: tostón, form: 'form:pl'}, {surface: con, sense: con}, {surface: Lili, sense: lili}]
       reverse: '[Yo] (prepararé|voy a preparar|haré|voy a hacer) los tostones con Lili'
   translations:
     en: |-
@@ -182,7 +182,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Asaremos el lechón temprano por la mañana.
-      tokens: [{surface: Asaremos, sense: asar, form: 'form:fut'}, {surface: el, sense: el}, {surface: lechón, sense: lechón}, {surface: temprano, sense: temprano}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+      tokens: [{surface: Asaremos, sense: asar, form: 'form:fut'}, {surface: el, sense: el}, {surface: lechón, sense: lechón}, {surface: temprano, sense: temprano}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: mañana, sense: mañana}]
       reverse: |-
         [(Nosotros|Nosotras)] (asaremos|vamos a asar) el lechón temprano (por|en) la mañana
         [(Nosotros|Nosotras)] (asaremos|vamos a asar) el lechón (por|en) la mañana temprano
@@ -195,7 +195,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Comeremos lechón, congrí y yuca.
-      tokens: [{surface: Comeremos, sense: comer, form: 'form:fut'}, {surface: lechón, sense: lechón}, {surface: congrí, sense: congrí}, {surface: 'y', sense: 'y'}, {surface: yuca, sense: yuca}]
+      tokens: [{surface: Comeremos, sense: comer, form: 'form:fut'}, {surface: lechón, sense: lechón}, {surface: congrí, sense: congrí}, {surface: 'y', sense: 'y'}, {surface: yuca, sense: yuca, form: 'form:fem'}]
       reverse: '[(Nosotros|Nosotras)] (comeremos|vamos a comer) lechón congrí y yuca'
   translations:
     en: |-
@@ -206,7 +206,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela invitará a doña Ofelia y a su hija.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: invitará, sense: invitar, form: 'form:fut'}, {surface: a, sense: a}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: su, sense: su}, {surface: hija, sense: hijo}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: invitará, sense: invitar, form: 'form:fut'}, {surface: a, sense: a}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: su, sense: su, form: 'form:fem'}, {surface: hija, sense: hijo, form: 'form:fem'}]
       reverse: (Abuela|La abuela|Mi abuela) (invitará|va a invitar) a doña Ofelia y a su hija
   translations:
     en: |-
@@ -217,7 +217,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Habrá mucha gente en la casa.
-      tokens: [{surface: Habrá, sense: hay, form: 'form:fut'}, {surface: mucha, sense: mucho}, {surface: gente, sense: gente}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: casa, sense: casa}]
+      tokens: [{surface: Habrá, sense: hay, form: 'form:fut'}, {surface: mucha, sense: mucho, form: 'form:fem'}, {surface: gente, sense: gente, form: 'form:fem'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}]
       reverse: (Habrá|Va a haber) mucha gente en (la casa|casa)
   translations:
     en: |-
@@ -228,7 +228,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela compró turrones en la bodega.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: compró, sense: comprar, form: 'form:pret-3s'}, {surface: turrones, sense: turrón}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: compró, sense: comprar, form: 'form:pret-3s'}, {surface: turrones, sense: turrón, form: 'form:pl'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: bodega, sense: bodega, form: 'form:fem'}]
       reverse: (Abuela|La abuela|Mi abuela) compró (turrones|turrón) en la bodega
   translations:
     en: (Grandma|Grandmother|Granny|Abuela|My grandma|My grandmother) bought (turrones|turrón|nougat) at the (bodega|corner store|store).
@@ -237,7 +237,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Papi comprará el vino y la cerveza.
-      tokens: [{surface: Papi, sense: papi}, {surface: comprará, sense: comprar, form: 'form:fut'}, {surface: el, sense: el}, {surface: vino, sense: vino}, {surface: 'y', sense: 'y'}, {surface: la, sense: el}, {surface: cerveza, sense: cerveza}]
+      tokens: [{surface: Papi, sense: papi}, {surface: comprará, sense: comprar, form: 'form:fut'}, {surface: el, sense: el}, {surface: vino, sense: vino}, {surface: 'y', sense: 'y'}, {surface: la, sense: el, form: 'form:fem'}, {surface: cerveza, sense: cerveza, form: 'form:fem'}]
       reverse: |-
         (Papi|Papá) (comprará|va a comprar) el vino y la cerveza
         (Papi|Papá) (comprará|va a comprar) la cerveza y el vino
@@ -266,7 +266,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Invitaremos a Yasiel. Su familia está en Cuba.
-      tokens: [{surface: Invitaremos, sense: invitar, form: 'form:fut'}, {surface: a, sense: a}, {surface: Yasiel, sense: yasiel}, {surface: Su, sense: su}, {surface: familia, sense: familia}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Invitaremos, sense: invitar, form: 'form:fut'}, {surface: a, sense: a}, {surface: Yasiel, sense: yasiel}, {surface: Su, sense: su, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
       reverse: '[(Nosotros|Nosotras)] (invitaremos|vamos a invitar) a Yasiel [porque] su familia está en Cuba'
   translations:
     en: |-
@@ -278,7 +278,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Celebraremos el Año Nuevo en casa.
-      tokens: [{surface: Celebraremos, sense: celebrar, form: 'form:fut'}, {surface: el, sense: el}, {surface: Año, sense: año}, {surface: Nuevo, sense: nuevo}, {surface: en, sense: en}, {surface: casa, sense: casa}]
+      tokens: [{surface: Celebraremos, sense: celebrar, form: 'form:fut'}, {surface: el, sense: el}, {surface: Año, sense: año}, {surface: Nuevo, sense: nuevo}, {surface: en, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}]
       reverse: '[(Nosotros|Nosotras)] (celebraremos|vamos a celebrar) el Año Nuevo en (casa|la casa)'
   translations:
     en: |-
@@ -289,7 +289,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A las doce, todos comeremos uvas.
-      tokens: [{surface: A, sense: a}, {surface: las, sense: el}, {surface: doce, sense: doce}, {surface: todos, sense: todo}, {surface: comeremos, sense: comer, form: 'form:fut'}, {surface: uvas, sense: uva}]
+      tokens: [{surface: A, sense: a}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: doce, sense: doce}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: comeremos, sense: comer, form: 'form:fut'}, {surface: uvas, sense: uva, form: 'form:fem-pl'}]
       reverse: |-
         A las doce [todos] (comeremos|vamos a comer) uvas
         [Todos] (comeremos|vamos a comer) uvas a las doce
@@ -303,7 +303,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Comeremos las doce uvas a medianoche.
-      tokens: [{surface: Comeremos, sense: comer, form: 'form:fut'}, {surface: las, sense: el}, {surface: doce, sense: doce}, {surface: uvas, sense: uva}, {surface: a, sense: a}, {surface: medianoche, sense: medianoche}]
+      tokens: [{surface: Comeremos, sense: comer, form: 'form:fut'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: doce, sense: doce}, {surface: uvas, sense: uva, form: 'form:fem-pl'}, {surface: a, sense: a}, {surface: medianoche, sense: medianoche, form: 'form:fem'}]
       reverse: |-
         [(Nosotros|Nosotras)] (comeremos|vamos a comer) las doce uvas a (medianoche|la medianoche|las doce)
         A (medianoche|la medianoche|las doce) [(nosotros|nosotras)] (comeremos|vamos a comer) las doce uvas
@@ -317,7 +317,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A medianoche, abuela tirará agua a la calle.
-      tokens: [{surface: A, sense: a}, {surface: medianoche, sense: medianoche}, {surface: abuela, sense: abuela}, {surface: tirará, sense: tirar, form: 'form:fut'}, {surface: agua, sense: agua}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: calle, sense: calle}]
+      tokens: [{surface: A, sense: a}, {surface: medianoche, sense: medianoche, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: tirará, sense: tirar, form: 'form:fut'}, {surface: agua, sense: agua, form: 'form:fem'}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: calle, sense: calle, form: 'form:fem'}]
       reverse: |-
         A (medianoche|la medianoche) (abuela|la abuela) (tirará|va a tirar) (agua|un cubo de agua|un balde de agua) a la calle
         (Abuela|La abuela) (tirará|va a tirar) (agua|un cubo de agua|un balde de agua) a la calle a (medianoche|la medianoche)
@@ -332,7 +332,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili caminará por la calle con una maleta.
-      tokens: [{surface: Lili, sense: lili}, {surface: caminará, sense: caminar, form: 'form:fut'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: calle, sense: calle}, {surface: con, sense: con}, {surface: una, sense: un}, {surface: maleta, sense: maleta}]
+      tokens: [{surface: Lili, sense: lili}, {surface: caminará, sense: caminar, form: 'form:fut'}, {surface: por, sense: por}, {surface: la, sense: el, form: 'form:fem'}, {surface: calle, sense: calle, form: 'form:fem'}, {surface: con, sense: con}, {surface: una, sense: un, form: 'form:fem'}, {surface: maleta, sense: maleta, form: 'form:fem'}]
       reverse: |-
         Lili (caminará|va a caminar) por la calle con una maleta
         Lili (caminará|va a caminar) con una maleta por la calle
@@ -360,7 +360,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El seis de enero es el Día de Reyes.
-      tokens: [{surface: El, sense: el}, {surface: seis, sense: seis}, {surface: de, sense: de}, {surface: enero, sense: enero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: Día, sense: día}, {surface: de, sense: de}, {surface: Reyes, sense: rey}]
+      tokens: [{surface: El, sense: el}, {surface: seis, sense: seis}, {surface: de, sense: de}, {surface: enero, sense: enero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: Día, sense: día}, {surface: de, sense: de}, {surface: Reyes, sense: rey, form: 'form:pl'}]
       reverse: |-
         El (seis|6) de enero es el Día de [los] Reyes
         El Día de [los] Reyes es el (seis|6) de enero
@@ -373,7 +373,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El Día de Reyes, abuela tendrá regalos para todos.
-      tokens: [{surface: El, sense: el}, {surface: Día, sense: día}, {surface: de, sense: de}, {surface: Reyes, sense: rey}, {surface: abuela, sense: abuela}, {surface: tendrá, sense: tener, form: 'form:fut'}, {surface: regalos, sense: regalo}, {surface: para, sense: para}, {surface: todos, sense: todo}]
+      tokens: [{surface: El, sense: el}, {surface: Día, sense: día}, {surface: de, sense: de}, {surface: Reyes, sense: rey, form: 'form:pl'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: tendrá, sense: tener, form: 'form:fut'}, {surface: regalos, sense: regalo, form: 'form:pl'}, {surface: para, sense: para}, {surface: todos, sense: todo, form: 'form:pl'}]
       reverse: |-
         El Día de [los] Reyes (abuela|la abuela) (tendrá|va a tener) regalos para todos
         (Abuela|La abuela) (tendrá|va a tener) regalos para todos el Día de [los] Reyes
@@ -418,7 +418,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Llevaremos regalos para Yunior a La Habana.
-      tokens: [{surface: Llevaremos, sense: llevar, form: 'form:fut'}, {surface: regalos, sense: regalo}, {surface: para, sense: para}, {surface: Yunior, sense: yunior}, {surface: a, sense: a}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Llevaremos, sense: llevar, form: 'form:fut'}, {surface: regalos, sense: regalo, form: 'form:pl'}, {surface: para, sense: para}, {surface: Yunior, sense: yunior}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       reverse: |-
         [(Nosotros|Nosotras)] (llevaremos|vamos a llevar) regalos (para|pa') Yunior a La Habana
         [(Nosotros|Nosotras)] (llevaremos|vamos a llevar) regalos a La Habana (para|pa') Yunior
@@ -432,7 +432,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En los quince de mi prima, todos bailarán.
-      tokens: [{surface: En, sense: en}, {surface: los, sense: el}, {surface: quince, sense: quince}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: prima, sense: primo}, {surface: todos, sense: todo}, {surface: bailarán, sense: bailar, form: 'form:fut'}]
+      tokens: [{surface: En, sense: en}, {surface: los, sense: el, form: 'form:pl'}, {surface: quince, sense: quince}, {surface: de, sense: de}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: prima, sense: primo, form: 'form:fem'}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: bailarán, sense: bailar, form: 'form:fut'}]
       reverse: |-
         En los quince de mi prima todos (bailarán|van a bailar)
         Todos (bailarán|van a bailar) en los quince de mi prima
@@ -446,7 +446,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La quinceañera bailará el vals con su padre.
-      tokens: [{surface: La, sense: el}, {surface: quinceañera, sense: quinceañera}, {surface: bailará, sense: bailar, form: 'form:fut'}, {surface: el, sense: el}, {surface: vals, sense: vals}, {surface: con, sense: con}, {surface: su, sense: su}, {surface: padre, sense: padre}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: quinceañera, sense: quinceañera, form: 'form:fem'}, {surface: bailará, sense: bailar, form: 'form:fut'}, {surface: el, sense: el}, {surface: vals, sense: vals}, {surface: con, sense: con}, {surface: su, sense: su}, {surface: padre, sense: padre}]
       reverse: La quinceañera (bailará|va a bailar) el vals con su (padre|papá|papi)
   translations:
     en: |-
@@ -457,7 +457,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi prima de La Habana tendrá quince años en enero.
-      tokens: [{surface: Mi, sense: mi}, {surface: prima, sense: primo}, {surface: de, sense: de}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: tendrá, sense: tener, form: 'form:fut'}, {surface: quince, sense: quince}, {surface: años, sense: año}, {surface: en, sense: en}, {surface: enero, sense: enero}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: prima, sense: primo, form: 'form:fem'}, {surface: de, sense: de}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: tendrá, sense: tener, form: 'form:fut'}, {surface: quince, sense: quince}, {surface: años, sense: año, form: 'form:pl'}, {surface: en, sense: en}, {surface: enero, sense: enero}]
       reverse: |-
         Mi (prima|primo) de La Habana (tendrá|va a tener|cumplirá|va a cumplir) quince [años] en enero
         En enero mi (prima|primo) de La Habana (tendrá|va a tener|cumplirá|va a cumplir) quince [años]
@@ -471,7 +471,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo no bailo bien, pero bailaré en los quince.
-      tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: bailo, sense: bailar, form: 'form:pres-1s'}, {surface: bien, sense: bien}, {surface: pero, sense: pero}, {surface: bailaré, sense: bailar, form: 'form:fut'}, {surface: en, sense: en}, {surface: los, sense: el}, {surface: quince, sense: quince}]
+      tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: bailo, sense: bailar, form: 'form:pres-1s'}, {surface: bien, sense: bien}, {surface: pero, sense: pero}, {surface: bailaré, sense: bailar, form: 'form:fut'}, {surface: en, sense: en}, {surface: los, sense: el, form: 'form:pl'}, {surface: quince, sense: quince}]
       reverse: '[Yo] no bailo bien pero (bailaré|voy a bailar) en los quince'
   translations:
     en: |-
@@ -483,7 +483,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol preparará una fiesta grande en La Habana.
-      tokens: [{surface: Tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: preparará, sense: preparar, form: 'form:fut'}, {surface: una, sense: un}, {surface: fiesta, sense: fiesta}, {surface: grande, sense: grande}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: preparará, sense: preparar, form: 'form:fut'}, {surface: una, sense: un, form: 'form:fem'}, {surface: fiesta, sense: fiesta, form: 'form:fem'}, {surface: grande, sense: grande, form: 'form:fem'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       reverse: (Tía Marisol|Mi tía Marisol|La tía Marisol) (preparará|va a preparar|hará|va a hacer|dará|va a dar) una (fiesta grande|gran fiesta) en La Habana
   translations:
     en: |-
@@ -516,14 +516,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuelo y yo asaremos el lechón en la caja china.
-          tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: asaremos, sense: asar, form: 'form:fut'}, {surface: el, sense: el}, {surface: lechón, sense: lechón}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: caja, sense: caja-china}, {surface: china, sense: caja-china}]
+          tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: asaremos, sense: asar, form: 'form:fut'}, {surface: el, sense: el}, {surface: lechón, sense: lechón}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: caja, sense: caja-china}, {surface: china, sense: caja-china}]
       translations: {en: Grandpa and I will roast the pig in the caja china.}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: En Cuba yo asé muchos lechones en el patio.
-          tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: yo, sense: yo}, {surface: asé, sense: asar, form: 'form:pret-1s'}, {surface: muchos, sense: mucho}, {surface: lechones, sense: lechón}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
+          tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: yo, sense: yo}, {surface: asé, sense: asar, form: 'form:pret-1s'}, {surface: muchos, sense: mucho, form: 'form:pl'}, {surface: lechones, sense: lechón, form: 'form:pl'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
       translations: {en: In Cuba I roasted a lot of pigs in the yard.}
   - line:
       speaker: cachita
@@ -537,21 +537,21 @@ stories:
       forms:
         es-Latn/standard:
           text: Vendrá toda la familia, y también doña Ofelia y Yasiel.
-          tokens: [{surface: Vendrá, sense: venir, form: 'form:fut'}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: familia, sense: familia}, {surface: 'y', sense: 'y'}, {surface: también, sense: también}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: 'y', sense: 'y'}, {surface: Yasiel, sense: yasiel}]
+          tokens: [{surface: Vendrá, sense: venir, form: 'form:fut'}, {surface: toda, sense: todo, form: 'form:fem'}, {surface: la, sense: el, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: también, sense: también}, {surface: doña, sense: don, form: 'form:fem'}, {surface: Ofelia, sense: ofelia}, {surface: 'y', sense: 'y'}, {surface: Yasiel, sense: yasiel}]
       translations: {en: 'The whole family is coming, and Doña Ofelia and Yasiel too.'}
   - line:
       speaker: lili
       forms:
         es-Latn/standard:
           text: ¿Y tía Marisol? ¿Y Yunior?
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: 'Y', sense: 'y'}, {surface: Yunior, sense: yunior}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: 'Y', sense: 'y'}, {surface: Yunior, sense: yunior}]
       translations: {en: 'What about Aunt Marisol? And Yunior?'}
   - line:
       speaker: mami
       forms:
         es-Latn/standard:
           text: Ellos están en La Habana, pero hablaremos con ellos por teléfono.
-          tokens: [{surface: Ellos, sense: ellos}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: pero, sense: pero}, {surface: hablaremos, sense: hablar, form: 'form:fut'}, {surface: con, sense: con}, {surface: ellos, sense: ellos}, {surface: por, sense: por}, {surface: teléfono, sense: teléfono}]
+          tokens: [{surface: Ellos, sense: ellos, form: 'form:pl'}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: pero, sense: pero}, {surface: hablaremos, sense: hablar, form: 'form:fut'}, {surface: con, sense: con}, {surface: ellos, sense: ellos, form: 'form:pl'}, {surface: por, sense: por}, {surface: teléfono, sense: teléfono}]
       translations: {en: 'They''re in Havana, but we''ll talk to them on the phone.'}
   - choose:
       prompt: {en: 'Who will roast the pig?'}
@@ -562,14 +562,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Muchas gracias, señora. Mi familia está en Cuba.
-          tokens: [{surface: Muchas, sense: mucho}, {surface: gracias, sense: gracias}, {surface: señora, sense: señora}, {surface: Mi, sense: mi}, {surface: familia, sense: familia}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: Muchas, sense: mucho, form: 'form:fem-pl'}, {surface: gracias, sense: gracias}, {surface: señora, sense: señora, form: 'form:fem'}, {surface: Mi, sense: mi, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
       translations: {en: 'Thank you very much, ma''am. My family is in Cuba.'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Aquí tú también tienes familia, mi'jo.
-          tokens: [{surface: Aquí, sense: aquí}, {surface: tú, sense: tú}, {surface: también, sense: también}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: familia, sense: familia}, {surface: "mi'jo", sense: mijo}]
+          tokens: [{surface: Aquí, sense: aquí}, {surface: tú, sense: tú}, {surface: también, sense: también}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: "mi'jo", sense: mijo}]
       translations: {en: 'You have family here too, son.'}
   - choose:
       prompt: {en: 'Why is Yasiel spending Nochebuena with Daniel''s family?'}
@@ -587,7 +587,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Lechón asado, congrí, yuca y tostones.
-          tokens: [{surface: Lechón, sense: lechón}, {surface: asado, sense: asado}, {surface: congrí, sense: congrí}, {surface: yuca, sense: yuca}, {surface: 'y', sense: 'y'}, {surface: tostones, sense: tostón}]
+          tokens: [{surface: Lechón, sense: lechón}, {surface: asado, sense: asado}, {surface: congrí, sense: congrí}, {surface: yuca, sense: yuca, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: tostones, sense: tostón, form: 'form:pl'}]
       translations: {en: 'Roast pork, congrí, yuca and tostones.'}
   - line:
       speaker: lili
@@ -595,14 +595,14 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Y a medianoche comeremos las doce uvas!
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: a, sense: a}, {surface: medianoche, sense: medianoche}, {surface: comeremos, sense: comer, form: 'form:fut'}, {surface: las, sense: el}, {surface: doce, sense: doce}, {surface: uvas, sense: uva}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: a, sense: a}, {surface: medianoche, sense: medianoche, form: 'form:fem'}, {surface: comeremos, sense: comer, form: 'form:fut'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: doce, sense: doce}, {surface: uvas, sense: uva, form: 'form:fem-pl'}]
       translations: {en: 'And at midnight we''ll eat the twelve grapes!'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: No, mi'ja. Las uvas son para el Año Nuevo.
-          tokens: [{surface: 'No', sense: 'no'}, {surface: "mi'ja", sense: mijo}, {surface: Las, sense: el}, {surface: uvas, sense: uva}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: Año, sense: año}, {surface: Nuevo, sense: nuevo}]
+          tokens: [{surface: 'No', sense: 'no'}, {surface: "mi'ja", sense: mijo, form: 'form:fem'}, {surface: Las, sense: el, form: 'form:fem-pl'}, {surface: uvas, sense: uva, form: 'form:fem-pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: Año, sense: año}, {surface: Nuevo, sense: nuevo}]
       translations: {en: 'No, sweetheart. The grapes are for New Year''s.'}
   - choose:
       prompt: {en: 'When do Cubans eat the twelve grapes?'}
@@ -613,14 +613,14 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y los turrones?
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: los, sense: el}, {surface: turrones, sense: turrón}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: los, sense: el, form: 'form:pl'}, {surface: turrones, sense: turrón, form: 'form:pl'}]
       translations: {en: 'And the turrones?'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Los turrones son para hoy, para mañana y para el Año Nuevo.
-          tokens: [{surface: Los, sense: el}, {surface: turrones, sense: turrón}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: para, sense: para}, {surface: hoy, sense: hoy}, {surface: para, sense: para}, {surface: mañana, sense: mañana}, {surface: 'y', sense: 'y'}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: Año, sense: año}, {surface: Nuevo, sense: nuevo}]
+          tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: turrones, sense: turrón, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: para, sense: para}, {surface: hoy, sense: hoy}, {surface: para, sense: para}, {surface: mañana, sense: mañana}, {surface: 'y', sense: 'y'}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: Año, sense: año}, {surface: Nuevo, sense: nuevo}]
       translations: {en: 'The turrones are for today, for tomorrow and for New Year''s.'}
   - line:
       speaker: daniel
@@ -628,12 +628,12 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Será una Nochebuena muy cubana!
-          tokens: [{surface: Será, sense: ser, form: 'form:fut'}, {surface: una, sense: un}, {surface: Nochebuena, sense: nochebuena}, {surface: muy, sense: muy}, {surface: cubana, sense: cubano}]
+          tokens: [{surface: Será, sense: ser, form: 'form:fut'}, {surface: una, sense: un, form: 'form:fem'}, {surface: Nochebuena, sense: nochebuena}, {surface: muy, sense: muy}, {surface: cubana, sense: cubano, form: 'form:fem'}]
       translations: {en: 'It''ll be a very Cuban Christmas Eve!'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Con la familia entera, mi'jo. ¡Feliz Nochebuena!
-          tokens: [{surface: Con, sense: con}, {surface: la, sense: el}, {surface: familia, sense: familia}, {surface: entera, sense: entero}, {surface: "mi'jo", sense: mijo}, {surface: Feliz, sense: feliz}, {surface: Nochebuena, sense: nochebuena}]
+          tokens: [{surface: Con, sense: con}, {surface: la, sense: el, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: entera, sense: entero, form: 'form:fem'}, {surface: "mi'jo", sense: mijo}, {surface: Feliz, sense: feliz, form: 'form:fem'}, {surface: Nochebuena, sense: nochebuena}]
       translations: {en: 'With the whole family, son. Merry Christmas Eve!'}

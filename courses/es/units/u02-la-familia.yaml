@@ -35,12 +35,14 @@ kcs:
 - {id: 'sense:padre', pos: NOUN, gloss: {en: 'father; padres: parents'}, forms: {es-Latn/standard: [padre]}, notes: {en: 'Mis padres: my parents. Parientes is a false friend: it means relatives. At home Cubans say papi and mami.'}}
 - {id: 'sense:puro', pos: NOUN, gloss: {en: 'dad, the old man (Cuban slang; la pura: mom)'}, forms: {es-Latn/standard: [puro]}, notes: {en: 'Los puros: your folks, your parents. Young Cubans'' slang, said with affection. Un puro is also a cigar.'}}
 - {id: 'sense:mijo', pos: NOUN, gloss: {en: 'honey; sweetie (mi hijo said fast; mi''ja to a girl)'}, forms: {es-Latn/standard: [mi'jo]}, notes: {en: 'What parents, grandparents and older neighbours call the young: mi''jo to a boy or a man, mi''ja to a girl or a woman. Also written mijo, mija.'}}
+- {id: 'form:pl', gloss: {en: 'plural: los, unos, cubanos'}, notes: {en: '-s after a vowel (casas), -es after a consonant (mujeres; luz, luces). The words that go with a plural noun are plural too. A masculine plural also covers men and women together: mis padres, los cubanos.'}}
+- {id: 'form:fem-pl', gloss: {en: 'feminine plural: las, unas, cubanas'}, notes: {en: 'Feminine and plural: las casas blancas; Lili y yo somos cubanas (two women).'}}
 nodes:
 - {id: es.u02.mami-y-papi, kind: lesson, introduces: ['sense:este', 'sense:mami', 'sense:papi', 'sense:familia', 'sense:quién', 'sense:tu']}
-- {id: es.u02.tengo, kind: lesson, introduces: ['sense:hermano', 'sense:lili', 'sense:tener', 'sense:un']}
+- {id: es.u02.tengo, kind: lesson, introduces: ['sense:hermano', 'sense:lili', 'sense:tener', 'sense:un', 'form:pl']}
 - {id: es.u02.abuelo-pepe, kind: lesson, introduces: ['sense:abuelo', 'sense:pepe', 'sense:el', 'sense:su']}
 - {id: es.u02.tia-marisol, kind: lesson, introduces: ['sense:tío', 'sense:marisol', 'sense:habana', 'sense:primo', 'sense:yunior', 'sense:hijo']}
-- {id: es.u02.nosotros, kind: lesson, introduces: ['sense:nosotros', 'form:pres-1p', 'sense:grande', 'sense:ellos', 'form:pres-3p', 'sense:ustedes']}
+- {id: es.u02.nosotros, kind: lesson, introduces: ['sense:nosotros', 'form:pres-1p', 'sense:grande', 'sense:ellos', 'form:pres-3p', 'sense:ustedes', 'form:fem-pl']}
 - {id: es.u02.los-puros, kind: lesson, introduces: ['sense:padre', 'sense:puro', 'sense:mijo']}
 - {id: es.u02.story, kind: story}
 sentences:
@@ -49,7 +51,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta es mi mami.
-      tokens: [{surface: Esta, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: mami, sense: mami}]
+      tokens: [{surface: Esta, sense: este, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: mami, sense: mami, form: 'form:fem'}]
       reverse: |-
         Esta es mi (mami|mamá)
         Ella es mi mami.
@@ -69,7 +71,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami, este es Yasiel.
-      tokens: [{surface: Mami, sense: mami}, {surface: este, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Yasiel, sense: yasiel}]
+      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: este, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Yasiel, sense: yasiel}]
       reverse: |-
         (Mami|Mamá) este es Yasiel
         Mami, él es Yasiel.
@@ -80,7 +82,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta es mi familia.
-      tokens: [{surface: Esta, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: familia, sense: familia}]
+      tokens: [{surface: Esta, sense: este, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}]
       reverse: Esta es mi familia
   translations:
     en: This is my family.
@@ -89,7 +91,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi papi es cubano y mi mami es de Miami.
-      tokens: [{surface: Mi, sense: mi}, {surface: papi, sense: papi}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: cubano, sense: cubano}, {surface: 'y', sense: 'y'}, {surface: mi, sense: mi}, {surface: mami, sense: mami}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: Miami, sense: miami}]
+      tokens: [{surface: Mi, sense: mi}, {surface: papi, sense: papi}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: cubano, sense: cubano}, {surface: 'y', sense: 'y'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: mami, sense: mami, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: Miami, sense: miami}]
       reverse: Mi (papi|papá) es cubano y mi (mami|mamá) es de Miami
   translations:
     en: |-
@@ -116,7 +118,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ella es tu mami?
-      tokens: [{surface: Ella, sense: ella}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: mami, sense: mami}]
+      tokens: [{surface: Ella, sense: ella}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: mami, sense: mami, form: 'form:fem'}]
       reverse: (Ella es|Es [ella]) (tu|su) (mami|mamá)
   translations:
     en: |-
@@ -128,7 +130,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili es mi hermana.
-      tokens: [{surface: Lili, sense: lili}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: hermana, sense: hermano}]
+      tokens: [{surface: Lili, sense: lili}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: hermana, sense: hermano, form: 'form:fem'}]
       reverse: Lili es mi hermana
   translations:
     en: |-
@@ -139,7 +141,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tengo una hermana.
-      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: una, sense: un}, {surface: hermana, sense: hermano}]
+      tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: hermana, sense: hermano, form: 'form:fem'}]
       reverse: '[Yo] tengo una hermana'
   translations:
     en: |-
@@ -151,7 +153,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi hermana se llama Lili.
-      tokens: [{surface: Mi, sense: mi}, {surface: hermana, sense: hermano}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: Lili, sense: lili}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: hermana, sense: hermano, form: 'form:fem'}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: Lili, sense: lili}]
       reverse: |-
         Mi hermana se llama Lili
         El nombre de mi hermana es Lili.
@@ -165,7 +167,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú tienes hermanos?
-      tokens: [{surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: hermanos, sense: hermano}]
+      tokens: [{surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: hermanos, sense: hermano, form: 'form:pl'}]
       reverse: (Tú tienes hermanos|Tienes [tú] hermanos|Usted tiene hermanos|Tiene [usted] hermanos|Ustedes tienen hermanos|Tienen [ustedes] hermanos)
   translations:
     en: |-
@@ -231,7 +233,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cachita es la abuela de Lili.
-      tokens: [{surface: Cachita, sense: cachita}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: abuela, sense: abuela}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
+      tokens: [{surface: Cachita, sense: cachita}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
       reverse: Cachita es la abuela de Lili
   translations:
     en: |-
@@ -267,7 +269,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Marisol es mi tía.
-      tokens: [{surface: Marisol, sense: marisol}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: tía, sense: tío}]
+      tokens: [{surface: Marisol, sense: marisol}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}]
       reverse: Marisol es mi tía
   translations:
     en: |-
@@ -278,7 +280,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía Marisol es de La Habana.
-      tokens: [{surface: Mi, sense: mi}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       reverse: Mi tía Marisol es de La Habana
   translations:
     en: |-
@@ -343,7 +345,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nosotros somos cubanos.
-      tokens: [{surface: Nosotros, sense: nosotros}, {surface: somos, sense: ser, form: 'form:pres-1p'}, {surface: cubanos, sense: cubano}]
+      tokens: [{surface: Nosotros, sense: nosotros, form: 'form:pl'}, {surface: somos, sense: ser, form: 'form:pres-1p'}, {surface: cubanos, sense: cubano, form: 'form:pl'}]
       reverse: '[Nosotros] somos cubanos'
   translations:
     en: (We're|We are) (Cuban|Cubans).
@@ -353,7 +355,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili y yo somos cubanas.
-      tokens: [{surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: somos, sense: ser, form: 'form:pres-1p'}, {surface: cubanas, sense: cubano}]
+      tokens: [{surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: somos, sense: ser, form: 'form:pres-1p'}, {surface: cubanas, sense: cubano, form: 'form:fem-pl'}]
       reverse: Lili y yo somos cubanas
   translations:
     en: Lili and I are (Cuban|Cubans).
@@ -362,7 +364,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tenemos una familia grande.
-      tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: una, sense: un}, {surface: familia, sense: familia}, {surface: grande, sense: grande}]
+      tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: una, sense: un, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: grande, sense: grande, form: 'form:fem'}]
       reverse: '[(Nosotros|Nosotras)] tenemos una familia grande'
   translations:
     en: (We have|We've got) a (big|large) family.
@@ -371,7 +373,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ellos son mis primos.
-      tokens: [{surface: Ellos, sense: ellos}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: mis, sense: mi}, {surface: primos, sense: primo}]
+      tokens: [{surface: Ellos, sense: ellos, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: mis, sense: mi, form: 'form:pl'}, {surface: primos, sense: primo, form: 'form:pl'}]
       reverse: ([Ellos] son mis primos|[Ellas] son mis primas)
   translations:
     en: (They're|They are) my cousins.
@@ -380,7 +382,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mis abuelos son de Cuba.
-      tokens: [{surface: Mis, sense: mi}, {surface: abuelos, sense: abuelo}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Mis, sense: mi, form: 'form:pl'}, {surface: abuelos, sense: abuelo, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
       reverse: Mis abuelos son de Cuba
   translations:
     en: |-
@@ -391,7 +393,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía y su hijo son de La Habana.
-      tokens: [{surface: Mi, sense: mi}, {surface: tía, sense: tío}, {surface: 'y', sense: 'y'}, {surface: su, sense: su}, {surface: hijo, sense: hijo}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: su, sense: su}, {surface: hijo, sense: hijo}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       reverse: Mi tía y su hijo son de La Habana
   translations:
     en: |-
@@ -418,7 +420,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes tienen hijos?
-      tokens: [{surface: Ustedes, sense: ustedes}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: hijos, sense: hijo}]
+      tokens: [{surface: Ustedes, sense: ustedes}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: hijos, sense: hijo, form: 'form:pl'}]
       reverse: |-
         (Ustedes tienen hijos|Tienen [ustedes] hijos)
         ¿Tienen hijos ustedes?
@@ -432,7 +434,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tus padres son de Cuba?
-      tokens: [{surface: Tus, sense: tu}, {surface: padres, sense: padre}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      tokens: [{surface: Tus, sense: tu, form: 'form:pl'}, {surface: padres, sense: padre, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
       reverse: |-
         ((Tus|Sus) (padres|papás) son de Cuba|Son (tus|sus) (padres|papás) de Cuba)
         ¿Son de Cuba tus padres?
@@ -447,7 +449,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sí, mis padres son cubanos.
-      tokens: [{surface: Sí, sense: sí}, {surface: mis, sense: mi}, {surface: padres, sense: padre}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: cubanos, sense: cubano}]
+      tokens: [{surface: Sí, sense: sí}, {surface: mis, sense: mi, form: 'form:pl'}, {surface: padres, sense: padre, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: cubanos, sense: cubano, form: 'form:pl'}]
       reverse: Sí mis (padres|papás) son cubanos
   translations:
     en: Yes, my parents are Cuban.
@@ -457,7 +459,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cómo están los puros?
-      tokens: [{surface: Cómo, sense: cómo}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: puros, sense: puro}]
+      tokens: [{surface: Cómo, sense: cómo}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: puros, sense: puro, form: 'form:pl'}]
       reverse: |-
         Cómo están (los puros|tus puros|tus padres|tus papás|sus padres|sus papás)
         ¿Cómo están tus viejos?
@@ -474,7 +476,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hola, mi'ja.
-      tokens: [{surface: Hola, sense: hola}, {surface: "mi'ja", sense: mijo}]
+      tokens: [{surface: Hola, sense: hola}, {surface: "mi'ja", sense: mijo, form: 'form:fem'}]
       reverse: Hola (mi'ja|mi hija|mijita)
   translations:
     en: (Hi|Hello), (sweetie|honey|sweetheart|darling|dear|my dear|my girl).
@@ -484,7 +486,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi'ja, ¿cómo están tus padres?
-      tokens: [{surface: "Mi'ja", sense: mijo}, {surface: cómo, sense: cómo}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: tus, sense: tu}, {surface: padres, sense: padre}]
+      tokens: [{surface: "Mi'ja", sense: mijo, form: 'form:fem'}, {surface: cómo, sense: cómo}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: tus, sense: tu, form: 'form:pl'}, {surface: padres, sense: padre, form: 'form:pl'}]
       reverse: (Mi'ja|Mi hija|Mijita) (cómo están tus (padres|papás|puros)|y tus (padres|papás|puros) cómo están)
   translations:
     en: (Sweetie|Honey|Sweetheart|Darling|Dear|My dear), how are your (parents|folks|mom and dad)?
@@ -505,14 +507,14 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué bolá, asere? ¿Esta es tu familia?
-          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: asere, sense: asere}, {surface: Esta, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: familia, sense: familia}]
+          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: asere, sense: asere}, {surface: Esta, sense: este, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}]
       translations: {en: 'What''s up, man? Is this your family?'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: Sí. Este es mi papi, y esta es mi mami.
-          tokens: [{surface: Sí, sense: sí}, {surface: Este, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: papi, sense: papi}, {surface: 'y', sense: 'y'}, {surface: esta, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: mami, sense: mami}]
+          tokens: [{surface: Sí, sense: sí}, {surface: Este, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: papi, sense: papi}, {surface: 'y', sense: 'y'}, {surface: esta, sense: este, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: mami, sense: mami, form: 'form:fem'}]
       translations: {en: 'Yes. This is my dad, and this is my mom.'}
   - line:
       speaker: papi
@@ -533,7 +535,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, señora. Soy cubano.
-          tokens: [{surface: Sí, sense: sí}, {surface: señora, sense: señora}, {surface: Soy, sense: ser, form: 'form:pres-1s'}, {surface: cubano, sense: cubano}]
+          tokens: [{surface: Sí, sense: sí}, {surface: señora, sense: señora, form: 'form:fem'}, {surface: Soy, sense: ser, form: 'form:pres-1s'}, {surface: cubano, sense: cubano}]
       translations: {en: 'Yes, ma''am. I''m Cuban.'}
   - line:
       speaker: papi
@@ -548,7 +550,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y ella es Lili, mi hermana.
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: ella, sense: ella}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Lili, sense: lili}, {surface: mi, sense: mi}, {surface: hermana, sense: hermano}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: ella, sense: ella}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Lili, sense: lili}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: hermana, sense: hermano, form: 'form:fem'}]
       translations: {en: 'And this is Lili, my sister.'}
   - choose:
       prompt: {en: 'Who is Lili?'}
@@ -559,14 +561,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Hola, Yasiel. ¿Y tu familia? ¿Es de Cuba?
-          tokens: [{surface: Hola, sense: hola}, {surface: Yasiel, sense: yasiel}, {surface: 'Y', sense: 'y'}, {surface: tu, sense: tu}, {surface: familia, sense: familia}, {surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+          tokens: [{surface: Hola, sense: hola}, {surface: Yasiel, sense: yasiel}, {surface: 'Y', sense: 'y'}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
       translations: {en: 'Hi, Yasiel. And your family? Are they from Cuba?'}
   - line:
       speaker: yasiel
       forms:
         es-Latn/standard:
           text: Sí, mis padres son cubanos. Tenemos una familia muy grande.
-          tokens: [{surface: Sí, sense: sí}, {surface: mis, sense: mi}, {surface: padres, sense: padre}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: cubanos, sense: cubano}, {surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: una, sense: un}, {surface: familia, sense: familia}, {surface: muy, sense: muy}, {surface: grande, sense: grande}]
+          tokens: [{surface: Sí, sense: sí}, {surface: mis, sense: mi, form: 'form:pl'}, {surface: padres, sense: padre, form: 'form:pl'}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: cubanos, sense: cubano, form: 'form:pl'}, {surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: una, sense: un, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}, {surface: muy, sense: muy}, {surface: grande, sense: grande, form: 'form:fem'}]
       translations: {en: 'Yes, my parents are Cuban. We have a very big family.'}
   - line:
       speaker: daniel
@@ -576,7 +578,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi tía Marisol y mi primo Yunior son de La Habana.
-          tokens: [{surface: Mi, sense: mi}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: 'y', sense: 'y'}, {surface: mi, sense: mi}, {surface: primo, sense: primo}, {surface: Yunior, sense: yunior}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+          tokens: [{surface: Mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol}, {surface: 'y', sense: 'y'}, {surface: mi, sense: mi}, {surface: primo, sense: primo}, {surface: Yunior, sense: yunior}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       translations: {en: My aunt Marisol and my cousin Yunior are from Havana.}
   - choose:
       prompt: {en: 'Where are Tía Marisol and Yunior from?'}
@@ -598,19 +600,19 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué bolá, Yasiel? ¿Cómo está tu familia?
-          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: Yasiel, sense: yasiel}, {surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: familia, sense: familia}]
+          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: Yasiel, sense: yasiel}, {surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: familia, sense: familia, form: 'form:fem'}]
       translations: {en: 'What''s up, Yasiel? How''s your family?'}
   - line:
       speaker: yasiel
       forms:
         es-Latn/standard:
           text: Muy bien, señora, gracias. ¿Y el abuelo Pepe?
-          tokens: [{surface: Muy, sense: muy}, {surface: bien, sense: bien}, {surface: señora, sense: señora}, {surface: gracias, sense: gracias}, {surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}]
+          tokens: [{surface: Muy, sense: muy}, {surface: bien, sense: bien}, {surface: señora, sense: señora, form: 'form:fem'}, {surface: gracias, sense: gracias}, {surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}]
       translations: {en: 'Very well, ma''am, thank you. And Grandpa Pepe?'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Pepe está muy bien, mi vida.
-          tokens: [{surface: Pepe, sense: pepe}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: bien, sense: bien}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+          tokens: [{surface: Pepe, sense: pepe}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: bien, sense: bien}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}]
       translations: {en: 'Pepe is very well, darling.'}

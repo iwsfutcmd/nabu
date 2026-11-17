@@ -454,6 +454,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Cuban forms are canonical (guagua, ¿Qué tú quieres?); pan-Hispanic ones are accepted, never the reverse.
 - Verb tenses are `form:` KCs on the token (form:pres-1s, form:pret-3s, form:impf, form:subj…), not morphs;
   `iPlusOne: 2`. A unit that first teaches a tense defines its form KC.
+- Gender and number are `form:` on the token too (ADR 0132 amendment): form:fem, form:pl, form:fem-pl (masculine
+  singular bare) on every agreeing noun, adjective, determiner and pronoun, by its agreement in the line (mi casa:
+  mi form:fem; el agua: form:fem), never by its ending alone; a new sentence's tokens need them.
 - es-Latn/standard: a missing accent is CORRECT_MARKS; one that spells another word of the course is WRONG_WORD
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
 - A finished placement seeds the placed nodes' KCs (ADR 0111): `seeded` on the event (`placedKcs`), a recognize card

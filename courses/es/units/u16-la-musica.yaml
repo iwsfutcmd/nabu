@@ -46,7 +46,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me encanta la música cubana.
-      tokens: [{surface: Me, sense: me}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: música, sense: música}, {surface: cubana, sense: cubano}]
+      tokens: [{surface: Me, sense: me}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: música, sense: música, form: 'form:fem'}, {surface: cubana, sense: cubano, form: 'form:fem'}]
       reverse: |-
         [A mí] me encanta la música cubana
         La música cubana me encanta
@@ -59,7 +59,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A mi abuela le encanta bailar.
-      tokens: [{surface: A, sense: a}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}, {surface: le, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: bailar, sense: bailar}]
+      tokens: [{surface: A, sense: a}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: le, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: bailar, sense: bailar}]
       reverse: A (mi|la) abuela le encanta bailar
   translations:
     en: My (grandmother|grandma|granny) loves (to dance|dancing).
@@ -68,7 +68,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En casa, a nosotros nos encanta la salsa.
-      tokens: [{surface: En, sense: en}, {surface: casa, sense: casa}, {surface: a, sense: a}, {surface: nosotros, sense: nosotros}, {surface: nos, sense: nos}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: salsa, sense: salsa}]
+      tokens: [{surface: En, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: a, sense: a}, {surface: nosotros, sense: nosotros, form: 'form:pl'}, {surface: nos, sense: nos}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}]
       reverse: |-
         En casa [a nosotros|a nosotras] nos encanta la salsa
         [A nosotros|A nosotras] nos encanta la salsa en casa
@@ -83,7 +83,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Lili y a Daniel les encanta bailar salsa.
-      tokens: [{surface: A, sense: a}, {surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: Daniel, sense: daniel}, {surface: les, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: bailar, sense: bailar}, {surface: salsa, sense: salsa}]
+      tokens: [{surface: A, sense: a}, {surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: Daniel, sense: daniel}, {surface: les, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: bailar, sense: bailar}, {surface: salsa, sense: salsa, form: 'form:fem'}]
       reverse: |-
         A Lili y a Daniel les encanta bailar [la] salsa
         A Daniel y a Lili les encanta bailar [la] salsa
@@ -107,7 +107,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El son es música cubana.
-      tokens: [{surface: El, sense: el}, {surface: son, sense: son}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: música, sense: música}, {surface: cubana, sense: cubano}]
+      tokens: [{surface: El, sense: el}, {surface: son, sense: son}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: música, sense: música, form: 'form:fem'}, {surface: cubana, sense: cubano, form: 'form:fem'}]
       reverse: El son es [una] música cubana
   translations:
     en: (Son|The son|Son music) is Cuban music.
@@ -116,7 +116,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe canta sones en el patio.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: canta, sense: cantar, form: 'form:pres-3s'}, {surface: sones, sense: son}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: canta, sense: cantar, form: 'form:pres-3s'}, {surface: sones, sense: son, form: 'form:pl'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
       reverse: |-
         [El] abuelo [Pepe] canta sones en el patio
         En el patio abuelo Pepe canta sones
@@ -128,7 +128,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta canción es un bolero.
-      tokens: [{surface: Esta, sense: este}, {surface: canción, sense: canción}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: bolero, sense: bolero}]
+      tokens: [{surface: Esta, sense: este, form: 'form:fem'}, {surface: canción, sense: canción, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: bolero, sense: bolero}]
       reverse: Esta canción es un bolero
   translations:
     en: |-
@@ -139,7 +139,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Benny Moré cantó boleros y sones.
-      tokens: [{surface: Benny, sense: benny-moré}, {surface: Moré, sense: benny-moré}, {surface: cantó, sense: cantar, form: 'form:pret-3s'}, {surface: boleros, sense: bolero}, {surface: 'y', sense: 'y'}, {surface: sones, sense: son}]
+      tokens: [{surface: Benny, sense: benny-moré}, {surface: Moré, sense: benny-moré}, {surface: cantó, sense: cantar, form: 'form:pret-3s'}, {surface: boleros, sense: bolero, form: 'form:pl'}, {surface: 'y', sense: 'y'}, {surface: sones, sense: son, form: 'form:pl'}]
       reverse: Benny Moré cantó (boleros y sones|sones y boleros)
   translations:
     en: Benny Moré sang (boleros and sones|sones and boleros|boleros and son|son and boleros).
@@ -148,7 +148,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo tiene muchos discos de Benny Moré.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: muchos, sense: mucho}, {surface: discos, sense: disco}, {surface: de, sense: de}, {surface: Benny, sense: benny-moré}, {surface: Moré, sense: benny-moré}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: muchos, sense: mucho, form: 'form:pl'}, {surface: discos, sense: disco, form: 'form:pl'}, {surface: de, sense: de}, {surface: Benny, sense: benny-moré}, {surface: Moré, sense: benny-moré}]
       reverse: |-
         [El] abuelo tiene muchos discos de Benny Moré
         Mi abuelo tiene muchos discos de Benny Moré
@@ -161,7 +161,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Daniel le fascinan los discos de abuelo.
-      tokens: [{surface: A, sense: a}, {surface: Daniel, sense: daniel}, {surface: le, sense: le}, {surface: fascinan, sense: fascinar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: discos, sense: disco}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}]
+      tokens: [{surface: A, sense: a}, {surface: Daniel, sense: daniel}, {surface: le, sense: le}, {surface: fascinan, sense: fascinar, form: 'form:pres-3p'}, {surface: los, sense: el, form: 'form:pl'}, {surface: discos, sense: disco, form: 'form:pl'}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}]
       reverse: |-
         A Daniel le fascinan los discos (de|del) abuelo
         A Daniel le encantan los discos de abuelo
@@ -177,7 +177,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A mi abuela le fascina el danzón.
-      tokens: [{surface: A, sense: a}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}, {surface: le, sense: le}, {surface: fascina, sense: fascinar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: danzón, sense: danzón}]
+      tokens: [{surface: A, sense: a}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: le, sense: le}, {surface: fascina, sense: fascinar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: danzón, sense: danzón}]
       reverse: |-
         A (mi|la) abuela le fascina el danzón
         A mi abuela le encanta el danzón
@@ -190,7 +190,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela es de Matanzas, y el danzón también.
-      tokens: [{surface: Abuela, sense: abuela}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: Matanzas, sense: matanzas}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: danzón, sense: danzón}, {surface: también, sense: también}]
+      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: Matanzas, sense: matanzas}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: danzón, sense: danzón}, {surface: también, sense: también}]
       reverse: |-
         [La] abuela es de Matanzas y el danzón también
         Mi abuela es de Matanzas, y el danzón también
@@ -203,7 +203,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Te molesta la música de Lili?
-      tokens: [{surface: Te, sense: te}, {surface: molesta, sense: molestar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: música, sense: música}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
+      tokens: [{surface: Te, sense: te}, {surface: molesta, sense: molestar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: música, sense: música, form: 'form:fem'}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
       reverse: |-
         [A ti] te molesta la música de Lili
         [A usted] le molesta la música de Lili
@@ -218,7 +218,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me interesa mucho la música cubana.
-      tokens: [{surface: Me, sense: me}, {surface: interesa, sense: interesar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: la, sense: el}, {surface: música, sense: música}, {surface: cubana, sense: cubano}]
+      tokens: [{surface: Me, sense: me}, {surface: interesa, sense: interesar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: la, sense: el, form: 'form:fem'}, {surface: música, sense: música, form: 'form:fem'}, {surface: cubana, sense: cubano, form: 'form:fem'}]
       reverse: |-
         [A mí] me interesa mucho la música cubana
         La música cubana me interesa mucho
@@ -243,7 +243,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: 'En sus canciones, Celia Cruz dice: ¡Azúcar!'
-      tokens: [{surface: En, sense: en}, {surface: sus, sense: su}, {surface: canciones, sense: canción}, {surface: Celia, sense: celia-cruz}, {surface: Cruz, sense: celia-cruz}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: Azúcar, sense: azúcar}]
+      tokens: [{surface: En, sense: en}, {surface: sus, sense: su, form: 'form:fem-pl'}, {surface: canciones, sense: canción, form: 'form:fem-pl'}, {surface: Celia, sense: celia-cruz}, {surface: Cruz, sense: celia-cruz}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: Azúcar, sense: azúcar}]
       reverse: |-
         En sus canciones Celia Cruz (dice|grita) azúcar
         Celia Cruz (dice|grita) azúcar en sus canciones
@@ -256,7 +256,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En La Habana, Yunior toca el bongó los sábados.
-      tokens: [{surface: En, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: Yunior, sense: yunior}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: bongó, sense: bongó}, {surface: los, sense: el}, {surface: sábados, sense: sábado}]
+      tokens: [{surface: En, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}, {surface: Yunior, sense: yunior}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: bongó, sense: bongó}, {surface: los, sense: el, form: 'form:pl'}, {surface: sábados, sense: sábado, form: 'form:pl'}]
       reverse: |-
         En La Habana Yunior toca (el bongó|los bongós|el bongo|los bongos) los sábados
         Yunior toca (el bongó|los bongós|el bongo|los bongos) los sábados en La Habana
@@ -272,7 +272,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo toca las maracas y abuela canta.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: las, sense: el}, {surface: maracas, sense: maraca}, {surface: 'y', sense: 'y'}, {surface: abuela, sense: abuela}, {surface: canta, sense: cantar, form: 'form:pres-3s'}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: maracas, sense: maraca, form: 'form:fem-pl'}, {surface: 'y', sense: 'y'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: canta, sense: cantar, form: 'form:pres-3s'}]
       reverse: |-
         [El] abuelo toca las maracas y [la] abuela canta
         Mi abuelo toca las maracas y mi abuela canta
@@ -283,7 +283,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú quieres tocar la clave con nosotros?
-      tokens: [{surface: Tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: tocar, sense: tocar}, {surface: la, sense: el}, {surface: clave, sense: clave}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      tokens: [{surface: Tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: tocar, sense: tocar}, {surface: la, sense: el, form: 'form:fem'}, {surface: clave, sense: clave, form: 'form:fem'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
       reverse: (Tú quieres|Quieres [tú]|Usted quiere|Quiere [usted]|Ustedes quieren|Quieren [ustedes]) tocar (la clave|las claves) con (nosotros|nosotras)
   translations:
     en: |-
@@ -294,7 +294,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili toca la clave y yo toco las maracas.
-      tokens: [{surface: Lili, sense: lili}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: clave, sense: clave}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: las, sense: el}, {surface: maracas, sense: maraca}]
+      tokens: [{surface: Lili, sense: lili}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: clave, sense: clave, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: maracas, sense: maraca, form: 'form:fem-pl'}]
       reverse: Lili toca (la clave|las claves) y [yo] toco las maracas
   translations:
     en: |-
@@ -325,7 +325,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El bolero es más viejo que la salsa.
-      tokens: [{surface: El, sense: el}, {surface: bolero, sense: bolero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: viejo, sense: viejo}, {surface: que, sense: que.than}, {surface: la, sense: el}, {surface: salsa, sense: salsa}]
+      tokens: [{surface: El, sense: el}, {surface: bolero, sense: bolero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: viejo, sense: viejo}, {surface: que, sense: que.than}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}]
       reverse: El bolero es más (viejo|antiguo) que la salsa
   translations:
     en: (The bolero|Bolero) is older than salsa.
@@ -334,7 +334,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo canto menos que abuela, pero bailo más.
-      tokens: [{surface: Yo, sense: yo}, {surface: canto, sense: cantar, form: 'form:pres-1s'}, {surface: menos, sense: menos}, {surface: que, sense: que.than}, {surface: abuela, sense: abuela}, {surface: pero, sense: pero}, {surface: bailo, sense: bailar, form: 'form:pres-1s'}, {surface: más, sense: más}]
+      tokens: [{surface: Yo, sense: yo}, {surface: canto, sense: cantar, form: 'form:pres-1s'}, {surface: menos, sense: menos}, {surface: que, sense: que.than}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: pero, sense: pero}, {surface: bailo, sense: bailar, form: 'form:pres-1s'}, {surface: más, sense: más}]
       reverse: '[Yo] canto menos que [la|mi] abuela pero bailo más'
   translations:
     en: I sing less than (Grandma|my grandma|my grandmother), but I dance more.
@@ -361,7 +361,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo tiene más de cien discos.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: de, sense: de}, {surface: cien, sense: cien}, {surface: discos, sense: disco}]
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: de, sense: de}, {surface: cien, sense: cien}, {surface: discos, sense: disco, form: 'form:pl'}]
       reverse: |-
         [El] abuelo tiene más de (cien|100) discos
         Mi abuelo tiene más de cien discos
@@ -407,7 +407,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Celia Cruz es la más grande.
-      tokens: [{surface: Celia, sense: celia-cruz}, {surface: Cruz, sense: celia-cruz}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: más, sense: más}, {surface: grande, sense: grande}]
+      tokens: [{surface: Celia, sense: celia-cruz}, {surface: Cruz, sense: celia-cruz}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: más, sense: más}, {surface: grande, sense: grande, form: 'form:fem'}]
       reverse: |-
         Celia Cruz es la más grande
         La más grande es Celia Cruz
@@ -442,7 +442,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esa es la peor canción del disco.
-      tokens: [{surface: Esa, sense: ese}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: peor, sense: peor}, {surface: canción, sense: canción}, {surface: del, sense: del}, {surface: disco, sense: disco}]
+      tokens: [{surface: Esa, sense: ese, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: peor, sense: peor, form: 'form:fem'}, {surface: canción, sense: canción, form: 'form:fem'}, {surface: del, sense: del}, {surface: disco, sense: disco}]
       reverse: Esa es la peor canción del disco
   translations:
     en: (That's|That is) the worst song (on|in|of) the (record|album).
@@ -460,7 +460,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es domingo, y en casa de abuela hay música.
-          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: domingo, sense: domingo}, {surface: 'y', sense: 'y'}, {surface: en, sense: en}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: abuela, sense: abuela}, {surface: hay, sense: hay}, {surface: música, sense: música}]
+          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: domingo, sense: domingo}, {surface: 'y', sense: 'y'}, {surface: en, sense: en}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: de, sense: de}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: hay, sense: hay}, {surface: música, sense: música, form: 'form:fem'}]
       translations: {en: 'It''s Sunday, and there''s music at Grandma''s house.'}
   - line:
       speaker: pepe
@@ -474,14 +474,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Me encantan sus boleros, abuelo.
-          tokens: [{surface: Me, sense: me}, {surface: encantan, sense: encantar, form: 'form:pres-3p'}, {surface: sus, sense: su}, {surface: boleros, sense: bolero}, {surface: abuelo, sense: abuelo}]
+          tokens: [{surface: Me, sense: me}, {surface: encantan, sense: encantar, form: 'form:pres-3p'}, {surface: sus, sense: su, form: 'form:pl'}, {surface: boleros, sense: bolero, form: 'form:pl'}, {surface: abuelo, sense: abuelo}]
       translations: {en: 'I love his boleros, Grandpa.'}
   - line:
       speaker: lili
       forms:
         es-Latn/standard:
           text: Los boleros me molestan, abuelo. ¡Son muy viejos!
-          tokens: [{surface: Los, sense: el}, {surface: boleros, sense: bolero}, {surface: me, sense: me}, {surface: molestan, sense: molestar, form: 'form:pres-3p'}, {surface: abuelo, sense: abuelo}, {surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: viejos, sense: viejo}]
+          tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: boleros, sense: bolero, form: 'form:pl'}, {surface: me, sense: me}, {surface: molestan, sense: molestar, form: 'form:pres-3p'}, {surface: abuelo, sense: abuelo}, {surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: viejos, sense: viejo, form: 'form:pl'}]
       translations: {en: 'Boleros get on my nerves, Grandpa. They''re so old!'}
   - line:
       speaker: pepe
@@ -491,14 +491,14 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Viejos? El bolero es más viejo que tú, ¡pero es mejor que tu música!
-          tokens: [{surface: Viejos, sense: viejo}, {surface: El, sense: el}, {surface: bolero, sense: bolero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: viejo, sense: viejo}, {surface: que, sense: que.than}, {surface: tú, sense: tú}, {surface: pero, sense: pero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mejor, sense: mejor}, {surface: que, sense: que.than}, {surface: tu, sense: tu}, {surface: música, sense: música}]
+          tokens: [{surface: Viejos, sense: viejo, form: 'form:pl'}, {surface: El, sense: el}, {surface: bolero, sense: bolero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: viejo, sense: viejo}, {surface: que, sense: que.than}, {surface: tú, sense: tú}, {surface: pero, sense: pero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mejor, sense: mejor}, {surface: que, sense: que.than}, {surface: tu, sense: tu, form: 'form:fem'}, {surface: música, sense: música, form: 'form:fem'}]
       translations: {en: 'Old? The bolero is older than you, but it''s better than your music!'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Ay, Pepe. A Lili le encanta la salsa, y la salsa también es cubana.
-          tokens: [{surface: Ay, sense: ay}, {surface: Pepe, sense: pepe}, {surface: A, sense: a}, {surface: Lili, sense: lili}, {surface: le, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: salsa, sense: salsa}, {surface: 'y', sense: 'y'}, {surface: la, sense: el}, {surface: salsa, sense: salsa}, {surface: también, sense: también}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: cubana, sense: cubano}]
+          tokens: [{surface: Ay, sense: ay}, {surface: Pepe, sense: pepe}, {surface: A, sense: a}, {surface: Lili, sense: lili}, {surface: le, sense: le}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: la, sense: el, form: 'form:fem'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: también, sense: también}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: cubana, sense: cubano, form: 'form:fem'}]
       translations: {en: 'Oh, Pepe. Lili loves salsa, and salsa is Cuban too.'}
   - choose:
       prompt: {en: 'Why doesn''t Lili like boleros?'}
@@ -522,7 +522,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela y Lili bailan salsa en la sala.
-          tokens: [{surface: Abuela, sense: abuela}, {surface: 'y', sense: 'y'}, {surface: Lili, sense: lili}, {surface: bailan, sense: bailar, form: 'form:pres-3p'}, {surface: salsa, sense: salsa}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: sala, sense: sala}]
+          tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: Lili, sense: lili}, {surface: bailan, sense: bailar, form: 'form:pres-3p'}, {surface: salsa, sense: salsa, form: 'form:fem'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: sala, sense: sala, form: 'form:fem'}]
       translations: {en: Grandma and Lili dance salsa in the living room.}
   - line:
       speaker: daniel
@@ -530,28 +530,28 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili baila tan bien como abuela!
-          tokens: [{surface: Lili, sense: lili}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: tan, sense: tan}, {surface: bien, sense: bien}, {surface: como, sense: como.like}, {surface: abuela, sense: abuela}]
+          tokens: [{surface: Lili, sense: lili}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: tan, sense: tan}, {surface: bien, sense: bien}, {surface: como, sense: como.like}, {surface: abuela, sense: abuela, form: 'form:fem'}]
       translations: {en: 'Lili dances as well as Grandma!'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Y tú, mi vida, ¿no bailas?
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}, {surface: mi, sense: mi}, {surface: vida, sense: vida}, {surface: 'no', sense: 'no'}, {surface: bailas, sense: bailar, form: 'form:pres-2s'}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: bailas, sense: bailar, form: 'form:pres-2s'}]
       translations: {en: 'And you, darling, aren''t you dancing?'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: No, abuela. Yo toco las maracas.
-          tokens: [{surface: 'No', sense: 'no'}, {surface: abuela, sense: abuela}, {surface: Yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: las, sense: el}, {surface: maracas, sense: maraca}]
+          tokens: [{surface: 'No', sense: 'no'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: Yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: las, sense: el, form: 'form:fem-pl'}, {surface: maracas, sense: maraca, form: 'form:fem-pl'}]
       translations: {en: 'No, Grandma. I play the maracas.'}
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: Y yo toco la clave. ¡Vamos!
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: clave, sense: clave}, {surface: Vamos, sense: ir, form: 'form:pres-1p'}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: clave, sense: clave, form: 'form:fem'}, {surface: Vamos, sense: ir, form: 'form:pres-1p'}]
       translations: {en: 'And I''ll play the claves. Let''s go!'}
   - choose:
       prompt: {en: 'What does Daniel do while Abuela and Lili dance?'}

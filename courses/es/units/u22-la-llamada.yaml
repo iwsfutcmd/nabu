@@ -39,7 +39,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los domingos hacemos una videollamada a La Habana.
-      tokens: [{surface: Los, sense: el}, {surface: domingos, sense: domingo}, {surface: hacemos, sense: hacer, form: 'form:pres-1p'}, {surface: una, sense: un}, {surface: videollamada, sense: videollamada}, {surface: a, sense: a}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Los, sense: el, form: 'form:pl'}, {surface: domingos, sense: domingo, form: 'form:pl'}, {surface: hacemos, sense: hacer, form: 'form:pres-1p'}, {surface: una, sense: un, form: 'form:fem'}, {surface: videollamada, sense: videollamada, form: 'form:fem'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       reverse: |-
         Los domingos [nosotros] hacemos una videollamada a La Habana
         [Nosotros] hacemos una videollamada a La Habana los domingos
@@ -52,7 +52,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía, ¿tú me oyes? Yo no te oigo bien.
-      tokens: [{surface: Tía, sense: tío}, {surface: tú, sense: tú}, {surface: me, sense: me}, {surface: oyes, sense: oír, form: 'form:pres-2s'}, {surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: te, sense: te}, {surface: oigo, sense: oír, form: 'form:pres-1s'}, {surface: bien, sense: bien}]
+      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: tú, sense: tú}, {surface: me, sense: me}, {surface: oyes, sense: oír, form: 'form:pres-2s'}, {surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: te, sense: te}, {surface: oigo, sense: oír, form: 'form:pres-1s'}, {surface: bien, sense: bien}]
       reverse: |-
         (Tía|Tía Marisol) (tú me oyes|me oyes [tú]) [yo] no te oigo bien
         Tía, ¿me puedes oír? No te oigo bien.
@@ -64,7 +64,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La conexión está muy mal hoy.
-      tokens: [{surface: La, sense: el}, {surface: conexión, sense: conexión}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: mal, sense: mal}, {surface: hoy, sense: hoy}]
+      tokens: [{surface: La, sense: el, form: 'form:fem'}, {surface: conexión, sense: conexión, form: 'form:fem'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: mal, sense: mal}, {surface: hoy, sense: hoy}]
       reverse: |-
         La conexión está muy (mal|mala) hoy
         Hoy la conexión está muy (mal|mala)
@@ -77,7 +77,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú tienes wifi en la casa, o estás en el parque?
-      tokens: [{surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: wifi, sense: wifi}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: casa, sense: casa}, {surface: o, sense: o}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: parque, sense: parque}]
+      tokens: [{surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: wifi, sense: wifi}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}, {surface: o, sense: o}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: parque, sense: parque}]
       reverse: |-
         (Tú tienes|Tienes [tú]) wifi en [la] casa o (tú estás|estás [tú]) en el parque
         (Usted tiene|Tiene [usted]) wifi en [la] casa o (usted está|está [usted]) en el parque
@@ -102,7 +102,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Anoche recibí una llamada de Yunior por WhatsApp.
-      tokens: [{surface: Anoche, sense: anoche}, {surface: recibí, sense: recibir, form: 'form:pret-1s'}, {surface: una, sense: un}, {surface: llamada, sense: llamada}, {surface: de, sense: de}, {surface: Yunior, sense: yunior}, {surface: por, sense: por}, {surface: WhatsApp, sense: whatsapp}]
+      tokens: [{surface: Anoche, sense: anoche}, {surface: recibí, sense: recibir, form: 'form:pret-1s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: llamada, sense: llamada, form: 'form:fem'}, {surface: de, sense: de}, {surface: Yunior, sense: yunior}, {surface: por, sense: por}, {surface: WhatsApp, sense: whatsapp}]
       reverse: |-
         Anoche [yo] recibí una llamada de Yunior por WhatsApp
         [Yo] recibí una llamada de Yunior por WhatsApp anoche
@@ -125,7 +125,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Se cayó la llamada cuando Yunior estaba hablando de pelota.
-      tokens: [{surface: Se, sense: se}, {surface: cayó, sense: caerse, form: 'form:pret-3s'}, {surface: la, sense: el}, {surface: llamada, sense: llamada}, {surface: cuando, sense: cuando}, {surface: Yunior, sense: yunior}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: hablando, sense: hablar, form: 'form:ger'}, {surface: de, sense: de}, {surface: pelota, sense: pelota}]
+      tokens: [{surface: Se, sense: se}, {surface: cayó, sense: caerse, form: 'form:pret-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: llamada, sense: llamada, form: 'form:fem'}, {surface: cuando, sense: cuando}, {surface: Yunior, sense: yunior}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: hablando, sense: hablar, form: 'form:ger'}, {surface: de, sense: de}, {surface: pelota, sense: pelota, form: 'form:fem'}]
       reverse: (Se cayó la llamada|La llamada se cayó) cuando Yunior (estaba hablando|hablaba) de pelota
   translations:
     en: The call (dropped|cut out|got cut off) (when|while) Yunior was talking about baseball.
@@ -134,7 +134,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía, te congelaste. No te veo.
-      tokens: [{surface: Tía, sense: tío}, {surface: te, sense: te}, {surface: congelaste, sense: congelarse, form: 'form:pret-2s'}, {surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: veo, sense: ver, form: 'form:pres-1s'}]
+      tokens: [{surface: Tía, sense: tío, form: 'form:fem'}, {surface: te, sense: te}, {surface: congelaste, sense: congelarse, form: 'form:pret-2s'}, {surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: veo, sense: ver, form: 'form:pres-1s'}]
       reverse: |-
         (Tía|Tía Marisol) te congelaste [yo] no te veo
         Tía, te quedaste congelada. No te veo.
@@ -146,7 +146,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Anoche hubo un apagón de ocho horas en La Habana.
-      tokens: [{surface: Anoche, sense: anoche}, {surface: hubo, sense: haber, form: 'form:pret-3s'}, {surface: un, sense: un}, {surface: apagón, sense: apagón}, {surface: de, sense: de}, {surface: ocho, sense: ocho}, {surface: horas, sense: hora}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      tokens: [{surface: Anoche, sense: anoche}, {surface: hubo, sense: haber, form: 'form:pret-3s'}, {surface: un, sense: un}, {surface: apagón, sense: apagón}, {surface: de, sense: de}, {surface: ocho, sense: ocho}, {surface: horas, sense: hora, form: 'form:fem-pl'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       reverse: |-
         Anoche hubo un apagón de (ocho|8) horas en La Habana
         Hubo un apagón de (ocho|8) horas en La Habana anoche
@@ -159,7 +159,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Se fue la corriente, y con este calor no hay ventilador.
-      tokens: [{surface: Se, sense: se}, {surface: fue, sense: ir, form: 'form:pret-3s'}, {surface: la, sense: el}, {surface: corriente, sense: corriente}, {surface: 'y', sense: 'y'}, {surface: con, sense: con}, {surface: este, sense: este}, {surface: calor, sense: calor}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: ventilador, sense: ventilador}]
+      tokens: [{surface: Se, sense: se}, {surface: fue, sense: ir, form: 'form:pret-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: corriente, sense: corriente, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: con, sense: con}, {surface: este, sense: este}, {surface: calor, sense: calor}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: ventilador, sense: ventilador}]
       reverse: Se fue (la corriente|la luz) y con este calor no hay ventilador
   translations:
     en: The power went (out|off), and (in|with) this heat (there's|there is) no fan.
@@ -168,7 +168,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No te oigo nada, Yunior. ¿Ya vino la corriente?
-      tokens: [{surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: oigo, sense: oír, form: 'form:pres-1s'}, {surface: nada, sense: nada}, {surface: Yunior, sense: yunior}, {surface: Ya, sense: ya}, {surface: vino, sense: venir, form: 'form:pret-3s'}, {surface: la, sense: el}, {surface: corriente, sense: corriente}]
+      tokens: [{surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: oigo, sense: oír, form: 'form:pres-1s'}, {surface: nada, sense: nada}, {surface: Yunior, sense: yunior}, {surface: Ya, sense: ya}, {surface: vino, sense: venir, form: 'form:pret-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: corriente, sense: corriente, form: 'form:fem'}]
       reverse: '[Yo] no te oigo nada Yunior (ya vino la corriente|vino ya la corriente|ya volvió la corriente|ya vino la luz)'
   translations:
     en: I (can't|cannot) hear (you at all|anything), Yunior. (Is the power back|Has the power come back|Did the power come back|Is the power on) [yet]?
@@ -177,7 +177,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No cuelgues todavía, Yunior. Abuela quiere hablar con Marisol.
-      tokens: [{surface: 'No', sense: 'no'}, {surface: cuelgues, sense: colgar, form: 'form:imp-neg'}, {surface: todavía, sense: todavía}, {surface: Yunior, sense: yunior}, {surface: Abuela, sense: abuela}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: hablar, sense: hablar}, {surface: con, sense: con}, {surface: Marisol, sense: marisol}]
+      tokens: [{surface: 'No', sense: 'no'}, {surface: cuelgues, sense: colgar, form: 'form:imp-neg'}, {surface: todavía, sense: todavía}, {surface: Yunior, sense: yunior}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: hablar, sense: hablar}, {surface: con, sense: con}, {surface: Marisol, sense: marisol}]
       reverse: |-
         No cuelgues todavía Yunior (Abuela|la abuela|mi abuela) quiere hablar con (Marisol|tía Marisol|tu mamá|tu mami)
         No cuelgues aún, Yunior. Abuela quiere hablar con Marisol.
@@ -188,7 +188,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Con los apagones, Marisol no puede dormir por el calor.
-      tokens: [{surface: Con, sense: con}, {surface: los, sense: el}, {surface: apagones, sense: apagón}, {surface: Marisol, sense: marisol}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: dormir, sense: dormir}, {surface: por, sense: por}, {surface: el, sense: el}, {surface: calor, sense: calor}]
+      tokens: [{surface: Con, sense: con}, {surface: los, sense: el, form: 'form:pl'}, {surface: apagones, sense: apagón, form: 'form:pl'}, {surface: Marisol, sense: marisol}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: dormir, sense: dormir}, {surface: por, sense: por}, {surface: el, sense: el}, {surface: calor, sense: calor}]
       reverse: Con los apagones (Marisol|tía Marisol) no puede dormir por el calor
   translations:
     en: |-
@@ -199,7 +199,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me alegra que estés bien, tía.
-      tokens: [{surface: Me, sense: me}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: estés, sense: estar, form: 'form:subj'}, {surface: bien, sense: bien}, {surface: tía, sense: tío}]
+      tokens: [{surface: Me, sense: me}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: estés, sense: estar, form: 'form:subj'}, {surface: bien, sense: bien}, {surface: tía, sense: tío, form: 'form:fem'}]
       reverse: (Me alegra|Me alegro de|Me alegro) que estés bien (tía|tía Marisol)
   translations:
     en: |-
@@ -227,7 +227,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Siento que no puedas venir a la Nochebuena, tía.
-      tokens: [{surface: Siento, sense: sentir, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: puedas, sense: poder, form: 'form:subj'}, {surface: venir, sense: venir}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: Nochebuena, sense: nochebuena}, {surface: tía, sense: tío}]
+      tokens: [{surface: Siento, sense: sentir, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: puedas, sense: poder, form: 'form:subj'}, {surface: venir, sense: venir}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: Nochebuena, sense: nochebuena}, {surface: tía, sense: tío, form: 'form:fem'}]
       reverse: (Siento|Siento mucho|Lamento) que no puedas venir (a|para|en) la Nochebuena (tía|tía Marisol)
   translations:
     en: |-
@@ -238,7 +238,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Abuela le alegra mucho que la llames.
-      tokens: [{surface: A, sense: a}, {surface: Abuela, sense: abuela}, {surface: le, sense: le}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: que, sense: que}, {surface: la, sense: lo}, {surface: llames, sense: llamar, form: 'form:subj'}]
+      tokens: [{surface: A, sense: a}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: le, sense: le}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: que, sense: que}, {surface: la, sense: lo, form: 'form:fem'}, {surface: llames, sense: llamar, form: 'form:subj'}]
       reverse: |-
         A (Abuela|la abuela|mi abuela) le alegra mucho que la llames
         Abuela se alegra mucho de que la llames
@@ -277,7 +277,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me alegra que podamos hablar todos juntos por videollamada.
-      tokens: [{surface: Me, sense: me}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: podamos, sense: poder, form: 'form:subj'}, {surface: hablar, sense: hablar}, {surface: todos, sense: todo}, {surface: juntos, sense: junto}, {surface: por, sense: por}, {surface: videollamada, sense: videollamada}]
+      tokens: [{surface: Me, sense: me}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: podamos, sense: poder, form: 'form:subj'}, {surface: hablar, sense: hablar}, {surface: todos, sense: todo, form: 'form:pl'}, {surface: juntos, sense: junto, form: 'form:pl'}, {surface: por, sense: por}, {surface: videollamada, sense: videollamada, form: 'form:fem'}]
       reverse: |-
         (Me alegra|Me alegro de|Me alegro) que podamos hablar todos juntos por videollamada
         Me alegra que todos podamos hablar juntos por videollamada
@@ -291,7 +291,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me preocupa que ustedes no tengan corriente en el verano.
-      tokens: [{surface: Me, sense: me}, {surface: preocupa, sense: preocupar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: ustedes, sense: ustedes}, {surface: 'no', sense: 'no'}, {surface: tengan, sense: tener, form: 'form:subj'}, {surface: corriente, sense: corriente}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}]
+      tokens: [{surface: Me, sense: me}, {surface: preocupa, sense: preocupar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: ustedes, sense: ustedes}, {surface: 'no', sense: 'no'}, {surface: tengan, sense: tener, form: 'form:subj'}, {surface: corriente, sense: corriente, form: 'form:fem'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}]
       reverse: Me preocupa que [ustedes] no tengan (corriente|luz) en el verano
   translations:
     en: |-
@@ -303,7 +303,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cómo está la cosa por allá?
-      tokens: [{surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: cosa, sense: cosa}, {surface: por, sense: por}, {surface: allá, sense: allá}]
+      tokens: [{surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: cosa, sense: cosa, form: 'form:fem'}, {surface: por, sense: por}, {surface: allá, sense: allá}]
       reverse: |-
         (Cómo está la cosa|Cómo anda la cosa|Cómo están las cosas) por allá
         ¿Cómo están las cosas allá?
@@ -314,7 +314,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior hizo tres horas de cola para comprar pollo.
-      tokens: [{surface: Yunior, sense: yunior}, {surface: hizo, sense: hacer, form: 'form:pret-3s'}, {surface: tres, sense: tres}, {surface: horas, sense: hora}, {surface: de, sense: de}, {surface: cola, sense: cola}, {surface: para, sense: para}, {surface: comprar, sense: comprar}, {surface: pollo, sense: pollo}]
+      tokens: [{surface: Yunior, sense: yunior}, {surface: hizo, sense: hacer, form: 'form:pret-3s'}, {surface: tres, sense: tres}, {surface: horas, sense: hora, form: 'form:fem-pl'}, {surface: de, sense: de}, {surface: cola, sense: cola, form: 'form:fem'}, {surface: para, sense: para}, {surface: comprar, sense: comprar}, {surface: pollo, sense: pollo}]
       reverse: Yunior (hizo (tres|3) horas de cola|estuvo (tres|3) horas en la cola) para comprar pollo
   translations:
     en: |-
@@ -338,7 +338,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Te mandé una recarga para que puedas llamarnos.
-      tokens: [{surface: Te, sense: te}, {surface: mandé, sense: mandar, form: 'form:pret-1s'}, {surface: una, sense: un}, {surface: recarga, sense: recarga}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: puedas, sense: poder, form: 'form:subj'}, {surface: llamarnos, sense: llamar}]
+      tokens: [{surface: Te, sense: te}, {surface: mandé, sense: mandar, form: 'form:pret-1s'}, {surface: una, sense: un, form: 'form:fem'}, {surface: recarga, sense: recarga, form: 'form:fem'}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: puedas, sense: poder, form: 'form:subj'}, {surface: llamarnos, sense: llamar}]
       reverse: |-
         [Yo] te mandé una recarga para que (puedas llamarnos|nos puedas llamar)
         Le mandé una recarga para que pueda llamarnos
@@ -351,7 +351,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Abuela le preocupa que Marisol no tenga medicinas para la presión.
-      tokens: [{surface: A, sense: a}, {surface: Abuela, sense: abuela}, {surface: le, sense: le}, {surface: preocupa, sense: preocupar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: Marisol, sense: marisol}, {surface: 'no', sense: 'no'}, {surface: tenga, sense: tener, form: 'form:subj'}, {surface: medicinas, sense: medicina}, {surface: para, sense: para}, {surface: la, sense: el}, {surface: presión, sense: presión}]
+      tokens: [{surface: A, sense: a}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: le, sense: le}, {surface: preocupa, sense: preocupar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: Marisol, sense: marisol}, {surface: 'no', sense: 'no'}, {surface: tenga, sense: tener, form: 'form:subj'}, {surface: medicinas, sense: medicina, form: 'form:fem-pl'}, {surface: para, sense: para}, {surface: la, sense: el, form: 'form:fem'}, {surface: presión, sense: presión, form: 'form:fem'}]
       reverse: A (Abuela|la abuela|mi abuela) le preocupa que (Marisol|tía Marisol) no tenga (medicinas|medicina|pastillas) para la presión
   translations:
     en: |-
@@ -362,7 +362,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: 'No te preocupes, tía: el paquete llega la semana que viene.'
-      tokens: [{surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: preocupes, sense: preocupar, form: 'form:imp-neg'}, {surface: tía, sense: tío}, {surface: el, sense: el}, {surface: paquete, sense: paquete}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: semana, sense: semana}, {surface: que, sense: que}, {surface: viene, sense: venir, form: 'form:pres-3s'}]
+      tokens: [{surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: preocupes, sense: preocupar, form: 'form:imp-neg'}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: el, sense: el}, {surface: paquete, sense: paquete}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: semana, sense: semana, form: 'form:fem'}, {surface: que, sense: que}, {surface: viene, sense: venir, form: 'form:pres-3s'}]
       reverse: No te preocupes (tía|tía Marisol) el paquete (llega|va a llegar) (la semana que viene|la próxima semana)
   translations:
     en: 'Don''t worry, (Auntie|Tía|Aunt Marisol): the (package|parcel) (arrives|is arriving|will arrive|is coming|will come|gets there) next week.'
@@ -371,7 +371,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No creo que la corriente vuelva hoy.
-      tokens: [{surface: 'No', sense: 'no'}, {surface: creo, sense: creer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: la, sense: el}, {surface: corriente, sense: corriente}, {surface: vuelva, sense: volver, form: 'form:subj'}, {surface: hoy, sense: hoy}]
+      tokens: [{surface: 'No', sense: 'no'}, {surface: creo, sense: creer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: la, sense: el, form: 'form:fem'}, {surface: corriente, sense: corriente, form: 'form:fem'}, {surface: vuelva, sense: volver, form: 'form:subj'}, {surface: hoy, sense: hoy}]
       reverse: '[Yo] no creo que (la corriente|la luz) (vuelva|venga|regrese) hoy'
   translations:
     en: |-
@@ -391,7 +391,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Dudo que Yunior tenga wifi en su casa.
-      tokens: [{surface: Dudo, sense: dudar, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: Yunior, sense: yunior}, {surface: tenga, sense: tener, form: 'form:subj'}, {surface: wifi, sense: wifi}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: casa, sense: casa}]
+      tokens: [{surface: Dudo, sense: dudar, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: Yunior, sense: yunior}, {surface: tenga, sense: tener, form: 'form:subj'}, {surface: wifi, sense: wifi}, {surface: en, sense: en}, {surface: su, sense: su, form: 'form:fem'}, {surface: casa, sense: casa, form: 'form:fem'}]
       reverse: '[Yo] dudo que Yunior tenga wifi en (su casa|la casa|casa)'
   translations:
     en: I doubt [that] Yunior has wifi (at home|at his house|in his house).
@@ -400,7 +400,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es posible que haya un apagón esta noche.
-      tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: posible, sense: posible}, {surface: que, sense: que}, {surface: haya, sense: haber, form: 'form:subj'}, {surface: un, sense: un}, {surface: apagón, sense: apagón}, {surface: esta, sense: este}, {surface: noche, sense: noche}]
+      tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: posible, sense: posible}, {surface: que, sense: que}, {surface: haya, sense: haber, form: 'form:subj'}, {surface: un, sense: un}, {surface: apagón, sense: apagón}, {surface: esta, sense: este, form: 'form:fem'}, {surface: noche, sense: noche, form: 'form:fem'}]
       reverse: (Es posible|Puede) que haya un apagón esta noche
   translations:
     en: |-
@@ -411,7 +411,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No creo que Abuela sepa hacer una videollamada.
-      tokens: [{surface: 'No', sense: 'no'}, {surface: creo, sense: creer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: Abuela, sense: abuela}, {surface: sepa, sense: saber, form: 'form:subj'}, {surface: hacer, sense: hacer}, {surface: una, sense: un}, {surface: videollamada, sense: videollamada}]
+      tokens: [{surface: 'No', sense: 'no'}, {surface: creo, sense: creer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: sepa, sense: saber, form: 'form:subj'}, {surface: hacer, sense: hacer}, {surface: una, sense: un, form: 'form:fem'}, {surface: videollamada, sense: videollamada, form: 'form:fem'}]
       reverse: '[Yo] no creo que (Abuela|la abuela|mi abuela) sepa hacer una videollamada'
   translations:
     en: |-
@@ -442,21 +442,21 @@ stories:
       forms:
         es-Latn/standard:
           text: Es domingo. Daniel y Abuela hacen una videollamada a La Habana.
-          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: domingo, sense: domingo}, {surface: Daniel, sense: daniel}, {surface: 'y', sense: 'y'}, {surface: Abuela, sense: abuela}, {surface: hacen, sense: hacer, form: 'form:pres-3p'}, {surface: una, sense: un}, {surface: videollamada, sense: videollamada}, {surface: a, sense: a}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: domingo, sense: domingo}, {surface: Daniel, sense: daniel}, {surface: 'y', sense: 'y'}, {surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: hacen, sense: hacer, form: 'form:pres-3p'}, {surface: una, sense: un, form: 'form:fem'}, {surface: videollamada, sense: videollamada, form: 'form:fem'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana}]
       translations: {en: 'It''s Sunday. Daniel and Grandma are making a video call to Havana.'}
   - line:
       speaker: marisol
       forms:
         es-Latn/standard:
           text: ¡Mami! ¡Daniel! ¿Ustedes me oyen?
-          tokens: [{surface: Mami, sense: mami}, {surface: Daniel, sense: daniel}, {surface: Ustedes, sense: ustedes}, {surface: me, sense: me}, {surface: oyen, sense: oír, form: 'form:pres-3p'}]
+          tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: Daniel, sense: daniel}, {surface: Ustedes, sense: ustedes}, {surface: me, sense: me}, {surface: oyen, sense: oír, form: 'form:pres-3p'}]
       translations: {en: 'Mom! Daniel! Can you hear me?'}
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: Sí, tía, te oímos. ¿Cómo está la cosa por allá?
-          tokens: [{surface: Sí, sense: sí}, {surface: tía, sense: tío}, {surface: te, sense: te}, {surface: oímos, sense: oír, form: 'form:pres-1p'}, {surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: cosa, sense: cosa}, {surface: por, sense: por}, {surface: allá, sense: allá}]
+          tokens: [{surface: Sí, sense: sí}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: te, sense: te}, {surface: oímos, sense: oír, form: 'form:pres-1p'}, {surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: cosa, sense: cosa, form: 'form:fem'}, {surface: por, sense: por}, {surface: allá, sense: allá}]
       translations: {en: 'Yes, Auntie, we can hear you. How are things over there?'}
   - line:
       speaker: marisol
@@ -466,14 +466,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Bien, pero anoche hubo un apagón de diez horas.
-          tokens: [{surface: Bien, sense: bien}, {surface: pero, sense: pero}, {surface: anoche, sense: anoche}, {surface: hubo, sense: haber, form: 'form:pret-3s'}, {surface: un, sense: un}, {surface: apagón, sense: apagón}, {surface: de, sense: de}, {surface: diez, sense: diez}, {surface: horas, sense: hora}]
+          tokens: [{surface: Bien, sense: bien}, {surface: pero, sense: pero}, {surface: anoche, sense: anoche}, {surface: hubo, sense: haber, form: 'form:pret-3s'}, {surface: un, sense: un}, {surface: apagón, sense: apagón}, {surface: de, sense: de}, {surface: diez, sense: diez}, {surface: horas, sense: hora, form: 'form:fem-pl'}]
       translations: {en: 'Fine, but last night there was a ten-hour blackout.'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: ¡Ay, mi'ja! Me preocupa que no tengan corriente con este calor.
-          tokens: [{surface: Ay, sense: ay}, {surface: "mi'ja", sense: mijo}, {surface: Me, sense: me}, {surface: preocupa, sense: preocupar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: tengan, sense: tener, form: 'form:subj'}, {surface: corriente, sense: corriente}, {surface: con, sense: con}, {surface: este, sense: este}, {surface: calor, sense: calor}]
+          tokens: [{surface: Ay, sense: ay}, {surface: "mi'ja", sense: mijo, form: 'form:fem'}, {surface: Me, sense: me}, {surface: preocupa, sense: preocupar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: tengan, sense: tener, form: 'form:subj'}, {surface: corriente, sense: corriente, form: 'form:fem'}, {surface: con, sense: con}, {surface: este, sense: este}, {surface: calor, sense: calor}]
       translations: {en: 'Oh, honey! I worry that you have no power in this heat.'}
   - line:
       speaker: yunior
@@ -483,7 +483,7 @@ stories:
       forms:
         es-Latn/standard:
           text: No te preocupes, abuela. Ya vino la corriente.
-          tokens: [{surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: preocupes, sense: preocupar, form: 'form:imp-neg'}, {surface: abuela, sense: abuela}, {surface: Ya, sense: ya}, {surface: vino, sense: venir, form: 'form:pret-3s'}, {surface: la, sense: el}, {surface: corriente, sense: corriente}]
+          tokens: [{surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: preocupes, sense: preocupar, form: 'form:imp-neg'}, {surface: abuela, sense: abuela, form: 'form:fem'}, {surface: Ya, sense: ya}, {surface: vino, sense: venir, form: 'form:pret-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: corriente, sense: corriente, form: 'form:fem'}]
       translations: {en: 'Don''t worry, Grandma. The power''s back now.'}
   - choose:
       prompt: {en: 'What happened in Havana last night?'}
@@ -501,7 +501,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Todavía no. Mami cree que llega el jueves, pero yo lo dudo.
-          tokens: [{surface: Todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: Mami, sense: mami}, {surface: cree, sense: creer, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: jueves, sense: jueves}, {surface: pero, sense: pero}, {surface: yo, sense: yo}, {surface: lo, sense: lo}, {surface: dudo, sense: dudar, form: 'form:pres-1s'}]
+          tokens: [{surface: Todavía, sense: todavía}, {surface: 'no', sense: 'no'}, {surface: Mami, sense: mami, form: 'form:fem'}, {surface: cree, sense: creer, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: jueves, sense: jueves}, {surface: pero, sense: pero}, {surface: yo, sense: yo}, {surface: lo, sense: lo}, {surface: dudo, sense: dudar, form: 'form:pres-1s'}]
       translations: {en: 'Not yet. Mom thinks it''s coming on Thursday, but I doubt it.'}
   - line:
       speaker: marisol
@@ -515,7 +515,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es que aquí todo llega tarde, mami.
-          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: aquí, sense: aquí}, {surface: todo, sense: todo}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: tarde, sense: tarde}, {surface: mami, sense: mami}]
+          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: aquí, sense: aquí}, {surface: todo, sense: todo}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: tarde, sense: tarde}, {surface: mami, sense: mami, form: 'form:fem'}]
       translations: {en: 'It''s just that everything gets here late, Mom.'}
   - choose:
       prompt: {en: 'Who doubts that the package will come on Thursday?'}
@@ -533,21 +533,21 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Ay, esta conexión! ¿Y ahora?
-          tokens: [{surface: Ay, sense: ay}, {surface: esta, sense: este}, {surface: conexión, sense: conexión}, {surface: 'Y', sense: 'y'}, {surface: ahora, sense: ahora}]
+          tokens: [{surface: Ay, sense: ay}, {surface: esta, sense: este, form: 'form:fem'}, {surface: conexión, sense: conexión, form: 'form:fem'}, {surface: 'Y', sense: 'y'}, {surface: ahora, sense: ahora}]
       translations: {en: 'Ugh, this connection! What about now?'}
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Ahora sí te vemos. Mi'ja, siento mucho que no puedas venir a la Nochebuena.
-          tokens: [{surface: Ahora, sense: ahora}, {surface: sí, sense: sí}, {surface: te, sense: te}, {surface: vemos, sense: ver, form: 'form:pres-1p'}, {surface: "Mi'ja", sense: mijo}, {surface: siento, sense: sentir, form: 'form:pres-1s'}, {surface: mucho, sense: mucho}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: puedas, sense: poder, form: 'form:subj'}, {surface: venir, sense: venir}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: Nochebuena, sense: nochebuena}]
+          tokens: [{surface: Ahora, sense: ahora}, {surface: sí, sense: sí}, {surface: te, sense: te}, {surface: vemos, sense: ver, form: 'form:pres-1p'}, {surface: "Mi'ja", sense: mijo, form: 'form:fem'}, {surface: siento, sense: sentir, form: 'form:pres-1s'}, {surface: mucho, sense: mucho}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: puedas, sense: poder, form: 'form:subj'}, {surface: venir, sense: venir}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: Nochebuena, sense: nochebuena}]
       translations: {en: 'Now we can see you. Honey, I''m so sorry you can''t come for Christmas Eve.'}
   - line:
       speaker: marisol
       forms:
         es-Latn/standard:
           text: Yo también, mami. Los extraño mucho a todos.
-          tokens: [{surface: Yo, sense: yo}, {surface: también, sense: también}, {surface: mami, sense: mami}, {surface: Los, sense: lo}, {surface: extraño, sense: extrañar, form: 'form:pres-1s'}, {surface: mucho, sense: mucho}, {surface: a, sense: a}, {surface: todos, sense: todo}]
+          tokens: [{surface: Yo, sense: yo}, {surface: también, sense: también}, {surface: mami, sense: mami, form: 'form:fem'}, {surface: Los, sense: lo, form: 'form:pl'}, {surface: extraño, sense: extrañar, form: 'form:pres-1s'}, {surface: mucho, sense: mucho}, {surface: a, sense: a}, {surface: todos, sense: todo, form: 'form:pl'}]
       translations: {en: 'So am I, Mom. I miss you all so much.'}
   - line:
       speaker: daniel
@@ -576,7 +576,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y en ese momento, se cayó la llamada.
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: en, sense: en}, {surface: ese, sense: ese}, {surface: momento, sense: momento}, {surface: se, sense: se}, {surface: cayó, sense: caerse, form: 'form:pret-3s'}, {surface: la, sense: el}, {surface: llamada, sense: llamada}]
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: en, sense: en}, {surface: ese, sense: ese}, {surface: momento, sense: momento}, {surface: se, sense: se}, {surface: cayó, sense: caerse, form: 'form:pret-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: llamada, sense: llamada, form: 'form:fem'}]
       translations: {en: 'And at that moment, the call dropped.'}
   - choose:
       prompt: {en: 'How does the call end?'}
