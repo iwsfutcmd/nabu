@@ -239,6 +239,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Phase 6 notes (see docs/adr/0043)
 - Stories: `stories:` in a unit (schemas/course-source), each on a node of kind story. Lines compile like sentence
   forms and need every course orthography; questions are `choose` steps or lines with `ask: complete|arrange`.
+- A `complete` line's distractors (shown by their first form) must make the line ungrammatical or absurd, never another
+  sensible line (pears for grapes, tea for wine, three for seven). Put the gap on an uninflected word where the line
+  has one: the answer is the word as written, so its suffix would mark it among bare first forms.
 - One glossary matcher: @nabu/core `glossTokens` (exact and folded passes, longer wins). The app's tap-for-gloss and
   stage 7's lints both use it (core-cli `gloss`); never re-implement matching in Python.
 - The story reader nests the lesson player per question (@nabu/core/story); story sessions are mode "story".
