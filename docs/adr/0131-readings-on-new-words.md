@@ -148,8 +148,10 @@ for every word would either leave readings in the strokes or float them far over
   - The row's own strut is set to nothing (line-height 0 on the reading's row). Otherwise an unlifted reading
     (padding 0) set every reading in its line 0.09 em higher.
   - Until a word is measured, and where there is no browser (tests), the reading clears the tallest word.
-- **Checked in Chromium:** every lifted reading on the u04 sentence list sits exactly 0.35 em over its word's
-  ink, and unlifted ones at least that. Firefox on Android set them too close before in-place measuring. It is
-  measured the same way now, but not yet checked there.
+- **Checked in Chromium and Firefox (160):** every lifted reading on the u04 sentence list, the u03 story's
+  lines and its gloss panel sits exactly 0.35 em over its word's ink, and unlifted ones at least that.
+  - The browsers set an unlifted reading far apart: 1.07 em up in Chromium, 0.64 in Firefox.
+  - The first version, modelled on Chromium alone, left Firefox's readings 0.005 to 0.045 em over their
+    words: on them, as Firefox on Android showed.
 - **Where:** Arabic script only (`INK_LIFTED` in T.tsx, mirrored in T.module.css): Han, Latin and sitelen
   pona keep the browser's own placement, and their visual baselines stay as they are.
