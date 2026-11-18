@@ -540,7 +540,7 @@ a new design language.
     dagesh sits on the second slot.
   - **Arabic اِفْتَعَلَ doesn't show which letters are the pattern's:** its ت looks like a fourth radical.
     With placeholders ت is the only letter between the slots.
-- **Proposed: the placeholder per script is profile data**, never code:
+- **Decided: the placeholder per script is profile data**, never code:
   - **Hebrew: Decided, U+25CC DOTTED CIRCLE**, Unicode's own "a letter goes here", points on it (◌ִ◌ֵּ◌,
     הִ◌ְ◌ִי◌). Hebrew doesn't join, so nothing breaks.
   - **Arabic: Decided against the dotted circle** (it looks wrong in Arabic); a dotless letter instead,
@@ -556,12 +556,12 @@ a new design language.
     - Screen readers would read the placeholders as letters ("dotless beh"), so the shape carries an
       accessible name: its traditional name and meaning.
   - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
-- **Proposed: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
+- **Decided: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
   name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
-- **Proposed: a placeholder string is display only.** The pattern's lexical form stores its slots
+- **Decided: a placeholder string is display only.** The pattern's lexical form stores its slots
   abstractly, and the shape is a projection. Learners never type it: building a word from a pattern uses
   buttons, as vocalize-build does.
-- **Proposed: teaching order.** Two or three words first (مَكْتَب, مَلْعَب, مَطْبَخ), aligned; then the shape
+- **Decided: teaching order.** Two or three words first (مَكْتَب, مَلْعَب, مَطْبَخ), aligned; then the shape
   beneath them with its meaning; then cards that build (root into slots), extract (word to root) and decode
   ("what might مَدْخَل be?").
 - **Cards:** root extraction ("what's the root of مكتوب?", the skill a learner needs for an Arabic or Hebrew
