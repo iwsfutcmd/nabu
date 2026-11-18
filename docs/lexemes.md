@@ -37,8 +37,8 @@ teach a unit of the language: the **lexeme** (§2).
 |---|---|---|---|
 | **lexeme** | The unit a learner learns: a form–sense pairing that can't be derived from rules (§3), in any class and attachment | *kitob*, ‑dan, 呀, را, *ran*, *tuv-*, 東西, *darse cuenta* | Decided (term and rule) |
 | **lemma** | A lexeme's citation form, the one word cards show | *ichmoq*, خوردن, *ran* | As now |
-| **allomorph** | A conditioned variant, predictable from context: teach the rule | ‑ga / ‑ka / ‑qa, וְ / וָ | Proposed |
-| **variant** | A free variant, systematic (spelling, pronunciation): accept it | HK / TW characters; apc ـه / ـو; seseo | Proposed |
+| **allomorph** | A form a context triggers: stored on the lexeme with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
+| **variant** | Systematic free variation, made by a projection rule: accept it | HK / TW characters; apc ـه / ـو; Arabizi spellings | Proposed |
 | **morph** | A lexeme's realisation in one token: its exponent, anchored on tiers (§9) | *dan* in *Samarqanddanman*; the ezafe's kasra | Proposed |
 | **cell** | A feature bundle the learner chooses, possibly with no exponent | PST, PRET.3SG, ACC.PL, uz COP.3SG | Proposed |
 | **rule** | A pattern stated without naming any lexeme, with its own KC | ‑ga → ‑qa after q; the e→ie pattern | Proposed |
@@ -327,24 +327,49 @@ fully specified form ─┤
 
 ### Variants
 
-Four kinds, each in a different place:
+**Decided:**
+- **A lexeme may store several forms, provided each names the context that triggers it**, derivable or
+  not.
+- **Free variation means two lexemes**, almost certainly: two forms with no context to choose between
+  them aren't one lexeme.
 
 | Kind | Examples | Where it lives |
 |---|---|---|
-| Contextual, derivable | a / an, ‑ga / ‑qa, וְ / וּ, *el agua*, hbo pause forms | the rules (context as input), never stored |
-| Contextual, not derivable | rare: what no rule plus class property gives | the lexeme's plural fully specified forms, each with its condition |
-| Systematic free variation | HK / TW characters; Arabizi *3arabi* / *3rabi*; apostrophes in *oʻ*; Cantonese n / l | the projection rules: a relation, canonical output first, the rest accepted |
-| Idiosyncratic free variation | *período* / *periodo*, *vídeo* / *video*, اتاق / اطاق | **Open** (below) |
+| Contextual | a / an, ‑ga / ‑qa, וְ / וּ, *la* / *el* (*el agua*), *y* / *e*, hbo pause forms | the lexeme's forms, each with its context (or a rule that gives them) |
+| Systematic free variation | HK / TW characters; Arabizi *3arabi* / *3rabi*; apostrophes in *oʻ*; Cantonese n / l | the projection rules (canonical output first, the rest accepted): never a lexeme's stored form |
+| Free variation in a lexeme's own form | *período* / *periodo*, *vídeo* / *video*, اتاق / اطاق | two lexemes (Decided) |
 
-- Most contextual forms follow from rules plus a class property: the hbo segholate *mélek* / *malk-*.
-  Store only what doesn't.
-- Lexical dialect differences are separate lexemes (*carro* / *coche*, decided). Systematic dialect
-  differences (seseo) are variety rules in the phonemic projection.
+**Proposed:**
+- **Exactly one form is the elsewhere form, with no context**; every other form names its context.
+  Kiparsky's Elsewhere Condition again: *a* is the elsewhere form, *an* the one before a vowel. A lint
+  rejects two forms whose contexts overlap ("free variation: make two lexemes"), so the rule enforces
+  itself.
+- **Contexts are a per-language inventory, data like schemes:** before a vowel, after q, before a labial,
+  pause, nesiga, before a stressed á‑. Tokens already carry one (`context`, ADR 0135); the same labels name
+  a lexeme's forms. A stored form that a rule also derives is checked against the rule.
+- **A context is not a cell.** A cell is a feature in the sense: the learner chooses it, or the syntax
+  forces it (agreement), and an irregular cell is a separate lexeme (*el* / *la*). A context is the
+  phonological or prosodic setting that picks a form, and adds nothing to the sense.
+  - *el agua* shows the difference: that *el* is the feminine *la*'s form before a stressed á‑, not the
+    masculine lexeme. es already pins it `form:fem`.
+- **Systematic variation stays in the projection rules.** The two-lexemes rule is about forms a lexeme
+  would store; HK / TW characters and Arabizi spellings never are.
+- **"Free" variants usually turn out to differ in a feature,** which the rule then makes explicit:
+  - dialect: *vídeo* (Spain) / *video* (the Americas);
+  - era or spelling standard: اطاق, the older spelling of اتاق;
+  - register.
+
+  The prompt specifies the feature as for dialect (§12), so there's still one right answer.
+  - Generalising the dialect slip: an answer that is another lexeme with the same lexical meaning,
+    differing only in a variety feature (dialect, register, era), gets feedback naming the feature: "that's
+    the older spelling; today اتاق", "that's krama; to a friend, ngoko".
+  - Two lexemes identical in meaning *and* every feature would be a gap in the model: no prompt could choose
+    between them.
+- Most contextual forms follow from rules plus a class property (the hbo segholate *mélek* / *malk-*), so
+  storing them is optional where a rule exists.
+- Lexical dialect differences are separate lexemes (*carro* / *coche*); systematic ones (seseo) are variety
+  rules in the phonemic projection.
 - Token `variants` lists mostly disappear: projection rules generate them.
-- **Open: idiosyncratic free variants.** The forms aren't rule-related, so the strict rule (§3) makes them
-  separate lexemes. But they're one word, with no new pairing to learn for production: the canonical form
-  is enough, and the others need only be accepted. Proposed: plural fully specified forms marked free,
-  canonical first, accepted and never taught; the one place §3 bends.
 
 ## 9. Exponents that don't tile
 
@@ -621,8 +646,7 @@ All Proposed:
 9. Does a chunk count as meeting its lexemes (§13)?
 10. Javanese: krama or ngoko first (§4)?
 11. yue 嘅: one linker or two (§4)?
-12. Idiosyncratic free variants (*período* / *periodo*): plural forms marked free, or separate lexemes (§8)?
-13. The invented schemas: apc's, hbo's extension, stress in fa and uz, uz's base script (§8).
+12. The invented schemas: apc's, hbo's extension, stress in fa and uz, uz's base script (§8).
 
 ## References
 
