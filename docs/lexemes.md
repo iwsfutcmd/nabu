@@ -267,16 +267,74 @@ spelling):
 - a phonemic form;
 - a gloss.
 
+**Decided: ordered by underspecification.**
+- The fully marked form is the least underspecified. The orthographic and phonemic forms must both be
+  derivable from it.
+- Every course should have an equivalent of the fully marked form.
+- The phonetic form is derivable from the phonemic one, which is why it hadn't come up. Where there is
+  audio, the audio can act as the phonetic form.
+
+```
+fully specified ──remove marks / ruby────▶ orthographic (each orthography)
+       └──────────scheme rules───────────▶ phonemic (each scheme or tradition)
+                                                └──variety + context rules──▶ phonetic ≈ audio
+```
+
 **Proposed:**
+- **Call the representations tiers**, as §9 does: a lexeme has a form on each tier. "Form" is taken
+  (`form:` KCs; the glossary already lists three senses of it).
+- **"Fully marked" generalises to "fully specified"**, which takes three shapes:
+  - **marks in the script** where the script has them: fa and apc vowel marks, hbo pointing, grc length
+    marks;
+  - **a spelling paired with its reading** (ruby) where neither side gives the other: yue, lzh, chg;
+  - **the orthography itself** where it is already unambiguous: es, tok.
+- **It may need more than the script's own conventions.**
+  - hbo's pointing as the course writes it (no accents) leaves stress, qamets gadol vs qatan and vocal vs
+    silent shewa open. Today the pinned `tiberian` reading carries them, taken from the WLC's accents.
+    Unicode has QAMATS QATAN (U+05C7); stress would need a mark of our own or the WLC's accents.
+  - Arabic marks can't write Levantine e and o (apc relies on conventions: damma + ـه for ‑o).
+- **grc's `attic` reading is grc's fully specified form**: Greek letters with length marks. Removing them
+  gives the polytonic spelling; the phonemic form follows from it.
+- **Where courses stand today:**
+
+  | Course | Fully specified form today | Missing |
+  |---|---|---|
+  | es | the orthography | nearly nothing (x in *México*, loanwords) |
+  | tok | the Latin orthography | nothing |
+  | grc | the `attic` reading | nothing (it's filed as a reading scheme) |
+  | yue | characters + Jyutping, per token | nothing |
+  | lzh | characters + Pinyin, Jyutping, Baxter, per token | nothing (three phonemic tiers) |
+  | chg | Arabic + Schluessel, per word | nothing, but aligned per word, not per letter |
+  | hbo | pointed text + `tiberian` reading | one form holding both (stress, qamets qatan, shewa) |
+  | fa | `vocalization.yaml` (short vowels, ezafe) | stress; no phonemic form in the data |
+  | uz | Latin and Cyrillic | stress; no phonemic form in the data |
+  | apc | vocalised Arabic and Arabizi | neither is complete (Arabic lacks e/o, Arabizi most emphatics); no phonemic form |
+
+  apc is the real gap: no single representation holds everything. Its candidates are the vocalised
+  Arabic with extended conventions, or a phonemic transcription such as the one its reference uses.
+- **The phonetic form belongs to the utterance, not the lexeme.**
+  - It depends on context (sandhi, liaison, connected speech) and on the variety: one phonemic form, many
+    realisations (Cuban s-aspiration, Hong Kong n/l).
+  - The token's `ipa` (the surface pronunciation, after sandhi) is already this tier.
+  - Expected tones for speech scoring come from it.
+- **Audio is a realisation, not the authority.** It can be anchored as a tier (word timings from
+  alignment today; morph timings could follow). But synthetic voices err, which is why there is a round-trip
+  check, held-back clips and voice ratings. The phonemic form stays the authority, and audio is checked
+  against it.
 - **Tokens stay the authority for surfaces.** A lexeme holds its citation forms; the compiler collects the
   attested allomorphs from annotated tokens, as it collects readings now (ADR 0117, 0135). Hebrew stems
-  change their pointing (דָּבָר, דְּבַר, דְּבָרִים), so a fully marked form on the lexeme can only be a
+  change their pointing (דָּבָר, דְּבַר, דְּבָרִים), so a fully specified form on the lexeme can only be a
   citation.
-- **The phonemic form is the readings per scheme**, lexical (before sandhi). The surface pronunciation
-  stays on the token (`ipa`). Readings are transcription schemes, and lzh has three traditions. No
-  underlying forms (//‑GA//).
-- **grc's `attic` reading** (Greek letters with length marks) arguably belongs in the fully marked slot,
-  not the phonemic one. Russian stress marks would too.
+- **The phonemic form is the readings per scheme**, lexical (before sandhi). Readings are transcription
+  schemes, and lzh has three traditions. No underlying forms (//‑GA//).
+- **This needn't change what is authored.** ADR 0053 keeps sources as written, with marks added at
+  compile time. What matters is that the fully specified form exists after compiling and that the other
+  tiers are checked against it.
+- **Open:**
+  - apc's fully specified form: extended Arabic marks, or a phonemic transcription?
+  - Stress in fa and uz: mark it, or leave it to rules with listed exceptions?
+  - hbo: one fully specified form (QAMATS QATAN, a stress mark), or keep the pointed text plus the
+    `tiberian` reading?
 
 ## 9. Exponents that don't tile
 
@@ -549,6 +607,10 @@ All Proposed:
 9. Does a chunk count as meeting its lexemes (§13)?
 10. Javanese: krama or ngoko first (§4)?
 11. yue 嘅: one linker or two (§4)?
+12. apc's fully specified form: extended Arabic marks, or a phonemic transcription (§8)?
+13. Stress in fa and uz: marked, or rules with exceptions (§8)?
+14. hbo: one fully specified form, or the pointed text plus `tiberian` (§8)?
+15. Call the representations "tiers" (§8)?
 
 ## References
 
