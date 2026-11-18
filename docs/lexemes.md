@@ -1,6 +1,6 @@
 # Lexemes: what Nabu teaches (brainstorm)
 
-- Status: brainstorm, 2026-11-18. Not an ADR: questions are still open (§15).
+- Status: brainstorm, 2026-11-18. Not an ADR: questions are still open (§16).
 - **Decided** marks the owner's decisions; **Proposed**, suggestions not yet agreed; **Open**, what awaits a
   decision.
 
@@ -85,7 +85,7 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
    it. A table counts as a rule when it is about graphemes and applies to every word containing them
    (OpenCC's 裏 / 裡).
 4. **Derivability is judged against the language's rules, not the learner's progress.** *kitoblar* is
-   *kitob* + *‑lar* even before ‑lar is taught; until then it is taught as a chunk (§12).
+   *kitob* + *‑lar* even before ‑lar is taught; until then it is taught as a chunk (§13).
 5. **Split stems, not words, where the irregularity is in the stem:**
    - es *tuv-* (tuve, tuviste, tuvo…);
    - grc *εἶδ-*, the aorist of ὁράω;
@@ -203,7 +203,7 @@ inflection vs derivation, which is very important (§6).
 - **Credit differs.**
   - Each use of an inflection is evidence for it.
   - A derived word got right is weak evidence for its affix (it may have been memorised). The test for a
-    derivational affix is generalisation: derive cards and wug tests (§13).
+    derivational affix is generalisation: derive cards and wug tests (§14).
 - **Cards and distractors differ.**
   - Inflection: "which form" (ADR 0132), allomorph choice, paradigms; distractors are other cells.
   - Derivation: derive and interpret cards, word families, building from tiles; distractors are other
@@ -367,7 +367,42 @@ learned.
 - **Open:** properties as facets (`casa|gender`), or as their own KCs linked to the lexeme. Proposed:
   facets.
 
-## 12. Chunks
+## 12. Prompts decide what the target demands
+
+**Decided:**
+- If the target language demands a feature that the prompt's language doesn't express, the prompt is
+  always tagged.
+- Aim for one right answer per prompt. Some will still have several (word order and the like), but get as
+  close to one as possible.
+
+**Proposed:**
+- **This amends ADR 0085, 0056 and 0075**, so it needs a new ADR.
+  - Today an untagged sentence accepts every form (kifak / kifik / kifkon; mish b3id / mish b3ide for an
+    unnamed "it").
+  - Under this rule, a feature the target demands is tagged, and the accept set keeps only the forms that
+    fit.
+  - ADR 0085 still governs what a tag can't decide: word order, optional words, spelling variants.
+- **The features to tag are the inherent ones** (§4). Contextual ones (agreement, classifiers, structural
+  case) are already fixed by the sentence. In our courses and planned ones:
+  - the speaker's and addressee's gender and number (apc, hbo, es);
+  - register (uz *sen* / *siz*, fa تو / شما, es *tú* / *usted*, Javanese);
+  - the gender of an unnamed "it" or "this" (apc);
+  - aspect where English has one past tense (es *comí* / *comía*);
+  - evidentiality (uz ‑ibdi beside ‑di, once the course teaches it);
+  - later: clusivity (Indonesian *kita* / *kami*), Korean and Japanese honorifics.
+- **Tag with the situation, not the grammar, where possible:** "a woman speaking", "to your grandmother",
+  "it (the school)", "(every day)". It reads naturally, carries meaning rather than metalanguage, and never
+  shows the answer's form.
+- **The compiler can enforce it.** An accept set for writing the target whose alternatives differ in an
+  inherent cell needs a tag that picks one, or a lint fires. That needs the alternatives analysed (through
+  the lexicon, as `glossTokens` does); today only a sentence's own text is.
+- **Open:** synonyms across dialects (*carro* / *coche*): accepted, or one answer?
+- **Open:** prompts in the target language. tok *ona* is she, he, it or they; lzh marks no tense. A tag on
+  a comprehension prompt would add what the text doesn't say. Proposed: the rule applies where the
+  learner writes the target language; when they write their own, ADR 0085 stays (every rendering the text
+  leaves open).
+
+## 13. Chunks
 
 **Proposed:**
 - **A chunk is how we teach, not something the learner knows.** *Qayerdansiz?* or *¿Qué tú quieres?*,
@@ -377,7 +412,7 @@ learned.
   may show the parts as etymology.
 - **Open:** does meeting a chunk count as meeting the lexemes inside it, before they're introduced?
 
-## 13. Wug tests
+## 14. Wug tests
 
 **Decided (the idea):** when teaching inflection or derivation, test it with made-up words (Berko 1958). A
 real word may have been memorised; a made-up one can't have been, so a wug card credits only the rule and
@@ -403,7 +438,7 @@ the affix lexeme.
   - nonce nouns get pictures of made-up creatures (our own CC0 drawings).
 - **Which courses:** uz, fa, es, apc, hbo, grc, chg. Not yue, lzh or tok (almost no inflection).
 
-## 14. Data model changes, roughly
+## 15. Data model changes, roughly
 
 All Proposed:
 - `sense:` → lexeme; `form:` → cells plus affix lexemes. Open: rename the ids (`lexeme:`, `cell:`) once,
@@ -421,9 +456,10 @@ All Proposed:
 - Facets derived per lexeme from course, profile and scheme data; new facets for vocalize, spelling where
   open, and properties.
 - Grader: overregularisation (the cell right, the lexeme missed); wrong register is WRONG_WORD.
-- Prompt tags for register (extending `persons`).
+- Prompt tags for every inherent feature the target demands (extending `persons`), and a lint for
+  accept sets that differ in one untagged (§12).
 
-## 15. Open questions
+## 16. Open questions
 
 1. Rename the KC ids (`lexeme:`, `cell:`) now, or keep them?
 2. Do rules take listed properties as input (§3.2)? Do grapheme tables count as rules (§3.3)?
@@ -434,8 +470,11 @@ All Proposed:
 7. What is a root's sense, and which tier do templates check first (§9)?
 8. Keep "family", or only the links base and root (§10)?
 9. Properties: facets or their own KCs (§11)?
-10. Does a chunk count as meeting its lexemes (§12)?
+10. Does a chunk count as meeting its lexemes (§13)?
 11. Javanese: krama or ngoko first (§4)?
+12. Synonyms across dialects: accepted, or one answer (§12)?
+13. Does the tagging rule cover prompts in the target language, or only writing it (§12)?
+14. yue 嘅: one linker or two (§4)?
 
 ## References
 
