@@ -256,6 +256,10 @@
           "description": "The word's lexical features, as UD spells them (ADR 0132): NounType Clf (a classifier), PronType Dem, PartType Mod (a sentence-final particle). Matched exactly where the answer has a pos. Needs pos.",
           "$ref": "common.schema.json#/$defs/UdFeatures"
         },
+        "drill": {
+          "description": "Whether the word is drilled (ADR 0144). false: glossed (in taps and a passage's list of new words), never asked, and never counted toward known words. Default: false for a proper name (pos PROPN), true for every other KC.",
+          "type": "boolean"
+        },
         "gloss": {
           "description": "Short meaning per support language.",
           "type": "object",
@@ -326,6 +330,7 @@
           ]
         },
         "introduces": {
+          "description": "The KCs the node brings in (lessons, practice and script nodes). A KC is introduced once (`curriculum.introduced-twice`). A story node lists none: it introduces the words its passage is the first to use, which the compiler works out (ADR 0144).",
           "type": "array",
           "uniqueItems": true,
           "items": {

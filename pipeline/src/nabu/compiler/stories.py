@@ -118,10 +118,12 @@ class _Compiler:
         course: CourseSource,
         units: list[Unit],
         compiled_forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
+        undrilled: set[str],
     ) -> None:
         from nabu.compiler.build import compile_form, marked, support_key, support_text
 
         self.ctx = ctx
+        self.undrilled = undrilled
         self.course = course
         self.compile_form: Callable[..., dict[str, Any] | None] = compile_form
         self.support_text: Callable[..., dict[str, Any]] = support_text
@@ -129,7 +131,6 @@ class _Compiler:
         self.support_keys = [support_key(ctx, o) for o in course.support]
         self.support_by_key = dict(zip(self.support_keys, course.support, strict=True))
         self.nodes: dict[str, tuple[int, str]] = {}
-        self.introduced: dict[str, int] = {}
         self.defined: set[str] = set()
         self.kc_forms: dict[str, dict[str, list[str]]] = {}
         self.kcs: dict[str, KnowledgeComponentSource] = {}
@@ -152,8 +153,6 @@ class _Compiler:
                 self.kcs[kc.id] = kc
             for node in unit.source.nodes:
                 self.nodes[node.id] = (position, node.kind)
-                for kc in node.introduces or []:
-                    self.introduced.setdefault(kc, position)
                 position += 1
 
     def attest(self, orth: str, unit: int, item: str, tagged: dict[str, Any]) -> None:
@@ -185,7 +184,7 @@ class _Compiler:
     # ---------------------------------------------------------------- one story
 
     def story(
-        self, story: StorySource, doc: Doc, base: Path, position: int, out: Stories
+        self, story: StorySource, doc: Doc, base: Path, out: Stories
     ) -> dict[str, Any] | None:
         orths = list(self.course.orthographies)
         characters: list[dict[str, Any]] = []
@@ -227,7 +226,7 @@ class _Compiler:
         for si, step in enumerate(story.steps):
             at: Path = (*base, "steps", si)
             if step.line is not None:
-                line = self.line(story, step.line, doc, (*at, "line"), speakers, position, out, si)
+                line = self.line(story, step.line, doc, (*at, "line"), speakers, out, si)
                 if line is None:
                     return None
                 kcs += [k for k in line["kcs"] if k not in kcs]
@@ -255,7 +254,6 @@ class _Compiler:
         doc: Doc,
         at: Path,
         speakers: set[str],
-        position: int,
         out: Stories,
         step: int,
     ) -> dict[str, Any] | None:
@@ -299,31 +297,20 @@ class _Compiler:
         for tagged in forms.values():
             for t in tagged["tokens"]:
                 kcs += [k for k in token_kcs(t) if k not in kcs]
+        # A KC no earlier node introduces is the passage's to introduce (ADR 0144): the curriculum
+        # stage works those out. Only an undefined one is a mistake here.
         for kc in kcs:
             if kc not in self.defined:
                 self.report(
                     "curriculum.unknown-kc", f"{story.id} uses {kc}, which is not defined", doc, at
-                )
-            elif kc not in self.introduced:
-                self.report(
-                    "curriculum.never-introduced",
-                    f"{story.id} uses {kc}, which no node introduces",
-                    doc,
-                    at,
-                )
-            elif self.introduced[kc] > position:
-                self.report(
-                    "story.ahead",
-                    f"{story.id} (node {story.node}) uses {kc} before the node that introduces it",
-                    doc,
-                    at,
                 )
         bundle: dict[str, Any] = {
             "forms": {o: _public(t) for o, t in forms.items()},
             "translations": self.texts(
                 dict(line.translations), f"{story.id}: a line", doc, (*at, "translations")
             ),
-            "kcs": kcs,
+            # What the line practises: words not drilled (names) are glossed only (ADR 0144).
+            "kcs": [kc for kc in kcs if kc not in self.undrilled],
         }
         if line.speaker is not None:
             bundle["speaker"] = line.speaker
@@ -568,11 +555,12 @@ def compile_stories(
     course: CourseSource,
     units: list[Unit],
     compiled_forms: dict[tuple[int, int], dict[str, dict[str, Any]]] | None = None,
+    undrilled: set[str] | None = None,
 ) -> Stories:
     """Every unit's stories, compiled and checked; and every line form for stage 7. A `complete`
     line's options are resolved once every line is compiled (they may come from any story of the
     unit or an earlier one)."""
-    c = _Compiler(ctx, course, units, compiled_forms or {})
+    c = _Compiler(ctx, course, units, compiled_forms or {}, undrilled or set())
     out = Stories()
     told: dict[str, str] = {}  # story node → story id
     for ui, unit in enumerate(units):
@@ -595,7 +583,7 @@ def compile_stories(
                 )
                 continue
             told[story.node] = story.id
-            bundle = c.story(story, unit.doc, base, node[0], out)
+            bundle = c.story(story, unit.doc, base, out)
             if bundle is not None:
                 out.by_unit.setdefault(ui, []).append(bundle)
     for pending in c.pending:

@@ -238,4 +238,5 @@ def test_story_lines_keep_glossary_entries_alive(core_cli: CoreCli, tmp_path: Pa
     diags, _ = compile_course(path, core_cli)
     lints = [d.lint for d in diags.items]
     assert "glossary.dead-entry" not in lints
-    assert "curriculum.unused-kc" in lints  # no sentence uses it; the story alone does
+    # No sentence uses it; the story alone does, which counts (a word may be read first, ADR 0144).
+    assert "curriculum.unused-kc" not in lints

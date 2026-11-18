@@ -147,7 +147,7 @@
           }
         },
         "steps": { "type": "array", "items": { "$ref": "#/$defs/BundleStoryStep" } },
-        "kcs": { "description": "Every KC its lines use.", "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "kcs": { "description": "Every KC its lines practise (their `kcs`).", "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
         "license": { "type": "string" }
       }
@@ -181,7 +181,11 @@
         "speaker": { "type": "string" },
         "forms": { "description": "Per orthography.", "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
         "translations": { "description": "Per support language.", "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
-        "kcs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "kcs": {
+          "description": "The KCs the line practises, as a sentence's `kcs`: words that are not drilled (`drill: false`, ADR 0144) left out.",
+          "type": "array",
+          "items": { "$ref": "common.schema.json#/$defs/KcId" }
+        },
         "ask": { "type": "string", "enum": ["complete", "arrange"] },
         "gap": { "$ref": "common.schema.json#/$defs/KcId" },
         "asks": { "$ref": "common.schema.json#/$defs/Asks" },
@@ -205,6 +209,10 @@
         "cefr": { "type": "string" },
         "pos": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
         "features": { "$ref": "common.schema.json#/$defs/UdFeatures" },
+        "drill": {
+          "description": "Present only when false (ADR 0144): the word is glossed, never asked, and never counted toward known words. Proper names (pos PROPN) unless the course says otherwise. Sentences and story lines leave it out of their `kcs`.",
+          "const": false
+        },
         "gloss": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
         "forms": { "type": "object", "additionalProperties": { "type": "array", "items": { "$ref": "tagged-text.schema.json" } } },
         "image": { "description": "Bundle path of the KC's picture (a file with role image).", "type": "string" }
@@ -242,8 +250,15 @@
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string" },
-        "kind": { "type": "string" },
-        "introduces": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "kind": {
+          "description": "lesson, practice, story or script as the course source has it; drill (ADR 0144): made by the compiler right after a story node whose passage introduces words to drill.",
+          "type": "string"
+        },
+        "introduces": {
+          "description": "The KCs the node brings in. A story node (ADR 0144): the KCs its passage is the first to use, the words the course's passages use most first; none where earlier nodes introduce them all.",
+          "type": "array",
+          "items": { "$ref": "common.schema.json#/$defs/KcId" }
+        },
         "reinforces": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "sentences": { "type": "array", "items": { "type": "string" } },
         "alphabet": {
@@ -274,6 +289,16 @@
           "required": ["from", "to"],
           "additionalProperties": false,
           "properties": { "from": { "type": "string" }, "to": { "type": "string" } }
+        },
+        "drill": {
+          "description": "A drill node (ADR 0144): the words its story node's passage introduces that are drilled (sense KCs, `drill` not false), the words the course's passages use most first. The app drills them in sessions of a few words each, after the passage is read.",
+          "type": "object",
+          "required": ["story", "words"],
+          "additionalProperties": false,
+          "properties": {
+            "story": { "description": "The story node whose passage introduces the words.", "type": "string" },
+            "words": { "type": "array", "minItems": 1, "items": { "$ref": "common.schema.json#/$defs/KcId" } }
+          }
         }
       }
     },
@@ -303,7 +328,11 @@
             "properties": { "text": { "$ref": "tagged-text.schema.json" }, "accept": { "type": "string" } }
           }
         },
-        "kcs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "kcs": {
+          "description": "The KCs it practises: its words' (senses, forms, morphs) and its constructions, in order, leaving out words that are not drilled (`drill: false`, ADR 0144).",
+          "type": "array",
+          "items": { "$ref": "common.schema.json#/$defs/KcId" }
+        },
         "production": { "type": "boolean" },
         "register": { "type": "string" },
         "persons": { "$ref": "common.schema.json#/$defs/Persons" },

@@ -1347,6 +1347,10 @@ export interface BundleKc {
   readonly cefr?: string;
   readonly pos?: PartOfSpeech;
   readonly features?: UdFeatures;
+  /**
+   * Present only when false (ADR 0144): the word is glossed, never asked, and never counted toward known words. Proper names (pos PROPN) unless the course says otherwise. Sentences and story lines leave it out of their `kcs`.
+   */
+  readonly drill?: false;
   readonly gloss?: {
     readonly [k: string]: TaggedText;
   };
@@ -1364,7 +1368,13 @@ export interface BundleKc {
  */
 export interface BundleNode {
   readonly id: string;
+  /**
+   * lesson, practice, story or script as the course source has it; drill (ADR 0144): made by the compiler right after a story node whose passage introduces words to drill.
+   */
   readonly kind: string;
+  /**
+   * The KCs the node brings in. A story node (ADR 0144): the KCs its passage is the first to use, the words the course's passages use most first; none where earlier nodes introduce them all.
+   */
   readonly introduces: readonly KcId1[];
   readonly reinforces: readonly KcId1[];
   readonly sentences: readonly string[];
@@ -1379,6 +1389,19 @@ export interface BundleNode {
   readonly convert?: {
     readonly from: string;
     readonly to: string;
+  };
+  /**
+   * A drill node (ADR 0144): the words its story node's passage introduces that are drilled (sense KCs, `drill` not false), the words the course's passages use most first. The app drills them in sessions of a few words each, after the passage is read.
+   */
+  readonly drill?: {
+    /**
+     * The story node whose passage introduces the words.
+     */
+    readonly story: string;
+    /**
+     * @minItems 1
+     */
+    readonly words: readonly KcId1[];
   };
 }
 /**
@@ -1415,6 +1438,9 @@ export interface BundleSentence {
       readonly accept: string;
     };
   };
+  /**
+   * The KCs it practises: its words' (senses, forms, morphs) and its constructions, in order, leaving out words that are not drilled (`drill: false`, ADR 0144).
+   */
   readonly kcs: readonly KcId1[];
   readonly production: boolean;
   readonly register?: string;
@@ -1465,7 +1491,7 @@ export interface BundleStory {
   }[];
   readonly steps: readonly BundleStoryStep[];
   /**
-   * Every KC its lines use.
+   * Every KC its lines practise (their `kcs`).
    */
   readonly kcs: readonly KcId1[];
   readonly provenance?: Provenance;
@@ -1505,6 +1531,9 @@ export interface BundleStoryLine {
   readonly translations: {
     readonly [k: string]: TaggedText;
   };
+  /**
+   * The KCs the line practises, as a sentence's `kcs`: words that are not drilled (`drill: false`, ADR 0144) left out.
+   */
   readonly kcs: readonly KcId1[];
   readonly ask?: "complete" | "arrange";
   readonly gap?: KcId1;
@@ -1843,6 +1872,10 @@ export interface KnowledgeComponentSource {
   readonly pos?: PartOfSpeech1;
   readonly features?: UdFeatures1;
   /**
+   * Whether the word is drilled (ADR 0144). false: glossed (in taps and a passage's list of new words), never asked, and never counted toward known words. Default: false for a proper name (pos PROPN), true for every other KC.
+   */
+  readonly drill?: boolean;
+  /**
    * Short meaning per support language.
    */
   readonly gloss?: {
@@ -1893,6 +1926,9 @@ export interface ImageAsset {
 export interface PathNodeSource {
   readonly id: Slug;
   readonly kind: "lesson" | "practice" | "story" | "review" | "challenge" | "script";
+  /**
+   * The KCs the node brings in (lessons, practice and script nodes). A KC is introduced once (`curriculum.introduced-twice`). A story node lists none: it introduces the words its passage is the first to use, which the compiler works out (ADR 0144).
+   */
   readonly introduces?: readonly KcId1[];
   readonly reinforces?: readonly KcId1[];
   /**
@@ -2494,7 +2530,8 @@ export interface ExerciseRef {
     | "letter-read"
     | "letter-pairs"
     | "word-read"
-    | "word-write";
+    | "word-write"
+    | "write-word";
   /**
    * The sentence or KC the exercise was built from.
    */

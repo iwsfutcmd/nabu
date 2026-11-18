@@ -809,7 +809,12 @@ class PathNodeSource(BaseModel):
     )
     id: Slug
     kind: Literal["lesson", "practice", "story", "review", "challenge", "script"]
-    introduces: list[KcId] | None = None
+    introduces: Annotated[
+        list[KcId] | None,
+        Field(
+            description="The KCs the node brings in (lessons, practice and script nodes). A KC is introduced once (`curriculum.introduced-twice`). A story node lists none: it introduces the words its passage is the first to use, which the compiler works out (ADR 0144)."
+        ),
+    ] = None
     reinforces: list[KcId] | None = None
     alphabet: Annotated[
         Alphabet1 | None,
@@ -2772,6 +2777,19 @@ class AudioVerdicts(BaseModel):
     verdicts: list[AudioVerdict]
 
 
+class Drill(BaseModel):
+    """
+    A drill node (ADR 0144): the words its story node's passage introduces that are drilled (sense KCs, `drill` not false), the words the course's passages use most first. The app drills them in sessions of a few words each, after the passage is read.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    story: Annotated[str, Field(description="The story node whose passage introduces the words.")]
+    words: Annotated[list[KcId], Field(min_length=1)]
+
+
 class BundleAudioItem(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2856,6 +2874,12 @@ class KnowledgeComponentSource(BaseModel):
         UdFeatures | None,
         Field(
             description="The word's lexical features, as UD spells them (ADR 0132): NounType Clf (a classifier), PronType Dem, PartType Mod (a sentence-final particle). Matched exactly where the answer has a pos. Needs pos."
+        ),
+    ] = None
+    drill: Annotated[
+        bool | None,
+        Field(
+            description="Whether the word is drilled (ADR 0144). false: glossed (in taps and a passage's list of new words), never asked, and never counted toward known words. Default: false for a proper name (pos PROPN), true for every other KC."
         ),
     ] = None
     gloss: Annotated[
@@ -3042,6 +3066,7 @@ class ExerciseRef(BaseModel):
         "letter-pairs",
         "word-read",
         "word-write",
+        "write-word",
     ]
     item: Annotated[
         str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
@@ -4082,7 +4107,12 @@ class BundleStoryLine(BaseModel):
     speaker: str | None = None
     forms: Annotated[dict[str, TaggedText], Field(description="Per orthography.")]
     translations: Annotated[dict[str, TaggedText], Field(description="Per support language.")]
-    kcs: list[KcId]
+    kcs: Annotated[
+        list[KcId],
+        Field(
+            description="The KCs the line practises, as a sentence's `kcs`: words that are not drilled (`drill: false`, ADR 0144) left out."
+        ),
+    ]
     ask: Literal["complete", "arrange"] | None = None
     gap: KcId | None = None
     asks: Asks | None = None
@@ -4106,6 +4136,12 @@ class BundleKc(BaseModel):
     cefr: str | None = None
     pos: PartOfSpeech | None = None
     features: UdFeatures | None = None
+    drill: Annotated[
+        Literal[False] | None,
+        Field(
+            description="Present only when false (ADR 0144): the word is glossed, never asked, and never counted toward known words. Proper names (pos PROPN) unless the course says otherwise. Sentences and story lines leave it out of their `kcs`."
+        ),
+    ] = None
     gloss: dict[str, TaggedText] | None = None
     forms: dict[str, list[TaggedText]] | None = None
     image: Annotated[
@@ -4153,8 +4189,18 @@ class BundleNode(BaseModel):
         frozen=True,
     )
     id: str
-    kind: str
-    introduces: list[KcId]
+    kind: Annotated[
+        str,
+        Field(
+            description="lesson, practice, story or script as the course source has it; drill (ADR 0144): made by the compiler right after a story node whose passage introduces words to drill."
+        ),
+    ]
+    introduces: Annotated[
+        list[KcId],
+        Field(
+            description="The KCs the node brings in. A story node (ADR 0144): the KCs its passage is the first to use, the words the course's passages use most first; none where earlier nodes introduce them all."
+        ),
+    ]
     reinforces: list[KcId]
     sentences: list[str]
     alphabet: Annotated[
@@ -4164,6 +4210,12 @@ class BundleNode(BaseModel):
         ),
     ] = None
     convert: Convert | None = None
+    drill: Annotated[
+        Drill | None,
+        Field(
+            description="A drill node (ADR 0144): the words its story node's passage introduces that are drilled (sense KCs, `drill` not false), the words the course's passages use most first. The app drills them in sessions of a few words each, after the passage is read."
+        ),
+    ] = None
 
 
 class Forms1(BaseModel):
@@ -4193,7 +4245,12 @@ class BundleSentence(BaseModel):
     node: str
     forms: dict[str, Forms1]
     translations: dict[str, Translations]
-    kcs: list[KcId]
+    kcs: Annotated[
+        list[KcId],
+        Field(
+            description="The KCs it practises: its words' (senses, forms, morphs) and its constructions, in order, leaving out words that are not drilled (`drill: false`, ADR 0144)."
+        ),
+    ]
     production: bool
     register_: Annotated[str | None, Field(alias="register")] = None
     persons: Persons | None = None
@@ -4342,7 +4399,7 @@ class BundleStory(BaseModel):
     title: dict[str, TaggedText]
     characters: list[Character]
     steps: list[BundleStoryStep]
-    kcs: Annotated[list[KcId], Field(description="Every KC its lines use.")]
+    kcs: Annotated[list[KcId], Field(description="Every KC its lines practise (their `kcs`).")]
     provenance: Provenance | None = None
     license: str
 

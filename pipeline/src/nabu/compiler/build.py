@@ -21,7 +21,7 @@ from pydantic import BaseModel, ValidationError
 
 from nabu import sitelen_pona
 from nabu.analyzers import Analyzer, analyzers_by_tool
-from nabu.compiler import consistency
+from nabu.compiler import consistency, passages
 from nabu.compiler import text as tx
 from nabu.compiler.audio import ShippedClip, check_audio
 from nabu.compiler.counts import Counted, count
@@ -37,6 +37,7 @@ from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.schema.models import (
     BundleUnit,
     CourseSource,
+    KnowledgeComponentSource,
     LogographsStep,
     OrthographyProfile,
     SentenceForm,
@@ -725,8 +726,8 @@ def compile_course(
             _transliteration(ctx, unit, si, s)
 
     # ---- stage 5: curriculum
-    sentence_kcs = _curriculum(ctx, course, units, compiled_forms)
-    stories = compile_stories(ctx, course, units, compiled_forms)
+    curriculum = _curriculum(ctx, course, units, compiled_forms)
+    stories = compile_stories(ctx, course, units, compiled_forms, curriculum.undrilled)
     scenarios = compile_scenarios(ctx, course, units)
     consistency.report(ctx.observed, diags, course)
     # ---- stage 6: grading
@@ -745,7 +746,7 @@ def compile_course(
     # fails here, as the course compiles.
     bundled = [
         BundleUnit.model_validate(
-            _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths)
+            _bundle_unit(ctx, course, ui, unit, compiled_forms, curriculum, image_paths)
             | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
             | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
         )
@@ -1086,22 +1087,44 @@ def _kind(kc: str) -> str:
     return kc.split(":", 1)[0]
 
 
+@dataclass
+class Curriculum:
+    """What stage 5 works out: each sentence's KCs, and the words passages introduce (ADR 0144)."""
+
+    #: (unit, sentence) → the KCs its tokens and constructions use, in order.
+    sentence_kcs: dict[tuple[int, int], list[str]]
+    #: story node → the KCs its passage is the first to use, most used first.
+    story_introduces: dict[str, list[str]]
+    #: story node → the drilled words of those: its drill node's (absent where none).
+    drill_words: dict[str, list[str]]
+    #: KCs that are not drilled (`drill: false`, proper names by default): glossed, never asked.
+    undrilled: set[str]
+
+
 def _curriculum(
     ctx: Ctx,
     course: CourseSource,
     units: list[Unit],
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
-) -> dict[tuple[int, int], list[str]]:
+) -> Curriculum:
     diags = ctx.diags
     defined: dict[str, Loc] = {}
     prereqs: dict[str, list[str]] = {}
+    sources: dict[str, KnowledgeComponentSource] = {}
     for unit in units:
         for i, kc in enumerate(unit.source.kcs):
             defined[kc.id] = unit.doc.loc("kcs", i)
             prereqs[kc.id] = list(kc.prerequisites or [])
+            sources[kc.id] = kc
+    undrilled = {kc_id for kc_id, kc in sources.items() if not passages.drilled(kc)}
 
+    # A passage introduces what no earlier node does (ADR 0144); a KC is introduced once.
+    uses = passages.passage_uses(course, units)
     node_pos: dict[str, int] = {}
     introduced_at: dict[str, int] = {}
+    introduced_by: dict[str, str] = {}
+    story_introduces: dict[str, list[str]] = {}
+    drill_words: dict[str, list[str]] = {}
     position = 0
     for unit in units:
         for ni, node in enumerate(unit.source.nodes):
@@ -1111,9 +1134,46 @@ def _curriculum(
                     diags.report(
                         "curriculum.unknown-kc", f"{kc} is not defined", unit.doc.loc("nodes", ni)
                     )
+            if node.kind == "story":
+                if node.introduces:
+                    diags.report(
+                        "story.node",
+                        f"story node {node.id} lists introduces: a passage introduces the words "
+                        "it is the first to use, as the compiler works them out (ADR 0144)",
+                        unit.doc.loc("nodes", ni, "introduces"),
+                    )
+                new = [
+                    kc
+                    for kc in uses.by_node.get(node.id, [])
+                    if kc in defined and kc not in introduced_at
+                ]
+                new = passages.by_frequency(new, uses)
+                for kc in new:
+                    introduced_at[kc] = position
+                    introduced_by[kc] = node.id
+                story_introduces[node.id] = new
+                words = [kc for kc in new if _kind(kc) == "sense" and kc not in undrilled]
+                if words:
+                    drill_words[node.id] = words
             for kc in node.introduces or []:
-                introduced_at.setdefault(kc, position)
+                if kc in introduced_at:
+                    diags.report(
+                        "curriculum.introduced-twice",
+                        f"{node.id} introduces {kc}, which {introduced_by[kc]} introduces already",
+                        unit.doc.loc("nodes", ni, "introduces"),
+                    )
+                    continue
+                introduced_at[kc] = position
+                introduced_by[kc] = node.id
             position += 1
+    for unit in units:
+        for ni, node in enumerate(unit.source.nodes):
+            if node.kind == "story" and passages.drill_node_id(node.id) in node_pos:
+                diags.report(
+                    "parse.duplicate-id",
+                    f"{passages.drill_node_id(node.id)} is the id of {node.id}'s drill node",
+                    unit.doc.loc("nodes", ni),
+                )
 
     for unit in units:
         for i, kc in enumerate(unit.source.kcs):
@@ -1146,7 +1206,7 @@ def _curriculum(
     for unit in units:
         for ni, node in enumerate(unit.source.nodes):
             here = node_pos[node.id]
-            for kc in node.introduces or []:
+            for kc in node.introduces or story_introduces.get(node.id, []):
                 for p in prereqs.get(kc, []):
                     if introduced_at.get(p, 10**9) > here:
                         diags.report(
@@ -1214,16 +1274,32 @@ def _curriculum(
             )
         seen.update(kcs)
 
+    # A passage's words count as used: a word read first may be in no sentence (ADR 0144).
+    used.update(uses.lines)
     for unit in units:
         for i, kc in enumerate(unit.source.kcs):
             if kc.id not in used and _kind(kc.id) in I_PLUS_ONE_KINDS:
                 diags.report(
                     "curriculum.unused-kc",
-                    f"{kc.id} is never used in a sentence",
+                    f"{kc.id} is never used in a sentence or a passage",
+                    unit.doc.loc("kcs", i),
+                )
+            # The frequent core is for lessons to teach (ADR 0144): a word several passages use,
+            # first met in one of them.
+            story = introduced_by.get(kc.id)
+            if (
+                story is not None
+                and kc.id in drill_words.get(story, [])
+                and uses.passages[kc.id] >= passages.CORE_PASSAGES
+            ):
+                diags.report(
+                    "curriculum.core",
+                    f"{kc.id} is in {uses.passages[kc.id]} passages, and no lesson teaches it "
+                    f"before the first ({story})",
                     unit.doc.loc("kcs", i),
                 )
     _one_gender(units, diags)
-    return out
+    return Curriculum(out, story_introduces, drill_words, undrilled)
 
 
 _GENDERS = {"m": "a man", "f": "a woman"}
@@ -1519,10 +1595,12 @@ def _bundle_unit(
     ui: int,
     unit: Unit,
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
-    kcs: dict[tuple[int, int], list[str]],
+    curriculum: Curriculum,
     images: dict[str, str],
 ) -> dict[str, Any]:
     src = unit.source
+    kcs = curriculum.sentence_kcs
+    undrilled = curriculum.undrilled
     target = course.target
     support_by_key = {support_key(ctx, o): o for o in course.support}
 
@@ -1564,7 +1642,8 @@ def _bundle_unit(
             "node": s.node,
             "forms": out_forms,
             "translations": translations,
-            "kcs": kcs.get((ui, si), []),
+            # What it practises: names and other words not drilled are glossed only (ADR 0144).
+            "kcs": [kc for kc in kcs.get((ui, si), []) if kc not in undrilled],
             "production": s.production if s.production is not None else True,
             "provenance": provenance.model_dump(exclude_none=True) if provenance else None,
             "license": s.license or course.license,
@@ -1580,7 +1659,10 @@ def _bundle_unit(
         n: dict[str, Any] = {
             "id": node.id,
             "kind": node.kind,
-            "introduces": list(node.introduces or []),
+            # A story node introduces what its passage is the first to use (ADR 0144).
+            "introduces": list(curriculum.story_introduces.get(node.id, []))
+            if node.kind == "story"
+            else list(node.introduces or []),
             "reinforces": list(node.reinforces or []),
             "sentences": list(node.convert.sentences)
             if node.convert
@@ -1589,6 +1671,19 @@ def _bundle_unit(
         if node.convert is not None:
             n["convert"] = {"from": node.convert.from_, "to": node.convert.to}
         nodes.append(n)
+        # Its drilled words are drilled after it, at a node of their own (ADR 0144).
+        words = curriculum.drill_words.get(node.id) if node.kind == "story" else None
+        if words:
+            nodes.append(
+                {
+                    "id": passages.drill_node_id(node.id),
+                    "kind": "drill",
+                    "introduces": [],
+                    "reinforces": [],
+                    "sentences": [],
+                    "drill": {"story": node.id, "words": words},
+                }
+            )
 
     kc_out: list[dict[str, Any]] = []
     for kc in src.kcs:
@@ -1604,6 +1699,8 @@ def _bundle_unit(
             k["pos"] = kc.pos
         if kc.features:
             k["features"] = dict(kc.features)
+        if kc.id in undrilled:
+            k["drill"] = False
         if kc.gloss:
             k["gloss"] = {lang: support_tt(lang, g) for lang, g in kc.gloss.items()}
         if kc.forms:

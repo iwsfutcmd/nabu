@@ -5,8 +5,8 @@ reviewer has signed off (ADR 0072).
 reviewed or published (generated drills are reviewed by construction), and then:
 
 - **Nodes:** a lesson or convert node keeps its reviewed sentences, and goes when none is left; a
-  story node goes with its story; a practice node stays while its unit keeps a lesson; a scenario
-  stays while the node it follows does.
+  story node, and the drill node after it (ADR 0144), go with its story; a practice node stays
+  while its unit keeps a lesson; a scenario stays while the node it follows does.
 - **Script tracks** (ADR 0073's amendment, D51): an alphabet node stays, with its letters, which
   are the profile's. It keeps the words whose KCs the release keeps and its reviewed sentences or
   stories use; with none, it teaches its letters alone. Tracks go along with reviewed content:
@@ -60,10 +60,14 @@ def _nodes(unit: BundleUnit, sentences: set[str], stories: set[str]) -> list[Bun
         elif node.kind == "story":
             if node.id in stories:
                 nodes.append(node)
+        elif node.drill is not None:
+            # A passage's drill node (ADR 0144) goes with its story.
+            if node.drill.story in stories:
+                nodes.append(node)
         else:
             nodes.append(node)
     lessons = [n for n in nodes if n.kind in ("lesson", "script") and n.alphabet is None]
-    return [n for n in nodes if n.kind in ("lesson", "script", "story") or lessons]
+    return [n for n in nodes if n.kind in ("lesson", "script", "story", "drill") or lessons]
 
 
 def _alphabet_words(unit: BundleUnit, kcs: set[str], report: ReleaseReport) -> BundleUnit:

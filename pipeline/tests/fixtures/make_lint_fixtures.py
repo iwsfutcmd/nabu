@@ -499,10 +499,48 @@ def _story_stranger(c: Course) -> None:
     story(c)["steps"][0]["line"]["speaker"] = "maryam"
 
 
-def _story_ahead(c: Course) -> None:
+def _introduced_twice(c: Course) -> None:
+    # The story is the first to use talaba, so it introduces it (ADR 0144): a later lesson cannot.
     with_story(c)
     unit(c)["nodes"][0]["introduces"].remove("sense:talaba")
     unit(c)["nodes"].append({"id": "basics.2", "kind": "lesson", "introduces": ["sense:talaba"]})
+
+
+def _passage_line(text: str, tokens: list[dict[str, Any]], en: str) -> dict[str, Any]:
+    return {
+        "line": {
+            "forms": {"uz-Latn/standard": {"text": text, "tokens": tokens}},
+            "translations": {"en": en},
+        }
+    }
+
+
+def _core(c: Course) -> None:
+    # Three passages use kitob, which no lesson teaches: the first of them introduces it.
+    unit(c)["kcs"].append(
+        {"id": "sense:kitob", "gloss": {"en": "book"}, "forms": {"uz-Latn/standard": ["kitob"]}}
+    )
+    stories: list[dict[str, Any]] = []
+    for k in (1, 2, 3):
+        node = f"basics.books-{k}"
+        unit(c)["nodes"].append({"id": node, "kind": "story"})
+        kitob = {"surface": "kitob", "sense": "kitob"}
+        stories.append(
+            {
+                "id": node,
+                "node": node,
+                "title": {"en": f"Books {k}"},
+                "steps": [
+                    _passage_line("Salom!", [{"surface": "Salom", "sense": "salom"}], "Hello!"),
+                    _passage_line(
+                        "Salom, kitob!",
+                        [{"surface": "Salom", "sense": "salom"}, kitob],
+                        "Hello, book!",
+                    ),
+                ],
+            }
+        )
+    unit(c)["stories"] = stories
 
 
 def _story_bad_answer(c: Course) -> None:
@@ -736,6 +774,11 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(set_(["units", 0, "sentences", 0, "node"], "basics.9")),
     ),
     "curriculum.never-introduced": ("sense:talaba is used but no node introduces it.", m(_never)),
+    "curriculum.introduced-twice": (
+        "The story is the first to use talaba; a later lesson introduces it again.",
+        m(_introduced_twice),
+    ),
+    "curriculum.core": ("Three passages use kitob, which no lesson teaches.", m(_core)),
     "curriculum.introduced-late": ("A node-1 sentence uses a KC node 2 introduces.", m(_late)),
     "curriculum.i-plus-one": (
         "Men talabaman brings in sense:talaba and the copula at once.",
@@ -848,7 +891,6 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "story.node": ("The story is placed on a lesson node.", m(_story_on_lesson)),
     "story.missing-form": ("A story line has no English translation.", m(_story_untranslated)),
     "story.speaker": ("A line spoken by a character the story does not have.", m(_story_stranger)),
-    "story.ahead": ("The story uses talaba, which a later node introduces.", m(_story_ahead)),
     "story.question": ("A question whose answer is option 5 of 2.", m(_story_bad_answer)),
     "story.distractor-form": (
         "A gap with the copula -man; no sentence writes the distractor salom so.",

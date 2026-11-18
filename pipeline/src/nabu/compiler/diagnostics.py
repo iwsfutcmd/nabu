@@ -152,7 +152,17 @@ _LINTS = [
         "A sentence or script track names a node that does not exist.",
     ),
     Lint(
-        "curriculum.never-introduced", "error", 5, "A sentence uses a KC that no node introduces."
+        "curriculum.never-introduced",
+        "error",
+        5,
+        "A sentence uses a KC that no node introduces (a passage introduces its own, ADR 0144).",
+    ),
+    Lint(
+        "curriculum.introduced-twice",
+        "error",
+        5,
+        "A node introduces a KC that an earlier node (a lesson, or a passage that is the first to "
+        "use it) introduces already (ADR 0144).",
     ),
     Lint(
         "curriculum.introduced-late",
@@ -168,7 +178,16 @@ _LINTS = [
     ),
     Lint("curriculum.cycle", "error", 5, "The prerequisite graph has a cycle."),
     Lint("curriculum.order", "error", 5, "A node introduces a KC before its prerequisites."),
-    Lint("curriculum.unused-kc", "warning", 5, "A KC is defined but no sentence uses it."),
+    Lint(
+        "curriculum.unused-kc", "warning", 5, "A KC is defined but no sentence or passage uses it."
+    ),
+    Lint(
+        "curriculum.core",
+        "info",
+        5,
+        "A drilled word several passages use is first met in a passage: the frequent core is for "
+        "lessons to teach (ADR 0144).",
+    ),
     Lint(
         "curriculum.one-gender",
         "warning",
@@ -197,8 +216,8 @@ _LINTS = [
         "story.node",
         "error",
         5,
-        "A story's node is missing or not of kind story, a story node has no story, or two "
-        "stories share a node.",
+        "A story's node is missing or not of kind story, a story node has no story or lists "
+        "introduces (a passage's are worked out, ADR 0144), or two stories share a node.",
     ),
     Lint(
         "story.missing-form",
@@ -207,12 +226,6 @@ _LINTS = [
         "A story line, name, title or question lacks an orthography or support language.",
     ),
     Lint("story.speaker", "error", 1, "A line's speaker is not one of the story's characters."),
-    Lint(
-        "story.ahead",
-        "warning",
-        5,
-        "A story uses a KC that a later node introduces (it is glossed, but not yet taught).",
-    ),
     Lint(
         "story.question",
         "error",
