@@ -44,6 +44,8 @@ import styles from "./Player.module.css";
 export type NextTo =
   | { readonly kind: "lesson"; readonly number: number; readonly unit?: number | undefined; readonly inUnit?: number | undefined }
   | { readonly kind: "story" }
+  /** A passage's words (ADR 0144). */
+  | { readonly kind: "drill" }
   | { readonly kind: "practice" };
 
 /**
@@ -230,6 +232,7 @@ const MissedCard = ({ course, grader, missed, ruby, marks, extra }: MissedCardPr
 
 const nextLabel = (t: ReturnType<typeof useTranslator>, to: NextTo): string => {
   if (to.kind === "story") return t.format("player.end.next.story");
+  if (to.kind === "drill") return t.format("player.end.next.drill");
   if (to.kind === "practice") return t.format("player.end.next.practice");
   return to.unit !== undefined && to.inUnit !== undefined ? t.format("player.end.next.unit-lesson", { unit: to.unit, number: to.inUnit }) : t.format("player.end.next.lesson", { number: to.number });
 };

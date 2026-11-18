@@ -274,6 +274,10 @@
       "message": "You’ve done every lesson. Practice keeps what you’ve learned.",
       "description": "A course's page and the home screen's Continue card once the whole path is done and no word is slipping (practice may still be offered for words due)."
     },
+    "app.continue.drill": {
+      "message": "Learn the story’s words",
+      "description": "The main action of a course's page and of the home screen's Continue card when the new words of stories read wait to be learned (ADR 0144): a session of those words before the next lesson or story."
+    },
     "app.continue.label": {
       "message": "Continue",
       "description": "Accessible name of the course page's main action area: Continue, the line saying why, and the pace choice (ADR 0105)."
@@ -606,6 +610,10 @@
       "message": "You chose a steady pace.",
       "description": "The learner set the pace to “Steady”."
     },
+    "app.pace.why.drill": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} word from the stories you read is still to learn: writing it fixes it.}}\n* {{{$count} words from the stories you read are still to learn: writing them fixes them.}}",
+      "description": "Why Continue offers a story's words before the next lesson (ADR 0144): this many words met in stories wait to be learned. Select plural forms as your language needs; drop the selection if it needs none."
+    },
     "app.pace.why.slipping": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} word is slipping: practising it first helps it stick.}}\n* {{{$count} words are slipping: practising them first helps them stick.}}",
       "description": "Why Continue offers practice first: this many words' recall has fallen well below the target. Select plural forms as your language needs; drop the selection if it needs none."
@@ -617,6 +625,18 @@
     "app.path.conversation": {
       "message": "Conversation",
       "description": "Label on a conversation entry of the learning path (a roleplay whose other person a language model plays); the scenario's title follows it."
+    },
+    "app.path.drill": {
+      "message": "Words of the story",
+      "description": "Name of a node of the learning path (ADR 0144) right after a story: sessions that teach the new words the story used, a few at a time. The story's title follows it."
+    },
+    "app.path.drill.progress": {
+      "message": ".input {$done :number}\n.input {$total :number}\n{{{$done} of {$total} done}}",
+      "description": "How far the learner is through the sessions that teach a story's new words (ADR 0144): $done sessions finished of $total."
+    },
+    "app.path.drill.next": {
+      "message": "Words to learn next",
+      "description": "Accessible label of the preview of the words the next session of a story's words teaches (ADR 0144), each shown with its meaning under it."
     },
     "app.path.done": {
       "message": "Done",
@@ -933,6 +953,10 @@
     "app.session.placement": {
       "message": "Placement test",
       "description": "Name of the placement test session (a short test that finds the learner's level), in the browser tab's title and as the screen's heading for assistive tech."
+    },
+    "app.session.drill": {
+      "message": ".input {$number :number}\n.input {$total :number}\n{{Words of the story, {$number} of {$total}}}",
+      "description": "What a session that teaches a story's new words is called (ADR 0144), in the browser tab's title and where a session is named: $number is this session's place among the story's $total."
     },
     "app.speaking.keep-off": {
       "message": "Keep speaking off",
@@ -1413,6 +1437,10 @@
     "exercise.answer.input-label": {
       "message": "Type your answer in {$language}",
       "description": "Label of the free-text answer field. $language is a course name (course.name.*)."
+    },
+    "exercise.answer.word-label": {
+      "message": "Type the word in {$language}",
+      "description": "Label of the field where the learner types one word, given its meaning (ADR 0144). $language is a course name (course.name.*)."
     },
     "exercise.answer.label": {
       "message": "Your answer",
@@ -2022,6 +2050,10 @@
       "message": ".input {$number :number}\n{{Next: Lesson {$number}}}",
       "description": "Button at the end of a session: start the next lesson on the course's path, as the course page's Continue would. $number is the lesson's number on the path."
     },
+    "player.end.next.drill": {
+      "message": "Next: words of the story",
+      "description": "The end of a session: what Continue starts next, a session that teaches a story's new words (ADR 0144)."
+    },
     "player.end.next.more-practice": {
       "message": "Keep practising",
       "description": "End of a review or practice session, beside the button to the next lesson: another practice session instead (D34)."
@@ -2281,6 +2313,10 @@
     "player.instruction.word-write": {
       "message": "Build the word from its letters",
       "description": "Instruction on a script track: given a word in Latin letters, build it from tiles of the script's letters."
+    },
+    "player.instruction.write-word": {
+      "message": "Write this word in {$language}",
+      "description": "Instruction (ADR 0144): the meaning of a word is shown in the learner's language; they type the word in the language being learned. $language is a course name (course.name.*)."
     },
     "player.key.mark.064b": {
       "message": "Fathatan",
@@ -3133,6 +3169,10 @@
     "story.narration": {
       "message": "Narration",
       "description": "Accessible label of a story line no character speaks."
+    },
+    "story.new-words.title": {
+      "message": "New words in this story",
+      "description": "Heading of the list of the words a story uses for the first time (ADR 0144), each with its meaning, shown before the story's first line."
     },
     "story.quit.cancel": {
       "message": "Keep reading",

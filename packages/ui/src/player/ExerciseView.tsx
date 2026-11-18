@@ -25,6 +25,7 @@ import {
   TranscribeView,
   TranslateTypeView,
   VocalizeBuildView,
+  WriteWordView,
   VocalizeView,
   type ViewExtras,
 } from "./Views.tsx";
@@ -60,6 +61,7 @@ export const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
   "letter-pairs": "player.instruction.letter-pairs",
   "word-read": "player.instruction.word-read",
   "word-write": "player.instruction.word-write",
+  "write-word": "player.instruction.write-word",
 };
 
 /**
@@ -107,6 +109,8 @@ export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
       return <TranslateTypeView {...props} ex={ex} />;
     case "complete-translation":
       return <CompleteTranslationView {...props} ex={ex} />;
+    case "write-word":
+      return <WriteWordView {...props} ex={ex} />;
     case "gap-fill":
     case "spelling-choice":
       return <GapFillView {...props} ex={ex} />;

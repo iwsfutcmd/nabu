@@ -27,6 +27,8 @@ import {
   readingsShown,
   replay,
   scriptPathOf,
+  sessionNodeOf,
+  undrilledWords,
   wordCounts,
   type LearnerState,
   type NodeStatus,
@@ -36,7 +38,7 @@ import {
   type SessionRequest,
   type Studied,
 } from "@nabu/core/learner";
-import { cardGloss, createGrader, doneOf, firstTriesOf, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Facet, type PlayerState } from "@nabu/core/lesson";
+import { cardGloss, createGrader, doneOf, drillSessionAt, firstTriesOf, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Facet, type PlayerState } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
@@ -334,7 +336,7 @@ const Home = ({
     return {
       page: href({ tag: "course", ...at }),
       review: href({ tag: "session", ...at, request: { mode: "review" } }),
-      node: (n) => (n.kind === "story" ? href({ tag: "story", ...at, node: n.node }) : href({ tag: "session", ...at, request: { mode: "lesson", node: n.node } })),
+      node: (n) => (n.kind === "story" ? href({ tag: "story", ...at, node: n.node }) : href({ tag: "session", ...at, request: { mode: "lesson", node: sessionNodeOf(n) } })),
     };
   };
   return (
@@ -420,6 +422,14 @@ const previewOf = (course: CourseView, unit: BundleUnit, node: BundleNode): Prev
     const gloss = kc?.gloss?.[course.supportKey];
     if (form !== undefined) return [{ text: form, gloss: gloss === undefined ? undefined : cardGloss(gloss) }];
     return node.kind === "practice" && gloss !== undefined ? [{ text: cardGloss(gloss) }] : [];
+  });
+
+/** The words a drill session brings in (ADR 0144), each with its meaning as a card shows it. */
+const drillPreviewOf = (course: CourseView, session: string): PreviewItem[] =>
+  (drillSessionAt(course, session)?.session.words ?? []).flatMap((kc): PreviewItem[] => {
+    const form = kc.forms?.[course.orthography]?.[0];
+    const gloss = kc.gloss?.[course.supportKey];
+    return form === undefined ? [] : [{ text: form, gloss: gloss === undefined ? undefined : cardGloss(gloss) }];
   });
 
 interface UnitHeadingProps {
@@ -614,7 +624,9 @@ const CoursePath = ({
   // The path by unit, lessons numbered within theirs (S11).
   const units = pathUnits(course);
   const to = (request: SessionRequest): string => href({ tag: "session", course: course.id, orthography, request });
-  const nodeHref = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : to({ mode: "lesson", node: n.node }));
+  const nodeHref = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : to({ mode: "lesson", node: sessionNodeOf(n) }));
+  // The path's drill nodes (ADR 0144), as the path has them: their sessions done and the one each opens.
+  const drills = new Map(pathOf(course, state).flatMap((n) => (n.drill === undefined ? [] : [[n.node, n] as const])));
   // Finished units fold away (S2); the learner opens one again with its heading. By their lists' ids.
   const [opened, setOpened] = useState<ReadonlySet<string>>(() => new Set());
   const foldOf = (list: string, finished: boolean): Fold | undefined =>
@@ -631,7 +643,7 @@ const CoursePath = ({
         }
       : undefined;
   // Where the page opens (S2): Continue's lesson or story, once the learner is past the first one.
-  const arrival = state.completedNodes.length > 0 && next.kind !== "done" ? next.next?.node : undefined;
+  const arrival = state.completedNodes.length > 0 && next.kind !== "done" ? (next.kind === "drill" ? next.drill.node : next.next?.node) : undefined;
   // The alphabet's row folds away too, once every letter lesson is done.
   const scriptUnit = course.units.find((u) => u.id === scriptRow[0]?.unit);
   const scriptDone = scriptRow.filter((n) => n.status === "done").length;
@@ -641,7 +653,9 @@ const CoursePath = ({
   const why =
     next.kind === "practice" && pace.slipping > 0
       ? t.format("app.pace.why.slipping", { count: pace.slipping })
-      : next.kind !== "path"
+      : next.kind === "drill"
+        ? t.format("app.pace.why.drill", { count: undrilledWords(course, state) })
+        : next.kind !== "path"
         ? t.format("app.continue.done")
         : pace.reason === "chosen"
           ? t.format(pace.band === "consolidate" ? "app.pace.why.chosen-consolidate" : pace.band === "accelerate" ? "app.pace.why.chosen-accelerate" : "app.pace.why.chosen-steady")
@@ -721,6 +735,18 @@ const CoursePath = ({
               {t.format("app.continue.practice")}
             </a>
             {/* A new lesson is always on offer (D6). */}
+            {next.next !== undefined && (
+              <a className={styles.link} href={nodeHref(next.next)} data-action="new-lesson">
+                {t.format("app.continue.new-lesson")}
+              </a>
+            )}
+          </>
+        ) : next.kind === "drill" ? (
+          <>
+            {/* A passage's words first (ADR 0144), the next lesson always on offer beside them (D6). */}
+            <a className={styles.primary} href={nodeHref(next.drill)} data-action="continue">
+              {t.format("app.continue.drill")}
+            </a>
             {next.next !== undefined && (
               <a className={styles.link} href={nodeHref(next.next)} data-action="new-lesson">
                 {t.format("app.continue.new-lesson")}
@@ -828,12 +854,33 @@ const CoursePath = ({
             <ol className={styles.list} id={unitListId(unit.id)} hidden={fold?.open === false} data-lesson-list="">
               {entries.map(({ node, kind, number }) => {
                 const s = status.get(node.id) ?? "locked";
-                const story = kind === "story" ? (unit.stories ?? []).find((st) => st.node === node.id) : undefined;
+                const drill = kind === "drill" ? drills.get(node.id) : undefined;
+                // A drill node goes with its passage (ADR 0144): the story's title follows it too.
+                const storyNode = kind === "story" ? node.id : node.drill?.story;
+                const story = storyNode === undefined ? undefined : (unit.stories ?? []).find((st) => st.node === storyNode);
                 const storyTitle = story?.title[course.supportKey];
                 // A lesson is numbered within its unit; a drill is practice (S11).
                 const name = number === undefined ? t.format("app.path.practice") : t.format("app.lessons.lesson", { number });
                 const body =
-                  kind === "story" ? (
+                  drill?.drill !== undefined ? (
+                    <>
+                      <span className={styles.lessonHead}>
+                        <span className={styles.lessonName} data-node-name="">
+                          {t.format("app.path.drill")}
+                        </span>
+                        <Status status={s} />
+                      </span>
+                      {storyTitle !== undefined && (
+                        <span className={styles.preview}>
+                          <T text={storyTitle} />
+                        </span>
+                      )}
+                      <span className={styles.preview} data-drill-progress={`${String(drill.drill.done)}/${String(drill.drill.total)}`}>
+                        {t.format("app.path.drill.progress", { done: drill.drill.done, total: drill.drill.total })}
+                      </span>
+                      {s === "available" && <Preview items={drillPreviewOf(course, drill.drill.next)} label={t.format("app.path.drill.next")} />}
+                    </>
+                  ) : kind === "story" ? (
                     <>
                       <span className={styles.lessonHead}>
                         <span className={styles.lessonName} data-node-name="">{t.format("app.path.story")}</span>
@@ -854,8 +901,8 @@ const CoursePath = ({
                       <Preview items={previewOf(course, unit, node)} label={number === undefined ? undefined : t.format("app.lessons.new-words")} />
                     </>
                   );
-                const link = kind === "story" ? href({ tag: "story", course: course.id, orthography, node: node.id }) : to({ mode: "lesson", node: node.id });
-                const data = kind === "story" ? { "data-story-node": node.id } : { "data-lesson": node.id };
+                const link = kind === "story" ? href({ tag: "story", course: course.id, orthography, node: node.id }) : to({ mode: "lesson", node: drill?.drill?.next ?? node.id });
+                const data = kind === "story" ? { "data-story-node": node.id } : kind === "drill" ? { "data-drill-node": node.id } : { "data-lesson": node.id };
                 return (
                   <Fragment key={node.id}>
                     <li>
@@ -1147,7 +1194,7 @@ const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go:
   return useMemo(() => {
     if (!over) return undefined;
     const orthography = course.orthography;
-    const hrefOf = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : href({ tag: "session", course: course.id, orthography, request: { mode: "lesson", node: n.node } }));
+    const hrefOf = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : href({ tag: "session", course: course.id, orthography, request: { mode: "lesson", node: sessionNodeOf(n) } }));
     const review = href({ tag: "session", course: course.id, orthography, request: { mode: "review" } });
     return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), facetsOff, hrefOf, review, practised, gated, go: (to) => going.current(to), t });
   }, [course, state, over, facetsOff, practised, gated, t]);

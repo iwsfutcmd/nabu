@@ -6,7 +6,7 @@
 import { describe, expect, it } from "vitest";
 import type { LearnerEvent } from "@nabu/schema";
 import { learnedWords, replay, wordCounts } from "../src/learner/index.ts";
-import { allKcs, allSentences, lessonNodes } from "../src/lesson/index.ts";
+import { allKcs, allSentences, isDrilled, lessonNodes } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 import { simulate } from "./simulator.ts";
 
@@ -64,7 +64,8 @@ describe("planner: 30 simulated days", () => {
           for (const { kc, status } of e.outcome.kcs) if (status !== "given") (presented.get(node) ?? presented.set(node, new Set()).get(node))?.add(kc);
       });
       const view = loadCourse(course, orthography);
-      const carried = new Set([...allSentences(view).flatMap((s) => s.kcs), ...allKcs(view).filter((k) => (k.forms?.[view.orthography]?.length ?? 0) > 0).map((k) => k.id)]);
+      // Words that are not drilled (names, ADR 0144) are glossed, never presented.
+      const carried = new Set([...allSentences(view).flatMap((s) => s.kcs), ...allKcs(view).filter((k) => isDrilled(k) && (k.forms?.[view.orthography]?.length ?? 0) > 0).map((k) => k.id)]);
       const skipped = lessonNodes(view).flatMap(({ node: n }) => (presented.has(n.id) ? n.introduces.filter((kc) => carried.has(kc) && !presented.get(n.id)?.has(kc)).map((kc) => `${n.id} ${kc}`) : []));
       expect(skipped.filter((s) => !s.startsWith("drill."))).toEqual([]);
       const rate = r.correct / r.firstTries;

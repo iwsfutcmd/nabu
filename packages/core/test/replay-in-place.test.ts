@@ -44,8 +44,9 @@ describe("the fold in place equals the fold that copied (ADR 0119)", () => {
     () => {
       const log = simulated("es", 41, 2.0, 90);
       const state = replay(log);
-      // Long enough that the model's maps hold every word of the course and a thousand items.
-      expect(Object.keys(state.performance.kc).length).toBeGreaterThan(700);
+      // Long enough that the model's maps hold every word of the course (its names glossed only,
+      // ADR 0144) and a thousand items.
+      expect(Object.keys(state.performance.kc).length).toBeGreaterThan(650);
       expect(Object.keys(state.performance.item).length).toBeGreaterThan(1000);
       same(state, replayBefore(log));
       // The app folds each event as it is recorded, into the state it holds.

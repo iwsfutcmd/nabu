@@ -4,6 +4,8 @@ declare const styles: {
   readonly lineControls: string;
   readonly lineText: string;
   readonly narration: string;
+  readonly newWords: string;
+  readonly newWordsTitle: string;
   readonly question: string;
   readonly reader: string;
   readonly speaker: string;
@@ -11,5 +13,7 @@ declare const styles: {
   readonly translate: string;
   readonly translation: string;
   readonly whole: string;
+  readonly wordEntry: string;
+  readonly wordList: string;
 };
 export default styles;

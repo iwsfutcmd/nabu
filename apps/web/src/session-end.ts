@@ -91,6 +91,7 @@ export const progressOf = ({ course, before, after, config, now, firstDay, place
 /** The next node as the end screen names it: a lesson by its unit and its number there, as the course page numbers it (S11). */
 const nextTo = (course: CourseView, node: PathNode): NextTo => {
   if (node.kind === "story") return { kind: "story" };
+  if (node.kind === "drill") return { kind: "drill" };
   const number = pathNodes(course).filter((e) => e.kind === "lesson").findIndex((e) => e.node.id === node.node) + 1;
   for (const unit of pathUnits(course)) {
     const entry = unit.entries.find((e) => e.node.id === node.node);
@@ -140,6 +141,8 @@ export const nextStepOf = ({ course, state, now, pace: choice, facetsOff, hrefOf
   const node = next.next;
   if (practised && node !== undefined) return { to: nextTo(course, node), go: () => go(hrefOf(node)), beside: practice };
   if (next.kind === "path") return { to: nextTo(course, next.next), go: () => go(hrefOf(next.next)) };
+  // A passage's words first (ADR 0144), the next node beside them (D6).
+  if (next.kind === "drill") return { to: nextTo(course, next.drill), go: () => go(hrefOf(next.drill)), ...(node === undefined ? {} : { beside: { to: nextTo(course, node), go: () => go(hrefOf(node)) } }) };
   return {
     ...practice,
     ...why,

@@ -3,10 +3,12 @@
  * They are the cards lessons plan among (`lessonCandidates`, the planner's own enumerator), lesson
  * by lesson in path order, for a learner who has met nothing else: so a kind shows here only where
  * a lesson has it to choose. A script track's kinds come from its alphabet nodes
- * (`scriptCandidates`), as their sessions plan them.
+ * (`scriptCandidates`), as their sessions plan them; a kind no lesson makes, from a passage's drill
+ * sessions (`drillCandidates`, ADR 0144).
  */
 import type { CourseView } from "./course.ts";
 import { lessonCandidates } from "./candidates.ts";
+import { drillCandidates, drillNodes } from "./drill.ts";
 import type { Exercise, TemplateId } from "./exercise.ts";
 import { courseExclusions } from "./exclusions.ts";
 import { lessonNodes } from "./nodes.ts";
@@ -41,6 +43,13 @@ export const sampleExercise = (course: CourseView, template: TemplateId, seed = 
   for (const at of lessonNodes(course)) {
     const [found] = lessonCandidates({ course, rng: seededRng(seed), introduced: at.node.introduces }, at, NONE_SEEN, others);
     if (found !== undefined) return found;
+  }
+  // A passage's drills (ADR 0144): its words typed from their glosses, its lines' gaps.
+  for (const drill of drillNodes(course)) {
+    for (const session of drill.sessions) {
+      const [found] = drillCandidates({ course, rng: seededRng(seed), introduced: session.words.map((k) => k.id) }, drill, session, NONE_SEEN, others);
+      if (found !== undefined) return found;
+    }
   }
   return undefined;
 };

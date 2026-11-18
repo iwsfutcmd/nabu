@@ -4,7 +4,7 @@
  * not eligible), `grade` turns a response into an outcome. Randomness comes
  * from the injected seeded Rng only.
  */
-import type { Asks, BundleKc, BundleSentence, KcId, Persons, SchemeId, TaggedText, Token } from "@nabu/schema";
+import type { Asks, BundleKc, BundleSentence, BundleStory, KcId, Persons, SchemeId, TaggedText, Token } from "@nabu/schema";
 import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { compileAcceptSet, grade, type CompiledAcceptSet } from "../match/grade.ts";
@@ -43,6 +43,7 @@ import type {
   ToneIdentify,
   TranslateTap,
   TranslateType,
+  WriteWord,
 } from "./exercise.ts";
 import { isCorrect } from "./exercise.ts";
 import type { Rng } from "./rng.ts";
@@ -126,6 +127,9 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "letter-pairs": { facet: "read-script", modality: { audioOut: false, mic: false, input: "pairs" }, prior: -1.4, perSession: 1, presents: true },
   "word-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.8, presents: true },
   "word-write": { facet: "write-script", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.2 },
+  // Words met in passages (ADR 0144): a word typed from its gloss, with no sentence to recall it by,
+  // is harder than the blank of a translation.
+  "write-word": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.8 },
 };
 
 /** Templates that play audio: "can't listen now" leaves them out (§10, §11.5). */
@@ -179,7 +183,11 @@ const asked = (ctx: MakeContext, token: Token): boolean => {
   return kcs.length > 0 && kcs.length === ctx.ask.length && kcs.every((kc, i) => kc === ctx.ask?.[i]);
 };
 
-const id = (template: TemplateId, item: string): string => `${template}:${item}`;
+/**
+ * An exercise's id: its template and item. A passage line's item (ADR 0144) is its audio item,
+ * "story#step", so that its clip plays; its id has a slash there, since "#" marks a retry's id.
+ */
+const id = (template: TemplateId, item: string): string => `${template}:${item.replace("#", "/")}`;
 
 const words = (text: TaggedText): readonly number[] =>
   text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
@@ -379,6 +387,8 @@ const unitOf = (course: CourseView, id: string): number => {
     for (const [i, u] of course.units.entries()) {
       for (const s of u.sentences) if (!built.has(s.id)) built.set(s.id, i);
       for (const k of u.kcs) if (!built.has(k.id)) built.set(k.id, i);
+      // A passage's lines (ADR 0144), drilled as sentences are: by their audio items' ids.
+      for (const story of u.stories ?? []) story.steps.forEach((_, step) => built.set(lineId(story.id, step), i));
     }
     index = built;
     unitIndex.set(course, index);
@@ -420,10 +430,21 @@ const otherKcs = (ctx: MakeContext, kc: BundleKc): readonly BundleKc[] => {
   return allKcs(ctx.course).filter((k) => k.id !== kc.id && before(k.id));
 };
 
+// ------------------------------------------------------------------------------------ drilled words
+
+/**
+ * Whether a KC is drilled (ADR 0144): every KC but those the course marks `drill: false` (proper
+ * names, by default). Those are glossed, never asked: no card's answer is one.
+ */
+export const isDrilled = (kc: BundleKc | undefined): boolean => kc?.drill !== false;
+
+/** Whether a token's word is drilled: its sense's KC (a token without a sense is no word to ask). */
+const drilledToken = (course: CourseView, token: Token): boolean => token.sense === undefined || isDrilled(kcById(course).get(`sense:${token.sense}`));
+
 // ------------------------------------------------------------------------------------ KC templates
 
 const pictured = (ctx: MakeContext, kc: BundleKc): boolean =>
-  kc.image !== undefined && (kc.forms?.[ctx.course.orthography]?.length ?? 0) > 0 && kc.gloss?.[ctx.course.supportKey] !== undefined;
+  isDrilled(kc) && kc.image !== undefined && (kc.forms?.[ctx.course.orthography]?.length ?? 0) > 0 && kc.gloss?.[ctx.course.supportKey] !== undefined;
 
 export const makeSelectImage = (ctx: MakeContext, kc: BundleKc): SelectImage | undefined => {
   if (!pictured(ctx, kc)) return undefined;
@@ -471,7 +492,7 @@ export const cardGloss = (text: TaggedText): TaggedText => {
 
 export const makeMatchPairs = (ctx: MakeContext, kcs: readonly BundleKc[]): MatchPairs | undefined => {
   const { orthography, supportKey } = ctx.course;
-  const usable = kcs.filter((k) => k.kind === "sense" && (k.forms?.[orthography]?.length ?? 0) > 0 && k.gloss?.[supportKey] !== undefined);
+  const usable = kcs.filter((k) => k.kind === "sense" && isDrilled(k) && (k.forms?.[orthography]?.length ?? 0) > 0 && k.gloss?.[supportKey] !== undefined);
   const byText = (t: TaggedText) => usable.find((k) => k.forms?.[orthography]?.[0] === t) as BundleKc;
   // Distinct in both columns. Two words alike, or two meanings alike (synonyms glossed alike, as
   // Classical Chinese 汝 and 爾 are both "you"), would make either pairing right, and the card
@@ -603,8 +624,10 @@ export const makeTranslateType = (ctx: MakeContext, s: BundleSentence): Translat
  * introduces, else the last word.
  */
 const blankIndex = (ctx: MakeContext, text: TaggedText): number | undefined => {
-  const indexes = words(text);
-  if (indexes.length < 2) return undefined;
+  if (words(text).length < 2) return undefined;
+  // Never a word that is not drilled (a name, ADR 0144): it is glossed, never asked.
+  const indexes = words(text).filter((i) => drilledToken(ctx.course, text.tokens[i] as Token));
+  if (indexes.length === 0) return undefined;
   const kcsAt = (i: number): readonly string[] => tokenKcs(text.tokens[i] as Token);
   const again = indexes.find((i) => asked(ctx, text.tokens[i] as Token));
   const focus = ctx.focus === undefined ? undefined : indexes.find((i) => kcsAt(i).some((k) => ctx.focus?.has(k) === true));
@@ -729,26 +752,30 @@ const meaningsOf = (course: CourseView, kc: string): ReadonlySet<string> => {
   }
   let meanings = byKc.get(kc);
   if (meanings === undefined) {
-    const gloss = kcById(course).get(kc)?.gloss?.[course.supportKey];
-    const found = new Set<string>();
-    let current: string[] = [];
-    let depth = 0;
-    const close = (): void => {
-      if (current.length > 0) found.add(current.join(" "));
-      current = [];
-    };
-    for (const t of gloss?.tokens ?? []) {
-      if (t.kind === "punct" && OPENING.test(t.surface)) depth += 1;
-      else if (t.kind === "punct" && CLOSING.test(t.surface)) depth = Math.max(0, depth - 1);
-      else if (depth > 0) continue;
-      else if ((t.kind === "punct" && MEANING_BREAK.test(t.surface)) || (t.kind === "space" && t.surface.includes("\n"))) close();
-      else if (t.kind === "word" || t.kind === "number") current.push(lowerIn(course, gloss?.lang ?? course.support, t.surface));
-    }
-    close();
-    meanings = found;
+    meanings = meaningsIn(course, kcById(course).get(kc)?.gloss?.[course.supportKey]);
     byKc.set(kc, meanings);
   }
   return meanings;
+};
+
+/** The meanings a gloss lists, as `meaningsOf` splits a KC's. */
+const meaningsIn = (course: CourseView, gloss: TaggedText | undefined): ReadonlySet<string> => {
+  const found = new Set<string>();
+  let current: string[] = [];
+  let depth = 0;
+  const close = (): void => {
+    if (current.length > 0) found.add(current.join(" "));
+    current = [];
+  };
+  for (const t of gloss?.tokens ?? []) {
+    if (t.kind === "punct" && OPENING.test(t.surface)) depth += 1;
+    else if (t.kind === "punct" && CLOSING.test(t.surface)) depth = Math.max(0, depth - 1);
+    else if (depth > 0) continue;
+    else if ((t.kind === "punct" && MEANING_BREAK.test(t.surface)) || (t.kind === "space" && t.surface.includes("\n"))) close();
+    else if (t.kind === "word" || t.kind === "number") current.push(lowerIn(course, gloss?.lang ?? course.support, t.surface));
+  }
+  close();
+  return found;
 };
 
 const sharesMeaning = (course: CourseView, a: string, b: string): boolean => {
@@ -878,7 +905,8 @@ interface Blank {
  */
 const blanksOf = (ctx: MakeContext, text: TaggedText): readonly Blank[] => {
   if (words(text).length < 2) return [];
-  const indexes = alone(text);
+  // Never a word that is not drilled (a name, ADR 0144): it is glossed, never asked.
+  const indexes = alone(text).filter((i) => drilledToken(ctx.course, text.tokens[i] as Token));
   if (ctx.ask !== undefined) {
     const again = indexes.find((i) => asked(ctx, text.tokens[i] as Token));
     return again === undefined ? [] : [{ at: again, asks: ctx.asks === undefined ? WORD_FIRST : [ctx.asks] }];
@@ -1006,7 +1034,7 @@ export const makeSpellingChoice = (ctx: MakeContext, s: BundleSentence): GapFill
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
-  const askable = (t: Token): boolean => t.kind === "word" && soundAlikeSpellings(ctx, t).length >= 2;
+  const askable = (t: Token): boolean => t.kind === "word" && drilledToken(ctx.course, t) && soundAlikeSpellings(ctx, t).length >= 2;
   const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, t));
   const fresh = form.text.tokens.findIndex((t) => askable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
   const at = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(askable);
@@ -1116,7 +1144,7 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
   const scheme = rubySchemeOf(ctx);
   const form = formOf(ctx.course, s);
   if (scheme === undefined || form === undefined) return undefined;
-  const readable = (t: Token): boolean => t.kind === "word" && t.readings?.[scheme] !== undefined;
+  const readable = (t: Token): boolean => t.kind === "word" && drilledToken(ctx.course, t) && t.readings?.[scheme] !== undefined;
   const again = form.text.tokens.findIndex((t) => readable(t) && asked(ctx, t));
   const fresh = form.text.tokens.findIndex((t) => readable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
   const word = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(readable);
@@ -1172,7 +1200,7 @@ export const makeReadingFeature = (ctx: MakeContext, s: BundleSentence): CharRea
   // Each word's places open two or more ways, worked out once.
   const attested = courseSyllables(ctx.course, scheme);
   const places = form.text.tokens.map((t) => (t.kind === "word" && t.readings?.[scheme] !== undefined ? readingFeatures(scheme, t.readings[scheme], attested).filter((f) => f.length >= 2) : []));
-  const askable = (t: Token): boolean => (places[form.text.tokens.indexOf(t)]?.length ?? 0) > 0;
+  const askable = (t: Token): boolean => drilledToken(ctx.course, t) && (places[form.text.tokens.indexOf(t)]?.length ?? 0) > 0;
   const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, t));
   const fresh = form.text.tokens.findIndex((t) => askable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
   const word = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(askable);
@@ -1219,6 +1247,8 @@ export const makeReadingDisambiguation = (ctx: MakeContext, s: BundleSentence): 
     }
   }
   for (const [ti, token] of form.text.tokens.entries()) {
+    // A word that is not drilled (a name, ADR 0144) is never asked.
+    if (!drilledToken(ctx.course, token)) continue;
     const segments = token.ruby?.[scheme] ?? [];
     for (const [si, segment] of segments.entries()) {
       const table = homophones.readings(segment.base) ?? [];
@@ -1367,6 +1397,7 @@ const meaningOf = (ctx: MakeContext, kc: BundleKc): { readonly translation?: Tag
 };
 
 export const makeListenSelect = (ctx: MakeContext, kc: BundleKc): ListenSelect | undefined => {
+  if (!isDrilled(kc)) return undefined;
   const audio = audioOf(ctx, kc.id);
   const word = writtenForm(ctx, kc);
   if (audio === undefined || word === undefined) return undefined;
@@ -1444,6 +1475,7 @@ const rivals = (ctx: MakeContext, kc: BundleKc, word: TaggedText): readonly Tagg
 };
 
 export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | undefined => {
+  if (!isDrilled(kc)) return undefined;
   const audio = audioOf(ctx, kc.id);
   const word = writtenForm(ctx, kc);
   if (audio === undefined || word === undefined) return undefined;
@@ -1463,7 +1495,8 @@ const tokenKcs = (t: Token): readonly string[] => [...(t.sense === undefined ? [
  * lesson introduces, else the sentence's last. Words `preferred` says yes to come first in each.
  */
 const pronouncedWord = (ctx: MakeContext, text: TaggedText, qualifies: (t: Token, index: number) => boolean, preferred: (index: number) => boolean = () => true): number | undefined => {
-  const all = text.tokens.flatMap((t, i) => (t.kind === "word" && tokenKcs(t).length > 0 && qualifies(t, i) ? [i] : []));
+  // Never a word that is not drilled (a name, ADR 0144).
+  const all = text.tokens.flatMap((t, i) => (t.kind === "word" && tokenKcs(t).length > 0 && drilledToken(ctx.course, t) && qualifies(t, i) ? [i] : []));
   const pick = (pool: readonly number[]): number | undefined => {
     const fresh = pool.find((i) => tokenKcs(text.tokens[i] as Token).some((k) => ctx.introduced.includes(k as KcId)));
     return fresh ?? pool.at(-1);
@@ -1659,6 +1692,98 @@ const writtenIn = (spelled: TaggedText, word: TaggedText, answer: string): boole
   return letter(theirs).test(answer) && !letter(ours).test(answer);
 };
 
+// ------------------------------------------------------------------------------------ words met in passages (ADR 0144)
+
+/** A word a card may ask to be typed from its gloss: a drilled sense, written in the orthography and glossed. */
+export const writable = (course: CourseView, kc: BundleKc): boolean =>
+  kc.kind === "sense" && isDrilled(kc) && kc.forms?.[course.orthography]?.[0] !== undefined && kc.gloss?.[course.supportKey] !== undefined;
+
+/**
+ * A word's keys as a match-pairs card compares them: its first form's, and its card gloss's. Two
+ * words alike in either cannot share a card (makeMatchPairs keeps one).
+ */
+export const matchKeys = (course: CourseView, kc: BundleKc): { readonly word: string; readonly meaning: string } => {
+  const form = kc.forms?.[course.orthography]?.[0];
+  const gloss = kc.gloss?.[course.supportKey];
+  return { word: form === undefined ? "" : keyOf(course, form), meaning: gloss === undefined ? "" : keyOf(course, cardGloss(gloss)) };
+};
+
+/** A form typed as written, or, where it cites a stem (chg bar-, a hyphen at an end), without the hyphen too. */
+const formAccepts = (form: TaggedText): readonly string[] => {
+  const surface = surfaceOf(form);
+  const bare = surface.replace(/^[-\u2010\u2011]+|[-\u2010\u2011]+$/gu, "");
+  return bare === surface || bare === "" ? [surface] : [surface, bare];
+};
+
+/**
+ * A word's gloss; type the word (ADR 0144). Writing a word fixes it in memory, so every drilled word
+ * is asked in writing, and this asks one out of any sentence. Its answer is the word's first form,
+ * the lemma word cards show; any form of it is right, and so is every drilled word whose gloss gives
+ * a meaning the prompt shows (ADR 0085: the prompt does not tell them apart).
+ */
+export const makeWriteWord = (ctx: MakeContext, kc: BundleKc): WriteWord | undefined => {
+  if (!writable(ctx.course, kc)) return undefined;
+  const { orthography, supportKey } = ctx.course;
+  const canonical = writtenForm(ctx, kc) as TaggedText;
+  const prompt = cardGloss(kc.gloss?.[supportKey] as TaggedText);
+  const shown = meaningsIn(ctx.course, prompt);
+  const synonyms = allKcs(ctx.course).filter((k) => k.id !== kc.id && writable(ctx.course, k) && [...meaningsOf(ctx.course, k.id)].some((m) => shown.has(m)));
+  const forms = [kc, ...synonyms].flatMap((k) => k.forms?.[orthography] ?? []);
+  const accept = [...new Set(forms.flatMap(formAccepts))].map(literalAccept).join("\n");
+  return { template: "write-word", id: id("write-word", kc.id), item: kc.id, kcs: [kc.id], orthography, prompt, accept, canonical };
+};
+
+/** A passage line's id (ADR 0144): its story's id and its step, as its audio item is named. */
+export const lineId = (story: string, step: number): string => `${story}#${String(step)}`;
+
+const lineSentenceLists = new WeakMap<CourseView, Map<string, readonly BundleSentence[]>>();
+
+/**
+ * A passage's lines as sentences (ADR 0144), so that a word met in the passage is practised in the
+ * line it was met in: each line the orthography writes, its translation shown (never graded), its
+ * text its own accept set: a story line has no other, so a word typed into it is graded against the
+ * word as the line writes it, in the spellings the profile accepts. Built once per course and story.
+ */
+export const lineSentences = (course: CourseView, story: BundleStory): readonly BundleSentence[] => {
+  let byStory = lineSentenceLists.get(course);
+  if (byStory === undefined) {
+    byStory = new Map();
+    lineSentenceLists.set(course, byStory);
+  }
+  let lines = byStory.get(story.id);
+  if (lines === undefined) {
+    lines = story.steps.flatMap((step, i): BundleSentence[] => {
+      const line = step.line;
+      const text = line?.forms[course.orthography];
+      if (line === undefined || text === undefined) return [];
+      const translations = Object.fromEntries(Object.entries(line.translations).map(([key, t]) => [key, { text: t, accept: literalAccept(surfaceOf(t)) }]));
+      return [
+        {
+          id: lineId(story.id, i),
+          node: story.node,
+          forms: { [course.orthography]: { text, reverse: literalAccept(surfaceOf(text)) } },
+          translations,
+          kcs: line.kcs,
+          production: true,
+          provenance: story.provenance ?? { author: "unknown", status: "draft" },
+          license: story.license,
+        },
+      ];
+    });
+    byStory.set(story.id, lines);
+  }
+  return lines;
+};
+
+/**
+ * The cards a passage's line makes (ADR 0144): which word fits its gap (recognizing it) and the word
+ * typed into it (writing it in context).
+ */
+export const LINE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, s: BundleSentence) => Exercise | undefined>>> = {
+  "gap-fill": makeGapFill,
+  "complete-translation": makeCompleteTranslation,
+};
+
 /** KC templates that need a clip of the word. */
 export const KC_LISTENING: readonly ((ctx: MakeContext, kc: BundleKc) => Exercise | undefined)[] = [makeListenSelect, makeMinimalPair];
 
@@ -1667,6 +1792,7 @@ export const KC_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext
   "select-image": makeSelectImage,
   "listen-select": makeListenSelect,
   "minimal-pair": makeMinimalPair,
+  "write-word": makeWriteWord,
 };
 
 export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, s: BundleSentence) => Exercise | undefined>>> = {
@@ -1817,6 +1943,7 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       return graded(grader, ex, tilesText(ex, response.order), ex.canonical);
     case "translate-type.l1-l2":
     case "listen-type":
+    case "write-word":
       return response.tag === "text" ? graded(grader, ex, response.text, ex.canonical) : mismatch(ex, response);
     case "complete-translation":
       return response.tag === "text"
@@ -1855,6 +1982,7 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "listen-tap":
     case "listen-type":
     case "word-write":
+    case "write-word":
       return ex.canonical;
     case "speak.tier-0":
     case "speak":
@@ -1887,6 +2015,7 @@ export const promptOf = (ex: Exercise): TaggedText | undefined => {
     case "word-write":
     case "translate-type.l1-l2":
     case "complete-translation":
+    case "write-word":
     case "char-read":
     case "reading-feature":
     case "letter-read":

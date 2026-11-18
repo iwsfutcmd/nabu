@@ -32,6 +32,7 @@ import type {
   ToneIdentify,
   TranslateTap,
   TranslateType,
+  WriteWord,
 } from "@nabu/core/lesson";
 import { isCorrect } from "@nabu/core/lesson";
 import {
@@ -957,6 +958,38 @@ export const TranslateTypeView = (props: Props<TranslateType>): JSX.Element => {
       <TypedAnswer
         props={props}
         label={t.format("exercise.answer.input-label", {
+          language: props.language,
+        })}
+        answer={ex.canonical}
+        parts={["prompt"]}
+      />
+    </div>
+  );
+};
+
+/**
+ * A word's meaning; type the word (ADR 0144). The gloss is in the support language, the field in the
+ * language being learned, as the word is written there.
+ */
+export const WriteWordView = (props: Props<WriteWord>): JSX.Element => {
+  const { ex } = props;
+  const t = useTranslator();
+  return (
+    <div className={styles.body}>
+      <div
+        className={styles.prompt}
+        role="group"
+        aria-label={t.format("exercise.prompt.label")}
+        id={partId(props.ids, "prompt")}
+        data-ink-container="prompt"
+        data-write-word-gloss=""
+      >
+        <T as="p" text={ex.prompt} />
+      </div>
+      <AnswerAudio props={props} />
+      <TypedAnswer
+        props={props}
+        label={t.format("exercise.answer.word-label", {
           language: props.language,
         })}
         answer={ex.canonical}

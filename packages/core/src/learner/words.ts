@@ -19,7 +19,7 @@ import type { BundleKc, SchemeId, TaggedText } from "@nabu/schema";
 import { courseExclusions } from "../lesson/exclusions.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
-import { TEMPLATES } from "../lesson/templates.ts";
+import { isDrilled, TEMPLATES, writable } from "../lesson/templates.ts";
 import { chosenTraditionKey } from "../lesson/traditions.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { cardKey, DESIRED_RETENTION, parseCardKey, retrievability, type LearnerState } from "./state.ts";
@@ -71,23 +71,27 @@ export interface LearnedWord {
 const WORD_KINDS: ReadonlySet<BundleKc["kind"]> = new Set(["sense", "form"]);
 
 /**
- * The skills a course asks of each of its words (ADR 0100): recognizing it; producing it where a
- * sentence uses it (a word is produced by typing a sentence); and hearing it where the course plans
- * listening (its facets, ADR 0071; a good voice, ADR 0091) and the word can be heard, in its own clip
- * or in a sentence's. A skill the learner turned off for good is asked of no word (D41).
+ * The skills a course asks of each of its words (ADR 0100): recognizing it; producing it, for every
+ * drilled word (ADR 0144: writing a word fixes it, so a word is known only once written): typed in a
+ * sentence or a passage's line that uses it, or from its gloss (`write-word`); and hearing it where
+ * the course plans listening (its facets, ADR 0071; a good voice, ADR 0091) and the word can be
+ * heard, in its own clip or in a sentence's. A word that is not drilled (a name, `drill: false`) is
+ * asked nothing. A skill the learner turned off for good is asked of no word (D41).
  */
 const skillsOf = (course: CourseView, off: ReadonlySet<Skill>): ((kc: string) => readonly Skill[]) => {
   const excluded = courseExclusions(course);
-  const wordKcs = new Set(course.units.flatMap((u) => u.kcs.filter((k) => WORD_KINDS.has(k.kind)).map((k) => k.id as string)));
+  const wordKcs = new Set(course.units.flatMap((u) => u.kcs.filter((k) => WORD_KINDS.has(k.kind) && isDrilled(k)).map((k) => k.id as string)));
   const plans = (skill: Skill): boolean => !off.has(skill) && (Object.keys(TEMPLATES) as TemplateId[]).some((t) => TEMPLATES[t].facet === skill && !excluded.has(t));
-  const written = new Set<string>();
+  const written = new Set<string>(course.units.flatMap((u) => u.kcs.filter((k) => writable(course, k)).map((k) => k.id as string)));
   const heard = new Set<string>(Object.keys(course.audio));
-  for (const unit of course.units)
+  for (const unit of course.units) {
     for (const s of unit.sentences) {
       if (s.forms[course.orthography] === undefined) continue;
       for (const kc of s.kcs) written.add(kc);
       if (course.audio[s.id] !== undefined) for (const kc of s.kcs) heard.add(kc);
     }
+    for (const story of unit.stories ?? []) for (const step of story.steps) if (step.line?.forms[course.orthography] !== undefined) for (const kc of step.line.kcs) written.add(kc);
+  }
   const recognize = plans("recognize");
   const produce = plans("produce");
   const listen = plans("listen");
@@ -151,7 +155,8 @@ export const learnedWords = (
     for (const kc of unit.kcs) {
       const facets = practised.get(kc.id);
       const form = kc.forms?.[orthography]?.[0];
-      if (seen.has(kc.id) || !WORD_KINDS.has(kc.kind) || facets === undefined || form === undefined) continue;
+      // A word that is not drilled (a name, ADR 0144) is glossed, never learned.
+      if (seen.has(kc.id) || !WORD_KINDS.has(kc.kind) || !isDrilled(kc) || facets === undefined || form === undefined) continue;
       seen.add(kc.id);
       const recallOf = (of: readonly Practised[]): readonly number[] => of.map((f) => retrievability(state, kc.id, f.facet, orthography, now));
       // What counts is the facets not turned off (D41). A word practised in nothing else is still

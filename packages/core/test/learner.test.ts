@@ -152,6 +152,7 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
       return { tag: "tiles", order: bad ? [...ex.solution].reverse() : ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
+    case "write-word":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.blank) };

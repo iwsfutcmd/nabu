@@ -157,6 +157,34 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
   );
 };
 
+/**
+ * The words the story is the first to use (ADR 0144), before its first line: each as word cards show
+ * it, with its reading where the layer shows one over new words, and its meaning. Names are among
+ * them, glossed and never drilled.
+ */
+const NewWords = ({ words, ruby, marks }: { readonly words: StoryScript["words"]; readonly ruby: SchemeId | false; readonly marks: Marks }): JSX.Element | null => {
+  const t = useTranslator();
+  const heading = useId();
+  if (words.length === 0) return null;
+  return (
+    <section className={styles.newWords} aria-labelledby={heading} data-new-words="">
+      <h3 className={styles.newWordsTitle} id={heading}>
+        {t.format("story.new-words.title")}
+      </h3>
+      <dl className={styles.wordList}>
+        {words.map((w) => (
+          <div key={w.kc} className={styles.wordEntry} data-word={w.kc}>
+            <dt>
+              <T text={w.form} ruby={ruby} marks={marks} />
+            </dt>
+            <dd>{w.gloss !== undefined && <T text={w.gloss} />}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  );
+};
+
 /** The story's toggles, and readings faded inside it where the learner shows them on new words only (ADR 0131). */
 const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
   // Sound, the reading layer, vowel marks and vertical reading: the learner's choices for the course,
@@ -307,6 +335,7 @@ const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyPro
             {script.title === undefined ? t.format("story.reread.title") : <T text={script.title} />}
           </h2>
           <div className={`${styles.transcript} ${styles.whole}`} role="region" aria-label={t.format("story.reread.label")} data-story-transcript="" data-writing-mode={transcriptMode} data-ink-container="transcript">
+            <NewWords words={script.words} ruby={ruby} marks={marks} />
             {lineViews(script.lines, false)}
           </div>
           {glossPanel}
@@ -400,6 +429,7 @@ const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyPro
         data-writing-mode={transcriptMode}
         data-ink-container="transcript"
       >
+        <NewWords words={script.words} ruby={ruby} marks={marks} />
         {lineViews(lines, true)}
       </div>
 

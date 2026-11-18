@@ -16,6 +16,7 @@
  * Pure: the state is the replayed log, `now` the caller's clock.
  */
 import type { CourseView } from "../lesson/course.ts";
+import { drillNodes } from "../lesson/drill.ts";
 import type { Facet } from "../lesson/exercise.ts";
 import { pathOf, type PathNode } from "./path.ts";
 import { DESIRED_RETENTION, RECENT_WINDOW, type LearnerState } from "./state.ts";
@@ -37,12 +38,18 @@ export interface PaceSettings {
    * of; in a growing vocabulary there are always some (a new word's first intervals are a day or two).
    */
   readonly practiceAt: number;
+  /**
+   * Continue offers a passage's drills before the next node once this many words of passages read
+   * wait to be drilled (ADR 0144): a learner who consolidates drills each passage's words before
+   * reading on, one who speeds up reads ahead of their drills.
+   */
+  readonly drillAt: number;
 }
 
 export const PACE: Readonly<Record<PaceBand, PaceSettings>> = {
-  consolidate: { retention: 0.93, reviewShare: 0.35, practiceAt: 10 },
-  steady: { retention: DESIRED_RETENTION, reviewShare: 0.25, practiceAt: 20 },
-  accelerate: { retention: 0.85, reviewShare: 0.1, practiceAt: 60 },
+  consolidate: { retention: 0.93, reviewShare: 0.35, practiceAt: 10, drillAt: 1 },
+  steady: { retention: DESIRED_RETENTION, reviewShare: 0.25, practiceAt: 20, drillAt: 10 },
+  accelerate: { retention: 0.85, reviewShare: 0.1, practiceAt: 60, drillAt: 30 },
 };
 
 /** How far under the target a word's recall has fallen when it is slipping. */
@@ -97,18 +104,39 @@ export const paceOf = (course: CourseView, state: LearnerState, now: string, cho
 export const practiceFirst = (pace: Pace): boolean => pace.slipping >= pace.settings.practiceAt;
 
 /**
+ * The words of passages read that wait to be drilled (ADR 0144): those of every open drill session
+ * not done yet.
+ */
+export const undrilledWords = (course: CourseView, state: LearnerState): number => {
+  const done = new Set(state.completedNodes);
+  return drillNodes(course)
+    .filter((d) => done.has(d.node.drill.story))
+    .reduce((sum, d) => sum + d.sessions.filter((s) => !done.has(s.id)).reduce((n, s) => n + s.words.length, 0), 0);
+};
+
+/**
  * Where Continue goes (D6): practice first once enough words are due for this pace (or when the
- * path is finished and anything is due), else the next node on the path. `next` is that node either
- * way, for "New lesson anyway"; undefined once the path is done. What is due is the pace's, facets
- * turned off for good left out (D41).
+ * path is finished and anything is due); then a passage's drills (ADR 0144) once enough of its
+ * words wait for this pace (or when nothing else is left on the path); else the next node on the
+ * path. `next` is that node either way, for "New lesson anyway"; undefined once the path is done (a
+ * drill, when only drills are left). What is due is the pace's, facets turned off for good left out
+ * (D41).
  */
 export type ContinueTo =
   | { readonly kind: "practice"; readonly next: PathNode | undefined }
+  | { readonly kind: "drill"; readonly drill: PathNode; readonly next: PathNode | undefined }
   | { readonly kind: "path"; readonly next: PathNode }
   | { readonly kind: "done" };
 
+/** Whether Continue offers a passage's drills before the next node: enough words wait at this pace. */
+export const drillFirst = (course: CourseView, state: LearnerState, pace: Pace): boolean => undrilledWords(course, state) >= pace.settings.drillAt;
+
 export const continueOf = (course: CourseView, state: LearnerState, pace: Pace): ContinueTo => {
-  const next = pathOf(course, state).find((n) => n.status === "available");
-  if (practiceFirst(pace) || (next === undefined && pace.due > 0)) return { kind: "practice", next };
-  return next === undefined ? { kind: "done" } : { kind: "path", next };
+  const path = pathOf(course, state);
+  const next = path.find((n) => n.status === "available" && n.kind !== "drill");
+  const drill = path.find((n) => n.status === "available" && n.kind === "drill");
+  if (practiceFirst(pace)) return { kind: "practice", next: next ?? drill };
+  if (drill !== undefined && (next === undefined || drillFirst(course, state, pace))) return { kind: "drill", drill, next };
+  if (next === undefined) return pace.due > 0 ? { kind: "practice", next } : { kind: "done" };
+  return { kind: "path", next };
 };

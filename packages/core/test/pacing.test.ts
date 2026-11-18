@@ -1,12 +1,13 @@
 import type { LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { continueOf, emptyLearnerState, PACE, paceOf, pathOf, plan, practiceFirst, RECENT_WINDOW, replay, type LearnerState } from "../src/learner/index.ts";
-import { allKcs, lessonNodes, type Exercise, type Facet } from "../src/lesson/index.ts";
+import { allKcs, isDrilled, lessonNodes, type Exercise, type Facet } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-06-01T08:00:00.000Z";
 const fa = loadCourse("fa");
-const words = allKcs(fa).filter((k) => k.kind === "sense" && k.forms?.[fa.orthography] !== undefined);
+// The course's words to learn: names are glossed, never asked (ADR 0144).
+const words = allKcs(fa).filter((k) => k.kind === "sense" && isDrilled(k) && k.forms?.[fa.orthography] !== undefined);
 
 /** A card reviewed `daysAgo` with this stability: recall falls as the days pass. */
 const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {

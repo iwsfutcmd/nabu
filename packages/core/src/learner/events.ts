@@ -6,10 +6,10 @@
  */
 import type { AnswerSubmitted, KcId, LearnerEvent, OrthographyId, Prediction, ProgressReset } from "@nabu/schema";
 import { lessonNodes } from "../lesson/nodes.ts";
-import type { CourseView } from "../lesson/course.ts";
+import { allKcs, type CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import type { LessonEvent } from "../lesson/player.ts";
-import { TEMPLATES } from "../lesson/templates.ts";
+import { isDrilled, TEMPLATES } from "../lesson/templates.ts";
 import { creditOf, readingOf } from "./credit.ts";
 
 export interface EventMeta {
@@ -32,10 +32,14 @@ export interface SessionMeta {
 }
 
 
-/** The KCs the placed nodes introduce (ADR 0111), once each, in path order. */
+/**
+ * The KCs the placed nodes introduce (ADR 0111), once each, in path order: those drilled (ADR 0144),
+ * a name is never asked.
+ */
 export const placedKcs = (course: CourseView, placed: readonly string[]): KcId[] => {
   const nodes = new Set(placed);
-  return [...new Set(lessonNodes(course).flatMap((n) => (nodes.has(n.node.id) ? n.node.introduces : [])))];
+  const undrilled = new Set(allKcs(course).filter((k) => !isDrilled(k)).map((k) => k.id));
+  return [...new Set(lessonNodes(course).flatMap((n) => (nodes.has(n.node.id) ? n.node.introduces.filter((kc) => !undrilled.has(kc)) : [])))];
 };
 
 /**

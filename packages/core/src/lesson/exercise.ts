@@ -38,7 +38,9 @@ export type TemplateId =
   | "letter-read"
   | "letter-pairs"
   | "word-read"
-  | "word-write";
+  | "word-write"
+  // Words met in passages (ADR 0144): a word typed from its gloss.
+  | "write-word";
 
 /** Facets of a knowledge component (§9.1): each (KC, facet) pair is its own memory. */
 export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
@@ -131,6 +133,19 @@ export interface CompleteTranslation extends Common {
   readonly canonical: TaggedText;
   /** Who speaks and who is spoken to, where the target marks it and the prompt cannot (writing into the target). */
   readonly persons?: Persons | undefined;
+}
+
+/**
+ * A word's meaning; type the word (ADR 0144): its first form, the lemma as word cards show it. Any
+ * form of any word the course glosses so (`accept`) is right: the gloss does not tell them apart.
+ */
+export interface WriteWord extends Common {
+  readonly template: "write-word";
+  /** The word's gloss in the support language, as a card shows it (its first sense). */
+  readonly prompt: TaggedText;
+  readonly accept: string;
+  /** The word as word cards show it: what the card shows as the answer. */
+  readonly canonical: TaggedText;
 }
 
 /**
@@ -397,6 +412,7 @@ export type Exercise =
   | TranslateTap
   | TranslateType
   | CompleteTranslation
+  | WriteWord
   | GapFill
   | CharRead
   | ReadingDisambiguation

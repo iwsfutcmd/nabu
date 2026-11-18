@@ -73,11 +73,15 @@ export const ContinueCard = ({ entry, orthography, course, state, links }: Conti
   const primary =
     step?.kind === "practice"
       ? { href: links.review, label: t.format("app.continue.practice") }
-      : step?.kind === "path"
+      : step?.kind === "drill"
+        ? { href: links.node(step.node), label: t.format("app.continue.drill") }
+        : step?.kind === "path"
         ? { href: links.node(step.node), label: t.format("app.continue.lesson") }
         : step === undefined
           ? { href: links.page, label: t.format("app.continue.lesson") }
           : undefined;
+  // A new lesson is always on offer beside practice or a passage's words (D6).
+  const beside = step?.kind === "practice" ? step.node : step?.kind === "drill" ? step.next : undefined;
   return (
     <section className={`${styles.course} ${styles.continueCard}`} aria-labelledby="continue-title" data-home-continue={entry.id} data-continue-orthography={orthography} data-step={step?.kind ?? "loading"}>
       <h2 className={styles.courseName} id="continue-title">
@@ -96,9 +100,8 @@ export const ContinueCard = ({ entry, orthography, course, state, links }: Conti
           <a className={styles.primary} href={primary.href} aria-describedby={line === undefined ? undefined : "continue-step"} data-action="continue">
             {primary.label}
           </a>
-          {/* A new lesson is always on offer beside practice (D6). */}
-          {step?.kind === "practice" && step.node !== undefined && (
-            <a className={styles.link} href={links.node(step.node)} data-action="new-lesson">
+          {beside !== undefined && (
+            <a className={styles.link} href={links.node(beside)} data-action="new-lesson">
               {t.format("app.continue.new-lesson")}
             </a>
           )}

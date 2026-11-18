@@ -19,12 +19,13 @@ import type { Asks, BundleSentence, KcId, SchemeId } from "@nabu/schema";
 import { candidatesFor, lessonCandidates } from "../lesson/candidates.ts";
 import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
+import { drillCandidates, drillSessionAt, passageKcs } from "../lesson/drill.ts";
 import { courseExclusions, speechExclusions, type SpeechSupport } from "../lesson/exclusions.ts";
 import { lessonNodes, sentencesOf } from "../lesson/nodes.ts";
 import { seededRng } from "../lesson/rng.ts";
 import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
 import { readingTradition, traditionKey } from "../lesson/traditions.ts";
-import { KC_LISTENING, KC_TEMPLATES, SENTENCE_TEMPLATES, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
+import { KC_LISTENING, KC_TEMPLATES, LINE_TEMPLATES, lineSentences, makeWriteWord, SENTENCE_TEMPLATES, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { typedByProfile } from "../match/pronounce.ts";
 import { askedKcs, creditedKcs, facetOf, readingOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
@@ -297,16 +298,22 @@ const exclusionsOf = (course: CourseView, options: { readonly exclude?: Readonly
  */
 const mistakeExercises = (ctx: MakeContext, state: LearnerState, exclude: ReadonlySet<TemplateId>, seen: ReadonlySet<string>): Exercise[] => {
   const byId = new Map(allSentences(ctx.course).map((s) => [s.id, s]));
+  // A card on a passage's line (ADR 0144) is made again from the line.
+  const lines = new Map(ctx.course.units.flatMap((u) => (u.stories ?? []).flatMap((story) => lineSentences(ctx.course, story))).map((s) => [s.id, s]));
   const kcById = new Map(allKcs(ctx.course).map((k) => [k.id as string, k]));
   const out: Exercise[] = [];
   for (const m of [...state.mistakes].reverse()) {
     if (exclude.has(m.template)) continue;
     const s = byId.get(m.item);
+    const line = s === undefined ? lines.get(m.item) : undefined;
     const kc = kcById.get(m.item);
     const at = { ...ctx, ask: m.ask, asks: m.asks };
-    const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(at, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(at, kc) : undefined;
+    const ex =
+      s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(at, s) : line !== undefined ? LINE_TEMPLATES[m.template]?.(at, line) : kc !== undefined ? KC_TEMPLATES[m.template]?.(at, kc) : undefined;
     if (ex === undefined || (m.ask !== undefined && !sameQuestion(m, askedWord(ex), questionOf(ex)))) continue;
-    if (ex.kcs.every((k) => seen.has(k)) && !out.some((e) => e.id === ex.id)) out.push(ex);
+    // A line holds the rest of its passage as context: only the word it asks must have been seen.
+    const needed = line !== undefined ? creditedKcs(ex) : ex.kcs;
+    if (needed.every((k) => seen.has(k)) && !out.some((e) => e.id === ex.id)) out.push(ex);
   }
   return out;
 };
@@ -336,10 +343,39 @@ export const practicableMistakes = (
 
 /**
  * Whether the course can plan this request. A lesson request names one of the course's lesson or
- * script nodes; an old link may name one a newer course no longer has, which `plan` refuses.
+ * script nodes, or a drill session (ADR 0144); an old link may name one a newer course no longer has,
+ * which `plan` refuses.
  */
 export const plannable = (course: CourseView, request: SessionRequest): boolean =>
-  request.mode !== "lesson" || scriptNodes(course).some((n) => n.node.id === request.node) || lessonNodes(course).some((n) => n.node.id === request.node);
+  request.mode !== "lesson" ||
+  scriptNodes(course).some((n) => n.node.id === request.node) ||
+  lessonNodes(course).some((n) => n.node.id === request.node) ||
+  drillSessionAt(course, request.node) !== undefined;
+
+/** The course's nodes by their place in it (every unit's, in order). */
+const nodePlaces = new WeakMap<CourseView, ReadonlyMap<string, number>>();
+const placeOf = (course: CourseView, node: string): number => {
+  let places = nodePlaces.get(course);
+  if (places === undefined) {
+    places = new Map(course.units.flatMap((u) => u.nodes).map((n, i) => [n.id, i] as const));
+    nodePlaces.set(course, places);
+  }
+  return places.get(node) ?? Number.POSITIVE_INFINITY;
+};
+
+/** The KCs a course sentence asks in writing in the orthography (one it uses for production). */
+const writtenSets = new WeakMap<CourseView, ReadonlySet<string>>();
+const writtenInSentences = (course: CourseView): ReadonlySet<string> => {
+  let set = writtenSets.get(course);
+  if (set === undefined) {
+    set = new Set(allSentences(course).flatMap((s) => (s.production && s.forms[course.orthography]?.reverse !== undefined ? s.kcs : [])));
+    writtenSets.set(course, set);
+  }
+  return set;
+};
+
+/** A drill session's size (ADR 0144): each word presented (one card for all), recognized and written. */
+const drillSize = (words: number): number => Math.min(14, Math.max(10, 2 + 2 * words));
 
 export const plan = (course: CourseView, state: LearnerState, request: SessionRequest, options: PlanOptions): SessionPlan => {
   const rng = seededRng(options.seed);
@@ -377,11 +413,29 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   let pool: Exercise[];
   let size: number;
   const script = request.mode === "lesson" ? scriptNodes(course).find((n) => n.node.id === request.node) : undefined;
+  // A drill session (ADR 0144): words a passage introduced, as a lesson for them.
+  const drill = request.mode === "lesson" && script === undefined ? drillSessionAt(course, request.node) : undefined;
+  // What a drill's cards may hold as context: the passage's words, met glossed in it.
+  let context: ReadonlySet<string> = new Set();
   if (script !== undefined) {
     // A script track's node (ADR 0088): its letters and words, nothing else.
     introduced = script.node.introduces;
     pool = [...scriptCandidates({ course, rng, introduced }, script, exclude)];
     size = options.size ?? 10;
+  } else if (drill !== undefined) {
+    introduced = drill.session.words.map((k) => k.id);
+    const ctx: MakeContext = { course, rng, introduced, focus, reading };
+    context = passageKcs(drill.drill);
+    // Review as a lesson brings it (ADR 0097): earlier lessons' sentences picked by need, marked.
+    const here = placeOf(course, drill.drill.node.id);
+    const past = lessonNodes(course)
+      .filter((n) => placeOf(course, n.node.id) < here)
+      .flatMap((n) => sentencesOf(course, n.unit, n.node));
+    const picked = reviewSentences(course, past, seen, due, needs, desired, key);
+    const earlier = [...picked, ...wellKnownSentences(past, picked, seen, (kc) => retrievability(state, kc, "recognize", orthography, now))];
+    for (const s of earlier) reviewItems.add(s.id);
+    pool = [...drillCandidates(ctx, drill.drill, drill.session, seen, exclude), ...candidatesFor(ctx, earlier, [], exclude)];
+    size = options.size ?? drillSize(introduced.length);
   } else if (request.mode === "lesson") {
     const found = lessonNodes(course).find((n) => n.node.id === request.node);
     if (found === undefined) throw new Error(`no lesson node ${request.node} in ${course.id}`);
@@ -415,15 +469,22 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const sentences = [...picked, ...wellKnownSentences(studied, picked, seen, recall)];
     // Due facets have the highest gain; the well-known sentences are what the calibration can pick
     // to keep the session near the target success rate.
-    pool = candidatesFor(ctx, sentences, allKcs(course).filter((k) => seen.has(k.id) && neediest.has(k.id)), exclude);
+    const words = allKcs(course).filter((k) => seen.has(k.id) && neediest.has(k.id));
+    // A word no course sentence asks in writing (one met in a passage, ADR 0144) is typed from its gloss.
+    const unwritten = exclude.has("write-word") ? [] : words.filter((k) => !writtenInSentences(course).has(k.id)).flatMap((k) => makeWriteWord(ctx, k) ?? []);
+    pool = [...candidatesFor(ctx, sentences, words, exclude), ...unwritten];
   } else {
     pool = mistakeExercises({ course, rng, introduced: [], reading }, state, exclude, seen);
     size = Math.min(options.size ?? 10, pool.length);
   }
 
-  // i+1 at runtime: every KC that is not new in this lesson has been seen.
+  // i+1 at runtime: every KC that is not new in this lesson has been seen. A drill's line may hold
+  // the passage's other words as context, met glossed in it, but never ask them (ADR 0144).
   const targets = new Set(introduced);
-  const admissible = pool.filter((ex) => ex.kcs.every((kc) => targets.has(kc) || seen.has(kc)));
+  const admissible = pool.filter((ex) => {
+    const credited = new Set<string>(creditedKcs(ex));
+    return ex.kcs.every((kc) => targets.has(kc) || seen.has(kc) || (context.has(kc) && !credited.has(kc)));
+  });
   const candidates: Candidate[] = admissible.map((ex, order) => ({ ex, p: predictExercise(state, ex, orthography, now), order }));
 
   // ---- 3–4. greedy selection

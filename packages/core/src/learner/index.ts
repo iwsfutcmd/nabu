@@ -3,7 +3,7 @@ export { initialPerformance, PERFORMANCE_MODEL, predict, TEMPLATE_PRIORS, update
 export { attemptOf, learnerEventOf, placedKcs, progressResetOf, type EventMeta, type SessionMeta } from "./events.ts";
 export { dueFacets, plan, plannable, PLANNER, practicableMistakes, predictExercise, type PlanOptions, type SessionPlan, type SessionRequest } from "./planner.ts";
 export { revised, revisionsOf, revisionVerdict, withRevisions } from "./revisions.ts";
-export { pathNodes, pathOf, pathUnits, scriptPathOf, type NodeStatus, type NumberedEntry, type PathEntry, type PathNode, type PathUnit } from "./path.ts";
+export { pathNodes, pathOf, pathUnits, scriptPathOf, sessionNodeOf, type NodeStatus, type NumberedEntry, type PathEntry, type PathNode, type PathUnit } from "./path.ts";
 export { BLOCK_SIZE, PASS_SHARE, placementOf, placementTest, type PlacementTest } from "./placement.ts";
 export {
   applyEvents,
@@ -24,5 +24,5 @@ export {
   type StoredCard,
 } from "./state.ts";
 export { learnedWords, orderWords, readingsShown, skillsAsked, wordCounts, wordMatcher, type LearnedWord, type Skill, type WordOrder, type WordSkill } from "./words.ts";
-export { continueOf, PACE, paceOf, practiceFirst, type ContinueTo, type Pace, type PaceBand, type PaceChoice, type PaceSettings } from "./pacing.ts";
+export { continueOf, drillFirst, PACE, paceOf, practiceFirst, undrilledWords, type ContinueTo, type Pace, type PaceBand, type PaceChoice, type PaceSettings } from "./pacing.ts";
 export { isStart, studiedCourses, type Studied } from "./studied.ts";

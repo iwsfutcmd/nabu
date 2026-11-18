@@ -39,6 +39,42 @@
   text-orientation: mixed;
 }
 
+/* The words the story uses for the first time (ADR 0144), before its first line, as a textbook's
+   vocabulary: each word (with its reading, where the layer shows one) beside its meaning. It stays
+   horizontal in vertical reading, as the translations do. */
+.newWords {
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  border-block-end: 1px solid var(--nabu-color-border);
+}
+
+.newWordsTitle {
+  margin-block: 0 var(--nabu-space-2);
+  font-size: 1rem;
+}
+
+.wordList {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+  align-items: baseline;
+  margin: 0;
+}
+
+/* Each word and its meaning are a group of the list, laid out by the list's grid. */
+.wordEntry {
+  display: contents;
+}
+
+.wordList dt {
+  font-size: 1.25rem;
+}
+
+.wordList dd {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
 .line {
   display: flex;
   flex-direction: column;

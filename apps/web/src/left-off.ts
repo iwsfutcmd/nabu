@@ -5,7 +5,7 @@
  * import it from Node; the card is HomeContinue.tsx.
  */
 import { daysBetween } from "@nabu/core/game";
-import { continueOf, paceOf, type LearnerState, type PaceChoice, type PathNode, type Studied } from "@nabu/core/learner";
+import { continueOf, paceOf, undrilledWords, type LearnerState, type PaceChoice, type PathNode, type Studied } from "@nabu/core/learner";
 import type { CourseView, Facet } from "@nabu/core/lesson";
 import type { useTranslator } from "@nabu/ui";
 import type { CourseIndexEntry } from "@nabu/ui/player";
@@ -46,6 +46,8 @@ export const lastPractised = (t: Translator, at: string, now: Date): string => {
 export type Step =
   | { readonly kind: "path"; readonly node: PathNode }
   | { readonly kind: "practice"; readonly node: PathNode | undefined; readonly slipping: number }
+  /** A passage's words to drill first (ADR 0144): `waiting` words of passages read, `next` the node beside it. */
+  | { readonly kind: "drill"; readonly node: PathNode; readonly next: PathNode | undefined; readonly waiting: number }
   | { readonly kind: "done" };
 
 /** The next step at the learner's pace (`choice`, D5), with what they turned off for good left out (D41), as on the course page. */
@@ -53,6 +55,7 @@ export const stepOf = (course: CourseView, state: LearnerState, now: Date, choic
   const pace = paceOf(course, state, now.toISOString(), choice, facetsOff);
   const next = continueOf(course, state, pace);
   if (next.kind === "practice") return { kind: "practice", node: next.next, slipping: pace.slipping };
+  if (next.kind === "drill") return { kind: "drill", node: next.drill, next: next.next, waiting: undrilledWords(course, state) };
   return next.kind === "path" ? { kind: "path", node: next.next } : { kind: "done" };
 };
 
@@ -61,6 +64,7 @@ export const stepOf = (course: CourseView, state: LearnerState, now: Date, choic
  * practice comes first; or that the path is done (practice with nothing slipping comes only then).
  */
 export const stepLine = (t: Translator, course: CourseView, step: Step): string | undefined => {
+  if (step.kind === "drill") return t.format("app.pace.why.drill", { count: step.waiting });
   if (step.kind === "path") {
     const name = nodeName(t, course, step.node.node);
     return name === undefined ? undefined : t.format("app.home.continue.next", { step: name });

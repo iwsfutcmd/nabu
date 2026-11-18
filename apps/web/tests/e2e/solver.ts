@@ -234,7 +234,8 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     }
     case "translate-type.l1-l2":
     case "complete-translation":
-    case "listen-type": {
+    case "listen-type":
+    case "write-word": {
       const text = surfaceOf(ex.template === "complete-translation" ? ex.blank : ex.canonical);
       if (mode === "keyboard") {
         await page.keyboard.type(text);

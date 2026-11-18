@@ -151,8 +151,9 @@ describe("template coverage", () => {
   it("every kind of card is planned in some fixture course, but stories', script tracks' and those the app must support", () => {
     const planned = new Set(COURSES.flatMap(([id, orthography]) => plannedCards(walked(id, orthography).sessions).map(({ ex }) => ex.template)));
     // Story questions come from stories (test/story.test.ts) and a script track's cards from its
-    // nodes (test/script.test.ts); scored speaking and tones only where the app can do them (below).
-    const elsewhere = new Set<TemplateId>(["speak", "listen-speak", "tone-identify", ...SCRIPT_TEMPLATES]);
+    // nodes (test/script.test.ts); scored speaking and tones only where the app can do them (below);
+    // a word typed from its gloss from a passage's drills (test/drill.test.ts, ADR 0144).
+    const elsewhere = new Set<TemplateId>(["speak", "listen-speak", "tone-identify", "write-word", ...SCRIPT_TEMPLATES]);
     expect([...planned].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !t.startsWith("story-") && !elsewhere.has(t)).sort());
   });
 });

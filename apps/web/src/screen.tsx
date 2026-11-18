@@ -10,7 +10,7 @@
  * cards (focusInReach).
  */
 import { pathUnits, type SessionRequest } from "@nabu/core/learner";
-import { scriptNodes, type CourseView } from "@nabu/core/lesson";
+import { drillSessionAt, scriptNodes, type CourseView } from "@nabu/core/lesson";
 import { useTranslator } from "@nabu/ui";
 import { useEffect, useRef, type JSX, type ReactNode } from "react";
 import type { Route } from "./App.tsx";
@@ -29,6 +29,7 @@ export const nodeName = (t: Translator, course: CourseView, node: string): strin
     const entry = unit.entries.find((e) => e.node.id === node);
     if (entry === undefined) continue;
     if (entry.kind === "story") return t.format("app.path.story");
+    if (entry.kind === "drill") return t.format("app.path.drill");
     if (entry.number === undefined) return t.format("app.path.practice");
     return unit.number === undefined ? t.format("app.lessons.lesson", { number: entry.number }) : t.format("app.lessons.unit-lesson", { unit: unit.number, number: entry.number });
   }
@@ -43,6 +44,9 @@ export const sessionName = (t: Translator, request: SessionRequest, course: Cour
   if (course === undefined) return t.format("app.lessons.title");
   const letters = scriptNodes(course).findIndex((s) => s.node.id === request.node);
   if (letters >= 0) return t.format("app.path.letters", { number: letters + 1 });
+  // A session of a passage's words (ADR 0144): its place among the passage's.
+  const drill = drillSessionAt(course, request.node);
+  if (drill !== undefined) return t.format("app.session.drill", { number: drill.session.number, total: drill.drill.sessions.length });
   return nodeName(t, course, request.node) ?? t.format("app.lessons.title");
 };
 

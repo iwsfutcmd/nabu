@@ -32,9 +32,9 @@ export const idFactory = (prefix = 0): (() => string) => {
 export interface EventFactory {
   readonly at: (iso: string) => void;
   readonly session: () => string;
-  readonly started: (mode: "lesson" | "review" | "mistakes", node: string | undefined, exercises: number) => LearnerEvent;
+  readonly started: (mode: "lesson" | "review" | "mistakes" | "story", node: string | undefined, exercises: number) => LearnerEvent;
   readonly answer: (ex: Exercise, correct: boolean, attempt: number, latencyMs?: number, prediction?: Prediction) => LearnerEvent;
-  readonly completed: (mode: "lesson" | "review" | "mistakes", node: string | undefined, summary: { exercises: number; correctFirstTry: number; retries: number }) => LearnerEvent;
+  readonly completed: (mode: "lesson" | "review" | "mistakes" | "story", node: string | undefined, summary: { exercises: number; correctFirstTry: number; retries: number }) => LearnerEvent;
 }
 
 /** The credits the player logs for a whole answer (creditOf): the words asked about, the rest given. */

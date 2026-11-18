@@ -31,10 +31,23 @@ export type StoryStep =
   /** A question; `reveals` is the line that appears once it is answered (complete, arrange). */
   | { readonly tag: "question"; readonly ex: Exercise; readonly reveals?: number | undefined };
 
+/** A word the passage is the first to use (ADR 0144), as its list of new words shows it. */
+export interface NewWord {
+  readonly kc: KcId;
+  /** Its lemma in the learner's orthography, as word cards show it. */
+  readonly form: TaggedText;
+  readonly gloss: TaggedText | undefined;
+}
+
 export interface StoryScript {
   readonly id: string;
   readonly node: string;
   readonly title: TaggedText | undefined;
+  /**
+   * The words the passage introduces (ADR 0144), shown before it as a textbook's vocabulary is, the
+   * words the course's passages use most first: names too, which are glossed, never drilled.
+   */
+  readonly words: readonly NewWord[];
   readonly lines: readonly StoryLine[];
   readonly steps: readonly StoryStep[];
 }
@@ -42,6 +55,20 @@ export interface StoryScript {
 export const allStories = (course: CourseView): readonly BundleStory[] => course.units.flatMap((u) => u.stories ?? []);
 
 export const storyAt = (course: CourseView, node: string): BundleStory | undefined => allStories(course).find((s) => s.node === node);
+
+/**
+ * The words a story node's passage introduces (ADR 0144) that the orthography writes: the bundle's
+ * `introduces` of the node, word KCs (senses) with a form, in its order.
+ */
+export const newWordsOf = (course: CourseView, node: string): readonly NewWord[] => {
+  const found = course.units.flatMap((u) => u.nodes).find((n) => n.id === node);
+  const kcs = new Map(allKcs(course).map((k) => [k.id, k]));
+  return (found?.introduces ?? []).flatMap((id): NewWord[] => {
+    const kc = kcs.get(id);
+    const form = kc?.kind === "sense" ? kc.forms?.[course.orthography]?.[0] : undefined;
+    return kc === undefined || form === undefined ? [] : [{ kc: kc.id, form, gloss: kc.gloss?.[course.supportKey] }];
+  });
+};
 
 const isWord = (t: Token): boolean => t.kind === "word" || t.kind === "number";
 
@@ -156,7 +183,7 @@ export const storyScript = (course: CourseView, story: BundleStory, rng: Rng): S
       steps.push({ tag: "question", ex });
     }
   }
-  return { id: story.id, node: story.node, title: story.title[key], lines, steps };
+  return { id: story.id, node: story.node, title: story.title[key], words: newWordsOf(course, story.node), lines, steps };
 };
 
 export interface StoryGlossary {

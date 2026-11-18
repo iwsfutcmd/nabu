@@ -79,6 +79,7 @@ const rightTo = (ex: Exercise): Draft => {
       return { tag: "tiles", order: ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
+    case "write-word":
       return { tag: "text", text: surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: surfaceOf(ex.blank) };

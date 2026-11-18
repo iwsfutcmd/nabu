@@ -31,6 +31,7 @@ export const rightAnswer = (ex: Exercise): Response => {
       return { tag: "tiles", order: ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
+    case "write-word":
       return { tag: "text", text: surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: surfaceOf(ex.blank) };
@@ -79,6 +80,7 @@ export const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "translate-type.l1-l2":
     case "complete-translation":
     case "listen-type":
+    case "write-word":
       return { tag: "text", text: "qqqq zzzz" };
     case "vocalize":
       return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
