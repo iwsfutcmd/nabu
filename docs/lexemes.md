@@ -532,6 +532,32 @@ a new design language.
   - Arabic teaching draws the same line: Form I verbal nouns (كِتابة, قَتْل, دُخول) are memorised; those of
     Forms II–X are nearly predictable (تَكْتِيب, مُكاتَبة, اِسْتِكْتاب; Form III has two patterns).
   - Semi-productive patterns (مَفْعَل) get decoding practice ("what might مَلْعَب be?"), never wug cards.
+- **Decided: patterns are shown with placeholder consonants, not on top of a root.** The dummy root makes a
+  learner subtract its letters to see the shape. Two failures show it (rendered 2026-11-18, Noto Naskh
+  Arabic and Noto Serif Hebrew, Chromium):
+  - **Hebrew פִּעֵל hides the piʿel's doubling:** ע is a guttural and can't take dagesh, so the pattern's
+    defining feature is invisible (קִטֵּל-style paradigm roots exist for this reason). With placeholders the
+    dagesh sits on the second slot.
+  - **Arabic اِفْتَعَلَ doesn't show which letters are the pattern's:** its ت looks like a fourth radical.
+    With placeholders ت is the only letter between the slots.
+- **Proposed: the placeholder per script is profile data**, never code:
+  - **Hebrew:** U+25CC DOTTED CIRCLE, Unicode's own "a letter goes here", points on it (◌ִ◌ֵּ◌, הִ◌ְ◌ִי◌).
+    Hebrew doesn't join, so nothing breaks.
+  - **Arabic:** U+25CC with a ZWJ on each side, so the pattern's letters keep their joining forms (مـ, تـ).
+    Without the ZWJ they fall to isolated forms. The font must cover U+25CC: in the test, the bare circle
+    fell back to another font and came out smaller than the circles carrying marks.
+    - The alternative: U+066E DOTLESS BEH, the bare consonant skeleton (rasm). It joins and reads like Arabic,
+      and affixal letters keep their dots (اِٮْتَٮَٮَ), but a slot can pass for ب, ت or ن missing dots.
+    - Rejected: tatweel (the slots run into one line).
+  - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
+- **Proposed: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
+  name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
+- **Proposed: a placeholder string is display only.** The pattern's lexical form stores its slots
+  abstractly, and the shape is a projection. Learners never type it: building a word from a pattern uses
+  buttons, as vocalize-build does.
+- **Proposed: teaching order.** Two or three words first (مَكْتَب, مَلْعَب, مَطْبَخ), aligned; then the shape
+  beneath them with its meaning; then cards that build (root into slots), extract (word to root) and decode
+  ("what might مَدْخَل be?").
 - **Cards:** root extraction ("what's the root of مكتوب?", the skill a learner needs for an Arabic or Hebrew
   dictionary), pattern meaning, building from root and pattern (ك ت ب + مَفْعَل → مَكْتَب), changed tone,
   root families.
