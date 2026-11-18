@@ -1,6 +1,6 @@
 import { emptyLearnerState, plan } from "@nabu/core/learner";
-import { createGrader, gradeExercise, lessonNodes, sampleExercise, start, step, type CourseView, type Draft, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
-import { surfaceOf } from "@nabu/core/text";
+import { allKcs, createGrader, gradeExercise, lessonNodes, makeWriteWord, sampleExercise, seededRng, start, step, type CourseView, type Draft, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { graphemes, surfaceOf } from "@nabu/core/text";
 import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
@@ -20,7 +20,7 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry" | "display" | "quit" | "new-words";
+export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry" | "display" | "quit" | "new-words" | "write-word";
 
 const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
   tiles: "translate-tap.l1-l2",
@@ -30,6 +30,22 @@ const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
   display: "choose-translation",
   quit: "choose-translation",
   "new-words": "choose-translation",
+  "write-word": "write-word",
+};
+
+/**
+ * A word of the course's first lesson typed from its gloss (ADR 0144): a passage's drill asks its
+ * words so, and the fixture courses' passages introduce none, so the card is made for a lesson's word.
+ */
+const writeWordOf = (course: CourseView): Exercise | undefined => {
+  const kcs = new Map(allKcs(course).map((k) => [k.id as string, k]));
+  for (const { node } of lessonNodes(course))
+    for (const id of node.introduces) {
+      const kc = kcs.get(id);
+      const ex = kc === undefined ? undefined : makeWriteWord({ course, rng: seededRng(SEED), introduced: [] }, kc);
+      if (ex !== undefined) return ex;
+    }
+  return undefined;
 };
 
 const SEED = 7;
@@ -41,6 +57,8 @@ const stateFor = (screen: PlayerScreen, ex: Exercise, course: CourseView, grader
   const [presenting] = start("story", [ex]);
   const [answering] = step(presenting, { tag: "ready" });
   if (screen === "typing" || screen === "display" || screen === "new-words") return answering;
+  // A word typed from its gloss: the first letters typed (its first grapheme), not yet checked.
+  if (screen === "write-word") return ex.template === "write-word" ? step(answering, { tag: "input", draft: { tag: "text", text: graphemes(surfaceOf(ex.canonical))[0] ?? "" } })[0] : answering;
   if (screen === "quit") return step(answering, { tag: "interrupt", reason: "quit-confirm" })[0];
   if (screen === "retry" && ex.template === "choose-translation") {
     // A wrong option, then Continue: the card comes back, its options in a new order (P4).
@@ -177,7 +195,7 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
   const t = useTranslator();
   const { course, imageUrl } = loaded;
   const grader = useMemo(() => createGrader(course), [course]);
-  const ex = useMemo(() => sampleExercise(course, TEMPLATE[screen], SEED), [course, screen]);
+  const ex = useMemo(() => (screen === "write-word" ? writeWordOf(course) : sampleExercise(course, TEMPLATE[screen], SEED)), [course, screen]);
   if (ex === undefined) throw new Error(`${course.id} has no ${TEMPLATE[screen]} exercise`);
   const initialState = useMemo(() => stateFor(screen, ex, course, grader), [screen, ex, course, grader]);
   // New words (P1): played as the lesson that introduces one of the card's words.
@@ -233,6 +251,8 @@ export const Display: Story = story("display");
 export const Quit: Story = story("quit");
 /** The card that first shows a word the lesson teaches: "New word", and the word, since the prompt shows it (P1). */
 export const NewWords: Story = story("new-words");
+/** A word typed from its gloss (ADR 0144), its first letter typed: the gloss in the support language, the field in the target's. */
+export const WriteWord: Story = story("write-word");
 /**
  * The end of a lesson (P9): the score, the new words with their meanings and play buttons, the cards
  * missed the first time with the right answer and the learner's, progress, then the next step.

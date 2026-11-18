@@ -19,7 +19,7 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-export type StoryScreen = "reading" | "question" | "reread";
+export type StoryScreen = "reading" | "question" | "reread" | "new-words";
 
 const SEED = 7;
 
@@ -51,6 +51,8 @@ const advance = (script: StoryScript, grader: Grader, stop: (s: StoryState) => b
 
 const stateFor = (screen: StoryScreen, script: StoryScript, grader: Grader): StoryState => {
   if (screen === "reading") return advance(script, grader, (s) => s.tag === "reading" && s.shown.length >= 4);
+  // The passage's opening: its new words, then its first line.
+  if (screen === "new-words") return startStory(script)[0];
   // The end, every question right: then the whole story read again (S15).
   if (screen === "reread") return advance(script, grader, () => false);
   // The arrange question, one tile placed.
@@ -63,7 +65,7 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
   const t = useTranslator();
   const { course, imageUrl } = loaded;
   const grader = useMemo(() => createGrader(course), [course]);
-  const script = useMemo(() => scriptOf(course), [course]);
+  const script = useMemo(() => (screen === "new-words" ? withNewWords(course, scriptOf(course)) : scriptOf(course)), [course, screen]);
   const initialState = useMemo(() => stateFor(screen, script, grader), [screen, script, grader]);
   // Reading: the second line's translation open, and the gloss of the newest line's first word.
   const newest = initialState.shown.at(-1) ?? 0;
@@ -84,6 +86,21 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
       rereading={screen === "reread"}
     />
   );
+};
+
+/**
+ * The story as a passage that introduces words (ADR 0144) shows it: its new words before its first
+ * line. The fixture courses' stories introduce none (their lessons teach every word first), so the
+ * story's first words stand for them here.
+ */
+const withNewWords = (course: CourseView, script: StoryScript): StoryScript => {
+  const kcs = new Map(course.units.flatMap((u) => u.kcs).map((k) => [k.id as string, k]));
+  const words = [...new Set(script.lines.flatMap((l) => l.kcs))].flatMap((id) => {
+    const kc = kcs.get(id);
+    const form = kc?.kind === "sense" ? kc.forms?.[course.orthography]?.[0] : undefined;
+    return kc === undefined || form === undefined ? [] : [{ kc: kc.id, form, gloss: kc.gloss?.[course.supportKey] }];
+  });
+  return { ...script, words: words.slice(0, 5) };
 };
 
 const scriptOf = (course: CourseView): StoryScript => {
@@ -116,3 +133,5 @@ export const Reading: Story = story("reading");
 export const Question: Story = story("question");
 /** After the end: the whole story again, with its translations and glosses, no questions, nothing recorded (S15). */
 export const ReadAgain: Story = story("reread");
+/** A passage that introduces words (ADR 0144): its new words, with their meanings, before its first line. */
+export const NewWords: Story = story("new-words");

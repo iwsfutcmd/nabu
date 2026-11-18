@@ -249,10 +249,12 @@ const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyPro
   // web fonts change line heights after the first layout and a question opening below resizes the
   // transcript. Scrolling to the end, not "nearest", gives the same position whatever the scroll was.
   const shownCount = state.shown.length;
+  // A passage that introduces words opens on its list of them (ADR 0144): read first, before its lines.
+  const opening = shownCount <= 1 && script.words.length > 0;
   useEffect(() => {
     const box = transcript.current;
     const reveal = (): void => {
-      if (box !== null) box.scrollTop = box.scrollHeight;
+      if (box !== null) box.scrollTop = opening ? 0 : box.scrollHeight;
     };
     reveal();
     let live = true;
@@ -265,7 +267,7 @@ const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyPro
       live = false;
       resized?.disconnect();
     };
-  }, [shownCount]);
+  }, [shownCount, opening]);
 
   // Rereading starts at its heading, so the story is read from its beginning.
   useEffect(() => {

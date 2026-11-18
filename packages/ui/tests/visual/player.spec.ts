@@ -12,7 +12,7 @@ import { expect, test } from "@playwright/test";
 import { comparesPixels, expectNoClipping, platformFonts, settle } from "./checks.ts";
 import { cellGlobals, cells, storyUrl } from "./matrix.ts";
 
-const SCREENS = ["tiles", "typing", "feedback", "finished", "new-words"] as const;
+const SCREENS = ["tiles", "typing", "feedback", "finished", "new-words", "write-word"] as const;
 const JYUTPING = "yue-Latn-HK-jyutping";
 
 for (const cell of cells()) {
@@ -80,6 +80,17 @@ for (const cell of cells()) {
         expect(isTarget(await input.getAttribute("lang"))).toBe(true);
         await expect(input).toHaveAttribute("dir", cell.targetDir);
         await expect(input).toHaveAttribute("spellcheck", "false");
+      }
+
+      if (screen === "write-word") {
+        // A word typed from its gloss (ADR 0144): the gloss in the support language, the field the target's.
+        await expect(player).toHaveAttribute("data-template", "write-word");
+        const gloss = page.locator("[data-write-word-gloss] [data-nabu-text]").first();
+        await expect(gloss).toHaveAttribute("lang", "en-Latn");
+        const input = page.locator("[data-answer-input]");
+        expect(isTarget(await input.getAttribute("lang"))).toBe(true);
+        await expect(input).toHaveAttribute("dir", cell.targetDir);
+        expect(await input.inputValue()).not.toBe("");
       }
 
       if (screen === "finished") {

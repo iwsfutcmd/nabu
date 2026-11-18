@@ -1,22 +1,23 @@
 /**
  * Phase 6: the story reader in the visual matrix (gameplan §15): UI {en, en-XA, ar-XB} × target
- * {fa, yue-Hant-HK, uz-Latn, apc-Arab} × {horizontal, vertical where allowed}, on two screens:
- * reading (four lines, a translation open, a word glossed) and a question (building a line from
- * its tiles). Vertical cells are the reading screen: each line's text turns into columns, its
- * reading beside them, while names, buttons, translations and the chrome stay horizontal (§11.4,
- * ADR 0118). Same structural checks as the player; pixels in the pinned container.
+ * {fa, yue-Hant-HK, uz-Latn, apc-Arab} × {horizontal, vertical where allowed}, on three screens:
+ * reading (four lines, a translation open, a word glossed), a question (building a line from its
+ * tiles) and a passage's opening with its new words (ADR 0144). Vertical cells are the reading
+ * screens: each line's text turns into columns, its reading beside them, while names, buttons,
+ * translations, the list of new words and the chrome stay horizontal (§11.4, ADR 0118). Same
+ * structural checks as the player; pixels in the pinned container.
  */
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { comparesPixels, expectNoClipping, platformFonts, settle } from "./checks.ts";
 import { cellGlobals, cells, storyUrl } from "./matrix.ts";
 
-const SCREENS = ["reading", "question"] as const;
+const SCREENS = ["reading", "question", "new-words"] as const;
 const JYUTPING = "yue-Latn-HK-jyutping";
 
 for (const cell of cells()) {
   for (const screen of SCREENS) {
-    if (cell.writingMode !== "horizontal-tb" && screen !== "reading") continue;
+    if (cell.writingMode !== "horizontal-tb" && screen === "question") continue;
     test(`story: ${cell.ui} × ${cell.target} × ${cell.writingMode} × ${screen}`, async ({ page }) => {
       const errors: string[] = [];
       page.on("pageerror", (e) => errors.push(String(e)));
@@ -78,6 +79,20 @@ for (const cell of cells()) {
           expect(line!.height).toBeGreaterThan(line!.width);
           await expect(transcript.locator("rt").first()).toBeVisible();
         }
+      }
+
+      if (screen === "new-words") {
+        // A passage's new words before its first line (ADR 0144): each in the target's direction, its
+        // meaning in the support language's; the list stays horizontal in vertical reading.
+        const list = page.locator("[data-new-words]");
+        await expect(list).toBeVisible();
+        expect(await list.locator("[data-word]").count()).toBeGreaterThanOrEqual(3);
+        expect(await list.evaluate((el) => getComputedStyle(el).writingMode)).toBe("horizontal-tb");
+        const word = list.locator("dt [data-nabu-text]").first();
+        expect(isTarget(await word.getAttribute("lang"))).toBe(true);
+        await expect(word).toHaveAttribute("dir", cell.targetDir);
+        await expect(list.locator("dd [data-nabu-text]").first()).toHaveAttribute("lang", "en-Latn");
+        await expect(page.locator("[data-story-transcript] [data-line]").first()).toBeVisible();
       }
 
       if (screen === "question") {
