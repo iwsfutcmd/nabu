@@ -142,8 +142,8 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
 - **Register is decided by the prompt's situation.** The prompt tags it (extending `persons`), a wrong
   register is WRONG_WORD, and every level is exercised (ADR 0075). This is how CLAUDE.md already expects
   register to arrive.
-- **Dialect is a feature the learner chooses** (ADR 0085), as es does now: Cuban forms taught, pan-Hispanic
-  ones accepted.
+- **Decided: dialect is a feature, and the prompt specifies it** where the meaning has dialect synonyms
+  ("Cuban", §12). This replaces es's "pan-Hispanic forms accepted".
   - It splits senses: *carro* is "car" in the Americas and "cart" in Spain; *guagua* is "bus" in Cuba and
     "baby" in the Andes.
   - Dialect also produces variants within one lexeme where the difference is systematic (seseo, *ehto*).
@@ -367,40 +367,53 @@ learned.
 - **Open:** properties as facets (`casa|gender`), or as their own KCs linked to the lexeme. Proposed:
   facets.
 
-## 12. Prompts decide what the target demands
+## 12. Underspecification
 
-**Decided:**
-- If the target language demands a feature that the prompt's language doesn't express, the prompt is
-  always tagged.
-- Aim for one right answer per prompt. Some will still have several (word order and the like), but get as
-  close to one as possible.
+**Decided:** one concept covers this: what one language specifies and the other leaves open. Aim for one
+right answer per prompt. Some will still have several (word order and the like), but get as close to one as
+possible.
+
+| The learner writes | The prompt leaves open what the answer must say | The prompt says what the answer can't |
+|---|---|---|
+| The target language | **Tag the prompt** (Decided): one answer | Nothing to do: English "he" → lzh 其 |
+| Their own language | **Accept every rendering** (Decided): tok *ona*, lzh's tense | Nothing to do: apc *kifik* → "how are you" |
+
+- **Decided: when the answer can't say what the prompt does, nothing is tagged.** The learner is trusted
+  to understand that lzh doesn't mark gender: no "(by the way, he's male)". The target lexeme's gloss
+  already says what collapses (其: his, her, its, their). An answer that adds the gender with extra words
+  (男子 "the man") translates back to another sentence, so ADR 0085 already rejects it.
+- **Decided: dialect synonyms are specified.** Where a prompt's meaning has dialect synonyms (*carro* /
+  *coche*, *guagua* / *autobús*), the prompt says which variety ("Cuban").
 
 **Proposed:**
-- **This amends ADR 0085, 0056 and 0075**, so it needs a new ADR.
+- **This amends ADR 0085, 0056 and 0075, and es's policy (ADR 0076–0077)**, so it needs a new ADR.
   - Today an untagged sentence accepts every form (kifak / kifik / kifkon; mish b3id / mish b3ide for an
-    unnamed "it").
-  - Under this rule, a feature the target demands is tagged, and the accept set keeps only the forms that
-    fit.
-  - ADR 0085 still governs what a tag can't decide: word order, optional words, spelling variants.
+    unnamed "it"), and es accepts pan-Hispanic words beside Cuban ones.
+  - Under this rule, when the learner writes the target language, a feature it demands is tagged, and
+    the accept set keeps only the forms that fit.
+  - ADR 0085 still governs what a tag can't decide (word order, optional words, spelling variants) and
+    everything the learner writes in their own language.
 - **The features to tag are the inherent ones** (§4). Contextual ones (agreement, classifiers, structural
   case) are already fixed by the sentence. In our courses and planned ones:
   - the speaker's and addressee's gender and number (apc, hbo, es);
   - register (uz *sen* / *siz*, fa تو / شما, es *tú* / *usted*, Javanese);
+  - dialect, where the meaning has dialect synonyms (es);
   - the gender of an unnamed "it" or "this" (apc);
   - aspect where English has one past tense (es *comí* / *comía*);
   - evidentiality (uz ‑ibdi beside ‑di, once the course teaches it);
   - later: clusivity (Indonesian *kita* / *kami*), Korean and Japanese honorifics.
 - **Tag with the situation, not the grammar, where possible:** "a woman speaking", "to your grandmother",
-  "it (the school)", "(every day)". It reads naturally, carries meaning rather than metalanguage, and never
-  shows the answer's form.
+  "it (the school)", "(every day)", "in Cuba". It reads naturally, carries meaning rather than
+  metalanguage, and never shows the answer's form.
+- **Dialect tags are derived, not authored.** A course states its variety once (es: Cuban). The compiler
+  knows which lexemes have dialect synonyms (lexemes that share a lexical meaning and differ in the dialect
+  feature) and tags those prompts.
+- **A dialect slip gets its own feedback.** *coche* where the prompt says Cuban: wrong, but the feedback
+  says "that's the word in Spain; in Cuba, *carro*". It's a miss on the Cuban lexeme, not a typo or an
+  unrelated word.
 - **The compiler can enforce it.** An accept set for writing the target whose alternatives differ in an
   inherent cell needs a tag that picks one, or a lint fires. That needs the alternatives analysed (through
   the lexicon, as `glossTokens` does); today only a sentence's own text is.
-- **Open:** synonyms across dialects (*carro* / *coche*): accepted, or one answer?
-- **Open:** prompts in the target language. tok *ona* is she, he, it or they; lzh marks no tense. A tag on
-  a comprehension prompt would add what the text doesn't say. Proposed: the rule applies where the
-  learner writes the target language; when they write their own, ADR 0085 stays (every rendering the text
-  leaves open).
 
 ## 13. Chunks
 
@@ -457,7 +470,7 @@ All Proposed:
   open, and properties.
 - Grader: overregularisation (the cell right, the lexeme missed); wrong register is WRONG_WORD.
 - Prompt tags for every inherent feature the target demands (extending `persons`), and a lint for
-  accept sets that differ in one untagged (§12).
+  accept sets that differ in one untagged (§12); a dialect-slip verdict.
 
 ## 16. Open questions
 
@@ -466,15 +479,12 @@ All Proposed:
 3. Where is the line for Spanish stem-changers and Persian present stems (§7)?
 4. Is the uz causative a cell or a derivation (§6)?
 5. Conversion: one sense with `pos` per token, or two senses (§4)?
-6. Dialect as a feature the learner chooses (§4)?
-7. What is a root's sense, and which tier do templates check first (§9)?
-8. Keep "family", or only the links base and root (§10)?
-9. Properties: facets or their own KCs (§11)?
-10. Does a chunk count as meeting its lexemes (§13)?
-11. Javanese: krama or ngoko first (§4)?
-12. Synonyms across dialects: accepted, or one answer (§12)?
-13. Does the tagging rule cover prompts in the target language, or only writing it (§12)?
-14. yue 嘅: one linker or two (§4)?
+6. What is a root's sense, and which tier do templates check first (§9)?
+7. Keep "family", or only the links base and root (§10)?
+8. Properties: facets or their own KCs (§11)?
+9. Does a chunk count as meeting its lexemes (§13)?
+10. Javanese: krama or ngoko first (§4)?
+11. yue 嘅: one linker or two (§4)?
 
 ## References
 
