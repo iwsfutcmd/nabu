@@ -305,6 +305,21 @@ a new design language.
     reduplication, `\` change without segments: mouse\PL).
   - Highlighting letters inside a joined word must first be proven in the visual matrix, and never by
     colour alone.
+- **Root and pattern words follow the lexeme rule like any affix.** The pattern is a lexeme (closed,
+  dependent, non-linear); the word is a combination only where root + pattern gives its form and meaning by
+  rule:
+
+  | Word | Pattern | Rule-derived? | So it's… |
+  |---|---|---|---|
+  | كاتِب "writing (one who writes)" | فاعِل, Form I active participle | yes | a combination |
+  | كاتِب "clerk, writer" | same | no: the meaning drifted | a lexeme (a homograph, like *writer*) |
+  | مَكْتُوب "written" | مَفْعُول, passive participle | yes | a combination |
+  | مَكْتَب "office, desk" | مَفْعَل "place of" | no: not every root has one; مَفْعَل / مَفْعِل / مَفْعَلة compete (مَلْعَب, مَسْجِد, مَدْرَسة) | a lexeme, with a strong hint (§10) |
+  | كِتاب "book" | فِعال | no: the pattern has no fixed meaning | a lexeme; the root link is etymology |
+
+  - Arabic teaching draws the same line: Form I verbal nouns (كِتابة, قَتْل, دُخول) are memorised; those of
+    Forms II–X are nearly predictable (تَكْتِيب, مُكاتَبة, اِسْتِكْتاب; Form III has two patterns).
+  - Semi-productive patterns (مَفْعَل) get decoding practice ("what might مَلْعَب be?"), never wug cards.
 - **Cards:** root extraction ("what's the root of مكتوب?", the skill a learner needs for an Arabic or Hebrew
   dictionary), pattern meaning, building from root and pattern (ك ت ب + مَفْعَل → مَكْتَب), changed tone,
   root families.
@@ -344,9 +359,15 @@ parts are a memory hint worth showing, in the glossary and wherever the lexeme i
 
   An author may override the generated wording per support language where plain juxtaposition reads badly
   (`literal`, with provenance like any gloss).
-- **Only real parts.** Never a hint from the characters of a phonetic loan: 沙發 "sofa" is not "sand +
-  emit", 咖啡 and 巴士 have no parts. A hint exists only where the lexeme has a morphological analysis;
-  no analysis, no hint. No folk etymologies.
+- **Decided: only real parts, never a folk or nonsense etymology.** Never a hint from the characters of a
+  phonetic loan: 沙發 "sofa" is not "sand + emit", 咖啡 and 巴士 have no parts. A hint exists only where
+  the lexeme has a morphological analysis; no analysis, no hint.
+  - Proposed: an analysis that yields a hint cites its source (a dictionary or grammar, as courses cite
+    references), or waits for a reviewer's sign-off. LLM drafting is this project's biggest source of
+    folk etymologies.
+  - Proposed: hints are about a word's morphemes, never a character's components. Glyph stories (安 as
+    "a woman under a roof") are a script-level claim, and mostly folklore; any such explanation would
+    need a scholarly source of its own.
 - **Where it shows:** the gloss panel on a tap, the word list, the feedback after a card, and the
   lexeme's first presentation.
   - Never on the prompt side of a production card: "earth + eat" would hand over the answer's parts.
