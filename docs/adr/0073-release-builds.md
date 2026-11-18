@@ -1,6 +1,6 @@
 # 0073. Release builds: only what a reviewer signed off
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0072](0072-sign-off.md)
 - Amended: below (2026-11-13, the owner's D51: script tracks stay in a release)

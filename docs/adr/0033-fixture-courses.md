@@ -1,6 +1,6 @@
 # 0033. Fixture courses: scope and modelling conventions
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 - Updated by [ADR 0050](0050-ten-unit-courses.md): the courses now have ten units each. The
   table below gives the original intro units.

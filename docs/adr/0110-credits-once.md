@@ -1,6 +1,6 @@
 # 0110. A bundle defines each credit once
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0029](0029-bundle-format.md) (each file's `source` in the manifest), [0040](0040-audio-pipeline.md) (each clip's `credit` in the audio index)
 

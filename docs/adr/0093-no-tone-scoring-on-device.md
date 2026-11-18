@@ -1,6 +1,6 @@
 # 0093. Tones are not scored on the device
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-11
 - Amends: [0046](0046-speech.md) (tier 3 is off)
 

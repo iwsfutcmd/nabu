@@ -1,6 +1,6 @@
 # 0143. Asking the device keyboard for the field's language
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 
 ## Context

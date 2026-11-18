@@ -1,6 +1,6 @@
 # 0075. Courses exercise every person their language marks
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0056](0056-persons.md), [0040](0040-audio-pipeline.md)
 - Amended by: [0078](0078-random-voices.md) (how a cast's voices share the items)

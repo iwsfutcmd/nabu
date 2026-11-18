@@ -1,6 +1,6 @@
 # 0105. The learning pace: Continue, three bands, and a target per learner
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: gameplan §9.4 (the planner), §11.1 (the course page); [0097](0097-review-in-lessons.md) (how much review a lesson brings back)
 

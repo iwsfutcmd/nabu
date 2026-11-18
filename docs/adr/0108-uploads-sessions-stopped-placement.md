@@ -1,6 +1,6 @@
 # 0108. Uploads take what is valid, sessions survive a reload, and a stopped placement places
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0038](0038-server-sync-and-accounts.md) (the upload contract), [0039](0039-placement-and-calibration.md)
   and [0111](0111-placement-seeds-words.md) (what a placement test leaves behind)

@@ -1,6 +1,6 @@
 # 0122. The gate spares placement and claims and says when it opens; leagues say how the week ended and can be declined; AI help says it is a model's and stays
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-13
 - Amends: [0044](0044-gamification-and-notifications.md) (the gate, leagues), [0052](0052-learner-claims.md) (what a claim moves), [0045](0045-ai-services.md) (the judge and explanations in the app)
 

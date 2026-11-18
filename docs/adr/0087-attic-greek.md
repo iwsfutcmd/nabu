@@ -1,6 +1,6 @@
 # 0087. Attic Greek: polytonic text, marks noted not failed, and a reconstructed Attic voice
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-09
 - Amended by: [0088](0088-script-tracks.md) (the Greek alphabet track); the voice, below
 

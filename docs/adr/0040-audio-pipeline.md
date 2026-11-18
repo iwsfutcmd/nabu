@@ -1,6 +1,6 @@
 # 0040. The audio pipeline: pinned-reading synthesis, committed clips, QA gating
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

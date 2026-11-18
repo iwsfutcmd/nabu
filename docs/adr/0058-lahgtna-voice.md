@@ -1,8 +1,8 @@
 # 0058. A Lebanese voice: Lahgtna on OmniVoice, run locally
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-05
-- Amends: [0040](0040-audio-pipeline.md), [0042](0042-hosted-tts.md), [0053](0053-vocalization.md)
+- Amends: [0040](0040-audio-pipeline.md), [0042](0042-hosted-tts-providers.md), [0053](0053-vocalization.md)
 
 ## Context
 

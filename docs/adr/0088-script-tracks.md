@@ -1,6 +1,6 @@
 # 0088. Script tracks: alphabet lessons on a row of their own, beside the path
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-09
 - Amends: gameplan §3 and §6.3 (`script` nodes); [0087](0087-attic-greek.md) (the grc course)
 - Amended by: [0124](0124-script-tracks-from-the-profile.md) (letters and marks from the profile;

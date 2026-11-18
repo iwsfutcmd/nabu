@@ -1,6 +1,6 @@
 # 0038. Server event store, sync and optional accounts
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

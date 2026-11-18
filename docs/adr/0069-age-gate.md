@@ -1,6 +1,6 @@
 # 0069. An optional age gate at sign-up
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0038](0038-server-sync-and-accounts.md)
 

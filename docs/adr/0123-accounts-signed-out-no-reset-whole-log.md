@@ -1,6 +1,6 @@
 # 0123. A server's sign-out is said, a password cannot be reset, and a new account takes the whole log
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-13
 - Amends: [0038](0038-server-sync-and-accounts.md) (what signing up uploads, what the sync status
   says) and [0108](0108-uploads-sessions-stopped-placement.md) (what signing up sends again)

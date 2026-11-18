@@ -1,6 +1,6 @@
 # 0113. The end of a session shows what was learned, and a claim counts at once in its session
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0052](0052-learner-claims.md) (a claim within the session it was made in)
 

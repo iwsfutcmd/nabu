@@ -1,6 +1,6 @@
 # 0066. Endings that carry meaning are not typos
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0023](0023-grading-engine.md)
 - Resolves: gameplan errata 46

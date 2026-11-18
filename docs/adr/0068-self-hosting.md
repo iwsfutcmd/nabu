@@ -1,6 +1,6 @@
 # 0068. Self-hosting with Docker Compose
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: gameplan §14.5
 

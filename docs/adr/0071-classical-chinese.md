@@ -1,6 +1,6 @@
 # 0071. Classical Chinese: a written course, and reading layers shown on request
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amended by: [0138](0138-reading-traditions.md) (reading cards in the learner's tradition, each with its own progress)
 

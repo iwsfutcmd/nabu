@@ -1,6 +1,6 @@
 # 0142. Spelling: the right sound with the wrong letter
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 
 ## Context

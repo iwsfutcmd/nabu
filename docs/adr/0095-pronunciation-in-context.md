@@ -1,6 +1,6 @@
 # 0095. Pronunciation cards ask about a word in its sentence; an orthography that spells the vowels counts
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0054](0054-pronunciation-exercises.md) (what the cards show, how lessons get them)
 

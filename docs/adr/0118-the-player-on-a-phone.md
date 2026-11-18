@@ -1,6 +1,6 @@
 # 0118. The player on a phone: vertical text, and Check while a keyboard composes
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0034](0034-lesson-player.md) (a submit while composing), [0043](0043-stories.md) (vertical
   reading), [0071](0071-classical-chinese.md) (readings in vertical text); gameplan §11.4 (ruby in

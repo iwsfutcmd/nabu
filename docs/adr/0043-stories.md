@@ -1,6 +1,6 @@
 # 0043. Stories: source, compiler, runtime glossary, reader
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

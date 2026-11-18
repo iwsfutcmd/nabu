@@ -1,6 +1,6 @@
 # 0111. Placement seeds the words of the units placed out of
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0039](0039-placement-and-calibration.md), [0077](0077-adaptive-placement.md) (what a placement test leaves behind)
 

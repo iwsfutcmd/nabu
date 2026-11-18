@@ -1,6 +1,6 @@
 # 0070. UI catalogs: provenance, fingerprints and the catalog check
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0018](0018-ui-locales-and-pseudo-locales.md)
 

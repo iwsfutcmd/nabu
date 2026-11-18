@@ -1,6 +1,6 @@
 # 0074. The review workspace: reviewer accounts, in the app
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0045](0045-ai-services.md), [0051](0051-corrections.md), [0072](0072-sign-off.md)
 

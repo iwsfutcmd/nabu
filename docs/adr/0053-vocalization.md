@@ -1,6 +1,6 @@
 # 0053. A course's vocalization gives its words their vowel marks
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-04
 
 ## Context

@@ -1,6 +1,6 @@
 # 0103. Reminders come after the usual window, or at a time the learner chooses
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0044](0044-gamification-and-notifications.md) (when reminders come, the caps), gameplan §12.6 ("the median of their recent session start times")
 

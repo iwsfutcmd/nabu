@@ -1,6 +1,6 @@
 # 0021. `packages/lint`: rule semantics and strict logical CSS
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

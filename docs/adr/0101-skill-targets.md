@@ -1,6 +1,6 @@
 # 0101. Sessions aim at the skills words lack
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: gameplan §9.4 (the planner), [0097](0097-review-in-lessons.md) (what review brings back),
   [0099](0099-self-rated-speaking.md)

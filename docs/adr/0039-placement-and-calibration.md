@@ -1,7 +1,8 @@
 # 0039. Placement v0 and the calibration notebook
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
+- Amended by: [0077](0077-adaptive-placement.md) (an adaptive test replaces the probe-every-node placement)
 
 ## Context
 

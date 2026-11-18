@@ -1,6 +1,6 @@
 # 0048. Android and iOS apps: a Capacitor shell with the courses inside
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

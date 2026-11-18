@@ -1,6 +1,6 @@
 # 0080. apc grows to twenty units, checked against a reference grammar
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-07
 - Amends: [0050](0050-ten-unit-courses.md) (apc's size), [0053](0053-vocalization.md) (new words)
 

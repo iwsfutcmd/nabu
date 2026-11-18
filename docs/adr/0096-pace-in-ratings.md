@@ -1,6 +1,6 @@
 # 0096. Pace in the rating map: slow is relative to length, and sure recall can be Easy
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: gameplan §9.2 (errata 63–64)
 

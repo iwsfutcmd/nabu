@@ -1,6 +1,6 @@
 # 0133. Script tracks ask the course's reading, in Latin
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0088](0088-script-tracks.md), [0124](0124-script-tracks-from-the-profile.md) (the profile's
   `romanize`), [0128](0128-chaghatay.md) (the romanization scheme `forms`), [0117](0117-pinned-readings-on-kc-forms.md)

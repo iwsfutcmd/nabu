@@ -1,6 +1,6 @@
 # 0094. Cantonese voices: VoxCPM2 cloning two designed anchors
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0040](0040-audio-pipeline.md) (yue's voice), [0065](0065-persian-voice.md) (a carrier for another
   provider), [0091](0091-voice-quality.md) (yue's rating stays good, now earned)

@@ -1,6 +1,6 @@
 # 0092. Cantonese checked against Matthews and Yip
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-11
 - Amends: [0050](0050-ten-unit-courses.md) (yue's units), [0085](0085-what-the-prompt-leaves-open.md) (yue's accept sets)
 

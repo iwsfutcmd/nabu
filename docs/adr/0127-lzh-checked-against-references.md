@@ -1,6 +1,6 @@
 # 0127. Classical Chinese checked against Baxter & Sagart, Kroll and Pulleyblank
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-14
 - Amends: [0071](0071-classical-chinese.md) (lzh's readings, words and grammar),
   [0085](0085-what-the-prompt-leaves-open.md) (lzh's accept sets)

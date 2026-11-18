@@ -1,6 +1,6 @@
 # 0135. Readings fixed by their words
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0117](0117-pinned-readings-on-kc-forms.md) (where readings come from), [0087](0087-attic-greek.md)
   (grc's spelling check)

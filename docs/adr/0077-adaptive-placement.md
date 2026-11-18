@@ -1,6 +1,6 @@
 # 0077. An adaptive placement test
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Supersedes: the probe-every-node test of [0039](0039-placement-and-calibration.md) (placement v0)
 

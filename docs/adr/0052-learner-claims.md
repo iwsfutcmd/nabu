@@ -1,6 +1,6 @@
 # 0052. A learner's claim about their answer counts for them at once
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-04
 
 ## Context

@@ -1,6 +1,6 @@
 # 0129. Chaghatay in Arabic only, Schluessel's transliteration as ruby over the word; Nastaliq
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-15
 - Amends: [0128](0128-chaghatay.md) (one orthography, not two),
   [0109](0109-names-and-schemes-are-data.md) (a scheme says what its ruby stands over),
