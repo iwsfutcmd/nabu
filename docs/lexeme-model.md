@@ -184,6 +184,30 @@ That is the lint from lexemes.md §3.7.
 a sentence. Constructions are rules at the phrase level: apc's *used to* is a periphrastic way of filling a
 feature. A construction whose meaning isn't derivable is a lexeme with slots.
 
+### Order (Proposed)
+
+**Linear order can be dropped from a combination; hierarchy can't.**
+- **Inflection:** a combination is a lexeme plus features (kitob + {plural, 1sg possessor, ablative}). The
+  language's template orders the exponents, as realizational morphology has it, so nothing is stored but
+  the features.
+- **Order rules are stated once per language, never per combination:** affix templates and position
+  classes, clitic clusters (Spanish *se* > 2nd > 1st > 3rd: *se te lo*), clitic placement by host (*me lo
+  da*, *dámelo*), head direction.
+- **Hierarchy carries meaning, and the same order can hide two:** *un‑lock‑able* is [un‑[lock‑able]] "can't
+  be locked" or [[un‑lock]‑able] "can be unlocked"; stacked causatives and passives scope by their order
+  (Baker's Mirror Principle). So a combination stores its structure, which affix or word applies to what,
+  and rules linearise it: Merge without order, then linearisation.
+- **Free word order isn't underivable either:** where several orders are grammatical, each is a
+  linearisation. Information structure (topic, focus) would pick one; a prompt that doesn't specify it
+  accepts them all (ADR 0085).
+  - **The payoff:** order variants in accept sets are generated, not hand-listed (hbo's subject and
+    predicate orders, ADR 0084). Generated at compile time, so the grader stays literal (ADR 0085).
+- **Where order is data: the utterance.** An attested text (a Bible verse, a Perseus passage, a story line)
+  is one linearisation an author chose, and its order is a fact about that text. So: a combination is
+  structure; an utterance is a combination plus the order it was said in.
+- Written order isn't always spoken order even within a word: Thai and Lao store preposed vowels in visual
+  order, an exception to Unicode's logical order. Projection rules handle it.
+
 ### Where lexemes and combinations meet
 
 Some lexemes have an underivable meaning but a derivable form: *writer* (the occupation) is spelled *write*
