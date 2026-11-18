@@ -1,6 +1,6 @@
 # 0132. A choice asks one thing: which word, or which form
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: gameplan §8.2 (gap-fill), §8.5 (credit assignment); [ADR 0043](0043-stories.md) (story `complete`
   questions); the Phase 6 rule on `complete` distractors (CLAUDE.md)
