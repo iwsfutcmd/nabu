@@ -116,5 +116,82 @@ flowchart LR
    needed.
 5. **Where do lexemes live?** Today KCs belong to a course. With surface forms projected per orthography,
    a language-wide lexicon that courses draw on would let two courses of one language share lexemes.
-6. **Next: combinations.** Including multiword lexemes whose part inflects (fa زمین خوردن "fall", زمین
-   خوردم "I fell"), where a lexeme and a combination meet.
+6. **Next: combinations** (below).
+
+## Combinations
+
+A combination is derivable by definition: whatever isn't is a lexeme (lexemes.md §3). Only its lexemes are
+stored, in the course text; everything else is derived, and the derived surface form is checked against
+what the author wrote.
+
+```mermaid
+flowchart LR
+  subgraph IN["Stored: in the course text"]
+    direction TB
+    T1["its lexemes, in order<br/>kitob + ‑lar + ‑im + ‑dan"]
+    T2["its setting<br/>(neighbours, pause)"]
+  end
+
+  subgraph RULES["Language rules"]
+    direction TB
+    C3["order and templates<br/>(affix order; root + pattern)"]
+    C1["allomorph choice<br/>(‑im after a consonant, ‑m after a vowel)"]
+    C2["boundary rules<br/>(vowel reduction, sandhi, assimilation)"]
+    P1["projection rules"]
+  end
+
+  subgraph OUT["Derived"]
+    direction TB
+    O1["the combination's lexical form"]
+    O2["surface forms<br/>kitoblarimdan · китобларимдан"]
+    O3["phonemic forms"]
+    O4["features<br/>plural, 1sg possessor, ablative"]
+    O5["interlinear gloss<br/>book-PL-1SG.POSS-ABL"]
+    O6["morphs: where each lexeme sits"]
+  end
+
+  CHECK["compared with the authored text:<br/>a mismatch means a missing rule,<br/>or something that is really a lexeme"]
+
+  T1 --> C3 --> C1 --> C2 --> O1 --> P1
+  T2 --> C1
+  T2 --> C2
+  P1 --> O2
+  P1 --> O3
+  T1 --> O4 --> O5
+  C2 --> O6
+  O2 --> CHECK
+```
+
+**Combining is more than concatenating.** It works on lexical forms, then projects:
+- **order and templates:** affix order; a root interleaved with its pattern;
+- **allomorph choice by context:** uz ‑im after a consonant, ‑m after a vowel; ‑qa after q;
+- **boundary rules on the lexical form:** Hebrew vowel reduction (דָּבָר + ‑ִים → דְּבָרִים), sandhi;
+- **projection rules on the result:** Spanish *da* + *me* + *lo* keeps its stress on *da*, and the
+  orthography writes *dámelo* because that stress is now antepenultimate; Persian کتاب + ‑ها is written
+  with a ZWNJ; chg puts one before ‑dur.
+
+**What is derived:**
+- the combination's lexical form, surface forms and phonemic forms;
+- its features: the union of its lexemes' (plural, 1sg possessor, ablative);
+- its interlinear gloss (book‑PL‑1SG.POSS‑ABL), mechanically. A natural translation ("from my books") is
+  the sentence's job, authored with its accept sets;
+- its morphs: where each lexeme's exponent sits. The combining rules must keep track of this.
+
+**A mismatch with the authored text** means a missing rule, or a "combination" that is really a lexeme.
+That is the lint from lexemes.md §3.7.
+
+**The span is open-ended.** A word (*kitoblarimdan*) is a combination; so is a phrase (*the writer of X*) and
+a sentence. Constructions are rules at the phrase level: apc's *used to* is a periphrastic way of filling a
+feature. A construction whose meaning isn't derivable is a lexeme with slots.
+
+### Where lexemes and combinations meet
+
+Some lexemes have an underivable meaning but a derivable form: *writer* (the occupation) is spelled *write*
++ ‑er; fa زمین خوردن "fall" is زمین + خوردن; *darse cuenta*; *kick the bucket*.
+- **Such a lexeme stores its parts, not a lexical form**, and its form is combined from them like any
+  combination's. Only its meaning is listed.
+- **One part is where inflection goes:** زمین خوردم "I fell" inflects خوردن; *me di cuenta* inflects *dar*;
+  *kicked the bucket* inflects *kick*. The lexeme names that part.
+- **Parts now do two jobs:** the literal gloss (lexemes.md §10) and the form, inflection included.
+- So a lexeme stores **either lexical forms or parts**: forms where the form is underivable (*ran*, *casa*),
+  parts where only the meaning is.
