@@ -1,6 +1,7 @@
 # Lexemes: what Nabu teaches (brainstorm)
 
 - Status: brainstorm, 2026-11-18. Not an ADR: questions are still open (§16).
+- Diagrams of the model: [lexeme-model.md](lexeme-model.md).
 - **Decided** marks the owner's decisions; **Proposed**, suggestions not yet agreed; **Open**, what awaits a
   decision.
 
