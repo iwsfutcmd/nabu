@@ -541,14 +541,20 @@ a new design language.
   - **Arabic اِفْتَعَلَ doesn't show which letters are the pattern's:** its ت looks like a fourth radical.
     With placeholders ت is the only letter between the slots.
 - **Proposed: the placeholder per script is profile data**, never code:
-  - **Hebrew:** U+25CC DOTTED CIRCLE, Unicode's own "a letter goes here", points on it (◌ִ◌ֵּ◌, הִ◌ְ◌ִי◌).
-    Hebrew doesn't join, so nothing breaks.
-  - **Arabic:** U+25CC with a ZWJ on each side, so the pattern's letters keep their joining forms (مـ, تـ).
-    Without the ZWJ they fall to isolated forms. The font must cover U+25CC: in the test, the bare circle
-    fell back to another font and came out smaller than the circles carrying marks.
-    - The alternative: U+066E DOTLESS BEH, the bare consonant skeleton (rasm). It joins and reads like Arabic,
-      and affixal letters keep their dots (اِٮْتَٮَٮَ), but a slot can pass for ب, ت or ن missing dots.
-    - Rejected: tatweel (the slots run into one line).
+  - **Hebrew: Decided, U+25CC DOTTED CIRCLE**, Unicode's own "a letter goes here", points on it (◌ִ◌ֵּ◌,
+    הִ◌ְ◌ִי◌). Hebrew doesn't join, so nothing breaks.
+  - **Arabic: Decided against the dotted circle** (it looks wrong in Arabic); a dotless letter instead,
+    with tatweel between the elements to space the slots out (the owner's suggestion). Rendered 2026-11-18
+    for مَفْعَل, فَاعِل, فَعَّلَ, اِفْتَعَلَ, اِسْتَفْعَلَ:
+    - **U+066E DOTLESS BEH** (the rasm's bare tooth): reads like Arabic, and affixal letters keep their dots.
+      But a slot is itself a tooth, so it blurs into the pattern's own tooth letters: اِسْتَفْعَلَ becomes a
+      row of teeth.
+    - **U+06A1 DOTLESS FEH**: its loop reads as an empty slot and stands apart from س, ت, ن and ي. It could
+      pass for ف or ق without dots.
+    - Tatweel goes only where both sides join (never after ا, د, ذ, ر, ز, و).
+    - **Open:** beh or feh; tatweel between every element, or only between adjacent slots.
+    - Screen readers would read the placeholders as letters ("dotless beh"), so the shape carries an
+      accessible name: its traditional name and meaning.
   - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
 - **Proposed: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
   name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
