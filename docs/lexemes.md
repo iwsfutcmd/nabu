@@ -67,7 +67,7 @@ teach a unit of the language: the **lexeme** (§2).
 **Decided:** if something can be derived purely from rules, it is the same lexeme or a combination of
 lexemes. If it can't, it is a separate lexeme. This is Aronoff's blocking (1976) and Kiparsky's Elsewhere
 Condition (1973): rules produce the regular cases, and a listed form takes precedence where one exists
-(*ran* blocks *\*runned*, *thief* blocks *\*stealer*).
+(*ran* blocks *\*runned*, *glory* blocks *\*gloriosity*).
 
 **Decided consequences:**
 - *run* and *ran* are separate lexemes. Suppletive and irregular forms split.
@@ -119,7 +119,9 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
        length (*bigger*, *\*intelligenter*);
      - semantic: *un‑* on adjectives that aren't already negative (*unhappy*, *\*unsad*); "place of" only
        for actions that happen somewhere;
-     - blocking by a listed lexeme (*thief* blocks *\*stealer*): predictable once the lexeme is known.
+     - blocking by a listed lexeme (*went* blocks *\*goed*, *glory* blocks *\*gloriosity*): predictable once
+       the lexeme is known. Blocking is per sense: *thief* doesn't block *stealer of hearts* or
+       *scene-stealer*, which the rule still makes.
    - Proposed: only an arbitrary gap (the conditions are met and still no word exists) forces listing,
      because then a learner can't know whether the word exists.
    - Conditions are part of the rule's data (stem shape from the profile and scheme, semantic properties
