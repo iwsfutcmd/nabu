@@ -93,17 +93,19 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
    - apc broken plurals (walad / wlad).
 
    Forms that can't usefully be split are whole-word lexemes (*soy*, *eres*, *fue*).
-6. **Lexemehood can depend on direction.**
-   - Collocations and Persian compound verbs (فکر کردن "think", lit. "thought + do") can be decoded but
-     not encoded: lexemes for production only.
-   - Idioms (زمین خوردن "fall", lit. "earth + eat") are lexemes both ways.
-   - Derived words:
+6. **Decided: lexemehood is symmetric.** What can't be derived in both directions is a lexeme, never a
+   lexeme for one direction only:
+   - collocations and Persian compound verbs (فکر کردن "think", lit. "thought + do"), which can be decoded
+     but not encoded;
+   - idioms (زمین خوردن "fall", lit. "earth + eat");
+   - derived words that can be decoded but not encoded (學生 "student", *escritor*, *writer* the
+     occupation), and opaque ones (*cooker*, *drawer*, 大學 "university", كِتاب).
 
-     | Derivative | Recognition | Production | Examples |
-     |---|---|---|---|
-     | Regular in both directions | rule | rule | *rápido* → *rápidamente*; *the writer of X* |
-     | Decodable, not encodable | rule | lexeme | 學生 "student"; *escritor* |
-     | Opaque | lexeme | lexeme | *cooker*, *drawer*, 大學 "university", كِتاب |
+   Only what is regular both ways is a combination (*rápido* → *rápidamente*; *the writer of X*).
+   - A lexeme keeps its links to its parts (base, root: §10), so a derive card still credits the affix when
+     a learner works out a transparent word.
+   - If cards on an edge the parts already give away (recognizing *writer*) prove wasteful, handle it at
+     the edge (§11), never by splitting lexemehood by direction.
 
 7. **Rules are data, and the compiler checks every claimed derivation.**
    - A token analysed as a combination must derive from the rules, or the compiler reports it.
@@ -187,8 +189,8 @@ inflection vs derivation, which is very important (§6).
 ## 6. Inflection and derivation
 
 **Proposed:**
-- **Inflection never makes a lexeme.** Derivation makes one only in the directions where it can't be
-  derived (§3.6). ADR 0061's "lemmas, never inflected words" already means "remove the inflection, keep
+- **Inflection never makes a lexeme.** Derivation makes one wherever its result can't be derived in
+  both directions (§3.6). ADR 0061's "lemmas, never inflected words" already means "remove the inflection, keep
   the derivation".
 - **Two levels in a token.** Today `morphs` is a flat list: *oʻqituvchilar* is either *oʻqituvchi* + ‑lar or
   *oʻqi* + ‑t + ‑uvchi + ‑lar, never both. We want a lexeme with an optional derivational analysis, plus
@@ -212,7 +214,7 @@ inflection vs derivation, which is very important (§6).
   - The test: does it fill a cell of the lexeme's paradigm, or make a word with its own entry?
   - When unsure, call it derivation.
   - Open: uz causative (*oʻqit-* "teach" beside *oʻqi-* "read").
-- **Families** (§10) cover all three rows of the table in §3.6.
+- **Families** (§10) link derived words whether or not they are lexemes.
 
 ## 7. Paradigms, cells and irregular forms
 
