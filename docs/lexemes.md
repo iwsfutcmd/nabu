@@ -258,83 +258,78 @@ inflection vs derivation, which is very important (§6).
   - This is the principal-parts tradition.
   - Open: Spanish stem-changers and Persian present stems are the test cases.
 
-## 8. What a lexeme has
+## 8. What a lexeme has: one fully specified form
 
-**Decided:** these representations, each with variants (conditioned by context, or free; mostly in
-spelling):
-- a normal orthographic form;
-- a fully marked orthographic form (vocalised, pointed), which may be the same;
-- a phonemic form;
-- a gloss.
-
-**Decided: ordered by underspecification.**
-- The fully marked form is the least underspecified. The orthographic and phonemic forms must both be
-  derivable from it.
-- Every course should have an equivalent of the fully marked form.
-- The phonetic form is derivable from the phonemic one, which is why it hadn't come up. Where there is
-  audio, the audio can act as the phonetic form.
+**Decided:**
+- **A lexeme has one tier: its fully specified form(s).** It's plural only for different realisations in
+  different contexts.
+- **Each language has rules** that derive the normal orthographic form and the phonemic form from the
+  fully specified form.
+- **A language with no good fully specified schema gets one invented.**
+- **The phonetic form is shelved for now.**
+- (Replaces the earlier list of four representations; the gloss stays, as the sense's label.)
 
 ```
-fully specified ──remove marks / ruby────▶ orthographic (each orthography)
-       └──────────scheme rules───────────▶ phonemic (each scheme or tradition)
-                                                └──variety + context rules──▶ phonetic ≈ audio
+                      ┌─orthography rules──▶ each orthography (normal form)
+fully specified form ─┤
+                      └─scheme rules───────▶ each phonemic scheme or tradition
 ```
 
 **Proposed:**
-- **Call the representations tiers**, as §9 does: a lexeme has a form on each tier. "Form" is taken
-  (`form:` KCs; the glossary already lists three senses of it).
-- **"Fully marked" generalises to "fully specified"**, which takes three shapes:
-  - **marks in the script** where the script has them: fa and apc vowel marks, hbo pointing, grc length
-    marks;
-  - **a spelling paired with its reading** (ruby) where neither side gives the other: yue, lzh, chg;
-  - **the orthography itself** where it is already unambiguous: es, tok.
-- **It may need more than the script's own conventions.**
-  - hbo's pointing as the course writes it (no accents) leaves stress, qamets gadol vs qatan and vocal vs
-    silent shewa open. Today the pinned `tiberian` reading carries them, taken from the WLC's accents.
-    Unicode has QAMATS QATAN (U+05C7); stress would need a mark of our own or the WLC's accents.
-  - Arabic marks can't write Levantine e and o (apc relies on conventions: damma + ـه for ‑o).
-- **grc's `attic` reading is grc's fully specified form**: Greek letters with length marks. Removing them
-  gives the polytonic spelling; the phonemic form follows from it.
-- **Where courses stand today:**
+- **The schema holds the union of what every projection needs.**
+  - An orthography that records etymology (Arabic ق read ʔ, ث read t or s; Persian ث / س / ص all s)
+    needs that etymology in the schema.
+  - A phonemic scheme needs the vowels, stress and length the script leaves out.
+  - Adding an orthography or scheme later can mean extending the schema.
+- **Logographic scripts are always a pair**: no rule spells a word in characters or logographs.
+  - yue: characters + Jyutping.
+  - tok: Latin + sitelen pona glyph.
+  - lzh: characters + Baxter, Pinyin and Jyutping. Middle Chinese doesn't predict the modern readings
+    without exceptions, so each tradition's reading is stored.
+  - chg is a pair too: Arabic + Schluessel.
+- **Where courses stand, and what to invent:**
 
-  | Course | Fully specified form today | Missing |
+  | Course | Fully specified schema | To invent |
   |---|---|---|
-  | es | the orthography | nearly nothing (x in *México*, loanwords) |
-  | tok | the Latin orthography | nothing |
-  | grc | the `attic` reading | nothing (it's filed as a reading scheme) |
-  | yue | characters + Jyutping, per token | nothing |
-  | lzh | characters + Pinyin, Jyutping, Baxter, per token | nothing (three phonemic tiers) |
-  | chg | Arabic + Schluessel, per word | nothing, but aligned per word, not per letter |
-  | hbo | pointed text + `tiberian` reading | one form holding both (stress, qamets qatan, shewa) |
-  | fa | `vocalization.yaml` (short vowels, ezafe) | stress; no phonemic form in the data |
-  | uz | Latin and Cyrillic | stress; no phonemic form in the data |
-  | apc | vocalised Arabic and Arabizi | neither is complete (Arabic lacks e/o, Arabizi most emphatics); no phonemic form |
+  | es | the orthography | almost nothing: a marker for the odd exception (x in *México*) |
+  | tok | Latin + glyph | nothing |
+  | grc | the `attic` reading (length marks) | nothing |
+  | yue | characters + Jyutping | nothing |
+  | lzh | characters + three readings | nothing |
+  | chg | Arabic + Schluessel | nothing; per-letter alignment would help |
+  | hbo | pointed text, with stress etc. in the `tiberian` reading | one form: pointing + QAMATS QATAN (U+05C7) + a stress mark + vocal shewa |
+  | fa | vocalised Arabic script | stress, and conventions for و and final ه |
+  | uz | none (Latin or Cyrillic) | stress; probably Cyrillic as the base, since ц and ь carry what Latin lost in Russian loans |
+  | apc | none | a whole schema: Levantine vowels (e, o, length) and the etymological consonants the Arabic spelling needs (ق as ʔ, ث as t / s) |
 
-  apc is the real gap: no single representation holds everything. Its candidates are the vocalised
-  Arabic with extended conventions, or a phonemic transcription such as the one its reference uses.
-- **The phonetic form belongs to the utterance, not the lexeme.**
-  - It depends on context (sandhi, liaison, connected speech) and on the variety: one phonemic form, many
-    realisations (Cuban s-aspiration, Hong Kong n/l).
-  - The token's `ipa` (the surface pronunciation, after sandhi) is already this tier.
-  - Expected tones for speech scoring come from it.
-- **Audio is a realisation, not the authority.** It can be anchored as a tier (word timings from
-  alignment today; morph timings could follow). But synthetic voices err, which is why there is a round-trip
-  check, held-back clips and voice ratings. The phonemic form stays the authority, and audio is checked
-  against it.
-- **Tokens stay the authority for surfaces.** A lexeme holds its citation forms; the compiler collects the
-  attested allomorphs from annotated tokens, as it collects readings now (ADR 0117, 0135). Hebrew stems
-  change their pointing (דָּבָר, דְּבַר, דְּבָרִים), so a fully specified form on the lexeme can only be a
-  citation.
-- **The phonemic form is the readings per scheme**, lexical (before sandhi). Readings are transcription
-  schemes, and lzh has three traditions. No underlying forms (//‑GA//).
-- **This needn't change what is authored.** ADR 0053 keeps sources as written, with marks added at
-  compile time. What matters is that the fully specified form exists after compiling and that the other
-  tiers are checked against it.
-- **Open:**
-  - apc's fully specified form: extended Arabic marks, or a phonemic transcription?
-  - Stress in fa and uz: mark it, or leave it to rules with listed exceptions?
-  - hbo: one fully specified form (QAMATS QATAN, a stress mark), or keep the pointed text plus the
-    `tiberian` reading?
+- **An invented schema is data**, like reading schemes (ADR 0109): its inventory, plus projection rules to
+  each orthography and phonemic scheme. Every projection needs conformance vectors passing in both
+  harnesses.
+- **Authoring needn't change.** Course text stays in the normal orthography, as ADR 0053 has it, annotated
+  with lexemes and cells. The compiler projects each token from its lexeme's fully specified form, the
+  cell and the context, and reports any token whose authored text disagrees. Most per-token pins (readings,
+  `vocalized`) become checks, not data; they stay only for what rules can't derive.
+
+### Variants
+
+Four kinds, each in a different place:
+
+| Kind | Examples | Where it lives |
+|---|---|---|
+| Contextual, derivable | a / an, ‑ga / ‑qa, וְ / וּ, *el agua*, hbo pause forms | the rules (context as input), never stored |
+| Contextual, not derivable | rare: what no rule plus class property gives | the lexeme's plural fully specified forms, each with its condition |
+| Systematic free variation | HK / TW characters; Arabizi *3arabi* / *3rabi*; apostrophes in *oʻ*; Cantonese n / l | the projection rules: a relation, canonical output first, the rest accepted |
+| Idiosyncratic free variation | *período* / *periodo*, *vídeo* / *video*, اتاق / اطاق | **Open** (below) |
+
+- Most contextual forms follow from rules plus a class property: the hbo segholate *mélek* / *malk-*.
+  Store only what doesn't.
+- Lexical dialect differences are separate lexemes (*carro* / *coche*, decided). Systematic dialect
+  differences (seseo) are variety rules in the phonemic projection.
+- Token `variants` lists mostly disappear: projection rules generate them.
+- **Open: idiosyncratic free variants.** The forms aren't rule-related, so the strict rule (§3) makes them
+  separate lexemes. But they're one word, with no new pairing to learn for production: the canonical form
+  is enough, and the others need only be accepted. Proposed: plural fully specified forms marked free,
+  canonical first, accepted and never taught; the one place §3 bends.
 
 ## 9. Exponents that don't tile
 
@@ -607,10 +602,8 @@ All Proposed:
 9. Does a chunk count as meeting its lexemes (§13)?
 10. Javanese: krama or ngoko first (§4)?
 11. yue 嘅: one linker or two (§4)?
-12. apc's fully specified form: extended Arabic marks, or a phonemic transcription (§8)?
-13. Stress in fa and uz: marked, or rules with exceptions (§8)?
-14. hbo: one fully specified form, or the pointed text plus `tiberian` (§8)?
-15. Call the representations "tiers" (§8)?
+12. Idiosyncratic free variants (*período* / *periodo*): plural forms marked free, or separate lexemes (§8)?
+13. The invented schemas: apc's, hbo's extension, stress in fa and uz, uz's base script (§8).
 
 ## References
 
