@@ -118,6 +118,32 @@ flowchart LR
    a language-wide lexicon that courses draw on would let two courses of one language share lexemes.
 6. **Next: combinations** (below).
 
+## What the learner learns (Proposed)
+
+**The lexeme is the primary unit of what is taught and stored:** every listed pairing of form and meaning a
+learner has to memorise. But learned knowledge has three sides, and lexemes are one of them:
+
+| Kind | What it is | Examples |
+|---|---|---|
+| **meaning** | lemmas (lexical meaning, with lemma-wide features) and features (grammatical meaning) | RUN; *casa* is feminine; past; dative; krama |
+| **form** | lexemes: the listed forms that realise meanings | *run*, *ran*, ‑ga, *tuv-*, *nedha* |
+| **rule** | productive patterns: affixation, allomorph choice, boundary and projection rules (letters and marks included) | ‑ga → ‑qa after q; the e→ie pattern; reading unpointed Hebrew |
+
+- **Most lemmas have exactly one lexeme** (*casa*, *kitob*, 呀), so the split is invisible. It shows where a
+  lemma has several listed members: *run* / *ran*, *ser*'s forms, *mangan* / *nedha* / *dhahar*, *carro* /
+  *coche*.
+- **Meaning is learned once per lemma.** A learner who knows *run* doesn't relearn RUN for *ran*; *ran* adds a
+  form for a feature. Recognising *ran* is evidence for RUN; producing it is evidence for the lexeme *ran*
+  and the feature past.
+- **Features are to grammar what lemmas are to vocabulary**: units of meaning, realised by lexemes (‑ga for
+  dative; ‑ó, fused, for preterite 3sg) or by nothing (uz COP.3SG).
+- **Order follows:** a lemma's elsewhere lexeme before its listed members (*run* before *ran*), as a base
+  before its derivatives.
+- **The word list groups by lemma**, its listed lexemes beneath like principal parts (*ser*: *soy*, *eres*, *es*,
+  *fue*…).
+- **Open:** "learned" per lemma (its meaning facets and lemma-wide features) and per lexeme (its form
+  facets), or per lexeme only as now?
+
 ## Combinations
 
 A combination is derivable by definition: whatever isn't is a lexeme (lexemes.md §3). Only its lexemes are
