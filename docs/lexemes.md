@@ -281,26 +281,41 @@ fully specified form ─┤
     needs that etymology in the schema.
   - A phonemic scheme needs the vowels, stress and length the script leaves out.
   - Adding an orthography or scheme later can mean extending the schema.
-- **Logographic scripts are always a pair**: no rule spells a word in characters or logographs.
-  - yue: characters + Jyutping.
-  - tok: Latin + sitelen pona glyph.
-  - lzh: characters + Baxter, Pinyin and Jyutping. Middle Chinese doesn't predict the modern readings
-    without exceptions, so each tradition's reading is stored.
-  - chg is a pair too: Arabic + Schluessel.
+- **Decided: in the script, never a spelling juxtaposed with a reading.** Where a script can't show
+  something (apc-Arab's e and o), invent a convention in that script rather than pair it with a
+  transcription. One form in one script captures the generalisations; a pair only restates them word by
+  word.
+- **Proposed: what that means where a script can't write sounds at all:**
+  - **Han (yue, lzh):** a character's readings come from a table (Unihan, the pinned profile tables), so
+    書 is syu1 once, for every lexeme containing it. The fully specified form is the characters plus a
+    disambiguator only where the table gives more than one reading (行 haang4 / hong4) or a changed tone
+    applies. lzh's three traditions are three tables. (Deriving Pinyin and Jyutping from Baxter by sound
+    change, with exceptions listed, would capture even more; it's a bigger job.)
+  - **tok:** the Latin form is fully specified. sitelen pona is a projection: a table from word to glyph
+    (glyphs are graphemes, so it counts as a rule, §3.3) plus the cartouche rule for names.
+  - **chg:** Schluessel's Arabic with invented vowel marks for the distinctions his Latin makes; his reading
+    then follows by rule.
+- **Proposed: use existing Unicode marks where there are some.** Unicode already encodes extra Arabic vowel
+  signs added for other languages written in Arabic script (U+065A SMALL V ABOVE, U+065B INVERTED SMALL V
+  ABOVE, U+065C DOT BELOW), and Hebrew has QAMATS QATAN (U+05C7). New conventions need font coverage, a
+  place in NFC's canonical ordering (their combining classes), conformance vectors, and the visual matrix.
+- **Proposed: invented marks are data, not necessarily what learners see.** The learner's "vowel marks"
+  view is itself a projection: conventional marks, plus invented ones only where a course decides they're
+  worth teaching (apc's e and o might be).
 - **Where courses stand, and what to invent:**
 
   | Course | Fully specified schema | To invent |
   |---|---|---|
   | es | the orthography | almost nothing: a marker for the odd exception (x in *México*) |
-  | tok | Latin + glyph | nothing |
+  | tok | Latin | nothing (sitelen pona is a projection) |
   | grc | the `attic` reading (length marks) | nothing |
-  | yue | characters + Jyutping | nothing |
-  | lzh | characters + three readings | nothing |
-  | chg | Arabic + Schluessel | nothing; per-letter alignment would help |
+  | yue | characters + table | disambiguators for polyphones and changed tones |
+  | lzh | characters + three tables | disambiguators by sense (見 jiàn / xiàn) |
+  | chg | Arabic, Schluessel's reading beside it | vowel marks carrying his distinctions |
   | hbo | pointed text, with stress etc. in the `tiberian` reading | one form: pointing + QAMATS QATAN (U+05C7) + a stress mark + vocal shewa |
   | fa | vocalised Arabic script | stress, and conventions for و and final ه |
   | uz | none (Latin or Cyrillic) | stress; probably Cyrillic as the base, since ц and ь carry what Latin lost in Russian loans |
-  | apc | none | a whole schema: Levantine vowels (e, o, length) and the etymological consonants the Arabic spelling needs (ق as ʔ, ث as t / s) |
+  | apc | none | Arabic-script marks for e and o, and for which reading ق, ث, ذ, ظ take where it isn't the regular one (ق as q in learned words, ث as s) |
 
 - **An invented schema is data**, like reading schemes (ADR 0109): its inventory, plus projection rules to
   each orthography and phonemic scheme. Every projection needs conformance vectors passing in both
