@@ -370,7 +370,9 @@ parts are a memory hint worth showing, in the glossary and wherever the lexeme i
     need a scholarly source of its own.
 - **Where it shows:** the gloss panel on a tap, the word list, the feedback after a card, and the
   lexeme's first presentation.
-  - Never on the prompt side of a production card: "earth + eat" would hand over the answer's parts.
+  - Decided: never on the prompt side of a card. "earth + eat" would hand over the answer's parts.
+  - Proposed: always after the real gloss and labelled "lit.": a memory device, never presented as what
+    the word means or as a window on how its speakers think.
 - **Credit doesn't change:** knowing زمین خوردن still says nothing about زمین (§13). The hint links
   memories; it isn't evidence.
 - **Order:** a hint works best when its parts are already known, so the planner may prefer to introduce a
