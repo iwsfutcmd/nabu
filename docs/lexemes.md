@@ -110,6 +110,18 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
 7. **Rules are data, and the compiler checks every claimed derivation.**
    - A token analysed as a combination must derive from the rules, or the compiler reports it.
    - A form that can't be derived must be a lexeme (a lint, much as `kc.inflected-form` enforces lemmas now).
+8. **Decided: a gap doesn't make a combination a lexeme.** Some combinations don't exist for purely semantic
+   or phonological reasons; the ones that do exist are still derived by rule.
+   - Proposed: a rule carries its conditions, and a gap the conditions explain is predictable:
+     - phonological: English ‑en after an obstruent (*blacken*, *\*greenen*), the comparative ‑er by
+       length (*bigger*, *\*intelligenter*);
+     - semantic: *un‑* on adjectives that aren't already negative (*unhappy*, *\*unsad*); "place of" only
+       for actions that happen somewhere;
+     - blocking by a listed lexeme (*thief* blocks *\*stealer*): predictable once the lexeme is known.
+   - Proposed: only an arbitrary gap (the conditions are met and still no word exists) forces listing,
+     because then a learner can't know whether the word exists.
+   - Conditions are part of the rule's data (stem shape from the profile and scheme, semantic properties
+     on lexemes), and wug stems must meet them.
 
 ## 4. Senses and features
 
@@ -314,7 +326,7 @@ a new design language.
   | كاتِب "writing (one who writes)" | فاعِل, Form I active participle | yes | a combination |
   | كاتِب "clerk, writer" | same | no: the meaning drifted | a lexeme (a homograph, like *writer*) |
   | مَكْتُوب "written" | مَفْعُول, passive participle | yes | a combination |
-  | مَكْتَب "office, desk" | مَفْعَل "place of" | no: not every root has one; مَفْعَل / مَفْعِل / مَفْعَلة compete (مَلْعَب, مَسْجِد, مَدْرَسة) | a lexeme, with a strong hint (§10) |
+  | مَكْتَب "office, desk" | مَفْعَل "place of" | no: the meaning drifted ("desk" isn't "place of writing"), and which of مَفْعَل / مَفْعِل / مَفْعَلة a root takes is only partly predictable (مَسْجِد against its imperfect يَسْجُد) | a lexeme, with a strong hint (§10) |
   | كِتاب "book" | فِعال | no: the pattern has no fixed meaning | a lexeme; the root link is etymology |
 
   - Arabic teaching draws the same line: Form I verbal nouns (كِتابة, قَتْل, دُخول) are memorised; those of
