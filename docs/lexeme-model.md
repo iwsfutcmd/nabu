@@ -208,6 +208,66 @@ feature. A construction whose meaning isn't derivable is a lexeme with slots.
 - Written order isn't always spoken order even within a word: Thai and Lao store preposed vowels in visual
   order, an exception to Unicode's logical order. Projection rules handle it.
 
+### Blocking: where *ran* is stored, and how it's found (Proposed)
+
+**You don't merge *run* with ‑ed; you merge RUN with the feature past.** ‑ed is how English usually spells
+past. Merge takes a lemma and features; realising them picks the forms.
+
+**The irregular lexeme is the exception table.** *ran* is already stored as lemma RUN + {past}, so "the
+past of *run* is *ran*" is written once, on *ran*, and nowhere else.
+
+**The lookup is the Elsewhere Condition** (Pāṇini's principle, in Stump's Paradigm Function Morphology; the
+Subset Principle in Distributed Morphology): the most specific item wins.
+
+```mermaid
+flowchart TB
+  REQ["merge: lemma + features<br/>RUN + {past} · SCAN + {past} · TENER + {preterite, 1sg}"]
+  LOOK{"listed lexemes of this lemma<br/>whose features are a subset of the request:<br/>take the most specific"}
+  GAP["a listed gap<br/>(Russian победить + {non-past, 1sg})"]
+  NONE["no form: the combination doesn't exist"]
+  ALL["it covers every feature:<br/>done · ran"]
+  PART["it covers some:<br/>use it as the stem · tuv‑ {TENER, preterite}"]
+  BASE["it covers none:<br/>the lemma's elsewhere lexeme · scan"]
+  AFF{"realise the remaining features:<br/>the most specific affix whose conditions hold"}
+  A1["‑e, the strong-preterite ending<br/>(the stem's class) · tuve"]
+  A2["‑ed, the elsewhere past · scan‑ed"]
+  BND["boundary and projection rules<br/>scanned"]
+  OFF["the same, with listed lexemes ignored:<br/>the overregularisation a learner may type · *runned"]
+
+  REQ --> LOOK
+  LOOK -->|a gap| GAP --> NONE
+  LOOK -->|all| ALL
+  LOOK -->|some| PART --> AFF
+  LOOK -->|none| BASE --> AFF
+  AFF --> A1 --> BND
+  AFF --> A2 --> BND
+  REQ -.->|blocking off| OFF
+```
+
+1. Index the lexicon at compile time by lemma. Among a lemma's listed lexemes, take those whose features
+   are a subset of the request, and the most specific of them.
+2. If it covers every feature, that's the answer: *ran*.
+3. If it covers some, it's the stem: *tuv-* is TENER + {preterite}. Its own lexical features (a
+   strong-preterite stem) condition what comes next.
+4. If it covers none, the stem is the lemma's elsewhere lexeme: *scan*.
+5. The remaining features are realised by affixes, again the most specific whose conditions hold: the
+   strong-preterite ‑e (*tuve*) beats the regular ‑í; the elsewhere ‑ed applies to *scan*.
+6. Then boundary and projection rules: *scanned*.
+
+**Three ways a merge can "fail", each stored differently:**
+- **Blocked** (RUN + past): not a failure. The lookup returns *ran*; *runned* is never built.
+- **Conditions not met** (*\*greenen*, *\*unsad*): a rule's conditions don't hold, so it produces nothing.
+  Nothing is stored.
+- **An arbitrary gap** (Russian победить has no 1sg non-past): stored on the lemma as a feature set with no
+  form, a listed item that blocks the rule and supplies nothing.
+
+**Blocking off gives the learner's error.** Run the same realisation ignoring listed lexemes and RUN + past
+comes out *runned*: exactly the overregularisation a learner types. The compiler can put those forms in the
+bundle beside the right answer, so the grader can say "right tense, irregular verb" while staying literal.
+
+**Merge runs at compile time**, in the pipeline: accept sets, overregularisations and wugs are generated
+there, and the bundle carries the results.
+
 ### Where lexemes and combinations meet
 
 Some lexemes have an underivable meaning but a derivable form: *writer* (the occupation) is spelled *write*
