@@ -44,28 +44,19 @@
 
 /* Characters over Jyutping (ADR 0126): a Han glyph is a whole word's worth of strokes, unreadable at
    the size that suits a romanized syllable. */
-/* A reading over an Arabic-script word (Schluessel's transliteration of Chaghatay, ADR 0129) sits just above
-   its own word: Nastaliq stacks letters far over the em box a browser sets ruby on (یکی cascades rise to
-   2.44 em of the word's size in chg), while سن stays under it. <T> measures each word and sets its lift
-   (`--nabu-ruby-lift`, in the word's em, and `data-lift`; ruby-lift.ts). A line's readings share one
-   baseline, so the lift goes on an inline-block inside the reading, set on the bottom of their row: each
-   stands on its own word, and the line grows to hold the tallest, never overlapping the line before.
-   The padding is in the reading's size, 0.55 of the word's. Until a word is measured, its reading clears
-   the tallest word: 1.7 em over where Chromium sets ruby (0.8 em up) is 2.5 em over the baseline. */
+/* Readings over Arabic-script words (Schluessel's transliteration of Chaghatay, ADR 0129) stand at one height
+   on a line, a gap over its tallest word: Nastaliq stacks letters far over the em box a browser sets ruby on
+   (یکی cascades rise to 2.44 em of the word's size in chg), while سن stays under it. <T> measures each word
+   (`data-lift`, in the word's em) and gives every reading on a line the most any needs (`--nabu-ruby-lift`;
+   ruby-lift.ts). The padding is on the reading itself, so the line, and any box around it (a tile), grows to
+   hold it, in Gecko as in Chromium. It is in the reading's size, 0.55 of the word's. Until a word is measured,
+   its reading clears the tallest word: 1.7 em over where Chromium sets ruby (0.8 em up) is 2.5 em over the
+   baseline. */
 .text[data-script="Arab"] .ruby:not([data-lift]) rt {
   padding-block-end: calc(1.7em / 0.55);
 }
 
-/* The row's own strut (an empty line at line-height 1) would set an unlifted reading 0.09 em higher than a
-   lifted one, and every reading in its line with it: the reading's box alone sets its row. */
 .text[data-script="Arab"] .ruby[data-lift] rt {
-  line-height: 0;
-}
-
-.text[data-script="Arab"] .ruby[data-lift] .reading {
-  display: inline-block;
-  vertical-align: bottom;
-  line-height: 1;
   padding-block-end: calc(var(--nabu-ruby-lift) / 0.55 * 1em);
 }
 

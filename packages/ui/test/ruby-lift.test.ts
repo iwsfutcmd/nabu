@@ -5,7 +5,7 @@
  * clearance holds.
  */
 import { describe, expect, it } from "vitest";
-import { RUBY_GAP, rubyLift } from "../src/ruby-lift.ts";
+import { lineLifts, RUBY_GAP, rubyLift } from "../src/ruby-lift.ts";
 
 describe("a reading's lift", () => {
   it("puts the reading's baseline a gap over the word's ink", () => {
@@ -15,5 +15,14 @@ describe("a reading's lift", () => {
 
   it("never sets a reading lower than it sits of its own accord (a short word, سیز)", () => {
     expect(rubyLift(0.52, 1.07)).toBe(0);
+  });
+});
+
+describe("a line's readings", () => {
+  it("stand at one height: every reading takes the most any word on the line needs", () => {
+    // سن یکیتسن: the short word's reading rises to its tall neighbour's.
+    expect(lineLifts([0.22, 1.52])).toEqual([1.52, 1.52]);
+    expect(lineLifts([0, 0])).toEqual([0, 0]);
+    expect(lineLifts([])).toEqual([]);
   });
 });

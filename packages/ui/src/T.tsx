@@ -95,7 +95,7 @@ interface TokenViewProps {
   readonly focus: number | undefined;
   readonly onPress: ((index: number) => void) | undefined;
   readonly pressed: boolean;
-  /** How far its reading is lifted over where the browser sets it, in its em (ruby-lift.ts), once measured. */
+  /** How far its own reading needs lifting over where the browser sets it, in its em (ruby-lift.ts), once measured: its line's readings then take the most any needs. */
   readonly lift: number | undefined;
 }
 
@@ -112,13 +112,12 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
     ) : segments === undefined ? (
       bases.map((segment, i) => <Fragment key={i}>{base(segment.base, i)}</Fragment>)
     ) : (
-      <ruby className={styles.ruby} data-lift={lift === undefined ? undefined : ""} style={lift === undefined ? undefined : ({ "--nabu-ruby-lift": lift.toFixed(3) } as CSSProperties)}>
+      <ruby className={styles.ruby} data-lift={lift?.toFixed(3)} style={lift === undefined ? undefined : ({ "--nabu-ruby-lift": lift.toFixed(3) } as CSSProperties)}>
         {segments.map((segment, i) => (
           <Fragment key={i}>
             {base(segment.base, i)}
             <rt lang={rubyLang} data-script={rubyLang === undefined ? undefined : scriptOf(rubyLang)}>
-              {/* A lifted reading stands on its own word, not on the line's other readings (T.module.css). */}
-              {lift === undefined ? segment.text : <span className={styles.reading}>{segment.text}</span>}
+              {segment.text}
             </rt>
           </Fragment>
         ))}
@@ -189,7 +188,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   // Jyutping (ADR 0126) need the Han font that Latin text would never load.
   const rubyFont = rubyLang === undefined ? undefined : fontStackFor(rubyLang).family;
   useFonts(rubyFont ?? "");
-  // A reading over a script whose ink rises far over the em box (Nastaliq) sits just above its own word.
+  // Readings over a script whose ink rises far over the em box (Nastaliq) stand a gap over their line's tallest word.
   const script = scriptOf(text.lang) ?? "";
   const element = useRef<HTMLElement | null>(null);
   const setElement = useCallback((el: HTMLElement | null): void => {

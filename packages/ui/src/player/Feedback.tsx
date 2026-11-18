@@ -15,10 +15,11 @@ import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { Fragment, useMemo, type JSX } from "react";
-import { useTranslator } from "../context.tsx";
+import { useIsTarget, useTranslator } from "../context.tsx";
 import { CorrectIcon, WrongIcon } from "../icons.tsx";
-import { T, useShowsRuby } from "../T.tsx";
+import { T, useShowsRuby, type TProps } from "../T.tsx";
 import { FormNote, GlossEntry, GlossList } from "./Gloss.tsx";
+import type { Glossing } from "./shared.ts";
 import styles from "./Player.module.css";
 
 /** Marks where a word goes in a message: a private-use character no message holds. */
@@ -148,9 +149,21 @@ export interface FeedbackProps {
   readonly course: CourseView;
   readonly ruby: SchemeId | false;
   readonly marks: "show" | "hide";
+  /**
+   * Tap-for-gloss (P1): the right answer's words, and the nearest correct version's, are tappable where
+   * they are in a language the course teaches. The card is answered: a meaning gives nothing away.
+   */
+  readonly glossing?: Glossing | undefined;
 }
 
-export const Feedback = ({ ex, outcome, response, course, ruby, marks }: FeedbackProps): JSX.Element => {
+/** <T>'s tap props for a text of the feedback (`key`), where it is the language being learned. */
+const useTaps = (glossing: Glossing | undefined, key: string, text: TaggedText | undefined): Pick<TProps, "onTokenPress" | "pressed"> => {
+  const target = useIsTarget(text?.orthography ?? "");
+  if (glossing === undefined || text === undefined || !target) return {};
+  return { onTokenPress: (token) => glossing.onTap({ key, text, token }), pressed: glossing.tapped?.key === key ? glossing.tapped.token : undefined };
+};
+
+export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing }: FeedbackProps): JSX.Element => {
   const t = useTranslator();
   const showsRuby = useShowsRuby();
   // A self-rating checked nothing (P5): neither right nor wrong, and no solution to compare with.
@@ -207,6 +220,8 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks }: Feedbac
     });
   };
   const base = outcome.solution;
+  const solutionTaps = useTaps(glossing, "feedback-solution", showSolution ? outcome.solution : undefined);
+  const closestTaps = useTaps(glossing, "feedback-closest", closest?.text);
   return (
     <div className={styles.feedback} data-feedback="" data-verdict={neutral ? "SELF_RATED" : outcome.verdict} data-right={(right && !neutral) || undefined}>
       <p className={styles.feedbackHeadline}>
@@ -237,14 +252,14 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks }: Feedbac
       {showSolution && outcome.solution !== undefined && (
         <div className={styles.solution} data-solution="">
           {solutionLabel !== undefined && <span className={styles.label}>{solutionLabel}</span>}
-          <T as="p" text={outcome.solution} ruby={ruby} marks={marks} highlight={solutionMarked} />
+          <T as="p" text={outcome.solution} ruby={ruby} marks={marks} highlight={solutionMarked} {...solutionTaps} />
         </div>
       )}
       {missed.length > 0 && <Meanings meant={missed} label={t.format("player.feedback.right-meaning")} ruby={ruby} marks={marks} data="right" />}
       {closest !== undefined && (
         <div className={styles.solution} data-closest="">
           <span className={styles.label}>{t.format("player.feedback.closest")}</span>
-          <T as="p" text={closest.text} highlight={closest.marked} marks={marks} />
+          <T as="p" text={closest.text} highlight={closest.marked} marks={marks} {...closestTaps} />
         </div>
       )}
       {diff !== undefined && (diff.marked.length > 0 || diff.gaps.length > 0) && (

@@ -1,12 +1,13 @@
 /**
- * Readings set by each word's own ink (ADR 0131 amendment). Nastaliq stacks letters high above the
+ * Readings set over a line's tallest word (ADR 0131 amendments). Nastaliq stacks letters high above the
  * line (یکی cascades rise to 2.44 em of the word's size in chg), far over where a browser sets ruby,
- * while a short word (سن) stays well under it. One clearance for every word left the reading either
- * in the strokes of a tall word or floating far over a short one; this lifts each reading to a gap
- * over its own word: the word's ink, less where the reading's baseline sits of its own accord.
+ * while a short word (سن) stays well under it. One clearance for every text left the readings either in
+ * the strokes of a tall word or floating far over short ones. Each word is lifted by what its own ink
+ * needs, and every reading on a line by the most any of them needs: a line's readings stand at one
+ * height, a gap over its tallest word, and the line grows to hold them.
  *
- * Both are measured in the browser, by what it draws and lays out, never by what an engine's metrics
- * say (Chromium and Gecko set ruby, and report text bounds, differently):
+ * All is measured in the browser, by what it draws and lays out, never by what an engine's metrics say
+ * (Chromium and Gecko set ruby, and report text bounds, differently):
  * - A word's ink: the top row the word inks when drawn on a canvas in its font (`inkOf`).
  * - Where a reading's baseline sits unlifted (`naturalOf`): a hidden probe built as <T> builds a reading,
  *   with T.module.css's own classes and fonts, and a zero-size mark on each baseline. The probe also
@@ -15,6 +16,9 @@
  * - Then in place (`calibrate`): the probe is set at one size, and a browser rounds where it sets ruby
  *   to whole pixels (Chromium: 0.07 em at 20 px). Once a text is laid out, one of its own readings is
  *   measured the same way at its own size, and its words are lifted again by that, before it is painted.
+ * - Lines (`alignLines`): once laid out, the readings whose words share a baseline in a block take the
+ *   largest lift among them (Chromium would set a line's padded readings level by itself; Gecko sets each
+ *   on its own word). Again when the block's width changes, as its lines wrap anew.
  * Each is kept once known. Until then (and where there is no document, as in tests) a word has no lift,
  * and the stylesheet's own clearance, safe for every word, holds.
  */
@@ -27,12 +31,20 @@ export const RUBY_GAP = 0.35;
 /** How far to lift a reading over where it sits of its own accord, in the word's em: never below it. */
 export const rubyLift = (ink: number, natural: number): number => Math.max(0, ink + RUBY_GAP - natural);
 
+/** Every reading on a line takes the largest lift among them: one height, over the line's tallest word. */
+export const lineLifts = (lifts: readonly number[]): readonly number[] => {
+  const top = Math.max(0, ...lifts);
+  return lifts.map(() => top);
+};
+
 /** The size words are drawn at to measure them (px): measurements are ratios to it. */
 const SIZE = 50;
 /** The canvas rows over a word's baseline, in em: room for the tallest Nastaliq cascade. */
 const ROOM = 3;
 /** An alpha that counts as ink: above antialiasing fringes and any noise a browser adds to canvas reads. */
 const INKED = 64;
+/** Words whose bounds end within this many pixels of each other are on one line. */
+const SAME_LINE = 2;
 
 /** What the reading layer is set in, beside the word's own font. */
 export interface RubyFonts {
@@ -110,16 +122,16 @@ const baselineMark = (): HTMLSpanElement => {
   return mark;
 };
 
-/**
- * Where a reading's baseline sits over its word's, unlifted, in the word's em: a hidden probe set as
- * <T> sets a lifted reading (T.module.css, `--nabu-ruby-lift: 0`). None until the canvas sets the
- * sample as the page does (its font is in for both).
- */
 const fontsKey = (fonts: RubyFonts): string => [fonts.family, fonts.lineHeight, fonts.ruby ?? "", fonts.script].join("\u0000");
 
 /** The key of a natural position measured in place: the fonts, at a size in pixels. */
 const sizedKey = (fonts: RubyFonts, size: number): string => `${fontsKey(fonts)}\u0000${size.toFixed(2)}`;
 
+/**
+ * Where a reading's baseline sits over its word's, unlifted, in the word's em: a hidden probe set as
+ * <T> sets a lifted reading (T.module.css, `--nabu-ruby-lift: 0`). None until the canvas sets the
+ * sample as the page does (its font is in for both).
+ */
 const naturalOf = (fonts: RubyFonts, sample: string): number | undefined => {
   const key = fontsKey(fonts);
   const known = naturals.get(key);
@@ -138,16 +150,13 @@ const naturalOf = (fonts: RubyFonts, sample: string): number | undefined => {
   token.className = styles.token;
   const ruby = document.createElement("ruby");
   ruby.className = styles.ruby;
-  ruby.dataset.lift = "";
+  ruby.dataset.lift = "0";
   ruby.style.setProperty("--nabu-ruby-lift", "0");
   const base = document.createTextNode(sample);
   const wordBaseline = baselineMark();
   const rt = document.createElement("rt");
-  const reading = document.createElement("span");
-  reading.className = styles.reading;
   const readingBaseline = baselineMark();
-  reading.append("x", readingBaseline);
-  rt.append(reading);
+  rt.append("x", readingBaseline);
   ruby.append(base, wordBaseline, rt);
   token.append(ruby);
   text.append(token);
@@ -175,25 +184,64 @@ const naturalOf = (fonts: RubyFonts, sample: string): number | undefined => {
  */
 const calibrate = (ruby: HTMLElement, size: number): number | undefined => {
   const rt = ruby.querySelector("rt");
-  const reading = rt?.querySelector(`.${styles.reading}`);
   const lift = parseFloat(ruby.style.getPropertyValue("--nabu-ruby-lift"));
-  if (rt === null || reading === null || reading === undefined || Number.isNaN(lift)) return undefined;
+  if (rt === null || Number.isNaN(lift)) return undefined;
   const wordBaseline = baselineMark();
   const readingBaseline = baselineMark();
   ruby.insertBefore(wordBaseline, rt);
-  reading.append(readingBaseline);
+  rt.append(readingBaseline);
   const above = (wordBaseline.getBoundingClientRect().top - readingBaseline.getBoundingClientRect().top) / size;
   wordBaseline.remove();
   readingBaseline.remove();
   return above - lift;
 };
 
+/** Where a ruby's word ends in the block direction: words on one line end alike. */
+const wordBottom = (ruby: HTMLElement): number | undefined => {
+  const rt = ruby.querySelector("rt");
+  if (rt === null) return undefined;
+  const range = document.createRange();
+  range.setStart(ruby, 0);
+  range.setEndBefore(rt);
+  return range.getBoundingClientRect().bottom;
+};
+
+/**
+ * Every lifted reading in a block takes the largest lift (`data-lift`, its own word's) among the
+ * readings on its line (`lineLifts`), set as `--nabu-ruby-lift`.
+ */
+const alignLines = (block: HTMLElement): void => {
+  const rubies = [...block.querySelectorAll<HTMLElement>("ruby[data-lift]")].flatMap((ruby) => {
+    const bottom = wordBottom(ruby);
+    const own = parseFloat(ruby.dataset.lift ?? "");
+    return bottom === undefined || Number.isNaN(own) ? [] : [{ ruby, bottom, own }];
+  });
+  rubies.sort((a, b) => a.bottom - b.bottom);
+  const lines: (typeof rubies)[] = [];
+  for (const r of rubies) {
+    const line = lines.at(-1);
+    const first = line?.[0];
+    if (line !== undefined && first !== undefined && r.bottom - first.bottom <= SAME_LINE) line.push(r);
+    else lines.push([r]);
+  }
+  for (const line of lines) {
+    const lifts = lineLifts(line.map((r) => r.own));
+    line.forEach((r, i) => {
+      const lift = (lifts[i] ?? r.own).toFixed(3);
+      if (r.ruby.style.getPropertyValue("--nabu-ruby-lift") !== lift) r.ruby.style.setProperty("--nabu-ruby-lift", lift);
+    });
+  }
+};
+
+/** The block a text's lines belong to: the text itself, or for a text set inline, the block around it. */
+const blockOf = (element: HTMLElement): HTMLElement => (getComputedStyle(element).display.startsWith("inline") ? (element.parentElement ?? element) : element);
+
 /**
  * Each word's lift (`rubyLift`), once its fonts are in; nothing while `on` is false (a text with no
- * reading shown, or a script the stylesheet does not lift). `ref` is the text's element: once it is
- * laid out, one of its readings sets the natural position at its own size (`calibrate`), and the text
- * is lifted again before it is painted. The text re-renders when fonts finish loading, so a word
- * measured late is lifted then.
+ * reading shown, or a script the stylesheet does not lift). `ref` is the text's element. Once it is laid
+ * out, before it is painted, its lines' readings are set level (`alignLines`) and one of them sets the
+ * natural position at its own size (`calibrate`). The text re-renders when fonts finish loading, and
+ * its lines are set again when its block's width changes.
  */
 export const useRubyLift = (fonts: RubyFonts, on: boolean, ref: RefObject<HTMLElement | null>): ((surface: string) => number | undefined) => {
   const [, setLoaded] = useState(0);
@@ -205,8 +253,12 @@ export const useRubyLift = (fonts: RubyFonts, on: boolean, ref: RefObject<HTMLEl
     return () => document.fonts.removeEventListener("loadingdone", loaded);
   }, [on]);
   useLayoutEffect(() => {
-    const ruby = on ? ref.current?.querySelector<HTMLElement>("ruby[data-lift]") : undefined;
-    if (ruby === null || ruby === undefined) return;
+    const element = ref.current;
+    if (!on || element === null) return;
+    const block = blockOf(element);
+    alignLines(block);
+    const ruby = element.querySelector<HTMLElement>("ruby[data-lift]");
+    if (ruby === null) return;
     const px = parseFloat(getComputedStyle(ruby).fontSize);
     if (!(px > 0)) return;
     const key = sizedKey(fonts, px);
@@ -216,6 +268,27 @@ export const useRubyLift = (fonts: RubyFonts, on: boolean, ref: RefObject<HTMLEl
     }
     if (naturals.has(key) && px !== size) setSize(px);
   });
+  // A new width wraps the lines anew: set them level again, after the frame that laid them out (a
+  // change made in the observer's own callback would size what it observes).
+  useEffect(() => {
+    const element = ref.current;
+    if (!on || element === null || typeof ResizeObserver === "undefined") return;
+    const block = blockOf(element);
+    let width = block.getBoundingClientRect().width;
+    let frame = 0;
+    const observer = new ResizeObserver(() => {
+      const now = block.getBoundingClientRect().width;
+      if (now === width) return;
+      width = now;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => alignLines(block));
+    });
+    observer.observe(block);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [on, ref]);
   return (surface) => {
     if (!on) return undefined;
     const ink = inkOf(fonts.family, surface);

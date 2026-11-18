@@ -155,3 +155,22 @@ for every word would either leave readings in the strokes or float them far over
     words: on them, as Firefox on Android showed.
 - **Where:** Arabic script only (`INK_LIFTED` in T.tsx, mirrored in T.module.css): Han, Latin and sitelen
   pona keep the browser's own placement, and their visual baselines stay as they are.
+
+## Amendment: a line's readings stand level, inside their box (2026-11-18)
+
+Readings at each word's own height read as ragged: a line's readings belong together, as the sentence's
+reading. And the lift sat on a box inside the reading, which Gecko does not grow a line for: in a word-bank
+tile, ikkinči stood over the tile's top edge in Firefox.
+
+- **The rule:** every reading on a line stands at one height, a gap (0.35 em) over the line's tallest word.
+  The line, and any box around it (a tile, a card), grows to hold its readings.
+- **How:** each word's lift is still its own (`data-lift`). Once laid out, the readings whose words share a
+  baseline in a block take the largest lift among them (`alignLines`, ruby-lift.ts), across every text set
+  inline in that block (a gap sentence's two halves). Again when the block's width changes, as its lines wrap
+  anew. The lift is padding on the reading itself: both engines grow the line for it.
+- **Checked in Chromium and Firefox 160:**
+  - The u04 sentence list's 49 lines: readings level on each, the tallest word's gap 0.35 em (Firefox 0.35 to
+    0.38, its rounding).
+  - A tile given a tall word's lift grows to hold its reading in both.
+- **Tappable answers:** the feedback's right answer, and the nearest correct version, are tappable for a
+  word's gloss, as an answered card's prompt is, where they are in a language the course teaches.

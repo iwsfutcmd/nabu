@@ -2,7 +2,6 @@
 declare const styles: {
   readonly focus: string;
   readonly pressable: string;
-  readonly reading: string;
   readonly ruby: string;
   readonly text: string;
   readonly token: string;

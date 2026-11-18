@@ -188,7 +188,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`DisplayChoice.readings`); <T> fades a word's ruby only inside `FadeReadings` (lessons, stories), by core
   `readingsShown`: never in a tapped word's gloss or the word list, nor on a word tapped (`pressed`) or marked (`highlight`).
   Pass `readingsShown` wherever `known` goes. A gloss always shows a reading, readings off or not (`glossRuby`); a word
-  glossed by its parts heads its panel with its own reading.
+  glossed by its parts heads its panel with its own reading. The feedback's right answer is tappable too.
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 
@@ -580,7 +580,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW), then typed
   (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131);
   every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
-  A reading stands on its own word's ink (ruby-lift.ts, ADR 0131 amendment): never one clearance for every word.
+  A line's readings stand level, a gap over its tallest word's ink, inside their box (ruby-lift.ts, ADR 0131 amendments).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
 - Suffixes are morphs with form KCs (form:dat, form:past-1s, form:pres, form:mis …); verbs are cited as stems with

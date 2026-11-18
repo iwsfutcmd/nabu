@@ -3,7 +3,9 @@ import { allSentences, createGrader, gradeExercise, sampleExercise, start, step,
 import { surfaceOf } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
+import { CourseUiProvider } from "../src/context.tsx";
 import { Feedback } from "../src/player/Feedback.tsx";
+import type { WordTap } from "../src/player/Gloss.tsx";
 import { LessonPlayer } from "../src/player/LessonPlayer.tsx";
 import { loadCourse } from "./course.ts";
 import { render } from "./render.tsx";
@@ -133,6 +135,30 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     expect(answer).toMatch(/<p dir="ltr" data-marked-answer="">/u);
     expect(answer.match(/lang="es-Latn-CU"/gu)).toHaveLength(2);
     expect(block(html, "data-solution")).toContain('data-highlight="true">tienes</span>');
+  });
+
+  it("the right answer's words are tappable for their meaning, in the language taught only (P1)", () => {
+    const taps: WordTap[] = [];
+    const glossing = { tapped: undefined, onTap: (tap: WordTap) => taps.push(tap) };
+    const wrong = gradeExercise(hungry, { tag: "text", text: "Tú hambre" }, grader);
+    const html = render(
+      <CourseUiProvider course={es}>
+        <Feedback ex={hungry} outcome={wrong} response={{ tag: "text", text: "Tú hambre" }} course={es} ruby={false} marks="show" glossing={glossing} />
+      </CourseUiProvider>,
+    );
+    const solution = block(html, "data-solution");
+    expect(solution.match(/<button type="button"/gu)?.length).toBe(hungry.canonical.tokens.filter((t) => t.kind === "word").length);
+    // The marked word is a button too, still marked.
+    expect(solution).toMatch(/<button[^>]*data-highlight="true"[^>]*>tienes<\/button>/u);
+    // An English solution (a card answered in the learner's language) has nothing to gloss.
+    const english = render(
+      <CourseUiProvider course={es}>
+        <Feedback ex={hungry} outcome={{ ...wrong, solution: hungry.prompt, closestIsSolution: false }} response={{ tag: "text", text: "Tú hambre" }} course={es} ruby={false} marks="show" glossing={glossing} />
+      </CourseUiProvider>,
+    );
+    expect(block(english, "data-solution")).not.toContain("<button");
+    // Without a lesson's glossing (the end of a session), no buttons.
+    expect(block(feedbackOf(hungry, { tag: "text", text: "Tú hambre" }), "data-solution")).not.toContain("<button");
   });
 
   it("a missing accent is marked in the answer and in the solution", () => {
