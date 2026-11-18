@@ -558,16 +558,21 @@ a new design language.
       accessible name: its traditional name and meaning.
   - **Hebrew, the owner's alternative: samekh ס as the stand-in**, a round letter standing for a circle
     (סִסֵּס, הִסְסִיס). No Hebrew pattern has a ס of its own, so it can't be mistaken for one.
-  - **Proposed: placeholders greyed, so they don't distract from the pattern.** Rendered 2026-11-18 in
-    Chromium:
-    - Arabic letters stay joined across the change of colour, in Chromium. Firefox and WebKit need the
-      visual matrix before relying on it.
-    - **A mark takes its base's colour:** Chromium paints a cluster in one colour, so a slot's vowel greys
-      with it, though the vowels are half the pattern. So the grey has to stay readable: #767676 (AA, 4.5:1
-      on white), not a pale one.
-    - The grey is a theme token, light and dark, with its AA pairing in packages/ui/test/tokens.test.ts.
-    - The dotted circle is light by design, and its points stay solid black: it gets the effect without
-      grey.
+  - **Decided: placeholders are faint, below AA if need be.** They are there to be hard to see; the
+    shape's accessible name carries the pattern.
+  - **The marks must not go faint with them.** CSS colour can't do that: Chromium paints a letter and its
+    marks in one colour, so a slot's vowel, or samekh's dagesh, fades with it (rendered 2026-11-18).
+  - **Proposed: a colour font does it.** A copy of the script's font (Noto Naskh Arabic, Noto Serif Hebrew;
+    OFL, renamed) with a COLR/CPAL table that paints only the placeholder glyphs (every contextual form, and
+    the tatweel) in a palette colour. Marks are separate glyphs, so they stay in the text colour; no spans,
+    so nothing can break the joining.
+    - Prototyped 2026-11-18 with fontTools, the slot glyphs found by shaping with HarfBuzz (ٮ and ڡ in their
+      init, medi and fina forms; ס): the dagesh, the points and the harakat stay black at 28%.
+    - The palette colour is set per theme with `@font-palette-values`. COLRv1 could paint the foreground
+      colour at an alpha, following light and dark by itself, but WebKit doesn't support COLRv1, so use
+      COLRv0 + CPAL.
+    - The font is used only for pattern shapes; built by a script from the pinned font, like the other
+      subsets.
   - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
 - **Decided: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
   name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
