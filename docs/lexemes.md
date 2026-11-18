@@ -585,8 +585,18 @@ a new design language.
     - **The pattern's vowels in an accent palette colour** as reinforcement, never as the only cue.
     - **Not:** marking which letters of a real word are the root through unregistered variation selectors.
       Only registered variation sequences are conformant.
-    - **The cost:** a build script from the pinned font, a rebuild on font upgrades, an OFL rename, and a
-      subset small enough to load only with pattern shapes.
+    - **The cost:** a build script from the pinned font, an OFL rename, and a subset small enough to load
+      only with pattern shapes.
+  - **Decided: the pattern font is a build step, never a committed binary.** Upgrading the source font
+    (the `@fontsource` packages packages/ui already imports) must be enough to update it.
+    - Proposed: a turbo task (`fonts`) ahead of `dev`, `build` and Storybook, writing to a gitignored
+      directory, from the source font pinned in the lockfile, with fontTools pinned in the pipeline's uv
+      lock. It shapes the slot strings with HarfBuzz to find the glyphs (so a font upgrade that renames or
+      adds glyph forms is followed), then adds COLR/CPAL and renames the family.
+    - Without the generated font (no Python on a machine running `pnpm dev`), pattern shapes fall back to the
+      plain font: dotless letters, not faint ones.
+    - A test checks the generated font: every slot glyph HarfBuzz produces has a colour record, and no
+      mark does.
   - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
 - **Decided: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
   name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
