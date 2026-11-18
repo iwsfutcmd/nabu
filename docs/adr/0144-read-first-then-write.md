@@ -147,3 +147,55 @@ it: a passage line counts, and so does `write-word`. Words marked `drill: false`
   passage already? Proposed: the same at first, then tuned against the simulation.
 - **`write-word`'s form:** the lemma (bar-) or the form met in the line? Proposed: the lemma, as word
   cards show it; the typed blank in a line asks the form.
+
+## Implementation (2026-11-18)
+
+Steps 1–4 are built; step 5 has begun with one passage of chg.
+
+- **Schemas.** KCs take `drill` in the course source (false for `pos: PROPN` unless set); the bundle
+  carries `drill: false` only. A story node's bundled `introduces` is what its passage is the first to
+  use: the lines of the course's passages that use each KC (each line once, whatever its orthographies),
+  most first, then the passages, then the passage's own order. A source story node lists none
+  (`story.node`). The drill node is the bundle's: kind `drill`, id `<story node>.words`, right after the
+  story node, its `drill: {story, words}` the drilled sense KCs of those, in that order. The
+  learner-event schema lists `write-word`.
+- **Compiler.** Stage 5 walks the nodes in order: a lesson's `introduces` as before, a story node's
+  worked out from its lines' tokens. `curriculum.introduced-twice` (error) replaces `story.ahead`;
+  `curriculum.never-introduced` is for sentences only; `curriculum.unused-kc` counts passages as use;
+  `curriculum.core` (info) is a drilled word in three passages or more, first met in one. Sentences
+  and story lines leave undrilled KCs out of their `kcs`, so no card credits or asks a name; their
+  tokens keep the sense, for taps. A release build keeps a drill node with its story.
+- **Sessions.** Core splits a drill node's words (those written in the orthography and glossed) into
+  sessions of at most `DRILL_WORDS` (five, a match-pairs card's worth: one card presents them all; two
+  words alike in spelling or card gloss never share a session). Each session is a lesson of its own
+  node id, `<drill node>.<n>`, so the fold, XP (a session done again pays its answers only), the gate,
+  resume and the e2e solver need nothing new. Its cards: its words' pictures and clips, one
+  match-pairs, `write-word` for each, and for each word in each line of the passage that uses it a
+  gap-fill (which word) and a typed blank, each blanking that word. A line's item is its audio item,
+  `story#step`, so its clip plays; its card ids use `/` there, as `#` marks a retry. A line's other
+  words are context: met glossed in the passage, never asked. A drill brings back earlier lessons'
+  sentences as a lesson does (ADR 0097).
+- **write-word** (produce, prior 0.8): the card gloss; the answer is the word's first form, and every
+  form of it or of any drilled word whose gloss lists a meaning the prompt shows is right (ADR 0085). A
+  stem cited with a hyphen (chg بول-) is right with or without it. Reviews make it for the neediest
+  words no course sentence asks in writing.
+- **Path and Continue.** A drill node is open once its passage is read and done once every session is;
+  it never holds back the node after it (D6). Its entry shows its sessions done of all and the words
+  of the next. Continue offers practice first as before, then drills once `drillAt` words of passages
+  read wait (consolidate 1, steady 10, accelerate 30) or nothing else is left, a new lesson beside it.
+- **Names.** `drill: false` words are never presented, blanked, asked about (marks, readings,
+  spellings) or written; they are no words to learn (`learnedWords`), placement seeds none, and
+  `skillsAsked` asks nothing of them. Every drilled sense KC with a form and a gloss is asked `produce`.
+- **UI.** The write-word card; the passage's new words above its first line (the reader opens there,
+  the list horizontal in vertical reading); drill entries on the course path; Continue, the home card
+  and the end screen offer "Learn the story's words". New screens in the visual matrix: the write-word
+  card and the passage's opening. e2e: chg's drill by keyboard and touch.
+- **Calibration.** Leaving names out moved every simulated course by under 2pp (80.6% to 88.7%).
+  A learner who reads the stories and follows Continue (`stories` in the simulator, placed through
+  chg's unit 18) drills the last passage's words: 90.5% success, every word presented and written.
+- **chg.** Unit 19's passage goes on with Passage Seven (Schluessel 2018, p. 163, as he types it: the
+  khan's question and the Master's answer, the Arabic of the call to prayer left out). Its three new
+  words (awlà, ägär, iʿtibār) are read first and drilled in one session; the other words were taught
+  before. Still to do: lessons for the recurring words Schluessel teaches early, the passages at full
+  length (a later passage that uses a word a later lesson teaches must take it from that lesson), and
+  the other courses.

@@ -205,6 +205,19 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 
+## Words met in passages notes (see docs/adr/0144)
+- A story node introduces every KC its passage is the first to use (worked out by the compiler, never listed in the
+  source), most used across the course's passages first; a KC is introduced once (`curriculum.introduced-twice`): a
+  later lesson that also teaches it is an error, so take the word out of the lesson or out of the earlier passage.
+- The compiler puts a drill node (kind drill, `<story>.words`) after it with the drilled words; core splits them into
+  sessions of `DRILL_WORDS` (lesson/drill.ts), each a lesson of node `<drill>.<n>`: never new event data. Drills never
+  block the path; Continue offers them at the pace's `drillAt`. Tune DRILL_WORDS and drillAt only against the simulation.
+- `drill: false` (proper names by default): glossed, never asked. The compiler leaves such KCs out of sentences' and
+  lines' `kcs`; every card's word picker skips them (`drilledToken`). Never ask a name in a new template either.
+- Every drilled word is asked in writing before it is known: typed in a line or sentence, or `write-word` (its gloss
+  shown, any form of any word glossed alike right). Cards from a passage's lines are `LINE_TEMPLATES` only; their
+  item is the line's audio item (`story#step`), and an exercise id never holds a `#` (it marks a retry).
+
 ## Phase 5 notes (see docs/adr/0040–0042)
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
   ../courses/<id> [--check]` writes it (needs espeak-ng and ffmpeg; --check needs `uv sync --group speech`). The compiler only
@@ -464,7 +477,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   literary reading; Baxter is Baxter & Sagart 2014 ASCII from the Guangyun. The player shows one layer or none.
 - A layer's `lang` tags its ruby text (`<rt lang>`): zh-Latn-pinyin, yue-Latn-jyutping, ltc-Latn-x-baxter.
 - Senses spelled alike are KCs with a suffix (知, 知.zhi); a token names its sense, and glossAt glosses it as that.
-- Each unit's lessons teach the words of its story, an authentic passage; stories may use no word taught later.
+- Each unit's lessons teach the words of its story, an authentic passage, but those it introduces itself (ADR 0144);
+  stories may use no word taught later.
 - Target-language text is sized apart from the rest: a profile's `fonts.scale` (lzh 1.25), times the learner's size
   for the language being learned (Preferences; `--nabu-target-scale` on <T> text marked `data-target`). Render course
   pages inside `CourseUiProvider` so <T> knows which orthographies are targets.
