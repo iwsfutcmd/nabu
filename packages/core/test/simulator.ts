@@ -8,7 +8,7 @@
  */
 import type { LearnerEvent } from "@nabu/schema";
 import { creditedKcs } from "../src/learner/credit.ts";
-import { applyEvents, dueFacets, emptyLearnerState, facetOf, paceOf, PERFORMANCE_MODEL, plan, practiceFirst, type LearnerState } from "../src/learner/index.ts";
+import { applyEvents, continueOf, dueFacets, placedKcs, emptyLearnerState, facetOf, paceOf, PERFORMANCE_MODEL, plan, practiceFirst, type LearnerState, type PaceBand, type SessionRequest } from "../src/learner/index.ts";
 import { lessonNodes, seededRng, type Exercise, type Rng, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -101,6 +101,9 @@ export interface Result {
   readonly correct: number;
   readonly sessions: number;
   readonly lessons: number;
+  /** Sessions of a passage's words (ADR 0144), and the stories read. */
+  readonly drills: number;
+  readonly stories: number;
   readonly predicted: number;
   readonly templates: Readonly<Record<string, number>>;
   readonly byMode: Readonly<Record<string, { n: number; ok: number; p: number }>>;
@@ -119,6 +122,17 @@ export interface SimulationOptions {
   readonly days?: number;
   /** The hours (UTC) of the day's sessions: two, at 9:00 and 19:00, unless a run asks for more. */
   readonly hours?: readonly number[];
+  /**
+   * With "continue": the learner also reads the stories Continue comes to, and drills the words of
+   * passages when Continue offers them (ADR 0144); `pace` is the band they chose (D5), else the log's.
+   */
+  readonly stories?: boolean;
+  readonly pace?: PaceBand;
+  /**
+   * A learner who starts as a placement test left them (ADR 0111): every lesson of the units before
+   * this one placed, their words known (to the planner as seeded cards, to the learner truly).
+   */
+  readonly placedBefore?: string;
 }
 
 /** 30 days (or `days`) of a learner who follows the app; `onEvent` sees every event the device would log. */
@@ -144,26 +158,60 @@ export const simulate = (
   let correct = 0;
   let sessions = 0;
   let lessons = 0;
+  let drills = 0;
+  let stories = 0;
   let predicted = 0;
   const templates: Record<string, number> = {};
   const byMode: Record<string, { n: number; ok: number; p: number }> = {};
   const start = Date.parse("2026-01-01T00:00:00Z");
   const hours = options.hours ?? [9, 19];
+  if (options.placedBefore !== undefined) {
+    const at = course.units.findIndex((u) => u.id === options.placedBefore);
+    const before = new Set(course.units.slice(0, at).map((u) => u.id));
+    const placed = lessonNodes(course).filter((n) => before.has(n.unit.id)).map((n) => n.node.id);
+    const seeded = placedKcs(course, placed);
+    events.at(new Date(start).toISOString());
+    events.session();
+    const done = events.completed("lesson", undefined, { exercises: 0, correctFirstTry: 0, retries: 0 });
+    apply({ ...done, mode: "placement", placed, seeded } as LearnerEvent);
+    for (const kc of seeded) for (const facet of ["recognize", "produce", "listen", "read-script"]) truth.memory.set(`${kc}|${facet}`, { s: 30, last: start });
+  }
   for (let day = 0; day < (options.days ?? 30); day++) {
     for (const [slot, hour] of hours.entries()) {
       let clock = start + day * DAY + hour * 3_600_000;
       const iso = (): string => new Date(clock).toISOString();
       // A learner who follows the path: the next lesson, else a review when something is due, else a
       // day off. One who follows Continue: practice first once its pace says so (ADR 0105).
-      const next = nodes.find((n) => !state.completedNodes.includes(n));
-      const pace = options.follow === "continue" ? paceOf(course, state, iso()) : undefined;
-      const practice = pace !== undefined && pace.due > 0 && (practiceFirst(pace) || next === undefined);
-      if (!practice && next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
-      const request = next !== undefined && !practice ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
+      let request: Exclude<SessionRequest, { mode: "placement" | "mistakes" }> | undefined;
+      let pace = options.follow === "continue" ? paceOf(course, state, iso(), options.pace) : undefined;
+      if (options.stories === true && pace !== undefined) {
+        // As the app's Continue has it (ADR 0105, 0144): a story is read on the way (its questions
+        // aside), then practice, a passage's words or the next lesson.
+        let step = continueOf(course, state, pace);
+        while (step.kind === "path" && step.next.kind === "story") {
+          events.at(iso());
+          events.session();
+          apply(events.started("story", step.next.node, 0));
+          apply(events.completed("story", step.next.node, { exercises: 0, correctFirstTry: 0, retries: 0 }));
+          stories++;
+          pace = paceOf(course, state, iso(), options.pace);
+          step = continueOf(course, state, pace);
+        }
+        if (step.kind === "drill" && step.drill.drill !== undefined) request = { mode: "lesson", node: step.drill.drill.next };
+        else if (step.kind === "path") request = { mode: "lesson", node: step.next.node };
+        else if (step.kind === "practice" || dueFacets(state, course.orthography, iso()).length >= 3) request = { mode: "review" };
+        if (request === undefined) continue;
+      } else {
+        const next = nodes.find((n) => !state.completedNodes.includes(n));
+        const practice = pace !== undefined && pace.due > 0 && (practiceFirst(pace) || next === undefined);
+        if (!practice && next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
+        request = next !== undefined && !practice ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
+      }
       const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * hours.length + slot, pace: pace?.band });
       if (p.exercises.length === 0) continue;
       sessions++;
-      if (request.mode === "lesson") lessons++;
+      if (request.mode === "lesson" && nodes.includes(request.node)) lessons++;
+      else if (request.mode === "lesson") drills++;
       events.at(iso());
       events.session();
       apply(events.started(request.mode, request.mode === "lesson" ? request.node : undefined, p.exercises.length));
@@ -199,5 +247,5 @@ export const simulate = (
       apply(events.completed(request.mode, request.mode === "lesson" ? request.node : undefined, { exercises: p.exercises.length, correctFirstTry: firstRight, retries }));
     }
   }
-  return { firstTries, correct, sessions, lessons, predicted, templates, byMode };
+  return { firstTries, correct, sessions, lessons, drills, stories, predicted, templates, byMode };
 };

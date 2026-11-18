@@ -6,7 +6,7 @@
 import { describe, expect, it } from "vitest";
 import type { LearnerEvent } from "@nabu/schema";
 import { learnedWords, replay, wordCounts } from "../src/learner/index.ts";
-import { allKcs, allSentences, isDrilled, lessonNodes } from "../src/lesson/index.ts";
+import { allKcs, allSentences, drillNodes, isDrilled, lessonNodes } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 import { simulate } from "./simulator.ts";
 
@@ -120,6 +120,41 @@ describe("pacing: 30 simulated days following Continue", () => {
       expect(paced.due).toBeLessThan(path.due);
     }, 2 * SIMULATION_TIMEOUT_MS);
   }
+});
+
+/**
+ * Words met in passages (ADR 0144): a learner who follows Continue reads each story as they come to
+ * it and drills a passage's words when Continue offers them. chg's last passage introduces words no
+ * lesson teaches: a learner who reaches it drills them, each presented, then written.
+ */
+describe("drills: a learner who reads the stories", () => {
+  it("chg: drills the words of a passage once it is read, and writes them", () => {
+    const log: LearnerEvent[] = [];
+    const drills = new Map<string, Set<string>>();
+    let node = "";
+    const r = simulate("chg", undefined, 44, 2.2, (e) => {
+      log.push(e);
+      if (e.type === "session_started") node = e.mode === "lesson" ? (e.node ?? "") : "";
+      if (e.type === "answer_submitted" && node.includes(".words."))
+        for (const { kc, status } of e.outcome.kcs) if (status !== "given") (drills.get(node) ?? drills.set(node, new Set()).get(node))?.add(`${kc}|${e.exercise.template}`);
+    }, { follow: "continue", stories: true, placedBefore: "u18-the-first-smith", learning: 1.3, days: 8 });
+    console.log(`chg reading the stories: ${r.sessions} sessions (${r.lessons} lessons, ${r.drills} drills, ${r.stories} stories), ${r.firstTries} first tries, success ${((r.correct / r.firstTries) * 100).toFixed(1)}%`);
+    const view = loadCourse("chg");
+    const [drill] = drillNodes(view);
+    expect(drill?.node.drill.story).toBe("chg.u19.story");
+    // The placed units' stories are read on the way, as Continue comes to them.
+    expect(r.stories).toBeGreaterThanOrEqual(19);
+    expect(r.drills).toBeGreaterThanOrEqual(1);
+    // Every word of the drill presented, and asked in writing (typed, from its gloss or into a line).
+    for (const kc of drill?.sessions.flatMap((s) => s.words.map((k) => k.id)) ?? []) {
+      const asked = [...drills.values()].flatMap((set) => [...set]).filter((x) => x.startsWith(`${kc}|`));
+      expect(asked.some((x) => x.endsWith("|match-pairs") || x.endsWith("|select-image")), kc).toBe(true);
+      expect(asked.some((x) => x.endsWith("|write-word") || x.endsWith("|complete-translation")), kc).toBe(true);
+    }
+    const words = learnedWords(view, replay(log), "2026-01-09T00:00:00.000Z");
+    expect(words.some((w) => w.kc === drill?.sessions[0]?.words[0]?.id)).toBe(true);
+    expect(r.correct / r.firstTries).toBeGreaterThanOrEqual(0.8);
+  }, 4 * SIMULATION_TIMEOUT_MS);
 });
 
 /**

@@ -800,6 +800,10 @@ references in the reference library (find them with `nabu refs find`; notes in n
 - "You": siz is drafted as the polite singular and the plural, sän as familiar (Schluessel, 4.3.1); tags follow.
 - The alphabet track (units/abc.yaml): the order of the letter groups, each letter's values and notes, and the words
   each node drills.
+- Unit 19's story goes on with Passage Seven (Schluessel 2018, p. 163, typed from the page image): the spellings
+  (اولیٰ with its superscript alef, ایط for it "dog", کافرلار where his transliteration has kāfir, سین for sen), the
+  readings (aŋa for انکا, meniŋ for منک beside miŋ "thousand"), and the three words it is the first to use and drills
+  after it (ADR 0144): awlà "more worthy", ägär "if", iʿtibār "what a thing rests on", their glosses and parts of speech.
 - Units 11-19 (A2-B1): Navai's kanj is read as Persian ganj "treasure" ("You have found Decius's treasure!"), where
   Schluessel glosses it "oneself"; Qasim Beg's text is Schluessel's, slightly altered by him from the manuscript; the
   first line of the Stories of the Prophets leaves out the blessing after Adam's name (marked …); unit 15's story

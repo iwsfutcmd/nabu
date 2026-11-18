@@ -2,8 +2,10 @@
 # The narrative past -ipdur (olturupdur, yatipdur); aldida "before him"; gold and red; seventy; qol baǧla- "to clasp
 # one's hands"; the causative uratur- "to hold back"; rū-ba-rū "face to face"; šubu "this very".
 # The passage is the anonymous Tadhkira of Jalāl ud-Dīn Katakī (Lund University Library, Jarring Prov. 328,
-# 7v:6-10; public domain), as Schluessel (2018, ch. 15) types it; the story leaves out one coarse word (…). The rest
-# was drafted by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+# 7v:6-10; public domain), as Schluessel (2018, ch. 15) types it; the story leaves out one coarse word (…). It goes on
+# with Passage Seven (p. 163: the khan's question and the Master's answer, the Arabic of the call to prayer left out),
+# whose new words (awlà, ägär, iʿtibār) no lesson teaches: the passage introduces them, and a drill after it teaches
+# them (ADR 0144). The rest was drafted by an LLM (provenance llm:…, status draft) and awaits a reviewer.
 id: u19-the-red-tent
 title:
   en: The red tent
@@ -203,6 +205,41 @@ kcs:
     - šubu
   readings:
     schluessel: šubu
+- id: sense:awla
+  pos: ADJ
+  gloss:
+    en: more worthy, better; taking precedence (Arabic)
+  forms:
+    chg-Arab/standard:
+    - اولیٰ
+    chg-Latn/schluessel:
+    - awlà
+  readings:
+    schluessel: awlà
+- id: sense:agar
+  pos: SCONJ
+  gloss:
+    en: if
+  forms:
+    chg-Arab/standard:
+    - اکر
+    chg-Latn/schluessel:
+    - ägär
+  readings:
+    schluessel: ägär
+  notes:
+    en: ägär … -sa "if …"; with -čä, ägärčä "although".
+- id: sense:itibar
+  pos: NOUN
+  gloss:
+    en: what a thing rests on; regard (Arabic)
+  forms:
+    chg-Arab/standard:
+    - اعتبار
+    chg-Latn/schluessel:
+    - iʿtibār
+  readings:
+    schluessel: iʿtibār
 nodes:
 - id: chg.u19.gold-and-red
   kind: lesson
@@ -654,6 +691,96 @@ stories:
       - en: Seventy-seven
       - en: Seventeen
       - en: Seven hundred
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "توغلوق تمور خان سوردی، «سزلار اولیٰ\u200cمو؟ منک بو ایطم اولیٰ\u200cمو؟» دیدی."
+          tokens:
+          - {surface: توغلوق, sense: tughluq, readings: {schluessel: Tuǧluq}}
+          - {surface: تمور, sense: temur, readings: {schluessel: Temür}}
+          - {surface: خان, sense: khan, readings: {schluessel: ḫan}}
+          - {surface: سوردی, sense: sor, readings: {schluessel: sordi}, morphs: [{surface: سور, kc: 'sense:sor'}, {surface: دی, kc: 'form:past-3'}]}
+          - {surface: سزلار, sense: sizlar, readings: {schluessel: sizlär}}
+          - &id001 {surface: "اولیٰ\u200cمو", sense: awla, readings: {schluessel: awlàmu}, morphs: [{surface: "اولیٰ\u200c", kc: 'sense:awla'}, {surface: مو, kc: 'form:q'}]}
+          - {surface: منک, sense: man, readings: {schluessel: meniŋ}, morphs: [{surface: م, kc: 'sense:man'}, {surface: نک, kc: 'form:gen'}]}
+          - {surface: بو, sense: bu, readings: {schluessel: bu}}
+          - {surface: ایطم, sense: it, readings: {schluessel: iṭim}, morphs: [{surface: ایط, kc: 'sense:it'}, {surface: م, kc: 'form:poss1s'}]}
+          - *id001
+          - {surface: دیدی, sense: de, readings: {schluessel: dedi}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: دی, kc: 'form:past-3'}]}
+      translations:
+        en: Tughluq Temür Khan asked, “Are you the more worthy? Is this dog of mine the more worthy?”
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "انکا حضرت مولانا ایدی\u200cلار، «ای کافرلار! خوب سوردونک.»"
+          tokens:
+          - {surface: انکا, sense: ul, readings: {schluessel: aŋa}, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نکا, kc: 'form:dat'}]}
+          - {surface: حضرت, sense: hazrat, readings: {schluessel: ḥażrat-i}}
+          - {surface: مولانا, sense: mawlana, readings: {schluessel: Mawlānā}}
+          - {surface: "ایدی\u200cلار", sense: eyt, readings: {schluessel: aydilar}, morphs: [{surface: ای, kc: 'sense:eyt'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
+          - {surface: ای, sense: ay.voc, readings: {schluessel: ay}}
+          - {surface: کافرلار, sense: kafir, readings: {schluessel: kāfirlar}, morphs: [{surface: کافر, kc: 'sense:kafir'}, {surface: لار, kc: 'form:pl'}]}
+          - {surface: خوب, sense: khub, readings: {schluessel: ḫūb}}
+          - {surface: سوردونک, sense: sor, readings: {schluessel: sorduŋ}, morphs: [{surface: سور, kc: 'sense:sor'}, {surface: دونک, kc: 'form:past-2s'}]}
+      translations:
+        en: The Master answered him, “Unbelievers! That is a good question.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: «اکر ایمان منده بولسه، من اولیٰ.
+          tokens:
+          - {surface: اکر, sense: agar, readings: {schluessel: ägär}}
+          - {surface: ایمان, sense: iman, readings: {schluessel: īmān}}
+          - {surface: منده, sense: man, readings: {schluessel: mändä}, morphs: [{surface: من, kc: 'sense:man'}, {surface: ده, kc: 'form:loc'}]}
+          - {surface: بولسه, sense: bol, readings: {schluessel: bolsa}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: سه, kc: 'form:cond'}]}
+          - {surface: من, sense: man, readings: {schluessel: män}}
+          - {surface: اولیٰ, sense: awla, readings: {schluessel: awlà}}
+      translations:
+        en: If faith is in me, I am the more worthy.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: اکر ایمان ایطدا بولسه، ایط اولیٰ.
+          tokens:
+          - {surface: اکر, sense: agar, readings: {schluessel: ägär}}
+          - {surface: ایمان, sense: iman, readings: {schluessel: īmān}}
+          - {surface: ایطدا, sense: it, readings: {schluessel: iṭda}, morphs: [{surface: ایط, kc: 'sense:it'}, {surface: دا, kc: 'form:loc'}]}
+          - {surface: بولسه, sense: bol, readings: {schluessel: bolsa}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: سه, kc: 'form:cond'}]}
+          - {surface: ایط, sense: it, readings: {schluessel: iṭ}}
+          - {surface: اولیٰ, sense: awla, readings: {schluessel: awlà}}
+      translations:
+        en: If faith is in the dog, the dog is the more worthy.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: اکر ایمان سنده بولسه، سین اولیٰ.
+          tokens:
+          - {surface: اکر, sense: agar, readings: {schluessel: ägär}}
+          - {surface: ایمان, sense: iman, readings: {schluessel: īmān}}
+          - {surface: سنده, sense: san, readings: {schluessel: sändä}, morphs: [{surface: سن, kc: 'sense:san'}, {surface: ده, kc: 'form:loc'}]}
+          - {surface: بولسه, sense: bol, readings: {schluessel: bolsa}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: سه, kc: 'form:cond'}]}
+          - {surface: سین, sense: san, readings: {schluessel: sen}}
+          - {surface: اولیٰ, sense: awla, readings: {schluessel: awlà}}
+      translations:
+        en: If faith is in you, you are the more worthy.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: اعتباری ایماندادور،» دیدیلار.
+          tokens:
+          - {surface: اعتباری, sense: itibar, readings: {schluessel: iʿtibāri}, morphs: [{surface: اعتبار, kc: 'sense:itibar'}, {surface: ی, kc: 'form:poss3'}]}
+          - {surface: ایماندادور, sense: iman, readings: {schluessel: īmāndadur}, morphs: [{surface: ایمان, kc: 'sense:iman'}, {surface: دا, kc: 'form:loc'}, {surface: دور, kc: 'form:dur'}]}
+          - {surface: دیدیلار, sense: de, readings: {schluessel: dedilär}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      translations:
+        en: It all rests on faith,” he said.
+  - choose:
+      prompt:
+        en: What does the Master say makes one more worthy than another?
+      options:
+      - en: Faith
+      - en: Gold
+      - en: A hunting dog
       answer: 0
 scenarios:
 - id: chg.the-guard-at-the-tent
