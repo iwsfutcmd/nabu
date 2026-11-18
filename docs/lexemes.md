@@ -126,7 +126,12 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
   - Split: homonyms, opaque extensions, different grammar or contrasts.
   - Keep together: transparent extensions (*boshliq* "head" → "chief").
   - Never split because a support language needs two words.
-  - Grey zone: yue 嘅 (possessive, nominaliser, assertive particle).
+  - Decided: yue 嘅 is several lexemes.
+    - The linker ge3: possessive and attributive, its head left out by rule (我嘅書, 我嘅, 凍嘅).
+    - The sentence-final particles: assertive ge3, and ge2 (surprise).
+    - Open: are possessive and attributive one linker or two? Today's yue KC `sense:嘅` is glossed
+      possessive ('s, of; `Poss=Yes`), but 5 of its 10 tokens are attributive with no head (凍嘅 "a cold
+      one", 白色嘅 "a white one").
 - **Grammatical lexemes are identified by UD features** (`Case=Abl`), language-neutral; learner glosses stay
   per support language.
 - **Inherent vs contextual features (Booij 1996)** matter to the grader:
