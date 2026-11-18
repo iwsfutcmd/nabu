@@ -337,6 +337,10 @@ Four kinds, each in a different place:
 a new design language.
 
 **Proposed:**
+- **Since §8's one-tier rule: anchors live on the fully specified form only.** The projection rules carry
+  them to each orthography and scheme, so every projection must keep its alignment (which output letters
+  and syllables come from which input). The tiers below are then what a projection produces, not what is
+  stored.
 - **Exponents are anchored on tiers, not cut out of a string.**
   - Each orthography's graphemes form a tier: base letters, plus marks addressed by which mark they are
     (never by position: NFC reorders them).
