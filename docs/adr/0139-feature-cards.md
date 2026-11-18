@@ -1,6 +1,6 @@
 # 0139. Feature cards: one thing the script leaves open
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 
 ## Context

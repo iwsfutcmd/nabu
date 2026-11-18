@@ -1,6 +1,6 @@
 # 0115. A report says where it goes, and the device says what came of it
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 
 ## Context

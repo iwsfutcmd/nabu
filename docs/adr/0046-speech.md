@@ -1,6 +1,6 @@
 # 0046. Speech: tones on the device, words and phones on a speech service
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 - Amended by: [0093](0093-no-tone-scoring-on-device.md) (tier 3 is off)
 

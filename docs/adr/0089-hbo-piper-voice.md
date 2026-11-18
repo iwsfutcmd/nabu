@@ -1,6 +1,6 @@
 # 0089. Biblical Hebrew's voice: Piper's Arabic voice, given an Arabic-bent Tiberian reading
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-09
 - Amends: [0082](0082-biblical-hebrew.md) (the voices), [0084](0084-hbo-references.md) (the sounds the voice says)
 

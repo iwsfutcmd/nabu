@@ -1,6 +1,6 @@
 # 0054. Learners write in the pronunciation their script leaves out
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-04
 
 ## Context

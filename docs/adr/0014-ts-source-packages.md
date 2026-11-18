@@ -1,6 +1,6 @@
 # 0014. Workspace packages ship TypeScript source; Node runs it directly
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

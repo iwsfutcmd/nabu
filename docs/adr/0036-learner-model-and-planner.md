@@ -1,6 +1,6 @@
 # 0036. Learner model and session planner
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

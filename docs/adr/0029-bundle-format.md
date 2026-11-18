@@ -1,6 +1,6 @@
 # 0029. Bundle format and determinism
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

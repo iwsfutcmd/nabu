@@ -1,6 +1,6 @@
 # 0015. Schema bundling, branded and readonly TS types, Pydantic aliases
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

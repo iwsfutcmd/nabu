@@ -1,6 +1,6 @@
 # 0072. Signing off content: in the app, applied to the source
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0051](0051-corrections.md), [0060](0060-audio-check.md)
 

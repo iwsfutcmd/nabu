@@ -1,6 +1,6 @@
 # 0119. The fold changes its draft in place, the Han fonts come with their text, the worker keeps what the learner uses
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-13
 - Amends: [0036](0036-learner-model-and-planner.md) (the learner state's fold),
   [0019](0019-self-hosted-fonts.md) (how the fonts load), [0047](0047-offline.md) (the service

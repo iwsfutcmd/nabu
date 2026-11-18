@@ -668,7 +668,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main, under a landing page written
   from the demo's bundles and the UI catalog (apps/web/landing.ts, `landing.*` messages): never hand-edit it; a new
   course appears there by itself.
-- ADRs 0013–0091 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0143 are Accepted (2026-11-18, the owner). A new ADR is Proposed until the owner accepts it. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

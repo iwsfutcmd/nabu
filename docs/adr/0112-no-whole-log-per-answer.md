@@ -1,6 +1,6 @@
 # 0112. No whole-log work per answer: recording folds, pulls bring only what is new, the check runs daily in a worker
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0038](0038-server-sync-and-accounts.md) (the sync pass and the upload contract),
   [0047](0047-offline.md) (when the game state is checked), [0036](0036-learner-model-and-planner.md)

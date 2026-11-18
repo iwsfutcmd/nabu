@@ -1,6 +1,6 @@
 # 0121. Feedback shows what was wrong, and what a wrong word means
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-13
 - Amends: [0113](0113-session-end-and-claims-in-session.md) (a missed card at the end of a session is marked as its feedback is)
 

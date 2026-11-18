@@ -1,6 +1,6 @@
 # 0131. Readings on new words only, faded by the reading skill
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-16
 - Amended by: [0141](0141-minimal-ruby.md) (a third choice: what the script leaves unwritten over words read before)
 

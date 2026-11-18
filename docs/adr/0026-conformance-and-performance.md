@@ -1,6 +1,6 @@
 # 0026. Conformance harnesses and the performance budget
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Decision

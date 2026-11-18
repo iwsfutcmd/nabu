@@ -1,6 +1,6 @@
 # 0062. Slow speech: the player slows the clip down
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-05
 - Amends: [0040](0040-audio-pipeline.md)
 

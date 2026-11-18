@@ -1,6 +1,6 @@
 # 0078. A course's voices read its items at random, except where grammar says who speaks
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0075](0075-persons-coverage.md), [0058](0058-lahgtna-voice.md), [0040](0040-audio-pipeline.md)
 

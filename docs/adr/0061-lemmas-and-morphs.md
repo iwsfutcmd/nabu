@@ -1,6 +1,6 @@
 # 0061. Lemmas on word cards, morphs on taps
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-05
 - Amends: [0043](0043-stories.md), [0057](0057-word-corrections.md)
 

@@ -1,6 +1,6 @@
 # 0076. Cuban Spanish for heritage speakers, and accent marks that make another word
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0066](0066-meaningful-endings.md) (meaningful marks beside meaningful endings)
 

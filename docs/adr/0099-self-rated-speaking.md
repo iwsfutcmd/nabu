@@ -1,6 +1,6 @@
 # 0099. A self-rating is no verdict, and a struggling lesson gets more review
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0097](0097-review-in-lessons.md) (how much review), gameplan §9.4 (calibration), §12.3 (the gate)
 

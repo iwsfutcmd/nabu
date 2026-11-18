@@ -1,6 +1,6 @@
 # 0091. A course's voice is good, iffy or bad: how far learners may rely on its clips
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-10
 
 ## Context

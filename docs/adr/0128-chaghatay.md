@@ -1,6 +1,6 @@
 # 0128. Chaghatay: the Arabic script with Schluessel's transliteration, read and written
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-15
 - Amends: [0124](0124-script-tracks-from-the-profile.md) (a romanization scheme `forms`)
 - Amended by: [0129](0129-chaghatay-arabic-with-word-ruby.md) (one orthography, the Arabic; Schluessel's

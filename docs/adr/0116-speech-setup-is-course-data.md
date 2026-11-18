@@ -1,6 +1,6 @@
 # 0116. Speech setup is course data: each profile says how its orthography is heard
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0046](0046-speech.md) (where the per-orthography tiers live),
   [0094](0094-yue-voxcpm2.md) (the Cantonese recognizer is the yue profile's),

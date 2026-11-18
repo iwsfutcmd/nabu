@@ -1,6 +1,6 @@
 # 0024. Profile data: equivalences, tables, numbering systems
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Decision

@@ -1,6 +1,6 @@
 # 0042. Hosted TTS providers: ElevenLabs and Cartesia
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 - Amends: [0040](0040-audio-pipeline.md)
 

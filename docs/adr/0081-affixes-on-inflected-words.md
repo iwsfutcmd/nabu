@@ -1,6 +1,6 @@
 # 0081. Affixes that carry meaning, on the words a course inflects
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-08
 - Amends: [0066](0066-meaningful-endings.md)
 

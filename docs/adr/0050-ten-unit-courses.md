@@ -1,6 +1,6 @@
 # 0050. Ten-unit fixture courses, and every new word presented in its lesson
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-04
 
 ## Context

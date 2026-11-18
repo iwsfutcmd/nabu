@@ -1,6 +1,6 @@
 # 0057. Learners correct words too, from any word exercise
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-05
 - Extends: [ADR 0051](0051-corrections.md)
 

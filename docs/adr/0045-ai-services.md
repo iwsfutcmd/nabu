@@ -1,6 +1,6 @@
 # 0045. AI services: gateway, judge, explanations, roleplay, reviews
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 - Updated by [ADR 0052](0052-learner-claims.md): a learner's report also revises their own answer.
 

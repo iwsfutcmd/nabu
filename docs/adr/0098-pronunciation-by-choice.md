@@ -1,6 +1,6 @@
 # 0098. Vowel marks are chosen; Han readings are chosen and typed
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0054](0054-pronunciation-exercises.md), [0095](0095-pronunciation-in-context.md) (how the cards are answered)
 - Amended by: [0137](0137-marks-put-on-letters.md) (marks put on a word's letters, after the choice card)

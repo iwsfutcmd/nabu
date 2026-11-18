@@ -1,6 +1,6 @@
 # 0124. Script tracks read letters and marks from the profile, and name their romanized orthography
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-13
 - Amends: [0088](0088-script-tracks.md) (what a grapheme KC is; the profile's `romanize`)
 - Amended by: [0128](0128-chaghatay.md) (the romanization scheme `forms`: the KC's own form in another orthography)

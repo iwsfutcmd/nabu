@@ -1,6 +1,6 @@
 # 0085. Accept sets take every answer the prompt leaves open
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-08
 - Generalizes: [0033](0033-fixture-courses.md) (pro-drop and optional words in the reverse set),
   [0056](0056-persons.md) and [0075](0075-persons-coverage.md) (untagged means every form)

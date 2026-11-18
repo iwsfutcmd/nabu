@@ -1,6 +1,6 @@
 # 0065. Persian speaks with Mana-Persian-Piper; short items inside a carrier sentence
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0040](0040-audio-pipeline.md)
 

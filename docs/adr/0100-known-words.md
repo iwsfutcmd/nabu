@@ -1,6 +1,6 @@
 # 0100. Known words: each skill shown on a later day
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: gameplan §8.2 (gap-fill's facet), §9 (the learner state), the word list (Phase 4 notes)
 

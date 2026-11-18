@@ -1,6 +1,6 @@
 # 0120. Where to go next: Home continues, and the course page opens at Continue
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-13
 - Amends: [0105](0105-learning-pace.md) (Continue is on Home too), [0107](0107-practice-over-points.md)
   (what Home starts with), [0047](0047-offline.md) (the offline panel is a page of its own),

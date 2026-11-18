@@ -1,6 +1,6 @@
 # 0056. Prompts say who speaks and who is spoken to, where English cannot
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-05
 
 ## Context

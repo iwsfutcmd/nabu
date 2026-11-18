@@ -1,6 +1,6 @@
 # 0138. Reading traditions: one asked at a time, each with its own progress
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0071](0071-classical-chinese.md) (Classical Chinese never drills its readings)
 

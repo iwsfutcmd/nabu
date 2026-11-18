@@ -1,6 +1,6 @@
 # 0109. Course names and reading schemes are data, not app code
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: gameplan §1 decision 8 (course and orthography names were MF2 messages of the app);
   [0054](0054-pronunciation-exercises.md) and [0071](0071-classical-chinese.md) (what a new reading

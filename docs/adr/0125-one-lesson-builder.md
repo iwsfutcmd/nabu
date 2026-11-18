@@ -1,6 +1,6 @@
 # 0125. One lesson builder: lessons are what plan() plans, and tests check the planner
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-13
 - Amends: [0034](0034-lesson-player.md) (`buildLesson`, the planner's stand-in, is gone, as it
   foresaw), [0046](0046-speech.md) (no rotation slot: the planner's exclusions put scored speaking

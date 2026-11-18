@@ -1,6 +1,6 @@
 # 0107. XP for practice, quests the learner can do, and a Home that starts with the courses
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0044](0044-gamification-and-notifications.md) (the XP rules), gameplan §12
 

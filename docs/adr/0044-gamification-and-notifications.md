@@ -1,7 +1,8 @@
 # 0044. Gamification, profiles, leagues and reminders
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
+- Amended by: [0107](0107-practice-over-points.md) (XP for practice, quests the learner can do)
 
 ## Context
 

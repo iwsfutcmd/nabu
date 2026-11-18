@@ -1,6 +1,6 @@
 # 0136. Morphs the script does not write
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0061](0061-lemmas-and-morphs.md) (morphs)
 

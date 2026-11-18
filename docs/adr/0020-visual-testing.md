@@ -1,6 +1,6 @@
 # 0020. Storybook + Playwright in a pinned container; structural checks
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Decision

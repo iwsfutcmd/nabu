@@ -1,6 +1,6 @@
 # 0137. Vowel marks put on a word's letters
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0098](0098-pronunciation-by-choice.md) (vowel marks are chosen)
 

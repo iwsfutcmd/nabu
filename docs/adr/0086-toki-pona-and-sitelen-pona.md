@@ -1,6 +1,6 @@
 # 0086. Toki Pona in sitelen Lasina and sitelen pona: a private-use script subtag, UCSUR text, typed Latin graded as logographs
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-08
 
 ## Context

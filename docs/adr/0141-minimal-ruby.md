@@ -1,6 +1,6 @@
 # 0141. Minimal ruby: only what the script leaves unwritten
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0131](0131-readings-on-new-words.md) (readings over new words only)
 

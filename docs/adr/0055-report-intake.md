@@ -1,6 +1,6 @@
 # 0055. Reports reach reviewers as GitHub issues, through a Firestore intake
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-04
 
 ## Context

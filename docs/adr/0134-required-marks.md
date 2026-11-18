@@ -1,6 +1,6 @@
 # 0134. Marks an answer must write: a transliteration's vowels
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0131](0131-readings-on-new-words.md) (chg's typed readings)
 

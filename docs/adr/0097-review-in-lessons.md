@@ -1,6 +1,6 @@
 # 0097. Review inside a lesson: a small share, picked by need, marked as review
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: gameplan §9.4 (step 1, "due facets": which ones a lesson takes)
 

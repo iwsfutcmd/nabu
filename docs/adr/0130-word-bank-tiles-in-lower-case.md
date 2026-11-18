@@ -1,6 +1,6 @@
 # 0130. Word-bank tiles in lower case, but for words that must be capitalized
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-15
 
 ## Context

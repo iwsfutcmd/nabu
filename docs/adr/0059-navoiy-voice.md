@@ -1,6 +1,6 @@
 # 0059. An Uzbek voice: Navoiy on CosyVoice2, in its own environment
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-05
 - Amends: [0040](0040-audio-pipeline.md), [0058](0058-lahgtna-voice.md)
 

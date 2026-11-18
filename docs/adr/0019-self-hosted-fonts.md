@@ -1,6 +1,6 @@
 # 0019. Self-hosted OFL webfonts; no system fallback for language data
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context

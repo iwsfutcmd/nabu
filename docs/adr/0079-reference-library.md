@@ -1,6 +1,6 @@
 # 0079. The reference library: a private Drive folder behind a relay
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amended by: [0090](0090-reference-roots.md) (named roots, find by name)
 

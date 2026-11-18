@@ -1,6 +1,6 @@
 # 0030. Analyzers, ICU and tool availability
 
-- Status: Proposed
+- Status: Accepted (2026-11-18)
 - Date: 2026-11-03
 
 ## Context
