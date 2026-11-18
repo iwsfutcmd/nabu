@@ -89,6 +89,20 @@ teach a unit of the language: the **lexeme** (§2).
 | **token** | An orthographic word, per orthography | As now |
 | **word** | UI copy only | Proposed |
 
+**Proposed renames (under discussion):**
+- **lemma** for the lexical meaning: what *run*, *ran* and *runs* share, as NLP's lemma does (UD: the lemma of
+  *ran* is *run*); Levelt's psycholinguistic "lemma" is also the meaning side. The citation form becomes
+  **citation form**, and **head** goes: *ran* is lemma RUN with features PST.
+- **feature** absorbs **property**, in UD's two kinds: **lexical features**, fixed for a lexeme (*casa*
+  feminine, *pensar* e→ie, *nedha* krama, *carro* Cuban), and **inflectional features**, varying across
+  the paradigm (tense, person, case).
+- **lexical form** for the fully specified form, and **surface forms** for its projections, as in two-level
+  morphology (Koskenniemi 1983): lexical form → rules → surface form. The data's `surface` is already the
+  written projection. Runner-up: **canonical form**.
+- **cell** goes: a form's inflectional features are the cell (UD's FEATS). Not "realization": in
+  realizational morphology that's the form filling the cell (*ran* realizes RUN + PST).
+- A token then reads like a UD token: surface form, lemma, features.
+
 - **Rejected:**
   - "morpheme" (*ran*, 東西 and zeros don't fit);
   - "listeme" (Di Sciullo & Williams 1987: precise, but lame-sounding);
