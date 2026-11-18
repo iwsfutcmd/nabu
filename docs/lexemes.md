@@ -98,8 +98,10 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
    - collocations and Persian compound verbs (فکر کردن "think", lit. "thought + do"), which can be decoded
      but not encoded;
    - idioms (زمین خوردن "fall", lit. "earth + eat");
-   - derived words that can be decoded but not encoded (學生 "student", *escritor*, *writer* the
-     occupation), and opaque ones (*cooker*, *drawer*, 大學 "university", كِتاب).
+   - derived words whose form or meaning no rule gives, however easy they are to decode: *writer* the
+     occupation and مَكْتَب (the meaning drifted), *escritor* (its stem is the irregular participle's), 學生
+     "student" (‑生 isn't a productive suffix); and opaque ones (*cooker*, *drawer*, 大學 "university",
+     كِتاب). A gap elsewhere in the pattern is never the reason (§3.8).
 
    Only what is regular both ways is a combination (*rápido* → *rápidamente*; *the writer of X*).
    - A lexeme keeps its links to its parts (base, root: §10), so a derive card still credits the affix when
