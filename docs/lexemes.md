@@ -552,9 +552,22 @@ a new design language.
     - **U+06A1 DOTLESS FEH**: its loop reads as an empty slot and stands apart from س, ت, ن and ي. It could
       pass for ف or ق without dots.
     - Tatweel goes only where both sides join (never after ا, د, ذ, ر, ز, و).
-    - **Open:** beh or feh; tatweel between every element, or only between adjacent slots.
+    - **Decided: tatweel between every element** (where both sides join).
+    - **Open:** beh or feh.
     - Screen readers would read the placeholders as letters ("dotless beh"), so the shape carries an
       accessible name: its traditional name and meaning.
+  - **Hebrew, the owner's alternative: samekh ס as the stand-in**, a round letter standing for a circle
+    (סִסֵּס, הִסְסִיס). No Hebrew pattern has a ס of its own, so it can't be mistaken for one.
+  - **Proposed: placeholders greyed, so they don't distract from the pattern.** Rendered 2026-11-18 in
+    Chromium:
+    - Arabic letters stay joined across the change of colour, in Chromium. Firefox and WebKit need the
+      visual matrix before relying on it.
+    - **A mark takes its base's colour:** Chromium paints a cluster in one colour, so a slot's vowel greys
+      with it, though the vowels are half the pattern. So the grey has to stay readable: #767676 (AA, 4.5:1
+      on white), not a pale one.
+    - The grey is a theme token, light and dark, with its AA pairing in packages/ui/test/tokens.test.ts.
+    - The dotted circle is light by design, and its points stay solid black: it gets the effect without
+      grey.
   - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
 - **Decided: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
   name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
