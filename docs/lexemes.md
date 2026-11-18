@@ -33,27 +33,68 @@ teach a unit of the language: the **lexeme** (§2).
 
 ## 2. Terms
 
+**The unit and its meaning**
+
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **lexeme** | The unit a learner learns: a form–sense pairing that can't be derived from rules (§3), in any class and attachment | *kitob*, ‑dan, 呀, را, *ran*, *tuv-*, 東西, *darse cuenta* | Decided (term and rule) |
+| **lexeme** | What a learner learns: one sense with its fully specified form(s), whatever can't be derived from rules (§3), in any class and attachment | *kitob*, ‑dan, 呀, را, *ran*, *tuv-*, 東西, *darse cuenta* | Decided |
+| **sense** | A lexeme's meaning: a lexical meaning plus features. One lexeme, one sense | *ran* = run.PST | Decided |
+| **lexical meaning** | A sense without its features: what *run* and *ran* share | RUN | Decided (as part of sense) |
+| **feature** | A grammatical value in a sense: tense, person, register, dialect. *Inherent* ones add meaning; *contextual* ones are forced by the syntax (Booij) | PST, 3SG, krama, Cuban | Decided (register, dialect); kinds Proposed |
+| **gloss** | A sense's label in one support language; may be several words | *qoʻl*: "hand; arm" | Decided |
+| **property** | A fixed fact about a lexeme, with its own evidence | *casa*: feminine; *pensar*: e→ie | Proposed |
+
+**Its form**
+
+| Term | Meaning | Examples | Status |
+|---|---|---|---|
+| **fully specified form** | A lexeme's one tier: the least underspecified form, in the script, with conventions invented where the script falls short | pointed Hebrew with stress; 楊 以開三陽平; apc-Arab with e/o marks | Decided |
+| **context** | The phonological or prosodic setting that picks one of a lexeme's forms; adds nothing to the sense | before a vowel, after q, pause | Decided |
+| **elsewhere form** | The one form with no context | *a* (beside *an*) | Proposed |
+| **allomorph** | A form a context triggers: stored with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
+| **projection** | What the language's rules derive from the fully specified form: each orthography's normal form, each phonemic scheme's reading | pointed → unpointed; position → Baxter, Pinyin | Decided (as rules) |
+| **variant** | Systematic free variation a projection rule makes: accepted | HK / TW characters; Arabizi spellings | Proposed |
 | **lemma** | A lexeme's citation form, the one word cards show | *ichmoq*, خوردن, *ran* | As now |
-| **allomorph** | A form a context triggers: stored on the lexeme with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
-| **variant** | Systematic free variation, made by a projection rule: accept it | HK / TW characters; apc ـه / ـو; Arabizi spellings | Proposed |
-| **morph** | A lexeme's realisation in one token: its exponent, anchored on tiers (§9) | *dan* in *Samarqanddanman*; the ezafe's kasra | Proposed |
-| **cell** | One box of a paradigm table: a combination of feature values (preterite + 3sg). What a form means grammatically, apart from how it is spelled; it may have no exponent | PST, PRET.3SG, ACC.PL, uz COP.3SG | Proposed |
-| **rule** | A pattern stated without naming any lexeme, with its own KC | ‑ga → ‑qa after q; the e→ie pattern | Proposed |
-| **paradigm** | Lexemes whose senses share a lexical meaning, differing in features: a head plus cells | *run*; *ran* = run.PST | Proposed |
-| **family** | Words linked by a shared base or root (derivation, compounding) | *write*, *writer*; ك‑ت‑ب: كاتب, مكتب | Open (§10) |
-| **property** | A lexical fact about a lexeme, with its own evidence | *casa*: feminine; *pensar*: e→ie | Proposed |
-| **facet** (the skill on an edge) | An edge of the lexeme's graph (§11). The code already calls a skill a facet | recognize, produce, listen, read-script | As now, extended |
-| **construction** | A syntactic pattern with slots | apc *used-to*, *was-doing* | As now |
-| **token** | An orthographic word, per orthography | | As now |
-| **word** | UI copy only | | Proposed |
+
+**Grammar**
+
+| Term | Meaning | Examples | Status |
+|---|---|---|---|
+| **rule** | A pattern stated without naming any lexeme, with its conditions (phonological, semantic) and its own KC | ‑ga → ‑qa after q; *un‑* on non-negative adjectives | Decided (the derivability test); data Proposed |
+| **combination** | What rules build from lexemes; not a lexeme | *kitoblarimdan*, *walked*, *the writer of X* | Decided |
+| **cell** | One box of a paradigm table: a combination of feature values, apart from how it's spelled; may have no exponent | PRET.3SG, ACC.PL, uz COP.3SG | Proposed |
+| **paradigm** | A head lexeme's cells, filled by rule or by irregular lexemes | *run*: *runs*, *running*, *ran* | Proposed |
+| **head** | The lexeme an irregular lexeme's paradigm belongs to | *ran* → head *run*, cell PST | Proposed |
+| **base**, **root** | The lexeme a derived word is built on; a Semitic root | *writer* ← *write*; مَكْتَب ← ك‑ت‑ب | Proposed |
+| **family** | Words linked by a base or root | *write*, *writer*; كاتب, مكتب | Open (§10) |
+| **morph** | A lexeme's exponent in one token, anchored on the fully specified form | *dan* in *Samarqanddanman*; the ezafe's kasra | Proposed |
+| **construction** | A syntactic pattern with slots | apc *used-to* | As now |
+
+**Learning and prompts**
+
+| Term | Meaning | Examples | Status |
+|---|---|---|---|
+| **facet** | A skill: an edge between a lexeme's projections and its sense (§11) | recognize, produce, listen, read-script | As now, extended |
+| **learned** | Every property and every askable facet shown | | Decided |
+| **literal gloss** | A memory hint from a lexeme's real parts, after the gloss, never on a prompt | زمین خوردن, lit. "earth + eat" | Decided |
+| **chunk** | A combination taught whole before its parts | *Qayerdansiz?* | Proposed |
+| **underspecification** | What one language leaves open that the other specifies | "you" → *tú* / *usted* | Decided |
+| **tag** | What a prompt shows to decide a feature the target needs | "to your grandmother", "Cuban" | Decided |
+| **wug** | A made-up word testing a productive rule | *bolaq* → *bolaqqa* | Decided (idea) |
+
+**Text**
+
+| Term | Meaning | Status |
+|---|---|---|
+| **token** | An orthographic word, per orthography | As now |
+| **word** | UI copy only | Proposed |
 
 - **Rejected:**
   - "morpheme" (*ran*, 東西 and zeros don't fit);
   - "listeme" (Di Sciullo & Williams 1987: precise, but lame-sounding);
-  - "aspect" for properties (it collides with verbal aspect).
+  - "aspect" for properties (it collides with verbal aspect);
+  - "form" for the representations (`form:` KCs; the glossary lists three senses already);
+  - "tier" for what a lexeme stores (it has one; tiers are now only what projections produce).
 - **Our "lexeme" departs from the textbook one twice.**
   - The departures: suppletive and irregular forms are their own lexemes, and affixes and clitics are
     lexemes.
