@@ -310,7 +310,7 @@ fully specified form ─┤
   | tok | Latin | nothing (sitelen pona is a projection) |
   | grc | the `attic` reading (length marks) | nothing |
   | yue | characters + table | disambiguators for polyphones and changed tones |
-  | lzh | characters + three tables | disambiguators by sense (見 jiàn / xiàn) |
+  | lzh | characters + Qieyun positions (below) | overrides where the derivations miss |
   | chg | Arabic, Schluessel's reading beside it | vowel marks carrying his distinctions |
   | hbo | pointed text, with stress etc. in the `tiberian` reading | one form: pointing + QAMATS QATAN (U+05C7) + a stress mark + vocal shewa |
   | fa | vocalised Arabic script | stress, and conventions for و and final ه |
@@ -324,6 +324,49 @@ fully specified form ─┤
   with lexemes and cells. The compiler projects each token from its lexeme's fully specified form, the
   cell and the context, and reports any token whose authored text disagrees. Most per-token pins (readings,
   `vocalized`) become checks, not data; they stay only for what rules can't derive.
+
+### lzh: Qieyun positions
+
+**Decided:** lzh's fully specified form gives each character its Qieyun phonological position (音韻地位), as
+Wiktionary does: 楊 is 以開三陽平 (initial 以, open, division III, rhyme 陽, level tone). Baxter, Pinyin and
+Jyutping are derived from it, with nk2028's tools rather than Wiktionary's. A schema for overrides follows
+as needed.
+
+**Proposed:**
+- **It stays in the script.** The position is the tradition's own notation, as the dummy root is for
+  Semitic patterns.
+- **Tools:** `tshet-uinh` (MIT; positions and the Guangyun data) and `tshet-uinh-examples` (MIT; the
+  derivation schemes: `baxter` in its 1992 and 2014 versions, `putonghua`, `gwongzau` and more), on which
+  tshet-uinh-deriver is built. They run at compile time; the compiler already calls Node.
+- **A first run** (2026-11-18, `tshet-uinh` 0.15.4) over lzh's 1954 tokens, 248 distinct character
+  readings:
+
+  | | Derived as pinned | Not |
+  |---|---|---|
+  | Baxter (a position whose Baxter is the pinned one) | 241, none ambiguous | 6, plus 1 character missing |
+  | Pinyin | 206 | 35: 23 tone only (entering tones the deriver leaves toneless: 刻 ke, 國 guo), 12 irregular (行 xíng, 矛 máo, 百 bǎi) |
+  | Jyutping | 213 | 28 (矛 maau4, 也 jaa5, 見 jin6, 百 baak3, 國 gwok3) |
+
+  Every Baxter pin that matched picks out one position, so today's pins convert to positions
+  mechanically.
+- **The overrides the misses call for:**
+  - **read as** (讀為, a loan reading): 女 read as 汝 (nyoX "you"); 鯈 read as a character whose reading is
+    *dew*;
+  - **variant lookup**: 劍 isn't in the data under that form (the Guangyun has 劒), so look up through the
+    pinned variant tables;
+  - **a position the Guangyun lacks**, given explicitly with its source: 知 "wisdom" (trjeH), 有 (hjuwH), 強
+    (gjangX);
+  - **analysis differences**: B&S write 生 *sraeng*, TshetUinh's 2014 Baxter gives *srjaeng*. The course is
+    checked against B&S, so they win where they differ;
+  - **modern readings that departed from regular change**, per character and position, so stated once for
+    every lexeme containing them (行 匣開二庚平 → xíng; 國 → guó, gwok3); Mandarin entering tones as a
+    table;
+  - **literary or colloquial**, as policy: 百 bǎi, not the literary bó.
+- **It finds inconsistencies.** 不 is pinned *pjuw* (B&S's reading), but its Pinyin *bù* and Jyutping *bat1*
+  descend from the entering-tone reading *pjut*. The three are meant to be one reading (CLAUDE.md), and
+  the compiler's line-up check didn't catch it. A single position would.
+- **lzh only.** yue's colloquial Cantonese has too much without a Qieyun source (嘅, 佢, 唔, changed tones);
+  it keeps characters, a table and disambiguators.
 
 ### Variants
 
