@@ -552,7 +552,8 @@ a new design language.
     - **U+06A1 DOTLESS FEH**: its loop reads as an empty slot and stands apart from س, ت, ن and ي. It could
       pass for ف or ق without dots.
     - Tatweel goes only where both sides join (never after ا, د, ذ, ر, ز, و).
-    - **Decided: tatweel between every element** (where both sides join).
+    - **Decided: tatweel beside every slot**, never between two of the pattern's own letters (اِسْتَ joins as
+      written), and only where both sides join.
     - **Open:** beh or feh.
     - Screen readers would read the placeholders as letters ("dotless beh"), so the shape carries an
       accessible name: its traditional name and meaning.
@@ -573,6 +574,19 @@ a new design language.
       COLRv0 + CPAL.
     - The font is used only for pattern shapes; built by a script from the pinned font, like the other
       subsets.
+  - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
+    Unicode; if the font fails to load, the dotless letters still show):
+    - **A designed slot glyph** in place of borrowed ڡ / ٮ: a hollow or dotted-outline consonant with all
+      four joining forms, an Arabic dotted circle that joins.
+    - **Spacing in the font, not the text:** slot glyphs with longer joins on each side, so the shape needs no
+      tatweel characters (clean to copy, and the rule above lives in one place).
+    - **Numbered slots** through contextual alternates (first, second, third, fourth slot), for quadriliterals,
+      geminate roots (مَدّ) and weak roots. Not digits drawn into glyphs: digits differ by locale.
+    - **The pattern's vowels in an accent palette colour** as reinforcement, never as the only cue.
+    - **Not:** marking which letters of a real word are the root through unregistered variation selectors.
+      Only registered variation sequences are conformant.
+    - **The cost:** a build script from the pinned font, a rebuild on font upgrades, an OFL rename, and a
+      subset small enough to load only with pattern shapes.
   - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
 - **Decided: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
   name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
