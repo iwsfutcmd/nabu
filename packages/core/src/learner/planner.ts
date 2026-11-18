@@ -444,8 +444,9 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const ctx: MakeContext = { course, rng, introduced, focus, reading };
     const own = sentencesOf(course, unit, node);
     // Interleave: the earlier sentences that need review most (ADR 0097), marked as review.
+    // The lessons before this one on the path, by id: lessonNodes makes its entries anew on each call.
     const lessons = lessonNodes(course);
-    const past = lessons.slice(0, lessons.indexOf(found)).flatMap((n) => sentencesOf(course, n.unit, n.node));
+    const past = lessons.slice(0, lessons.findIndex((n) => n.node.id === node.id)).flatMap((n) => sentencesOf(course, n.unit, n.node));
     const picked = reviewSentences(course, past, seen, due, needs, desired, key);
     const earlier = [...picked, ...wellKnownSentences(past, picked, seen, (kc) => retrievability(state, kc, "recognize", orthography, now))];
     for (const s of earlier) reviewItems.add(s.id);
@@ -481,9 +482,13 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   // i+1 at runtime: every KC that is not new in this lesson has been seen. A drill's line may hold
   // the passage's other words as context, met glossed in it, but never ask them (ADR 0144).
   const targets = new Set(introduced);
+  // One card an id (a sentence may be both the node's and brought back): the first, the node's own.
+  const ids = new Set<string>();
   const admissible = pool.filter((ex) => {
     const credited = new Set<string>(creditedKcs(ex));
-    return ex.kcs.every((kc) => targets.has(kc) || seen.has(kc) || (context.has(kc) && !credited.has(kc)));
+    if (!ex.kcs.every((kc) => targets.has(kc) || seen.has(kc) || (context.has(kc) && !credited.has(kc))) || ids.has(ex.id)) return false;
+    ids.add(ex.id);
+    return true;
   });
   const candidates: Candidate[] = admissible.map((ex, order) => ({ ex, p: predictExercise(state, ex, orthography, now), order }));
 

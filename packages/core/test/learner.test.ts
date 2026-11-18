@@ -440,6 +440,19 @@ describe("planner constraints", () => {
     expect(review.every((e) => e.kcs.some((kc) => fading.has(kc)))).toBe(true);
   });
 
+  it("brings back only earlier lessons' sentences, never its own or a later lesson's, nor a card twice", () => {
+    // Every word of the course seen and due: any sentence could be review, were it not for its place.
+    const now = "2026-03-01T08:00:00.000Z";
+    const stale = { due: "2026-01-01T00:00:00.000Z", stability: 2, difficulty: 5, elapsed_days: 0, scheduled_days: 2, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: "2025-12-30T00:00:00.000Z" };
+    const cards = Object.fromEntries(allKcs(fa).flatMap((k) => [[`${k.id}|recognize`, stale], [`${k.id}|produce`, stale]]));
+    const lessons = lessonNodes(fa);
+    const at = Math.floor(lessons.length / 2);
+    const later = new Set(lessons.slice(at).flatMap((n) => n.node.sentences));
+    const p = plan(fa, { ...emptyLearnerState(), cards }, { mode: "lesson", node: lessons[at]?.node.id as string }, { now, seed: 4 });
+    expect(p.exercises.filter((e) => e.review === true && later.has(e.item)).map((e) => e.id)).toEqual([]);
+    expect(new Set(p.exercises.map((e) => e.id)).size).toBe(p.exercises.length);
+  });
+
   it("says which requests the course can plan: an old link may name a node it no longer has", () => {
     const node = lessonNodes(fa)[0]?.node.id as string;
     expect(plannable(fa, { mode: "lesson", node })).toBe(true);

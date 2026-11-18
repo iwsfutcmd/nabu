@@ -100,17 +100,19 @@ describe("pacing: 30 simulated days following Continue", () => {
   };
   for (const course of ["es", "hbo"]) {
     it(`${course}: a weak, slow learner stays near the target and knows more words`, () => {
-      const path = run(course, 0.5, 0.6, "path");
-      const paced = run(course, 0.5, 0.6, "continue");
-      // Success on three seeds, averaged, above where Continue starts consolidating (PACE_STRUGGLING,
-      // 78%). A weak learner's success sits near 80% and one seed swings about 1.5 points: a content
+      // On three seeds. Success, averaged, above where Continue starts consolidating (PACE_STRUGGLING,
+      // 78%): a weak learner's success sits near 80% and one seed swings about 1.5 points, so a content
       // change (ADR 0132's Spanish agreement forms reshuffled every KC's simulated difficulty) must not
-      // tip the check by one seed's luck.
-      const rates = [paced.rate, ...[32, 33].map((seed) => run(course, 0.5, 0.6, "continue", seed).rate)];
-      expect(rates.reduce((a, r) => a + r, 0) / rates.length).toBeGreaterThanOrEqual(0.79);
-      expect(paced.known).toBeGreaterThanOrEqual(path.known);
-      expect(paced.due).toBeLessThan(path.due);
-    }, 4 * SIMULATION_TIMEOUT_MS);
+      // tip the check by one seed's luck. Known words, summed: in es such a learner knows almost none by
+      // day 30 either way (0 to 2 a seed since names are no words to learn, ADR 0144).
+      const seeds = [31, 32, 33];
+      const path = seeds.map((seed) => run(course, 0.5, 0.6, "path", seed));
+      const paced = seeds.map((seed) => run(course, 0.5, 0.6, "continue", seed));
+      const sum = (runs: readonly { readonly known: number }[]): number => runs.reduce((a, r) => a + r.known, 0);
+      expect(paced.reduce((a, r) => a + r.rate, 0) / paced.length).toBeGreaterThanOrEqual(0.79);
+      expect(sum(paced)).toBeGreaterThanOrEqual(sum(path));
+      expect(paced[0]?.due ?? Infinity).toBeLessThan(path[0]?.due ?? 0);
+    }, 6 * SIMULATION_TIMEOUT_MS);
     it(`${course}: a strong, fast learner moves on and is not drowned in easy review`, () => {
       const path = run(course, 2.5, 1.5, "path");
       const paced = run(course, 2.5, 1.5, "continue");

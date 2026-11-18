@@ -190,7 +190,14 @@ Steps 1–4 are built; step 5 has begun with one passage of chg.
   the list horizontal in vertical reading); drill entries on the course path; Continue, the home card
   and the end screen offer "Learn the story's words". New screens in the visual matrix: the write-word
   card and the passage's opening. e2e: chg's drill by keyboard and touch.
-- **Calibration.** Leaving names out moved every simulated course by under 2pp (80.6% to 88.7%).
+- **A planner fix.** A lesson's review was taken from every lesson but the course's last, its own and
+  later ones included (`lessons.indexOf` of an entry `lessonNodes` had made anew: -1); a sentence of
+  them came back only when all its words were seen, which a name kept from happening. With names left
+  out, "Hello, Ali!" came back in its own lesson, twice. Review now comes from the lessons before this
+  one only (ADR 0097 as written), and a plan holds a card once.
+- **Calibration.** Leaving names out, and the fix, moved every simulated course by under 2pp (81.2% to
+  88.4%). A weak, slow learner's known words are compared over three seeds, as their success already
+  was: in es such a learner knows almost no word by day 30 either way.
   A learner who reads the stories and follows Continue (`stories` in the simulator, placed through
   chg's unit 18) drills the last passage's words: 90.5% success, every word presented and written.
 - **chg.** Unit 19's passage goes on with Passage Seven (Schluessel 2018, p. 163, as he types it: the
