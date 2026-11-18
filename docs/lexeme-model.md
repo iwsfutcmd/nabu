@@ -20,41 +20,49 @@ flowchart LR
     X1["its lemma"]
     X2["its own features<br/>(tense, person, case; register; dialect)"]
     X3["attachment<br/>(independent, clitic, or dependent + position)"]
-    X4["lexical forms<br/>(the elsewhere form + forms with their contexts)"]
+    X4["lexical forms, or parts<br/>(the elsewhere form + forms with their contexts)"]
     X5["parts, with a source<br/>(base; root + pattern)"]
     X6["provenance, license,<br/>notes, image"]
   end
 
   subgraph DATA["Language and course data"]
     direction TB
-    R1["projection rules<br/>(per orthography, per scheme)"]
+    R1["merge and projection rules"]
     R2["contexts"]
     R3["course: orthographies,<br/>facets, voice"]
   end
 
+  subgraph COMB["Combination (a word card is a combination of one, in isolation)"]
+    direction TB
+    C1["surface forms per orthography,<br/>with variants; citation form"]
+    C2["phonemic forms per scheme"]
+    C3["audio"]
+    C4["homographs<br/>(como: eat.1SG / like)"]
+  end
+
   subgraph DER["Lexeme: derived"]
     direction TB
-    D1["surface forms per orthography,<br/>with variants; citation form"]
-    D2["phonemic forms per scheme"]
     D3["sense = lemma + features,<br/>and its gloss (run, past)"]
     D4["open or closed class"]
-    D5["paradigm, homographs, family"]
+    D9["inflectional or derivational<br/>(an affix)"]
+    D5["paradigm, family"]
     D6["literal gloss"]
     D7["facets asked"]
-    D8["audio"]
   end
 
   X1 --> L1
   R2 --> X4
   X4 --> R1
-  R1 --> D1
-  R1 --> D2
-  D2 --> D8
+  R1 --> C1
+  R1 --> C2
+  C2 --> C3
+  C1 --> C4
   L1 & X2 --> D3
   L2 --> D4
-  X1 & D1 & X5 --> D5
+  X1 --> D9
+  X1 & X5 --> D5
   X5 --> D6
-  L3 & D1 & D2 & R3 --> D7
+  L3 & C1 & C2 & R3 --> D7
 ```
 
 ### Stored on the lemma (shared by every lexeme of a paradigm)
@@ -76,21 +84,30 @@ flowchart LR
 | parts, with a source (where it has them) | *writer* (occupation) ← *write* + ‑er; مَكْتَب ← ك‑ت‑ب + مَفْعَل |
 | provenance, license, notes, image | |
 
-### Derived
+### Derived on the lexeme
 
 | | From |
 |---|---|
-| surface forms per orthography, with variants; the citation form | lexical forms + projection rules |
-| phonemic forms per scheme | lexical forms + projection rules |
-| audio | phonemic forms |
 | sense, and its gloss (*ran*: "run (past)") | lemma + its own features |
 | open or closed class | part of speech |
 | inflectional or derivational (an affix) | its lemma: a feature value, or a function making a new lemma |
 | paradigm | lexemes sharing its lemma |
-| homographs | lexemes sharing its surface forms |
 | family | parts |
 | literal gloss | parts and their glosses |
-| facets asked | surface and phonemic forms (where they're unpredictable), lemma-wide features needing evidence, the course's orthographies, facets and voice |
+| facets asked | the forms of its combinations (where they're unpredictable), lemma-wide features needing evidence, the course's orthographies, facets and voice |
+
+### Derived on combinations, never on a lexeme (Decided)
+
+Merge and projection rules work on combinations: contexts, boundaries and order only exist there. A
+lexeme's "own" surface form is the surface form of a **combination of one**.
+
+| | Examples |
+|---|---|
+| surface forms per orthography, with variants | *kitoblarimdan*; *dámelo* |
+| the citation form: a combination of one, with the lemma's citation features, in isolation | *run*; *ichmoq*; ‑ga shown as "‑ga / ‑ka / ‑qa" by the citation convention for dependents |
+| phonemic forms per scheme | |
+| audio | a word clip is a combination of one in a carrier context (fa's carrier, yue's 跟住我讀) |
+| homographs | *como* is EAT + present 1sg and also "like, as": combinations, not lexemes |
 
 ## Worked examples
 
@@ -101,7 +118,7 @@ flowchart LR
 | **attachment** | independent | dependent, suffix | independent | clitic |
 | **lexical forms** | *casa* | ‑ga; ‑ka after k; ‑qa after q | *fue* | *me* |
 | **parts** | none | none | none | none |
-| *derived* | *casas* by rule (a combination); gloss "house" | closed; inflectional; gloss "to (dative)" | gloss "was"; a homograph of *fue* (*ir*) | paradigm with *yo*, *mí*; joined in *dame* by the orthography's projection |
+| *derived* | gloss "house"; *casas* is a combination | closed; inflectional; gloss "to (dative)" | gloss "was"; a homograph of *fue* (*ir*) | paradigm with *yo*, *mí*; joined in *dame* by the orthography's projection |
 
 ## What diagramming surfaced
 
