@@ -210,8 +210,7 @@ feature. A construction whose meaning isn't derivable is a lexeme with slots.
 
 ### Blocking: where *ran* is stored, and how it's found (Proposed)
 
-**You don't merge *run* with ‑ed; you merge RUN with the feature past.** ‑ed is how English usually spells
-past. Merge takes a lemma and features; realising them picks the forms.
+**Merge takes a lemma and features (RUN + {past}); realising them picks the forms.**
 
 **The irregular lexeme is the exception table.** *ran* is already stored as lemma RUN + {past}, so "the
 past of *run* is *ran*" is written once, on *ran*, and nowhere else.
@@ -226,12 +225,12 @@ flowchart TB
   GAP["a listed gap<br/>(Russian победить + {non-past, 1sg})"]
   NONE["no form: the combination doesn't exist"]
   ALL["it covers every feature:<br/>done · ran"]
-  PART["it covers some:<br/>use it as the stem · tuv‑ {TENER, preterite}"]
-  BASE["it covers none:<br/>the lemma's elsewhere lexeme · scan"]
+  PART["it covers some:<br/>it is the stem · tuv‑ {TENER, preterite}"]
+  BASE["it covers none:<br/>the stem is the lemma's elsewhere lexeme · scan"]
   AFF{"realise the remaining features:<br/>the most specific affix whose conditions hold"}
   A1["‑e, the strong-preterite ending<br/>(the stem's class) · tuve"]
   A2["‑ed, the elsewhere past · scan‑ed"]
-  BND["boundary and projection rules<br/>scanned"]
+  BND["boundary and projection rules<br/>SCAN + {past} = scanned"]
   OFF["the same, with listed lexemes ignored:<br/>the overregularisation a learner may type · *runned"]
 
   REQ --> LOOK
@@ -249,7 +248,8 @@ flowchart TB
 2. If it covers every feature, that's the answer: *ran*.
 3. If it covers some, it's the stem: *tuv-* is TENER + {preterite}. Its own lexical features (a
    strong-preterite stem) condition what comes next.
-4. If it covers none, the stem is the lemma's elsewhere lexeme: *scan*.
+4. If it covers none, the stem is the lemma's elsewhere lexeme: *scan* (SCAN + {past} still ends as
+   *scanned*, after steps 5 and 6).
 5. The remaining features are realised by affixes, again the most specific whose conditions hold: the
    strong-preterite ‑e (*tuve*) beats the regular ‑í; the elsewhere ‑ed applies to *scan*.
 6. Then boundary and projection rules: *scanned*.
