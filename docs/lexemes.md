@@ -40,7 +40,7 @@ teach a unit of the language: the **lexeme** (§2).
 | **allomorph** | A form a context triggers: stored on the lexeme with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
 | **variant** | Systematic free variation, made by a projection rule: accept it | HK / TW characters; apc ـه / ـو; Arabizi spellings | Proposed |
 | **morph** | A lexeme's realisation in one token: its exponent, anchored on tiers (§9) | *dan* in *Samarqanddanman*; the ezafe's kasra | Proposed |
-| **cell** | A feature bundle the learner chooses, possibly with no exponent | PST, PRET.3SG, ACC.PL, uz COP.3SG | Proposed |
+| **cell** | One box of a paradigm table: a combination of feature values (preterite + 3sg). What a form means grammatically, apart from how it is spelled; it may have no exponent | PST, PRET.3SG, ACC.PL, uz COP.3SG | Proposed |
 | **rule** | A pattern stated without naming any lexeme, with its own KC | ‑ga → ‑qa after q; the e→ie pattern | Proposed |
 | **paradigm** | Lexemes whose senses share a lexical meaning, differing in features: a head plus cells | *run*; *ran* = run.PST | Proposed |
 | **family** | Words linked by a shared base or root (derivation, compounding) | *write*, *writer*; ك‑ت‑ب: كاتب, مكتب | Open (§10) |
