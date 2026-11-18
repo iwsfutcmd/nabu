@@ -7,18 +7,18 @@ id: u18-getting-around
 title: {en: Getting around}
 cefr: A2
 kcs:
-- {id: 'sense:servees', gloss: {en: service (a shared taxi on a fixed route)}, forms: {apc-Arab/standard: [سرفيس], apc-Latn/arabizi: [servees]}, notes: {en: A red-plated car that picks up several passengers
+- {id: 'sense:servees', pos: NOUN, gloss: {en: service (a shared taxi on a fixed route)}, forms: {apc-Arab/standard: [سرفيس], apc-Latn/arabizi: [servees]}, notes: {en: A red-plated car that picks up several passengers
       along its route for a fixed fare.}}
-- {id: 'sense:taxi', gloss: {en: taxi}, forms: {apc-Arab/standard: [تاكسي], apc-Latn/arabizi: [taxi]}}
-- {id: 'sense:bus', gloss: {en: bus}, forms: {apc-Arab/standard: [باص], apc-Latn/arabizi: [bus]}, notes: {en: Also written bas or baS; bas alone is 'only; but'.}}
-- {id: 'sense:tari2', gloss: {en: road; way}, forms: {apc-Arab/standard: [طريق], apc-Latn/arabizi: [tari2]}, notes: {en: '3al tari2: on the way.'}}
-- {id: 'sense:3aj2a', gloss: {en: traffic; traffic jam; crowd}, forms: {apc-Arab/standard: [عجقة], apc-Latn/arabizi: [3aj2a]}}
-- {id: 'sense:2a3ed', gloss: {en: sitting; staying (somewhere)}, forms: {apc-Arab/standard: [قاعد], apc-Latn/arabizi: [2a3ed]}, notes: {en: 'An active participle: 2a3de (a woman), 2a3din (several people).
+- {id: 'sense:taxi', pos: NOUN, gloss: {en: taxi}, forms: {apc-Arab/standard: [تاكسي], apc-Latn/arabizi: [taxi]}}
+- {id: 'sense:bus', pos: NOUN, gloss: {en: bus}, forms: {apc-Arab/standard: [باص], apc-Latn/arabizi: [bus]}, notes: {en: Also written bas or baS; bas alone is 'only; but'.}}
+- {id: 'sense:tari2', pos: NOUN, gloss: {en: road; way}, forms: {apc-Arab/standard: [طريق], apc-Latn/arabizi: [tari2]}, notes: {en: '3al tari2: on the way.'}}
+- {id: 'sense:3aj2a', pos: NOUN, gloss: {en: traffic; traffic jam; crowd}, forms: {apc-Arab/standard: [عجقة], apc-Latn/arabizi: [3aj2a]}}
+- {id: 'sense:2a3ed', pos: VERB, gloss: {en: sitting; staying (somewhere)}, forms: {apc-Arab/standard: [قاعد], apc-Latn/arabizi: [2a3ed]}, notes: {en: 'An active participle: 2a3de (a woman), 2a3din (several people).
       wen 2a3ed? Where are you (sitting)?'}}
-- {id: 'sense:wa2ef', gloss: {en: standing; stopped; waiting}, forms: {apc-Arab/standard: [واقف], apc-Latn/arabizi: [wa2ef]}, notes: {en: 'An active participle: wa2fe (a woman), wa2fin (several people).'}}
-- {id: 'sense:laff', gloss: {en: turn}, forms: {apc-Arab/standard: [لفّ], apc-Latn/arabizi: [liff]}, notes: {en: 'liff 3al yamin: turn right (to a man); liffi (to a woman); liffo (to several people).'}}
-- {id: 'sense:ishara', gloss: {en: traffic light; sign}, forms: {apc-Arab/standard: [إشارة], apc-Latn/arabizi: [ishara]}}
-- {id: 'sense:wa22ef', gloss: {en: 'stop (a car, someone)'}, forms: {apc-Arab/standard: [وقّف], apc-Latn/arabizi: [wa22ef]}, notes: {en: 'wa22ef hon!: stop here! (to a driver). To a woman: wa22fi.'}}
+- {id: 'sense:wa2ef', pos: VERB, gloss: {en: standing; stopped; waiting}, forms: {apc-Arab/standard: [واقف], apc-Latn/arabizi: [wa2ef]}, notes: {en: 'An active participle: wa2fe (a woman), wa2fin (several people).'}}
+- {id: 'sense:laff', pos: VERB, gloss: {en: turn}, forms: {apc-Arab/standard: [لفّ], apc-Latn/arabizi: [liff]}, notes: {en: 'liff 3al yamin: turn right (to a man); liffi (to a woman); liffo (to several people).'}}
+- {id: 'sense:ishara', pos: NOUN, gloss: {en: traffic light; sign}, forms: {apc-Arab/standard: [إشارة], apc-Latn/arabizi: [ishara]}}
+- {id: 'sense:wa22ef', pos: VERB, gloss: {en: 'stop (a car, someone)'}, forms: {apc-Arab/standard: [وقّف], apc-Latn/arabizi: [wa22ef]}, notes: {en: 'wa22ef hon!: stop here! (to a driver). To a woman: wa22fi.'}}
 nodes:
 - {id: apc.road.transport, kind: lesson, introduces: ['sense:servees', 'sense:taxi', 'sense:bus', 'sense:tari2', 'sense:3aj2a']}
 - {id: apc.road.where, kind: lesson, introduces: ['sense:2a3ed', 'sense:wa2ef']}
@@ -50,13 +50,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سرفيس؟ ع بيروت؟
-      tokens: [{surface: سرفيس, sense: servees}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut}]
+      tokens: [{surface: سرفيس, sense: servees}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut, form: 'form:fem'}]
       reverse: |-
         (سرفيس|سيرفيس|سرڤيس) ع بيروت
         سرفيس على بيروت
     apc-Latn/arabizi:
       text: servees? 3a Beirut?
-      tokens: [{surface: servees, sense: servees}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut}]
+      tokens: [{surface: servees, sense: servees}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut, form: 'form:fem'}]
       reverse: (servees|service|servis|srvis) (3a|3ala) (Beirut|Bayrut|Beyrouth)
   translations:
     en: (Service|Shared taxi)? To Beirut?
@@ -149,13 +149,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: في عجقة كتير.
-      tokens: [{surface: في, sense: fi}, {surface: عجقة, sense: 3aj2a}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: في, sense: fi}, {surface: عجقة, sense: 3aj2a, form: 'form:fem'}, {surface: كتير, sense: ktir}]
       reverse: |-
         في عجقة كتير
         في كتير عجقة
     apc-Latn/arabizi:
       text: fi 3aj2a ktir.
-      tokens: [{surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a, form: 'form:fem'}, {surface: ktir, sense: ktir}]
       reverse: |-
         fi (3aj2a|3aj2e|3aj2ah|3aja) (ktir|kteer)
         fi ktir 3aj2a
@@ -170,13 +170,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما في عجقة اليوم.
-      tokens: [{surface: ما, sense: ma}, {surface: في, sense: fi}, {surface: عجقة, sense: 3aj2a}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      tokens: [{surface: ما, sense: ma}, {surface: في, sense: fi}, {surface: عجقة, sense: 3aj2a, form: 'form:fem'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
       reverse: |-
         ما في عجقة اليوم
         اليوم ما في عجقة
     apc-Latn/arabizi:
       text: ma fi 3aj2a el yom.
-      tokens: [{surface: ma, sense: ma}, {surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      tokens: [{surface: ma, sense: ma}, {surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a, form: 'form:fem'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
       reverse: |-
         ma fi (3aj2a|3aj2e|3aj2ah|3aja) (el|l|il) (yom|youm)
         el yom ma fi 3aj2a
@@ -301,13 +301,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا قاعدة بالسيّارة.
-      tokens: [{surface: أنا, sense: ana}, {surface: قاعدة, sense: 2a3ed, form: 'form:fem'}, {surface: بالسيّارة, sense: siyyara, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: سيّارة,
+      tokens: [{surface: أنا, sense: ana}, {surface: قاعدة, sense: 2a3ed, form: 'form:fem'}, {surface: بالسيّارة, sense: siyyara, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: سيّارة,
               kc: 'sense:siyyara'}]}]
       reverse: '[أنا] قاعدة بالسيّارة'
     apc-Latn/arabizi:
       text: ana 2a3de bel siyyara.
       tokens: [{surface: ana, sense: ana}, {surface: 2a3de, sense: 2a3ed, form: 'form:fem'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: siyyara,
-          sense: siyyara}]
+          sense: siyyara, form: 'form:fem'}]
       reverse: '[ana] (2a3de|a3de|2a3di|2a3da) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)'
   translations:
     en: |-
@@ -336,11 +336,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا واقف حدّ الدكّانة.
-      tokens: [{surface: أنا, sense: ana}, {surface: واقف, sense: wa2ef}, {surface: حدّ, sense: 7add}, {surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}]
+      tokens: [{surface: أنا, sense: ana}, {surface: واقف, sense: wa2ef}, {surface: حدّ, sense: 7add}, {surface: الدكّانة, sense: dekkene, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}]
       reverse: '[أنا] واقف حدّ الدكّانة'
     apc-Latn/arabizi:
       text: ana wa2ef 7add el dekkene.
-      tokens: [{surface: ana, sense: ana}, {surface: wa2ef, sense: wa2ef}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene}]
+      tokens: [{surface: ana, sense: ana}, {surface: wa2ef, sense: wa2ef}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene, form: 'form:fem'}]
       reverse: '[ana] (wa2ef|wa2if|waaef|we2ef) (7add|7ad|hadd) (el|l|il) (dekkene|dekene|dekkane|dikkene)'
   translations:
     en: |-
@@ -353,14 +353,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: نازل ع بيروت؟
-      tokens: [{surface: نازل, sense: nezel}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut}]
+      tokens: [{surface: نازل, sense: nezel}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut, form: 'form:fem'}]
       reverse: |-
         نازل ع بيروت
         إنت نازل ع بيروت
         نازل على بيروت
     apc-Latn/arabizi:
       text: nezel 3a Beirut?
-      tokens: [{surface: nezel, sense: nezel}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut}]
+      tokens: [{surface: nezel, sense: nezel}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut, form: 'form:fem'}]
       reverse: |-
         (nezel|nazel|nezil|nazil) (3a|3ala) (Beirut|Bayrut|Beyrouth)
         enta nezel 3a Beirut
@@ -449,14 +449,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بعد الإشارة، لفّ عاليمين.
-      tokens: [{surface: بعد, sense: ba3d}, {surface: الإشارة, sense: ishara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: إشارة, kc: 'sense:ishara'}]}, {surface: لفّ, sense: laff}, {surface: عاليمين,
+      tokens: [{surface: بعد, sense: ba3d}, {surface: الإشارة, sense: ishara, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: إشارة, kc: 'sense:ishara'}]}, {surface: لفّ, sense: laff}, {surface: عاليمين,
           sense: yamin, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: يمين, kc: 'sense:yamin'}]}]
       reverse: |-
         بعد الإشارة لفّ (عاليمين|ع اليمين|على اليمين)
         لفّ عاليمين بعد الإشارة
     apc-Latn/arabizi:
       text: ba3d el ishara, liff 3al yamin.
-      tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: ishara, sense: ishara}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {
+      tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: ishara, sense: ishara, form: 'form:fem'}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {
               surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
       reverse: |-
         (ba3d|ba3ed) (el|l|il) (ishara|ishare|2ishara) (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
@@ -580,23 +580,23 @@ stories:
       forms:
         apc-Arab/standard:
           text: في عَجْقَة؟
-          tokens: [{surface: في, sense: fi}, {surface: عَجْقَة, sense: 3aj2a}]
+          tokens: [{surface: في, sense: fi}, {surface: عَجْقَة, sense: 3aj2a, form: 'form:fem'}]
         apc-Latn/arabizi:
           text: fi 3aj2a?
-          tokens: [{surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}]
+          tokens: [{surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a, form: 'form:fem'}]
       translations: {en: 'Is there traffic?'}
   - line:
       speaker: sami
       ask: complete
-      gap: sense:3aj2a
-      distractors: ['sense:tari2']
+      gap: 'sense:3aj2a'
+      distractors: ['sense:jebne', 'sense:man2oushe']
       forms:
         apc-Arab/standard:
           text: إيه، في عَجْقَة كْتير!
-          tokens: [{surface: إيه, sense: eh}, {surface: في, sense: fi}, {surface: عَجْقَة, sense: 3aj2a}, {surface: كْتير, sense: ktir}]
+          tokens: [{surface: إيه, sense: eh}, {surface: في, sense: fi}, {surface: عَجْقَة, sense: 3aj2a, form: 'form:fem'}, {surface: كْتير, sense: ktir}]
         apc-Latn/arabizi:
           text: eh, fi 3aj2a ktir!
-          tokens: [{surface: eh, sense: eh}, {surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}, {surface: ktir, sense: ktir}]
+          tokens: [{surface: eh, sense: eh}, {surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a, form: 'form:fem'}, {surface: ktir, sense: ktir}]
       translations: {en: 'Yes, there''s a lot of traffic!'}
   - choose:
       prompt: {en: 'How is Sami travelling?'}
@@ -632,11 +632,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: بَعْد الإِشارَة، لِفّ عَاليَمين.
-          tokens: [{surface: بَعْد, sense: ba3d}, {surface: الإِشارَة, sense: ishara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: إِشارَة, kc: 'sense:ishara'}]}, {surface: لِفّ, sense: laff}, {surface: عَاليَمين,
+          tokens: [{surface: بَعْد, sense: ba3d}, {surface: الإِشارَة, sense: ishara, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: إِشارَة, kc: 'sense:ishara'}]}, {surface: لِفّ, sense: laff}, {surface: عَاليَمين,
               sense: yamin, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: يَمين, kc: 'sense:yamin'}]}]
         apc-Latn/arabizi:
           text: ba3d el ishara, liff 3al yamin.
-          tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: ishara, sense: ishara}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'},
+          tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: ishara, sense: ishara, form: 'form:fem'}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'},
                 {surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
       translations: {en: 'After the traffic lights, turn right.'}
   - line:

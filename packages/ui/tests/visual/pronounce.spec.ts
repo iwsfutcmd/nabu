@@ -69,3 +69,60 @@ for (const cell of cells()) {
     });
   }
 }
+
+// Vowel marks put on a word's letters (ADR 0137): Lebanese Arabic's harakat on buttons, the word's
+// letters in its own direction, the letter being marked pressed; no field to type in.
+for (const cell of cells()) {
+  if (cell.writingMode !== "horizontal-tb" || cell.target !== "apc-Arab") continue;
+  test(`pronounce: ${cell.ui} × ${cell.target} × marks`, async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    await page.goto(storyUrl("player-pronunciation--marks", cellGlobals(cell)));
+    await settle(page, "[data-lesson-player]");
+    const player = page.locator("[data-lesson-player]");
+    await expect(page.locator("[data-answer-input]")).toHaveCount(0);
+    const letters = player.locator("[data-letter]");
+    expect(await letters.count()).toBeGreaterThanOrEqual(2);
+    await expect(letters.first()).toHaveAttribute("aria-pressed", "true");
+    await expect(player.locator("[data-target-region]")).toHaveAttribute("dir", cell.targetDir);
+    for (const letter of await letters.locator("[data-nabu-text]").all()) await expect(letter).toHaveAttribute("dir", cell.targetDir);
+    expect(await player.locator("[data-mark]").count()).toBeGreaterThanOrEqual(4);
+    // A mark goes on the chosen letter, and the word shows it.
+    await player.locator("[data-mark]").first().click();
+    expect(HARAKAT.test((await player.locator("[data-spelled-word]").textContent()) ?? "")).toBe(true);
+    await expectNoClipping(page, player);
+    const axe = await new AxeBuilder({ page }).include("[data-lesson-player]").analyze();
+    expect(axe.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    expect(errors).toEqual([]);
+    if (comparesPixels) await expect(player).toHaveScreenshot(`pronounce__${cell.name}__marks.png`);
+  });
+}
+
+// A feature card (ADR 0139): a Cantonese word's Jyutping among the same syllables in other tones the
+// course attests, each option in the reading's language, left to right; the word marked, no ruby.
+for (const cell of cells()) {
+  if (cell.writingMode !== "horizontal-tb" || cell.target !== "yue-Hant-HK") continue;
+  test(`pronounce: ${cell.ui} × ${cell.target} × feature`, async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    await page.goto(storyUrl("player-pronunciation--feature", cellGlobals(cell)));
+    await settle(page, "[data-lesson-player]");
+    const player = page.locator("[data-lesson-player]");
+    await expect(page.locator("[data-ui-root]")).toHaveAttribute("dir", cell.uiDir);
+    await expect(page.locator("[data-pronounce-word] rt")).toHaveCount(0);
+    const options = page.locator("[data-options] [data-option] [data-nabu-text]");
+    expect(await options.count()).toBeGreaterThanOrEqual(3);
+    for (const option of await options.all()) {
+      await expect(option).toHaveAttribute("lang", JYUTPING);
+      await expect(option).toHaveAttribute("dir", "ltr");
+    }
+    // The options differ in one tone only: the same letters, tone numbers aside.
+    const written = await options.allTextContents();
+    expect(new Set(written.map((w) => w.replace(/[0-9]/gu, ""))).size).toBe(1);
+    await expectNoClipping(page, player);
+    const axe = await new AxeBuilder({ page }).include("[data-lesson-player]").analyze();
+    expect(axe.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    expect(errors).toEqual([]);
+    if (comparesPixels) await expect(player).toHaveScreenshot(`pronounce__${cell.name}__feature.png`);
+  });
+}

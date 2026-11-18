@@ -4,7 +4,7 @@
  * open mistakes. `replay` is a pure fold: the same events, in any order and
  * with any duplicates, give the same state.
  */
-import type { AnswerSubmitted, ExerciseSkipped, KcCredit, LearnerEvent, SessionCompleted } from "@nabu/schema";
+import type { AnswerSubmitted, Asks, ExerciseSkipped, KcCredit, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
 import { SPEAKING, TEMPLATES } from "../lesson/templates.ts";
@@ -36,6 +36,13 @@ export interface Mistake {
    * and only an answer about it closes the mistake. Absent where the card asked the whole sentence.
    */
   readonly ask?: readonly string[];
+  /**
+   * What a fill-in (gap-fill) asked of that word (ADR 0132): which word (`ask` is its sense) or which
+   * form (`ask` is its form KCs). It is asked again as the same question, and only an answer to that
+   * question closes it. Absent on other cards, and on a fill-in's mistake from before ADR 0132, whose
+   * `ask` is all of the word's KCs.
+   */
+  readonly asks?: Asks;
 }
 
 /**
@@ -48,6 +55,19 @@ export const askOf = (credits: readonly KcCredit[]): readonly string[] | undefin
 /** Whether two mistakes ask the same thing: the same word, or both the whole sentence. */
 export const sameAsk = (a: readonly string[] | undefined, b: readonly string[] | undefined): boolean =>
   a === undefined || b === undefined ? a === b : a.length === b.length && a.every((kc, i) => kc === b[i]);
+
+/**
+ * Whether an answer (its `ask` and `asks`) is about what a mistake asked: the same word and, for a
+ * fill-in, the same question (ADR 0132). A fill-in's mistake from before ADR 0132 asked the word and
+ * its form at once: an answer to either question about that word closes it.
+ */
+export const sameQuestion = (mistake: Pick<Mistake, "ask" | "asks">, ask: readonly string[] | undefined, asks: Asks | undefined): boolean => {
+  if (mistake.asks === undefined && asks !== undefined) {
+    const before = mistake.ask;
+    return before !== undefined && ask !== undefined && ask.length > 0 && ask.every((kc) => before.includes(kc));
+  }
+  return mistake.asks === asks && sameAsk(mistake.ask, ask);
+};
 
 export interface LearnerState {
   readonly cards: Readonly<Record<string, StoredCard>>;
@@ -127,18 +147,24 @@ export const emptyLearnerState = (): LearnerState => ({
  */
 export const SCRIPT_FACETS: ReadonlySet<Facet> = new Set<Facet>(["read-script", "write-script"]);
 
-/** The card of a (KC, facet): "kc|facet", or "kc|facet|orthography" for a script facet. */
-export const cardKey = (kc: string, facet: Facet, orthography: string): string => (SCRIPT_FACETS.has(facet) ? `${kc}|${facet}|${orthography}` : `${kc}|${facet}`);
+/**
+ * The card of a (KC, facet): "kc|facet", or "kc|facet|orthography" for a script facet; a reading
+ * in one of several traditions (ADR 0138) is "kc|read-script|orthography|tradition".
+ */
+export const cardKey = (kc: string, facet: Facet, orthography: string, reading?: string): string =>
+  !SCRIPT_FACETS.has(facet) ? `${kc}|${facet}` : facet === "read-script" && reading !== undefined ? `${kc}|${facet}|${orthography}|${reading}` : `${kc}|${facet}|${orthography}`;
 
 export interface CardRef {
   readonly kc: string;
   readonly facet: Facet;
   readonly orthography?: string | undefined;
+  /** The reading tradition of a read-script card, where its orthography has several (ADR 0138). */
+  readonly reading?: string | undefined;
 }
 
 export const parseCardKey = (key: string): CardRef => {
-  const [kc = "", facet = "", orthography] = key.split("|");
-  return { kc, facet: facet as Facet, orthography };
+  const [kc = "", facet = "", orthography, reading] = key.split("|");
+  return { kc, facet: facet as Facet, orthography, ...(reading === undefined ? {} : { reading }) };
 };
 
 const scheduler: FSRS = fsrs(generatorParameters({ request_retention: DESIRED_RETENTION, enable_fuzz: false }));
@@ -161,14 +187,14 @@ const fromCard = (c: Card): StoredCard => ({
   last_review: c.last_review?.toISOString(),
 });
 
-/** FSRS retrievability of a (KC, facet) in an orthography at `now`: 0 when never practised. */
-export const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string): number => {
-  const card = state.cards[cardKey(kc, facet, orthography)];
+/** FSRS retrievability of a (KC, facet) in an orthography (and reading tradition, ADR 0138) at `now`: 0 when never practised. */
+export const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string, reading?: string): number => {
+  const card = state.cards[cardKey(kc, facet, orthography, reading)];
   return card === undefined ? 0 : scheduler.get_retrievability(toCard(card), new Date(now), false);
 };
 
-export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string): number =>
-  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now), 0) / kcs.length;
+export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string, reading?: string): number =>
+  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now, reading), 0) / kcs.length;
 
 const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good, easy: FsrsRating.Easy };
 
@@ -206,7 +232,7 @@ const addXp = (d: Draft, date: string, amount: number): void => {
 const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, rating: Rating): void => {
   const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
-  const key = cardKey(kc, facet, e.orthography);
+  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
   if (d.rated.keys.includes(key)) return; // within-session repetitions are learning steps
   d.rated.keys.push(key);
   const now = new Date(at);
@@ -232,7 +258,7 @@ export const WITNESSED_FACETS: ReadonlySet<Facet> = new Set<Facet>([...SKILL_FAC
  */
 const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
   if (!WITNESSED_FACETS.has(facet)) return;
-  const key = cardKey(kc, facet, e.orthography);
+  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
   if (!right) {
     delete d.shown[key];
     d.missed[key] = e.localDate;
@@ -247,10 +273,13 @@ const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, fac
  * A first try (or a wrong retry) on a card: a mistake on the same item, template and word closes,
  * and a wrong answer opens one. A card about another word of the sentence leaves it open.
  */
-const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined): void => {
-  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameAsk(m.ask, ask)));
-  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }) }].slice(-MISTAKES_KEPT);
+const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined, asks?: Asks): void => {
+  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameQuestion(m, ask, asks)));
+  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }), ...(asks === undefined ? {} : { asks }) }].slice(-MISTAKES_KEPT);
 };
+
+/** What a fill-in's answer asked of its word (ADR 0132), where it asked about one word. */
+const questionOf = (e: AnswerSubmitted): Asks | undefined => (askOf(e.outcome.kcs) === undefined ? undefined : e.exercise.asks);
 
 const answered = (d: Draft, e: AnswerSubmitted): void => {
   const { template, item, kcs } = e.exercise;
@@ -260,7 +289,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   // the recall of what the answer is credited to (a blank's word), as the planner predicts it.
   if (e.attempt === 1) {
     const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
-    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime);
+    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime, e.exercise.reading);
     learn(d.performance, { template, facet, item, kcs, r }, correct);
   }
   // Pace: this answer's time per unit of length against the learner's usual for the template. Only
@@ -293,7 +322,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
   // Story questions are not mistakes to practice: they only make sense inside their story.
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
-    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs));
+    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs), questionOf(e));
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {

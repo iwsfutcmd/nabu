@@ -6,16 +6,19 @@ title:
 cefr: A1
 kcs:
 - id: sense:莊子
+  pos: PROPN
   gloss:
     en: Zhuangzi (Master Zhuang), Daoist thinker of the 4th century BCE
   forms:
     lzh-Hant/standard: [莊子]
 - id: sense:惠子
+  pos: PROPN
   gloss:
     en: Huizi (Master Hui), logician and Zhuangzi's friend
   forms:
     lzh-Hant/standard: [惠子]
 - id: sense:與
+  pos: CCONJ
   gloss:
     en: and; with (joins two nouns, or says who one is with)
   forms:
@@ -23,6 +26,7 @@ kcs:
   notes:
     en: A與B “A and B”; 與A遊 “roam with A”.
 - id: sense:遊
+  pos: VERB
   gloss:
     en: to roam, to stroll, to wander for pleasure
   forms:
@@ -30,22 +34,26 @@ kcs:
   notes:
     en: 'Zhuangzi’s fish 出遊, “come out and roam about”: in English, they swim about. “To swim” itself is 游, which some editions write here.'
 - id: sense:水
+  pos: NOUN
   gloss:
     en: water; river
   forms:
     lzh-Hant/standard: [水]
 - id: sense:山
+  pos: NOUN
   gloss:
     en: mountain, hill
   forms:
     lzh-Hant/standard: [山]
 - id: sense:日
+  pos: NOUN
   gloss:
     en: sun; day
   forms:
     lzh-Hant/standard: [日]
   image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:上
+  pos: ADP
   gloss:
     en: above, on top of; upper, highest
   forms:
@@ -53,6 +61,7 @@ kcs:
   notes:
     en: 'After a noun it says where: 山上 “on the mountain”, 濠梁之上 “on the bridge over the Hao”.'
 - id: sense:下
+  pos: ADP
   gloss:
     en: below, under; the foot of
   forms:
@@ -60,36 +69,43 @@ kcs:
   notes:
     en: 'After a noun: 山下 “at the foot of the mountain”.'
 - id: sense:見
+  pos: VERB
   gloss:
     en: to see
   forms:
     lzh-Hant/standard: [見]
 - id: sense:魚
+  pos: NOUN
   gloss:
     en: fish
   forms:
     lzh-Hant/standard: [魚]
 - id: sense:出
+  pos: VERB
   gloss:
     en: to go out, to come out; (of the sun) to rise
   forms:
     lzh-Hant/standard: [出]
 - id: sense:濠
+  pos: PROPN
   gloss:
     en: the Hao, a river in the state of Song
   forms:
     lzh-Hant/standard: [濠]
 - id: sense:梁
+  pos: NOUN
   gloss:
     en: bridge; dam
   forms:
     lzh-Hant/standard: [梁]
 - id: sense:鯈
+  pos: NOUN
   gloss:
     en: minnow, a small white river fish
   forms:
     lzh-Hant/standard: [鯈]
 - id: sense:從容
+  pos: ADJ
   gloss:
     en: at ease, unhurried, leisurely
   forms:
@@ -97,6 +113,9 @@ kcs:
   notes:
     en: 'Read differently from 從 “follow”: cōng róng (Middle Chinese tshjowng, the Guangyun’s 七恭切; Cantonese sung1 jung4). Standard Mandarin today also says cóngróng.'
 - id: sense:子.you
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: 'you (polite: “sir”, “my friend”)'
   forms:
@@ -104,6 +123,9 @@ kcs:
   notes:
     en: 'The same 子 as in 子曰, used to the person spoken to: 子非魚 “you are not a fish”.'
 - id: sense:安
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: 'how? where? (安知 “how do you know?”, “where would you know it from?”)'
   forms:
@@ -709,7 +731,7 @@ stories:
       speaker: zhuangzi
       ask: complete
       gap: sense:樂
-      distractors: ['sense:慍', 'sense:智']
+      distractors: ['sense:慍', 'sense:殆']
       forms:
         lzh-Hant/standard:
           text: 「鯈魚出遊從容，是魚之樂也。」
@@ -743,8 +765,8 @@ stories:
   - line:
       speaker: zhuangzi
       ask: complete
-      gap: sense:安
-      distractors: ['sense:何', 'sense:誰']
+      gap: sense:魚
+      distractors: ['sense:梁', 'sense:耳']
       forms:
         lzh-Hant/standard:
           text: 「子非我，安知我不知魚之樂？」

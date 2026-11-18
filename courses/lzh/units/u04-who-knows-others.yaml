@@ -6,21 +6,25 @@ title:
 cefr: A1
 kcs:
 - id: sense:老子
+  pos: PROPN
   gloss:
     en: Laozi (Master Lao), the Daoist sage
   forms:
     lzh-Hant/standard: [老子]
 - id: sense:道
+  pos: NOUN
   gloss:
     en: the Way; road, path
   forms:
     lzh-Hant/standard: [道]
 - id: sense:德
+  pos: NOUN
   gloss:
     en: virtue, moral power
   forms:
     lzh-Hant/standard: [德]
 - id: sense:者
+  pos: PART
   gloss:
     en: 'the one who …, those who … (after a verb phrase); after a noun, marks the topic; after a number, “… things”'
   forms:
@@ -28,6 +32,9 @@ kcs:
   notes:
     en: '者 turns what comes before it into a noun: 知人者 “the one who knows others”. After a noun it marks what the sentence is about: 仁者，人也 “humaneness: it is [being] human”. After a number it counts things: 二者 “the two”.'
 - id: sense:之.de
+  pos: PART
+  features:
+    Poss: 'Yes'
   gloss:
     en: ’s, of (joins a noun to what it describes or owns)
   forms:
@@ -35,46 +42,60 @@ kcs:
   notes:
     en: 'The same character as 之 “him, it”, read the same: between two nouns it joins them, 孔子之道 “the Way of Confucius”. Between a subject and its verb it makes the clause a noun: 吾盾之堅 “the hardness of my shield”, 魚之樂 “the joy of the fish”, 吾劍之所從墜 “the place my sword fell from”.'
 - id: sense:矣
+  pos: PART
+  features:
+    PartType: Mod
   gloss:
     en: 'sentence-final particle: now, already (a new situation)'
   forms:
     lzh-Hant/standard: [矣]
 - id: sense:大
+  pos: ADJ
   gloss:
     en: big, great
   forms:
     lzh-Hant/standard: [大]
 - id: sense:小
+  pos: ADJ
   gloss:
     en: small, little
   forms:
     lzh-Hant/standard: [小]
 - id: sense:多
+  pos: ADJ
   gloss:
     en: many, much
   forms:
     lzh-Hant/standard: [多]
 - id: sense:少
+  pos: ADJ
   gloss:
     en: few, little
   forms:
     lzh-Hant/standard: [少]
 - id: sense:天下
+  pos: NOUN
   gloss:
     en: 'all under Heaven: the world, the realm'
   forms:
     lzh-Hant/standard: [天下]
 - id: sense:於
+  pos: ADP
   gloss:
     en: at, in, from; than (after an adjective)
   forms:
     lzh-Hant/standard: [於]
 - id: sense:智
+  pos: ADJ
   gloss:
     en: wise; wisdom
   forms:
     lzh-Hant/standard: [智]
 - id: sense:自.self
+  pos: PRON
+  features:
+    PronType: Prs
+    Reflex: 'Yes'
   gloss:
     en: oneself, by oneself (before a verb)
   forms:
@@ -82,41 +103,49 @@ kcs:
   notes:
     en: 'Written like 自 “from”: 自知 is “know oneself”.'
 - id: sense:明
+  pos: ADJ
   gloss:
     en: bright; clear-sighted, enlightened
   forms:
     lzh-Hant/standard: [明]
 - id: sense:勝
+  pos: VERB
   gloss:
     en: to overcome, to defeat
   forms:
     lzh-Hant/standard: [勝]
 - id: sense:力
+  pos: NOUN
   gloss:
     en: strength, force
   forms:
     lzh-Hant/standard: [力]
 - id: sense:強
+  pos: ADJ
   gloss:
     en: strong
   forms:
     lzh-Hant/standard: [強]
 - id: sense:足
+  pos: ADJ
   gloss:
     en: enough; to be enough
   forms:
     lzh-Hant/standard: [足]
 - id: sense:富
+  pos: ADJ
   gloss:
     en: rich, wealthy
   forms:
     lzh-Hant/standard: [富]
 - id: sense:行
+  pos: VERB
   gloss:
     en: to go, to walk; to act, to put into practice
   forms:
     lzh-Hant/standard: [行]
 - id: sense:強.qiang
+  pos: VERB
   gloss:
     en: to force oneself, to make an effort (read qiǎng)
   forms:
@@ -595,7 +624,7 @@ stories:
       speaker: laozi
       ask: complete
       gap: sense:力
-      distractors: ['sense:德', 'sense:道']
+      distractors: ['sense:耳', 'sense:年']
       forms:
         lzh-Hant/standard:
           text: 勝人者有力，自勝者強。
@@ -608,6 +637,9 @@ stories:
       answer: 0
   - line:
       speaker: laozi
+      ask: complete
+      gap: sense:富
+      distractors: ['sense:慍', 'sense:惑']
       forms:
         lzh-Hant/standard:
           text: 知足者富。
@@ -615,9 +647,6 @@ stories:
       translations: {en: Those who know when they have enough are rich.}
   - line:
       speaker: laozi
-      ask: complete
-      gap: sense:志
-      distractors: ['sense:心', 'sense:命']
       forms:
         lzh-Hant/standard:
           text: 強行者有志。

@@ -9,76 +9,93 @@ title:
 cefr: A2
 kcs:
 - id: sense:shuv
+  pos: VERB
   gloss:
     en: to return, go back, turn back
   forms:
     hbo-Hebr/tiberian: [שׁוּב]
 - id: sense:am
+  pos: NOUN
   gloss:
     en: people, nation
   forms:
     hbo-Hebr/tiberian: [עַם]
 - id: sense:yevemet
+  pos: NOUN
   gloss:
     en: sister-in-law (a brother's widow; a husband's brother's wife)
   forms:
     hbo-Hebr/tiberian: [יְבֵמֶת]
 - id: sense:naomi
+  pos: PROPN
   gloss:
     en: Naomi
   forms:
     hbo-Hebr/tiberian: [נׇעֳמִי]
 - id: sense:rut
+  pos: PROPN
   gloss:
     en: Ruth
   forms:
     hbo-Hebr/tiberian: [רוּת]
 - id: sense:bat
+  pos: NOUN
   gloss:
     en: daughter
   forms:
     hbo-Hebr/tiberian: [בַּת]
 - id: sense:paga
+  pos: VERB
   gloss:
     en: 'to meet; to press, urge (בְּ: someone)'
   forms:
     hbo-Hebr/tiberian: [פָּגַע]
 - id: sense:azav
+  pos: VERB
   gloss:
     en: to leave, abandon, forsake
   forms:
     hbo-Hebr/tiberian: [עָזַב]
 - id: sense:lun
+  pos: VERB
   gloss:
     en: to lodge, spend the night
   forms:
     hbo-Hebr/tiberian: [לוּן]
 - id: sense:mut
+  pos: VERB
   gloss:
     en: to die
   forms:
     hbo-Hebr/tiberian: [מוּת]
 - id: sense:mawet
+  pos: NOUN
   gloss:
     en: death
   forms:
     hbo-Hebr/tiberian: [מָוֶת]
 - id: sense:nikbar
+  pos: VERB
   gloss:
     en: to be buried (niphal of קָבַר)
   forms:
     hbo-Hebr/tiberian: [נִקְבַּר]
 - id: sense:koh
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: thus, so; here
   forms:
     hbo-Hebr/tiberian: [כֹּה]
 - id: sense:hosif
+  pos: VERB
   gloss:
     en: to add; to do again, do more (hiphil of יָסַף)
   forms:
     hbo-Hebr/tiberian: [הוֹסִיף]
 - id: sense:hifrid
+  pos: VERB
   gloss:
     en: to separate, part (hiphil)
   forms:
@@ -179,7 +196,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: נָעֳמִי
-      tokens: [{surface: נָעֳמִי, sense: naomi, readings: {tiberian: noʿŏmî}}]
+      tokens: [{surface: נָעֳמִי, sense: naomi, form: 'form:f', readings: {tiberian: noʿŏmî}}]
       reverse: נעמי
   translations:
     en: Naomi
@@ -188,7 +205,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתָּשָׁב נָעֳמִי׃
-      tokens: [{surface: וַתָּשָׁב, sense: shuv, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattā́šoḇ}}, {surface: נָעֳמִי, sense: naomi, readings: {tiberian: noʿŏmî}}]
+      tokens: [{surface: וַתָּשָׁב, sense: shuv, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattā́šoḇ}}, {surface: נָעֳמִי, sense: naomi, form: 'form:f', readings: {tiberian: noʿŏmî}}]
       reverse: |-
         ותשב נעמי
         נעמי שבה
@@ -201,7 +218,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רוּת
-      tokens: [{surface: רוּת, sense: rut, readings: {tiberian: rûṯ}}]
+      tokens: [{surface: רוּת, sense: rut, form: 'form:f', readings: {tiberian: rûṯ}}]
       reverse: רות
   translations:
     en: Ruth
@@ -210,7 +227,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בִּתִּי
-      tokens: [{surface: בִּתִּי, sense: bat, morphs: [{surface: בִּתִּ, kc: 'sense:bat'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bittî}}]
+      tokens: [{surface: בִּתִּי, sense: bat, form: 'form:f', morphs: [{surface: בִּתִּ, kc: 'sense:bat'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bittî}}]
       reverse: בתי
   translations:
     en: my daughter
@@ -220,7 +237,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: לְכִי בִתִּי׃
-      tokens: [{surface: לְכִי, sense: halakh, form: 'form:impv-fs', readings: {tiberian: ləḵî}}, {surface: בִתִּי, sense: bat, morphs: [{surface: בִתִּ, kc: 'sense:bat'}, {surface: י, kc: 'form:sfx-1cs'}],
+      tokens: [{surface: לְכִי, sense: halakh, form: 'form:impv-fs', readings: {tiberian: ləḵî}}, {surface: בִתִּי, sense: bat, form: 'form:f', morphs: [{surface: בִתִּ, kc: 'sense:bat'}, {surface: י, kc: 'form:sfx-1cs'}],
           readings: {tiberian: ḇittî}}]
       reverse: לכי בתי
   translations:
@@ -231,7 +248,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: יְבִמְתֵּךְ
-      tokens: [{surface: יְבִמְתֵּךְ, sense: yevemet, morphs: [{surface: יְבִמְתֵּ, kc: 'sense:yevemet'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: yəḇimtēḵ}}]
+      tokens: [{surface: יְבִמְתֵּךְ, sense: yevemet, form: 'form:f', morphs: [{surface: יְבִמְתֵּ, kc: 'sense:yevemet'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: yəḇimtēḵ}}]
       reverse: יבמתך
   translations:
     en: your sister-in-law
@@ -515,7 +532,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: הִנֵּה שָׁבָה יְבִמְתֵּךְ אֶל־עַמָּהּ וְאֶל־אֱלֹהֶיהָ
-          tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: שָׁבָה, sense: shuv, form: 'form:qatal-3fs', readings: {tiberian: šā́ḇâ}}, {surface: יְבִמְתֵּךְ, sense: yevemet,
+          tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: שָׁבָה, sense: shuv, form: 'form:qatal-3fs', readings: {tiberian: šā́ḇâ}}, {surface: יְבִמְתֵּךְ, sense: yevemet, form: 'form:f',
               morphs: [{surface: יְבִמְתֵּ, kc: 'sense:yevemet'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: yəḇimtēḵ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: עַמָּהּ,
               sense: am, morphs: [{surface: עַמָּ, kc: 'sense:am'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: ʿammāh}}, {surface: וְאֶל, sense: el, morphs: [{surface: וְ, kc: 'sense:we'},
                 {surface: אֶל, kc: 'sense:el'}], readings: {tiberian: wəʾel-}}, {surface: אֱלֹהֶיהָ, sense: elohim, morphs: [{surface: אֱלֹהֶי, kc: 'sense:elohim'}, {surface: הָ, kc: 'form:sfx-3fs'}], readings: {
@@ -526,11 +543,11 @@ stories:
       speaker: naomi
       ask: complete
       gap: sense:shuv
-      distractors: ['sense:halakh', 'sense:lun']
+      distractors: ['sense:nagad', 'sense:shama']
       forms:
         hbo-Hebr/tiberian:
           text: שׁוּבִי אַחֲרֵי יְבִמְתֵּךְ׃
-          tokens: [{surface: שׁוּבִי, sense: shuv, form: 'form:impv-fs', readings: {tiberian: šû́ḇî}}, {surface: אַחֲרֵי, sense: ahar, readings: {tiberian: ʾaḥărê}}, {surface: יְבִמְתֵּךְ, sense: yevemet,
+          tokens: [{surface: שׁוּבִי, sense: shuv, form: 'form:impv-fs', readings: {tiberian: šû́ḇî}}, {surface: אַחֲרֵי, sense: ahar, readings: {tiberian: ʾaḥărê}}, {surface: יְבִמְתֵּךְ, sense: yevemet, form: 'form:f',
               morphs: [{surface: יְבִמְתֵּ, kc: 'sense:yevemet'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: yəḇimtēḵ}}]
       translations:
         en: go back after your sister-in-law.”
@@ -538,7 +555,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַתֹּאמֶר רוּת
-          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: רוּת, sense: rut, readings: {tiberian: rûṯ}}]
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: רוּת, sense: rut, form: 'form:f', readings: {tiberian: rûṯ}}]
       translations:
         en: But Ruth said,
   - line:
@@ -577,7 +594,7 @@ stories:
       speaker: ruth
       ask: complete
       gap: sense:nikbar
-      distractors: ['sense:lun', 'sense:azav']
+      distractors: ['sense:shaav', 'sense:akhal']
       forms:
         hbo-Hebr/tiberian:
           text: בַּאֲשֶׁר תָּמוּתִי אָמוּת וְשָׁם אֶקָּבֵר׃

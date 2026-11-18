@@ -6,31 +6,37 @@ title:
 cefr: A1
 kcs:
 - id: sense:宋
+  pos: PROPN
   gloss:
     en: Song, a small state in the central plain
   forms:
     lzh-Hant/standard: [宋]
 - id: sense:國
+  pos: NOUN
   gloss:
     en: state, country
   forms:
     lzh-Hant/standard: [國]
 - id: sense:田
+  pos: NOUN
   gloss:
     en: field, farmland
   forms:
     lzh-Hant/standard: [田]
 - id: sense:耕
+  pos: VERB
   gloss:
     en: to plough, to till
   forms:
     lzh-Hant/standard: [耕]
 - id: sense:兔
+  pos: NOUN
   gloss:
     en: hare, rabbit
   forms:
     lzh-Hant/standard: [兔]
 - id: sense:走
+  pos: VERB
   gloss:
     en: to run
   forms:
@@ -38,16 +44,19 @@ kcs:
   notes:
     en: In Classical Chinese 走 is “run”; “walk” is 行.
 - id: sense:死
+  pos: VERB
   gloss:
     en: to die; dead
   forms:
     lzh-Hant/standard: [死]
 - id: sense:得
+  pos: VERB
   gloss:
     en: to get, to obtain; to catch
   forms:
     lzh-Hant/standard: [得]
 - id: sense:可
+  pos: VERB
   gloss:
     en: 'possible, acceptable; before a verb, “can be …-ed” (不可得 “cannot be had”)'
   forms:
@@ -55,6 +64,7 @@ kcs:
   notes:
     en: '不可 “it will not do”. A verb after 可 is passive: 兔不可得 “the rabbit cannot be caught”. “I can …” is 能.'
 - id: sense:復
+  pos: ADV
   gloss:
     en: again
   forms:
@@ -62,61 +72,73 @@ kcs:
   notes:
     en: 'As an adverb, “again”, 復 is read in the departing tone: fù, Cantonese fau6, Middle Chinese bjuwH. The verb “return” is bjuwk (Cantonese fuk6).'
 - id: sense:待
+  pos: VERB
   gloss:
     en: to wait for
   forms:
     lzh-Hant/standard: [待]
 - id: sense:守
+  pos: VERB
   gloss:
     en: to guard, to keep watch over
   forms:
     lzh-Hant/standard: [守]
 - id: sense:株
+  pos: NOUN
   gloss:
     en: tree stump
   forms:
     lzh-Hant/standard: [株]
 - id: sense:觸
+  pos: VERB
   gloss:
     en: to bump into, to run into
   forms:
     lzh-Hant/standard: [觸]
 - id: sense:折
+  pos: VERB
   gloss:
     en: to break, to snap
   forms:
     lzh-Hant/standard: [折]
 - id: sense:頸
+  pos: NOUN
   gloss:
     en: neck
   forms:
     lzh-Hant/standard: [頸]
 - id: sense:因
+  pos: ADV
   gloss:
     en: thereupon, and so
   forms:
     lzh-Hant/standard: [因]
 - id: sense:釋
+  pos: VERB
   gloss:
     en: to let go of, to put down
   forms:
     lzh-Hant/standard: [釋]
 - id: sense:耒
+  pos: NOUN
   gloss:
     en: plough (a wooden digging plough)
   forms:
     lzh-Hant/standard: [耒]
 - id: sense:冀
+  pos: VERB
   gloss:
     en: to hope
   forms:
     lzh-Hant/standard: [冀]
 - id: sense:身
+  pos: NOUN
   gloss:
     en: body; oneself, in person
   forms:
     lzh-Hant/standard: [身]
 - id: sense:笑
+  pos: VERB
   gloss:
     en: to laugh, to laugh at
   forms:
@@ -783,8 +805,8 @@ stories:
       translations: {en: 'So he put down his plough and watched the stump, hoping to catch another rabbit.'}
   - line:
       ask: complete
-      gap: sense:笑
-      distractors: ['sense:樂', 'sense:慍']
+      gap: sense:得
+      distractors: ['sense:涉', 'sense:誨']
       forms:
         lzh-Hant/standard:
           text: 兔不可復得，而身為宋國笑。

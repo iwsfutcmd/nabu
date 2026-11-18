@@ -71,6 +71,44 @@ export type CreditId = string;
  */
 export type CreditId1 = string;
 /**
+ * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "PartOfSpeech".
+ */
+export type PartOfSpeech =
+  | "ADJ"
+  | "ADP"
+  | "ADV"
+  | "AUX"
+  | "CCONJ"
+  | "DET"
+  | "INTJ"
+  | "NOUN"
+  | "NUM"
+  | "PART"
+  | "PRON"
+  | "PROPN"
+  | "PUNCT"
+  | "SCONJ"
+  | "SYM"
+  | "VERB"
+  | "X";
+/**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "UdFeatures".
+ */
+export type UdFeatures = Readonly<Record<string, string>>;
+/**
+ * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Asks".
+ */
+export type Asks = "word" | "form";
+/**
  * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
  */
 export type CreditId2 = string;
@@ -128,6 +166,31 @@ export type Spdx1 = string;
  */
 export type Cefr = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 /**
+ * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
+ */
+export type PartOfSpeech1 =
+  | "ADJ"
+  | "ADP"
+  | "ADV"
+  | "AUX"
+  | "CCONJ"
+  | "DET"
+  | "INTJ"
+  | "NOUN"
+  | "NUM"
+  | "PART"
+  | "PRON"
+  | "PROPN"
+  | "PUNCT"
+  | "SCONJ"
+  | "SYM"
+  | "VERB"
+  | "X";
+/**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures1 = Readonly<Record<string, string>>;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId2 = string & { readonly __brand: "KcId" };
@@ -139,6 +202,10 @@ export type Slug1 = string;
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId3 = string & { readonly __brand: "KcId" };
+/**
+ * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ */
+export type Asks1 = "word" | "form";
 /**
  * The path node a learner completes before the scenario opens.
  */
@@ -181,6 +248,14 @@ export type Uuid2 = string;
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcRefLocal = string & { readonly __brand: "KcId" };
+/**
+ * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ */
+export type Asks2 = "word" | "form";
+/**
+ * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
+ */
+export type SchemeId1 = string & { readonly __brand: "SchemeId" };
 /**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
@@ -251,7 +326,8 @@ export type NormalizeStep =
   | WhitespaceStep
   | DetachStep
   | SplitStep
-  | LogographsStep;
+  | LogographsStep
+  | ToneNumbersStep;
 /**
  * Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).
  *
@@ -298,9 +374,17 @@ export type NoteId = string;
  */
 export type UnicodeSetPattern1 = string;
 /**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern2 = string;
+/**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
 export type NoteId1 = string;
+/**
+ * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
+ */
+export type NoteId2 = string;
 /**
  * A CLDR Keyboard 3.0 layout (UTS #35 Part 7).
  *
@@ -327,7 +411,7 @@ export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  */
-export type SchemeId1 = string & { readonly __brand: "SchemeId" };
+export type SchemeId2 = string & { readonly __brand: "SchemeId" };
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
@@ -407,6 +491,9 @@ export interface NabuSchemaIndex {
   readonly SchemeId: SchemeId;
   readonly SenseId: SenseId1;
   readonly KcId: KcId1;
+  readonly PartOfSpeech: PartOfSpeech;
+  readonly UdFeatures: UdFeatures;
+  readonly Asks: Asks;
   readonly Persons: Persons;
   readonly Facet: Facet;
   readonly PlacementPolicy: PlacementPolicy1;
@@ -481,6 +568,7 @@ export interface NabuSchemaIndex {
   readonly WhitespaceStep: WhitespaceStep;
   readonly DetachStep: DetachStep;
   readonly SplitStep: SplitStep;
+  readonly ToneNumbersStep: ToneNumbersStep;
   readonly LogographsStep: LogographsStep;
   readonly MatchPolicy: MatchPolicy;
   readonly NoteId: NoteId;
@@ -652,6 +740,9 @@ export interface Token {
  * via the `definition` "Morph".
  */
 export interface Morph {
+  /**
+   * The morph as the word writes it. Empty for a morpheme the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe, fa کتابِ, chg ملک malik-i): it is the word's last morph, glossed and credited like any other.
+   */
   readonly surface: string;
   readonly kc: KcId1;
 }
@@ -1254,6 +1345,8 @@ export interface BundleKc {
   readonly kind: "sense" | "form" | "construction" | "grapheme" | "reading" | "phone" | "tone";
   readonly prerequisites: readonly KcId1[];
   readonly cefr?: string;
+  readonly pos?: PartOfSpeech;
+  readonly features?: UdFeatures;
   readonly gloss?: {
     readonly [k: string]: TaggedText;
   };
@@ -1415,7 +1508,14 @@ export interface BundleStoryLine {
   readonly kcs: readonly KcId1[];
   readonly ask?: "complete" | "arrange";
   readonly gap?: KcId1;
+  readonly asks?: Asks;
   readonly distractors?: readonly KcId1[];
+  /**
+   * complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one word token the course writes in the story's unit or earlier (the distractor's sense in the gap's form, or the gap's word in another form), analysis and readings kept.
+   */
+  readonly options?: readonly {
+    readonly [k: string]: TaggedText;
+  }[];
 }
 /**
  * A roleplay scenario card (Phase 8, §13.4); its texts per support language.
@@ -1649,6 +1749,10 @@ export interface CourseSource {
   readonly facets?: readonly Facet[];
   readonly placement?: PlacementPolicy1;
   /**
+   * Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.
+   */
+  readonly consistentReadings?: boolean;
+  /**
    * Maximum new knowledge components per sentence (§7.5). Default 1.
    */
   readonly iPlusOne?: number;
@@ -1736,6 +1840,8 @@ export interface KnowledgeComponentSource {
   readonly id: KcId1;
   readonly prerequisites?: readonly KcId1[];
   readonly cefr?: Cefr;
+  readonly pos?: PartOfSpeech1;
+  readonly features?: UdFeatures1;
   /**
    * Short meaning per support language.
    */
@@ -1879,6 +1985,14 @@ export interface SourceToken {
    * This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.
    */
   readonly vocalized?: string;
+  /**
+   * A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.
+   */
+  readonly context?: string;
+  /**
+   * Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading.
+   */
+  readonly readingVariant?: true;
 }
 /**
  * A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. Its words are glossed on tap from the course's glossary (KC forms).
@@ -1956,8 +2070,9 @@ export interface StoryLineSource {
    */
   readonly ask?: "complete" | "arrange";
   readonly gap?: KcId3;
+  readonly asks?: Asks1;
   /**
-   * complete: other KCs offered, shown by their first form in the learner's orthography.
+   * complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.
    *
    * @minItems 1
    */
@@ -2358,9 +2473,12 @@ export interface ExerciseRef {
     | "translate-type.l1-l2"
     | "complete-translation"
     | "gap-fill"
+    | "spelling-choice"
     | "char-read"
+    | "reading-feature"
     | "reading-disambiguation"
     | "vocalize"
+    | "vocalize-build"
     | "transcribe"
     | "speak.tier-0"
     | "speak"
@@ -2382,6 +2500,8 @@ export interface ExerciseRef {
    */
   readonly item: string;
   readonly kcs: readonly KcRefLocal[];
+  readonly asks?: Asks2;
+  readonly reading?: SchemeId1;
 }
 /**
  * Shadow-mode log of the performance model (§9.3): the predicted chance of a right answer.
@@ -3092,6 +3212,30 @@ export interface LogographsStep {
   };
 }
 /**
+ * Syllables typed with a tone number after them, written with that tone's mark (ADR 0138): Pinyin typed as xue2 compares as xué. A syllable is the run of letters before the number. Its mark goes on the first letter of the first of `first` the syllable has (a, e, ou: hao3 is hǎo, dou1 is dōu), else on its last letter of `vowels` (liu2 is liú, gui4 is guì); letters compare ignoring case. A number whose mark is empty (the neutral tone) is dropped; a number with no mark, or a syllable with nowhere to put it, is left as it is.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ToneNumbersStep".
+ */
+export interface ToneNumbersStep {
+  readonly toneNumbers: {
+    /**
+     * Each tone number and the combining mark it stands for (\u0301 for 2), or an empty string where the tone has none.
+     */
+    readonly marks: {
+      readonly [k: string]: string;
+    };
+    /**
+     * The letters that may carry a tone's mark, each a grapheme: aeiouü.
+     */
+    readonly vowels: string;
+    /**
+     * Where the mark goes before the last vowel: the first of these the syllable has, its first letter (a, e, ou).
+     */
+    readonly first: readonly string[];
+  };
+}
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "MatchPolicy".
  */
@@ -3101,11 +3245,13 @@ export interface MatchPolicy {
     readonly policy: Policy;
     readonly note?: NoteId;
     readonly optional?: UnicodeSetPattern1;
+    readonly required?: UnicodeSetPattern2;
+    readonly requiredNote?: NoteId1;
     /**
      * Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.
      */
     readonly distinguishes?: boolean;
-    readonly wordNote?: NoteId1;
+    readonly wordNote?: NoteId2;
     /**
      * Orthographies that write out the vowels these marks leave unwritten (ADR 0095): Arabizi for Lebanese Arabic. Where a course has one of them, a vocalize card also accepts the word as that orthography writes it.
      */
@@ -3157,6 +3303,16 @@ export interface MatchPolicy {
   readonly apostrophe?: {
     readonly policy: Policy;
     readonly note?: NoteId;
+  };
+  /**
+   * Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.
+   */
+  readonly soundAlike?: {
+    /**
+     * @minItems 1
+     */
+    readonly sets: readonly string[][];
+    readonly note: NoteId;
   };
   /**
    * Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.
@@ -3236,6 +3392,10 @@ export interface AnnotationLayer {
 export interface InputAids {
   readonly keyboard?: KeyboardRef;
   /**
+   * A vocalize card may also ask the word's vowel marks put on its letters, the letters given and the marks on buttons (`vocalize-build`, ADR 0137), once a choice card has shown them. For an abjad whose marks no phone keyboard has.
+   */
+  readonly markBuilder?: boolean;
+  /**
    * Characters for the special-character bar, in addition to the auxiliary exemplars (§6.7).
    */
   readonly extraKeys?: readonly string[];
@@ -3293,7 +3453,7 @@ export interface Fonts {
  * via the `definition` "ScriptTrack".
  */
 export interface ScriptTrack {
-  readonly reading: SchemeId1;
+  readonly reading: SchemeId2;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -3377,6 +3537,13 @@ export interface ReadingScheme {
   readonly lang?: ScriptedLangTag2;
   readonly answer?: OrthographyId2;
   readonly latin?: OrthographyId3;
+  /**
+   * How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free).
+   */
+  readonly bound?: {
+    readonly mark: string;
+    readonly before: string;
+  };
   /**
    * Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.
    *

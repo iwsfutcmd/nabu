@@ -77,6 +77,24 @@ Further back: Daniel's great-grandfather cut cane at a *central* in Matanzas (u2
     An infinitive has no form. *Me levanto* is `me` (`sense:me`) and `levanto`
     (`sense:levantarse`, `form:pres-1s`). *Tengo* is `sense:tener`, `form:pres-1s`. The form KCs
     are defined in the unit that first teaches them.
+  - **Gender and number** go on the token as `form:` too ([ADR 0132](../../docs/adr/0132-a-choice-asks-one-thing.md)'s
+    amendment), on every noun, adjective, determiner and pronoun that agrees:
+
+    | KC | Gloss | |
+    |---|---|---|
+    | (none) | masculine singular | *el carro, un amigo, cubano, mi papi* |
+    | `form:fem` | feminine | *la casa, una amiga, cubana, mi mami* |
+    | `form:pl` | plural (masculine, or men and women together) | *los carros, mis padres, cubanos* |
+    | `form:fem-pl` | feminine plural | *las casas, unas amigas, cubanas* |
+
+    The form is the word's agreement in its line, not its ending: a word that looks the same in
+    both genders takes its noun's (*mi casa*: `mi`, `form:fem`; *una casa grande*: `grande`,
+    `form:fem`), a noun its own (*el agua*: `form:fem`; *la tía*: `sense:tío`, `form:fem`), and a
+    first or second person the sentence's `persons` (untagged: the bare form). Words that agree with
+    nothing stay bare (*es posible*, *mejor* as an adverb, *quién*). A phrase KC's tokens take none.
+    A pronoun pins its own (*ella*: `form:fem`; *nosotros*, *ustedes*, *nos*, *les*: `form:pl`), and so
+    does a single-word name (*Cuba*, *la Habana*, *Marisol*: `form:fem`).
+    A word question offers only words of the answer's form, so *una ___* never offers *carro*.
   - Names are KCs (`sense:daniel`, `sense:cachita`).
   - Every KC has an English gloss. Use `notes` for the Cuban side: what Cubans say and others
     don't (*guagua*: "the bus in Cuba, Puerto Rico and the Canaries; *autobús* elsewhere"), how it
@@ -116,8 +134,9 @@ Further back: Daniel's great-grandfather cut cane at a *central* in Matanzas (u2
   space, `#`, brackets or braces, and any accept set that starts with `[`. Use `|-` blocks for
   multi-line accept sets.
 - **Tokens:** every word of `text`, in order, exactly as written (capitals, accents); punctuation
-  is not a token. Each has a `sense` (and a `form` on inflected verbs) that a unit up to this one
-  defines and a node up to this one introduces.
+  is not a token. Each has a `sense` (and a `form` on inflected verbs, and on a feminine or plural
+  noun, adjective, determiner or pronoun) that a unit up to this one defines and a node up to this
+  one introduces.
 - **Stories:** a `complete` line's `gap` must be the KC of exactly one word token of the line, and
   its distractors other KCs already taught.
 

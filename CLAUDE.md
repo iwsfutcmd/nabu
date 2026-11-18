@@ -87,12 +87,17 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
+  A new text field for language text spreads `keyboardHint` (ADR 0143), so the Android app can switch the keyboard.
 - Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
   Check; Enter never checks while composing (ADR 0118).
 - Any other button that submits typed text (roleplay Send, the correction form, Start over) takes a press while
   composing through `useSettledSubmit` (@nabu/ui); never disable a button while composing (ADR 0118, D39).
 - Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
   shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
+- A gap-fill asks one thing (ADR 0132, `asks`): which word (options share the answer's form signature, lesson/signature.ts,
+  and its KC's UD `pos` and `features` exactly; none the accept set takes in the gap, none whose gloss shares a meaning)
+  or which form (the answer's own word in other attested forms; the answer must have a form). It credits the sense or the
+  form KCs; a mistake keeps `asks` and is asked again as the same question. KCs' `pos` and `features` are drafted (REVIEW).
 - Letters placed to build a word (word-write) show as the word they spell: one token, one run of text (`data-spelled-word`),
   so a script whose letters join shows them joined and marks sit on their letters. Never lay letter tiles side by side as
   the answer; pressing the word or Backspace takes back the last letter.
@@ -189,6 +194,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `readingsShown`: never in a tapped word's gloss or the word list, nor on a word tapped (`pressed`) or marked (`highlight`).
   Pass `readingsShown` wherever `known` goes. A gloss always shows a reading, readings off or not (`glossRuby`); a word
   glossed by its parts heads its panel with its own reading. The feedback's right answer is tappable too.
+- Writing side (ADR 0142): a profile's `soundAlike` sets (fa) make a word apart only by them the right sound with the
+  wrong letter: never a typo, WRONG (`sound-alike`) or WRONG_WORD; `spelling-choice` (write-script) offers the word among
+  its sound-alike spellings (yue: homophone characters, the Jyutping given). A homophone typing (唔洗 for 唔使) is wrong,
+  however common: the course teaches the character the word is written with.
+- Reading side (ADR 0139–0141): a feature card (`reading-feature`) asks one place a script leaves open (`readingFeatures`:
+  a scheme's `variants` letter or an attested tone), options differing there alone; homographs (`homographsOf`) are marked
+  in lessons and stories (`HomographsProvider`) and a tap lists the other readings; the readings choice Unwritten (`open`)
+  keeps only `openLetters` over words read before. All from scheme data: never a list of letters or tones in code.
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
   (web `facetsOffOf`, breaks.ts) wherever `skillsAsked`, `learnedWords`, `dueFacets`, `paceOf` or `plan` is called.
 
@@ -201,6 +214,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A word's reading is the one the compiler pins on its KC form (`nabu.compiler.readings`, ADR 0117: every scheme, the
   sense's most common in lessons first): its card, its clip and minimal pairs all read that; never look one up by
   spelling. A change to the order can make clips stale: `test_readings.py` checks every course's, grc's too.
+- Readings are fixed by their words (ADR 0135): tokens annotated alike (spelling, sense, form, morphs, `context`,
+  bound or not) read alike in every scheme and vocalization. With `consistentReadings: true` (course.yaml; on in apc,
+  es, fa, grc, hbo, lzh, tok, uz) a form read two ways is an error, elsewhere a warning: annotate what tells them apart (a
+  sense, a form, a morph, a `context` such as hbo's `pause`/`nesiga`), or mark a free variant `readingVariant`; never
+  change a reading to hide it. A token pinning no reading takes its form's, so pin a form once.
 - One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
 - `finalStop: true` on a voice (ADR 0063) ends unpunctuated text (word cards) with its script's full stop
@@ -241,9 +259,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Phase 6 notes (see docs/adr/0043)
 - Stories: `stories:` in a unit (schemas/course-source), each on a node of kind story. Lines compile like sentence
   forms and need every course orthography; questions are `choose` steps or lines with `ask: complete|arrange`.
-- A `complete` line's distractors (shown by their first form) must make the line ungrammatical or absurd, never another
-  sensible line (pears for grapes, tea for wine, three for seven). Put the gap on an uninflected word where the line
-  has one: the answer is the word as written, so its suffix would mark it among bare first forms.
+- A story question asks one thing, and its wrong options fail for that reason only (ADR 0132). A `complete` line asks
+  which word (`asks: word`, the default: distractor KCs of the gap's `pos` and features, each shown as the course writes
+  it in the gap's form, unit or earlier) or which form (`asks: form`: the gap's word in other attested forms). A wrong
+  word makes the line false or absurd, never another sensible line (pears for grapes, tea for wine, three for seven); a
+  wrong form makes it ungrammatical, never one the line also takes. Nothing else may mark the answer (a manuscript
+  spelling, a capital). `story.distractor-form` and `story.distractor-pos` are errors.
 - One glossary matcher: @nabu/core `glossTokens` (exact and folded passes, longer wins). The app's tap-for-gloss and
   stage 7's lints both use it (core-cli `gloss`); never re-implement matching in Python.
 - The story reader nests the lesson player per question (@nabu/core/story); story sessions are mode "story".
@@ -320,6 +341,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (NABU_FCM_SERVICE_ACCOUNT, NABU_APNS_*): never in the repo or chat. CI builds the preview APK (`assemblePreview`:
   org.nabu.app.preview, debuggable, signed with the committed public preview key) and replaces the APK on the
   android-preview release from main. Never sign a store release with the preview key.
+- The Android app asks the keyboard app for each text field's languages as it takes focus (ADR 0143: NabuWebView sets
+  `EditorInfo#hintLocales`; native.ts calls the KeyboardLanguage plugin). A field whose orthography is known names them
+  (`{...keyboardHint(lang, profile)}`, @nabu/ui), best first: its own language, the profile's `input.keyboard`
+  (after `und-Latn`, Gboard's Alphabet, for a Latin orthography on another language's keyboard), else the CLDR
+  macrolanguage, then `und-<Script>`; others ask for their `lang`. The app puts first the first one the keyboard has
+  (KeyboardChoice: Gboard reads only the first). Browsers and iOS cannot. Keep res/layout/capacitor_bridge_layout_main.xml
+  in step with Capacitor's on upgrades.
 
 ## Corrections notes (see docs/adr/0051)
 - A correction is a `sentence_reported` event: `shown` (what the device displayed) and `correction` (only what
@@ -345,6 +373,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
   plans one where it can. Optional marks: the profile's `match.marks.optional`; orthographies that spell the vowels
   (apc: Arabizi), `match.marks.spelledIn`.
+- Where a profile sets `input.markBuilder` (hbo, apc), `vocalize-build` asks the same word's marks put on its letters
+  from buttons (ADR 0137), only once a vocalize card has shown them (`shown`); graded by `gradeVowels`. Never a text
+  field for marks; never a list of marks in code (the letter stays chosen while the course attests more marks on it).
 - Reading schemes are data (ADR 0109): a new scheme is `profiles/schemes/<id>.yaml` (schemas/reading-scheme.schema.json:
   `names` per language, lang, answer orthography, syllable shape, tones), plug-ins in `nabu.schemes` for what voices need, and
   `reading-syllables`/`reading-tone` conformance vectors. Never hard-code a scheme id in TS or Python.
@@ -366,6 +397,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A KC's forms are its lemma (first: what word cards show) and its variants, never an inflected word; the compiler's
   `kc.inflected-form` catches forms the sentences analyse into several KCs. Verbs: infinitive (ichmoq, خوردن).
 - Taps on analysed words show their morphs (`glossAt`); annotate morphs rather than listing inflected forms.
+- A morpheme the script does not write, or writes only as a mark on a letter it shares (the ezafe: fa کتابِ, chg ملک
+  malik-i), is a morph with an empty surface, last in its word (ADR 0136); a tap glosses it as unwritten. Never a
+  sentence-level tag for something one word carries.
 
 ## Persons and register notes (see docs/adr/0056, 0075)
 - `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags
@@ -417,7 +451,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Classical Chinese notes (see docs/adr/0071)
 - A course's `facets` (course.yaml, manifest) rule out every template of another facet (`facetExclusions`, wherever
-  speechExclusions applies). lzh is [recognize, produce]: no audio, never spoken, heard or drilled on its readings.
+  speechExclusions applies). lzh is [recognize, produce, read-script]: no audio, never spoken or heard.
+- Reading traditions (ADR 0138): an orthography's ruby layers whose scheme has an `answer` (`readingTraditions`). Reading
+  cards ask the learner's (the layer last chosen, kept when readings are off: web `storedTradition`; pass it as `reading`
+  to `plan`, `readingsShown`, `practicableMistakes`). Where there are several (lzh: Pinyin, Jyutping, Baxter) a card names
+  its `tradition` and its read-script card is that tradition's (`kc|read-script|orth|scheme`); with one, keys are as
+  before. Typed readings come after a choice card in that tradition. Pinyin is typed with marks or tone numbers
+  (`toneNumbers` step), its tones `required`; Baxter's ASCII is case folded, no typo leeway.
 - An orthography may pin several ruby layers (lzh: pinyin, jyutping, baxter). Every Han word token pins all of them,
   chosen by sense (說.yue is yuè / jyut6 / ywet), one reading in all three: never Pinyin of one word with Baxter of
   another (見 "see" jiàn / gin3 / kenH, "appear, have an audience" xiàn / jin6 / henH). The compiler checks they line up per character. Jyutping is the
@@ -439,6 +479,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Cuban forms are canonical (guagua, ¿Qué tú quieres?); pan-Hispanic ones are accepted, never the reverse.
 - Verb tenses are `form:` KCs on the token (form:pres-1s, form:pret-3s, form:impf, form:subj…), not morphs;
   `iPlusOne: 2`. A unit that first teaches a tense defines its form KC.
+- Gender and number are `form:` on the token too (ADR 0132 amendment): form:fem, form:pl, form:fem-pl (masculine
+  singular bare) on every agreeing noun, adjective, determiner and pronoun, by its agreement in the line (mi casa:
+  mi form:fem; el agua: form:fem), never by its ending alone; a new sentence's tokens need them. Pronouns and
+  single-word names pin theirs (ella form:fem; ustedes, nos, les form:pl; Cuba, Marisol form:fem).
 - es-Latn/standard: a missing accent is CORRECT_MARKS; one that spells another word of the course is WRONG_WORD
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
 - A finished placement seeds the placed nodes' KCs (ADR 0111): `seeded` on the event (`placedKcs`), a recognize card
@@ -469,6 +513,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. New vocalizations mark ج as a sun letter.
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
+- Nouns pin their gender and number as es's do (ADR 0132 amendment): form:fem on a feminine noun (ahwe, teta, Beirut),
+  form:pl on a plural (wlad: no gender in the plural); adjectives, hayde, hiyye, enti agree; in both scripts alike.
+  So `iPlusOne` is 2. The verb-prefix contrast names verb forms (`forms`), so a noun's first letter stays a typo.
 
 ## Biblical Hebrew notes (see docs/adr/0082–0084, 0089)
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
@@ -483,7 +530,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
   normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
 - Every word token pins `readings: {tiberian: …}`, taken from the same pointed form in the Westminster Leningrad
-  Codex (stress from its accent): never guess one. Copy the word with its accents from the WLC and run
+  Codex (stress from its accent): never guess one. A word in pause or with its stress drawn back reads otherwise than
+  the same word elsewhere: label it `context: pause` or `context: nesiga` (ADR 0135); a maqaf-bound word's "-" must
+  match the maqaf (`reading.bound`). Copy the word with its accents from the WLC and run
   `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py); keep a verse's ׃ on its last word (its
   meteg sign is then silluq). The divine name is ʾăḏōnāy (its qere).
 - Readings stay SBL's (šāmərû); `tiberian.ipa` says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long
@@ -492,6 +541,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - References (ADR 0084; notes in nabu/notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
   Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
   prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
+- A noun's form joins gender, number and state (ADR 0132 amendment): f, f-pl, f-cstr, f-pl-cstr beside pl, cstr,
+  pl-cstr (masculine bare); nouns always plural pin pl (מַיִם, פָּנָיו), אֱלֹהִים as God none. הִיא, אַתְּ, זֹאת f;
+  הֵם, אֵלֶּה pl. A new sentence's nouns need them; the ending contrast (`forms: [form:f, …]`) reaches them.
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
   stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
 - A sentence's `reverse` lists its own order, then the other order of subject and predicate where Biblical Hebrew has
@@ -506,7 +558,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - courses/yue is checked against Matthews & Yip, *Cantonese: A Comprehensive Grammar* (2011); notes in `nabu/notes/yue/`.
   Its text layer's Chinese characters are wrong (read them from page images) and its Yale shows ā ē ī ō ū as A B C D E.
   M&Y write Hong Kong speech (你 léih, the n/l merger): compare tones and changed tones, never the initials.
-- Particles: 呀 aa3 softens a question or statement but never makes one; aa4 (àh) turns a statement into a question.
+- Particles: 呀 aa3 (sense 呀) softens a question or statement but never makes one; aa4 (àh, sense 呀.q) turns a
+  statement into a question.
   No 嘅呀 (ge + a is 㗎, outside the script audit); 嗎 is formal (你好嗎). 喇 laa3 a new situation, 啦 laa1 requests.
 - 俾 puts the thing first (俾錢你). 好 + adjective is a weak "very": English accept sets keep very/really/so optional.
 - Voices (ADR 0094): VoxCPM2 (`voxcpm`, pipeline/runtimes/voxcpm, its own uv project) cloning two designed anchors
@@ -548,6 +601,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
 - The alphabet track asks a word as its KC's Attic reading in Latin, lengths kept (χώρᾱ chōrā, ADR 0133). A lemma no
   sentence spells gets `readings: {attic: …}` on its KC entry, with the lengths its inflected tokens show.
+- Nouns, adjectives, pronouns and the article pin gender, case and number as one form (ADR 0132 amendment), each
+  left out when masculine, nominative, singular: ὁ bare, τὴν f-acc, τῶν gen-pl, τὸ n (a neuter is one form as
+  subject, object or address), ὦ παῖδες pl. A new sentence's tokens need them; ἐγώ, σύ pin case only.
 
 ## Voice quality notes (see docs/adr/0091)
 - A course's `audio.quality` says how far learners may rely on its clips. good (default): everywhere. iffy (a stopgap
@@ -578,7 +634,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   orthography, chg-Arab/standard, set in Nastaliq (Noto Nastaliq Urdu). Every word token pins `readings: {schluessel:
   …}`, Schluessel's transliteration (2018), shown as ruby over the whole word (the scheme's `ruby: word`), over new words until the learner chooses, and asked by
   char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW), then typed
-  (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131);
+  (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131): a vowel's
+  marks are `required` there (ä ö ü ā ī ū ē à: left out or moved, wrong), a consonant's noted (ADR 0134);
   every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
   A line's readings stand level, a gap over its tallest word's ink, inside their box (ruby-lift.ts, ADR 0131 amendments).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes

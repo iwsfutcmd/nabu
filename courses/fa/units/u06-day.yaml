@@ -5,33 +5,33 @@ id: day
 title: {en: My day}
 cefr: A1
 kcs:
-- {id: 'sense:kar', gloss: {en: work; job}, forms: {fa-Arab/standard: [کار]}, notes: {en: 'کار دارم: I''m busy (literally ''I have work'').'}}
-- {id: 'sense:kardan', gloss: {en: to do; to make (present stem کن-)}, forms: {fa-Arab/standard: [کردن]}, notes: {en: 'With a noun it forms many verbs: کار کردن (to work), صحبت کردن (to talk), زندگی کردن (to live).'}}
+- {id: 'sense:kar', pos: NOUN, gloss: {en: work; job}, forms: {fa-Arab/standard: [کار]}, notes: {en: 'کار دارم: I''m busy (literally ''I have work'').'}}
+- {id: 'sense:kardan', pos: VERB, gloss: {en: to do; to make (present stem کن-)}, forms: {fa-Arab/standard: [کردن]}, notes: {en: 'With a noun it forms many verbs: کار کردن (to work), صحبت کردن (to talk), زندگی کردن (to live).'}}
 - {id: 'form:mi-present', gloss: {en: 'mi-: present tense (verb prefix)'}, notes: {en: "Joined with a ZWNJ: می\u200cکنم. The present also means 'I am doing' and often 'I will do'."}}
-- {id: 'sense:daneshgah', gloss: {en: university}, forms: {fa-Arab/standard: [دانشگاه]}}
-- {id: 'sense:sherkat', gloss: {en: company; firm}, forms: {fa-Arab/standard: [شرکت]}}
-- {id: 'sense:raftan', gloss: {en: to go (present stem رو-)}, forms: {fa-Arab/standard: [رفتن]}, notes: {en: "Spoken Tehrani: می\u200cرم (miram), می\u200cره (mire)."}}
-- {id: 'sense:be', gloss: {en: to}, forms: {fa-Arab/standard: [به]}}
-- {id: 'sense:amadan', gloss: {en: 'to come (present stem آ-, آی-)'}, forms: {fa-Arab/standard: [آمدن, آمد]}, notes: {en: 'Spoken Tehrani: میام (miyām), میاد (miyād).'}}
-- {id: 'sense:madrese', gloss: {en: school}, forms: {fa-Arab/standard: [مدرسه]}}
-- {id: 'sense:khordan', gloss: {en: to eat; to drink (present stem خور-)}, forms: {fa-Arab/standard: [خوردن]}, notes: {en: "Everyday Persian 'eats' tea and water too: چای می\u200cخورم. نوشیدن (to drink) is more formal."}}
-- {id: 'sense:nahar', gloss: {en: lunch}, forms: {fa-Arab/standard: [ناهار]}}
-- {id: 'sense:sham', gloss: {en: dinner; supper}, forms: {fa-Arab/standard: [شام]}}
-- {id: 'sense:sobh', gloss: {en: morning}, forms: {fa-Arab/standard: [صبح]}, image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'صبح بخیر: good morning.'}}
-- {id: 'sense:khandan', gloss: {en: to read; to study (present stem خوان-)}, forms: {fa-Arab/standard: [خواندن]}, notes: {en: 'درس خواندن: to study.'}}
-- {id: 'sense:shab', gloss: {en: night; evening}, forms: {fa-Arab/standard: [شب]}, notes: {en: 'شب بخیر: good night.'}}
-- {id: 'sense:khabidan', gloss: {en: to sleep; to go to bed (present stem خواب-)}, forms: {fa-Arab/standard: [خوابیدن]}}
-- {id: 'sense:zud', gloss: {en: early; soon}, forms: {fa-Arab/standard: [زود]}}
-- {id: 'sense:dir', gloss: {en: late}, forms: {fa-Arab/standard: [دیر]}}
-- {id: 'sense:ruz', gloss: {en: day}, forms: {fa-Arab/standard: [روز]}}
-- {id: 'sense:har', gloss: {en: every; each}, forms: {fa-Arab/standard: [هر]}}
-- {id: 'sense:hamishe', gloss: {en: always}, forms: {fa-Arab/standard: [همیشه]}}
-- {id: 'sense:mamulan', gloss: {en: usually}, forms: {fa-Arab/standard: [معمولاً]}, notes: {en: Written with ـاً like لطفاً.}}
-- {id: 'sense:ra', gloss: {en: 'را: marks a definite object'}, forms: {fa-Arab/standard: [را]}, notes: {en: "It follows the object: این کتاب را می\u200cخوانم. Spoken: رو (ro), or -o after a consonant."}}
-- {id: 'sense:dars', gloss: {en: lesson; studies}, forms: {fa-Arab/standard: [درس]}}
-- {id: 'sense:farsi', gloss: {en: Persian (the language)}, forms: {fa-Arab/standard: [فارسی]}}
-- {id: 'sense:sohbat', gloss: {en: 'talk; conversation (صحبت کردن: to speak)'}, forms: {fa-Arab/standard: [صحبت]}, notes: {en: 'Spoken: حرف زدن (harf zadan), to talk.'}}
-- {id: 'sense:kami', gloss: {en: a little; a bit}, forms: {fa-Arab/standard: [کمی]}}
+- {id: 'sense:daneshgah', pos: NOUN, gloss: {en: university}, forms: {fa-Arab/standard: [دانشگاه]}}
+- {id: 'sense:sherkat', pos: NOUN, gloss: {en: company; firm}, forms: {fa-Arab/standard: [شرکت]}}
+- {id: 'sense:raftan', pos: VERB, gloss: {en: to go (present stem رو-)}, forms: {fa-Arab/standard: [رفتن]}, notes: {en: "Spoken Tehrani: می\u200cرم (miram), می\u200cره (mire)."}}
+- {id: 'sense:be', pos: ADP, gloss: {en: to}, forms: {fa-Arab/standard: [به]}}
+- {id: 'sense:amadan', pos: VERB, gloss: {en: 'to come (present stem آ-, آی-)'}, forms: {fa-Arab/standard: [آمدن, آمد]}, notes: {en: 'Spoken Tehrani: میام (miyām), میاد (miyād).'}}
+- {id: 'sense:madrese', pos: NOUN, gloss: {en: school}, forms: {fa-Arab/standard: [مدرسه]}}
+- {id: 'sense:khordan', pos: VERB, gloss: {en: to eat; to drink (present stem خور-)}, forms: {fa-Arab/standard: [خوردن]}, notes: {en: "Everyday Persian 'eats' tea and water too: چای می\u200cخورم. نوشیدن (to drink) is more formal."}}
+- {id: 'sense:nahar', pos: NOUN, gloss: {en: lunch}, forms: {fa-Arab/standard: [ناهار]}}
+- {id: 'sense:sham', pos: NOUN, gloss: {en: dinner; supper}, forms: {fa-Arab/standard: [شام]}}
+- {id: 'sense:sobh', pos: NOUN, gloss: {en: morning}, forms: {fa-Arab/standard: [صبح]}, image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'صبح بخیر: good morning.'}}
+- {id: 'sense:khandan', pos: VERB, gloss: {en: to read; to study (present stem خوان-)}, forms: {fa-Arab/standard: [خواندن]}, notes: {en: 'درس خواندن: to study.'}}
+- {id: 'sense:shab', pos: NOUN, gloss: {en: night; evening}, forms: {fa-Arab/standard: [شب]}, notes: {en: 'شب بخیر: good night.'}}
+- {id: 'sense:khabidan', pos: VERB, gloss: {en: to sleep; to go to bed (present stem خواب-)}, forms: {fa-Arab/standard: [خوابیدن]}}
+- {id: 'sense:zud', pos: ADV, gloss: {en: early; soon}, forms: {fa-Arab/standard: [زود]}}
+- {id: 'sense:dir', pos: ADV, gloss: {en: late}, forms: {fa-Arab/standard: [دیر]}}
+- {id: 'sense:ruz', pos: NOUN, gloss: {en: day}, forms: {fa-Arab/standard: [روز]}}
+- {id: 'sense:har', pos: DET, features: {PronType: Tot}, gloss: {en: every; each}, forms: {fa-Arab/standard: [هر]}}
+- {id: 'sense:hamishe', pos: ADV, gloss: {en: always}, forms: {fa-Arab/standard: [همیشه]}}
+- {id: 'sense:mamulan', pos: ADV, gloss: {en: usually}, forms: {fa-Arab/standard: [معمولاً]}, notes: {en: Written with ـاً like لطفاً.}}
+- {id: 'sense:ra', pos: PART, gloss: {en: 'را: marks a definite object'}, forms: {fa-Arab/standard: [را]}, notes: {en: "It follows the object: این کتاب را می\u200cخوانم. Spoken: رو (ro), or -o after a consonant."}}
+- {id: 'sense:dars', pos: NOUN, gloss: {en: lesson; studies}, forms: {fa-Arab/standard: [درس]}}
+- {id: 'sense:farsi', pos: NOUN, gloss: {en: Persian (the language)}, forms: {fa-Arab/standard: [فارسی]}}
+- {id: 'sense:sohbat', pos: NOUN, gloss: {en: 'talk; conversation (صحبت کردن: to speak)'}, forms: {fa-Arab/standard: [صحبت]}, notes: {en: 'Spoken: حرف زدن (harf zadan), to talk.'}}
+- {id: 'sense:kami', pos: ADV, gloss: {en: a little; a bit}, forms: {fa-Arab/standard: [کمی]}}
 nodes:
 - {id: fa.day.work, kind: lesson, introduces: ['sense:kar', 'sense:kardan', 'form:mi-present', 'sense:daneshgah', 'sense:sherkat']}
 - {id: fa.day.go, kind: lesson, introduces: ['sense:raftan', 'sense:be', 'sense:amadan', 'sense:madrese']}
@@ -469,7 +469,7 @@ stories:
       speaker: reza
       ask: complete
       gap: sense:daneshgah
-      distractors: ['sense:madrese', 'sense:sherkat']
+      distractors: ['sense:ketab', 'sense:pool']
       forms:
         fa-Arab/standard:
           text: "در دانشگاه ناهار می\u200cخورم."

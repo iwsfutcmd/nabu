@@ -50,10 +50,13 @@ A three-way choice that one cue reduces to two, or to one, is also easier than i
   takes first person pasts; a bare word takes bare words.
 - **Every option has the answer's part of speech.** KCs get an optional `pos`, a Universal Dependencies
   UPOS tag (NOUN, PROPN, VERB, AUX, ADJ, ADV, ADP, PRON, DET, NUM, PART, CCONJ, SCONJ, INTJ): a standard
-  that already covers every language the project teaches. Classifiers are an open question (below).
-  Where the answer's KC has one, a candidate must have the same. Where it has none, the form signature
-  alone decides, which is enough only for inflected words: bare words of every class match each other.
-  So `pos` is needed most where words are bare (lzh, tok, and the uninflected words of every course).
+  that already covers every language the project teaches. Beside it, optional `features`: the word's
+  lexical features as UD writes them (`NounType: Clf` for a classifier, `PronType: Dem`), resolved
+  below. Where the answer's KC has a `pos`, a candidate must have the same `pos` and the same
+  `features` (none where the answer has none), so a classifier never stands against a plain noun.
+  Where it has none, the form signature alone decides, which is enough only for inflected words: bare
+  words of every class match each other. So `pos` is needed most where words are bare (lzh, tok, and
+  the uninflected words of every course).
 - **Only meaning tells them apart.** In a lesson, a wrong option is never one the translation could
   also mean. Two checks:
   - a candidate whose sentence, with it in the gap, is in the item's accept set (`producible`) is right
@@ -143,12 +146,125 @@ produce the whole word, so crediting sense and form together is honest there.
    become errors.
 5. Visual baselines from the pinned container.
 
-## Open questions
+## Resolved questions
 
-- **yue classifiers and sentence particles.** UPOS has no classifier tag; Universal Dependencies tags
-  Cantonese classifiers NOUN with a feature (`NounType=Clf`). A choice among 本, 隻, 個 asks which word,
-  and a classifier must only stand against classifiers. Proposed: an optional `class` beside `pos` (here
-  `classifier`), matched like `pos` where the answer has one.
-- **Story distractors the course does not attest.** A story may want a wrong option in a form no
-  sentence writes. Proposed: not allowed at first; the author adds a sentence that teaches it, or picks
-  another option. Revisit if many steps cannot be built.
+The project owner decided both open questions on 2026-11-17.
+
+- **yue classifiers and sentence particles: UD features.** Not a `class` of our own: a KC's optional
+  `features` are UD's (feature name to value, UD's spelling). Classifiers are `pos: NOUN` with
+  `NounType: Clf`, as the Cantonese-HK, Chinese-HK and Classical Chinese (Kyoto) treebanks tag them. UD
+  defines no value for sentence-final particles (`PartType` lists Emp, Inf, Int, Mod, Neg, Vbp, "not
+  exhaustive"; the Cantonese treebank marks its final particles PART with no feature). yue's (呀, 啦,
+  喇, 嗎, 呢) take `PartType: Mod`, the modal particle, so they stand only against each other; the
+  possessive 嘅 is PART with `Poss: Yes`. Both are REVIEW. Features match exactly: a candidate has the
+  answer's `pos` and the same features, no more and no fewer.
+- **Story distractors the course does not attest: not allowed.** `story.distractor-form` is a warning
+  until the courses are clean, then an error. The author picks another option, or adds a sentence that
+  teaches the form.
+
+## Implementation (2026-11-17)
+
+- **Schemas.** KCs (course source and bundle) take `pos` (UPOS) and `features` (UD's spelling; YAML must
+  quote `'Yes'`). Story lines take `asks`; a bundled `complete` line carries `options`, its wrong options
+  resolved per orthography (one token each, analysis and readings kept). The logged exercise
+  (`ExerciseRef`) carries `asks`, so the fold can keep the question with a mistake.
+- **The form signature** is `lesson/signature.ts` (`formSignature`, `sameKind`), and its Python twin in
+  compiler/stories.py. A clitic morph (Hebrew ha- and wə-, Lebanese w-) is part of it, so a gap written
+  with the article takes options written with it.
+- **Gap-fill** tries its blanks in order: a mistake's word, as the question it was, and nothing else; then
+  words in focus, then words the node introduces, each with the question of what made it the choice
+  first and the other second; then the rest, from the last word, word first. The first question that can
+  be built is asked. A blank needs a sense of its own: never a word of a phrase KC or a word its sentence
+  repeats, and such words are never offered either. A form question needs the answer to have a form.
+  "The accept set takes it" is graded with the course's lexicon (a typo that is another word is no
+  match); "shares a meaning" compares the glosses' meanings, split at `;`, `,` and `/`, notes left out.
+- **Credit and mistakes.** `askedKcs` follows `asks`; a card planned before it (a session left part-way)
+  has none, and credits sense and form as before. A fill-in's mistake from before ADR 0132 (no `asks`) is
+  closed by an answer to either question about its word (`sameQuestion`).
+- **Stories.** The compiler resolves a `complete` line once every story is compiled: in the course's
+  first orthography (the gap's case first), then from the same sentence or line in the others. A bundle
+  without `options` (from before) still shows the distractors' first forms.
+- **Feedback.** A wrong form shows each form with its form KCs' glosses (`formMeanings`), the right one
+  first, under "What each form says:"; a wrong word shows the meanings as before.
+- **Courses.** Every sense KC's `pos` and `features` were drafted by a model (REVIEW): about 3,000.
+  chg's live in its generator (`pos.py` in the library's nabu/notes/chg/generator). All 200 story steps
+  were redone and resolve; [courses/choice-doubts.md](../../courses/choice-doubts.md) lists the
+  weakest. Both diagnostics are errors.
+- **Calibration.** Every simulated course stays within ±5pp of 85% (80.8% to 88.9%); CALIBRATION_WEIGHT
+  is unchanged. The planner walks diverge from the drafts' first lessons on, as the learners' histories
+  do: yue's walk with scored speech now plans `speak` but no `listen-speak` (fa's has both).
+- **Not modelled at first.** Spanish nouns and adjectives had no form KCs, so a lesson's word question
+  could offer a noun of another gender or number; the amendment below closes it.
+
+## Amendment: Spanish gender and number (2026-11-17)
+
+The implementation left Spanish nouns and adjectives without forms: es pinned only verb forms, so a
+word question could offer a noun of another gender or number (*una ___* with *carro* among the
+options), which grammar alone rules out. The owner asked for the gap to be closed.
+
+- **Agreement is the token's form.** Every es noun, adjective, determiner and pronoun that agrees
+  pins its gender and number as `form:` (`form:fem`, `form:pl`, `form:fem-pl`; masculine singular
+  is bare), as es already pins verb forms and apc `form:fem`. The form is the word's agreement in its
+  line, not its spelling: an invariable word takes its noun's (*mi casa*, *una casa grande*), a noun
+  its own gender (*el agua* is feminine), a first or second person the sentence's `persons`
+  (untagged: bare); words that agree with nothing stay bare. No KC carries a gender: a lemma such as
+  *tío* covers *tía*, so gender belongs to the token, for nouns as for adjectives.
+- **How it was drafted.** 2,374 tokens, from their spelling where it shows the form (*la*, *cubanas*,
+  *tías*), else from the noun they agree with in a dependency parse (spaCy's es_core_news_lg, used
+  only as a drafting tool: nothing of it ships), else the sentence's `persons`; nouns' own genders
+  and the 48 words the parse left open were decided by hand. REVIEW: courses/choice-doubts.md.
+- **What it changes.** Word questions offer only words of the answer's gender and number; Spanish
+  now has form questions on agreement (*la* among *el*, *los*, *las*; *cubana* among *cubano*,
+  *cubanos*). Feedback on a word the learner wrote says its form (*esta*: feminine). Seven story
+  questions got new wrong options that agree with their gap.
+- **A phrase KC's words are next to each other.** The rule that keeps a word of a phrase KC (*por* of
+  *por favor*) from being blanked or offered alone now looks at neighbouring words only: a word a line
+  repeats apart (*Este es mi papi, y esta es mi mami*) is a word of its own.
+- **The weak learner's pacing check** (test/simulation.test.ts, ADR 0105) averages its success over
+  three seeds against 79%, above where Continue starts consolidating (78%). One seed's success
+  swings about 1.5 points, and es's three new KCs moved its seed's draw from 81% to just under 80%;
+  the planner stayed calibrated. The owner chose this over retuning the pace.
+
+
+## Amendment: Lebanese Arabic, Biblical Hebrew and Attic Greek (2026-11-17)
+
+The owner asked for the Spanish model in the other courses whose nouns have a gender. apc pinned gender only
+on adjectives and on nouns that name a man or a woman (*jara*), hbo on adjectives (טוֹבָה), grc on adjectives
+and a few pronouns: ὁ and ἡ were both bare, so a word question could offer a masculine noun after ἡ.
+
+- **The same rule.** A noun pins its own gender and number; an adjective, determiner or demonstrative its
+  noun's, invariable ones too (apc *Beirut akbar*, *awwal marra*); a gendered pronoun its own (apc *hiyye*,
+  *enti*, *hayde*; hbo הִיא, אַתְּ, זֹאת; plurals *henne*, הֵם, אֵלֶּה, ἡμεῖς). Masculine, singular,
+  nominative and absolute are bare. Numbers stay bare, as in es. Names pin theirs (Ξανθίππη, נָעֳמִי, *Maya*;
+  cities and lands are feminine: *Beirut*, נִינְוֵה). First and second person pronouns that show no gender
+  (*ana*, אָנֹכִי, ἐγώ) pin none.
+- **apc.** `form:fem` and `form:pl`, the course's own KCs: Lebanese has no gender in the plural. A dual is its
+  noun's gender beside the dual morph (*sa3ten*: `form:fem`). 364 tokens in each script, decided on the
+  Arabizi and carried to the Arabic-script word of the same sense. apc's first feminine noun (*ahwe*, in the
+  café lesson) now brings `form:fem` with it, so apc's `iPlusOne` is 2, as in es, hbo, grc, chg and tok.
+- **hbo.** Gender joins number and state: `f`, `f-pl`, `f-cstr`, `f-pl-cstr` beside `pl`, `cstr`,
+  `pl-cstr`; the course's duals (feet, eyes) are all feminine and keep `du`; `ptc-pass-fs` (בְּרוּכָה).
+  Nouns always plural take the agreement they get: מַיִם, שָׁמַיִם, פָּנִים, רַחֲמִים plural; אֱלֹהִים as God
+  singular, as before. A noun of common gender takes its usual one (דֶּרֶךְ, אֵשׁ, עֵת, רוּחַ, תְּהוֹם
+  feminine). 337 tokens.
+- **grc.** Gender, case and number make one id, each left out when masculine, nominative or singular, so the
+  old ids keep their meaning (`acc`, `gen-pl`, `f`, now glossed as masculine) and `f-acc`, `f-dat`, `n`,
+  `n-pl` join them. A neuter is one form as subject, object or address (`n`, `n-pl`): Greek always writes
+  them alike. A plural vocative is its nominative. παῖς takes its article's gender. 287 tokens.
+- **es follows.** *ella* pins `form:fem`; *ustedes*, *nos* and *les* `form:pl`, as *nosotros*, *ellos* and
+  *los* already did. Single-word names pin their gender (*Cuba*, *la Habana*, *Lili*, *Marisol*, *la
+  Navidad*); names of several words (*la Calle Ocho*) are never asked alone and stay bare.
+- **Grading.** A contrast set marked `inflected` applies to every word of a sense the course pins a form on,
+  and nouns now count. apc's verb-prefix sets name the verb forms instead (`forms: [form:impf, form:subj,
+  form:past, form:imp]`, as hbo's do), so a noun's or an adjective's first letter stays a typo (a new
+  conformance vector). Its agreement endings (ة, -e) now reach feminine nouns, as they did nouns of both
+  genders (*jara*) and as hbo's reach plural nouns: سيّار for سيّارة, *madras* for *madrase* is WRONG_WORD
+  (the ending), where it was a typo. hbo's endings (`forms: [form:f, …]`) likewise reach feminine nouns;
+  grc's case endings were already meant for nouns.
+- **Stories.** 17 hbo, 7 apc, 3 es and 1 grc story questions got new wrong options in the gap's gender.
+  Where the course writes no two other words in the gap's form, the question asks the form instead (אָחִיו
+  and פָּנָיו against other persons; מִכַּדֵּךְ), or moved: in-the-beginning asks יְהִי אוֹר, as no
+  other plural with the article is written by then.
+- **Kept so** by test/choice-asks.test.ts: a noun keeps one gender wherever its course writes it (but the
+  listed nouns that name a man or a woman), and a word question on a feminine word offers only feminine words.
+  REVIEW: [courses/choice-doubts.md](../../courses/choice-doubts.md) lists the genders chosen by hand.

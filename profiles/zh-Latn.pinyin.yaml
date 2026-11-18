@@ -1,0 +1,25 @@
+# profiles/zh-Latn.pinyin.yaml
+# Hanyu Pinyin as the answer of a reading card (ADR 0138): Classical Chinese words read in Mandarin.
+# Typed with its tone marks (the marked vowels are on the character bar) or with a tone number after
+# each syllable (xue2), which compares as the mark; v or u: for ü, as Pinyin keyboards take them.
+id: zh-Latn/pinyin
+lang: zh-Latn
+exemplars: cldr:en
+exemplarsExtra: [ā, á, ǎ, à, ē, é, ě, è, ī, í, ǐ, ì, ō, ó, ǒ, ò, ū, ú, ǔ, ù, ü, ǖ, ǘ, ǚ, ǜ]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  - map: { "u:": "ü", "v": "ü" }
+  - toneNumbers: { marks: { "1": "\u0304", "2": "\u0301", "3": "\u030C", "4": "\u0300", "5": "" }, vowels: aeiouü, first: [a, e, ou] }
+  - punctuation: strip
+  # A word's syllables typed together or apart (xuéxí, xué xí) compare alike.
+  - whitespace: remove
+match:
+  case: { locale: zh }
+  # The tones are the reading the characters leave out: one left out, added, changed or moved is wrong
+  # (ADR 0134), noted as a tone where the letters are right. ü is not u: wrong, as any other letter.
+  marks: { set: "[\u0300\u0301\u0304\u0308\u030C]", policy: reject, required: "[\u0300\u0301\u0304\u030C]", requiredNote: reading-tone }
+input:
+  keyboard: cldr-kbd:en
+  extraKeys: [ā, á, ǎ, à, ē, é, ě, è, ī, í, ǐ, ì, ō, ó, ǒ, ò, ū, ú, ǔ, ù, ü, ǖ, ǘ, ǚ, ǜ]
+layout: { vertical: none }

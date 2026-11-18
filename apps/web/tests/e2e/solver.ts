@@ -12,8 +12,8 @@ import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
 import { lessonNodes, readCourse, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
-import { surfaceOf } from "@nabu/core/text";
-import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
+import { graphemes, surfaceOf } from "@nabu/core/text";
+import type { BundleManifest, LearnerEvent, OrthographyId, SchemeId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
 import { exclusionsOf, facetsOffOf, type Off } from "../../src/breaks.ts";
 
@@ -80,15 +80,25 @@ const localDateIn = (now: Date, timeZone: string): string => {
  * plan aims at the skills of words met before the learner's local date (ADR 0101). `off`: why
  * listening or speaking is off on the device, if it is (a break, or turned off in Preferences), from
  * which the app derives what it leaves out: their exercises, and listening turned off for good from
- * known words and what is due (D41).
+ * known words and what is due (D41). `reading`: the reading tradition the learner reads in (ADR 0138), as
+ * the device keeps it; none chosen, the first.
  */
-export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number, timeZone = "UTC", off: Off = {}): readonly Exercise[] => {
+export const planned = (
+  course: CourseView,
+  log: readonly LearnerEvent[],
+  request: SessionRequest,
+  now: Date,
+  seed: number,
+  timeZone = "UTC",
+  off: Off = {},
+  reading?: SchemeId,
+): readonly Exercise[] => {
   const state = replay(log);
   const exclude = exclusionsOf(off);
   const facetsOff = facetsOffOf(off);
   // At the pace the app reads from the same log (ADR 0105); the tests never choose one.
   const pace = paceOf(course, state, now.toISOString(), "auto", facetsOff).band;
-  return plan(course, state, request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0), pace, facetsOff, ...(exclude.size === 0 ? {} : { exclude }) }).exercises;
+  return plan(course, state, request, { now: now.toISOString(), today: localDateIn(now, timeZone), seed, speech: speechSupportOf(course, 0), pace, facetsOff, reading, ...(exclude.size === 0 ? {} : { exclude }) }).exercises;
 };
 
 /**
@@ -192,7 +202,9 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     case "select-image":
     case "choose-translation":
     case "gap-fill":
+    case "spelling-choice":
     case "char-read":
+    case "reading-feature":
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
@@ -235,6 +247,18 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
       }
       return;
     }
+    case "vocalize-build": {
+      // Each letter chosen, then its marks pressed (ADR 0137); optional marks (sukun) left off.
+      const want = graphemes(surfaceOf(ex.vocalized).normalize("NFC"));
+      for (const [i, g] of want.entries()) {
+        const marks = Array.from(g.normalize("NFD")).filter((c) => ex.marks.includes(c) && !ex.optional.includes(c));
+        if (marks.length === 0) continue;
+        await press(page, mode, `[data-lesson-player] [data-letter="${i}"]`);
+        for (const m of marks) await press(page, mode, `[data-lesson-player] [data-mark="${m}"]`);
+      }
+      await press(page, mode, "[data-action=check]");
+      return;
+    }
     case "transcribe": {
       const text = surfaceOf(ex.reading);
       const field = page.locator("[data-answer-input]");
@@ -268,7 +292,9 @@ export const canMiss = (ex: Exercise): boolean =>
   ex.template === "choose-translation" ||
   ex.template === "select-image" ||
   ex.template === "gap-fill" ||
+  ex.template === "spelling-choice" ||
   ex.template === "char-read" ||
+  ex.template === "reading-feature" ||
   ex.template === "reading-disambiguation" ||
   ex.template === "listen-select" ||
   ex.template === "minimal-pair";

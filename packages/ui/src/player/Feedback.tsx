@@ -10,7 +10,7 @@
  */
 import { answerDiff, chosenWordOf, closestAnswer, diffParts, isCorrect, nearMiss, otherWordsOf, solutionMarks, type AnswerDiff, type CourseView, type Exercise, type Outcome, type Response } from "@nabu/core/lesson";
 import type { Verdict } from "@nabu/core";
-import { wordMeanings, writtenMeanings, type WordMeaning } from "@nabu/core/story";
+import { formMeanings, wordMeanings, writtenMeanings, type FormMeanings, type WordMeaning } from "@nabu/core/story";
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
@@ -106,6 +106,49 @@ const useMissed = (course: CourseView, outcome: Outcome, chosen: TaggedText | un
     const meanings = wordMeanings(course, right);
     return meanings.length === 0 ? [] : [{ word: right, meanings }];
   }, [course, outcome, chosen]);
+
+/** A form question (ADR 0132): its options are one word in several forms; the feedback says what each form is. */
+const asksForm = (ex: Exercise): boolean => (ex.template === "gap-fill" || ex.template === "story-complete") && ex.asks === "form";
+
+interface FormShown {
+  readonly word: TaggedText;
+  readonly meanings: FormMeanings;
+}
+
+/**
+ * What the right form and the chosen one say, where a form question was answered wrong (ADR 0132):
+ * the word's meaning is the same in both, so its form is what feedback explains ("-dim: I (past)").
+ */
+const useForms = (course: CourseView, outcome: Outcome, chosen: TaggedText | undefined): readonly FormShown[] =>
+  useMemo(() => {
+    const right = outcome.solution;
+    if (chosen === undefined || right === undefined) return [];
+    return [right, chosen].map((word) => ({ word, meanings: formMeanings(course, word) }));
+  }, [course, outcome, chosen]);
+
+/** Each form as written, then what each KC of its form means; a bare form shows alone. */
+const Forms = ({ forms, label, ruby, marks }: { readonly forms: readonly FormShown[]; readonly label: string; readonly ruby: SchemeId | false; readonly marks: "show" | "hide" }): JSX.Element => (
+  <div className={styles.solution} data-meanings="forms">
+    <span className={styles.label}>{label}</span>
+    <GlossList>
+      {forms.flatMap(({ word, meanings }, i) =>
+        meanings.sense === undefined
+          ? []
+          : [
+              <GlossEntry
+                key={i}
+                gloss={{ kc: meanings.sense, form: word, meaning: undefined, span: "whole" }}
+                ruby={ruby}
+                marks={marks}
+                note={meanings.forms.map((f) => (
+                  <FormNote key={f.kc} kc={f.kc} meaning={f.meaning} />
+                ))}
+              />,
+            ],
+      )}
+    </GlossList>
+  </div>
+);
 
 /** Each reading of each word, as tap-for-gloss shows a meaning, the form it is pinned as after it. */
 const Meanings = ({ meant, label, ruby, marks, data }: { readonly meant: readonly Meant[]; readonly label: string; readonly ruby: SchemeId | false; readonly marks: "show" | "hide"; readonly data: string }): JSX.Element => {
@@ -205,8 +248,11 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing 
       : undefined;
   const wrong = !right && !neutral;
   const chosen = wrong ? chosenWordOf(ex, response) : undefined;
-  const meant = useMeant(course, outcome, chosen, wrong);
-  const missed = useMissed(course, outcome, chosen);
+  // A form question's options mean the same word: what differs is the form (ADR 0132).
+  const formQuestion = asksForm(ex);
+  const meant = useMeant(course, outcome, formQuestion ? undefined : chosen, wrong && !formQuestion);
+  const missed = useMissed(course, outcome, formQuestion ? undefined : chosen);
+  const forms = useForms(course, outcome, formQuestion ? chosen : undefined);
   // A note a unit of the answer raised names the words it is about where the catalog has a message
   // for them (feedback.note.<id>-pair): cómo and como, not a canned example (W4). One item a pair.
   const pairsOf = (note: string): readonly (readonly [string, string])[] => {
@@ -256,6 +302,7 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing 
         </div>
       )}
       {missed.length > 0 && <Meanings meant={missed} label={t.format("player.feedback.right-meaning")} ruby={ruby} marks={marks} data="right" />}
+      {forms.length > 0 && <Forms forms={forms} label={t.format("player.feedback.form-meanings")} ruby={ruby} marks={marks} />}
       {closest !== undefined && (
         <div className={styles.solution} data-closest="">
           <span className={styles.label}>{t.format("player.feedback.closest")}</span>

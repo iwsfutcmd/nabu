@@ -10,6 +10,7 @@ title:
 cefr: B1
 kcs:
 - id: sense:biz-zarura
+  pos: ADV
   gloss:
     en: of necessity, needing to (Arabic)
   forms:
@@ -20,6 +21,7 @@ kcs:
   readings:
     schluessel: biżżarūra
 - id: sense:taam
+  pos: NOUN
   gloss:
     en: food (Arabic)
   forms:
@@ -30,6 +32,7 @@ kcs:
   readings:
     schluessel: ṭaʿām
 - id: sense:diram
+  pos: NOUN
   gloss:
     en: silver coin, dirham
   forms:
@@ -40,6 +43,7 @@ kcs:
   readings:
     schluessel: diram
 - id: sense:chiqar
+  pos: VERB
   gloss:
     en: to take out, bring out
   forms:
@@ -52,6 +56,7 @@ kcs:
   notes:
     en: 'čiq- "to go out" with the causative -ar: "to make go out".'
 - id: sense:kanj
+  pos: NOUN
   gloss:
     en: treasure (Persian ganj)
   forms:
@@ -62,6 +67,7 @@ kcs:
   readings:
     schluessel: kanj
 - id: sense:majara
+  pos: NOUN
   gloss:
     en: event, adventure; trouble
   forms:
@@ -74,6 +80,7 @@ kcs:
   notes:
     en: köp mājarādin soŋra "after much ado".
 - id: sense:songra
+  pos: ADP
   gloss:
     en: after, later (with -din)
   forms:
@@ -86,6 +93,7 @@ kcs:
   notes:
     en: X-din soŋra "after X", as X-din keyin.
 - id: sense:qash.presence
+  pos: NOUN
   gloss:
     en: presence; side (of a person)
   forms:
@@ -98,6 +106,7 @@ kcs:
   notes:
     en: pādišāh qašiǧa "before the king, to the king".
 - id: sense:elt
+  pos: VERB
   gloss:
     en: to take (someone), lead
   forms:
@@ -108,6 +117,7 @@ kcs:
   readings:
     schluessel: elt
 - id: sense:faqir
+  pos: NOUN
   gloss:
     en: poor man; the humble one
   forms:
@@ -118,6 +128,7 @@ kcs:
   readings:
     schluessel: faqīr
 - id: sense:mutahayyir
+  pos: ADJ
   gloss:
     en: bewildered, astonished
   forms:
@@ -128,6 +139,7 @@ kcs:
   readings:
     schluessel: mutaḥayyir
 - id: sense:ozga
+  pos: ADJ
   gloss:
     en: other, another; apart from
   forms:
@@ -138,6 +150,7 @@ kcs:
   readings:
     schluessel: özgä
 - id: sense:khalq
+  pos: NOUN
   gloss:
     en: people, the folk
   forms:
@@ -148,6 +161,7 @@ kcs:
   readings:
     schluessel: ḫalq
 - id: sense:hayran
+  pos: ADJ
   gloss:
     en: amazed, astonished
   forms:
@@ -158,6 +172,7 @@ kcs:
   readings:
     schluessel: ḥayrān
 - id: sense:oyqu
+  pos: NOUN
   gloss:
     en: sleep
   forms:
@@ -168,6 +183,7 @@ kcs:
   readings:
     schluessel: oyqu
 - id: sense:sajdat
+  pos: NOUN
   gloss:
     en: prostrations (in prayer)
   forms:
@@ -178,6 +194,7 @@ kcs:
   readings:
     schluessel: sajdāt
 - id: sense:shukr
+  pos: NOUN
   gloss:
     en: thanks, gratitude
   forms:
@@ -190,6 +207,7 @@ kcs:
   notes:
     en: sajdāt-i šukr "prostrations of thanks".
 - id: sense:ishik
+  pos: NOUN
   gloss:
     en: door; mouth (of a cave)
   forms:
@@ -200,6 +218,7 @@ kcs:
   readings:
     schluessel: išik
 - id: sense:gunbad
+  pos: NOUN
   gloss:
     en: dome; domed shrine
   forms:
@@ -210,6 +229,7 @@ kcs:
   readings:
     schluessel: gunbad
 - id: sense:yasa
+  pos: VERB
   gloss:
     en: to make, build
   forms:
@@ -220,6 +240,7 @@ kcs:
   readings:
     schluessel: yasa
 - id: sense:madfun
+  pos: ADJ
   gloss:
     en: buried
   forms:
@@ -230,6 +251,7 @@ kcs:
   readings:
     schluessel: madfūn
 - id: sense:khalayiq
+  pos: NOUN
   gloss:
     en: people, creatures (Arabic plural)
   forms:
@@ -240,6 +262,7 @@ kcs:
   readings:
     schluessel: ḫalāyiq
 - id: sense:azim
+  pos: ADJ
   gloss:
     en: great, mighty
   forms:
@@ -250,6 +273,7 @@ kcs:
   readings:
     schluessel: ʿaẓīm
 - id: sense:mabad
+  pos: NOUN
   gloss:
     en: place of worship, shrine
   forms:
@@ -736,8 +760,8 @@ stories:
       ask: complete
       gap: sense:hayran
       distractors:
-      - sense:nan
-      - sense:kitab
+      - sense:shirin
+      - sense:arzan
       forms:
         chg-Arab/standard:
           text: فقیر متحیر اوزکا پادشاه و اوزکا خلق کوروب، حیران ایرمیش.

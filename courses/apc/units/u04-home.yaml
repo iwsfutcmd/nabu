@@ -5,34 +5,34 @@ id: u04-home
 title: {en: 'Where''s the house?'}
 cefr: A1
 kcs:
-- {id: 'sense:wen', gloss: {en: where}, forms: {apc-Arab/standard: [وين], apc-Latn/arabizi: [wen]}}
-- {id: 'sense:bet', gloss: {en: house; home}, forms: {apc-Arab/standard: [بيت], apc-Latn/arabizi: [bet]}}
-- {id: 'sense:hon', gloss: {en: here}, forms: {apc-Arab/standard: [هون], apc-Latn/arabizi: [hon]}}
-- {id: 'sense:honik', gloss: {en: there; over there}, forms: {apc-Arab/standard: [هونيك], apc-Latn/arabizi: [honik]}}
-- {id: 'sense:beirut', gloss: {en: Beirut}, forms: {apc-Arab/standard: [بيروت], apc-Latn/arabizi: [Beirut]}}
-- {id: 'sense:b', gloss: {en: in; at}, forms: {apc-Latn/arabizi: [b]}, notes: {en: 'Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet.'}}
-- {id: 'sense:lebnen', gloss: {en: Lebanon}, forms: {apc-Arab/standard: [لبنان], apc-Latn/arabizi: [Lebnen]}}
-- {id: 'sense:men', gloss: {en: from; of}, forms: {apc-Arab/standard: [من], apc-Latn/arabizi: [men]}}
-- {id: 'sense:fi', gloss: {en: there is; there are}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'ma fi: there isn''t, there''s no.'}}
-- {id: 'sense:ghorfe', gloss: {en: room; bedroom}, forms: {apc-Arab/standard: [غرفة], apc-Latn/arabizi: [ghorfe]}}
-- {id: 'sense:matbakh', gloss: {en: kitchen}, forms: {apc-Arab/standard: [مطبخ], apc-Latn/arabizi: [matbakh]}}
-- {id: 'sense:salon', gloss: {en: living room}, forms: {apc-Arab/standard: [صالون], apc-Latn/arabizi: [salon]}}
-- {id: 'sense:7ammem', gloss: {en: bathroom; toilet}, forms: {apc-Arab/standard: [حمّام], apc-Latn/arabizi: [7ammem]}}
-- {id: 'sense:shoghl', gloss: {en: work; job}, forms: {apc-Arab/standard: [شغل], apc-Latn/arabizi: [shoghl]}}
-- {id: 'sense:madrase', gloss: {en: school}, forms: {apc-Arab/standard: [مدرسة], apc-Latn/arabizi: [madrase]}}
-- {id: 'sense:dekkene', gloss: {en: corner shop; small grocery}, forms: {apc-Arab/standard: [دكّانة], apc-Latn/arabizi: [dekkene]}}
-- {id: 'sense:shere3', gloss: {en: street}, forms: {apc-Arab/standard: [شارع], apc-Latn/arabizi: [shere3]}}
-- {id: 'sense:2arib', gloss: {en: near; close}, forms: {apc-Arab/standard: [قريب], apc-Latn/arabizi: [2arib]}}
-- {id: 'sense:b3id', gloss: {en: far}, forms: {apc-Arab/standard: [بعيد, بعيدة], apc-Latn/arabizi: [b3id, b3ide]}}
-- {id: 'sense:mish', gloss: {en: not (before a word that is not a verb)}, forms: {apc-Arab/standard: [مش], apc-Latn/arabizi: [mish]}, notes: {en: 'mish b3id: not far. Before verbs: ma.'}}
+- {id: 'sense:wen', pos: ADV, features: {PronType: Int}, gloss: {en: where}, forms: {apc-Arab/standard: [وين], apc-Latn/arabizi: [wen]}}
+- {id: 'sense:bet', pos: NOUN, gloss: {en: house; home}, forms: {apc-Arab/standard: [بيت], apc-Latn/arabizi: [bet]}}
+- {id: 'sense:hon', pos: ADV, features: {PronType: Dem}, gloss: {en: here}, forms: {apc-Arab/standard: [هون], apc-Latn/arabizi: [hon]}}
+- {id: 'sense:honik', pos: ADV, features: {PronType: Dem}, gloss: {en: there; over there}, forms: {apc-Arab/standard: [هونيك], apc-Latn/arabizi: [honik]}}
+- {id: 'sense:beirut', pos: PROPN, gloss: {en: Beirut}, forms: {apc-Arab/standard: [بيروت], apc-Latn/arabizi: [Beirut]}}
+- {id: 'sense:b', pos: ADP, gloss: {en: in; at}, forms: {apc-Latn/arabizi: [b]}, notes: {en: 'Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet.'}}
+- {id: 'sense:lebnen', pos: PROPN, gloss: {en: Lebanon}, forms: {apc-Arab/standard: [لبنان], apc-Latn/arabizi: [Lebnen]}}
+- {id: 'sense:men', pos: ADP, gloss: {en: from; of}, forms: {apc-Arab/standard: [من], apc-Latn/arabizi: [men]}}
+- {id: 'sense:fi', pos: VERB, gloss: {en: there is; there are}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'ma fi: there isn''t, there''s no.'}}
+- {id: 'sense:ghorfe', pos: NOUN, gloss: {en: room; bedroom}, forms: {apc-Arab/standard: [غرفة], apc-Latn/arabizi: [ghorfe]}}
+- {id: 'sense:matbakh', pos: NOUN, gloss: {en: kitchen}, forms: {apc-Arab/standard: [مطبخ], apc-Latn/arabizi: [matbakh]}}
+- {id: 'sense:salon', pos: NOUN, gloss: {en: living room}, forms: {apc-Arab/standard: [صالون], apc-Latn/arabizi: [salon]}}
+- {id: 'sense:7ammem', pos: NOUN, gloss: {en: bathroom; toilet}, forms: {apc-Arab/standard: [حمّام], apc-Latn/arabizi: [7ammem]}}
+- {id: 'sense:shoghl', pos: NOUN, gloss: {en: work; job}, forms: {apc-Arab/standard: [شغل], apc-Latn/arabizi: [shoghl]}}
+- {id: 'sense:madrase', pos: NOUN, gloss: {en: school}, forms: {apc-Arab/standard: [مدرسة], apc-Latn/arabizi: [madrase]}}
+- {id: 'sense:dekkene', pos: NOUN, gloss: {en: corner shop; small grocery}, forms: {apc-Arab/standard: [دكّانة], apc-Latn/arabizi: [dekkene]}}
+- {id: 'sense:shere3', pos: NOUN, gloss: {en: street}, forms: {apc-Arab/standard: [شارع], apc-Latn/arabizi: [shere3]}}
+- {id: 'sense:2arib', pos: ADJ, gloss: {en: near; close}, forms: {apc-Arab/standard: [قريب], apc-Latn/arabizi: [2arib]}}
+- {id: 'sense:b3id', pos: ADJ, gloss: {en: far}, forms: {apc-Arab/standard: [بعيد, بعيدة], apc-Latn/arabizi: [b3id, b3ide]}}
+- {id: 'sense:mish', pos: PART, features: {Polarity: Neg}, gloss: {en: not (before a word that is not a verb)}, forms: {apc-Arab/standard: [مش], apc-Latn/arabizi: [mish]}, notes: {en: 'mish b3id: not far. Before verbs: ma.'}}
 - {id: 'form:poss-1pl', gloss: {en: '-na: our'}, notes: {en: 'betna: our house. Arabic script: نا joined to the noun (بيتنا).'}}
-- {id: 'sense:fo2', gloss: {en: upstairs; up; above}, forms: {apc-Arab/standard: [فوق], apc-Latn/arabizi: [fo2]}}
-- {id: 'sense:ta7t', gloss: {en: downstairs; down; under}, forms: {apc-Arab/standard: [تحت], apc-Latn/arabizi: [ta7t]}}
-- {id: 'sense:7add', gloss: {en: next to}, forms: {apc-Arab/standard: [حدّ], apc-Latn/arabizi: [7add]}}
-- {id: 'sense:3a', gloss: {en: to; on}, forms: {apc-Arab/standard: [ع], apc-Latn/arabizi: [3a]}, notes: {en: 'Before el it is written 3al in Arabizi and عال in Arabic script: 3al bet, عالبيت (home, homeward).'}}
-- {id: 'sense:yamin', gloss: {en: right (side)}, forms: {apc-Arab/standard: [يمين], apc-Latn/arabizi: [yamin]}}
-- {id: 'sense:shmel', gloss: {en: left (side)}, forms: {apc-Arab/standard: [شمال], apc-Latn/arabizi: [shmel]}}
-- {id: 'sense:dighri', gloss: {en: straight ahead}, forms: {apc-Arab/standard: [دغري], apc-Latn/arabizi: [dighri]}}
+- {id: 'sense:fo2', pos: ADV, gloss: {en: upstairs; up; above}, forms: {apc-Arab/standard: [فوق], apc-Latn/arabizi: [fo2]}}
+- {id: 'sense:ta7t', pos: ADV, gloss: {en: downstairs; down; under}, forms: {apc-Arab/standard: [تحت], apc-Latn/arabizi: [ta7t]}}
+- {id: 'sense:7add', pos: ADP, gloss: {en: next to}, forms: {apc-Arab/standard: [حدّ], apc-Latn/arabizi: [7add]}}
+- {id: 'sense:3a', pos: ADP, gloss: {en: to; on}, forms: {apc-Arab/standard: [ع], apc-Latn/arabizi: [3a]}, notes: {en: 'Before el it is written 3al in Arabizi and عال in Arabic script: 3al bet, عالبيت (home, homeward).'}}
+- {id: 'sense:yamin', pos: NOUN, gloss: {en: right (side)}, forms: {apc-Arab/standard: [يمين], apc-Latn/arabizi: [yamin]}}
+- {id: 'sense:shmel', pos: NOUN, gloss: {en: left (side)}, forms: {apc-Arab/standard: [شمال], apc-Latn/arabizi: [shmel]}}
+- {id: 'sense:dighri', pos: ADV, gloss: {en: straight ahead}, forms: {apc-Arab/standard: [دغري], apc-Latn/arabizi: [dighri]}}
 nodes:
 - {id: apc.home.where, kind: lesson, introduces: ['sense:wen', 'sense:bet', 'sense:hon', 'sense:honik']}
 - {id: apc.home.city, kind: lesson, introduces: ['sense:beirut', 'sense:b', 'sense:lebnen', 'sense:men']}
@@ -96,11 +96,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا هونيك.
-      tokens: [{surface: مايا, sense: maya}, {surface: هونيك, sense: honik}]
+      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: هونيك, sense: honik}]
       reverse: مايا هونيك
     apc-Latn/arabizi:
       text: Maya honik.
-      tokens: [{surface: Maya, sense: maya}, {surface: honik, sense: honik}]
+      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: honik, sense: honik}]
       reverse: Maya (honik|hounik|honek)
   translations:
     en: |-
@@ -130,11 +130,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بيروت حلوة.
-      tokens: [{surface: بيروت, sense: beirut}, {surface: حلوة, sense: 7elo, form: 'form:fem'}]
+      tokens: [{surface: بيروت, sense: beirut, form: 'form:fem'}, {surface: حلوة, sense: 7elo, form: 'form:fem'}]
       reverse: بيروت حلوة
     apc-Latn/arabizi:
       text: Beirut 7elwe.
-      tokens: [{surface: Beirut, sense: beirut}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
+      tokens: [{surface: Beirut, sense: beirut, form: 'form:fem'}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
       reverse: (Beirut|Bayrut|Beyrouth) (7elwe|7ilwe|helwe|7elwi)
   translations:
     en: |-
@@ -146,11 +146,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا ببيروت.
-      tokens: [{surface: أنا, sense: ana}, {surface: ببيروت, sense: beirut, morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+      tokens: [{surface: أنا, sense: ana}, {surface: ببيروت, sense: beirut, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
       reverse: '[أنا] ببيروت'
     apc-Latn/arabizi:
       text: ana b Beirut.
-      tokens: [{surface: ana, sense: ana}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+      tokens: [{surface: ana, sense: ana}, {surface: b, sense: b}, {surface: Beirut, sense: beirut, form: 'form:fem'}]
       reverse: '[ana] (b|bi) (Beirut|Bayrut|Beyrouth)'
   translations:
     en: I('m| am) in Beirut.
@@ -210,11 +210,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: في قهوة؟
-      tokens: [{surface: في, sense: fi}, {surface: قهوة, sense: ahwe}]
+      tokens: [{surface: في, sense: fi}, {surface: قهوة, sense: ahwe, form: 'form:fem'}]
       reverse: في قهوة
     apc-Latn/arabizi:
       text: fi ahwe?
-      tokens: [{surface: fi, sense: fi}, {surface: ahwe, sense: ahwe}]
+      tokens: [{surface: fi, sense: fi}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
       reverse: (fi|fe) (ahwe|2ahwe)
   translations:
     en: |-
@@ -226,13 +226,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وين غرفتي؟
-      tokens: [{surface: وين, sense: wen}, {surface: غرفتي, sense: ghorfe, morphs: [{surface: غرفت, kc: 'sense:ghorfe'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: وين, sense: wen}, {surface: غرفتي, sense: ghorfe, form: 'form:fem', morphs: [{surface: غرفت, kc: 'sense:ghorfe'}, {surface: ي, kc: 'form:poss-1sg'}]}]
       reverse: |-
         وين غرفتي
         وين أوضتي
     apc-Latn/arabizi:
       text: wen ghorfti?
-      tokens: [{surface: wen, sense: wen}, {surface: ghorfti, sense: ghorfe, morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: wen, sense: wen}, {surface: ghorfti, sense: ghorfe, form: 'form:fem', morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: i, kc: 'form:poss-1sg'}]}]
       reverse: |-
         (wen|wein|wayn) (ghorfti|ghorfte|ghorfeti|ghorfete|8orfti|8orfte)
         wen oudti
@@ -262,11 +262,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا بالصالون.
-      tokens: [{surface: تيتا, sense: teta}, {surface: بالصالون, sense: salon, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: صالون, kc: 'sense:salon'}]}]
+      tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: بالصالون, sense: salon, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: صالون, kc: 'sense:salon'}]}]
       reverse: تيتا بالصالون
     apc-Latn/arabizi:
       text: teta bel salon.
-      tokens: [{surface: teta, sense: teta}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: salon, sense: salon}]
+      tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: salon, sense: salon}]
       reverse: (teta|tayta) (bel|bil|b el) (salon|salone)
   translations:
     en: |-
@@ -331,13 +331,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إختي بالمدرسة.
-      tokens: [{surface: إختي, sense: ekht, morphs: [{surface: إخت, kc: 'sense:ekht'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بالمدرسة, sense: madrase, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
+      tokens: [{surface: إختي, sense: ekht, form: 'form:fem', morphs: [{surface: إخت, kc: 'sense:ekht'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بالمدرسة, sense: madrase, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
               kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
       reverse: إختي بالمدرسة
     apc-Latn/arabizi:
       text: ekhti bel madrase.
-      tokens: [{surface: ekhti, sense: ekht, morphs: [{surface: ekht, kc: 'sense:ekht'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
-              kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
+      tokens: [{surface: ekhti, sense: ekht, form: 'form:fem', morphs: [{surface: ekht, kc: 'sense:ekht'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
+              kc: 'sense:el'}]}, {surface: madrase, sense: madrase, form: 'form:fem'}]
       reverse: (ekhti|ekhte|ikhti|ikhte|e5ti|e5te) (bel|bil|b el) (madrase|madrasi|madrasse)
   translations:
     en: |-
@@ -349,11 +349,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: في دكّانة هون؟
-      tokens: [{surface: في, sense: fi}, {surface: دكّانة, sense: dekkene}, {surface: هون, sense: hon}]
+      tokens: [{surface: في, sense: fi}, {surface: دكّانة, sense: dekkene, form: 'form:fem'}, {surface: هون, sense: hon}]
       reverse: في دكّانة هون
     apc-Latn/arabizi:
       text: fi dekkene hon?
-      tokens: [{surface: fi, sense: fi}, {surface: dekkene, sense: dekkene}, {surface: hon, sense: hon}]
+      tokens: [{surface: fi, sense: fi}, {surface: dekkene, sense: dekkene, form: 'form:fem'}, {surface: hon, sense: hon}]
       reverse: (fi|fe) (dekkene|dekkane|dikkene|dekene) (hon|houn|hone)
   translations:
     en: Is there a (shop|corner shop|grocery store|store) (here|around here)?
@@ -363,14 +363,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الدكّانة بهيدا الشارع.
-      tokens: [{surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: بهيدا, sense: hayda, morphs: [{surface: ب, kc: 'sense:b'},
+      tokens: [{surface: الدكّانة, sense: dekkene, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: بهيدا, sense: hayda, morphs: [{surface: ب, kc: 'sense:b'},
             {surface: هيدا, kc: 'sense:hayda'}]}, {surface: الشارع, sense: shere3, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شارع, kc: 'sense:shere3'}]}]
       reverse: |-
         الدكّانة (بهيدا|ب هيدا) الشارع
         الدكّانة (بهالشارع|ب هالشارع)
     apc-Latn/arabizi:
       text: el dekkene b hayda el shere3.
-      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: b, sense: b}, {surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: shere3, sense: shere3}]
+      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene, form: 'form:fem'}, {surface: b, sense: b}, {surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: shere3, sense: shere3}]
       reverse: |-
         (el|l|il) (dekkene|dekkane|dikkene) (b|bi) (hayda|haida|hyda) (el|l|il) (shere3|sheri3|share3)
         (el|l|il) (dekkene|dekkane|dikkene) (bhal|b hal|bi hal) (shere3|sheri3|share3)
@@ -398,11 +398,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المدرسة بعيدة؟
-      tokens: [{surface: المدرسة, sense: madrase, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}, {surface: بعيدة, sense: b3id, form: 'form:fem'}]
+      tokens: [{surface: المدرسة, sense: madrase, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}, {surface: بعيدة, sense: b3id, form: 'form:fem'}]
       reverse: المدرسة بعيدة
     apc-Latn/arabizi:
       text: el madrase b3ide?
-      tokens: [{surface: el, sense: el}, {surface: madrase, sense: madrase}, {surface: b3ide, sense: b3id, form: 'form:fem'}]
+      tokens: [{surface: el, sense: el}, {surface: madrase, sense: madrase, form: 'form:fem'}, {surface: b3ide, sense: b3id, form: 'form:fem'}]
       reverse: (el|l|il) (madrase|madrasi|madrasse) (b3ide|ba3ide|b3eede)
   translations:
     en: |-
@@ -445,13 +445,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: في غرفة فوق؟
-      tokens: [{surface: في, sense: fi}, {surface: غرفة, sense: ghorfe}, {surface: فوق, sense: fo2}]
+      tokens: [{surface: في, sense: fi}, {surface: غرفة, sense: ghorfe, form: 'form:fem'}, {surface: فوق, sense: fo2}]
       reverse: |-
         في غرفة فوق
         في أوضة فوق
     apc-Latn/arabizi:
       text: fi ghorfe fo2?
-      tokens: [{surface: fi, sense: fi}, {surface: ghorfe, sense: ghorfe}, {surface: fo2, sense: fo2}]
+      tokens: [{surface: fi, sense: fi}, {surface: ghorfe, sense: ghorfe, form: 'form:fem'}, {surface: fo2, sense: fo2}]
       reverse: |-
         (fi|fe) (ghorfe|ghorfi|8orfe|ghurfe) (fo2|fou2)
         fi ouda fo2
@@ -479,14 +479,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الدكّانة حدّ البيت.
-      tokens: [{surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: حدّ, sense: 7add}, {surface: البيت, sense: bet, morphs: [{
+      tokens: [{surface: الدكّانة, sense: dekkene, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: حدّ, sense: 7add}, {surface: البيت, sense: bet, morphs: [{
               surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
       reverse: |-
         الدكّانة حدّ البيت
         الدكّانة جنب البيت
     apc-Latn/arabizi:
       text: el dekkene 7add el bet.
-      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: bet, sense: bet}]
+      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene, form: 'form:fem'}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: bet, sense: bet}]
       reverse: |-
         (el|l|il) (dekkene|dekkane|dikkene|dekene) (7add|7ad|hadd) (el|l|il) (bet|beit|bayt)
         el dekkene jamb el bet
@@ -518,12 +518,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الدكّانة عاليمين.
-      tokens: [{surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: عاليمين, sense: yamin, morphs: [{surface: ع, kc: 'sense:3a'},
+      tokens: [{surface: الدكّانة, sense: dekkene, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: عاليمين, sense: yamin, morphs: [{surface: ع, kc: 'sense:3a'},
             {surface: ال, kc: 'sense:el'}, {surface: يمين, kc: 'sense:yamin'}]}]
       reverse: الدكّانة (عاليمين|ع اليمين|على اليمين)
     apc-Latn/arabizi:
       text: el dekkene 3al yamin.
-      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
+      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene, form: 'form:fem'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
       reverse: (el|l|il) (dekkene|dekkane|dikkene|dekene) (3al|3a l|3a el) (yamin|ymin|yamine)
   translations:
     en: |-
@@ -666,22 +666,22 @@ stories:
       forms:
         apc-Arab/standard:
           text: مايا، وين بيتِك؟
-          tokens: [{surface: مايا, sense: maya}, {surface: وين, sense: wen}, {surface: بيتِك, sense: bet, morphs: [{surface: بيتِ, kc: 'sense:bet'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: وين, sense: wen}, {surface: بيتِك, sense: bet, morphs: [{surface: بيتِ, kc: 'sense:bet'}, {surface: ك, kc: 'form:poss-2fs'}]}]
         apc-Latn/arabizi:
           text: Maya, wen betik?
-          tokens: [{surface: Maya, sense: maya}, {surface: wen, sense: wen}, {surface: betik, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: wen, sense: wen}, {surface: betik, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: ik, kc: 'form:poss-2fs'}]}]
       translations: {en: 'Maya, where''s your house?'}
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: بيتي بْبيروت، حَدّ المَدْرَسِة.
-          tokens: [{surface: بيتي, sense: bet, morphs: [{surface: بيت, kc: 'sense:bet'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بْبيروت, sense: beirut, morphs: [{surface: بْ, kc: 'sense:b'}, {surface: بيروت,
-                  kc: 'sense:beirut'}]}, {surface: حَدّ, sense: 7add}, {surface: المَدْرَسِة, sense: madrase, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}]
+          tokens: [{surface: بيتي, sense: bet, morphs: [{surface: بيت, kc: 'sense:bet'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بْبيروت, sense: beirut, form: 'form:fem', morphs: [{surface: بْ, kc: 'sense:b'}, {surface: بيروت,
+                  kc: 'sense:beirut'}]}, {surface: حَدّ, sense: 7add}, {surface: المَدْرَسِة, sense: madrase, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}]
         apc-Latn/arabizi:
           text: beti b Beirut, 7add el madrase.
-          tokens: [{surface: beti, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}, {surface: 7add, sense: 7add},
-            {surface: el, sense: el}, {surface: madrase, sense: madrase}]
+          tokens: [{surface: beti, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: b, sense: b}, {surface: Beirut, sense: beirut, form: 'form:fem'}, {surface: 7add, sense: 7add},
+            {surface: el, sense: el}, {surface: madrase, sense: madrase, form: 'form:fem'}]
       translations: {en: 'My house is in Beirut, next to the school.'}
   - line:
       speaker: sami
@@ -696,8 +696,8 @@ stories:
   - line:
       speaker: maya
       ask: complete
-      gap: sense:b3id
-      distractors: ['sense:2arib', 'sense:fo2']
+      gap: 'sense:b3id'
+      distractors: ['sense:2arib', 'sense:jou3an']
       forms:
         apc-Arab/standard:
           text: إيه، مِش بْعيد.
@@ -716,21 +716,21 @@ stories:
       forms:
         apc-Arab/standard:
           text: في دِكّانِة هون؟
-          tokens: [{surface: في, sense: fi}, {surface: دِكّانِة, sense: dekkene}, {surface: هون, sense: hon}]
+          tokens: [{surface: في, sense: fi}, {surface: دِكّانِة, sense: dekkene, form: 'form:fem'}, {surface: هون, sense: hon}]
         apc-Latn/arabizi:
           text: fi dekkene hon?
-          tokens: [{surface: fi, sense: fi}, {surface: dekkene, sense: dekkene}, {surface: hon, sense: hon}]
+          tokens: [{surface: fi, sense: fi}, {surface: dekkene, sense: dekkene, form: 'form:fem'}, {surface: hon, sense: hon}]
       translations: {en: 'Is there a shop here?'}
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: إيه، دِغْري، والدِّكّانِة عَ يَمينَك.
-          tokens: [{surface: إيه, sense: eh}, {surface: دِغْري, sense: dighri}, {surface: والدِّكّانِة, sense: dekkene, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: دِّكّانِة,
+          tokens: [{surface: إيه, sense: eh}, {surface: دِغْري, sense: dighri}, {surface: والدِّكّانِة, sense: dekkene, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: دِّكّانِة,
                   kc: 'sense:dekkene'}]}, {surface: عَ, sense: 3a}, {surface: يَمينَك, sense: yamin, morphs: [{surface: يَمينَ, kc: 'sense:yamin'}, {surface: ك, kc: 'form:poss-2ms'}]}]
         apc-Latn/arabizi:
           text: eh, dighri, w el dekkene 3a yaminak.
-          tokens: [{surface: eh, sense: eh}, {surface: dighri, sense: dighri}, {surface: w, sense: w}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: 3a, sense: 3a}, {surface: yaminak,
+          tokens: [{surface: eh, sense: eh}, {surface: dighri, sense: dighri}, {surface: w, sense: w}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene, form: 'form:fem'}, {surface: 3a, sense: 3a}, {surface: yaminak,
               sense: yamin, morphs: [{surface: yamin, kc: 'sense:yamin'}, {surface: ak, kc: 'form:poss-2ms'}]}]
       translations: {en: 'Yes, straight ahead, and the shop is on your right.'}
   - line:
@@ -738,11 +738,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: ووين غُرْفْتِك؟
-          tokens: [{surface: ووين, sense: wen, morphs: [{surface: و, kc: 'sense:w'}, {surface: وين, kc: 'sense:wen'}]}, {surface: غُرْفْتِك, sense: ghorfe, morphs: [{surface: غُرْفْتِ, kc: 'sense:ghorfe'},
+          tokens: [{surface: ووين, sense: wen, morphs: [{surface: و, kc: 'sense:w'}, {surface: وين, kc: 'sense:wen'}]}, {surface: غُرْفْتِك, sense: ghorfe, form: 'form:fem', morphs: [{surface: غُرْفْتِ, kc: 'sense:ghorfe'},
                 {surface: ك, kc: 'form:poss-2fs'}]}]
         apc-Latn/arabizi:
           text: w wen ghorftik?
-          tokens: [{surface: w, sense: w}, {surface: wen, sense: wen}, {surface: ghorftik, sense: ghorfe, morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: w, sense: w}, {surface: wen, sense: wen}, {surface: ghorftik, sense: ghorfe, form: 'form:fem', morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: ik, kc: 'form:poss-2fs'}]}]
       translations: {en: 'And where''s your room?'}
   - line:
       speaker: maya
@@ -750,11 +750,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: غُرْفْتي فوق، والمَطْبَخ تَحْت.
-          tokens: [{surface: غُرْفْتي, sense: ghorfe, morphs: [{surface: غُرْفْت, kc: 'sense:ghorfe'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: فوق, sense: fo2}, {surface: والمَطْبَخ, sense: matbakh,
+          tokens: [{surface: غُرْفْتي, sense: ghorfe, form: 'form:fem', morphs: [{surface: غُرْفْت, kc: 'sense:ghorfe'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: فوق, sense: fo2}, {surface: والمَطْبَخ, sense: matbakh,
               morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: مَطْبَخ, kc: 'sense:matbakh'}]}, {surface: تَحْت, sense: ta7t}]
         apc-Latn/arabizi:
           text: ghorfti fo2, w el matbakh ta7t.
-          tokens: [{surface: ghorfti, sense: ghorfe, morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: fo2, sense: fo2}, {surface: w, sense: w}, {surface: el,
+          tokens: [{surface: ghorfti, sense: ghorfe, form: 'form:fem', morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: fo2, sense: fo2}, {surface: w, sense: w}, {surface: el,
               sense: el}, {surface: matbakh, sense: matbakh}, {surface: ta7t, sense: ta7t}]
       translations: {en: 'My room is upstairs, and the kitchen is downstairs.'}
   - choose:

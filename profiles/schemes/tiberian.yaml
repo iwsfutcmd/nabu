@@ -8,3 +8,6 @@ names:
     scheme: Tiberian reading (SBL)
 language: hbo
 lang: hbo-Latn
+# A word bound to the next by a maqaf reads with a final hyphen (ʿal-), and unstressed: the compiler checks the reading
+# and the maqaf agree, and compares bound words apart from free ones (saʿar-, sáʿar; ADR 0135).
+bound: { mark: "-", before: "\u05BE" }

@@ -9,6 +9,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:ge
+  pos: ADV
   gloss:
     en: at least, indeed (stresses the word before it)
   forms:
@@ -17,12 +18,16 @@ kcs:
   notes:
     en: γε leans on the word before it. πάνυ γε, "yes, certainly", is a common answer.
 - id: sense:deuro
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: here, over here (to this place)
   forms:
     grc-Grek/polytonic:
     - δεῦρο
 - id: sense:proserchomai
+  pos: VERB
   gloss:
     en: to come up to, come near
   forms:
@@ -31,12 +36,14 @@ kcs:
   notes:
     en: 'πρόσελθε, "come here!", is its aorist imperative: one act of coming, not a habit.'
 - id: sense:menon
+  pos: PROPN
   gloss:
     en: Meno (a young nobleman from Thessaly)
   forms:
     grc-Grek/polytonic:
     - Μένων
 - id: sense:hellen
+  pos: PROPN
   gloss:
     en: a Greek
   forms:
@@ -45,18 +52,21 @@ kcs:
   notes:
     en: 'Of the Greeks: τῶν Ἑλλήνων. A Greek woman is an Ἑλληνίς.'
 - id: sense:hellenizo
+  pos: VERB
   gloss:
     en: to speak Greek
   forms:
     grc-Grek/polytonic:
     - ἑλληνίζω
 - id: sense:athenaios
+  pos: ADJ
   gloss:
     en: Athenian; an Athenian
   forms:
     grc-Grek/polytonic:
     - Ἀθηναῖος
 - id: sense:barbaros
+  pos: ADJ
   gloss:
     en: foreign, not Greek; a foreigner
   forms:
@@ -65,12 +75,18 @@ kcs:
   notes:
     en: To a Greek a βάρβαρος was anyone whose speech was not Greek ("bar-bar"), Persians and Egyptians included; not yet "savage".
 - id: sense:ara
+  pos: PART
+  features:
+    PartType: Int
   gloss:
     en: (asks a question that is answered yes or no)
   forms:
     grc-Grek/polytonic:
     - ἆρα
 - id: sense:hemeis
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: we
   forms:
@@ -80,6 +96,9 @@ kcs:
   gloss:
     en: 'the present, we: we do, we are doing'
 - id: sense:hymeis
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: you (several people)
   forms:
@@ -89,42 +108,49 @@ kcs:
   gloss:
     en: 'the present, you (several people): you do, you are doing'
 - id: sense:lego
+  pos: VERB
   gloss:
     en: to say, speak, tell; to mean
   forms:
     grc-Grek/polytonic:
     - λέγω
 - id: sense:glotta
+  pos: NOUN
   gloss:
     en: tongue; language
   forms:
     grc-Grek/polytonic:
     - γλῶττα
 - id: sense:akouo
+  pos: VERB
   gloss:
     en: to hear, listen
   forms:
     grc-Grek/polytonic:
     - ἀκούω
 - id: sense:manthano
+  pos: VERB
   gloss:
     en: to learn; to understand
   forms:
     grc-Grek/polytonic:
     - μανθάνω
 - id: sense:grapho
+  pos: VERB
   gloss:
     en: to write
   forms:
     grc-Grek/polytonic:
     - γράφω
 - id: sense:sphodra
+  pos: ADV
   gloss:
     en: very much, very
   forms:
     grc-Grek/polytonic:
     - σφόδρα
 - id: sense:oikogenes
+  pos: ADJ
   gloss:
     en: born in the household (of a slave)
   forms:
@@ -302,7 +328,7 @@ sentences:
           attic: ὦ
       - surface: Ξανθίππη
         sense: xanthippe
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-
@@ -329,7 +355,7 @@ sentences:
           attic: ὦ
       - surface: παῖδες
         sense: pais
-        form: form:voc
+        form: form:pl
         readings:
           attic: παῖδες
       reverse: |-
@@ -648,6 +674,7 @@ sentences:
       tokens:
       - surface: ἡμεῖς
         sense: hemeis
+        form: form:pl
         readings:
           attic: ἡμεῖς
       - surface: ἑλληνίζομεν
@@ -669,6 +696,7 @@ sentences:
       tokens:
       - surface: ὑμεῖς
         sense: hymeis
+        form: form:pl
         readings:
           attic: ῡ̔μεῖς
       - surface: ἑλληνίζετε
@@ -767,6 +795,7 @@ sentences:
       tokens:
       - surface: ἡμεῖς
         sense: hemeis
+        form: form:pl
         readings:
           attic: ἡμεῖς
       - surface: Ἀθηναῖοί
@@ -794,6 +823,7 @@ sentences:
       tokens:
       - surface: ὑμεῖς
         sense: hymeis
+        form: form:pl
         readings:
           attic: ῡ̔μεῖς
       - surface: Ἕλληνές
@@ -823,10 +853,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γλῶττα
         sense: glotta
+        form: form:f
         readings:
           attic: γλῶττᾰ
       reverse: ἡ γλῶττα
@@ -907,7 +939,7 @@ sentences:
           attic: ὦ
       - surface: παῖδες
         sense: pais
-        form: form:voc
+        form: form:pl
         readings:
           attic: παῖδες
       reverse: |-
@@ -972,12 +1004,12 @@ sentences:
       tokens:
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: γλῶτταν
         sense: glotta
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: γλῶττᾰν
       - surface: μανθάνομεν
@@ -1158,9 +1190,10 @@ stories:
       speaker: socrates
       ask: complete
       gap: sense:hellenizo
+      asks: form
       distractors:
-      - sense:echo
-      - sense:akouo
+      - form:pres-1s
+      - form:pres-3p
       forms:
         grc-Grek/polytonic:
           text: Ἕλλην μέν ἐστι καὶ ἑλληνίζει;

@@ -97,7 +97,8 @@ describe.each(COURSES)("what plan() plans: %s %s", (id, orthography) => {
     for (const s of sessions.filter((_, i) => i % 10 === 0 || i === sessions.length - 1)) {
       expect(JSON.stringify(plan(course, s.state, s.request, s.options)), s.label).toBe(JSON.stringify(s.plan));
     }
-  });
+    // A whole course's walk: chg's nineteen units take about two minutes alone, more on a busy machine.
+  }, 300_000);
 
   it("accepts each card's own solution and rejects a wrong answer", () => {
     const { course, sessions } = walked(id, orthography);
@@ -169,15 +170,20 @@ describe("speech the app can do (§10.4, ADR 0093)", () => {
     const { course } = walked("yue");
     const scored = yueLessons(course, { speech });
     const plain = lessons(walked("yue").sessions).map((s) => s.plan);
+    const fa = walked("fa");
+    const faScored = lessons(fa.sessions).map((s) => plan(fa.course, s.state, s.request, { ...s.options, speech }));
     expect(templatesOf(scored)).toContain("speak");
-    expect(templatesOf(scored)).toContain("listen-speak");
+    // Both kinds of scored speaking take tier 0's place. Which a walk's calibration picks follows its
+    // learner's history (yue's walk, since ADR 0132's questions, picks speak alone): fa's has both.
+    expect([...templatesOf(scored), ...templatesOf(faScored)]).toContain("listen-speak");
     expect(templatesOf(scored)).not.toContain("speak.tier-0");
+    expect(templatesOf(faScored)).not.toContain("speak.tier-0");
     expect(templatesOf(plain)).toContain("speak.tier-0");
     for (const t of ["speak", "listen-speak", "tone-identify"] as const) expect(templatesOf(plain)).not.toContain(t);
     expect(scored.map((p) => p.exercises.length)).toEqual(plain.map((p) => p.exercises.length));
+    expect(faScored.map((p) => p.exercises.length)).toEqual(lessons(fa.sessions).map((s) => s.plan.exercises.length));
     // Persian readings carry no tones.
-    const fa = walked("fa");
-    expect(templatesOf(lessons(fa.sessions).map((s) => plan(fa.course, s.state, s.request, { ...s.options, speech })))).not.toContain("tone-identify");
+    expect(templatesOf(faScored)).not.toContain("tone-identify");
   });
 
   it("can leave speaking out", () => {
@@ -349,9 +355,10 @@ describe("a word's pronunciation in its sentence (ADR 0054, 0095, 0098)", () => 
     for (const [id, orthography] of COURSES) {
       const asked = new Set(plannedCards(walked(id, orthography).sessions).map(({ ex }) => ex.template));
       expect(asked.has("vocalize"), `${id} ${orthography ?? ""}`).toBe(["fa", "apc-Arab/standard", "hbo"].includes(orthography ?? id));
-      // Typing a word's Jyutping: in the characters, not in Jyutping itself (ADR 0126); and a Chaghatay
-      // word's Schluessel, once read right by choice (ADR 0131).
-      expect(asked.has("transcribe"), `${id} ${orthography ?? ""}`).toBe(["yue", "chg-Arab/standard"].includes(orthography ?? id));
+      // Typing a word's Jyutping: in the characters, not in Jyutping itself (ADR 0126); a Chaghatay
+      // word's Schluessel, once read right by choice (ADR 0131); a Classical Chinese word's reading in
+      // the learner's tradition (Pinyin, for a learner who chose none), once read right by choice (ADR 0138).
+      expect(asked.has("transcribe"), `${id} ${orthography ?? ""}`).toBe(["yue", "chg-Arab/standard", "lzh"].includes(orthography ?? id));
     }
   });
 });

@@ -18,6 +18,18 @@ pnpm --filter @nabu/mobile ios       # opens Xcode (macOS)
 - **No server.** Leave `VITE_NABU_API` unset for a local-only app.
 - **CI** builds the preview APK on every push and pull request, and publishes it from main.
 
+## The keyboard follows the course
+
+On Android, each text field tells the keyboard app which language it is typed in, as Google
+Translate does ([ADR 0143](../../docs/adr/0143-keyboard-language.md)). Gboard switches to Persian
+for a Persian answer and back for an English one, if the learner has added those languages to it.
+Each field names its languages best first, and the app hands Gboard the first one it has: Chaghatay
+falls back to Persian, and Toki Pona, Jyutping and Pinyin take Gboard's Alphabet (add it under
+Gboard's Languages) before English.
+`NabuWebView` (`android/app/src/main/java/org/nabu/app`) does this, and replaces Capacitor's web view
+through `res/layout/capacitor_bridge_layout_main.xml`. Keep that file in step with Capacitor's own
+when upgrading. Browsers and iOS give a page no way to do it.
+
 ## Preview APK
 
 Every push to main builds the app and replaces the APK on the

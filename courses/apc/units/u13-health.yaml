@@ -7,22 +7,22 @@ id: u13-health
 title: {en: I don't feel well}
 cefr: A2
 kcs:
-- {id: 'sense:mrid', gloss: {en: sick; ill}, forms: {apc-Arab/standard: [مريض], apc-Latn/arabizi: [mrid]}, notes: {en: 'A woman: مريضة, mrida.'}}
-- {id: 'sense:shu-bak', gloss: {en: 'what''s wrong? (to a man)'}, forms: {apc-Arab/standard: [شو بك], apc-Latn/arabizi: [shu bak]}, notes: {en: 'Literally ''what is in you?''. To a woman: شو بكي, shu biki;
+- {id: 'sense:mrid', pos: ADJ, gloss: {en: sick; ill}, forms: {apc-Arab/standard: [مريض], apc-Latn/arabizi: [mrid]}, notes: {en: 'A woman: مريضة, mrida.'}}
+- {id: 'sense:shu-bak', pos: INTJ, gloss: {en: 'what''s wrong? (to a man)'}, forms: {apc-Arab/standard: [شو بك], apc-Latn/arabizi: [shu bak]}, notes: {en: 'Literally ''what is in you?''. To a woman: شو بكي, shu biki;
       to several people: شو بكن, shu bkon.'}}
-- {id: 'sense:ras', gloss: {en: head}, forms: {apc-Arab/standard: [راس], apc-Latn/arabizi: [ras]}}
-- {id: 'sense:wja3', gloss: {en: pain; ache}, forms: {apc-Arab/standard: [وجع], apc-Latn/arabizi: [wja3]}, notes: {en: 'ma3i wja3 ras: I have a headache (ma3, as for what you have on you right now).'}}
-- {id: 'sense:batn', gloss: {en: stomach; belly}, forms: {apc-Arab/standard: [بطن], apc-Latn/arabizi: [batn]}}
-- {id: 'sense:fi.can', gloss: {en: 'can (with an ending: fiyyi, fik…)'}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'fi + the possessive ending says who can: fiyyi (I, also fini),
+- {id: 'sense:ras', pos: NOUN, gloss: {en: head}, forms: {apc-Arab/standard: [راس], apc-Latn/arabizi: [ras]}}
+- {id: 'sense:wja3', pos: NOUN, gloss: {en: pain; ache}, forms: {apc-Arab/standard: [وجع], apc-Latn/arabizi: [wja3]}, notes: {en: 'ma3i wja3 ras: I have a headache (ma3, as for what you have on you right now).'}}
+- {id: 'sense:batn', pos: NOUN, gloss: {en: stomach; belly}, forms: {apc-Arab/standard: [بطن], apc-Latn/arabizi: [batn]}}
+- {id: 'sense:fi.can', pos: VERB, gloss: {en: 'can (with an ending: fiyyi, fik…)'}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'fi + the possessive ending says who can: fiyyi (I, also fini),
       fik (you, to a man), fiki (to a woman), fih (he), fiya (she), fina (we), fikon (you, several), fiyon (they). The verb after it has no b-: ma fiyyi nem, I can''t sleep. Without an ending, في is ''there
       is''.'}}
-- {id: 'sense:a7san', gloss: {en: better; best}, forms: {apc-Arab/standard: [أحسن], apc-Latn/arabizi: [a7san]}}
-- {id: 'sense:lezem', gloss: {en: must; have to; should}, forms: {apc-Arab/standard: [لازم], apc-Latn/arabizi: [lezem]}, notes: {en: 'lezem + a verb without b-: lezem ru7, I have to go. ma lezem: you shouldn''t;
+- {id: 'sense:a7san', pos: ADJ, gloss: {en: better; best}, forms: {apc-Arab/standard: [أحسن], apc-Latn/arabizi: [a7san]}}
+- {id: 'sense:lezem', pos: VERB, gloss: {en: must; have to; should}, forms: {apc-Arab/standard: [لازم], apc-Latn/arabizi: [lezem]}, notes: {en: 'lezem + a verb without b-: lezem ru7, I have to go. ma lezem: you shouldn''t;
       lezem ma: you must not (Kline 2022).'}}
-- {id: 'sense:rte7', gloss: {en: rest}, forms: {apc-Arab/standard: [ارتاح], apc-Latn/arabizi: [rte7]}, notes: {en: 'lezem tirte7: you should rest (to a woman: tirte7i).'}}
-- {id: 'sense:7akim', gloss: {en: doctor}, forms: {apc-Arab/standard: [حكيم], apc-Latn/arabizi: [7akim]}, notes: {en: 'Also دكتور, doktor.'}}
-- {id: 'sense:dawa', gloss: {en: medicine}, forms: {apc-Arab/standard: [دوا], apc-Latn/arabizi: [dawa]}}
-- {id: 'sense:salemtak', gloss: {en: get well soon (to a man)}, forms: {apc-Arab/standard: [سلامتك], apc-Latn/arabizi: [salemtak]}, notes: {en: 'Literally ''your safety''. To a woman: salemtik; to several
+- {id: 'sense:rte7', pos: VERB, gloss: {en: rest}, forms: {apc-Arab/standard: [ارتاح], apc-Latn/arabizi: [rte7]}, notes: {en: 'lezem tirte7: you should rest (to a woman: tirte7i).'}}
+- {id: 'sense:7akim', pos: NOUN, gloss: {en: doctor}, forms: {apc-Arab/standard: [حكيم], apc-Latn/arabizi: [7akim]}, notes: {en: 'Also دكتور, doktor.'}}
+- {id: 'sense:dawa', pos: NOUN, gloss: {en: medicine}, forms: {apc-Arab/standard: [دوا], apc-Latn/arabizi: [dawa]}}
+- {id: 'sense:salemtak', pos: INTJ, gloss: {en: get well soon (to a man)}, forms: {apc-Arab/standard: [سلامتك], apc-Latn/arabizi: [salemtak]}, notes: {en: 'Literally ''your safety''. To a woman: salemtik; to several
       people: salemetkon.'}}
 nodes:
 - {id: apc.health.sick, kind: lesson, introduces: ['sense:mrid', 'sense:shu-bak', 'sense:ras', 'sense:wja3', 'sense:batn']}
@@ -209,13 +209,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا معها وجع راس.
-      tokens: [{surface: تيتا, sense: teta}, {surface: معها, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
+      tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: معها, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
       reverse: |-
         تيتا (معها|معا) وجع راس
         تيتا عندها وجع راس
     apc-Latn/arabizi:
       text: teta ma3a wja3 ras.
-      tokens: [{surface: teta, sense: teta}, {surface: ma3a, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
+      tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: ma3a, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
       reverse: |-
         teta (ma3a|ma3ha) (wja3|waja3|wje3|waje3) (ras|rass)
         teta 3enda wja3 ras
@@ -644,13 +644,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سلامتك، مايا!
-      tokens: [{surface: سلامتك, sense: salemtak, form: 'form:poss-2fs', vocalized: سَلامْتِك}, {surface: مايا, sense: maya}]
+      tokens: [{surface: سلامتك, sense: salemtak, form: 'form:poss-2fs', vocalized: سَلامْتِك}, {surface: مايا, sense: maya, form: 'form:fem'}]
       reverse: |-
         سلامتك مايا
         مايا سلامتك
     apc-Latn/arabizi:
       text: salemtik, Maya!
-      tokens: [{surface: salemtik, sense: salemtak, form: 'form:poss-2fs'}, {surface: Maya, sense: maya}]
+      tokens: [{surface: salemtik, sense: salemtak, form: 'form:poss-2fs'}, {surface: Maya, sense: maya, form: 'form:fem'}]
       reverse: |-
         (salemtik|salamtik|salemtek|salemtike) Maya
         Maya salemtik
@@ -716,10 +716,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مَرْحَبا مايا، كيفِك؟
-          tokens: [{surface: مَرْحَبا, sense: marhaba}, {surface: مايا, sense: maya}, {surface: كيفِك, sense: kif, morphs: [{surface: كيفِ, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: مَرْحَبا, sense: marhaba}, {surface: مايا, sense: maya, form: 'form:fem'}, {surface: كيفِك, sense: kif, morphs: [{surface: كيفِ, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}]
         apc-Latn/arabizi:
           text: mar7aba Maya, kifik?
-          tokens: [{surface: mar7aba, sense: marhaba}, {surface: Maya, sense: maya}, {surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: mar7aba, sense: marhaba}, {surface: Maya, sense: maya, form: 'form:fem'}, {surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}]
       translations: {en: 'Hi Maya, how are you?'}
   - line:
       speaker: maya
@@ -744,8 +744,8 @@ stories:
   - line:
       speaker: maya
       ask: complete
-      gap: sense:ras
-      distractors: ['sense:batn']
+      gap: 'sense:ras'
+      distractors: ['sense:dollar', 'sense:ktab']
       forms:
         apc-Arab/standard:
           text: مَعي وْجَع راس، وما فِيّي نام.

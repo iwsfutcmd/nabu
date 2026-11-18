@@ -5,30 +5,30 @@ id: home
 title: {en: At home}
 cefr: A1
 kcs:
-- {id: 'sense:khane', gloss: {en: house; home}, forms: {fa-Arab/standard: [خانه, خانهٔ]}, notes: {en: 'Spoken Tehrani: خونه (khune). The ezafe after its silent -e is written ـٔ: خانهٔ من.'}}
-- {id: 'sense:bozorg', gloss: {en: big; large; (of siblings) older}, forms: {fa-Arab/standard: [بزرگ]}}
-- {id: 'sense:kuchak', gloss: {en: small; little; (of siblings) younger}, forms: {fa-Arab/standard: [کوچک]}}
-- {id: 'sense:aparteman', gloss: {en: apartment; flat}, forms: {fa-Arab/standard: [آپارتمان]}}
-- {id: 'sense:ghashang', gloss: {en: pretty; beautiful; nice}, forms: {fa-Arab/standard: [قشنگ]}}
-- {id: 'sense:jadid', gloss: {en: new}, forms: {fa-Arab/standard: [جدید]}}
-- {id: 'sense:ghadimi', gloss: {en: old (of things)}, forms: {fa-Arab/standard: [قدیمی]}, notes: {en: 'For people, old is پیر (pir).'}}
-- {id: 'sense:otagh', gloss: {en: room}, forms: {fa-Arab/standard: [اتاق]}}
-- {id: 'sense:amma', gloss: {en: but}, forms: {fa-Arab/standard: [اما]}, notes: {en: ولی (vali) is a common alternative.}}
+- {id: 'sense:khane', pos: NOUN, gloss: {en: house; home}, forms: {fa-Arab/standard: [خانه, خانهٔ]}, notes: {en: 'Spoken Tehrani: خونه (khune). The ezafe after its silent -e is written ـٔ: خانهٔ من.'}}
+- {id: 'sense:bozorg', pos: ADJ, gloss: {en: big; large; (of siblings) older}, forms: {fa-Arab/standard: [بزرگ]}}
+- {id: 'sense:kuchak', pos: ADJ, gloss: {en: small; little; (of siblings) younger}, forms: {fa-Arab/standard: [کوچک]}}
+- {id: 'sense:aparteman', pos: NOUN, gloss: {en: apartment; flat}, forms: {fa-Arab/standard: [آپارتمان]}}
+- {id: 'sense:ghashang', pos: ADJ, gloss: {en: pretty; beautiful; nice}, forms: {fa-Arab/standard: [قشنگ]}}
+- {id: 'sense:jadid', pos: ADJ, gloss: {en: new}, forms: {fa-Arab/standard: [جدید]}}
+- {id: 'sense:ghadimi', pos: ADJ, gloss: {en: old (of things)}, forms: {fa-Arab/standard: [قدیمی]}, notes: {en: 'For people, old is پیر (pir).'}}
+- {id: 'sense:otagh', pos: NOUN, gloss: {en: room}, forms: {fa-Arab/standard: [اتاق]}}
+- {id: 'sense:amma', pos: CCONJ, gloss: {en: but}, forms: {fa-Arab/standard: [اما]}, notes: {en: ولی (vali) is a common alternative.}}
 - {id: 'form:poss-2sg', gloss: {en: '-at: your (one person, familiar; joined to a noun)'}, notes: {en: 'اتاقت (otāq-at) means the same as اتاقِ تو. Spoken: -et (otāqet).'}}
-- {id: 'sense:ashpazkhane', gloss: {en: kitchen}, forms: {fa-Arab/standard: [آشپزخانه]}, notes: {en: Literally 'cook-house'.}}
-- {id: 'sense:panjere', gloss: {en: window}, forms: {fa-Arab/standard: [پنجره]}}
-- {id: 'sense:koja', gloss: {en: where}, forms: {fa-Arab/standard: [کجا]}, notes: {en: 'کجاست = کجا + است: where is …?'}}
-- {id: 'sense:inja', gloss: {en: here}, forms: {fa-Arab/standard: [اینجا]}, notes: {en: 'اینجاست = اینجا + است. Spoken: اینجاس (injās).'}}
-- {id: 'sense:anja', gloss: {en: there}, forms: {fa-Arab/standard: [آنجا]}, notes: {en: 'آنجاست = آنجا + است. Spoken: اونجا (unjā).'}}
-- {id: 'sense:dastshui', gloss: {en: toilet; restroom}, forms: {fa-Arab/standard: [دستشویی]}, notes: {en: Literally 'hand-washing'. The bathroom with a shower is حمام (hammām).}}
-- {id: 'sense:dar', gloss: {en: in; at}, forms: {fa-Arab/standard: [در]}, notes: {en: 'Everyday speech uses توی or تو (tu): توی آشپزخانه, in the kitchen.'}}
-- {id: 'sense:miz', gloss: {en: table; desk}, forms: {fa-Arab/standard: [میز]}}
-- {id: 'sense:ruye', gloss: {en: on (top of)}, forms: {fa-Arab/standard: [روی]}}
-- {id: 'sense:zir', gloss: {en: under}, forms: {fa-Arab/standard: [زیر]}, notes: {en: 'With the ezafe: زیرِ میز, under the table.'}}
-- {id: 'sense:sandali', gloss: {en: chair}, forms: {fa-Arab/standard: [صندلی]}}
-- {id: 'sense:takht', gloss: {en: bed}, forms: {fa-Arab/standard: [تخت]}}
-- {id: 'sense:kenar', gloss: {en: next to; beside; by}, forms: {fa-Arab/standard: [کنار]}, notes: {en: 'With the ezafe: کنارِ پنجره, by the window.'}}
-- {id: 'sense:yakhchal', gloss: {en: fridge; refrigerator}, forms: {fa-Arab/standard: [یخچال]}, notes: {en: 'Literally ''ice pit'', the old desert ice-houses.'}}
+- {id: 'sense:ashpazkhane', pos: NOUN, gloss: {en: kitchen}, forms: {fa-Arab/standard: [آشپزخانه]}, notes: {en: Literally 'cook-house'.}}
+- {id: 'sense:panjere', pos: NOUN, gloss: {en: window}, forms: {fa-Arab/standard: [پنجره]}}
+- {id: 'sense:koja', pos: ADV, features: {PronType: Int}, gloss: {en: where}, forms: {fa-Arab/standard: [کجا]}, notes: {en: 'کجاست = کجا + است: where is …?'}}
+- {id: 'sense:inja', pos: ADV, features: {PronType: Dem}, gloss: {en: here}, forms: {fa-Arab/standard: [اینجا]}, notes: {en: 'اینجاست = اینجا + است. Spoken: اینجاس (injās).'}}
+- {id: 'sense:anja', pos: ADV, features: {PronType: Dem}, gloss: {en: there}, forms: {fa-Arab/standard: [آنجا]}, notes: {en: 'آنجاست = آنجا + است. Spoken: اونجا (unjā).'}}
+- {id: 'sense:dastshui', pos: NOUN, gloss: {en: toilet; restroom}, forms: {fa-Arab/standard: [دستشویی]}, notes: {en: Literally 'hand-washing'. The bathroom with a shower is حمام (hammām).}}
+- {id: 'sense:dar', pos: ADP, gloss: {en: in; at}, forms: {fa-Arab/standard: [در]}, notes: {en: 'Everyday speech uses توی or تو (tu): توی آشپزخانه, in the kitchen.'}}
+- {id: 'sense:miz', pos: NOUN, gloss: {en: table; desk}, forms: {fa-Arab/standard: [میز]}}
+- {id: 'sense:ruye', pos: ADP, gloss: {en: on (top of)}, forms: {fa-Arab/standard: [روی]}}
+- {id: 'sense:zir', pos: ADP, gloss: {en: under}, forms: {fa-Arab/standard: [زیر]}, notes: {en: 'With the ezafe: زیرِ میز, under the table.'}}
+- {id: 'sense:sandali', pos: NOUN, gloss: {en: chair}, forms: {fa-Arab/standard: [صندلی]}}
+- {id: 'sense:takht', pos: NOUN, gloss: {en: bed}, forms: {fa-Arab/standard: [تخت]}}
+- {id: 'sense:kenar', pos: ADP, gloss: {en: next to; beside; by}, forms: {fa-Arab/standard: [کنار]}, notes: {en: 'With the ezafe: کنارِ پنجره, by the window.'}}
+- {id: 'sense:yakhchal', pos: NOUN, gloss: {en: fridge; refrigerator}, forms: {fa-Arab/standard: [یخچال]}, notes: {en: 'Literally ''ice pit'', the old desert ice-houses.'}}
 - {id: 'construction:existential-hast', gloss: {en: 'هست: there is, there are'}, forms: {fa-Arab/standard: [هست]}, notes: {en: 'در آشپزخانه یک میز هست: there is a table in the kitchen. The negative is نیست: نان نیست, there is no bread.'}}
 nodes:
 - {id: fa.home.house, kind: lesson, introduces: ['sense:khane', 'sense:bozorg', 'sense:kuchak', 'sense:aparteman', 'sense:ghashang', 'sense:jadid', 'sense:ghadimi']}
@@ -41,41 +41,37 @@ nodes:
 sentences:
 - id: s.home.1
   node: fa.home.house
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: این خانهٔ من است.
-      tokens: [{surface: این, sense: in}, {surface: خانهٔ, sense: khane}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, sense: in}, {surface: خانهٔ, sense: khane, morphs: [{surface: خانهٔ, kc: 'sense:khane'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
       reverse: "این خان(هٔ|ه\u200Cی|ه) من است\nاین خانه\u200Cام است\nاین خانه\u200Cی منه"
   translations:
     en: This is my (house|home).
 - id: s.home.2
   node: fa.home.house
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: خانهٔ ما بزرگ است.
-      tokens: [{surface: خانهٔ, sense: khane}, {surface: ما, sense: ma}, {surface: بزرگ, sense: bozorg}, {surface: است, sense: budan}]
+      tokens: [{surface: خانهٔ, sense: khane, morphs: [{surface: خانهٔ, kc: 'sense:khane'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ما, sense: ma}, {surface: بزرگ, sense: bozorg}, {surface: است, sense: budan}]
       reverse: "خان(هٔ|ه\u200Cی|ه) ما (بزرگ است|بزرگه)\nخانه\u200Cمان بزرگ است"
   translations:
     en: Our (house|home) is (big|large).
 - id: s.home.3
   node: fa.home.house
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: خانهٔ علی کوچک است.
-      tokens: [{surface: خانهٔ, sense: khane}, {surface: علی, sense: ali}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}]
+      tokens: [{surface: خانهٔ, sense: khane, morphs: [{surface: خانهٔ, kc: 'sense:khane'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: علی, sense: ali}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}]
       reverse: "خان(هٔ|ه\u200cی|ه) علی کوچک است"
   translations:
     en: Ali's (house|home) is (small|little).
 - id: s.home.4
   node: fa.home.house
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: آپارتمانِ ما کوچک است.
-      tokens: [{surface: آپارتمانِ, sense: aparteman}, {surface: ما, sense: ma}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}]
+      tokens: [{surface: آپارتمانِ, sense: aparteman, morphs: [{surface: آپارتمانِ, kc: 'sense:aparteman'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ما, sense: ma}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}]
       reverse: |-
         آپارتمان ما کوچک است
         آپارتمانمان کوچک است
@@ -84,11 +80,10 @@ sentences:
 - id: s.home.5
   node: fa.home.house
   register: formal
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: خانهٔ شما خیلی قشنگ است!
-      tokens: [{surface: خانهٔ, sense: khane}, {surface: شما, sense: shoma}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+      tokens: [{surface: خانهٔ, sense: khane, morphs: [{surface: خانهٔ, kc: 'sense:khane'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: شما, sense: shoma}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
       reverse: "خان(هٔ|ه\u200Cی|ه) (شما|تو) خیلی (قشنگ است|قشنگه)\n(خانه\u200Cتان|خانه\u200Cات) خیلی (قشنگ است|قشنگه)\nخانه شما بسیار قشنگ است\nخانه شما خیلی زیبا است"
   translations:
     en: |-
@@ -121,21 +116,19 @@ sentences:
       That house is really old.
 - id: s.home.8
   node: fa.home.rooms
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: این اتاقِ من است.
-      tokens: [{surface: این, sense: in}, {surface: اتاقِ, sense: otagh}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, sense: in}, {surface: اتاقِ, sense: otagh, morphs: [{surface: اتاقِ, kc: 'sense:otagh'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
       reverse: این (اتاق من است|اتاقم است|اتاق منه|اتاقمه)
   translations:
     en: This is my room.
 - id: s.home.9
   node: fa.home.rooms
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: اتاقِ من کوچک است، اما قشنگ است.
-      tokens: [{surface: اتاقِ, sense: otagh}, {surface: من, sense: man}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}, {surface: اما, sense: amma}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+      tokens: [{surface: اتاقِ, sense: otagh, morphs: [{surface: اتاقِ, kc: 'sense:otagh'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}, {surface: اما, sense: amma}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
       reverse: |-
         (اتاق من|اتاقم) کوچک است (اما|ولی) (قشنگ است|قشنگه)
         اتاق من کوچک است ولی زیبا است
@@ -168,11 +161,10 @@ sentences:
     en: The kitchen is (big|large).
 - id: s.home.12
   node: fa.home.rooms
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: اتاقِ من دو پنجره دارد.
-      tokens: [{surface: اتاقِ, sense: otagh}, {surface: من, sense: man}, {surface: دو, sense: do}, {surface: پنجره, sense: panjere}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      tokens: [{surface: اتاقِ, sense: otagh, morphs: [{surface: اتاقِ, kc: 'sense:otagh'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: دو, sense: do}, {surface: پنجره, sense: panjere}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
       reverse: |-
         (اتاق من|اتاقم) دو پنجره دارد
         اتاق من دو تا پنجره دارد
@@ -218,11 +210,10 @@ sentences:
     en: Where('s| is) the (toilet|bathroom|restroom|loo)?
 - id: s.home.17
   node: fa.home.where
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: کتابِ من کجاست؟
-      tokens: [{surface: کتابِ, sense: ketab}, {surface: من, sense: man}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
+      tokens: [{surface: کتابِ, sense: ketab, morphs: [{surface: کتابِ, kc: 'sense:ketab'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
       reverse: (کتاب من|کتابم) (کجاست|کجا است)
   translations:
     en: Where('s| is) my book?
@@ -270,11 +261,10 @@ sentences:
     en: The book is on the (table|desk).
 - id: s.home.22
   node: fa.home.in
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: کتاب زیرِ میز است.
-      tokens: [{surface: کتاب, sense: ketab}, {surface: زیرِ, sense: zir}, {surface: میز, sense: miz}, {surface: است, sense: budan}]
+      tokens: [{surface: کتاب, sense: ketab}, {surface: زیرِ, sense: zir, morphs: [{surface: زیرِ, kc: 'sense:zir'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: میز, sense: miz}, {surface: است, sense: budan}]
       reverse: |-
         کتاب زیر میز است
         کتاب زیر میزه
@@ -303,11 +293,10 @@ sentences:
     en: This bed is new.
 - id: s.home.25
   node: fa.home.furniture
-  constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
       text: تختِ من کنارِ پنجره است.
-      tokens: [{surface: تختِ, sense: takht}, {surface: من, sense: man}, {surface: کنارِ, sense: kenar}, {surface: پنجره, sense: panjere}, {surface: است, sense: budan}]
+      tokens: [{surface: تختِ, sense: takht, morphs: [{surface: تختِ, kc: 'sense:takht'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: کنارِ, sense: kenar, morphs: [{surface: کنارِ, kc: 'sense:kenar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: پنجره, sense: panjere}, {surface: است, sense: budan}]
       reverse: (تخت من|تختم) کنار پنجره است
   translations:
     en: My bed is (next to|by|beside) the window.
@@ -396,14 +385,17 @@ stories:
       forms:
         fa-Arab/standard:
           text: سلام! آپارتمانِ تو خیلی قشنگ است!
-          tokens: [{surface: سلام, sense: salam}, {surface: آپارتمانِ, sense: aparteman}, {surface: تو, sense: to}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+          tokens: [{surface: سلام, sense: salam}, {surface: آپارتمانِ, sense: aparteman, morphs: [{surface: آپارتمانِ, kc: 'sense:aparteman'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تو, sense: to}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
       translations: {en: Hi! Your flat is really nice!}
   - line:
       speaker: ali
+      ask: complete
+      gap: sense:jadid
+      distractors: ['sense:kuchak', 'sense:bozorg']
       forms:
         fa-Arab/standard:
           text: ممنون. آپارتمانِ من کوچک است، اما جدید است.
-          tokens: [{surface: ممنون, sense: mamnun}, {surface: آپارتمانِ, sense: aparteman}, {surface: من, sense: man}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}, {surface: اما, sense: amma}, {surface: جدید, sense: jadid}, {surface: است, sense: budan}]
+          tokens: [{surface: ممنون, sense: mamnun}, {surface: آپارتمانِ, sense: aparteman, morphs: [{surface: آپارتمانِ, kc: 'sense:aparteman'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}, {surface: اما, sense: amma}, {surface: جدید, sense: jadid}, {surface: است, sense: budan}]
       translations: {en: 'Thanks. My flat is small, but it''s new.'}
   - line:
       speaker: maryam
@@ -414,9 +406,6 @@ stories:
       translations: {en: 'Where''s the kitchen?'}
   - line:
       speaker: ali
-      ask: complete
-      gap: sense:anja
-      distractors: ['sense:koja', 'sense:kenar']
       forms:
         fa-Arab/standard:
           text: آشپزخانه آنجاست.
@@ -427,14 +416,14 @@ stories:
       forms:
         fa-Arab/standard:
           text: اتاقِ تو کجاست؟
-          tokens: [{surface: اتاقِ, sense: otagh}, {surface: تو, sense: to}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
+          tokens: [{surface: اتاقِ, sense: otagh, morphs: [{surface: اتاقِ, kc: 'sense:otagh'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تو, sense: to}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
       translations: {en: 'Where''s your room?'}
   - line:
       speaker: ali
       forms:
         fa-Arab/standard:
           text: اتاقِ من اینجاست. یک تخت و یک میز دارد.
-          tokens: [{surface: اتاقِ, sense: otagh}, {surface: من, sense: man}, {surface: اینجاست, sense: inja, morphs: [{surface: اینجا, kc: 'sense:inja'}, {surface: ست, kc: 'sense:budan'}]}, {surface: یک, sense: yek}, {surface: تخت, sense: takht}, {surface: و, sense: va}, {surface: یک, sense: yek}, {surface: میز, sense: miz}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+          tokens: [{surface: اتاقِ, sense: otagh, morphs: [{surface: اتاقِ, kc: 'sense:otagh'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: اینجاست, sense: inja, morphs: [{surface: اینجا, kc: 'sense:inja'}, {surface: ست, kc: 'sense:budan'}]}, {surface: یک, sense: yek}, {surface: تخت, sense: takht}, {surface: و, sense: va}, {surface: یک, sense: yek}, {surface: میز, sense: miz}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
       translations: {en: My room is here. It has a bed and a desk.}
   - choose:
       prompt: {en: 'What is in Ali''s room?'}
@@ -453,14 +442,14 @@ stories:
       forms:
         fa-Arab/standard:
           text: "کتاب\u200cهای من زیرِ تخت هستند!"
-          tokens: [{surface: "کتاب\u200cهای", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: زیرِ, sense: zir}, {surface: تخت, sense: takht}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+          tokens: [{surface: "کتاب\u200cهای", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: زیرِ, sense: zir, morphs: [{surface: زیرِ, kc: 'sense:zir'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تخت, sense: takht}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
       translations: {en: My books are under the bed!}
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: زیرِ تخت؟!
-          tokens: [{surface: زیرِ, sense: zir}, {surface: تخت, sense: takht}]
+          tokens: [{surface: زیرِ, sense: zir, morphs: [{surface: زیرِ, kc: 'sense:zir'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تخت, sense: takht}]
       translations: {en: 'Under the bed?!'}
   - choose:
       prompt: {en: 'Where are Ali''s books?'}

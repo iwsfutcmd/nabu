@@ -57,6 +57,8 @@ annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true
 input:
   keyboard: cldr-kbd:he
+  # Its vowel marks put on a word's letters from buttons, once a choice card has shown them (ADR 0137).
+  markBuilder: true
 layout: { vertical: none }
 # Pointed text is set in a serif face (Noto Serif Hebrew, OFL-1.1) a fifth larger than the text around it:
 # the points under the letters are small at the size of Latin text, and need the extra line height.

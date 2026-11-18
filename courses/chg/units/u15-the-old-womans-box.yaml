@@ -11,6 +11,7 @@ title:
 cefr: B1
 kcs:
 - id: sense:tufan
+  pos: NOUN
   gloss:
     en: the Flood (of Noah); a flood
   forms:
@@ -21,6 +22,7 @@ kcs:
   readings:
     schluessel: ṭūfān
 - id: sense:halak
+  pos: ADJ
   gloss:
     en: destroyed, perished
   forms:
@@ -33,6 +35,7 @@ kcs:
   notes:
     en: halāk bol- "to perish, be killed".
 - id: sense:amma
+  pos: CCONJ
   gloss:
     en: but, however
   forms:
@@ -43,6 +46,7 @@ kcs:
   readings:
     schluessel: ammā
 - id: sense:yaqa
+  pos: NOUN
   gloss:
     en: edge, side; bank (of a river)
   forms:
@@ -55,6 +59,7 @@ kcs:
   notes:
     en: daryā yaqasida "on the bank of the river".
 - id: sense:tiz
+  pos: NOUN
   gloss:
     en: knee
   forms:
@@ -65,6 +70,7 @@ kcs:
   readings:
     schluessel: tiz
 - id: sense:yat
+  pos: VERB
   gloss:
     en: to reach, arrive
   forms:
@@ -77,6 +83,7 @@ kcs:
   notes:
     en: 'With the dative: tizigä yätmädi "did not reach his knees".'
 - id: sense:mama
+  pos: NOUN
   gloss:
     en: old woman; grandmother
   forms:
@@ -87,6 +94,7 @@ kcs:
   readings:
     schluessel: mama
 - id: sense:yigla
+  pos: VERB
   gloss:
     en: to weep, cry
   forms:
@@ -97,6 +105,7 @@ kcs:
   readings:
     schluessel: yiǧla
 - id: sense:ay.voc
+  pos: INTJ
   gloss:
     en: O!, oh! (calling someone)
   forms:
@@ -109,6 +118,7 @@ kcs:
   notes:
     en: 'Before a name or a word for a person: ay oǧlum "oh, my son!".'
 - id: sense:hal
+  pos: NOUN
   gloss:
     en: state, situation, condition
   forms:
@@ -119,6 +129,7 @@ kcs:
   readings:
     schluessel: ḥāl
 - id: sense:bayan
+  pos: NOUN
   gloss:
     en: explanation, account
   forms:
@@ -131,6 +142,7 @@ kcs:
   notes:
     en: bayān qil- "to explain, tell".
 - id: sense:sanduq
+  pos: NOUN
   gloss:
     en: box, chest
   forms:
@@ -141,6 +153,7 @@ kcs:
   readings:
     schluessel: ṣandūq
 - id: sense:ettur
+  pos: VERB
   gloss:
     en: to have (something) made
   forms:
@@ -153,6 +166,7 @@ kcs:
   notes:
     en: 'et- "to do, make" with the causative -tür: "to make (someone) make".'
 - id: sense:saqla
+  pos: VERB
   gloss:
     en: to keep, save, guard; to wait
   forms:
@@ -163,6 +177,7 @@ kcs:
   readings:
     schluessel: saqla
 - id: sense:bar.give
+  pos: VERB
   gloss:
     en: to give; after -p, for someone (saqlap bär- "keep for someone")
   forms:
@@ -175,6 +190,7 @@ kcs:
   notes:
     en: bär- and ber- are one verb; the -p converb before it does something for someone.
 - id: sense:amanat
+  pos: NOUN
   gloss:
     en: a thing held in trust, a deposit
   forms:
@@ -185,6 +201,7 @@ kcs:
   readings:
     schluessel: amānat
 - id: sense:itimad
+  pos: NOUN
   gloss:
     en: trust, confidence
   forms:
@@ -197,6 +214,9 @@ kcs:
   notes:
     en: kišigä iʿtimādim yoq "I trust no one".
 - id: sense:shu
+  pos: PRON
+  features:
+    PronType: Dem
   gloss:
     en: this, that (just mentioned)
   forms:
@@ -695,9 +715,7 @@ stories:
   - line:
       ask: complete
       gap: sense:tiz
-      distractors:
-      - sense:shirin
-      - sense:sawuq
+      asks: form
       forms:
         chg-Arab/standard:
           text: طوفان سویی انینک تیزیغه یتمادی.

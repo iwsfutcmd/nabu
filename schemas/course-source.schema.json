@@ -62,6 +62,10 @@
     "placement": {
       "$ref": "common.schema.json#/$defs/PlacementPolicy"
     },
+    "consistentReadings": {
+      "description": "Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.",
+      "type": "boolean"
+    },
     "iPlusOne": {
       "description": "Maximum new knowledge components per sentence (§7.5). Default 1.",
       "type": "integer",
@@ -243,6 +247,14 @@
         },
         "cefr": {
           "$ref": "#/$defs/Cefr"
+        },
+        "pos": {
+          "description": "The word's part of speech, a UD UPOS tag (ADR 0132): a word question offers only words of the answer's part of speech and features. Sense KCs only.",
+          "$ref": "common.schema.json#/$defs/PartOfSpeech"
+        },
+        "features": {
+          "description": "The word's lexical features, as UD spells them (ADR 0132): NounType Clf (a classifier), PronType Dem, PartType Mod (a sentence-final particle). Matched exactly where the answer has a pos. Needs pos.",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
         },
         "gloss": {
           "description": "Short meaning per support language.",
@@ -523,6 +535,15 @@
           "description": "This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.",
           "type": "string",
           "minLength": 1
+        },
+        "context": {
+          "description": "A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.",
+          "type": "string",
+          "pattern": "^[a-z][a-z-]*$"
+        },
+        "readingVariant": {
+          "description": "Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading.",
+          "const": true
         }
       }
     },
@@ -894,8 +915,12 @@
           "description": "complete: the KC of the missing word (exactly one word token of the line has it).",
           "$ref": "common.schema.json#/$defs/KcId"
         },
+        "asks": {
+          "description": "complete: what the question asks (ADR 0132). word (the default): which word fits, every option in the gap's form, so only the line's sense rules them out. form: which form of the gap's own word fits, so only grammar does.",
+          "$ref": "common.schema.json#/$defs/Asks"
+        },
         "distractors": {
-          "description": "complete: other KCs offered, shown by their first form in the learner's orthography.",
+          "description": "complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,

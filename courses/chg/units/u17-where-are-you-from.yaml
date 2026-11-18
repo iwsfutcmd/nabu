@@ -10,6 +10,7 @@ title:
 cefr: B1
 kcs:
 - id: sense:on.right
+  pos: ADJ
   gloss:
     en: right (side)
   forms:
@@ -20,6 +21,7 @@ kcs:
   readings:
     schluessel: oŋ
 - id: sense:sol
+  pos: ADJ
   gloss:
     en: left (side)
   forms:
@@ -30,6 +32,7 @@ kcs:
   readings:
     schluessel: sol
 - id: sense:yan
+  pos: NOUN
   gloss:
     en: side
   forms:
@@ -42,6 +45,7 @@ kcs:
   notes:
     en: X-niŋ yanida "beside X"; oŋ yanida "on his right".
 - id: sense:pahlawan
+  pos: NOUN
   gloss:
     en: champion, hero, warrior
   forms:
@@ -52,6 +56,7 @@ kcs:
   readings:
     schluessel: pahlawān
 - id: sense:shah
+  pos: NOUN
   gloss:
     en: shah, king
   forms:
@@ -62,6 +67,7 @@ kcs:
   readings:
     schluessel: šāh
 - id: sense:ziwar
+  pos: PROPN
   gloss:
     en: Ziwar (Zīwar Šāh, a king of the Tadhkira)
   forms:
@@ -72,6 +78,9 @@ kcs:
   readings:
     schluessel: Zīwar
 - id: sense:ne
+  pos: PRON
+  features:
+    PronType: Int
   gloss:
     en: what?, which?
   forms:
@@ -84,6 +93,7 @@ kcs:
   notes:
     en: ne yärlik? "from where?"; jawābiŋ ne? "what is your answer?".
 - id: sense:bukhara
+  pos: PROPN
   gloss:
     en: Bukhara
   forms:
@@ -94,6 +104,7 @@ kcs:
   readings:
     schluessel: Buḫārā
 - id: sense:sayr
+  pos: NOUN
   gloss:
     en: travel, journey
   forms:
@@ -106,6 +117,7 @@ kcs:
   notes:
     en: sayr qil- "to travel".
 - id: sense:alam
+  pos: NOUN
   gloss:
     en: the world
   forms:
@@ -116,6 +128,7 @@ kcs:
   readings:
     schluessel: ʿālam
 - id: sense:ruy
+  pos: NOUN
   gloss:
     en: face (Persian)
   forms:
@@ -128,6 +141,7 @@ kcs:
   notes:
     en: rūy-i ʿālam "the face of the world".
 - id: sense:maqsud
+  pos: NOUN
   gloss:
     en: goal, intention, aim
   forms:
@@ -138,6 +152,7 @@ kcs:
   readings:
     schluessel: maqṣūd
 - id: sense:mudda
+  pos: NOUN
   gloss:
     en: purpose, what one seeks
   forms:
@@ -148,6 +163,7 @@ kcs:
   readings:
     schluessel: mudaʿʿā
 - id: sense:jawab
+  pos: NOUN
   gloss:
     en: answer, reply
   forms:
@@ -158,6 +174,7 @@ kcs:
   readings:
     schluessel: jawāb
 - id: sense:alqissa
+  pos: ADV
   gloss:
     en: back to the story; in short (Arabic)
   forms:
@@ -700,10 +717,10 @@ stories:
         en: On Ziwar Shah’s right were fifty champions …, and on his left fifty champions …
   - line:
       ask: complete
-      gap: sense:ne
+      gap: sense:yigit
       distractors:
-      - sense:jawab
-      - sense:sayr
+      - sense:nashpati
+      - sense:darwaza
       forms:
         chg-Arab/standard:
           text: "القصّه، زیور شاه ایدی، «ای، یکت\u200cلار! نه یرلیک بولورسیزلار؟ موندا نچه یورورسیزلار؟» دیدی."

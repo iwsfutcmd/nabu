@@ -9,6 +9,7 @@ title:
 cefr: A2
 kcs:
 - id: sense:gyne
+  pos: NOUN
   gloss:
     en: woman; wife
   forms:
@@ -17,6 +18,9 @@ kcs:
   notes:
     en: 'Its other forms are built on γυναικ-: of the woman τῆς γυναικός, the women αἱ γυναῖκες.'
 - id: sense:oudeis
+  pos: PRON
+  features:
+    PronType: Neg
   gloss:
     en: no one, nobody; (with a noun) no, not one
   forms:
@@ -25,12 +29,16 @@ kcs:
   notes:
     en: οὐδείς for a man or a masculine word, οὐδεμία for a woman, οὐδέν for a thing ("nothing").
 - id: sense:pareimi
+  pos: VERB
   gloss:
     en: to be here, be present
   forms:
     grc-Grek/polytonic:
     - πάρειμι
 - id: sense:entautha
+  pos: ADV
+  features:
+    PronType: Dem
   gloss:
     en: here, there
   forms:
@@ -40,24 +48,33 @@ kcs:
   notes:
     en: ἐνταυθοῖ, "(to) here", is how the women of Aristophanes say it.
 - id: sense:emos
+  pos: DET
+  features:
+    Poss: 'Yes'
+    PronType: Prs
   gloss:
     en: my, mine
   forms:
     grc-Grek/polytonic:
     - ἐμός
 - id: sense:kometis
+  pos: NOUN
   gloss:
     en: a woman of the same village or quarter; neighbour
   forms:
     grc-Grek/polytonic:
     - κωμῆτις
 - id: sense:plen
+  pos: ADP
   gloss:
     en: (with the genitive) except
   forms:
     grc-Grek/polytonic:
     - πλήν
 - id: sense:hode
+  pos: PRON
+  features:
+    PronType: Dem
   gloss:
     en: this (one) here
   forms:
@@ -66,24 +83,30 @@ kcs:
   notes:
     en: 'ὅδε, ἥδε, τόδε point at what is right in front of you: ἥδε ἐξέρχεται, "here she comes out".'
 - id: sense:exerchomai
+  pos: VERB
   gloss:
     en: to come out, go out
   forms:
     grc-Grek/polytonic:
     - ἐξέρχομαι
 - id: sense:kalonike
+  pos: PROPN
   gloss:
     en: Calonice (Lysistrata's neighbour)
   forms:
     grc-Grek/polytonic:
     - Καλονίκη
 - id: sense:lysistrate
+  pos: PROPN
   gloss:
     en: Lysistrata (the Athenian woman of Aristophanes' play)
   forms:
     grc-Grek/polytonic:
     - Λυσιστράτη
 - id: sense:me
+  pos: PART
+  features:
+    Polarity: Neg
   gloss:
     en: not (in commands and wishes)
   forms:
@@ -92,6 +115,7 @@ kcs:
   notes:
     en: 'μή with an imperative forbids: μὴ σκυ^θρώπαζε, "don''t scowl!". Statements take οὐ.'
 - id: sense:skythropazo
+  pos: VERB
   gloss:
     en: to look sullen, scowl
   forms:
@@ -100,6 +124,7 @@ kcs:
   readings:
     attic: σκῠθρωπᾰ́ζω
 - id: sense:syntaratto
+  pos: VERB
   gloss:
     en: to throw into confusion, upset
   forms:
@@ -108,6 +133,7 @@ kcs:
   notes:
     en: συ^ντετάραξαι, "you have been upset" (you are upset), is its perfect.
 - id: sense:hetoimos
+  pos: ADJ
   gloss:
     en: ready
   forms:
@@ -115,6 +141,9 @@ kcs:
     - ἕτοιμος
   notes:
     en: A woman says ἑτοίμη εἰμί, a man ἕτοιμός εἰμι.
+- id: form:f-pl
+  gloss:
+    en: 'feminine plural, as subject or called: αἱ γυναῖκες, the women'
 nodes:
 - id: grc.u06.women
   kind: lesson
@@ -123,6 +152,7 @@ nodes:
   - sense:pareimi
   - sense:oudeis
   - sense:entautha
+  - form:f-pl
 - id: grc.u06.my-neighbour
   kind: lesson
   introduces:
@@ -157,10 +187,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γυνή
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνή
       reverse: ἡ γυνή
@@ -174,12 +206,12 @@ sentences:
       tokens:
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       reverse: αἱ γυναῖκες
@@ -193,6 +225,7 @@ sentences:
       tokens:
       - surface: γυνὴ
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνὴ
       - surface: πάρεστιν
@@ -219,6 +252,7 @@ sentences:
           attic: οὐδεμῐ́ᾰ
       - surface: γυνὴ
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνὴ
       - surface: πάρεστιν
@@ -293,12 +327,12 @@ sentences:
           attic: εἰσῐν
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       reverse: |-
@@ -315,12 +349,12 @@ sentences:
       tokens:
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       - surface: οὐ
@@ -355,7 +389,7 @@ sentences:
           attic: ὦ
       - surface: Ξανθίππη
         sense: xanthippe
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-
@@ -372,6 +406,7 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ἐμὴ
@@ -381,6 +416,7 @@ sentences:
           attic: ἐμὴ
       - surface: μήτηρ
         sense: meter
+        form: form:f
         readings:
           attic: μήτηρ
       reverse: |-
@@ -419,10 +455,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: κωμῆτις
         sense: kometis
+        form: form:f
         readings:
           attic: κωμῆτῐς
       reverse: ἡ κωμῆτις
@@ -436,6 +474,7 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ἐμὴ
@@ -445,6 +484,7 @@ sentences:
           attic: ἐμὴ
       - surface: κωμῆτις
         sense: kometis
+        form: form:f
         readings:
           attic: κωμῆτῐς
       reverse: |-
@@ -465,10 +505,12 @@ sentences:
           attic: ἥδε
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γυνή
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνή
       reverse: |-
@@ -488,12 +530,12 @@ sentences:
           attic: πλὴν
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: κωμήτιδος
         sense: kometis
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: κωμήτῐδος
       reverse: πλὴν τῆς κωμήτιδος
@@ -521,17 +563,17 @@ sentences:
           attic: πλὴν
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: ἐμῆς
         sense: emos
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: ἐμῆς
       - surface: κωμήτιδος
         sense: kometis
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: κωμήτῐδος
       reverse: |-
@@ -562,10 +604,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: γυνὴ
         sense: gyne
+        form: form:f
         readings:
           attic: γῠνὴ
       - surface: ἐξέρχεται
@@ -609,6 +653,7 @@ sentences:
       tokens:
       - surface: Καλονίκη
         sense: kalonike
+        form: form:f
         readings:
           attic: Κᾰλονῑ́κη
       reverse: Καλονίκη
@@ -631,7 +676,7 @@ sentences:
           attic: ὦ
       - surface: Καλονίκη
         sense: kalonike
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Κᾰλονῑ́κη
       reverse: |-
@@ -657,7 +702,7 @@ sentences:
           attic: ὦ
       - surface: Λυσιστράτη
         sense: lysistrate
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Λῡσῐστρᾰ́τη
       reverse: |-
@@ -690,7 +735,7 @@ sentences:
           attic: ὦ
       - surface: Λυσιστράτη
         sense: lysistrate
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Λῡσῐστρᾰ́τη
       reverse: |-
@@ -711,12 +756,12 @@ sentences:
           attic: ἐκ
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: οἰκίας
         sense: oikia
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: οἰκῐ́ᾱς
       - surface: ἐξέρχεται
@@ -726,10 +771,12 @@ sentences:
           attic: ἐξέρχεται
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: Καλονίκη
         sense: kalonike
+        form: form:f
         readings:
           attic: Κᾰλονῑ́κη
       reverse: |-
@@ -843,7 +890,7 @@ sentences:
           attic: ὦ
       - surface: τέκνον
         sense: teknon
-        form: form:voc
+        form: form:n
         readings:
           attic: τέκνον
       reverse: |-
@@ -994,7 +1041,7 @@ sentences:
       tokens:
       - surface: ἕτοιμαί
         sense: hetoimos
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: ἕτοιμαί
       - surface: ἐσμεν
@@ -1018,17 +1065,17 @@ sentences:
       tokens:
       - surface: αἱ
         sense: ho
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: αἱ
       - surface: γυναῖκες
         sense: gyne
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: γῠναῖκες
       - surface: ἕτοιμαί
         sense: hetoimos
-        form: form:pl
+        form: form:f-pl
         readings:
           attic: ἕτοιμαί
       - surface: εἰσιν
@@ -1087,8 +1134,8 @@ stories:
       ask: complete
       gap: sense:gyne
       distractors:
-      - sense:oikia
-      - sense:hodos
+      - sense:glotta
+      - sense:nyx
       forms:
         grc-Grek/polytonic:
           text: νῦν δ’ οὐδεμία πάρεστιν ἐνταυθοῖ γυνή·
@@ -1117,6 +1164,7 @@ stories:
               attic: ἐνταυθοῖ
           - surface: γυνή
             sense: gyne
+            form: form:f
             readings:
               attic: γῠνή
       translations:
@@ -1133,6 +1181,7 @@ stories:
               attic: πλὴν
           - surface: ἥ
             sense: ho
+            form: form:f
             readings:
               attic: ἥ
           - surface: γ’
@@ -1146,6 +1195,7 @@ stories:
               attic: ἐμὴ
           - surface: κωμῆτις
             sense: kometis
+            form: form:f
             readings:
               attic: κωμῆτῐς
           - surface: ἥδ’
@@ -1185,7 +1235,7 @@ stories:
               attic: ὦ
           - surface: Καλονίκη
             sense: kalonike
-            form: form:voc
+            form: form:f-voc
             readings:
               attic: Κᾰλονῑ́κη
       translations:
@@ -1215,7 +1265,7 @@ stories:
               attic: ὦ
           - surface: Λυσιστράτη
             sense: lysistrate
-            form: form:voc
+            form: form:f-voc
             readings:
               attic: Λῡσῐστρᾰ́τη
       translations:
@@ -1250,7 +1300,7 @@ stories:
               attic: ὦ
           - surface: τέκνον
             sense: teknon
-            form: form:voc
+            form: form:n
             readings:
               attic: τέκνον
       translations:

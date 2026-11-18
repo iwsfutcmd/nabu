@@ -9,8 +9,9 @@
 #  - a reading, not letter for letter: Babur's سیکیز is säkkiz, بادشاه pādišāh.
 #  - Capitals begin sentences and names; Latin punctuation; the ezafe after a hyphen (tārīḫ-i).
 # Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
-#  - Diacritics left out or misplaced (kisi for kiši, ata for āta) are accepted with a note, unless the answer
-#    then spells another word of the course (bardi "went" for bärdi "gave"): that is WRONG_WORD.
+#  - A vowel's marks (ä ö ü, ā ī ū ē, à) left out or misplaced make the word wrong (ADR 0134): the vowels are what the
+#    Arabic leaves out, so they are what a reading card asks. A consonant's marks (kisi for kiši) are accepted with a
+#    note. Either way an answer that spells another word of the course (bardi "went" for bärdi "gave") is WRONG_WORD.
 #  - ŋ and the half rings ʿ and ʾ are letters, not marks: an n for ŋ is a typo at best.
 id: chg-Latn/schluessel
 lang: chg-Latn
@@ -28,9 +29,11 @@ normalize:
 match:
   case: { locale: chg }
   # REVIEW: the marks of Schluessel's letters (diaeresis, macron, caron, dots above and below, the breve below of ḫ,
-  # acute, grave, the macron below), which phones and English keyboards lack: noted, not failed, unless they make
-  # another word.
-  marks: { set: "[\u0300\u0301\u0304\u0307\u0308\u030C\u0323\u032E\u0331]", policy: accept-with-note, note: translit-marks, distinguishes: true, wordNote: translit-marks-word }
+  # acute, grave, the macron below). A consonant's (caron, dots, breve below, acute, macron below) are noted, not
+  # failed, unless they make another word; a vowel's (diaeresis, macron, grave) are `required` (ADR 0134): the vowels
+  # are the reading the script leaves out, as the choice cards' wrong options trade them.
+  marks: { set: "[\u0300\u0301\u0304\u0307\u0308\u030C\u0323\u032E\u0331]", policy: accept-with-note, note: translit-marks, distinguishes: true, wordNote: translit-marks-word,
+           required: "[\u0300\u0304\u0308]", requiredNote: translit-vowels }
   equivalences:
     # REVIEW: ng typed for ŋ (Schluessel, xxv: ŋ is n + k in the script), and the hamza's half ring for ʿayn's.
     - { id: ng, map: { "ng": "ŋ" }, policy: accept-with-note, note: translit-marks }

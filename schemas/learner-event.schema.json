@@ -69,9 +69,12 @@
             "translate-type.l1-l2",
             "complete-translation",
             "gap-fill",
+            "spelling-choice",
             "char-read",
+            "reading-feature",
             "reading-disambiguation",
             "vocalize",
+            "vocalize-build",
             "transcribe",
             "speak.tier-0",
             "speak",
@@ -100,6 +103,14 @@
           "items": {
             "$ref": "#/$defs/KcRefLocal"
           }
+        },
+        "asks": {
+          "description": "A fill-in (gap-fill, story-complete): whether it asked which word or which form (ADR 0132). A mistake is asked again as the same question. Absent on events logged before it.",
+          "$ref": "common.schema.json#/$defs/Asks"
+        },
+        "reading": {
+          "description": "A reading card (char-read, reading-disambiguation, transcribe) of an orthography read in more than one tradition (lzh: Pinyin, Jyutping, Baxter; ADR 0138): the tradition it asked. Its read-script card is that tradition's own. Absent on every other card.",
+          "$ref": "common.schema.json#/$defs/SchemeId"
         }
       }
     },

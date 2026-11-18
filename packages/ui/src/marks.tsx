@@ -7,9 +7,14 @@
  * Readings for new words only (ADR 0131): a reading layer that fades (`fade: by-facet`, Jyutping,
  * Schluessel) may show only over the words whose reading the learner has not yet shown on a reading
  * card. Inside `FadeReadings` (a lesson or story with that choice) <T> leaves those words' ruby off;
- * elsewhere (the word list, a tapped word's gloss) every word keeps it.
+ * elsewhere (the word list, a tapped word's gloss) every word keeps it. With `open` (ADR 0141) those
+ * words keep only what the script leaves unwritten (minimal ruby: ü·ü·, ·5).
+ *
+ * Homographs (ADR 0140): inside `HomographsProvider`, <T> marks the words whose spelling the course
+ * reads more than one way.
  */
-import { allKcs, type CourseView } from "@nabu/core/lesson";
+import { allKcs, homographsOf, type CourseView } from "@nabu/core/lesson";
+import type { SchemeId } from "@nabu/schema";
 import { surfaceOf } from "@nabu/core/text";
 import { createContext, use, useMemo, type JSX, type ReactNode } from "react";
 
@@ -75,18 +80,42 @@ export const WordStatusProvider = ({
   return <WordStatusContext value={value}>{children}</WordStatusContext>;
 };
 
-const FadeContext = createContext(false);
+const FadeContext = createContext<{ readonly on: boolean; readonly open: boolean }>({ on: false, open: false });
 
 /**
  * Readings on new words only (ADR 0131): inside, <T> leaves off the ruby of the words whose reading
  * the learner has shown. `on` is the learner's choice where the layer shown fades; a tapped word's
- * gloss turns it off again, as that is where a faded reading is looked up.
+ * gloss turns it off again, as that is where a faded reading is looked up. With `open` (ADR 0141),
+ * those words keep only what the script leaves unwritten.
  */
-export const FadeReadings = ({ on, children }: { readonly on: boolean; readonly children: ReactNode }): JSX.Element => <FadeContext value={on}>{children}</FadeContext>;
+export const FadeReadings = ({ on, open = false, children }: { readonly on: boolean; readonly open?: boolean; readonly children: ReactNode }): JSX.Element => {
+  const value = useMemo(() => ({ on, open }), [on, open]);
+  return <FadeContext value={value}>{children}</FadeContext>;
+};
 
 /** Whether a word's ruby is left off here (by its token's KCs and surface): readings fade, and the learner has shown its reading. */
 export const useReadingFaded = (): ((kcs: readonly string[], surface: string, orthography: string) => boolean) => {
-  const fade = use(FadeContext);
+  const fade = use(FadeContext).on;
   const status = useWordStatus();
   return (kcs, surface, orthography) => fade && status !== null && status.readingShown(kcs, surface, orthography);
+};
+
+/** Whether a word whose reading has faded keeps what the script leaves unwritten (ADR 0141), rather than nothing. */
+export const useOpenLettersKept = (): boolean => use(FadeContext).open;
+
+const HomographsContext = createContext<{ readonly orthography: string; readonly spellings: ReadonlySet<string> } | null>(null);
+
+/**
+ * The spellings the course reads more than one way in the reading scheme shown (ADR 0140, core
+ * `homographsOf`): inside, <T> marks those words of the course's orthography.
+ */
+export const HomographsProvider = ({ course, scheme, children }: { readonly course: CourseView; readonly scheme: SchemeId | false; readonly children: ReactNode }): JSX.Element => {
+  const value = useMemo(() => (scheme === false ? null : { orthography: course.orthography, spellings: new Set(homographsOf(course, scheme).keys()) }), [course, scheme]);
+  return <HomographsContext value={value}>{children}</HomographsContext>;
+};
+
+/** Whether a word's spelling is read more than one way in the course (ADR 0140), where a provider says. */
+export const useHomograph = (): ((surface: string, orthography: string) => boolean) => {
+  const homographs = use(HomographsContext);
+  return (surface, orthography) => homographs !== null && homographs.orthography === orthography && homographs.spellings.has(surface.normalize("NFC"));
 };

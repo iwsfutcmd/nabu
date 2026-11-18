@@ -9,6 +9,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:shamayim
+  pos: NOUN
   gloss:
     en: heaven, heavens; sky
   forms:
@@ -17,6 +18,7 @@ kcs:
   notes:
     en: 'Always plural in form: הַשָּׁמַיִם haššāmáyim, ''the heavens'', also ''the sky''.'
 - id: sense:erets
+  pos: NOUN
   gloss:
     en: earth; land, country
   forms:
@@ -24,11 +26,13 @@ kcs:
   notes:
     en: Feminine. With the article הָאָרֶץ hāʾā́reṣ.
 - id: sense:bara
+  pos: VERB
   gloss:
     en: to create (only God creates)
   forms:
     hbo-Hebr/tiberian: [בָּרָא]
 - id: sense:be
+  pos: ADP
   gloss:
     en: in; at; with, by (written joined to the next word)
   forms:
@@ -36,6 +40,7 @@ kcs:
   notes:
     en: 'בְּ bə- is written on its noun; with the article it takes the article''s vowel: בַּיּוֹם bayyôm ''in the day''.'
 - id: sense:reshit
+  pos: NOUN
   gloss:
     en: beginning; first, best part
   forms:
@@ -45,41 +50,44 @@ kcs:
     en: 'she did: the perfect (qatal), she or it (f.)'
 - id: form:f
   gloss:
-    en: 'feminine adjective (-â or -eṯ): טוֹבָה ''good'' with a feminine noun'
+    en: 'feminine: a feminine noun (אֶרֶץ ''land'', אִשָּׁה ''woman''), or an adjective with one (-â or -eṯ: טוֹבָה ''good'')'
 - id: sense:tohu
+  pos: NOUN
   gloss:
     en: formlessness, emptiness; a waste
   forms:
     hbo-Hebr/tiberian: [תֹּהוּ]
 - id: sense:bohu
+  pos: NOUN
   gloss:
     en: emptiness, void (only in תֹהוּ וָבֹהוּ)
   forms:
     hbo-Hebr/tiberian: [בֹּהוּ]
 - id: sense:al
+  pos: ADP
   gloss:
     en: on, upon; over; about, concerning
   forms:
     hbo-Hebr/tiberian: [עַל]
 - id: sense:panim
+  pos: NOUN
   gloss:
     en: face; front, surface
   forms:
     hbo-Hebr/tiberian: [פָּנִים]
   notes:
     en: 'Always plural in form. Before another noun it is פְּנֵי pənê, ''the face of'': עַל־פְּנֵי הַמָּיִם.'
-- id: form:cstr
-  gloss:
-    en: 'construct state: ''X of …'', the noun bound to the next (רוּחַ אֱלֹהִים ''the spirit of God'')'
 - id: form:pl-cstr
   gloss:
     en: 'plural construct (-ê): ''the …s of''; also of nouns always plural (פְּנֵי ''the face of'')'
 - id: sense:tehom
+  pos: NOUN
   gloss:
     en: the deep, the primeval ocean
   forms:
     hbo-Hebr/tiberian: [תְּהוֹם]
 - id: sense:mayim
+  pos: NOUN
   gloss:
     en: water, waters
   forms:
@@ -88,11 +96,13 @@ kcs:
   notes:
     en: 'Always plural in form: מַיִם máyim, ''water''.'
 - id: sense:ruach
+  pos: NOUN
   gloss:
     en: wind; spirit; breath
   forms:
     hbo-Hebr/tiberian: [רוּחַ]
 - id: sense:rachaf
+  pos: VERB
   gloss:
     en: to hover, flutter (piel)
   forms:
@@ -102,12 +112,15 @@ kcs:
     en: 'participle, feminine singular: she/it is doing'
 - id: form:pl
   gloss:
-    en: plural (-îm or -ôṯ)
+    en: 'plural, masculine (-îm, some -ôṯ: גּוֹרָלוֹת ''lots''); also nouns always plural (שָׁמַיִם ''heaven'', מַיִם ''water'')'
+- id: form:f-cstr
+  gloss:
+    en: 'feminine construct: ''X of …'', the noun bound to the next (רוּחַ אֱלֹהִים ''the spirit of God''; -â becomes -aṯ: אַדְמַת ''the ground of'')'
 nodes:
-- {id: hbo.u02.heaven-and-earth, kind: lesson, introduces: ['sense:shamayim', 'sense:erets', 'sense:bara', 'sense:be', 'sense:reshit']}
-- {id: hbo.u02.the-earth-was, kind: lesson, introduces: ['form:qatal-3fs', 'form:f', 'sense:tohu', 'sense:bohu']}
+- {id: hbo.u02.heaven-and-earth, kind: lesson, introduces: ['sense:shamayim', 'sense:erets', 'sense:bara', 'sense:be', 'sense:reshit', 'form:f', 'form:pl']}
+- {id: hbo.u02.the-earth-was, kind: lesson, introduces: ['form:qatal-3fs', 'sense:tohu', 'sense:bohu']}
 - {id: hbo.u02.the-deep, kind: lesson, introduces: ['sense:al', 'sense:panim', 'form:pl-cstr', 'sense:tehom']}
-- {id: hbo.u02.the-spirit, kind: lesson, introduces: ['sense:mayim', 'form:pl', 'sense:ruach', 'form:cstr', 'sense:rachaf', 'form:ptc-fs']}
+- {id: hbo.u02.the-spirit, kind: lesson, introduces: ['sense:mayim', 'sense:ruach', 'sense:rachaf', 'form:ptc-fs', 'form:f-cstr']}
 - {id: hbo.u02.story, kind: story}
 sentences:
 - id: s.02.1
@@ -115,7 +128,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַשָּׁמַיִם
-      tokens: [{surface: הַשָּׁמַיִם, sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}]
+      tokens: [{surface: הַשָּׁמַיִם, sense: shamayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}]
       reverse: השמים
   translations:
     en: |-
@@ -126,7 +139,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ
-      tokens: [{surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: הארץ
   translations:
     en: |-
@@ -137,7 +150,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַשָּׁמַיִם וְהָאָרֶץ
-      tokens: [{surface: הַשָּׁמַיִם, sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}, {surface: וְהָאָרֶץ, sense: erets,
+      tokens: [{surface: הַשָּׁמַיִם, sense: shamayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}, {surface: וְהָאָרֶץ, sense: erets, form: 'form:f',
           morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: wəhāʾā́reṣ}}]
       reverse: השמים והארץ
   translations:
@@ -164,7 +177,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: בָּרָא אֱלֹהִים אֶת־הַשָּׁמַיִם׃
       tokens: [{surface: בָּרָא, sense: bara, form: 'form:qatal-3ms', readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, sense: et, readings: {
-            tiberian: ʾeṯ-}}, {surface: הַשָּׁמַיִם, sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}]
+            tiberian: ʾeṯ-}}, {surface: הַשָּׁמַיִם, sense: shamayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}]
       reverse: |-
         ברא (אלהים|אלוהים) את השמים
         (אלהים|אלוהים) ברא את השמים
@@ -220,7 +233,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בָּאָרֶץ
-      tokens: [{surface: בָּאָרֶץ, sense: erets, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: bāʾā́reṣ}}]
+      tokens: [{surface: בָּאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: bāʾā́reṣ}}]
       reverse: בארץ
   translations:
     en: |-
@@ -231,7 +244,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בַּשָּׁמַיִם
-      tokens: [{surface: בַּשָּׁמַיִם, sense: shamayim, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: baššāmáyim}}]
+      tokens: [{surface: בַּשָּׁמַיִם, sense: shamayim, form: 'form:pl', morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: baššāmáyim}}]
       reverse: בשמים
   translations:
     en: |-
@@ -242,7 +255,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בְּרֵאשִׁית
-      tokens: [{surface: בְּרֵאשִׁית, sense: reshit, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: רֵאשִׁית, kc: 'sense:reshit'}], readings: {tiberian: bərēʾšîṯ}}]
+      tokens: [{surface: בְּרֵאשִׁית, sense: reshit, form: 'form:f', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: רֵאשִׁית, kc: 'sense:reshit'}], readings: {tiberian: bərēʾšîṯ}}]
       reverse: בראשית
   translations:
     en: |-
@@ -254,10 +267,10 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃
-      tokens: [{surface: בְּרֵאשִׁית, sense: reshit, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: רֵאשִׁית, kc: 'sense:reshit'}], readings: {tiberian: bərēʾšîṯ}}, {surface: בָּרָא, sense: bara, form: 'form:qatal-3ms',
-          readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֵת, sense: et, readings: {tiberian: ʾēṯ}}, {surface: הַשָּׁמַיִם, sense: shamayim, morphs: [
+      tokens: [{surface: בְּרֵאשִׁית, sense: reshit, form: 'form:f', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: רֵאשִׁית, kc: 'sense:reshit'}], readings: {tiberian: bərēʾšîṯ}}, {surface: בָּרָא, sense: bara, form: 'form:qatal-3ms',
+          readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֵת, sense: et, readings: {tiberian: ʾēṯ}}, {surface: הַשָּׁמַיִם, sense: shamayim, form: 'form:pl', morphs: [
             {surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}, {surface: וְאֵת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֵת,
-              kc: 'sense:et'}], readings: {tiberian: wəʾēṯ}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
+              kc: 'sense:et'}], readings: {tiberian: wəʾēṯ}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: בראשית ברא (אלהים|אלוהים) את השמים ואת הארץ
   translations:
     en: |-
@@ -270,7 +283,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ טוֹבָה׃
-      tokens: [{surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: טוֹבָה, sense: tov, form: 'form:f',
+      tokens: [{surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: טוֹבָה, sense: tov, form: 'form:f',
           readings: {tiberian: ṭôḇâ}}]
       reverse: |-
         הארץ טובה
@@ -285,7 +298,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ הָיְתָה טוֹבָה׃
-      tokens: [{surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: הָיְתָה, sense: hayah, form: 'form:qatal-3fs',
+      tokens: [{surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: הָיְתָה, sense: hayah, form: 'form:qatal-3fs',
           readings: {tiberian: hāyəṯâ}}, {surface: טוֹבָה, sense: tov, form: 'form:f', readings: {tiberian: ṭôḇâ}}]
       reverse: |-
         הארץ היתה טובה
@@ -311,7 +324,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֶרֶץ טוֹבָה
-      tokens: [{surface: אֶרֶץ, sense: erets, readings: {tiberian: ʾéreṣ}}, {surface: טוֹבָה, sense: tov, form: 'form:f', readings: {tiberian: ṭôḇâ}}]
+      tokens: [{surface: אֶרֶץ, sense: erets, form: 'form:f', readings: {tiberian: ʾéreṣ}}, {surface: טוֹבָה, sense: tov, form: 'form:f', readings: {tiberian: ṭôḇâ}}]
       reverse: ארץ טובה
   translations:
     en: |-
@@ -322,7 +335,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ׃
-      tokens: [{surface: וְהָאָרֶץ, sense: erets, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: wəhāʾā́reṣ}}, {surface: הָיְתָה,
+      tokens: [{surface: וְהָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: wəhāʾā́reṣ}}, {surface: הָיְתָה,
           sense: hayah, form: 'form:qatal-3fs', readings: {tiberian: hāyəṯâ}}, {surface: תֹהוּ, sense: tohu, readings: {tiberian: ṯṓhû}}, {surface: וָבֹהוּ, sense: bohu, morphs: [{surface: וָ, kc: 'sense:we'},
             {surface: בֹהוּ, kc: 'sense:bohu'}], readings: {tiberian: wāḇṓhû}}]
       reverse: והארץ היתה (תהו|תוהו) (ובהו|ובוהו)
@@ -338,7 +351,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ תֹהוּ׃
-      tokens: [{surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: תֹהוּ, sense: tohu, readings: {tiberian: ṯṓhû}}]
+      tokens: [{surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: תֹהוּ, sense: tohu, readings: {tiberian: ṯṓhû}}]
       reverse: הארץ (תהו|תוהו)
   translations:
     en: |-
@@ -349,7 +362,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עַל־הָאָרֶץ
-      tokens: [{surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: על הארץ
   translations:
     en: (on|upon|over) the (earth|land|ground)
@@ -358,7 +371,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: פְּנֵי הָאָרֶץ
-      tokens: [{surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}],
+      tokens: [{surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}],
           readings: {tiberian: hāʾā́reṣ}}]
       reverse: פני הארץ
   translations:
@@ -368,7 +381,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עַל־פְּנֵי הָאָרֶץ
-      tokens: [{surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ,
+      tokens: [{surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ,
               kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: על פני הארץ
   translations:
@@ -378,7 +391,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: תְּהוֹם
-      tokens: [{surface: תְּהוֹם, sense: tehom, readings: {tiberian: təhôm}}]
+      tokens: [{surface: תְּהוֹם, sense: tehom, form: 'form:f', readings: {tiberian: təhôm}}]
       reverse: תהום
   translations:
     en: |-
@@ -391,7 +404,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: וְחֹשֶׁךְ עַל־פְּנֵי תְהוֹם׃
       tokens: [{surface: וְחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: wəḥṓšeḵ}}, {surface: עַל, sense: al, readings: {
-            tiberian: ʿal-}}, {surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: תְהוֹם, sense: tehom, readings: {tiberian: ṯəhôm}}]
+            tiberian: ʿal-}}, {surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: תְהוֹם, sense: tehom, form: 'form:f', readings: {tiberian: ṯəhôm}}]
       reverse: (וחשך|וחושך) על פני תהום
   translations:
     en: And darkness was (over|on|upon) the (face|surface) of the (deep|abyss|ocean).
@@ -402,7 +415,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַחֹשֶׁךְ עַל־הָאָרֶץ׃
       tokens: [{surface: הַחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: haḥṓšeḵ}}, {surface: עַל, sense: al, readings: {
-            tiberian: ʿal-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
+            tiberian: ʿal-}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: |-
         (החשך|החושך) על הארץ
         על הארץ (החשך|החושך)
@@ -414,7 +427,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אוֹר עַל־הָאָרֶץ׃
-      tokens: [{surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ,
+      tokens: [{surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ,
               kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: |-
         אור על הארץ
@@ -428,7 +441,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מַיִם
-      tokens: [{surface: מַיִם, sense: mayim, readings: {tiberian: máyim}}]
+      tokens: [{surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}}]
       reverse: מים
   translations:
     en: |-
@@ -440,7 +453,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַמַּיִם טוֹבִים׃
-      tokens: [{surface: הַמַּיִם, sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammáyim}}, {surface: טוֹבִים, sense: tov, form: 'form:pl',
+      tokens: [{surface: הַמַּיִם, sense: mayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammáyim}}, {surface: טוֹבִים, sense: tov, form: 'form:pl',
           readings: {tiberian: ṭôḇîm}}]
       reverse: |-
         המים טובים
@@ -454,7 +467,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רוּחַ
-      tokens: [{surface: רוּחַ, sense: ruach, readings: {tiberian: rûaḥ}}]
+      tokens: [{surface: רוּחַ, sense: ruach, form: 'form:f', readings: {tiberian: rûaḥ}}]
       reverse: רוח
   translations:
     en: |-
@@ -466,7 +479,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רוּחַ אֱלֹהִים
-      tokens: [{surface: רוּחַ, sense: ruach, form: 'form:cstr', readings: {tiberian: rûaḥ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}]
+      tokens: [{surface: רוּחַ, sense: ruach, form: 'form:f-cstr', readings: {tiberian: rûaḥ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}]
       reverse: רוח (אלהים|אלוהים)
   translations:
     en: |-
@@ -477,8 +490,8 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָרוּחַ מְרַחֶפֶת עַל־הַמַּיִם׃
-      tokens: [{surface: הָרוּחַ, sense: ruach, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: hārûaḥ}}, {surface: מְרַחֶפֶת, sense: rachaf, form: 'form:ptc-fs',
-          readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הַמַּיִם, sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}],
+      tokens: [{surface: הָרוּחַ, sense: ruach, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: hārûaḥ}}, {surface: מְרַחֶפֶת, sense: rachaf, form: 'form:ptc-fs',
+          readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הַמַּיִם, sense: mayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}],
           readings: {tiberian: hammáyim}}]
       reverse: |-
         הרוח מרחפת על המים
@@ -490,9 +503,9 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם׃
-      tokens: [{surface: רוּחַ, sense: ruach, form: 'form:cstr', readings: {tiberian: rûaḥ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: מְרַחֶפֶת, sense: rachaf, form: 'form:ptc-fs',
+      tokens: [{surface: רוּחַ, sense: ruach, form: 'form:f-cstr', readings: {tiberian: rûaḥ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: מְרַחֶפֶת, sense: rachaf, form: 'form:ptc-fs',
           readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: הַמָּיִם,
-          sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammā́yim}}]
+          sense: mayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammā́yim}}]
       reverse: |-
         רוח (אלהים|אלוהים) מרחפת על פני המים
         מרחפת רוח (אלהים|אלוהים) על פני המים
@@ -504,7 +517,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מַיִם בָּאָרֶץ׃
-      tokens: [{surface: מַיִם, sense: mayim, readings: {tiberian: máyim}}, {surface: בָּאָרֶץ, sense: erets, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: bāʾā́reṣ}}]
+      tokens: [{surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}}, {surface: בָּאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: bāʾā́reṣ}}]
       reverse: מים בארץ
   translations:
     en: There is water (in|on) the (land|earth|ground).
@@ -514,8 +527,8 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיַּבְדֵּל אֱלֹהִים בֵּין הַמַּיִם וּבֵין הָאָרֶץ׃
       tokens: [{surface: וַיַּבְדֵּל, sense: badal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyaḇdēl}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: בֵּין, sense: beyn,
-          readings: {tiberian: bên}}, {surface: הַמַּיִם, sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammáyim}}, {surface: וּבֵין,
-          sense: beyn, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵין, kc: 'sense:beyn'}], readings: {tiberian: ûḇên}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {
+          readings: {tiberian: bên}}, {surface: הַמַּיִם, sense: mayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammáyim}}, {surface: וּבֵין,
+          sense: beyn, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵין, kc: 'sense:beyn'}], readings: {tiberian: ûḇên}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {
               surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: |-
         ויבדל (אלהים|אלוהים) בין המים ובין הארץ
@@ -539,10 +552,10 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃
-          tokens: [{surface: בְּרֵאשִׁית, sense: reshit, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: רֵאשִׁית, kc: 'sense:reshit'}], readings: {tiberian: bərēʾšîṯ}}, {surface: בָּרָא, sense: bara,
+          tokens: [{surface: בְּרֵאשִׁית, sense: reshit, form: 'form:f', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: רֵאשִׁית, kc: 'sense:reshit'}], readings: {tiberian: bərēʾšîṯ}}, {surface: בָּרָא, sense: bara,
               form: 'form:qatal-3ms', readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֵת, sense: et, readings: {tiberian: ʾēṯ}}, {surface: הַשָּׁמַיִם,
-              sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}, {surface: וְאֵת, sense: et, morphs: [{surface: וְ,
-                  kc: 'sense:we'}, {surface: אֵת, kc: 'sense:et'}], readings: {tiberian: wəʾēṯ}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}],
+              sense: shamayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}, {surface: וְאֵת, sense: et, morphs: [{surface: וְ,
+                  kc: 'sense:we'}, {surface: אֵת, kc: 'sense:et'}], readings: {tiberian: wəʾēṯ}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}],
               readings: {tiberian: hāʾā́reṣ}}]
       translations:
         en: In the beginning God created the heavens and the earth.
@@ -553,12 +566,13 @@ stories:
       answer: 0
   - line:
       ask: complete
-      gap: sense:erets
-      distractors: ['sense:shamayim', 'sense:mayim']
+      gap: sense:hayah
+      asks: form
+      distractors: ['form:qatal-3ms', 'form:wayyiqtol-3ms']
       forms:
         hbo-Hebr/tiberian:
           text: וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ
-          tokens: [{surface: וְהָאָרֶץ, sense: erets, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: wəhāʾā́reṣ}}, {surface: הָיְתָה,
+          tokens: [{surface: וְהָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: wəhāʾā́reṣ}}, {surface: הָיְתָה,
               sense: hayah, form: 'form:qatal-3fs', readings: {tiberian: hāyəṯâ}}, {surface: תֹהוּ, sense: tohu, readings: {tiberian: ṯṓhû}}, {surface: וָבֹהוּ, sense: bohu, morphs: [{surface: וָ, kc: 'sense:we'},
                 {surface: בֹהוּ, kc: 'sense:bohu'}], readings: {tiberian: wāḇṓhû}}]
       translations:
@@ -568,19 +582,16 @@ stories:
         hbo-Hebr/tiberian:
           text: וְחֹשֶׁךְ עַל־פְּנֵי תְהוֹם
           tokens: [{surface: וְחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: wəḥṓšeḵ}}, {surface: עַל, sense: al, readings: {
-                tiberian: ʿal-}}, {surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: תְהוֹם, sense: tehom, readings: {tiberian: ṯəhôm}}]
+                tiberian: ʿal-}}, {surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: תְהוֹם, sense: tehom, form: 'form:f', readings: {tiberian: ṯəhôm}}]
       translations:
         en: and darkness was over the face of the deep,
   - line:
-      ask: complete
-      gap: sense:mayim
-      distractors: ['sense:erets', 'sense:tehom']
       forms:
         hbo-Hebr/tiberian:
           text: וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם׃
-          tokens: [{surface: וְרוּחַ, sense: ruach, form: 'form:cstr', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: wərûaḥ}}, {surface: אֱלֹהִים, sense: elohim,
+          tokens: [{surface: וְרוּחַ, sense: ruach, form: 'form:f-cstr', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: wərûaḥ}}, {surface: אֱלֹהִים, sense: elohim,
               readings: {tiberian: ʾĕlōhîm}}, {surface: מְרַחֶפֶת, sense: rachaf, form: 'form:ptc-fs', readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי,
-              sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: הַמָּיִם, sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּיִם, kc: 'sense:mayim'}], readings: {
+              sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: הַמָּיִם, sense: mayim, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּיִם, kc: 'sense:mayim'}], readings: {
                 tiberian: hammā́yim}}]
       translations:
         en: and the spirit of God was hovering over the face of the waters.
@@ -598,6 +609,9 @@ stories:
         en: And God said,
   - line:
       speaker: god
+      ask: complete
+      gap: sense:or
+      distractors: ['sense:hoshekh', 'sense:tohu']
       forms:
         hbo-Hebr/tiberian:
           text: יְהִי אוֹר

@@ -9,16 +9,19 @@ title:
 cefr: A2
 kcs:
 - id: sense:melekh
+  pos: NOUN
   gloss:
     en: king
   forms:
     hbo-Hebr/tiberian: [מֶלֶךְ]
 - id: sense:chai
+  pos: ADJ
   gloss:
     en: living, alive; (חַי יְהוָה) as the LORD lives
   forms:
     hbo-Hebr/tiberian: [חַי]
 - id: sense:yeled
+  pos: NOUN
   gloss:
     en: child, boy
   forms:
@@ -27,41 +30,49 @@ kcs:
   gloss:
     en: 'and they (f.) did: the narrative past, they (women)'
 - id: sense:hevi
+  pos: VERB
   gloss:
     en: to bring (hiphil of בּוֹא)
   forms:
     hbo-Hebr/tiberian: [הֵבִיא]
 - id: sense:gazar
+  pos: VERB
   gloss:
     en: to cut, divide
   forms:
     hbo-Hebr/tiberian: [גָּזַר]
 - id: sense:hatsi
+  pos: NOUN
   gloss:
     en: half
   forms:
     hbo-Hebr/tiberian: [חֵצִי]
 - id: sense:yalad
+  pos: VERB
   gloss:
     en: to bear, give birth; (passive participle) born, a child
   forms:
     hbo-Hebr/tiberian: [יָלַד]
 - id: sense:nikhmar
+  pos: VERB
   gloss:
     en: to grow warm, be stirred (niphal)
   forms:
     hbo-Hebr/tiberian: [נִכְמַר]
 - id: sense:rahamim
+  pos: NOUN
   gloss:
     en: compassion, mercy
   forms:
     hbo-Hebr/tiberian: [רַחֲמִים]
 - id: sense:bi
+  pos: INTJ
   gloss:
     en: 'please, pardon (בִּי אֲדֹנִי: please, my lord)'
   forms:
     hbo-Hebr/tiberian: [בִּי]
 - id: sense:hemit
+  pos: VERB
   gloss:
     en: to kill, put to death (hiphil of מוּת)
   forms:
@@ -182,7 +193,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: נָשִׁים
-      tokens: [{surface: נָשִׁים, sense: ishah, form: 'form:pl', readings: {tiberian: nāšîm}}]
+      tokens: [{surface: נָשִׁים, sense: ishah, form: 'form:f-pl', readings: {tiberian: nāšîm}}]
       reverse: נשים
   translations:
     en: |-
@@ -193,7 +204,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: שְׁתַּיִם נָשִׁים
-      tokens: [{surface: שְׁתַּיִם, sense: shnayim, readings: {tiberian: šətáyim}}, {surface: נָשִׁים, sense: ishah, form: 'form:pl', readings: {tiberian: nāšîm}}]
+      tokens: [{surface: שְׁתַּיִם, sense: shnayim, readings: {tiberian: šətáyim}}, {surface: נָשִׁים, sense: ishah, form: 'form:f-pl', readings: {tiberian: nāšîm}}]
       reverse: שתים נשים
   translations:
     en: two women
@@ -202,7 +213,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאִשָּׁה הָאַחֶרֶת
-      tokens: [{surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: הָאַחֶרֶת, sense: aher, form: 'form:f',
+      tokens: [{surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: הָאַחֶרֶת, sense: aher, form: 'form:f',
           morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אַחֶרֶת, kc: 'sense:aher'}], readings: {tiberian: hāʾaḥéreṯ}}]
       reverse: האשה האחרת
   translations:
@@ -212,7 +223,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וְזֹאת אֹמֶרֶת׃
-      tokens: [{surface: וְזֹאת, sense: zot, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
+      tokens: [{surface: וְזֹאת, sense: zot, form: 'form:f', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
           readings: {tiberian: ʾōméreṯ}}]
       reverse: (וזאת|וזואת) (אמרת|אומרת)
   translations:
@@ -252,7 +263,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: קְחוּ לִי חָרֶב׃
       tokens: [{surface: קְחוּ, sense: laqach, form: 'form:impv-mp', readings: {tiberian: qəḥû}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
-            tiberian: lî}}, {surface: חָרֶב, sense: herev, readings: {tiberian: ḥā́reḇ}}]
+            tiberian: lî}}, {surface: חָרֶב, sense: herev, form: 'form:f', readings: {tiberian: ḥā́reḇ}}]
       reverse: קחו לי חרב
   translations:
     en: |-
@@ -263,7 +274,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיָּבִאוּ הַחֶרֶב לִפְנֵי הַמֶּלֶךְ׃
-      tokens: [{surface: וַיָּבִאוּ, sense: hevi, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyāḇíʾû}}, {surface: הַחֶרֶב, sense: herev, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֶרֶב,
+      tokens: [{surface: וַיָּבִאוּ, sense: hevi, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyāḇíʾû}}, {surface: הַחֶרֶב, sense: herev, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֶרֶב,
               kc: 'sense:herev'}], readings: {tiberian: haḥéreḇ}}, {surface: לִפְנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {
             tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}]
       reverse: |-
@@ -363,7 +374,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רַחֲמִים
-      tokens: [{surface: רַחֲמִים, sense: rahamim, readings: {tiberian: raḥămîm}}]
+      tokens: [{surface: רַחֲמִים, sense: rahamim, form: 'form:pl', readings: {tiberian: raḥămîm}}]
       reverse: רחמים
   translations:
     en: |-
@@ -413,7 +424,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הִיא אִמּוֹ׃
-      tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, sense: em, morphs: [{surface: אִמּ, kc: 'sense:em'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾimmô}}]
+      tokens: [{surface: הִיא, sense: hi, form: 'form:f', readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, sense: em, form: 'form:f', morphs: [{surface: אִמּ, kc: 'sense:em'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾimmô}}]
       reverse: היא אמו
   translations:
     en: (She is|She's) his mother.
@@ -422,7 +433,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כִּי־נִכְמְרוּ רַחֲמֶיהָ עַל־בְּנָהּ
-      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: נִכְמְרוּ, sense: nikhmar, form: 'form:qatal-3cp', readings: {tiberian: niḵmərû}}, {surface: רַחֲמֶיהָ, sense: rahamim, morphs: [
+      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: נִכְמְרוּ, sense: nikhmar, form: 'form:qatal-3cp', readings: {tiberian: niḵmərû}}, {surface: רַחֲמֶיהָ, sense: rahamim, form: 'form:pl', morphs: [
             {surface: רַחֲמֶי, kc: 'sense:rahamim'}, {surface: הָ, kc: 'form:sfx-3fs'}], readings: {tiberian: raḥămêhā}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: בְּנָהּ, sense: ben,
           morphs: [{surface: בְּנָ, kc: 'sense:ben'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bənāh}}]
       reverse: כי נכמרו רחמיה על בנה
@@ -444,7 +455,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַתֹּאמֶר הָאִשָּׁה הָאַחֶרֶת
-          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
                   kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: הָאַחֶרֶת, sense: aher, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אַחֶרֶת, kc: 'sense:aher'}], readings: {
                 tiberian: hāʾaḥéreṯ}}]
       translations:
@@ -464,7 +475,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וְזֹאת אֹמֶרֶת
-          tokens: [{surface: וְזֹאת, sense: zot, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
+          tokens: [{surface: וְזֹאת, sense: zot, form: 'form:f', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
               readings: {tiberian: ʾōméreṯ}}]
       translations:
         en: And this one said,
@@ -506,7 +517,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: לִי־חָרֶב וַיָּבִאוּ
-          tokens: [{surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî-}}, {surface: חָרֶב, sense: herev, readings: {tiberian: ḥā́reḇ}},
+          tokens: [{surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî-}}, {surface: חָרֶב, sense: herev, form: 'form:f', readings: {tiberian: ḥā́reḇ}},
             {surface: וַיָּבִאוּ, sense: hevi, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyāḇíʾû}}]
       translations:
         en: “Bring me a sword.”
@@ -514,7 +525,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: הַחֶרֶב לִפְנֵי הַמֶּלֶךְ׃
-          tokens: [{surface: הַחֶרֶב, sense: herev, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֶרֶב, kc: 'sense:herev'}], readings: {tiberian: haḥéreḇ}}, {surface: לִפְנֵי, sense: panim, form: 'form:pl-cstr',
+          tokens: [{surface: הַחֶרֶב, sense: herev, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֶרֶב, kc: 'sense:herev'}], readings: {tiberian: haḥéreḇ}}, {surface: לִפְנֵי, sense: panim, form: 'form:pl-cstr',
               morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ,
                   kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}]
       translations:
@@ -531,7 +542,7 @@ stories:
       speaker: king
       ask: complete
       gap: sense:yeled
-      distractors: ['sense:melekh', 'sense:ben']
+      distractors: ['sense:melekh', 'sense:bayit']
       forms:
         hbo-Hebr/tiberian:
           text: אֶת־הַיֶּלֶד הַחַי לִשְׁנָיִם וּתְנוּ אֶת־הַחֲצִי לְאַחַת וְאֶת־הַחֲצִי לְאֶחָת׃
@@ -549,11 +560,11 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַתֹּאמֶר הָאִשָּׁה אֲשֶׁר־בְּנָהּ הַחַי אֶל־הַמֶּלֶךְ כִּי־נִכְמְרוּ רַחֲמֶיהָ עַל־בְּנָהּ
-          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
                   kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer-}}, {surface: בְּנָהּ, sense: ben, morphs: [{surface: בְּנָ, kc: 'sense:ben'},
                 {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bənāh}}, {surface: הַחַי, sense: chai, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}},
             {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}},
-            {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: נִכְמְרוּ, sense: nikhmar, form: 'form:qatal-3cp', readings: {tiberian: niḵmərû}}, {surface: רַחֲמֶיהָ, sense: rahamim, morphs: [
+            {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: נִכְמְרוּ, sense: nikhmar, form: 'form:qatal-3cp', readings: {tiberian: niḵmərû}}, {surface: רַחֲמֶיהָ, sense: rahamim, form: 'form:pl', morphs: [
                 {surface: רַחֲמֶי, kc: 'sense:rahamim'}, {surface: הָ, kc: 'form:sfx-3fs'}], readings: {tiberian: raḥămêhā}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: בְּנָהּ, sense: ben,
               morphs: [{surface: בְּנָ, kc: 'sense:ben'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bənāh}}]
       translations:
@@ -568,8 +579,8 @@ stories:
   - line:
       speaker: mother
       ask: complete
-      gap: sense:yalad
-      distractors: ['sense:melekh', 'sense:naar']
+      gap: sense:adon
+      distractors: ['sense:qol', 'sense:shem']
       forms:
         hbo-Hebr/tiberian:
           text: בִּי אֲדֹנִי תְּנוּ־לָהּ אֶת־הַיָּלוּד הַחַי וְהָמֵת אַל־תְּמִיתֻהוּ
@@ -585,7 +596,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וְזֹאת אֹמֶרֶת
-          tokens: [{surface: וְזֹאת, sense: zot, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
+          tokens: [{surface: וְזֹאת, sense: zot, form: 'form:f', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
               readings: {tiberian: ʾōméreṯ}}]
       translations:
         en: But the other said,
@@ -619,7 +630,7 @@ stories:
                   kc: 'sense:yalad'}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, sense: chai, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}},
             {surface: וְהָמֵת, sense: hemit, form: 'form:inf-abs', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָמֵת, kc: 'sense:hemit'}], readings: {tiberian: wəhāmēṯ}}, {surface: לֹא, sense: lo,
               readings: {tiberian: lōʾ}}, {surface: תְמִיתֻהוּ, sense: hemit, form: 'form:yiqtol-2mp', morphs: [{surface: תְמִיתֻ, kc: 'sense:hemit'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: ṯəmîṯúhû}},
-            {surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, sense: em, morphs: [{surface: אִמּ, kc: 'sense:em'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾimmô}}]
+            {surface: הִיא, sense: hi, form: 'form:f', readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, sense: em, form: 'form:f', morphs: [{surface: אִמּ, kc: 'sense:em'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾimmô}}]
       translations:
         en: '“Give her the living child, and do not kill him: she is his mother.”'
   - choose:

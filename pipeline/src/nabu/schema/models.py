@@ -482,6 +482,61 @@ type KcId = Annotated[
 ]
 
 
+type PartOfSpeech = Annotated[
+    Literal[
+        "ADJ",
+        "ADP",
+        "ADV",
+        "AUX",
+        "CCONJ",
+        "DET",
+        "INTJ",
+        "NOUN",
+        "NUM",
+        "PART",
+        "PRON",
+        "PROPN",
+        "PUNCT",
+        "SCONJ",
+        "SYM",
+        "VERB",
+        "X",
+    ],
+    Field(
+        description="A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.",
+        title="PartOfSpeech",
+    ),
+]
+
+
+type UdFeaturesAdditionalProperty = Annotated[
+    str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*(,[A-Z0-9][A-Za-z0-9]*)*$")
+]
+
+
+type UdFeatures = Annotated[
+    dict[
+        Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*(\[[a-z0-9]+\])?$")],
+        UdFeaturesAdditionalProperty,
+    ],
+    Field(
+        description="A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.",
+        examples=[{"NounType": "Clf"}, {"PronType": "Dem"}],
+        min_length=1,
+        title="UdFeatures",
+    ),
+]
+
+
+type Asks = Annotated[
+    Literal["word", "form"],
+    Field(
+        description="What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).",
+        title="Asks",
+    ),
+]
+
+
 class Persons(BaseModel):
     """
     Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).
@@ -1789,6 +1844,48 @@ class SplitStep(BaseModel):
     split: Split
 
 
+type FirstItem = Annotated[str, Field(min_length=1)]
+
+
+class ToneNumbers(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    marks: Annotated[
+        dict[Annotated[str, StringConstraints(pattern=r"^[0-9]$")], str],
+        Field(
+            description="Each tone number and the combining mark it stands for (\\u0301 for 2), or an empty string where the tone has none.",
+            min_length=1,
+        ),
+    ]
+    vowels: Annotated[
+        str,
+        Field(
+            description="The letters that may carry a tone's mark, each a grapheme: aeiouü.",
+            min_length=1,
+        ),
+    ]
+    first: Annotated[
+        list[FirstItem],
+        Field(
+            description="Where the mark goes before the last vowel: the first of these the syllable has, its first letter (a, e, ou)."
+        ),
+    ]
+
+
+class ToneNumbersStep(BaseModel):
+    """
+    Syllables typed with a tone number after them, written with that tone's mark (ADR 0138): Pinyin typed as xue2 compares as xué. A syllable is the run of letters before the number. Its mark goes on the first letter of the first of `first` the syllable has (a, e, ou: hao3 is hǎo, dou1 is dōu), else on its last letter of `vowels` (liu2 is liú, gui4 is guì); letters compare ignoring case. A number whose mark is empty (the neutral tone) is dropped; a number with no mark, or a syllable with nowhere to put it, is left as it is.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    toneNumbers: ToneNumbers
+
+
 class Cartouche(BaseModel):
     """
     The marks that open and close a name written with the logographs' first letters.
@@ -1839,6 +1936,12 @@ class Case(BaseModel):
         frozen=True,
     )
     locale: LangTag
+
+
+type SetItem = Annotated[str, Field(min_length=1)]
+
+
+type Set = Annotated[list[SetItem], Field(min_length=2)]
 
 
 type NoteId = Annotated[
@@ -1893,6 +1996,12 @@ class InputAids(BaseModel):
         frozen=True,
     )
     keyboard: KeyboardRef | None = None
+    markBuilder: Annotated[
+        bool | None,
+        Field(
+            description="A vocalize card may also ask the word's vowel marks put on its letters, the letters given and the marks on buttons (`vocalize-build`, ADR 0137), once a choice card has shown them. For an abjad whose marks no phone keyboard has."
+        ),
+    ] = None
     extraKeys: Annotated[
         list[ExtraKey] | None,
         Field(
@@ -2115,6 +2224,19 @@ class Contrast(BaseModel):
             pattern="^[a-z][a-z0-9-]*$",
         ),
     ] = None
+
+
+class Bound(BaseModel):
+    """
+    How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    mark: Annotated[str, Field(min_length=1)]
+    before: Annotated[str, Field(min_length=1)]
 
 
 type Variant1Item = Annotated[str, Field(min_length=1)]
@@ -2379,7 +2501,12 @@ class Morph(BaseModel):
         extra="forbid",
         frozen=True,
     )
-    surface: Annotated[str, Field(min_length=1)]
+    surface: Annotated[
+        str,
+        Field(
+            description="The morph as the word writes it. Empty for a morpheme the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe, fa کتابِ, chg ملک malik-i): it is the word's last morph, glossed and credited like any other."
+        ),
+    ]
     kc: KcId
 
 
@@ -2719,6 +2846,18 @@ class KnowledgeComponentSource(BaseModel):
     id: KcId
     prerequisites: list[KcId] | None = None
     cefr: Cefr | None = None
+    pos: Annotated[
+        PartOfSpeech | None,
+        Field(
+            description="The word's part of speech, a UD UPOS tag (ADR 0132): a word question offers only words of the answer's part of speech and features. Sense KCs only."
+        ),
+    ] = None
+    features: Annotated[
+        UdFeatures | None,
+        Field(
+            description="The word's lexical features, as UD spells them (ADR 0132): NounType Clf (a classifier), PronType Dem, PartType Mod (a sentence-final particle). Matched exactly where the answer has a pos. Needs pos."
+        ),
+    ] = None
     gloss: Annotated[
         dict[str, GlossAdditionalProperty] | None,
         Field(description="Short meaning per support language."),
@@ -2761,6 +2900,19 @@ class SourceToken(BaseModel):
         Field(
             description="This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.",
             min_length=1,
+        ),
+    ] = None
+    context: Annotated[
+        str | None,
+        Field(
+            description="A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.",
+            pattern="^[a-z][a-z-]*$",
+        ),
+    ] = None
+    readingVariant: Annotated[
+        Literal[True] | None,
+        Field(
+            description="Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading."
         ),
     ] = None
 
@@ -2868,9 +3020,12 @@ class ExerciseRef(BaseModel):
         "translate-type.l1-l2",
         "complete-translation",
         "gap-fill",
+        "spelling-choice",
         "char-read",
+        "reading-feature",
         "reading-disambiguation",
         "vocalize",
+        "vocalize-build",
         "transcribe",
         "speak.tier-0",
         "speak",
@@ -2892,6 +3047,18 @@ class ExerciseRef(BaseModel):
         str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
     ]
     kcs: list[KcRefLocal]
+    asks: Annotated[
+        Asks | None,
+        Field(
+            description="A fill-in (gap-fill, story-complete): whether it asked which word or which form (ADR 0132). A mistake is asked again as the same question. Absent on events logged before it."
+        ),
+    ] = None
+    reading: Annotated[
+        SchemeId | None,
+        Field(
+            description="A reading card (char-read, reading-disambiguation, transcribe) of an orthography read in more than one tradition (lzh: Pinyin, Jyutping, Baxter; ADR 0138): the tradition it asked. Its read-script card is that tradition's own. Absent on every other card."
+        ),
+    ] = None
 
 
 class ExercisePresented(BaseModel):
@@ -3189,6 +3356,18 @@ class Marks(BaseModel):
             description="Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
         ),
     ] = None
+    required: Annotated[
+        UnicodeSetPattern | None,
+        Field(
+            description="Marks of the set an answer must write as the expected word does (ADR 0134): one left out, added, changed or moved is never folded away by the policy and never a typo, and the word is wrong (WRONG_WORD where it spells another word of the course, with `wordNote`). Chaghatay's transliteration: the vowel marks (ä ö ü ā ī ū ē à), which say what the Arabic script leaves out; its consonant marks keep the policy."
+        ),
+    ] = None
+    requiredNote: Annotated[
+        NoteId | None,
+        Field(
+            description="The note for an answer whose only difference is in its `required` marks."
+        ),
+    ] = None
     distinguishes: Annotated[
         bool | None,
         Field(
@@ -3283,6 +3462,19 @@ class Apostrophe(BaseModel):
     note: NoteId | None = None
 
 
+class SoundAlike(BaseModel):
+    """
+    Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    sets: Annotated[list[Set], Field(min_length=1)]
+    note: NoteId
+
+
 class MatchPolicy(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -3296,6 +3488,12 @@ class MatchPolicy(BaseModel):
     scriptMismatch: ScriptMismatch | None = None
     homophones: Homophones | None = None
     apostrophe: Apostrophe | None = None
+    soundAlike: Annotated[
+        SoundAlike | None,
+        Field(
+            description="Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options."
+        ),
+    ] = None
     equivalences: Annotated[
         list[Equivalence] | None,
         Field(
@@ -3387,13 +3585,19 @@ class ReadingScheme(BaseModel):
     answer: Annotated[
         OrthographyId | None,
         Field(
-            description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked: Pinyin and Baxter in Classical Chinese."
+            description="The orthography its readings are in where a card offers them as options or asks for one (char-read, reading-disambiguation, transcribe; ADR 0098). A scheme without one is shown, never asked. Where an orthography has several such schemes, each is a reading tradition the learner may read in (ADR 0138: Pinyin, Jyutping and Baxter in Classical Chinese)."
         ),
     ] = None
     latin: Annotated[
         OrthographyId | None,
         Field(
             description="The orthography its readings are written in for a learner who cannot read the script yet (ADR 0133): an alphabet track's letters and words (a profile's `scriptTrack`) are tagged with it, and its profile grades them and ships in the bundle beside the course's own. A scheme whose own text is not Latin has a plug-in that writes a reading in it (nabu.schemes `latin`: Attic's χώρᾱ is chōrā); otherwise a reading is its own Latin (Schluessel)."
+        ),
+    ] = None
+    bound: Annotated[
+        Bound | None,
+        Field(
+            description="How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free)."
         ),
     ] = None
     variants: Annotated[
@@ -3699,10 +3903,16 @@ class StoryLineSource(BaseModel):
             description="complete: the KC of the missing word (exactly one word token of the line has it)."
         ),
     ] = None
+    asks: Annotated[
+        Asks | None,
+        Field(
+            description="complete: what the question asks (ADR 0132). word (the default): which word fits, every option in the gap's form, so only the line's sense rules them out. form: which form of the gap's own word fits, so only grammar does."
+        ),
+    ] = None
     distractors: Annotated[
         list[KcId] | None,
         Field(
-            description="complete: other KCs offered, shown by their first form in the learner's orthography.",
+            description="complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.",
             min_length=1,
         ),
     ] = None
@@ -3737,7 +3947,8 @@ type NormalizeStep = Annotated[
     | WhitespaceStep
     | DetachStep
     | SplitStep
-    | LogographsStep,
+    | LogographsStep
+    | ToneNumbersStep,
     Field(title="NormalizeStep"),
 ]
 
@@ -3874,7 +4085,14 @@ class BundleStoryLine(BaseModel):
     kcs: list[KcId]
     ask: Literal["complete", "arrange"] | None = None
     gap: KcId | None = None
+    asks: Asks | None = None
     distractors: list[KcId] | None = None
+    options: Annotated[
+        list[dict[str, TaggedText]] | None,
+        Field(
+            description="complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one word token the course writes in the story's unit or earlier (the distractor's sense in the gap's form, or the gap's word in another form), analysis and readings kept."
+        ),
+    ] = None
 
 
 class BundleKc(BaseModel):
@@ -3886,6 +4104,8 @@ class BundleKc(BaseModel):
     kind: Literal["sense", "form", "construction", "grapheme", "reading", "phone", "tone"]
     prerequisites: list[KcId]
     cefr: str | None = None
+    pos: PartOfSpeech | None = None
+    features: UdFeatures | None = None
     gloss: dict[str, TaggedText] | None = None
     forms: dict[str, list[TaggedText]] | None = None
     image: Annotated[
@@ -4217,6 +4437,12 @@ class CourseSource(BaseModel):
         ),
     ] = None
     placement: PlacementPolicy | None = None
+    consistentReadings: Annotated[
+        bool | None,
+        Field(
+            description="Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean."
+        ),
+    ] = None
     iPlusOne: Annotated[
         int | None,
         Field(description="Maximum new knowledge components per sentence (§7.5). Default 1.", ge=1),

@@ -184,7 +184,13 @@
         "kcs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "ask": { "type": "string", "enum": ["complete", "arrange"] },
         "gap": { "$ref": "common.schema.json#/$defs/KcId" },
-        "distractors": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } }
+        "asks": { "$ref": "common.schema.json#/$defs/Asks" },
+        "distractors": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "options": {
+          "description": "complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one word token the course writes in the story's unit or earlier (the distractor's sense in the gap's form, or the gap's word in another form), analysis and readings kept.",
+          "type": "array",
+          "items": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } }
+        }
       }
     },
     "BundleKc": {
@@ -197,6 +203,8 @@
         "kind": { "type": "string", "enum": ["sense", "form", "construction", "grapheme", "reading", "phone", "tone"] },
         "prerequisites": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "cefr": { "type": "string" },
+        "pos": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+        "features": { "$ref": "common.schema.json#/$defs/UdFeatures" },
         "gloss": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
         "forms": { "type": "object", "additionalProperties": { "type": "array", "items": { "$ref": "tagged-text.schema.json" } } },
         "image": { "description": "Bundle path of the KC's picture (a file with role image).", "type": "string" }

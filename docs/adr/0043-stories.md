@@ -113,3 +113,11 @@ The owner decided (D16) that looking a word up on a card before its answer is ch
   and a speaking card is never hinted, since it shows what the sentence means anyway and asks for it
   to be said. The player marks no lookup on a speaking card, and the fold ignores `hinted` on one
   (`SPEAKING`), so answers logged before this rule count the same way.
+
+## Amendment: a `complete` question asks one thing (2026-11-17)
+
+[ADR 0132](0132-a-choice-asks-one-thing.md): a `complete` line asks which word (`asks: word`, the
+default) or which form (`asks: form`). Its options are no longer the distractors' first forms: the
+compiler resolves each to a word the course writes in the story's unit or earlier (the distractor's
+sense in the gap's form, or the gap's word in another form) and bundles it as the line's `options`.
+`story.distractor-form` and `story.distractor-pos` say where it cannot.

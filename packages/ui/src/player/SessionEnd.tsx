@@ -209,7 +209,7 @@ const MissedCard = ({ course, grader, missed, ruby, marks, extra }: MissedCardPr
         <div className={styles.solution} data-solution="">
           <span className={styles.label}>{t.format("player.feedback.solution")}</span>
           {/* Its marks, unless the learner hid them (a vocalize card's always: they are its answer), as the feedback showed it. */}
-          <T as="p" text={solution} ruby={ruby} marks={ex.template === "vocalize" || marks !== "hide" ? "show" : "hide"} highlight={yours?.solutionMarked ?? []} />
+          <T as="p" text={solution} ruby={ruby} marks={ex.template === "vocalize" || ex.template === "vocalize-build" || marks !== "hide" ? "show" : "hide"} highlight={yours?.solutionMarked ?? []} />
         </div>
       )}
       {missed.verdict === "SKIPPED" ? (

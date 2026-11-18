@@ -22,7 +22,7 @@ const isChoice = (value: unknown): value is DisplayChoice => {
   return (
     (marks === undefined || marks === "show" || marks === "hide" || marks === "new") &&
     (vertical === undefined || typeof vertical === "boolean") &&
-    (readings === undefined || readings === "all" || readings === "new")
+    (readings === undefined || readings === "all" || readings === "new" || readings === "open")
   );
 };
 

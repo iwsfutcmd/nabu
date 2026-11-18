@@ -11,6 +11,9 @@ title:
 cefr: A1
 kcs:
 - id: sense:man
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: I
   forms:
@@ -21,6 +24,9 @@ kcs:
   readings:
     schluessel: män
 - id: sense:san
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: you (to one person you know well)
   forms:
@@ -31,6 +37,9 @@ kcs:
   readings:
     schluessel: sän
 - id: sense:siz
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: you (polite, to one person or several)
   forms:
@@ -41,6 +50,9 @@ kcs:
   readings:
     schluessel: siz
 - id: sense:biz
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: we
   forms:
@@ -51,6 +63,9 @@ kcs:
   readings:
     schluessel: biz
 - id: sense:sizlar
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: you (to several people)
   forms:
@@ -61,6 +76,9 @@ kcs:
   readings:
     schluessel: sizlär
 - id: sense:ular
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: they
   forms:
@@ -71,6 +89,7 @@ kcs:
   readings:
     schluessel: ular
 - id: sense:musulman
+  pos: NOUN
   gloss:
     en: Muslim
   forms:
@@ -81,6 +100,7 @@ kcs:
   readings:
     schluessel: musulmān
 - id: sense:mulla
+  pos: NOUN
   gloss:
     en: mullah, a learned man
   forms:
@@ -91,6 +111,7 @@ kcs:
   readings:
     schluessel: mullā
 - id: sense:yigit
+  pos: NOUN
   gloss:
     en: young man
   forms:
@@ -101,6 +122,7 @@ kcs:
   readings:
     schluessel: yigit
 - id: sense:qiz
+  pos: NOUN
   gloss:
     en: girl; daughter
   forms:
@@ -111,6 +133,9 @@ kcs:
   readings:
     schluessel: qiz
 - id: sense:nema
+  pos: PRON
+  features:
+    PronType: Int
   gloss:
     en: what?
   forms:
@@ -121,6 +146,9 @@ kcs:
   readings:
     schluessel: nemä
 - id: sense:kim
+  pos: PRON
+  features:
+    PronType: Int
   gloss:
     en: who?
   forms:
@@ -131,6 +159,7 @@ kcs:
   readings:
     schluessel: kim
 - id: sense:ata
+  pos: NOUN
   gloss:
     en: father
   forms:
@@ -141,6 +170,7 @@ kcs:
   readings:
     schluessel: ata
 - id: sense:ana
+  pos: NOUN
   gloss:
     en: mother
   forms:
@@ -151,6 +181,7 @@ kcs:
   readings:
     schluessel: ana
 - id: sense:at.name
+  pos: NOUN
   gloss:
     en: name
   forms:
@@ -163,6 +194,7 @@ kcs:
   notes:
     en: 'at "name" is spelled آت, aṭ "horse" آط: Chaghatay keeps the Arabic letters to tell words apart (Schluessel, xxi).'
 - id: sense:tokhta
+  pos: PROPN
   gloss:
     en: Tokhta (a man's name)
   forms:
@@ -173,6 +205,7 @@ kcs:
   readings:
     schluessel: Toḫta
 - id: sense:khuma
+  pos: PROPN
   gloss:
     en: Huma (a woman's name)
   forms:
@@ -183,6 +216,7 @@ kcs:
   readings:
     schluessel: Ḫumā
 - id: sense:padishah
+  pos: NOUN
   gloss:
     en: king, ruler, emperor
   forms:
@@ -195,6 +229,7 @@ kcs:
   notes:
     en: 'The scribes write p as پ, ب or ف: پادشاه, بادشاه, فادشاه are one word. Schluessel writes the ف one ṗādišāh.'
 - id: sense:alim
+  pos: NOUN
   gloss:
     en: scholar, learned man
   forms:
@@ -205,6 +240,7 @@ kcs:
   readings:
     schluessel: ʿālim
 - id: sense:ham
+  pos: ADV
   gloss:
     en: also, too; and
   forms:
@@ -217,6 +253,7 @@ kcs:
   notes:
     en: 'häm comes after what it adds: ʿālimlar häm "scholars too".'
 - id: sense:sultan
+  pos: NOUN
   gloss:
     en: sultan
   forms:
@@ -227,6 +264,7 @@ kcs:
   readings:
     schluessel: sulṭān
 - id: sense:abu
+  pos: PROPN
   gloss:
     en: Abu ("father of", in names)
   forms:
@@ -237,6 +275,7 @@ kcs:
   readings:
     schluessel: Abū
 - id: sense:qubays
+  pos: PROPN
   gloss:
     en: Qubays (in the name Abū Qubays)
   forms:
@@ -247,6 +286,7 @@ kcs:
   readings:
     schluessel: Qubays
 - id: sense:de
+  pos: VERB
   gloss:
     en: to say; to call (a name)
   forms:
@@ -259,6 +299,7 @@ kcs:
   notes:
     en: 'de- ends a quotation, as English "he said": "…" dedi. With a name: Atini Toḫta derlär "they call him Tokhta".'
 - id: sense:bil
+  pos: VERB
   gloss:
     en: to know
   forms:
@@ -951,11 +992,6 @@ stories:
         en: “Do you have a king?
   - line:
       speaker: jamal
-      ask: complete
-      gap: sense:ham
-      distractors:
-      - sense:shirin
-      - sense:sawuq
       forms:
         chg-Arab/standard:
           text: عالمینکزلار هم بارمو؟
@@ -977,6 +1013,11 @@ stories:
         en: “We have a king.
   - line:
       speaker: man
+      ask: complete
+      gap: sense:sultan
+      distractors:
+      - sense:nan
+      - sense:qand
       forms:
         chg-Arab/standard:
           text: "اتی\u200cنی سلطان ابو قبیس… دیرلار."

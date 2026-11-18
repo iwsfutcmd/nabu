@@ -1223,6 +1223,75 @@
         "text": "Siz mullāmusiz?"
       },
       "expected": "Siz mullāmusiz"
+    },
+    {
+      "id": "normalize/zh-Latn/tone-numbers",
+      "op": "normalize",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "text": "xue2"
+      },
+      "expected": "xué",
+      "note": "A tone number after a syllable is its tone's mark (ADR 0138)."
+    },
+    {
+      "id": "normalize/zh-Latn/tone-number-placement",
+      "op": "normalize",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "text": "hao3 dou1 liu2 gui4 xiong2 er2"
+      },
+      "expected": "hǎodōuliúguìxióngér",
+      "note": "The mark goes on a or e, the o of ou, else the last vowel; spaces between syllables go."
+    },
+    {
+      "id": "normalize/zh-Latn/v-for-u-umlaut",
+      "op": "normalize",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "text": "lv4 nu:3"
+      },
+      "expected": "lǜnǚ",
+      "note": "v and u: are typed for ü, as Pinyin keyboards take them."
+    },
+    {
+      "id": "normalize/zh-Latn/neutral-tone",
+      "op": "normalize",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "text": "ma5"
+      },
+      "expected": "ma",
+      "note": "The neutral tone's number has no mark: it is dropped."
+    },
+    {
+      "id": "normalize/zh-Latn/capital-tone-number",
+      "op": "normalize",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "text": "Zhuang1"
+      },
+      "expected": "Zhuāng",
+      "note": "Letters compare ignoring case when the mark finds its vowel; case is folded later, in matching."
+    },
+    {
+      "id": "normalize/zh-Latn/marks-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "text": "zhuāng zǐ"
+      },
+      "expected": "zhuāngzǐ"
+    },
+    {
+      "id": "normalize/ltc-Latn/apostrophe",
+      "op": "normalize",
+      "args": {
+        "profile": "ltc-Latn/baxter",
+        "text": "’jang"
+      },
+      "expected": "'jang",
+      "note": "A typographic apostrophe is Baxter's glottal stop."
     }
   ]
 }

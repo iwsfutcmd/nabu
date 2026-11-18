@@ -3,15 +3,16 @@
  *
  * Each exercise exercises one facet of its KCs. Per KC the outcome is `right`,
  * `wrong`, or `given` (the learner did not have to produce it: the rest of a
- * gap-fill sentence). For typed answers the closest-path alignment decides per
+ * gap-fill sentence, and what the question did not ask of the blank's word, ADR 0132). For typed answers the closest-path alignment decides per
  * word: a KC whose word was matched is right even when the answer as a whole
  * was wrong.
  */
-import type { KcCredit, KcId, TaggedText, Token } from "@nabu/schema";
+import type { KcCredit, KcId, SchemeId, TaggedText, Token } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { isCorrect, type Exercise, type Facet, type Outcome, type SelfRating } from "../lesson/exercise.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
+import { askedOfToken } from "../lesson/signature.ts";
 
 export type Rating = "again" | "hard" | "good" | "easy";
 
@@ -37,18 +38,30 @@ const firstToken = (text: TaggedText | undefined): Token | undefined => text?.to
 /** The KCs an answer is credited to: those the exercise asks about, else all of its KCs. */
 export const creditedKcs = (ex: Exercise): readonly KcId[] => askedKcs(ex) ?? ex.kcs;
 
+/** The reading tradition a reading card names (ADR 0138): its read-script card is that tradition's. */
+export const readingOf = (ex: Exercise): SchemeId | undefined =>
+  ex.template === "char-read" || ex.template === "reading-feature" || ex.template === "reading-disambiguation" || ex.template === "transcribe" ? ex.tradition : undefined;
+
 /** The KCs an exercise asks the learner to produce, pick or pronounce; the rest of its KCs were given. */
 export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
   if (ex.template === "complete-translation") {
     const token = firstToken(ex.blank);
     return token === undefined ? undefined : kcsOfToken(token);
   }
+  // A fill-in asks one thing (ADR 0132): which word (its sense; every option had the form) or which
+  // form (its form KCs; every option was the word). One planned before it asked both, and credits both.
   if (ex.template === "gap-fill" || ex.template === "story-complete") {
+    const token = firstToken(ex.options[ex.answer]);
+    if (token === undefined) return undefined;
+    return ex.asks === undefined ? kcsOfToken(token) : askedOfToken(token, ex.asks);
+  }
+  // A spelling choice (ADR 0142) asks how one word is written: the word the gap's right option is.
+  if (ex.template === "spelling-choice") {
     const token = firstToken(ex.options[ex.answer]);
     return token === undefined ? undefined : kcsOfToken(token);
   }
   // A pronunciation card in context (ADR 0095, 0098) asks about one word; the sentence around it is given.
-  if (ex.template === "vocalize" || ex.template === "transcribe" || (ex.template === "char-read" && ex.word !== undefined)) {
+  if (ex.template === "vocalize" || ex.template === "vocalize-build" || ex.template === "transcribe" || ((ex.template === "char-read" || ex.template === "reading-feature") && ex.word !== undefined)) {
     const token = ex.word === undefined ? undefined : ex.prompt.tokens[ex.word];
     return token === undefined ? undefined : kcsOfToken(token);
   }

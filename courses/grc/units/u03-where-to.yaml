@@ -9,6 +9,7 @@ title:
 cefr: A1
 kcs:
 - id: sense:philos
+  pos: NOUN
   gloss:
     en: friend; (as an adjective) dear
   forms:
@@ -17,24 +18,32 @@ kcs:
   notes:
     en: 'ὦ φίλε, "my friend", is how Socrates greets a friend: ὦ φίλε Φαῖδρε.'
 - id: sense:phaidros
+  pos: PROPN
   gloss:
     en: Phaedrus (a young Athenian, Socrates' friend)
   forms:
     grc-Grek/polytonic:
     - Φαῖδρος
 - id: sense:poi
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where to? (to what place)
   forms:
     grc-Grek/polytonic:
     - ποῖ
 - id: sense:pothen
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where from? (from what place)
   forms:
     grc-Grek/polytonic:
     - πόθεν
 - id: sense:de-indeed
+  pos: ADV
   gloss:
     en: indeed, now (gives weight to the word before it)
   forms:
@@ -43,6 +52,7 @@ kcs:
   notes:
     en: 'δή leans on the word before it: ποῖ δή, "where, then?". It is not δέ, "and, but".'
 - id: sense:poreuomai
+  pos: VERB
   gloss:
     en: to go, travel, walk
   forms:
@@ -51,24 +61,28 @@ kcs:
   notes:
     en: 'A middle verb: its endings are -ομαι, -ῃ (or -ει), -εται, but it means a plain "I go".'
 - id: sense:pros
+  pos: ADP
   gloss:
     en: (with the accusative) to, towards
   forms:
     grc-Grek/polytonic:
     - πρός
 - id: sense:peripatos
+  pos: NOUN
   gloss:
     en: a walk; a stroll
   forms:
     grc-Grek/polytonic:
     - περίπατος
 - id: sense:exo
+  pos: ADP
   gloss:
     en: (with the genitive) outside
   forms:
     grc-Grek/polytonic:
     - ἔξω
 - id: sense:teichos
+  pos: NOUN
   gloss:
     en: wall; the city walls
   forms:
@@ -77,12 +91,14 @@ kcs:
   notes:
     en: 'A neuter noun of the third declension: τὸ τεῖχος, of the wall τοῦ τείχους.'
 - id: sense:eis
+  pos: ADP
   gloss:
     en: (with the accusative) into, to
   forms:
     grc-Grek/polytonic:
     - εἰς
 - id: sense:agora
+  pos: NOUN
   gloss:
     en: the agora, the market place
   forms:
@@ -93,6 +109,7 @@ kcs:
   notes:
     en: 'The open square at the heart of Athens: market, law courts and meeting place.'
 - id: sense:oikia
+  pos: NOUN
   gloss:
     en: house; household
   forms:
@@ -106,12 +123,14 @@ kcs:
       status: draft
     source: Drawn for Nabu (courses/images)
 - id: sense:badizo
+  pos: VERB
   gloss:
     en: to walk, go
   forms:
     grc-Grek/polytonic:
     - βαδίζω
 - id: sense:ek
+  pos: ADP
   gloss:
     en: (with the genitive) out of, from
   forms:
@@ -121,33 +140,37 @@ kcs:
   notes:
     en: 'ἐξ before a vowel: ἐξ ἀγορᾶς.'
 - id: sense:pou
+  pos: ADV
+  features:
+    PronType: Int
   gloss:
     en: where? (at what place)
   forms:
     grc-Grek/polytonic:
     - ποῦ
 - id: sense:en
+  pos: ADP
   gloss:
     en: (with the dative) in, at, on
   forms:
     grc-Grek/polytonic:
     - ἐν
-- id: form:dat
-  gloss:
-    en: 'the dative: to, for; after ἐν, in (ἐν τῇ ἀγορᾷ)'
 - id: sense:oikoi
+  pos: ADV
   gloss:
     en: at home
   forms:
     grc-Grek/polytonic:
     - οἴκοι
 - id: sense:oikade
+  pos: ADV
   gloss:
     en: home, homewards
   forms:
     grc-Grek/polytonic:
     - οἴκαδε
 - id: sense:hodos
+  pos: NOUN
   gloss:
     en: road, way, street
   forms:
@@ -156,24 +179,28 @@ kcs:
   notes:
     en: 'Feminine, though it ends in -ος: ἡ ὁδός.'
 - id: sense:para
+  pos: ADP
   gloss:
     en: (with the genitive) from (a person); (with the accusative) to (a person)
   forms:
     grc-Grek/polytonic:
     - παρά
 - id: sense:lysias
+  pos: PROPN
   gloss:
     en: Lysias (the Athenian speechwriter, son of Cephalus)
   forms:
     grc-Grek/polytonic:
     - Λυσίας
 - id: sense:kephalos
+  pos: PROPN
   gloss:
     en: Cephalus (Lysias' father)
   forms:
     grc-Grek/polytonic:
     - Κέφαλος
 - id: sense:astu
+  pos: NOUN
   gloss:
     en: the town, the city (Athens itself, within the walls)
   forms:
@@ -181,6 +208,15 @@ kcs:
     - ἄστυ
   notes:
     en: 'A neuter noun: τὸ ἄστυ, in the town ἐν τῷ ἄστει.'
+- id: form:f-dat
+  gloss:
+    en: 'feminine dative: to, for; on (a day); after ἐν, in (ἐν τῇ ἀγορᾷ, in the market place)'
+- id: form:n-gen
+  gloss:
+    en: 'neuter genitive: of; after ἔξω, outside (ἔξω τείχους, outside the wall)'
+- id: form:n-dat
+  gloss:
+    en: 'neuter dative: to, for; after ἐν, in (ἐν τῷ ἄστει, in the town)'
 nodes:
 - id: grc.u03.my-friend
   kind: lesson
@@ -198,6 +234,7 @@ nodes:
   - sense:peripatos
   - sense:exo
   - sense:teichos
+  - form:n-gen
 - id: grc.u03.to-the-agora
   kind: lesson
   introduces:
@@ -211,10 +248,10 @@ nodes:
   introduces:
   - sense:pou
   - sense:en
-  - form:dat
   - sense:oikoi
   - sense:oikade
   - sense:hodos
+  - form:f-dat
 - id: grc.u03.from-lysias
   kind: lesson
   introduces:
@@ -222,6 +259,7 @@ nodes:
   - sense:lysias
   - sense:kephalos
   - sense:astu
+  - form:n-dat
 - id: grc.u03.story
   kind: story
 sentences:
@@ -439,10 +477,12 @@ sentences:
       tokens:
       - surface: τὸ
         sense: ho
+        form: form:n
         readings:
           attic: τὸ
       - surface: τεῖχος
         sense: teichos
+        form: form:n
         readings:
           attic: τεῖχος
       reverse: τὸ τεῖχος
@@ -460,7 +500,7 @@ sentences:
           attic: ἔξω
       - surface: τείχους
         sense: teichos
-        form: form:gen
+        form: form:n-gen
         readings:
           attic: τείχους
       reverse: ἔξω τείχους
@@ -483,7 +523,7 @@ sentences:
           attic: ἔξω
       - surface: τείχους
         sense: teichos
-        form: form:gen
+        form: form:n-gen
         readings:
           attic: τείχους
       reverse: |-
@@ -537,7 +577,7 @@ sentences:
           attic: ἔξω
       - surface: τείχους
         sense: teichos
-        form: form:gen
+        form: form:n-gen
         readings:
           attic: τείχους
       - surface: πορεύομαι
@@ -562,12 +602,12 @@ sentences:
           attic: εἰς
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: ἀγορὰν
         sense: agora
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: ᾰ̓γορᾱ̀ν
       - surface: πορεύομαι
@@ -592,12 +632,12 @@ sentences:
           attic: εἰς
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: οἰκίαν
         sense: oikia
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: οἰκῐ́ᾱν
       - surface: βαδίζω
@@ -622,12 +662,12 @@ sentences:
           attic: ἐκ
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: οἰκίας
         sense: oikia
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: οἰκῐ́ᾱς
       - surface: βαδίζει
@@ -652,12 +692,12 @@ sentences:
           attic: ἐκ
       - surface: τῆς
         sense: ho
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: τῆς
       - surface: ἀγορᾶς
         sense: agora
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: ᾰ̓γορᾶς
       - surface: πορεύομαι
@@ -684,7 +724,7 @@ sentences:
           attic: ἐξ
       - surface: ἀγορᾶς
         sense: agora
-        form: form:gen
+        form: form:f-gen
         readings:
           attic: ᾰ̓γορᾶς
       reverse: |-
@@ -712,12 +752,12 @@ sentences:
           attic: εἰς
       - surface: τὴν
         sense: ho
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: τὴν
       - surface: ἀγορὰν
         sense: agora
-        form: form:acc
+        form: form:f-acc
         readings:
           attic: ᾰ̓γορᾱ̀ν
       - surface: βαδίζει
@@ -756,7 +796,7 @@ sentences:
           attic: ὦ
       - surface: Ξανθίππη
         sense: xanthippe
-        form: form:voc
+        form: form:f-voc
         readings:
           attic: Ξᾰνθῐ́ππη
       reverse: |-
@@ -801,12 +841,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: ἀγορᾷ
         sense: agora
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ᾰ̓γορᾷ
       - surface: εἰμι
@@ -868,12 +908,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: οἰκίᾳ
         sense: oikia
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: οἰκῐ́ᾳ
       - surface: ἐστίν
@@ -941,12 +981,12 @@ sentences:
           attic: ἐν
       - surface: τῇ
         sense: ho
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: τῇ
       - surface: ὁδῷ
         sense: hodos
-        form: form:dat
+        form: form:f-dat
         readings:
           attic: ὁδῷ
       reverse: ἐν τῇ ὁδῷ
@@ -960,10 +1000,12 @@ sentences:
       tokens:
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: ὁδὸς
         sense: hodos
+        form: form:f
         readings:
           attic: ὁδὸς
       - surface: πρὸς
@@ -972,12 +1014,12 @@ sentences:
           attic: πρὸς
       - surface: τὸ
         sense: ho
-        form: form:acc
+        form: form:n
         readings:
           attic: τὸ
       - surface: τεῖχος
         sense: teichos
-        form: form:acc
+        form: form:n
         readings:
           attic: τεῖχος
       reverse: ἡ ὁδὸς πρὸς τὸ τεῖχος
@@ -1000,10 +1042,12 @@ sentences:
           attic: ἐστῐν
       - surface: ἡ
         sense: ho
+        form: form:f
         readings:
           attic: ἡ
       - surface: οἰκία
         sense: oikia
+        form: form:f
         readings:
           attic: οἰκῐ́ᾱ
       reverse: |-
@@ -1117,12 +1161,12 @@ sentences:
           attic: εἰς
       - surface: τὸ
         sense: ho
-        form: form:acc
+        form: form:n
         readings:
           attic: τὸ
       - surface: ἄστυ
         sense: astu
-        form: form:acc
+        form: form:n
         readings:
           attic: ᾰ̓́στῠ
       - surface: πορεύομαι
@@ -1155,12 +1199,12 @@ sentences:
           attic: ἐν
       - surface: τῷ
         sense: ho
-        form: form:dat
+        form: form:n-dat
         readings:
           attic: τῷ
       - surface: ἄστει
         sense: astu
-        form: form:dat
+        form: form:n-dat
         readings:
           attic: ᾰ̓́στει
       - surface: ἐστίν
@@ -1221,11 +1265,6 @@ stories:
   steps:
   - line:
       speaker: socrates
-      ask: complete
-      gap: sense:pothen
-      distractors:
-      - sense:hemera
-      - sense:oikia
       forms:
         grc-Grek/polytonic:
           text: ὦ φίλε Φαῖδρε, ποῖ δὴ καὶ πόθεν;
@@ -1264,6 +1303,11 @@ stories:
         en: “Phaedrus, my friend, where are you going, and where have you come from?”
   - line:
       speaker: phaidros
+      ask: complete
+      gap: sense:sokrates
+      distractors:
+      - sense:kriton
+      - sense:phaidros
       forms:
         grc-Grek/polytonic:
           text: παρὰ Λυσίου, ὦ Σώκρατες, τοῦ Κεφάλου,
@@ -1329,7 +1373,7 @@ stories:
               attic: ἔξω
           - surface: τείχους
             sense: teichos
-            form: form:gen
+            form: form:n-gen
             readings:
               attic: τείχους
       translations:

@@ -77,3 +77,8 @@ same word. A right answer about another word of the sentence also closed the mis
   Two mistakes on one card of a sentence come back one at a time, since the card's id is the
   sentence's. The wrong option the learner chose is not kept: the rebuilt card draws its options
   afresh.
+- **A fill-in keeps its question too** ([ADR 0132](0132-a-choice-asks-one-thing.md)): `Mistake.asks`
+  says whether the gap-fill asked which word (`ask` is the word's sense) or which form (`ask` is its
+  form KCs), from the logged exercise's `asks`. The rebuilt card asks the same question, and only an
+  answer to it closes the mistake. A fill-in's mistake from before ADR 0132 (all of the word's KCs, no
+  `asks`) is closed by an answer to either question about its word.

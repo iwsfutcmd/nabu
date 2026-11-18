@@ -97,6 +97,34 @@ _LINTS = [
         "A reading's syllables do not line up with the word's characters.",
     ),
     Lint(
+        "reading.inconsistent",
+        "error",
+        3,
+        "Words annotated alike (spelling, sense, form, morphs) read two ways, in a course that "
+        "has switched the check on (`consistentReadings`, ADR 0135).",
+    ),
+    Lint(
+        "reading.inconsistent-pending",
+        "warning",
+        3,
+        "Words annotated alike read two ways, in a course that has not switched the check on yet "
+        "(ADR 0135): annotate what tells them apart, or mark a free variant `readingVariant`.",
+    ),
+    Lint(
+        "reading.bound",
+        "error",
+        3,
+        "A reading marks its word bound to the next (the scheme's `bound`: the Tiberian reading's "
+        "final hyphen) where the text does not bind it, or does not where it does (ADR 0135).",
+    ),
+    Lint(
+        "reading.spelling",
+        "error",
+        3,
+        "A reading does not spell its word, in a scheme whose readings do (Attic: the reading "
+        "without its vowel lengths, ADR 0135).",
+    ),
+    Lint(
         "enrich.transliteration-mismatch",
         "info",
         3,
@@ -192,6 +220,21 @@ _LINTS = [
         "A question cannot be answered as written: an answer out of range, options that read "
         "the same, a gap that is not exactly one word, a distractor without a form or that "
         "reads like the answer, or a line with one tile to arrange.",
+    ),
+    Lint(
+        "story.distractor-form",
+        "error",
+        6,
+        "A story question's wrong option is not a word the course writes in its unit or an "
+        "earlier one (ADR 0132): no word of the distractor's sense in the gap's form (asks word), "
+        "or not two other forms of the gap's word (asks form).",
+    ),
+    Lint(
+        "story.distractor-pos",
+        "error",
+        6,
+        "A story word question offers a word of another part of speech or other UD features "
+        "than the gap's (ADR 0132): grammar alone rules it out, so it asks less than it seems.",
     ),
     # roleplay scenario cards (Phase 8)
     Lint(

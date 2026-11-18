@@ -6,61 +6,95 @@ title:
 cefr: A1
 kcs:
 - id: sense:一
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: one
   forms:
     lzh-Hant/standard: [一]
 - id: sense:二
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: two
   forms:
     lzh-Hant/standard: [二]
 - id: sense:三
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: three
   forms:
     lzh-Hant/standard: [三]
 - id: sense:四
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: four
   forms:
     lzh-Hant/standard: [四]
 - id: sense:五
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: five
   forms:
     lzh-Hant/standard: [五]
 - id: sense:六
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: six
   forms:
     lzh-Hant/standard: [六]
 - id: sense:七
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: seven
   forms:
     lzh-Hant/standard: [七]
 - id: sense:八
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: eight
   forms:
     lzh-Hant/standard: [八]
 - id: sense:九
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: nine
   forms:
     lzh-Hant/standard: [九]
 - id: sense:十
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: ten
   forms:
     lzh-Hant/standard: [十]
 - id: sense:百
+  pos: NUM
+  features:
+    NumType: Card
   gloss:
     en: hundred
   forms:
     lzh-Hant/standard: [百]
 - id: sense:有.you
+  pos: CCONJ
   gloss:
     en: 'and (between a round number and what it adds: 十有五 “fifteen”; read yòu, = 又)'
   forms:
@@ -68,71 +102,85 @@ kcs:
   notes:
     en: 'The character 有 “to have”, read yòu and meaning 又 “and” in numbers: 十有五 is ten-and-five. 十五 means the same.'
 - id: sense:年
+  pos: NOUN
   gloss:
     en: year; age
   forms:
     lzh-Hant/standard: [年]
 - id: sense:志
+  pos: VERB
   gloss:
     en: aim, will; to set one’s heart on
   forms:
     lzh-Hant/standard: [志]
 - id: sense:于
+  pos: ADP
   gloss:
     en: in, at, on, to
   forms:
     lzh-Hant/standard: [于]
 - id: sense:立
+  pos: VERB
   gloss:
     en: to stand; to take one’s stand
   forms:
     lzh-Hant/standard: [立]
 - id: sense:惑
+  pos: ADJ
   gloss:
     en: confused, in doubt
   forms:
     lzh-Hant/standard: [惑]
 - id: sense:天
+  pos: NOUN
   gloss:
     en: Heaven; the sky
   forms:
     lzh-Hant/standard: [天]
 - id: sense:命
+  pos: VERB
   gloss:
     en: to order; command, decree; fate
   forms:
     lzh-Hant/standard: [命]
 - id: sense:天命
+  pos: NOUN
   gloss:
     en: the mandate of Heaven
   forms:
     lzh-Hant/standard: [天命]
 - id: sense:耳
+  pos: NOUN
   gloss:
     en: ear
   forms:
     lzh-Hant/standard: [耳]
 - id: sense:順
+  pos: ADJ
   gloss:
     en: to go along with; attuned, compliant
   forms:
     lzh-Hant/standard: [順]
 - id: sense:從
+  pos: VERB
   gloss:
     en: to follow
   forms:
     lzh-Hant/standard: [從]
 - id: sense:心
+  pos: NOUN
   gloss:
     en: heart, mind
   forms:
     lzh-Hant/standard: [心]
 - id: sense:欲
+  pos: VERB
   gloss:
     en: to want, to desire
   forms:
     lzh-Hant/standard: [欲]
 - id: sense:所
+  pos: PART
   gloss:
     en: what, that which (before a verb)
   forms:
@@ -140,11 +188,13 @@ kcs:
   notes:
     en: '所 makes a noun of the verb after it: 所欲 “what one wants”, 吾所欲 “what I want”.'
 - id: sense:踰
+  pos: VERB
   gloss:
     en: to overstep, to cross over
   forms:
     lzh-Hant/standard: [踰]
 - id: sense:矩
+  pos: NOUN
   gloss:
     en: carpenter’s square; the rules, the bounds
   forms:
@@ -625,10 +675,10 @@ sentences:
       reverse: 不踰矩
   translations:
     en: |-
-      (Do not|Don't) (overstep|cross|go beyond|transgress) (the bounds|the rules|what is right).
-      (Not|Without) (overstepping|crossing|going beyond|transgressing) (the bounds|the rules|what is right|the carpenter's square).
+      (Do not|Don't) (overstep|cross|go beyond|transgress) (the bounds|the rules|what is right|bounds|rules).
+      (Not|Without) (overstepping|crossing|going beyond|transgressing) (the bounds|the rules|what is right|the carpenter's square|bounds|rules).
       Without transgressing what was right.
-      I did not overstep the bounds.
+      I did not overstep (the |)bounds.
 - id: s.03.39
   node: lzh.u03.heart
   forms:
@@ -640,11 +690,11 @@ sentences:
         吾七十而從心所欲不踰矩
   translations:
     en: |-
-      At seventy I (followed|could follow) (my heart's desires|what my heart desired) without (overstepping|crossing|transgressing) the (bounds|rules).
-      At seventy I followed what my heart desired, (and did not|but did not|yet did not) (overstep|cross|transgress) the (bounds|rules).
+      At seventy I (followed|could follow) (my heart's desires|what my heart desired) without (overstepping|crossing|transgressing) (the |)(bounds|rules).
+      At seventy I followed what my heart desired, (and did not|but did not|yet did not) (overstep|cross|transgress) (the |)(bounds|rules).
       At seventy I could follow what my heart desired, without transgressing what was right.
-      At seventy I followed what my heart desired without going beyond the bounds.
-      At the age of seventy I followed what my heart desired without overstepping the bounds.
+      At seventy I followed what my heart desired without going beyond (the |)bounds.
+      At the age of seventy I followed what my heart desired without overstepping (the |)bounds.
 stories:
 - id: lzh.story.analects-2-4
   node: lzh.u03.story
@@ -676,9 +726,6 @@ stories:
       translations: {en: at thirty I stood firm;}
   - line:
       speaker: kongzi
-      ask: complete
-      gap: sense:惑
-      distractors: ['sense:立', 'sense:順']
       forms:
         lzh-Hant/standard:
           text: 四十而不惑，
@@ -698,6 +745,9 @@ stories:
       translations: {en: at fifty I knew the mandate of Heaven;}
   - line:
       speaker: kongzi
+      ask: complete
+      gap: sense:順
+      distractors: ['sense:慍', 'sense:殆']
       forms:
         lzh-Hant/standard:
           text: 六十而耳順，
@@ -707,7 +757,7 @@ stories:
       speaker: kongzi
       ask: complete
       gap: sense:矩
-      distractors: ['sense:命', 'sense:年']
+      distractors: ['sense:耳', 'sense:朋']
       forms:
         lzh-Hant/standard:
           text: 七十而從心所欲，不踰矩。

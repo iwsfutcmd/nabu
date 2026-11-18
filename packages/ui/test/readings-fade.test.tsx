@@ -40,9 +40,11 @@ const text = sentence(ORTH);
 /** The learner has read 書 right on a reading card. */
 const shown: ReadonlySet<string> = new Set(["sense:syu"]);
 const rts = (html: string): readonly string[] => [...html.matchAll(/<rt[^>]*>([^<]*)<\/rt>/gu)].map((m) => m[1] as string);
-const inSession = (fade: boolean, node: JSX.Element): JSX.Element => (
+const inSession = (fade: boolean, node: JSX.Element, open = false): JSX.Element => (
   <WordStatusProvider course={course} known={undefined} readings={shown}>
-    <FadeReadings on={fade}>{node}</FadeReadings>
+    <FadeReadings on={fade} open={open}>
+      {node}
+    </FadeReadings>
   </WordStatusProvider>
 );
 
@@ -63,10 +65,10 @@ describe("readings before the learner chooses (ADR 0131)", () => {
     return <ReadingsControl readings={readings} words={{ shown: display.readings, choose: display.setReadings }} />;
   };
 
-  it("are a choice of three for a layer that fades: All words, New words, Off, under its name", () => {
+  it("are a choice for a layer that fades: All words, New words, Unwritten (its scheme says what is), Off, under its name", () => {
     const html = render(<Control />);
-    expect([...html.matchAll(/data-reading="([^"]+)"/gu)].map((m) => m[1])).toEqual(["all", "new", "off"]);
-    for (const label of ["Jyutping", "All words", "New words", "Off"]) expect(html).toContain(label);
+    expect([...html.matchAll(/data-reading="([^"]+)"/gu)].map((m) => m[1])).toEqual(["all", "new", "open", "off"]);
+    for (const label of ["Jyutping", "All words", "New words", "Unwritten", "Off"]) expect(html).toContain(label);
     expect(html).toContain('data-readings-shown="new"');
     expect(html).not.toContain('role="switch"');
     expect(render(<Control chosen={false} />)).toContain('data-readings-shown="off"');
@@ -76,6 +78,13 @@ describe("readings before the learner chooses (ADR 0131)", () => {
 describe("readings on new words only (ADR 0131)", () => {
   it("leave off the readings the learner has shown, in a session that fades them", () => {
     expect(rts(render(inSession(true, <T text={text} ruby={JYUTPING} />)))).toEqual(["ngo5", "ge3"]);
+  });
+
+  it("keep only what the script leaves unwritten over the words read before, where the learner chose so (ADR 0141)", () => {
+    const html = render(inSession(true, <T text={text} ruby={JYUTPING} />, true));
+    // 書 syu1, read before: its tone alone, the rest a dot.
+    expect(rts(html)).toEqual(["ngo5", "ge3", "\u00B71"]);
+    expect([...html.matchAll(/data-open-letters/gu)]).toHaveLength(1);
   });
 
   it("keep every reading over all words, outside a session, in another orthography, and in a tapped word's gloss", () => {

@@ -6,41 +6,49 @@ title:
 cefr: A2
 kcs:
 - id: sense:月
+  pos: NOUN
   gloss:
     en: moon; month
   forms:
     lzh-Hant/standard: [月]
 - id: sense:光
+  pos: NOUN
   gloss:
     en: light; to shine
   forms:
     lzh-Hant/standard: [光]
 - id: sense:夜
+  pos: NOUN
   gloss:
     en: night; at night
   forms:
     lzh-Hant/standard: [夜]
 - id: sense:地
+  pos: NOUN
   gloss:
     en: earth, ground
   forms:
     lzh-Hant/standard: [地]
 - id: sense:霜
+  pos: NOUN
   gloss:
     en: frost
   forms:
     lzh-Hant/standard: [霜]
 - id: sense:床
+  pos: NOUN
   gloss:
     en: bed, couch
   forms:
     lzh-Hant/standard: [床]
 - id: sense:前
+  pos: ADP
   gloss:
     en: in front of, before
   forms:
     lzh-Hant/standard: [前]
 - id: sense:是.cop
+  pos: AUX
   gloss:
     en: to be (the copula of later Chinese)
   forms:
@@ -48,106 +56,129 @@ kcs:
   notes:
     en: 'Classical texts use 是 for “this”. In speech it became “to be” by the Han, and Tang poems use it so: 疑是地上霜 “I took it to be frost on the ground”. Classical prose would say 此霜也, “this is frost”.'
 - id: sense:疑
+  pos: VERB
   gloss:
     en: to doubt, to suspect; to take for
   forms:
     lzh-Hant/standard: [疑]
 - id: sense:舉
+  pos: VERB
   gloss:
     en: to raise, to lift
   forms:
     lzh-Hant/standard: [舉]
 - id: sense:頭
+  pos: NOUN
   gloss:
     en: head
   forms:
     lzh-Hant/standard: [頭]
 - id: sense:望
+  pos: VERB
   gloss:
     en: to gaze at, to look into the distance
   forms:
     lzh-Hant/standard: [望]
 - id: sense:低
+  pos: VERB
   gloss:
     en: low; to lower
   forms:
     lzh-Hant/standard: [低]
 - id: sense:故鄉
+  pos: NOUN
   gloss:
     en: home town, old home
   forms:
     lzh-Hant/standard: [故鄉]
 - id: sense:春
+  pos: NOUN
   gloss:
     en: spring
   forms:
     lzh-Hant/standard: [春]
 - id: sense:花
+  pos: NOUN
   gloss:
     en: flower, blossom
   forms:
     lzh-Hant/standard: [花]
 - id: sense:鳥
+  pos: NOUN
   gloss:
     en: bird
   forms:
     lzh-Hant/standard: [鳥]
 - id: sense:風
+  pos: NOUN
   gloss:
     en: wind
   forms:
     lzh-Hant/standard: [風]
 - id: sense:雨
+  pos: NOUN
   gloss:
     en: rain
   forms:
     lzh-Hant/standard: [雨]
 - id: sense:聲
+  pos: NOUN
   gloss:
     en: sound, voice
   forms:
     lzh-Hant/standard: [聲]
 - id: sense:眠
+  pos: VERB
   gloss:
     en: to sleep
   forms:
     lzh-Hant/standard: [眠]
 - id: sense:覺
+  pos: VERB
   gloss:
     en: to become aware of, to notice; to realize
   forms:
     lzh-Hant/standard: [覺]
 - id: sense:曉
+  pos: NOUN
   gloss:
     en: dawn, daybreak
   forms:
     lzh-Hant/standard: [曉]
 - id: sense:處
+  pos: NOUN
   gloss:
     en: 'place (處處: everywhere)'
   forms:
     lzh-Hant/standard: [處]
 - id: sense:聞
+  pos: VERB
   gloss:
     en: to hear
   forms:
     lzh-Hant/standard: [聞]
 - id: sense:啼
+  pos: VERB
   gloss:
     en: to cry, to sing (of birds)
   forms:
     lzh-Hant/standard: [啼]
 - id: sense:落
+  pos: VERB
   gloss:
     en: to fall (of flowers and leaves); to set (of the moon)
   forms:
     lzh-Hant/standard: [落]
 - id: sense:多少
+  pos: PRON
+  features:
+    PronType: Int
   gloss:
     en: how many, how much
   forms:
     lzh-Hant/standard: [多少]
 - id: sense:夜來
+  pos: ADV
   gloss:
     en: in the night, overnight; last night
   forms:
@@ -738,7 +769,7 @@ stories:
       speaker: li-bai
       ask: complete
       gap: sense:霜
-      distractors: ['sense:花', 'sense:雨']
+      distractors: ['sense:山', 'sense:舟']
       forms:
         lzh-Hant/standard:
           text: 疑是地上霜。
@@ -794,7 +825,7 @@ stories:
       speaker: meng-haoran
       ask: complete
       gap: sense:落
-      distractors: ['sense:來', 'sense:出']
+      distractors: ['sense:耕', 'sense:學']
       forms:
         lzh-Hant/standard:
           text: 花落知多少。

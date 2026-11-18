@@ -9,16 +9,19 @@ title:
 cefr: A2
 kcs:
 - id: sense:shmuel
+  pos: PROPN
   gloss:
     en: Samuel
   forms:
     hbo-Hebr/tiberian: [שְׁמוּאֵל]
 - id: sense:eli
+  pos: PROPN
   gloss:
     en: Eli (the priest at Shiloh)
   forms:
     hbo-Hebr/tiberian: [עֵלִי]
 - id: sense:naar
+  pos: NOUN
   gloss:
     en: boy, young man; servant
   forms:
@@ -27,11 +30,13 @@ kcs:
   gloss:
     en: 'and he shall; and it will be: the converted perfect (weqatal), he or it'
 - id: sense:hityatsev
+  pos: VERB
   gloss:
     en: to take one's stand, stand firm (hithpael)
   forms:
     hbo-Hebr/tiberian: [הִתְיַצֵּב]
 - id: sense:paam
+  pos: NOUN
   gloss:
     en: 'time, occurrence (כְפַעַם בְּפַעַם: as at other times)'
   forms:
@@ -361,7 +366,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: פַּעַם
-      tokens: [{surface: פַּעַם, sense: paam, readings: {tiberian: páʿam}}]
+      tokens: [{surface: פַּעַם, sense: paam, form: 'form:f', readings: {tiberian: páʿam}}]
       reverse: פעם
   translations:
     en: |-
@@ -372,7 +377,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כְפַעַם־בְּפַעַם
-      tokens: [{surface: כְפַעַם, sense: paam, morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, morphs: [{
+      tokens: [{surface: כְפַעַם, sense: paam, form: 'form:f', morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, form: 'form:f', morphs: [{
               surface: בְּ, kc: 'sense:be'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: bəp̄áʿam}}]
       reverse: כפעם בפעם
   translations:
@@ -445,7 +450,8 @@ stories:
       speaker: samuel
       ask: complete
       gap: sense:qara
-      distractors: ['sense:shama', 'sense:shakhav']
+      asks: form
+      distractors: ['form:qatal-1cs', 'form:wayyiqtol-3ms']
       forms:
         hbo-Hebr/tiberian:
           text: הִנְנִי כִּי־קָרָאתָ לִּי
@@ -517,8 +523,8 @@ stories:
         hbo-Hebr/tiberian:
           text: וַיָּבֹא יְהוָה וַיִּתְיַצַּב וַיִּקְרָא כְפַעַם־בְּפַעַם
           tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיִּתְיַצַּב, sense: hityatsev,
-              form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯyaṣṣaḇ}}, {surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: כְפַעַם, sense: paam,
-              morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: פַעַם,
+              form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯyaṣṣaḇ}}, {surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: כְפַעַם, sense: paam, form: 'form:f',
+              morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, form: 'form:f', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: פַעַם,
                   kc: 'sense:paam'}], readings: {tiberian: bəp̄áʿam}}]
       translations:
         en: And the LORD came and stood there, and called as at other times,

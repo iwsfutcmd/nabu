@@ -5,7 +5,7 @@
  * Matching is core's, never redone here. A meaning's row (GlossEntry) also says, in the feedback on
  * a wrong answer, what a wrong word means (P3).
  */
-import type { CourseView } from "@nabu/core/lesson";
+import { otherReadingsAt, type CourseView } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, type Gloss } from "@nabu/core/story";
 import { hasReading, wordAt } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
@@ -46,7 +46,13 @@ export const GlossEntry = ({ gloss: g, ruby, marks, note }: GlossEntryProps): JS
   return (
     <div className={styles.glossEntry} data-gloss-kc={g.kc}>
       <dt>
-        <T text={g.form} ruby={ruby} marks={marks} />
+        {g.unwritten === true ? (
+          <span className={styles.glossNote} data-gloss-unwritten="">
+            {t.format("story.gloss.unwritten")}
+          </span>
+        ) : (
+          <T text={g.form} ruby={ruby} marks={marks} />
+        )}
       </dt>
       <dd>
         {g.meaning !== undefined && <T text={g.meaning} />}
@@ -86,9 +92,24 @@ export interface GlossPanelProps {
    * out of sight) until a word is tapped.
    */
   readonly quiet?: boolean;
+  /** The other readings of the tapped word's spelling (ADR 0140, `useOtherReadings`), each with what it means. */
+  readonly also?: readonly OtherReading[] | undefined;
 }
 
-export const GlossPanel = ({ open, glosses, ruby, marks, word, quiet = false }: GlossPanelProps): JSX.Element => {
+/** Another reading of a tapped word's spelling (ADR 0140): the reading as text, and what that word means. */
+export interface OtherReading {
+  readonly reading: TaggedText;
+  readonly meaning: TaggedText | undefined;
+}
+
+/**
+ * The other readings the course gives a tapped word's spelling in the reading scheme shown (ADR 0140:
+ * اوزوم üzüm "grape" is also özüm "myself"). None for a spelling read one way, or without a scheme.
+ */
+export const useOtherReadings = (course: CourseView, tap: Pick<WordTap, "text" | "token"> | undefined, scheme: SchemeId | false): readonly OtherReading[] =>
+  useMemo(() => (tap === undefined || scheme === false ? [] : otherReadingsAt(course, scheme, tap.text, tap.token)), [course, tap, scheme]);
+
+export const GlossPanel = ({ open, glosses, ruby, marks, word, quiet = false, also = [] }: GlossPanelProps): JSX.Element => {
   const t = useTranslator();
   // A glossary entry always shows the word's reading (ADR 0131): where the entries are its parts (اشلیغ, ی
   // of اشلیغی) or a phrase, or none reaches it, the word itself comes first with its reading.
@@ -125,6 +146,22 @@ export const GlossPanel = ({ open, glosses, ruby, marks, word, quiet = false }: 
             ))}
           </GlossList>
         </FadeReadings>
+      )}
+      {open && also.length > 0 && (
+        // The same spelling read otherwise elsewhere in the course (ADR 0140).
+        <div className={styles.glossAlso} data-gloss-also="">
+          <p className={styles.glossNote}>{t.format("story.gloss.also")}</p>
+          <GlossList>
+            {also.map((r, i) => (
+              <div key={i} className={styles.glossEntry} data-gloss-reading="">
+                <dt>
+                  <T text={r.reading} />
+                </dt>
+                <dd>{r.meaning !== undefined && <T text={r.meaning} />}</dd>
+              </div>
+            ))}
+          </GlossList>
+        </div>
       )}
     </div>
   );

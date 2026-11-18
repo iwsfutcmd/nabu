@@ -6,26 +6,42 @@ title:
 cefr: A1
 kcs:
 - id: sense:吾
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: 'I, my: before the word it goes with (as subject or possessive, or as an object between a negative and its verb: 不吾知); after a verb or alone, 我'
   forms:
     lzh-Hant/standard: [吾]
 - id: sense:汝
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: you
   forms:
     lzh-Hant/standard: [汝]
 - id: sense:爾
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: you
   forms:
     lzh-Hant/standard: [爾]
 - id: sense:其
+  pos: PRON
+  features:
+    Poss: 'Yes'
+    PronType: Prs
   gloss:
     en: his, her, its, their; the (one just mentioned)
   forms:
     lzh-Hant/standard: [其]
 - id: sense:是
+  pos: PRON
+  features:
+    PronType: Dem
   gloss:
     en: this, that (pointing back)
   forms:
@@ -33,21 +49,31 @@ kcs:
   notes:
     en: 'In early Classical Chinese 是 points: “this”. Later texts also use it for “to be”.'
 - id: sense:此
+  pos: PRON
+  features:
+    PronType: Dem
   gloss:
     en: this, here
   forms:
     lzh-Hant/standard: [此]
 - id: sense:為
+  pos: VERB
   gloss:
     en: to do, to make; to be, to act as, to become
   forms:
     lzh-Hant/standard: [為]
 - id: sense:誰
+  pos: PRON
+  features:
+    PronType: Int
   gloss:
     en: who
   forms:
     lzh-Hant/standard: [誰]
 - id: sense:何
+  pos: PRON
+  features:
+    PronType: Int
   gloss:
     en: what; why; how
   forms:
@@ -55,37 +81,44 @@ kcs:
   notes:
     en: 'As an object it comes before the verb: 何學 “study what?”.'
 - id: sense:問
+  pos: VERB
   gloss:
     en: to ask
   forms:
     lzh-Hant/standard: [問]
 - id: sense:對
+  pos: VERB
   gloss:
     en: to reply (to a superior)
   forms:
     lzh-Hant/standard: [對]
 - id: sense:諾
+  pos: INTJ
   gloss:
     en: yes (I will); very well
   forms:
     lzh-Hant/standard: [諾]
 - id: sense:否
+  pos: INTJ
   gloss:
     en: no; not so
   forms:
     lzh-Hant/standard: [否]
 - id: sense:弟子
+  pos: NOUN
   gloss:
     en: disciple, student
   forms:
     lzh-Hant/standard: [弟子]
   image: {file: ../images/student.svg, license: CC0-1.0, provenance: {author: 'llm:claude@db6a47561192', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:子路
+  pos: PROPN
   gloss:
     en: Zilu, a disciple of Confucius
   forms:
     lzh-Hant/standard: [子路]
 - id: sense:由
+  pos: PROPN
   gloss:
     en: 'Yu: Zilu’s personal name, used by his teacher'
   forms:
@@ -93,21 +126,27 @@ kcs:
   notes:
     en: Zilu is his courtesy name; the Master calls him by his personal name, 由 (Zhong You).
 - id: sense:小人
+  pos: NOUN
   gloss:
     en: petty person, small-minded man (the opposite of 君子)
   forms:
     lzh-Hant/standard: [小人]
 - id: sense:言
+  pos: VERB
   gloss:
     en: to speak; words
   forms:
     lzh-Hant/standard: [言]
 - id: sense:誨
+  pos: VERB
   gloss:
     en: to teach, to instruct
   forms:
     lzh-Hant/standard: [誨]
 - id: sense:女.ru
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: you (read rǔ, = 汝)
   forms:
@@ -115,6 +154,7 @@ kcs:
   notes:
     en: The character for “woman” (nǚ), borrowed for 汝 “you” and read like it.
 - id: sense:知.zhi
+  pos: ADJ
   gloss:
     en: wise; wisdom (read zhì, = 智)
   forms:
@@ -122,21 +162,25 @@ kcs:
   notes:
     en: The character 知 “to know”, read zhì. Later texts write 智.
 - id: sense:思
+  pos: VERB
   gloss:
     en: to think, to reflect
   forms:
     lzh-Hant/standard: [思]
 - id: sense:則
+  pos: ADV
   gloss:
     en: 'then (in the second clause: if A, then B)'
   forms:
     lzh-Hant/standard: [則]
 - id: sense:罔
+  pos: ADJ
   gloss:
     en: lost, confused, bewildered
   forms:
     lzh-Hant/standard: [罔]
 - id: sense:殆
+  pos: ADJ
   gloss:
     en: in danger, perilous
   forms:
@@ -722,7 +766,7 @@ stories:
       speaker: kongzi
       ask: complete
       gap: sense:誨
-      distractors: ['sense:問', 'sense:思']
+      distractors: ['sense:學', 'sense:習']
       forms:
         lzh-Hant/standard:
           text: 誨女知之乎？
@@ -738,6 +782,9 @@ stories:
       translations: {en: 'When you know something, hold that you know it; when you do not, hold that you do not:'}
   - line:
       speaker: kongzi
+      ask: complete
+      gap: sense:知.zhi
+      distractors: ['sense:罔', 'sense:慍']
       forms:
         lzh-Hant/standard:
           text: 是知也。
@@ -756,9 +803,6 @@ stories:
       translations: {en: 'The Master also said:'}
   - line:
       speaker: kongzi
-      ask: complete
-      gap: sense:思
-      distractors: ['sense:問', 'sense:言']
       forms:
         lzh-Hant/standard:
           text: 學而不思則罔，

@@ -5,12 +5,12 @@
  * It shares the fold's pure parts (the rating map, FSRS, revisions, the prediction); what it keeps
  * of its own is the fold itself. A deliberate change to the fold changes this copy too.
  */
-import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
+import type { AnswerSubmitted, Asks, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import { facetOf, ratingOf, type Pace, type Rating } from "../src/learner/credit.ts";
 import { initialPerformance, predict, type Performance, type PredictionInput } from "../src/learner/performance.ts";
 import { withRevisions } from "../src/learner/revisions.ts";
-import { askOf, cardKey, DESIRED_RETENTION, RECENT_WINDOW, sameAsk, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
+import { askOf, cardKey, DESIRED_RETENTION, RECENT_WINDOW, sameQuestion, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
 import type { Facet, TemplateId } from "../src/lesson/exercise.ts";
 import { SPEAKING, TEMPLATES } from "../src/lesson/templates.ts";
 
@@ -75,13 +75,13 @@ const fromCard = (c: Card): StoredCard => ({
   last_review: c.last_review?.toISOString(),
 });
 
-const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string): number => {
-  const card = state.cards[cardKey(kc, facet, orthography)];
+const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string, reading?: string): number => {
+  const card = state.cards[cardKey(kc, facet, orthography, reading)];
   return card === undefined ? 0 : scheduler.get_retrievability(toCard(card), new Date(now), false);
 };
 
-const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string): number =>
-  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now), 0) / kcs.length;
+const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string, reading?: string): number =>
+  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now, reading), 0) / kcs.length;
 
 const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good, easy: FsrsRating.Easy };
 
@@ -115,7 +115,7 @@ const addXp = (d: Draft, date: string, amount: number): void => {
 const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, rating: Rating): void => {
   const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
-  const key = cardKey(kc, facet, e.orthography);
+  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
   if (d.rated.keys.includes(key)) return;
   d.rated.keys.push(key);
   const now = new Date(at);
@@ -127,7 +127,7 @@ const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet:
 
 const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
   if (!WITNESSED_FACETS.has(facet)) return;
-  const key = cardKey(kc, facet, e.orthography);
+  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
   if (!right) {
     delete d.shown[key];
     d.missed[key] = e.localDate;
@@ -138,9 +138,9 @@ const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, fac
   if (met !== undefined && e.localDate > met && (missed === undefined || e.localDate > missed)) d.shown[key] = e.localDate;
 };
 
-const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined): void => {
-  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameAsk(m.ask, ask)));
-  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }) }].slice(-MISTAKES_KEPT);
+const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined, asks?: Asks): void => {
+  d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameQuestion(m, ask, asks)));
+  if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }), ...(asks === undefined ? {} : { asks }) }].slice(-MISTAKES_KEPT);
 };
 
 const answered = (d: Draft, e: AnswerSubmitted): void => {
@@ -149,7 +149,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   const correct = e.outcome.kind.startsWith("CORRECT");
   if (e.attempt === 1) {
     const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
-    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime);
+    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime, e.exercise.reading);
     d.performance = update(d.performance, { template, facet, item, kcs, r }, correct);
   }
   const recent = d.latencies[template] ?? [];
@@ -172,7 +172,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   for (const credit of e.outcome.kcs) d.met[credit.kc] ??= e.localDate;
   if (correct) addXp(d, e.localDate, XP.answer);
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
-    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs));
+    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs), askOf(e.outcome.kcs) === undefined ? undefined : e.exercise.asks);
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {

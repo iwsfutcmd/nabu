@@ -7,22 +7,22 @@ id: u14-phone
 title: {en: Call me!}
 cefr: A2
 kcs:
-- {id: 'sense:alo', gloss: {en: 'hello? (on the phone)'}, forms: {apc-Arab/standard: [ألو], apc-Latn/arabizi: [alo]}}
-- {id: 'sense:telefon', gloss: {en: phone; phone call}, forms: {apc-Arab/standard: [تلفون], apc-Latn/arabizi: [telefon]}}
-- {id: 'sense:de22', gloss: {en: call (on the phone); ring; knock}, forms: {apc-Arab/standard: [دقّ], apc-Latn/arabizi: [de22]}, notes: {en: 'de22elli: call me (to a man); de22ili (to a woman); de22uli
+- {id: 'sense:alo', pos: INTJ, gloss: {en: 'hello? (on the phone)'}, forms: {apc-Arab/standard: [ألو], apc-Latn/arabizi: [alo]}}
+- {id: 'sense:telefon', pos: NOUN, gloss: {en: phone; phone call}, forms: {apc-Arab/standard: [تلفون], apc-Latn/arabizi: [telefon]}}
+- {id: 'sense:de22', pos: VERB, gloss: {en: call (on the phone); ring; knock}, forms: {apc-Arab/standard: [دقّ], apc-Latn/arabizi: [de22]}, notes: {en: 'de22elli: call me (to a man); de22ili (to a woman); de22uli
       (to several people).'}}
 - {id: 'form:la-1sg', gloss: {en: '-li: to me; for me (on a verb)'}, notes: {en: '2elli: tell me; de22elli: call me; b3atli: send me. Arabic script: لي joined to the verb (قلّي، دقّلي، بعتلي).'}}
-- {id: 'sense:7ada', gloss: {en: someone; anyone; (with ma) no one}, forms: {apc-Arab/standard: [حدا], apc-Latn/arabizi: [7ada]}, notes: {en: 'fi 7ada? Is anyone there?; ma fi 7ada: there''s no one.'}}
+- {id: 'sense:7ada', pos: PRON, features: {PronType: Ind}, gloss: {en: someone; anyone; (with ma) no one}, forms: {apc-Arab/standard: [حدا], apc-Latn/arabizi: [7ada]}, notes: {en: 'fi 7ada? Is anyone there?; ma fi 7ada: there''s no one.'}}
 - {id: 'form:obj-1sg', gloss: {en: '-ni: me (on a verb)'}, notes: {en: 'sme3tni: you heard me; fhemtni: you understood me. Arabic script: ني (سمعتني).'}}
-- {id: 'sense:fehem', gloss: {en: understand}, forms: {apc-Arab/standard: [فهمت], apc-Latn/arabizi: [fhemt]}, notes: {en: 'fhemt: I understood; ma fhemt: I didn''t understand.'}}
+- {id: 'sense:fehem', pos: VERB, gloss: {en: understand}, forms: {apc-Arab/standard: [فهمت], apc-Latn/arabizi: [fhemt]}, notes: {en: 'fhemt: I understood; ma fhemt: I didn''t understand.'}}
 - {id: 'form:obj-2ms', gloss: {en: '-ak: you (on a verb, to a man)'}, notes: {en: 'b7ebbak: I love you; fhemtak: I understood you. Arabic script: ك.'}}
 - {id: 'form:obj-2fs', gloss: {en: '-ik: you (on a verb, to a woman)'}, notes: {en: 'b7ebbik: I love you. Arabic script: the same ك as -ak.'}}
 - {id: 'form:obj-3ms', gloss: {en: '-o: him; it (on a verb)'}, notes: {en: 'shefto: I saw him; ba3rfo: I know him. Arabic script: ه (شفته), also written و (شفتو).'}}
 - {id: 'form:obj-3fs', gloss: {en: '-a: her; it (on a verb)'}, notes: {en: 'shefta: I saw her. Arabic script: ها (شفتها), also written ا (شفتا).'}}
-- {id: 'sense:2al', gloss: {en: say; tell}, forms: {apc-Arab/standard: [قال], apc-Latn/arabizi: [2al]}, notes: {en: 'shu 2al? What did he say? 2elli!: tell me! (to a woman: 2ulili!).'}}
-- {id: 'sense:wa2t', gloss: {en: time}, forms: {apc-Arab/standard: [وقت], apc-Latn/arabizi: [wa2t]}}
-- {id: 'sense:resele', gloss: {en: message; letter}, forms: {apc-Arab/standard: [رسالة], apc-Latn/arabizi: [resele]}, notes: {en: 'Also msg, masaj.'}}
-- {id: 'sense:b3at', gloss: {en: send}, forms: {apc-Arab/standard: [بعت], apc-Latn/arabizi: [b3at]}, notes: {en: 'b3atli!: send me! ba3atli: he sent me.'}}
+- {id: 'sense:2al', pos: VERB, gloss: {en: say; tell}, forms: {apc-Arab/standard: [قال], apc-Latn/arabizi: [2al]}, notes: {en: 'shu 2al? What did he say? 2elli!: tell me! (to a woman: 2ulili!).'}}
+- {id: 'sense:wa2t', pos: NOUN, gloss: {en: time}, forms: {apc-Arab/standard: [وقت], apc-Latn/arabizi: [wa2t]}}
+- {id: 'sense:resele', pos: NOUN, gloss: {en: message; letter}, forms: {apc-Arab/standard: [رسالة], apc-Latn/arabizi: [resele]}, notes: {en: 'Also msg, masaj.'}}
+- {id: 'sense:b3at', pos: VERB, gloss: {en: send}, forms: {apc-Arab/standard: [بعت], apc-Latn/arabizi: [b3at]}, notes: {en: 'b3atli!: send me! ba3atli: he sent me.'}}
 nodes:
 - {id: apc.phone.call, kind: lesson, introduces: ['sense:alo', 'sense:telefon', 'sense:de22', 'form:la-1sg', 'sense:7ada']}
 - {id: apc.phone.me-you, kind: lesson, introduces: ['form:obj-1sg', 'sense:fehem', 'form:obj-2ms', 'form:obj-2fs']}
@@ -580,11 +580,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندي رسالة.
-      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: رسالة, sense: resele}]
+      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: رسالة, sense: resele, form: 'form:fem'}]
       reverse: (عندي|أنا عندي) (رسالة|مسج)
     apc-Latn/arabizi:
       text: 3endi resele.
-      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: resele, sense: resele}]
+      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: resele, sense: resele, form: 'form:fem'}]
       reverse: |-
         (3endi|3andi|3ende|3indi) (resele|risele|risale|rsele|resale)
         ana 3endi resele
@@ -599,11 +599,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بعتلي رسالة!
-      tokens: [{surface: بعتلي, sense: b3at, morphs: [{surface: بعت, kc: 'sense:b3at'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: رسالة, sense: resele}]
+      tokens: [{surface: بعتلي, sense: b3at, morphs: [{surface: بعت, kc: 'sense:b3at'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: رسالة, sense: resele, form: 'form:fem'}]
       reverse: بعتلي (رسالة|مسج)
     apc-Latn/arabizi:
       text: b3atli resele!
-      tokens: [{surface: b3atli, sense: b3at, morphs: [{surface: b3at, kc: 'sense:b3at'}, {surface: li, kc: 'form:la-1sg'}]}, {surface: resele, sense: resele}]
+      tokens: [{surface: b3atli, sense: b3at, morphs: [{surface: b3at, kc: 'sense:b3at'}, {surface: li, kc: 'form:la-1sg'}]}, {surface: resele, sense: resele, form: 'form:fem'}]
       reverse: (b3atli|b3atle|ba3atli) (resele|risele|risale|rsele|resale)
   translations:
     en: |-
@@ -616,14 +616,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي بعتلي رسالة مبارح.
-      tokens: [{surface: سامي, sense: sami}, {surface: بعتلي, sense: b3at, form: 'form:past-3ms', morphs: [{surface: بعت, kc: 'sense:b3at'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: رسالة, sense: resele},
+      tokens: [{surface: سامي, sense: sami}, {surface: بعتلي, sense: b3at, form: 'form:past-3ms', morphs: [{surface: بعت, kc: 'sense:b3at'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: رسالة, sense: resele, form: 'form:fem'},
         {surface: مبارح, sense: mbere7}]
       reverse: |-
         سامي بعتلي (رسالة|مسج) (مبارح|مبارحة)
         مبارح سامي بعتلي رسالة
     apc-Latn/arabizi:
       text: Sami ba3atli resele mbere7.
-      tokens: [{surface: Sami, sense: sami}, {surface: ba3atli, sense: b3at, form: 'form:past-3ms', morphs: [{surface: ba3at, kc: 'sense:b3at'}, {surface: li, kc: 'form:la-1sg'}]}, {surface: resele, sense: resele},
+      tokens: [{surface: Sami, sense: sami}, {surface: ba3atli, sense: b3at, form: 'form:past-3ms', morphs: [{surface: ba3at, kc: 'sense:b3at'}, {surface: li, kc: 'form:la-1sg'}]}, {surface: resele, sense: resele, form: 'form:fem'},
         {surface: mbere7, sense: mbere7}]
       reverse: |-
         Sami (ba3atli|b3atli|ba3atle) (resele|risele|risale|rsele|resale) (mbere7|embere7|mbare7|mberi7)
@@ -703,11 +703,11 @@ stories:
       forms:
         apc-Arab/standard:
           text: أَلو سامي! أَنا تيتا. سْمِعْتْني؟
-          tokens: [{surface: أَلو, sense: alo}, {surface: سامي, sense: sami}, {surface: أَنا, sense: ana}, {surface: تيتا, sense: teta}, {surface: سْمِعْتْني, sense: sama3, form: 'form:past-2ms', morphs: [
+          tokens: [{surface: أَلو, sense: alo}, {surface: سامي, sense: sami}, {surface: أَنا, sense: ana}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: سْمِعْتْني, sense: sama3, form: 'form:past-2ms', morphs: [
                 {surface: سْمِعْتْ, kc: 'sense:sama3'}, {surface: ني, kc: 'form:obj-1sg'}]}]
         apc-Latn/arabizi:
           text: alo Sami! ana teta. sme3tni?
-          tokens: [{surface: alo, sense: alo}, {surface: Sami, sense: sami}, {surface: ana, sense: ana}, {surface: teta, sense: teta}, {surface: sme3tni, sense: sama3, form: 'form:past-2ms', morphs: [{
+          tokens: [{surface: alo, sense: alo}, {surface: Sami, sense: sami}, {surface: ana, sense: ana}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: sme3tni, sense: sama3, form: 'form:past-2ms', morphs: [{
                   surface: sme3t, kc: 'sense:sama3'}, {surface: ni, kc: 'form:obj-1sg'}]}]
       translations: {en: 'Hello Sami! It''s grandma. Can you hear me?'}
   - line:
@@ -715,16 +715,16 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه تيتا، كيفِك؟
-          tokens: [{surface: إيه, sense: eh}, {surface: تيتا, sense: teta}, {surface: كيفِك, sense: kif, morphs: [{surface: كيفِ, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: إيه, sense: eh}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: كيفِك, sense: kif, morphs: [{surface: كيفِ, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}]
         apc-Latn/arabizi:
           text: eh teta, kifik?
-          tokens: [{surface: eh, sense: eh}, {surface: teta, sense: teta}, {surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+          tokens: [{surface: eh, sense: eh}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}]
       translations: {en: 'Yes, grandma, how are you?'}
   - line:
       speaker: teta
       ask: complete
-      gap: sense:de22
-      distractors: ['sense:b3at']
+      gap: 'sense:telefon'
+      distractors: ['sense:talj', 'sense:matar']
       forms:
         apc-Arab/standard:
           text: مْنيحَة. ما عِنْدَك تِلِفون؟ ما بْتْدِقِّلّي أَبَداً!
@@ -742,10 +742,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مَعْليش تيتا، كِنْت مَشْغول كْتير.
-          tokens: [{surface: مَعْليش, sense: ma3lesh}, {surface: تيتا, sense: teta}, {surface: كِنْت, sense: kan, form: 'form:past-1sg'}, {surface: مَشْغول, sense: mashghoul}, {surface: كْتير, sense: ktir}]
+          tokens: [{surface: مَعْليش, sense: ma3lesh}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: كِنْت, sense: kan, form: 'form:past-1sg'}, {surface: مَشْغول, sense: mashghoul}, {surface: كْتير, sense: ktir}]
         apc-Latn/arabizi:
           text: ma3lesh teta, kent mashghoul ktir.
-          tokens: [{surface: ma3lesh, sense: ma3lesh}, {surface: teta, sense: teta}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: mashghoul, sense: mashghoul}, {surface: ktir, sense: ktir}]
+          tokens: [{surface: ma3lesh, sense: ma3lesh}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: mashghoul, sense: mashghoul}, {surface: ktir, sense: ktir}]
       translations: {en: 'Sorry, grandma, I was very busy.'}
   - choose:
       prompt: {en: 'Why is Teta upset?'}
@@ -792,11 +792,11 @@ stories:
         apc-Arab/standard:
           text: وأَنا كَمان بْحِبِّك، تيتا!
           tokens: [{surface: وأَنا, sense: ana, morphs: [{surface: و, kc: 'sense:w'}, {surface: أَنا, kc: 'sense:ana'}]}, {surface: كَمان, sense: kamen}, {surface: بْحِبِّك, sense: 7abb, form: 'form:impf-1sg',
-              morphs: [{surface: بْحِبِّ, kc: 'sense:7abb'}, {surface: ك, kc: 'form:obj-2fs'}]}, {surface: تيتا, sense: teta}]
+              morphs: [{surface: بْحِبِّ, kc: 'sense:7abb'}, {surface: ك, kc: 'form:obj-2fs'}]}, {surface: تيتا, sense: teta, form: 'form:fem'}]
         apc-Latn/arabizi:
           text: w ana kamen b7ebbik, teta!
           tokens: [{surface: w, sense: w}, {surface: ana, sense: ana}, {surface: kamen, sense: kamen}, {surface: b7ebbik, sense: 7abb, form: 'form:impf-1sg', morphs: [{surface: b7ebb, kc: 'sense:7abb'},
-                {surface: ik, kc: 'form:obj-2fs'}]}, {surface: teta, sense: teta}]
+                {surface: ik, kc: 'form:obj-2fs'}]}, {surface: teta, sense: teta, form: 'form:fem'}]
       translations: {en: 'I love you too, grandma!'}
   - choose:
       prompt: {en: 'When will Sami visit Teta?'}

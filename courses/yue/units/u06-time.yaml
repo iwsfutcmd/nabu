@@ -4,31 +4,31 @@ id: u06-time
 title: {en: Time and the week}
 cefr: A1
 kcs:
-- {id: 'sense:幾點', gloss: {en: what time}, forms: {yue-Hant-HK/standard: [幾點], yue-Latn/jyutping: [gei2 dim2]}}
-- {id: 'sense:而家', gloss: {en: now}, forms: {yue-Hant-HK/standard: [而家], yue-Latn/jyutping: [ji4 gaa1]}}
-- {id: 'sense:點', gloss: {en: o'clock}, forms: {yue-Hant-HK/standard: [點], yue-Latn/jyutping: [dim2]}, notes: {en: '三點 three o''clock, 三點半 half past three.'}}
-- {id: 'sense:半', gloss: {en: half; half past (the hour)}, forms: {yue-Hant-HK/standard: [半], yue-Latn/jyutping: [bun3]}}
-- {id: 'sense:字', gloss: {en: five minutes (on the clock)}, forms: {yue-Hant-HK/standard: [字], yue-Latn/jyutping: [zi6]}, notes: {en: 'The minute hand points at a numeral: 一個字 five past, 兩個字 ten past, 三個字 quarter past.'}}
-- {id: 'sense:今日', gloss: {en: today}, forms: {yue-Hant-HK/standard: [今日], yue-Latn/jyutping: [gam1 jat6]}}
-- {id: 'sense:禮拜', gloss: {en: 'week; with a number, a day of the week'}, forms: {yue-Hant-HK/standard: [禮拜], yue-Latn/jyutping: [lai5 baai3]}, notes: {en: '禮拜一 Monday … 禮拜六 Saturday, 禮拜日 Sunday, 禮拜幾 which day? Also 星期一 … 星期日.'}}
-- {id: 'sense:聽日', gloss: {en: tomorrow}, forms: {yue-Hant-HK/standard: [聽日], yue-Latn/jyutping: [ting1 jat6]}}
-- {id: 'sense:尋日', gloss: {en: yesterday}, forms: {yue-Hant-HK/standard: [尋日], yue-Latn/jyutping: [cam4 jat6]}, notes: {en: 'Also 噚日 kam4 jat6, the more common form (often typed 琴日).'}}
-- {id: 'sense:日', gloss: {en: day (禮拜日 Sunday)}, forms: {yue-Hant-HK/standard: [日], yue-Latn/jyutping: [jat6]}}
-- {id: 'sense:幾時', gloss: {en: when}, forms: {yue-Hant-HK/standard: [幾時], yue-Latn/jyutping: [gei2 si4]}}
-- {id: 'sense:朝早', gloss: {en: (in the) morning}, forms: {yue-Hant-HK/standard: [朝早], yue-Latn/jyutping: [ziu1 zou2]}}
-- {id: 'sense:起身', gloss: {en: to get up}, forms: {yue-Hant-HK/standard: [起身], yue-Latn/jyutping: [hei2 san1]}}
-- {id: 'sense:每日', gloss: {en: every day}, forms: {yue-Hant-HK/standard: [每日], yue-Latn/jyutping: [mui5 jat6]}}
-- {id: 'sense:早餐', gloss: {en: breakfast}, forms: {yue-Hant-HK/standard: [早餐], yue-Latn/jyutping: [zou2 caan1]}}
-- {id: 'sense:瞓覺', gloss: {en: to sleep; to go to bed}, forms: {yue-Hant-HK/standard: [瞓覺], yue-Latn/jyutping: [fan3 gaau3]}}
-- {id: 'sense:夜晚', gloss: {en: (in the) evening; at night}, forms: {yue-Hant-HK/standard: [夜晚], yue-Latn/jyutping: [je6 maan5]}}
-- {id: 'sense:早', gloss: {en: early}, forms: {yue-Hant-HK/standard: [早], yue-Latn/jyutping: [zou2]}}
-- {id: 'sense:放工', gloss: {en: to finish work}, forms: {yue-Hant-HK/standard: [放工], yue-Latn/jyutping: [fong3 gung1]}}
-- {id: 'sense:得閒', gloss: {en: free (not busy)}, forms: {yue-Hant-HK/standard: [得閒], yue-Latn/jyutping: [dak1 haan4]}, notes: {en: '得唔得閒？ ''are you free?'''}}
-- {id: 'sense:忙', gloss: {en: busy}, forms: {yue-Hant-HK/standard: [忙], yue-Latn/jyutping: [mong4]}}
-- {id: 'sense:對唔住', gloss: {en: sorry}, forms: {yue-Hant-HK/standard: [對唔住], yue-Latn/jyutping: [deoi3 m4 zyu6]}, notes: {en: The everyday apology; also 'excuse me' when stopping someone to ask the way. 唔好意思 (literally 'embarrassed') owns up to a fault or an imposition.}}
-- {id: 'sense:等', gloss: {en: to wait (for); to meet up}, forms: {yue-Hant-HK/standard: [等], yue-Latn/jyutping: [dang2]}}
-- {id: 'sense:見', gloss: {en: to see; to meet}, forms: {yue-Hant-HK/standard: [見], yue-Latn/jyutping: [gin3]}, notes: {en: 聽日見 'see you tomorrow'.}}
-- {id: 'sense:一陣', gloss: {en: a moment; in a moment}, forms: {yue-Hant-HK/standard: [一陣], yue-Latn/jyutping: [jat1 zan6]}, notes: {en: 一陣見 'see you in a bit'.}}
+- {id: 'sense:幾點', pos: ADV, features: {PronType: Int}, gloss: {en: what time}, forms: {yue-Hant-HK/standard: [幾點], yue-Latn/jyutping: [gei2 dim2]}}
+- {id: 'sense:而家', pos: ADV, gloss: {en: now}, forms: {yue-Hant-HK/standard: [而家], yue-Latn/jyutping: [ji4 gaa1]}}
+- {id: 'sense:點', pos: NOUN, features: {NounType: Clf}, gloss: {en: o'clock}, forms: {yue-Hant-HK/standard: [點], yue-Latn/jyutping: [dim2]}, notes: {en: '三點 three o''clock, 三點半 half past three.'}}
+- {id: 'sense:半', pos: NUM, features: {NumType: Card}, gloss: {en: half; half past (the hour)}, forms: {yue-Hant-HK/standard: [半], yue-Latn/jyutping: [bun3]}}
+- {id: 'sense:字', pos: NOUN, gloss: {en: five minutes (on the clock)}, forms: {yue-Hant-HK/standard: [字], yue-Latn/jyutping: [zi6]}, notes: {en: 'The minute hand points at a numeral: 一個字 five past, 兩個字 ten past, 三個字 quarter past.'}}
+- {id: 'sense:今日', pos: ADV, gloss: {en: today}, forms: {yue-Hant-HK/standard: [今日], yue-Latn/jyutping: [gam1 jat6]}}
+- {id: 'sense:禮拜', pos: NOUN, gloss: {en: 'week; with a number, a day of the week'}, forms: {yue-Hant-HK/standard: [禮拜], yue-Latn/jyutping: [lai5 baai3]}, notes: {en: '禮拜一 Monday … 禮拜六 Saturday, 禮拜日 Sunday, 禮拜幾 which day? Also 星期一 … 星期日.'}}
+- {id: 'sense:聽日', pos: ADV, gloss: {en: tomorrow}, forms: {yue-Hant-HK/standard: [聽日], yue-Latn/jyutping: [ting1 jat6]}}
+- {id: 'sense:尋日', pos: ADV, gloss: {en: yesterday}, forms: {yue-Hant-HK/standard: [尋日], yue-Latn/jyutping: [cam4 jat6]}, notes: {en: 'Also 噚日 kam4 jat6, the more common form (often typed 琴日).'}}
+- {id: 'sense:日', pos: NOUN, gloss: {en: day (禮拜日 Sunday)}, forms: {yue-Hant-HK/standard: [日], yue-Latn/jyutping: [jat6]}}
+- {id: 'sense:幾時', pos: ADV, features: {PronType: Int}, gloss: {en: when}, forms: {yue-Hant-HK/standard: [幾時], yue-Latn/jyutping: [gei2 si4]}}
+- {id: 'sense:朝早', pos: ADV, gloss: {en: (in the) morning}, forms: {yue-Hant-HK/standard: [朝早], yue-Latn/jyutping: [ziu1 zou2]}}
+- {id: 'sense:起身', pos: VERB, gloss: {en: to get up}, forms: {yue-Hant-HK/standard: [起身], yue-Latn/jyutping: [hei2 san1]}}
+- {id: 'sense:每日', pos: ADV, gloss: {en: every day}, forms: {yue-Hant-HK/standard: [每日], yue-Latn/jyutping: [mui5 jat6]}}
+- {id: 'sense:早餐', pos: NOUN, gloss: {en: breakfast}, forms: {yue-Hant-HK/standard: [早餐], yue-Latn/jyutping: [zou2 caan1]}}
+- {id: 'sense:瞓覺', pos: VERB, gloss: {en: to sleep; to go to bed}, forms: {yue-Hant-HK/standard: [瞓覺], yue-Latn/jyutping: [fan3 gaau3]}}
+- {id: 'sense:夜晚', pos: ADV, gloss: {en: (in the) evening; at night}, forms: {yue-Hant-HK/standard: [夜晚], yue-Latn/jyutping: [je6 maan5]}}
+- {id: 'sense:早', pos: ADJ, gloss: {en: early}, forms: {yue-Hant-HK/standard: [早], yue-Latn/jyutping: [zou2]}}
+- {id: 'sense:放工', pos: VERB, gloss: {en: to finish work}, forms: {yue-Hant-HK/standard: [放工], yue-Latn/jyutping: [fong3 gung1]}}
+- {id: 'sense:得閒', pos: ADJ, gloss: {en: free (not busy)}, forms: {yue-Hant-HK/standard: [得閒], yue-Latn/jyutping: [dak1 haan4]}, notes: {en: '得唔得閒？ ''are you free?'''}}
+- {id: 'sense:忙', pos: ADJ, gloss: {en: busy}, forms: {yue-Hant-HK/standard: [忙], yue-Latn/jyutping: [mong4]}}
+- {id: 'sense:對唔住', pos: INTJ, gloss: {en: sorry}, forms: {yue-Hant-HK/standard: [對唔住], yue-Latn/jyutping: [deoi3 m4 zyu6]}, notes: {en: The everyday apology; also 'excuse me' when stopping someone to ask the way. 唔好意思 (literally 'embarrassed') owns up to a fault or an imposition.}}
+- {id: 'sense:等', pos: VERB, gloss: {en: to wait (for); to meet up}, forms: {yue-Hant-HK/standard: [等], yue-Latn/jyutping: [dang2]}}
+- {id: 'sense:見', pos: VERB, gloss: {en: to see; to meet}, forms: {yue-Hant-HK/standard: [見], yue-Latn/jyutping: [gin3]}, notes: {en: 聽日見 'see you tomorrow'.}}
+- {id: 'sense:一陣', pos: ADV, gloss: {en: a moment; in a moment}, forms: {yue-Hant-HK/standard: [一陣], yue-Latn/jyutping: [jat1 zan6]}, notes: {en: 一陣見 'see you in a bit'.}}
 nodes:
 - {id: yue.clock, kind: lesson, introduces: ['sense:幾點', 'sense:而家', 'sense:點', 'sense:半', 'sense:字']}
 - {id: yue.days, kind: lesson, introduces: ['sense:今日', 'sense:禮拜', 'sense:聽日', 'sense:尋日', 'sense:日', 'sense:幾時']}
@@ -716,6 +716,9 @@ stories:
       translations: {en: 'Sorry, I''m really busy today.'}
   - line:
       speaker: gaa-ming
+      ask: complete
+      gap: sense:聽日
+      distractors: ['sense:今日', 'sense:尋日']
       forms:
         yue-Hant-HK/standard:
           text: 聽日呢？
@@ -750,9 +753,6 @@ stories:
       translations: {en: Let's go for dim sum together!}
   - line:
       speaker: mei-ling
-      ask: complete
-      gap: sense:幾點
-      distractors: ['sense:幾時', 'sense:幾多']
       forms:
         yue-Hant-HK/standard:
           text: 好呀！幾點呀？

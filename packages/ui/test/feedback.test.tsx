@@ -1,5 +1,6 @@
 import type { AlignOp } from "@nabu/core";
-import { allSentences, createGrader, gradeExercise, sampleExercise, start, step, type Exercise, type Outcome, type PlayerEvent, type PlayerState, type Response, type TranslateType } from "@nabu/core/lesson";
+import { allSentences, createGrader, gradeExercise, sampleExercise, seededRng, start, step, type Exercise, type Outcome, type PlayerEvent, type PlayerState, type Response, type TranslateType } from "@nabu/core/lesson";
+import { allStories, storyScript } from "@nabu/core/story";
 import { surfaceOf } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
@@ -187,8 +188,8 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
   });
 
   it("a wrong choice among words of the course: what the chosen word means; nothing for a right one", () => {
-    const gap = sampleExercise(es, "gap-fill", 1);
-    if (gap?.template !== "gap-fill") throw new Error("es has a gap-fill card");
+    const gap = Array.from({ length: 30 }, (_, seed) => sampleExercise(es, "gap-fill", seed + 1)).find((c) => c?.template === "gap-fill" && c.asks === "word");
+    if (gap?.template !== "gap-fill") throw new Error("es has a gap-fill card that asks which word");
     const wrong = (gap.answer + 1) % gap.options.length;
     const meanings = meaningsOf(feedbackOf(gap, { tag: "choice", index: wrong }));
     expect(meanings).toContain("What you chose means:");
@@ -201,7 +202,7 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     // A gap whose right and chosen options are words of different senses.
     const senseOf = (text: TaggedText | undefined): string | undefined => text?.tokens.find((tk) => tk.kind === "word")?.sense;
     const cards = Array.from({ length: 30 }, (_, seed) => sampleExercise(es, "gap-fill", seed + 1));
-    const gap = cards.find((c) => c?.template === "gap-fill" && senseOf(c.options[c.answer]) !== undefined && senseOf(c.options[(c.answer + 1) % c.options.length]) !== undefined && senseOf(c.options[c.answer]) !== senseOf(c.options[(c.answer + 1) % c.options.length]));
+    const gap = cards.find((c) => c?.template === "gap-fill" && c.asks === "word" && senseOf(c.options[c.answer]) !== undefined && senseOf(c.options[(c.answer + 1) % c.options.length]) !== undefined && senseOf(c.options[c.answer]) !== senseOf(c.options[(c.answer + 1) % c.options.length]));
     if (gap?.template !== "gap-fill") throw new Error("es has a gap-fill card of two senses");
     const chosen = (gap.answer + 1) % gap.options.length;
     const html = feedbackOf(gap, { tag: "choice", index: chosen });
@@ -212,6 +213,30 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     expect(html.indexOf('data-meanings="right"')).toBeLessThan(html.indexOf('data-meanings="chosen"'));
     // A right choice: no meanings at all.
     expect(feedbackOf(gap, { tag: "choice", index: gap.answer })).not.toContain("data-meanings");
+  });
+
+  it("a wrong form (ADR 0132): what each form says, the right one first; not the word's meaning, the same in both", () => {
+    const chg = loadCourse("chg");
+    const chgGrader = createGrader(chg);
+    const gap = allStories(chg)
+      .flatMap((story) => storyScript(chg, story, seededRng(1)).steps)
+      .flatMap((st) => (st.tag === "question" && st.ex.template === "story-complete" && st.ex.asks === "form" ? [st.ex] : []))[0];
+    if (gap === undefined) throw new Error("chg has a story question that asks which form");
+    const chosen = (gap.answer + 1) % gap.options.length;
+    const response: Response = { tag: "choice", index: chosen };
+    const html = render(<Feedback ex={gap} outcome={gradeExercise(gap, response, chgGrader)} response={response} course={chg} ruby={false} marks="show" />);
+    // Each form is an entry of its own (a div), so the block runs to the end of the feedback.
+    const forms = meaningsOf(html);
+    expect(forms.startsWith('data-meanings="forms"')).toBe(true);
+    expect(forms).toContain("What each form says:");
+    expect(forms).toMatch(/data-gloss-form="form:/u);
+    const right = surfaceOf(gap.options[gap.answer] as TaggedText);
+    const wrong = surfaceOf(gap.options[chosen] as TaggedText);
+    expect(forms.indexOf(`>${right}<`)).toBeGreaterThan(-1);
+    expect(forms.indexOf(`>${right}<`)).toBeLessThan(forms.indexOf(`>${wrong}<`));
+    expect(html).not.toContain('data-meanings="chosen"');
+    expect(html).not.toContain('data-meanings="right"');
+    expect(render(<Feedback ex={gap} outcome={gradeExercise(gap, { tag: "choice", index: gap.answer }, chgGrader)} response={{ tag: "choice", index: gap.answer }} course={chg} ruby={false} marks="show" />)).not.toContain("data-meanings");
   });
 
   it("no meaning where the options are translations", () => {

@@ -15,7 +15,7 @@
  *    (typing them, hearing them; ADR 0101).
  * 5. Order: selection order (new words first), ending on a likely success.
  */
-import type { BundleSentence, KcId } from "@nabu/schema";
+import type { Asks, BundleSentence, KcId, SchemeId } from "@nabu/schema";
 import { candidatesFor, lessonCandidates } from "../lesson/candidates.ts";
 import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
@@ -23,13 +23,14 @@ import { courseExclusions, speechExclusions, type SpeechSupport } from "../lesso
 import { lessonNodes, sentencesOf } from "../lesson/nodes.ts";
 import { seededRng } from "../lesson/rng.ts";
 import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
+import { readingTradition, traditionKey } from "../lesson/traditions.ts";
 import { KC_LISTENING, KC_TEMPLATES, SENTENCE_TEMPLATES, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { typedByProfile } from "../match/pronounce.ts";
-import { askedKcs, creditedKcs, facetOf } from "./credit.ts";
+import { askedKcs, creditedKcs, facetOf, readingOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
-import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, sameAsk, type LearnerState } from "./state.ts";
+import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, sameQuestion, type LearnerState } from "./state.ts";
 import { PACE, type PaceBand } from "./pacing.ts";
 import { NONE_OFF, skillsAsked } from "./words.ts";
 
@@ -71,6 +72,12 @@ export interface PlanOptions {
    * of `now` where the caller has none.
    */
   readonly today?: string | undefined;
+  /**
+   * The reading tradition the learner reads in (ADR 0138: the ruby layer they last chose; false or
+   * unset, the first): reading cards ask it, and read-script cards, their due dates and predictions
+   * are that tradition's where the orthography has several.
+   */
+  readonly reading?: SchemeId | false | undefined;
 }
 
 export interface SessionPlan {
@@ -235,7 +242,7 @@ const reviewSentences = (
 };
 
 /** Pronunciation cards (ADR 0054): a word's vowel marks or its reading. */
-const PRONOUNCE: ReadonlySet<TemplateId> = new Set<TemplateId>(["vocalize", "transcribe"]);
+const PRONOUNCE: ReadonlySet<TemplateId> = new Set<TemplateId>(["vocalize", "vocalize-build", "transcribe"]);
 
 // On a script track (ADR 0088), a new letter is read before it is written.
 /** Templates that can present a new word (`TemplateInfo.presents`). */
@@ -244,8 +251,9 @@ const RECOGNITION: ReadonlySet<TemplateId> = new Set((Object.keys(TEMPLATES) as 
 /** p̂ for an exercise in this state, in the course's orthography, at `now`. */
 export const predictExercise = (state: LearnerState, ex: Exercise, orthography: string, now: string): number => {
   const facet = facetOf(ex.template);
-  // Recall of what the answer is credited to: a blank's word, not the sentence shown around it.
-  return predict(state.performance, { template: ex.template, facet, item: ex.item, kcs: ex.kcs, r: meanRetrievability(state, creditedKcs(ex), facet, orthography, now) });
+  // Recall of what the answer is credited to: a blank's word, not the sentence shown around it; a
+  // reading card's in its tradition (ADR 0138).
+  return predict(state.performance, { template: ex.template, facet, item: ex.item, kcs: ex.kcs, r: meanRetrievability(state, creditedKcs(ex), facet, orthography, now, readingOf(ex)) });
 };
 
 /** A KC is seen once any of its facets has a card. */
@@ -253,8 +261,10 @@ const seenKcs = (state: LearnerState): ReadonlySet<string> => new Set(Object.key
 
 /**
  * Due facets (R < desired retention) of seen KCs, most forgotten first. Script
- * facets count only in the orthography being learned, and facets the learner
- * turned off for good (D41) not at all: no session can practise them.
+ * facets count only in the orthography being learned, readings only in the
+ * learner's tradition (`reading`, as `traditionKey` names it: ADR 0138), and
+ * facets the learner turned off for good (D41) not at all: no session can
+ * practise them.
  */
 export const dueFacets = (
   state: LearnerState,
@@ -262,12 +272,14 @@ export const dueFacets = (
   now: string,
   desired = DESIRED_RETENTION,
   facetsOff: ReadonlySet<Facet> = NONE_OFF,
+  reading?: string,
 ): readonly { readonly key: string; readonly r: number }[] =>
   Object.keys(state.cards)
     .flatMap((key) => {
       const ref = parseCardKey(key);
       if ((ref.orthography !== undefined && ref.orthography !== orthography) || facetsOff.has(ref.facet)) return [];
-      return [{ key, r: retrievability(state, ref.kc, ref.facet, orthography, now) }];
+      if (ref.facet === "read-script" && ref.reading !== reading) return [];
+      return [{ key, r: retrievability(state, ref.kc, ref.facet, orthography, now, ref.reading) }];
     })
     .filter((f) => f.r < desired)
     .sort((a, b) => a.r - b.r || (a.key < b.key ? -1 : 1));
@@ -291,13 +303,16 @@ const mistakeExercises = (ctx: MakeContext, state: LearnerState, exclude: Readon
     if (exclude.has(m.template)) continue;
     const s = byId.get(m.item);
     const kc = kcById.get(m.item);
-    const at = { ...ctx, ask: m.ask };
+    const at = { ...ctx, ask: m.ask, asks: m.asks };
     const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(at, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(at, kc) : undefined;
-    if (ex === undefined || (m.ask !== undefined && !sameAsk(askedWord(ex), m.ask))) continue;
+    if (ex === undefined || (m.ask !== undefined && !sameQuestion(m, askedWord(ex), questionOf(ex)))) continue;
     if (ex.kcs.every((k) => seen.has(k)) && !out.some((e) => e.id === ex.id)) out.push(ex);
   }
   return out;
 };
+
+/** What a fill-in asks of its word (ADR 0132), as a mistake records it. */
+const questionOf = (ex: Exercise): Asks | undefined => (ex.template === "gap-fill" || ex.template === "story-complete" ? ex.asks : undefined);
 
 /** The word a card asks about, as a mistake records it (sorted KCs); undefined for a whole sentence. */
 const askedWord = (ex: Exercise): readonly string[] | undefined => {
@@ -315,8 +330,9 @@ const askedWord = (ex: Exercise): readonly string[] | undefined => {
 export const practicableMistakes = (
   course: CourseView,
   state: LearnerState,
-  options: { readonly exclude?: ReadonlySet<TemplateId> | undefined; readonly speech?: SpeechSupport | undefined } = {},
-): readonly Exercise[] => mistakeExercises({ course, rng: seededRng(1), introduced: [] }, state, exclusionsOf(course, options), seenKcs(state));
+  options: { readonly exclude?: ReadonlySet<TemplateId> | undefined; readonly speech?: SpeechSupport | undefined; readonly reading?: SchemeId | false | undefined } = {},
+): readonly Exercise[] =>
+  mistakeExercises({ course, rng: seededRng(1), introduced: [], reading: readingTradition(course, options.reading) }, state, exclusionsOf(course, options), seenKcs(state));
 
 /**
  * Whether the course can plan this request. A lesson request names one of the course's lesson or
@@ -340,11 +356,15 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const exercises = runTest(placement.test, new Map()).next;
     return { request, exercises, predictions: exercises.map((ex) => predictions[ex.id] as number), planner: PLANNER, placement: { ...placement, predictions } };
   }
-  const key = (kc: string, facet: Facet): string => cardKey(kc, facet, orthography);
+  // A reading tradition, where the orthography has several (ADR 0138): reading cards ask it, and
+  // read-script cards are its own.
+  const reading = readingTradition(course, options.reading);
+  const traditionCards = traditionKey(course, reading);
+  const key = (kc: string, facet: Facet): string => cardKey(kc, facet, orthography, facet === "read-script" ? traditionCards : undefined);
   const seen = seenKcs(state);
   // What is due and what words are asked, without the facets the learner turned off for good (D41).
   const facetsOff = options.facetsOff ?? NONE_OFF;
-  const due = new Map(dueFacets(state, orthography, now, desired, facetsOff).map((f) => [f.key, f.r]));
+  const due = new Map(dueFacets(state, orthography, now, desired, facetsOff, traditionCards).map((f) => [f.key, f.r]));
   // Skills words have yet to show (ADR 0100, 0101), and the words to type: a mistakes session
   // practises its mistakes only.
   const needs = request.mode === "mistakes" ? new Set<string>() : skillNeeds(course, state, options.today ?? now.slice(0, 10), facetsOff);
@@ -367,7 +387,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     if (found === undefined) throw new Error(`no lesson node ${request.node} in ${course.id}`);
     const { unit, node } = found;
     introduced = node.introduces;
-    const ctx: MakeContext = { course, rng, introduced, focus };
+    const ctx: MakeContext = { course, rng, introduced, focus, reading };
     const own = sentencesOf(course, unit, node);
     // Interleave: the earlier sentences that need review most (ADR 0097), marked as review.
     const lessons = lessonNodes(course);
@@ -382,7 +402,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     pool = [...lessonCandidates(ctx, found, seen, exclude), ...candidatesFor(ctx, earlier, [], exclude), ...hearing];
     size = options.size ?? Math.min(14, Math.max(10, own.length * 2));
   } else if (request.mode === "review") {
-    const ctx: MakeContext = { course, rng, introduced: [], focus };
+    const ctx: MakeContext = { course, rng, introduced: [], focus, reading };
     const studied = allSentences(course).filter((s) => s.forms[course.orthography] !== undefined && s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)));
     // How much each word needs review: how far its due cards have fallen, and the skills it lacks.
     const worth = new Map<string, number>();
@@ -397,7 +417,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     // to keep the session near the target success rate.
     pool = candidatesFor(ctx, sentences, allKcs(course).filter((k) => seen.has(k.id) && neediest.has(k.id)), exclude);
   } else {
-    pool = mistakeExercises({ course, rng, introduced: [] }, state, exclude, seen);
+    pool = mistakeExercises({ course, rng, introduced: [], reading }, state, exclude, seen);
     size = Math.min(options.size ?? 10, pool.length);
   }
 
@@ -452,10 +472,13 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     if (RECOGNITION.has(c.ex.template)) return true;
     // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
-    const gated = PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
-    // A reading typed as text (Schluessel, ADR 0131) is asked only once the word read right by choice:
-    // its reading shown, as the fold witnesses it.
-    if (c.ex.template === "transcribe" && typedByProfile(c.ex.scheme) && !gated.every((kc) => state.shown[key(kc, "read-script")] !== undefined)) return false;
+    const gated = PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" || c.ex.template === "reading-feature" || c.ex.template === "spelling-choice" ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
+    // A reading typed as text (Schluessel, ADR 0131), or in one of several traditions (ADR 0138), is
+    // asked only once the word was read right by choice: its reading shown, as the fold witnesses it.
+    const typedAfterChoice = c.ex.template === "transcribe" && (typedByProfile(c.ex.scheme) || c.ex.tradition !== undefined);
+    if (typedAfterChoice && !gated.every((kc) => state.shown[cardKey(kc, "read-script", orthography, readingOf(c.ex))] !== undefined)) return false;
+    // So are marks put on a word's letters (ADR 0137): once a choice card has shown them.
+    if (c.ex.template === "vocalize-build" && !gated.every((kc) => state.shown[key(kc, "read-script")] !== undefined)) return false;
     return gated.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.

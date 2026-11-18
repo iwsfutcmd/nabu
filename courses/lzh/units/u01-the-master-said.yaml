@@ -6,31 +6,41 @@ title:
 cefr: A1
 kcs:
 - id: sense:善
+  pos: ADJ
   gloss:
     en: good; excellent; well said
   forms:
     lzh-Hant/standard: [善]
 - id: sense:哉
+  pos: PART
+  features:
+    PartType: Mod
   gloss:
     en: 'exclamation particle: how …!, … indeed!; also ends a question said with feeling (天何言哉)'
   forms:
     lzh-Hant/standard: [哉]
 - id: sense:曰
+  pos: VERB
   gloss:
     en: to say (introduces what is said)
   forms:
     lzh-Hant/standard: [曰]
 - id: sense:王
+  pos: NOUN
   gloss:
     en: king
   forms:
     lzh-Hant/standard: [王]
 - id: sense:然
+  pos: INTJ
   gloss:
     en: so, thus; yes, it is so
   forms:
     lzh-Hant/standard: [然]
 - id: sense:也
+  pos: PART
+  features:
+    PartType: Mod
   gloss:
     en: 'sentence-final particle: closes a noun predicate (A，B也 “A is B”); after a verb, states a settled fact'
   forms:
@@ -41,21 +51,29 @@ kcs:
   gloss:
     en: 'A，B也: “A is B”, a noun as the predicate'
 - id: sense:我
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: I; me
   forms:
     lzh-Hant/standard: [我]
 - id: sense:人
+  pos: NOUN
   gloss:
     en: person, people; others
   forms:
     lzh-Hant/standard: [人]
 - id: sense:非
+  pos: ADV
+  features:
+    Polarity: Neg
   gloss:
     en: 'is not (negates a noun predicate: 非A也)'
   forms:
     lzh-Hant/standard: [非]
 - id: sense:子
+  pos: NOUN
   gloss:
     en: the Master (Confucius); master, sir
   forms:
@@ -64,66 +82,85 @@ kcs:
   notes:
     en: In the Analects, 子曰 is always “the Master said”. Later units meet 子 as a polite “you”.
 - id: sense:孔子
+  pos: PROPN
   gloss:
     en: Confucius (Master Kong)
   forms:
     lzh-Hant/standard: [孔子]
 - id: sense:魯
+  pos: PROPN
   gloss:
     en: Lu, Confucius's home state
   forms:
     lzh-Hant/standard: [魯]
 - id: sense:君子
+  pos: NOUN
   gloss:
     en: gentleman, noble person (by conduct, not birth)
   forms:
     lzh-Hant/standard: [君子]
 - id: sense:不
+  pos: ADV
+  features:
+    Polarity: Neg
   gloss:
     en: not (negates a verb or adjective)
   forms:
     lzh-Hant/standard: [不]
 - id: sense:知
+  pos: VERB
   gloss:
     en: to know; to understand; to recognize (someone)
   forms:
     lzh-Hant/standard: [知]
 - id: sense:乎
+  pos: PART
+  features:
+    PartType: Mod
   gloss:
     en: question particle (yes-or-no questions)
   forms:
     lzh-Hant/standard: [乎]
 - id: sense:之
+  pos: PRON
+  features:
+    PronType: Prs
   gloss:
     en: him, her, it, them (after a verb)
   forms:
     lzh-Hant/standard: [之]
 - id: sense:學
+  pos: VERB
   gloss:
     en: to learn, to study
   forms:
     lzh-Hant/standard: [學]
 - id: sense:而
+  pos: CCONJ
   gloss:
     en: and; and yet (joins two verbs or clauses)
   forms:
     lzh-Hant/standard: [而]
 - id: sense:時
+  pos: NOUN
   gloss:
     en: time, season; at the right time
   forms:
     lzh-Hant/standard: [時]
 - id: sense:習
+  pos: VERB
   gloss:
     en: to practise, to rehearse what one has learned
   forms:
     lzh-Hant/standard: [習]
 - id: sense:亦
+  pos: ADV
   gloss:
     en: 'also, too; (in a question or a claim) surely'
   forms:
     lzh-Hant/standard: [亦]
 - id: sense:說.yue
+  pos: ADJ
   gloss:
     en: pleased, delighted (read as 悅)
   forms:
@@ -139,42 +176,50 @@ kcs:
   gloss:
     en: '不亦…乎: “isn’t it …?”, a question that expects “yes”'
 - id: sense:有
+  pos: VERB
   gloss:
     en: to have; there is, there are
   forms:
     lzh-Hant/standard: [有]
 - id: sense:朋
+  pos: NOUN
   gloss:
     en: friend, companion in study
   forms:
     lzh-Hant/standard: [朋]
 - id: sense:自
+  pos: ADP
   gloss:
     en: from
   forms:
     lzh-Hant/standard: [自]
 - id: sense:遠
+  pos: ADJ
   gloss:
     en: far, distant
   forms:
     lzh-Hant/standard: [遠]
 - id: sense:方
+  pos: NOUN
   gloss:
     en: direction, region, place
   forms:
     lzh-Hant/standard: [方]
 - id: sense:來
+  pos: VERB
   gloss:
     en: to come
   forms:
     lzh-Hant/standard: [來]
 - id: sense:樂
+  pos: ADJ
   gloss:
     en: joyful, happy; joy
   forms:
     lzh-Hant/standard: [樂]
   image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:慍
+  pos: ADJ
   gloss:
     en: resentful, indignant
   forms:
@@ -954,7 +999,7 @@ stories:
       speaker: kongzi
       ask: complete
       gap: sense:遠
-      distractors: ['sense:人', 'sense:君子']
+      distractors: ['sense:說.yue', 'sense:慍']
       forms:
         lzh-Hant/standard:
           text: 有朋自遠方來，不亦樂乎？
@@ -971,7 +1016,7 @@ stories:
       speaker: kongzi
       ask: complete
       gap: sense:君子
-      distractors: ['sense:王', 'sense:魯']
+      distractors: ['sense:王', 'sense:方']
       forms:
         lzh-Hant/standard:
           text: 不亦君子乎？

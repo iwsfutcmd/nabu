@@ -198,8 +198,8 @@ describe("what a wrong word means (P3)", () => {
     expect(surfaceOf(hablas[0]?.form?.meaning as TaggedText)).toContain("you");
     // Como is comer's "I eat" and the word como, "like".
     expect(readings(writtenMeanings(es, word("como")))).toEqual(expect.arrayContaining([["sense:comer", "form:pres-1s"], ["sense:como.like"]]));
-    // esta, where está was asked: the demonstrative.
-    expect(readings(writtenMeanings(es, word("esta")))).toEqual([["sense:este"]]);
+    // esta, where está was asked: the demonstrative, feminine (ADR 0132's agreement forms).
+    expect(readings(writtenMeanings(es, word("esta")))).toEqual([["sense:este", "form:fem"]]);
   });
 
   it("a word the course glosses whole is shown whole, not again in its parts (Lebanese بدك)", () => {
