@@ -330,6 +330,31 @@ a new design language.
   - the occupation (*she's a writer*) is a lexeme, a homograph that tokens tell apart by sense.
 - **Open:** keep the term "family", or speak only of the two links, base and root.
 
+### Literal glosses: partial compositionality as a memory hint
+
+**Decided:** a lexeme whose parts still show (زمین خوردن "fall", lit. "earth + eat") is a lexeme, and its
+parts are a memory hint worth showing, in the glossary and wherever the lexeme is explained.
+
+**Proposed:**
+- **One mechanism for every lexeme with an analysis**, generated from it, never typed per lexeme:
+  - compounds and idioms: "lit. earth + eat", 大學 "lit. big + learning", 東西 "lit. east + west";
+  - derived words: *writer* (the occupation) "write + ‑er";
+  - root and pattern: مَكْتَب "ك‑ت‑ب 'writing' + مَفْعَل 'place of'";
+  - irregular forms: *ran* "past of *run*".
+
+  An author may override the generated wording per support language where plain juxtaposition reads badly
+  (`literal`, with provenance like any gloss).
+- **Only real parts.** Never a hint from the characters of a phonetic loan: 沙發 "sofa" is not "sand +
+  emit", 咖啡 and 巴士 have no parts. A hint exists only where the lexeme has a morphological analysis;
+  no analysis, no hint. No folk etymologies.
+- **Where it shows:** the gloss panel on a tap, the word list, the feedback after a card, and the
+  lexeme's first presentation.
+  - Never on the prompt side of a production card: "earth + eat" would hand over the answer's parts.
+- **Credit doesn't change:** knowing زمین خوردن still says nothing about زمین (§13). The hint links
+  memories; it isn't evidence.
+- **Order:** a hint works best when its parts are already known, so the planner may prefer to introduce a
+  lexeme after its parts, as with derived words after their base (§6).
+
 ## 11. Learned
 
 **Decided:** a lexeme is learned once all its properties are learned and every edge of its graph is
@@ -422,7 +447,7 @@ possible.
   taught whole early on, are combinations, not lexemes. They present lexemes before the learner can
   analyse them. Credit goes only to the lexemes inside.
 - **A non-compositional lexeme's parts get no credit.** Knowing 東西 says nothing about 東 "east". A tap
-  may show the parts as etymology.
+  shows the parts as a memory hint (§10).
 - **Open:** does meeting a chunk count as meeting the lexemes inside it, before they're introduced?
 
 ## 14. Wug tests
