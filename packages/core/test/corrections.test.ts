@@ -100,6 +100,11 @@ describe("a word can be corrected (ADR 0057)", () => {
     expect(correctablesOf(apc, { template: "select-image", item: "sense:salon", kcs: kcs("sense:salon") }).map((c) => c.item)).toEqual(["sense:salon"]);
     const pairs = kcs("sense:fi", "sense:ghorfe", "sense:matbakh", "sense:salon", "sense:7ammem");
     expect(correctablesOf(apc, { template: "match-pairs", item: "sense:fi", kcs: pairs }).map((c) => c.item)).toEqual(pairs);
+    // A drill's card on a passage's line (ADR 0144): the story line, as the story reader offers it.
+    const story = apc.units.flatMap((u) => u.stories ?? [])[0];
+    if (story === undefined) throw new Error("apc has a story");
+    const [line] = correctablesOf(apc, { template: "gap-fill", item: `${story.id}#0`, kcs: [] });
+    expect([line?.item, line?.step]).toEqual([story.id, 0]);
   });
 });
 

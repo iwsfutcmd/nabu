@@ -89,12 +89,18 @@ export const correctable = (course: CourseView, item: string, step?: number): Co
   return undefined;
 };
 
+/** A passage line's item (ADR 0144): its story's id and its step, "story#step". */
+const LINE_ITEM = /^(.+)#(\d+)$/u;
+
 /**
- * What a learner can correct from an exercise: the sentence or word it was built from; for
- * match-pairs, every pair's word.
+ * What a learner can correct from an exercise: the sentence or word it was built from, or the story
+ * line a drill's card was made of (ADR 0144); for match-pairs, every pair's word.
  */
 export const correctablesOf = (course: CourseView, ex: Pick<Exercise, "template" | "item" | "kcs">): readonly Correctable[] =>
-  (ex.template === "match-pairs" ? ex.kcs : [ex.item]).flatMap((item) => correctable(course, item) ?? []);
+  (ex.template === "match-pairs" ? ex.kcs : [ex.item]).flatMap((item) => {
+    const line = LINE_ITEM.exec(item);
+    return (line === null ? correctable(course, item) : correctable(course, line[1] as string, Number(line[2]))) ?? [];
+  });
 
 /** Each word's pinned readings, in the order the form's words come. */
 const readingsOf = (text: TaggedText): readonly TokenReading[] =>
