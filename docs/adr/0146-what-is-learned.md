@@ -97,6 +97,34 @@ and AGENT and is not a word to track at all. The unit of learning has to follow 
   a real pattern for Semitic), checked against the course and a large word list, shipped with `generated`
   provenance; a rule that needs a listed property shows it, as a dictionary entry would (φλόμος, ‑ου, ἡ).
 
+### Glosses and literal hints
+
+- **Glosses are built, not written per form** (round 3). The gloss belongs to the concept, or to the lexeme
+  where it has none; a lexeme's gloss is its concept's plus its features ("eat (krama)"); a form's adds its
+  inflection ("run (past)"); a computed derivative's comes from its parts; a listed one has its own. An
+  override is allowed where that reads badly.
+- **Both are shown, as a starting point:** the support language's own word where it has one ("ran", "went /
+  was" for *fue*) and the analysis ("run (past)", "ir or ser · preterite · 3rd singular").
+- **A literal hint** ("lit. earth + eat" for زمین خوردن, "lit. big + learning" for 大學) comes only from a real
+  analysis, never a folk etymology, and never on the prompt side of a card (it would hand over the answer's
+  parts). It cites its source (a dictionary or a grammar) or waits for a reviewer's sign-off: LLM drafting is
+  this project's biggest source of folk etymologies. It is about a word's morphemes; a character's components
+  only with a scholarly source of their own (安 as "a woman under a roof" is out). It comes after the real
+  gloss, labelled "lit.", and is stored and shown apart from the gloss: a memory aid, never what the word
+  means.
+- **A hint changes no credit:** knowing زمین خوردن says nothing about زمین.
+
+### Cards for patterns and bound morphemes
+
+- **Pattern templates are checked against the lexical form first,** readings after.
+- **Bound morphemes get building cards:** a base and a head given, the combination asked (كَتَبَ + مَفْعَل →
+  مَكْتَب; *ish* + ‑chi → *ishchi*), from buttons where the pieces are patterns, never a typed template.
+- **Root extraction** (a word to its radicals, the skill an Arabic or Hebrew dictionary needs) reads the
+  base's radicals and is credited to the pattern's rule; a root has no learning state.
+- **Semi-productive patterns** (مَفْعَل) get decoding cards ("what might مَدْخَل be?"), never wug cards.
+- **Teaching order** for a pattern: two or three words first, aligned; then its shape (ADR 0150) with its
+  meaning; then building, extraction and decoding.
+
 ## Consequences
 
 - **The fold changes what it keys:** `met`, `shown` and `missed` per part and skill, not per KC and facet.

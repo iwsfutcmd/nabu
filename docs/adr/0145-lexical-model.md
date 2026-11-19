@@ -69,6 +69,10 @@ is the owner's, and the notes record each one where it was made.
 - **A lexeme has a part of speech, in its language's own categories** (Arabic's ism, fiʿl, ḥarf; Uzbek
   *yaxshi* is one lexeme, never split into adjective and adverb). A function head stores a signature: what
   it takes, what it makes, which features it sets.
+- **The learner's test** (the owner's, 2026-11-19): Y belongs to X's lexeme if knowing X without Y is not
+  fully knowing X. Knowing *run* without *ran* is not knowing RUN; knowing *write* without *writer* is still
+  knowing WRITE; knowing *carro* without *coche*, or *padre* without *madre*, is knowing CARRO and PADRE. The
+  dimensions below are how a language states the test once, instead of word by word.
 - **Two kinds of head, decided by dimensions, never labelled affix by affix:**
   - a **value head** is a value of a dimension of its base's category; its result is a **form** of the base's
     lexeme;
@@ -92,6 +96,23 @@ is the owner's, and the notes record each one where it was made.
 - **apc's active participle** (شايف, رايح) is its verb + the participle pattern, a value of apc's aspect
   dimension (perfective, imperfective, participle): a form. Its sense KCs go; a listed sense (جاي "next
   (week)") stays a lexeme.
+- **Cases on the line,** as the dimension test settles them (the kind is per language; the explainer
+  [inflection-or-derivation.html](../explainers/inflection-or-derivation.html) gives the reasons both ways):
+
+  | Case | Kind |
+  |---|---|
+  | apc participle (رايح, شايفه "I've seen him") | value (aspect) |
+  | Standard Arabic participle (كاتِب: case, definiteness) | function |
+  | Arabic verbal noun (Form I listed: كِتابة; Forms II–X computed: تَعْلِيم) | function |
+  | English ‑ing: *is writing* / *the writing of the letter* / *a writing* | value (a two-token form) / function / listed: one exponent, three heads |
+  | Spanish ‑mente, ‑ito | function |
+  | comparatives: English *bigger* (*more intelligent* its two-token form); Arabic أَكْبَر | value in English; function in Arabic |
+  | Russian aspect (писать / написать: the prefix chosen verb by verb) | function, aspect a lexical feature |
+  | Korean honorific ‑시‑ (먹다 → 드시다) | value |
+  | Cantonese aspect 咗, 緊, 過 | value, a two-token form |
+  | Persian ـی: indefinite کتابی / adjectival ایرانی | value / function: one letter, two heads |
+  | Uzbek causative ‑t, ‑tir | function |
+  | Biblical Hebrew stems (לָמַד → לִמֵּד) | function, mostly listed |
 
 ### Concepts and scopes
 
@@ -149,6 +170,29 @@ is the owner's, and the notes record each one where it was made.
   orders by hand (ADR 0085). Rules come inside words first (uz suffix order, Spanish clitic clusters), each
   with conformance vectors; they only accept and check (the compiler checks the authored order is one the
   rules give, and adds the others to accept sets). The text shown is always the authored text.
+
+### Decided per language
+
+- **es:** stem-changing verbs are a lexical class (e→ie, o→ue, e→i) plus a rule, not listed stems; the class
+  isn't derivable from the form (*probar* / *pruebo*, *robar* / *robo*), and the profile states what is
+  predictable (nearly every ‑ir verb with stem e or o alternates; ‑ear verbs never do). Cuban forms are
+  canonical (ADR 0076; dialect tags, ADR 0147).
+- **uz:** the causative (‑t, ‑tir, ‑dir) is derivation: a causative whose meaning drifted is a lexeme (*oʻqit‑*
+  "teach" beside *oʻqi‑* "read"), a transparent one a derivative. *yaxshi* "good, well" is one lexeme. The
+  lexical form is Latin-based, the Cyrillic derived from it.
+- **fa:** the course teaches both registers, formal first: a scope pair like ngoko and krama, realised by
+  scoped rules (colloquial *mi‑ram* for *mi‑ravam*), scoped morphemes (formal کتب) and concept-linked lexemes
+  (*hālā* / *aknun* "now").
+- **Javanese** (when it comes): ngoko and krama taught from the start; every register form at the concept
+  level.
+- **yue:** 嘅 is one linker (possessive and attributive, its head left out by rule): fix its gloss and drop
+  `Poss=Yes`, in the new lexicon. Literary and colloquial readings are different words (生 *saang1* in 生日,
+  *sang1* in 學生).
+- **apc:** its lexical-form schema comes first; its participles are forms (above).
+- **lzh:** characters carry their Qieyun positions (TshetUinh), Baxter, Pinyin and Jyutping derived, with
+  overrides (a loan reading, a variant lookup, a missing position, Baxter & Sagart where they differ, modern
+  readings that left regular change, literary or colloquial as policy); lexemes.md §8 and
+  [the prototype](../prototypes/lzh-qieyun/).
 
 ## Consequences
 
