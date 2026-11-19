@@ -158,8 +158,21 @@ learner has to memorise. But learned knowledge has three sides, and lexemes are 
   before its derivatives.
 - **The word list groups by lemma**, its listed lexemes beneath like principal parts (*ser*: *soy*, *eres*, *es*,
   *fue*…).
-- **Open:** "learned" per lemma (its meaning facets and lemma-wide features) and per lexeme (its form
-  facets), or per lexeme only as now?
+- **Decided: to have learned something is to have learned every part of it that can't be derived**, for
+  every kind of thing:
+  - **a lexeme:** its forms (each with its context), its sense, its features, every unpredictable edge;
+  - **a lemma:** its meaning, its lemma-wide features, and every listed lexeme of its paradigm. Knowing *fue*
+    is not knowing BE: *soy*, *eres*, *es*… are parts of it no rule gives. Evidence of the meaning can come
+    through any of its lexemes; each listed form needs its own;
+  - **a rule:** every branch of it, each context it distinguishes (‑ka after k *and* ‑qa after q), shown on
+    items the learner can't have memorised it on;
+  - **a feature:** every value the prompts make the learner choose;
+  - **a combination:** nothing of its own. It is derivable, so it is learned when its parts are.
+- Proposed: **"every part" means every part introduced so far**, of those the course asks for this learner.
+  A course that never teaches *sois* can still teach *ser* to the end, and a lemma whose new irregular form
+  arrives in a later unit goes back to learning until that form is shown, as a miss sends a word back now
+  (ADR 0100, D3).
+- Proposed: the word list shows a lemma's progress (*ser*: meaning, 5 of 9 forms), not only learned or not.
 
 ## Combinations
 

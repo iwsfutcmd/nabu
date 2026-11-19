@@ -782,7 +782,9 @@ parts are a memory hint worth showing, in the glossary and wherever the lexeme i
 ## 11. Learned
 
 **Decided:** a lexeme is learned once all its properties are learned and every edge of its graph is
-learned.
+learned. Generalised (2026-11-19): **to have learned anything is to have learned every part of it that can't
+be derived**: a lemma all its listed lexemes, a rule every branch (lexeme-model.md, "What the learner
+learns").
 
 | Edge | Facet |
 |---|---|
