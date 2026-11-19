@@ -1021,6 +1021,16 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
 - Still open: inflection and derivation as kinds of head; the owner asked for a full explainer (examples,
   implications, mockups).
 
+**Answers, round 4 (the owner, 2026-11-19, after the explainer "Inflection or Derivation?")**
+- Decided: option A. Two kinds of head, decided by the language's dimensions (declared per language, one
+  list per category); apc's participle is a value of an aspect dimension (inflection); a form may be
+  several tokens ("we don't give a crap about words for the purposes of learning").
+- Decided: a computed derivative is not a learning item; "lexeme" means what is stored.
+- Decided: progress counts listed parts (a regular verb: itself, 1 of 1).
+- Decided: *caza* for *casa*: the lexical miss counts against telling the pair apart; a spelling-choice card.
+- Decided: the infinitive head (INF) is a lexeme, as PAST is; the form *hablar* is HABLAR + INF.
+- Discussing: what counts as shown for each part; finding irregular forms (Elsewhere); order rules.
+
 **For later (not started; the owner, 2026-11-19)**
 - How do we teach syntax?
 

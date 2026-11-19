@@ -154,7 +154,7 @@ affixes (*dipun-*) as *tuv-* takes the preterite endings. It distributes over th
 If so, register (and dialect, which distributes the same way) are paradigm dimensions, and the concept has
 no job left inside a language. See lexemes.md §16.
 
-Proposed refinement (2026-11-19), after the owner found *carro* / *coche* as one lexeme "decidedly weird":
+Proposed refinement (2026-11-19; decided since: *carro* / *coche* are two lexemes, linked by a concept), after the owner found *carro* / *coche* as one lexeme "decidedly weird":
 **a paradigm lives inside one grammar; dialect is a choice of grammar.**
 - One Javanese speaker has *mangan*, *nedha* and *dhahar* and picks among them by situation, so register is a
   paradigm dimension. One Cuban speaker has *carro*; *coche* is another variety's word, known if at all as
@@ -208,7 +208,7 @@ word by word. Both views can be derived from one model: register forms on each l
 vocabulary count summed over them. A course can still stage it: ngoko first, krama forms introduced later.
 
 **Register outside Javanese** (the owner, 2026-11-19: "at least when it's this formalized; I'm not so sure
-about Spanish or French"). Proposed: register is a paradigm dimension only where the language realises it
+about Spanish or French"). Proposed then, settled since by the base-case rule below: register is a paradigm dimension only where the language realises it
 inside paradigms. Elsewhere it is chosen by picking a lexeme.
 - **Javanese** (and Korean's speech levels, Japanese *‑masu*, *meshiagaru* for *taberu*): verbs, nouns and
   affixes have register forms, with a default. A paradigm dimension.
@@ -223,7 +223,7 @@ inside paradigms. Elsewhere it is chosen by picking a lexeme.
 - So the variety example changes level: Spain's *vosotros* and Cuba's *ustedes* are pronoun lexemes linked by
   a concept, and the verb forms that agree with them (*habláis* / *hablan*) are forms linked by one.
 
-**Then Javanese too?** (the owner: "by this logic, Javanese register feels like a concept link"). Proposed,
+**Then Javanese too?** (the owner: "by this logic, Javanese register feels like a concept link"; decided since: all Javanese register is at the concept level). Proposed then,
 reversing "register is a paradigm dimension" for Javanese by applying the T–V reasoning consistently. Register
 is realised in three ways, and only one is a paradigm dimension:
 - **A dedicated exponent: a paradigm dimension.** Korean's speech-level endings (‑yo, ‑seumnida), Japanese
@@ -251,11 +251,11 @@ that consistently causes suppletion probably works at the concept level, not ins
   lexeme: knowing one without the other is a gap in knowing "go". Arabic broken plurals are the same thorn.
 - **A second, smaller one, also Persian:** formal Persian uses Arabic plurals beside ‑hā (خبرها / اخبار
   "news", اسناد "documents"): register-conditioned suppletion inside a single form.
-- Proposed refinement: consistent suppletion points to the concept level only when the property selects a lect
+- Refinement (folded into the base-case rule, Decided): consistent suppletion points to the concept level only when the property selects a lect
   (speech level, variety) and leaves the proposition alone; a property with its own meaning in the
   proposition (tense, number) stays inside the lexeme however suppletive it is.
 
-**How a scoped morpheme is triggered** (Persian Arabic plurals, 2026-11-19). Proposed:
+**How a scoped morpheme is triggered** (Persian Arabic plurals, 2026-11-19). Decided, with the base-case rule:
 - **Scope is part of the Elsewhere lookup.** A listed morpheme is a candidate only if it belongs to the
   utterance's scope; among the candidates, the most specific wins. KETĀB + plural in a formal utterance finds
   کتب *kotob* (listed for plural, formal); in an everyday one *kotob* isn't a candidate, nothing listed
@@ -330,9 +330,9 @@ the base case is what makes it a form.
   2nd plural (*ustedes*) are linked by a concept. A concept can link forms as well as lexemes.
 - **A further layer, provisionally "meaning"** (it may not exist): diglossic pairs (佢 / 他), stylistic
   doublets without grammar (*samolyot* / *tayyora*) and many-to-one registers sit between meaning and concept.
-  Proposed working line: a **concept** is a correspondence the community itself makes between items of one
+  Working line (settled when the "meaning" layer was dropped): a **concept** is a correspondence the community itself makes between items of one
   language's grammars ("in Cuba we say *carro* for Spain's *coche*"); a **meaning** is only an equivalence of
-  sense, as in translation. Proposed: meaning stays implicit, carried by glosses and accept sets, never an
+  sense, as in translation. Decided: meaning stays implicit, carried by glosses and accept sets, never an
   object, until a feature needs it. Both serve the same feedback: "another word that would be right under a
   different scope".
 
@@ -577,7 +577,7 @@ A morpheme shows up in two different ways, and only one needs an object:
   Hebrew and Arabic morphology works on words and stems, and that roots need not mean anything.
 - So productive derivation starts from a lexeme, not a bare root: the active participle كاتِب is KATABA + the
   participle pattern, the root coming with the verb as part of its lexical form.
-- **A listed derivative's parts are its base and its pattern too (Proposed):** مَكْتَب "office, desk" ← كَتَبَ +
+- **A listed derivative's parts are its base and its pattern too (Decided, with no root object):** مَكْتَب "office, desk" ← كَتَبَ +
   مَفْعَل, as *writer* (occupation) ← *write* + *‑er*. The root is never a part where a base exists; it comes
   through the base's lexical form.
   - The pattern's allomorph reads the verb: مَفْعَل after an imperfective in a or u (يَكْتُبُ → مَكْتَب, يَلْعَبُ →
@@ -615,8 +615,8 @@ A morpheme shows up in two different ways, and only one needs an object:
   per sense, as *writer* (occupation) is.
 - **Decided (the owner, round 2): apc's participle is a combination** of its verb and the participle pattern's
   lexeme, being predictable and compositional (شايف = شاف + فاعِل). Its sense KCs (`sense:raye7`, `2a3ed`,
-  `wa2ef`, `seken`) go; a listed sense (جاي "next (week)") stays a lexeme. Whether that head is inflectional
-  or derivational waits on the open question below (kinds of head).
+  `wa2ef`, `seken`) go; a listed sense (جاي "next (week)") stays a lexeme. Decided (round 4): the pattern is a
+  value head, a value of apc's aspect dimension (perfective, imperfective, participle): inflection.
 - **Part of speech stays on the lexeme; a derivation's output is a computed lexeme.** فاعِل changes
   category, so كاتِب "one who writes" isn't a verb, but it isn't a form of كَتَبَ either: if derived words sat
   under their base's lexeme, derivation would be inflection. The output is a lexeme computed from its parts:
@@ -730,7 +730,7 @@ a root object:
 - uz Cyrillic stays, though the owner would drop it for Uzbek alone, as the proof of concept for a language
   in two scripts: simpler than those to come.
 
-## What the learner learns (Proposed)
+## What the learner learns (Decided unless an item says otherwise)
 
 **The morpheme is the primary unit of what is taught and stored:** every listed pairing of form and meaning a
 learner has to memorise. But learned knowledge has three sides, and morphemes are one of them:
@@ -761,7 +761,7 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
     through any of its morphemes; each listed form needs its own;
   - **a rule:** every branch of it, each context it distinguishes (‑ka after k *and* ‑qa after q), shown on
     items the learner can't have memorised it on;
-  - **a feature** (Proposed, 2026-11-19): only an *inherent* feature is learned as a feature, and what is
+  - **a feature** (Decided, 2026-11-19): only an *inherent* feature is learned as a feature, and what is
     learned is **when to use it**, not how to spell it (forms belong to morphemes and rules). Preterite vs
     imperfect (*comí* / *comía*), krama vs ngoko, uz ‑di vs ‑ibdi: a learner can know every form and still
     choose wrong. Its parts are its uses (the imperfect's habitual, ongoing-in-the-past, backdrop, polite
@@ -772,8 +772,8 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
     lexical feature of a lexeme (*casa* is feminine; *querer que* takes the subjunctive);
   - **a combination:** nothing of its own. It is derivable, so it is learned when its parts are.
 - **Proposed: exactly what counts**, every item under ADR 0100's rule for a skill shown (a first try, right,
-  not self-rated, on a later local date than the part was met and than it was last missed), over the parts
-  introduced so far:
+  not self-rated, on a later local date than the part was met and than it was last missed), over every part
+  the course teaches (round 1):
   - **A morpheme:**
     1. its sense recognised (its form → its meaning) and produced (its meaning → its form);
     2. each stored form produced in its own context (‑ka after k; *el* before *agua*), where no rule gives it;
@@ -803,7 +803,7 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
   arrives in a later unit goes back to learning until that form is shown, as a miss sends a word back now
   (ADR 0100, D3).
 - Decided (round 1): the word list shows a lexeme's progress (*ser*: meaning, 5 of 9 forms), not only learned or not.
-  - **Proposed: what it counts is listed parts, not forms** (the owner asked what a regular verb would show,
+  - **Decided (round 4): what it counts is listed parts, not forms** (the owner asked what a regular verb would show,
     2026-11-19). **A perfectly regular verb has one: itself** (the owner: "at least 1"), its elsewhere
     morpheme, which no rule gives: *hablar*'s stem *habl‑* with its ‑ar class. The learner meets it as the
     lemma, the infinitive, which is itself a form (HABLAR + infinitive), not the lexeme. Every other form of *hablar* comes from rules, so its entry reads "1 of 1" and says
@@ -862,12 +862,18 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
   One operation, its head computing the result.
   - **The feature is merged, not its suffix:** RUN + PAST, and realization picks ‑ed, or *ran* where RUN lists
     a morpheme for it; one exponent may realise several features (*fue*, Spanish ‑ó: past and 3sg).
-  - **Open (the owner is unsure; back to it last): inflection and derivation remain, as kinds of head**, not as mechanisms. A feature's lexeme is a
+  - **Decided (round 4, option A of the explainer): inflection and derivation remain, as kinds of head**, not as mechanisms. A feature's lexeme is a
     value of a dimension its base's category has, and its result stays in the base's lexeme (a form); a
     pattern's or a derivational affix's lexeme is a function, and its result is a new, computed lexeme. The
     kind decides the learner's test and progress (*ser*: 5 of 9 forms), where a listed form lives (*ran* in
     RUN; كاتِب "clerk" its own lexeme), the gloss ("run (past)" against "writer"), blocking within a paradigm,
     the base-case rule, and contrast sets in grading (ADR 0066).
+    **How a head's kind is decided (round 4):** by the language's dimensions, never by a label on each affix. A
+    head that is a value of a dimension of its base's category is a value head and makes a form; every other
+    head is a function head and makes a derivative. Dimensions are declared per language, beside its
+    lexicon, one list per category (apc verb: aspect, person, gender, number; Spanish noun: number); a noun's
+    gender stays a lexical feature. A form may be several tokens (*he comido*, خواهم رفت, 食咗): words don't
+    matter for learning (the owner).
   - So the apc question is whether its participle's head is a value of the verb's paradigm (as PAST is) or a
     function making an adjective; the test is the one above (dimensions the base's paradigm lacks).
   - **The two, side by side** (the owner's reading, 2026-11-19: both are combinations of lexemes; a
@@ -884,7 +890,7 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
 
     Merge is binary, one head per step, derivation inside: *ishchilarimiz* is ((ISH + AGENT) + PL) + 1PL.POSS.
     The first step makes a lexeme, ISHCHI "worker", whose own paradigm the next two steps fill.
-  - **Proposed: a computed derivative is not a learning item** (the owner asked what a computed lexeme means
+  - **Decided (round 4): a computed derivative is not a learning item** (the owner asked what a computed lexeme means
     for a learner, 2026-11-19). It is lexeme-shaped (a category, a paradigm, a gloss) but wholly derivable, so,
     like *scanned*, it has nothing of its own to learn. "Lexeme" is kept for what is stored, and so learned;
     the computed result is a **derivative**, a value.
@@ -1062,7 +1068,7 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
 | Is the sound right? | **orthographic** (yes, the spelling isn't) | *caza*, ✗*kasa*, *ké tal* for *casa*, *qué tal* | the word's spelling leftover, or the projection rule where a rule decides that spot |
 | | **phonemic** (no) | *esta*, ✗*cafe* for *está*, *café* | the word's sound, or the rule that writes it (the stress accent) |
 | Whose form is it? | **grammatical** (the right lexeme, another form) | *hablas* for *hablo* | the feature, or the agreement rule (ADR 0066's contrasts) |
-| | **lexical** (another lexeme) | *gato* for *perro*; *caza*, *esta* | always recorded (round 2). What it shows depends on the rest: *gato* for *perro* misses the target's recall; *caza* for "house" is a phonemic hit with an orthographic and a lexical miss (round 3: the learner knows how *casa* sounds and spelled it as another word). Proposed: there the lexical miss counts against telling *casa* from *caza*, and the pair gets practised (a spelling-choice card) |
+| | **lexical** (another lexeme) | *gato* for *perro*; *caza*, *esta* | always recorded (round 2). What it shows depends on the rest: *gato* for *perro* misses the target's recall; *caza* for "house" is a phonemic hit with an orthographic and a lexical miss (round 3: the learner knows how *casa* sounds and spelled it as another word). Decided (round 4): there the lexical miss counts against telling *casa* from *caza*, and the pair gets practised (a spelling-choice card) |
 | | **scope** (the right concept, another variety or register, where the prompt fixed it) | *tú* for *usted* under "(to your boss)" | the scope choice |
 | How did it happen? | **slip** (keyboard or IME neighbours, a transposition) | ✗*nesa* for *mesa*; *cada* for *casa* | nothing on its own |
 | (sentences) | **order** (the right words, an order the language doesn't allow) | | the order rule |
@@ -1087,7 +1093,7 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
 - **Decided: learners do the script first, or test out of it, except in a logography** (Chinese characters,
   sitelen pona: learned with their words). So a word's spelling or reading counts as learned without waiting
   on its letters. What script-first removes is the letters, not the leftovers: an abjad's vowels are still
-  learned word by word. Tension to settle: script rows never gate units (ADR 0088). Proposed: keep the letters
+  learned word by word. Settled by strict script first (round 2, below). Was proposed: keep the letters
   as the word's edges in the fold (a no-op for a learner who did the script first; honest for one who
   skipped), and lead with the script row or its placement test, without gating. "Script" means the
   orthography's rules, not only its letters: for es heritage speakers, Spanish spelling is the real gap.
@@ -1107,7 +1113,7 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
 
 ### Merge all the way up (Decided, round 1: the architecture now, coverage one rule at a time)
 
-The owner would like Merge to reach phrases and sentences. Proposed: yes as the architecture, with coverage
+The owner would like Merge to reach phrases and sentences. Decided (round 1): yes as the architecture, with coverage
 growing rule by rule, so it is never all or nothing.
 - **An utterance's structure is annotated as a UD dependency tree** (heads and relations), which carries the
   hierarchy linearisation needs; Merge's binary sets aren't needed for that. We already use UD's parts of
