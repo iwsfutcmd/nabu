@@ -808,7 +808,12 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
     which no rule gives. Every other form of *hablar* comes from rules, so its entry reads "1 of 1" and says
     "regular"; its conjugation is knowledge of the rules (the ‑ar endings), whose progress is the rules' own
     ("‑ar present: 4 of 6"), and the entry can point there. A lexical feature that needs evidence is a part too
-    (*pensar*: itself and its e→ie class, 2; *casa*: itself and its gender). A listed part is often a stem
+    (*pensar*: itself and its e→ie class, 2; *casa*: itself and its gender). The class can't be derived from
+    the form (*probar* / *pruebo* but *robar* / *robo*; *regar* / *riego*, *pegar* / *pego*; *entender* /
+    *entiendo*, *aprender* / *aprendo*); learners' dictionaries list it as "pensar (ie)". Parts of it are
+    predictable, and the profile can state them as defaults so that only the rest is learned: ‑ir verbs with
+    a stem e or o all alternate (though whether e goes to ie or to i, *siento* or *pido*, is listed), and new
+    verbs and ‑ear verbs never do. A listed part is often a stem
     rather than a whole form: *tener* lists itself, its e→ie class, *tengo*, *tuv‑*, *tendr‑*, and takes the
     rest by rule, as Greek and Latin dictionaries give principal parts (λύω is regular, φέρω lists οἴσω,
     ἤνεγκα). *ser* lists whole forms because nothing in it is predictable. The denominator is the listed parts
