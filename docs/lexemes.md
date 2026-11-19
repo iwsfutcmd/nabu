@@ -581,6 +581,19 @@ a new design language.
       the token to match that surface, or they sit a little lighter or darker.
     - The font is used only for pattern shapes; built by a script from the pinned font, like the other
       subsets.
+  - **Rendered 2026-11-19 in both themes** (slot grey: #c0c0bf light, #5a5854 dark; 28% of the way from
+    the surface token to the text token), through slot colour fonts built by shaping:
+    - **Hebrew samekh in Noto Sans Hebrew is a plain circle**, the stand-in circle the owner meant, with the
+      dagesh at its centre. Noto Serif Hebrew's samekh is more letter-like.
+    - **The dotted circle needs no greying**: it is faint by design, and greyed it nearly vanishes on the
+      dark theme. If it's used, it keeps the text colour.
+    - **Noto Naskh Arabic (the @fontsource subset) has no U+25CC**, so an Arabic dotted circle always falls
+      back to another font, outside the slot colour: one more reason against it.
+    - **Syriac works the same way, with semkath ܣ** (samekh's cognate) as the slot and tatweel beside it, in
+      Serto with West Syriac vowels, Madnhaya and Estrangela with East Syriac vowels: peʿal, paʿʿel, aphʿel,
+      ethpeʿel. The fonts have U+0640 and U+25CC.
+    - The build must skip glyphs with no outline: a ZWJ merges into its slot's cluster, and its glyph got a
+      colour record.
   - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
     Unicode; if the font fails to load, the dotless letters still show):
     - **A designed slot glyph** in place of borrowed ڡ / ٮ: a hollow or dotted-outline consonant with all
