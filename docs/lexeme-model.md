@@ -804,8 +804,9 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
   (ADR 0100, D3).
 - Decided (round 1): the word list shows a lexeme's progress (*ser*: meaning, 5 of 9 forms), not only learned or not.
   - **Proposed: what it counts is listed parts, not forms** (the owner asked what a regular verb would show,
-    2026-11-19). **A perfectly regular verb has one: itself** (the owner: "at least 1"), its elsewhere form,
-    which no rule gives. Every other form of *hablar* comes from rules, so its entry reads "1 of 1" and says
+    2026-11-19). **A perfectly regular verb has one: itself** (the owner: "at least 1"), its elsewhere
+    morpheme, which no rule gives: *hablar*'s stem *habl‑* with its ‑ar class. The learner meets it as the
+    lemma, the infinitive, which is itself a form (HABLAR + infinitive), not the lexeme. Every other form of *hablar* comes from rules, so its entry reads "1 of 1" and says
     "regular"; its conjugation is knowledge of the rules (the ‑ar endings), whose progress is the rules' own
     ("‑ar present: 4 of 6"), and the entry can point there. A lexical feature that needs evidence is a part too
     (*pensar*: itself and its e→ie class, 2; *casa*: itself and its gender). The class can't be derived from
