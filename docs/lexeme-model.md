@@ -179,6 +179,24 @@ Proposed refinement (2026-11-19), after the owner found *carro* / *coche* as one
 The diagnostics so far: is the choice one speaker's; does grammar (affixes, agreement) realise it; does a
 default cover both values; is the mapping one-to-one. Where they disagree is where concept and lexeme blur.
 
+**The learner's test** (the owner, 2026-11-19: "what a learner needs"). Proposed as the definition of a
+lexeme's boundary: **Y belongs to X's lexeme if a learner who knows X but not Y doesn't fully know X**, for
+a speaker of the course's variety. It is the "learned" principle read backwards: a lexeme's parts are
+exactly what learning it requires. The diagnostics above are its evidence, not its definition.
+
+| Has | Lacks | A gap in knowing the first? | So |
+|---|---|---|---|
+| *run* | *ran* | yes: can't say it in the past | one lexeme |
+| *carro* (Cuba) | *coche* | no: another variety's word | two lexemes, a concept between them |
+| *padre* | *madre* | no: another word | two lexemes |
+| 佢 (spoken) | 他 (written) | no, for spoken Cantonese: another language's word | a concept, or nothing |
+| *tayyora* | *samolyot* | no: a synonym, a separate vocabulary gap | two lexemes |
+| *mangan* | *nedha* | yes: can't say it to an elder without being rude | one lexeme, register as a paradigm dimension |
+
+Javanese register is the case to watch: speakers also talk about it as a layer ("he can't speak krama"), not
+word by word. Both views can be derived from one model: register cells on each lexeme, and a krama
+vocabulary count summed over them. A course can still stage it: ngoko first, krama cells introduced later.
+
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
   decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
