@@ -535,9 +535,11 @@ morpheme's "own" surface form is the surface form of a **combination of one**.
      would you say to your grandmother?") asks among a concept's lexemes, and a register or dialect slip is
      another lexeme of the same concept. Two lexemes of one concept with every feature alike are the hole
      noted in lexemes.md §8.
-2. **The gloss belongs to the concept** (Proposed; first the lexeme). A lexeme's gloss is the concept's plus
-   its features ("eat (krama)"), a morpheme's adds its inflectional ones ("run (past)"), with an override where
-   that reads badly.
+2. **The gloss belongs to the concept** (Decided, round 3; the lexeme's where it has none). A lexeme's gloss is
+   the concept's plus its features ("eat (krama)"), a morpheme's adds its inflectional ones ("run (past)"), with
+   an override where that reads badly. **Both are shown, as a starting point:** the support language's own
+   form where it has one ("ran") and the analysis ("run (past)"); the owner prefers the analysis but expects
+   others to want the form.
 3. **An affix's lexeme says what kind it is.** ‑ga's lexeme is a feature value (Case=Dat), so it's
    inflectional; ‑er's is a function that makes a new lexeme (a computed one, unless something about it is listed), so it's
    derivational. Nothing to store.
@@ -625,8 +627,8 @@ A morpheme shows up in two different ways, and only one needs an object:
   - Rules read the category (فاعِل takes verbs, فُعَيْل nouns); without it, lexemes are DM's category-neutral roots.
   - **Decided (the owner, round 2): lexemes have an inherent part of speech, and Merge takes the result's
     features from its constituents by underspecification, never by a hierarchy or a "strength":** whatever
-    one constituent leaves unspecified, the other supplies. **Proposed: where both specify a feature, the one
-    that selects the other wins**, and that is all a head is: ‑er takes a verb (its input consumes the verb's
+    one constituent leaves unspecified, the other supplies. **Decided (round 3): where both specify a feature, the
+    one that selects the other wins**, and that is all a head is: ‑er takes a verb (its input consumes the verb's
     category) and makes a noun, so nothing conflicts. Spanish ‑ito specifies neither category nor gender, so
     both come from its base (*ahorita* an adverb, *chiquito* an adjective, *el problemita* masculine); ‑ción
     specifies both (a feminine noun). A construction can be the selector: Spanish verb + noun compounds make
@@ -986,7 +988,7 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
 | Is the sound right? | **orthographic** (yes, the spelling isn't) | *caza*, ✗*kasa*, *ké tal* for *casa*, *qué tal* | the word's spelling leftover, or the projection rule where a rule decides that spot |
 | | **phonemic** (no) | *esta*, ✗*cafe* for *está*, *café* | the word's sound, or the rule that writes it (the stress accent) |
 | Whose form is it? | **grammatical** (the right lexeme, another cell) | *hablas* for *hablo* | the feature, or the agreement rule (ADR 0066's contrasts) |
-| | **lexical** (another lexeme) | *gato* for *perro*; *caza*, *esta* | the word's recall, always (Decided, round 2), even where a one-edit miss explains it (*caza*, *esta*); the note still names the near miss |
+| | **lexical** (another lexeme) | *gato* for *perro*; *caza*, *esta* | always recorded (round 2). What it shows depends on the rest: *gato* for *perro* misses the target's recall; *caza* for "house" is a phonemic hit with an orthographic and a lexical miss (round 3: the learner knows how *casa* sounds and spelled it as another word). Proposed: there the lexical miss counts against telling *casa* from *caza*, and the pair gets practised (a spelling-choice card) |
 | | **scope** (the right concept, another variety or register, where the prompt fixed it) | *tú* for *usted* under "(to your boss)" | the scope choice |
 | How did it happen? | **slip** (keyboard or IME neighbours, a transposition) | ✗*nesa* for *mesa*; *cada* for *casa* | nothing on its own |
 | (sentences) | **order** (the right words, an order the language doesn't allow) | | the order rule |

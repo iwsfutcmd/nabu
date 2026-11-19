@@ -163,7 +163,7 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
    - A form that can't be derived must be a morpheme (a lint, much as `kc.inflected-form` enforces lemmas now).
 8. **Decided: a gap doesn't make a combination a morpheme.** Some combinations don't exist for purely semantic
    or phonological reasons; the ones that do exist are still derived by rule.
-   - Proposed: a rule carries its conditions, and a gap the conditions explain is predictable:
+   - Decided (round 3): a rule carries its conditions, and a gap the conditions explain is predictable:
      - phonological: English ‑en after an obstruent (*blacken*, *\*greenen*), the comparative ‑er by
        length (*bigger*, *\*intelligenter*);
      - semantic: *un‑* on adjectives that aren't already negative (*unhappy*, *\*unsad*); "place of" only
@@ -171,7 +171,7 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
      - blocking by a listed morpheme (*went* blocks *\*goed*, *glory* blocks *\*gloriosity*): predictable once
        the morpheme is known. Blocking is per sense: *thief* doesn't block *stealer of hearts* or
        *scene-stealer*, which the rule still makes.
-   - Proposed: only an arbitrary gap (the conditions are met and still no word exists) forces listing,
+   - Decided (round 3): only an arbitrary gap (the conditions are met and still no word exists) forces listing,
      because then a learner can't know whether the word exists.
    - Conditions are part of the rule's data (stem shape from the profile and scheme, semantic properties
      on morphemes), and wug stems must meet them.
@@ -623,7 +623,7 @@ a new design language.
       following letter (as Nastaliq does) defeats sample strings. A ligature that takes in a pattern letter must not be coloured.
     - **The build must pass `glyphMap` to `buildCOLR`** so the colour records are sorted by glyph ID; without
       it they are sorted by name, which only happens to match while no glyphs are added.
-    - Undecided: under `prefers-contrast: more` the slots come back up to a visible grey. Cheap (one media
+    - Decided (round 3): under `prefers-contrast: more` the slots come back up to a visible grey. Cheap (one media
       query choosing another palette), and only for readers who asked for contrast. Forced-colours modes
       draw colour-font glyphs in the system text colour anyway, so there the slots are already full
       strength.
@@ -637,8 +637,8 @@ a new design language.
         is supported by the Chromium here (157); other engines need checking.
     - A variable COLRv1 font with an alpha axis would also work, but alpha brings back the doubled overlaps at
       joins, and WebKit has no COLRv1.
-    - A use beyond tuning: a per-device preference, so a reader who needs the slots stronger can have them,
-      which settles the `prefers-contrast` question without guessing.
+    - Decided (round 3): no per-device preference for slot strength; the default and the contrast setting
+      are enough.
     - The build must leave out marks by their character's Unicode category as well as by GDEF: DejaVu's GDEF
       doesn't class the tie (U+035C) as a mark, and it faded with its slot.
   - The slider demo doesn't work in Firefox (owner, 2026-11-19); not investigated, not important for now.
@@ -754,16 +754,17 @@ parts are a memory hint worth showing, in the glossary and wherever the morpheme
 - **Decided: only real parts, never a folk or nonsense etymology.** Never a hint from the characters of a
   phonetic loan: 沙發 "sofa" is not "sand + emit", 咖啡 and 巴士 have no parts. A hint exists only where
   the morpheme has a morphological analysis; no analysis, no hint.
-  - Proposed: an analysis that yields a hint cites its source (a dictionary or grammar, as courses cite
+  - Decided (round 3): an analysis that yields a hint cites its source (a dictionary or grammar, as courses cite
     references), or waits for a reviewer's sign-off. LLM drafting is this project's biggest source of
     folk etymologies.
-  - Proposed: hints are about a word's morphemes, never a character's components. Glyph stories (安 as
-    "a woman under a roof") are a script-level claim, and mostly folklore; any such explanation would
-    need a scholarly source of its own.
+  - Decided (round 3): hints are about a word's morphemes; a character's components only with a scholarly
+    source of their own. Glyph stories (安 as "a woman under a roof") are a script-level claim, and mostly
+    folklore.
+  - Decided (round 3): hints are stored and presented apart from the gloss.
 - **Where it shows:** the gloss panel on a tap, the word list, the feedback after a card, and the
   morpheme's first presentation.
   - Decided: never on the prompt side of a card. "earth + eat" would hand over the answer's parts.
-  - Proposed: always after the real gloss and labelled "lit.": a memory device, never presented as what
+  - Decided (round 3): always after the real gloss and labelled "lit.": a memory device, never presented as what
     the word means or as a window on how its speakers think.
 - **Credit doesn't change:** knowing زمین خوردن still says nothing about زمین (§13). The hint links
   memories; it isn't evidence.
@@ -879,7 +880,8 @@ possible.
 real word may have been memorised; a made-up one can't have been, so a wug card credits only the rule and
 the affix morpheme.
 
-**Proposed:**
+**Decided (round 3): as below, but not a primary concern.** A wug card comes last, confirming a rule already
+shown on real words, and is treated as a bit of fun, an easter egg, never the main evidence.
 - **Productivity is a property of a rule.** A pattern is a rule if speakers extend it to a wug; only
   productive rules get wug cards.
 - **Generated at compile time, never at runtime.**
@@ -1004,6 +1006,19 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   (Russian loans: цирк / *sirk*). uz Cyrillic stays as the proof of concept for a language in two scripts.
 - Decided: ADRs next. No fixes to the old architecture (the yue 嘅 fix waits for the new lexicon).
 - Still open: inflection and derivation as kinds of head (the owner is unsure; back to it last).
+
+**Answers, round 3 (the owner, 2026-11-19)**
+- Decided: where both constituents specify a feature, the selecting one wins (that is all a head is).
+- Decided: gaps, as proposed (conditions explain most; only an arbitrary gap is listed, as a cell with no form).
+- Decided: *caza* for "house" is a phonemic hit with an orthographic and a lexical miss: the learner knows how
+  the word sounds. Proposed: the lexical miss counts against telling the pair apart.
+- Decided: glosses are built; both the support language's form ("ran") and the analysis ("run (past)") shown.
+- Decided: literal hints cite a source or wait for sign-off; a character's components only with a scholarly
+  source; after the gloss, labelled "lit.", stored and shown apart from it.
+- Decided: wug tests as proposed, but last and light: a confirmation after real words, an easter egg.
+- Decided: slots come up to a visible grey under `prefers-contrast: more`; no per-device slot setting.
+- Still open: inflection and derivation as kinds of head; the owner asked for a full explainer (examples,
+  implications, mockups).
 
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
