@@ -658,7 +658,7 @@ a new design language.
     | Tifinagh (Tfng) | yar ⵔ U+2D54 TIFINAGH LETTER YAR |
     | Imperial Aramaic (Armi) | teth 𐡈 U+10848 IMPERIAL ARAMAIC LETTER TETH (no good choice) |
     | Hatran (Hatr) | ʿe 𐣯 U+108EF HATRAN LETTER AYN |
-    | Mandaic (Mand) | "la": which letter is open (AL ࡋ U+084B? IN ࡏ U+084F, the native ʿayin? AIN ࡘ U+0858?) |
+    | Mandaic (Mand) | al ࡋ U+084B MANDAIC LETTER AL |
     | Old North Arabian (Narb) | ʿayin 𐪒 U+10A92 OLD NORTH ARABIAN LETTER AIN |
     | Nabataean (Nbat) | zayin 𐢉 U+10889 NABATAEAN LETTER ZAYIN |
     | Palmyrene (Palm) | zayin 𐡦 U+10866 PALMYRENE LETTER ZAYIN |
