@@ -990,8 +990,22 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   logography; the rules are what the profile states, built and landed in one go (a definition of done there).
 - Decided: 9 (§13): a chunk that is a lexeme credits nothing to its parts; a compositional one is a
   combination like any sentence.
-- Still open, with proposals in lexeme-model.md: whether apc's active participle is a cell of the verb or
-  derivation, and part of speech on the lexeme with derivational heads' signatures.
+
+**Answers, round 2 (the owner, 2026-11-19, through the second questions page)**
+- Decided: which feature values are lexemes, as proposed (a meaningful value merged as a head; not a class
+  value; agreement and government merge no head).
+- Decided: lexemes have an inherent part of speech; Merge fills the result's features by underspecification,
+  never by hierarchy or "strength". Proposed: the selecting constituent wins where both specify.
+- Decided: apc's participle (شايف) is a combination of its verb and the participle pattern's lexeme.
+- Decided: the miss labels and their outcome as proposed; another word always counts against the target's
+  recall; marks that carry sound are strict in es and grc alike.
+- Decided: strict script first, by orthography; a learner who won't learn a script takes another orthography.
+- Decided: projection code is allowed but lives with the language's data, checked against the profile; all
+  transformations as pure, reversible data is a standing goal.
+- Decided: uz's lexical form is Latin-based, with conventions on the Latin from which the Cyrillic is derived
+  (Russian loans: цирк / *sirk*). uz Cyrillic stays as the proof of concept for a language in two scripts.
+- Decided: ADRs next. No fixes to the old architecture (the yue 嘅 fix waits for the new lexicon).
+- Still open: inflection and derivation as kinds of head (the owner is unsure; back to it last).
 
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.

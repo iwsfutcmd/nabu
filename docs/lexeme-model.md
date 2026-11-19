@@ -610,10 +610,11 @@ A morpheme shows up in two different ways, and only one needs an object:
 - **With no base lexeme there is no combination:** a coinage on a root with no verb is a listed morpheme, its
   pattern a link. A lexicalised sense (كاتِب "scribe, author", مَشْرُوب "a drink") is its own morpheme, blocking
   per sense, as *writer* (occupation) is.
-- **Open (apc):** the participle is verbal there (شايفه "I've seen him" takes an object suffix and reads as a
-  resultative). Is it a cell of the verb's paradigm (verb + a participle feature, learned as a contrast) or
-  derivation (verb + the pattern)? A combination either way, never a lexeme.
-- **Part of speech stays on the lexeme; a derivation's output is a computed lexeme (Proposed).** فاعِل changes
+- **Decided (the owner, round 2): apc's participle is a combination** of its verb and the participle pattern's
+  lexeme, being predictable and compositional (شايف = شاف + فاعِل). Its sense KCs (`sense:raye7`, `2a3ed`,
+  `wa2ef`, `seken`) go; a listed sense (جاي "next (week)") stays a lexeme. Whether that head is inflectional
+  or derivational waits on the open question below (kinds of head).
+- **Part of speech stays on the lexeme; a derivation's output is a computed lexeme.** فاعِل changes
   category, so كاتِب "one who writes" isn't a verb, but it isn't a form of كَتَبَ either: if derived words sat
   under their base's lexeme, derivation would be inflection. The output is a lexeme computed from its parts:
   its category from its head (فاعِل takes a fiʿl and makes an ism), its meaning from both, its paradigm from its
@@ -621,6 +622,14 @@ A morpheme shows up in two different ways, and only one needs an object:
   something isn't derivable: كاتِب "writer, clerk" has the listed plural كُتّاب, so it is a lexeme of its own,
   while the participle takes the sound plural a rule gives.
   - Rules read the category (فاعِل takes verbs, فُعَيْل nouns); without it, lexemes are DM's category-neutral roots.
+  - **Decided (the owner, round 2): lexemes have an inherent part of speech, and Merge takes the result's
+    features from its constituents by underspecification, never by a hierarchy or a "strength":** whatever
+    one constituent leaves unspecified, the other supplies. **Proposed: where both specify a feature, the one
+    that selects the other wins**, and that is all a head is: ‑er takes a verb (its input consumes the verb's
+    category) and makes a noun, so nothing conflicts. Spanish ‑ito specifies neither category nor gender, so
+    both come from its base (*ahorita* an adverb, *chiquito* an adjective, *el problemita* masculine); ‑ción
+    specifies both (a feminine noun). A construction can be the selector: Spanish verb + noun compounds make
+    masculine nouns whatever the noun (*el abrelatas*, though *lata* is feminine).
   - **The pattern is the head, so the result's category falls out.** A derivational morpheme's lexeme stores a
     signature, not a plain part of speech: what it takes, what it makes, and which features it sets (فاعِل: fiʿl
     → ism; Spanish ‑ción: verb → feminine noun). Features it doesn't set come up from the base (Lieber 1980;
@@ -708,6 +717,15 @@ a root object:
   nothing) and counterexamples (*glove*, *glue*). Nabu models neither the association nor the hint (no folk
   etymology). Where sound symbolism is systematic it is morphology, a feature with an exponent: Korean
   반짝 / 번쩍 (bright and dark vowels: small and big), Japanese キラキラ / ギラギラ (voicing: harsher).
+
+### Uzbek's lexical form (Decided, round 2)
+
+- **Latin-based**, as the course will mostly be taught (Cyrillic is in decline), **with conventions on the Latin
+  from which the Cyrillic is derived**: what Latin spelling loses (Russian loans' ц, я, ю, ё, ь, ъ: цирк /
+  *sirk*, концерт / *konsert*) is marked in-script on the Latin lexical form, never as a juxtaposed pair. The
+  conventions are designed in the schema work.
+- uz Cyrillic stays, though the owner would drop it for Uzbek alone, as the proof of concept for a language
+  in two scripts: simpler than those to come.
 
 ## What the learner learns (Proposed)
 
@@ -823,7 +841,7 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
   One operation, its head computing the result.
   - **The feature is merged, not its suffix:** RUN + PAST, and realization picks ‑ed, or *ran* where RUN lists
     a morpheme for it; one exponent may realise several features (*fue*, Spanish ‑ó: past and 3sg).
-  - **Proposed: inflection and derivation remain, as kinds of head**, not as mechanisms. A feature's lexeme is a
+  - **Open (the owner is unsure; back to it last): inflection and derivation remain, as kinds of head**, not as mechanisms. A feature's lexeme is a
     value of a dimension its base's category has, and its result stays in the base's lexeme (a cell); a
     pattern's or a derivational affix's lexeme is a function, and its result is a new, computed lexeme. The
     kind decides the learner's test and progress (*ser*: 5 of 9 forms), where a listed form lives (*ran* in
@@ -831,7 +849,7 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
     the base-case rule, and contrast sets in grading (ADR 0066).
   - So the apc question is whether its participle's head is a value of the verb's paradigm (as PAST is) or a
     function making an adjective; the test is the one above (dimensions the base's paradigm lacks).
-  - **Proposed: which feature values are lexemes.** One with a meaning that is merged as a head is: PAST
+  - **Decided (round 2): which feature values are lexemes.** One with a meaning that is merged as a head is: PAST
     (lemma ‑ed, its elsewhere morpheme; gloss PST; its part of speech a signature; learned as its contrast,
     as decided for features), the noun's PL, preterite and imperfect (two lexemes), DAT where it means
     direction. A class value isn't: *casa*'s feminine is a lexical feature with no meaning (a house isn't
@@ -919,6 +937,11 @@ there, and the bundle carries the results.
   the stated rules leave over: the per-word parts to teach, and a review list. Correspondences need
   conformance vectors like any matching behaviour; the scheme plug-ins in code (tiberian, attic, toki_pona,
   greek_translit) are projection rules already.
+- **Decided (round 2): a projection may be code, but it is part of the language's data**, kept with it, not in
+  the pipeline's audio modules; a conformance check confirms code and profile agree. **A standing goal: every
+  transformation pure data**, so it can be analysed and run backwards (rewrite rules compile to invertible
+  transducers, Kaplan & Kay 1994). Reversal is what the miss labels need: which phonemes the learner's spelling
+  implies, which spellings the target's phonemes allow.
 - **Decided: done in one go, never left half-switched.** The stages (profiles state their losses; the
   compiler reports each word's leftovers; cards and grading come from them; the fold uses them) are build
   order on one branch, landed together. Done means:
@@ -948,11 +971,11 @@ there, and the bundle carries the results.
   Which marks carry sound falls out of the profile's projection: dropping one changes the phonemic form.
   - A form can hold both: ✗*ke tal* is orthographic in its *k* and phonemic in its accent (*que* is the
     unstressed word); the worse decides the outcome, and the notes name both.
-  - Proposed: a phonemic miss is never graded more leniently than an orthographic one: never accepted, and a
+  - Decided (round 2), in es and grc alike: a phonemic miss is never graded more leniently than an orthographic one: never accepted, and a
     typo only by the keyboard model (a slip, ✗*nesa*), never for a missing accent. That retires
     `CORRECT_MARKS` for es's accents and grc's missing marks, a stricter grade in both courses.
 
-### Misses are labelled, and a miss may carry several labels (Decided 2026-11-19; the labels Proposed)
+### Misses are labelled, and a miss may carry several labels (Decided 2026-11-19, the labels and outcome in round 2)
 
 Each aligned unit of a wrong answer gets a set of labels, from three questions:
 
@@ -961,7 +984,7 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
 | Is the sound right? | **orthographic** (yes, the spelling isn't) | *caza*, ✗*kasa*, *ké tal* for *casa*, *qué tal* | the word's spelling leftover, or the projection rule where a rule decides that spot |
 | | **phonemic** (no) | *esta*, ✗*cafe* for *está*, *café* | the word's sound, or the rule that writes it (the stress accent) |
 | Whose form is it? | **grammatical** (the right lexeme, another cell) | *hablas* for *hablo* | the feature, or the agreement rule (ADR 0066's contrasts) |
-| | **lexical** (another lexeme) | *gato* for *perro*; *caza*, *esta* | the word's recall, unless a one-edit orthographic or phonemic miss explains it (*caza*, *esta*): then only named in the note |
+| | **lexical** (another lexeme) | *gato* for *perro*; *caza*, *esta* | the word's recall, always (Decided, round 2), even where a one-edit miss explains it (*caza*, *esta*); the note still names the near miss |
 | | **scope** (the right concept, another variety or register, where the prompt fixed it) | *tú* for *usted* under "(to your boss)" | the scope choice |
 | How did it happen? | **slip** (keyboard or IME neighbours, a transposition) | ✗*nesa* for *mesa*; *cada* for *casa* | nothing on its own |
 | (sentences) | **order** (the right words, an order the language doesn't allow) | | the order rule |
@@ -981,10 +1004,8 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
   missing or extra word is lexical or grammatical by what it is (a noun, an article).
 - Conformance vectors assert the label sets, in both harnesses. Part of the one-go deliverable above.
 
-  - Proposed: its own outcome (beside TYPO, WRONG_WORD, WRONG), replacing WRONG (`sound-alike`); it beats
-    WRONG_WORD when the form is also another word (*caza* for *casa*: the sound is the target's, so the
-    learner's word is the target; the note names the other word), amending ADR 0142; and it credits the word's
-    meaning and sound as shown and counts the miss against the word's spelling leftover only.
+  - Superseded by the labels below: an orthographic miss is a label, not an outcome, and another word always
+    counts against the target's recall (round 2), as ADR 0142 already has it.
 - **Decided: learners do the script first, or test out of it, except in a logography** (Chinese characters,
   sitelen pona: learned with their words). So a word's spelling or reading counts as learned without waiting
   on its letters. What script-first removes is the letters, not the leftovers: an abjad's vowels are still
@@ -992,7 +1013,8 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
   as the word's edges in the fold (a no-op for a learner who did the script first; honest for one who
   skipped), and lead with the script row or its placement test, without gating. "Script" means the
   orthography's rules, not only its letters: for es heritage speakers, Spanish spelling is the real gap.
-- **Proposed (the owner leaning yes): strict script first, by orthography.** A unit's cards in an alphabetic
+- **Decided (round 2): strict script first, by orthography.** A learner who won't learn a script takes the
+  course in another orthography (apc in Arabizi), not a way round it. A unit's cards in an alphabetic
   orthography open once that orthography's script track is done or tested out of; logographies (Chinese
   characters, sitelen pona) never gate. By orthography, not course: apc learners choosing Arabizi pass its
   short track and meet the Arabic track only for Arabic-script cards; yue's Jyutping gates, its characters
