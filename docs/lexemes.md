@@ -867,7 +867,13 @@ possible.
   analyse them. Credit goes only to the morphemes inside.
 - **A non-compositional morpheme's parts get no credit.** Knowing 東西 says nothing about 東 "east". A tap
   shows the parts as a memory hint (§10).
-- **Open:** does meeting a chunk count as meeting the morphemes inside it, before they're introduced?
+- **Decided (2026-11-19): a chunk that is a lexeme credits nothing to its parts.** *¿Qué tal?* isn't
+  derivable from *qué* + *tal*, so it is a morpheme of its own; meeting it is not meeting *qué* or *tal*. Its
+  parts are links, and its literal hint opens once they're taught.
+- **Proposed: a compositional chunk is just a combination.** *¿Cómo estás?* or *Qayerdansiz?* taught whole
+  presents and credits its morphemes as any sentence does (ADR 0100: a word is presented by a card credited
+  to it), but not its rules: an item taught whole can be memorised, and a rule is shown only on items the
+  learner can't have memorised it on (lexeme-model.md). So "chunk" is not a category of the model.
 
 ## 14. Wug tests
 
@@ -982,7 +988,8 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
 - Decided: 8 (lexeme-model.md, "What rules read"): rules read lexical features (a class covers at least two
   lexemes; nothing the form gives); projections are rules; learners do the script first except in a
   logography; the rules are what the profile states, built and landed in one go (a definition of done there).
-- Still open (numbered as above), with proposals in lexeme-model.md: 9 (chunks); and two that came up since: whether apc's active participle is a
+- Decided: 9, for a chunk that is a lexeme (§13); the compositional case is proposed there.
+- Still open (numbered as above), with proposals in lexeme-model.md: and two that came up since: whether apc's active participle is a
   cell of the verb or derivation, and part of speech on the lexeme with derivational heads' signatures.
 
 **Housekeeping**
