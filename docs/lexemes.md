@@ -664,6 +664,9 @@ a new design language.
     | Palmyrene (Palm) | zayin 𐡦 U+10866 PALMYRENE LETTER ZAYIN |
     | Phoenician (Phnx) | ʿayin 𐤏 U+1090F PHOENICIAN LETTER AIN (a plain circle) |
     | Old South Arabian (Sarb) | ʿayin 𐩲 U+10A72 OLD SOUTH ARABIAN LETTER AYN (a circle) |
+    | Elymaic (Elym) | mem 𐿬 U+10FEC ELYMAIC LETTER MEM |
+    | Cuneiform (Xsux; Akkadian, Eblaite) | none: the signs are syllabic, so patterns are shown in Latin transliteration (◌, as Latin) |
+    | Ethiopic (Ethi) | ʿäyn ዐ U+12D0 in principle. Open, for when Ethiopic arrives: the vowel is fused into the glyph (ቀ ቁ ቂ…), so each vowel order of the placeholder needs its consonant body faint and its vowel strokes dark, as two colour layers |
   - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
     Unicode; if the font fails to load, the dotless letters still show):
     - **A designed slot glyph** in place of borrowed ڡ / ٮ: a hollow or dotted-outline consonant with all
