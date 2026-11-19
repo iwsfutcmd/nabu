@@ -913,7 +913,18 @@ there, and the bundle carries the results.
      golden files rerun;
   6. conformance vectors in both harnesses; the fixture courses green; an ADR, profiles/README and
      CLAUDE.md updated.
-  Open within it: es b/v, h, s/c/z: a typo (today, by keyboard distance) or right sound, wrong letter?
+- **Decided: an orthographic miss is a spelling the word's phonemic form also allows.** The test: would the
+  learner's form be a possible spelling of the target's phonemic form, under the profile's stated rules? If
+  so, it is an orthographic miss (right sound, wrong letter), never a typo: es ✗*havlar*, ✗*aser* (h and c
+  both), fa سد for صد, uz сирк for цирк, yue 唔洗 for 唔使 (a homophone character is a possible spelling of its
+  syllable). Not a letter swap but the whole form: several misses at once are still one. What counts as
+  possible is what the profile states (is *k* a spelling of /k/ before *a*, for loans like *kilo*?).
+  - Checked after normalization and the marks policy (a missing accent stays accepted with a note, as today,
+    though it is strictly not a possible spelling: it moves the stress) and after accepted variants (Arabizi's).
+  - Proposed: its own outcome (beside TYPO, WRONG_WORD, WRONG), replacing WRONG (`sound-alike`); it beats
+    WRONG_WORD when the form is also another word (*caza* for *casa*: the sound is the target's, so the
+    learner's word is the target; the note names the other word), amending ADR 0142; and it credits the word's
+    meaning and sound as shown and counts the miss against the word's spelling leftover only.
 - **Decided: learners do the script first, or test out of it, except in a logography** (Chinese characters,
   sitelen pona: learned with their words). So a word's spelling or reading counts as learned without waiting
   on its letters. What script-first removes is the letters, not the leftovers: an abjad's vowels are still
