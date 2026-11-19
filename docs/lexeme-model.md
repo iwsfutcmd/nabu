@@ -314,8 +314,9 @@ the base case is what makes it a cell.
 - **The rule predicts a typological contrast:** "eat" honorific is a cell in Korean and Japanese, a separate
   lexeme in Javanese.
 - **Its thorn: Spanish feminine ‑a** (*niño* / *niña*) is a base case, so *padre* / *madre*, *toro* / *vaca* would be
-  cells of one lexeme, which the owner rejected. Proposed: noun gender marking is derivational, not
-  inflectional, and the rule is about inflection; derivation never merges lexemes. *Niña* is then *niño* + a
+  cells of one lexeme, which the owner rejected. Decided (native apc judgement: *khāl* / *khāle* one word,
+  *imm* / *bayy* two): noun gender marking is derivational, not inflectional, and the rule is about
+  inflection; derivation never merges lexemes. *Niña* is then *niño* + a
   derivational feminine (a combination), and *madre* a lexeme of its own.
 
 **The owner's verdicts (2026-11-19):**

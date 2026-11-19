@@ -961,7 +961,14 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
 - Decided: the apc lexical-form schema comes first (17).
 - Decided: rename the KC ids once, now, with a migration in the fold (18).
 - Decided: several smaller ADRs: the model; learned; underspecification; pattern display; fonts (19).
-- Still open: 1 (the owner asked how its two options differ), 5 (depends on how freely Uzbek adjectives work as
+- Decided: 1, option one, on native evidence (a native apc speaker the owner consulted, 2026-11-19): خال
+  *khāl* "maternal uncle" and خالة *khāle* "maternal aunt" are one word, one derived from the other, while ام
+  *imm* "mother" and بي *bayy* "father" are clearly two. So feminine marking on nouns is derivation: *khāle* is
+  *khāl* + the feminine, a combination with nothing new to learn, and suppletive pairs are separate lexemes.
+  Inflection would have made *imm* a cell of BAYY under the base-case rule. Gender on adjectives (*kbīr* /
+  *kbīre*) is still inflection: agreement. A derived feminine with a sense of its own (if *khāle* is also a
+  polite address to any older woman) is listed as its own morpheme.
+- Still open: 5 (depends on how freely Uzbek adjectives work as
   adverbs), 6 and 9 (to explore), 8 (family may be an object like the concept), 12 (needs Uzbek grammar).
 
 **Housekeeping**
