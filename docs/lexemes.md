@@ -613,12 +613,11 @@ a new design language.
       - **Decided: neither.** The tatweel is exactly as faint as the slots, and there is no bar (it looked
         wrong). Bare slots stay as faint as the rest.
     - **Rendered without tatweel too** (2026-11-19): Naskh and Syriac slots then join straight to each other,
-      more compact and more like a real word. **Open:** with tatweel or without.
-    - **Nastaliq** (Noto Nastaliq Urdu, for fun): the slots cascade diagonally into each other and the
-      tatweel barely changes anything. It works, but the slots are hard to tell apart.
+      more compact and more like a real word. **Decided: with tatweel.**
+    - Nastaliq was rendered for fun; it won't be used.
     - **The build should find slot glyphs by GSUB closure** (what fontTools' subsetter keeps for the slot
-      letter), not only by shaping sample strings: Nastaliq picks contextual variants by the following
-      letter, and samples miss some. A ligature that takes in a pattern letter must not be coloured.
+      letter), not only by shaping sample strings: a font that picks contextual variants by the
+      following letter (as Nastaliq does) defeats sample strings. A ligature that takes in a pattern letter must not be coloured.
     - **The build must pass `glyphMap` to `buildCOLR`** so the colour records are sorted by glyph ID; without
       it they are sorted by name, which only happens to match while no glyphs are added.
     - Undecided: under `prefers-contrast: more` the slots come back up to a visible grey. Cheap (one media
