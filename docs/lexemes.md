@@ -1020,6 +1020,9 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
 - Still open: inflection and derivation as kinds of head; the owner asked for a full explainer (examples,
   implications, mockups).
 
+**For later (not started; the owner, 2026-11-19)**
+- How do we teach syntax?
+
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
 18. Turn the decided parts into a Proposed ADR, or several.
