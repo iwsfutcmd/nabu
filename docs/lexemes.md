@@ -1029,7 +1029,11 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
 - Decided: progress counts listed parts (a regular verb: itself, 1 of 1).
 - Decided: *caza* for *casa*: the lexical miss counts against telling the pair apart; a spelling-choice card.
 - Decided: the infinitive head (INF) is a lexeme, as PAST is; the form *hablar* is HABLAR + INF.
-- Discussing: what counts as shown for each part; finding irregular forms (Elsewhere); order rules.
+- Decided: what counts as shown for each part (ADR 0100's rule per part; "can't have memorised" is never
+  shown in that form; a rule's branch on two lexemes); finding irregular forms by the Elsewhere lookup, a tie
+  an authoring error unless marked free variants; order rules once per language, inside words first, only
+  accepting and checking, the authored text always the one shown.
+- Nothing of the model is open now but a derived view of a concept's lexemes (lexeme-model.md, proposed).
 
 **For later (not started; the owner, 2026-11-19)**
 - How do we teach syntax?

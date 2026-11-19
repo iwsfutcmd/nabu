@@ -771,7 +771,7 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
     verb governs, the subjunctive *querer que* forces) is not learned as a feature: it is a rule plus a
     lexical feature of a lexeme (*casa* is feminine; *querer que* takes the subjunctive);
   - **a combination:** nothing of its own. It is derivable, so it is learned when its parts are.
-- **Proposed: exactly what counts**, every item under ADR 0100's rule for a skill shown (a first try, right,
+- **Decided (round 4): exactly what counts**, every item under ADR 0100's rule for a skill shown (a first try, right,
   not self-rated, on a later local date than the part was met and than it was last missed), over every part
   the course teaches (round 1):
   - **A morpheme:**
@@ -789,6 +789,10 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
     2. read right off the form;
     3. each on at least two different sentences with different lexemes carrying the feature, so a memorised
        sentence can't stand in for the use.
+
+    Decided (round 4): an item the learner "can't have memorised" is one this learner has never been shown in
+    that form (from the log); and a rule's branch, like a feature's use, is shown on at least two different
+    lexemes.
 
     A wrong value counts against the use that was called for, and only where grading pins it (a minimal-pair
     card, or a typed answer with the right lexeme in the wrong form).
@@ -851,7 +855,7 @@ That is the lint from lexemes.md §3.7.
 a sentence. Constructions are rules at the phrase level: apc's *used to* is a periphrastic way of filling a
 feature. A construction whose meaning isn't derivable is a morpheme with slots.
 
-### Order (Proposed)
+### Order (Decided, round 4)
 
 **Linear order can be dropped from a combination; hierarchy can't.**
 - **Inflection:** a combination is a morpheme plus features (kitob + {plural, 1sg possessor, ablative}). The
@@ -952,13 +956,17 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
   accepts them all (ADR 0085).
   - **The payoff:** order variants in accept sets are generated, not hand-listed (hbo's subject and
     predicate orders, ADR 0084). Generated at compile time, so the grader stays literal (ADR 0085).
+- **Decided (round 4): where order rules start, and what they do.** Inside words first (uz suffix order, Spanish
+  clitic clusters); sentences later. They only accept and check, never teach (teaching syntax is parked for
+  later): the compiler checks the authored order is one the rules give and adds the others to accept sets.
+  The text shown is always the authored text.
 - **Where order is data: the utterance.** An attested text (a Bible verse, a Perseus passage, a story line)
   is one linearisation an author chose, and its order is a fact about that text. So: a combination is
   structure; an utterance is a combination plus the order it was said in.
 - Written order isn't always spoken order even within a word: Thai and Lao store preposed vowels in visual
   order, an exception to Unicode's logical order. Projection rules handle it.
 
-### Blocking: where *ran* is stored, and how it's found (Proposed)
+### Blocking: where *ran* is stored, and how it's found (Decided, round 4)
 
 **Merge takes a lexeme and features (RUN + {past}); realising them picks the forms.**
 
@@ -987,6 +995,10 @@ Subset Principle in Distributed Morphology): the most specific item wins.
   Nothing is stored.
 - **An arbitrary gap** (Russian победить has no 1sg non-past): stored on the lexeme as a feature set with no
   form, a listed item that blocks the rule and supplies nothing.
+
+**Two listed parts that fit a request equally well are an authoring error** (a lint), unless they are marked
+free variants (*hablara* / *hablase*, *dreamed* / *dreamt*): both accepted, one shown, the course's choice. Scope
+settles many apparent ties (*‑ra* is the norm in Cuba). Decided, round 4.
 
 **Blocking off gives the learner's error.** Run the same realisation ignoring listed morphemes and RUN + past
 comes out *runned*: exactly the overregularisation a learner types. The compiler can put those forms in the
