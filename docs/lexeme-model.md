@@ -176,6 +176,26 @@ learner has to memorise. But learned knowledge has three sides, and lexemes are 
     verb governs, the subjunctive *querer que* forces) is not learned as a feature: it is a rule plus a
     lexical feature of a lemma (*casa* is feminine; *querer que* takes the subjunctive);
   - **a combination:** nothing of its own. It is derivable, so it is learned when its parts are.
+- **Proposed: exactly what counts**, every item under ADR 0100's rule for a skill shown (a first try, right,
+  not self-rated, on a later local date than the part was met and than it was last missed), over the parts
+  introduced so far:
+  - **A lexeme:**
+    1. its sense recognised (its form → its meaning) and produced (its meaning → its form);
+    2. each stored form produced in its own context (‑ka after k; *el* before *agua*), where no rule gives it;
+    3. each lexical feature that needs it (*casa* feminine: *la casa* produced from the meaning, not handed
+       over by a word bank);
+    4. each edge the course asks and the profile marks unpredictable: listening, reading aloud, spelling,
+       vocalising.
+  - **A feature** is learned as its **contrast** (aspect: preterite against imperfect), since a learner who
+    always picks one value would otherwise get every card for it right. For each use of each value
+    introduced (preterite: a completed event, a sequence; imperfect: habitual, ongoing, description, polite):
+    1. chosen right where the situation calls for it, the alternative on offer or typed;
+    2. read right off the form;
+    3. each on at least two different sentences with different lemmas carrying the feature, so a memorised
+       sentence can't stand in for the use.
+
+    A wrong value counts against the use that was called for, and only where grading pins it (a minimal-pair
+    card, or a typed answer with the right lemma in the wrong cell).
 - Proposed: **"every part" means every part introduced so far**, of those the course asks for this learner.
   A course that never teaches *sois* can still teach *ser* to the end, and a lemma whose new irregular form
   arrives in a later unit goes back to learning until that form is shown, as a miss sends a word back now
