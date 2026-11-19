@@ -660,7 +660,15 @@ a new design language.
       code points with every layout feature kept, colour the slots, rename) and its licence for
       license-check. Fetched sources are cached; the README's pyftsubset command becomes sitelen pona's
       entry, and OFL.txt ships beside the output.
-  - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
+  - **Latin** (Arabizi; reading schemes such as SBL; Maltese, if ever): rendered 2026-11-19 (DejaVu Sans as a
+    stand-in), C or ◌ as the slot, in text colour or at 6%.
+    - Proposed: **C at 6%**, the linguists' own CV notation (maCCaC, CiCCēC), and a letter as the slot as in
+      the other scripts. Latin doesn't join, so there's no tatweel.
+    - Proposed: **a doubled slot carries a tie**, U+035C COMBINING DOUBLE BREVE BELOW (CaC͜CaC, CiC͜CēC), the
+      Latin counterpart of shadda and dagesh: a mark, so it stays in the text colour. Without it, a doubled
+      radical looks like two radicals. The build's Latin font must cover U+035C.
+    - A pattern's reading (SBL) can then sit over its Hebrew shape as ruby: ◌ִ◌ֵּ◌ under CiC͜CēC.
+    - Not digits (1a22a3): Arabizi uses digits as letters (2, 3, 5, 7, 9).
 - **Decided: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
   name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
 - **Decided: a placeholder string is display only.** The pattern's lexical form stores its slots
