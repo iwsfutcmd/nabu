@@ -604,8 +604,15 @@ a new design language.
     - **Open: slots that carry no mark vanish at 6%.** A slot with a vowel is located by its vowel; a bare
       one (Syriac peʿal's first and last slots, the last slot of most Arabic and Hebrew patterns) leaves only
       a gap, so the shape no longer shows how many radicals it has. That matters for every reader, low-vision
-      ones most. Options: the tatweel (joining scripts) at a stronger level than the slot letters, as a
-      second palette entry; or a slot glyph of our own with a small mark that stays visible.
+      ones most. Rendered 2026-11-19, both themes:
+      - **A stronger tatweel** (a second palette entry; 20%, 35%): shows dashes *between* slots, so it
+        counts gaps rather than slots, reads like hyphens, and does nothing for Hebrew.
+      - **A bar under each slot** (a glyph the build adds, a second COLR layer beneath every slot glyph,
+        its own palette entry; 20%, 35%): every slot, bare or not, gets a short line at the baseline, like
+        a blank to fill in, in every script, Hebrew included, clear of the points below.
+      - **Open:** bar or not, and its level.
+    - **The build must pass `glyphMap` to `buildCOLR`** so the colour records are sorted by glyph ID; without
+      it they are sorted by name, which only happens to match while no glyphs are added.
     - Undecided: under `prefers-contrast: more` the slots come back up to a visible grey. Cheap (one media
       query choosing another palette), and only for readers who asked for contrast. Forced-colours modes
       draw colour-font glyphs in the system text colour anyway, so there the slots are already full
