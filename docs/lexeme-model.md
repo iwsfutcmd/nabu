@@ -803,6 +803,15 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
   arrives in a later unit goes back to learning until that form is shown, as a miss sends a word back now
   (ADR 0100, D3).
 - Decided (round 1): the word list shows a lexeme's progress (*ser*: meaning, 5 of 9 forms), not only learned or not.
+  - **Proposed: what it counts is listed parts, not forms** (the owner asked what a regular verb would show,
+    2026-11-19). A perfectly regular verb has none: *hablar*'s forms all come from rules, so its entry
+    shows only its own parts (its meaning, and any lexical feature: *pensar*'s e→ie class, *casa*'s gender) and
+    says "regular". Its conjugation is knowledge of the rules (the ‑ar endings), whose progress is the rules'
+    own ("‑ar present: 4 of 6"); the entry can point there. A listed part is often a stem rather than a whole
+    form: *tener* lists *tengo*, *tuv‑*, *tendr‑* and takes the rest by rule, as Greek and Latin dictionaries
+    give principal parts (λύω is regular, φέρω lists οἴσω, ἤνεγκα). *ser* lists whole forms because nothing in
+    it is predictable. The denominator is the listed parts within the dimensions the course teaches.
+
 
 ## Combinations
 
