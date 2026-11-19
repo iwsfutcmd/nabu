@@ -918,18 +918,35 @@ All Proposed:
 
 ## 16. Open questions
 
-1. Rename the KC ids (`morpheme:`, `cell:`) now, or keep them?
-2. Do rules take listed properties as input (§3.2)? Do grapheme tables count as rules (§3.3)?
-3. Where is the line for Spanish stem-changers and Persian present stems (§7)?
-4. Is the uz causative a cell or a derivation (§6)?
-5. Conversion: one sense with `pos` per token, or two senses (§4)?
-6. What is a root's sense, and which tier do templates check first (§9)?
-7. Keep "family", or only the links base and root (§10)?
-8. Properties: facets or their own KCs (§11)?
-9. Does a chunk count as meeting its morphemes (§13)?
-10. Javanese: krama or ngoko first (§4)?
-11. yue 嘅: one linker or two (§4)?
-12. The invented schemas: apc's, hbo's extension, stress in fa and uz, uz's base script (§8).
+Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > allomorph).
+
+**The core model**
+1. The base-case rule with whole-or-partial scoped replacement (lexeme-model.md): decided? With noun gender as
+   derivation (so *padre* / *madre* are two lexemes), and *niño* / *niña* then *niño* + a derivational feminine?
+2. The three layers: entities (stored), values (combinations, computed), instances (utterances).
+3. How a lexical feature is learned (*casa* is feminine): a facet of the lexeme (`casa|gender`), or a KC of its
+   own?
+4. "Every part introduced so far" as the scope of "learned", with a lexeme going back to learning when a new
+   part arrives.
+5. Conversion (uz *yaxshi* "good" / "well"): one lexeme with part of speech per token, or two?
+6. A Semitic root: what is its sense, and is it a lexeme, a morpheme, or a relation? Which tier do templates
+   check first?
+7. "Family", or only the links base and root?
+8. Do rules take lexical features as input (verb class)? Do grapheme tables count as rules?
+9. Does meeting a chunk count as meeting the morphemes inside it?
+10. Merge all the way up: UD dependency trees and ordering rules added one at a time?
+
+**Per language**
+11. The uz causative (‑t, ‑tir, ‑dir): a paradigm dimension or derivation?
+12. Spanish stem-changing verbs: a class on the lexeme plus a rule, or listed stems?
+13. yue 嘅: one linker or two, and the course's attributive tokens glossed as possessive.
+14. fa's register: formal written, colloquial Tehrani, or both, colloquial first?
+15. Javanese, when it comes: krama or ngoko first?
+16. The invented lexical-form schemas: apc's, hbo's extension, stress in fa and uz, uz's base script.
+
+**Housekeeping**
+17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
+18. Turn the decided parts into a Proposed ADR, or several.
 
 ## References
 

@@ -278,10 +278,8 @@ that consistently causes suppletion probably works at the concept level, not ins
 the speech level is a scope, the honorific a lexical feature of *dhahar*. Persian *raft‑* / *rav‑* are two
 listed stems of one lexeme. So a **concept links lexemes that differ only in social form**: the variety, the
 speech level, the honorific, who is speaking to whom about whom. Never in what is said.
-- Open: Spanish and French T–V (*tú* / *usted*, *tu* / *vous*) are then concept-linked too, by the same
-  definition.
-- Open: Javanese krama affixes (*di‑* / *dipun‑*, ‑e / ‑ipun): separate affix lexemes linked by a concept, like
-  the words, or allomorphs whose context is the speech level?
+- Resolved below: Spanish and French T–V are concept-linked; the Javanese krama affixes are separate affix
+  lexemes linked by a concept, like the words.
 
 **The owner's rule (2026-11-19): a base case makes a paradigm.** If a feature has a regular, base-case
 morpheme that realises it, then the feature is a dimension of the lexeme's paradigm, and its suppletive forms
