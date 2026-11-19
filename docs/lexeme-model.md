@@ -322,7 +322,8 @@ the base case is what makes it a cell.
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
   decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
-  masculine noun as *casa* is a feminine one. (Open: *niño* / *niña*, where the ‑a is regular.)
+  masculine noun as *casa* is a feminine one. (*niño* / *niña*: noun gender marking is derivation, Decided on apc evidence, so *niña* is *niño* + the
+  derivational feminine, a combination.)
 - **Literary and colloquial readings are different words** (生 *saang1* in 生日, *sang1* in 學生; Decided).
   Diachrony is not our concern.
 - **Variety-scoped cells are concept territory** (Decided): Spain's 2nd plural familiar (*vosotros*) and Cuba's
@@ -794,11 +795,12 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
     against imperfect, English simple against progressive, Biblical Hebrew wayyiqtol against qatal. Two
     languages' "past" are two features, and a learner whose own language lacks a contrast meets it through
     the prompt's situation (lexemes.md §12).
-- Proposed: **"every part" means every part introduced so far**, of those the course asks for this learner.
+- Superseded (round 1): "every part" means every part the course will ever teach, with scheduling that
+  finishes a lexeme once it is started (lexemes.md §16). Was proposed: **every part introduced so far**, of those the course asks for this learner.
   A course that never teaches *sois* can still teach *ser* to the end, and a lexeme whose new irregular form
   arrives in a later unit goes back to learning until that form is shown, as a miss sends a word back now
   (ADR 0100, D3).
-- Proposed: the word list shows a lexeme's progress (*ser*: meaning, 5 of 9 forms), not only learned or not.
+- Decided (round 1): the word list shows a lexeme's progress (*ser*: meaning, 5 of 9 forms), not only learned or not.
 
 ## Combinations
 
@@ -1027,7 +1029,7 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
     every alphabetic orthography of the fixture courses. Today only grc and chg have alphabet tracks; apc's
     and uz's convert nodes don't run; fa, hbo, apc's Arabic, es, tok's Latin and yue's Jyutping have none.
 
-### Merge all the way up (Proposed)
+### Merge all the way up (Decided, round 1: the architecture now, coverage one rule at a time)
 
 The owner would like Merge to reach phrases and sentences. Proposed: yes as the architecture, with coverage
 growing rule by rule, so it is never all or nothing.

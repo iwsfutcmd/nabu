@@ -604,7 +604,7 @@ a new design language.
     - **Hebrew: samekh ס**, no tatweel (Hebrew doesn't join);
     - **Syriac: qoph ܩ** (U+0729), with tatweel beside each slot. No Syriac pattern has a q of its own.
     - These are each profile's data (apc, hbo; Syriac once a course has it), never code.
-    - **Open: slots that carry no mark vanish at 6%.** A slot with a vowel is located by its vowel; a bare
+    - **Slots that carry no mark vanish at 6%** (settled below: neither fix). A slot with a vowel is located by its vowel; a bare
       one (Syriac peʿal's first and last slots, the last slot of most Arabic and Hebrew patterns) leaves only
       a gap, so the shape no longer shows how many radicals it has. That matters for every reader, low-vision
       ones most. Rendered 2026-11-19, both themes:
@@ -717,11 +717,8 @@ a new design language.
 - **Cards:** root extraction ("what's the root of مكتوب?", the skill a learner needs for an Arabic or Hebrew
   dictionary), pattern meaning, building from base and pattern (كَتَبَ + مَفْعَل → مَكْتَب), changed tone,
   root families.
-- **Open:**
-  - What is a root's sense? Its meaning is a semantic field; proposed: a morpheme with a weaker identity,
-    known through extraction and family cards, never recall.
-  - Which tier do templates check first? Proposed: the fully marked orthography, with readings checked
-    against it; Arabizi, which spells its vowels, gets its own template.
+- **Settled since:** a root is not a morpheme or an object, its radicals a field of the base lexeme
+  (lexeme-model.md, "No root object at all"); templates check the lexical form first (round 1).
 
 ## 10. Families
 
@@ -737,7 +734,8 @@ a new design language.
 - ***writer* has two senses** (Rappaport Hovav & Levin 1992):
   - the event reading (*the writer of this shopping list*) is *write* + *‑er*;
   - the occupation (*she's a writer*) is a morpheme, a homograph that tokens tell apart by sense.
-- **Open:** keep the term "family", or speak only of the two links, base and root.
+- **Settled since:** families are computed from base links; no family object, no root links
+  (lexeme-model.md, "No root object at all").
 
 ### Literal glosses: partial compositionality as a memory hint
 
