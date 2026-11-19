@@ -941,10 +941,35 @@ there, and the bundle carries the results.
   Which marks carry sound falls out of the profile's projection: dropping one changes the phonemic form.
   - A form can hold both: ✗*ke tal* is orthographic in its *k* and phonemic in its accent (*que* is the
     unstressed word); the worse decides the outcome, and the notes name both.
-  - Proposed: misses rank as correct < orthographic < phonemic, so a phonemic miss is never graded more
-    leniently than an orthographic one: wrong, WRONG_WORD where it spells another word (*esta*), and a typo
-    only by the keyboard model (a slip, ✗*nesa*), never for a missing accent. That retires `CORRECT_MARKS`
-    for es's accents and grc's missing marks, a stricter grade in both courses.
+  - Proposed: a phonemic miss is never graded more leniently than an orthographic one: never accepted, and a
+    typo only by the keyboard model (a slip, ✗*nesa*), never for a missing accent. That retires
+    `CORRECT_MARKS` for es's accents and grc's missing marks, a stricter grade in both courses.
+
+### Misses are labelled, and a miss may carry several labels (Decided 2026-11-19; the labels Proposed)
+
+Each aligned unit of a wrong answer gets a set of labels, from three questions:
+
+| Question | Label | Example | What it counts against |
+|---|---|---|---|
+| Is the sound right? | **orthographic** (yes, the spelling isn't) | *caza*, ✗*kasa*, *ké tal* for *casa*, *qué tal* | the word's spelling leftover, or the projection rule where a rule decides that spot |
+| | **phonemic** (no) | *esta*, ✗*cafe* for *está*, *café* | the word's sound, or the rule that writes it (the stress accent) |
+| Whose form is it? | **grammatical** (the right lexeme, another cell) | *hablas* for *hablo* | the feature, or the agreement rule (ADR 0066's contrasts) |
+| | **lexical** (another lexeme) | *gato* for *perro*; *caza*, *esta* | the word's recall, unless a one-edit orthographic or phonemic miss explains it (*caza*, *esta*): then only named in the note |
+| | **scope** (the right concept, another variety or register, where the prompt fixed it) | *tú* for *usted* under "(to your boss)" | the scope choice |
+| How did it happen? | **slip** (keyboard or IME neighbours, a transposition) | ✗*nesa* for *mesa*; *cada* for *casa* | nothing on its own |
+| (sentences) | **order** (the right words, an order the language doesn't allow) | | the order rule |
+
+- **Several at once:** *caza* = orthographic + lexical; *esta* = phonemic + lexical; *hablas* = phonemic +
+  grammatical; *cada* = phonemic + lexical + slip; ✗*ke tal* = orthographic (*k*) + phonemic (unstressed *que*).
+- **The outcome comes from the set:** a slip alone is a typo (accepted, as `CORRECT_WITH_TYPO` is now); any
+  other label is not accepted. The verdicts `CORRECT_MARKS`, `WRONG_WORD` and `WRONG` become views of the set.
+- **Credit comes from each label**, against its own target, so one answer can show the meaning known and the
+  spelling missed.
+- **Feedback names every label** (an MF2 note each), the worst first.
+- Not labels of their own: a wrong orthography (Latin typed for Cyrillic) is orthographic with a note; a
+  missing or extra word is lexical or grammatical by what it is (a noun, an article).
+- Conformance vectors assert the label sets, in both harnesses. Part of the one-go deliverable above.
+
   - Proposed: its own outcome (beside TYPO, WRONG_WORD, WRONG), replacing WRONG (`sound-alike`); it beats
     WRONG_WORD when the form is also another word (*caza* for *casa*: the sound is the target's, so the
     learner's word is the target; the note names the other word), amending ADR 0142; and it credits the word's
