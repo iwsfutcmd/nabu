@@ -873,6 +873,40 @@ bundle beside the right answer, so the grader can say "right tense, irregular ve
 **Merge runs at compile time**, in the pipeline: accept sets, overregularisations and wugs are generated
 there, and the bundle carries the results.
 
+### What rules read, and projections as rules (2026-11-19)
+
+- **Decided: a rule's conditions may read** the base's lexical form (uz ‑qa after q), its lexical features
+  (*pensar*'s e→ie class; a verb's imperfective vowel choosing مَفْعَل or مَفْعِل; شَمْس's gender), the
+  combination's features, its neighbours, scope (variety, register) and computed prosody (e→ie only under
+  stress: *pienso*, *pensamos*). Two guards: a class must cover at least two lexemes (a one-member class is a
+  list; *ser* is listed), a threshold to raise if it proves too low; and no feature the form already gives
+  (Spanish conjugation class from the infinitive, Arabic root class from the radicals).
+  - The split sharpens feedback: ✗*penso* is the lexeme's class not learned (`pensar|class`, like
+    `casa|gender`); ✗*piensamos* is the rule's stress condition missed.
+- **Decided: projections are rules** (lexical form → spelling, lexical form → phonemes), so a word's spelling
+  and reading are learned only for what no projection gives. An entry covering many words is a rule (a
+  letter, a digraph, a mark, Spanish *c* before *e*/*i*); an entry per morpheme is listing (a Chinese
+  character's reading, a sitelen pona glyph); a statistical tendency is neither (a phonetic component).
+  - **Reading and writing are two directions**, each with its own leftovers. Writing a word needs what the
+    phonemic projection discards (es b/v, h, Cuban s/c/z; fa which of س/ص/ث); reading it needs what the
+    orthographic projection discards (fa's vowels, خواهر's silent و; *México*'s x).
+  - Errors sort the same way: ✗*havlar* is the word's b missed; reading *ce* as [ke] is the letter's rule.
+- **Proposed: the rules are what the profile states.** The orthography profile (profiles/<orth>.yaml) lists
+  its correspondences as data, with contexts, marked REVIEW; whatever they don't produce is per word. fa's
+  `soundAlike` sets already are such a statement (those letters are one sound, so a word's letter among them
+  is learned per word), and a Dari profile, leaving out ق/غ, would make that pair derivable. Not a count
+  threshold: one would make adding words change what is a rule. The compiler can then list, per word, what
+  the stated rules leave over: the per-word parts to teach, and a review list. Correspondences need
+  conformance vectors like any matching behaviour; the scheme plug-ins in code (tiberian, attic, toki_pona,
+  greek_translit) are projection rules already.
+- **Decided: learners do the script first, or test out of it, except in a logography** (Chinese characters,
+  sitelen pona: learned with their words). So a word's spelling or reading counts as learned without waiting
+  on its letters. What script-first removes is the letters, not the leftovers: an abjad's vowels are still
+  learned word by word. Tension to settle: script rows never gate units (ADR 0088). Proposed: keep the letters
+  as the word's edges in the fold (a no-op for a learner who did the script first; honest for one who
+  skipped), and lead with the script row or its placement test, without gating. "Script" means the
+  orthography's rules, not only its letters: for es heritage speakers, Spanish spelling is the real gap.
+
 ### Merge all the way up (Proposed)
 
 The owner would like Merge to reach phrases and sentences. Proposed: yes as the architecture, with coverage

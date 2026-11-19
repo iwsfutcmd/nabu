@@ -979,8 +979,10 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   lexeme's lexical form, and a derivative's parts are its base lexeme and its pattern (مَكْتَب ← كَتَبَ +
   مَفْعَل). Families are computed from base links, so there is no family object either (lexeme-model.md, "No
   root object at all").
-- Still open (numbered as above), with proposals in lexeme-model.md: 8 (lexical features as rules' input;
-  projection tables as rules), 9 (chunks); and two that came up since: whether apc's active participle is a
+- Decided: 8 (lexeme-model.md, "What rules read"): rules read lexical features (a class covers at least two
+  lexemes; nothing the form gives); projections are rules; learners do the script first except in a
+  logography. Proposed there: the rules are what the profile states.
+- Still open (numbered as above), with proposals in lexeme-model.md: 9 (chunks); and two that came up since: whether apc's active participle is a
   cell of the verb or derivation, and part of speech on the lexeme with derivational heads' signatures.
 
 **Housekeeping**
