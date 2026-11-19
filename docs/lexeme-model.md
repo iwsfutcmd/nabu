@@ -811,8 +811,8 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
     (*pensar*: itself and its e→ie class, 2; *casa*: itself and its gender). The class can't be derived from
     the form (*probar* / *pruebo* but *robar* / *robo*; *regar* / *riego*, *pegar* / *pego*; *entender* /
     *entiendo*, *aprender* / *aprendo*); learners' dictionaries list it as "pensar (ie)". Parts of it are
-    predictable, and the profile can state them as defaults so that only the rest is learned: ‑ir verbs with
-    a stem e or o all alternate (though whether e goes to ie or to i, *siento* or *pido*, is listed), and new
+    predictable, and the profile can state them as defaults so that only the rest is learned: nearly all ‑ir
+    verbs with a stem e or o alternate (*sumergir* doesn't) (though whether e goes to ie or to i, *siento* or *pido*, is listed), and new
     verbs and ‑ear verbs never do. A listed part is often a stem
     rather than a whole form: *tener* lists itself, its e→ie class, *tengo*, *tuv‑*, *tendr‑*, and takes the
     rest by rule, as Greek and Latin dictionaries give principal parts (λύω is regular, φέρω lists οἴσω,
