@@ -963,8 +963,12 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
   grammatical; *cada* = phonemic + lexical + slip; ✗*ke tal* = orthographic (*k*) + phonemic (unstressed *que*).
 - **The outcome comes from the set:** a slip alone is a typo (accepted, as `CORRECT_WITH_TYPO` is now); any
   other label is not accepted. The verdicts `CORRECT_MARKS`, `WRONG_WORD` and `WRONG` become views of the set.
-- **Credit comes from each label**, against its own target, so one answer can show the meaning known and the
-  spelling missed.
+- **Credit is per node of the knowledge graph (Decided, the owner):** a label is a miss on one node and a hit
+  on the nodes the answer got right. An orthographic miss is a phonemic hit (and a meaning hit) with a miss on
+  the spelling; a phonemic miss is a meaning hit with a miss on the sound (or the rule writing it); a
+  grammatical miss is a hit on the lexeme with a miss on the cell; a lexical miss is a miss on the target's
+  recall. A node counts only where the card made the learner supply it, never where it was handed over (a
+  word bank's tiles give the spelling, a clip gives the sound): ADR 0100's "where the grading pins it".
 - **Feedback names every label** (an MF2 note each), the worst first.
 - Not labels of their own: a wrong orthography (Latin typed for Cyrillic) is orthographic with a note; a
   missing or extra word is lexical or grammatical by what it is (a noun, an article).
