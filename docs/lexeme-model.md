@@ -4,6 +4,18 @@
 - Uses the proposed renames (lexemes.md §2): **lemma** for the lexical meaning, **lexical form** for the
   fully specified form, **surface form** for a projection, **features** for cells and properties.
 
+## Naming: an open question (2026-11-19)
+
+The objects are now concept > lemma > lexeme > allomorph. But what we call a **lemma** (a concept plus lexical
+features, owning a paradigm of forms) is what linguistics calls a **lexeme**, while our **lexeme** is the
+listed unit (Di Sciullo and Williams' listeme). So the terms are now inverted against the textbook in two
+places, and "lemma" also means the citation form in UD (`LEMMA`), in the code (ADR 0061) and in the glossary.
+
+Proposed: call the paradigm-owning object a **paradigm** (the paradigm of SER, with its part of speech,
+class, register, dialect) and let **lemma** keep its ordinary sense, the citation form. The chain becomes
+concept > paradigm > lexeme > allomorph, and "lexeme" is the only term that departs from the textbook, as
+already documented.
+
 ## What is stored, and what is derived
 
 ```mermaid
@@ -126,7 +138,7 @@ lexeme's "own" surface form is the surface form of a **combination of one**.
    lexeme carries only inflectional ones. The line is what stays constant across a paradigm: *nedha* and
    *dhahar* each have their own inflected forms, as *carro* and *coche* have their plurals. That is UD's
    lexical / inflectional line after all (an earlier draft put register and dialect on the lexeme).
-   - So *mangan*, *nedha* and *dhahar* are three lemmas, and *carro* and *coche* two. Proposed: what they
+   - So *mangan*, *nedha* and *dhahar* are three lemmas, and *carro* and *coche* two. Decided: what they
      share is a **concept** (EAT, CAR), the object glosses belong to; a register or dialect question ("which
      would you say to your grandmother?") asks among a concept's lemmas, and a register or dialect slip is
      another lemma of the same concept. Two lemmas of one concept with every feature alike are the hole
@@ -150,7 +162,7 @@ lexeme's "own" surface form is the surface form of a **combination of one**.
    script (lzh and yue, hbo and Modern Hebrew) have separate lexicons.
 6. **Next: combinations** (below).
 
-## A lexeme's manifestations (Proposed)
+## A lexeme's manifestations (allomorphs Decided 2026-11-19)
 
 A lexeme shows up in two different ways, and only one needs an object:
 - **Its stored forms: an object, the allomorph** (the term in lexemes.md §2). Each holds a lexical form, its
