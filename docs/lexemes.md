@@ -661,6 +661,9 @@ a new design language.
     | Mandaic (Mand) | "la": which letter is open (AL ࡋ U+084B? IN ࡏ U+084F, the native ʿayin? AIN ࡘ U+0858?) |
     | Old North Arabian (Narb) | ʿayin 𐪒 U+10A92 OLD NORTH ARABIAN LETTER AIN |
     | Nabataean (Nbat) | zayin 𐢉 U+10889 NABATAEAN LETTER ZAYIN |
+    | Palmyrene (Palm) | zayin 𐡦 U+10866 PALMYRENE LETTER ZAYIN |
+    | Phoenician (Phnx) | ʿayin 𐤏 U+1090F PHOENICIAN LETTER AIN (a plain circle) |
+    | Old South Arabian (Sarb) | ʿayin 𐩲 U+10A72 OLD SOUTH ARABIAN LETTER AYN (a circle) |
   - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
     Unicode; if the font fails to load, the dotless letters still show):
     - **A designed slot glyph** in place of borrowed ڡ / ٮ: a hollow or dotted-outline consonant with all
