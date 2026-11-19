@@ -554,7 +554,6 @@ a new design language.
     - Tatweel goes only where both sides join (never after ا, د, ذ, ر, ز, و).
     - **Decided: tatweel beside every slot**, never between two of the pattern's own letters (اِسْتَ joins as
       written), and only where both sides join.
-    - **Open:** beh or feh.
     - Screen readers would read the placeholders as letters ("dotless beh"), so the shape carries an
       accessible name: its traditional name and meaning.
   - **Hebrew, the owner's alternative: samekh ס as the stand-in**, a round letter standing for a circle
@@ -594,10 +593,15 @@ a new design language.
       busy a slot. The candidates are the dual-joining letters no pattern uses as its own (not ʾ, t, m, n, y,
       h, š): beth ܒ, gamal ܓ, heth ܚ, teth ܛ, ʿe ܥ, pe ܦ, qoph ܩ. Beth (a bare baseline stroke, like the
       dotless beh) and pe (a loop, like the dotless feh) are the quietest; gamal and teth stand too tall.
-      **Open:** which.
     - **Tatweel only in joining scripts:** a slot in Hebrew stands alone.
     - **Fade:** 28% was not faint enough on either theme; a ladder (20, 14, 10, 6%) was rendered.
-      **Open:** the level. Under `prefers-contrast: more` the slots should come back up.
+  - **Decided (2026-11-19): the slots are 6% of the way from the background to the text colour**, in each
+    theme, and the slot letters are:
+    - **Arabic: dotless feh ڡ** (U+06A1), with tatweel beside each slot;
+    - **Hebrew: samekh ס**, no tatweel (Hebrew doesn't join);
+    - **Syriac: qoph ܩ** (U+0729), with tatweel beside each slot. No Syriac pattern has a q of its own.
+    - These are each profile's data (apc, hbo; Syriac once a course has it), never code.
+    - Proposed: under `prefers-contrast: more` the slots come back up to a visible grey.
     - The build must skip glyphs with no outline: a ZWJ merges into its slot's cluster, and its glyph got a
       colour record.
   - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
