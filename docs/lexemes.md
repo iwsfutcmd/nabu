@@ -929,8 +929,9 @@ All Proposed:
 10. Javanese: krama or ngoko first (§4)?
 11. yue 嘅: one linker or two (§4)?
 12. The invented schemas: apc's, hbo's extension, stress in fa and uz, uz's base script (§8).
-13. Register and dialect: paradigm dimensions of one lexeme (*mangan* / *nedha* / *dhahar* as morphemes of EAT),
-    and the concept dropped or kept only as a cross-language index (lexeme-model.md)?
+13. Register as a paradigm dimension (*mangan* / *nedha* / *dhahar* as morphemes of EAT); dialect as a choice of
+    grammar (a variety scope; *carro* / *coche* two lexemes); the concept as the link across grammars
+    (lexeme-model.md)?
 
 ## References
 

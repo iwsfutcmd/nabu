@@ -146,6 +146,20 @@ affixes (*dipun-*) as *tuv-* takes the preterite endings. It distributes over th
 If so, register (and dialect, which distributes the same way) are paradigm dimensions, and the concept has
 no job left inside a language. See lexemes.md §16.
 
+Proposed refinement (2026-11-19), after the owner found *carro* / *coche* as one lexeme "decidedly weird":
+**a paradigm lives inside one grammar; dialect is a choice of grammar.**
+- One Javanese speaker has *mangan*, *nedha* and *dhahar* and picks among them by situation, so register is a
+  paradigm dimension. One Cuban speaker has *carro*; *coche* is another variety's word, known if at all as
+  someone else's. Nobody's paradigm holds both.
+- Varieties differ in more than words (seseo, voseo, Cuban *¿Qué tú quieres?*), so a dialect is a scope over
+  morphemes, lexemes and rules alike: each entry in the language's one lexicon belongs to the varieties
+  that have it (shared by default), and a course picks its variety.
+- So *carro* and *coche* are two lexemes in two scopes, and what links them is a meaning shared **across
+  grammars**: the **concept** comes back with that job, and only that one. A dialect slip ("that's the word
+  in Spain; in Cuba, *carro*") follows the concept from the prompt's variety to another.
+- The test for a paradigm dimension gains a condition: a choice one speaker makes within their own grammar.
+  Register, tense and natural gender pass; dialect doesn't.
+
 ### 3. What is stored, and what is derived
 
 ```mermaid
