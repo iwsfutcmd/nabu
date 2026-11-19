@@ -662,7 +662,7 @@ A morpheme shows up in two different ways, and only one needs an object:
 - Where the hub is a lexeme (*write*; Chinese 學 in 學生, 學校, 大學), base links would do on their own; a family
   object is kept anyway, so that every family looks alike and has somewhere to put its label.
 
-### Outside Semitic: the object is the root, not the family (Decided 2026-11-19)
+### Outside Semitic: the object is the root, not the family (superseded the same day, below)
 
 - **Where a lexeme is the hub, a family is computed from base links** and there is nothing to store: *write* →
   *writer*, *rewrite*; 學 → 學生, 大學; uz *oʻqi‑* → *oʻqit‑*, *oʻquvchi*; German *stehen* → *verstehen*.
@@ -687,7 +687,7 @@ a root object:
 |---|---|
 | radicals | a field of a base lexeme's lexical form (كَتَبَ: ك ت ب); a derivative takes them from its base |
 | root class (hollow, defective, geminate…) | derived from the radicals |
-| a family's key | families are the lexemes connected by base links (كاتِب, مَكْتَب, كِتاب ← كَتَبَ; مَكْتَبة ← كِتاب); the hub's radicals label the view |
+| a family's key | families are the lexemes connected by base links (كاتِب, مَكْتُوب, مَكْتَب ← كَتَبَ; مَكْتَبة ← كِتاب); the hub's radicals label the view |
 | shared morphology (*‑duc‑*: *‑uj‑*) | a class on each lexeme plus a rule, as Spanish stem-changers already are |
 | homonymous roots, numbered I and II | nothing: two base lexemes with the same radicals are two lexemes |
 | root extraction cards | read the radicals field; credited to the pattern, as decided |
@@ -695,12 +695,14 @@ a root object:
 
 - **Bound stems with a meaning are morphemes**, as 習 is in 學習: Bantu *‑swahili* (*Mswahili*, *Kiswahili*),
   Indonesian *ajar*. Not roots.
-- **What's lost:** families with no base in the language. Spanish *conducir* / *traducir* / *producir* share a
-  class but no meaning, so nothing is missed. fa's Arabic loans (مدرسه, درس, مدرس) are the real loss; if fa
-  wants them, a part may name a lexeme in another language's lexicon (the loan's source), still with no root
-  object.
-- **Two Semitic lexemes with the same radicals and no base link** (both primitive) aren't related words; they
-  only sort together, as in a dictionary.
+- **Only synchronic relations are formalised (Decided).** A base link is one the grammar gives now: a rule, or
+  a pattern with a meaning (مَكْتَب ← كَتَبَ + مَفْعَل "place of"). Diachronic relations (etymology, a loan's
+  source, cognates, doublets) are memory aids at best: a note with a source if anything, never a link. So fa's
+  Arabic loans (مدرسه, درس, مدرس) are unrelated words in fa, and *conducir* / *traducir* / *producir* share a
+  class, not a family.
+- **Shared radicals are a fact of form, not a family.** كِتاب "book" has no base link (فِعال has no fixed
+  meaning, so the link would be etymology), but it sorts under ك ت ب with كَتَبَ, as in a dictionary, and root
+  extraction works on it. A root-ordered word list shows two families there: كَتَبَ's and كِتاب's.
 - **Phonaesthemes are not roots** (Firth's *gl‑* in *glitter*, *glow*, *gleam*). A root is the reverse case:
   form and morphology with no meaning, where a phonaestheme is a loose meaning with no morphology (*‑itter* is
   nothing) and counterexamples (*glove*, *glue*). Nabu models neither the association nor the hint (no folk

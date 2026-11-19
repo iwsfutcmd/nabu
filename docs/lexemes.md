@@ -327,7 +327,7 @@ fully specified form ─┤
 **Proposed:**
 - **The schema holds the union of what every projection needs.**
   - An orthography that records etymology (Arabic ق read ʔ, ث read t or s; Persian ث / س / ص all s)
-    needs that etymology in the schema.
+    needs the distinction in the lexical form: a fact of spelling now, whatever its history.
   - A phonemic scheme needs the vowels, stress and length the script leaves out.
   - Adding an orthography or scheme later can mean extending the schema.
 - **Decided: in the script, never a spelling juxtaposed with a reading.** Where a script can't show
