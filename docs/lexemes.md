@@ -597,6 +597,17 @@ a new design language.
       plain font: dotless letters, not faint ones.
     - A test checks the generated font: every slot glyph HarfBuzz produces has a colour record, and no
       mark does.
+  - **Decided: every font the same way**, including sitelen pona, whose subset is committed today
+    (packages/ui/src/fonts/sitelen-seli-kiwen).
+    - Its subset earns its keep: the pinned source (commit 1658329, sha256 6646af72…) maps 2,519 code points
+      with 3,732 glyphs, of which 183 are the UCSUR block. As WOFF2 the whole font is 634 KB; the subset is
+      280 KB. `unicode-range` keeps it off other text but can't shrink the download, since a browser fetches
+      the whole file.
+    - Proposed: one font manifest. Each entry names its source (an `@fontsource` package from the lockfile,
+      or a URL pinned by commit and sha256, as `nabu tables` pins Unihan and OpenCC), its steps (subset to
+      code points with every layout feature kept, colour the slots, rename) and its licence for
+      license-check. Fetched sources are cached; the README's pyftsubset command becomes sitelen pona's
+      entry, and OFL.txt ships beside the output.
   - **Latin** (Arabizi, transliteration): ◌ as well (ma◌◌a◌), or C.
 - **Decided: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
   name the patterns, so a pattern is shown as its shape with its name: "مَ◌ْ◌َ◌ (مَفْعَل): place of …".
