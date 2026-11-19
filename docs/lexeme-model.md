@@ -985,6 +985,18 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
   as the word's edges in the fold (a no-op for a learner who did the script first; honest for one who
   skipped), and lead with the script row or its placement test, without gating. "Script" means the
   orthography's rules, not only its letters: for es heritage speakers, Spanish spelling is the real gap.
+- **Proposed (the owner leaning yes): strict script first, by orthography.** A unit's cards in an alphabetic
+  orthography open once that orthography's script track is done or tested out of; logographies (Chinese
+  characters, sitelen pona) never gate. By orthography, not course: apc learners choosing Arabizi pass its
+  short track and meet the Arabic track only for Arabic-script cards; yue's Jyutping gates, its characters
+  don't. A test-out is always offered, so no learner is stuck.
+  - For: the model's assumption (a word's letters are known) becomes true rather than hoped; cards never
+    need a crutch for unread letters; it's how abjad courses are usually taught (letters first).
+  - Against: an hour or more of letters before the first sentence (Arabic's forms), where many apps
+    interleave; a heritage speaker who wants to start by ear.
+  - Needs: an ADR amending ADR 0088 (script rows never gate); and, done in one go, a track and a test-out for
+    every alphabetic orthography of the fixture courses. Today only grc and chg have alphabet tracks; apc's
+    and uz's convert nodes don't run; fa, hbo, apc's Arabic, es, tok's Latin and yue's Jyutping have none.
 
 ### Merge all the way up (Proposed)
 
