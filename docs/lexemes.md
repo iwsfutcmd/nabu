@@ -583,15 +583,21 @@ a new design language.
       subsets.
   - **Rendered 2026-11-19 in both themes** (slot grey: #c0c0bf light, #5a5854 dark; 28% of the way from
     the surface token to the text token), through slot colour fonts built by shaping:
-    - **Hebrew samekh in Noto Sans Hebrew is a plain circle**, the stand-in circle the owner meant, with the
-      dagesh at its centre. Noto Serif Hebrew's samekh is more letter-like.
+    - Noto Sans Hebrew's samekh is not a plain circle either (corrected 2026-11-19); Serif and Sans both
+      read as a letter.
     - **The dotted circle needs no greying**: it is faint by design, and greyed it nearly vanishes on the
       dark theme. If it's used, it keeps the text colour.
     - **Noto Naskh Arabic (the @fontsource subset) has no U+25CC**, so an Arabic dotted circle always falls
       back to another font, outside the slot colour: one more reason against it.
-    - **Syriac works the same way, with semkath ܣ** (samekh's cognate) as the slot and tatweel beside it, in
-      Serto with West Syriac vowels, Madnhaya and Estrangela with East Syriac vowels: peʿal, paʿʿel, aphʿel,
-      ethpeʿel. The fonts have U+0640 and U+25CC.
+    - **Syriac works the same way** (Serto with West Syriac vowels, Madnhaya and Estrangela with East
+      Syriac vowels; peʿal, paʿʿel, aphʿel, ethpeʿel; the fonts have U+0640 and U+25CC), but semkath ܣ is too
+      busy a slot. The candidates are the dual-joining letters no pattern uses as its own (not ʾ, t, m, n, y,
+      h, š): beth ܒ, gamal ܓ, heth ܚ, teth ܛ, ʿe ܥ, pe ܦ, qoph ܩ. Beth (a bare baseline stroke, like the
+      dotless beh) and pe (a loop, like the dotless feh) are the quietest; gamal and teth stand too tall.
+      **Open:** which.
+    - **Tatweel only in joining scripts:** a slot in Hebrew stands alone.
+    - **Fade:** 28% was not faint enough on either theme; a ladder (20, 14, 10, 6%) was rendered.
+      **Open:** the level. Under `prefers-contrast: more` the slots should come back up.
     - The build must skip glyphs with no outline: a ZWJ merges into its slot's cluster, and its glyph got a
       colour record.
   - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
