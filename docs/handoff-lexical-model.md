@@ -22,8 +22,13 @@ your working branch before you start.
    amend (0061, 0066, 0085, 0088, 0100, 0131, 0132, 0142).
 3. The working notes, for the reasons behind each decision: [lexemes.md](lexemes.md) (the discussion and four
    rounds of the owner's answers, at the end of §16) and [lexeme-model.md](lexeme-model.md) (the model,
-   diagrammed). They grew over one long day: where they disagree with an ADR, the ADR wins, and some of their
-   sections are marked superseded.
+   diagrammed). **The ADRs are the decisions; the notes are why.** Every decision is in an ADR; the notes grew
+   over one long day, so where they disagree with an ADR (a passage since superseded, often marked so), the
+   ADR is the current one. Tell the owner if you find a decision in the notes that no ADR states.
+4. What isn't prose: [the explainer](explainers/inflection-or-derivation.html) (open it in a browser: the
+   inflection-or-derivation question with UI mockups and borderline cases) and
+   [the prototypes](prototypes/README.md): the pattern-slot colour-font builder (ADRs 0150 and 0151) and the
+   lzh Qieyun comparison, each with its pinned inputs and findings.
 
 ## The owner
 
@@ -102,6 +107,15 @@ The owner's order: schemas first; a one-time converter in the pipeline that writ
 the lexical-form schemas (Task B's); prompt tags (ADR 0147); script tracks (ADR 0149). Each is one deliverable
 that lands whole on its own branch, never half-switched; ADR 0148's "Done in one go" is the model for every
 definition of done.
+
+**Propose the formats before building them.** The ADRs decide what is stored and how it behaves, not the file
+shapes. Write a short design note for the owner's approval first, covering: the per-language lexicon file
+(lexemes, morphemes with features, parts and scope, lexical forms) and each language's dimensions; how a
+token names its lexemes and feature values; each profile's statement of what reading and writing lose; prompt
+tags; the learner-event change (credit per part) and the migration from today's KC ids, including how each
+existing `form:` KC converts (a feature lexeme, a listed form, or a lexical feature); the MF2 message ids for
+the miss labels; and the UI for a lexeme's parts and for labelled feedback (the explainer's mockups are a
+starting point, not a design).
 
 What must survive untouched, and what you must check did:
 - **Every sentence, story line and translation as displayed.** Sign-offs hash only the compiled text and
