@@ -521,7 +521,7 @@ a new design language.
   | كاتِب "writing (one who writes)" | فاعِل, Form I active participle | yes | a combination |
   | كاتِب "clerk, writer" | same | no: the meaning drifted | a morpheme (a homograph, like *writer*) |
   | مَكْتُوب "written" | مَفْعُول, passive participle | yes | a combination |
-  | مَكْتَب "office, desk" | مَفْعَل "place of" | no: the meaning drifted ("desk" isn't "place of writing"), and which of مَفْعَل / مَفْعِل / مَفْعَلة a root takes is only partly predictable (مَسْجِد against its imperfect يَسْجُد) | a morpheme, with a strong hint (§10) |
+  | مَكْتَب "office, desk" | مَفْعَل "place of" | no: the meaning drifted ("desk" isn't "place of writing"). Which of مَفْعَل / مَفْعِل the verb takes follows its imperfective vowel, with listed exceptions (مَسْجِد against يَسْجُد) | a morpheme, with a strong hint (§10); its parts are كَتَبَ + مَفْعَل (lexeme-model.md) |
   | كِتاب "book" | فِعال | no: the pattern has no fixed meaning | a morpheme; the root link is etymology |
 
   - Arabic teaching draws the same line: Form I verbal nouns (كِتابة, قَتْل, دُخول) are memorised; those of
@@ -715,7 +715,7 @@ a new design language.
   beneath them with its meaning; then cards that build (root into slots), extract (word to root) and decode
   ("what might مَدْخَل be?").
 - **Cards:** root extraction ("what's the root of مكتوب?", the skill a learner needs for an Arabic or Hebrew
-  dictionary), pattern meaning, building from root and pattern (ك ت ب + مَفْعَل → مَكْتَب), changed tone,
+  dictionary), pattern meaning, building from base and pattern (كَتَبَ + مَفْعَل → مَكْتَب), changed tone,
   root families.
 - **Open:**
   - What is a root's sense? Its meaning is a semantic field; proposed: a morpheme with a weaker identity,
@@ -730,8 +730,8 @@ a new design language.
   *writer*, *writing*; *escribir*, *escritor*) or a root (كَتَبَ, كاتِب, كِتاب, مَكْتَب, مَكْتُوب), or a
   character (學生, 學校, 大學). Bauer & Nation's (1993) word families include inflected forms too; ours
   leave those to the paradigm.
-- **Only the links are authored:** a morpheme names its base (*writer* ← *write* + *‑er*) or its root
-  (مَكْتَب ← ك‑ت‑ب + مَفْعَل). Families are computed from them.
+- **Only the links are authored:** a morpheme names its base (*writer* ← *write* + *‑er*; مَكْتَب ← كَتَبَ +
+  مَفْعَل), or a root where the language has no base (fa مدرسه). Families are computed from them.
 - **Uses:** related words on a tap and grouping by root in the word list; derive cards; introducing a base
   before its derivatives; distractors that share a base.
 - ***writer* has two senses** (Rappaport Hovav & Levin 1992):
@@ -748,7 +748,7 @@ parts are a memory hint worth showing, in the glossary and wherever the morpheme
 - **One mechanism for every morpheme with an analysis**, generated from it, never typed per morpheme:
   - compounds and idioms: "lit. earth + eat", 大學 "lit. big + learning", 東西 "lit. east + west";
   - derived words: *writer* (the occupation) "write + ‑er";
-  - root and pattern: مَكْتَب "ك‑ت‑ب 'writing' + مَفْعَل 'place of'";
+  - base and pattern: مَكْتَب "كَتَبَ 'write' + مَفْعَل 'place of'";
   - irregular forms: *ran* "past of *run*".
 
   An author may override the generated wording per support language where plain juxtaposition reads badly

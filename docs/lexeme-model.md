@@ -483,7 +483,7 @@ flowchart LR
 | its inflectional features: what varies across the paradigm | *ran*: past; *fue*: preterite 3sg |
 | attachment | independent; clitic (*me*); dependent + position (‑ga, suffix) |
 | lexical forms: the elsewhere form, plus forms with their contexts | ‑ga; ‑ka after k; ‑qa after q |
-| parts, with a source (where it has them) | *writer* (occupation) ← *write* + ‑er; مَكْتَب ← ك‑ت‑ب + مَفْعَل |
+| parts, with a source (where it has them) | *writer* (occupation) ← *write* + ‑er; مَكْتَب ← كَتَبَ + مَفْعَل |
 | provenance, license, notes, image | |
 
 ### Derived on the morpheme
@@ -573,8 +573,18 @@ A morpheme shows up in two different ways, and only one needs an object:
   long debate (Bat-El 1994; Ussishkin 1999; Benmamoun 1999; Aronoff 2007, "In the beginning was the word") argues that
   Hebrew and Arabic morphology works on words and stems, and that roots need not mean anything.
 - So productive derivation starts from a lexeme, not a bare root: the active participle كاتِب is KATABA + the
-  participle pattern, the root coming with the verb as part of its lexical form. A listed derivative with no
-  lexeme to start from (مَكْتَب) stores its parts, root and pattern, as links.
+  participle pattern, the root coming with the verb as part of its lexical form.
+- **A listed derivative's parts are its base and its pattern too (Proposed):** مَكْتَب "office, desk" ← كَتَبَ +
+  مَفْعَل, as *writer* (occupation) ← *write* + *‑er*. The root is never a part where a base exists; it comes
+  through the base's lexical form.
+  - The pattern's allomorph reads the verb: مَفْعَل after an imperfective in a or u (يَكْتُبُ → مَكْتَب, يَلْعَبُ →
+    مَلْعَب, يَدْخُلُ → مَدْخَل), مَفْعِل after one in i (يَجْلِسُ → مَجْلِس, يَنْزِلُ → مَنْزِل). The theme vowel
+    belongs to the verb; a root has none. Grammarians call مَسْجِد (يَسْجُدُ) irregular: a listed form.
+  - The literal hint comes out right: "place of writing", from two glosses; a root has no gloss to give.
+  - The base is chosen by meaning, word by word: I'd take مَكْتَبة "library" from كِتاب (a place where books
+    are, the denominal مَفْعَلة of places where something abounds, مَأْسَدة "lion country"), not from كَتَبَ.
+  - A root stands in as a part only where the language has no base lexeme: loan families (fa مدرسه: Persian
+    has no verb درس‑) and bound roots (*‑duc‑*).
 - **The barest pattern shows it: the Form I active participle, always a combination (a verb + the pattern
   فاعِل), never a lexeme of its own.** Every Form I verb has one, meaning "one who
   Vs, Ving", and its shape ignores the verb's own vowels (كَتَبَ/يَكْتُبُ → كاتِب, ضَرَبَ/يَضْرِبُ → ضارِب,
