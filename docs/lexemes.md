@@ -968,8 +968,14 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   Inflection would have made *imm* a cell of BAYY under the base-case rule. Gender on adjectives (*kbīr* /
   *kbīre*) is still inflection: agreement. A derived feminine with a sense of its own (if *khāle* is also a
   polite address to any older woman) is listed as its own morpheme.
-- Still open: 5 (depends on how freely Uzbek adjectives work as
-  adverbs), 6 and 9 (to explore), 8 (family may be an object like the concept), 12 (needs Uzbek grammar).
+- Decided: 5, one lexeme. Uzbek uses adjectives as manner adverbs freely (*yaxshi oʻqiydi* "studies well"),
+  so *yaxshi* is one lexeme; part of speech goes on the lexeme as the language has it. A principle (the
+  owner): never insert a category distinction the language doesn't make; that is Anglicization.
+- Decided: 12, derivation. The Uzbek causative suffixes derive verbs: a causative with a drifted meaning
+  (*oʻqit‑* "teach") is its own lexeme, a transparent one a combination.
+- Decided with 4: a lexeme's progress is shown (*ser*: 5 of 9 forms), since a lexeme is learned only once every
+  part the course teaches is shown.
+- Still open: 6 and 9 (to explore), 8 (family may be an object like the concept).
 
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
