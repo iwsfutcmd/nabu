@@ -584,6 +584,18 @@ A morpheme shows up in two different ways, and only one needs an object:
 | **concept** | differ only in social form | a meaning | EAT: *mangan*, *nedha*, *dhahar* |
 | **family** | share a base or root, with different meanings | a root, or a base lexeme | ك‑ت‑ب: كَتَبَ, كاتِب, كِتاب, مَكْتَب; WRITE: *writer*, *rewrite* |
 
+- **Concept or family: two questions about a pair of lexemes.**
+
+  | | Shared base or root | No shared base or root |
+  |---|---|---|
+  | **Same meaning, a different social form** | concept (*video* / *vídeo*) | concept (*carro* / *coche*, *mangan* / *nedha*) |
+  | **Different meanings** | family (*write* / *writer*, كِتاب / مَكْتَب) | nothing (*padre* / *madre*: no semantic decomposition) |
+  | **Same meaning, no social difference** | the hole: true synonyms, handled if they turn up | |
+
+  The conditions are disjoint, so a pair is never both: concept members say the same thing (one may stand for
+  the other once the social context changes, so a wrong pick is a register or dialect slip); family members
+  never do (a wrong pick is a wrong word). A lexeme has at most one concept but may sit in several families:
+  a compound (大學) is in the family of each of its parts.
 - A family stores its key, an optional field label for literal hints ("to do with writing", with a source), and
   its provenance; membership comes from the lexemes' parts.
 - Learners get a computed view, like a concept's coverage: "ك‑ت‑ب: you know كَتَبَ, كِتاب, مَكْتَب; not yet
