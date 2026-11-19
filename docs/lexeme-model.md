@@ -932,8 +932,19 @@ there, and the bundle carries the results.
   both), fa سد for صد, uz сирк for цирк, yue 唔洗 for 唔使 (a homophone character is a possible spelling of its
   syllable). Not a letter swap but the whole form: several misses at once are still one. What counts as
   possible is what the profile states (is *k* a spelling of /k/ before *a*, for loans like *kilo*?).
-  - Checked after normalization and the marks policy (a missing accent stays accepted with a note, as today,
-    though it is strictly not a possible spelling: it moves the stress) and after accepted variants (Arabizi's).
+  - Checked after normalization and accepted variants (Arabizi's). *ké tal* is an orthographic miss, so es's
+    profile states *k* as a spelling of /k/ (as in *kilo*), which makes ✗*kasa* one too.
+- **Decided: a form that spells another phonemic form is a phonemic miss**, not an orthographic one: *esta*
+  for *está* says /ˈesta/. So a mark that carries sound is never excused as a mark: Spanish stress accents and
+  ü (*pinguino* says /ɡi/), Greek accents (pitch) and the rough breathing (/h/). Marks the orthography leaves
+  out (fa's harakat) are still not misses: the unmarked form is a possible spelling, indeed the usual one.
+  Which marks carry sound falls out of the profile's projection: dropping one changes the phonemic form.
+  - A form can hold both: ✗*ke tal* is orthographic in its *k* and phonemic in its accent (*que* is the
+    unstressed word); the worse decides the outcome, and the notes name both.
+  - Proposed: misses rank as correct < orthographic < phonemic, so a phonemic miss is never graded more
+    leniently than an orthographic one: wrong, WRONG_WORD where it spells another word (*esta*), and a typo
+    only by the keyboard model (a slip, ✗*nesa*), never for a missing accent. That retires `CORRECT_MARKS`
+    for es's accents and grc's missing marks, a stricter grade in both courses.
   - Proposed: its own outcome (beside TYPO, WRONG_WORD, WRONG), replacing WRONG (`sound-alike`); it beats
     WRONG_WORD when the form is also another word (*caza* for *casa*: the sound is the target's, so the
     learner's word is the target; the note names the other word), amending ADR 0142; and it credits the word's
