@@ -305,8 +305,14 @@ the base case is what makes it a cell.
 - **Concept-level, for want of a base case:** Javanese speech level and honorific (no regular krama or
   honorific morpheme for stems; words without a krama form stay as they are), Spanish and French T–V (no
   formality affix), dialect (no dialect morpheme).
-- **Within one lexeme, the krama affixes** (*dipun‑* beside *di‑*) are allomorphs of one passive affix, their
-  context the speech level.
+- **Corrected (the owner: "how is that different than *mangan* vs *nedha*?"):** it isn't. *Dipun‑* replaces *di‑*
+  everywhere *di‑* occurs, in krama, as *nedha* replaces *mangan*: two affix lexemes linked by a concept, as
+  are ‑e / ‑ipun and ‑ake / ‑aken. (An earlier line here made them allomorphs.)
+- **What separates both from Persian *kotob*: whole or partial replacement.** Scopes (variety, register, speech
+  level) are never paradigm dimensions, having no base case. A scoped form that replaces a lexeme's every
+  form is a separate lexeme, linked by a concept (*nedha*, *dhahar*, *dipun‑*, *usted*, *coche*). One that
+  replaces only some cells is a scoped morpheme of the same lexeme: formal Persian says کتب *kotob* in the
+  plural but still کتاب *ketāb* in the singular.
 - **The rule predicts a typological contrast:** "eat" honorific is a cell in Korean and Japanese, a separate
   lexeme in Javanese.
 - **Its thorn: Spanish feminine ‑a** (*niño* / *niña*) is a base case, so *padre* / *madre*, *toro* / *vaca* would be
