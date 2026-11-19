@@ -43,8 +43,8 @@ Renamed 2026-11-19 (Decided); earlier drafts called the listed unit a "lexeme" a
 
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **concept** | A lexical meaning that lexemes share; glosses belong to it | EAT (*mangan*, *nedha*, *dhahar*); CAR (*carro*, *coche*) | Decided |
-| **lexeme** | A concept plus lexical features (part of speech, gender, class, register, dialect), owning a paradigm | SER; *nedha*; *casa* (feminine) | Decided |
+| **concept** | Links lexemes, or cells, across the varieties of one language: the community's own correspondence | CAR (*carro* in Cuba, *coche* in Spain); Spain's *vosotros* ↔ Cuba's *ustedes* | Decided |
+| **lexeme** | A meaning (glossed) with lexical features (part of speech, gender, class), owning a paradigm; belongs to varieties. Its boundary: what a learner must know to know it | SER; EAT (*mangan*, *nedha*, *dhahar*); *casa* (feminine) | Decided |
 | **morpheme** | What a learner learns: one sense with its lexical form(s), whatever can't be derived (§3), in any class and attachment. Bloomfield's minimal sign, stretched to portmanteaus and listed multi-word items | *kitob*, ‑dan, 呀, را, *ran*, *tuv-*, 東西, *darse cuenta* | Decided |
 | **allomorph** | One of a morpheme's forms, picked by a context: stored with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
 | **lemma** | A lexeme's citation form, the one word cards show (as in UD and ADR 0061) | *ichmoq*, خوردن | As now |
@@ -53,9 +53,10 @@ Renamed 2026-11-19 (Decided); earlier drafts called the listed unit a "lexeme" a
 
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **sense** | A morpheme's meaning: its concept plus features. One morpheme, one sense | *ran* = RUN + past | Decided |
-| **feature** | A grammatical value. **Lexical** ones are the lexeme's, constant across its paradigm; **inflectional** ones vary across it. Inflectional ones are *inherent* (add meaning, learned as a contrast) or *contextual* (forced by syntax; a rule plus a lexical feature) | feminine, krama, Cuban; past, 3sg, dative | Decided |
-| **gloss** | A concept's label in one support language; a morpheme's adds its features ("run (past)") | *qoʻl*: "hand; arm" | Decided |
+| **sense** | A morpheme's meaning: its lexeme's meaning plus features. One morpheme, one sense | *ran* = RUN + past | Decided |
+| **feature** | A grammatical value. **Lexical** ones are the lexeme's, constant across its paradigm; **inflectional** ones vary across it (register among them). Inflectional ones are *inherent* (add meaning, learned as a contrast) or *contextual* (forced by syntax; a rule plus a lexical feature) | feminine, krama, Cuban; past, 3sg, dative | Decided |
+| **gloss** | A lexeme's label in one support language; a morpheme's adds its features ("run (past)", "eat (krama)") | *qoʻl*: "hand; arm" | Decided |
+| **variety** | A scope in the one lexicon: the morphemes, lexemes, cells and rules a dialect has (shared by default); a course picks one | Cuban; Peninsular | Decided |
 
 **Form**
 
@@ -929,9 +930,6 @@ All Proposed:
 10. Javanese: krama or ngoko first (§4)?
 11. yue 嘅: one linker or two (§4)?
 12. The invented schemas: apc's, hbo's extension, stress in fa and uz, uz's base script (§8).
-13. Register as a paradigm dimension (*mangan* / *nedha* / *dhahar* as morphemes of EAT); dialect as a choice of
-    grammar (a variety scope; *carro* / *coche* two lexemes); the concept as the link across grammars
-    (lexeme-model.md)?
 
 ## References
 

@@ -31,22 +31,24 @@ classDiagram
   direction TB
   class Concept {
     <<entity>>
-    a lexical or grammatical meaning
-    glosses, one per support language
+    links items across varieties of one language
+    lexemes, or cells of lexemes
   }
   class Lexeme {
     <<entity>>
     part of speech
-    lexical features - gender, class, register, dialect
-    owns a paradigm
+    lexical features - gender, class
+    owns a paradigm - tense, person, register...
+    glosses, one per support language
     lemma - its citation form, derived
+    varieties it belongs to
   }
   class Morpheme {
     <<entity>>
     inflectional features - the cell it fills
     attachment - free, clitic, or affix with position
     parts - base, root, pattern - optional, with a source
-    provenance, licence
+    varieties it belongs to; provenance, licence
   }
   class Allomorph {
     <<entity>>
@@ -56,7 +58,7 @@ classDiagram
   }
   class Rule {
     <<entity>>
-    conditions, productivity
+    conditions, productivity, varieties
     merge, allomorph choice, boundary, order, projection
   }
   class Feature {
@@ -75,7 +77,7 @@ classDiagram
     a combination plus its order
     translations, accept sets, provenance
   }
-  Concept "1" --> "1..*" Lexeme : shared by
+  Concept "1" --> "2..*" Lexeme : links, across varieties
   Lexeme "1" --> "1..*" Morpheme : its listed members
   Morpheme "1" --> "1..*" Allomorph : its forms, by context
   Morpheme ..> Morpheme : parts
@@ -86,17 +88,22 @@ classDiagram
   Utterance --> Combination : says one
 ```
 
-### 2. Examples: concepts, lexemes, morphemes, allomorphs
+### 2. Examples: register in a paradigm, a concept across varieties, an irregular paradigm, affixes
 
 ```mermaid
 flowchart TB
-  subgraph EAT["concept EAT"]
+  subgraph EATG["one lexeme, register in its paradigm"]
     direction LR
-    L1["lexeme MANGAN<br/>verb · ngoko"] --> M1["morpheme mangan"] --> A1["allomorph mangan"]
-    L2["lexeme NEDHA<br/>verb · krama"] --> M2["morpheme nedha"] --> A2["allomorph nedha"]
-    L3["lexeme DHAHAR<br/>verb · krama inggil"] --> M3["morpheme dhahar"] --> A3["allomorph dhahar"]
+    L1["lexeme EAT<br/>verb"] --> M1["morpheme mangan<br/>ngoko · elsewhere"]
+    L1 --> M2["morpheme nedha<br/>krama"]
+    L1 --> M3["morpheme dhahar<br/>krama inggil"]
   end
-  subgraph BE["concept BE (essence)"]
+  subgraph CARG["concept CAR: two lexemes in two varieties"]
+    direction LR
+    C1["concept CAR"] --> L7["lexeme CARRO<br/>noun · masculine<br/>Cuba, the Americas"] --> M7["morpheme carro"]
+    C1 --> L8["lexeme COCHE<br/>noun · masculine<br/>Spain"] --> M8["morpheme coche"]
+  end
+  subgraph SERG["one lexeme, irregular paradigm"]
     direction LR
     L4["lexeme SER<br/>verb · irregular<br/>lemma ser = SER + infinitive"] --> M4a["morpheme s‑<br/>elsewhere stem: ser‑é, s‑ido"]
     L4 --> M4b["morpheme soy<br/>present 1sg"]
@@ -104,19 +111,16 @@ flowchart TB
     L4 --> M4d["morpheme fue<br/>preterite 3sg"]
     L4 --> M4e["morpheme siendo<br/>gerund"]
   end
-  subgraph ABL["concept ABLATIVE 'from' (a feature value)"]
+  subgraph AFFG["grammatical lexemes: affixes"]
     direction LR
     L5["lexeme ablative<br/>case suffix"] --> M5["morpheme ‑dan"] --> A5["allomorph ‑dan"]
-  end
-  subgraph POSS["concept MY (1sg possessor)"]
-    direction LR
     L6["lexeme 1sg possessive<br/>suffix"] --> M6["morpheme ‑(i)m"]
     M6 --> A6a["allomorph ‑im<br/>after a consonant"]
     M6 --> A6b["allomorph ‑m<br/>elsewhere"]
   end
-  EAT ~~~ BE
-  BE ~~~ ABL
-  ABL ~~~ POSS
+  EATG ~~~ CARG
+  CARG ~~~ SERG
+  SERG ~~~ AFFG
 ```
 
 **Settled on these diagrams (2026-11-19):**
@@ -137,7 +141,7 @@ flowchart TB
   combination and the language's rules; what is left over, the choice among grammatical orders, is
   information structure (topic, focus). The stored order stands in for that, until we model it.
 
-**Reopened (2026-11-19): is register a lexical feature at all?** The owner's observation: *mangan* / *nedha*
+**Resolved (2026-11-19), in the order it was argued: is register a lexical feature at all?** The owner's observation: *mangan* / *nedha*
 could be one lexeme EAT + register, as *ran* is RUN + past. The model supports it: register is realised
 like inflection, by the most specific listed morpheme (*nedha* for EAT + krama) and otherwise by the
 elsewhere one (a word with no krama form is said the same way in krama speech), and *nedha* takes the krama
@@ -179,7 +183,7 @@ Proposed refinement (2026-11-19), after the owner found *carro* / *coche* as one
 The diagnostics so far: is the choice one speaker's; does grammar (affixes, agreement) realise it; does a
 default cover both values; is the mapping one-to-one. Where they disagree is where concept and lexeme blur.
 
-**The learner's test** (the owner, 2026-11-19: "what a learner needs"). Proposed as the definition of a
+**The learner's test** (the owner, 2026-11-19: "what a learner needs"). Decided as the definition of a
 lexeme's boundary: **Y belongs to X's lexeme if a learner who knows X but not Y doesn't fully know X**, for
 a speaker of the course's variety. It is the "learned" principle read backwards: a lexeme's parts are
 exactly what learning it requires. The diagnostics above are its evidence, not its definition.
@@ -193,7 +197,9 @@ exactly what learning it requires. The diagnostics above are its evidence, not i
 | *tayyora* | *samolyot* | no: a synonym, a separate vocabulary gap | two lexemes |
 | *mangan* | *nedha* | yes: can't say it to an elder without being rude | one lexeme, register as a paradigm dimension |
 
-Javanese register is the case to watch: speakers also talk about it as a layer ("he can't speak krama"), not
+**Decided: register is a paradigm dimension; dialect is a variety scope; the concept links lexemes and cells
+across varieties; "meaning" is not an object** (glosses and accept sets carry it). Javanese register was the
+case to watch: speakers also talk about it as a layer ("he can't speak krama"), not
 word by word. Both views can be derived from one model: register cells on each lexeme, and a krama
 vocabulary count summed over them. A course can still stage it: ngoko first, krama cells introduced later.
 
@@ -402,8 +408,9 @@ morpheme's "own" surface form is the surface form of a **combination of one**.
 
 ## What diagramming surfaced
 
-1. **Decided (2026-11-19): every lexical feature is on the lexeme**, register and dialect included; a
-   morpheme carries only inflectional ones. The line is what stays constant across a paradigm: *nedha* and
+1. **Superseded (see "Resolved" above):** every lexical feature is on the lexeme, but register is a paradigm
+   dimension and dialect a variety scope, so neither is a lexical feature. A morpheme carries only
+   inflectional ones. The line is what stays constant across a paradigm: *nedha* and
    *dhahar* each have their own inflected forms, as *carro* and *coche* have their plurals. That is UD's
    lexical / inflectional line after all (an earlier draft put register and dialect on the morpheme).
    - So *mangan*, *nedha* and *dhahar* are three lexemes, and *carro* and *coche* two. Decided: what they
