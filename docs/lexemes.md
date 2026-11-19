@@ -989,8 +989,8 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   lexemes; nothing the form gives); projections are rules; learners do the script first except in a
   logography; the rules are what the profile states, built and landed in one go (a definition of done there).
 - Decided: 9, for a chunk that is a lexeme (§13); the compositional case is proposed there.
-- Still open (numbered as above), with proposals in lexeme-model.md: and two that came up since: whether apc's active participle is a
-  cell of the verb or derivation, and part of speech on the lexeme with derivational heads' signatures.
+- Still open, with proposals in lexeme-model.md: whether apc's active participle is a cell of the verb or
+  derivation, and part of speech on the lexeme with derivational heads' signatures.
 
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
