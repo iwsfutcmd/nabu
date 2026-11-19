@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- A copy of the explainer published as a private artifact on 2026-11-19 ("Inflection or Derivation?"),
+     kept for its mockups and borderline cases. The decision it led to is ADR 0145 (option A). Self-contained;
+     open it in a browser. -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inflection or Derivation?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;600&family=Noto+Sans:ital,wght@0,400;1,400&display=swap">
+<style>
+:root {
+  /* plan: cool paper and ink; two semantic hues carry the whole argument: blue = a value head (its result is a form),
+     ochre = a function head (its result is a derivative). Display Newsreader, body Plex Sans, glosses Plex Mono.
+     layout: one reading column (~68ch) with wider bands for tables and paired mockups (option A beside option B). */
+  --paper: #f2f3f5; --sheet: #ffffff; --ink: #17191c; --muted: #555b64; --rule: #d3d7de;
+  --value: #24589a; --value-soft: #e2ebf6; --fn: #8d5a08; --fn-soft: #f5ead6; --link: #24589a;
+  --font-display: "Newsreader", "Noto Serif", Georgia, serif;
+  --font-body: "IBM Plex Sans", "Noto Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-arab: "Noto Naskh Arabic", "Noto Sans Arabic", serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #111316; --sheet: #1a1d21; --ink: #e7e9ed; --muted: #a2a8b1; --rule: #2d3239;
+    --value: #8fb9ec; --value-soft: #1a2738; --fn: #e3b462; --fn-soft: #30271a; --link: #8fb9ec; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #111316; --sheet: #1a1d21; --ink: #e7e9ed; --muted: #a2a8b1; --rule: #2d3239;
+  --value: #8fb9ec; --value-soft: #1a2738; --fn: #e3b462; --fn-soft: #30271a; --link: #8fb9ec; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+main { padding: 0 16px 80px; display: grid; gap: 0; }
+.col { max-inline-size: 68ch; margin-inline: auto; inline-size: 100%; }
+.wide { max-inline-size: 1080px; margin-inline: auto; inline-size: 100%; }
+header.top { padding-block: 48px 24px; }
+.kicker { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--muted); margin: 0 0 8px; }
+h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.1rem, 5vw, 3.2rem); line-height: 1.08; margin: 0 0 16px; text-wrap: balance; }
+h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.75rem; line-height: 1.2; margin: 56px 0 12px; text-wrap: balance; }
+h3 { font-size: 1.05rem; margin: 28px 0 6px; text-wrap: balance; }
+p { margin: 0 0 14px; }
+.lede { font-size: 1.12rem; color: var(--ink); }
+a { color: var(--link); }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.mono { font-family: var(--font-mono); font-size: 0.92em; }
+.small { font-size: 0.88rem; color: var(--muted); }
+i, .ex { font-style: italic; }
+bdi { unicode-bidi: isolate; }
+:lang(ar), :lang(apc), :lang(fa) { font-family: var(--font-arab); font-style: normal; }
+bdi:lang(ar), bdi:lang(apc), bdi:lang(fa) { font-size: 1.12em; line-height: 1.3; }
+:lang(ko), :lang(yue), :lang(zh), :lang(he) { font-style: normal; }
+/* the two kinds */
+.k { display: inline-block; font-family: var(--font-mono); font-size: 0.74rem; font-weight: 500; padding: 1px 7px; border-radius: 999px; vertical-align: 2px; white-space: nowrap; }
+.k.v { color: var(--value); background: var(--value-soft); }
+.k.f { color: var(--fn); background: var(--fn-soft); }
+.k.l { color: var(--muted); background: transparent; border: 1px solid var(--rule); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 12px 16px; border: 1px solid var(--rule); border-radius: 10px; background: var(--sheet); font-size: 0.92rem; }
+/* merge diagrams */
+.merges { display: grid; gap: 12px; margin-block: 16px 8px; }
+.merge { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 14px 16px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; }
+.box { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--rule); background: var(--paper); line-height: 1.3; }
+.box small { display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.box.v { border-color: var(--value); background: var(--value-soft); }
+.box.f { border-color: var(--fn); background: var(--fn-soft); }
+.op { font-family: var(--font-mono); color: var(--muted); }
+.res { border-inline-start: 4px solid var(--rule); padding-inline-start: 10px; }
+.res.v { border-color: var(--value); }
+.res.f { border-color: var(--fn); }
+/* tables */
+.tablewrap { overflow-x: auto; margin-block: 12px 8px; border: 1px solid var(--rule); border-radius: 10px; background: var(--sheet); }
+table { border-collapse: collapse; inline-size: 100%; font-size: 0.93rem; }
+th, td { text-align: start; vertical-align: top; padding: 10px 14px; border-block-end: 1px solid var(--rule); }
+tr:last-child td { border-block-end: 0; }
+th { font-weight: 600; font-size: 0.82rem; color: var(--muted); background: var(--paper); }
+td.kind { white-space: nowrap; }
+/* segmented word */
+.seg { display: flex; flex-wrap: wrap; gap: 4px; align-items: stretch; margin-block: 10px; }
+.seg span { padding: 4px 10px; border-radius: 6px; border: 1px solid var(--rule); background: var(--sheet); text-align: center; line-height: 1.25; }
+.seg span small { display: block; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+.seg .v { border-color: var(--value); background: var(--value-soft); }
+.seg .f { border-color: var(--fn); background: var(--fn-soft); }
+/* option pairs */
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-block: 14px 6px; }
+.optlabel { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); margin: 0 0 6px; }
+.callout { border-inline-start: 4px solid var(--value); background: var(--sheet); padding: 12px 16px; border-radius: 0 10px 10px 0; margin-block: 16px; }
+.callout.f { border-color: var(--fn); }
+.callout p:last-child { margin-block-end: 0; }
+ol.decide { padding-inline-start: 1.4em; }
+ul.points { padding-inline-start: 1.2em; margin: 0 0 14px; }
+ul.points li { margin-block-end: 10px; }
+.updated { margin-block-start: 12px; padding: 8px 12px; border: 1px dashed var(--rule); border-radius: 8px; font-size: 0.9rem; color: var(--muted); }
+.updated b { color: var(--ink); }
+.oneline { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.35; margin-block: 14px; text-wrap: balance; }
+ol.decide li { margin-block-end: 8px; }
+/* ---- Nabu mockups: Nabu's own tokens, so they read as the app ---- */
+.nabu {
+  --n-page: #f6f5f1; --n-surface: #fff; --n-text: #1d1d1b; --n-muted: #55534e; --n-border: #d8d5cc; --n-tile: #fff;
+  --n-tile-border: #cfcbbf; --n-accent: #1f6b4f; --n-correct: #1f6b4f; --n-correct-bg: #e3f1ea; --n-wrong: #a3241a;
+  --n-wrong-bg: #f8e4e1; --n-info-bg: #e4ecf3; --n-track: #e7e4dc;
+  background: var(--n-page); color: var(--n-text); border-radius: 16px; padding: 14px; border: 1px solid var(--rule);
+  font-family: var(--font-body); font-size: 0.95rem; line-height: 1.45;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .nabu {
+    --n-page: #161614; --n-surface: #211f1c; --n-text: #edebe5; --n-muted: #bab6ac; --n-border: #3d3a34; --n-tile: #2a2824;
+    --n-tile-border: #4d4a43; --n-accent: #74cfa3; --n-correct: #74cfa3; --n-correct-bg: #1b3328; --n-wrong: #f19a8f;
+    --n-wrong-bg: #3a201c; --n-info-bg: #1e2833; --n-track: #2e2c27;
+  }
+}
+:root[data-theme="dark"] .nabu {
+  --n-page: #161614; --n-surface: #211f1c; --n-text: #edebe5; --n-muted: #bab6ac; --n-border: #3d3a34; --n-tile: #2a2824;
+  --n-tile-border: #4d4a43; --n-accent: #74cfa3; --n-correct: #74cfa3; --n-correct-bg: #1b3328; --n-wrong: #f19a8f;
+  --n-wrong-bg: #3a201c; --n-info-bg: #1e2833; --n-track: #2e2c27;
+}
+.ncard { background: var(--n-surface); border: 1px solid var(--n-border); border-radius: 16px; padding: 14px 16px; display: grid; gap: 10px; }
+.nmuted { color: var(--n-muted); font-size: 0.85rem; }
+.nhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.nword { font-size: 1.35rem; font-weight: 600; }
+.nword:lang(apc), .nword:lang(ar) { font-size: 1.6rem; }
+.ntrack { block-size: 8px; border-radius: 4px; background: var(--n-track); overflow: hidden; }
+.ntrack > span { display: block; block-size: 100%; background: var(--n-accent); }
+.nforms { display: flex; flex-wrap: wrap; gap: 6px; }
+.nform { padding: 2px 9px; border-radius: 999px; border: 1px solid var(--n-tile-border); background: var(--n-tile); font-size: 0.88rem; }
+.nform.known { border-color: var(--n-correct); color: var(--n-correct); }
+.nrow { display: flex; justify-content: space-between; gap: 8px; padding-block: 6px; border-block-end: 1px solid var(--n-border); }
+.nrow:last-child { border-block-end: 0; }
+.nprompt { font-size: 1.25rem; }
+.nprompt:lang(apc) { font-size: 1.55rem; line-height: 1.6; }
+.ngap { display: inline-block; min-inline-size: 3.2em; border-block-end: 2px solid var(--n-text); }
+.ntags { display: flex; gap: 6px; flex-wrap: wrap; }
+.ntag { font-size: 0.78rem; padding: 1px 8px; border-radius: 999px; background: var(--n-info-bg); }
+.ntiles { display: flex; flex-wrap: wrap; gap: 8px; }
+.ntile { padding: 6px 14px; border-radius: 12px; border: 1px solid var(--n-tile-border); background: var(--n-tile); font-size: 1.05rem; }
+.ntile:lang(apc) { font-size: 1.3rem; }
+.nfeedback { border-radius: 12px; padding: 10px 14px; background: var(--n-wrong-bg); display: grid; gap: 4px; }
+.nfeedback strong { color: var(--n-wrong); }
+.nlabel { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; padding: 0 6px; border-radius: 4px; border: 1px solid currentColor; color: var(--n-wrong); margin-inline-end: 4px; }
+.ngloss { display: grid; gap: 2px; }
+.ngloss .an { font-family: var(--font-mono); font-size: 0.85rem; color: var(--n-muted); }
+.nlit { font-size: 0.85rem; color: var(--n-muted); border-block-start: 1px dashed var(--n-border); padding-block-start: 6px; }
+.miss { text-decoration: line-through; text-decoration-color: var(--n-wrong); }
+footer { margin-block-start: 56px; padding-block-start: 16px; border-block-start: 1px solid var(--rule); }
+footer li { margin-block-end: 4px; }
+@media (prefers-reduced-motion: no-preference) { a { transition: color 0.15s; } }
+</style>
+</head>
+<body>
+<main>
+
+<header class="top col">
+  <p class="kicker">Nabu · lexeme model · the one parked question</p>
+  <h1>Inflection or derivation? Two kinds of head, or one</h1>
+  <p class="lede">We decided that every complex word is built the same way: Merge a base lexeme with another lexeme. <i>ran</i> is RUN + PAST; <i>writer</i> is WRITE + AGENT, the lexeme whose lemma is <i>‑er</i>; <bdi lang="apc">شايف</bdi> is the verb + the participle pattern. What's still open is whether those second lexemes, the heads, come in two kinds. This page sets out what the kinds would be, what a derivative means for a learner, what in Nabu would depend on the kinds, the cases that sit on the line, and three ways to settle it.</p>
+  <div class="legend" role="note" aria-label="How to read the colours">
+    <span><span class="k v">value head</span> a value of a dimension the base already has; its result is a <b>form</b> of the base's lexeme</span>
+    <span><span class="k f">function head</span> takes a category and makes one; its result is a <b>derivative</b>: another word, computed</span>
+    <span><span class="k l">listed</span> stored, because no rule gives it; a listed derivative is a lexeme</span>
+  </div>
+  <p class="updated"><b>Revised after your questions.</b> A function head is a lexeme too (AGENT, lemma <i>‑er</i>). A computed derivative is not a learning item, so "lexeme" now means what is stored. What was called a “cell” is now a <b>form</b>. New: the side-by-side table in section 3, and section 4 on what a derivative means for a learner.</p>
+</header>
+
+<section class="col" aria-labelledby="s1">
+  <h2 id="s1">1. What's decided, and what isn't</h2>
+  <p>Decided: one operation. A base lexeme merges with another lexeme, and the selecting one, the head, supplies the result's features; whatever the head leaves unspecified comes up from the base. The feature is what merges, not its suffix: RUN + PAST is realised as <i>ran</i> because RUN lists that form, and as <i>‑ed</i> elsewhere.</p>
+  <p>Open: whether heads come in two kinds, which change what the result <em>is</em>:</p>
+</section>
+<section class="wide" aria-label="Two merges">
+  <div class="merges">
+    <div class="merge">
+      <span class="box">RUN<small>verb lexeme</small></span><span class="op">+</span>
+      <span class="box v">PAST<small>lemma ‑ed · value of Tense</small></span><span class="op">→</span>
+      <span class="res v"><b class="ex">ran</b> · a form of RUN. Knowing <i>run</i> without <i>ran</i> is not knowing RUN.</span>
+    </div>
+    <div class="merge">
+      <span class="box">WRITE<small>verb lexeme</small></span><span class="op">+</span>
+      <span class="box f">AGENT<small>lemma ‑er · function V → N</small></span><span class="op">→</span>
+      <span class="res f"><b class="ex">writer</b> "one who writes" · a derivative: another word, computed. Knowing <i>write</i> without <i>writer</i> is still knowing WRITE.</span>
+    </div>
+    <div class="merge">
+      <span class="box"><bdi lang="ar">كَتَبَ</bdi><small>verb lexeme</small></span><span class="op">+</span>
+      <span class="box f">ACTIVE PARTICIPLE<small>lemma <bdi lang="ar">فاعِل</bdi> · function fiʿl → ism</small></span><span class="op">→</span>
+      <span class="res f"><b><bdi lang="ar">كاتِب</bdi></b> "one who writes" · a derivative, an ism: it declines for case and definiteness, which no verb does.</span>
+    </div>
+  </div>
+  <p class="col small">The rows differ only in the head's kind. That one property is what this page is about.</p>
+</section>
+
+<section class="col" aria-labelledby="s2">
+  <h2 id="s2">2. How linguists tell them apart, and why no test is clean</h2>
+  <p>Every grammar draws the line, and no single criterion draws it everywhere (Plank 1994; Spencer 2013). The usual tests, each with a case it gets wrong:</p>
+</section>
+<section class="wide" aria-label="Criteria">
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th scope="col">Test</th><th scope="col">Inflection</th><th scope="col">Derivation</th><th scope="col">Where it breaks</th></tr></thead>
+    <tbody>
+      <tr><td><b>Syntax sees it</b> (Anderson 1982)</td><td>agreement, government: <i>la casa blanca</i>; a dative a verb requires</td><td>syntax doesn't care that <i>writer</i> has ‑er</td><td>inherent inflection (a noun's plural, tense) is chosen for meaning, not by syntax (Booij 1996)</td></tr>
+      <tr><td><b>Obligatory</b></td><td>a finite verb must have some tense</td><td>nothing forces a derived word</td><td>a noun needn't be diminutive, but in Cuban speech <i>ahorita</i> is everywhere</td></tr>
+      <tr><td><b>Full paradigm</b></td><td>every verb has a past</td><td>✗<i>unsad</i>, ✗<i>greenen</i></td><td>we decided conditions explain most gaps; Russian <bdi lang="ru">победить</bdi> has no 1sg, inflection with a hole</td></tr>
+      <tr><td><b>Regular meaning</b></td><td>PAST means past</td><td><i>writer</i> "author", <bdi lang="ar">كاتِب</bdi> "clerk", <bdi lang="ar">مَشْرُوب</bdi> "a drink"</td><td>a derivation can be perfectly regular: Spanish <i>‑mente</i> (<i>rápidamente</i>)</td></tr>
+      <tr><td><b>Category</b></td><td>keeps it</td><td>may change it</td><td>diminutives and <i>un‑</i> keep it; participles change it and are called inflection (Haspelmath 1996)</td></tr>
+      <tr><td><b>Order</b> (Greenberg 1963, U28)</td><td>outside</td><td>inside, next to the root</td><td>holds well; it's a consequence of the kinds rather than a test of them</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+<section class="col">
+  <p>The order universal is the one that always shows. Uzbek stacks one function head and two value heads, in that order:</p>
+  <div class="seg" lang="uz-Latn" aria-label="ish-chi-lar-imiz, our workers">
+    <span>ish<small>work</small></span>
+    <span class="f">‑chi<small>function: agent</small></span>
+    <span class="v">‑lar<small>value: plural</small></span>
+    <span class="v">‑imiz<small>value: our</small></span>
+  </div>
+  <p><i>ishchilarimiz</i> "our workers". Swap the kinds and you get nothing a speaker says. English agrees: <i>writ‑er‑s</i>, never ✗<i>write‑s‑er</i>.</p>
+</section>
+
+<section class="col" aria-labelledby="s3">
+  <h2 id="s3">3. In Nabu, the kind would belong to the head</h2>
+  <p>The model already has the pieces. A <b>value head</b> is a value of a dimension that the base's category has: PAST of the verb's tense, PL of the noun's number, 1SG of the verb's person. Its result stays inside the base's lexeme, as a form, and is listed only where no rule gives it (<i>ran</i>, <i>fue</i>, <bdi lang="ar">كُتُب</bdi>).</p>
+  <p>A <b>function head</b> takes a category and makes one, with a meaning of its own. It is a lexeme just as a value head is, named here by its meaning, with its affix or pattern as its lemma: AGENT (<i>‑er</i>), ACTIVE PARTICIPLE (<bdi lang="ar">فاعِل</bdi>), PLACE (<bdi lang="ar">مَفْعَل</bdi>), DIMINUTIVE (<i lang="es">‑ito</i>), Uzbek AGENT (<i lang="uz-Latn">‑chi</i>). Productivity doesn't make it a lexeme; it decides whether its results are computed (<i>writer</i> "one who writes") or listed (<i>warmth</i>, from unproductive <i>‑th</i>). Its result is a <b>derivative</b>: lexeme-shaped (a category, a paradigm, a gloss) but computed from its parts, a value like <i>scanned</i>, not a stored lexeme. Where something about it is listed, it is stored, and it is a lexeme: <bdi lang="ar">كاتِب</bdi> "clerk", with its plural <bdi lang="ar">كُتّاب</bdi>.</p>
+  <div class="callout">
+    <p><b>The test that would decide a head's kind:</b> is it one of a set of alternatives that every member of the base's category must choose from? Every Spanish verb form has a person and a tense, so person and tense are dimensions and their values are value heads. No noun must choose between plain and diminutive, so the diminutive is a function head. The dimensions would be declared once per language, as part of each category: the paradigm.</p>
+  </div>
+  <p>Value heads don't have to sit inside one word. A form can be several words, which grammars call periphrasis (Ackerman &amp; Stump 2004): Spanish <i>he comido</i>, Persian <bdi lang="fa">خواهم رفت</bdi> "I will go", Cantonese <bdi lang="yue">食咗</bdi> <span class="mono">sik6 zo2</span> "ate". Since Merge goes above the word, a form realised by two tokens costs nothing extra.</p>
+  <h3>A form and a derivative, side by side</h3>
+</section>
+<section class="wide" aria-label="A form and a derivative">
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th scope="col"></th><th scope="col"><span class="k v">value head</span> a form: <i lang="es">hablé</i></th><th scope="col"><span class="k f">function head</span> a derivative: <i lang="es">rápidamente</i>; <i lang="es">escritor</i> once listed</th></tr></thead>
+    <tbody>
+      <tr><td><b>The result</b></td><td>the base's lexeme in another form</td><td>another word, made from the base</td></tr>
+      <tr><td><b>Its category</b></td><td>the base's</td><td>the head's, or the base's where the head leaves it open (<i lang="es">‑ito</i>)</td></tr>
+      <tr><td><b>Its meaning</b></td><td>the base's plus the feature</td><td>built from both</td></tr>
+      <tr><td><b>Its paradigm</b></td><td>the base's</td><td>its own, from its category: <i lang="es">escritora</i>, <i lang="es">escritores</i></td></tr>
+      <tr><td><b>Stored when</b></td><td>no rule gives the form: <i>ran</i>, <i lang="es">fue</i>, <bdi lang="ar">كُتُب</bdi></td><td>no rule gives something about it: <i>writer</i> "author", <bdi lang="ar">كاتِب</bdi> "clerk"; it is then a lexeme</td></tr>
+      <tr><td><b>The learner's test</b></td><td>part of knowing the base</td><td>not part of knowing the base</td></tr>
+      <tr><td><b>The head is</b></td><td>a choice made every time the base is used: every Spanish verb form needs a tense and a person</td><td>a meaning added when wanted: AGENT "one who"</td></tr>
+      <tr><td><b>The head is learned as</b></td><td>a contrast: preterite against imperfect, when each</td><td>a sense: what <i lang="es">‑or</i> means</td></tr>
+      <tr><td><b>Asked as</b></td><td>which form? <i lang="es">hablé</i> / <i lang="es">hablaba</i> / <i lang="es">hablo</i></td><td>which word? <i lang="es">escritor</i> / <i lang="es">pintor</i> / <i lang="es">médico</i></td></tr>
+      <tr><td><b>A miss is</b></td><td>grammatical: right word, wrong form</td><td>lexical: another word</td></tr>
+      <tr><td><b>Prompt tags</b></td><td>yes: "(yesterday)", "(a woman speaking)"</td><td>never</td></tr>
+      <tr><td><b>More morphology</b></td><td>no derivation on top</td><td>inflection of its own</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+<section class="col">
+  <p class="oneline">A form is the word itself, inflected; a derivative is another word made from it.</p>
+</section>
+
+<section class="col" aria-labelledby="derivatives">
+  <h2 id="derivatives">4. What a derivative means for a learner</h2>
+  <p>A regular derivative can be built entirely from its parts, so, like <i>scanned</i> for <i>‑ed</i>, it has nothing of its own to learn. That's why "lexeme" is kept for what is stored: a stored lexeme is learned, and a computed derivative is a value.</p>
+  <ul class="points">
+    <li><b>Progress lives on its parts.</b> <i>writer</i> "one who writes" in a sentence is evidence for WRITE, for AGENT and for the branch of the rule it used. Credit per node makes it exact: ✗<i>writing</i> for <i>writer</i> shows WRITE known and AGENT missed. A derivative never gets a word-list entry or a count, so nothing ephemeral needs tracking.</li>
+    <li><b>Which ones a learner meets:</b> whatever the course's sentences and stories contain, as <i>scanned</i> turns up for <i>‑ed</i>. The planner aims at the head and its branches: the Arabic participle shown on a sound root (<bdi lang="ar">فاعِل</bdi>), a hollow one (<bdi lang="ar">قائِل</bdi>) and a defective one (<bdi lang="ar">رامٍ</bdi>), each on a word the learner can't have memorised. The compiler can report a branch that nothing in the course shows.</li>
+    <li><b>Infinitely many is the point.</b> Knowing AGENT is being able to make any of them; the wug card, last, checks exactly that.</li>
+    <li><b>Once anything about it is listed, it's a lexeme</b>, stored and learned: <i>writer</i> "author", <bdi lang="ar">كاتِب</bdi> "clerk", <i lang="es">panadero</i> (<i lang="es">‑ero</i> means a trade, a container or a tree, and nothing predicts which), <i lang="es">ahorita</i> ("right now" or "in a while" by region, neither of them "now" plus a diminutive). The computed ones are the transparent, productive heads: Arabic participles and the verbal nouns of Forms II–X, Spanish <i lang="es">‑mente</i>, English <i>‑ness</i>.</li>
+  </ul>
+  <p>So a regular form and a regular derivative are alike for a learner: both are evidence for their parts. What differs is the head (a choice made every time, or a meaning added when wanted) and where a listed one lives. The apc participle is hard because it is both: it contrasts with <bdi lang="apc">رحت</bdi> and <bdi lang="apc">بروح</bdi> as aspect, like a form, and agrees like an adjective, like a derivative.</p>
+</section>
+
+<section class="col" aria-labelledby="s4">
+  <h2 id="s4">5. What would depend on the kind</h2>
+  <p>Six things in Nabu read it. For each, a mockup with the distinction kept (<b>A</b>) beside everything treated as one kind, all function heads (<b>B</b>).</p>
+
+  <h3>5.1 Progress and "learned"</h3>
+  <p>A lexeme is learned when every part the course will teach has been shown, and its listed forms are among those parts. A derivative isn't part of its base: a computed one counts towards nothing (its parts take the credit), and a listed one is a lexeme of its own.</p>
+</section>
+<section class="wide" aria-label="Word list mockups">
+  <div class="pair">
+    <div>
+      <p class="optlabel">A · two kinds: the word list</p>
+      <div class="nabu" lang="en">
+        <div class="ncard">
+          <div class="nhead"><span class="nword" lang="es">ser</span><span class="nmuted">be · learning · 5 of 9 forms</span></div>
+          <div class="ntrack" role="img" aria-label="5 of 9 forms"><span style="inline-size: 55.5%"></span></div>
+          <div class="nforms" lang="es">
+            <span class="nform known">soy</span><span class="nform known">eres</span><span class="nform known">es</span><span class="nform known">somos</span><span class="nform known">son</span>
+            <span class="nform">fui</span><span class="nform">fue</span><span class="nform">era</span><span class="nform">sido</span>
+          </div>
+          <div class="nmuted">Forms only. A listed derivative (<i lang="es">escritor</i> "author") gets an entry of its own; a computed one (<i lang="es">rápidamente</i>) gets none.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="optlabel">B · one kind: no forms to count</p>
+      <div class="nabu" lang="en">
+        <div class="ncard">
+          <div class="nrow"><span lang="es"><b>ser</b></span><span class="nmuted">be · known</span></div>
+          <div class="nrow"><span lang="es"><b>soy</b></span><span class="nmuted">from ser · known</span></div>
+          <div class="nrow"><span lang="es"><b>fue</b></span><span class="nmuted">from ser, ir · new</span></div>
+          <div class="nrow"><span lang="es"><b>era</b></span><span class="nmuted">from ser · new</span></div>
+          <div class="nrow"><span class="nmuted">…nine entries for one verb, filed like <i lang="es">escritor</i> under <i lang="es">escribir</i>, with nothing to say which belong to knowing <i lang="es">ser</i></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="col">
+  <h3>5.2 Where a listed form lives</h3>
+  <p>The learner's test decides it: if knowing X without Y is not fully knowing X, Y is part of X. <i>ran</i> is part of RUN; <i>writer</i> "author" isn't part of WRITE. Arabic shows both in one family: <bdi lang="ar">كُتُب</bdi> "books" is a listed form of <bdi lang="ar">كِتاب</bdi>, while <bdi lang="ar">كاتِب</bdi> "clerk" is a lexeme of its own, with its own listed plural <bdi lang="ar">كُتّاب</bdi>; the participle "one who writes" takes the plural a rule gives, <bdi lang="ar">كاتِبُون</bdi>. Without kinds, every listed form is a lexeme, and the test has nothing to sort.</p>
+
+  <h3>5.3 Glosses</h3>
+  <p>Decided in round 3: a form's gloss is built from its lexeme's plus its features, shown beside the support language's own word (“ran” beside “run (past)”). A derivative gets the gloss its parts give, or its own where it's listed; a literal hint stays separate.</p>
+</section>
+<section class="wide" aria-label="Gloss panel mockups">
+  <div class="pair">
+    <div>
+      <p class="optlabel">A · a form (value head)</p>
+      <div class="nabu" lang="en">
+        <div class="ncard ngloss">
+          <span class="nword" lang="es">fue</span>
+          <span>went · was</span>
+          <span class="an">ir or ser · preterite · 3rd singular</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="optlabel">A · a computed derivative (function head)</p>
+      <div class="nabu" lang="en">
+        <div class="ncard ngloss">
+          <span class="nword" lang="es">rápidamente</span>
+          <span>quickly</span>
+          <span class="an">rápido + ‑mente "in a … way"</span>
+          <span class="nlit">Built from its parts; the credit goes to <i lang="es">rápido</i> and <i lang="es">‑mente</i>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="col small">Under B both panels take the second shape: <i lang="es">fue</i> becomes a derivative of <i lang="es">ser</i>, glossed "ser + preterite 3sg" like a new word, and the panel can no longer say it is a form of <i lang="es">ser</i>.</p>
+</section>
+
+<section class="col">
+  <h3>5.4 Which cards can be built</h3>
+  <p>ADR 0132 already splits gap-fill cards by what they ask: <b>which word</b> (other lexemes with the answer's part of speech and features) or <b>which form</b> (the answer's own lexeme in other attested forms). "Which form" asks for another form of the same lexeme, so the kind decides what can be an option. Here is the apc participle, which section 6 comes back to:</p>
+</section>
+<section class="wide" aria-label="Gap-fill mockups">
+  <div class="pair">
+    <div>
+      <p class="optlabel">A · the participle is a value (aspect)</p>
+      <div class="nabu" lang="en">
+        <div class="ncard">
+          <div class="nmuted">Which form fits?</div>
+          <div class="nprompt" lang="apc" dir="rtl">أنا <span class="ngap" aria-label="gap"></span> عالبيت</div>
+          <div class="ntags"><span class="ntag">I'm going home</span><span class="ntag">a man speaking</span></div>
+          <div class="ntiles" lang="apc" dir="rtl"><span class="ntile">رايح</span><span class="ntile">رحت</span><span class="ntile">بروح</span></div>
+        </div>
+      </div>
+      <p class="small">A real aspect question: going now (<bdi lang="apc">رايح</bdi>), went (<bdi lang="apc">رحت</bdi>), go (<bdi lang="apc">بروح</bdi>).</p>
+    </div>
+    <div>
+      <p class="optlabel">A · the participle is a function (a derivative)</p>
+      <div class="nabu" lang="en">
+        <div class="ncard">
+          <div class="nmuted">Which word fits?</div>
+          <div class="nprompt" lang="apc" dir="rtl">أنا <span class="ngap" aria-label="gap"></span> عالبيت</div>
+          <div class="ntags"><span class="ntag">I'm going home</span><span class="ntag">a man speaking</span></div>
+          <div class="ntiles" lang="apc" dir="rtl"><span class="ntile">رايح</span><span class="ntile">قاعد</span><span class="ntile">واقف</span></div>
+        </div>
+      </div>
+      <p class="small">Only other participles qualify as options (going, sitting, standing): a vocabulary question, and the aspect contrast can't be asked at all.</p>
+    </div>
+  </div>
+</section>
+
+<section class="col">
+  <h3>5.5 Grading: grammatical or lexical miss</h3>
+  <p>The miss labels (decided) split "right lexeme, wrong form" from "another lexeme". That split is the kind.</p>
+</section>
+<section class="wide" aria-label="Feedback mockups">
+  <div class="pair">
+    <div>
+      <p class="optlabel">A · <i lang="es">hablas</i> for <i lang="es">hablo</i></p>
+      <div class="nabu" lang="en">
+        <div class="ncard">
+          <div class="nprompt" lang="es">Yo <span class="miss">hablas</span> español.</div>
+          <div class="nfeedback"><span><span class="nlabel">grammatical</span><strong>Right verb, wrong person.</strong></span><span lang="es"><i>Yo hablo español.</i></span><span class="nmuted">Counts against: 1st singular present. <i lang="es">hablar</i> itself is shown.</span></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="optlabel">A · <i lang="es">escritura</i> for <i lang="es">escritor</i></p>
+      <div class="nabu" lang="en">
+        <div class="ncard">
+          <div class="nprompt" lang="es">Mi tía es <span class="miss">escritura</span>.</div>
+          <div class="nfeedback"><span><span class="nlabel">lexical</span><strong>Another word, from the same base.</strong></span><span lang="es"><i>Mi tía es escritora.</i></span><span class="nmuted"><i lang="es">escritura</i> is "writing". Counts against: <i lang="es">escritor</i>.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="col small">Under B, <i lang="es">hablas</i> would be "another word, from the same base" too: the feedback would tell a learner who knows <i lang="es">hablar</i> perfectly well that they chose the wrong word.</p>
+</section>
+
+<section class="col">
+  <h3>5.6 Order and prompts</h3>
+  <p>Two smaller things. <b>Order:</b> linearisation can lean on the kinds (function heads attach first, value heads outside them, as in <i>ishchilarimiz</i>) instead of a slot per affix. <b>Prompts:</b> the tags that pin down what English leaves open, "(a woman speaking)", "(to several people)", "(every day)", come from dimensions, so only value heads raise them. Nobody tags a prompt "(diminutive)".</p>
+</section>
+
+<section class="col" aria-labelledby="s5">
+  <h2 id="s5">6. Cases on the line</h2>
+  <p>Where the tests disagree. Each row says what pulls each way and what the dimension test of section 3 would give. The kind is per language: the same meaning can be a value in one and a function in another.</p>
+</section>
+<section class="wide" aria-label="Borderline cases">
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th scope="col">Case</th><th scope="col">Pulls towards value</th><th scope="col">Pulls towards function</th><th scope="col">Dimension test</th></tr></thead>
+    <tbody>
+      <tr><td>apc participle <bdi lang="apc">رايح</bdi>, <bdi lang="apc">شايفه</bdi> "I've seen him"</td><td>takes object suffixes; only verbal dimensions (gender, number); contrasts with perfect and imperfect as aspect</td><td>agrees like an adjective; a pattern, not an affix</td><td class="kind"><span class="k v">value</span> if apc's verb has an aspect dimension with three values</td></tr>
+      <tr><td>Standard Arabic participle <bdi lang="ar">كاتِب</bdi></td><td>fully productive; regular meaning</td><td>case and definiteness, which no verb has; lexicalised senses with listed plurals</td><td class="kind"><span class="k f">function</span></td></tr>
+      <tr><td>Arabic verbal noun (maṣdar)</td><td>Forms II–X predictable (<bdi lang="ar">عَلَّمَ</bdi> → <bdi lang="ar">تَعْلِيم</bdi>)</td><td>a noun; Form I listed (<bdi lang="ar">كِتابة</bdi>, <bdi lang="ar">دُخُول</bdi>)</td><td class="kind"><span class="k f">function</span>, computed for II–X</td></tr>
+      <tr><td>English <i>‑ing</i></td><td><i>is writing</i>: a periphrastic progressive form</td><td><i>the writing of the letter</i>: a nominalisation; <i>a writing</i>: listed</td><td class="kind"><span class="k v">value</span> + <span class="k f">function</span> + <span class="k l">listed</span>: one exponent, three heads</td></tr>
+      <tr><td>Spanish <i>‑mente</i></td><td>every adjective, regular meaning</td><td>changes category; nothing forces it</td><td class="kind"><span class="k f">function</span></td></tr>
+      <tr><td>Spanish <i>‑ito</i></td><td>very productive (some results listed: <i>ahorita</i>)</td><td>adds meaning; never obligatory; passes the base's category and gender through</td><td class="kind"><span class="k f">function</span></td></tr>
+      <tr><td>Comparatives: <i>bigger</i>; <bdi lang="ar">أَكْبَر</bdi></td><td>English: a degree dimension, with <i>more intelligent</i> as its periphrastic form</td><td>Arabic: the elative is an ism of its own, with its own agreement</td><td class="kind"><span class="k v">value</span> in English, <span class="k f">function</span> in Arabic</td></tr>
+      <tr><td>Russian aspect <bdi lang="ru">писать</bdi> / <bdi lang="ru">написать</bdi></td><td>every verb is perfective or imperfective</td><td>the prefix is chosen verb by verb (<bdi lang="ru">на‑</bdi>, <bdi lang="ru">про‑</bdi>), and often shifts meaning</td><td class="kind"><span class="k f">function</span>, with aspect as a lexical feature: the classic hard case</td></tr>
+      <tr><td>Korean honorific ‑시‑, <bdi lang="ko">먹다</bdi> → <bdi lang="ko">드시다</bdi></td><td>a base-case morpheme (‑시‑) and a suppletive form; decided by the base-case rule</td><td>it feels like register</td><td class="kind"><span class="k v">value</span> (decided)</td></tr>
+      <tr><td>Cantonese <bdi lang="yue">咗</bdi>, <bdi lang="yue">緊</bdi>, <bdi lang="yue">過</bdi></td><td>aspect; one of a closed set</td><td>separate particles, not affixes</td><td class="kind"><span class="k v">value</span>, realised by two tokens</td></tr>
+      <tr><td>Persian <bdi lang="fa">ـی</bdi></td><td>the indefinite <bdi lang="fa">کتابی</bdi> "a book"</td><td>the adjectival <bdi lang="fa">ایرانی</bdi> "Iranian"</td><td class="kind"><span class="k v">value</span> and <span class="k f">function</span>: one letter, two heads</td></tr>
+      <tr><td>Uzbek causative <i>‑t</i>, <i>‑tir</i></td><td>productive</td><td>new argument structure; <i>oʻqit‑</i> "teach" drifts</td><td class="kind"><span class="k f">function</span> (decided)</td></tr>
+      <tr><td>Biblical Hebrew stems (<bdi lang="he">לָמַד</bdi> → <bdi lang="he">לִמֵּד</bdi>)</td><td>a closed set of patterns</td><td>"learn" → "teach": meaning by stem, verb by verb</td><td class="kind"><span class="k f">function</span>, mostly listed</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="col" aria-labelledby="s6">
+  <h2 id="s6">7. Three ways to settle it</h2>
+</section>
+<section class="wide" aria-label="Options">
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th scope="col">Option</th><th scope="col">What it says</th><th scope="col">What it costs</th><th scope="col">What breaks</th></tr></thead>
+    <tbody>
+      <tr><td><b>A. Two kinds, by dimension</b></td><td>Each language declares its categories' dimensions. A head that is a value of one is a value head; every other head is a function head. Nothing is labelled affix by affix.</td><td>Writing the dimensions down per language (most are in the courses' UD features already).</td><td>Nothing in section 5. Hard cases (Russian aspect, the apc participle) become questions about a language's dimensions, which is where they belong.</td></tr>
+      <tr><td><b>B. One kind</b></td><td>Every head is a function; every result is a derivative.</td><td>Rebuilding progress, glosses, form cards and grammatical misses on "same base, sibling heads".</td><td>Those four need "heads that are alternatives in one dimension" to work at all, which is option A under another name. Without it: 5.1 to 5.5 as shown.</td></tr>
+      <tr><td><b>C. Two kinds, labelled</b></td><td>Each head says which it is.</td><td>A label on every affix and pattern.</td><td>Labels drift from what the paradigm actually is; two courses of one language can disagree.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+<section class="col">
+  <div class="callout">
+    <p><b>Recommendation: A.</b> Kinds follow from dimensions, and dimensions are data per language. It keeps your "one operation" (a value head and a function head merge the same way), gives every consumer in section 5 what it needs, and moves the hard cases to the right question: does this language's verb have an aspect dimension with a participle in it?</p>
+  </div>
+  <h3>If you agree, three follow-ups</h3>
+  <ol class="decide">
+    <li><b>Where dimensions live:</b> per language, beside the lexicon, one list per category (apc verb: aspect, person, gender, number; Spanish noun: number; Spanish adjective: gender, number). Gender on nouns stays a lexical feature, not a dimension (decided: <i lang="es">casa</i>'s feminine).</li>
+    <li><b>apc's participle:</b> a value of an aspect dimension (perfective, imperfective, participle), so the form card in 5.4 can be built. You've already decided it's a combination of the verb and the pattern; this only says which kind of head the pattern is.</li>
+    <li><b>Periphrastic forms:</b> a form may be several tokens (<i lang="es">he comido</i>, <bdi lang="fa">خواهم رفت</bdi>, <bdi lang="yue">食咗</bdi>), since Merge goes above the word.</li>
+  </ol>
+</section>
+
+<footer class="col small">
+  <p><b>Sources</b></p>
+  <ul>
+    <li>Ackerman, F. &amp; Stump, G. (2004). Paradigms and periphrastic expression. In Sadler &amp; Spencer (eds.), <i>Projecting Morphology</i>.</li>
+    <li>Anderson, S. R. (1982). Where's morphology? <i>Linguistic Inquiry</i> 13.</li>
+    <li>Booij, G. (1996). Inherent versus contextual inflection and the split morphology hypothesis. <i>Yearbook of Morphology 1995</i>.</li>
+    <li>Greenberg, J. H. (1963). Some universals of grammar with particular reference to the order of meaningful elements. Universal 28.</li>
+    <li>Haspelmath, M. (1996). Word-class-changing inflection and morphological theory. <i>Yearbook of Morphology 1995</i>.</li>
+    <li>Plank, F. (1994). Inflection and derivation. In Asher (ed.), <i>The Encyclopedia of Language and Linguistics</i>.</li>
+    <li>Spencer, A. (2013). <i>Lexical Relatedness</i>. Oxford University Press.</li>
+  </ul>
+  <p>Nabu: docs/lexeme-model.md ("A form is built as a derivative is"), ADR 0132 (gap-fill asks one thing), ADR 0100 (what's known).</p>
+</footer>
+
+</main>
+</body>
+</html>
