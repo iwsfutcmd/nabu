@@ -611,6 +611,11 @@ A morpheme shows up in two different ways, and only one needs an object:
   something isn't derivable: كاتِب "writer, clerk" has the listed plural كُتّاب, so it is a lexeme of its own,
   while the participle takes the sound plural a rule gives.
   - Rules read the category (فاعِل takes verbs, فُعَيْل nouns); without it, lexemes are DM's category-neutral roots.
+  - **The pattern is the head, so the result's category falls out.** A derivational morpheme's lexeme stores a
+    signature, not a plain part of speech: what it takes, what it makes, and which features it sets (فاعِل: fiʿl
+    → ism; Spanish ‑ción: verb → feminine noun). Features it doesn't set come up from the base (Lieber 1980;
+    Di Sciullo & Williams 1987): the diminutive sets neither category nor gender, so شَمْس → شُمَيْسَة stays
+    feminine and *el problema* → *el problemita* masculine. The pattern itself is closed-class, whatever it makes.
   - The categories are the language's own (the *yaxshi* principle): Arabic's are ism, fiʿl, ḥarf, and whether
     كاتِب is a noun or an adjective is an English question.
   - A cell can still differ in external category: word-class-changing inflection (Haspelmath 1996), as a
