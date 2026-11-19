@@ -283,6 +283,18 @@ speech level, the honorific, who is speaking to whom about whom. Never in what i
 - Open: Javanese krama affixes (*di‑* / *dipun‑*, ‑e / ‑ipun): separate affix lexemes linked by a concept, like
   the words, or allomorphs whose context is the speech level?
 
+**The owner's rule of thumb: any systematic way to trigger something makes it lexeme-level.** Proposed
+sharpening, so it also sorts *nedha* (krama triggers it as systematically as it triggers *dipun‑*): what
+matters is what the trigger selects.
+- **A form for a cell: lexeme-level**, even where only some lexemes have a special form for that cell.
+  *dipun‑* for the passive in krama (allomorphs of one passive affix, context: the speech level);
+  *raft‑* / *rav‑* by tense; ‑ga / ‑qa by sound; Persian کتب *kotob* for KETĀB's plural in formal register
+  (a scoped morpheme of KETĀB, which is where the owner felt it belongs).
+- **A whole other word, with a paradigm of its own: concept-level.** *nedha* and *dhahar* inflect on their own;
+  so do *coche* (*coches*) and *usted* (*le*, *lo*, *con usted*) and French *vous* (*votre*). So T–V is
+  concept-linked, and the T–V pronouns stay separate lexemes.
+- **No systematic trigger: separate lexemes, not linked** (*padre* / *madre*).
+
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
   decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
