@@ -860,6 +860,12 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
     female), unlike the derivational FEM of *niña* and خالة, which is a lexeme. Agreement and government
     merge no head of their own: *blanca*'s ‑a spreads *casa*'s gender by a rule, and a verb's governed dative
     is a rule plus its lexical feature. So FEM names two objects that share a label.
+  - **A function head is a lexeme too (the owner, 2026-11-19: "‑er should be a lexeme!").** AGENT, with lemma
+    ‑er; ACTIVE PARTICIPLE, with lemma فاعِل; PLACE (مَفْعَل); DIMINUTIVE (‑ito); uz AGENT (‑chi). Named by its
+    meaning, its affix or pattern its lemma, as PAST's is ‑ed. **Productivity doesn't make a lexeme; it decides
+    whether the head's results are computed or listed**: *writer* "one who writes" is computed, *warmth* is
+    listed with its parts (‑th is no longer productive, so which adjectives take it can't be predicted), and
+    ‑th is a lexeme all the same.
 - **Order rules are stated once per language, never per combination:** affix templates and position
   classes, clitic clusters (Spanish *se* > 2nd > 1st > 3rd: *se te lo*), clitic placement by host (*me lo
   da*, *dámelo*), head direction.
