@@ -166,7 +166,15 @@ learner has to memorise. But learned knowledge has three sides, and lexemes are 
     through any of its lexemes; each listed form needs its own;
   - **a rule:** every branch of it, each context it distinguishes (‑ka after k *and* ‑qa after q), shown on
     items the learner can't have memorised it on;
-  - **a feature:** every value the prompts make the learner choose;
+  - **a feature** (Proposed, 2026-11-19): only an *inherent* feature is learned as a feature, and what is
+    learned is **when to use it**, not how to spell it (forms belong to lexemes and rules). Preterite vs
+    imperfect (*comí* / *comía*), krama vs ngoko, uz ‑di vs ‑ibdi: a learner can know every form and still
+    choose wrong. Its parts are its uses (the imperfect's habitual, ongoing-in-the-past, backdrop, polite
+    *quería*), each introduced and shown on its own where no core meaning predicts it. Shown both ways:
+    choosing it from a situation (a prompt tagged "(every day)", never "(imperfect)", §12 of lexemes.md) and
+    reading it off a form ("*comía*: once, or habitually?"). A *contextual* feature (agreement, a case a
+    verb governs, the subjunctive *querer que* forces) is not learned as a feature: it is a rule plus a
+    lexical feature of a lemma (*casa* is feminine; *querer que* takes the subjunctive);
   - **a combination:** nothing of its own. It is derivable, so it is learned when its parts are.
 - Proposed: **"every part" means every part introduced so far**, of those the course asks for this learner.
   A course that never teaches *sois* can still teach *ser* to the end, and a lemma whose new irregular form
