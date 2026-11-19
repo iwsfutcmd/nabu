@@ -569,11 +569,37 @@ A morpheme shows up in two different ways, and only one needs an object:
 **A Semitic root is not a morpheme; it is the key of a family.**
 - A morpheme has one sense. A root's meaning is at best a field (ك‑ت‑ب "to do with writing") and often not even
   that: ع‑ل‑م gives عِلْم "knowledge", عالِم "scholar", عَلَم "flag", عالَم "world". The word-based side of the
-  long debate (Bat-El 1994; Ussishkin 1999; Aronoff 2007, "In the beginning was the word") argues that
+  long debate (Bat-El 1994; Ussishkin 1999; Benmamoun 1999; Aronoff 2007, "In the beginning was the word") argues that
   Hebrew and Arabic morphology works on words and stems, and that roots need not mean anything.
 - So productive derivation starts from a lexeme, not a bare root: the active participle كاتِب is KATABA + the
   participle pattern, the root coming with the verb as part of its lexical form. A listed derivative with no
   lexeme to start from (مَكْتَب) stores its parts, root and pattern, as links.
+- **The barest pattern shows it: the Form I active participle فاعِل.** Every Form I verb has one, meaning "one who
+  Vs, Ving", and its shape ignores the verb's own vowels (كَتَبَ/يَكْتُبُ → كاتِب, ضَرَبَ/يَضْرِبُ → ضارِب,
+  شَرِبَ/يَشْرَبُ → شارِب). Its constituents are the verb and the participle morpheme; the root is read off the
+  verb, as the English plural reads the last sound of *cat* without that sound being a constituent. Distributed
+  Morphology (Arad 2005) says root + head instead; four facts point to the lexeme:
+  - **Valency:** the passive participle keeps the verb's preposition (غَضِبَ عَلَى → المَغْضُوبِ عَلَيْهِمْ).
+    Verbs govern prepositions; roots don't.
+  - **Stems:** in the derived Forms the participle is mu‑ on the verb's imperfective stem (Benmamoun 1999):
+    يُعَلِّمُ → مُعَلِّم, يَسْتَعْمِلُ → مُسْتَعْمِل.
+  - **Gaps and blocking follow the verb:** no Form X verb, no Form X participle; a stative verb normally takes an
+    adjective (حَسُنَ → حَسَن), not فاعِل.
+  - **Lexical features:** the diminutive فُعَيْل takes the noun's gender (شَمْس, feminine with no ة → شُمَيْسَة;
+    أُذُن → أُذَيْنَة). The root ش‑م‑س has no gender.
+- **So the root is a field of a Semitic lexeme's lexical form**, with the Form (a lexical feature, like Spanish
+  conjugation class) and the root class; the string is computed from them. It must be stored, not parsed: قالَ
+  and باعَ look alike until يَقُولُ and يَبِيعُ. It carries no learning state of its own: once the forms that show
+  it are known, it is derived.
+- **The participle is one morpheme whose allomorphs are templates**, chosen by the base's Form and root class:
+  فاعِل (Form I), قائِل (hollow), رامٍ (defective), مادّ (geminate), mu‑ + the imperfective stem (derived Forms).
+  The faint-slot display (lexemes.md §9) is how such an allomorph is shown.
+- **With no base lexeme there is no combination:** a coinage on a root with no verb is a listed morpheme, its
+  pattern a link. A lexicalised sense (كاتِب "scribe, author", مَشْرُوب "a drink") is its own morpheme, blocking
+  per sense, as *writer* (occupation) is.
+- **Open (apc):** the participle is verbal there (شايفه "I've seen him" takes an object suffix and reads as a
+  resultative). Is it a cell of the verb's paradigm (a feature, learned as a contrast) or derivation? The
+  constituents are the same either way.
 - What learners do with roots is a skill, not a sense: **root extraction** (a word → its root, a pattern
   applied backwards) is credited to the pattern's rule; the root itself has no learning state.
 
