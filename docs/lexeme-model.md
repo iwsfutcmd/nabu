@@ -652,6 +652,27 @@ A morpheme shows up in two different ways, and only one needs an object:
 - Where the hub is a lexeme (*write*; Chinese 學 in 學生, 學校, 大學), base links would do on their own; a family
   object is kept anyway, so that every family looks alike and has somewhere to put its label.
 
+### Outside Semitic: the object is the root, not the family (Proposed revision)
+
+- **Where a lexeme is the hub, a family is computed from base links** and there is nothing to store: *write* →
+  *writer*, *rewrite*; 學 → 學生, 大學; uz *oʻqi‑* → *oʻqit‑*, *oʻquvchi*; German *stehen* → *verstehen*.
+- **An object is needed only where the key isn't a lexeme.** Outside Semitic proper:
+  - Arabic roots in other languages' courses, with no live patterns: fa درس, مدرسه, معلم; chg کتاب, عالم.
+  - Latinate bound roots: Spanish *conducir*, *traducir*, *producir* have no *ducir*, yet share *‑duje*,
+    *‑duzco*, *‑ducción*, *‑ductor*; English *‑mit*/*‑mission*, *‑ceive*/*‑ception* (Aronoff 1976): form and
+    morphology with no meaning. es doesn't teach them yet.
+  - Austronesian bases (Indonesian *ajar*: *belajar* "study", *mengajar* "teach", *pelajaran* "lesson"),
+    which dictionaries list derivatives under, as Arabic ones do under roots. Javanese is planned.
+  - Bantu stems (Swahili *‑swahili*: *Mswahili*, *Waswahili*, *Kiswahili*).
+- **Not families:** Chinese phonetic series (青, 清, 晴, 請 share a written component, not a morpheme: a script
+  relation), etymological doublets (*frail* / *fragile*), cranberry morphs.
+- **So the object is the root**: a unit of form with no sense and no learning state (Aronoff's morphome). It
+  holds what its lexemes share: radicals and root class (a lexical form refers to it rather than copying them),
+  shared morphology (*‑duc‑*: preterite *‑uj‑*, stated once), an optional label with a source. Homonymous roots
+  are two roots with the same letters, as dictionaries number them. **The family is computed everywhere**:
+  lexemes linked through a shared part, a lexeme or a root. Still not a morpheme (Q6 stands); it replaces the
+  family object above.
+
 ## What the learner learns (Proposed)
 
 **The morpheme is the primary unit of what is taught and stored:** every listed pairing of form and meaning a
