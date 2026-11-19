@@ -88,38 +88,42 @@ classDiagram
   Utterance --> Combination : says one
 ```
 
-### 2. Examples: register in a paradigm, a concept across varieties, an irregular paradigm, affixes
+### 2. Examples: a concept across social forms, a concept across varieties, two-stem and irregular paradigms, affixes
 
 ```mermaid
 flowchart TB
-  subgraph EATG["one lexeme, register in its paradigm"]
+  subgraph EATG["concept EAT: three lexemes, one per social form"]
     direction LR
-    L1["lexeme EAT<br/>verb"] --> M1["morpheme mangan<br/>ngoko · elsewhere"]
-    L1 --> M2["morpheme nedha<br/>krama"]
-    L1 --> M3["morpheme dhahar<br/>krama inggil"]
+    C0["concept EAT"] --> L1["lexeme MANGAN<br/>verb · ngoko scope"] --> M1["morpheme mangan"]
+    C0 --> L2["lexeme NEDHA<br/>verb · krama scope"] --> M2["morpheme nedha"]
+    C0 --> L3["lexeme DHAHAR<br/>verb · honorific:<br/>a respected person's eating"] --> M3["morpheme dhahar"]
   end
   subgraph CARG["concept CAR: two lexemes in two varieties"]
     direction LR
     C1["concept CAR"] --> L7["lexeme CARRO<br/>noun · masculine<br/>Cuba, the Americas"] --> M7["morpheme carro"]
     C1 --> L8["lexeme COCHE<br/>noun · masculine<br/>Spain"] --> M8["morpheme coche"]
   end
+  subgraph GOG["one lexeme, two listed stems"]
+    direction LR
+    L9["lexeme RAFTAN 'go'<br/>verb · lemma رفتن<br/>= past stem + infinitive ‑an"] --> M9a["morpheme raft‑<br/>past stem"]
+    L9 --> M9b["morpheme rav‑<br/>present stem"]
+  end
   subgraph SERG["one lexeme, irregular paradigm"]
     direction LR
     L4["lexeme SER<br/>verb · irregular<br/>lemma ser = SER + infinitive"] --> M4a["morpheme s‑<br/>elsewhere stem: ser‑é, s‑ido"]
     L4 --> M4b["morpheme soy<br/>present 1sg"]
-    L4 --> M4c["morpheme es<br/>present 3sg"]
     L4 --> M4d["morpheme fue<br/>preterite 3sg"]
     L4 --> M4e["morpheme siendo<br/>gerund"]
   end
   subgraph AFFG["grammatical lexemes: affixes"]
     direction LR
-    L5["lexeme ablative<br/>case suffix"] --> M5["morpheme ‑dan"] --> A5["allomorph ‑dan"]
     L6["lexeme 1sg possessive<br/>suffix"] --> M6["morpheme ‑(i)m"]
     M6 --> A6a["allomorph ‑im<br/>after a consonant"]
     M6 --> A6b["allomorph ‑m<br/>elsewhere"]
   end
   EATG ~~~ CARG
-  CARG ~~~ SERG
+  CARG ~~~ GOG
+  GOG ~~~ SERG
   SERG ~~~ AFFG
 ```
 
@@ -268,6 +272,16 @@ that consistently causes suppletion probably works at the concept level, not ins
   by a concept (*hālā* / *aknun* "now"). The fa course has to choose its register scope(s) anyway.
 - **A register slip gets feedback**, as a dialect slip does: "that's the everyday plural; in formal writing,
   کتب".
+
+**Decided (2026-11-19): every Javanese register form is at the concept level.** *Mangan* (ngoko), *nedha*
+(krama) and *dhahar* (honorific: a respected person's eating) are three lexemes linked by the concept EAT;
+the speech level is a scope, the honorific a lexical feature of *dhahar*. Persian *raft‑* / *rav‑* are two
+listed stems of one lexeme. So a **concept links lexemes that differ only in social form**: the variety, the
+speech level, the honorific, who is speaking to whom about whom. Never in what is said.
+- Open: Spanish and French T–V (*tú* / *usted*, *tu* / *vous*) are then concept-linked too, by the same
+  definition.
+- Open: Javanese krama affixes (*di‑* / *dipun‑*, ‑e / ‑ipun): separate affix lexemes linked by a concept, like
+  the words, or allomorphs whose context is the speech level?
 
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic

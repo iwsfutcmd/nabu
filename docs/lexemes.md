@@ -43,8 +43,8 @@ Renamed 2026-11-19 (Decided); earlier drafts called the listed unit a "lexeme" a
 
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **concept** | Links lexemes, or cells, across the varieties of one language: the community's own correspondence | CAR (*carro* in Cuba, *coche* in Spain); Spain's *vosotros* ↔ Cuba's *ustedes* | Decided |
-| **lexeme** | A meaning (glossed) with lexical features (part of speech, gender, class), owning a paradigm; belongs to varieties. Its boundary: what a learner must know to know it | SER; EAT (*mangan*, *nedha*, *dhahar*); *casa* (feminine) | Decided |
+| **concept** | Links lexemes, or cells, that differ only in social form (variety, speech level, honorific), never in what is said | EAT (*mangan*, *nedha*, *dhahar*); CAR (*carro* in Cuba, *coche* in Spain) | Decided |
+| **lexeme** | A meaning (glossed) with lexical features (part of speech, gender, class), owning a paradigm; belongs to scopes (variety, register). Its boundary: what a learner must know to know it | SER; RAFTAN (*raft‑*, *rav‑*); *nedha*; *casa* (feminine) | Decided |
 | **morpheme** | What a learner learns: one sense with its lexical form(s), whatever can't be derived (§3), in any class and attachment. Bloomfield's minimal sign, stretched to portmanteaus and listed multi-word items | *kitob*, ‑dan, 呀, را, *ran*, *tuv-*, 東西, *darse cuenta* | Decided |
 | **allomorph** | One of a morpheme's forms, picked by a context: stored with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
 | **lemma** | A lexeme's citation form, the one word cards show (as in UD and ADR 0061) | *ichmoq*, خوردن | As now |
