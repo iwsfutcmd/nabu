@@ -853,6 +853,20 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
     the base-case rule, and contrast sets in grading (ADR 0066).
   - So the apc question is whether its participle's head is a value of the verb's paradigm (as PAST is) or a
     function making an adjective; the test is the one above (dimensions the base's paradigm lacks).
+  - **The two, side by side** (the owner's reading, 2026-11-19: both are combinations of lexemes; a
+    derivational one also makes a new lexeme):
+
+    | | Inflection (a value head) | Derivation (a function head) |
+    |---|---|---|
+    | the result | a cell of the base's lexeme | a new lexeme, computed (a value, not stored) |
+    | its category | the base's | the head's, or the base's where the head leaves it open (‑ito) |
+    | its meaning | the base's plus the feature | composed from both |
+    | its paradigm | the base's | its own, from its category: *writer*, *writers* |
+    | stored when | a cell no rule gives (*ran*, كُتُب) | anything about it no rule gives (*writer* "author"; كاتِب "clerk", plural كُتّاب) |
+    | the learner's test | part of knowing the base | not part of knowing the base |
+
+    Merge is binary, one head per step, derivation inside: *ishchilarimiz* is ((ISH + AGENT) + PL) + 1PL.POSS.
+    The first step makes a lexeme, ISHCHI "worker", whose own paradigm the next two steps fill.
   - **Decided (round 2): which feature values are lexemes.** One with a meaning that is merged as a head is: PAST
     (lemma ‑ed, its elsewhere morpheme; gloss PST; its part of speech a signature; learned as its contrast,
     as decided for features), the noun's PL, preterite and imperfect (two lexemes), DAT where it means
