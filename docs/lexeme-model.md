@@ -12,13 +12,13 @@ flowchart LR
     direction TB
     L1["lexical meaning<br/>(a gloss per support language)"]
     L2["part of speech"]
-    L3["lemma-wide features<br/>(a noun's gender, a verb's class)"]
+    L3["lemma features<br/>(gender, class, register, dialect)"]
   end
 
   subgraph LEX["Lexeme: stored, underivable"]
     direction TB
     X1["its lemma"]
-    X2["its own features<br/>(tense, person, case; register; dialect)"]
+    X2["its inflectional features<br/>(tense, person, case, number)"]
     X3["attachment<br/>(independent, clitic, or dependent + position)"]
     X4["lexical forms, or parts<br/>(the elsewhere form + forms with their contexts)"]
     X5["parts, with a source<br/>(base; root + pattern)"]
@@ -71,14 +71,14 @@ flowchart LR
 |---|---|
 | lexical meaning, as a gloss per support language | RUN "run"; HOUSE "house" |
 | part of speech | VERB, NOUN |
-| lemma-wide features | *casa*: feminine; *pensar*: e→ie |
+| lemma features: constant across its paradigm | *casa*: feminine; *pensar*: e→ie; *nedha*: krama; *carro*: Cuban |
 
 ### Stored on the lexeme (underivable)
 
 | | Examples |
 |---|---|
 | its lemma | *ran* → RUN |
-| its own features | *ran*: past; *nedha*: krama; *carro*: Cuban |
+| its inflectional features: what varies across the paradigm | *ran*: past; *fue*: preterite 3sg |
 | attachment | independent; clitic (*me*); dependent + position (‑ga, suffix) |
 | lexical forms: the elsewhere form, plus forms with their contexts | ‑ga; ‑ka after k; ‑qa after q |
 | parts, with a source (where it has them) | *writer* (occupation) ← *write* + ‑er; مَكْتَب ← ك‑ت‑ب + مَفْعَل |
@@ -122,17 +122,32 @@ lexeme's "own" surface form is the surface form of a **combination of one**.
 
 ## What diagramming surfaced
 
-1. **Features split by where they're stored, not by UD's lexical / inflectional line.** Register and dialect
-   vary within a lemma (*mangan* / *nedha* / *dhahar*; *carro* / *coche*), so they sit on the lexeme, like
-   tense. Lemma-wide features (part of speech, a noun's gender, a verb's class) sit on the lemma.
-2. **The gloss belongs to the lemma.** A lexeme's gloss is derived from the lemma's and its own features,
-   with an override where that reads badly.
+1. **Decided (2026-11-19): every lexical feature is on the lemma**, register and dialect included; a
+   lexeme carries only inflectional ones. The line is what stays constant across a paradigm: *nedha* and
+   *dhahar* each have their own inflected forms, as *carro* and *coche* have their plurals. That is UD's
+   lexical / inflectional line after all (an earlier draft put register and dialect on the lexeme).
+   - So *mangan*, *nedha* and *dhahar* are three lemmas, and *carro* and *coche* two. Proposed: what they
+     share is a **concept** (EAT, CAR), the object glosses belong to; a register or dialect question ("which
+     would you say to your grandmother?") asks among a concept's lemmas, and a register or dialect slip is
+     another lemma of the same concept. Two lemmas of one concept with every feature alike are the hole
+     noted in lexemes.md §8.
+2. **The gloss belongs to the concept** (Proposed; first the lemma). A lemma's gloss is the concept's plus
+   its features ("eat (krama)"), a lexeme's adds its inflectional ones ("run (past)"), with an override where
+   that reads badly.
 3. **An affix's lemma says what kind it is.** ‑ga's lemma is a feature value (Case=Dat), so it's
    inflectional; ‑er's is a function that makes a new lemma, so it's derivational. Nothing to store.
 4. **Open or closed comes from the part of speech**, as UD groups its tags, with a language override where
    needed.
-5. **Where do lexemes live?** Today KCs belong to a course. With surface forms projected per orthography,
-   a language-wide lexicon that courses draw on would let two courses of one language share lexemes.
+5. **Decided: one lexicon per language**, which every course of that language draws on; a language with
+   several orthographies projects them all from it. Where it could bite:
+   - an orthography whose spellings no rule gives (simplified from traditional Chinese merges 發 and 髮 into
+     发; the reverse can't be derived), so the lexical form must hold the fuller one;
+   - two courses wanting different analyses of one lexeme: a question of who owns the lexicon and signs it
+     off;
+   - provenance and review per lexeme, across courses, instead of per course file;
+   - bundles carry only the lexemes a course uses.
+   Varieties (Cuban, Beirut) live in one lexicon through dialect features; different languages that share a
+   script (lzh and yue, hbo and Modern Hebrew) have separate lexicons.
 6. **Next: combinations** (below).
 
 ## What the learner learns (Proposed)
