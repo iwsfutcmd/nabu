@@ -569,9 +569,16 @@ a new design language.
     so nothing can break the joining.
     - Prototyped 2026-11-18 with fontTools, the slot glyphs found by shaping with HarfBuzz (ٮ and ڡ in their
       init, medi and fina forms; ס): the dagesh, the points and the harakat stay black at 28%.
-    - The palette colour is set per theme with `@font-palette-values`. COLRv1 could paint the foreground
-      colour at an alpha, following light and dark by itself, but WebKit doesn't support COLRv1, so use
-      COLRv0 + CPAL.
+    - **The palette colour must be opaque.** Joined glyphs overlap at their joins by design, and each glyph
+      is painted on its own, so a translucent colour doubles up there: dark ticks along the baseline at
+      every join (rendered 2026-11-19, black at 28%). An opaque grey (#b8b8b8 on white) hides the
+      overlaps. CSS text in a translucent colour has the same flaw.
+    - So the grey is a theme token with a value for each theme, set with `@font-palette-values` per theme
+      (it takes no `var()`, so a test checks its values match the token's). COLRv1's foreground-at-an-alpha
+      would follow the theme by itself, but it has the same overlap problem and WebKit lacks it: COLRv0 +
+      CPAL.
+    - An opaque grey is tuned to one background: patterns on another surface (a card, a selected row) need
+      the token to match that surface, or they sit a little lighter or darker.
     - The font is used only for pattern shapes; built by a script from the pinned font, like the other
       subsets.
   - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
