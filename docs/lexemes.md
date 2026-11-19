@@ -1040,7 +1040,7 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
 
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
-18. Turn the decided parts into a Proposed ADR, or several.
+18. Turn the decided parts into a Proposed ADR, or several. Done 2026-11-19: ADRs 0145–0151 (Proposed).
 
 ## References
 
