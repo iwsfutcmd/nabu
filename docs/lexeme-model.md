@@ -238,6 +238,19 @@ The learner sees the same thing whichever way: the prompt tags the situation and
 contrast; a concept's coverage ("EAT: ngoko, krama, not yet krama inggil") is the view a learner of Javanese
 would want.
 
+**A rule of thumb, and its thorn** (the owner, 2026-11-19): most lexemes have a single morpheme, so a property
+that consistently causes suppletion probably works at the concept level, not inside a lexeme.
+- **The thorn: Persian verb stems.** Every Persian verb has a past and a present stem, and for the common verbs
+  the pair is unpredictable: رفتن *raft‑* / *rav‑* "go", دیدن *did‑* / *bin‑* "see", کردن *kard‑* / *kon‑* "do",
+  گفتن *goft‑* / *gu‑* "say", آمدن *āmad‑* / *ā‑* "come" (the ‑idan verbs are regular: *xābid‑* / *xāb‑*).
+  Tense consistently causes suppletion across the verb lexicon, yet *raft‑* and *rav‑* are plainly one
+  lexeme: knowing one without the other is a gap in knowing "go". Arabic broken plurals are the same thorn.
+- **A second, smaller one, also Persian:** formal Persian uses Arabic plurals beside ‑hā (خبرها / اخبار
+  "news", اسناد "documents"): register-conditioned suppletion inside a single cell.
+- Proposed refinement: consistent suppletion points to the concept level only when the property selects a lect
+  (speech level, variety) and leaves the proposition alone; a property with its own meaning in the
+  proposition (tense, number) stays inside the lexeme however suppletive it is.
+
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
   decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
