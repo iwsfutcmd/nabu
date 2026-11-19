@@ -818,6 +818,19 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
 - **Inflection:** a combination is a morpheme plus features (kitob + {plural, 1sg possessor, ablative}). The
   language's template orders the exponents, as realizational morphology has it, so nothing is stored but
   the features.
+- **Decided (2026-11-19): a cell is built as a derivative is.** Both merge a base lexeme with another lexeme:
+  a cell with a feature's lexeme (PAST, DAT, 1SG), a derivative with a pattern's or an affix's (فاعِل, ‑er).
+  One operation, its head computing the result.
+  - **The feature is merged, not its suffix:** RUN + PAST, and realization picks ‑ed, or *ran* where RUN lists
+    a morpheme for it; one exponent may realise several features (*fue*, Spanish ‑ó: past and 3sg).
+  - **Proposed: inflection and derivation remain, as kinds of head**, not as mechanisms. A feature's lexeme is a
+    value of a dimension its base's category has, and its result stays in the base's lexeme (a cell); a
+    pattern's or a derivational affix's lexeme is a function, and its result is a new, computed lexeme. The
+    kind decides the learner's test and progress (*ser*: 5 of 9 forms), where a listed form lives (*ran* in
+    RUN; كاتِب "clerk" its own lexeme), the gloss ("run (past)" against "writer"), blocking within a paradigm,
+    the base-case rule, and contrast sets in grading (ADR 0066).
+  - So the apc question is whether its participle's head is a value of the verb's paradigm (as PAST is) or a
+    function making an adjective; the test is the one above (dimensions the base's paradigm lacks).
 - **Order rules are stated once per language, never per combination:** affix templates and position
   classes, clitic clusters (Spanish *se* > 2nd > 1st > 3rd: *se te lo*), clitic placement by host (*me lo
   da*, *dámelo*), head direction.
