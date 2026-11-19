@@ -219,6 +219,25 @@ inside paradigms. Elsewhere it is chosen by picking a lexeme.
 - So the variety example changes level: Spain's *vosotros* and Cuba's *ustedes* are pronoun lexemes linked by
   a concept, and the verb forms that agree with them (*habláis* / *hablan*) are cells linked by one.
 
+**Then Javanese too?** (the owner: "by this logic, Javanese register feels like a concept link"). Proposed,
+reversing "register is a paradigm dimension" for Javanese by applying the T–V reasoning consistently. Register
+is realised in three ways, and only one is a paradigm dimension:
+- **A dedicated exponent: a paradigm dimension.** Korean's speech-level endings (‑yo, ‑seumnida), Japanese
+  ‑masu: every verb has the cells, and the ending's meaning *is* the politeness.
+- **Substituted forms: a scope, like a variety.** Javanese speech levels replace words (*mangan* → *nedha*) and
+  affixes (*di‑* → *dipun‑*) with other forms of the same things, and anything without a krama form is shared,
+  exactly as entries are shared across varieties by default. Ngoko and krama are then lects within one
+  speaker's repertoire: the krama affixes are allomorphs whose context is the utterance's speech level,
+  *nedha* is a krama-scoped lexeme, and a concept links it to *mangan*. It matches how speakers put it:
+  "he can't speak krama" is a missing lect, not a missing form of *mangan*.
+- **A lexeme with its own feature: a lexical choice.** Spanish and French T–V pronouns, and Javanese honorifics
+  for a referent (*dhahar* for a respected person's eating, *matur* for one's own speaking to them), which
+  vary word by word within one utterance (*Kula sampun nedha, Bapak sampun dhahar*).
+
+The learner sees the same thing whichever way: the prompt tags the situation and the choice is learned as a
+contrast; a concept's coverage ("EAT: ngoko, krama, not yet krama inggil") is the view a learner of Javanese
+would want.
+
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
   decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
