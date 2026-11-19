@@ -203,6 +203,22 @@ case to watch: speakers also talk about it as a layer ("he can't speak krama"), 
 word by word. Both views can be derived from one model: register cells on each lexeme, and a krama
 vocabulary count summed over them. A course can still stage it: ngoko first, krama cells introduced later.
 
+**Register outside Javanese** (the owner, 2026-11-19: "at least when it's this formalized; I'm not so sure
+about Spanish or French"). Proposed: register is a paradigm dimension only where the language realises it
+inside paradigms. Elsewhere it is chosen by picking a lexeme.
+- **Javanese** (and Korean's speech levels, Japanese *‑masu*, *meshiagaru* for *taberu*): verbs, nouns and
+  affixes have register cells, with a default. A paradigm dimension.
+- **Spanish and French T–V**: no verb has a formality cell. Formality is chosen by picking a pronoun, whose own
+  person and number then drive agreement: *usted es* is a third-person form, *vous êtes* a plural one
+  (with singular adjectives: *vous êtes gentil*). So *tú* and *usted*, *tu* and *vous*, are separate lexemes.
+  Knowing *tú* without *usted* is a gap in addressing people, not in knowing *tú*, as with *padre* and *madre*.
+  French *vous* has two senses, plural and polite singular, so two morphemes.
+- Either way, register is still a feature the learner chooses from the situation: the prompt tags it (§12 of
+  lexemes.md) and it is learned as a contrast. What differs is only how the language realises it: inside a
+  lexeme's paradigm, or by choosing between lexemes.
+- So the variety example changes level: Spain's *vosotros* and Cuba's *ustedes* are pronoun lexemes linked by
+  a concept, and the verb forms that agree with them (*habláis* / *hablan*) are cells linked by one.
+
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
   decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
