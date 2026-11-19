@@ -251,6 +251,24 @@ that consistently causes suppletion probably works at the concept level, not ins
   (speech level, variety) and leaves the proposition alone; a property with its own meaning in the
   proposition (tense, number) stays inside the lexeme however suppletive it is.
 
+**How a scoped morpheme is triggered** (Persian Arabic plurals, 2026-11-19). Proposed:
+- **Scope is part of the Elsewhere lookup.** A listed morpheme is a candidate only if it belongs to the
+  utterance's scope; among the candidates, the most specific wins. KETĀB + plural in a formal utterance finds
+  کتب *kotob* (listed for plural, formal); in an everyday one *kotob* isn't a candidate, nothing listed
+  covers plural, and the rule gives کتاب‌ها *ketābhā*.
+- **Scopes have two axes:** variety (Cuban, Tehrani) and register (krama; formal written Persian). Each
+  morpheme, lexeme and rule belongs to the scopes that have it, shared by default; an utterance has one of
+  each, a course a range, and a prompt tags it ("in an official letter").
+- **Each listed form carries its own register range**, since Persian formality is a gradient: کتب is
+  written-only, اخبار is everyday too.
+- **A plural with its own sense is a separate morpheme**, not a register form: اخبار "the news" (a broadcast)
+  beside خبرها "news items".
+- **Persian register is a scope pair like ngoko and krama**, realised three ways: scoped rules (colloquial
+  *mi‑ram* for *mi‑ravam*, ‑e for است), sporadic scoped morphemes (Arabic plurals), and scoped lexemes linked
+  by a concept (*hālā* / *aknun* "now"). The fa course has to choose its register scope(s) anyway.
+- **A register slip gets feedback**, as a dialect slip does: "that's the everyday plural; in formal writing,
+  کتب".
+
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
   decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
