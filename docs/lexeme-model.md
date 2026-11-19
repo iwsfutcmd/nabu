@@ -884,6 +884,15 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
       *panadero* (‑ero's senses, a trade, a container, a tree, can't be predicted), *ahorita* (by region
       "right now" or "in a while", neither of them "now" plus a diminutive). In practice the computed ones are the transparent, productive heads:
       Arabic participles and the verbal nouns of Forms II–X, Spanish ‑mente, English ‑ness.
+    - **What still differs for the learner** (the owner asked, 2026-11-19): a regular cell and a regular
+      derivative are alike, evidence for their parts. The difference is in the head and in what is listed:
+      a value head is a **choice the learner makes every time** they use the base (every Spanish verb needs a
+      tense and a person; learned as a contrast, asked as "which form"; a miss is grammatical; prompts are
+      tagged for it), a function head **a meaning they choose to add** (AGENT "one who"; learned as a sense,
+      asked as "which word"; a miss is lexical; no tags). A listed cell is part of knowing its base (*ran*); a
+      listed derivative is a word of its own (*writer* "author"). A derivative can take inflection of its own
+      (*escritora*, *escritores*); a cell takes no derivation. In short: a cell is the word in another form,
+      a derivative another word made from it.
   - **Decided (round 2): which feature values are lexemes.** One with a meaning that is merged as a head is: PAST
     (lemma ‑ed, its elsewhere morpheme; gloss PST; its part of speech a signature; learned as its contrast,
     as decided for features), the noun's PL, preterite and imperfect (two lexemes), DAT where it means
