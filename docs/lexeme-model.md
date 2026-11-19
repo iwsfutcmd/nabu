@@ -881,8 +881,8 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
       infinitely many derivatives is the point: knowing AGENT is being able to make any of them (the wug
       card, last).
     - **Once anything about it is listed, it is a lexeme**, stored and learned: *writer* "author", كاتِب "clerk",
-      *panadero* (‑ero's senses, a trade, a container, a tree, can't be predicted), Cuban *ahorita* (not
-      "now, a little": "in a while"). In practice the computed ones are the transparent, productive heads:
+      *panadero* (‑ero's senses, a trade, a container, a tree, can't be predicted), *ahorita* (by region
+      "right now" or "in a while", neither of them "now" plus a diminutive). In practice the computed ones are the transparent, productive heads:
       Arabic participles and the verbal nouns of Forms II–X, Spanish ‑mente, English ‑ness.
   - **Decided (round 2): which feature values are lexemes.** One with a meaning that is merged as a head is: PAST
     (lemma ‑ed, its elsewhere morpheme; gloss PST; its part of speech a signature; learned as its contrast,
