@@ -20,66 +20,235 @@ phonetic-semantic resemblance to any other form (東西 "thing" resembles 東 an
 Earlier drafts called the listed unit a "lexeme" and the paradigm-owner a "lemma"; this doc and lexemes.md
 now use the names above.
 
-## What is stored, and what is derived
+## Diagrams (2026-11-19)
+
+The whole model in the current terms. Where older prose in this file or lexemes.md disagrees, these win.
+
+### 1. The objects: entities (stored), values (computed), instances (content)
+
+```mermaid
+classDiagram
+  direction TB
+  class Concept {
+    <<entity>>
+    a lexical or grammatical meaning
+    glosses, one per support language
+  }
+  class Lexeme {
+    <<entity>>
+    part of speech
+    lexical features - gender, class, register, dialect
+    owns a paradigm
+    lemma - its citation form, derived
+  }
+  class Morpheme {
+    <<entity>>
+    inflectional features - the cell it fills
+    attachment - free, clitic, or affix with position
+    parts - base, root, pattern - optional, with a source
+    provenance, licence
+  }
+  class Allomorph {
+    <<entity>>
+    lexical form - fully specified, in the script
+    context - none for the elsewhere form
+    which radical a fixed letter stands for
+  }
+  class Rule {
+    <<entity>>
+    conditions, productivity
+    merge, allomorph choice, boundary, order, projection
+  }
+  class Feature {
+    <<entity>>
+    lexical or inflectional
+    inherent or contextual
+    its uses
+  }
+  class Combination {
+    <<value>>
+    morphemes, features, structure
+    derived - lexical form, surface forms, readings, audio
+  }
+  class Utterance {
+    <<instance>>
+    a combination plus its order
+    translations, accept sets, provenance
+  }
+  Concept "1" --> "1..*" Lexeme : shared by
+  Lexeme "1" --> "1..*" Morpheme : its listed members
+  Morpheme "1" --> "1..*" Allomorph : its forms, by context
+  Morpheme ..> Morpheme : parts
+  Lexeme ..> Feature : lexical features
+  Morpheme ..> Feature : inflectional features
+  Combination o-- Morpheme : built from
+  Combination ..> Rule : realised by
+  Utterance --> Combination : says one
+```
+
+### 2. Examples: concepts, lexemes, morphemes, allomorphs
+
+```mermaid
+flowchart TB
+  subgraph EAT["concept EAT"]
+    direction LR
+    L1["lexeme MANGAN<br/>verb · ngoko"] --> M1["morpheme mangan"] --> A1["allomorph mangan"]
+    L2["lexeme NEDHA<br/>verb · krama"] --> M2["morpheme nedha"] --> A2["allomorph nedha"]
+    L3["lexeme DHAHAR<br/>verb · krama inggil"] --> M3["morpheme dhahar"] --> A3["allomorph dhahar"]
+  end
+  subgraph BE["concept BE (essence)"]
+    direction LR
+    L4["lexeme SER<br/>verb · irregular"] --> M4a["morpheme ser<br/>elsewhere: infinitive"]
+    L4 --> M4b["morpheme soy<br/>present 1sg"]
+    L4 --> M4c["morpheme es<br/>present 3sg"]
+    L4 --> M4d["morpheme fue<br/>preterite 3sg"]
+  end
+  subgraph ABL["concept ABLATIVE 'from' (a feature value)"]
+    direction LR
+    L5["lexeme ablative<br/>case suffix"] --> M5["morpheme ‑dan"] --> A5["allomorph ‑dan"]
+  end
+  subgraph POSS["concept MY (1sg possessor)"]
+    direction LR
+    L6["lexeme 1sg possessive<br/>suffix"] --> M6["morpheme ‑(i)m"]
+    M6 --> A6a["allomorph ‑im<br/>after a consonant"]
+    M6 --> A6b["allomorph ‑m<br/>elsewhere"]
+  end
+  EAT ~~~ BE
+  BE ~~~ ABL
+  ABL ~~~ POSS
+```
+
+### 3. What is stored, and what is derived
 
 ```mermaid
 flowchart LR
-  subgraph LEMMA["Lexeme: stored, shared by a paradigm"]
+  subgraph S["Stored (entities)"]
     direction TB
-    L1["lexical meaning<br/>(a gloss per support language)"]
-    L2["part of speech"]
-    L3["lexeme features<br/>(gender, class, register, dialect)"]
+    C["concept<br/>glosses"]
+    LX["lexeme<br/>part of speech, lexical features"]
+    MO["morpheme<br/>inflectional features, attachment,<br/>parts with a source, provenance"]
+    AL["allomorphs<br/>lexical form + context"]
   end
-
-  subgraph LEX["Morpheme: stored, underivable"]
+  subgraph D["Language and course data"]
     direction TB
-    X1["its lexeme"]
-    X2["its inflectional features<br/>(tense, person, case, number)"]
-    X3["attachment<br/>(independent, clitic, or dependent + position)"]
-    X4["lexical forms, or parts<br/>(the elsewhere form + forms with their contexts)"]
-    X5["parts, with a source<br/>(base; root + pattern)"]
-    X6["provenance, license,<br/>notes, image"]
+    RU["rules<br/>merge, allomorph, boundary, order"]
+    PR["projection rules<br/>per orthography, per scheme"]
+    CX["contexts"]
+    CO["course<br/>orthographies, facets, voice"]
   end
-
-  subgraph DATA["Language and course data"]
+  subgraph V["Derived on a combination (values)"]
     direction TB
-    R1["merge and projection rules"]
-    R2["contexts"]
-    R3["course: orthographies,<br/>facets, voice"]
+    LF["its lexical form"]
+    SF["surface forms per orthography,<br/>with variants"]
+    PH["phonemic forms per scheme"]
+    AU["audio"]
+    HO["homographs"]
+    LE["the lemma: a combination of one<br/>in the citation cell, in isolation"]
   end
-
-  subgraph COMB["Combination (a word card is a combination of one, in isolation)"]
+  subgraph M["Derived on a morpheme or lexeme"]
     direction TB
-    C1["surface forms per orthography,<br/>with variants; citation form"]
-    C2["phonemic forms per scheme"]
-    C3["audio"]
-    C4["homographs<br/>(como: eat.1SG / like)"]
+    SE["sense = concept + features,<br/>and its gloss"]
+    OC["open or closed, from part of speech"]
+    ID["inflectional or derivational"]
+    PF["paradigm, family"]
+    LG["literal gloss, from its parts"]
+    FA["facets asked"]
   end
-
-  subgraph DER["Morpheme: derived"]
-    direction TB
-    D3["sense = lexeme + features,<br/>and its gloss (run, past)"]
-    D4["open or closed class"]
-    D9["inflectional or derivational<br/>(an affix)"]
-    D5["paradigm, family"]
-    D6["literal gloss"]
-    D7["facets asked"]
-  end
-
-  X1 --> L1
-  R2 --> X4
-  X4 --> R1
-  R1 --> C1
-  R1 --> C2
-  C2 --> C3
-  C1 --> C4
-  L1 & X2 --> D3
-  L2 --> D4
-  X1 --> D9
-  X1 & X5 --> D5
-  X5 --> D6
-  L3 & C1 & C2 & R3 --> D7
+  AL --> RU
+  CX --> AL
+  RU --> LF --> PR
+  PR --> SF
+  PR --> PH --> AU
+  SF --> HO
+  LF --> LE
+  C & LX & MO --> SE
+  LX --> OC
+  MO --> ID
+  LX & MO --> PF
+  MO --> LG
+  SF & PH & CO & LX --> FA
 ```
+
+### 4. Realising a lexeme and features: blocking by the most specific listed morpheme
+
+```mermaid
+flowchart TB
+  REQ["merge: a lexeme + inflectional features<br/>RUN + past · SCAN + past · TENER + preterite, 1sg"]
+  LOOK{"the lexeme's listed morphemes whose features<br/>are a subset of the request: the most specific"}
+  GAP["a listed gap<br/>Russian победить + non-past, 1sg"]
+  NONE["no form: the combination doesn't exist"]
+  ALL["covers every feature<br/>ran"]
+  PART["covers some: it is the stem<br/>tuv‑ = TENER + preterite"]
+  BASE["covers none: the stem is<br/>the elsewhere morpheme · scan"]
+  AFF{"the remaining features: the most specific<br/>affix morpheme whose conditions hold"}
+  A1["‑e, strong-preterite ending · tuve"]
+  A2["‑ed, the elsewhere past · scan‑ed"]
+  ALO["allomorph choice by context, boundary rules<br/>→ the combination's lexical form"]
+  PRJ["projection → surface forms, readings<br/>SCAN + past = scanned"]
+  OFF["the same with listed morphemes ignored:<br/>the overregularisation a learner may type · *runned"]
+  REQ --> LOOK
+  LOOK -->|a gap| GAP --> NONE
+  LOOK -->|all| ALL --> ALO
+  LOOK -->|some| PART --> AFF
+  LOOK -->|none| BASE --> AFF
+  AFF --> A1 --> ALO
+  AFF --> A2 --> ALO
+  ALO --> PRJ
+  REQ -.->|blocking off| OFF
+```
+
+### 5. A combination, from morphemes to surface forms
+
+```mermaid
+flowchart LR
+  subgraph IN["An utterance's word (stored)"]
+    direction TB
+    T1["lexeme KITOB + plural, 1sg possessor, ablative"]
+    T2["its setting: neighbours, pause"]
+  end
+  subgraph R["Rules"]
+    direction TB
+    R1["realise: morphemes kitob, ‑lar, ‑(i)m, ‑dan"]
+    R2["order: the suffix template"]
+    R3["allomorphs by context: ‑im after r"]
+    R4["boundary rules"]
+    R5["projection"]
+  end
+  subgraph OUT["Derived (values)"]
+    direction TB
+    O1["lexical form kitoblarimdan"]
+    O2["uz-Latn kitoblarimdan · uz-Cyrl китобларимдан"]
+    O3["gloss book‑PL‑1SG.POSS‑ABL"]
+    O4["morphs: where each morpheme sits"]
+  end
+  CHK["checked against the authored text:<br/>a mismatch is a missing rule,<br/>or something that is really a morpheme"]
+  T1 --> R1 --> R2 --> R3 --> R4 --> O1 --> R5 --> O2
+  T2 --> R3
+  T1 --> O3
+  R4 --> O4
+  O2 --> CHK
+```
+
+### 6. What is learned, and what counts as shown
+
+```mermaid
+flowchart LR
+  ANS["a graded answer<br/>to an utterance"] --> AN["its analysis<br/>morphemes, features, structure"]
+  AN -->|credit or miss, only where grading pins it| K
+  subgraph K["What is learned: every part that can't be derived, introduced so far"]
+    direction TB
+    KL["lexeme<br/>its meaning both ways; its lexical features;<br/>every listed morpheme of its paradigm"]
+    KM["morpheme<br/>its sense both ways; each stored allomorph in its context;<br/>each unpredictable edge: listen, read, spell, vocalise"]
+    KF["feature, as a contrast<br/>each use of each value, chosen and read,<br/>on two different sentences"]
+    KR["rule<br/>each branch, on items not memorised:<br/>several morphemes, or a wug"]
+    KC["combination<br/>nothing of its own"]
+  end
+  K --> SH["each shown: a first try, right, not self-rated,<br/>on a later day than it was met and last missed"]
+```
+
+## What is stored, and what is derived
+
+(Now Diagram 3, below "Naming".)
 
 ### Stored on the lexeme (shared by every morpheme of a paradigm)
 
@@ -256,43 +425,7 @@ A combination is derivable by definition: whatever isn't is a morpheme (lexemes.
 stored, in the course text; everything else is derived, and the derived surface form is checked against
 what the author wrote.
 
-```mermaid
-flowchart LR
-  subgraph IN["Stored: in the course text"]
-    direction TB
-    T1["its morphemes, in order<br/>kitob + ‑lar + ‑im + ‑dan"]
-    T2["its setting<br/>(neighbours, pause)"]
-  end
-
-  subgraph RULES["Language rules"]
-    direction TB
-    C3["order and templates<br/>(affix order; root + pattern)"]
-    C1["allomorph choice<br/>(‑im after a consonant, ‑m after a vowel)"]
-    C2["boundary rules<br/>(vowel reduction, sandhi, assimilation)"]
-    P1["projection rules"]
-  end
-
-  subgraph OUT["Derived"]
-    direction TB
-    O1["the combination's lexical form"]
-    O2["surface forms<br/>kitoblarimdan · китобларимдан"]
-    O3["phonemic forms"]
-    O4["features<br/>plural, 1sg possessor, ablative"]
-    O5["interlinear gloss<br/>book-PL-1SG.POSS-ABL"]
-    O6["morphs: where each morpheme sits"]
-  end
-
-  CHECK["compared with the authored text:<br/>a mismatch means a missing rule,<br/>or something that is really a morpheme"]
-
-  T1 --> C3 --> C1 --> C2 --> O1 --> P1
-  T2 --> C1
-  T2 --> C2
-  P1 --> O2
-  P1 --> O3
-  T1 --> O4 --> O5
-  C2 --> O6
-  O2 --> CHECK
-```
+(Now Diagram 4.)
 
 **Combining is more than concatenating.** It works on lexical forms, then projects:
 - **order and templates:** affix order; a root interleaved with its pattern;
@@ -350,30 +483,7 @@ past of *run* is *ran*" is written once, on *ran*, and nowhere else.
 **The lookup is the Elsewhere Condition** (Pāṇini's principle, in Stump's Paradigm Function Morphology; the
 Subset Principle in Distributed Morphology): the most specific item wins.
 
-```mermaid
-flowchart TB
-  REQ["merge: lexeme + features<br/>RUN + {past} · SCAN + {past} · TENER + {preterite, 1sg}"]
-  LOOK{"listed morphemes of this lexeme<br/>whose features are a subset of the request:<br/>take the most specific"}
-  GAP["a listed gap<br/>(Russian победить + {non-past, 1sg})"]
-  NONE["no form: the combination doesn't exist"]
-  ALL["it covers every feature:<br/>done · ran"]
-  PART["it covers some:<br/>it is the stem · tuv‑ {TENER, preterite}"]
-  BASE["it covers none:<br/>the stem is the lexeme's elsewhere morpheme · scan"]
-  AFF{"realise the remaining features:<br/>the most specific affix whose conditions hold"}
-  A1["‑e, the strong-preterite ending<br/>(the stem's class) · tuve"]
-  A2["‑ed, the elsewhere past · scan‑ed"]
-  BND["boundary and projection rules<br/>SCAN + {past} = scanned"]
-  OFF["the same, with listed morphemes ignored:<br/>the overregularisation a learner may type · *runned"]
-
-  REQ --> LOOK
-  LOOK -->|a gap| GAP --> NONE
-  LOOK -->|all| ALL
-  LOOK -->|some| PART --> AFF
-  LOOK -->|none| BASE --> AFF
-  AFF --> A1 --> BND
-  AFF --> A2 --> BND
-  REQ -.->|blocking off| OFF
-```
+(Now Diagram 5.)
 
 1. Index the lexicon at compile time by lexeme. Among a lexeme's listed morphemes, take those whose features
    are a subset of the request, and the most specific of them.
