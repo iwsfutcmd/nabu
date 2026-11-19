@@ -179,6 +179,22 @@ Proposed refinement (2026-11-19), after the owner found *carro* / *coche* as one
 The diagnostics so far: is the choice one speaker's; does grammar (affixes, agreement) realise it; does a
 default cover both values; is the mapping one-to-one. Where they disagree is where concept and lexeme blur.
 
+**The owner's verdicts (2026-11-19):**
+- **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
+  decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
+  masculine noun as *casa* is a feminine one. (Open: *niño* / *niña*, where the ‑a is regular.)
+- **Literary and colloquial readings are different words** (生 *saang1* in 生日, *sang1* in 學生; Decided).
+  Diachrony is not our concern.
+- **Variety-scoped cells are concept territory** (Decided): Spain's 2nd plural familiar (*vosotros*) and Cuba's
+  2nd plural (*ustedes*) are linked by a concept. A concept can link cells as well as lexemes.
+- **A further layer, provisionally "meaning"** (it may not exist): diglossic pairs (佢 / 他), stylistic
+  doublets without grammar (*samolyot* / *tayyora*) and many-to-one registers sit between meaning and concept.
+  Proposed working line: a **concept** is a correspondence the community itself makes between items of one
+  language's grammars ("in Cuba we say *carro* for Spain's *coche*"); a **meaning** is only an equivalence of
+  sense, as in translation. Proposed: meaning stays implicit, carried by glosses and accept sets, never an
+  object, until a feature needs it. Both serve the same feedback: "another word that would be right under a
+  different scope".
+
 ### 3. What is stored, and what is derived
 
 ```mermaid
