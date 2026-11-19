@@ -565,7 +565,7 @@ A morpheme shows up in two different ways, and only one needs an object:
   derived for it (a clip, a homograph mark) is keyed by that content, the way clips said alike already share
   a file.
 
-## Roots and families (Proposed, 2026-11-19)
+## Roots and families (Decided 2026-11-19, revised below)
 
 **A Semitic root is not a morpheme; it is the key of a family.**
 - A morpheme has one sense. A root's meaning is at best a field (ك‑ت‑ب "to do with writing") and often not even
@@ -652,7 +652,7 @@ A morpheme shows up in two different ways, and only one needs an object:
 - Where the hub is a lexeme (*write*; Chinese 學 in 學生, 學校, 大學), base links would do on their own; a family
   object is kept anyway, so that every family looks alike and has somewhere to put its label.
 
-### Outside Semitic: the object is the root, not the family (Proposed revision)
+### Outside Semitic: the object is the root, not the family (Decided 2026-11-19)
 
 - **Where a lexeme is the hub, a family is computed from base links** and there is nothing to store: *write* →
   *writer*, *rewrite*; 學 → 學生, 大學; uz *oʻqi‑* → *oʻqit‑*, *oʻquvchi*; German *stehen* → *verstehen*.
@@ -672,6 +672,11 @@ A morpheme shows up in two different ways, and only one needs an object:
   are two roots with the same letters, as dictionaries number them. **The family is computed everywhere**:
   lexemes linked through a shared part, a lexeme or a root. Still not a morpheme (Q6 stands); it replaces the
   family object above.
+- **Phonaesthemes are not roots** (Firth's *gl‑* in *glitter*, *glow*, *gleam*). A root is the reverse case:
+  form and morphology with no meaning, where a phonaestheme is a loose meaning with no morphology (*‑itter* is
+  nothing) and counterexamples (*glove*, *glue*). Nabu models neither the association nor the hint (no folk
+  etymology). Where sound symbolism is systematic it is morphology, a feature with an exponent: Korean
+  반짝 / 번쩍 (bright and dark vowels: small and big), Japanese キラキラ / ギラギラ (voicing: harsher).
 
 ## What the learner learns (Proposed)
 

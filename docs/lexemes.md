@@ -975,8 +975,11 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   (*oʻqit‑* "teach") is its own lexeme, a transparent one a combination.
 - Decided with 4: a lexeme's progress is shown (*ser*: 5 of 9 forms), since a lexeme is learned only once every
   part the course teaches is shown.
-- Still open (numbered as in the list above), with proposals in lexeme-model.md: 6 (roots: a field of the lexical
-  form and a family's key, not a morpheme), 7 (the family as an object), 8 (lexical features as rules' input;
+- Decided: 6 and 7 together. A root is not a morpheme (no sense, no learning state) but an object, a unit of
+  form: its radicals and root class, shared morphology (*‑duc‑*: preterite *‑uj‑*) and an optional label.
+  Patterns apply to a base lexeme. Families are computed (lexemes linked through a shared lexeme or root), so
+  there is no family object (lexeme-model.md, "Outside Semitic").
+- Still open (numbered as above), with proposals in lexeme-model.md: 8 (lexical features as rules' input;
   projection tables as rules), 9 (chunks); and two that came up since: whether apc's active participle is a
   cell of the verb or derivation, and part of speech on the lexeme with derivational heads' signatures.
 
