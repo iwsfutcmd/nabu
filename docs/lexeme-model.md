@@ -137,6 +137,15 @@ flowchart TB
   combination and the language's rules; what is left over, the choice among grammatical orders, is
   information structure (topic, focus). The stored order stands in for that, until we model it.
 
+**Reopened (2026-11-19): is register a lexical feature at all?** The owner's observation: *mangan* / *nedha*
+could be one lexeme EAT + register, as *ran* is RUN + past. The model supports it: register is realised
+like inflection, by the most specific listed morpheme (*nedha* for EAT + krama) and otherwise by the
+elsewhere one (a word with no krama form is said the same way in krama speech), and *nedha* takes the krama
+affixes (*dipun-*) as *tuv-* takes the preterite endings. It distributes over the utterance like agreement
+(speech level with the addressee, honorifics with the referent, as Korean's ‑si‑ agrees with its subject).
+If so, register (and dialect, which distributes the same way) are paradigm dimensions, and the concept has
+no job left inside a language. See lexemes.md §16.
+
 ### 3. What is stored, and what is derived
 
 ```mermaid
