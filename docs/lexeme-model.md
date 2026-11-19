@@ -917,6 +917,17 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
     female), unlike the derivational FEM of *niña* and خالة, which is a lexeme. Agreement and government
     merge no head of their own: *blanca*'s ‑a spreads *casa*'s gender by a rule, and a verb's governed dative
     is a rule plus its lexical feature. So FEM names two objects that share a label.
+  - **The infinitive head is a lexeme (the owner, 2026-11-19: forming an infinitive is a task to learn).** INF,
+    a value of the verb's VerbForm dimension (finite, infinitive, gerund, participle), with lemma ‑r, as PAST's
+    is ‑ed. The form *hablar* is HABLAR + INF, a combination; HABLAR's own part stays one (*habl‑* with its ‑ar
+    class). Three things to learn, apart:
+    1. HABLAR: its meaning, its stem and class (the lexeme's part);
+    2. forming an infinitive: stem + the class's vowel + ‑r (INF's rule, its branches ‑ar, ‑er, ‑ir);
+    3. when to use one: where it is chosen (*Hablar es fácil*), INF's meaning; where it is required (*quiero
+       hablar*, *para hablar*), government: a rule plus the governing word's lexical feature (*querer* takes
+       an infinitive), as with a governed dative.
+    The reverse, from a form to its lemma (*hablamos* → *hablar*; *fuimos* → *ser* or *ir*), is Spanish's
+    dictionary skill, as root extraction is Arabic's: credited to the same rules and listed forms.
   - **A function head is a lexeme too (the owner, 2026-11-19: "‑er should be a lexeme!").** AGENT, with lemma
     ‑er; ACTIVE PARTICIPLE, with lemma فاعِل; PLACE (مَفْعَل); DIMINUTIVE (‑ito); uz AGENT (‑chi). Named by its
     meaning, its affix or pattern its lemma, as PAST's is ‑ed. **Productivity doesn't make a lexeme; it decides
