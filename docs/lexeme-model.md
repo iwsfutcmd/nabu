@@ -538,7 +538,8 @@ morpheme's "own" surface form is the surface form of a **combination of one**.
    its features ("eat (krama)"), a morpheme's adds its inflectional ones ("run (past)"), with an override where
    that reads badly.
 3. **An affix's lexeme says what kind it is.** ‑ga's lexeme is a feature value (Case=Dat), so it's
-   inflectional; ‑er's is a function that makes a new lexeme, so it's derivational. Nothing to store.
+   inflectional; ‑er's is a function that makes a new lexeme (a computed one, unless something about it is listed), so it's
+   derivational. Nothing to store.
 4. **Open or closed comes from the part of speech**, as UD groups its tags, with a language override where
    needed.
 5. **Decided: one lexicon per language**, which every course of that language draws on; a language with
@@ -602,6 +603,21 @@ A morpheme shows up in two different ways, and only one needs an object:
 - **Open (apc):** the participle is verbal there (شايفه "I've seen him" takes an object suffix and reads as a
   resultative). Is it a cell of the verb's paradigm (verb + a participle feature, learned as a contrast) or
   derivation (verb + the pattern)? A combination either way, never a lexeme.
+- **Part of speech stays on the lexeme; a derivation's output is a computed lexeme (Proposed).** فاعِل changes
+  category, so كاتِب "one who writes" isn't a verb, but it isn't a form of كَتَبَ either: if derived words sat
+  under their base's lexeme, derivation would be inflection. The output is a lexeme computed from its parts:
+  its category from its head (فاعِل takes a fiʿl and makes an ism), its meaning from both, its paradigm from its
+  category (كاتِب, كاتِبة, كاتِبُون, الكاتِبُ: case and definiteness, which no verb has). It is stored only where
+  something isn't derivable: كاتِب "writer, clerk" has the listed plural كُتّاب, so it is a lexeme of its own,
+  while the participle takes the sound plural a rule gives.
+  - Rules read the category (فاعِل takes verbs, فُعَيْل nouns); without it, lexemes are DM's category-neutral roots.
+  - The categories are the language's own (the *yaxshi* principle): Arabic's are ism, fiʿl, ḥarf, and whether
+    كاتِب is a noun or an adjective is an English question.
+  - A cell can still differ in external category: word-class-changing inflection (Haspelmath 1996), as a
+    participle or an infinitive. A proposed test for Q5: a form that takes dimensions its base's paradigm lacks
+    (the Standard Arabic participle: case, definiteness) is a derived lexeme; one that uses only the base's own
+    (apc شايف, شايفة, شايفين, شايفه: gender, number, an object) can be a cell. Russian participles decline for
+    case and are still verb forms, so the test is a choice for Nabu, not a universal.
 - What learners do with roots is a skill, not a sense: **root extraction** (a word → its root, a pattern
   applied backwards) is credited to the pattern's rule; the root itself has no learning state.
 
