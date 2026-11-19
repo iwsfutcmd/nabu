@@ -975,7 +975,10 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   (*oʻqit‑* "teach") is its own lexeme, a transparent one a combination.
 - Decided with 4: a lexeme's progress is shown (*ser*: 5 of 9 forms), since a lexeme is learned only once every
   part the course teaches is shown.
-- Still open: 6 and 9 (to explore), 8 (family may be an object like the concept).
+- Still open (numbered as in the list above), with proposals in lexeme-model.md: 6 (roots: a field of the lexical
+  form and a family's key, not a morpheme), 7 (the family as an object), 8 (lexical features as rules' input;
+  projection tables as rules), 9 (chunks); and two that came up since: whether apc's active participle is a
+  cell of the verb or derivation, and part of speech on the lexeme with derivational heads' signatures.
 
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
