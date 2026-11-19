@@ -1,7 +1,9 @@
-# Lexemes: what Nabu teaches (brainstorm)
+# Morphemes: what Nabu teaches (brainstorm)
 
 - Status: brainstorm, 2026-11-18. Not an ADR: questions are still open (§16).
 - Diagrams of the model: [lexeme-model.md](lexeme-model.md).
+- Written as the discussion went: where an earlier section disagrees with §2 (Terms) or with lexeme-model.md,
+  those win. In particular, "cell" and "head" were later folded into features and lexemes.
 - **Decided** marks the owner's decisions; **Proposed**, suggestions not yet agreed; **Open**, what awaits a
   decision.
 
@@ -11,7 +13,7 @@ The app teaches "words", and a word is where a script puts its spaces: a fact ab
 language. yue and lzh have no spaces; sitelen pona runs words together; chg joins suffixes but writes the
 copula after a ZWNJ; Hebrew writes וְ joined; Persian را is a clitic written apart, and ‑ها is joined
 through a ZWNJ; apc's Arabic and Arabizi need not agree on where a word ends. A script-first app should
-teach a unit of the language: the **lexeme** (§2).
+teach a unit of the language: the **morpheme** (§2).
 
 **The data is about halfway there.**
 
@@ -27,58 +29,65 @@ teach a unit of the language: the **lexeme** (§2).
 | Gloss | `gloss` per support language |
 
 **What's missing:**
-- The lexeme isn't what is "known": ADR 0100 knows words.
-- Lexemes have no class or attachment.
+- The morpheme isn't what is "known": ADR 0100 knows words.
+- Morphemes have no class or attachment.
 - Nothing records evidence for individual allomorphs.
 - Exponents that aren't one contiguous span can't be represented.
 
 ## 2. Terms
 
-**The unit and its meaning**
+Renamed 2026-11-19 (Decided); earlier drafts called the listed unit a "lexeme" and the paradigm-owner a
+"lemma". Every term now keeps its textbook sense (lexeme-model.md, "Naming").
+
+**The objects**
 
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **lexeme** | What a learner learns: one sense with its fully specified form(s), whatever can't be derived from rules (§3), in any class and attachment | *kitob*, ‑dan, 呀, را, *ran*, *tuv-*, 東西, *darse cuenta* | Decided |
-| **sense** | A lexeme's meaning: a lexical meaning plus features. One lexeme, one sense | *ran* = run.PST | Decided |
-| **lexical meaning** | A sense without its features: what *run* and *ran* share | RUN | Decided (as part of sense) |
-| **feature** | A grammatical value in a sense: tense, person, register, dialect. *Inherent* ones add meaning; *contextual* ones are forced by the syntax (Booij) | PST, 3SG, krama, Cuban | Decided (register, dialect); kinds Proposed |
-| **gloss** | A sense's label in one support language; may be several words | *qoʻl*: "hand; arm" | Decided |
-| **property** | A fixed fact about a lexeme, with its own evidence | *casa*: feminine; *pensar*: e→ie | Proposed |
+| **concept** | A lexical meaning that lexemes share; glosses belong to it | EAT (*mangan*, *nedha*, *dhahar*); CAR (*carro*, *coche*) | Decided |
+| **lexeme** | A concept plus lexical features (part of speech, gender, class, register, dialect), owning a paradigm | SER; *nedha*; *casa* (feminine) | Decided |
+| **morpheme** | What a learner learns: one sense with its lexical form(s), whatever can't be derived (§3), in any class and attachment. Bloomfield's minimal sign, stretched to portmanteaus and listed multi-word items | *kitob*, ‑dan, 呀, را, *ran*, *tuv-*, 東西, *darse cuenta* | Decided |
+| **allomorph** | One of a morpheme's forms, picked by a context: stored with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
+| **lemma** | A lexeme's citation form, the one word cards show (as in UD and ADR 0061) | *ichmoq*, خوردن | As now |
 
-**Its form**
+**Meaning**
 
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **fully specified form** | A lexeme's one tier: the least underspecified form, in the script, with conventions invented where the script falls short | pointed Hebrew with stress; 楊 以開三陽平; apc-Arab with e/o marks | Decided |
-| **context** | The phonological or prosodic setting that picks one of a lexeme's forms; adds nothing to the sense | before a vowel, after q, pause | Decided |
-| **elsewhere form** | The one form with no context | *a* (beside *an*) | Proposed |
-| **allomorph** | A form a context triggers: stored with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
-| **projection** | What the language's rules derive from the fully specified form: each orthography's normal form, each phonemic scheme's reading | pointed → unpointed; position → Baxter, Pinyin | Decided (as rules) |
+| **sense** | A morpheme's meaning: its concept plus features. One morpheme, one sense | *ran* = RUN + past | Decided |
+| **feature** | A grammatical value. **Lexical** ones are the lexeme's, constant across its paradigm; **inflectional** ones vary across it. Inflectional ones are *inherent* (add meaning, learned as a contrast) or *contextual* (forced by syntax; a rule plus a lexical feature) | feminine, krama, Cuban; past, 3sg, dative | Decided |
+| **gloss** | A concept's label in one support language; a morpheme's adds its features ("run (past)") | *qoʻl*: "hand; arm" | Decided |
+
+**Form**
+
+| Term | Meaning | Examples | Status |
+|---|---|---|---|
+| **lexical form** | A morpheme's one stored form: the least underspecified, in the script, conventions invented where it falls short | pointed Hebrew with stress; 楊 以開三陽平 | Decided |
+| **context** | The setting that picks an allomorph, adding nothing to the sense: phonological, prosodic, or a property of the morpheme it combines with | before a vowel; pause; a hollow root | Decided |
+| **elsewhere form** | The one allomorph with no context | *a* (beside *an*) | Proposed |
+| **projection**, **surface form** | What the language's rules derive from a combination's lexical form: each orthography's spelling, each scheme's reading | pointed → unpointed; position → Baxter, Pinyin | Decided |
 | **variant** | Systematic free variation a projection rule makes: accepted | HK / TW characters; Arabizi spellings | Proposed |
-| **lemma** | A lexeme's citation form, the one word cards show | *ichmoq*, خوردن, *ran* | As now |
 
 **Grammar**
 
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **rule** | A pattern stated without naming any lexeme, with its conditions (phonological, semantic) and its own KC | ‑ga → ‑qa after q; *un‑* on non-negative adjectives | Decided (the derivability test); data Proposed |
-| **combination** | What rules build from lexemes; not a lexeme | *kitoblarimdan*, *walked*, *the writer of X* | Decided |
-| **cell** | One box of a paradigm table: a combination of feature values, apart from how it's spelled; may have no exponent | PRET.3SG, ACC.PL, uz COP.3SG | Proposed |
-| **paradigm** | A head lexeme's cells, filled by rule or by irregular lexemes | *run*: *runs*, *running*, *ran* | Proposed |
-| **head** | The lexeme an irregular lexeme's paradigm belongs to | *ran* → head *run*, cell PST | Proposed |
-| **base**, **root** | The lexeme a derived word is built on; a Semitic root | *writer* ← *write*; مَكْتَب ← ك‑ت‑ب | Proposed |
+| **rule** | A pattern stated without naming any morpheme, with its conditions and its own KC | ‑ga → ‑qa after q; *un‑* on non-negative adjectives | Decided (the derivability test); data Proposed |
+| **combination** | What merge builds from morphemes and features; a value, never stored (a word form is a combination of one) | *kitoblarimdan*, *walked*, *the writer of X* | Decided |
+| **utterance** | Stored content: a combination plus the order it was said in | a sentence, a story line | Proposed |
+| **paradigm** | A lexeme's forms across its inflectional features, by rule or by listed morphemes | SER: *soy*, *eres*, *fue*… | Decided |
+| **base**, **root** | What a derived morpheme is built on; a Semitic root | *writer* ← *write*; مَكْتَب ← ك‑ت‑ب | Proposed |
 | **family** | Words linked by a base or root | *write*, *writer*; كاتب, مكتب | Open (§10) |
-| **morph** | A lexeme's exponent in one token, anchored on the fully specified form | *dan* in *Samarqanddanman*; the ezafe's kasra | Proposed |
+| **morph** | A morpheme's exponent in one token, anchored on the lexical form | *dan* in *Samarqanddanman*; the ezafe's kasra | Proposed |
 | **construction** | A syntactic pattern with slots | apc *used-to* | As now |
 
 **Learning and prompts**
 
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **facet** | A skill: an edge between a lexeme's projections and its sense (§11) | recognize, produce, listen, read-script | As now, extended |
-| **learned** | Every property and every askable facet shown | | Decided |
-| **literal gloss** | A memory hint from a lexeme's real parts, after the gloss, never on a prompt | زمین خوردن, lit. "earth + eat" | Decided |
-| **chunk** | A combination taught whole before its parts | *Qayerdansiz?* | Proposed |
+| **facet** | A skill: an edge between a morpheme's projections and its sense (§11) | recognize, produce, listen, read-script | As now, extended |
+| **learned** | Every part that can't be derived, shown (lexeme-model.md) | | Decided |
+| **literal gloss** | A memory hint from a morpheme's real parts, after the gloss, never on a prompt | زمین خوردن, lit. "earth + eat" | Decided |
+| **chunk** | An utterance taught whole before its parts | *Qayerdansiz?* | Proposed |
 | **underspecification** | What one language leaves open that the other specifies | "you" → *tú* / *usted* | Decided |
 | **tag** | What a prompt shows to decide a feature the target needs | "to your grandmother", "Cuban" | Decided |
 | **wug** | A made-up word testing a productive rule | *bolaq* → *bolaqqa* | Decided (idea) |
@@ -87,57 +96,40 @@ teach a unit of the language: the **lexeme** (§2).
 
 | Term | Meaning | Status |
 |---|---|---|
-| **token** | An orthographic word, per orthography | As now |
+| **token** | An orthographic word, per orthography: the surface of a word-sized combination | As now |
 | **word** | UI copy only | Proposed |
 
-**Proposed renames (under discussion):**
-- **lemma** for the lexical meaning: what *run*, *ran* and *runs* share, as NLP's lemma does (UD: the lemma of
-  *ran* is *run*); Levelt's psycholinguistic "lemma" is also the meaning side. The citation form becomes
-  **citation form**, and **head** goes: *ran* is lemma RUN with features PST.
-- **feature** absorbs **property**, in UD's two kinds: **lexical features**, fixed for a lexeme (*casa*
-  feminine, *pensar* e→ie, *nedha* krama, *carro* Cuban), and **inflectional features**, varying across
-  the paradigm (tense, person, case).
-- **lexical form** for the fully specified form, and **surface forms** for its projections, as in two-level
-  morphology (Koskenniemi 1983): lexical form → rules → surface form. The data's `surface` is already the
-  written projection. Runner-up: **canonical form**.
-- **cell** goes: a form's inflectional features are the cell (UD's FEATS). Not "realization": in
-  realizational morphology that's the form filling the cell (*ran* realizes RUN + PST).
-- A token then reads like a UD token: surface form, lemma, features.
-
 - **Rejected:**
-  - "morpheme" (*ran*, 東西 and zeros don't fit);
   - "listeme" (Di Sciullo & Williams 1987: precise, but lame-sounding);
-  - "aspect" for properties (it collides with verbal aspect);
+  - "aspect" for lexical features (it collides with verbal aspect);
+  - "property" (merged into lexical features), "cell" (an inflectional feature set), "head";
   - "form" for the representations (`form:` KCs; the glossary lists three senses already);
-  - "tier" for what a lexeme stores (it has one; tiers are now only what projections produce).
-- **Our "lexeme" departs from the textbook one twice.**
-  - The departures: suppletive and irregular forms are their own lexemes, and affixes and clitics are
-    lexemes.
-  - The defence: Pinker's *Words and Rules* (1999), where irregular forms are stored whole and regular ones
-    are built by rule. We model the learner's mental lexicon, not the grammar's paradigm.
-  - What to write down: UD's `LEMMA` and lemmatisers (hazm, Stanza) mean the textbook lexeme. The
-    definition goes in the glossary and the ADR, with "paradigm" for the textbook notion.
+  - "tier" for what a morpheme stores (it has one; tiers are only what projections produce).
+- **Where "morpheme" stretches the textbook** (Bloomfield's minimal sign): portmanteaus (*ran*), morphemes
+  whose form combines other morphemes' forms (*darse cuenta*), and semi-transparent listed items (*writer*
+  the occupation). The defence for listing irregular forms whole: Pinker's *Words and Rules* (1999). We model
+  the learner's mental lexicon, not only the grammar's analysis.
 
-## 3. The lexeme rule
+## 3. The morpheme rule
 
-**Decided:** if something can be derived purely from rules, it is the same lexeme or a combination of
-lexemes. If it can't, it is a separate lexeme. This is Aronoff's blocking (1976) and Kiparsky's Elsewhere
+**Decided:** if something can be derived purely from rules, it is the same morpheme or a combination of
+morphemes. If it can't, it is a separate morpheme. This is Aronoff's blocking (1976) and Kiparsky's Elsewhere
 Condition (1973): rules produce the regular cases, and a listed form takes precedence where one exists
 (*ran* blocks *\*runned*, *glory* blocks *\*gloriosity*).
 
 **Decided consequences:**
-- *run* and *ran* are separate lexemes. Suppletive and irregular forms split.
-- A non-compositional combination is a lexeme: 東西 "thing", *darse cuenta*, *jan pona*.
-- *carro* and *coche* are separate lexemes.
+- *run* and *ran* are separate morphemes. Suppletive and irregular forms split.
+- A non-compositional combination is a morpheme: 東西 "thing", *darse cuenta*, *jan pona*.
+- *carro* and *coche* are separate morphemes.
 
 **Proposed clarifications:**
 1. **Both form and meaning have to follow.**
-   - *ran*: the meaning follows (run.PST) but the form doesn't, so it's a lexeme.
-   - *writer* as an occupation: the form follows but the meaning doesn't, so it's a lexeme.
+   - *ran*: the meaning follows (run.PST) but the form doesn't, so it's a morpheme.
+   - *writer* as an occupation: the form follows but the meaning doesn't, so it's a morpheme.
    - *the writer of the list*: both follow, so it's *write* + *‑er*.
-2. **Rules may take a lexeme's listed properties as input** (gender, class). Otherwise every stem-changing
-   verb form would be a lexeme.
-3. **A rule is stated without naming a lexeme.** A rule with exceptions is a rule plus lexemes that block
+2. **Rules may take a lexeme's lexical features as input** (gender, class). Otherwise every stem-changing
+   verb form would be a morpheme.
+3. **A rule is stated without naming a morpheme.** A rule with exceptions is a rule plus morphemes that block
    it. A table counts as a rule when it is about graphemes and applies to every word containing them
    (OpenCC's 裏 / 裡).
 4. **Derivability is judged against the language's rules, not the learner's progress.** *kitoblar* is
@@ -148,9 +140,9 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
    - fa present stems رو and بین;
    - apc broken plurals (walad / wlad).
 
-   Forms that can't usefully be split are whole-word lexemes (*soy*, *eres*, *fue*).
-6. **Decided: lexemehood is symmetric.** What can't be derived in both directions is a lexeme, never a
-   lexeme for one direction only:
+   Forms that can't usefully be split are whole-word morphemes (*soy*, *eres*, *fue*).
+6. **Decided: morphemehood is symmetric.** What can't be derived in both directions is a morpheme, never a
+   morpheme for one direction only:
    - collocations and Persian compound verbs (فکر کردن "think", lit. "thought + do"), which can be decoded
      but not encoded;
    - idioms (زمین خوردن "fall", lit. "earth + eat");
@@ -160,33 +152,33 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
      كِتاب). A gap elsewhere in the pattern is never the reason (§3.8).
 
    Only what is regular both ways is a combination (*rápido* → *rápidamente*; *the writer of X*).
-   - A lexeme keeps its links to its parts (base, root: §10), so a derive card still credits the affix when
+   - A morpheme keeps its links to its parts (base, root: §10), so a derive card still credits the affix when
      a learner works out a transparent word.
    - If cards on an edge the parts already give away (recognizing *writer*) prove wasteful, handle it at
-     the edge (§11), never by splitting lexemehood by direction.
+     the edge (§11), never by splitting morphemehood by direction.
 
 7. **Rules are data, and the compiler checks every claimed derivation.**
    - A token analysed as a combination must derive from the rules, or the compiler reports it.
-   - A form that can't be derived must be a lexeme (a lint, much as `kc.inflected-form` enforces lemmas now).
-8. **Decided: a gap doesn't make a combination a lexeme.** Some combinations don't exist for purely semantic
+   - A form that can't be derived must be a morpheme (a lint, much as `kc.inflected-form` enforces lemmas now).
+8. **Decided: a gap doesn't make a combination a morpheme.** Some combinations don't exist for purely semantic
    or phonological reasons; the ones that do exist are still derived by rule.
    - Proposed: a rule carries its conditions, and a gap the conditions explain is predictable:
      - phonological: English ‑en after an obstruent (*blacken*, *\*greenen*), the comparative ‑er by
        length (*bigger*, *\*intelligenter*);
      - semantic: *un‑* on adjectives that aren't already negative (*unhappy*, *\*unsad*); "place of" only
        for actions that happen somewhere;
-     - blocking by a listed lexeme (*went* blocks *\*goed*, *glory* blocks *\*gloriosity*): predictable once
-       the lexeme is known. Blocking is per sense: *thief* doesn't block *stealer of hearts* or
+     - blocking by a listed morpheme (*went* blocks *\*goed*, *glory* blocks *\*gloriosity*): predictable once
+       the morpheme is known. Blocking is per sense: *thief* doesn't block *stealer of hearts* or
        *scene-stealer*, which the rule still makes.
    - Proposed: only an arbitrary gap (the conditions are met and still no word exists) forces listing,
      because then a learner can't know whether the word exists.
    - Conditions are part of the rule's data (stem shape from the profile and scheme, semantic properties
-     on lexemes), and wug stems must meet them.
+     on morphemes), and wug stems must meet them.
 
 ## 4. Senses and features
 
 **Decided:**
-- One lexeme, one sense.
+- One morpheme, one sense.
 - A sense is a lexical meaning plus features. *ran* is run.PST, its Leipzig gloss; *run* and *ran* don't
   share a sense.
 - A gloss is a label for the sense in each support language, and may be several words ("hand; arm" for
@@ -198,19 +190,19 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
   - Split: homonyms, opaque extensions, different grammar or contrasts.
   - Keep together: transparent extensions (*boshliq* "head" → "chief").
   - Never split because a support language needs two words.
-  - Decided: yue 嘅 is several lexemes.
+  - Decided: yue 嘅 is several morphemes.
     - The linker ge3: possessive and attributive, its head left out by rule (我嘅書, 我嘅, 凍嘅).
     - The sentence-final particles: assertive ge3, and ge2 (surprise).
     - Open: are possessive and attributive one linker or two? Today's yue KC `sense:嘅` is glossed
       possessive ('s, of; `Poss=Yes`), but 5 of its 10 tokens are attributive with no head (凍嘅 "a cold
       one", 白色嘅 "a white one").
-- **Grammatical lexemes are identified by UD features** (`Case=Abl`), language-neutral; learner glosses stay
+- **Grammatical morphemes are identified by UD features** (`Case=Abl`), language-neutral; learner glosses stay
   per support language.
 - **Inherent vs contextual features (Booij 1996)** matter to the grader:
   - Inherent ones add meaning (tense, nominal number). Where the prompt doesn't decide them, they're the
     learner's choice (ADR 0085).
   - Contextual ones are forced by the syntax (agreement, structural case), so they're right or wrong given
-    the sentence. *el* / *la* are separate lexemes differing only in a contextual feature.
+    the sentence. *el* / *la* are separate morphemes differing only in a contextual feature.
 - **Register is decided by the prompt's situation.** The prompt tags it (extending `persons`), a wrong
   register is WRONG_WORD, and every level is exercised (ADR 0075). This is how CLAUDE.md already expects
   register to arrive.
@@ -218,7 +210,7 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
   ("Cuban", §12). This replaces es's "pan-Hispanic forms accepted".
   - It splits senses: *carro* is "car" in the Americas and "cart" in Spain; *guagua* is "bus" in Cuba and
     "baby" in the Andes.
-  - Dialect also produces variants within one lexeme where the difference is systematic (seseo, *ehto*).
+  - Dialect also produces variants within one morpheme where the difference is systematic (seseo, *ehto*).
 - **Conversion** (uz *yaxshi* "good", adjective, and "well", adverb): one sense, with `pos` on each token
   rather than only on the KC (Open).
 
@@ -230,9 +222,9 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
     (even within ngoko: *ngoko alus*); krama andhap lowers one's own actions towards them (*matur*).
 
   Korean and Japanese split the same way.
-- **Register lexemes form paradigms:** mangan / nedha / dhahar "eat", omah / griya / dalem "house", kowe /
+- **Register lexemes share a concept** (Decided later: they are separate lexemes, not one paradigm): mangan / nedha / dhahar "eat", omah / griya / dalem "house", kowe /
   sampeyan / panjenengan "you".
-  - Most words have no krama form: the ngoko form is the head, and krama lexemes exist only where the
+  - Most words have no krama form: the ngoko form is the head, and krama morphemes exist only where the
     language has them.
   - Affixes have register pairs too: ‑e / ‑ipun, di‑ / dipun‑, ‑ake / ‑aken.
 - **Prompts tag social relations** ("to your grandmother", "about your teacher"). English can't carry
@@ -242,7 +234,7 @@ Condition (1973): rules produce the regular cases, and a listed form takes prece
 - **Script:** aksara Jawa beside Latin, with *pasangan* stacking below the line.
 - **Open:** krama or ngoko first.
 
-## 5. Classifying lexemes
+## 5. Classifying morphemes
 
 **Decided:** two axes, class (open / closed) and attachment (independent / dependent / clitic). Plus
 inflection vs derivation, which is very important (§6).
@@ -257,20 +249,20 @@ inflection vs derivation, which is very important (§6).
   - The kinds of attachment: joined, joined through a ZWNJ, joined by maqaf or hyphen, spaced.
   - Spanish clitics are joined after some hosts (*dámelo*) and spaced before others (*me lo da*).
 - **Dependents get a position:** prefix, suffix, infix, circumfix, non-linear (§9).
-- **The distinction should change behaviour**, or it's just a label: which cards a lexeme gets, what
+- **The distinction should change behaviour**, or it's just a label: which cards a morpheme gets, what
   "learned" means for it, where its distractors come from, and how it's first presented.
-- **Grammatical lexemes are known by use, not by gloss recall.**
+- **Grammatical morphemes are known by use, not by gloss recall.**
   - "What does ‑dan mean?" is a bad card.
   - The evidence comes from choosing the form, producing it, and choosing the allomorph.
 
 ## 6. Inflection and derivation
 
 **Proposed:**
-- **Inflection never makes a lexeme.** Derivation makes one wherever its result can't be derived in
+- **Inflection never makes a morpheme.** Derivation makes one wherever its result can't be derived in
   both directions (§3.6). ADR 0061's "lemmas, never inflected words" already means "remove the inflection, keep
   the derivation".
 - **Two levels in a token.** Today `morphs` is a flat list: *oʻqituvchilar* is either *oʻqituvchi* + ‑lar or
-  *oʻqi* + ‑t + ‑uvchi + ‑lar, never both. We want a lexeme with an optional derivational analysis, plus
+  *oʻqi* + ‑t + ‑uvchi + ‑lar, never both. We want a morpheme with an optional derivational analysis, plus
   its inflections: a tap shows both levels.
 - **Credit differs.**
   - Each use of an inflection is evidence for it.
@@ -285,39 +277,39 @@ inflection vs derivation, which is very important (§6).
     are known.
   - Inflection can be taught head-on.
 - **The grader already sides with inflection.** Contrast sets (ADR 0066, 0081) are inflectional; a
-  derivational slip lands on another lexeme, which the lexicon check (WRONG_WORD) catches.
+  derivational slip lands on another morpheme, which the lexicon check (WRONG_WORD) catches.
 - **The grey zone needs a policy before annotating:** uz causative ‑t / ‑dir, Hebrew binyanim (hbo already
-  treats each stem as a lexeme), Spanish ‑ito, participles and infinitives.
+  treats each stem as a morpheme), Spanish ‑ito, participles and infinitives.
   - The test: does it fill a cell of the lexeme's paradigm, or make a word with its own entry?
   - When unsure, call it derivation.
   - Open: uz causative (*oʻqit-* "teach" beside *oʻqi-* "read").
-- **Families** (§10) link derived words whether or not they are lexemes.
+- **Families** (§10) link derived words whether or not they are morphemes.
 
 ## 7. Paradigms, cells and irregular forms
 
 **Proposed:**
 - **`form:` splits.** Some `form:` KCs are cells (es `form:pret-3s`, grc `form:f-acc`, hbo
-  `form:wayyiqtol-3ms`); others are affix lexemes (`form:abl-dan`).
+  `form:wayyiqtol-3ms`); others are affix morphemes (`form:abl-dan`).
 - **Choosing a cell and realising it are credited apart.**
   - A cell is credited when the learner chooses it.
-  - An exponent is credited for the form: ‑ed in *walked*, the lexeme *ran*, the stem *tuv-*.
-  - An irregular lexeme points at its head and names its cell (`head: run, cell: PST`).
+  - An exponent is credited for the form: ‑ed in *walked*, the morpheme *ran*, the stem *tuv-*.
+  - An irregular morpheme points at its head and names its cell (`head: run, cell: PST`).
 - **Zero morphemes disappear.** A zero is a cell with no exponent (uz COP.3SG).
 - **The grader can recognise overregularisation.** *\*tenió*, *\*runned*: the right cell, the rule's
-  output, blocked by a lexeme. Credit the cell, count a miss on the lexeme, and say "right tense, irregular
+  output, blocked by a morpheme. Credit the cell, count a miss on the morpheme, and say "right tense, irregular
   verb".
 - **Never use regularised non-words as distractors.** Showing them risks teaching the error (Roediger &
   Marsh 2005).
-- **Lexical classes.** A form is regular if it's predictable from the lemma plus a class recorded on the
-  lemma.
-  - Mark the class where it has many members; list the forms as lexemes where it has a handful.
+- **Lexical classes.** A form is regular if it's predictable from the lemma (citation form) plus a class
+  recorded on the lexeme.
+  - Mark the class where it has many members; list the forms as morphemes where it has a handful.
   - This is the principal-parts tradition.
   - Open: Spanish stem-changers and Persian present stems are the test cases.
 
-## 8. What a lexeme has: one fully specified form
+## 8. What a morpheme has: one fully specified form
 
 **Decided:**
-- **A lexeme has one tier: its fully specified form(s).** It's plural only for different realisations in
+- **A morpheme has one tier: its fully specified form(s).** It's plural only for different realisations in
   different contexts.
 - **Each language has rules** that derive the normal orthographic form and the phonemic form from the
   fully specified form.
@@ -343,7 +335,7 @@ fully specified form ─┤
   word.
 - **Proposed: what that means where a script can't write sounds at all:**
   - **Han (yue, lzh):** a character's readings come from a table (Unihan, the pinned profile tables), so
-    書 is syu1 once, for every lexeme containing it. The fully specified form is the characters plus a
+    書 is syu1 once, for every morpheme containing it. The fully specified form is the characters plus a
     disambiguator only where the table gives more than one reading (行 haang4 / hong4) or a changed tone
     applies. lzh's three traditions are three tables. (Deriving Pinyin and Jyutping from Baxter by sound
     change, with exceptions listed, would capture even more; it's a bigger job.)
@@ -377,7 +369,7 @@ fully specified form ─┤
   each orthography and phonemic scheme. Every projection needs conformance vectors passing in both
   harnesses.
 - **Authoring needn't change.** Course text stays in the normal orthography, as ADR 0053 has it, annotated
-  with lexemes and cells. The compiler projects each token from its lexeme's fully specified form, the
+  with morphemes and cells. The compiler projects each token from its morpheme's fully specified form, the
   cell and the context, and reports any token whose authored text disagrees. Most per-token pins (readings,
   `vocalized`) become checks, not data; they stay only for what rules can't derive.
 
@@ -415,7 +407,7 @@ as needed.
   - **analysis differences**: B&S write 生 *sraeng*, TshetUinh's 2014 Baxter gives *srjaeng*. The course is
     checked against B&S, so they win where they differ;
   - **modern readings that departed from regular change**, per character and position, so stated once for
-    every lexeme containing them (行 匣開二庚平 → xíng; 國 → guó, gwok3); Mandarin entering tones as a
+    every morpheme containing them (行 匣開二庚平 → xíng; 國 → guó, gwok3); Mandarin entering tones as a
     table;
   - **literary or colloquial**, as policy: 百 bǎi, not the literary bó.
 - **It finds inconsistencies.** 不 is pinned *pjuw* (B&S's reading), but its Pinyin *bù* and Jyutping *bat1*
@@ -427,33 +419,33 @@ as needed.
 ### Variants
 
 **Decided:**
-- **A lexeme may store several forms, provided each names the context that triggers it**, derivable or
+- **A morpheme may store several forms, provided each names the context that triggers it**, derivable or
   not.
-- **Free variation means two lexemes**, almost certainly: two forms with no context to choose between
-  them aren't one lexeme.
+- **Free variation means two morphemes**, almost certainly: two forms with no context to choose between
+  them aren't one morpheme.
 
 | Kind | Examples | Where it lives |
 |---|---|---|
-| Contextual | a / an, ‑ga / ‑qa, וְ / וּ, *la* / *el* (*el agua*), *y* / *e*, hbo pause forms | the lexeme's forms, each with its context (or a rule that gives them) |
-| Systematic free variation | HK / TW characters; Arabizi *3arabi* / *3rabi*; apostrophes in *oʻ*; Cantonese n / l | the projection rules (canonical output first, the rest accepted): never a lexeme's stored form |
-| Free variation in a lexeme's own form | *período* / *periodo*, *vídeo* / *video*, اتاق / اطاق | two lexemes (Decided) |
+| Contextual | a / an, ‑ga / ‑qa, וְ / וּ, *la* / *el* (*el agua*), *y* / *e*, hbo pause forms | the morpheme's forms, each with its context (or a rule that gives them) |
+| Systematic free variation | HK / TW characters; Arabizi *3arabi* / *3rabi*; apostrophes in *oʻ*; Cantonese n / l | the projection rules (canonical output first, the rest accepted): never a morpheme's stored form |
+| Free variation in a morpheme's own form | *período* / *periodo*, *vídeo* / *video*, اتاق / اطاق | two morphemes (Decided) |
 
 **Proposed:**
 - **Exactly one form is the elsewhere form, with no context**; every other form names its context.
   Kiparsky's Elsewhere Condition again: *a* is the elsewhere form, *an* the one before a vowel. A lint
-  rejects two forms whose contexts overlap ("free variation: make two lexemes"), so the rule enforces
+  rejects two forms whose contexts overlap ("free variation: make two morphemes"), so the rule enforces
   itself.
 - **Contexts are a per-language inventory, data like schemes:** before a vowel, after q, before a labial,
   pause, nesiga, before a stressed á‑. Tokens already carry one (`context`, ADR 0135); the same labels name
-  a lexeme's forms. A stored form that a rule also derives is checked against the rule.
+  a morpheme's forms. A stored form that a rule also derives is checked against the rule.
 - **A context is not a cell.** A cell is a feature in the sense: the learner chooses it, or the syntax
-  forces it (agreement), and an irregular cell is a separate lexeme (*el* / *la*). A context is the
+  forces it (agreement), and an irregular cell is a separate morpheme (*el* / *la*). A context is the
   setting that picks a form, and adds nothing to the sense: phonological or prosodic (before a vowel,
-  pause), or morphological, a property of the lexeme it combines with (a pattern's forms by root class,
+  pause), or morphological, a property of the morpheme it combines with (a pattern's forms by root class,
   §9).
   - *el agua* shows the difference: that *el* is the feminine *la*'s form before a stressed á‑, not the
-    masculine lexeme. es already pins it `form:fem`.
-- **Systematic variation stays in the projection rules.** The two-lexemes rule is about forms a lexeme
+    masculine morpheme. es already pins it `form:fem`.
+- **Systematic variation stays in the projection rules.** The two-morphemes rule is about forms a morpheme
   would store; HK / TW characters and Arabizi spellings never are.
 - **"Free" variants usually turn out to differ in a feature,** which the rule then makes explicit:
   - dialect: *vídeo* (Spain) / *video* (the Americas);
@@ -461,10 +453,10 @@ as needed.
   - register.
 
   The prompt specifies the feature as for dialect (§12), so there's still one right answer.
-  - Generalising the dialect slip: an answer that is another lexeme with the same lexical meaning,
+  - Generalising the dialect slip: an answer that is another lexeme of the same concept,
     differing only in a variety feature (dialect, register, era), gets feedback naming the feature: "that's
     the older spelling; today اتاق", "that's krama; to a friend, ngoko".
-  - Two lexemes identical in meaning *and* every feature would be a gap in the model: no prompt could choose
+  - Two morphemes identical in meaning *and* every feature would be a gap in the model: no prompt could choose
     between them.
 - Most contextual forms follow from rules plus a class property (the hbo segholate *mélek* / *malk-*), so
   storing them is optional where a rule exists.
@@ -519,17 +511,17 @@ a new design language.
     reduplication, `\` change without segments: mouse\PL).
   - Highlighting letters inside a joined word must first be proven in the visual matrix, and never by
     colour alone.
-- **Root and pattern words follow the lexeme rule like any affix.** The pattern is a lexeme (closed,
+- **Root and pattern words follow the morpheme rule like any affix.** The pattern is a morpheme (closed,
   dependent, non-linear); the word is a combination only where root + pattern gives its form and meaning by
   rule:
 
   | Word | Pattern | Rule-derived? | So it's… |
   |---|---|---|---|
   | كاتِب "writing (one who writes)" | فاعِل, Form I active participle | yes | a combination |
-  | كاتِب "clerk, writer" | same | no: the meaning drifted | a lexeme (a homograph, like *writer*) |
+  | كاتِب "clerk, writer" | same | no: the meaning drifted | a morpheme (a homograph, like *writer*) |
   | مَكْتُوب "written" | مَفْعُول, passive participle | yes | a combination |
-  | مَكْتَب "office, desk" | مَفْعَل "place of" | no: the meaning drifted ("desk" isn't "place of writing"), and which of مَفْعَل / مَفْعِل / مَفْعَلة a root takes is only partly predictable (مَسْجِد against its imperfect يَسْجُد) | a lexeme, with a strong hint (§10) |
-  | كِتاب "book" | فِعال | no: the pattern has no fixed meaning | a lexeme; the root link is etymology |
+  | مَكْتَب "office, desk" | مَفْعَل "place of" | no: the meaning drifted ("desk" isn't "place of writing"), and which of مَفْعَل / مَفْعِل / مَفْعَلة a root takes is only partly predictable (مَسْجِد against its imperfect يَسْجُد) | a morpheme, with a strong hint (§10) |
+  | كِتاب "book" | فِعال | no: the pattern has no fixed meaning | a morpheme; the root link is etymology |
 
   - Arabic teaching draws the same line: Form I verbal nouns (كِتابة, قَتْل, دُخول) are memorised; those of
     Forms II–X are nearly predictable (تَكْتِيب, مُكاتَبة, اِسْتِكْتاب; Form III has two patterns).
@@ -539,7 +531,7 @@ a new design language.
   own letters, since it doesn't vary: hollow faʿala ڡَـاڡَ (qāla), defective ڡَـڡَـى (ramā), yafʿulu hollow
   in w يَـڡُـوڡُ (yaqūlu), Hebrew III‑he ◌ָ◌ָה (bānâ). Rendered 2026-11-19: nothing extra is needed, since
   only the slot letter is faint; marks the form adds (shadda, the I‑nun dagesh of yippōl) stay dark too.
-  - Proposed: these are the pattern lexeme's forms with contexts (§8), the context being the root's class,
+  - Proposed: these are the pattern morpheme's forms with contexts (§8), the context being the root's class,
     a property of the root it combines with. Each form records which radical a fixed letter stands for
     (qāla's ا is the second radical, w or y), so root cards still find ق‑و‑ل.
 - **Decided: patterns are shown with placeholder consonants, not on top of a root.** The dummy root makes a
@@ -725,7 +717,7 @@ a new design language.
   dictionary), pattern meaning, building from root and pattern (ك ت ب + مَفْعَل → مَكْتَب), changed tone,
   root families.
 - **Open:**
-  - What is a root's sense? Its meaning is a semantic field; proposed: a lexeme with a weaker identity,
+  - What is a root's sense? Its meaning is a semantic field; proposed: a morpheme with a weaker identity,
     known through extraction and family cards, never recall.
   - Which tier do templates check first? Proposed: the fully marked orthography, with readings checked
     against it; Arabizi, which spells its vowels, gets its own template.
@@ -733,26 +725,26 @@ a new design language.
 ## 10. Families
 
 **Proposed:**
-- **A family is a relation, not a lexeme or a credit.** It links words that share a base (*write*,
+- **A family is a relation, not a morpheme or a credit.** It links words that share a base (*write*,
   *writer*, *writing*; *escribir*, *escritor*) or a root (كَتَبَ, كاتِب, كِتاب, مَكْتَب, مَكْتُوب), or a
   character (學生, 學校, 大學). Bauer & Nation's (1993) word families include inflected forms too; ours
   leave those to the paradigm.
-- **Only the links are authored:** a lexeme names its base (*writer* ← *write* + *‑er*) or its root
+- **Only the links are authored:** a morpheme names its base (*writer* ← *write* + *‑er*) or its root
   (مَكْتَب ← ك‑ت‑ب + مَفْعَل). Families are computed from them.
 - **Uses:** related words on a tap and grouping by root in the word list; derive cards; introducing a base
   before its derivatives; distractors that share a base.
 - ***writer* has two senses** (Rappaport Hovav & Levin 1992):
   - the event reading (*the writer of this shopping list*) is *write* + *‑er*;
-  - the occupation (*she's a writer*) is a lexeme, a homograph that tokens tell apart by sense.
+  - the occupation (*she's a writer*) is a morpheme, a homograph that tokens tell apart by sense.
 - **Open:** keep the term "family", or speak only of the two links, base and root.
 
 ### Literal glosses: partial compositionality as a memory hint
 
-**Decided:** a lexeme whose parts still show (زمین خوردن "fall", lit. "earth + eat") is a lexeme, and its
-parts are a memory hint worth showing, in the glossary and wherever the lexeme is explained.
+**Decided:** a morpheme whose parts still show (زمین خوردن "fall", lit. "earth + eat") is a morpheme, and its
+parts are a memory hint worth showing, in the glossary and wherever the morpheme is explained.
 
 **Proposed:**
-- **One mechanism for every lexeme with an analysis**, generated from it, never typed per lexeme:
+- **One mechanism for every morpheme with an analysis**, generated from it, never typed per morpheme:
   - compounds and idioms: "lit. earth + eat", 大學 "lit. big + learning", 東西 "lit. east + west";
   - derived words: *writer* (the occupation) "write + ‑er";
   - root and pattern: مَكْتَب "ك‑ت‑ب 'writing' + مَفْعَل 'place of'";
@@ -762,7 +754,7 @@ parts are a memory hint worth showing, in the glossary and wherever the lexeme i
   (`literal`, with provenance like any gloss).
 - **Decided: only real parts, never a folk or nonsense etymology.** Never a hint from the characters of a
   phonetic loan: 沙發 "sofa" is not "sand + emit", 咖啡 and 巴士 have no parts. A hint exists only where
-  the lexeme has a morphological analysis; no analysis, no hint.
+  the morpheme has a morphological analysis; no analysis, no hint.
   - Proposed: an analysis that yields a hint cites its source (a dictionary or grammar, as courses cite
     references), or waits for a reviewer's sign-off. LLM drafting is this project's biggest source of
     folk etymologies.
@@ -770,20 +762,20 @@ parts are a memory hint worth showing, in the glossary and wherever the lexeme i
     "a woman under a roof") are a script-level claim, and mostly folklore; any such explanation would
     need a scholarly source of its own.
 - **Where it shows:** the gloss panel on a tap, the word list, the feedback after a card, and the
-  lexeme's first presentation.
+  morpheme's first presentation.
   - Decided: never on the prompt side of a card. "earth + eat" would hand over the answer's parts.
   - Proposed: always after the real gloss and labelled "lit.": a memory device, never presented as what
     the word means or as a window on how its speakers think.
 - **Credit doesn't change:** knowing زمین خوردن still says nothing about زمین (§13). The hint links
   memories; it isn't evidence.
 - **Order:** a hint works best when its parts are already known, so the planner may prefer to introduce a
-  lexeme after its parts, as with derived words after their base (§6).
+  morpheme after its parts, as with derived words after their base (§6).
 
 ## 11. Learned
 
-**Decided:** a lexeme is learned once all its properties are learned and every edge of its graph is
+**Decided:** a morpheme is learned once all its properties are learned and every edge of its graph is
 learned. Generalised (2026-11-19): **to have learned anything is to have learned every part of it that can't
-be derived**: a lemma all its listed lexemes, a rule every branch (lexeme-model.md, "What the learner
+be derived**: a lexeme all its listed morphemes, a rule every branch (lexeme-model.md, "What the learner
 learns").
 
 | Edge | Facet |
@@ -800,7 +792,7 @@ learns").
 - **Every edge that can be asked**, for this course and this learner: course facets, voice quality,
   `facetsOff` (as `skillsAsked` does now). lzh has no sound edges; a learner who turned listening off isn't
   held to it.
-- **Only an unpredictable mapping is an edge to learn**, the lexeme rule applied to edges:
+- **Only an unpredictable mapping is an edge to learn**, the morpheme rule applied to edges:
   - uz Latin ↔ Cyrillic is script knowledge (letter KCs), not per word;
   - es reading aloud is predictable, so it's no edge;
   - es spelling is an edge only where seseo, b/v or h leave it open (*vaca*, *casa*; hardly *mesa*);
@@ -811,11 +803,11 @@ learns").
 - **Properties need their own evidence.** *\*el casa*: the learner knows *casa* and agreement, but not its
   gender. *la casa* typed from the meaning is evidence; a word bank that gives the article isn't.
 - **Predictable allomorphy is a rule with its own KC**, credited wherever it applies, not a property of each
-  lexeme.
+  morpheme.
 - **The machinery stays:** an edge is a card key (`kc|facet`, plus orthography for script facets) with its
   FSRS memory, shown by ADR 0100's later-day rule. New facets: vocalize, spelling where it's an edge,
   properties.
-- **Open:** properties as facets (`casa|gender`), or as their own KCs linked to the lexeme. Proposed:
+- **Open:** properties as facets (`casa|gender`), or as their own KCs linked to the morpheme. Proposed:
   facets.
 
 ## 12. Underspecification
@@ -830,7 +822,7 @@ possible.
 | Their own language | **Accept every rendering** (Decided): tok *ona*, lzh's tense | Nothing to do: apc *kifik* → "how are you" |
 
 - **Decided: when the answer can't say what the prompt does, nothing is tagged.** The learner is trusted
-  to understand that lzh doesn't mark gender: no "(by the way, he's male)". The target lexeme's gloss
+  to understand that lzh doesn't mark gender: no "(by the way, he's male)". The target morpheme's gloss
   already says what collapses (其: his, her, its, their). An answer that adds the gender with extra words
   (男子 "the man") translates back to another sentence, so ADR 0085 already rejects it.
 - **Decided: dialect synonyms are specified.** Where a prompt's meaning has dialect synonyms (*carro* /
@@ -857,10 +849,10 @@ possible.
   "it (the school)", "(every day)", "in Cuba". It reads naturally, carries meaning rather than
   metalanguage, and never shows the answer's form.
 - **Dialect tags are derived, not authored.** A course states its variety once (es: Cuban). The compiler
-  knows which lexemes have dialect synonyms (lexemes that share a lexical meaning and differ in the dialect
+  knows which lexemes have dialect synonyms (lexemes of one concept that differ in the dialect
   feature) and tags those prompts.
 - **A dialect slip gets its own feedback.** *coche* where the prompt says Cuban: wrong, but the feedback
-  says "that's the word in Spain; in Cuba, *carro*". It's a miss on the Cuban lexeme, not a typo or an
+  says "that's the word in Spain; in Cuba, *carro*". It's a miss on the Cuban morpheme, not a typo or an
   unrelated word.
 - **The compiler can enforce it.** An accept set for writing the target whose alternatives differ in an
   inherent cell needs a tag that picks one, or a lint fires. That needs the alternatives analysed (through
@@ -870,17 +862,17 @@ possible.
 
 **Proposed:**
 - **A chunk is how we teach, not something the learner knows.** *Qayerdansiz?* or *¿Qué tú quieres?*,
-  taught whole early on, are combinations, not lexemes. They present lexemes before the learner can
-  analyse them. Credit goes only to the lexemes inside.
-- **A non-compositional lexeme's parts get no credit.** Knowing 東西 says nothing about 東 "east". A tap
+  taught whole early on, are combinations, not morphemes. They present morphemes before the learner can
+  analyse them. Credit goes only to the morphemes inside.
+- **A non-compositional morpheme's parts get no credit.** Knowing 東西 says nothing about 東 "east". A tap
   shows the parts as a memory hint (§10).
-- **Open:** does meeting a chunk count as meeting the lexemes inside it, before they're introduced?
+- **Open:** does meeting a chunk count as meeting the morphemes inside it, before they're introduced?
 
 ## 14. Wug tests
 
 **Decided (the idea):** when teaching inflection or derivation, test it with made-up words (Berko 1958). A
 real word may have been memorised; a made-up one can't have been, so a wug card credits only the rule and
-the affix lexeme.
+the affix morpheme.
 
 **Proposed:**
 - **Productivity is a property of a rule.** A pattern is a rule if speakers extend it to a wug; only
@@ -905,27 +897,27 @@ the affix lexeme.
 ## 15. Data model changes, roughly
 
 All Proposed:
-- `sense:` → lexeme; `form:` → cells plus affix lexemes. Open: rename the ids (`lexeme:`, `cell:`) once,
+- `sense:` → morpheme; `form:` → cells plus affix morphemes. Open: rename the ids (`morpheme:`, `cell:`) once,
   early, with a fold migration for logged events, or keep the ids and change only the docs.
-- Lexeme fields:
+- Morpheme fields:
   - class, attachment (with position for dependents), inflectional or derivational;
-  - head and cell (irregular lexemes);
-  - base or root (derived lexemes);
+  - head and cell (irregular morphemes);
+  - base or root (derived morphemes);
   - properties;
   - per orthography, how it attaches.
-- Tokens: a lexeme with an optional derivational analysis, plus inflectional morphs; morphs anchored on
+- Tokens: a morpheme with an optional derivational analysis, plus inflectional morphs; morphs anchored on
   tiers, with templates as shorthand; `pos` per token (conversion).
 - Rules as data, with productivity. The compiler checks derivations, and an underivable form must be a
-  lexeme (a new lint, with a fixture).
-- Facets derived per lexeme from course, profile and scheme data; new facets for vocalize, spelling where
+  morpheme (a new lint, with a fixture).
+- Facets derived per morpheme from course, profile and scheme data; new facets for vocalize, spelling where
   open, and properties.
-- Grader: overregularisation (the cell right, the lexeme missed); wrong register is WRONG_WORD.
+- Grader: overregularisation (the cell right, the morpheme missed); wrong register is WRONG_WORD.
 - Prompt tags for every inherent feature the target demands (extending `persons`), and a lint for
   accept sets that differ in one untagged (§12); a dialect-slip verdict.
 
 ## 16. Open questions
 
-1. Rename the KC ids (`lexeme:`, `cell:`) now, or keep them?
+1. Rename the KC ids (`morpheme:`, `cell:`) now, or keep them?
 2. Do rules take listed properties as input (§3.2)? Do grapheme tables count as rules (§3.3)?
 3. Where is the line for Spanish stem-changers and Persian present stems (§7)?
 4. Is the uz causative a cell or a derivation (§6)?
@@ -933,7 +925,7 @@ All Proposed:
 6. What is a root's sense, and which tier do templates check first (§9)?
 7. Keep "family", or only the links base and root (§10)?
 8. Properties: facets or their own KCs (§11)?
-9. Does a chunk count as meeting its lexemes (§13)?
+9. Does a chunk count as meeting its morphemes (§13)?
 10. Javanese: krama or ngoko first (§4)?
 11. yue 嘅: one linker or two (§4)?
 12. The invented schemas: apc's, hbo's extension, stress in fa and uz, uz's base script (§8).
