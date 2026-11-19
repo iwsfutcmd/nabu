@@ -831,6 +831,13 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
     the base-case rule, and contrast sets in grading (ADR 0066).
   - So the apc question is whether its participle's head is a value of the verb's paradigm (as PAST is) or a
     function making an adjective; the test is the one above (dimensions the base's paradigm lacks).
+  - **Proposed: which feature values are lexemes.** One with a meaning that is merged as a head is: PAST
+    (lemma ‑ed, its elsewhere morpheme; gloss PST; its part of speech a signature; learned as its contrast,
+    as decided for features), the noun's PL, preterite and imperfect (two lexemes), DAT where it means
+    direction. A class value isn't: *casa*'s feminine is a lexical feature with no meaning (a house isn't
+    female), unlike the derivational FEM of *niña* and خالة, which is a lexeme. Agreement and government
+    merge no head of their own: *blanca*'s ‑a spreads *casa*'s gender by a rule, and a verb's governed dative
+    is a rule plus its lexical feature. So FEM names two objects that share a label.
 - **Order rules are stated once per language, never per combination:** affix templates and position
   classes, clitic clusters (Spanish *se* > 2nd > 1st > 3rd: *se te lo*), clitic placement by host (*me lo
   da*, *dámelo*), head direction.
