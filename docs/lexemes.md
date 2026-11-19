@@ -672,11 +672,14 @@ a new design language.
       entry, and OFL.txt ships beside the output.
   - **Latin** (Arabizi; reading schemes such as SBL; Maltese, if ever): rendered 2026-11-19 (DejaVu Sans as a
     stand-in), C or ◌ as the slot, in text colour or at 6%.
-    - Proposed: **C at 6%**, the linguists' own CV notation (maCCaC, CiCCēC), and a letter as the slot as in
-      the other scripts. Latin doesn't join, so there's no tatweel.
-    - Proposed: **a doubled slot carries a tie**, U+035C COMBINING DOUBLE BREVE BELOW (CaC͜CaC, CiC͜CēC), the
-      Latin counterpart of shadda and dagesh: a mark, so it stays in the text colour. Without it, a doubled
-      radical looks like two radicals. The build's Latin font must cover U+035C.
+    - **Decided: the dotted circle ◌ as the Latin slot** (ma◌◌a◌, ◌i◌͜◌ē◌). Latin doesn't join, so there's no
+      tatweel.
+    - **Decided: a doubled slot carries a tie**, U+035C COMBINING DOUBLE BREVE BELOW (◌a◌͜◌a◌), the Latin
+      counterpart of shadda and dagesh: a mark, so it stays in the text colour. Without it, a doubled radical
+      looks like two radicals.
+    - **The build needs a fuller Latin source than the UI's:** none of the `@fontsource/noto-sans` subsets has
+      U+035C, and only its Devanagari subset has U+25CC (checked 2026-11-19). The Latin pattern font comes
+      from the full Noto Sans, pinned by URL and sha256 in the font manifest.
     - A pattern's reading (SBL) can then sit over its Hebrew shape as ruby: ◌ִ◌ֵּ◌ under CiC͜CēC.
     - Not digits (1a22a3): Arabizi uses digits as letters (2, 3, 5, 7, 9).
 - **Decided: the tradition's names stay as labels.** مَفْعَل, piʿel, hifʿil are how grammars and dictionaries
