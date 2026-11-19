@@ -3,7 +3,8 @@
 - Status: brainstorm, 2026-11-18. Not an ADR: questions are still open (§16).
 - Diagrams of the model: [lexeme-model.md](lexeme-model.md).
 - Written as the discussion went: where an earlier section disagrees with §2 (Terms) or with lexeme-model.md,
-  those win. In particular, "cell" and "head" were later folded into features and lexemes.
+  those win. In particular, "head" was later folded into lexemes; "cell", folded into features at first, came back and was
+  renamed "form" (2026-11-19).
 - **Decided** marks the owner's decisions; **Proposed**, suggestions not yet agreed; **Open**, what awaits a
   decision.
 
@@ -43,7 +44,7 @@ Renamed 2026-11-19 (Decided); earlier drafts called the listed unit a "lexeme" a
 
 | Term | Meaning | Examples | Status |
 |---|---|---|---|
-| **concept** | Links lexemes, or cells, that differ only in social form (variety, speech level, honorific), never in what is said | EAT (*mangan*, *nedha*, *dhahar*); CAR (*carro* in Cuba, *coche* in Spain) | Decided |
+| **concept** | Links lexemes, or forms, that differ only socially (variety, speech level, honorific), never in what is said | EAT (*mangan*, *nedha*, *dhahar*); CAR (*carro* in Cuba, *coche* in Spain) | Decided |
 | **lexeme** | A meaning (glossed) with lexical features (part of speech, gender, class), owning a paradigm; belongs to scopes (variety, register). Its boundary: what a learner must know to know it | SER; RAFTAN (*raft‑*, *rav‑*); *nedha*; *casa* (feminine) | Decided |
 | **morpheme** | What a learner learns: one sense with its lexical form(s), whatever can't be derived (§3), in any class and attachment. Bloomfield's minimal sign, stretched to portmanteaus and listed multi-word items | *kitob*, ‑dan, 呀, را, *ran*, *tuv-*, 東西, *darse cuenta* | Decided |
 | **allomorph** | One of a morpheme's forms, picked by a context: stored with its context, or given by a rule | ‑ga / ‑ka / ‑qa, וְ / וּ, *el agua* | Decided |
@@ -56,7 +57,7 @@ Renamed 2026-11-19 (Decided); earlier drafts called the listed unit a "lexeme" a
 | **sense** | A morpheme's meaning: its lexeme's meaning plus features. One morpheme, one sense | *ran* = RUN + past | Decided |
 | **feature** | A grammatical value. **Lexical** ones are the lexeme's, constant across its paradigm; **inflectional** ones vary across it (register among them). Inflectional ones are *inherent* (add meaning, learned as a contrast) or *contextual* (forced by syntax; a rule plus a lexical feature) | feminine, krama, Cuban; past, 3sg, dative | Decided |
 | **gloss** | A lexeme's label in one support language; a morpheme's adds its features ("run (past)", "eat (krama)") | *qoʻl*: "hand; arm" | Decided |
-| **variety** | A scope in the one lexicon: the morphemes, lexemes, cells and rules a dialect has (shared by default); a course picks one | Cuban; Peninsular | Decided |
+| **variety** | A scope in the one lexicon: the morphemes, lexemes, forms and rules a dialect has (shared by default); a course picks one | Cuban; Peninsular | Decided |
 
 **Form**
 
@@ -103,7 +104,7 @@ Renamed 2026-11-19 (Decided); earlier drafts called the listed unit a "lexeme" a
 - **Rejected:**
   - "listeme" (Di Sciullo & Williams 1987: precise, but lame-sounding);
   - "aspect" for lexical features (it collides with verbal aspect);
-  - "property" (merged into lexical features), "cell" (an inflectional feature set), "head";
+  - "property" (merged into lexical features), "cell" (an inflectional feature set; back later, renamed "form"), "head";
   - "form" for the representations (`form:` KCs; the glossary lists three senses already);
   - "tier" for what a morpheme stores (it has one; tiers are only what projections produce).
 - **Where "morpheme" stretches the textbook** (Bloomfield's minimal sign): portmanteaus (*ran*), morphemes
@@ -270,7 +271,7 @@ inflection vs derivation, which is very important (§6).
   - A derived word got right is weak evidence for its affix (it may have been memorised). The test for a
     derivational affix is generalisation: derive cards and wug tests (§14).
 - **Cards and distractors differ.**
-  - Inflection: "which form" (ADR 0132), allomorph choice, paradigms; distractors are other cells.
+  - Inflection: "which form" (ADR 0132), allomorph choice, paradigms; distractors are other forms.
   - Derivation: derive and interpret cards, word families, building from tiles; distractors are other
     derivatives of the same base (*yozuv*, *yozuvchi*, *yozma*).
 - **Order of introduction differs.**
@@ -281,23 +282,23 @@ inflection vs derivation, which is very important (§6).
   derivational slip lands on another morpheme, which the lexicon check (WRONG_WORD) catches.
 - **The grey zone needs a policy before annotating:** uz causative ‑t / ‑dir, Hebrew binyanim (hbo already
   treats each stem as a morpheme), Spanish ‑ito, participles and infinitives.
-  - The test: does it fill a cell of the lexeme's paradigm, or make a word with its own entry?
+  - The test: is it a form in the lexeme's paradigm, or a word with its own entry?
   - When unsure, call it derivation.
   - Open: uz causative (*oʻqit-* "teach" beside *oʻqi-* "read").
 - **Families** (§10) link derived words whether or not they are morphemes.
 
-## 7. Paradigms, cells and irregular forms
+## 7. Paradigms and irregular forms
 
 **Proposed:**
-- **`form:` splits.** Some `form:` KCs are cells (es `form:pret-3s`, grc `form:f-acc`, hbo
+- **`form:` splits.** Some `form:` KCs are forms (es `form:pret-3s`, grc `form:f-acc`, hbo
   `form:wayyiqtol-3ms`); others are affix morphemes (`form:abl-dan`).
-- **Choosing a cell and realising it are credited apart.**
-  - A cell is credited when the learner chooses it.
+- **Choosing a form and realising it are credited apart.**
+  - A form is credited when the learner chooses it.
   - An exponent is credited for the form: ‑ed in *walked*, the morpheme *ran*, the stem *tuv-*.
-  - An irregular morpheme points at its head and names its cell (`head: run, cell: PST`).
-- **Zero morphemes disappear.** A zero is a cell with no exponent (uz COP.3SG).
-- **The grader can recognise overregularisation.** *\*tenió*, *\*runned*: the right cell, the rule's
-  output, blocked by a morpheme. Credit the cell, count a miss on the morpheme, and say "right tense, irregular
+  - An irregular morpheme points at its head and names its form (`head: run, form: PST`).
+- **Zero morphemes disappear.** A zero is a form with no exponent (uz COP.3SG).
+- **The grader can recognise overregularisation.** *\*tenió*, *\*runned*: the right form, the rule's
+  output, blocked by a morpheme. Credit the form, count a miss on the morpheme, and say "right tense, irregular
   verb".
 - **Never use regularised non-words as distractors.** Showing them risks teaching the error (Roediger &
   Marsh 2005).
@@ -370,8 +371,8 @@ fully specified form ─┤
   each orthography and phonemic scheme. Every projection needs conformance vectors passing in both
   harnesses.
 - **Authoring needn't change.** Course text stays in the normal orthography, as ADR 0053 has it, annotated
-  with morphemes and cells. The compiler projects each token from its morpheme's fully specified form, the
-  cell and the context, and reports any token whose authored text disagrees. Most per-token pins (readings,
+  with morphemes and forms. The compiler projects each token from its morpheme's lexical form, the
+  form's features and the context, and reports any token whose authored text disagrees. Most per-token pins (readings,
   `vocalized`) become checks, not data; they stay only for what rules can't derive.
 
 ### lzh: Qieyun positions
@@ -439,8 +440,8 @@ as needed.
 - **Contexts are a per-language inventory, data like schemes:** before a vowel, after q, before a labial,
   pause, nesiga, before a stressed á‑. Tokens already carry one (`context`, ADR 0135); the same labels name
   a morpheme's forms. A stored form that a rule also derives is checked against the rule.
-- **A context is not a cell.** A cell is a feature in the sense: the learner chooses it, or the syntax
-  forces it (agreement), and an irregular cell is a separate morpheme (*el* / *la*). A context is the
+- **A context is not a form.** A form is a feature in the sense: the learner chooses it, or the syntax
+  forces it (agreement), and an irregular form is a separate morpheme (*el* / *la*). A context is the
   setting that picks a form, and adds nothing to the sense: phonological or prosodic (before a vowel,
   pause), or morphological, a property of the morpheme it combines with (a pattern's forms by root class,
   §9).
@@ -492,7 +493,7 @@ a new design language.
   | yue changed tone (糖 "candy") | — | — | tone of syllable 1: 2 |
   | Root ك‑ت‑ب in مَكْتُوب | letters 2, 3, 5 | same | k, t, b |
   | Pattern مَفْعُول in مَكْتُوب | letters 1, 4 | + every mark | ma‑, ‑ū‑ |
-  | uz third-person copula | — (a cell, not a morph) | — | — |
+  | uz third-person copula | — (a form, not a morph) | — | — |
   | Welsh mutation; hbo pause | an allomorph conditioned by `context` (ADR 0135) | | |
 
 - **Anchors are the data; templates are the authoring shorthand.**
@@ -855,7 +856,7 @@ possible.
   says "that's the word in Spain; in Cuba, *carro*". It's a miss on the Cuban morpheme, not a typo or an
   unrelated word.
 - **The compiler can enforce it.** An accept set for writing the target whose alternatives differ in an
-  inherent cell needs a tag that picks one, or a lint fires. That needs the alternatives analysed (through
+  inherent form needs a tag that picks one, or a lint fires. That needs the alternatives analysed (through
   the lexicon, as `glossTokens` does); today only a sentence's own text is.
 
 ## 13. Chunks
@@ -904,11 +905,11 @@ shown on real words, and is treated as a bit of fun, an easter egg, never the ma
 ## 15. Data model changes, roughly
 
 All Proposed:
-- `sense:` → morpheme; `form:` → cells plus affix morphemes. Open: rename the ids (`morpheme:`, `cell:`) once,
+- `sense:` → morpheme; `form:` → forms plus affix morphemes. Open: rename the ids (`morpheme:`, `form:`) once,
   early, with a fold migration for logged events, or keep the ids and change only the docs.
 - Morpheme fields:
   - class, attachment (with position for dependents), inflectional or derivational;
-  - head and cell (irregular morphemes);
+  - head and form (irregular morphemes);
   - base or root (derived morphemes);
   - properties;
   - per orthography, how it attaches.
@@ -918,7 +919,7 @@ All Proposed:
   morpheme (a new lint, with a fixture).
 - Facets derived per morpheme from course, profile and scheme data; new facets for vocalize, spelling where
   open, and properties.
-- Grader: overregularisation (the cell right, the morpheme missed); wrong register is WRONG_WORD.
+- Grader: overregularisation (the form right, the morpheme missed); wrong register is WRONG_WORD.
 - Prompt tags for every inherent feature the target demands (extending `persons`), and a lint for
   accept sets that differ in one untagged (§12); a dialect-slip verdict.
 
@@ -971,7 +972,7 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   *khāl* "maternal uncle" and خالة *khāle* "maternal aunt" are one word, one derived from the other, while ام
   *imm* "mother" and بي *bayy* "father" are clearly two. So feminine marking on nouns is derivation: *khāle* is
   *khāl* + the feminine, a combination with nothing new to learn, and suppletive pairs are separate lexemes.
-  Inflection would have made *imm* a cell of BAYY under the base-case rule. Gender on adjectives (*kbīr* /
+  Inflection would have made *imm* a form of BAYY under the base-case rule. Gender on adjectives (*kbīr* /
   *kbīre*) is still inflection: agreement. A derived feminine with a sense of its own (if *khāle* is also a
   polite address to any older woman) is listed as its own morpheme.
 - Decided: 5, one lexeme. Uzbek uses adjectives as manner adverbs freely (*yaxshi oʻqiydi* "studies well"),
@@ -1009,7 +1010,7 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
 
 **Answers, round 3 (the owner, 2026-11-19)**
 - Decided: where both constituents specify a feature, the selecting one wins (that is all a head is).
-- Decided: gaps, as proposed (conditions explain most; only an arbitrary gap is listed, as a cell with no form).
+- Decided: gaps, as proposed (conditions explain most; only an arbitrary gap is listed, as a form with no word).
 - Decided: *caza* for "house" is a phonemic hit with an orthographic and a lexical miss: the learner knows how
   the word sounds. Proposed: the lexical miss counts against telling the pair apart.
 - Decided: glosses are built; both the support language's form ("ran") and the analysis ("run (past)") shown.

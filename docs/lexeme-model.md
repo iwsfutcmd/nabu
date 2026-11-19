@@ -2,7 +2,7 @@
 
 - Status: working notes, 2026-11-18, beside [lexemes.md](lexemes.md) (the discussion and its decisions).
 - Terms as in "Naming" below; also **lexical form** for the fully specified form, **surface form** for a
-  projection, **features** for cells and properties.
+  projection, **features** for forms and properties.
 
 ## Naming (Decided 2026-11-19)
 
@@ -32,7 +32,7 @@ classDiagram
   class Concept {
     <<entity>>
     links items across varieties of one language
-    lexemes, or cells of lexemes
+    lexemes, or forms of lexemes
   }
   class Lexeme {
     <<entity>>
@@ -45,7 +45,7 @@ classDiagram
   }
   class Morpheme {
     <<entity>>
-    inflectional features - the cell it fills
+    inflectional features - the form it fills
     attachment - free, clitic, or affix with position
     parts - base, root, pattern - optional, with a source
     varieties it belongs to; provenance, licence
@@ -88,11 +88,11 @@ classDiagram
   Utterance --> Combination : says one
 ```
 
-### 2. Examples: a concept across social forms, a concept across varieties, two-stem and irregular paradigms, affixes
+### 2. Examples: a concept across speech levels, a concept across varieties, two-stem and irregular paradigms, affixes
 
 ```mermaid
 flowchart TB
-  subgraph EATG["concept EAT: three lexemes, one per social form"]
+  subgraph EATG["concept EAT: three lexemes, one per speech level"]
     direction LR
     C0["concept EAT"] --> L1["lexeme MANGAN<br/>verb · ngoko scope"] --> M1["morpheme mangan"]
     C0 --> L2["lexeme NEDHA<br/>verb · krama scope"] --> M2["morpheme nedha"]
@@ -135,7 +135,7 @@ flowchart TB
   for learners who care: "EAT: you know *mangan* and *nedha*, not yet *dhahar*". Computed from the lexemes'
   states, never stored.
 - **The lemma is not the elsewhere morpheme** (a correction to what the first draft of these diagrams
-  asked). The lemma is the realisation of the language's **citation cell**, a combination of one, which
+  asked). The lemma is the realisation of the language's **citation form**, a combination of one, which
   goes through realisation and blocking like any other: the infinitive for es, uz and fa (*ser* = SER +
   infinitive, خوردن = past stem + ‑ن), third person masculine singular perfect for Arabic and Hebrew
   (*kataba*, *qāṭal*), first person singular present for Greek (λύω). The elsewhere morpheme is the stem
@@ -175,8 +175,8 @@ Proposed refinement (2026-11-19), after the owner found *carro* / *coche* as one
 - **Stylistic doublets without grammar.** Uzbek *samolyot* (Russian) / *tayyora* "aeroplane": one speaker,
   hundreds of such pairs, but no affix or agreement realises the choice. Separate lexemes, so a concept
   links synonyms *within* a grammar too, not only across.
-- **Variety-scoped cells.** *tú* / *usted* is a paradigm dimension everywhere, but only Spain's grammar has a
-  familiar plural (*vosotros*): varieties scope features and cells, not just entries.
+- **Variety-scoped forms.** *tú* / *usted* is a paradigm dimension everywhere, but only Spain's grammar has a
+  familiar plural (*vosotros*): varieties scope features and forms, not just entries.
 - **Natural gender.** *padre* / *madre* may be one lexeme (*padres* = "parents": the default form covers both
   values), *toro* / *vaca* two (*toros* is not "cattle"). Neutralisation to a default is diagnostic.
 - **Many-to-one registers.** Avoidance styles (Dyirbal's is the textbook case) have one word for several
@@ -201,18 +201,18 @@ exactly what learning it requires. The diagnostics above are its evidence, not i
 | *tayyora* | *samolyot* | no: a synonym, a separate vocabulary gap | two lexemes |
 | *mangan* | *nedha* | yes: can't say it to an elder without being rude | one lexeme, register as a paradigm dimension |
 
-**Decided: register is a paradigm dimension; dialect is a variety scope; the concept links lexemes and cells
+**Decided: register is a paradigm dimension; dialect is a variety scope; the concept links lexemes and forms
 across varieties; "meaning" is not an object** (glosses and accept sets carry it). Javanese register was the
 case to watch: speakers also talk about it as a layer ("he can't speak krama"), not
-word by word. Both views can be derived from one model: register cells on each lexeme, and a krama
-vocabulary count summed over them. A course can still stage it: ngoko first, krama cells introduced later.
+word by word. Both views can be derived from one model: register forms on each lexeme, and a krama
+vocabulary count summed over them. A course can still stage it: ngoko first, krama forms introduced later.
 
 **Register outside Javanese** (the owner, 2026-11-19: "at least when it's this formalized; I'm not so sure
 about Spanish or French"). Proposed: register is a paradigm dimension only where the language realises it
 inside paradigms. Elsewhere it is chosen by picking a lexeme.
 - **Javanese** (and Korean's speech levels, Japanese *‑masu*, *meshiagaru* for *taberu*): verbs, nouns and
-  affixes have register cells, with a default. A paradigm dimension.
-- **Spanish and French T–V**: no verb has a formality cell. Formality is chosen by picking a pronoun, whose own
+  affixes have register forms, with a default. A paradigm dimension.
+- **Spanish and French T–V**: no verb inflects for formality. Formality is chosen by picking a pronoun, whose own
   person and number then drive agreement: *usted es* is a third-person form, *vous êtes* a plural one
   (with singular adjectives: *vous êtes gentil*). So *tú* and *usted*, *tu* and *vous*, are separate lexemes.
   Knowing *tú* without *usted* is a gap in addressing people, not in knowing *tú*, as with *padre* and *madre*.
@@ -221,13 +221,13 @@ inside paradigms. Elsewhere it is chosen by picking a lexeme.
   lexemes.md) and it is learned as a contrast. What differs is only how the language realises it: inside a
   lexeme's paradigm, or by choosing between lexemes.
 - So the variety example changes level: Spain's *vosotros* and Cuba's *ustedes* are pronoun lexemes linked by
-  a concept, and the verb forms that agree with them (*habláis* / *hablan*) are cells linked by one.
+  a concept, and the verb forms that agree with them (*habláis* / *hablan*) are forms linked by one.
 
 **Then Javanese too?** (the owner: "by this logic, Javanese register feels like a concept link"). Proposed,
 reversing "register is a paradigm dimension" for Javanese by applying the T–V reasoning consistently. Register
 is realised in three ways, and only one is a paradigm dimension:
 - **A dedicated exponent: a paradigm dimension.** Korean's speech-level endings (‑yo, ‑seumnida), Japanese
-  ‑masu: every verb has the cells, and the ending's meaning *is* the politeness.
+  ‑masu: every verb has the forms, and the ending's meaning *is* the politeness.
 - **Substituted forms: a scope, like a variety.** Javanese speech levels replace words (*mangan* → *nedha*) and
   affixes (*di‑* → *dipun‑*) with other forms of the same things, and anything without a krama form is shared,
   exactly as entries are shared across varieties by default. Ngoko and krama are then lects within one
@@ -250,7 +250,7 @@ that consistently causes suppletion probably works at the concept level, not ins
   Tense consistently causes suppletion across the verb lexicon, yet *raft‑* and *rav‑* are plainly one
   lexeme: knowing one without the other is a gap in knowing "go". Arabic broken plurals are the same thorn.
 - **A second, smaller one, also Persian:** formal Persian uses Arabic plurals beside ‑hā (خبرها / اخبار
-  "news", اسناد "documents"): register-conditioned suppletion inside a single cell.
+  "news", اسناد "documents"): register-conditioned suppletion inside a single form.
 - Proposed refinement: consistent suppletion points to the concept level only when the property selects a lect
   (speech level, variety) and leaves the proposition alone; a property with its own meaning in the
   proposition (tense, number) stays inside the lexeme however suppletive it is.
@@ -276,30 +276,30 @@ that consistently causes suppletion probably works at the concept level, not ins
 **Decided (2026-11-19): every Javanese register form is at the concept level.** *Mangan* (ngoko), *nedha*
 (krama) and *dhahar* (honorific: a respected person's eating) are three lexemes linked by the concept EAT;
 the speech level is a scope, the honorific a lexical feature of *dhahar*. Persian *raft‑* / *rav‑* are two
-listed stems of one lexeme. So a **concept links lexemes that differ only in social form**: the variety, the
+listed stems of one lexeme. So a **concept links lexemes that differ only socially**: the variety, the
 speech level, the honorific, who is speaking to whom about whom. Never in what is said.
 - Resolved below: Spanish and French T–V are concept-linked; the Javanese krama affixes are separate affix
   lexemes linked by a concept, like the words.
 
 **The owner's rule (2026-11-19): a base case makes a paradigm.** If a feature has a regular, base-case
 morpheme that realises it, then the feature is a dimension of the lexeme's paradigm, and its suppletive forms
-elsewhere are cells of that lexeme, however many there are. Arabic broken plurals are cells of their singular
+elsewhere are forms of that lexeme, however many there are. Arabic broken plurals are forms of their singular
 because the sound plural ‑ون exists, even though broken plurals are the norm.
 
 The two readings of the owner's first wording ("any systematic way to trigger something") are one rule seen
 from two sides: **the base case decides whether a feature is a paradigm dimension; the dimension decides
-whether a suppletive form fills cells or is a word of its own.**
+whether a suppletive form is a form of a lexeme or a word of its own.**
 1. Does the feature have an overt base-case morpheme? Then it is a dimension of the paradigm.
-2. Within a dimension, every form, however suppletive, fills cells of the one lexeme (*rav‑* fills Persian's
-   present cells, 드시다 Korean's honorific ones).
+2. Within a dimension, every form, however suppletive, is a form of the one lexeme (*rav‑* fills Persian's
+   present forms, 드시다 Korean's honorific ones).
 3. Without a base case, an alternative is a whole word with a paradigm of its own: a separate lexeme, linked
-   by a concept if it differs only in social form (*nedha*, *usted*, *coche*), unlinked otherwise (*madre*).
-Read alone, "a cell or a whole word" would have put Korean 드시다 at the concept level (it inflects on its own);
-the base case is what makes it a cell.
+   by a concept if it differs only socially (*nedha*, *usted*, *coche*), unlinked otherwise (*madre*).
+Read alone, "a form or a whole word" would have put Korean 드시다 at the concept level (it inflects on its own);
+the base case is what makes it a form.
 - **Lexeme-level:** English past (‑ed, so *ran*, *went*); Persian tense (regular stems in ‑id, so *raft‑* / *rav‑*);
-  Persian plural (‑hā, so formal کتب *kotob* is a cell of KETĀB, picked by register); Korean subject honorific
-  (‑si‑, so 드시다 *deusida* is a cell of 먹다 "eat"); Japanese honorifics (*o‑V‑ni naru*, so *meshiagaru* is a
-  cell of *taberu*).
+  Persian plural (‑hā, so formal کتب *kotob* is a form of KETĀB, picked by register); Korean subject honorific
+  (‑si‑, so 드시다 *deusida* is a form of 먹다 "eat"); Japanese honorifics (*o‑V‑ni naru*, so *meshiagaru* is a
+  form of *taberu*).
 - **Concept-level, for want of a base case:** Javanese speech level and honorific (no regular krama or
   honorific morpheme for stems; words without a krama form stay as they are), Spanish and French T–V (no
   formality affix), dialect (no dialect morpheme).
@@ -309,25 +309,25 @@ the base case is what makes it a cell.
 - **What separates both from Persian *kotob*: whole or partial replacement.** Scopes (variety, register, speech
   level) are never paradigm dimensions, having no base case. A scoped form that replaces a lexeme's every
   form is a separate lexeme, linked by a concept (*nedha*, *dhahar*, *dipun‑*, *usted*, *coche*). One that
-  replaces only some cells is a scoped morpheme of the same lexeme: formal Persian says کتب *kotob* in the
+  replaces only some forms is a scoped morpheme of the same lexeme: formal Persian says کتب *kotob* in the
   plural but still کتاب *ketāb* in the singular.
-- **The rule predicts a typological contrast:** "eat" honorific is a cell in Korean and Japanese, a separate
+- **The rule predicts a typological contrast:** "eat" honorific is a form in Korean and Japanese, a separate
   lexeme in Javanese.
 - **Its thorn: Spanish feminine ‑a** (*niño* / *niña*) is a base case, so *padre* / *madre*, *toro* / *vaca* would be
-  cells of one lexeme, which the owner rejected. Decided (native apc judgement: *khāl* / *khāle* one word,
+  forms of one lexeme, which the owner rejected. Decided (native apc judgement: *khāl* / *khāle* one word,
   *imm* / *bayy* two): noun gender marking is derivational, not inflectional, and the rule is about
   inflection; derivation never merges lexemes. *Niña* is then *niño* + a
   derivational feminine (a combination), and *madre* a lexeme of its own.
 
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
-  decomposition: no KING + F = QUEEN. A lexeme has a cell only for a feature it inflects for; *padre* is a
+  decomposition: no KING + F = QUEEN. A lexeme has a form only for a feature it inflects for; *padre* is a
   masculine noun as *casa* is a feminine one. (*niño* / *niña*: noun gender marking is derivation, Decided on apc evidence, so *niña* is *niño* + the
   derivational feminine, a combination.)
 - **Literary and colloquial readings are different words** (生 *saang1* in 生日, *sang1* in 學生; Decided).
   Diachrony is not our concern.
-- **Variety-scoped cells are concept territory** (Decided): Spain's 2nd plural familiar (*vosotros*) and Cuba's
-  2nd plural (*ustedes*) are linked by a concept. A concept can link cells as well as lexemes.
+- **Variety-scoped forms are concept territory** (Decided): Spain's 2nd plural familiar (*vosotros*) and Cuba's
+  2nd plural (*ustedes*) are linked by a concept. A concept can link forms as well as lexemes.
 - **A further layer, provisionally "meaning"** (it may not exist): diglossic pairs (佢 / 他), stylistic
   doublets without grammar (*samolyot* / *tayyora*) and many-to-one registers sit between meaning and concept.
   Proposed working line: a **concept** is a correspondence the community itself makes between items of one
@@ -361,7 +361,7 @@ flowchart LR
     PH["phonemic forms per scheme"]
     AU["audio"]
     HO["homographs"]
-    LE["the lemma: a combination of one<br/>in the citation cell, in isolation"]
+    LE["the lemma: a combination of one<br/>in the citation form, in isolation"]
   end
   subgraph M["Derived on a morpheme or lexeme"]
     direction TB
@@ -640,10 +640,10 @@ A morpheme shows up in two different ways, and only one needs an object:
     feminine and *el problema* → *el problemita* masculine. The pattern itself is closed-class, whatever it makes.
   - The categories are the language's own (the *yaxshi* principle): Arabic's are ism, fiʿl, ḥarf, and whether
     كاتِب is a noun or an adjective is an English question.
-  - A cell can still differ in external category: word-class-changing inflection (Haspelmath 1996), as a
+  - A form can still differ in external category: word-class-changing inflection (Haspelmath 1996), as a
     participle or an infinitive. A proposed test for Q5: a form that takes dimensions its base's paradigm lacks
     (the Standard Arabic participle: case, definiteness) is a derived lexeme; one that uses only the base's own
-    (apc شايف, شايفة, شايفين, شايفه: gender, number, an object) can be a cell. Russian participles decline for
+    (apc شايف, شايفة, شايفين, شايفه: gender, number, an object) can be a form. Russian participles decline for
     case and are still verb forms, so the test is a choice for Nabu, not a universal.
 - What learners do with roots is a skill, not a sense: **root extraction** (a word → its root, a pattern
   applied backwards) is credited to the pattern's rule; the root itself has no learning state.
@@ -652,14 +652,14 @@ A morpheme shows up in two different ways, and only one needs an object:
 
 | | Links lexemes that… | Key | Example |
 |---|---|---|---|
-| **concept** | differ only in social form | a meaning | EAT: *mangan*, *nedha*, *dhahar* |
+| **concept** | differ only socially | a meaning | EAT: *mangan*, *nedha*, *dhahar* |
 | **family** | share a base or root, with different meanings | a root, or a base lexeme | ك‑ت‑ب: كَتَبَ, كاتِب, كِتاب, مَكْتَب; WRITE: *writer*, *rewrite* |
 
 - **Concept or family: two questions about a pair of lexemes.**
 
   | | Shared base or root | No shared base or root |
   |---|---|---|
-  | **Same meaning, a different social form** | concept (*video* / *vídeo*) | concept (*carro* / *coche*, *mangan* / *nedha*) |
+  | **Same meaning, differing only socially** | concept (*video* / *vídeo*) | concept (*carro* / *coche*, *mangan* / *nedha*) |
   | **Different meanings** | family (*write* / *writer*, كِتاب / مَكْتَب) | nothing (*padre* / *madre*: no semantic decomposition) |
   | **Same meaning, no social difference** | the hole: true synonyms, handled if they turn up | |
 
@@ -791,7 +791,7 @@ learner has to memorise. But learned knowledge has three sides, and morphemes ar
        sentence can't stand in for the use.
 
     A wrong value counts against the use that was called for, and only where grading pins it (a minimal-pair
-    card, or a typed answer with the right lexeme in the wrong cell).
+    card, or a typed answer with the right lexeme in the wrong form).
 
     A contrast belongs to its language, even where UD gives its values the same names: Spanish preterite
     against imperfect, English simple against progressive, Biblical Hebrew wayyiqtol against qatal. Two
@@ -840,13 +840,13 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
 - **Inflection:** a combination is a morpheme plus features (kitob + {plural, 1sg possessor, ablative}). The
   language's template orders the exponents, as realizational morphology has it, so nothing is stored but
   the features.
-- **Decided (2026-11-19): a cell is built as a derivative is.** Both merge a base lexeme with another lexeme:
-  a cell with a feature's lexeme (PAST, DAT, 1SG), a derivative with a pattern's or an affix's (فاعِل, ‑er).
+- **Decided (2026-11-19): a form is built as a derivative is.** Both merge a base lexeme with another lexeme:
+  a form with a feature's lexeme (PAST, DAT, 1SG), a derivative with a pattern's or an affix's (فاعِل, ‑er).
   One operation, its head computing the result.
   - **The feature is merged, not its suffix:** RUN + PAST, and realization picks ‑ed, or *ran* where RUN lists
     a morpheme for it; one exponent may realise several features (*fue*, Spanish ‑ó: past and 3sg).
   - **Open (the owner is unsure; back to it last): inflection and derivation remain, as kinds of head**, not as mechanisms. A feature's lexeme is a
-    value of a dimension its base's category has, and its result stays in the base's lexeme (a cell); a
+    value of a dimension its base's category has, and its result stays in the base's lexeme (a form); a
     pattern's or a derivational affix's lexeme is a function, and its result is a new, computed lexeme. The
     kind decides the learner's test and progress (*ser*: 5 of 9 forms), where a listed form lives (*ran* in
     RUN; كاتِب "clerk" its own lexeme), the gloss ("run (past)" against "writer"), blocking within a paradigm,
@@ -858,11 +858,11 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
 
     | | Inflection (a value head) | Derivation (a function head) |
     |---|---|---|
-    | the result | a cell of the base's lexeme | a new lexeme-shaped value, computed: a derivative (below) |
+    | the result | a form of the base's lexeme | a new lexeme-shaped value, computed: a derivative (below) |
     | its category | the base's | the head's, or the base's where the head leaves it open (‑ito) |
     | its meaning | the base's plus the feature | composed from both |
     | its paradigm | the base's | its own, from its category: *writer*, *writers* |
-    | stored when | a cell no rule gives (*ran*, كُتُب) | anything about it no rule gives (*writer* "author"; كاتِب "clerk", plural كُتّاب) |
+    | stored when | a form no rule gives (*ran*, كُتُب) | anything about it no rule gives (*writer* "author"; كاتِب "clerk", plural كُتّاب) |
     | the learner's test | part of knowing the base | not part of knowing the base |
 
     Merge is binary, one head per step, derivation inside: *ishchilarimiz* is ((ISH + AGENT) + PL) + 1PL.POSS.
@@ -884,14 +884,14 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
       *panadero* (‑ero's senses, a trade, a container, a tree, can't be predicted), *ahorita* (by region
       "right now" or "in a while", neither of them "now" plus a diminutive). In practice the computed ones are the transparent, productive heads:
       Arabic participles and the verbal nouns of Forms II–X, Spanish ‑mente, English ‑ness.
-    - **What still differs for the learner** (the owner asked, 2026-11-19): a regular cell and a regular
+    - **What still differs for the learner** (the owner asked, 2026-11-19): a regular form and a regular
       derivative are alike, evidence for their parts. The difference is in the head and in what is listed:
       a value head is a **choice the learner makes every time** they use the base (every Spanish verb needs a
       tense and a person; learned as a contrast, asked as "which form"; a miss is grammatical; prompts are
       tagged for it), a function head **a meaning they choose to add** (AGENT "one who"; learned as a sense,
-      asked as "which word"; a miss is lexical; no tags). A listed cell is part of knowing its base (*ran*); a
+      asked as "which word"; a miss is lexical; no tags). A listed form is part of knowing its base (*ran*); a
       listed derivative is a word of its own (*writer* "author"). A derivative can take inflection of its own
-      (*escritora*, *escritores*); a cell takes no derivation. In short: a cell is the word in another form,
+      (*escritora*, *escritores*); a form takes no derivation. In short: a form is the word itself, inflected;
       a derivative another word made from it.
   - **Decided (round 2): which feature values are lexemes.** One with a meaning that is merged as a head is: PAST
     (lemma ‑ed, its elsewhere morpheme; gloss PST; its part of speech a signature; learned as its contrast,
@@ -1033,7 +1033,7 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
 |---|---|---|---|
 | Is the sound right? | **orthographic** (yes, the spelling isn't) | *caza*, ✗*kasa*, *ké tal* for *casa*, *qué tal* | the word's spelling leftover, or the projection rule where a rule decides that spot |
 | | **phonemic** (no) | *esta*, ✗*cafe* for *está*, *café* | the word's sound, or the rule that writes it (the stress accent) |
-| Whose form is it? | **grammatical** (the right lexeme, another cell) | *hablas* for *hablo* | the feature, or the agreement rule (ADR 0066's contrasts) |
+| Whose form is it? | **grammatical** (the right lexeme, another form) | *hablas* for *hablo* | the feature, or the agreement rule (ADR 0066's contrasts) |
 | | **lexical** (another lexeme) | *gato* for *perro*; *caza*, *esta* | always recorded (round 2). What it shows depends on the rest: *gato* for *perro* misses the target's recall; *caza* for "house" is a phonemic hit with an orthographic and a lexical miss (round 3: the learner knows how *casa* sounds and spelled it as another word). Proposed: there the lexical miss counts against telling *casa* from *caza*, and the pair gets practised (a spelling-choice card) |
 | | **scope** (the right concept, another variety or register, where the prompt fixed it) | *tú* for *usted* under "(to your boss)" | the scope choice |
 | How did it happen? | **slip** (keyboard or IME neighbours, a transposition) | ✗*nesa* for *mesa*; *cada* for *casa* | nothing on its own |
@@ -1046,7 +1046,7 @@ Each aligned unit of a wrong answer gets a set of labels, from three questions:
 - **Credit is per node of the knowledge graph (Decided, the owner):** a label is a miss on one node and a hit
   on the nodes the answer got right. An orthographic miss is a phonemic hit (and a meaning hit) with a miss on
   the spelling; a phonemic miss is a meaning hit with a miss on the sound (or the rule writing it); a
-  grammatical miss is a hit on the lexeme with a miss on the cell; a lexical miss is a miss on the target's
+  grammatical miss is a hit on the lexeme with a miss on the form; a lexical miss is a miss on the target's
   recall. A node counts only where the card made the learner supply it, never where it was handed over (a
   word bank's tiles give the spelling, a clip gives the sound): ADR 0100's "where the grading pins it".
 - **Feedback names every label** (an MF2 note each), the worst first.
