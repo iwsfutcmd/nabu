@@ -981,7 +981,7 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   root object at all").
 - Decided: 8 (lexeme-model.md, "What rules read"): rules read lexical features (a class covers at least two
   lexemes; nothing the form gives); projections are rules; learners do the script first except in a
-  logography. Proposed there: the rules are what the profile states.
+  logography; the rules are what the profile states, built and landed in one go (a definition of done there).
 - Still open (numbered as above), with proposals in lexeme-model.md: 9 (chunks); and two that came up since: whether apc's active participle is a
   cell of the verb or derivation, and part of speech on the lexeme with derivational heads' signatures.
 

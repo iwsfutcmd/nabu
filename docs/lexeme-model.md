@@ -891,7 +891,7 @@ there, and the bundle carries the results.
     phonemic projection discards (es b/v, h, Cuban s/c/z; fa which of س/ص/ث); reading it needs what the
     orthographic projection discards (fa's vowels, خواهر's silent و; *México*'s x).
   - Errors sort the same way: ✗*havlar* is the word's b missed; reading *ce* as [ke] is the letter's rule.
-- **Proposed: the rules are what the profile states.** The orthography profile (profiles/<orth>.yaml) lists
+- **Decided: the rules are what the profile states.** The orthography profile (profiles/<orth>.yaml) lists
   its correspondences as data, with contexts, marked REVIEW; whatever they don't produce is per word. fa's
   `soundAlike` sets already are such a statement (those letters are one sound, so a word's letter among them
   is learned per word), and a Dari profile, leaving out ق/غ, would make that pair derivable. Not a count
@@ -899,6 +899,21 @@ there, and the bundle carries the results.
   the stated rules leave over: the per-word parts to teach, and a review list. Correspondences need
   conformance vectors like any matching behaviour; the scheme plug-ins in code (tiberian, attic, toki_pona,
   greek_translit) are projection rules already.
+- **Decided: done in one go, never left half-switched.** The stages (profiles state their losses; the
+  compiler reports each word's leftovers; cards and grading come from them; the fold uses them) are build
+  order on one branch, landed together. Done means:
+  1. one statement of what each direction loses, in the profile and scheme schemas, replacing `soundAlike`
+     and a scheme's `variants` (removed, not kept alongside); matching policy (`match.marks`) stays as it is;
+  2. every profile and scheme states its losses, marked REVIEW;
+  3. the compiler reports leftovers per word and direction, and every pinned form in every course is
+     accounted for (a lint for the rest), with no unexplained exception left;
+  4. spelling-choice, vocalize, reading-feature and char-read options, and the sound-alike verdict, come
+     from the leftovers in every course, with no per-course path left;
+  5. the fold's script facets are leftovers shown: `test/fold-before-r2.ts` mirrored, the simulation and
+     golden files rerun;
+  6. conformance vectors in both harnesses; the fixture courses green; an ADR, profiles/README and
+     CLAUDE.md updated.
+  Open within it: es b/v, h, s/c/z: a typo (today, by keyboard distance) or right sound, wrong letter?
 - **Decided: learners do the script first, or test out of it, except in a logography** (Chinese characters,
   sitelen pona: learned with their words). So a word's spelling or reading counts as learned without waiting
   on its letters. What script-first removes is the letters, not the leftovers: an abjad's vowels are still
