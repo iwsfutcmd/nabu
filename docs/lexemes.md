@@ -944,6 +944,26 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
 15. Javanese, when it comes: krama or ngoko first?
 16. The invented lexical-form schemas: apc's, hbo's extension, stress in fa and uz, uz's base script.
 
+**Answers so far (the owner, 2026-11-19, through the questions page)**
+- Decided: the three layers (2).
+- Decided: a lexical feature is a skill of its lexeme (`casa|gender`), counted in its "learned" (3).
+- Decided: "learned" means every part the course will ever teach (4), and scheduling should favour learning
+  whole lexemes: once a lexeme is started, its other parts come soon.
+- Decided: pattern templates check against the lexical form first (7), plus cards for bound morphemes that test
+  building combinations from them.
+- Decided: closed classes are taught early (10), which leaves chunks less to do; the chunk question itself
+  stays open.
+- Decided: Merge all the way up: the architecture now, coverage one rule at a time (11).
+- Decided: Spanish stem-changing verbs are a class on the lexeme plus a rule (13).
+- Decided: yue 嘅 is one linker; fix its gloss and drop `Poss=Yes` (14).
+- Decided: fa teaches both registers, formal first (15).
+- Decided: Javanese teaches ngoko and krama from the start (16).
+- Decided: the apc lexical-form schema comes first (17).
+- Decided: rename the KC ids once, now, with a migration in the fold (18).
+- Decided: several smaller ADRs: the model; learned; underspecification; pattern display; fonts (19).
+- Still open: 1 (the owner asked how its two options differ), 5 (depends on how freely Uzbek adjectives work as
+  adverbs), 6 and 9 (to explore), 8 (family may be an object like the concept), 12 (needs Uzbek grammar).
+
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
 18. Turn the decided parts into a Proposed ADR, or several.
