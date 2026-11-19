@@ -150,6 +150,17 @@ lexeme's "own" surface form is the surface form of a **combination of one**.
    script (lzh and yue, hbo and Modern Hebrew) have separate lexicons.
 6. **Next: combinations** (below).
 
+## A lexeme's manifestations (Proposed)
+
+A lexeme shows up in two different ways, and only one needs an object:
+- **Its stored forms: an object, the allomorph** (the term in lexemes.md §2). Each holds a lexical form, its
+  context (none for the elsewhere form), which radical any fixed letter stands for, and its source. They are
+  parts of the lexeme, stored with it, and learned one by one (each is a part no rule gives).
+- **Its forms in combinations, the word forms** (*kitoblarimdan*, *kitobga*): values, not objects. A word
+  form is a combination of one (a lexeme plus inflectional features), identified by its content, so data
+  derived for it (a clip, a homograph mark) is keyed by that content, the way clips said alike already share
+  a file.
+
 ## What the learner learns (Proposed)
 
 **The lexeme is the primary unit of what is taught and stored:** every listed pairing of form and meaning a
@@ -372,6 +383,22 @@ bundle beside the right answer, so the grader can say "right tense, irregular ve
 
 **Merge runs at compile time**, in the pipeline: accept sets, overregularisations and wugs are generated
 there, and the bundle carries the results.
+
+### Merge all the way up (Proposed)
+
+The owner would like Merge to reach phrases and sentences. Proposed: yes as the architecture, with coverage
+growing rule by rule, so it is never all or nothing.
+- **An utterance's structure is annotated as a UD dependency tree** (heads and relations), which carries the
+  hierarchy linearisation needs; Merge's binary sets aren't needed for that. We already use UD's parts of
+  speech and features, and a parser (Stanza) can draft the trees for a reviewer to correct.
+- **Each language's linearisation rules start empty.** With none, only the authored order is generated, which
+  is today's behaviour; each rule added (adjective after noun, clitic clusters, subject–predicate in hbo)
+  generates more orders for accept sets, at compile time.
+- **The risk is over-generation**: a wrong rule accepts wrong answers. So every rule has conformance vectors,
+  and generated variants carry `generated` provenance for review, like wug items.
+- **What it buys:** order variants and agreement in accept sets generated instead of listed; credit
+  assignment from structure (which word a slip belongs to); a check that every authored sentence derives
+  from its annotation.
 
 ### Where lexemes and combinations meet
 
