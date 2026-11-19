@@ -16,6 +16,19 @@ class, register, dialect) and let **lemma** keep its ordinary sense, the citatio
 concept > paradigm > lexeme > allomorph, and "lexeme" is the only term that departs from the textbook, as
 already documented.
 
+A second option, raised by the owner's argument that 東西 "thing", *darse cuenta*, زمین خوردن and *writer*
+(the occupation) are morphemes: Bloomfield (1933) defines a morpheme as a form with no partial
+phonetic-semantic resemblance to any other form, and 東西 "thing" resembles 東 and 西 only in sound. If the
+listed unit is the **morpheme** in that sense, every term can keep its textbook meaning:
+
+**concept** > **lexeme** (owns a paradigm: SER, *nedha*'s) > **morpheme** (the listed sign: *kitob*, ‑dan, *ran*,
+東西, *darse cuenta*) > **allomorph** (its forms by context); **lemma** = the citation form.
+
+The stretches, to document: a portmanteau (*ran*, run + past in one form; Hockett's portmanteau morph); a
+morpheme whose form is a combination of other morphemes' forms (*me di cuenta* inflects *dar* inside it);
+and semi-transparent listed items (*writer*, 大學), which do resemble their parts (that is why their literal
+glosses help), so they are morphemes by being listed, not by Bloomfield's test.
+
 ## What is stored, and what is derived
 
 ```mermaid
