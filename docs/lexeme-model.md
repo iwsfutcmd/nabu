@@ -286,8 +286,18 @@ speech level, the honorific, who is speaking to whom about whom. Never in what i
 **The owner's rule (2026-11-19): a base case makes a paradigm.** If a feature has a regular, base-case
 morpheme that realises it, then the feature is a dimension of the lexeme's paradigm, and its suppletive forms
 elsewhere are cells of that lexeme, however many there are. Arabic broken plurals are cells of their singular
-because the sound plural ‑ون exists, even though broken plurals are the norm. (An earlier draft here read
-"systematic trigger" as "what the trigger selects"; superseded.)
+because the sound plural ‑ون exists, even though broken plurals are the norm.
+
+The two readings of the owner's first wording ("any systematic way to trigger something") are one rule seen
+from two sides: **the base case decides whether a feature is a paradigm dimension; the dimension decides
+whether a suppletive form fills cells or is a word of its own.**
+1. Does the feature have an overt base-case morpheme? Then it is a dimension of the paradigm.
+2. Within a dimension, every form, however suppletive, fills cells of the one lexeme (*rav‑* fills Persian's
+   present cells, 드시다 Korean's honorific ones).
+3. Without a base case, an alternative is a whole word with a paradigm of its own: a separate lexeme, linked
+   by a concept if it differs only in social form (*nedha*, *usted*, *coche*), unlinked otherwise (*madre*).
+Read alone, "a cell or a whole word" would have put Korean 드시다 at the concept level (it inflects on its own);
+the base case is what makes it a cell.
 - **Lexeme-level:** English past (‑ed, so *ran*, *went*); Persian tense (regular stems in ‑id, so *raft‑* / *rav‑*);
   Persian plural (‑hā, so formal کتب *kotob* is a cell of KETĀB, picked by register); Korean subject honorific
   (‑si‑, so 드시다 *deusida* is a cell of 먹다 "eat"); Japanese honorifics (*o‑V‑ni naru*, so *meshiagaru* is a
