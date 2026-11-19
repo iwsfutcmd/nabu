@@ -601,7 +601,15 @@ a new design language.
     - **Hebrew: samekh ס**, no tatweel (Hebrew doesn't join);
     - **Syriac: qoph ܩ** (U+0729), with tatweel beside each slot. No Syriac pattern has a q of its own.
     - These are each profile's data (apc, hbo; Syriac once a course has it), never code.
-    - Proposed: under `prefers-contrast: more` the slots come back up to a visible grey.
+    - **Open: slots that carry no mark vanish at 6%.** A slot with a vowel is located by its vowel; a bare
+      one (Syriac peʿal's first and last slots, the last slot of most Arabic and Hebrew patterns) leaves only
+      a gap, so the shape no longer shows how many radicals it has. That matters for every reader, low-vision
+      ones most. Options: the tatweel (joining scripts) at a stronger level than the slot letters, as a
+      second palette entry; or a slot glyph of our own with a small mark that stays visible.
+    - Undecided: under `prefers-contrast: more` the slots come back up to a visible grey. Cheap (one media
+      query choosing another palette), and only for readers who asked for contrast. Forced-colours modes
+      draw colour-font glyphs in the system text colour anyway, so there the slots are already full
+      strength.
     - The build must skip glyphs with no outline: a ZWJ merges into its slot's cluster, and its glyph got a
       colour record.
   - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
