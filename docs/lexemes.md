@@ -636,6 +636,18 @@ a new design language.
       strength.
     - The build must skip glyphs with no outline: a ZWJ merges into its slot's cluster, and its glyph got a
       colour record.
+  - **A fade slider needs no variable font** (prototyped 2026-11-19 as a private artifact, "Pattern Slot
+    Fade").
+    - The slot colour is a palette entry, so a slider only has to change the palette:
+      - script that rewrites the `@font-palette-values` rule on input works wherever `font-palette` does;
+      - in pure CSS, `font-palette: palette-mix(in srgb, --ink-palette calc(var(--fade) * 1%), --surface-palette)`
+        is supported by the Chromium here (157); other engines need checking.
+    - A variable COLRv1 font with an alpha axis would also work, but alpha brings back the doubled overlaps at
+      joins, and WebKit has no COLRv1.
+    - A use beyond tuning: a per-device preference, so a reader who needs the slots stronger can have them,
+      which settles the `prefers-contrast` question without guessing.
+    - The build must leave out marks by their character's Unicode category as well as by GDEF: DejaVu's GDEF
+      doesn't class the tie (U+035C) as a mark, and it faded with its slot.
   - **Proposed: once we ship our own font for pattern shapes, more is possible** (the text stays real
     Unicode; if the font fails to load, the dotless letters still show):
     - **A designed slot glyph** in place of borrowed ڡ / ٮ: a hollow or dotted-outline consonant with all
