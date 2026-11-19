@@ -676,12 +676,31 @@ A morpheme shows up in two different ways, and only one needs an object:
   - Bantu stems (Swahili *‑swahili*: *Mswahili*, *Waswahili*, *Kiswahili*).
 - **Not families:** Chinese phonetic series (青, 清, 晴, 請 share a written component, not a morpheme: a script
   relation), etymological doublets (*frail* / *fragile*), cranberry morphs.
-- **So the object is the root**: a unit of form with no sense and no learning state (Aronoff's morphome). It
-  holds what its lexemes share: radicals and root class (a lexical form refers to it rather than copying them),
-  shared morphology (*‑duc‑*: preterite *‑uj‑*, stated once), an optional label with a source. Homonymous roots
-  are two roots with the same letters, as dictionaries number them. **The family is computed everywhere**:
-  lexemes linked through a shared part, a lexeme or a root. Still not a morpheme (Q6 stands); it replaces the
-  family object above.
+- ~~So the object is the root~~ (superseded the same day, below).
+
+### No root object at all (Decided 2026-11-19)
+
+Once a listed derivative's parts are its base lexeme and its pattern (مَكْتَب ← كَتَبَ + مَفْعَل), nothing needs
+a root object:
+
+| What the root object held | Where it goes instead |
+|---|---|
+| radicals | a field of a base lexeme's lexical form (كَتَبَ: ك ت ب); a derivative takes them from its base |
+| root class (hollow, defective, geminate…) | derived from the radicals |
+| a family's key | families are the lexemes connected by base links (كاتِب, مَكْتَب, كِتاب ← كَتَبَ; مَكْتَبة ← كِتاب); the hub's radicals label the view |
+| shared morphology (*‑duc‑*: *‑uj‑*) | a class on each lexeme plus a rule, as Spanish stem-changers already are |
+| homonymous roots, numbered I and II | nothing: two base lexemes with the same radicals are two lexemes |
+| root extraction cards | read the radicals field; credited to the pattern, as decided |
+| dictionary order by root | sorted on the radicals field |
+
+- **Bound stems with a meaning are morphemes**, as 習 is in 學習: Bantu *‑swahili* (*Mswahili*, *Kiswahili*),
+  Indonesian *ajar*. Not roots.
+- **What's lost:** families with no base in the language. Spanish *conducir* / *traducir* / *producir* share a
+  class but no meaning, so nothing is missed. fa's Arabic loans (مدرسه, درس, مدرس) are the real loss; if fa
+  wants them, a part may name a lexeme in another language's lexicon (the loan's source), still with no root
+  object.
+- **Two Semitic lexemes with the same radicals and no base link** (both primitive) aren't related words; they
+  only sort together, as in a dictionary.
 - **Phonaesthemes are not roots** (Firth's *gl‑* in *glitter*, *glow*, *gleam*). A root is the reverse case:
   form and morphology with no meaning, where a phonaestheme is a loose meaning with no morphology (*‑itter* is
   nothing) and counterexamples (*glove*, *glue*). Nabu models neither the association nor the hint (no folk

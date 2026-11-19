@@ -975,10 +975,10 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   (*oʻqit‑* "teach") is its own lexeme, a transparent one a combination.
 - Decided with 4: a lexeme's progress is shown (*ser*: 5 of 9 forms), since a lexeme is learned only once every
   part the course teaches is shown.
-- Decided: 6 and 7 together. A root is not a morpheme (no sense, no learning state) but an object, a unit of
-  form: its radicals and root class, shared morphology (*‑duc‑*: preterite *‑uj‑*) and an optional label.
-  Patterns apply to a base lexeme. Families are computed (lexemes linked through a shared lexeme or root), so
-  there is no family object (lexeme-model.md, "Outside Semitic").
+- Decided: 6 and 7 together. A root is neither a morpheme nor an object: its radicals are a field of a base
+  lexeme's lexical form, and a derivative's parts are its base lexeme and its pattern (مَكْتَب ← كَتَبَ +
+  مَفْعَل). Families are computed from base links, so there is no family object either (lexeme-model.md, "No
+  root object at all").
 - Still open (numbered as above), with proposals in lexeme-model.md: 8 (lexical features as rules' input;
   projection tables as rules), 9 (chunks); and two that came up since: whether apc's active participle is a
   cell of the verb or derivation, and part of speech on the lexeme with derivational heads' signatures.
