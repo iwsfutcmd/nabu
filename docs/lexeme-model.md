@@ -160,6 +160,25 @@ Proposed refinement (2026-11-19), after the owner found *carro* / *coche* as one
 - The test for a paradigm dimension gains a condition: a choice one speaker makes within their own grammar.
   Register, tense and natural gender pass; dialect doesn't.
 
+**Edges that test the line (2026-11-19):**
+- **Diglossia.** A Hong Kong speaker says 佢 / 係 / 嘅 and reads 他 / 是 / 的 in written Standard Chinese; a
+  Beirut speaker says *shu* and reads ماذا. One speaker, systematic, with grammatical machinery: the tests
+  say paradigm, intuition says two languages.
+- **Stylistic doublets without grammar.** Uzbek *samolyot* (Russian) / *tayyora* "aeroplane": one speaker,
+  hundreds of such pairs, but no affix or agreement realises the choice. Separate lexemes, so a concept
+  links synonyms *within* a grammar too, not only across.
+- **Variety-scoped cells.** *tú* / *usted* is a paradigm dimension everywhere, but only Spain's grammar has a
+  familiar plural (*vosotros*): varieties scope features and cells, not just entries.
+- **Natural gender.** *padre* / *madre* may be one lexeme (*padres* = "parents": the default form covers both
+  values), *toro* / *vaca* two (*toros* is not "cattle"). Neutralisation to a default is diagnostic.
+- **Many-to-one registers.** Avoidance styles (Dyirbal's is the textbook case) have one word for several
+  everyday words; a morpheme in several lexemes' paradigms breaks the tree.
+- **Strata.** Cantonese 生 is *saang1* in 生日 and *sang1* in 學生: allomorphs by the word they're in, or a
+  literary layer that behaves like a second grammar inside the first?
+
+The diagnostics so far: is the choice one speaker's; does grammar (affixes, agreement) realise it; does a
+default cover both values; is the mapping one-to-one. Where they disagree is where concept and lexeme blur.
+
 ### 3. What is stored, and what is derived
 
 ```mermaid
