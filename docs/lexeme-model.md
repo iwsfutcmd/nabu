@@ -98,10 +98,11 @@ flowchart TB
   end
   subgraph BE["concept BE (essence)"]
     direction LR
-    L4["lexeme SER<br/>verb · irregular"] --> M4a["morpheme ser<br/>elsewhere: infinitive"]
+    L4["lexeme SER<br/>verb · irregular<br/>lemma ser = SER + infinitive"] --> M4a["morpheme s‑<br/>elsewhere stem: ser‑é, s‑ido"]
     L4 --> M4b["morpheme soy<br/>present 1sg"]
     L4 --> M4c["morpheme es<br/>present 3sg"]
     L4 --> M4d["morpheme fue<br/>preterite 3sg"]
+    L4 --> M4e["morpheme siendo<br/>gerund"]
   end
   subgraph ABL["concept ABLATIVE 'from' (a feature value)"]
     direction LR
@@ -117,6 +118,24 @@ flowchart TB
   BE ~~~ ABL
   ABL ~~~ POSS
 ```
+
+**Settled on these diagrams (2026-11-19):**
+- **Every morpheme has a lexeme and a concept, affixes included** (Decided): ‑dan's lexeme is "ablative",
+  its concept a feature value. Grammatical concepts and inflectional feature values are one thing seen from
+  two sides.
+- **Concepts have no learning state** (Decided, softly). Proposed: a *derived* view of a concept's lexemes,
+  for learners who care: "EAT: you know *mangan* and *nedha*, not yet *dhahar*". Computed from the lexemes'
+  states, never stored.
+- **The lemma is not the elsewhere morpheme** (a correction to what the first draft of these diagrams
+  asked). The lemma is the realisation of the language's **citation cell**, a combination of one, which
+  goes through realisation and blocking like any other: the infinitive for es, uz and fa (*ser* = SER +
+  infinitive, خوردن = past stem + ‑ن), third person masculine singular perfect for Arabic and Hebrew
+  (*kataba*, *qāṭal*), first person singular present for Greek (λύω). The elsewhere morpheme is the stem
+  rules use by default (SER's *s‑*: *seré*, *sido*). Where a lexeme has several listed stems and none is
+  the default (Persian present and past stems), one is named as elsewhere.
+- **An utterance keeps its order for now** (Decided). In full Merge, order would follow from the
+  combination and the language's rules; what is left over, the choice among grammatical orders, is
+  information structure (topic, focus). The stored order stands in for that, until we model it.
 
 ### 3. What is stored, and what is derived
 
