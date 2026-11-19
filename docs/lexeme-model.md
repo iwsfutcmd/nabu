@@ -574,7 +574,8 @@ A morpheme shows up in two different ways, and only one needs an object:
 - So productive derivation starts from a lexeme, not a bare root: the active participle كاتِب is KATABA + the
   participle pattern, the root coming with the verb as part of its lexical form. A listed derivative with no
   lexeme to start from (مَكْتَب) stores its parts, root and pattern, as links.
-- **The barest pattern shows it: the Form I active participle فاعِل.** Every Form I verb has one, meaning "one who
+- **The barest pattern shows it: the Form I active participle, always a combination (a verb + the pattern
+  فاعِل), never a lexeme of its own.** Every Form I verb has one, meaning "one who
   Vs, Ving", and its shape ignores the verb's own vowels (كَتَبَ/يَكْتُبُ → كاتِب, ضَرَبَ/يَضْرِبُ → ضارِب,
   شَرِبَ/يَشْرَبُ → شارِب). Its constituents are the verb and the participle morpheme; the root is read off the
   verb, as the English plural reads the last sound of *cat* without that sound being a constituent. Distributed
@@ -591,15 +592,16 @@ A morpheme shows up in two different ways, and only one needs an object:
   conjugation class) and the root class; the string is computed from them. It must be stored, not parsed: قالَ
   and باعَ look alike until يَقُولُ and يَبِيعُ. It carries no learning state of its own: once the forms that show
   it are known, it is derived.
-- **The participle is one morpheme whose allomorphs are templates**, chosen by the base's Form and root class:
+- **The participle pattern is one morpheme whose allomorphs are templates** (the pattern, not the words it
+  makes: كاتِب "one who writes" is a combination), chosen by the base's Form and root class:
   فاعِل (Form I), قائِل (hollow), رامٍ (defective), مادّ (geminate), mu‑ + the imperfective stem (derived Forms).
   The faint-slot display (lexemes.md §9) is how such an allomorph is shown.
 - **With no base lexeme there is no combination:** a coinage on a root with no verb is a listed morpheme, its
   pattern a link. A lexicalised sense (كاتِب "scribe, author", مَشْرُوب "a drink") is its own morpheme, blocking
   per sense, as *writer* (occupation) is.
 - **Open (apc):** the participle is verbal there (شايفه "I've seen him" takes an object suffix and reads as a
-  resultative). Is it a cell of the verb's paradigm (a feature, learned as a contrast) or derivation? The
-  constituents are the same either way.
+  resultative). Is it a cell of the verb's paradigm (verb + a participle feature, learned as a contrast) or
+  derivation (verb + the pattern)? A combination either way, never a lexeme.
 - What learners do with roots is a skill, not a sense: **root extraction** (a word → its root, a pattern
   applied backwards) is credited to the pattern's rule; the root itself has no learning state.
 
