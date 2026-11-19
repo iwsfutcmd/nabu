@@ -186,7 +186,8 @@ learner has to memorise. But learned knowledge has three sides, and lexemes are 
        over by a word bank);
     4. each edge the course asks and the profile marks unpredictable: listening, reading aloud, spelling,
        vocalising.
-  - **A feature** is learned as its **contrast** (aspect: preterite against imperfect), since a learner who
+  - **A feature** is learned as its **contrast** (Decided 2026-11-19: aspect is preterite against imperfect,
+    a structuralist unit, and the right one here), since a learner who
     always picks one value would otherwise get every card for it right. For each use of each value
     introduced (preterite: a completed event, a sequence; imperfect: habitual, ongoing, description, polite):
     1. chosen right where the situation calls for it, the alternative on offer or typed;
@@ -196,6 +197,11 @@ learner has to memorise. But learned knowledge has three sides, and lexemes are 
 
     A wrong value counts against the use that was called for, and only where grading pins it (a minimal-pair
     card, or a typed answer with the right lemma in the wrong cell).
+
+    A contrast belongs to its language, even where UD gives its values the same names: Spanish preterite
+    against imperfect, English simple against progressive, Biblical Hebrew wayyiqtol against qatal. Two
+    languages' "past" are two features, and a learner whose own language lacks a contrast meets it through
+    the prompt's situation (lexemes.md §12).
 - Proposed: **"every part" means every part introduced so far**, of those the course asks for this learner.
   A course that never teaches *sois* can still teach *ser* to the end, and a lemma whose new irregular form
   arrives in a later unit goes back to learning until that form is shown, as a miss sends a word back now
