@@ -564,6 +564,33 @@ A morpheme shows up in two different ways, and only one needs an object:
   derived for it (a clip, a homograph mark) is keyed by that content, the way clips said alike already share
   a file.
 
+## Roots and families (Proposed, 2026-11-19)
+
+**A Semitic root is not a morpheme; it is the key of a family.**
+- A morpheme has one sense. A root's meaning is at best a field (ك‑ت‑ب "to do with writing") and often not even
+  that: ع‑ل‑م gives عِلْم "knowledge", عالِم "scholar", عَلَم "flag", عالَم "world". The word-based side of the
+  long debate (Bat-El 1994; Ussishkin 1999; Aronoff 2007, "In the beginning was the word") argues that
+  Hebrew and Arabic morphology works on words and stems, and that roots need not mean anything.
+- So productive derivation starts from a lexeme, not a bare root: the active participle كاتِب is KATABA + the
+  participle pattern, the root coming with the verb as part of its lexical form. A listed derivative with no
+  lexeme to start from (مَكْتَب) stores its parts, root and pattern, as links.
+- What learners do with roots is a skill, not a sense: **root extraction** (a word → its root, a pattern
+  applied backwards) is credited to the pattern's rule; the root itself has no learning state.
+
+**A family is an object, as the concept is.** Both link lexemes and neither is learned:
+
+| | Links lexemes that… | Key | Example |
+|---|---|---|---|
+| **concept** | differ only in social form | a meaning | EAT: *mangan*, *nedha*, *dhahar* |
+| **family** | share a base or root, with different meanings | a root, or a base lexeme | ك‑ت‑ب: كَتَبَ, كاتِب, كِتاب, مَكْتَب; WRITE: *writer*, *rewrite* |
+
+- A family stores its key, an optional field label for literal hints ("to do with writing", with a source), and
+  its provenance; membership comes from the lexemes' parts.
+- Learners get a computed view, like a concept's coverage: "ك‑ت‑ب: you know كَتَبَ, كِتاب, مَكْتَب; not yet
+  مَكْتَبة". Words grouped by root in the word list come from it.
+- Where the hub is a lexeme (*write*; Chinese 學 in 學生, 學校, 大學), base links would do on their own; a family
+  object is kept anyway, so that every family looks alike and has somewhere to put its label.
+
 ## What the learner learns (Proposed)
 
 **The morpheme is the primary unit of what is taught and stored:** every listed pairing of form and meaning a
