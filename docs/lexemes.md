@@ -448,7 +448,9 @@ as needed.
   a lexeme's forms. A stored form that a rule also derives is checked against the rule.
 - **A context is not a cell.** A cell is a feature in the sense: the learner chooses it, or the syntax
   forces it (agreement), and an irregular cell is a separate lexeme (*el* / *la*). A context is the
-  phonological or prosodic setting that picks a form, and adds nothing to the sense.
+  setting that picks a form, and adds nothing to the sense: phonological or prosodic (before a vowel,
+  pause), or morphological, a property of the lexeme it combines with (a pattern's forms by root class,
+  §9).
   - *el agua* shows the difference: that *el* is the feminine *la*'s form before a stressed á‑, not the
     masculine lexeme. es already pins it `form:fem`.
 - **Systematic variation stays in the projection rules.** The two-lexemes rule is about forms a lexeme
@@ -532,6 +534,14 @@ a new design language.
   - Arabic teaching draws the same line: Form I verbal nouns (كِتابة, قَتْل, دُخول) are memorised; those of
     Forms II–X are nearly predictable (تَكْتِيب, مُكاتَبة, اِسْتِكْتاب; Form III has two patterns).
   - Semi-productive patterns (مَفْعَل) get decoding practice ("what might مَلْعَب be?"), never wug cards.
+- **Decided: a pattern has forms by root class** (sound, geminate or two-consonant, four-consonant, hollow,
+  defective, assimilated, I‑nun, III‑he…), and **a letter a form fixes is drawn dark**, like the pattern's
+  own letters, since it doesn't vary: hollow faʿala ڡَـاڡَ (qāla), defective ڡَـڡَـى (ramā), yafʿulu hollow
+  in w يَـڡُـوڡُ (yaqūlu), Hebrew III‑he ◌ָ◌ָה (bānâ). Rendered 2026-11-19: nothing extra is needed, since
+  only the slot letter is faint; marks the form adds (shadda, the I‑nun dagesh of yippōl) stay dark too.
+  - Proposed: these are the pattern lexeme's forms with contexts (§8), the context being the root's class,
+    a property of the root it combines with. Each form records which radical a fixed letter stands for
+    (qāla's ا is the second radical, w or y), so root cards still find ق‑و‑ل.
 - **Decided: patterns are shown with placeholder consonants, not on top of a root.** The dummy root makes a
   learner subtract its letters to see the shape. Two failures show it (rendered 2026-11-18, Noto Naskh
   Arabic and Noto Serif Hebrew, Chromium):
