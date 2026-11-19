@@ -858,7 +858,7 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
 
     | | Inflection (a value head) | Derivation (a function head) |
     |---|---|---|
-    | the result | a cell of the base's lexeme | a new lexeme, computed (a value, not stored) |
+    | the result | a cell of the base's lexeme | a new lexeme-shaped value, computed: a derivative (below) |
     | its category | the base's | the head's, or the base's where the head leaves it open (‑ito) |
     | its meaning | the base's plus the feature | composed from both |
     | its paradigm | the base's | its own, from its category: *writer*, *writers* |
@@ -867,6 +867,23 @@ feature. A construction whose meaning isn't derivable is a morpheme with slots.
 
     Merge is binary, one head per step, derivation inside: *ishchilarimiz* is ((ISH + AGENT) + PL) + 1PL.POSS.
     The first step makes a lexeme, ISHCHI "worker", whose own paradigm the next two steps fill.
+  - **Proposed: a computed derivative is not a learning item** (the owner asked what a computed lexeme means
+    for a learner, 2026-11-19). It is lexeme-shaped (a category, a paradigm, a gloss) but wholly derivable, so,
+    like *scanned*, it has nothing of its own to learn. "Lexeme" is kept for what is stored, and so learned;
+    the computed result is a **derivative**, a value.
+    - **Progress lives on its parts.** *writer* "one who writes" is evidence for WRITE, AGENT and the rule's
+      branch it used; ✗*writing* for *writer* is WRITE shown and AGENT missed (credit per node). It is never
+      an entry in the word list, nor counted.
+    - **Which ones a learner meets:** whatever the course's sentences and stories contain, as with *scanned*
+      for ‑ed. The planner aims at the head and its branches, not at derivatives: each branch the rule
+      distinguishes (فاعِل, and قائِل for a hollow root, رامٍ for a defective one) shown on some derivative
+      the learner can't have memorised. The compiler can report a branch no content shows. That there are
+      infinitely many derivatives is the point: knowing AGENT is being able to make any of them (the wug
+      card, last).
+    - **Once anything about it is listed, it is a lexeme**, stored and learned: *writer* "author", كاتِب "clerk",
+      *panadero* (‑ero's senses, a trade, a container, a tree, can't be predicted), Cuban *ahorita* (not
+      "now, a little": "in a while"). In practice the computed ones are the transparent, productive heads:
+      Arabic participles and the verbal nouns of Forms II–X, Spanish ‑mente, English ‑ness.
   - **Decided (round 2): which feature values are lexemes.** One with a meaning that is merged as a head is: PAST
     (lemma ‑ed, its elsewhere morpheme; gloss PST; its part of speech a signature; learned as its contrast,
     as decided for features), the noun's PL, preterite and imperfect (two lexemes), DAT where it means
