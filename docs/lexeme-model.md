@@ -283,17 +283,26 @@ speech level, the honorific, who is speaking to whom about whom. Never in what i
 - Open: Javanese krama affixes (*di‑* / *dipun‑*, ‑e / ‑ipun): separate affix lexemes linked by a concept, like
   the words, or allomorphs whose context is the speech level?
 
-**The owner's rule of thumb: any systematic way to trigger something makes it lexeme-level.** Proposed
-sharpening, so it also sorts *nedha* (krama triggers it as systematically as it triggers *dipun‑*): what
-matters is what the trigger selects.
-- **A form for a cell: lexeme-level**, even where only some lexemes have a special form for that cell.
-  *dipun‑* for the passive in krama (allomorphs of one passive affix, context: the speech level);
-  *raft‑* / *rav‑* by tense; ‑ga / ‑qa by sound; Persian کتب *kotob* for KETĀB's plural in formal register
-  (a scoped morpheme of KETĀB, which is where the owner felt it belongs).
-- **A whole other word, with a paradigm of its own: concept-level.** *nedha* and *dhahar* inflect on their own;
-  so do *coche* (*coches*) and *usted* (*le*, *lo*, *con usted*) and French *vous* (*votre*). So T–V is
-  concept-linked, and the T–V pronouns stay separate lexemes.
-- **No systematic trigger: separate lexemes, not linked** (*padre* / *madre*).
+**The owner's rule (2026-11-19): a base case makes a paradigm.** If a feature has a regular, base-case
+morpheme that realises it, then the feature is a dimension of the lexeme's paradigm, and its suppletive forms
+elsewhere are cells of that lexeme, however many there are. Arabic broken plurals are cells of their singular
+because the sound plural ‑ون exists, even though broken plurals are the norm. (An earlier draft here read
+"systematic trigger" as "what the trigger selects"; superseded.)
+- **Lexeme-level:** English past (‑ed, so *ran*, *went*); Persian tense (regular stems in ‑id, so *raft‑* / *rav‑*);
+  Persian plural (‑hā, so formal کتب *kotob* is a cell of KETĀB, picked by register); Korean subject honorific
+  (‑si‑, so 드시다 *deusida* is a cell of 먹다 "eat"); Japanese honorifics (*o‑V‑ni naru*, so *meshiagaru* is a
+  cell of *taberu*).
+- **Concept-level, for want of a base case:** Javanese speech level and honorific (no regular krama or
+  honorific morpheme for stems; words without a krama form stay as they are), Spanish and French T–V (no
+  formality affix), dialect (no dialect morpheme).
+- **Within one lexeme, the krama affixes** (*dipun‑* beside *di‑*) are allomorphs of one passive affix, their
+  context the speech level.
+- **The rule predicts a typological contrast:** "eat" honorific is a cell in Korean and Japanese, a separate
+  lexeme in Javanese.
+- **Its thorn: Spanish feminine ‑a** (*niño* / *niña*) is a base case, so *padre* / *madre*, *toro* / *vaca* would be
+  cells of one lexeme, which the owner rejected. Proposed: noun gender marking is derivational, not
+  inflectional, and the rule is about inflection; derivation never merges lexemes. *Niña* is then *niño* + a
+  derivational feminine (a combination), and *madre* a lexeme of its own.
 
 **The owner's verdicts (2026-11-19):**
 - **Natural-gender pairs are separate lexemes** (*padre* / *madre*, *toro* / *vaca*; Decided). No semantic
