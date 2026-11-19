@@ -672,8 +672,8 @@ a new design language.
       entry, and OFL.txt ships beside the output.
   - **Latin** (Arabizi; reading schemes such as SBL; Maltese, if ever): rendered 2026-11-19 (DejaVu Sans as a
     stand-in), C or ◌ as the slot, in text colour or at 6%.
-    - **Decided: the dotted circle ◌ as the Latin slot** (ma◌◌a◌, ◌i◌͜◌ē◌). Latin doesn't join, so there's no
-      tatweel.
+    - **Decided: the dotted circle ◌ as the Latin slot** (ma◌◌a◌, ◌i◌͜◌ē◌), faded to 6% like every other slot.
+      Latin doesn't join, so there's no tatweel.
     - **Decided: a doubled slot carries a tie**, U+035C COMBINING DOUBLE BREVE BELOW (◌a◌͜◌a◌), the Latin
       counterpart of shadda and dagesh: a mark, so it stays in the text colour. Without it, a doubled radical
       looks like two radicals.
