@@ -67,8 +67,9 @@ is the owner's, and the notes record each one where it was made.
   are the language's, not the ones written down so far.
 - **So a form has one of three statuses** (the owner, round 5):
   1. **given:** a stated rule gives it. Computed, and checked against the authored text.
-  2. **pinned:** the language has a rule that ours don't state yet. Stored and checked like a listed form,
-     never a learner's part (ADR 0146), and reported by the compiler as rule debt.
+  2. **pinned:** the language has a rule that ours don't state yet. Stored by hand, as a reading is pinned
+     today, and checked like a listed form; never a learner's part (ADR 0146), and reported by the compiler
+     as rule debt.
   3. **listed:** the language has no rule. A morpheme, and a part to learn.
 - **Only a reviewed statement makes a form listed:** an entry of the lexicon saying the language has no rule
   for it, with its source, reviewed as a profile's policies are (drafted `llm:` and marked REVIEW until it is

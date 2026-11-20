@@ -59,8 +59,8 @@ wrong, since *esta* is another word of the course: ADR 0076's own example.)
   profile, leaving ق / غ out of its sound-alike letters, makes that pair derivable.
 - **One statement in the schema** says what each direction loses, in the profile and scheme schemas. It
   replaces `soundAlike` and a scheme's `variants`, which are removed; matching policy (`match.marks`) stays.
-- **The compiler lists each word's leftovers per direction**, and lints any pinned form the stated rules
-  can't account for: the per-word parts to teach, and a review list.
+- **The compiler lists each word's leftovers per direction**, and lints any spelling or reading a course
+  pins that the stated rules can't account for: the per-word parts to teach, and a review list.
 - **What grading reads is data the grader runs** (the owner, round 5). An orthographic miss is decided when
   an answer is graded: on the device, offline, in @nabu/core, inside the grading budget. So each profile's
   correspondences (a letter or digraph to a sound, with its contexts) are executable data, and the question
@@ -168,7 +168,7 @@ The stages are build order on one branch, landed together, never half-switched. 
    `openLetters` reading the new statement;
 2. every profile and scheme states its losses, marked REVIEW: 22 profiles and 8 schemes today;
 3. the compiler reports leftovers per word and direction, puts each accepted answer's phonemic form in the
-   bundle, and accounts for every pinned form in every course;
+   bundle, and accounts for every spelling and reading the courses pin;
 4. those cards and the miss labels come from the leftovers in every course;
 5. the fold counts leftovers shown and misses per correspondence (`test/fold-before-r2.ts` mirrored, the
    simulation and golden files rerun);
