@@ -4,6 +4,8 @@
 - Date: 2026-11-14
 - Amends: [0071](0071-classical-chinese.md) (lzh's readings, words and grammar),
   [0085](0085-what-the-prompt-leaves-open.md) (lzh's accept sets)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (lzh's pinned readings become projections)
 
 ## Context
 

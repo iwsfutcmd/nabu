@@ -4,6 +4,8 @@
 - Date: 2026-11-06
 - Amends: [0056](0056-persons.md), [0040](0040-audio-pipeline.md)
 - Amended by: [0078](0078-random-voices.md) (how a cast's voices share the items)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
+  [0147](0147-underspecification.md) (person tags are one kind of situation tag)
 
 ## Context
 

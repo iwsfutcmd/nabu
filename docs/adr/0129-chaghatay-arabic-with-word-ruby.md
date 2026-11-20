@@ -5,6 +5,8 @@
 - Amends: [0128](0128-chaghatay.md) (one orthography, not two),
   [0109](0109-names-and-schemes-are-data.md) (a scheme says what its ruby stands over),
   [0117](0117-pinned-readings-on-kc-forms.md) (a KC may give its own reading in a word scheme)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (chg's pinned readings become projections)
 
 ## Context
 

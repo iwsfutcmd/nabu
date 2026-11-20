@@ -3,6 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-05
 - Amends: [0043](0043-stories.md), [0057](0057-word-corrections.md)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (a KC's forms become a lexeme's listed forms and stems)
 
 ## Context
 

@@ -3,6 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: gameplan §8.2 (gap-fill's facet), §9 (the learner state), the word list (Phase 4 notes)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0146](0146-what-is-learned.md)
+  (what is known: every part no rule gives, per part and skill)
 
 ## Context
 

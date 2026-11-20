@@ -2,6 +2,8 @@
 
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-17
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
+  [0148](0148-projections-and-misses.md) (options come from leftovers)
 
 ## Context
 

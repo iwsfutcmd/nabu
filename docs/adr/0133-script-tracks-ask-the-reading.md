@@ -5,6 +5,8 @@
 - Amends: [0088](0088-script-tracks.md), [0124](0124-script-tracks-from-the-profile.md) (the profile's
   `romanize`), [0128](0128-chaghatay.md) (the romanization scheme `forms`), [0117](0117-pinned-readings-on-kc-forms.md)
   (a KC's own reading)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0149](0149-script-first.md) (a
+  script track is tested out of)
 
 ## Context
 

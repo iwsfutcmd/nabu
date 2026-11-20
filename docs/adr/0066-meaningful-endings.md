@@ -4,6 +4,8 @@
 - Date: 2026-11-06
 - Amends: [0023](0023-grading-engine.md)
 - Resolves: gameplan errata 46
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (contrast sets), [0148](0148-projections-and-misses.md) (the lexicon does what contrast sets do)
 
 ## Context
 

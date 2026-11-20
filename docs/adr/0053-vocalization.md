@@ -2,6 +2,8 @@
 
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-04
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (a word's marks are a projection of its lexical form)
 
 ## Context
 

@@ -3,6 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-16
 - Amended by: [0141](0141-minimal-ruby.md) (a third choice: what the script leaves unwritten over words read before)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
+  [0148](0148-projections-and-misses.md) (a scheme's `variants` become stated correspondences)
 
 ## Context
 

@@ -3,6 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Supersedes: the probe-every-node test of [0039](0039-placement-and-calibration.md) (placement v0)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0149](0149-script-first.md) (a
+  placement over a script track)
 
 ## Context
 

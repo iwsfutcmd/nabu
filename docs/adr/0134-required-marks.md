@@ -3,6 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0131](0131-readings-on-new-words.md) (chg's typed readings)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
+  [0148](0148-projections-and-misses.md) (chg-Latn's š, ž, ḫ and ǧ become required: they say another sound)
 
 ## Context
 

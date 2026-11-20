@@ -4,6 +4,8 @@
 - Date: 2026-11-17
 - Amends: [0117](0117-pinned-readings-on-kc-forms.md) (where readings come from), [0087](0087-attic-greek.md)
   (grc's spelling check)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (a reading is a projection of a lexical form)
 
 ## Context
 

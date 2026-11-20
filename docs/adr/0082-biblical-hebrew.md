@@ -4,6 +4,8 @@
 - Date: 2026-11-08
 - Amended by: [0084](0084-hbo-references.md) (the phonology checked against Khan; typo contrasts by form),
   [0089](0089-hbo-piper-voice.md) (the voice: Piper's Arabic voice, Arabic-bent consonants)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (hbo's pinned readings become projections)
 
 ## Context
 

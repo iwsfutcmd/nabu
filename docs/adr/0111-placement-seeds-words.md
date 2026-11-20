@@ -3,6 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-12
 - Amends: [0039](0039-placement-and-calibration.md), [0077](0077-adaptive-placement.md) (what a placement test leaves behind)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0149](0149-script-first.md) (a
+  placement over a script track seeds nothing)
 
 ## Context
 

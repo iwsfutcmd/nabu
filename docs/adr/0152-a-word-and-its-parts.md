@@ -7,8 +7,8 @@
   and [0101](0101-skill-targets.md) (what a word is known by; typing slots),
   [0050](0050-ten-unit-courses.md) (options from the unit or earlier),
   [0125](0125-one-lesson-builder.md) (every session is the planner's)
-- Relates to: [0146](0146-what-is-learned.md) (Proposed), whose building cards these are a first version
-  of, on today's data. Nothing here waits for ADRs 0145–0151, and nothing here settles them.
+- Relates to: [0146](0146-what-is-learned.md) (accepted 2026-11-20, not yet built), whose building cards
+  these are a first version of, on today's data. Nothing here waits for ADRs 0145–0151.
 
 ## Context
 
@@ -24,8 +24,8 @@ one word of a whole sentence or of a blank whose word the learner had to recall 
 is the word and here is the form: write it", and nothing asked what a word in front of the learner is made
 of.
 
-ADR 0146 (Proposed) describes building, extraction and decoding cards on the lexical model of ADR 0145.
-That model is not in the code. These two cards are what today's tokens can carry.
+ADR 0146 describes building, extraction and decoding cards on the lexical model of ADR 0145. That model is
+decided and not yet in the code. These two cards are what today's tokens can carry.
 
 ## Decision
 

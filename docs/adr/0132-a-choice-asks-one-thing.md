@@ -4,6 +4,10 @@
 - Date: 2026-11-17
 - Amends: gameplan §8.2 (gap-fill), §8.5 (credit assignment); [ADR 0043](0043-stories.md) (story `complete`
   questions); the Phase 6 rule on `complete` distractors (CLAUDE.md)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  ("which form" and "which word" follow the kinds of head; UD `pos` and features are a lexeme's),
+  [0146](0146-what-is-learned.md) (a typed building card may ask a regular form the course never writes; a
+  choice never), [0147](0147-underspecification.md) (a story line may ask a third thing, which use)
 
 ## Context
 

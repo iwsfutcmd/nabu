@@ -3,6 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amended by: [0138](0138-reading-traditions.md) (reading cards in the learner's tradition, each with its own progress)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (lzh's pinned readings become projections)
 
 ## Context
 

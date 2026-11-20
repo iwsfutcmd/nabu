@@ -4,6 +4,8 @@
 - Date: 2026-11-08
 - Generalizes: [0033](0033-fixture-courses.md) (pro-drop and optional words in the reverse set),
   [0056](0056-persons.md) and [0075](0075-persons-coverage.md) (untagged means every form)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
+  [0147](0147-underspecification.md) (what is tagged, and which alternatives an accept set keeps)
 
 ## Context
 

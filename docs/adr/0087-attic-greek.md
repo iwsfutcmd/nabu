@@ -3,6 +3,9 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-09
 - Amended by: [0088](0088-script-tracks.md) (the Greek alphabet track); the voice, below
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (grc's pinned readings become projections), [0148](0148-projections-and-misses.md) (its marks turn strict
+  once the app can put them on)
 
 ## Context
 

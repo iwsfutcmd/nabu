@@ -4,6 +4,8 @@
 - Date: 2026-11-12
 - Amends: [0054](0054-pronunciation-exercises.md), [0095](0095-pronunciation-in-context.md) (how the cards are answered)
 - Amended by: [0137](0137-marks-put-on-letters.md) (marks put on a word's letters, after the choice card)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
+  [0148](0148-projections-and-misses.md) (options come from leftovers)
 
 ## Context
 

@@ -2,6 +2,8 @@
 
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-08
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0150](0150-pattern-display.md)
+  (a pattern's slot colour is below AA on purpose)
 
 ## Context
 

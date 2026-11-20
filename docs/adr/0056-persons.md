@@ -2,6 +2,8 @@
 
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-05
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
+  [0147](0147-underspecification.md) (person tags are one kind of situation tag)
 
 ## Context
 

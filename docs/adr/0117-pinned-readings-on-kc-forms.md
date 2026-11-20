@@ -8,6 +8,8 @@
 - Amended: below (2026-11-12, the owner's D44: a KC's own reading)
 - Amended by: [0129](0129-chaghatay-arabic-with-word-ruby.md) (in a `ruby: word` scheme a KC may give a reading no
   token gives)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (a reading is a projection of a lexical form)
 
 ## Context
 

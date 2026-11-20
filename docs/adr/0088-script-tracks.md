@@ -5,6 +5,8 @@
 - Amends: gameplan §3 and §6.3 (`script` nodes); [0087](0087-attic-greek.md) (the grc course)
 - Amended by: [0124](0124-script-tracks-from-the-profile.md) (letters and marks from the profile;
   `romanize: {scheme, orthography}`)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0149](0149-script-first.md)
+  (the script row gates the path of a sound-writing orthography in a script the learner can't read)
 
 ## Context
 

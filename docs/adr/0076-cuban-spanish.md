@@ -3,6 +3,9 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-06
 - Amends: [0066](0066-meaningful-endings.md) (meaningful marks beside meaningful endings)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
+  [0147](0147-underspecification.md) (es stops accepting other varieties' words where the prompt says Cuban),
+  [0148](0148-projections-and-misses.md) (a missing accent that carries sound is no longer excused)
 
 ## Context
 

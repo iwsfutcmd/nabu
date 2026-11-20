@@ -3,6 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0071](0071-classical-chinese.md) (Classical Chinese never drills its readings)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (lzh's pinned readings become projections)
 
 ## Context
 

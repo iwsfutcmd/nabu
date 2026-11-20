@@ -4,6 +4,8 @@
 - Date: 2026-11-13
 - Amends: [0040](0040-audio-pipeline.md) (a clip's timings name their orthography),
   [0109](0109-names-and-schemes-are-data.md) (an orthography written in a scheme's syllables)
+- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
+  (yue's pinned readings become projections)
 
 ## Context
 
