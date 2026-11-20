@@ -974,20 +974,36 @@ describe("a Chaghatay word's reading typed, once read right by choice (ADR 0131)
     expect(planned(shown).filter((ex) => ex.template === "transcribe").length).toBeGreaterThan(0);
   });
 
-  it("is graded by the transliteration's profile: a mark left out is noted, ng stands for ŋ", () => {
+  it("is graded by the transliteration's profile: a vowel's mark and the marks of š, ž, ḫ and ǧ are required, another consonant's noted, ng stands for ŋ", () => {
     const grader = createGrader(chg);
     const cards = allSentences(chg)
       .flatMap((s) => SENTENCE_TEMPLATES.transcribe?.({ course: chg, rng: seededRng(1), introduced: [] }, s) ?? [])
       .filter((ex): ex is Extract<Exercise, { template: "transcribe" }> => ex.template === "transcribe");
-    const marked = cards.find((ex) => /[äöüš]/u.test(surfaceOf(ex.reading)));
-    if (marked === undefined) throw new Error("chg has a word whose reading has marks");
-    expect(marked.reading.orthography).toBe("chg-Latn/schluessel");
-    const reading = surfaceOf(marked.reading);
-    const typed = (text: string) => gradeExercise(marked, { tag: "text", text }, grader);
-    expect(typed(reading).verdict).toBe("CORRECT");
-    const bare = typed(reading.normalize("NFD").replace(/[̀-ͯ]/gu, "").normalize("NFC"));
-    expect([bare.verdict, bare.notes]).toEqual(["CORRECT_MARKS", ["translit-marks"]]);
-    expect(isCorrect(typed("xyz").verdict)).toBe(false);
+    const readingOf = (ex: (typeof cards)[number]): string => surfaceOf(ex.reading).normalize("NFD");
+    // The marks as the profile sorts them (NFD): a vowel's, those of š, ž, ǧ and ḫ, and the other consonants'.
+    const VOWEL = /[\u0300\u0304\u0308]/u;
+    const SOUND = /[szg]\u030c|h\u032e/iu;
+    const NOTED = /c\u030c|[\u0301\u0307\u0323\u0331]/iu;
+    /** A card whose reading has marks of one kind only. */
+    const cardWith = (own: RegExp, ...others: readonly RegExp[]): (typeof cards)[number] => {
+      const found = cards.find((ex) => own.test(readingOf(ex)) && !others.some((other) => other.test(readingOf(ex))));
+      if (found === undefined) throw new Error(`chg has a word whose reading has only the marks ${String(own)}`);
+      return found;
+    };
+    const typed = (ex: (typeof cards)[number], text: string) => gradeExercise(ex, { tag: "text", text }, grader);
+    const bare = (ex: (typeof cards)[number]) => typed(ex, readingOf(ex).replace(/[\u0300-\u036f]/gu, "").normalize("NFC"));
+
+    const noted = cardWith(NOTED, VOWEL, SOUND);
+    expect(noted.reading.orthography).toBe("chg-Latn/schluessel");
+    expect(typed(noted, surfaceOf(noted.reading)).verdict).toBe("CORRECT");
+    expect([bare(noted).verdict, bare(noted).notes]).toEqual(["CORRECT_MARKS", ["translit-marks"]]);
+    // s for š is another sound and another Arabic letter (the owner, 2026-11-20): wrong, as a vowel's mark left out is.
+    const sound = cardWith(SOUND, VOWEL, NOTED);
+    expect(typed(sound, surfaceOf(sound.reading)).verdict).toBe("CORRECT");
+    expect([bare(sound).verdict, bare(sound).notes]).toEqual(["WRONG", ["translit-sounds"]]);
+    const vowel = cardWith(VOWEL, SOUND, NOTED);
+    expect([bare(vowel).verdict, bare(vowel).notes]).toEqual(["WRONG", ["translit-vowels"]]);
+    expect(isCorrect(typed(noted, "xyz").verdict)).toBe(false);
     const nasal = cards.find((ex) => surfaceOf(ex.reading).includes("ŋ"));
     if (nasal !== undefined) expect(isCorrect(gradeExercise(nasal, { tag: "text", text: surfaceOf(nasal.reading).replace(/ŋ/gu, "ng") }, grader).verdict)).toBe(true);
   });

@@ -76,25 +76,46 @@ const editDistance = (x: string, y: string): number => {
 
 type Marks = NonNullable<CompiledProfile["marks"]>;
 
+/** Which of a profile's required marks two words differ in: marks required everywhere, marks required on their letters. */
+interface RequiredDifference {
+  readonly marks: boolean;
+  readonly letters: boolean;
+}
+
 /**
- * Whether two words' required marks differ letter by letter (ADR 0134): the letters, marks of the
+ * Where two words' required marks differ, letter by letter (ADR 0134): the letters, marks of the
  * set stripped, aligned by edit distance; a letter left out, added or traded that carries a
  * required mark, or two aligned letters whose required marks differ (kordü for kördi: the ö lost,
- * the diaeresis moved), differ. Letters traded without required marks (körti) do not.
+ * the diaeresis moved), differ. Letters traded without required marks (körti) do not. A mark is
+ * required everywhere (`required`: a vowel's) or on its letter only (`requiredLetters`: the caron of
+ * š, not č's). A letter's own required mark differs only between that letter with it and without it
+ * (kisi for kiši, ḥan for ḫan): the letter traded for another, left out or added is a slip like any
+ * other letter's, left to the typo model and the contrast sets (bazārda for bazārǧa is another case
+ * ending). Undefined where neither kind differs.
  */
-const requiredMarksDiffer = (marks: Marks, e: string, a: string): boolean => {
-  const only = (g: string): string => Array.from(g.normalize("NFD")).filter((c) => marks.required.has(c)).join("");
-  const keptText = (t: string): string =>
-    Array.from(t.normalize("NFD")).filter((c) => !marks.set.has(c) || marks.required.has(c)).join("").normalize("NFC");
+const requiredMarksDiffer = (marks: Marks, e: string, a: string): RequiredDifference | undefined => {
+  /** A letter's required marks, of each kind: the letter is one grapheme, its marks after it (NFD). */
+  const requiredOf = (g: string): { readonly marks: string; readonly letters: string } => {
+    const parts = Array.from(g.normalize("NFD"));
+    const on = marks.requiredOn.size === 0 ? undefined : marks.requiredOn.get(parts.filter((c) => !marks.set.has(c)).join("").normalize("NFC"));
+    return {
+      marks: parts.filter((c) => marks.required.has(c)).join(""),
+      letters: on === undefined ? "" : parts.filter((c) => on.has(c) && !marks.required.has(c)).join(""),
+    };
+  };
+  /** The text with only its required marks kept. */
+  const kept = (t: string): readonly string[] =>
+    graphemes(t).map((g) => {
+      const r = requiredOf(g);
+      return (marks.strip(g).normalize("NFD") + r.marks + r.letters).normalize("NFC");
+    });
+  const le = kept(e);
+  const la = kept(a);
   // Most words have no required mark, or the same ones in the same places: no alignment needed.
-  if (only(e) === "" && only(a) === "") return false;
-  const ke = keptText(e);
-  const ka = keptText(a);
-  if (ke === ka) return false;
-  const le = graphemes(ke);
-  const la = graphemes(ka);
+  if (le.join("") === la.join("")) return undefined;
   const be = le.map((g) => marks.strip(g));
   const ba = la.map((g) => marks.strip(g));
+  if (be.join("") === le.join("") && ba.join("") === la.join("")) return undefined;
   const cols = la.length + 1;
   const d = new Array<number>((le.length + 1) * cols).fill(0);
   for (let i = 0; i <= le.length; i++) d[i * cols] = i;
@@ -105,23 +126,31 @@ const requiredMarksDiffer = (marks: Marks, e: string, a: string): boolean => {
       d[i * cols + j] = Math.min(sub, (d[(i - 1) * cols + j] as number) + 1, (d[i * cols + j - 1] as number) + 1);
     }
   }
+  const found = { marks: false, letters: false };
+  const differ = (x: string | undefined, y: string | undefined): void => {
+    const rx = x === undefined ? { marks: "", letters: "" } : requiredOf(x);
+    const ry = y === undefined ? { marks: "", letters: "" } : requiredOf(y);
+    if (rx.marks !== ry.marks) found.marks = true;
+    // A letter's own mark: only where both sides write that letter.
+    if (rx.letters !== ry.letters && x !== undefined && y !== undefined && marks.strip(x) === marks.strip(y)) found.letters = true;
+  };
   let i = le.length;
   let j = la.length;
   while (i > 0 || j > 0) {
     const here = d[i * cols + j] as number;
     if (i > 0 && j > 0 && here === (d[(i - 1) * cols + j - 1] as number) + (be[i - 1] === ba[j - 1] ? 0 : 1)) {
-      if (only(le[i - 1] as string) !== only(la[j - 1] as string)) return true;
+      differ(le[i - 1], la[j - 1]);
       i--;
       j--;
     } else if (i > 0 && here === (d[(i - 1) * cols + j] as number) + 1) {
-      if (only(le[i - 1] as string) !== "") return true;
+      differ(le[i - 1], undefined);
       i--;
     } else {
-      if (only(la[j - 1] as string) !== "") return true;
+      differ(undefined, la[j - 1]);
       j--;
     }
   }
-  return false;
+  return found.marks || found.letters ? found : undefined;
 };
 
 export const compareUnits = (profile: CompiledProfile, expected: string, actual: string): Comparison => {
@@ -153,11 +182,14 @@ export const compareUnits = (profile: CompiledProfile, expected: string, actual:
   }
 
   if (profile.marks !== undefined) {
-    // Marks an answer must write as the word does (chg's vowel marks, ADR 0134): one left out,
-    // added, changed or moved is neither folded away nor a typo. Noted where it is all that differs.
-    if (profile.marks.required.size > 0 && requiredMarksDiffer(profile.marks, e, a)) {
+    // Marks an answer must write as the word does (chg's vowel marks, and the marks of š, ž, ḫ and ǧ:
+    // ADR 0134): one left out, added, changed or moved is neither folded away nor a typo. Noted
+    // where it is all that differs: the vowels' note where they differ, else the letters'.
+    const differs = profile.marks.required.size > 0 || profile.marks.requiredOn.size > 0 ? requiredMarksDiffer(profile.marks, e, a) : undefined;
+    if (differs !== undefined) {
       const sameLetters = profile.marks.strip(e) === profile.marks.strip(a);
-      return { kind: "mismatch", cost: COST.mismatch, folds, required: true, ...(sameLetters && { note: profile.marks.requiredNote }) };
+      const note = differs.marks ? profile.marks.requiredNote : profile.marks.requiredLettersNote;
+      return { kind: "mismatch", cost: COST.mismatch, folds, required: true, ...(sameLetters && { note }) };
     }
     const me = profile.marks.strip(e);
     const ma = profile.marks.strip(a);

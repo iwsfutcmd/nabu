@@ -54,6 +54,12 @@ export interface CompiledProfile {
     /** Marks an answer must write as the expected word does: never folded, never a typo (ADR 0134). */
     readonly required: ReadonlySet<string>;
     readonly requiredNote?: string | undefined;
+    /**
+     * Marks required on one letter only (the profile's `requiredLetters`, ADR 0134 as amended): by the
+     * letter, case folded and without its marks, the marks an answer must write on it (š: s and the caron).
+     */
+    readonly requiredOn: ReadonlyMap<string, ReadonlySet<string>>;
+    readonly requiredLettersNote?: string | undefined;
     /** Marks that tell words apart (Spanish está/esta, ADR 0076): another word of the course is WRONG_WORD. */
     readonly distinguishes: boolean;
     readonly wordNote?: string | undefined;
@@ -173,6 +179,17 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
       const set = new Set(parseExemplarSet(match.marks.set));
       const optional = new Set(match.marks.optional === undefined ? [] : parseExemplarSet(match.marks.optional));
       const required = new Set(match.marks.required === undefined ? [] : parseExemplarSet(match.marks.required));
+      // A letter of `requiredLetters` is its bare letter and the marks of the set it carries.
+      const requiredOn = new Map<string, Set<string>>();
+      for (const letter of match.marks.requiredLetters === undefined ? [] : parseExemplarSet(match.marks.requiredLetters)) {
+        const parts = Array.from(fold(letter).normalize("NFD"));
+        const bare = parts.filter((c) => !set.has(c)).join("").normalize("NFC");
+        const carried = parts.filter((c) => set.has(c));
+        if (bare === "" || carried.length === 0) throw new Error(`requiredLetters: ${JSON.stringify(letter)} is not a letter with a mark of the set`);
+        const on = requiredOn.get(bare) ?? new Set<string>();
+        requiredOn.set(bare, on);
+        for (const c of carried) on.add(c);
+      }
       marks = {
         policy: match.marks.policy,
         note: match.marks.note,
@@ -181,6 +198,8 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
         optional,
         required,
         requiredNote: match.marks.requiredNote,
+        requiredOn,
+        requiredLettersNote: match.marks.requiredLettersNote,
         distinguishes: match.marks.distinguishes === true,
         wordNote: match.marks.wordNote,
       };

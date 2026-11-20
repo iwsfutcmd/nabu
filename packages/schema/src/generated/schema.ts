@@ -382,9 +382,17 @@ export type UnicodeSetPattern2 = string;
  */
 export type NoteId1 = string;
 /**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern3 = string;
+/**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
 export type NoteId2 = string;
+/**
+ * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
+ */
+export type NoteId3 = string;
 /**
  * A CLDR Keyboard 3.0 layout (UTS #35 Part 7).
  *
@@ -3257,11 +3265,13 @@ export interface MatchPolicy {
     readonly optional?: UnicodeSetPattern1;
     readonly required?: UnicodeSetPattern2;
     readonly requiredNote?: NoteId1;
+    readonly requiredLetters?: UnicodeSetPattern3;
+    readonly requiredLettersNote?: NoteId2;
     /**
      * Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.
      */
     readonly distinguishes?: boolean;
-    readonly wordNote?: NoteId2;
+    readonly wordNote?: NoteId3;
     /**
      * Orthographies that write out the vowels these marks leave unwritten (ADR 0095): Arabizi for Lebanese Arabic. Where a course has one of them, a vocalize card also accepts the word as that orthography writes it.
      */

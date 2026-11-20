@@ -3361,13 +3361,25 @@ class Marks(BaseModel):
     required: Annotated[
         UnicodeSetPattern | None,
         Field(
-            description="Marks of the set an answer must write as the expected word does (ADR 0134): one left out, added, changed or moved is never folded away by the policy and never a typo, and the word is wrong (WRONG_WORD where it spells another word of the course, with `wordNote`). Chaghatay's transliteration: the vowel marks (ä ö ü ā ī ū ē à), which say what the Arabic script leaves out; its consonant marks keep the policy."
+            description="Marks of the set an answer must write as the expected word does (ADR 0134): one left out, added, changed or moved is never folded away by the policy and never a typo, and the word is wrong (WRONG_WORD where it spells another word of the course, with `wordNote`). Chaghatay's transliteration: the vowel marks (ä ö ü ā ī ū ē à), which say what the Arabic script leaves out. Its consonant marks keep the policy, but for `requiredLetters`."
         ),
     ] = None
     requiredNote: Annotated[
         NoteId | None,
         Field(
             description="The note for an answer whose only difference is in its `required` marks."
+        ),
+    ] = None
+    requiredLetters: Annotated[
+        UnicodeSetPattern | None,
+        Field(
+            description="Letters written with a mark of the set, whose mark an answer must write as the expected word does (ADR 0134 as amended by ADR 0148): such a letter written without its mark, its bare letter written with it, or another mark of the set in its place is never folded away by the policy and never a typo, and the word is wrong, as with `required`. The same mark on any other letter keeps the policy, and the whole letter traded for another, left out or added is a slip like any other letter's (the typo model and the contrast sets judge it). Chaghatay's transliteration: š, ž, ḫ and ǧ, which without their mark are s, z, h and g, other sounds and other Arabic letters. (ṣ, ḥ, ṭ and the rest sound as their plain letter does, and č has no plain letter to be taken for: those stay with the policy.)"
+        ),
+    ] = None
+    requiredLettersNote: Annotated[
+        NoteId | None,
+        Field(
+            description="The note for an answer whose only difference is in the marks of its `requiredLetters`. Where `required` marks differ too, `requiredNote` is given."
         ),
     ] = None
     distinguishes: Annotated[

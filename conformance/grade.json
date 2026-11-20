@@ -3373,8 +3373,8 @@
       "op": "grade",
       "args": {
         "profile": "chg-Latn/schluessel",
-        "accept": "Kiši öydä",
-        "answer": "Kisi öydä"
+        "accept": "sulṭān keldi",
+        "answer": "sultān keldi"
       },
       "expected": {
         "verdict": "CORRECT_MARKS",
@@ -3382,7 +3382,133 @@
           "translit-marks"
         ]
       },
-      "note": "A consonant's mark left out (s for š): noted, and the answer counts."
+      "note": "A consonant's mark that names another Arabic letter for the same sound, left out (t for ṭ): noted, and the answer counts."
+    },
+    {
+      "id": "grade/chg-Latn/caron-on-c-noted",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "čay",
+        "answer": "cay"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "translit-marks"
+        ]
+      },
+      "note": "č has no plain letter to be taken for, so its caron stays noted though š's is required."
+    },
+    {
+      "id": "grade/chg-Latn/sound-mark-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Kiši öydä",
+        "answer": "Kisi öydä"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-sounds"
+        ]
+      },
+      "note": "The mark of š left out (ADR 0134 as amended, ADR 0148): s is another sound and another Arabic letter, so the answer is wrong."
+    },
+    {
+      "id": "grade/chg-Latn/sound-mark-left-out-gh",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "taǧ",
+        "answer": "tag"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-sounds"
+        ]
+      },
+      "note": "g for ǧ: wrong, as s for š is."
+    },
+    {
+      "id": "grade/chg-Latn/sound-mark-added",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "sän",
+        "answer": "šän"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-sounds"
+        ]
+      },
+      "note": "A caron added to s: a required mark added is as wrong as one left out."
+    },
+    {
+      "id": "grade/chg-Latn/sound-mark-traded",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "ḫan",
+        "answer": "ḥan"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-sounds"
+        ]
+      },
+      "note": "ḥ for ḫ: the breve below is required on h, the dot below is not."
+    },
+    {
+      "id": "grade/chg-Latn/sound-mark-capital",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Šāh",
+        "answer": "Sāh"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-sounds"
+        ]
+      },
+      "note": "Required letters are compared case folded: S for Š."
+    },
+    {
+      "id": "grade/chg-Latn/sound-letter-traded",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "bazārǧa",
+        "answer": "bazārfa"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "A required letter traded for another letter (f for ǧ) is a slip like any other letter's: its rule is about ǧ and g. So bazārda for bazārǧa is still another case ending (contrast-case)."
+    },
+    {
+      "id": "grade/chg-Latn/sound-and-vowel-in-one-word",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "šähär",
+        "answer": "sahar"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-vowels"
+        ]
+      },
+      "note": "Both kinds of required mark left out of one word: the vowels' note is given."
     },
     {
       "id": "grade/chg-Latn/vowel-marks-left-out",
@@ -3449,8 +3575,8 @@
       "op": "grade",
       "args": {
         "profile": "chg-Latn/schluessel",
-        "accept": "Kiši öydä",
-        "answer": "Kisi oyda"
+        "accept": "sulṭān öydä",
+        "answer": "sultān oyda"
       },
       "expected": {
         "verdict": "WRONG",
@@ -3459,7 +3585,24 @@
           "translit-vowels"
         ]
       },
-      "note": "Consonant and vowel marks both left out: the vowels make it wrong."
+      "note": "A noted consonant mark and vowel marks both left out: the vowels make it wrong."
+    },
+    {
+      "id": "grade/chg-Latn/sound-and-vowel-marks-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Kiši öydä",
+        "answer": "Kisi oyda"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-sounds",
+          "translit-vowels"
+        ]
+      },
+      "note": "š's mark left out of one word and the vowels' of another: each word carries its note."
     },
     {
       "id": "grade/chg-Latn/marks-make-word",

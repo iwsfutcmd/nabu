@@ -10,8 +10,11 @@
 #  - Capitals begin sentences and names; Latin punctuation; the ezafe after a hyphen (tārīḫ-i).
 # Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
 #  - A vowel's marks (ä ö ü, ā ī ū ē, à) left out or misplaced make the word wrong (ADR 0134): the vowels are what the
-#    Arabic leaves out, so they are what a reading card asks. A consonant's marks (kisi for kiši) are accepted with a
-#    note. Either way an answer that spells another word of the course (bardi "went" for bärdi "gave") is WRONG_WORD.
+#    Arabic leaves out, so they are what a reading card asks. So do the marks of š, ž, ḫ and ǧ (kisi for kiši, taǧ for
+#    tag; the owner, 2026-11-20, ADR 0148): without the mark they are s, z, h and g, other sounds and other Arabic
+#    letters. The other consonants' marks (hujra for ḥujra, sultān for sulṭān, c for č) are accepted with a note: the
+#    marked letter sounds as its plain one does, and č has no plain letter to be taken for. An answer that spells
+#    another word of the course (bardi "went" for bärdi "gave") is WRONG_WORD either way.
 #  - ŋ and the half rings ʿ and ʾ are letters, not marks: an n for ŋ is a typo at best.
 id: chg-Latn/schluessel
 lang: chg-Latn
@@ -29,11 +32,15 @@ normalize:
 match:
   case: { locale: chg }
   # REVIEW: the marks of Schluessel's letters (diaeresis, macron, caron, dots above and below, the breve below of ḫ,
-  # acute, grave, the macron below). A consonant's (caron, dots, breve below, acute, macron below) are noted, not
-  # failed, unless they make another word; a vowel's (diaeresis, macron, grave) are `required` (ADR 0134): the vowels
-  # are the reading the script leaves out, as the choice cards' wrong options trade them.
+  # acute, grave, the macron below). A vowel's (diaeresis, macron, grave) are `required` (ADR 0134): the vowels are
+  # the reading the script leaves out, as the choice cards' wrong options trade them. A consonant's are noted, not
+  # failed, unless they make another word, but for `requiredLetters`.
+  # REVIEW (the owner's ruling, 2026-11-20; the split is Claude's reading of Schluessel's table of letters, xi-xxxii):
+  # š, ž, ḫ and ǧ are sounds of their own (ش ژ خ غ), so their marks are required too. ṣ, s̱, ḥ, ṭ, ẓ, ż, ź and ṗ name
+  # another Arabic letter for the same sound, and č has no plain c: those stay noted.
   marks: { set: "[\u0300\u0301\u0304\u0307\u0308\u030C\u0323\u032E\u0331]", policy: accept-with-note, note: translit-marks, distinguishes: true, wordNote: translit-marks-word,
-           required: "[\u0300\u0304\u0308]", requiredNote: translit-vowels }
+           required: "[\u0300\u0304\u0308]", requiredNote: translit-vowels,
+           requiredLetters: "[šžḫǧ]", requiredLettersNote: translit-sounds }
   equivalences:
     # REVIEW: ng typed for ŋ (Schluessel, xxv: ŋ is n + k in the script), and the hamza's half ring for ʿayn's.
     - { id: ng, map: { "ng": "ŋ" }, policy: accept-with-note, note: translit-marks }
@@ -53,5 +60,5 @@ match:
       - { id: pronoun, note: contrast-pronoun, members: [män, sän, siz, biz, sizlär, [ular, alar]] }
 input:
   keyboard: cldr-kbd:en
-  extraKeys: ["ä", "ö", "ü", "ā", "ī", "ū", "č", "š", "ǧ", "ḫ", "ŋ", "ḥ", "ṭ", "ṣ", "ẓ", "ż", "ź", "ṗ", "ʿ"]
+  extraKeys: ["ä", "ö", "ü", "ā", "ī", "ū", "č", "š", "ž", "ǧ", "ḫ", "ŋ", "ḥ", "ṭ", "ṣ", "ẓ", "ż", "ź", "ṗ", "ʿ"]
 layout: { vertical: none }
