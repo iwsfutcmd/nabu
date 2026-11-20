@@ -11,8 +11,9 @@
 
 ADR 0100 says when a word is known: every skill the course asks of it shown, on a first try, on a later day.
 Under ADR 0145 a word is not one thing. *ser* has forms no rule gives; *pensar* has a class no form shows;
-*hablamos* is evidence for the ‑ar endings, not for *hablar*; *writer* "one who writes" is evidence for WRITE
-and AGENT and is not a word to track at all. The unit of learning has to follow what is derivable.
+*hablamos* is evidence for *hablar* and for the ‑ar endings, and no word to track; *writer* "one who writes"
+is evidence for WRITE and AGENT and is not a word to track either. The unit of learning has to follow what is
+derivable.
 
 ## Decision
 
@@ -32,8 +33,8 @@ and AGENT and is not a word to track at all. The unit of learning has to follow 
      spelling leftover (which of س / ص / ث), listening, reading aloud.
   What the profile can predict is a default, not a part (nearly every ‑ir verb with stem e or o alternates;
   ‑ear verbs never do), so for an ‑ir verb only "ie or i" is left.
-- **A rule's parts:** every branch it distinguishes (‑ka after k, ‑qa after q; the participle on a sound, a
-  hollow and a defective root; INF's ‑ar, ‑er, ‑ir).
+- **A rule's parts:** every branch it distinguishes (the uz dative as written: ‑ka after k, ‑qa after q; the
+  participle on a sound, a hollow and a defective root; INF's ‑ar, ‑er, ‑ir).
 - **An inherent feature is learned as its contrast:** preterite against imperfect, krama against ngoko. Its
   parts are its uses (preterite: a completed event, a sequence; imperfect: habitual, ongoing, description,
   polite *quería*), each introduced and shown on its own where no core meaning predicts it. Contrasts belong
@@ -95,7 +96,8 @@ and AGENT and is not a word to track at all. The unit of learning has to follow 
 - **Wug cards come last and light:** a confirmation that a productive rule is known after real words have
   shown it, an easter egg, never the main evidence. Made up at compile time from real stems (a nonce root in
   a real pattern for Semitic), checked against the course and a large word list, shipped with `generated`
-  provenance; a rule that needs a listed property shows it, as a dictionary entry would (φλόμος, ‑ου, ἡ).
+  provenance; a rule that needs a listed property shows it, as a dictionary entry would (a made-up Greek noun
+  with its genitive ending and its article).
 
 ### Glosses and literal hints
 
@@ -109,14 +111,16 @@ and AGENT and is not a word to track at all. The unit of learning has to follow 
   analysis, never a folk etymology, and never on the prompt side of a card (it would hand over the answer's
   parts). It cites its source (a dictionary or a grammar) or waits for a reviewer's sign-off: LLM drafting is
   this project's biggest source of folk etymologies. It is about a word's morphemes; a character's components
-  only with a scholarly source of their own (安 as "a woman under a roof" is out). It comes after the real
-  gloss, labelled "lit.", and is stored and shown apart from the gloss: a memory aid, never what the word
-  means.
+  only with a scholarly source of their own, cited (a glyph story told without one is out). It comes after
+  the real gloss, labelled "lit.", and is stored and shown apart from the gloss: a memory aid, never what the
+  word means.
 - **A hint changes no credit:** knowing زمین خوردن says nothing about زمین.
 
 ### Cards for patterns and bound morphemes
 
-- **Pattern templates are checked against the lexical form first,** readings after.
+- **A pattern's template is checked against the lexical form first.** Where a token is analysed as a base
+  and a pattern, the compiler fills the template with the base's radicals and compares the result with the
+  word's lexical form; each spelling and reading is then checked as a projection of that (ADR 0148).
 - **Bound morphemes get building cards:** a base and a head given, the combination asked (كَتَبَ + مَفْعَل →
   مَكْتَب; *ish* + ‑chi → *ishchi*), from buttons where the pieces are patterns, never a typed template.
 - **Root extraction** (a word to its radicals, the skill an Arabic or Hebrew dictionary needs) reads the
@@ -127,7 +131,8 @@ and AGENT and is not a word to track at all. The unit of learning has to follow 
 
 ## Consequences
 
-- **The fold changes what it keys:** `met`, `shown` and `missed` per part and skill, not per KC and facet.
+- **The fold changes what it keys:** `met`, `shown` and `missed` per part and skill. Today `met` is per KC,
+  and `shown` and `missed` per skill card (a KC and a facet).
   `test/fold-before-r2.ts` mirrors it; the simulation and golden files are rerun; CALIBRATION_WEIGHT and
   the pace bands are re-tuned only against the simulation, as now.
 - **Answer events carry credit per part**, so the learner-event schema changes; logged events migrate with
