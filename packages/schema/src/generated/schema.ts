@@ -4650,6 +4650,12 @@ export interface Lexeme {
   readonly head?: FunctionHead;
   readonly feats?: UdFeatures5;
   /**
+   * Features its language declares lexical for its category that this lexeme's tokens choose instead: hermano, whose tokens are masculine or feminine. By ADR 0145 a noun's feminine is a derivative, and a lexeme of its own where it is listed; until that is decided for a lexeme, the value stays on its tokens, and the entry says so here.
+   *
+   * @minItems 1
+   */
+  readonly chooses?: readonly string[];
+  /**
    * The classes of its language it belongs to: tener [e-ie, go].
    *
    * @minItems 1

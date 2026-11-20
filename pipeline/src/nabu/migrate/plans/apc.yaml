@@ -142,6 +142,18 @@ senses:
   fi.can: {bare: {}}
   lezem: {bare: {}}
 
+# Relations (ADR 0145, round 6: a token names its head and relation where agreement matters).
+# The course holds no trees; these rules draft the edges agreement needs from what it does hold.
+# A rule links two lexemes only where their values agree and nothing but the words it may skip
+# stands between them. What it cannot link stays bare: REVIEW.
+relations:
+  # The article and a preposition written on a word (the design note's own example).
+  - {rel: det, from: [DET], to: [NOUN, PROPN, ADJ, NUM], side: inside}
+  - {rel: case, from: [ADP], to: [NOUN, PROPN, PRON, NUM, ADJ, DET], side: inside}
+  # An adjective and the noun before it: el bet el kbir. A plural of things takes a feminine
+  # singular adjective, which this rule does not link.
+  - {rel: amod, from: [ADJ], to: [NOUN, PROPN], side: left, agree: [Gender, Number], skip: [DET, ADV], reach: 2}
+
 # Gender by ending, on the Arabic spelling (ADR 0146: apc states its own): a noun in ta marbuta
 # is feminine, any other masculine. REVIEW.
 defaults:

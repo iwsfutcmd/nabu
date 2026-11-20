@@ -38,7 +38,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַנַּעַר שְׁמוּאֵל
-      tokens: [{surface: הַנַּעַר, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: naar, surface: נַּעַר, base: true, feats: {Number: Sing}}], readings: {tiberian: hannáʿar}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
+      tokens: [{surface: הַנַּעַר, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: naar, surface: נַּעַר, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hannáʿar}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
       reverse: הנער שמואל
   translations:
     en: |-
@@ -87,7 +87,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַנַּעַר יֹשֵׁב בַּבַּיִת׃
-      tokens: [{surface: הַנַּעַר, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: naar, surface: נַּעַר, base: true, feats: {Number: Sing}}], readings: {tiberian: hannáʿar}}, {surface: יֹשֵׁב, lexeme: yashav, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: yōšēḇ}}, {surface: בַּבַּיִת, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: bayit, surface: בַּיִת, base: true, feats: {Number: Sing}}], readings: {tiberian: babbáyiṯ}}]
+      tokens: [{surface: הַנַּעַר, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: naar, surface: נַּעַר, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hannáʿar}}, {surface: יֹשֵׁב, lexeme: yashav, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: yōšēḇ}}, {surface: בַּבַּיִת, lexemes: [{lexeme: be, surface: בַּ, n: 4, head: 5, rel: case}, {lexeme: bayit, surface: בַּיִת, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: babbáyiṯ}}]
       reverse: |-
         הנער (ישב|יושב) בבית
         (ישב|יושב) הנער בבית
@@ -187,7 +187,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּשְׁכַּב בִּמְקוֹמוֹ׃
-      tokens: [{surface: וַיִּשְׁכַּב, lexeme: shakhav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, lexemes: [{lexeme: be, surface: בִּ}, {lexeme: maqom, surface: מְקוֹמ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: bimqômô}}]
+      tokens: [{surface: וַיִּשְׁכַּב, lexeme: shakhav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, lexemes: [{lexeme: be, surface: בִּ, n: 2, head: 3, rel: case}, {lexeme: maqom, surface: מְקוֹמ, base: true, feats: {Number: Sing}, n: 3}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: bimqômô}}]
       reverse: |-
         וישכב במקומו
         שכב במקומו
@@ -344,7 +344,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כְפַעַם־בְּפַעַם
-      tokens: [{surface: כְפַעַם, lexemes: [{lexeme: ke, surface: כְ}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}}], readings: {tiberian: bəp̄áʿam}}]
+      tokens: [{surface: כְפַעַם, lexemes: [{lexeme: ke, surface: כְ, n: 1, head: 2, rel: case}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, lexemes: [{lexeme: be, surface: בְּ, n: 3, head: 4, rel: case}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: bəp̄áʿam}}]
       reverse: כפעם בפעם
   translations:
     en: |-
@@ -465,7 +465,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר עֵלִי לִשְׁמוּאֵל
-          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: עֵלִי, lexeme: eli, feats: {Number: Sing}, readings: {tiberian: ʿēlî}}, {surface: לִשְׁמוּאֵל, lexemes: [{lexeme: le, surface: לִ}, {lexeme: shmuel, surface: שְׁמוּאֵל, base: true, feats: {Number: Sing}}], readings: {tiberian: lišmûʾēl}}]
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: עֵלִי, lexeme: eli, feats: {Number: Sing}, readings: {tiberian: ʿēlî}}, {surface: לִשְׁמוּאֵל, lexemes: [{lexeme: le, surface: לִ, n: 3, head: 4, rel: case}, {lexeme: shmuel, surface: שְׁמוּאֵל, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: lišmûʾēl}}]
       translations:
         en: Then Eli said to Samuel,
   - line:
@@ -480,14 +480,14 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֵּלֶךְ שְׁמוּאֵל וַיִּשְׁכַּב בִּמְקוֹמוֹ׃
-          tokens: [{surface: וַיֵּלֶךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗleḵ}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}, {surface: וַיִּשְׁכַּב, lexeme: shakhav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, lexemes: [{lexeme: be, surface: בִּ}, {lexeme: maqom, surface: מְקוֹמ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: bimqômô}}]
+          tokens: [{surface: וַיֵּלֶךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗleḵ}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}, {surface: וַיִּשְׁכַּב, lexeme: shakhav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, lexemes: [{lexeme: be, surface: בִּ, n: 4, head: 5, rel: case}, {lexeme: maqom, surface: מְקוֹמ, base: true, feats: {Number: Sing}, n: 5}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: bimqômô}}]
       translations:
         en: So Samuel went and lay down in his place.
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַיָּבֹא יְהוָה וַיִּתְיַצַּב וַיִּקְרָא כְפַעַם־בְּפַעַם
-          tokens: [{surface: וַיָּבֹא, lexeme: bo, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyāḇōʾ}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיִּתְיַצַּב, lexeme: hityatsev, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiṯyaṣṣaḇ}}, {surface: וַיִּקְרָא, lexeme: qara, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiqrāʾ}}, {surface: כְפַעַם, lexemes: [{lexeme: ke, surface: כְ}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}}], readings: {tiberian: bəp̄áʿam}}]
+          tokens: [{surface: וַיָּבֹא, lexeme: bo, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyāḇōʾ}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיִּתְיַצַּב, lexeme: hityatsev, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiṯyaṣṣaḇ}}, {surface: וַיִּקְרָא, lexeme: qara, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiqrāʾ}}, {surface: כְפַעַם, lexemes: [{lexeme: ke, surface: כְ, n: 5, head: 6, rel: case}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, lexemes: [{lexeme: be, surface: בְּ, n: 7, head: 8, rel: case}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}, n: 8}], readings: {tiberian: bəp̄áʿam}}]
       translations:
         en: And the LORD came and stood there, and called as at other times,
   - line:

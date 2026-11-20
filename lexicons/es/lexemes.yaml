@@ -376,6 +376,7 @@ lexemes:
   - {feats: {Gender: Fem, Number: Sing}, spelled: {es-Latn/standard: [azul]}, status: pinned}
 - id: lexeme:azúcar
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: 'sugar; blood sugar (tener azúcar: to have diabetes); ¡Azúcar!: Celia Cruz''s cry'}
   notes: {en: 'Celia told how it began: a waiter in Miami asked her if she took sugar in her coffee, and of course a Cuban does. Stressed on zú and ending in r, so written with an accent: a-zú-car. El azúcar and la azúcar are both correct.'}
   spelled: {es-Latn/standard: [azúcar]}
@@ -1472,12 +1473,12 @@ lexemes:
   spelled: {es-Latn/standard: [doce]}
 - id: lexeme:doctor
   pos: NOUN
-  feats: {Gender: Fem}
+  chooses: [Gender]
   gloss: {en: 'doctor (what you call one: doctora for a woman)'}
   notes: {en: 'What a patient calls a physician to their face: Buenos días, doctora. Written in small letters in a sentence; Dr. and Dra. before a name. El médico is the job; doctor is the title.'}
   spelled: {es-Latn/standard: [doctor]}
-  allomorphs:
-  - {spelled: {es-Latn/standard: [doctora]}}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing}, spelled: {es-Latn/standard: [doctora]}, status: pinned}
 - id: lexeme:doler
   pos: VERB
   gloss: {en: 'to hurt; to ache (me duele: it hurts me)'}
@@ -1500,6 +1501,7 @@ lexemes:
   spelled: {es-Latn/standard: [dominó]}
 - id: lexeme:don
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: 'Don, Doña (title of respect before a first name)'}
   notes: {en: 'Doña for a woman: doña Ofelia, don Pepe. Before a first name, never a surname alone, and lowercase inside a sentence. It shows respect, and goes with usted. With an ñ.'}
   spelled: {es-Latn/standard: [don]}
@@ -2147,6 +2149,7 @@ lexemes:
   spelled: {es-Latn/standard: [hecho]}
 - id: lexeme:hermano
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: 'brother (hermana: sister)'}
   notes: {en: 'Hermanos is brothers, or brothers and sisters: siblings. Cubans also call a close friend mi hermano, or mi herma.'}
   spelled: {es-Latn/standard: [hermano]}
@@ -2165,6 +2168,7 @@ lexemes:
   spelled: {es-Latn/standard: [Hialeah]}
 - id: lexeme:hijo
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: 'son (hija: daughter)'}
   notes: {en: 'Los hijos: sons, or children. Said fast, mi hijo and mi hija become mi''jo and mi''ja.'}
   spelled: {es-Latn/standard: [hijo]}
@@ -2765,6 +2769,7 @@ lexemes:
   spelled: {es-Latn/standard: [me]}
 - id: lexeme:mecánico
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: mechanic}
   notes: {en: Stress and accent on the cá. In Cuba a good mechanic keeps a seventy-year-old car running with parts he makes himself.}
   spelled: {es-Latn/standard: [mecánico]}
@@ -2842,6 +2847,7 @@ lexemes:
   spelled: {es-Latn/standard: [mientras]}
 - id: lexeme:mijo
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: honey; sweetie (mi hijo said fast; mi'ja to a girl)}
   notes: {en: 'What parents, grandparents and older neighbours call the young: mi''jo to a boy or a man, mi''ja to a girl or a woman. Also written mijo, mija.'}
   spelled: {es-Latn/standard: [mi'jo]}
@@ -2928,6 +2934,7 @@ lexemes:
   spelled: {es-Latn/standard: [Morro]}
 - id: lexeme:muchacho
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: 'boy; young man (muchacha: girl, young woman)'}
   notes: {en: 'The everyday Cuban word for a young person, up to about forty: una muchacha seria; ¡muchachos, a comer! Chico and chica are used too.'}
   spelled: {es-Latn/standard: [muchacho]}
@@ -3073,6 +3080,7 @@ lexemes:
   - {feats: {Number: Plur}, spelled: {es-Latn/standard: [nietos]}, status: pinned}
 - id: lexeme:niño
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: 'child; boy (niña: girl)'}
   notes: {en: 'De niño: as a child (de niña for a girl). Cubans often say chiquito instead: cuando yo era chiquito. With ñ: niño, never nino.'}
   spelled: {es-Latn/standard: [niño]}
@@ -3128,6 +3136,7 @@ lexemes:
   spelled: {es-Latn/standard: [noventa]}
 - id: lexeme:novio
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: 'boyfriend; fiancé; groom (novia: girlfriend; bride)'}
   notes: {en: 'One word for boyfriend, fiancé and groom. In Abuela''s day a novio visited at the house, with the family in the sala.'}
   spelled: {es-Latn/standard: [novio]}
@@ -3687,6 +3696,7 @@ lexemes:
   - {spelled: {es-Latn/standard: [primer]}}
 - id: lexeme:primo
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: cousin}
   notes: {en: 'Prima for a woman; los primos, cousins. A first cousin is a primo hermano.'}
   spelled: {es-Latn/standard: [primo]}
@@ -4577,12 +4587,12 @@ lexemes:
   spelled: {es-Latn/standard: [té]}
 - id: lexeme:tío
   pos: NOUN
-  feats: {Gender: Fem}
+  chooses: [Gender]
   gloss: {en: 'uncle (tía: aunt)'}
   notes: {en: 'Los tíos: uncles, or aunts and uncles. Like abuela, tía goes before a name: tía Marisol.'}
   spelled: {es-Latn/standard: [tío]}
-  allomorphs:
-  - {spelled: {es-Latn/standard: [tía]}}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing}, spelled: {es-Latn/standard: [tía]}, status: pinned}
 - id: lexeme:tú
   pos: PRON
   feats: {PronType: Prs}
@@ -4670,12 +4680,12 @@ lexemes:
   spelled: {es-Latn/standard: [Varadero]}
 - id: lexeme:vecino
   pos: NOUN
-  feats: {Gender: Fem}
+  chooses: [Gender]
   gloss: {en: 'neighbour (vecina: a woman)'}
   notes: {en: 'La vecina de al lado: the next-door neighbour. With v, and c before i: vecino, vecina.'}
   spelled: {es-Latn/standard: [vecino]}
-  allomorphs:
-  - {spelled: {es-Latn/standard: [vecina]}}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing}, spelled: {es-Latn/standard: [vecina]}, status: pinned}
 - id: lexeme:vega
   pos: NOUN
   gloss: {en: tobacco field (Cuban); fertile river plain}
@@ -4913,6 +4923,7 @@ lexemes:
   spelled: {es-Latn/standard: [yuca]}
 - id: lexeme:yuma
   pos: NOUN
+  chooses: [Gender]
   gloss: {en: 'la Yuma: the United States (Cuban slang); un yuma: a foreigner, an American'}
   notes: {en: 'Irse pa'' la Yuma: to leave for the US. People say it comes from the western 3:10 to Yuma, popular in Cuba in the late 1950s. Slang: on a form or at an office, say Estados Unidos. Cousins on the island tease a Cuban from Miami as medio yuma.'}
   spelled: {es-Latn/standard: [Yuma]}

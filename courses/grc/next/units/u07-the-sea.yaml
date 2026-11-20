@@ -19,7 +19,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τὸ ὄρος.
-      tokens: [{surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄρος}}]
+      tokens: [{surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 2, readings: {attic: ὄρος}}]
       reverse: τὸ ὄρος
   translations:
     en: The mountain.
@@ -28,7 +28,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐπὶ τὸ ὄρος.
-      tokens: [{surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄρος}}]
+      tokens: [{surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 3, readings: {attic: ὄρος}}]
       reverse: ἐπὶ τὸ ὄρος
   translations:
     en: (To|Onto|Up) the mountain.
@@ -37,7 +37,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐπὶ τὸ ὄρος πορεύονται.
-      tokens: [{surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄρος}}, {surface: πορεύονται, lexeme: poreuomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: πορεύονται}}]
+      tokens: [{surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 3, readings: {attic: ὄρος}}, {surface: πορεύονται, lexeme: poreuomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: πορεύονται}}]
       reverse: |-
         ἐπὶ τὸ ὄρος πορεύονται
         πορεύονται ἐπὶ τὸ ὄρος
@@ -48,7 +48,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἀφικνοῦνται ἐπὶ τὸ ὄρος.
-      tokens: [{surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}, {surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄρος}}]
+      tokens: [{surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}, {surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 4, readings: {attic: ὄρος}}]
       reverse: |-
         ἀφικνοῦνται ἐπὶ τὸ ὄρος
         ἐπὶ τὸ ὄρος ἀφικνοῦνται
@@ -59,7 +59,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τῇ πέμπτῃ ἡμέρᾳ.
-      tokens: [{surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τῇ}}, {surface: πέμπτῃ, lexeme: pemptos, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: πέμπτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, readings: {attic: ἡμέρᾳ}}]
+      tokens: [{surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: τῇ}}, {surface: πέμπτῃ, lexeme: pemptos, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: amod, readings: {attic: πέμπτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: ἡμέρᾳ}}]
       reverse: τῇ πέμπτῃ ἡμέρᾳ
   translations:
     en: On the fifth day.
@@ -68,7 +68,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τῇ πρώτῃ ἡμέρᾳ.
-      tokens: [{surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τῇ}}, {surface: πρώτῃ, lexeme: protos, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: πρώτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, readings: {attic: ἡμέρᾳ}}]
+      tokens: [{surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: τῇ}}, {surface: πρώτῃ, lexeme: protos, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: amod, readings: {attic: πρώτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: ἡμέρᾳ}}]
       reverse: τῇ πρώτῃ ἡμέρᾳ
   translations:
     en: On the first day.
@@ -77,7 +77,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ πρώτη ἡμέρα.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: πρώτη, lexeme: protos, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: πρώτη}}, {surface: ἡμέρα, lexeme: hemera, feats: {Case: Nom, Number: Sing}, readings: {attic: ἡμέρᾱ}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: ἡ}}, {surface: πρώτη, lexeme: protos, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: amod, readings: {attic: πρώτη}}, {surface: ἡμέρα, lexeme: hemera, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: ἡμέρᾱ}}]
       reverse: ἡ πρώτη ἡμέρα
   translations:
     en: The first day.
@@ -86,7 +86,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τῇ πέμπτῃ ἡμέρᾳ ἀφικνοῦνται.
-      tokens: [{surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τῇ}}, {surface: πέμπτῃ, lexeme: pemptos, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: πέμπτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, readings: {attic: ἡμέρᾳ}}, {surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}]
+      tokens: [{surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: τῇ}}, {surface: πέμπτῃ, lexeme: pemptos, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: amod, readings: {attic: πέμπτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: ἡμέρᾳ}}, {surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}]
       reverse: |-
         τῇ πέμπτῃ ἡμέρᾳ ἀφικνοῦνται
         ἀφικνοῦνται τῇ πέμπτῃ ἡμέρᾳ
@@ -97,7 +97,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τὸ ὄνομα.
-      tokens: [{surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: ὄνομα, lexeme: onoma, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄνομᾰ}}]
+      tokens: [{surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: τὸ}}, {surface: ὄνομα, lexeme: onoma, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 2, readings: {attic: ὄνομᾰ}}]
       reverse: τὸ ὄνομα
   translations:
     en: The name.
@@ -156,7 +156,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὄνομα δὲ τῷ ὄρει ἦν Θήχης.
-      tokens: [{surface: ὄνομα, lexeme: onoma, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄνομᾰ}}, {surface: δὲ, lexeme: de, readings: {attic: δὲ}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Sing}, readings: {attic: τῷ}}, {surface: ὄρει, lexeme: oros, feats: {Case: Dat, Number: Sing}, readings: {attic: ὄρει}}, {surface: ἦν, lexeme: eimi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦν}}, {surface: Θήχης, lexeme: theches, feats: {Case: Nom, Number: Sing}, readings: {attic: Θήχης}}]
+      tokens: [{surface: ὄνομα, lexeme: onoma, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄνομᾰ}}, {surface: δὲ, lexeme: de, readings: {attic: δὲ}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: τῷ}}, {surface: ὄρει, lexeme: oros, feats: {Case: Dat, Number: Sing}, n: 4, readings: {attic: ὄρει}}, {surface: ἦν, lexeme: eimi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦν}}, {surface: Θήχης, lexeme: theches, feats: {Case: Nom, Number: Sing}, readings: {attic: Θήχης}}]
       reverse: |-
         ὄνομα δὲ τῷ ὄρει ἦν Θήχης
         τῷ δὲ ὄρει ὄνομα ἦν Θήχης
@@ -180,7 +180,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ παῖς οἴκοι ἦν.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: παῖς}}, {surface: οἴκοι, lexeme: oikoi, readings: {attic: οἴκοι}}, {surface: ἦν, lexeme: eimi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦν}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, readings: {attic: παῖς}}, {surface: οἴκοι, lexeme: oikoi, readings: {attic: οἴκοι}}, {surface: ἦν, lexeme: eimi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦν}}]
       reverse: |-
         ὁ παῖς οἴκοι ἦν
         οἴκοι ἦν ὁ παῖς
@@ -193,7 +193,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ στρατιώτης.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: στρατιώτης, lexeme: stratiotes, feats: {Case: Nom, Number: Sing}, readings: {attic: στρᾰτῐώτης}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: στρατιώτης, lexeme: stratiotes, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: στρᾰτῐώτης}}]
       reverse: ὁ στρατιώτης
   translations:
     en: The soldier.
@@ -202,7 +202,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οἱ στρατιῶται.
-      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: οἱ}}, {surface: στρατιῶται, lexeme: stratiotes, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: στρᾰτῐῶται}}]
+      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det, readings: {attic: οἱ}}, {surface: στρατιῶται, lexeme: stratiotes, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: στρᾰτῐῶται}}]
       reverse: οἱ στρατιῶται
   translations:
     en: The soldiers.
@@ -211,7 +211,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ θάλαττα.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: θάλαττα, lexeme: thalatta, feats: {Case: Nom, Number: Sing}, readings: {attic: θᾰ́λᾰττᾰ}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: θάλαττα, lexeme: thalatta, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: θᾰ́λᾰττᾰ}}]
       reverse: ἡ θάλαττα
   translations:
     en: The sea.
@@ -229,7 +229,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: βοῶσιν οἱ στρατιῶται.
-      tokens: [{surface: βοῶσιν, lexeme: boao, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: βοῶσῐν}}, {surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: οἱ}}, {surface: στρατιῶται, lexeme: stratiotes, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: στρᾰτῐῶται}}]
+      tokens: [{surface: βοῶσιν, lexeme: boao, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: βοῶσῐν}}, {surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det, readings: {attic: οἱ}}, {surface: στρατιῶται, lexeme: stratiotes, feats: {Case: 'Nom,Voc', Number: Plur}, n: 3, readings: {attic: στρᾰτῐῶται}}]
       reverse: |-
         βοῶσιν οἱ στρατιῶται
         οἱ στρατιῶται βοῶσι[ν]
@@ -252,7 +252,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἀκούουσι τῶν στρατιωτῶν.
-      tokens: [{surface: ἀκούουσι, lexeme: akouo, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούουσῐ}}, {surface: τῶν, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Plur}, readings: {attic: τῶν}}, {surface: στρατιωτῶν, lexeme: stratiotes, feats: {Case: Gen, Number: Plur}, readings: {attic: στρᾰτῐωτῶν}}]
+      tokens: [{surface: ἀκούουσι, lexeme: akouo, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούουσῐ}}, {surface: τῶν, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det, readings: {attic: τῶν}}, {surface: στρατιωτῶν, lexeme: stratiotes, feats: {Case: Gen, Number: Plur}, n: 3, readings: {attic: στρᾰτῐωτῶν}}]
       reverse: |-
         ἀκούουσι τῶν στρατιωτῶν
         τῶν στρατιωτῶν ἀκούουσι[ν]
@@ -264,7 +264,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἀκούουσι βοώντων τῶν στρατιωτῶν.
-      tokens: [{surface: ἀκούουσι, lexeme: akouo, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούουσῐ}}, {surface: βοώντων, lexeme: boao, feats: {VerbForm: Part}, readings: {attic: βοώντων}}, {surface: τῶν, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Plur}, readings: {attic: τῶν}}, {surface: στρατιωτῶν, lexeme: stratiotes, feats: {Case: Gen, Number: Plur}, readings: {attic: στρᾰτῐωτῶν}}]
+      tokens: [{surface: ἀκούουσι, lexeme: akouo, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούουσῐ}}, {surface: βοώντων, lexeme: boao, feats: {VerbForm: Part}, readings: {attic: βοώντων}}, {surface: τῶν, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det, readings: {attic: τῶν}}, {surface: στρατιωτῶν, lexeme: stratiotes, feats: {Case: Gen, Number: Plur}, n: 4, readings: {attic: στρᾰτῐωτῶν}}]
       reverse: |-
         ἀκούουσι βοώντων τῶν στρατιωτῶν
         ἀκούουσι[ν] τῶν στρατιωτῶν βοώντων
@@ -315,7 +315,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οἱ στρατιῶται ἔθεον.
-      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: οἱ}}, {surface: στρατιῶται, lexeme: stratiotes, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: στρᾰτῐῶται}}, {surface: ἔθεον, lexeme: theo, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔθεον}}]
+      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det, readings: {attic: οἱ}}, {surface: στρατιῶται, lexeme: stratiotes, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: στρᾰτῐῶται}}, {surface: ἔθεον, lexeme: theo, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔθεον}}]
       reverse: |-
         οἱ στρατιῶται ἔθεον
         ἔθεον οἱ στρατιῶται
@@ -326,7 +326,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οἱ ὀπισθοφύλακες.
-      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: οἱ}}, {surface: ὀπισθοφύλακες, lexeme: opisthophylax, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: ὀπῐσθοφῠ́λᾰκες}}]
+      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det, readings: {attic: οἱ}}, {surface: ὀπισθοφύλακες, lexeme: opisthophylax, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: ὀπῐσθοφῠ́λᾰκες}}]
       reverse: οἱ ὀπισθοφύλακες
   translations:
     en: The (rearguard|men of the rearguard).
@@ -335,7 +335,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: πάντες ἔθεον καὶ οἱ ὀπισθοφύλακες.
-      tokens: [{surface: πάντες, lexeme: pas, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: πᾰ́ντες}}, {surface: ἔθεον, lexeme: theo, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔθεον}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: οἱ}}, {surface: ὀπισθοφύλακες, lexeme: opisthophylax, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: ὀπῐσθοφῠ́λᾰκες}}]
+      tokens: [{surface: πάντες, lexeme: pas, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: πᾰ́ντες}}, {surface: ἔθεον, lexeme: theo, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔθεον}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 4, head: 5, rel: det, readings: {attic: οἱ}}, {surface: ὀπισθοφύλακες, lexeme: opisthophylax, feats: {Case: 'Nom,Voc', Number: Plur}, n: 5, readings: {attic: ὀπῐσθοφῠ́λᾰκες}}]
       reverse: |-
         πάντες ἔθεον καὶ οἱ ὀπισθοφύλακες
         ἔθεον πάντες καὶ οἱ ὀπισθοφύλακες
@@ -382,7 +382,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ δευτέρα ἡμέρα.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: δευτέρα, lexeme: deuteros, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: δευτέρᾱ}}, {surface: ἡμέρα, lexeme: hemera, feats: {Case: Nom, Number: Sing}, readings: {attic: ἡμέρᾱ}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: ἡ}}, {surface: δευτέρα, lexeme: deuteros, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: amod, readings: {attic: δευτέρᾱ}}, {surface: ἡμέρα, lexeme: hemera, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: ἡμέρᾱ}}]
       reverse: ἡ δευτέρα ἡμέρα
   translations:
     en: The second day.
@@ -391,7 +391,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τῇ τρίτῃ ἡμέρᾳ.
-      tokens: [{surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τῇ}}, {surface: τρίτῃ, lexeme: tritos, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τρῐ́τῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, readings: {attic: ἡμέρᾳ}}]
+      tokens: [{surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: τῇ}}, {surface: τρίτῃ, lexeme: tritos, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: amod, readings: {attic: τρῐ́τῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: ἡμέρᾳ}}]
       reverse: τῇ τρίτῃ ἡμέρᾳ
   translations:
     en: On the third day.
@@ -410,14 +410,14 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: καὶ ἀφικνοῦνται ἐπὶ τὸ ὄρος τῇ πέμπτῃ ἡμέρᾳ·
-          tokens: [{surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}, {surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄρος}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τῇ}}, {surface: πέμπτῃ, lexeme: pemptos, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: πέμπτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, readings: {attic: ἡμέρᾳ}}]
+          tokens: [{surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}, {surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 5, readings: {attic: ὄρος}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 6, head: 8, rel: det, readings: {attic: τῇ}}, {surface: πέμπτῃ, lexeme: pemptos, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 7, head: 8, rel: amod, readings: {attic: πέμπτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, n: 8, readings: {attic: ἡμέρᾳ}}]
       translations:
         en: And on the fifth day they come to the mountain;
   - line:
       forms:
         grc-Grek/polytonic:
           text: ὄνομα δὲ τῷ ὄρει ἦν Θήχης.
-          tokens: [{surface: ὄνομα, lexeme: onoma, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄνομᾰ}}, {surface: δὲ, lexeme: de, readings: {attic: δὲ}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Sing}, readings: {attic: τῷ}}, {surface: ὄρει, lexeme: oros, feats: {Case: Dat, Number: Sing}, readings: {attic: ὄρει}}, {surface: ἦν, lexeme: eimi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦν}}, {surface: Θήχης, lexeme: theches, feats: {Case: Nom, Number: Sing}, readings: {attic: Θήχης}}]
+          tokens: [{surface: ὄνομα, lexeme: onoma, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ὄνομᾰ}}, {surface: δὲ, lexeme: de, readings: {attic: δὲ}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: τῷ}}, {surface: ὄρει, lexeme: oros, feats: {Case: Dat, Number: Sing}, n: 4, readings: {attic: ὄρει}}, {surface: ἦν, lexeme: eimi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦν}}, {surface: Θήχης, lexeme: theches, feats: {Case: Nom, Number: Sing}, readings: {attic: Θήχης}}]
       translations:
         en: the name of the mountain was Theches.
   - choose:
@@ -433,14 +433,14 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: καὶ τάχα δὴ ἀκούουσι βοώντων τῶν στρατιωτῶν θάλαττα θάλαττα
-          tokens: [{surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: τάχα, lexeme: tacha, readings: {attic: τᾰ́χᾰ}}, {surface: δὴ, lexeme: de-indeed, readings: {attic: δὴ}}, {surface: ἀκούουσι, lexeme: akouo, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούουσῐ}}, {surface: βοώντων, lexeme: boao, feats: {VerbForm: Part}, readings: {attic: βοώντων}}, {surface: τῶν, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Plur}, readings: {attic: τῶν}}, {surface: στρατιωτῶν, lexeme: stratiotes, feats: {Case: Gen, Number: Plur}, readings: {attic: στρᾰτῐωτῶν}}, {surface: θάλαττα, lexeme: thalatta, feats: {Case: Nom, Number: Sing}, readings: {attic: θᾰ́λᾰττᾰ}}, {surface: θάλαττα, lexeme: thalatta, feats: {Case: Nom, Number: Sing}, readings: {attic: θᾰ́λᾰττᾰ}}]
+          tokens: [{surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: τάχα, lexeme: tacha, readings: {attic: τᾰ́χᾰ}}, {surface: δὴ, lexeme: de-indeed, readings: {attic: δὴ}}, {surface: ἀκούουσι, lexeme: akouo, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούουσῐ}}, {surface: βοώντων, lexeme: boao, feats: {VerbForm: Part}, readings: {attic: βοώντων}}, {surface: τῶν, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det, readings: {attic: τῶν}}, {surface: στρατιωτῶν, lexeme: stratiotes, feats: {Case: Gen, Number: Plur}, n: 7, readings: {attic: στρᾰτῐωτῶν}}, {surface: θάλαττα, lexeme: thalatta, feats: {Case: Nom, Number: Sing}, readings: {attic: θᾰ́λᾰττᾰ}}, {surface: θάλαττα, lexeme: thalatta, feats: {Case: Nom, Number: Sing}, readings: {attic: θᾰ́λᾰττᾰ}}]
       translations:
         en: And soon they hear the soldiers shouting “The sea! The sea!”
   - line:
       forms:
         grc-Grek/polytonic:
           text: ἔνθα δὴ ἔθεον πάντες καὶ οἱ ὀπισθοφύλακες,
-          tokens: [{surface: ἔνθα, lexeme: entha, readings: {attic: ἔνθᾰ}}, {surface: δὴ, lexeme: de-indeed, readings: {attic: δὴ}}, {surface: ἔθεον, lexeme: theo, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔθεον}}, {surface: πάντες, lexeme: pas, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: πᾰ́ντες}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: οἱ}}, {surface: ὀπισθοφύλακες, lexeme: opisthophylax, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: ὀπῐσθοφῠ́λᾰκες}}]
+          tokens: [{surface: ἔνθα, lexeme: entha, readings: {attic: ἔνθᾰ}}, {surface: δὴ, lexeme: de-indeed, readings: {attic: δὴ}}, {surface: ἔθεον, lexeme: theo, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔθεον}}, {surface: πάντες, lexeme: pas, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: πᾰ́ντες}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det, readings: {attic: οἱ}}, {surface: ὀπισθοφύλακες, lexeme: opisthophylax, feats: {Case: 'Nom,Voc', Number: Plur}, n: 7, readings: {attic: ὀπῐσθοφῠ́λᾰκες}}]
       translations:
         en: Then everyone ran, the rearguard too,
   - choose:

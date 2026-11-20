@@ -101,6 +101,17 @@ forms:
       - {ends: a, feats: {Gender: Fem, Number: Sing}}
     introduces: [VerbForm=Part]
 
+# Relations (ADR 0145, round 6: a token names its head and relation where agreement matters).
+# The course holds no trees; these rules draft the edges agreement needs from what it does hold.
+# A rule links two lexemes only where their values agree and nothing but the words it may skip
+# stands between them. What it cannot link stays bare: REVIEW.
+relations:
+  # A determiner and the noun it stands before: la casa, mis dos hermanos.
+  - {rel: det, from: [DET], to: [NOUN, PROPN], side: right, agree: [Gender, Number], skip: [ADJ, NUM, ADV, DET, PRON], reach: 3}
+  # An adjective and the noun beside it: la casa blanca, la primera vez. One after ser or estar
+  # has no noun beside it and is left bare.
+  - {rel: amod, from: [ADJ], to: [NOUN, PROPN], side: either, agree: [Gender, Number], skip: [ADV], reach: 1}
+
 # Gender by ending (ADR 0145, "Decided per language": REVIEW). The longest ending that fits wins.
 defaults:
   - {id: gender-a, when: {pos: NOUN, ends: a}, gives: {Gender: Fem}}

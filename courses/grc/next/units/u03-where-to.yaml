@@ -127,7 +127,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τὸ τεῖχος.
-      tokens: [{surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: τεῖχος, lexeme: teichos, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: τεῖχος}}]
+      tokens: [{surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: τὸ}}, {surface: τεῖχος, lexeme: teichos, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 2, readings: {attic: τεῖχος}}]
       reverse: τὸ τεῖχος
   translations:
     en: The (wall|walls|city wall|city walls).
@@ -156,7 +156,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ Φαῖδρος πορεύεται.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Φαῖδρος, lexeme: phaidros, feats: {Case: Nom, Number: Sing}, readings: {attic: Φαῖδρος}}, {surface: πορεύεται, lexeme: poreuomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πορεύεται}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: Φαῖδρος, lexeme: phaidros, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: Φαῖδρος}}, {surface: πορεύεται, lexeme: poreuomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πορεύεται}}]
       reverse: |-
         ὁ Φαῖδρος πορεύεται
         πορεύεται [ὁ] Φαῖδρος
@@ -179,7 +179,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: εἰς τὴν ἀγορὰν πορεύομαι.
-      tokens: [{surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: πορεύομαι, lexeme: poreuomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: πορεύομαι}}]
+      tokens: [{surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, n: 3, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: πορεύομαι, lexeme: poreuomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: πορεύομαι}}]
       reverse: |-
         εἰς τὴν ἀγορὰν πορεύομαι
         πορεύομαι εἰς τὴν ἀγοράν
@@ -190,7 +190,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: εἰς τὴν οἰκίαν βαδίζω.
-      tokens: [{surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, readings: {attic: τὴν}}, {surface: οἰκίαν, lexeme: oikia, feats: {Case: Acc, Number: Sing}, readings: {attic: οἰκῐ́ᾱν}}, {surface: βαδίζω, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζω}}]
+      tokens: [{surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὴν}}, {surface: οἰκίαν, lexeme: oikia, feats: {Case: Acc, Number: Sing}, n: 3, readings: {attic: οἰκῐ́ᾱν}}, {surface: βαδίζω, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζω}}]
       reverse: |-
         εἰς τὴν οἰκίαν βαδίζω
         βαδίζω εἰς τὴν οἰκίαν
@@ -201,7 +201,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐκ τῆς οἰκίας βαδίζει.
-      tokens: [{surface: ἐκ, lexeme: ek, readings: {attic: ἐκ}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, readings: {attic: τῆς}}, {surface: οἰκίας, lexeme: oikia, feats: {Case: Gen, Number: Sing}, readings: {attic: οἰκῐ́ᾱς}}, {surface: βαδίζει, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζει}}]
+      tokens: [{surface: ἐκ, lexeme: ek, readings: {attic: ἐκ}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: οἰκίας, lexeme: oikia, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: οἰκῐ́ᾱς}}, {surface: βαδίζει, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζει}}]
       reverse: |-
         ἐκ τῆς οἰκίας βαδίζει
         βαδίζει ἐκ τῆς οἰκίας
@@ -212,7 +212,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐκ τῆς ἀγορᾶς πορεύομαι.
-      tokens: [{surface: ἐκ, lexeme: ek, readings: {attic: ἐκ}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, readings: {attic: τῆς}}, {surface: ἀγορᾶς, lexeme: agora, feats: {Case: Gen, Number: Sing}, readings: {attic: ᾰ̓γορᾶς}}, {surface: πορεύομαι, lexeme: poreuomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: πορεύομαι}}]
+      tokens: [{surface: ἐκ, lexeme: ek, readings: {attic: ἐκ}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: ἀγορᾶς, lexeme: agora, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: ᾰ̓γορᾶς}}, {surface: πορεύομαι, lexeme: poreuomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: πορεύομαι}}]
       reverse: |-
         ἐκ τῆς ἀγορᾶς πορεύομαι
         πορεύομαι ἐκ τῆς ἀγορᾶς
@@ -236,7 +236,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ Κρίτων εἰς τὴν ἀγορὰν βαδίζει.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Κρίτων, lexeme: kriton, feats: {Case: Nom, Number: Sing}, readings: {attic: Κρῐ́των}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: βαδίζει, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζει}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: Κρίτων, lexeme: kriton, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: Κρῐ́των}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, n: 5, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: βαδίζει, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζει}}]
       reverse: |-
         ὁ Κρίτων εἰς τὴν ἀγορὰν βαδίζει
         [ὁ] Κρίτων βαδίζει εἰς τὴν ἀγοράν
@@ -279,7 +279,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐν τῇ ἀγορᾷ εἰμι.
-      tokens: [{surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τῇ}}, {surface: ἀγορᾷ, lexeme: agora, feats: {Case: Dat, Number: Sing}, readings: {attic: ᾰ̓γορᾷ}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
+      tokens: [{surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῇ}}, {surface: ἀγορᾷ, lexeme: agora, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: ᾰ̓γορᾷ}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
       reverse: |-
         ἐν τῇ ἀγορᾷ εἰμι
         εἰμὶ ἐν τῇ ἀγορᾷ
@@ -290,7 +290,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ποῦ ἐστιν ὁ Σωκράτης;
-      tokens: [{surface: ποῦ, lexeme: pou, readings: {attic: ποῦ}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Σωκράτης, lexeme: sokrates, feats: {Case: Nom, Number: Sing}, readings: {attic: Σωκρᾰ́της}}]
+      tokens: [{surface: ποῦ, lexeme: pou, readings: {attic: ποῦ}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: ὁ}}, {surface: Σωκράτης, lexeme: sokrates, feats: {Case: Nom, Number: Sing}, n: 4, readings: {attic: Σωκρᾰ́της}}]
       reverse: |-
         ποῦ ἐστιν ὁ Σωκράτης
         ποῦ ἐστι[ν] Σωκράτης
@@ -302,7 +302,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ Σωκράτης ἐν τῇ οἰκίᾳ ἐστίν.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Σωκράτης, lexeme: sokrates, feats: {Case: Nom, Number: Sing}, readings: {attic: Σωκρᾰ́της}}, {surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τῇ}}, {surface: οἰκίᾳ, lexeme: oikia, feats: {Case: Dat, Number: Sing}, readings: {attic: οἰκῐ́ᾳ}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: Σωκράτης, lexeme: sokrates, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: Σωκρᾰ́της}}, {surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τῇ}}, {surface: οἰκίᾳ, lexeme: oikia, feats: {Case: Dat, Number: Sing}, n: 5, readings: {attic: οἰκῐ́ᾳ}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
       reverse: |-
         ὁ Σωκράτης ἐν τῇ οἰκίᾳ ἐστίν
         [ὁ] Σωκράτης ἐστὶ[ν] ἐν τῇ οἰκίᾳ
@@ -338,7 +338,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐν τῇ ὁδῷ.
-      tokens: [{surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, readings: {attic: τῇ}}, {surface: ὁδῷ, lexeme: hodos, feats: {Case: Dat, Number: Sing}, readings: {attic: ὁδῷ}}]
+      tokens: [{surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῇ}}, {surface: ὁδῷ, lexeme: hodos, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: ὁδῷ}}]
       reverse: ἐν τῇ ὁδῷ
   translations:
     en: (On|In) the (road|street|way).
@@ -347,7 +347,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ ὁδὸς πρὸς τὸ τεῖχος.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: ὁδὸς, lexeme: hodos, feats: {Case: Nom, Number: Sing}, readings: {attic: ὁδὸς}}, {surface: πρὸς, lexeme: pros, readings: {attic: πρὸς}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: τεῖχος, lexeme: teichos, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: τεῖχος}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: ὁδὸς, lexeme: hodos, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: ὁδὸς}}, {surface: πρὸς, lexeme: pros, readings: {attic: πρὸς}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τὸ}}, {surface: τεῖχος, lexeme: teichos, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 5, readings: {attic: τεῖχος}}]
       reverse: ἡ ὁδὸς πρὸς τὸ τεῖχος
   translations:
     en: The (road|way) (to|towards) the (wall|walls|city wall|city walls).
@@ -356,7 +356,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ποῦ ἐστιν ἡ οἰκία;
-      tokens: [{surface: ποῦ, lexeme: pou, readings: {attic: ποῦ}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: οἰκία, lexeme: oikia, feats: {Case: Nom, Number: Sing}, readings: {attic: οἰκῐ́ᾱ}}]
+      tokens: [{surface: ποῦ, lexeme: pou, readings: {attic: ποῦ}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: ἡ}}, {surface: οἰκία, lexeme: oikia, feats: {Case: Nom, Number: Sing}, n: 4, readings: {attic: οἰκῐ́ᾱ}}]
       reverse: |-
         ποῦ ἐστιν ἡ οἰκία
         ποῦ ἐστι ἡ οἰκία
@@ -397,7 +397,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: παρὰ Λυσίου τοῦ Κεφάλου.
-      tokens: [{surface: παρὰ, lexeme: para, readings: {attic: πᾰρᾰ̀}}, {surface: Λυσίου, lexeme: lysias, feats: {Case: Gen, Number: Sing}, readings: {attic: Λῡσῐ́ου}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τοῦ}}, {surface: Κεφάλου, lexeme: kephalos, feats: {Case: Gen, Number: Sing}, readings: {attic: Κεφᾰ́λου}}]
+      tokens: [{surface: παρὰ, lexeme: para, readings: {attic: πᾰρᾰ̀}}, {surface: Λυσίου, lexeme: lysias, feats: {Case: Gen, Number: Sing}, readings: {attic: Λῡσῐ́ου}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: τοῦ}}, {surface: Κεφάλου, lexeme: kephalos, feats: {Case: Gen, Number: Sing}, n: 4, readings: {attic: Κεφᾰ́λου}}]
       reverse: παρὰ Λυσίου τοῦ Κεφάλου
   translations:
     en: From Lysias['s], (the son of Cephalus|Cephalus's son|son of Cephalus).
@@ -406,7 +406,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: εἰς τὸ ἄστυ πορεύομαι.
-      tokens: [{surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: ἄστυ, lexeme: astu, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: ᾰ̓́στῠ}}, {surface: πορεύομαι, lexeme: poreuomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: πορεύομαι}}]
+      tokens: [{surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὸ}}, {surface: ἄστυ, lexeme: astu, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 3, readings: {attic: ᾰ̓́στῠ}}, {surface: πορεύομαι, lexeme: poreuomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: πορεύομαι}}]
       reverse: |-
         εἰς τὸ ἄστυ πορεύομαι
         πορεύομαι εἰς τὸ ἄστυ
@@ -417,7 +417,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ Λυσίας ἐν τῷ ἄστει ἐστίν.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Λυσίας, lexeme: lysias, feats: {Case: Nom, Number: Sing}, readings: {attic: Λῡσῐ́ᾱς}}, {surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Sing}, readings: {attic: τῷ}}, {surface: ἄστει, lexeme: astu, feats: {Case: Dat, Number: Sing}, readings: {attic: ᾰ̓́στει}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: Λυσίας, lexeme: lysias, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: Λῡσῐ́ᾱς}}, {surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τῷ}}, {surface: ἄστει, lexeme: astu, feats: {Case: Dat, Number: Sing}, n: 5, readings: {attic: ᾰ̓́στει}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
       reverse: |-
         ὁ Λυσίας ἐν τῷ ἄστει ἐστίν
         [ὁ] Λυσίας ἐστὶ[ν] ἐν τῷ ἄστει
@@ -431,7 +431,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: παρὰ τὸν φίλον βαδίζω.
-      tokens: [{surface: παρὰ, lexeme: para, readings: {attic: πᾰρᾰ̀}}, {surface: τὸν, lexeme: ho, feats: {Case: Acc, Gender: Masc, Number: Sing}, readings: {attic: τὸν}}, {surface: φίλον, lexeme: philos, feats: {Case: Acc, Number: Sing}, readings: {attic: φῐ́λον}}, {surface: βαδίζω, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζω}}]
+      tokens: [{surface: παρὰ, lexeme: para, readings: {attic: πᾰρᾰ̀}}, {surface: τὸν, lexeme: ho, feats: {Case: Acc, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὸν}}, {surface: φίλον, lexeme: philos, feats: {Case: Acc, Number: Sing}, n: 3, readings: {attic: φῐ́λον}}, {surface: βαδίζω, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζω}}]
       reverse: |-
         παρὰ τὸν φίλον βαδίζω
         βαδίζω παρὰ τὸν φίλον
@@ -468,7 +468,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: παρὰ Λυσίου, ὦ Σώκρατες, τοῦ Κεφάλου,
-          tokens: [{surface: παρὰ, lexeme: para, readings: {attic: πᾰρᾰ̀}}, {surface: Λυσίου, lexeme: lysias, feats: {Case: Gen, Number: Sing}, readings: {attic: Λῡσῐ́ου}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Σώκρατες, lexeme: sokrates, feats: {Case: Voc, Number: Sing}, readings: {attic: Σώκρᾰτες}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τοῦ}}, {surface: Κεφάλου, lexeme: kephalos, feats: {Case: Gen, Number: Sing}, readings: {attic: Κεφᾰ́λου}}]
+          tokens: [{surface: παρὰ, lexeme: para, readings: {attic: πᾰρᾰ̀}}, {surface: Λυσίου, lexeme: lysias, feats: {Case: Gen, Number: Sing}, readings: {attic: Λῡσῐ́ου}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Σώκρατες, lexeme: sokrates, feats: {Case: Voc, Number: Sing}, readings: {attic: Σώκρᾰτες}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: τοῦ}}, {surface: Κεφάλου, lexeme: kephalos, feats: {Case: Gen, Number: Sing}, n: 6, readings: {attic: Κεφᾰ́λου}}]
       translations:
         en: “From Lysias, Socrates, the son of Cephalus,
   - line:

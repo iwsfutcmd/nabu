@@ -98,6 +98,21 @@ the converter applies the course's conversion plan
 | `form:q` | -mu: a yes-or-no question | `lexeme:q` (PART) |  |
 | `form:ke` | -ke, -ki: that (after a verb of saying: eyttike "said (that)") | `lexeme:ke` (SCONJ) |  |
 
+## Dimensions
+
+What every member of a category must choose (ADR 0145), as the plan declares it, and
+how many tokens say a value of each: on themselves, or by an ending written on them.
+A token that leaves one unsaid is the unmarked form, or one the course's annotation
+has no name for.
+
+| Category | Dimension | Tokens that say it | Tokens that do not |
+|---|---|---|---|
+| NOUN | Number | 41 | 999 |
+| NOUN | Case | 267 | 773 |
+| VERB | Tense | 382 | 155 |
+| VERB | Person | 304 | 233 |
+| VERB | Number | 162 | 375 |
+
 ## Other spellings of an entry (21)
 
 A token names the lexeme, is spelled otherwise than its entry and pins the entry's own reading: the same word as its source spells it (ADR 0145: a source's spelling is the utterance's). Kept among the entry's spellings; when the orthography's free correspondences are stated (ADR 0148), they should give each of these.

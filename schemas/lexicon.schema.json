@@ -40,6 +40,13 @@
           "description": "Its lexical features. What Universal Dependencies says of the word (PronType: Dem, NumType: Card), and a feature its language declares lexical for its category only where no default gives it: mano {Gender: Fem}. Each of the second kind is a part to learn (ADR 0146).",
           "$ref": "common.schema.json#/$defs/UdFeatures"
         },
+        "chooses": {
+          "description": "Features its language declares lexical for its category that this lexeme's tokens choose instead: hermano, whose tokens are masculine or feminine. By ADR 0145 a noun's feminine is a derivative, and a lexeme of its own where it is listed; until that is decided for a lexeme, the value stays on its tokens, and the entry says so here.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$" }
+        },
         "classes": {
           "description": "The classes of its language it belongs to: tener [e-ie, go].",
           "type": "array",

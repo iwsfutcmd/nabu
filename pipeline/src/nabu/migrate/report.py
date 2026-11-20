@@ -7,6 +7,7 @@ from __future__ import annotations
 import collections
 from typing import TYPE_CHECKING, Any
 
+from nabu.migrate import coverage
 from nabu.migrate.source import obj, seq, show
 
 if TYPE_CHECKING:
@@ -97,6 +98,18 @@ SECTIONS: list[tuple[str, str, str]] = [
         "distractor-built",
         "Story options that were a form",
         "A wrong option named a sense that is a form of another lexeme now.",
+    ),
+    (
+        "clip-orphan",
+        "Clips of a word that is no lexeme of its own now",
+        "The clip says the word; the word is a form of another lexeme now, or built of several. "
+        "It stays in the index under its old item until the switch says what keys a form's clip.",
+    ),
+    (
+        "agreement",
+        "A determiner that does not agree with the noun after it",
+        "The two stand side by side and the values the course pins on them differ: one of the two "
+        "annotations may be wrong, or the noun is not the determiner's.",
     ),
     (
         "no-kind",
@@ -233,6 +246,62 @@ def render(m: Migration) -> str:
         rows = [(k, str(v)) for k, v in defaults]
         rows += [(k, str(v)) for k, v in sorted(stats.items()) if k.startswith("lexical feature")]
         lines += _table(rows, ("", "Lexemes"))
+        candidates = coverage.endings(m.built.stored)
+        if candidates:
+            lines += [
+                "",
+                "**Endings a default could still cover:** among the lexemes that store the feature",
+                "with no default for their ending, these endings always go with one value (three",
+                "lexemes or more). Each is a candidate, not a finding: a course's words are few.",
+                "",
+            ]
+            lines += _table(candidates, ("Ending", "Value", "Lexemes", "Such as"))
+
+    dims = coverage.dimensions(m.conv)
+    if dims:
+        lines += ["", "## Dimensions", ""]
+        lines += [
+            "What every member of a category must choose (ADR 0145), as the plan declares it, and",
+            "how many tokens say a value of each: on themselves, or by an ending written on them.",
+            "A token that leaves one unsaid is the unmarked form, or one the course's annotation",
+            "has no name for.",
+            "",
+        ]
+        lines += _table(dims, ("Category", "Dimension", "Tokens that say it", "Tokens that do not"))
+    outside = coverage.undeclared(m.conv)
+    if outside:
+        lines += [
+            "",
+            "**Values no dimension declares:** tokens carry them all the same. A category whose",
+            "members do not all inflect (a pronoun, a set phrase said to a woman), or a lexeme",
+            "tagged as another category than it behaves as.",
+            "",
+        ]
+        lines += _table(outside, ("Category", "Feature", "Tokens", "Lexemes, the commonest first"))
+
+    audio = obj(m.stats.get("audio"))
+    if audio:
+        lines += ["", "## Clips", ""]
+        lines += [
+            "The audio index is not rewritten: the compiler still reads it. A word's clip is keyed",
+            "by its KC id; these are the clips whose item has one name in the new shape, which the",
+            "switch renames and changes nothing else of. In a cast of several voices the voice",
+            f"each has today is pinned (`courses/{cid}/next/audio/assignment.yaml`), since a voice",
+            "is drawn by the item's id (ADR 0078).",
+            "",
+        ]
+        lines += _table([(k, str(v)) for k, v in sorted(audio.items())], ("", "Clips"))
+
+    relations = obj(m.stats.get("relations"))
+    if relations:
+        lines += ["", "## Relations", ""]
+        lines += [
+            "Drafted by the plan's rules (`relations`): a link is written only where the values",
+            "agree and nothing but the words a rule may skip stands between. What is left bare",
+            "waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).",
+            "",
+        ]
+        lines += _table([(k, str(v)) for k, v in sorted(relations.items())], ("", "Lexemes"))
 
     for kind, title, why in SECTIONS:
         found = by_kind.get(kind)
@@ -257,5 +326,77 @@ def render(m: Migration) -> str:
         "  no",
         "  part to go to: a feature's uses are not authored, and nothing old counts towards a rule",
         "  (ADR 0146).",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+SUMMARY = "docs/migration/README.md"
+
+
+def summary(migrations: list[Migration]) -> str:
+    """One page over every course converted in a run (docs/migration/README.md)."""
+    kinds = [kind for kind, _, _ in SECTIONS]
+    titles = {kind: title for kind, title, _ in SECTIONS}
+    lines = [
+        "# The ten courses, converted to the lexical model",
+        "",
+        "Written by `cd pipeline && uv run nabu migrate ../courses`; do not edit by hand. It",
+        "belongs to [the migration's design note](../migration-design.md), deliverable 2: the",
+        "converter writes each course's lexicon (`lexicons/<lang>/`), the course in the new shape",
+        "(`courses/<id>/next/`), its alias table (`courses/<id>/aliases.yaml`) and a report here.",
+        "Nothing in the app reads any of it until the switch.",
+        "",
+        "Each course has a conversion plan (`pipeline/src/nabu/migrate/plans/<id>.yaml`): what",
+        "cannot be read off the course, stated by a drafter and awaiting review (REVIEW). The",
+        "converter applies it and decides nothing; a report lists what it found, each a question.",
+        "",
+    ]
+    rows: list[tuple[str, ...]] = []
+    for m in migrations:
+        lexemes = m.built.lexicon["lexemes"]
+        audio = obj(m.stats.get("audio"))
+        rows.append(
+            (
+                f"[{m.course.id}]({m.course.id}.md)",
+                str(len(lexemes)),
+                str(sum(len(seq(e.get("forms"))) for e in lexemes)),
+                str(sum(1 for _ in m.course.items())),
+                str(
+                    sum(
+                        v for k, v in obj(m.stats.get("relations")).items() if k.endswith("written")
+                    )
+                ),
+                str(audio.get("clips renamed with their item", 0)),
+                str(len(m.findings)),
+                "failed" if m.errors else "pass",
+            )
+        )
+    lines += _table(
+        rows,
+        (
+            "Course",
+            "Lexemes",
+            "Pinned forms",
+            "Sentences and lines",
+            "Relations drafted",
+            "Word clips renamed",
+            "Findings",
+            "Checks",
+        ),
+    )
+    lines += ["", "## Findings by kind", ""]
+    counts = {m.course.id: collections.Counter(f.kind for f in m.findings) for m in migrations}
+    head = ("Finding", *[m.course.id for m in migrations])
+    found = [
+        (titles[kind], *[str(counts[m.course.id][kind] or "") for m in migrations])
+        for kind in kinds
+        if any(counts[m.course.id][kind] for m in migrations)
+    ]
+    lines += _table(found, head)
+    lines += [
+        "",
+        "The earlier inventory of every `form:` and `construction:` KC is",
+        "[kc-conversion.md](kc-conversion.md); each report's table of what the plan makes of them",
+        "replaces its last column.",
     ]
     return "\n".join(lines) + "\n"

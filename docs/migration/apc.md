@@ -120,6 +120,89 @@ the plan's, drafted (REVIEW); the counts are this course's lexemes.
 | lexical feature chosen by the token | 6 |
 | lexical feature unknown | 11 |
 
+**Endings a default could still cover:** among the lexemes that store the feature
+with no default for their ending, these endings always go with one value (three
+lexemes or more). Each is a candidate, not a finding: a course's words are few.
+
+| Ending | Value | Lexemes | Such as |
+|---|---|---|---|
+| -ا | Gender=Fem | 3 | مايا, تيتا, عشا |
+| -ت | Gender=Fem | 3 | إخت, بنت, بيروت |
+
+## Dimensions
+
+What every member of a category must choose (ADR 0145), as the plan declares it, and
+how many tokens say a value of each: on themselves, or by an ending written on them.
+A token that leaves one unsaid is the unmarked form, or one the course's annotation
+has no name for.
+
+| Category | Dimension | Tokens that say it | Tokens that do not |
+|---|---|---|---|
+| VERB | Aspect | 710 | 260 |
+| VERB | Mood | 592 | 378 |
+| VERB | Person | 722 | 248 |
+| VERB | Gender | 298 | 672 |
+| VERB | Number | 772 | 198 |
+| AUX | Aspect | 102 | 110 |
+| AUX | Mood | 2 | 210 |
+| AUX | Person | 102 | 110 |
+| AUX | Gender | 42 | 170 |
+| AUX | Number | 102 | 110 |
+| NOUN | Number | 1414 | 20 |
+| ADJ | Gender | 416 | 18 |
+| ADJ | Number | 434 | 0 |
+
+**Values no dimension declares:** tokens carry them all the same. A category whose
+members do not all inflect (a pronoun, a set phrase said to a woman), or a lexeme
+tagged as another category than it behaves as.
+
+| Category | Feature | Tokens | Lexemes, the commonest first |
+|---|---|---|---|
+| ADJ | Aspect | 4 | khayef |
+| ADJ | Mood | 4 | khayef |
+| ADJ | Person | 4 | khayef |
+| INTJ | Gender | 12 | tfaddal, kell-sene, 3mol-ma3rouf, lek |
+| INTJ | Gender[psor] | 10 | shu-bak, salemtak, 3a-albak |
+| INTJ | Mood | 12 | tfaddal, lek, 3mol-ma3rouf |
+| INTJ | Number | 18 | tfaddal, kell-sene, lek, 3mol-ma3rouf |
+| INTJ | Number[psor] | 14 | shu-bak, salemtak, 3a-albak |
+| INTJ | Person | 12 | tfaddal, lek, 3mol-ma3rouf |
+| INTJ | Person[psor] | 14 | shu-bak, salemtak, 3a-albak |
+| NOUN | Gender | 40 | jar, 7abibi, rfi2, m3allem, tilmiz, mhandes |
+| PRON | Gender | 54 | hayde, enti, hiyye |
+| PRON | Number | 68 | hayde, enti, hiyye, ento, henne, nehna |
+| PROPN | Number | 186 | sami, maya, beirut, lebnen, nisan, aylul |
+
+## Clips
+
+The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
+by its KC id; these are the clips whose item has one name in the new shape, which the
+switch renames and changes nothing else of. In a cast of several voices the voice
+each has today is pinned (`courses/apc/next/audio/assignment.yaml`), since a voice
+is drawn by the item's id (ADR 0078).
+
+|  | Clips |
+|---|---|
+| clips | 1222 |
+| clips a person checked | 82 |
+| clips keyed by a KC | 354 |
+| clips renamed with their item | 348 |
+| clips whose item is no lexeme of its own now | 6 |
+| voices pinned (a cast of several draws by the item's id) | 348 |
+
+## Relations
+
+Drafted by the plan's rules (`relations`): a link is written only where the values
+agree and nothing but the words a rule may skip stands between. What is left bare
+waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).
+
+|  | Lexemes |
+|---|---|
+| ADJ with values and no relation | 292 |
+| amod: written | 142 |
+| case: written | 140 |
+| det: written | 336 |
+
 ## Lexemes that break a default (10)
 
 The entry stores the feature, and it is a part to learn (ADR 0146). Check each: a wrong default makes parts of regular words, a missing one hides an exception.
@@ -212,6 +295,19 @@ What the node introduced is introduced earlier in the new shape (a sense that wa
 | `apc.past.you-pl` | introduces form:past-2pl: all of it is introduced earlier now, or is a form no value introduces |
 | `apc.ppl.they-did` | introduces form:past-3pl: all of it is introduced earlier now, or is a form no value introduces |
 | `apc.trip.you-they` | introduces form:subj-2fs, form:subj-2pl, form:subj-3pl: all of it is introduced earlier now, or is a form no value introduces |
+
+## Clips of a word that is no lexeme of its own now (6)
+
+The clip says the word; the word is a form of another lexeme now, or built of several. It stays in the index under its old item until the switch says what keys a form's clip.
+
+| Where | What |
+|---|---|
+| `sense:baddak` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
+| `sense:baddi` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
+| `sense:esmak` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
+| `sense:esmi` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
+| `sense:kifak` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
+| `sense:raye7` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
 
 ## What no finding above covers
 

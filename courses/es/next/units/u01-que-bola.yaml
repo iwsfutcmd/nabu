@@ -467,7 +467,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cachita es mi abuela.
-      tokens: [{surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 4}]
       reverse: Cachita es mi abuela
   translations:
     en: |-
@@ -479,7 +479,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi abuela es de Cuba.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       reverse: Mi abuela es de Cuba
   translations:
     en: |-
@@ -491,7 +491,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hola, mi vida.
-      tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+      tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 3}]
       reverse: Hola (mi vida|mi amor|mi cielo)
   translations:
     en: |-
@@ -556,7 +556,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ella es mi abuela.
-      tokens: [{surface: Ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 4}]
       reverse: '[Ella] es mi abuela'
   translations:
     en: (She's|She is|This is) my (grandmother|grandma|granny).
@@ -617,7 +617,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Hola, mi vida! ¿Cómo estás?
-          tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: Cómo, lexeme: cómo}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 3}, {surface: Cómo, lexeme: cómo}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Hi, darling! How are you?
   - line:

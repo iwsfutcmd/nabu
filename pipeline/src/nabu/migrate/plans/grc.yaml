@@ -103,6 +103,17 @@ senses:
   # ἦ, "said he": the entry is the third person singular of an imperfect, the only form there is.
   emi: {bare: {Mood: Ind, Tense: Past, Aspect: Imp, Person: 3, Number: Sing, VerbForm: Fin}}
 
+# Relations (ADR 0145, round 6: a token names its head and relation where agreement matters).
+# The course holds no trees; these rules draft the edges agreement needs from what it does hold.
+# A rule links two lexemes only where their values agree and nothing but the words it may skip
+# stands between them. What it cannot link stays bare: REVIEW.
+relations:
+  # The article, or a possessive, and the noun it stands before, whatever particle or adjective
+  # comes between: ὁ δὲ Σωκράτης, ἡ ἐμὴ μήτηρ.
+  - {rel: det, from: [DET], to: [NOUN, PROPN], side: right, agree: [Gender, Case, Number], skip: [ADJ, DET, ADV, PART, CCONJ, PRON, NUM], reach: 3}
+  # An adjective and the noun beside it.
+  - {rel: amod, from: [ADJ], to: [NOUN, PROPN], side: either, agree: [Gender, Case, Number], skip: [DET, ADV, PART, CCONJ], reach: 2}
+
 # Gender by the nominative's ending (ADR 0146: grc states its own, and ἡ ὁδός breaks it): REVIEW.
 defaults:
   - {id: gender-os, when: {ends: ος}, gives: {Gender: Masc}}

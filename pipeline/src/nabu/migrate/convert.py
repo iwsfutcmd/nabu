@@ -9,6 +9,7 @@ read back and compared (checks.py).
 from __future__ import annotations
 
 import collections
+import unicodedata
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -38,6 +39,10 @@ class Part:
     pos: str | None = None
     alone: bool = True
     """Written as a token of its own, not joined to another lexeme."""
+    n: int | None = None
+    """Its number among the lexemes its form writes, where a relation names it."""
+    head: int | None = None
+    rel: str | None = None
 
 
 @dataclass
@@ -327,29 +332,38 @@ class Converter:
                     values[part.lexeme][feature].add(part.said[feature])
         for lexeme, by_feature in values.items():
             for feature, found in by_feature.items():
-                if len(found) == 1 and not self._entry_differs(lexeme, feature):
-                    self.lexical.setdefault(lexeme, {})[feature] = next(iter(found))
+                only = next(iter(found))
+                if len(found) == 1 and not self._entry_differs(lexeme, feature, only):
+                    self.lexical.setdefault(lexeme, {})[feature] = only
                 else:
                     self.varying.setdefault(lexeme, {})[feature] = sorted(found)
         for _, part in self.parts():
             mine = self.lexical.get(part.lexeme, {})
             part.feats = {k: v for k, v in part.said.items() if k not in mine}
 
-    def _entry_differs(self, lexeme: str, feature: str) -> bool:
-        """Whether a token in the entry's own cell, but for this feature, is written otherwise
-        than the entry: the entry is then a form with another value of it."""
+    def _entry_differs(self, lexeme: str, feature: str, value: str) -> bool:
+        """Whether the entry is a form with another value of the feature than its tokens have:
+        the value is not the one a bare token has, tokens stand in the entry's own cell but for
+        it, and none of them is written as the entry is (the course writes tía under tío and
+        never tío). Accents aside: an enclitic's accent does not make another word."""
         pos = self.lexeme_pos(lexeme)
-        cell = self.plan.citation.get(pos or "", {})
+        if self.plan.bare.get(pos or "", {}).get(feature) in (None, value):
+            return False
+        cited = self.plan.citation.get(pos or "", {})
+        cell = {k: v for k, v in cited.items() if k != feature}
+        seen = False
         for orth, part in self.parts():
             if part.lexeme != lexeme or not part.alone:
                 continue
-            rest = {k: v for k, v in part.said.items() if k != feature}
             forms = self.forms_of(self.taken[lexeme], orth)
-            known = {fold(f) for f in forms}
-            several = any(ch.isspace() for f in forms for ch in f)
-            if rest == cell and known and fold(part.surface) not in known and not several:
-                return True
-        return False
+            if not forms or any(ch.isspace() for f in forms for ch in f):
+                continue
+            if {k: v for k, v in part.said.items() if k != feature} != cell:
+                continue
+            if _bare(part.surface) in {_bare(f) for f in forms}:
+                return False
+            seen = True
+        return seen
 
     def parts(self) -> list[tuple[str, Part]]:
         return [
@@ -359,6 +373,12 @@ class Converter:
             for t in toks
             for p in t.parts
         ]
+
+
+def _bare(text: str) -> str:
+    """Letters with no mark at all on them."""
+    decomposed = unicodedata.normalize("NFD", fold(text))
+    return "".join(ch for ch in decomposed if not unicodedata.combining(ch))
 
 
 def emit(tok: Tok) -> Json:
@@ -371,6 +391,7 @@ def emit(tok: Tok) -> Json:
         out["lexeme"] = part.lexeme
         if part.feats:
             out["feats"] = dict(sorted(part.feats.items()))
+        _relation(part, out)
     elif tok.parts:
         out["lexemes"] = [_emit_part(p) for p in tok.parts]
     for key in KEPT:
@@ -385,4 +406,13 @@ def _emit_part(part: Part) -> Json:
         out["base"] = True
     if part.feats:
         out["feats"] = dict(sorted(part.feats.items()))
+    _relation(part, out)
     return out
+
+
+def _relation(part: Part, out: Json) -> None:
+    if part.n is not None:
+        out["n"] = part.n
+    if part.head is not None and part.rel is not None:
+        out["head"] = part.head
+        out["rel"] = part.rel

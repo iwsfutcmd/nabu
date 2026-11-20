@@ -160,8 +160,25 @@ def references(
                 else:
                     feats_ok(d, item.id)
             for form in item.data["forms"].values():
+                written: list[Json] = [
+                    p
+                    for tok in seq(form.get("tokens"))
+                    for p in (seq(tok.get("lexemes")) or ([tok] if "lexeme" in tok else []))
+                ]
+                numbers = [int(p["n"]) for p in written if "n" in p]
+                for i, p in enumerate(written, 1):
+                    if "n" in p and p["n"] != i:
+                        errors.append(f"{item.id}: {p['lexeme']} is lexeme {i} and says {p['n']}")
+                    if ("head" in p) != ("rel" in p):
+                        errors.append(
+                            f"{item.id}: {p['lexeme']} has a head or a relation, not both"
+                        )
+                    if "head" in p and (p["head"] not in numbers or "n" not in p):
+                        errors.append(f"{item.id}: {p['lexeme']} points at no numbered lexeme")
                 for tok in seq(form.get("tokens")):
-                    parts = tok.get("lexemes") or ([tok] if "lexeme" in tok else [])
+                    parts: list[Json] = seq(tok.get("lexemes")) or (
+                        [tok] if "lexeme" in tok else []
+                    )
                     if "lexemes" in tok and "lexeme" in tok:
                         errors.append(
                             f"{item.id}: {tok['surface']} names one lexeme and lists several"
@@ -200,13 +217,13 @@ def accounted(
 
     def own_cell(entry: Json) -> Any:
         """The cell an entry is spelled in: its category's, less what the lexeme has of itself.
-        A lexical feature its forms name is one its tokens choose (hermano, hermana)."""
+        A lexical feature the entry says its tokens choose stays in it (hermano, hermana)."""
         pos = str(entry.get("pos"))
-        named = {k for f in seq(entry.get("forms")) for k in f["feats"]}
+        chosen = seq(entry.get("chooses"))
         kept = {
             str(k): str(v)
             for k, v in citation.get(pos, {}).items()
-            if k not in lexical.get(pos, []) or k in named
+            if k not in lexical.get(pos, []) or k in chosen
         }
         return key_of(kept)
 

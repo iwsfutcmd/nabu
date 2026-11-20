@@ -19,7 +19,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ πατήρ.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: πατήρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, readings: {attic: πᾰτήρ}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: πατήρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: πᾰτήρ}}]
       reverse: ὁ πατήρ
   translations:
     en: The father.
@@ -28,7 +28,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ μήτηρ.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, readings: {attic: μήτηρ}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: μήτηρ}}]
       reverse: ἡ μήτηρ
   translations:
     en: The mother.
@@ -37,7 +37,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ πατὴρ καὶ ἡ μήτηρ.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: πατὴρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, readings: {attic: πᾰτὴρ}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, readings: {attic: μήτηρ}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: πατὴρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: πᾰτὴρ}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: ἡ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, n: 5, readings: {attic: μήτηρ}}]
       reverse: ὁ πατὴρ καὶ ἡ μήτηρ
   translations:
     en: The father and (the|) mother.
@@ -46,7 +46,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ παῖς.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: παῖς}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, readings: {attic: παῖς}}]
       reverse: ὁ παῖς
   translations:
     en: The (boy|child|son).
@@ -55,7 +55,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ παῖς.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: παῖς}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, readings: {attic: παῖς}}]
       reverse: ἡ παῖς
   translations:
     en: The (girl|daughter|child).
@@ -64,7 +64,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ υἱός.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: υἱός, lexeme: hyios, feats: {Case: Nom, Number: Sing}, readings: {attic: υἱός}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: υἱός, lexeme: hyios, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: υἱός}}]
       reverse: ὁ υἱός
   translations:
     en: The son.
@@ -73,7 +73,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ θυγάτηρ.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: θυγάτηρ, lexeme: thygater, feats: {Case: Nom, Number: Sing}, readings: {attic: θῠγᾰ́τηρ}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: θυγάτηρ, lexeme: thygater, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: θῠγᾰ́τηρ}}]
       reverse: ἡ θυγάτηρ
   translations:
     en: The daughter.
@@ -82,7 +82,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ υἱὸς καὶ ἡ θυγάτηρ.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: υἱὸς, lexeme: hyios, feats: {Case: Nom, Number: Sing}, readings: {attic: υἱὸς}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: θυγάτηρ, lexeme: thygater, feats: {Case: Nom, Number: Sing}, readings: {attic: θῠγᾰ́τηρ}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: υἱὸς, lexeme: hyios, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: υἱὸς}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: ἡ}}, {surface: θυγάτηρ, lexeme: thygater, feats: {Case: Nom, Number: Sing}, n: 5, readings: {attic: θῠγᾰ́τηρ}}]
       reverse: ὁ υἱὸς καὶ ἡ θυγάτηρ
   translations:
     en: The son and (the|) daughter.
@@ -91,7 +91,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τὸ τέκνον.
-      tokens: [{surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: τέκνον, lexeme: teknon, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: τέκνον}}]
+      tokens: [{surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: τὸ}}, {surface: τέκνον, lexeme: teknon, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 2, readings: {attic: τέκνον}}]
       reverse: τὸ τέκνον
   translations:
     en: The child.
@@ -100,7 +100,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ μήτηρ καὶ τὸ τέκνον.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, readings: {attic: μήτηρ}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τὸ}}, {surface: τέκνον, lexeme: teknon, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: τέκνον}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: μήτηρ}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τὸ}}, {surface: τέκνον, lexeme: teknon, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 5, readings: {attic: τέκνον}}]
       reverse: ἡ μήτηρ καὶ τὸ τέκνον
   translations:
     en: The mother and (the|her) child.
@@ -122,7 +122,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ ἀδελφός.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: ἀδελφός, lexeme: adelphos, feats: {Case: Nom, Number: Sing}, readings: {attic: ᾰ̓δελφός}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: ἀδελφός, lexeme: adelphos, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: ᾰ̓δελφός}}]
       reverse: ὁ ἀδελφός
   translations:
     en: The brother.
@@ -131,7 +131,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ ἀδελφή.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: ἀδελφή, lexeme: adelphe, feats: {Case: Nom, Number: Sing}, readings: {attic: ᾰ̓δελφή}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: ἀδελφή, lexeme: adelphe, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: ᾰ̓δελφή}}]
       reverse: ἡ ἀδελφή
   translations:
     en: The sister.
@@ -208,7 +208,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ πατὴρ υἱὸν ἔχει.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: πατὴρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, readings: {attic: πᾰτὴρ}}, {surface: υἱὸν, lexeme: hyios, feats: {Case: Acc, Number: Sing}, readings: {attic: υἱὸν}}, {surface: ἔχει, lexeme: echo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἔχει}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: πατὴρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: πᾰτὴρ}}, {surface: υἱὸν, lexeme: hyios, feats: {Case: Acc, Number: Sing}, readings: {attic: υἱὸν}}, {surface: ἔχει, lexeme: echo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἔχει}}]
       reverse: |-
         ὁ πατὴρ υἱὸν ἔχει
         υἱὸν ἔχει ὁ πατήρ
@@ -223,7 +223,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ μήτηρ θυγατέρα ἔχει.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, readings: {attic: μήτηρ}}, {surface: θυγατέρα, lexeme: thygater, feats: {Case: Acc, Number: Sing}, readings: {attic: θῠγᾰτέρᾰ}}, {surface: ἔχει, lexeme: echo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἔχει}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: μήτηρ}}, {surface: θυγατέρα, lexeme: thygater, feats: {Case: Acc, Number: Sing}, readings: {attic: θῠγᾰτέρᾰ}}, {surface: ἔχει, lexeme: echo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἔχει}}]
       reverse: |-
         ἡ μήτηρ θυγατέρα ἔχει
         θυγατέρα ἔχει ἡ μήτηρ
@@ -402,7 +402,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ τοῦ Κρίτωνος υἱός.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τοῦ}}, {surface: Κρίτωνος, lexeme: kriton, feats: {Case: Gen, Number: Sing}, readings: {attic: Κρῐ́τωνος}}, {surface: υἱός, lexeme: hyios, feats: {Case: Nom, Number: Sing}, readings: {attic: υἱός}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τοῦ}}, {surface: Κρίτωνος, lexeme: kriton, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: Κρῐ́τωνος}}, {surface: υἱός, lexeme: hyios, feats: {Case: Nom, Number: Sing}, readings: {attic: υἱός}}]
       reverse: |-
         ὁ τοῦ Κρίτωνος υἱός
         ὁ υἱὸς ὁ τοῦ Κρίτωνος
@@ -433,7 +433,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: Ἀρταξέρξης πρεσβύτερός ἐστιν.
-      tokens: [{surface: Ἀρταξέρξης, lexeme: artaxerxes, feats: {Case: Nom, Number: Sing}, readings: {attic: Ᾰ̓ρτᾰξέρξης}}, {surface: πρεσβύτερός, lexeme: presbyteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: πρεσβῠ́τερός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
+      tokens: [{surface: Ἀρταξέρξης, lexeme: artaxerxes, feats: {Case: Nom, Number: Sing}, n: 1, readings: {attic: Ᾰ̓ρτᾰξέρξης}}, {surface: πρεσβύτερός, lexeme: presbyteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod, readings: {attic: πρεσβῠ́τερός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
       reverse: |-
         Ἀρταξέρξης πρεσβύτερός ἐστιν
         Ἀρταξέρξης πρεσβύτερός ἐστι
@@ -446,7 +446,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: Κῦρος νεώτερός ἐστιν.
-      tokens: [{surface: Κῦρος, lexeme: kyros, feats: {Case: Nom, Number: Sing}, readings: {attic: Κῦρος}}, {surface: νεώτερός, lexeme: neoteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: νεώτερός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
+      tokens: [{surface: Κῦρος, lexeme: kyros, feats: {Case: Nom, Number: Sing}, n: 1, readings: {attic: Κῦρος}}, {surface: νεώτερός, lexeme: neoteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod, readings: {attic: νεώτερός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
       reverse: |-
         Κῦρος νεώτερός ἐστιν
         Κῦρος νεώτερός ἐστι
@@ -459,7 +459,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: πρεσβύτερος μὲν Ἀρταξέρξης, νεώτερος δὲ Κῦρος.
-      tokens: [{surface: πρεσβύτερος, lexeme: presbyteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: πρεσβῠ́τερος}}, {surface: μὲν, lexeme: men, readings: {attic: μὲν}}, {surface: Ἀρταξέρξης, lexeme: artaxerxes, feats: {Case: Nom, Number: Sing}, readings: {attic: Ᾰ̓ρτᾰξέρξης}}, {surface: νεώτερος, lexeme: neoteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: νεώτερος}}, {surface: δὲ, lexeme: de, readings: {attic: δὲ}}, {surface: Κῦρος, lexeme: kyros, feats: {Case: Nom, Number: Sing}, readings: {attic: Κῦρος}}]
+      tokens: [{surface: πρεσβύτερος, lexeme: presbyteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 3, rel: amod, readings: {attic: πρεσβῠ́τερος}}, {surface: μὲν, lexeme: men, readings: {attic: μὲν}}, {surface: Ἀρταξέρξης, lexeme: artaxerxes, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: Ᾰ̓ρτᾰξέρξης}}, {surface: νεώτερος, lexeme: neoteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 4, head: 6, rel: amod, readings: {attic: νεώτερος}}, {surface: δὲ, lexeme: de, readings: {attic: δὲ}}, {surface: Κῦρος, lexeme: kyros, feats: {Case: Nom, Number: Sing}, n: 6, readings: {attic: Κῦρος}}]
       reverse: |-
         πρεσβύτερος μὲν Ἀρταξέρξης νεώτερος δὲ Κῦρος
         Ἀρταξέρξης μὲν πρεσβύτερος Κῦρος δὲ νεώτερος
@@ -502,7 +502,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ ἀδελφὴ νεωτέρα ἐστίν.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: ἀδελφὴ, lexeme: adelphe, feats: {Case: Nom, Number: Sing}, readings: {attic: ᾰ̓δελφὴ}}, {surface: νεωτέρα, lexeme: neoteros, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: νεωτέρᾱ}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: ἀδελφὴ, lexeme: adelphe, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: ᾰ̓δελφὴ}}, {surface: νεωτέρα, lexeme: neoteros, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod, readings: {attic: νεωτέρᾱ}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
       reverse: |-
         ἡ ἀδελφὴ νεωτέρα ἐστίν
         ἡ ἀδελφὴ νεωτέρα ἐστί
@@ -555,7 +555,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: πρεσβύτερος μὲν Ἀρταξέρξης, νεώτερος δὲ Κῦρος.
-          tokens: [{surface: πρεσβύτερος, lexeme: presbyteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: πρεσβῠ́τερος}}, {surface: μὲν, lexeme: men, readings: {attic: μὲν}}, {surface: Ἀρταξέρξης, lexeme: artaxerxes, feats: {Case: Nom, Number: Sing}, readings: {attic: Ᾰ̓ρτᾰξέρξης}}, {surface: νεώτερος, lexeme: neoteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: νεώτερος}}, {surface: δὲ, lexeme: de, readings: {attic: δὲ}}, {surface: Κῦρος, lexeme: kyros, feats: {Case: Nom, Number: Sing}, readings: {attic: Κῦρος}}]
+          tokens: [{surface: πρεσβύτερος, lexeme: presbyteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 3, rel: amod, readings: {attic: πρεσβῠ́τερος}}, {surface: μὲν, lexeme: men, readings: {attic: μὲν}}, {surface: Ἀρταξέρξης, lexeme: artaxerxes, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: Ᾰ̓ρτᾰξέρξης}}, {surface: νεώτερος, lexeme: neoteros, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 4, head: 6, rel: amod, readings: {attic: νεώτερος}}, {surface: δὲ, lexeme: de, readings: {attic: δὲ}}, {surface: Κῦρος, lexeme: kyros, feats: {Case: Nom, Number: Sing}, n: 6, readings: {attic: Κῦρος}}]
       translations:
         en: Artaxerxes the elder, and Cyrus the younger.
   - choose:

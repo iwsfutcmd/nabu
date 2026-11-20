@@ -66,7 +66,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الساعة تنعشر.
-      tokens: [{surface: الساعة, lexemes: [{lexeme: el, surface: ال}, {lexeme: sa3a, surface: ساعة, base: true, feats: {Number: Sing}}]}, {surface: تنعشر, lexeme: tna3sh}]
+      tokens: [{surface: الساعة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sa3a, surface: ساعة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: تنعشر, lexeme: tna3sh}]
       reverse: الساعة تنعشر
     apc-Latn/arabizi:
       text: el sa3a tna3sh.
@@ -222,7 +222,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بشباط في برد كتير.
-      tokens: [{surface: بشباط, lexemes: [{lexeme: b, surface: ب}, {lexeme: shbat, surface: شباط, base: true, feats: {Number: Sing}}]}, {surface: في, lexeme: fi}, {surface: برد, lexeme: bard, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
+      tokens: [{surface: بشباط, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: shbat, surface: شباط, base: true, feats: {Number: Sing}, n: 2}]}, {surface: في, lexeme: fi}, {surface: برد, lexeme: bard, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         بشباط في برد كتير
         في برد كتير بشباط
@@ -242,7 +242,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بآذار في مطر.
-      tokens: [{surface: بآذار, lexemes: [{lexeme: b, surface: ب}, {lexeme: adar, surface: آذار, base: true, feats: {Number: Sing}}]}, {surface: في, lexeme: fi}, {surface: مطر, lexeme: matar, feats: {Number: Sing}}]
+      tokens: [{surface: بآذار, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: adar, surface: آذار, base: true, feats: {Number: Sing}, n: 2}]}, {surface: في, lexeme: fi}, {surface: مطر, lexeme: matar, feats: {Number: Sing}}]
       reverse: |-
         بآذار في مطر
         في مطر بآذار
@@ -262,7 +262,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بنيسان منطلع عالضيعة.
-      tokens: [{surface: بنيسان, lexemes: [{lexeme: b, surface: ب}, {lexeme: nisan, surface: نيسان, base: true, feats: {Number: Sing}}]}, {surface: منطلع, lexeme: tele3, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالضيعة, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: day3a, surface: ضيعة, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بنيسان, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: nisan, surface: نيسان, base: true, feats: {Number: Sing}, n: 2}]}, {surface: منطلع, lexeme: tele3, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالضيعة, lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: day3a, surface: ضيعة, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: |-
         بنيسان منطلع (عالضيعة|ع الضيعة|على الضيعة)
         منطلع عالضيعة بنيسان
@@ -283,14 +283,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أيّار حلو كتير.
-      tokens: [{surface: أيّار, lexeme: ayyar, feats: {Number: Sing}}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: كتير, lexeme: ktir}]
+      tokens: [{surface: أيّار, lexeme: ayyar, feats: {Number: Sing}, n: 1}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         أيّار حلو كتير
         أيّار كتير حلو
         شهر أيّار حلو كتير
     apc-Latn/arabizi:
       text: ayyar 7elo ktir.
-      tokens: [{surface: ayyar, lexeme: ayyar, feats: {Number: Sing}}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: ktir, lexeme: ktir}]
+      tokens: [{surface: ayyar, lexeme: ayyar, feats: {Number: Sing}, n: 1}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         (ayyar|ayar|2ayyar) (7elo|7elu|7ilo|helo) (ktir|kteer)
         ayyar ktir 7elo
@@ -304,7 +304,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بحزيران منروح عالبحر.
-      tokens: [{surface: بحزيران, lexemes: [{lexeme: b, surface: ب}, {lexeme: 7zeiran, surface: حزيران, base: true, feats: {Number: Sing}}]}, {surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بحزيران, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: 7zeiran, surface: حزيران, base: true, feats: {Number: Sing}, n: 2}]}, {surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: |-
         بحزيران (منروح|نحنا منروح) (عالبحر|ع البحر|على البحر)
         منروح عالبحر بحزيران
@@ -324,7 +324,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بتمّوز في شوب كتير.
-      tokens: [{surface: بتمّوز, lexemes: [{lexeme: b, surface: ب}, {lexeme: tammouz, surface: تمّوز, base: true, feats: {Number: Sing}}]}, {surface: في, lexeme: fi}, {surface: شوب, lexeme: shob, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
+      tokens: [{surface: بتمّوز, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: tammouz, surface: تمّوز, base: true, feats: {Number: Sing}, n: 2}]}, {surface: في, lexeme: fi}, {surface: شوب, lexeme: shob, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         بتمّوز في شوب كتير
         في شوب كتير بتمّوز
@@ -344,7 +344,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بآب عندي عطلة.
-      tokens: [{surface: بآب, lexemes: [{lexeme: b, surface: ب}, {lexeme: ab, surface: آب, base: true, feats: {Number: Sing}}]}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: عطلة, lexeme: 3otle, feats: {Number: Sing}}]
+      tokens: [{surface: بآب, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: ab, surface: آب, base: true, feats: {Number: Sing}, n: 2}]}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: عطلة, lexeme: 3otle, feats: {Number: Sing}}]
       reverse: |-
         بآب (عندي|أنا عندي) عطلة
         عندي عطلة بآب
@@ -366,7 +366,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بأيلول برجع عالمدرسة.
-      tokens: [{surface: بأيلول, lexemes: [{lexeme: b, surface: ب}, {lexeme: aylul, surface: أيلول, base: true, feats: {Number: Sing}}]}, {surface: برجع, lexeme: rje3, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عالمدرسة, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بأيلول, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: aylul, surface: أيلول, base: true, feats: {Number: Sing}, n: 2}]}, {surface: برجع, lexeme: rje3, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عالمدرسة, lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: |-
         بأيلول برجع (عالمدرسة|ع المدرسة|على المدرسة)
         برجع عالمدرسة بأيلول
@@ -388,11 +388,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تشرين الأوّل حلو بالجبل.
-      tokens: [{surface: تشرين, lexeme: tishrin-awwal}, {surface: الأوّل, lexeme: tishrin-awwal}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: بالجبل, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: تشرين, lexeme: tishrin-awwal}, {surface: الأوّل, lexeme: tishrin-awwal, n: 2}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: بالجبل, lexemes: [{lexeme: b, surface: ب, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: تشرين الأوّل حلو بالجبل
     apc-Latn/arabizi:
       text: tishrin el awwal 7elo bel jabal.
-      tokens: [{surface: tishrin, lexeme: tishrin-awwal}, {surface: el, lexeme: tishrin-awwal}, {surface: awwal, lexeme: tishrin-awwal}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}}]
+      tokens: [{surface: tishrin, lexeme: tishrin-awwal}, {surface: el, lexeme: tishrin-awwal}, {surface: awwal, lexeme: tishrin-awwal, n: 3}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}}]
       reverse: |-
         (tishrin|teshrin|tishreen) (el|l|il) (awwal|awal|2awwal) (7elo|7elu|7ilo) (bel|bil|b el) (jabal|jabel|jbal)
         tishrin el awwal helo bel jabal
@@ -405,7 +405,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بتشرين التاني في مطر كتير.
-      tokens: [{surface: بتشرين, lexemes: [{lexeme: b, surface: ب}, {lexeme: tishrin-tene, surface: تشرين, base: true}]}, {surface: التاني, lexeme: tishrin-tene}, {surface: في, lexeme: fi}, {surface: مطر, lexeme: matar, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
+      tokens: [{surface: بتشرين, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: tishrin-tene, surface: تشرين, base: true, n: 2}]}, {surface: التاني, lexeme: tishrin-tene}, {surface: في, lexeme: fi}, {surface: مطر, lexeme: matar, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         بتشرين التاني في مطر كتير
         في مطر كتير بتشرين التاني
@@ -425,7 +425,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بكانون الأوّل في تلج عالجبل.
-      tokens: [{surface: بكانون, lexemes: [{lexeme: b, surface: ب}, {lexeme: kanoun-awwal, surface: كانون, base: true}]}, {surface: الأوّل, lexeme: kanoun-awwal}, {surface: في, lexeme: fi}, {surface: تلج, lexeme: talj, feats: {Number: Sing}}, {surface: عالجبل, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بكانون, lexemes: [{lexeme: b, surface: ب, n: 1, head: 2, rel: case}, {lexeme: kanoun-awwal, surface: كانون, base: true, n: 2}]}, {surface: الأوّل, lexeme: kanoun-awwal}, {surface: في, lexeme: fi}, {surface: تلج, lexeme: talj, feats: {Number: Sing}}, {surface: عالجبل, lexemes: [{lexeme: 3a, surface: ع, n: 6, head: 8, rel: case}, {lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}, n: 8}]}]
       reverse: |-
         بكانون الأوّل في (تلج|ثلج) (عالجبل|ع الجبل|على الجبل)
         في تلج عالجبل بكانون الأوّل
@@ -464,7 +464,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عيد ميلادي بنيسان.
-      tokens: [{surface: عيد, lexeme: 3id-milad}, {surface: ميلادي, lexemes: [{lexeme: 3id-milad, surface: ميلاد, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: بنيسان, lexemes: [{lexeme: b, surface: ب}, {lexeme: nisan, surface: نيسان, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: عيد, lexeme: 3id-milad}, {surface: ميلادي, lexemes: [{lexeme: 3id-milad, surface: ميلاد, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: بنيسان, lexemes: [{lexeme: b, surface: ب, n: 4, head: 5, rel: case}, {lexeme: nisan, surface: نيسان, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: عيد ميلادي بنيسان
     apc-Latn/arabizi:
       text: 3id miladi b nisan.
@@ -569,7 +569,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مرّة بالجمعة.
-      tokens: [{surface: مرّة, lexeme: marra, feats: {Number: Sing}}, {surface: بالجمعة, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: jem3a, surface: جمعة, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: مرّة, lexeme: marra, feats: {Number: Sing}}, {surface: بالجمعة, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: jem3a, surface: جمعة, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: مرّة بالجمعة
     apc-Latn/arabizi:
       text: marra bel jem3a.
@@ -599,7 +599,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أوّل مرّة بلبنان.
-      tokens: [{surface: أوّل, lexeme: awwal, feats: {Gender: Fem, Number: Sing}}, {surface: مرّة, lexeme: marra, feats: {Number: Sing}}, {surface: بلبنان, lexemes: [{lexeme: b, surface: ب}, {lexeme: lebnen, surface: لبنان, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: أوّل, lexeme: awwal, feats: {Gender: Fem, Number: Sing}}, {surface: مرّة, lexeme: marra, feats: {Number: Sing}}, {surface: بلبنان, lexemes: [{lexeme: b, surface: ب, n: 3, head: 4, rel: case}, {lexeme: lebnen, surface: لبنان, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: أوّل مرّة بلبنان
     apc-Latn/arabizi:
       text: awwal marra b Lebnen.

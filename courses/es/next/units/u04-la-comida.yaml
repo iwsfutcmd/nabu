@@ -50,7 +50,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Como arroz con frijoles negros.
-      tokens: [{surface: Como, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}}]
+      tokens: [{surface: Como, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 4}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}, n: 5, head: 4, rel: amod}]
       reverse: '[Yo] como arroz con frijoles negros'
   translations:
     en: |-
@@ -74,7 +74,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Usted come frijoles negros, señora?
-      tokens: [{surface: Usted, lexeme: usted}, {surface: come, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
+      tokens: [{surface: Usted, lexeme: usted}, {surface: come, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 3}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}, n: 4, head: 3, rel: amod}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
       reverse: |-
         (Usted come frijoles negros señora|Come [usted] frijoles negros señora)
         Señora, ¿usted come frijoles negros?
@@ -88,7 +88,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me gusta el arroz.
-      tokens: [{surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}, n: 4}]
       reverse: '[A mí] me gusta el arroz'
   translations:
     en: |-
@@ -99,7 +99,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me gusta mucho el congrí.
-      tokens: [{surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}, n: 5}]
       reverse: |-
         [A mí] me gusta mucho el congrí
         El congrí me gusta mucho.
@@ -114,7 +114,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Te gusta el pollo?
-      tokens: [{surface: Te, lexeme: te}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}]
+      tokens: [{surface: Te, lexeme: te}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}, n: 4}]
       reverse: (Te gusta el pollo|A ti te gusta el pollo|Le gusta el pollo|A usted le gusta el pollo|Les gusta el pollo|A ustedes les gusta el pollo)
   translations:
     en: |-
@@ -125,7 +125,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me gustan los frijoles negros.
-      tokens: [{surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 4}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}, n: 5, head: 4, rel: amod}]
       reverse: '[A mí] me gustan los frijoles negros'
   translations:
     en: |-
@@ -136,7 +136,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me gustan los plátanos maduros.
-      tokens: [{surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: plátanos, lexeme: plátano, feats: {Number: Plur}}, {surface: maduros, lexeme: maduro, feats: {Number: Plur}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: plátanos, lexeme: plátano, feats: {Number: Plur}, n: 4}, {surface: maduros, lexeme: maduro, feats: {Number: Plur}}]
       reverse: '[A mí] me gustan los (plátanos maduros|maduros)'
   translations:
     en: |-
@@ -148,7 +148,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Te gustan los tostones?
-      tokens: [{surface: Te, lexeme: te}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}]
+      tokens: [{surface: Te, lexeme: te}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}, n: 4}]
       reverse: (Te gustan los tostones|A ti te gustan los tostones|Le gustan los tostones|A usted le gustan los tostones|Les gustan los tostones|A ustedes les gustan los tostones)
   translations:
     en: |-
@@ -204,7 +204,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú quieres un tostón?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: tostón, lexeme: tostón, feats: {Number: Sing}}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: tostón, lexeme: tostón, feats: {Number: Sing}, n: 4}]
       reverse: (Tú quieres un tostón|Quieres [tú] un tostón|Usted quiere un tostón|Quiere [usted] un tostón|Ustedes quieren un tostón|Quieren [ustedes] un tostón)
   translations:
     en: |-
@@ -240,7 +240,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La fruta bomba está rica.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: fruta, lexeme: fruta-bomba}, {surface: bomba, lexeme: fruta-bomba}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rica, lexeme: rico, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: fruta, lexeme: fruta-bomba, n: 2}, {surface: bomba, lexeme: fruta-bomba}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rica, lexeme: rico, feats: {Gender: Fem, Number: Sing}}]
       reverse: La (fruta bomba|papaya) está (rica|buena|sabrosa|deliciosa)
   translations:
     en: |-
@@ -251,7 +251,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Un cafecito, por favor.
-      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 2}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
       reverse: (Un cafecito|Un café cubano|Un cafecito cubano) por favor
   translations:
     en: |-
@@ -273,7 +273,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Un café con leche, por favor.
-      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: leche, lexeme: leche, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 2}, {surface: con, lexeme: con}, {surface: leche, lexeme: leche, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
       reverse: Un café con leche por favor
   translations:
     en: A (café con leche|coffee with milk|milky coffee|latte), please.
@@ -296,7 +296,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel quiere una colada.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: colada, lexeme: colada, feats: {Number: Sing}}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: colada, lexeme: colada, feats: {Number: Sing}, n: 4}]
       reverse: Daniel quiere una colada
   translations:
     en: Daniel (wants|would like) a colada.
@@ -402,7 +402,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Hola, mi vida! ¿Tú tienes hambre?
-          tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: hambre, lexeme: hambre, feats: {Number: Sing}}]
+          tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 3}, {surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: hambre, lexeme: hambre, feats: {Number: Sing}}]
       translations:
         en: Hi, darling! Are you hungry?
   - line:
@@ -426,7 +426,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Maduros? ¡Me gustan mucho los maduros!
-          tokens: [{surface: Maduros, lexeme: maduro, feats: {Number: Plur}}, {surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: maduros, lexeme: maduro, feats: {Number: Plur}}]
+          tokens: [{surface: Maduros, lexeme: maduro, feats: {Number: Plur}}, {surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: maduros, lexeme: maduro, feats: {Number: Plur}, n: 6}]
       translations:
         en: Maduros? I really like maduros!
   - choose:
@@ -459,7 +459,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Fruta bomba? Sí, mi vida. ¡Está muy rica!
-          tokens: [{surface: Fruta, lexeme: fruta-bomba}, {surface: bomba, lexeme: fruta-bomba}, {surface: Sí, lexeme: sí}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: rica, lexeme: rico, feats: {Gender: Fem, Number: Sing}}]
+          tokens: [{surface: Fruta, lexeme: fruta-bomba}, {surface: bomba, lexeme: fruta-bomba}, {surface: Sí, lexeme: sí}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 5}, {surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: rica, lexeme: rico, feats: {Gender: Fem, Number: Sing}}]
       translations:
         en: Papaya? Yes, darling. It's really good!
   - line:
@@ -496,7 +496,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Qué rico el congrí, abuela!
-          tokens: [{surface: Qué, lexeme: qué}, {surface: rico, lexeme: rico, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+          tokens: [{surface: Qué, lexeme: qué}, {surface: rico, lexeme: rico, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}, n: 4}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       translations:
         en: The congrí is so good, Grandma!
   - line:
@@ -509,7 +509,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y un cafecito, mi vida?
-          tokens: [{surface: Y, lexeme: y}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 3}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 5}]
       translations:
         en: And a little coffee, darling?
   - line:
@@ -517,7 +517,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, por favor. ¡Me gusta mucho el café cubano!
-          tokens: [{surface: Sí, lexeme: sí}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}, {surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}, {surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 8}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}, n: 9, head: 8, rel: amod}]
       translations:
         en: Yes, please. I really like Cuban coffee!
   - line:

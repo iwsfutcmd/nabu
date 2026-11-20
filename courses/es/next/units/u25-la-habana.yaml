@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En La Habana, me quedo en casa de mi tía Marisol.
-      tokens: [{surface: En, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: me, lexeme: me}, {surface: quedo, lexeme: quedarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: En, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 3}, {surface: me, lexeme: me}, {surface: quedo, lexeme: quedarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 10}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
       reverse: |-
         En La Habana [yo] (me quedo|me estoy quedando) en (casa|la casa) de (mi tía|tía) Marisol
         [Yo] (me quedo|me estoy quedando) en (casa|la casa) de (mi tía|tía) Marisol en La Habana
@@ -35,7 +35,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía vive en Centro Habana, en un edificio muy viejo.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Centro, lexeme: centro}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}}, {surface: muy, lexeme: muy}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Centro, lexeme: centro}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}, n: 9}, {surface: muy, lexeme: muy}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}, n: 11, head: 9, rel: amod}]
       reverse: Mi tía vive en Centro Habana en un edificio muy (viejo|antiguo)
   translations:
     en: My aunt lives in (Centro Habana|Central Havana), in a very old building.
@@ -44,7 +44,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El edificio donde vive mi tía tiene un balcón grande.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: balcón, lexeme: balcón, feats: {Number: Sing}}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}, n: 2}, {surface: donde, lexeme: donde}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: balcón, lexeme: balcón, feats: {Number: Sing}, n: 9}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}, n: 10, head: 9, rel: amod}]
       reverse: El edificio (donde|en que|en el que|en el cual) (vive mi tía|mi tía vive) tiene un balcón grande
   translations:
     en: |-
@@ -55,7 +55,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Al lado hay un solar donde viven muchas familias.
-      tokens: [{surface: Al, lexeme: al}, {surface: lado, lexeme: lado, feats: {Number: Sing}}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: solar, lexeme: solar, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: viven, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: familias, lexeme: familia, feats: {Number: Plur}}]
+      tokens: [{surface: Al, lexeme: al}, {surface: lado, lexeme: lado, feats: {Number: Sing}}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: solar, lexeme: solar, feats: {Number: Sing}, n: 5}, {surface: donde, lexeme: donde}, {surface: viven, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: familias, lexeme: familia, feats: {Number: Plur}}]
       reverse: Al lado hay un solar (donde|en que|en el que|en el cual) (viven muchas familias|muchas familias viven)
   translations:
     en: |-
@@ -66,7 +66,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La gente que vive en el solar es muy amable.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: solar, lexeme: solar, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: amable, lexeme: amable, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: gente, lexeme: gente, feats: {Number: Sing}, n: 2}, {surface: que, lexeme: que}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: solar, lexeme: solar, feats: {Number: Sing}, n: 7}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: amable, lexeme: amable, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         La gente que vive en el solar es muy amable
         Las personas que viven en el solar son muy amables
@@ -79,7 +79,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Marisol tiende la ropa en la azotea del edificio.
-      tokens: [{surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: tiende, lexeme: tender, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: ropa, lexeme: ropa, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: azotea, lexeme: azotea, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}}]
+      tokens: [{surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: tiende, lexeme: tender, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: ropa, lexeme: ropa, feats: {Number: Sing}, n: 4}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: azotea, lexeme: azotea, feats: {Number: Sing}, n: 7}, {surface: del, lexeme: del}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}}]
       reverse: Marisol tiende la ropa en la azotea [del edificio]
   translations:
     en: |-
@@ -92,7 +92,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La azotea es el lugar que más me gusta del edificio.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: azotea, lexeme: azotea, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: azotea, lexeme: azotea, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}, n: 5}, {surface: que, lexeme: que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}}]
       reverse: La azotea es el lugar (que más me gusta|que me gusta más) del edificio
   translations:
     en: |-
@@ -103,7 +103,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La Habana es una ciudad que siempre quise conocer.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: ciudad, lexeme: ciudad, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: siempre, lexeme: siempre}, {surface: quise, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: conocer, lexeme: conocer, feats: {VerbForm: Inf}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: ciudad, lexeme: ciudad, feats: {Number: Sing}, n: 5}, {surface: que, lexeme: que}, {surface: siempre, lexeme: siempre}, {surface: quise, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: conocer, lexeme: conocer, feats: {VerbForm: Inf}}]
       reverse: La Habana es una ciudad que [yo] siempre (quise|he querido|quería) conocer
   translations:
     en: Havana is a city [that|which] (I always wanted|I've always wanted|I have always wanted) to (see|visit|get to know|know).
@@ -112,7 +112,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por la noche, todo el barrio va al Malecón.
-      tokens: [{surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: Malecón, lexeme: malecón}]
+      tokens: [{surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 3}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 4, head: 6, rel: det}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}, n: 6}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: Malecón, lexeme: malecón}]
       reverse: |-
         (Por la noche|En la noche|De noche) todo el barrio va al Malecón
         Todo el barrio va al Malecón (por la noche|en la noche|de noche)
@@ -126,7 +126,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La gente se sienta en el Malecón a mirar el mar.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: sienta, lexeme: sentarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Malecón, lexeme: malecón}, {surface: a, lexeme: a}, {surface: mirar, lexeme: mirar, feats: {VerbForm: Inf}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mar, lexeme: mar, feats: {Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: gente, lexeme: gente, feats: {Number: Sing}, n: 2}, {surface: se, lexeme: se}, {surface: sienta, lexeme: sentarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Malecón, lexeme: malecón, n: 7}, {surface: a, lexeme: a}, {surface: mirar, lexeme: mirar, feats: {VerbForm: Inf}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: mar, lexeme: mar, feats: {Number: Sing}, n: 11}]
       reverse: La gente se sienta en el Malecón a (mirar|ver) el mar
   translations:
     en: |-
@@ -137,7 +137,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hay señores que pescan en el Malecón toda la noche.
-      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: señores, lexeme: señor, feats: {Number: Plur}}, {surface: que, lexeme: que}, {surface: pescan, lexeme: pescar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Malecón, lexeme: malecón}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: señores, lexeme: señor, feats: {Number: Plur}}, {surface: que, lexeme: que}, {surface: pescan, lexeme: pescar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Malecón, lexeme: malecón, n: 7}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 8, head: 10, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 10}]
       reverse: Hay (señores|hombres) que pescan en el Malecón toda la noche
   translations:
     en: |-
@@ -148,7 +148,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior es el primo con quien voy siempre al Malecón.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: con, lexeme: con}, {surface: quien, lexeme: quien}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: siempre, lexeme: siempre}, {surface: al, lexeme: al}, {surface: Malecón, lexeme: malecón}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}, n: 4}, {surface: con, lexeme: con}, {surface: quien, lexeme: quien}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: siempre, lexeme: siempre}, {surface: al, lexeme: al}, {surface: Malecón, lexeme: malecón}]
       reverse: Yunior es el primo con (quien|el que|el cual) [yo] (voy siempre|siempre voy) al Malecón
   translations:
     en: |-
@@ -159,7 +159,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol, a quien yo nunca había conocido, me recibió en el aeropuerto.
-      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: a, lexeme: a}, {surface: quien, lexeme: quien}, {surface: yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: conocido, lexeme: conocer, feats: {Tense: Past, VerbForm: Part}}, {surface: me, lexeme: me}, {surface: recibió, lexeme: recibir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: aeropuerto, lexeme: aeropuerto, feats: {Number: Sing}}]
+      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: a, lexeme: a}, {surface: quien, lexeme: quien}, {surface: yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: conocido, lexeme: conocer, feats: {Tense: Past, VerbForm: Part}}, {surface: me, lexeme: me}, {surface: recibió, lexeme: recibir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: aeropuerto, lexeme: aeropuerto, feats: {Number: Sing}, n: 13}]
       reverse: (Tía|Mi tía) Marisol a (quien|la que|la cual) [yo] nunca había (conocido|visto) me (recibió|fue a buscar) en el aeropuerto
   translations:
     en: |-
@@ -173,7 +173,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lo que más me gusta de La Habana es el Malecón.
-      tokens: [{surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Malecón, lexeme: malecón}]
+      tokens: [{surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 8}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: Malecón, lexeme: malecón, n: 11}]
       reverse: Lo que (más me gusta|me gusta más) de La Habana es el Malecón
   translations:
     en: |-
@@ -184,7 +184,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior siempre sabe lo que pasa en el barrio.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: siempre, lexeme: siempre}, {surface: sabe, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: pasa, lexeme: pasar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: siempre, lexeme: siempre}, {surface: sabe, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: pasa, lexeme: pasar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}, n: 9}]
       reverse: |-
         Yunior siempre sabe (lo que|qué) pasa en el barrio
         Yunior siempre sabe lo que está pasando en el barrio
@@ -195,7 +195,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ayer caminamos por La Habana Vieja con Yunior.
-      tokens: [{surface: Ayer, lexeme: ayer}, {surface: caminamos, lexeme: caminar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: Vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}}, {surface: con, lexeme: con}, {surface: Yunior, lexeme: yunior}]
+      tokens: [{surface: Ayer, lexeme: ayer}, {surface: caminamos, lexeme: caminar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 5}, {surface: Vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: con, lexeme: con}, {surface: Yunior, lexeme: yunior}]
       reverse: |-
         Ayer [nosotros] caminamos por La Habana Vieja con Yunior
         Ayer [nosotros] caminamos con Yunior por La Habana Vieja
@@ -208,7 +208,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La plaza que más me gusta es la Plaza de la Catedral.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: plaza, lexeme: plaza, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Plaza, lexeme: plaza, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Catedral, lexeme: catedral, feats: {Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: plaza, lexeme: plaza, feats: {Number: Sing}, n: 2}, {surface: que, lexeme: que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Plaza, lexeme: plaza, feats: {Number: Sing}, n: 9}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: Catedral, lexeme: catedral, feats: {Number: Sing}, n: 12}]
       reverse: La plaza (que más me gusta|que me gusta más) es la Plaza de la Catedral
   translations:
     en: |-
@@ -219,7 +219,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La Catedral está en una plaza en la que siempre hay turistas.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Catedral, lexeme: catedral, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: plaza, lexeme: plaza, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: que, lexeme: que}, {surface: siempre, lexeme: siempre}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: turistas, lexeme: turista, feats: {Number: Plur}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: Catedral, lexeme: catedral, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: plaza, lexeme: plaza, feats: {Number: Sing}, n: 6}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: que, lexeme: que}, {surface: siempre, lexeme: siempre}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: turistas, lexeme: turista, feats: {Number: Plur}}]
       reverse: La Catedral está en una plaza (en la que|en la cual|donde) siempre hay turistas
   translations:
     en: |-
@@ -230,7 +230,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La Bodeguita del Medio es el lugar al que van todos los turistas.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Bodeguita, lexeme: bodeguita-del-medio}, {surface: del, lexeme: bodeguita-del-medio}, {surface: Medio, lexeme: bodeguita-del-medio}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}}, {surface: al, lexeme: al}, {surface: que, lexeme: que}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: turistas, lexeme: turista, feats: {Number: Plur}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: Bodeguita, lexeme: bodeguita-del-medio, n: 2}, {surface: del, lexeme: bodeguita-del-medio}, {surface: Medio, lexeme: bodeguita-del-medio}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}, n: 7}, {surface: al, lexeme: al}, {surface: que, lexeme: que}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 11, head: 13, rel: det}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 12, head: 13, rel: det}, {surface: turistas, lexeme: turista, feats: {Number: Plur}, n: 13}]
       reverse: La Bodeguita del Medio es el lugar (al que|al cual|adonde|a donde|donde) van todos los turistas
   translations:
     en: |-
@@ -241,7 +241,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El mojito que tomé en la Bodeguita del Medio estaba muy rico.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mojito, lexeme: mojito, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: tomé, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Bodeguita, lexeme: bodeguita-del-medio}, {surface: del, lexeme: bodeguita-del-medio}, {surface: Medio, lexeme: bodeguita-del-medio}, {surface: estaba, lexeme: estar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: rico, lexeme: rico, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: mojito, lexeme: mojito, feats: {Number: Sing}, n: 2}, {surface: que, lexeme: que}, {surface: tomé, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Bodeguita, lexeme: bodeguita-del-medio, n: 7}, {surface: del, lexeme: bodeguita-del-medio}, {surface: Medio, lexeme: bodeguita-del-medio}, {surface: estaba, lexeme: estar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: rico, lexeme: rico, feats: {Gender: Masc, Number: Sing}}]
       reverse: |-
         El mojito que [me] tomé en la Bodeguita del Medio estaba muy (rico|bueno)
         El mojito que yo tomé en la Bodeguita del Medio estaba muy rico
@@ -252,7 +252,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los turistas con los que hablamos no hablaban español.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: turistas, lexeme: turista, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: que, lexeme: que}, {surface: hablamos, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: 'no', lexeme: 'no'}, {surface: hablaban, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: español, lexeme: español, feats: {Number: Sing}}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: turistas, lexeme: turista, feats: {Number: Plur}, n: 2}, {surface: con, lexeme: con}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: que, lexeme: que}, {surface: hablamos, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: 'no', lexeme: 'no'}, {surface: hablaban, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: español, lexeme: español, feats: {Number: Sing}}]
       reverse: Los turistas con (los que|los cuales|quienes) hablamos no hablaban español
   translations:
     en: |-
@@ -263,7 +263,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Desde el balcón de mi tía se ve el Capitolio.
-      tokens: [{surface: Desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: balcón, lexeme: balcón, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Capitolio, lexeme: capitolio}]
+      tokens: [{surface: Desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: balcón, lexeme: balcón, feats: {Number: Sing}, n: 3}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: se, lexeme: se.impersonal}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: Capitolio, lexeme: capitolio, n: 10}]
       reverse: |-
         Desde el balcón de mi tía se (ve|puede ver) el Capitolio
         El Capitolio se (ve|puede ver) desde el balcón de mi tía
@@ -277,7 +277,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El Capitolio es el edificio más lindo que he visto en La Habana.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Capitolio, lexeme: capitolio}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}}, {surface: más, lexeme: más}, {surface: lindo, lexeme: lindo, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: Capitolio, lexeme: capitolio, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}, n: 5}, {surface: más, lexeme: más}, {surface: lindo, lexeme: lindo, feats: {Gender: Masc, Number: Sing}, n: 7, head: 5, rel: amod}, {surface: que, lexeme: que}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 12, head: 13, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 13}]
       reverse: El Capitolio es el edificio más (lindo|bonito|hermoso) que [yo] (he visto|vi) en La Habana
   translations:
     en: (The Capitol|El Capitolio) is the (most beautiful|prettiest|loveliest|nicest) building [that|which] (I've|I have) (seen|ever seen) in Havana.
@@ -286,7 +286,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por la noche, desde el Malecón se ve la luz del Morro.
-      tokens: [{surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Malecón, lexeme: malecón}, {surface: se, lexeme: se.impersonal}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: Morro, lexeme: morro}]
+      tokens: [{surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 3}, {surface: desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Malecón, lexeme: malecón, n: 6}, {surface: se, lexeme: se.impersonal}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: luz, lexeme: luz, feats: {Number: Sing}, n: 10}, {surface: del, lexeme: del}, {surface: Morro, lexeme: morro}]
       reverse: |-
         (Por la noche|En la noche|De noche) desde el Malecón se (ve|puede ver) la luz del Morro
         Desde el Malecón se (ve|puede ver) la luz del Morro (por la noche|en la noche|de noche)
@@ -300,7 +300,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Fuimos al Morro, desde el cual se ve toda la bahía.
-      tokens: [{surface: Fuimos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: Morro, lexeme: morro}, {surface: desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cual, lexeme: cual}, {surface: se, lexeme: se.impersonal}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: bahía, lexeme: bahía, feats: {Number: Sing}}]
+      tokens: [{surface: Fuimos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: Morro, lexeme: morro}, {surface: desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cual, lexeme: cual}, {surface: se, lexeme: se.impersonal}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 9, head: 11, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: bahía, lexeme: bahía, feats: {Number: Sing}, n: 11}]
       reverse: '[Nosotros] fuimos al Morro desde (el cual|el que|donde) se (ve|puede ver) toda la bahía'
   translations:
     en: We went to (El Morro|the Morro), from (which|where) (you can see|one can see|you see) (the whole bay|the entire bay|all of the bay|all the bay).
@@ -309,7 +309,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Marisol tiene un balcón desde el cual se ve todo el barrio.
-      tokens: [{surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: balcón, lexeme: balcón, feats: {Number: Sing}}, {surface: desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cual, lexeme: cual}, {surface: se, lexeme: se.impersonal}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}}]
+      tokens: [{surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: balcón, lexeme: balcón, feats: {Number: Sing}, n: 4}, {surface: desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cual, lexeme: cual}, {surface: se, lexeme: se.impersonal}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 10, head: 12, rel: det}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 11, head: 12, rel: det}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}, n: 12}]
       reverse: Marisol tiene un balcón desde (el cual|el que|donde) se (ve|puede ver) todo el barrio
   translations:
     en: Marisol has a balcony from (which|where) (you can see|one can see|you see) the (whole|entire) (neighborhood|neighbourhood).
@@ -318,7 +318,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El edificio en el cual vive Marisol tiene cien años.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cual, lexeme: cual}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cien, lexeme: cien}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: edificio, lexeme: edificio, feats: {Number: Sing}, n: 2}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cual, lexeme: cual}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cien, lexeme: cien}, {surface: años, lexeme: año, feats: {Number: Plur}}]
       reverse: El edificio (en el cual|en el que|en que|donde) (vive Marisol|Marisol vive) tiene (cien|100) años
   translations:
     en: |-
@@ -329,7 +329,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Un almendrón es una máquina vieja que lleva a mucha gente.
-      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: máquina, lexeme: máquina, feats: {Number: Sing}}, {surface: vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}}, {surface: que, lexeme: que}, {surface: lleva, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}]
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: máquina, lexeme: máquina, feats: {Number: Sing}, n: 5}, {surface: vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: que, lexeme: que}, {surface: lleva, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}]
       reverse: |-
         Un almendrón es una máquina vieja que lleva a mucha gente
         Un almendrón es un carro viejo que lleva a mucha gente
@@ -342,7 +342,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El botero que nos llevó a La Habana Vieja era amigo de Yunior.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: botero, lexeme: botero, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: llevó, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: Vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: amigo, lexeme: amigo, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Yunior, lexeme: yunior}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: botero, lexeme: botero, feats: {Number: Sing}, n: 2}, {surface: que, lexeme: que}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: llevó, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 8}, {surface: Vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}, n: 9, head: 8, rel: amod}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: amigo, lexeme: amigo, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Yunior, lexeme: yunior}]
       reverse: El botero que nos llevó a La Habana Vieja era (amigo|un amigo|socio|un socio) de Yunior
   translations:
     en: The (driver|taxi driver|botero) (who|that) (took|drove) us to (Old Havana|La Habana Vieja) was (a friend of Yunior's|Yunior's friend|a friend of Yunior).
@@ -353,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Perdone, señor, ¿usted va hasta el Capitolio?
-      tokens: [{surface: Perdone, lexeme: perdonar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: señor, lexeme: señor, feats: {Number: Sing}}, {surface: usted, lexeme: usted}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hasta, lexeme: hasta}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Capitolio, lexeme: capitolio}]
+      tokens: [{surface: Perdone, lexeme: perdonar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: señor, lexeme: señor, feats: {Number: Sing}}, {surface: usted, lexeme: usted}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hasta, lexeme: hasta}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Capitolio, lexeme: capitolio, n: 7}]
       reverse: (Perdone|Disculpe|Oiga) señor (usted va|va [usted]) hasta el Capitolio
   translations:
     en: (Excuse me|Sorry|Pardon me), sir, (are you going|do you go) (to|as far as|all the way to) (the Capitol|El Capitolio)?
@@ -362,7 +362,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El botero me cobró cien pesos hasta el Capitolio.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: botero, lexeme: botero, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: cobró, lexeme: cobrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: cien, lexeme: cien}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}, {surface: hasta, lexeme: hasta}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Capitolio, lexeme: capitolio}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: botero, lexeme: botero, feats: {Number: Sing}, n: 2}, {surface: me, lexeme: me}, {surface: cobró, lexeme: cobrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: cien, lexeme: cien}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}, {surface: hasta, lexeme: hasta}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Capitolio, lexeme: capitolio, n: 9}]
       reverse: El botero me cobró (cien|100) pesos hasta el Capitolio
   translations:
     en: The (driver|taxi driver|botero) charged me (a hundred|one hundred|100) pesos (to|as far as|for the ride to) (the Capitol|El Capitolio).
@@ -371,7 +371,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En La Habana Vieja cogimos un bicitaxi hasta la Plaza de la Catedral.
-      tokens: [{surface: En, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: Vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}}, {surface: cogimos, lexeme: coger, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bicitaxi, lexeme: bicitaxi, feats: {Number: Sing}}, {surface: hasta, lexeme: hasta}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Plaza, lexeme: plaza, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Catedral, lexeme: catedral, feats: {Number: Sing}}]
+      tokens: [{surface: En, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 3}, {surface: Vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: cogimos, lexeme: coger, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: bicitaxi, lexeme: bicitaxi, feats: {Number: Sing}, n: 7}, {surface: hasta, lexeme: hasta}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: Plaza, lexeme: plaza, feats: {Number: Sing}, n: 10}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 12, head: 13, rel: det}, {surface: Catedral, lexeme: catedral, feats: {Number: Sing}, n: 13}]
       reverse: En La Habana Vieja [nosotros] (cogimos|tomamos) un bicitaxi hasta la Plaza de la Catedral
   translations:
     en: In (Old Havana|La Habana Vieja) we (took|caught|got) a (bicycle taxi|bike taxi|pedicab|bicitaxi) to (Cathedral Square|the Cathedral Square|the Plaza de la Catedral).
@@ -380,7 +380,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El almendrón en el que fuimos al Malecón era rojo y azul.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: fuimos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: Malecón, lexeme: malecón}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: rojo, lexeme: rojo, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: azul, lexeme: azul, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}, n: 2}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: fuimos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: Malecón, lexeme: malecón}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: rojo, lexeme: rojo, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: azul, lexeme: azul, feats: {Gender: Masc, Number: Sing}}]
       reverse: El almendrón en (el que|el cual|que) fuimos al Malecón era (rojo y azul|azul y rojo)
   translations:
     en: |-
@@ -414,7 +414,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Daniel, Yunior! El almendrón que va a La Habana Vieja está en la esquina.
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: Yunior, lexeme: yunior}, {surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: Vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: esquina, lexeme: esquina, feats: {Number: Sing}}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: Yunior, lexeme: yunior}, {surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}, n: 4}, {surface: que, lexeme: que}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 9}, {surface: Vieja, lexeme: viejo, feats: {Gender: Fem, Number: Sing}, n: 10, head: 9, rel: amod}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 13, head: 14, rel: det}, {surface: esquina, lexeme: esquina, feats: {Number: Sing}, n: 14}]
       translations:
         en: Daniel, Yunior! The almendrón that goes to Old Havana is at the corner.
   - line:
@@ -422,7 +422,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Vamos, primo. Ese botero es el que siempre me lleva.
-          tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: botero, lexeme: botero, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: siempre, lexeme: siempre}, {surface: me, lexeme: me}, {surface: lleva, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: botero, lexeme: botero, feats: {Number: Sing}, n: 4}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: siempre, lexeme: siempre}, {surface: me, lexeme: me}, {surface: lleva, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Let's go, cousin. That driver is the one who always takes me.
   - line:
@@ -443,7 +443,7 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Lo que cobran todos: cien pesos hasta el Capitolio.'
-          tokens: [{surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: cobran, lexeme: cobrar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: cien, lexeme: cien}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}, {surface: hasta, lexeme: hasta}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Capitolio, lexeme: capitolio}]
+          tokens: [{surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: cobran, lexeme: cobrar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: cien, lexeme: cien}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}, {surface: hasta, lexeme: hasta}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Capitolio, lexeme: capitolio, n: 9}]
       translations:
         en: 'What they all charge: a hundred pesos to the Capitolio.'
   - line:
@@ -459,7 +459,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Hasta el Capitolio, asere. Él es mi primo de Miami.
-          tokens: [{surface: Hasta, lexeme: hasta}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Capitolio, lexeme: capitolio}, {surface: asere, lexeme: asere, feats: {Number: Sing}}, {surface: Él, lexeme: él}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}]
+          tokens: [{surface: Hasta, lexeme: hasta}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Capitolio, lexeme: capitolio, n: 3}, {surface: asere, lexeme: asere, feats: {Number: Sing}}, {surface: Él, lexeme: él}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}, n: 8}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}]
       translations:
         en: To the Capitolio, man. He's my cousin from Miami.
   - line:
@@ -467,7 +467,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿De Miami? ¿Y qué es lo que más te gusta de La Habana?
-          tokens: [{surface: De, lexeme: de}, {surface: Miami, lexeme: miami}, {surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: te, lexeme: te}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+          tokens: [{surface: De, lexeme: de}, {surface: Miami, lexeme: miami}, {surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: te, lexeme: te}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 12, head: 13, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 13}]
       translations:
         en: From Miami? And what do you like most about Havana?
   - line:
@@ -476,7 +476,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Lo que más me gusta es el Malecón.
-          tokens: [{surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Malecón, lexeme: malecón}]
+          tokens: [{surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Malecón, lexeme: malecón, n: 8}]
       translations:
         en: What I like most is the Malecón.
   - choose:
@@ -492,7 +492,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Esta máquina era de mi abuelo. Tiene setenta años.
-          tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: máquina, lexeme: máquina, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: setenta, lexeme: setenta}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+          tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: máquina, lexeme: máquina, feats: {Number: Sing}, n: 2}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 6}, {surface: Tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: setenta, lexeme: setenta}, {surface: años, lexeme: año, feats: {Number: Plur}}]
       translations:
         en: This car was my grandfather's. It's seventy years old.
   - line:
@@ -500,7 +500,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Qué linda! Mi abuelo Pepe, que era mecánico, tenía una máquina como esta.
-          tokens: [{surface: Qué, lexeme: qué}, {surface: linda, lexeme: lindo, feats: {Gender: Fem, Number: Sing}}, {surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: que, lexeme: que}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mecánico, lexeme: mecánico, feats: {Gender: Masc, Number: Sing}}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: máquina, lexeme: máquina, feats: {Number: Sing}}, {surface: como, lexeme: como.like}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}]
+          tokens: [{surface: Qué, lexeme: qué}, {surface: linda, lexeme: lindo, feats: {Gender: Fem, Number: Sing}}, {surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 4}, {surface: Pepe, lexeme: pepe}, {surface: que, lexeme: que}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mecánico, lexeme: mecánico, feats: {Gender: Masc, Number: Sing}}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: máquina, lexeme: máquina, feats: {Number: Sing}, n: 11}, {surface: como, lexeme: como.like}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}]
       translations:
         en: How beautiful! My grandfather Pepe, who was a mechanic, had a car like this one.
   - line:
@@ -508,7 +508,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Aquí todos somos mecánicos. Si no, ¡el almendrón no camina!
-          tokens: [{surface: Aquí, lexeme: aquí}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: somos, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mecánicos, lexeme: mecánico, feats: {Gender: Masc, Number: Plur}}, {surface: Si, lexeme: si}, {surface: 'no', lexeme: 'no'}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: camina, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Aquí, lexeme: aquí}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: somos, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mecánicos, lexeme: mecánico, feats: {Gender: Masc, Number: Plur}}, {surface: Si, lexeme: si}, {surface: 'no', lexeme: 'no'}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}, n: 8}, {surface: 'no', lexeme: 'no'}, {surface: camina, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Here we're all mechanics. Otherwise, the almendrón doesn't run!
   - choose:
@@ -523,7 +523,7 @@ stories:
       forms:
         es-Latn/standard:
           text: El almendrón llega al Capitolio.
-          tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: Capitolio, lexeme: capitolio}]
+          tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: almendrón, lexeme: almendrón, feats: {Number: Sing}, n: 2}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: Capitolio, lexeme: capitolio}]
       translations:
         en: The almendrón arrives at the Capitolio.
   - line:
@@ -539,7 +539,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Cien pesos, como todos. ¡Y vuelve a La Habana!
-          tokens: [{surface: Cien, lexeme: cien}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}, {surface: como, lexeme: como.like}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: Y, lexeme: y}, {surface: vuelve, lexeme: volver, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+          tokens: [{surface: Cien, lexeme: cien}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}, {surface: como, lexeme: como.like}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: Y, lexeme: y}, {surface: vuelve, lexeme: volver, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 9}]
       translations:
         en: A hundred pesos, same as everyone. And come back to Havana!
   - line:
@@ -552,7 +552,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Desde aquí caminamos hasta la Plaza de la Catedral.
-          tokens: [{surface: Desde, lexeme: desde}, {surface: aquí, lexeme: aquí}, {surface: caminamos, lexeme: caminar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hasta, lexeme: hasta}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Plaza, lexeme: plaza, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Catedral, lexeme: catedral, feats: {Number: Sing}}]
+          tokens: [{surface: Desde, lexeme: desde}, {surface: aquí, lexeme: aquí}, {surface: caminamos, lexeme: caminar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hasta, lexeme: hasta}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Plaza, lexeme: plaza, feats: {Number: Sing}, n: 6}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Catedral, lexeme: catedral, feats: {Number: Sing}, n: 9}]
       translations:
         en: From here we walk to Cathedral Square.
   - line:
@@ -560,7 +560,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Qué calor! Primero, un mojito en la Bodeguita del Medio.
-          tokens: [{surface: Qué, lexeme: qué}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: mojito, lexeme: mojito, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Bodeguita, lexeme: bodeguita-del-medio}, {surface: del, lexeme: bodeguita-del-medio}, {surface: Medio, lexeme: bodeguita-del-medio}]
+          tokens: [{surface: Qué, lexeme: qué}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: mojito, lexeme: mojito, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Bodeguita, lexeme: bodeguita-del-medio, n: 8}, {surface: del, lexeme: bodeguita-del-medio}, {surface: Medio, lexeme: bodeguita-del-medio}]
       translations:
         en: It's so hot! First, a mojito at La Bodeguita del Medio.
   - line:

@@ -128,7 +128,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: دقّيلي المسا.
-      tokens: [{surface: دقّيلي, lexemes: [{lexeme: de22, surface: دقّي, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: المسا, lexemes: [{lexeme: el, surface: ال}, {lexeme: masa, surface: مسا, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: دقّيلي, lexemes: [{lexeme: de22, surface: دقّي, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: المسا, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: masa, surface: مسا, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         دقّيلي (المسا|بالمسا)
         المسا دقّيلي
@@ -173,7 +173,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: في حدا بالبيت؟
-      tokens: [{surface: في, lexeme: fi}, {surface: حدا, lexeme: 7ada}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: في, lexeme: fi}, {surface: حدا, lexeme: 7ada}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: في حدا بالبيت
     apc-Latn/arabizi:
       text: fi 7ada bel bet?
@@ -730,7 +730,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: قِلّي، رَح تْزورْني الأَحَد؟
-          tokens: [{surface: قِلّي, lexemes: [{lexeme: 2al, surface: قِ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لّي}]}, {surface: رَح, lexeme: ra7.fut}, {surface: تْزورْني, lexemes: [{lexeme: zar, surface: تْزورْ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: قِلّي, lexemes: [{lexeme: 2al, surface: قِ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لّي}]}, {surface: رَح, lexeme: ra7.fut}, {surface: تْزورْني, lexemes: [{lexeme: zar, surface: تْزورْ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 7}]}]
         apc-Latn/arabizi:
           text: 2elli, ra7 tzurni el a7ad?
           tokens: [{surface: 2elli, lexemes: [{lexeme: 2al, surface: '2', base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: ra7, lexeme: ra7.fut}, {surface: tzurni, lexemes: [{lexeme: zar, surface: tzur, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}, {surface: el, lexeme: el}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}}]
@@ -742,7 +742,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: أَكيد، رَح زورِك الأَحَد.
-          tokens: [{surface: أَكيد, lexeme: akid}, {surface: رَح, lexeme: ra7.fut}, {surface: زورِك, lexemes: [{lexeme: zar, surface: زورِ, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ك}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: أَكيد, lexeme: akid}, {surface: رَح, lexeme: ra7.fut}, {surface: زورِك, lexemes: [{lexeme: zar, surface: زورِ, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ك}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 6}]}]
         apc-Latn/arabizi:
           text: akid, ra7 zurik el a7ad.
           tokens: [{surface: akid, lexeme: akid}, {surface: ra7, lexeme: ra7.fut}, {surface: zurik, lexemes: [{lexeme: zar, surface: zur, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ik}]}, {surface: el, lexeme: el}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}}]

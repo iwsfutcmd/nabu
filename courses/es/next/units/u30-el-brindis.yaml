@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El sábado abuela Cachita cumple ochenta años.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: cumple, lexeme: cumplir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ochenta, lexeme: ochenta}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}, n: 2}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: cumple, lexeme: cumplir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ochenta, lexeme: ochenta}, {surface: años, lexeme: año, feats: {Number: Plur}}]
       reverse: |-
         El sábado (abuela|la abuela|mi abuela) Cachita cumple (ochenta|80) años
         (Abuela|La abuela|Mi abuela) Cachita cumple (ochenta|80) años el sábado
@@ -33,7 +33,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Toda la familia va a celebrar su cumpleaños en el patio de abuela.
-      tokens: [{surface: Toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: celebrar, lexeme: celebrar, feats: {VerbForm: Inf}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 3}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: celebrar, lexeme: celebrar, feats: {VerbForm: Inf}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 8}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 11}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       reverse: |-
         Toda la familia va a celebrar su cumpleaños en el patio de (abuela|la abuela|mi abuela)
         La familia entera va a celebrar su cumpleaños en el patio de abuela
@@ -47,7 +47,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es la fiesta más grande de nuestra familia en muchos años.
-      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: fiesta, lexeme: fiesta, feats: {Number: Sing}}, {surface: más, lexeme: más}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}}, {surface: de, lexeme: de}, {surface: nuestra, lexeme: nuestro, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: fiesta, lexeme: fiesta, feats: {Number: Sing}, n: 3}, {surface: más, lexeme: más}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}, n: 5, head: 3, rel: amod}, {surface: de, lexeme: de}, {surface: nuestra, lexeme: nuestro, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 8}, {surface: en, lexeme: en}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}]
       reverse: Es la fiesta más grande de nuestra familia en muchos años
   translations:
     en: (It's|It is) (our family's biggest party|the biggest party in our family) in (many|a lot of|lots of) years.
@@ -56,7 +56,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami compró un cake grande y lo puso en la mesa.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: compró, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cake, lexeme: cake, feats: {Number: Sing}}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: lo, lexeme: lo}, {surface: puso, lexeme: poner, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mesa, lexeme: mesa, feats: {Number: Sing}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: compró, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cake, lexeme: cake, feats: {Number: Sing}, n: 4}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: y, lexeme: y}, {surface: lo, lexeme: lo}, {surface: puso, lexeme: poner, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: mesa, lexeme: mesa, feats: {Number: Sing}, n: 11}]
       reverse: |-
         (Mami|Mamá|Mi mamá|Mi mami) compró un (cake|pastel|bizcocho) grande y lo puso en la mesa
         Mami compró un cake grande y lo puso sobre la mesa
@@ -67,7 +67,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todos sus nietos están aquí, menos Yunior, que vive en La Habana.
-      tokens: [{surface: Todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}}, {surface: nietos, lexeme: nieto, feats: {Number: Plur}}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: aquí, lexeme: aquí}, {surface: menos, lexeme: menos}, {surface: Yunior, lexeme: yunior}, {surface: que, lexeme: que}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      tokens: [{surface: Todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 1, head: 3, rel: det}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: nietos, lexeme: nieto, feats: {Number: Plur}, n: 3}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: aquí, lexeme: aquí}, {surface: menos, lexeme: menos}, {surface: Yunior, lexeme: yunior}, {surface: que, lexeme: que}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 12}]
       reverse: Todos sus nietos están aquí (menos|excepto|salvo) Yunior que vive en La Habana
   translations:
     en: All (her|of her) grandchildren are here (except|but|except for) Yunior, who lives in Havana.
@@ -78,7 +78,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela, ¡qué linda estás esta noche!
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: qué, lexeme: qué}, {surface: linda, lexeme: lindo, feats: {Gender: Fem, Number: Sing}}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: qué, lexeme: qué}, {surface: linda, lexeme: lindo, feats: {Gender: Fem, Number: Sing}}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 6}]
       reverse: (Abuela|Abuelita) qué linda (estás [tú]|tú estás|está [usted]|usted está) esta noche
   translations:
     en: |-
@@ -89,7 +89,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami le pidió a Daniel que hiciera el brindis en español.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: pidió, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Daniel, lexeme: daniel}, {surface: que, lexeme: que}, {surface: hiciera, lexeme: hacer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: brindis, lexeme: brindis, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: pidió, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Daniel, lexeme: daniel}, {surface: que, lexeme: que}, {surface: hiciera, lexeme: hacer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: brindis, lexeme: brindis, feats: {Number: Sing}, n: 9}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
       reverse: |-
         (Mami|Mamá|Su mamá) le pidió a Daniel que hiciera el brindis en español
         Mami le pidió a Daniel que hiciese el brindis en español
@@ -100,7 +100,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel va a brindar por su abuela en español.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: brindar, lexeme: brindar, feats: {VerbForm: Inf}}, {surface: por, lexeme: por}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: brindar, lexeme: brindar, feats: {VerbForm: Inf}}, {surface: por, lexeme: por}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
       reverse: |-
         Daniel va a brindar por su abuela en español
         Daniel brindará por su abuela en español
@@ -113,7 +113,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Buenas noches a todos. Quisiera decir unas palabras.
-      tokens: [{surface: Buenas, lexeme: bueno, feats: {Gender: Fem, Number: Plur}}, {surface: noches, lexeme: noche, feats: {Number: Plur}}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: Quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: decir, lexeme: decir, feats: {VerbForm: Inf}}, {surface: unas, lexeme: un, feats: {Gender: Fem, Number: Plur}}, {surface: palabras, lexeme: palabra, feats: {Number: Plur}}]
+      tokens: [{surface: Buenas, lexeme: bueno, feats: {Gender: Fem, Number: Plur}, n: 1, head: 2, rel: amod}, {surface: noches, lexeme: noche, feats: {Number: Plur}, n: 2}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: Quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: decir, lexeme: decir, feats: {VerbForm: Inf}}, {surface: unas, lexeme: un, feats: {Gender: Fem, Number: Plur}, n: 7, head: 8, rel: det}, {surface: palabras, lexeme: palabra, feats: {Number: Plur}, n: 8}]
       reverse: Buenas noches a todos ([yo] quisiera|me gustaría) decir unas palabras
   translations:
     en: Good (evening|night), (everyone|everybody|all). (I would|I'd) like to say a few words.
@@ -122,7 +122,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En primer lugar, me gustaría agradecerles a todos que estén aquí.
-      tokens: [{surface: En, lexeme: en}, {surface: primer, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: gustaría, lexeme: gustar, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: agradecerles, lexemes: [{lexeme: agradecer, surface: agradecer, base: true, feats: {VerbForm: Inf}}, {lexeme: le, surface: les, feats: {Number: Plur}}]}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: que, lexeme: que}, {surface: estén, lexeme: estar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: aquí, lexeme: aquí}]
+      tokens: [{surface: En, lexeme: en}, {surface: primer, lexeme: primero, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: amod}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}, n: 3}, {surface: me, lexeme: me}, {surface: gustaría, lexeme: gustar, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: agradecerles, lexemes: [{lexeme: agradecer, surface: agradecer, base: true, feats: {VerbForm: Inf}}, {lexeme: le, surface: les, feats: {Number: Plur}}]}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: que, lexeme: que}, {surface: estén, lexeme: estar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: aquí, lexeme: aquí}]
       reverse: |-
         (En primer lugar|Primero|Antes que nada) (me gustaría|quisiera) (agradecerles a todos que estén aquí|darles las gracias a todos por estar aquí)
         En primer lugar, me gustaría agradecerles a todos por estar aquí
@@ -167,7 +167,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Fue muy difícil dejar a su hija en Cuba.
-      tokens: [{surface: Fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: difícil, lexeme: difícil, feats: {Gender: Masc, Number: Sing}}, {surface: dejar, lexeme: dejar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: hija, lexeme: hijo, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: difícil, lexeme: difícil, feats: {Gender: Masc, Number: Sing}}, {surface: dejar, lexeme: dejar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: hija, lexeme: hijo, feats: {Gender: Fem, Number: Sing}, n: 7}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       reverse: |-
         Fue muy difícil dejar a su hija en Cuba
         Dejar a su hija en Cuba fue muy difícil
@@ -180,7 +180,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Aunque vivían lejos, abuela le escribía a Marisol todas las semanas.
-      tokens: [{surface: Aunque, lexeme: aunque}, {surface: vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: escribía, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: todas, lexeme: todo, feats: {Gender: Fem, Number: Plur}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: semanas, lexeme: semana, feats: {Number: Plur}}]
+      tokens: [{surface: Aunque, lexeme: aunque}, {surface: vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: escribía, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: todas, lexeme: todo, feats: {Gender: Fem, Number: Plur}, n: 9, head: 11, rel: det}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 10, head: 11, rel: det}, {surface: semanas, lexeme: semana, feats: {Number: Plur}, n: 11}]
       reverse: |-
         Aunque vivían lejos (abuela|la abuela|mi abuela) le escribía a Marisol todas las semanas
         A pesar de que vivían lejos, abuela le escribía a Marisol todas las semanas
@@ -204,7 +204,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo y abuela lucharon mucho por esta familia.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: lucharon, lexeme: luchar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: por, lexeme: por}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: lucharon, lexeme: luchar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: por, lexeme: por}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 8}]
       reverse: (Abuelo y abuela|Los abuelos|Mis abuelos) lucharon mucho por esta familia
   translations:
     en: (Grandpa and Grandma|Grandfather and Grandmother|My grandparents|The grandparents) (fought|struggled|worked) (hard|so hard|a lot) for this family.
@@ -213,7 +213,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Gracias por todos tus sacrificios, abuela.
-      tokens: [{surface: Gracias, lexeme: gracias}, {surface: por, lexeme: por}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}}, {surface: sacrificios, lexeme: sacrificio, feats: {Number: Plur}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Gracias, lexeme: gracias}, {surface: por, lexeme: por}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 3, head: 5, rel: det}, {surface: tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}, n: 4, head: 5, rel: det}, {surface: sacrificios, lexeme: sacrificio, feats: {Number: Plur}, n: 5}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       reverse: '[Muchas] gracias por todos (tus|sus) sacrificios (abuela|abuelita)'
   translations:
     en: Thank you for all your sacrifices, (Grandma|Grandmother|Abuela).
@@ -222,7 +222,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Aunque pasen los años, nunca vamos a olvidar lo que hiciste.
-      tokens: [{surface: Aunque, lexeme: aunque}, {surface: pasen, lexeme: pasar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: nunca, lexeme: nunca}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: olvidar, lexeme: olvidar, feats: {VerbForm: Inf}}, {surface: lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: hiciste, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}]
+      tokens: [{surface: Aunque, lexeme: aunque}, {surface: pasen, lexeme: pasar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: años, lexeme: año, feats: {Number: Plur}, n: 4}, {surface: nunca, lexeme: nunca}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: olvidar, lexeme: olvidar, feats: {VerbForm: Inf}}, {surface: lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: hiciste, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}]
       reverse: |-
         Aunque pasen los años nunca (vamos a olvidar|olvidaremos) lo que (hiciste|hizo|hicieron)
         Aunque pasen los años, no vamos a olvidar nunca lo que hiciste
@@ -235,7 +235,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela es la mujer más fuerte que conozco.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mujer, lexeme: mujer, feats: {Number: Sing}}, {surface: más, lexeme: más}, {surface: fuerte, lexeme: fuerte, feats: {Gender: Fem, Number: Sing}}, {surface: que, lexeme: que}, {surface: conozco, lexeme: conocer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: mujer, lexeme: mujer, feats: {Number: Sing}, n: 4}, {surface: más, lexeme: más}, {surface: fuerte, lexeme: fuerte, feats: {Gender: Fem, Number: Sing}, n: 6, head: 4, rel: amod}, {surface: que, lexeme: que}, {surface: conozco, lexeme: conocer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
       reverse: (Abuela|La abuela|Mi abuela) es la mujer más fuerte que [yo] conozco
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) is the strongest woman I know.
@@ -246,7 +246,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando era niña, vivía en un bohío en Matanzas.
-      tokens: [{surface: Cuando, lexeme: cuando}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}]
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}]
       reverse: |-
         (Cuando [yo] era niña|De niña) [yo] vivía en un bohío en Matanzas
         Vivía en un bohío en Matanzas cuando era niña
@@ -257,7 +257,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Su padre construyó el bohío con sus manos, y ella construyó una familia.
-      tokens: [{surface: Su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}, {surface: construyó, lexeme: construir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: sus, lexeme: su, feats: {Gender: Fem, Number: Plur}}, {surface: manos, lexeme: mano, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: construyó, lexeme: construir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}]
+      tokens: [{surface: Su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: padre, lexeme: padre, feats: {Number: Sing}, n: 2}, {surface: construyó, lexeme: construir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}, n: 5}, {surface: con, lexeme: con}, {surface: sus, lexeme: su, feats: {Gender: Fem, Number: Plur}, n: 7, head: 8, rel: det}, {surface: manos, lexeme: mano, feats: {Number: Plur}, n: 8}, {surface: y, lexeme: y}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: construyó, lexeme: construir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 12, head: 13, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 13}]
       reverse: Su (padre|papá) construyó el bohío con sus [propias] manos y ella construyó una familia
   translations:
     en: Her father built the (bohío|hut) with his [own] hands, and she built a family.
@@ -275,7 +275,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela nos enseñó el español; por lo tanto, este brindis es en español.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: enseñó, lexeme: enseñar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: español, lexeme: español, feats: {Number: Sing}}, {surface: por, lexeme: por-lo-tanto}, {surface: lo, lexeme: por-lo-tanto}, {surface: tanto, lexeme: por-lo-tanto}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: brindis, lexeme: brindis, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: enseñó, lexeme: enseñar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: español, lexeme: español, feats: {Number: Sing}, n: 5}, {surface: por, lexeme: por-lo-tanto}, {surface: lo, lexeme: por-lo-tanto}, {surface: tanto, lexeme: por-lo-tanto}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: brindis, lexeme: brindis, feats: {Number: Sing}, n: 10}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
       reverse: (Abuela|La abuela|Mi abuela) nos enseñó [el] español (por lo tanto|así que|por eso) este brindis es en español
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) taught us Spanish; (therefore|so|that's why|that is why|for that reason), this toast is in Spanish.
@@ -284,7 +284,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: 'Papi también lo dejó todo: vino en una balsa en el noventa y cuatro.'
-      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: lo, lexeme: lo}, {surface: dejó, lexeme: dejar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: vino, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: balsa, lexeme: balsa, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: noventa, lexeme: noventa}, {surface: y, lexeme: y}, {surface: cuatro, lexeme: cuatro}]
+      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: lo, lexeme: lo}, {surface: dejó, lexeme: dejar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: vino, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: balsa, lexeme: balsa, feats: {Number: Sing}, n: 9}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: noventa, lexeme: noventa}, {surface: y, lexeme: y}, {surface: cuatro, lexeme: cuatro}]
       reverse: (Papi|Papá|Mi papá|Mi papi) también lo dejó todo (vino|llegó) en una balsa en (el noventa y cuatro|mil novecientos noventa y cuatro|1994)
   translations:
     en: '(Dad|Daddy|My dad) (also left everything [behind]|left everything [behind] too): he came on a raft in (1994|''94|nineteen ninety-four).'
@@ -306,7 +306,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Recuerdo que abuela siempre nos hablaba de su tierra.
-      tokens: [{surface: Recuerdo, lexeme: recordar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: hablaba, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: tierra, lexeme: tierra, feats: {Number: Sing}}]
+      tokens: [{surface: Recuerdo, lexeme: recordar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: hablaba, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: tierra, lexeme: tierra, feats: {Number: Sing}, n: 9}]
       reverse: '[Yo] (recuerdo|me acuerdo de) que (abuela|la abuela|mi abuela) siempre nos hablaba de su tierra'
   translations:
     en: I remember [that] (Grandma|Grandmother|Abuela|my grandma|my grandmother) always (talked|used to talk|would talk) to us about her (homeland|land|home country|country).
@@ -315,7 +315,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Aunque nací en Miami, mis raíces están en Matanzas y en Cienfuegos.
-      tokens: [{surface: Aunque, lexeme: aunque}, {surface: nací, lexeme: nacer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Miami, lexeme: miami}, {surface: mis, lexeme: mi, feats: {Gender: Fem, Number: Plur}}, {surface: raíces, lexeme: raíz, feats: {Number: Plur}}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}, {surface: y, lexeme: y}, {surface: en, lexeme: en}, {surface: Cienfuegos, lexeme: cienfuegos}]
+      tokens: [{surface: Aunque, lexeme: aunque}, {surface: nací, lexeme: nacer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Miami, lexeme: miami}, {surface: mis, lexeme: mi, feats: {Gender: Fem, Number: Plur}, n: 5, head: 6, rel: det}, {surface: raíces, lexeme: raíz, feats: {Number: Plur}, n: 6}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}, {surface: y, lexeme: y}, {surface: en, lexeme: en}, {surface: Cienfuegos, lexeme: cienfuegos}]
       reverse: |-
         Aunque [yo] nací en Miami mis raíces están en Matanzas y [en] Cienfuegos
         Mis raíces están en Matanzas y en Cienfuegos, aunque nací en Miami
@@ -326,7 +326,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela tiene una rosa blanca en el patio, por Martí.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: rosa, lexeme: rosa, feats: {Number: Sing}}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: Martí, lexeme: martí}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: rosa, lexeme: rosa, feats: {Number: Sing}, n: 4}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 8}, {surface: por, lexeme: por}, {surface: Martí, lexeme: martí}]
       reverse: (Abuela|La abuela|Mi abuela) tiene una rosa blanca en el patio por Martí
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) has a white rose in the (yard|backyard|patio), (for|because of|in honor of|in honour of) Martí.
@@ -348,7 +348,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Estoy orgulloso de ser tu nieto, abuela.
-      tokens: [{surface: Estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: orgulloso, lexeme: orgulloso, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: ser, lexeme: ser, feats: {VerbForm: Inf}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: nieto, lexeme: nieto, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: orgulloso, lexeme: orgulloso, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: ser, lexeme: ser, feats: {VerbForm: Inf}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: nieto, lexeme: nieto, feats: {Number: Sing}, n: 6}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       reverse: '[Yo] estoy orgulloso de ser (tu|su) nieto (abuela|abuelita)'
   translations:
     en: (I'm|I am) proud (to be|of being) your grandson, (Grandma|Grandmother|Abuela).
@@ -359,7 +359,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Y yo estoy orgullosa de ser tu abuela, mi'jo.
-      tokens: [{surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: orgullosa, lexeme: orgulloso, feats: {Gender: Fem, Number: Sing}}, {surface: de, lexeme: de}, {surface: ser, lexeme: ser, feats: {VerbForm: Inf}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: orgullosa, lexeme: orgulloso, feats: {Gender: Fem, Number: Sing}}, {surface: de, lexeme: de}, {surface: ser, lexeme: ser, feats: {VerbForm: Inf}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 8}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}]
       reverse: '[Y] [yo] estoy orgullosa de ser tu abuela (mi''jo|mi hijo|mijito)'
   translations:
     en: And (I'm|I am) proud (to be|of being) your (grandmother|grandma), (son|honey|sweetie|my boy|dear).
@@ -370,7 +370,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por último, les pido que levanten sus copas.
-      tokens: [{surface: Por, lexeme: por}, {surface: último, lexeme: último, feats: {Gender: Masc, Number: Sing}}, {surface: les, lexeme: le, feats: {Number: Plur}}, {surface: pido, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: levanten, lexeme: levantar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sus, lexeme: su, feats: {Gender: Fem, Number: Plur}}, {surface: copas, lexeme: copa, feats: {Number: Plur}}]
+      tokens: [{surface: Por, lexeme: por}, {surface: último, lexeme: último, feats: {Gender: Masc, Number: Sing}}, {surface: les, lexeme: le, feats: {Number: Plur}}, {surface: pido, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: levanten, lexeme: levantar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sus, lexeme: su, feats: {Gender: Fem, Number: Plur}, n: 7, head: 8, rel: det}, {surface: copas, lexeme: copa, feats: {Number: Plur}, n: 8}]
       reverse: (Por último|Finalmente) [yo] les pido que levanten sus copas
   translations:
     en: (Finally|Lastly|Last of all), I ask (you|you all|all of you) to raise your glasses.
@@ -379,7 +379,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Levantemos las copas por abuela Cachita!
-      tokens: [{surface: Levantemos, lexeme: levantar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: copas, lexeme: copa, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}]
+      tokens: [{surface: Levantemos, lexeme: levantar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 2, head: 3, rel: det}, {surface: copas, lexeme: copa, feats: {Number: Plur}, n: 3}, {surface: por, lexeme: por}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}]
       reverse: |-
         (Levantemos|Alcemos) las copas por (abuela|la abuela) Cachita
         ¡Vamos a levantar las copas por abuela Cachita!
@@ -390,7 +390,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Brindemos por abuela, por la familia y por el futuro.
-      tokens: [{surface: Brindemos, lexeme: brindar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: futuro, lexeme: futuro, feats: {Number: Sing}}]
+      tokens: [{surface: Brindemos, lexeme: brindar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 6}, {surface: y, lexeme: y}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: futuro, lexeme: futuro, feats: {Number: Sing}, n: 10}]
       reverse: |-
         Brindemos por (abuela|la abuela) por la familia y por el futuro
         Vamos a brindar por abuela, por la familia y por el futuro
@@ -440,7 +440,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es la noche del cumpleaños de abuela, y toda la familia está en el patio.
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 3}, {surface: del, lexeme: del}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 9, head: 11, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 11}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 14, head: 15, rel: det}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 15}]
       translations:
         en: It's the night of Grandma's birthday, and the whole family is in the yard.
   - line:
@@ -448,7 +448,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel, ¿tú vas a hacer el brindis en español o en espanglish?
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: brindis, lexeme: brindis, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}, {surface: o, lexeme: o}, {surface: en, lexeme: en}, {surface: espanglish, lexeme: espanglish, feats: {Number: Sing}}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: brindis, lexeme: brindis, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}, {surface: o, lexeme: o}, {surface: en, lexeme: en}, {surface: espanglish, lexeme: espanglish, feats: {Number: Sing}}]
       translations:
         en: Daniel, are you going to make the toast in Spanish or in Spanglish?
   - line:
@@ -464,7 +464,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Oigan todos! Mi nieto quiere decir unas palabras.
-          tokens: [{surface: Oigan, lexeme: oír, feats: {Mood: Imp, Number: Plur, Person: '3', VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: nieto, lexeme: nieto, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: decir, lexeme: decir, feats: {VerbForm: Inf}}, {surface: unas, lexeme: un, feats: {Gender: Fem, Number: Plur}}, {surface: palabras, lexeme: palabra, feats: {Number: Plur}}]
+          tokens: [{surface: Oigan, lexeme: oír, feats: {Mood: Imp, Number: Plur, Person: '3', VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: nieto, lexeme: nieto, feats: {Number: Sing}, n: 4}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: decir, lexeme: decir, feats: {VerbForm: Inf}}, {surface: unas, lexeme: un, feats: {Gender: Fem, Number: Plur}, n: 7, head: 8, rel: det}, {surface: palabras, lexeme: palabra, feats: {Number: Plur}, n: 8}]
       translations:
         en: Listen, everybody! My grandson wants to say a few words.
   - line:
@@ -473,7 +473,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Buenas noches a todos. Quisiera hacer un brindis por abuela.
-          tokens: [{surface: Buenas, lexeme: bueno, feats: {Gender: Fem, Number: Plur}}, {surface: noches, lexeme: noche, feats: {Number: Plur}}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: Quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: brindis, lexeme: brindis, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+          tokens: [{surface: Buenas, lexeme: bueno, feats: {Gender: Fem, Number: Plur}, n: 1, head: 2, rel: amod}, {surface: noches, lexeme: noche, feats: {Number: Plur}, n: 2}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: Quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: brindis, lexeme: brindis, feats: {Number: Sing}, n: 8}, {surface: por, lexeme: por}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       translations:
         en: Good evening, everyone. I would like to make a toast to Grandma.
   - line:
@@ -481,7 +481,7 @@ stories:
       forms:
         es-Latn/standard:
           text: En primer lugar, gracias a todos por venir esta noche.
-          tokens: [{surface: En, lexeme: en}, {surface: primer, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}}, {surface: gracias, lexeme: gracias}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: por, lexeme: por}, {surface: venir, lexeme: venir, feats: {VerbForm: Inf}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+          tokens: [{surface: En, lexeme: en}, {surface: primer, lexeme: primero, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: amod}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}, n: 3}, {surface: gracias, lexeme: gracias}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: por, lexeme: por}, {surface: venir, lexeme: venir, feats: {VerbForm: Inf}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 10}]
       translations:
         en: First of all, thank you all for coming tonight.
   - line:
@@ -489,7 +489,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, tú viniste por el Mariel sin nada. Sin embargo, nos diste todo.
-          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: viniste, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Mariel, lexeme: mariel}, {surface: sin, lexeme: sin}, {surface: nada, lexeme: nada}, {surface: Sin, lexeme: sin-embargo}, {surface: embargo, lexeme: sin-embargo}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: diste, lexeme: dar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: viniste, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Mariel, lexeme: mariel, n: 6}, {surface: sin, lexeme: sin}, {surface: nada, lexeme: nada}, {surface: Sin, lexeme: sin-embargo}, {surface: embargo, lexeme: sin-embargo}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: diste, lexeme: dar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}]
       translations:
         en: Grandma, you came over in the Mariel boatlift with nothing. And yet you gave us everything.
   - choose:
@@ -510,7 +510,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Tía Marisol, aunque estés lejos, siempre tienes un lugar en esta mesa.
-          tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: aunque, lexeme: aunque}, {surface: estés, lexeme: estar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: siempre, lexeme: siempre}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: mesa, lexeme: mesa, feats: {Number: Sing}}]
+          tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: aunque, lexeme: aunque}, {surface: estés, lexeme: estar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: siempre, lexeme: siempre}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}, n: 9}, {surface: en, lexeme: en}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: mesa, lexeme: mesa, feats: {Number: Sing}, n: 12}]
       translations:
         en: Aunt Marisol, even though you're far away, you always have a place at this table.
   - line:
@@ -518,7 +518,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Ay, mi niño, me vas a hacer llorar!
-          tokens: [{surface: Ay, lexeme: ay}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}}, {surface: me, lexeme: me}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: llorar, lexeme: llorar, feats: {VerbForm: Inf}}]
+          tokens: [{surface: Ay, lexeme: ay}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}, n: 3}, {surface: me, lexeme: me}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: llorar, lexeme: llorar, feats: {VerbForm: Inf}}]
       translations:
         en: Oh, my boy, you're going to make me cry!
   - line:
@@ -526,7 +526,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Papi, a pesar de que eras un niño, saliste de Cienfuegos en una balsa.
-          tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: a, lexeme: a-pesar-de}, {surface: pesar, lexeme: a-pesar-de}, {surface: de, lexeme: a-pesar-de}, {surface: que, lexeme: que}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}}, {surface: saliste, lexeme: salir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cienfuegos, lexeme: cienfuegos}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: balsa, lexeme: balsa, feats: {Number: Sing}}]
+          tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: a, lexeme: a-pesar-de}, {surface: pesar, lexeme: a-pesar-de}, {surface: de, lexeme: a-pesar-de}, {surface: que, lexeme: que}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}, n: 8}, {surface: saliste, lexeme: salir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cienfuegos, lexeme: cienfuegos}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 13, head: 14, rel: det}, {surface: balsa, lexeme: balsa, feats: {Number: Sing}, n: 14}]
       translations:
         en: Dad, even though you were just a boy, you left Cienfuegos on a raft.
   - line:
@@ -550,7 +550,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi español viene de tu cocina, abuela, y de tus refranes.
-          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: español, lexeme: español, feats: {Number: Sing}}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: de, lexeme: de}, {surface: tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}}, {surface: refranes, lexeme: refrán, feats: {Number: Plur}}]
+          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: español, lexeme: español, feats: {Number: Sing}, n: 2}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 6}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: de, lexeme: de}, {surface: tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}, n: 10, head: 11, rel: det}, {surface: refranes, lexeme: refrán, feats: {Number: Plur}, n: 11}]
       translations:
         en: My Spanish comes from your kitchen, Grandma, and from your sayings.
   - line:
@@ -559,7 +559,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Por último, ¡levantemos las copas! ¡Que cumplas muchos más, abuela!
-          tokens: [{surface: Por, lexeme: por}, {surface: último, lexeme: último, feats: {Gender: Masc, Number: Sing}}, {surface: levantemos, lexeme: levantar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: copas, lexeme: copa, feats: {Number: Plur}}, {surface: Que, lexeme: que}, {surface: cumplas, lexeme: cumplir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: más, lexeme: más}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+          tokens: [{surface: Por, lexeme: por}, {surface: último, lexeme: último, feats: {Gender: Masc, Number: Sing}}, {surface: levantemos, lexeme: levantar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 4, head: 5, rel: det}, {surface: copas, lexeme: copa, feats: {Number: Plur}, n: 5}, {surface: Que, lexeme: que}, {surface: cumplas, lexeme: cumplir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: más, lexeme: más}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       translations:
         en: Finally, let's raise our glasses! Many happy returns, Grandma!
   - line:
@@ -580,7 +580,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ay, mi'jo, ese español es el más lindo del mundo, porque viene del corazón.
-          tokens: [{surface: Ay, lexeme: ay}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: español, lexeme: español, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: más, lexeme: más}, {surface: lindo, lexeme: lindo, feats: {Gender: Masc, Number: Sing}}, {surface: del, lexeme: del}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}}, {surface: porque, lexeme: porque}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: corazón, lexeme: corazón, feats: {Number: Sing}}]
+          tokens: [{surface: Ay, lexeme: ay}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: español, lexeme: español, feats: {Number: Sing}, n: 4}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: más, lexeme: más}, {surface: lindo, lexeme: lindo, feats: {Gender: Masc, Number: Sing}}, {surface: del, lexeme: del}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}}, {surface: porque, lexeme: porque}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: corazón, lexeme: corazón, feats: {Number: Sing}}]
       translations:
         en: Oh, son, that Spanish is the most beautiful in the world, because it comes from the heart.
   - choose:
@@ -596,14 +596,14 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Esta rosa blanca es para todos: los de aquí y los de allá.'
-          tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: rosa, lexeme: rosa, feats: {Number: Sing}}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: de, lexeme: de}, {surface: aquí, lexeme: aquí}, {surface: y, lexeme: y}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: de, lexeme: de}, {surface: allá, lexeme: allá}]
+          tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: rosa, lexeme: rosa, feats: {Number: Sing}, n: 2}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: de, lexeme: de}, {surface: aquí, lexeme: aquí}, {surface: y, lexeme: y}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: de, lexeme: de}, {surface: allá, lexeme: allá}]
       translations:
         en: 'This white rose is for everyone: those here and those over there.'
   - line:
       forms:
         es-Latn/standard:
           text: Abuela se levanta y le da un abrazo a su nieto.
-          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: levanta, lexeme: levantarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: le, lexeme: le}, {surface: da, lexeme: dar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: abrazo, lexeme: abrazo, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: nieto, lexeme: nieto, feats: {Number: Sing}}]
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: levanta, lexeme: levantarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: le, lexeme: le}, {surface: da, lexeme: dar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abrazo, lexeme: abrazo, feats: {Number: Sing}, n: 8}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: nieto, lexeme: nieto, feats: {Number: Sing}, n: 11}]
       translations:
         en: Grandma stands up and gives her grandson a hug.
 scenarios:

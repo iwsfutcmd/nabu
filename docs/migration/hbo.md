@@ -110,6 +110,80 @@ the plan's, drafted (REVIEW); the counts are this course's lexemes.
 | lexical feature chosen by the token | 2 |
 | lexical feature unknown | 2 |
 
+**Endings a default could still cover:** among the lexemes that store the feature
+with no default for their ending, these endings always go with one value (three
+lexemes or more). Each is a candidate, not a finding: a course's words are few.
+
+| Ending | Value | Lexemes | Such as |
+|---|---|---|---|
+| -ם | Gender=Fem | 5 | תְּהוֹם, שְׁכֶם, מִצְרַיִם, אֵם, פַּעַם |
+| -ש | Gender=Fem | 3 | אֵשׁ, נֶפֶשׁ, תַּרְשִׁישׁ |
+
+## Dimensions
+
+What every member of a category must choose (ADR 0145), as the plan declares it, and
+how many tokens say a value of each: on themselves, or by an ending written on them.
+A token that leaves one unsaid is the unmarked form, or one the course's annotation
+has no name for.
+
+| Category | Dimension | Tokens that say it | Tokens that do not |
+|---|---|---|---|
+| VERB | Aspect | 214 | 471 |
+| VERB | Tense | 227 | 458 |
+| VERB | Mood | 532 | 153 |
+| VERB | VerbForm | 672 | 13 |
+| VERB | Person | 497 | 188 |
+| VERB | Gender | 500 | 185 |
+| VERB | Number | 569 | 116 |
+| NOUN | Number | 875 | 0 |
+| NOUN | Definite | 81 | 794 |
+| ADJ | Gender | 57 | 0 |
+| ADJ | Number | 57 | 0 |
+
+**Values no dimension declares:** tokens carry them all the same. A category whose
+members do not all inflect (a pronoun, a set phrase said to a woman), or a lexeme
+tagged as another category than it behaves as.
+
+| Category | Feature | Tokens | Lexemes, the commonest first |
+|---|---|---|---|
+| ADJ | VerbForm | 2 | barukh |
+| ADJ | Voice | 2 | barukh |
+| DET | Definite | 16 | kol, meat |
+| DET | Gender | 10 | zot, meat |
+| DET | Number | 15 | zot, elleh, meat |
+| NOUN | Gender | 11 | raah.evil, ivri |
+| PRON | Gender | 19 | hem, at, hi |
+| PRON | Number | 19 | hem, at, hi |
+| PROPN | Number | 199 | yhwh, shmuel, hevel, avraham, qayin, yisrael |
+| VERB | Voice | 6 | yalad, akhal, nata |
+
+## Clips
+
+The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
+by its KC id; these are the clips whose item has one name in the new shape, which the
+switch renames and changes nothing else of. In a cast of several voices the voice
+each has today is pinned (`courses/hbo/next/audio/assignment.yaml`), since a voice
+is drawn by the item's id (ADR 0078).
+
+|  | Clips |
+|---|---|
+| clips | 1025 |
+| clips keyed by a KC | 146 |
+| clips renamed with their item | 146 |
+
+## Relations
+
+Drafted by the plan's rules (`relations`): a link is written only where the values
+agree and nothing but the words a rule may skip stands between. What is left bare
+waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).
+
+|  | Lexemes |
+|---|---|
+| ADJ with values and no relation | 33 |
+| amod: written | 24 |
+| case: written | 183 |
+| det: written | 258 |
+
 ## Lexemes that break a default (28)
 
 The entry stores the feature, and it is a part to learn (ADR 0146). Check each: a wrong default makes parts of regular words, a missing one hides an exception.

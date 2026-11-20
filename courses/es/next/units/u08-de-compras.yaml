@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Una jaba?
-      tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}}]
+      tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}, n: 2}]
       reverse: Una (jaba|bolsa)
   translations:
     en: |-
@@ -30,7 +30,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sí, necesito una jaba.
-      tokens: [{surface: Sí, lexeme: sí}, {surface: necesito, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}}]
+      tokens: [{surface: Sí, lexeme: sí}, {surface: necesito, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}, n: 4}]
       reverse: Sí [yo] necesito una (jaba|bolsa)
   translations:
     en: Yes, I need a bag.
@@ -39,7 +39,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú necesitas una jaba?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: necesitas, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: necesitas, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}, n: 4}]
       reverse: (Tú necesitas|Necesitas [tú]|Usted necesita|Necesita [usted]|Ustedes necesitan|Necesitan [ustedes]) una (jaba|bolsa)
   translations:
     en: Do you need a bag?
@@ -48,7 +48,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela necesita un pomo.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: necesita, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: necesita, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}, n: 4}]
       reverse: (Abuela|Mi abuela|La abuela) necesita (un (pomo|frasco)|una botella)
   translations:
     en: |-
@@ -59,7 +59,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo compro el pomo.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}, n: 4}]
       reverse: '[Yo] compro (el (pomo|frasco)|la botella)'
   translations:
     en: |-
@@ -71,7 +71,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel compra la jaba y el pomo.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: compra, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: compra, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}, n: 7}]
       reverse: Daniel compra la (jaba|bolsa) y (el (pomo|frasco)|la botella)
   translations:
     en: Daniel (buys|is buying|will buy) the bag and the (bottle|jar).
@@ -80,7 +80,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú compras las jabas?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: compras, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: jabas, lexeme: jaba, feats: {Number: Plur}}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: compras, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 3, head: 4, rel: det}, {surface: jabas, lexeme: jaba, feats: {Number: Plur}, n: 4}]
       reverse: (Tú compras|Compras [tú]|Usted compra|Compra [usted]|Ustedes compran|Compran [ustedes]) las (jabas|bolsas)
   translations:
     en: |-
@@ -103,7 +103,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuánto cuesta el pomo?
-      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}}]
+      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}, n: 4}]
       reverse: |-
         Cuánto (cuesta|vale) (el (pomo|frasco)|la botella)
         ¿Cuánto es el pomo?
@@ -116,7 +116,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuesta un dólar.
-      tokens: [{surface: Cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: dólar, lexeme: dólar, feats: {Number: Sing}}]
+      tokens: [{surface: Cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: dólar, lexeme: dólar, feats: {Number: Sing}, n: 3}]
       reverse: (Cuesta|Vale|Es) un dólar
   translations:
     en: |-
@@ -142,7 +142,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La jaba cuesta diez pesos.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: diez, lexeme: diez}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}, n: 2}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: diez, lexeme: diez}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}]
       reverse: La (jaba|bolsa) (cuesta|vale|es) diez pesos
   translations:
     en: The bag (costs|is) ten pesos.
@@ -151,7 +151,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Un peso? ¡Qué barato!
-      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: peso, lexeme: peso, feats: {Number: Sing}}, {surface: Qué, lexeme: qué}, {surface: barato, lexeme: barato, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: peso, lexeme: peso, feats: {Number: Sing}, n: 2}, {surface: Qué, lexeme: qué}, {surface: barato, lexeme: barato, feats: {Gender: Masc, Number: Sing}}]
       reverse: Un peso (qué barato|está muy barato|muy barato)
   translations:
     en: |-
@@ -182,7 +182,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Necesito un pulóver.
-      tokens: [{surface: Necesito, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}}]
+      tokens: [{surface: Necesito, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 3}]
       reverse: '[Yo] necesito (un pulóver|una camiseta|una playera)'
   translations:
     en: |-
@@ -193,7 +193,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuánto cuesta ese pulóver?
-      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}}]
+      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 4}]
       reverse: |-
         Cuánto (cuesta|vale) (ese pulóver|esa camiseta|esa playera)
         ¿Cuánto es ese pulóver?
@@ -207,7 +207,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ese pulóver rojo cuesta diez dólares.
-      tokens: [{surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}}, {surface: rojo, lexeme: rojo, feats: {Gender: Masc, Number: Sing}}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: diez, lexeme: diez}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}]
+      tokens: [{surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 2}, {surface: rojo, lexeme: rojo, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: diez, lexeme: diez}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}]
       reverse: |-
         (Ese pulóver rojo|Esa camiseta roja|Esa playera roja) (cuesta|vale|es) diez dólares
         Aquel pulóver rojo cuesta diez dólares.
@@ -218,7 +218,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Necesito un pulóver blanco.
-      tokens: [{surface: Necesito, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}}, {surface: blanco, lexeme: blanco, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Necesito, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 3}, {surface: blanco, lexeme: blanco, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: '[Yo] necesito (un pulóver blanco|una camiseta blanca|una playera blanca)'
   translations:
     en: I need a white T-shirt.
@@ -227,7 +227,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La jaba azul es barata.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}}, {surface: azul, lexeme: azul, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: barata, lexeme: barato, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}, n: 2}, {surface: azul, lexeme: azul, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: barata, lexeme: barato, feats: {Gender: Fem, Number: Sing}}]
       reverse: La (jaba|bolsa) azul es barata
   translations:
     en: The blue bag is (cheap|inexpensive).
@@ -236,7 +236,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú compras esa jaba roja?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: compras, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: esa, lexeme: ese, feats: {Gender: Fem, Number: Sing}}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}}, {surface: roja, lexeme: rojo, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: compras, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: esa, lexeme: ese, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}, n: 4}, {surface: roja, lexeme: rojo, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}]
       reverse: |-
         (Tú compras|Compras [tú]|Usted compra|Compra [usted]|Ustedes compran|Compran [ustedes]) esa (jaba|bolsa) roja
         ¿Tú compras aquella jaba roja?
@@ -249,7 +249,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo compro el pulóver blanco y el azul.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}}, {surface: blanco, lexeme: blanco, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: azul, lexeme: azul, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 4}, {surface: blanco, lexeme: blanco, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: azul, lexeme: azul, feats: {Gender: Masc, Number: Sing}}]
       reverse: |-
         [Yo] compro el pulóver blanco y el azul
         [Yo] compro la (camiseta|playera) blanca y la azul
@@ -263,7 +263,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nosotros necesitamos una jaba.
-      tokens: [{surface: Nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: necesitamos, lexeme: necesitar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}}]
+      tokens: [{surface: Nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: necesitamos, lexeme: necesitar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: jaba, lexeme: jaba, feats: {Number: Sing}, n: 4}]
       reverse: '[(Nosotros|Nosotras)] necesitamos una (jaba|bolsa)'
   translations:
     en: We need a bag.
@@ -272,7 +272,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Compramos el pulóver azul.
-      tokens: [{surface: Compramos, lexeme: comprar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}}, {surface: azul, lexeme: azul, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Compramos, lexeme: comprar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 3}, {surface: azul, lexeme: azul, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: '[(Nosotros|Nosotras)] compramos (el pulóver|la camiseta|la playera) azul'
   translations:
     en: |-
@@ -297,7 +297,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ellos necesitan un pomo.
-      tokens: [{surface: Ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: necesitan, lexeme: necesitar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}}]
+      tokens: [{surface: Ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: necesitan, lexeme: necesitar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}, n: 4}]
       reverse: '[(Ellos|Ellas)] necesitan (un (pomo|frasco)|una botella)'
   translations:
     en: They need a (bottle|jar).
@@ -308,7 +308,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes pagan los pulóveres?
-      tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: pagan, lexeme: pagar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: pulóveres, lexeme: pulóver, feats: {Number: Plur}}]
+      tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: pagan, lexeme: pagar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: pulóveres, lexeme: pulóver, feats: {Number: Plur}, n: 4}]
       reverse: (Ustedes pagan|Pagan [ustedes]) (los pulóveres|las camisetas|las playeras)
   translations:
     en: |-
@@ -341,7 +341,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Compramos en el agro.
-      tokens: [{surface: Compramos, lexeme: comprar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}}]
+      tokens: [{surface: Compramos, lexeme: comprar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 4}]
       reverse: '[(Nosotros|Nosotras)] compramos en el (agro|agromercado|mercado)'
   translations:
     en: (We shop|We buy|We're shopping|We are shopping) (at|in) the (farmers' market|market).
@@ -350,7 +350,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En el agro venden mangos.
-      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}}, {surface: venden, lexeme: vender, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}]
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 3}, {surface: venden, lexeme: vender, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}]
       reverse: |-
         En el (agro|agromercado|mercado) venden mangos
         Venden mangos en el (agro|agromercado|mercado)
@@ -366,7 +366,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuánto cuestan los mangos?
-      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuestan, lexeme: costar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}]
+      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuestan, lexeme: costar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: mangos, lexeme: mango, feats: {Number: Plur}, n: 4}]
       reverse: (Cuánto (cuestan|valen)|A cómo están|A cuánto están) los mangos
   translations:
     en: |-
@@ -401,7 +401,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En la shopping pagamos en dólares.
-      tokens: [{surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: shopping, lexeme: shopping, feats: {Number: Sing}}, {surface: pagamos, lexeme: pagar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}]
+      tokens: [{surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: shopping, lexeme: shopping, feats: {Number: Sing}, n: 3}, {surface: pagamos, lexeme: pagar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}]
       reverse: |-
         En la (shopping|tienda) [(nosotros|nosotras)] pagamos en dólares
         [(Nosotros|Nosotras)] pagamos en dólares en la (shopping|tienda)
@@ -414,7 +414,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo compro mangos en el agro, no en la shopping.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: shopping, lexeme: shopping, feats: {Number: Sing}}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 6}, {surface: 'no', lexeme: 'no'}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: shopping, lexeme: shopping, feats: {Number: Sing}, n: 10}]
       reverse: '[Yo] compro mangos en el (agro|agromercado|mercado) no en la (shopping|tienda)'
   translations:
     en: I buy (mangoes|mangos) (at|in) the (farmers' market|market), not (at|in) the (store|shop|hard currency store|dollar store).
@@ -466,7 +466,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Hola, mi vida. ¿Cuánto cuestan los mangos?
-          tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: Cuánto, lexeme: cuánto}, {surface: cuestan, lexeme: costar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}]
+          tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 3}, {surface: Cuánto, lexeme: cuánto}, {surface: cuestan, lexeme: costar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det}, {surface: mangos, lexeme: mango, feats: {Number: Plur}, n: 7}]
       translations:
         en: Hi, dear. How much are the mangoes?
   - line:
@@ -479,7 +479,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Cuestan un dólar, señora.
-          tokens: [{surface: Cuestan, lexeme: costar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: dólar, lexeme: dólar, feats: {Number: Sing}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
+          tokens: [{surface: Cuestan, lexeme: costar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: dólar, lexeme: dólar, feats: {Number: Sing}, n: 3}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
       translations:
         en: They're a dollar, ma'am.
   - line:
@@ -487,7 +487,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Un dólar? ¡Qué caro!
-          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: dólar, lexeme: dólar, feats: {Number: Sing}}, {surface: Qué, lexeme: qué}, {surface: caro, lexeme: caro, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: dólar, lexeme: dólar, feats: {Number: Sing}, n: 2}, {surface: Qué, lexeme: qué}, {surface: caro, lexeme: caro, feats: {Gender: Masc, Number: Sing}}]
       translations:
         en: A dollar? So expensive!
   - choose:
@@ -503,7 +503,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, un dólar es muy barato.
-          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: dólar, lexeme: dólar, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: barato, lexeme: barato, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: dólar, lexeme: dólar, feats: {Number: Sing}, n: 3}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: barato, lexeme: barato, feats: {Gender: Masc, Number: Sing}}]
       translations:
         en: Grandma, a dollar is really cheap.
   - line:
@@ -512,7 +512,7 @@ stories:
       forms:
         es-Latn/standard:
           text: En Cuba los mangos son muy baratos.
-          tokens: [{surface: En, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: baratos, lexeme: barato, feats: {Gender: Masc, Number: Plur}}]
+          tokens: [{surface: En, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: mangos, lexeme: mango, feats: {Number: Plur}, n: 4}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: baratos, lexeme: barato, feats: {Gender: Masc, Number: Plur}}]
       translations:
         en: In Cuba mangoes are really cheap.
   - line:
@@ -528,7 +528,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Diez mangos, mi vida.
-          tokens: [{surface: Diez, lexeme: diez}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+          tokens: [{surface: Diez, lexeme: diez}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 4}]
       translations:
         en: Ten mangoes, dear.
   - line:
@@ -573,7 +573,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ustedes no pagan, señora. ¡Usted es mi abuela también!
-          tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: 'no', lexeme: 'no'}, {surface: pagan, lexeme: pagar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Usted, lexeme: usted}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: también, lexeme: también}]
+          tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: 'no', lexeme: 'no'}, {surface: pagan, lexeme: pagar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Usted, lexeme: usted}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 8}, {surface: también, lexeme: también}]
       translations:
         en: You're not paying, ma'am. You're my grandma too!
   - choose:

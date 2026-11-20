@@ -255,7 +255,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: Κρίτων Ἀθηναῖός ἐστιν.
-      tokens: [{surface: Κρίτων, lexeme: kriton, feats: {Case: Nom, Number: Sing}, readings: {attic: Κρῐ́των}}, {surface: Ἀθηναῖός, lexeme: athenaios, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: Ᾰ̓θηναῖός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
+      tokens: [{surface: Κρίτων, lexeme: kriton, feats: {Case: Nom, Number: Sing}, n: 1, readings: {attic: Κρῐ́των}}, {surface: Ἀθηναῖός, lexeme: athenaios, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod, readings: {attic: Ᾰ̓θηναῖός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
       reverse: |-
         Κρίτων Ἀθηναῖός ἐστιν
         ὁ Κρίτων Ἀθηναῖός ἐστι[ν]
@@ -364,7 +364,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ γλῶττα.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἡ}}, {surface: γλῶττα, lexeme: glotta, feats: {Case: Nom, Number: Sing}, readings: {attic: γλῶττᾰ}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: γλῶττα, lexeme: glotta, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: γλῶττᾰ}}]
       reverse: ἡ γλῶττα
   translations:
     en: The (tongue|language).
@@ -373,7 +373,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τί λέγει ὁ παῖς;
-      tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: λέγει, lexeme: lego, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: λέγει}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: παῖς}}]
+      tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: λέγει, lexeme: lego, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: λέγει}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 4, readings: {attic: παῖς}}]
       reverse: |-
         τί λέγει ὁ παῖς
         τί ὁ παῖς λέγει
@@ -445,7 +445,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τὴν γλῶτταν μανθάνομεν.
-      tokens: [{surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, readings: {attic: τὴν}}, {surface: γλῶτταν, lexeme: glotta, feats: {Case: Acc, Number: Sing}, readings: {attic: γλῶττᾰν}}, {surface: μανθάνομεν, lexeme: manthano, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: μᾰνθᾰ́νομεν}}]
+      tokens: [{surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: τὴν}}, {surface: γλῶτταν, lexeme: glotta, feats: {Case: Acc, Number: Sing}, n: 2, readings: {attic: γλῶττᾰν}}, {surface: μανθάνομεν, lexeme: manthano, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: μᾰνθᾰ́νομεν}}]
       reverse: |-
         τὴν γλῶτταν μανθάνομεν
         μανθάνομεν τὴν γλῶτταν
@@ -465,7 +465,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ παῖς γράφει.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: παῖς}}, {surface: γράφει, lexeme: grapho, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: γρᾰ́φει}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, readings: {attic: παῖς}}, {surface: γράφει, lexeme: grapho, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: γρᾰ́φει}}]
       reverse: |-
         ὁ παῖς γράφει
         γράφει ὁ παῖς
@@ -506,7 +506,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ παῖς Ἕλλην ἐστίν.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: παῖς}}, {surface: Ἕλλην, lexeme: hellen, feats: {Case: Nom, Number: Sing}, readings: {attic: Ἕλλην}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, readings: {attic: παῖς}}, {surface: Ἕλλην, lexeme: hellen, feats: {Case: Nom, Number: Sing}, readings: {attic: Ἕλλην}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
       reverse: |-
         ὁ παῖς Ἕλλην ἐστίν
         Ἕλλην ἐστὶ[ν] ὁ παῖς

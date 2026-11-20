@@ -18,7 +18,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַשָּׁמַיִם
-      tokens: [{surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: haššāmáyim}}]
+      tokens: [{surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}, n: 2}], readings: {tiberian: haššāmáyim}}]
       reverse: השמים
   translations:
     en: |-
@@ -29,7 +29,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ
-      tokens: [{surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: הארץ
   translations:
     en: |-
@@ -40,7 +40,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַשָּׁמַיִם וְהָאָרֶץ
-      tokens: [{surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: haššāmáyim}}, {surface: וְהָאָרֶץ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: wəhāʾā́reṣ}}]
+      tokens: [{surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}, n: 2}], readings: {tiberian: haššāmáyim}}, {surface: וְהָאָרֶץ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: wəhāʾā́reṣ}}]
       reverse: השמים והארץ
   translations:
     en: |-
@@ -51,7 +51,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בָּרָא אֱלֹהִים אֶת־הָאוֹר׃
-      tokens: [{surface: בָּרָא, lexeme: bara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הָאוֹר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: or, surface: אוֹר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾôr}}]
+      tokens: [{surface: בָּרָא, lexeme: bara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הָאוֹר, lexemes: [{lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: or, surface: אוֹר, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: hāʾôr}}]
       reverse: |-
         ברא (אלהים|אלוהים) את האור
         (אלהים|אלוהים) ברא את האור
@@ -64,7 +64,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בָּרָא אֱלֹהִים אֶת־הַשָּׁמַיִם׃
-      tokens: [{surface: בָּרָא, lexeme: bara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: haššāmáyim}}]
+      tokens: [{surface: בָּרָא, lexeme: bara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ, n: 4, head: 5, rel: det}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}, n: 5}], readings: {tiberian: haššāmáyim}}]
       reverse: |-
         ברא (אלהים|אלוהים) את השמים
         (אלהים|אלוהים) ברא את השמים
@@ -77,7 +77,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בַּבֹּקֶר
-      tokens: [{surface: בַּבֹּקֶר, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: boqer, surface: בֹּקֶר, base: true, feats: {Number: Sing}}], readings: {tiberian: babbṓqer}}]
+      tokens: [{surface: בַּבֹּקֶר, lexemes: [{lexeme: be, surface: בַּ, n: 1, head: 2, rel: case}, {lexeme: boqer, surface: בֹּקֶר, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: babbṓqer}}]
       reverse: (בבקר|בבוקר)
   translations:
     en: in the morning
@@ -86,7 +86,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בָּעֶרֶב
-      tokens: [{surface: בָּעֶרֶב, lexemes: [{lexeme: be, surface: בָּ}, {lexeme: erev, surface: עֶרֶב, base: true, feats: {Number: Sing}}], readings: {tiberian: bāʿéreḇ}}]
+      tokens: [{surface: בָּעֶרֶב, lexemes: [{lexeme: be, surface: בָּ, n: 1, head: 2, rel: case}, {lexeme: erev, surface: עֶרֶב, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: bāʿéreḇ}}]
       reverse: בערב
   translations:
     en: |-
@@ -97,7 +97,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בַּלַּיְלָה
-      tokens: [{surface: בַּלַּיְלָה, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: layla, surface: לַּיְלָה, base: true, feats: {Number: Sing}}], readings: {tiberian: balláylâ}}]
+      tokens: [{surface: בַּלַּיְלָה, lexemes: [{lexeme: be, surface: בַּ, n: 1, head: 2, rel: case}, {lexeme: layla, surface: לַּיְלָה, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: balláylâ}}]
       reverse: בלילה
   translations:
     en: |-
@@ -108,7 +108,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בַּיּוֹם
-      tokens: [{surface: בַּיּוֹם, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: yom, surface: יּוֹם, base: true, feats: {Number: Sing}}], readings: {tiberian: bayyôm}}]
+      tokens: [{surface: בַּיּוֹם, lexemes: [{lexeme: be, surface: בַּ, n: 1, head: 2, rel: case}, {lexeme: yom, surface: יּוֹם, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: bayyôm}}]
       reverse: ביום
   translations:
     en: |-
@@ -120,7 +120,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בָּאָרֶץ
-      tokens: [{surface: בָּאָרֶץ, lexemes: [{lexeme: be, surface: בָּ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: bāʾā́reṣ}}]
+      tokens: [{surface: בָּאָרֶץ, lexemes: [{lexeme: be, surface: בָּ, n: 1, head: 2, rel: case}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: bāʾā́reṣ}}]
       reverse: בארץ
   translations:
     en: |-
@@ -131,7 +131,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בַּשָּׁמַיִם
-      tokens: [{surface: בַּשָּׁמַיִם, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: baššāmáyim}}]
+      tokens: [{surface: בַּשָּׁמַיִם, lexemes: [{lexeme: be, surface: בַּ, n: 1, head: 2, rel: case}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}, n: 2}], readings: {tiberian: baššāmáyim}}]
       reverse: בשמים
   translations:
     en: |-
@@ -142,7 +142,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בְּרֵאשִׁית
-      tokens: [{surface: בְּרֵאשִׁית, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: reshit, surface: רֵאשִׁית, base: true, feats: {Number: Sing}}], readings: {tiberian: bərēʾšîṯ}}]
+      tokens: [{surface: בְּרֵאשִׁית, lexemes: [{lexeme: be, surface: בְּ, n: 1, head: 2, rel: case}, {lexeme: reshit, surface: רֵאשִׁית, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: bərēʾšîṯ}}]
       reverse: בראשית
   translations:
     en: |-
@@ -154,7 +154,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃
-      tokens: [{surface: בְּרֵאשִׁית, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: reshit, surface: רֵאשִׁית, base: true, feats: {Number: Sing}}], readings: {tiberian: bərēʾšîṯ}}, {surface: בָּרָא, lexeme: bara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֵת, lexeme: et, readings: {tiberian: ʾēṯ}}, {surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: haššāmáyim}}, {surface: וְאֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֵת, base: true}], readings: {tiberian: wəʾēṯ}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: בְּרֵאשִׁית, lexemes: [{lexeme: be, surface: בְּ, n: 1, head: 2, rel: case}, {lexeme: reshit, surface: רֵאשִׁית, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: bərēʾšîṯ}}, {surface: בָּרָא, lexeme: bara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֵת, lexeme: et, readings: {tiberian: ʾēṯ}}, {surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ, n: 6, head: 7, rel: det}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}, n: 7}], readings: {tiberian: haššāmáyim}}, {surface: וְאֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֵת, base: true}], readings: {tiberian: wəʾēṯ}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 10, head: 11, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 11}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: בראשית ברא (אלהים|אלוהים) את השמים ואת הארץ
   translations:
     en: |-
@@ -167,7 +167,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ טוֹבָה׃
-      tokens: [{surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}, {surface: טוֹבָה, lexeme: tov, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: ṭôḇâ}}]
+      tokens: [{surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾā́reṣ}}, {surface: טוֹבָה, lexeme: tov, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod, readings: {tiberian: ṭôḇâ}}]
       reverse: |-
         הארץ טובה
         טובה הארץ
@@ -181,7 +181,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ הָיְתָה טוֹבָה׃
-      tokens: [{surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}, {surface: הָיְתָה, lexeme: hayah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hāyəṯâ}}, {surface: טוֹבָה, lexeme: tov, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: ṭôḇâ}}]
+      tokens: [{surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾā́reṣ}}, {surface: הָיְתָה, lexeme: hayah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hāyəṯâ}}, {surface: טוֹבָה, lexeme: tov, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: ṭôḇâ}}]
       reverse: |-
         הארץ היתה טובה
         היתה הארץ טובה
@@ -194,7 +194,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַיּוֹם הָיָה טוֹב׃
-      tokens: [{surface: הַיּוֹם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yom, surface: יּוֹם, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyôm}}, {surface: הָיָה, lexeme: hayah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hāyâ}}, {surface: טוֹב, lexeme: tov, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ṭôḇ}}]
+      tokens: [{surface: הַיּוֹם, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: yom, surface: יּוֹם, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hayyôm}}, {surface: הָיָה, lexeme: hayah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hāyâ}}, {surface: טוֹב, lexeme: tov, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ṭôḇ}}]
       reverse: |-
         היום היה טוב
         היה היום טוב
@@ -205,7 +205,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֶרֶץ טוֹבָה
-      tokens: [{surface: אֶרֶץ, lexeme: erets, feats: {Number: Sing}, readings: {tiberian: ʾéreṣ}}, {surface: טוֹבָה, lexeme: tov, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: ṭôḇâ}}]
+      tokens: [{surface: אֶרֶץ, lexeme: erets, feats: {Number: Sing}, n: 1, readings: {tiberian: ʾéreṣ}}, {surface: טוֹבָה, lexeme: tov, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod, readings: {tiberian: ṭôḇâ}}]
       reverse: ארץ טובה
   translations:
     en: |-
@@ -216,7 +216,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ׃
-      tokens: [{surface: וְהָאָרֶץ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: wəhāʾā́reṣ}}, {surface: הָיְתָה, lexeme: hayah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hāyəṯâ}}, {surface: תֹהוּ, lexeme: tohu, feats: {Number: Sing}, readings: {tiberian: ṯṓhû}}, {surface: וָבֹהוּ, lexemes: [{lexeme: we, surface: וָ}, {lexeme: bohu, surface: בֹהוּ, base: true, feats: {Number: Sing}}], readings: {tiberian: wāḇṓhû}}]
+      tokens: [{surface: וְהָאָרֶץ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: wəhāʾā́reṣ}}, {surface: הָיְתָה, lexeme: hayah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hāyəṯâ}}, {surface: תֹהוּ, lexeme: tohu, feats: {Number: Sing}, readings: {tiberian: ṯṓhû}}, {surface: וָבֹהוּ, lexemes: [{lexeme: we, surface: וָ}, {lexeme: bohu, surface: בֹהוּ, base: true, feats: {Number: Sing}}], readings: {tiberian: wāḇṓhû}}]
       reverse: והארץ היתה (תהו|תוהו) (ובהו|ובוהו)
   translations:
     en: |-
@@ -230,7 +230,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ תֹהוּ׃
-      tokens: [{surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}, {surface: תֹהוּ, lexeme: tohu, feats: {Number: Sing}, readings: {tiberian: ṯṓhû}}]
+      tokens: [{surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾā́reṣ}}, {surface: תֹהוּ, lexeme: tohu, feats: {Number: Sing}, readings: {tiberian: ṯṓhû}}]
       reverse: הארץ (תהו|תוהו)
   translations:
     en: |-
@@ -241,7 +241,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עַל־הָאָרֶץ
-      tokens: [{surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: על הארץ
   translations:
     en: (on|upon|over) the (earth|land|ground)
@@ -250,7 +250,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: פְּנֵי הָאָרֶץ
-      tokens: [{surface: פְּנֵי, lexeme: panim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: pənê}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: פְּנֵי, lexeme: panim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: pənê}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: פני הארץ
   translations:
     en: the (face|surface) of the (earth|land|ground)
@@ -259,7 +259,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עַל־פְּנֵי הָאָרֶץ
-      tokens: [{surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, lexeme: panim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: pənê}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, lexeme: panim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: pənê}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 3, head: 4, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: על פני הארץ
   translations:
     en: (on|upon|over) the (face|surface) of the (earth|land|ground)
@@ -290,7 +290,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַחֹשֶׁךְ עַל־הָאָרֶץ׃
-      tokens: [{surface: הַחֹשֶׁךְ, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: hoshekh, surface: חֹשֶׁךְ, base: true, feats: {Number: Sing}}], readings: {tiberian: haḥṓšeḵ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: הַחֹשֶׁךְ, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: hoshekh, surface: חֹשֶׁךְ, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: haḥṓšeḵ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: |-
         (החשך|החושך) על הארץ
         על הארץ (החשך|החושך)
@@ -302,7 +302,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אוֹר עַל־הָאָרֶץ׃
-      tokens: [{surface: אוֹר, lexeme: or, feats: {Number: Sing}, readings: {tiberian: ʾôr}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: אוֹר, lexeme: or, feats: {Number: Sing}, readings: {tiberian: ʾôr}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 3, head: 4, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: |-
         אור על הארץ
         על הארץ אור
@@ -327,7 +327,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַמַּיִם טוֹבִים׃
-      tokens: [{surface: הַמַּיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: mayim, surface: מַּיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: hammáyim}}, {surface: טוֹבִים, lexeme: tov, feats: {Gender: Masc, Number: Plur}, readings: {tiberian: ṭôḇîm}}]
+      tokens: [{surface: הַמַּיִם, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: mayim, surface: מַּיִם, base: true, feats: {Number: Plur}, n: 2}], readings: {tiberian: hammáyim}}, {surface: טוֹבִים, lexeme: tov, feats: {Gender: Masc, Number: Plur}, n: 3, head: 2, rel: amod, readings: {tiberian: ṭôḇîm}}]
       reverse: |-
         המים טובים
         טובים המים
@@ -363,7 +363,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָרוּחַ מְרַחֶפֶת עַל־הַמַּיִם׃
-      tokens: [{surface: הָרוּחַ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ruach, surface: רוּחַ, base: true, feats: {Number: Sing}}], readings: {tiberian: hārûaḥ}}, {surface: מְרַחֶפֶת, lexeme: rachaf, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הַמַּיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: mayim, surface: מַּיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: hammáyim}}]
+      tokens: [{surface: הָרוּחַ, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: ruach, surface: רוּחַ, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hārûaḥ}}, {surface: מְרַחֶפֶת, lexeme: rachaf, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הַמַּיִם, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: mayim, surface: מַּיִם, base: true, feats: {Number: Plur}, n: 6}], readings: {tiberian: hammáyim}}]
       reverse: |-
         הרוח מרחפת על המים
         מרחפת הרוח על המים
@@ -374,7 +374,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם׃
-      tokens: [{surface: רוּחַ, lexeme: ruach, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: rûaḥ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: מְרַחֶפֶת, lexeme: rachaf, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, lexeme: panim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: pənê}}, {surface: הַמָּיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: mayim, surface: מָּיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: hammā́yim}}]
+      tokens: [{surface: רוּחַ, lexeme: ruach, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: rûaḥ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: מְרַחֶפֶת, lexeme: rachaf, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, lexeme: panim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: pənê}}, {surface: הַמָּיִם, lexemes: [{lexeme: ha, surface: הַ, n: 6, head: 7, rel: det}, {lexeme: mayim, surface: מָּיִם, base: true, feats: {Number: Plur}, n: 7}], readings: {tiberian: hammā́yim}}]
       reverse: |-
         רוח (אלהים|אלוהים) מרחפת על פני המים
         מרחפת רוח (אלהים|אלוהים) על פני המים
@@ -386,7 +386,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מַיִם בָּאָרֶץ׃
-      tokens: [{surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}, {surface: בָּאָרֶץ, lexemes: [{lexeme: be, surface: בָּ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: bāʾā́reṣ}}]
+      tokens: [{surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}, {surface: בָּאָרֶץ, lexemes: [{lexeme: be, surface: בָּ, n: 2, head: 3, rel: case}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: bāʾā́reṣ}}]
       reverse: מים בארץ
   translations:
     en: There is water (in|on) the (land|earth|ground).
@@ -395,7 +395,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיַּבְדֵּל אֱלֹהִים בֵּין הַמַּיִם וּבֵין הָאָרֶץ׃
-      tokens: [{surface: וַיַּבְדֵּל, lexeme: badal, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyaḇdēl}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: בֵּין, lexeme: beyn, readings: {tiberian: bên}}, {surface: הַמַּיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: mayim, surface: מַּיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: hammáyim}}, {surface: וּבֵין, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵין, base: true}], readings: {tiberian: ûḇên}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: וַיַּבְדֵּל, lexeme: badal, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyaḇdēl}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: בֵּין, lexeme: beyn, readings: {tiberian: bên}}, {surface: הַמַּיִם, lexemes: [{lexeme: ha, surface: הַ, n: 4, head: 5, rel: det}, {lexeme: mayim, surface: מַּיִם, base: true, feats: {Number: Plur}, n: 5}], readings: {tiberian: hammáyim}}, {surface: וּבֵין, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵין, base: true}], readings: {tiberian: ûḇên}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 8, head: 9, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 9}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: |-
         ויבדל (אלהים|אלוהים) בין המים ובין הארץ
         (אלהים|אלוהים) הבדיל בין המים ובין הארץ
@@ -420,7 +420,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃
-          tokens: [{surface: בְּרֵאשִׁית, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: reshit, surface: רֵאשִׁית, base: true, feats: {Number: Sing}}], readings: {tiberian: bərēʾšîṯ}}, {surface: בָּרָא, lexeme: bara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֵת, lexeme: et, readings: {tiberian: ʾēṯ}}, {surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: haššāmáyim}}, {surface: וְאֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֵת, base: true}], readings: {tiberian: wəʾēṯ}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾā́reṣ}}]
+          tokens: [{surface: בְּרֵאשִׁית, lexemes: [{lexeme: be, surface: בְּ, n: 1, head: 2, rel: case}, {lexeme: reshit, surface: רֵאשִׁית, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: bərēʾšîṯ}}, {surface: בָּרָא, lexeme: bara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֵת, lexeme: et, readings: {tiberian: ʾēṯ}}, {surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ, n: 6, head: 7, rel: det}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}, n: 7}], readings: {tiberian: haššāmáyim}}, {surface: וְאֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֵת, base: true}], readings: {tiberian: wəʾēṯ}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 10, head: 11, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 11}], readings: {tiberian: hāʾā́reṣ}}]
       translations:
         en: In the beginning God created the heavens and the earth.
   - choose:
@@ -441,7 +441,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ
-          tokens: [{surface: וְהָאָרֶץ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: wəhāʾā́reṣ}}, {surface: הָיְתָה, lexeme: hayah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hāyəṯâ}}, {surface: תֹהוּ, lexeme: tohu, feats: {Number: Sing}, readings: {tiberian: ṯṓhû}}, {surface: וָבֹהוּ, lexemes: [{lexeme: we, surface: וָ}, {lexeme: bohu, surface: בֹהוּ, base: true, feats: {Number: Sing}}], readings: {tiberian: wāḇṓhû}}]
+          tokens: [{surface: וְהָאָרֶץ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: wəhāʾā́reṣ}}, {surface: הָיְתָה, lexeme: hayah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hāyəṯâ}}, {surface: תֹהוּ, lexeme: tohu, feats: {Number: Sing}, readings: {tiberian: ṯṓhû}}, {surface: וָבֹהוּ, lexemes: [{lexeme: we, surface: וָ}, {lexeme: bohu, surface: בֹהוּ, base: true, feats: {Number: Sing}}], readings: {tiberian: wāḇṓhû}}]
       translations:
         en: Now the earth was formless and empty,
   - line:
@@ -455,7 +455,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם׃
-          tokens: [{surface: וְרוּחַ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ruach, surface: רוּחַ, base: true, feats: {Definite: Cons, Number: Sing}}], readings: {tiberian: wərûaḥ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: מְרַחֶפֶת, lexeme: rachaf, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, lexeme: panim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: pənê}}, {surface: הַמָּיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: mayim, surface: מָּיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: hammā́yim}}]
+          tokens: [{surface: וְרוּחַ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ruach, surface: רוּחַ, base: true, feats: {Definite: Cons, Number: Sing}}], readings: {tiberian: wərûaḥ}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: מְרַחֶפֶת, lexeme: rachaf, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, lexeme: panim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: pənê}}, {surface: הַמָּיִם, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: mayim, surface: מָּיִם, base: true, feats: {Number: Plur}, n: 8}], readings: {tiberian: hammā́yim}}]
       translations:
         en: and the spirit of God was hovering over the face of the waters.
   - choose:

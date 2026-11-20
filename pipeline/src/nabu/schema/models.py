@@ -2101,6 +2101,9 @@ class GoalSet(BaseModel):
     ]
 
 
+type Choose1 = Annotated[str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")]
+
+
 type SpelledAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
 
 
@@ -5727,6 +5730,13 @@ class Lexeme(BaseModel):
         UdFeatures | None,
         Field(
             description="Its lexical features. What Universal Dependencies says of the word (PronType: Dem, NumType: Card), and a feature its language declares lexical for its category only where no default gives it: mano {Gender: Fem}. Each of the second kind is a part to learn (ADR 0146)."
+        ),
+    ] = None
+    chooses: Annotated[
+        list[Choose1] | None,
+        Field(
+            description="Features its language declares lexical for its category that this lexeme's tokens choose instead: hermano, whose tokens are masculine or feminine. By ADR 0145 a noun's feminine is a derivative, and a lexeme of its own where it is listed; until that is decided for a lexeme, the value stays on its tokens, and the entry says so here.",
+            min_length=1,
         ),
     ] = None
     classes: Annotated[

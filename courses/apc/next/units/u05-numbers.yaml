@@ -182,7 +182,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بالدولار؟
-      tokens: [{surface: بالدولار, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: dollar, surface: دولار, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بالدولار, lexemes: [{lexeme: b, surface: ب, n: 1, head: 3, rel: case}, {lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: dollar, surface: دولار, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: بالدولار
     apc-Latn/arabizi:
       text: bel dollar?
@@ -197,7 +197,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لأ، بالليرة.
-      tokens: [{surface: لأ, lexeme: la2}, {surface: بالليرة, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: lira, surface: ليرة, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: لأ, lexeme: la2}, {surface: بالليرة, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: lira, surface: ليرة, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (لأ|لا) بالليرة
     apc-Latn/arabizi:
       text: la2, bel lira.
@@ -226,7 +226,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قدّيش القهوة؟
-      tokens: [{surface: قدّيش, lexeme: 2addesh}, {surface: القهوة, lexemes: [{lexeme: el, surface: ال}, {lexeme: ahwe, surface: قهوة, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: قدّيش, lexeme: 2addesh}, {surface: القهوة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: ahwe, surface: قهوة, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: (قدّيش|أدّيش) القهوة
     apc-Latn/arabizi:
       text: 2addesh el ahwe?
@@ -378,11 +378,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المنقوشة رخيصة.
-      tokens: [{surface: المنقوشة, lexemes: [{lexeme: el, surface: ال}, {lexeme: man2oushe, surface: منقوشة, base: true, feats: {Number: Sing}}]}, {surface: رخيصة, lexeme: rkhis, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: المنقوشة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: man2oushe, surface: منقوشة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: رخيصة, lexeme: rkhis, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: المنقوشة رخيصة
     apc-Latn/arabizi:
       text: el man2oushe rkhise.
-      tokens: [{surface: el, lexeme: el}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}}, {surface: rkhise, lexeme: rkhis, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: el, lexeme: el}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}, n: 2}, {surface: rkhise, lexeme: rkhis, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (man2oushe|manoushe|man2ushi|mankoushe) (rkhise|r5ise|rkheese|rakhise)
   translations:
     en: |-
@@ -420,7 +420,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الحساب، عمول معروف.
-      tokens: [{surface: الحساب, lexemes: [{lexeme: el, surface: ال}, {lexeme: 7sab, surface: حساب, base: true, feats: {Number: Sing}}]}, {surface: عمول, lexeme: 3mol-ma3rouf}, {surface: معروف, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: الحساب, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: 7sab, surface: حساب, base: true, feats: {Number: Sing}, n: 2}]}, {surface: عمول, lexeme: 3mol-ma3rouf}, {surface: معروف, lexeme: 3mol-ma3rouf}]
       reverse: |-
         الحساب (عمول|اعمول|عمل) معروف
         الحساب لو سمحت
@@ -686,10 +686,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: لأ، مِش غالي! الجِبْنِة طَيّْبِة كْتير.
-          tokens: [{surface: لأ, lexeme: la2}, {surface: مِش, lexeme: mish}, {surface: غالي, lexeme: ghali, feats: {Gender: Masc, Number: Sing}}, {surface: الجِبْنِة, lexemes: [{lexeme: el, surface: ال}, {lexeme: jebne, surface: جِبْنِة, base: true, feats: {Number: Sing}}]}, {surface: طَيّْبِة, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}}, {surface: كْتير, lexeme: ktir}]
+          tokens: [{surface: لأ, lexeme: la2}, {surface: مِش, lexeme: mish}, {surface: غالي, lexeme: ghali, feats: {Gender: Masc, Number: Sing}}, {surface: الجِبْنِة, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: jebne, surface: جِبْنِة, base: true, feats: {Number: Sing}, n: 5}]}, {surface: طَيّْبِة, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: كْتير, lexeme: ktir}]
         apc-Latn/arabizi:
           text: la2, mish ghali! el jebne tayybe ktir.
-          tokens: [{surface: la2, lexeme: la2}, {surface: mish, lexeme: mish}, {surface: ghali, lexeme: ghali, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el}, {surface: jebne, lexeme: jebne, feats: {Number: Sing}}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}}, {surface: ktir, lexeme: ktir}]
+          tokens: [{surface: la2, lexeme: la2}, {surface: mish, lexeme: mish}, {surface: ghali, lexeme: ghali, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el}, {surface: jebne, lexeme: jebne, feats: {Number: Sing}, n: 5}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: ktir, lexeme: ktir}]
       translations:
         en: No, it's not expensive! The cheese is very good.
   - line:
@@ -708,7 +708,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: يَلّا، عَشْرَة دولار، بَسّ الخِبِز والجِبْنِة.
-          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: عَشْرَة, lexeme: 3ashra}, {surface: دولار, lexeme: dollar, feats: {Number: Sing}}, {surface: بَسّ, lexeme: bas}, {surface: الخِبِز, lexemes: [{lexeme: el, surface: ال}, {lexeme: khebz, surface: خِبِز, base: true, feats: {Number: Sing}}]}, {surface: والجِبْنِة, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال}, {lexeme: jebne, surface: جِبْنِة, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: عَشْرَة, lexeme: 3ashra}, {surface: دولار, lexeme: dollar, feats: {Number: Sing}}, {surface: بَسّ, lexeme: bas}, {surface: الخِبِز, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: khebz, surface: خِبِز, base: true, feats: {Number: Sing}, n: 6}]}, {surface: والجِبْنِة, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال, n: 8, head: 9, rel: det}, {lexeme: jebne, surface: جِبْنِة, base: true, feats: {Number: Sing}, n: 9}]}]
         apc-Latn/arabizi:
           text: yalla, 3ashra dollar, bas el khebz w el jebne.
           tokens: [{surface: yalla, lexeme: yalla}, {surface: 3ashra, lexeme: 3ashra}, {surface: dollar, lexeme: dollar, feats: {Number: Sing}}, {surface: bas, lexeme: bas}, {surface: el, lexeme: el}, {surface: khebz, lexeme: khebz, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: el, lexeme: el}, {surface: jebne, lexeme: jebne, feats: {Number: Sing}}]

@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta es mi mami.
-      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: mami, lexeme: mami, feats: {Number: Sing}}]
+      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 4}]
       reverse: |-
         Esta es mi (mami|mamá)
         Ella es mi mami.
@@ -31,7 +31,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Este es mi papi.
-      tokens: [{surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: papi, lexeme: papi, feats: {Number: Sing}}]
+      tokens: [{surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: papi, lexeme: papi, feats: {Number: Sing}, n: 4}]
       reverse: Este es mi (papi|papá)
   translations:
     en: This is my (dad|daddy|father|papa).
@@ -51,7 +51,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta es mi familia.
-      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}]
+      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 4}]
       reverse: Esta es mi familia
   translations:
     en: This is my family.
@@ -60,7 +60,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi papi es cubano y mi mami es de Miami.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: papi, lexeme: papi, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: mami, lexeme: mami, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: papi, lexeme: papi, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 7}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}]
       reverse: Mi (papi|papá) es cubano y mi (mami|mamá) es de Miami
   translations:
     en: |-
@@ -87,7 +87,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ella es tu mami?
-      tokens: [{surface: Ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: mami, lexeme: mami, feats: {Number: Sing}}]
+      tokens: [{surface: Ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 4}]
       reverse: (Ella es|Es [ella]) (tu|su) (mami|mamá)
   translations:
     en: |-
@@ -99,7 +99,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili es mi hermana.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}, n: 4}]
       reverse: Lili es mi hermana
   translations:
     en: |-
@@ -110,7 +110,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tengo una hermana.
-      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}, n: 3}]
       reverse: '[Yo] tengo una hermana'
   translations:
     en: |-
@@ -122,7 +122,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi hermana se llama Lili.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}}, {surface: se, lexeme: se}, {surface: llama, lexeme: llamarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: se, lexeme: se}, {surface: llama, lexeme: llamarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
       reverse: |-
         Mi hermana se llama Lili
         El nombre de mi hermana es Lili.
@@ -149,7 +149,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili tiene un hermano.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: hermano, lexeme: hermano, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: hermano, lexeme: hermano, feats: {Gender: Masc, Number: Sing}, n: 4}]
       reverse: Lili tiene un hermano
   translations:
     en: |-
@@ -161,7 +161,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cómo se llama tu hermano?
-      tokens: [{surface: Cómo, lexeme: cómo}, {surface: se, lexeme: se}, {surface: llama, lexeme: llamarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: hermano, lexeme: hermano, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Cómo, lexeme: cómo}, {surface: se, lexeme: se}, {surface: llama, lexeme: llamarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: hermano, lexeme: hermano, feats: {Gender: Masc, Number: Sing}, n: 5}]
       reverse: |-
         (Cómo se llama (tu|su) hermano|Cuál es el nombre de (tu|su) hermano)
         ¿Tu hermano cómo se llama?
@@ -179,7 +179,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pepe es mi abuelo.
-      tokens: [{surface: Pepe, lexeme: pepe}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+      tokens: [{surface: Pepe, lexeme: pepe}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 4}]
       reverse: Pepe es mi abuelo
   translations:
     en: |-
@@ -190,7 +190,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El abuelo de Lili es de Cuba.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 2}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       reverse: El abuelo de Lili es de Cuba
   translations:
     en: |-
@@ -202,7 +202,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cachita es la abuela de Lili.
-      tokens: [{surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      tokens: [{surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
       reverse: Cachita es la abuela de Lili
   translations:
     en: |-
@@ -213,7 +213,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pepe es su abuelo.
-      tokens: [{surface: Pepe, lexeme: pepe}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+      tokens: [{surface: Pepe, lexeme: pepe}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 4}]
       reverse: Pepe es su abuelo
   translations:
     en: |-
@@ -224,7 +224,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tu abuelo es de Cuba?
-      tokens: [{surface: Tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       reverse: |-
         ((Tu|Su) abuelo es de Cuba|Es (tu|su) abuelo de Cuba)
         ¿Es de Cuba tu abuelo?
@@ -238,7 +238,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Marisol es mi tía.
-      tokens: [{surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}]
+      tokens: [{surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 4}]
       reverse: Marisol es mi tía
   translations:
     en: |-
@@ -249,7 +249,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía Marisol es de La Habana.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 7}]
       reverse: Mi tía Marisol es de La Habana
   translations:
     en: |-
@@ -261,7 +261,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior es mi primo.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}, n: 4}]
       reverse: Yunior es mi primo
   translations:
     en: |-
@@ -272,7 +272,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior es el hijo de Marisol.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: hijo, lexeme: hijo, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: hijo, lexeme: hijo, feats: {Gender: Masc, Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
       reverse: |-
         Yunior es el hijo de Marisol
         Yunior es hijo de Marisol.
@@ -285,7 +285,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Su hijo se llama Yunior.
-      tokens: [{surface: Su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: hijo, lexeme: hijo, feats: {Gender: Masc, Number: Sing}}, {surface: se, lexeme: se}, {surface: llama, lexeme: llamarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Yunior, lexeme: yunior}]
+      tokens: [{surface: Su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: hijo, lexeme: hijo, feats: {Gender: Masc, Number: Sing}, n: 2}, {surface: se, lexeme: se}, {surface: llama, lexeme: llamarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Yunior, lexeme: yunior}]
       reverse: |-
         Su hijo se llama Yunior
         El nombre de su hijo es Yunior.
@@ -300,7 +300,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi primo Yunior es muy cubano.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}, n: 2}, {surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}]
       reverse: Mi primo Yunior es muy cubano
   translations:
     en: |-
@@ -335,7 +335,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tenemos una familia grande.
-      tokens: [{surface: Tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 3}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: '[(Nosotros|Nosotras)] tenemos una familia grande'
   translations:
     en: (We have|We've got) a (big|large) family.
@@ -344,7 +344,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ellos son mis primos.
-      tokens: [{surface: Ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: primos, lexeme: primo, feats: {Gender: Masc, Number: Plur}}]
+      tokens: [{surface: Ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: primos, lexeme: primo, feats: {Gender: Masc, Number: Plur}, n: 4}]
       reverse: ([Ellos] son mis primos|[Ellas] son mis primas)
   translations:
     en: (They're|They are) my cousins.
@@ -353,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mis abuelos son de Cuba.
-      tokens: [{surface: Mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: abuelos, lexeme: abuelo, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: abuelos, lexeme: abuelo, feats: {Number: Plur}, n: 2}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       reverse: Mis abuelos son de Cuba
   translations:
     en: |-
@@ -364,7 +364,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía y su hijo son de La Habana.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: hijo, lexeme: hijo, feats: {Gender: Masc, Number: Sing}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: y, lexeme: y}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: hijo, lexeme: hijo, feats: {Gender: Masc, Number: Sing}, n: 5}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 9}]
       reverse: Mi tía y su hijo son de La Habana
   translations:
     en: |-
@@ -407,7 +407,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tus padres son de Cuba?
-      tokens: [{surface: Tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}}, {surface: padres, lexeme: padre, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 2}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       reverse: |-
         ((Tus|Sus) (padres|papás) son de Cuba|Son (tus|sus) (padres|papás) de Cuba)
         ¿Son de Cuba tus padres?
@@ -422,7 +422,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sí, mis padres son cubanos.
-      tokens: [{surface: Sí, lexeme: sí}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: padres, lexeme: padre, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}]
+      tokens: [{surface: Sí, lexeme: sí}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 3}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}]
       reverse: Sí mis (padres|papás) son cubanos
   translations:
     en: Yes, my parents are Cuban.
@@ -433,7 +433,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cómo están los puros?
-      tokens: [{surface: Cómo, lexeme: cómo}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: puros, lexeme: puro, feats: {Number: Plur}}]
+      tokens: [{surface: Cómo, lexeme: cómo}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: puros, lexeme: puro, feats: {Number: Plur}, n: 4}]
       reverse: |-
         Cómo están (los puros|tus puros|tus padres|tus papás|sus padres|sus papás)
         ¿Cómo están tus viejos?
@@ -462,7 +462,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi'ja, ¿cómo están tus padres?
-      tokens: [{surface: Mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: cómo, lexeme: cómo}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}}, {surface: padres, lexeme: padre, feats: {Number: Plur}}]
+      tokens: [{surface: Mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: cómo, lexeme: cómo}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}, n: 4, head: 5, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 5}]
       reverse: (Mi'ja|Mi hija|Mijita) (cómo están tus (padres|papás|puros)|y tus (padres|papás|puros) cómo están)
   translations:
     en: (Sweetie|Honey|Sweetheart|Darling|Dear|My dear), how are your (parents|folks|mom and dad)?
@@ -502,7 +502,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué bolá, asere? ¿Esta es tu familia?
-          tokens: [{surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}, {surface: asere, lexeme: asere, feats: {Number: Sing}}, {surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}]
+          tokens: [{surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}, {surface: asere, lexeme: asere, feats: {Number: Sing}}, {surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 7}]
       translations:
         en: What's up, man? Is this your family?
   - line:
@@ -510,7 +510,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí. Este es mi papi, y esta es mi mami.
-          tokens: [{surface: Sí, lexeme: sí}, {surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: papi, lexeme: papi, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: mami, lexeme: mami, feats: {Number: Sing}}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: papi, lexeme: papi, feats: {Number: Sing}, n: 5}, {surface: y, lexeme: y}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 10}]
       translations:
         en: Yes. This is my dad, and this is my mom.
   - line:
@@ -551,7 +551,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y ella es Lili, mi hermana.
-          tokens: [{surface: Y, lexeme: y}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}, n: 6}]
       translations:
         en: And this is Lili, my sister.
   - choose:
@@ -567,7 +567,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Hola, Yasiel. ¿Y tu familia? ¿Es de Cuba?
-          tokens: [{surface: Hola, lexeme: hola}, {surface: Yasiel, lexeme: yasiel}, {surface: Y, lexeme: y}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+          tokens: [{surface: Hola, lexeme: hola}, {surface: Yasiel, lexeme: yasiel}, {surface: Y, lexeme: y}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       translations:
         en: Hi, Yasiel. And your family? Are they from Cuba?
   - line:
@@ -575,7 +575,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, mis padres son cubanos. Tenemos una familia muy grande.
-          tokens: [{surface: Sí, lexeme: sí}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: padres, lexeme: padre, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}, {surface: Tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: muy, lexeme: muy}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 3}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}, {surface: Tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 8}, {surface: muy, lexeme: muy}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}, n: 10, head: 8, rel: amod}]
       translations:
         en: Yes, my parents are Cuban. We have a very big family.
   - line:
@@ -588,7 +588,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi tía Marisol y mi primo Yunior son de La Habana.
-          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: Yunior, lexeme: yunior}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}, n: 6}, {surface: Yunior, lexeme: yunior}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 11}]
       translations:
         en: My aunt Marisol and my cousin Yunior are from Havana.
   - choose:
@@ -604,7 +604,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Yunior? ¡Yo también tengo un primo Yunior!
-          tokens: [{surface: Yunior, lexeme: yunior}, {surface: Yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: Yunior, lexeme: yunior}]
+          tokens: [{surface: Yunior, lexeme: yunior}, {surface: Yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}, n: 6}, {surface: Yunior, lexeme: yunior}]
       translations:
         en: Yunior? I have a cousin called Yunior too!
   - choose:
@@ -620,7 +620,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué bolá, Yasiel? ¿Cómo está tu familia?
-          tokens: [{surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}, {surface: Yasiel, lexeme: yasiel}, {surface: Cómo, lexeme: cómo}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}]
+          tokens: [{surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}, {surface: Yasiel, lexeme: yasiel}, {surface: Cómo, lexeme: cómo}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 7}]
       translations:
         en: What's up, Yasiel? How's your family?
   - line:
@@ -628,7 +628,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Muy bien, señora, gracias. ¿Y el abuelo Pepe?
-          tokens: [{surface: Muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: gracias, lexeme: gracias}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}]
+          tokens: [{surface: Muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: gracias, lexeme: gracias}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 7}, {surface: Pepe, lexeme: pepe}]
       translations:
         en: Very well, ma'am, thank you. And Grandpa Pepe?
   - line:
@@ -636,6 +636,6 @@ stories:
       forms:
         es-Latn/standard:
           text: Pepe está muy bien, mi vida.
-          tokens: [{surface: Pepe, lexeme: pepe}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+          tokens: [{surface: Pepe, lexeme: pepe}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 6}]
       translations:
         en: Pepe is very well, darling.

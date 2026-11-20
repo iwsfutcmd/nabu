@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Viñales es un pueblo que está en Pinar del Río.
-      tokens: [{surface: Viñales, lexeme: viñales}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Pinar, lexeme: pinar-del-río}, {surface: del, lexeme: pinar-del-río}, {surface: Río, lexeme: pinar-del-río}]
+      tokens: [{surface: Viñales, lexeme: viñales}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}, n: 4}, {surface: que, lexeme: que}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Pinar, lexeme: pinar-del-río}, {surface: del, lexeme: pinar-del-río}, {surface: Río, lexeme: pinar-del-río}]
       reverse: Viñales es un pueblo [que está] en Pinar del Río
   translations:
     en: |-
@@ -30,7 +30,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Desde el pueblo se ven los mogotes del valle.
-      tokens: [{surface: Desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: ven, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: mogotes, lexeme: mogote, feats: {Number: Plur}}, {surface: del, lexeme: del}, {surface: valle, lexeme: valle, feats: {Number: Sing}}]
+      tokens: [{surface: Desde, lexeme: desde}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}, n: 3}, {surface: se, lexeme: se.impersonal}, {surface: ven, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det}, {surface: mogotes, lexeme: mogote, feats: {Number: Plur}, n: 7}, {surface: del, lexeme: del}, {surface: valle, lexeme: valle, feats: {Number: Sing}}]
       reverse: |-
         Desde el pueblo se (ven|pueden ver) los mogotes del valle
         Los mogotes del valle se (ven|pueden ver) desde el pueblo
@@ -46,7 +46,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El valle de Viñales es visitado por muchos turistas.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: valle, lexeme: valle, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Viñales, lexeme: viñales}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: visitado, lexeme: visitar, feats: {Tense: Past, VerbForm: Part}}, {surface: por, lexeme: por}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: turistas, lexeme: turista, feats: {Number: Plur}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: valle, lexeme: valle, feats: {Number: Sing}, n: 2}, {surface: de, lexeme: de}, {surface: Viñales, lexeme: viñales}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: visitado, lexeme: visitar, feats: {Tense: Past, VerbForm: Part}}, {surface: por, lexeme: por}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: turistas, lexeme: turista, feats: {Number: Plur}}]
       reverse: |-
         El valle de Viñales es visitado por muchos turistas
         Muchos turistas visitan el valle de Viñales
@@ -59,7 +59,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los guajiros que viven en el valle trabajan en el campo.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: guajiros, lexeme: guajiro, feats: {Number: Plur}}, {surface: que, lexeme: que}, {surface: viven, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: valle, lexeme: valle, feats: {Number: Sing}}, {surface: trabajan, lexeme: trabajar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: guajiros, lexeme: guajiro, feats: {Number: Plur}, n: 2}, {surface: que, lexeme: que}, {surface: viven, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: valle, lexeme: valle, feats: {Number: Sing}, n: 7}, {surface: trabajan, lexeme: trabajar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 11}]
       reverse: Los guajiros que viven en el valle trabajan en el campo
   translations:
     en: |-
@@ -70,7 +70,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Un guajiro es un campesino cubano, como los de Viñales.
-      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: campesino, lexeme: campesino, feats: {Number: Sing}}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}, {surface: como, lexeme: como.like}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: de, lexeme: de}, {surface: Viñales, lexeme: viñales}]
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: campesino, lexeme: campesino, feats: {Number: Sing}, n: 5}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: como, lexeme: como.like}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: de, lexeme: de}, {surface: Viñales, lexeme: viñales}]
       reverse: Un guajiro es un campesino cubano como los de Viñales
   translations:
     en: A guajiro is a Cuban (farmer|peasant|country person|countryman), like (the ones|those) (from|in) Viñales.
@@ -79,7 +79,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En el campo se trabaja mucho, pero se come bien.
-      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: trabaja, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: pero, lexeme: pero}, {surface: se, lexeme: se.impersonal}, {surface: come, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}]
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 3}, {surface: se, lexeme: se.impersonal}, {surface: trabaja, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: pero, lexeme: pero}, {surface: se, lexeme: se.impersonal}, {surface: come, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}]
       reverse: En el campo se trabaja mucho pero se come bien
   translations:
     en: |-
@@ -90,7 +90,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El tabaco se cultiva en Pinar del Río.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: cultiva, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Pinar, lexeme: pinar-del-río}, {surface: del, lexeme: pinar-del-río}, {surface: Río, lexeme: pinar-del-río}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: cultiva, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Pinar, lexeme: pinar-del-río}, {surface: del, lexeme: pinar-del-río}, {surface: Río, lexeme: pinar-del-río}]
       reverse: |-
         El tabaco se (cultiva|siembra) en Pinar del Río
         En Pinar del Río se (cultiva|siembra) [el] tabaco
@@ -106,7 +106,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Dicen que el mejor tabaco del mundo es de Pinar del Río.
-      tokens: [{surface: Dicen, lexeme: decir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Pinar, lexeme: pinar-del-río}, {surface: del, lexeme: pinar-del-río}, {surface: Río, lexeme: pinar-del-río}]
+      tokens: [{surface: Dicen, lexeme: decir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 5, rel: det}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: amod}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}, n: 5}, {surface: del, lexeme: del}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Pinar, lexeme: pinar-del-río}, {surface: del, lexeme: pinar-del-río}, {surface: Río, lexeme: pinar-del-río}]
       reverse: Dicen que el mejor tabaco del mundo (es|viene) de Pinar del Río
   translations:
     en: (They say|People say|It's said) [that] the best tobacco in the world (is from|comes from) Pinar del Río.
@@ -115,7 +115,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La vega es el campo donde se cultiva el tabaco.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: vega, lexeme: vega, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: se, lexeme: se.impersonal}, {surface: cultiva, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: vega, lexeme: vega, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 5}, {surface: donde, lexeme: donde}, {surface: se, lexeme: se.impersonal}, {surface: cultiva, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}, n: 10}]
       reverse: La vega es el campo (donde|en que|en el que|en el cual) se cultiva el tabaco
   translations:
     en: (The|A) vega is (the|a) field (where|in which) (tobacco is grown|the tobacco is grown|they grow tobacco).
@@ -124,7 +124,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Primero se siembra el tabaco, y después se cosecha.
-      tokens: [{surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: siembra, lexeme: sembrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: después, lexeme: después}, {surface: se, lexeme: se.impersonal}, {surface: cosecha, lexeme: cosechar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: siembra, lexeme: sembrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}, n: 5}, {surface: y, lexeme: y}, {surface: después, lexeme: después}, {surface: se, lexeme: se.impersonal}, {surface: cosecha, lexeme: cosechar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         Primero se siembra el tabaco y (después|luego) se cosecha
         Primero el tabaco se siembra, y después se cosecha
@@ -137,7 +137,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Las hojas de tabaco se secan en una casa de tabaco.
-      tokens: [{surface: Las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: secan, lexeme: secar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}]
+      tokens: [{surface: Las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 1, head: 2, rel: det}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}, n: 2}, {surface: de, lexeme: de}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: secan, lexeme: secar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 9}, {surface: de, lexeme: de}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}]
       reverse: Las hojas (de|del) tabaco se secan en (una|la) casa de tabaco
   translations:
     en: |-
@@ -148,7 +148,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En la vega, las hojas son cosechadas una por una.
-      tokens: [{surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: vega, lexeme: vega, feats: {Number: Sing}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cosechadas, lexeme: cosechar, feats: {Gender: Fem, Number: Plur, Tense: Past, VerbForm: Part}}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}}, {surface: por, lexeme: por}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vega, lexeme: vega, feats: {Number: Sing}, n: 3}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 4, head: 5, rel: det}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}, n: 5}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cosechadas, lexeme: cosechar, feats: {Gender: Fem, Number: Plur, Tense: Past, VerbForm: Part}}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}}, {surface: por, lexeme: por}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         En la vega las hojas son cosechadas una (por|a) una
         En la vega las hojas se cosechan una (por|a) una
@@ -162,7 +162,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe siempre dice que el tabaco cubano es el mejor del mundo.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: siempre, lexeme: siempre}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: del, lexeme: del}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: siempre, lexeme: siempre}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}, n: 7}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}, n: 8, head: 7, rel: amod}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: del, lexeme: del}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}}]
       reverse: |-
         (Abuelo|El abuelo) Pepe siempre dice que el tabaco cubano es el mejor del mundo
         Mi abuelo Pepe siempre dice que el tabaco cubano es el mejor del mundo
@@ -173,7 +173,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Matanzas visitamos el campo donde vivía Abuela de niña.
-      tokens: [{surface: En, lexeme: en}, {surface: Matanzas, lexeme: matanzas}, {surface: visitamos, lexeme: visitar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: En, lexeme: en}, {surface: Matanzas, lexeme: matanzas}, {surface: visitamos, lexeme: visitar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 5}, {surface: donde, lexeme: donde}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}]
       reverse: En Matanzas [nosotros] visitamos el campo (donde|en que|en el que) (vivía Abuela|Abuela vivía|vivía la abuela|la abuela vivía) de niña
   translations:
     en: |-
@@ -199,7 +199,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La caña se llevaba al central, donde se hacía el azúcar.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: caña, lexeme: caña, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: llevaba, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: central, lexeme: central, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: se, lexeme: se.impersonal}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: azúcar, lexeme: azúcar, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: caña, lexeme: caña, feats: {Number: Sing}, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: llevaba, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: central, lexeme: central, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: se, lexeme: se.impersonal}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: azúcar, lexeme: azúcar, feats: {Gender: Masc, Number: Sing}, n: 11}]
       reverse: La caña se llevaba al central (donde|en (que|el que|el cual)) se hacía (el|la) azúcar
   translations:
     en: (The cane|Cane|The sugar cane|Sugar cane) was taken to the (sugar mill|mill), where (the sugar was made|sugar was made|they made the sugar|they made sugar).
@@ -208,7 +208,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi bisabuelo cortaba caña en un central de Matanzas.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: bisabuelo, lexeme: bisabuelo, feats: {Number: Sing}}, {surface: cortaba, lexeme: cortar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: caña, lexeme: caña, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: central, lexeme: central, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Matanzas, lexeme: matanzas}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: bisabuelo, lexeme: bisabuelo, feats: {Number: Sing}, n: 2}, {surface: cortaba, lexeme: cortar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: caña, lexeme: caña, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: central, lexeme: central, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de}, {surface: Matanzas, lexeme: matanzas}]
       reverse: Mi bisabuelo cortaba caña en un central de Matanzas
   translations:
     en: My great-grandfather (cut|used to cut) (cane|sugar cane|sugarcane) (at|for) a (sugar mill|mill) in Matanzas.
@@ -217,7 +217,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La caña se cortaba con machete, y era mucho trabajo.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: caña, lexeme: caña, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: cortaba, lexeme: cortar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: machete, lexeme: machete, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: caña, lexeme: caña, feats: {Number: Sing}, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: cortaba, lexeme: cortar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: machete, lexeme: machete, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}}]
       reverse: La caña se cortaba (con machete|con un machete|a machete) y era mucho trabajo
   translations:
     en: (The cane|Cane|The sugar cane|Sugar cane) was cut (with a machete|by machete|with machetes), and it was (a lot of|lots of|hard) work.
@@ -226,7 +226,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El bohío de Abuela fue construido por su padre.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: construido, lexeme: construir, feats: {Tense: Past, VerbForm: Part}}, {surface: por, lexeme: por}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}, n: 2}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: construido, lexeme: construir, feats: {Tense: Past, VerbForm: Part}}, {surface: por, lexeme: por}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: padre, lexeme: padre, feats: {Number: Sing}, n: 9}]
       reverse: |-
         El bohío de (Abuela|la abuela|mi abuela) fue construido por su (padre|papá)
         (El padre|El papá) de (Abuela|la abuela|mi abuela) construyó (el|su) bohío
@@ -237,7 +237,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El central donde trabajaba mi bisabuelo ya no hace azúcar.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: central, lexeme: central, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: trabajaba, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: bisabuelo, lexeme: bisabuelo, feats: {Number: Sing}}, {surface: ya, lexeme: ya}, {surface: 'no', lexeme: 'no'}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: azúcar, lexeme: azúcar, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: central, lexeme: central, feats: {Number: Sing}, n: 2}, {surface: donde, lexeme: donde}, {surface: trabajaba, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: bisabuelo, lexeme: bisabuelo, feats: {Number: Sing}, n: 6}, {surface: ya, lexeme: ya}, {surface: 'no', lexeme: 'no'}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: azúcar, lexeme: azúcar, feats: {Gender: Masc, Number: Sing}}]
       reverse: El central (donde|en que|en el que|en el cual) (trabajaba mi bisabuelo|mi bisabuelo trabajaba) ya no (hace|produce) azúcar
   translations:
     en: |-
@@ -250,7 +250,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En los campos de Cuba hay palmas reales por todos lados.
-      tokens: [{surface: En, lexeme: en}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: campos, lexeme: campo, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: palmas, lexeme: palma-real, feats: {Number: Plur}}, {surface: reales, lexeme: palma-real, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: lados, lexeme: lado, feats: {Number: Plur}}]
+      tokens: [{surface: En, lexeme: en}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: campos, lexeme: campo, feats: {Number: Plur}, n: 3}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: palmas, lexeme: palma-real, feats: {Number: Plur}}, {surface: reales, lexeme: palma-real, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 10, head: 11, rel: det}, {surface: lados, lexeme: lado, feats: {Number: Plur}, n: 11}]
       reverse: En (los campos de Cuba|el campo cubano) hay palmas reales por (todos lados|todas partes)
   translations:
     en: |-
@@ -261,7 +261,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La palma real es el árbol nacional de Cuba.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: palma, lexeme: palma-real}, {surface: real, lexeme: palma-real}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: árbol, lexeme: árbol, feats: {Number: Sing}}, {surface: nacional, lexeme: nacional, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: palma, lexeme: palma-real, n: 2}, {surface: real, lexeme: palma-real}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: árbol, lexeme: árbol, feats: {Number: Sing}, n: 6}, {surface: nacional, lexeme: nacional, feats: {Gender: Masc, Number: Sing}, n: 7, head: 6, rel: amod}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       reverse: La palma real es el árbol nacional [de Cuba]
   translations:
     en: The royal palm is (the national tree of Cuba|Cuba's national tree|the national tree).
@@ -270,7 +270,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Antes, los bohíos se hacían con la palma real.
-      tokens: [{surface: Antes, lexeme: antes}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: bohíos, lexeme: bohío, feats: {Number: Plur}}, {surface: se, lexeme: se.impersonal}, {surface: hacían, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: palma, lexeme: palma-real}, {surface: real, lexeme: palma-real}]
+      tokens: [{surface: Antes, lexeme: antes}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: bohíos, lexeme: bohío, feats: {Number: Plur}, n: 3}, {surface: se, lexeme: se.impersonal}, {surface: hacían, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: palma, lexeme: palma-real, n: 8}, {surface: real, lexeme: palma-real}]
       reverse: Antes los bohíos se (hacían|construían) (con|de) [la] palma real
   translations:
     en: |-
@@ -282,7 +282,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El tocororo es el ave nacional de Cuba.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 5}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       reverse: El tocororo es el (ave|pájaro) nacional [de Cuba]
   translations:
     en: The tocororo is (the national bird of Cuba|Cuba's national bird|the national bird).
@@ -291,7 +291,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El tocororo es un ave azul, blanca y roja.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}}, {surface: azul, lexeme: azul, feats: {Gender: Fem, Number: Sing}}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}, {surface: y, lexeme: y}, {surface: roja, lexeme: rojo, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 5}, {surface: azul, lexeme: azul, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}, {surface: y, lexeme: y}, {surface: roja, lexeme: rojo, feats: {Gender: Fem, Number: Sing}}]
       reverse: El tocororo es (un ave azul blanca y roja|un ave roja blanca y azul|un pájaro azul blanco y rojo|un pájaro rojo blanco y azul)
   translations:
     en: The tocororo is a (blue, white and red|red, white and blue) bird.
@@ -300,7 +300,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La flor nacional es la mariposa, una flor blanca.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: flor, lexeme: flor, feats: {Number: Sing}}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mariposa, lexeme: mariposa, feats: {Number: Sing}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: flor, lexeme: flor, feats: {Number: Sing}}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: flor, lexeme: flor, feats: {Number: Sing}, n: 2}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: mariposa, lexeme: mariposa, feats: {Number: Sing}, n: 6}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: flor, lexeme: flor, feats: {Number: Sing}, n: 8}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}, n: 9, head: 8, rel: amod}]
       reverse: La flor nacional [de Cuba] es la mariposa una flor blanca
   translations:
     en: The national flower is the (mariposa|white ginger lily|ginger lily|butterfly lily), a white flower.
@@ -309,7 +309,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lo que más me gustó del campo fue ver un tocororo.
-      tokens: [{surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gustó, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: ver, lexeme: ver, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}}]
+      tokens: [{surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gustó, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: ver, lexeme: ver, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 11}]
       reverse: Lo que (más me gustó|me gustó más) del campo fue ver un tocororo
   translations:
     en: |-
@@ -320,7 +320,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El guajiro con quien hablamos llevaba un sombrero de yarey.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: quien, lexeme: quien}, {surface: hablamos, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: llevaba, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: sombrero, lexeme: sombrero, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: yarey, lexeme: yarey, feats: {Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}, n: 2}, {surface: con, lexeme: con}, {surface: quien, lexeme: quien}, {surface: hablamos, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: llevaba, lexeme: llevar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: sombrero, lexeme: sombrero, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de}, {surface: yarey, lexeme: yarey, feats: {Number: Sing}}]
       reverse: El guajiro con (quien|el que|el cual) hablamos (llevaba|tenía puesto) un sombrero de yarey
   translations:
     en: |-
@@ -331,7 +331,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los sombreros de yarey se hacen con las hojas del yarey.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: sombreros, lexeme: sombrero, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: yarey, lexeme: yarey, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: hacen, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}}, {surface: del, lexeme: del}, {surface: yarey, lexeme: yarey, feats: {Number: Sing}}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: sombreros, lexeme: sombrero, feats: {Number: Plur}, n: 2}, {surface: de, lexeme: de}, {surface: yarey, lexeme: yarey, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: hacen, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 8, head: 9, rel: det}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}, n: 9}, {surface: del, lexeme: del}, {surface: yarey, lexeme: yarey, feats: {Number: Sing}}]
       reverse: Los sombreros de yarey se hacen con [las] hojas (del|de) yarey
   translations:
     en: Yarey hats are made (from|with|out of) (the leaves of the yarey [palm]|yarey leaves|yarey palm leaves).
@@ -340,7 +340,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El guajiro, que tenía setenta años, trabajaba todos los días en la vega.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: setenta, lexeme: setenta}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: trabajaba, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: días, lexeme: día, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: vega, lexeme: vega, feats: {Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}, n: 2}, {surface: que, lexeme: que}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: setenta, lexeme: setenta}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: trabajaba, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 8, head: 10, rel: det}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 9, head: 10, rel: det}, {surface: días, lexeme: día, feats: {Number: Plur}, n: 10}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 12, head: 13, rel: det}, {surface: vega, lexeme: vega, feats: {Number: Sing}, n: 13}]
       reverse: El guajiro (que|quien) tenía (setenta|70) años trabajaba todos los días en la vega
   translations:
     en: |-
@@ -351,7 +351,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cerca del bohío había un arroyo donde los niños se bañaban.
-      tokens: [{surface: Cerca, lexeme: cerca}, {surface: del, lexeme: del}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: arroyo, lexeme: arroyo, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: niños, lexeme: niño, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: bañaban, lexeme: bañarse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}]
+      tokens: [{surface: Cerca, lexeme: cerca}, {surface: del, lexeme: del}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: arroyo, lexeme: arroyo, feats: {Number: Sing}, n: 6}, {surface: donde, lexeme: donde}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: niños, lexeme: niño, feats: {Gender: Masc, Number: Plur}, n: 9}, {surface: se, lexeme: se}, {surface: bañaban, lexeme: bañarse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}]
       reverse: Cerca del bohío había un arroyo (donde|en (que|el que|el cual)) (los niños se bañaban|se bañaban los niños)
   translations:
     en: Near the (bohío|hut) there was a (stream|brook|creek) where the (children|kids) (bathed|used to bathe|would bathe|swam|used to swim).
@@ -360,7 +360,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Estos sombreros fueron hechos por un guajiro de Viñales.
-      tokens: [{surface: Estos, lexeme: este, feats: {Gender: Masc, Number: Plur}}, {surface: sombreros, lexeme: sombrero, feats: {Number: Plur}}, {surface: fueron, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: hechos, lexeme: hacer, feats: {Gender: Masc, Number: Plur, Tense: Past, VerbForm: Part}}, {surface: por, lexeme: por}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Viñales, lexeme: viñales}]
+      tokens: [{surface: Estos, lexeme: este, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: sombreros, lexeme: sombrero, feats: {Number: Plur}, n: 2}, {surface: fueron, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: hechos, lexeme: hacer, feats: {Gender: Masc, Number: Plur, Tense: Past, VerbForm: Part}}, {surface: por, lexeme: por}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de}, {surface: Viñales, lexeme: viñales}]
       reverse: |-
         Estos sombreros fueron hechos por un guajiro de Viñales
         Un guajiro de Viñales hizo estos sombreros
@@ -393,7 +393,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Buenos días! Esta es la vega donde se cultiva mi tabaco.
-          tokens: [{surface: Buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: vega, lexeme: vega, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: se, lexeme: se.impersonal}, {surface: cultiva, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}]
+          tokens: [{surface: Buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: vega, lexeme: vega, feats: {Number: Sing}, n: 6}, {surface: donde, lexeme: donde}, {surface: se, lexeme: se.impersonal}, {surface: cultiva, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}, n: 11}]
       translations:
         en: Good morning! This is the field where my tobacco is grown.
   - line:
@@ -401,7 +401,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi primo es de Miami y quiere ver cómo se hace un tabaco.
-          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}, {surface: y, lexeme: y}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ver, lexeme: ver, feats: {VerbForm: Inf}}, {surface: cómo, lexeme: cómo}, {surface: se, lexeme: se.impersonal}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}]
+          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}, {surface: y, lexeme: y}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ver, lexeme: ver, feats: {VerbForm: Inf}}, {surface: cómo, lexeme: cómo}, {surface: se, lexeme: se.impersonal}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}, n: 13}]
       translations:
         en: My cousin is from Miami and wants to see how a cigar is made.
   - line:
@@ -409,7 +409,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Primero se siembra el tabaco, y después se cosechan las hojas.
-          tokens: [{surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: siembra, lexeme: sembrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: después, lexeme: después}, {surface: se, lexeme: se.impersonal}, {surface: cosechan, lexeme: cosechar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}}]
+          tokens: [{surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: siembra, lexeme: sembrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}, n: 5}, {surface: y, lexeme: y}, {surface: después, lexeme: después}, {surface: se, lexeme: se.impersonal}, {surface: cosechan, lexeme: cosechar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 10, head: 11, rel: det}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}, n: 11}]
       translations:
         en: First the tobacco is planted, and then the leaves are harvested.
   - line:
@@ -417,7 +417,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y qué se hace con las hojas?
-          tokens: [{surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: se, lexeme: se.impersonal}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: se, lexeme: se.impersonal}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 6, head: 7, rel: det}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}, n: 7}]
       translations:
         en: And what do you do with the leaves?
   - line:
@@ -426,7 +426,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Las hojas se secan en la casa de tabaco.
-          tokens: [{surface: Las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}}, {surface: se, lexeme: se.impersonal}, {surface: secan, lexeme: secar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}]
+          tokens: [{surface: Las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 1, head: 2, rel: det}, {surface: hojas, lexeme: hoja, feats: {Number: Plur}, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: secan, lexeme: secar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de}, {surface: tabaco, lexeme: tabaco, feats: {Number: Sing}}]
       translations:
         en: The leaves are dried in the tobacco barn.
   - choose:
@@ -441,7 +441,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel ve un ave azul, blanca y roja en una palma real.
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}}, {surface: azul, lexeme: azul, feats: {Gender: Fem, Number: Sing}}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}, {surface: y, lexeme: y}, {surface: roja, lexeme: rojo, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: palma, lexeme: palma-real}, {surface: real, lexeme: palma-real}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 4}, {surface: azul, lexeme: azul, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}, {surface: y, lexeme: y}, {surface: roja, lexeme: rojo, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: palma, lexeme: palma-real, n: 11}, {surface: real, lexeme: palma-real}]
       translations:
         en: Daniel sees a blue, white and red bird in a royal palm.
   - line:
@@ -462,7 +462,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Es un tocororo, el ave nacional de Cuba!
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 3}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 5}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
       translations:
         en: It's a tocororo, Cuba's national bird!
   - line:
@@ -470,7 +470,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi abuelo decía que el tocororo es el ave más cubana de todas.
-          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: decía, lexeme: decir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}}, {surface: más, lexeme: más}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}}, {surface: de, lexeme: de}, {surface: todas, lexeme: todo, feats: {Gender: Fem, Number: Plur}}]
+          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 2}, {surface: decía, lexeme: decir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 6}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 9}, {surface: más, lexeme: más}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}, n: 11, head: 9, rel: amod}, {surface: de, lexeme: de}, {surface: todas, lexeme: todo, feats: {Gender: Fem, Number: Plur}}]
       translations:
         en: My grandfather used to say the tocororo is the most Cuban bird of all.
   - line:
@@ -483,7 +483,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ese bohío fue construido por mi padre con palma real.
-          tokens: [{surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: construido, lexeme: construir, feats: {Tense: Past, VerbForm: Part}}, {surface: por, lexeme: por}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: palma, lexeme: palma-real}, {surface: real, lexeme: palma-real}]
+          tokens: [{surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}, n: 2}, {surface: fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: construido, lexeme: construir, feats: {Tense: Past, VerbForm: Part}}, {surface: por, lexeme: por}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: padre, lexeme: padre, feats: {Number: Sing}, n: 7}, {surface: con, lexeme: con}, {surface: palma, lexeme: palma-real}, {surface: real, lexeme: palma-real}]
       translations:
         en: That bohío was built by my father, out of royal palm.
   - choose:
@@ -499,7 +499,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi bisabuelo también era guajiro. Cortaba caña en Matanzas.
-          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: bisabuelo, lexeme: bisabuelo, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}}, {surface: Cortaba, lexeme: cortar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: caña, lexeme: caña, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}]
+          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: bisabuelo, lexeme: bisabuelo, feats: {Number: Sing}, n: 2}, {surface: también, lexeme: también}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}}, {surface: Cortaba, lexeme: cortar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: caña, lexeme: caña, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}]
       translations:
         en: My great-grandfather was a guajiro too. He cut cane in Matanzas.
   - line:
@@ -515,7 +515,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Toma, mi'jo, un sombrero de yarey. ¡Ahora eres un guajiro!
-          tokens: [{surface: Toma, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: sombrero, lexeme: sombrero, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: yarey, lexeme: yarey, feats: {Number: Sing}}, {surface: Ahora, lexeme: ahora}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}}]
+          tokens: [{surface: Toma, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: sombrero, lexeme: sombrero, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: yarey, lexeme: yarey, feats: {Number: Sing}}, {surface: Ahora, lexeme: ahora}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}, n: 10}]
       translations:
         en: Here you go, son, a yarey hat. Now you're a guajiro!
   - choose:
@@ -532,7 +532,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Gracias. Lo que más me gusta del campo es la gente.
-          tokens: [{surface: Gracias, lexeme: gracias}, {surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}]
+          tokens: [{surface: Gracias, lexeme: gracias}, {surface: Lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: más, lexeme: más}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: gente, lexeme: gente, feats: {Number: Sing}, n: 11}]
       translations:
         en: Thank you. What I like most about the countryside is the people.
   - line:
@@ -540,6 +540,6 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Mira, el guajiro de Hialeah!
-          tokens: [{surface: Mira, lexeme: mirar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Hialeah, lexeme: hialeah}]
+          tokens: [{surface: Mira, lexeme: mirar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: guajiro, lexeme: guajiro, feats: {Number: Sing}, n: 3}, {surface: de, lexeme: de}, {surface: Hialeah, lexeme: hialeah}]
       translations:
         en: Look, the guajiro from Hialeah!

@@ -45,6 +45,21 @@ the converter applies the course's conversion plan
 | `construction:counting` | numbers that add up: tu wan (three), tu tu (four) | `rule:counting`, not written | a rule: number words add up in the order said |
 | `construction:ni-colon` | e ni: before a reported sentence (says that, thinks that) | `rule:ni-colon`, not written | a rule: ni stands for the sentence that follows |
 
+## Clips
+
+The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
+by its KC id; these are the clips whose item has one name in the new shape, which the
+switch renames and changes nothing else of. In a cast of several voices the voice
+each has today is pinned (`courses/tok/next/audio/assignment.yaml`), since a voice
+is drawn by the item's id (ADR 0078).
+
+|  | Clips |
+|---|---|
+| clips | 611 |
+| clips keyed by a KC | 126 |
+| clips renamed with their item | 126 |
+| voices pinned (a cast of several draws by the item's id) | 126 |
+
 ## What no finding above covers
 
 - **Projections:** no orthography of this course has a stated projection yet, so every

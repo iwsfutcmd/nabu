@@ -43,6 +43,21 @@ the converter applies the course's conversion plan
 | `construction:a-not-a` | X唔X: a yes-or-no question (係唔係, 'is it or not') | `rule:a-not-a`, not written | a rule: a predicate, 唔 and the predicate again ask yes or no; a two-syllable word repeats only its first (得唔得閒) |
 | `construction:cl-possessive` | pronoun + classifier + noun: possessive (我本書 my book, 你個仔 your son) | `rule:cl-possessive`, not written | a rule: a classifier between a pronoun and its noun says whose it is |
 
+## Clips
+
+The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
+by its KC id; these are the clips whose item has one name in the new shape, which the
+switch renames and changes nothing else of. In a cast of several voices the voice
+each has today is pinned (`courses/yue/next/audio/assignment.yaml`), since a voice
+is drawn by the item's id (ADR 0078).
+
+|  | Clips |
+|---|---|
+| clips | 724 |
+| clips keyed by a KC | 260 |
+| clips renamed with their item | 260 |
+| voices pinned (a cast of several draws by the item's id) | 260 |
+
 ## Written otherwise than the entry (2)
 
 A token names the lexeme, no feature value tells it from the entry's own form, and it is spelled differently: an allomorph by context (gran before a noun), or a form the course's annotation has no name for. Kept as an allomorph of the entry.

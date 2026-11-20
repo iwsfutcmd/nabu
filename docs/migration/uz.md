@@ -68,6 +68,36 @@ the converter applies the course's conversion plan
 | `form:q-mi` | -mi: yes/no question | `lexeme:q` (PART) |  |
 | `form:part-chi` | -chi: and ...? what about ...? | `lexeme:chi` (PART) |  |
 
+## Dimensions
+
+What every member of a category must choose (ADR 0145), as the plan declares it, and
+how many tokens say a value of each: on themselves, or by an ending written on them.
+A token that leaves one unsaid is the unmarked form, or one the course's annotation
+has no name for.
+
+| Category | Dimension | Tokens that say it | Tokens that do not |
+|---|---|---|---|
+| NOUN | Number | 28 | 854 |
+| NOUN | Case | 210 | 672 |
+| VERB | Tense | 254 | 84 |
+| VERB | Person | 328 | 10 |
+| VERB | Number | 188 | 150 |
+
+## Clips
+
+The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
+by its KC id; these are the clips whose item has one name in the new shape, which the
+switch renames and changes nothing else of. In a cast of several voices the voice
+each has today is pinned (`courses/uz/next/audio/assignment.yaml`), since a voice
+is drawn by the item's id (ADR 0078).
+
+|  | Clips |
+|---|---|
+| clips | 628 |
+| clips a person checked | 29 |
+| clips keyed by a KC | 213 |
+| clips renamed with their item | 213 |
+
 ## Written otherwise than the entry (13)
 
 A token names the lexeme, no feature value tells it from the entry's own form, and it is spelled differently: an allomorph by context (gran before a noun), or a form the course's annotation has no name for. Kept as an allomorph of the entry.

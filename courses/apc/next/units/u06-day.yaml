@@ -53,7 +53,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الصبح بشرب قهوة.
-      tokens: [{surface: الصبح, lexemes: [{lexeme: el, surface: ال}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}}]}, {surface: بشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      tokens: [{surface: الصبح, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}, n: 2}]}, {surface: بشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
       reverse: |-
         (الصبح|عالصبح|ع الصبح) بشرب قهوة
         بشرب قهوة (الصبح|عالصبح|ع الصبح)
@@ -74,7 +74,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بفيق الصبح.
-      tokens: [{surface: بفيق, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بفيق, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: |-
         (بفيق|أنا بفيق) (الصبح|عالصبح|ع الصبح)
         الصبح بفيق
@@ -108,7 +108,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بروح عالشغل.
-      tokens: [{surface: بروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (بروح|أنا بروح) (عالشغل|ع الشغل|على الشغل)
     apc-Latn/arabizi:
       text: bru7 3al shoghl.
@@ -164,7 +164,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بشتغل ببيروت.
-      tokens: [{surface: بشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ببيروت, lexemes: [{lexeme: b, surface: ب}, {lexeme: beirut, surface: بيروت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ببيروت, lexemes: [{lexeme: b, surface: ب, n: 2, head: 3, rel: case}, {lexeme: beirut, surface: بيروت, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: (بشتغل|أنا بشتغل) ببيروت
     apc-Latn/arabizi:
       text: bishteghel b Beirut.
@@ -236,7 +236,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا بتشتغل بالمدرسة.
-      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: بتشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}}, {surface: بالمدرسة, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: بتشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}}, {surface: بالمدرسة, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: مايا بتشتغل بالمدرسة
     apc-Latn/arabizi:
       text: Maya btishteghel bel madrase.
@@ -268,7 +268,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المسا بقرا.
-      tokens: [{surface: المسا, lexemes: [{lexeme: el, surface: ال}, {lexeme: masa, surface: مسا, base: true, feats: {Number: Sing}}]}, {surface: بقرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]
+      tokens: [{surface: المسا, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: masa, surface: مسا, base: true, feats: {Number: Sing}, n: 2}]}, {surface: بقرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]
       reverse: |-
         (المسا|بالمسا) بقرا
         بقرا (المسا|بالمسا)
@@ -303,7 +303,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: منروح عالبيت.
-      tokens: [{surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالبيت, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالبيت, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (منروح|نحنا منروح) (عالبيت|ع البيت|على البيت)
     apc-Latn/arabizi:
       text: mnru7 3al bet.
@@ -321,7 +321,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: شو بتعمل اليوم؟
-      tokens: [{surface: شو, lexeme: shu}, {surface: بتعمل, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: بتعمل, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         شو بتعمل اليوم
         اليوم شو بتعمل
@@ -364,7 +364,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: دايما منشرب قهوة الصبح.
-      tokens: [{surface: دايما, lexeme: dayman}, {surface: منشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: دايما, lexeme: dayman}, {surface: منشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         (دايما|دايماً|دائماً) منشرب قهوة الصبح
         نحنا دايما منشرب قهوة الصبح
@@ -388,7 +388,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بعدين منروح عالشغل.
-      tokens: [{surface: بعدين, lexeme: ba3dein}, {surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بعدين, lexeme: ba3dein}, {surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: بعدين منروح (عالشغل|ع الشغل|على الشغل)
     apc-Latn/arabizi:
       text: ba3dein mnru7 3al shoghl.
@@ -558,7 +558,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا مأخّرة كلّ يوم!
-      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: مأخّرة, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}}, {surface: كلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}]
+      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}, n: 1}, {surface: مأخّرة, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: كلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}]
       reverse: |-
         مايا (مأخّرة|متأخّرة) كلّ يوم
         مايا كلّ يوم (مأخّرة|متأخّرة)
@@ -566,7 +566,7 @@ sentences:
         مايا بتتأخّر كلّ يوم
     apc-Latn/arabizi:
       text: Maya m2akhkhra kell yom!
-      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: m2akhkhra, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}, n: 1}, {surface: m2akhkhra, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
       reverse: |-
         Maya (m2akhkhra|m2akhra|m2a5ra|met2akhkhra) (kell|kil|kel|kull) (yom|yawm|youm)
         Maya (kell|kil|kel|kull) (yom|yawm|youm) (m2akhkhra|m2akhra|m2a5ra|met2akhkhra)
@@ -583,7 +583,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بتروحي عالمدرسة؟
-      tokens: [{surface: بتروحي, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}, {surface: عالمدرسة, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بتروحي, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}, {surface: عالمدرسة, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         بتروحي (عالمدرسة|ع المدرسة|على المدرسة)
         إنتي بتروحي عالمدرسة
@@ -684,7 +684,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وين بتروحوا الصبح؟
-      tokens: [{surface: وين, lexeme: wen}, {surface: بتروحوا, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: وين, lexeme: wen}, {surface: بتروحوا, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         وين (بتروحوا|بتروحو) الصبح
         الصبح وين (بتروحوا|بتروحو)
@@ -820,7 +820,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: بَعْدين بْروح عَالشُّغُل. بِشْتِغِل كْتير!
-          tokens: [{surface: بَعْدين, lexeme: ba3dein}, {surface: بْروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عَالشُّغُل, lexemes: [{lexeme: 3a, surface: عَ}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شُّغُل, base: true, feats: {Number: Sing}}]}, {surface: بِشْتِغِل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: كْتير, lexeme: ktir}]
+          tokens: [{surface: بَعْدين, lexeme: ba3dein}, {surface: بْروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عَالشُّغُل, lexemes: [{lexeme: 3a, surface: عَ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: shoghl, surface: شُّغُل, base: true, feats: {Number: Sing}, n: 5}]}, {surface: بِشْتِغِل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: كْتير, lexeme: ktir}]
         apc-Latn/arabizi:
           text: ba3dein bru7 3al shoghl. bishteghel ktir!
           tokens: [{surface: ba3dein, lexeme: ba3dein}, {surface: bru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}, {surface: bishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ktir, lexeme: ktir}]
@@ -839,7 +839,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: والمَسا؟
-          tokens: [{surface: والمَسا, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال}, {lexeme: masa, surface: مَسا, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: والمَسا, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: masa, surface: مَسا, base: true, feats: {Number: Sing}, n: 3}]}]
         apc-Latn/arabizi:
           text: w el masa?
           tokens: [{surface: w, lexeme: w}, {surface: el, lexeme: el}, {surface: masa, lexeme: masa, feats: {Number: Sing}}]
@@ -851,7 +851,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: المَسا بِقْرا، وبْنام بَكّير.
-          tokens: [{surface: المَسا, lexemes: [{lexeme: el, surface: ال}, {lexeme: masa, surface: مَسا, base: true, feats: {Number: Sing}}]}, {surface: بِقْرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: وبْنام, lexemes: [{lexeme: w, surface: و}, {lexeme: nem, surface: بْنام, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]}, {surface: بَكّير, lexeme: bakkir}]
+          tokens: [{surface: المَسا, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: masa, surface: مَسا, base: true, feats: {Number: Sing}, n: 2}]}, {surface: بِقْرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: وبْنام, lexemes: [{lexeme: w, surface: و}, {lexeme: nem, surface: بْنام, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]}, {surface: بَكّير, lexeme: bakkir}]
         apc-Latn/arabizi:
           text: el masa b2ra, w bnem bakkir.
           tokens: [{surface: el, lexeme: el}, {surface: masa, lexeme: masa, feats: {Number: Sing}}, {surface: b2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: w, lexeme: w}, {surface: bnem, lexeme: nem, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bakkir, lexeme: bakkir}]

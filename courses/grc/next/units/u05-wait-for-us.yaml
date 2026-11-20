@@ -107,7 +107,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγορὰν κατέβην.
-      tokens: [{surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τοῦ}}, {surface: ἀδελφοῦ, lexeme: adelphos, feats: {Case: Gen, Number: Sing}, readings: {attic: ᾰ̓δελφοῦ}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
+      tokens: [{surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τοῦ}}, {surface: ἀδελφοῦ, lexeme: adelphos, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: ᾰ̓δελφοῦ}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, n: 6, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: |-
         μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγορὰν κατέβην
         κατέβην εἰς τὴν ἀγορὰν μετὰ τοῦ ἀδελφοῦ
@@ -122,7 +122,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ τῆς μητρός.
-      tokens: [{surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, readings: {attic: τῆς}}, {surface: μητρός, lexeme: meter, feats: {Case: Gen, Number: Sing}, readings: {attic: μητρός}}]
+      tokens: [{surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: μητρός, lexeme: meter, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: μητρός}}]
       reverse: μετὰ τῆς μητρός
   translations:
     en: With (my|the) mother.
@@ -140,7 +140,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἔφη ὁ παῖς.
-      tokens: [{surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: παῖς}}]
+      tokens: [{surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, readings: {attic: παῖς}}]
       reverse: |-
         ἔφη ὁ παῖς
         ὁ παῖς ἔφη
@@ -337,7 +337,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ Πολέμαρχος ὄπισθεν προσέρχεται.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, readings: {attic: Πολέμᾰρχος}}, {surface: ὄπισθεν, lexeme: opisthen, readings: {attic: ὄπῐσθεν}}, {surface: προσέρχεται, lexeme: proserchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: προσέρχεται}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: Πολέμᾰρχος}}, {surface: ὄπισθεν, lexeme: opisthen, readings: {attic: ὄπῐσθεν}}, {surface: προσέρχεται, lexeme: proserchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: προσέρχεται}}]
       reverse: |-
         ὁ Πολέμαρχος ὄπισθεν προσέρχεται
         [ὁ] Πολέμαρχος προσέρχεται ὄπισθεν
@@ -365,7 +365,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ποῦ ἐστιν ὁ Πολέμαρχος;
-      tokens: [{surface: ποῦ, lexeme: pou, readings: {attic: ποῦ}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, readings: {attic: Πολέμᾰρχος}}]
+      tokens: [{surface: ποῦ, lexeme: pou, readings: {attic: ποῦ}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: ὁ}}, {surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, n: 4, readings: {attic: Πολέμᾰρχος}}]
       reverse: |-
         ποῦ ἐστιν ὁ Πολέμαρχος
         ποῦ ἐστι[ν] Πολέμαρχος
@@ -404,7 +404,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: περιμενοῦμεν, ἦ δ’ ὃς ὁ Γλαύκων.
-      tokens: [{surface: περιμενοῦμεν, lexeme: perimeno, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, readings: {attic: περῐμενοῦμεν}}, {surface: ἦ, lexeme: emi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦ}}, {surface: δ’, lexeme: de, readings: {attic: δ’}}, {surface: ὃς, lexeme: hos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὃς}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Γλαύκων, lexeme: glaukon, feats: {Case: Nom, Number: Sing}, readings: {attic: Γλαύκων}}]
+      tokens: [{surface: περιμενοῦμεν, lexeme: perimeno, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, readings: {attic: περῐμενοῦμεν}}, {surface: ἦ, lexeme: emi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦ}}, {surface: δ’, lexeme: de, readings: {attic: δ’}}, {surface: ὃς, lexeme: hos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὃς}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: ὁ}}, {surface: Γλαύκων, lexeme: glaukon, feats: {Case: Nom, Number: Sing}, n: 6, readings: {attic: Γλαύκων}}]
       reverse: περιμενοῦμεν ἦ δ’ ὃς ὁ Γλαύκων
   translations:
     en: “(We will|We'll) wait,” (said Glaucon|Glaucon said).
@@ -434,7 +434,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: κατέβην χθὲς εἰς Πειραιᾶ μετὰ Γλαύκωνος τοῦ Ἀρίστωνος,
-          tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}, {surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, readings: {attic: Πειραιᾶ}}, {surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, readings: {attic: Γλαύκωνος}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τοῦ}}, {surface: Ἀρίστωνος, lexeme: ariston, feats: {Case: Gen, Number: Sing}, readings: {attic: Ᾰ̓ρῐ́στωνος}}]
+          tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}, {surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, readings: {attic: Πειραιᾶ}}, {surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, readings: {attic: Γλαύκωνος}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det, readings: {attic: τοῦ}}, {surface: Ἀρίστωνος, lexeme: ariston, feats: {Case: Gen, Number: Sing}, n: 8, readings: {attic: Ᾰ̓ρῐ́στωνος}}]
       translations:
         en: I went down to the Piraeus yesterday with Glaucon, the son of Ariston,
   - choose:
@@ -475,7 +475,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: ἀλλὰ περιμενοῦμεν, ἦ δ’ ὃς ὁ Γλαύκων.
-          tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: περιμενοῦμεν, lexeme: perimeno, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, readings: {attic: περῐμενοῦμεν}}, {surface: ἦ, lexeme: emi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦ}}, {surface: δ’, lexeme: de, readings: {attic: δ’}}, {surface: ὃς, lexeme: hos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὃς}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Γλαύκων, lexeme: glaukon, feats: {Case: Nom, Number: Sing}, readings: {attic: Γλαύκων}}]
+          tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: περιμενοῦμεν, lexeme: perimeno, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, readings: {attic: περῐμενοῦμεν}}, {surface: ἦ, lexeme: emi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦ}}, {surface: δ’, lexeme: de, readings: {attic: δ’}}, {surface: ὃς, lexeme: hos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὃς}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det, readings: {attic: ὁ}}, {surface: Γλαύκων, lexeme: glaukon, feats: {Case: Nom, Number: Sing}, n: 7, readings: {attic: Γλαύκων}}]
       translations:
         en: “Well, we'll wait,” said Glaucon.
   - choose:

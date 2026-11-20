@@ -70,6 +70,46 @@ the converter applies the course's conversion plan
 | `construction:subjunctive` | the subjunctive: be- + present stem + ending after 'want' and 'can' | `rule:subjunctive`, not written | a rule: be-, the present stem and an ending, after a verb of wanting or being able |
 | `construction:past` | the simple past: past stem + ending (رفتم, I went) | `rule:past`, not written | a rule: the past stem and an ending |
 
+## Dimensions
+
+What every member of a category must choose (ADR 0145), as the plan declares it, and
+how many tokens say a value of each: on themselves, or by an ending written on them.
+A token that leaves one unsaid is the unmarked form, or one the course's annotation
+has no name for.
+
+| Category | Dimension | Tokens that say it | Tokens that do not |
+|---|---|---|---|
+| NOUN | Number | 13 | 442 |
+| VERB | Tense | 0 | 191 |
+| VERB | Person | 183 | 8 |
+| VERB | Number | 183 | 8 |
+
+**Values no dimension declares:** tokens carry them all the same. A category whose
+members do not all inflect (a pronoun, a set phrase said to a woman), or a lexeme
+tagged as another category than it behaves as.
+
+| Category | Feature | Tokens | Lexemes, the commonest first |
+|---|---|---|---|
+| AUX | Polarity | 3 | budan |
+| AUX | Tense | 11 | budan |
+
+## Clips
+
+The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
+by its KC id; these are the clips whose item has one name in the new shape, which the
+switch renames and changes nothing else of. In a cast of several voices the voice
+each has today is pinned (`courses/fa/next/audio/assignment.yaml`), since a voice
+is drawn by the item's id (ADR 0078).
+
+|  | Clips |
+|---|---|
+| checked clips renamed with their item | 34 |
+| clips | 674 |
+| clips a person checked | 37 |
+| clips keyed by a KC | 238 |
+| clips renamed with their item | 236 |
+| clips whose item is no lexeme of its own now | 2 |
+
 ## Written otherwise than the entry (15)
 
 A token names the lexeme, no feature value tells it from the entry's own form, and it is spelled differently: an allomorph by context (gran before a noun), or a form the course's annotation has no name for. Kept as an allomorph of the entry.
@@ -100,6 +140,15 @@ An entry of the lexicon with no token: a word taught only by its card, or left o
 |---|---|
 | `lexeme:doost-dashtan` | no sentence or story line writes it |
 | `lexeme:existential-hast` | no sentence or story line writes it |
+
+## Clips of a word that is no lexeme of its own now (2)
+
+The clip says the word; the word is a form of another lexeme now, or built of several. It stays in the index under its old item until the switch says what keys a form's clip.
+
+| Where | What |
+|---|---|
+| `sense:bud` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
+| `sense:nist` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
 
 ## What no finding above covers
 

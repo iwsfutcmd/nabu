@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy me duele mucho la cabeza.
-      tokens: [{surface: Hoy, lexeme: hoy}, {surface: me, lexeme: me}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cabeza, lexeme: cabeza, feats: {Number: Sing}}]
+      tokens: [{surface: Hoy, lexeme: hoy}, {surface: me, lexeme: me}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: cabeza, lexeme: cabeza, feats: {Number: Sing}, n: 6}]
       reverse: |-
         Hoy me duele mucho la cabeza
         Me duele mucho la cabeza hoy
@@ -36,7 +36,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili, ¿todavía te duele el estómago?
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: todavía, lexeme: todavía}, {surface: te, lexeme: te}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: estómago, lexeme: estómago, feats: {Number: Sing}}]
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: todavía, lexeme: todavía}, {surface: te, lexeme: te}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: estómago, lexeme: estómago, feats: {Number: Sing}, n: 6}]
       reverse: Lili (todavía te duele el estómago|te duele el estómago todavía|aún te duele el estómago|te sigue doliendo el estómago)
   translations:
     en: |-
@@ -48,7 +48,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A abuelo le duele la espalda por la mañana.
-      tokens: [{surface: A, lexeme: a}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: espalda, lexeme: espalda, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}]
+      tokens: [{surface: A, lexeme: a}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: espalda, lexeme: espalda, feats: {Number: Sing}, n: 6}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}]
       reverse: |-
         (A abuelo|A mi abuelo|Al abuelo) le duele la espalda (por|en) la mañana
         (Por|En) la mañana (a abuelo|a mi abuelo|al abuelo) le duele la espalda
@@ -74,7 +74,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me duele el cuerpo y no puedo dormir.
-      tokens: [{surface: Me, lexeme: me}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cuerpo, lexeme: cuerpo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dormir, lexeme: dormir, feats: {VerbForm: Inf}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cuerpo, lexeme: cuerpo, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dormir, lexeme: dormir, feats: {VerbForm: Inf}}]
       reverse: Me duele [todo] el cuerpo y [yo] no puedo dormir
   translations:
     en: |-
@@ -85,7 +85,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Papi ha comido mucho y ahora le duele el estómago.
-      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: comido, lexeme: comer, feats: {Tense: Past, VerbForm: Part}}, {surface: mucho, lexeme: mucho}, {surface: y, lexeme: y}, {surface: ahora, lexeme: ahora}, {surface: le, lexeme: le}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: estómago, lexeme: estómago, feats: {Number: Sing}}]
+      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: comido, lexeme: comer, feats: {Tense: Past, VerbForm: Part}}, {surface: mucho, lexeme: mucho}, {surface: y, lexeme: y}, {surface: ahora, lexeme: ahora}, {surface: le, lexeme: le}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: estómago, lexeme: estómago, feats: {Number: Sing}, n: 10}]
       reverse: (Papi|Papá|Mi papá|Mi papi) (ha comido|comió) mucho y ahora le duele el estómago
   translations:
     en: |-
@@ -108,7 +108,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me siento mal y me duele el pecho.
-      tokens: [{surface: Me, lexeme: me}, {surface: siento, lexeme: sentirse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mal, lexeme: mal}, {surface: y, lexeme: y}, {surface: me, lexeme: me}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pecho, lexeme: pecho, feats: {Number: Sing}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: siento, lexeme: sentirse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mal, lexeme: mal}, {surface: y, lexeme: y}, {surface: me, lexeme: me}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pecho, lexeme: pecho, feats: {Number: Sing}, n: 8}]
       reverse: '[Yo] me siento mal y me duele el pecho'
   translations:
     en: |-
@@ -119,7 +119,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A abuelo le duelen las rodillas y no puede caminar mucho.
-      tokens: [{surface: A, lexeme: a}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: duelen, lexeme: doler, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: rodillas, lexeme: rodilla, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: caminar, lexeme: caminar, feats: {VerbForm: Inf}}, {surface: mucho, lexeme: mucho}]
+      tokens: [{surface: A, lexeme: a}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: duelen, lexeme: doler, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 5, head: 6, rel: det}, {surface: rodillas, lexeme: rodilla, feats: {Number: Plur}, n: 6}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: caminar, lexeme: caminar, feats: {VerbForm: Inf}}, {surface: mucho, lexeme: mucho}]
       reverse: |-
         (A abuelo|A mi abuelo|Al abuelo) le duelen las rodillas y no puede caminar mucho
         A abuelo le duelen las rodillas y él no puede caminar mucho
@@ -130,7 +130,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El corazón de abuelo está muy bien, pero le duelen las rodillas.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: corazón, lexeme: corazón, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: le, lexeme: le}, {surface: duelen, lexeme: doler, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: rodillas, lexeme: rodilla, feats: {Number: Plur}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: corazón, lexeme: corazón, feats: {Number: Sing}, n: 2}, {surface: de, lexeme: de}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: le, lexeme: le}, {surface: duelen, lexeme: doler, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 11, head: 12, rel: det}, {surface: rodillas, lexeme: rodilla, feats: {Number: Plur}, n: 12}]
       reverse: El corazón (de abuelo|de mi abuelo|del abuelo) está muy bien pero le duelen las rodillas
   translations:
     en: (Grandpa's|Abuelo's|Grandfather's|My grandpa's|My grandfather's) heart is (fine|very good|in very good shape|very healthy|doing very well), but his knees hurt.
@@ -148,7 +148,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo tiene turno con el médico el lunes.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: turno, lexeme: turno, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: médico, lexeme: médico, feats: {Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lunes, lexeme: lunes, feats: {Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: turno, lexeme: turno, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: médico, lexeme: médico, feats: {Number: Sing}, n: 6}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: lunes, lexeme: lunes, feats: {Number: Sing}, n: 8}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) tiene (turno|un turno|cita|una cita) con el (médico|doctor) el lunes
         El lunes (abuelo|mi abuelo|el abuelo) tiene (turno|un turno|cita|una cita) con el (médico|doctor)
@@ -187,7 +187,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Buenos días, doctora. Vengo con mi abuelo.
-      tokens: [{surface: Buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: doctora, lexeme: doctor, feats: {Number: Sing}}, {surface: Vengo, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+      tokens: [{surface: Buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: doctora, lexeme: doctor, feats: {Gender: Fem, Number: Sing}}, {surface: Vengo, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 7}]
       reverse: (Buenos días|Buen día|Buenas) doctora [yo] (vengo|estoy aquí|vine) con mi abuelo
   translations:
     en: Good morning, Doctor. (I'm here|I am here|I've come|I came) with my (grandfather|grandpa).
@@ -196,7 +196,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El médico dice que abuelo tiene la presión alta.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: médico, lexeme: médico, feats: {Number: Sing}}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: presión, lexeme: presión, feats: {Number: Sing}}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: médico, lexeme: médico, feats: {Number: Sing}, n: 2}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: presión, lexeme: presión, feats: {Number: Sing}, n: 8}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}, n: 9, head: 8, rel: amod}]
       reverse: (El médico|El doctor|La médica|La doctora) dice que (abuelo|mi abuelo|el abuelo) tiene [la] presión alta
   translations:
     en: The doctor says [that] (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) has high blood pressure.
@@ -205,7 +205,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo también tiene el azúcar alta.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: azúcar, lexeme: azúcar, feats: {Gender: Fem, Number: Sing}}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: azúcar, lexeme: azúcar, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) también tiene (el azúcar alta|el azúcar alto|la azúcar alta|azúcar|diabetes)
         (Abuelo|Mi abuelo|El abuelo) tiene (el azúcar alta|el azúcar alto|la azúcar alta|azúcar|diabetes) también
@@ -218,7 +218,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy la presión está bien, pero el azúcar está alta.
-      tokens: [{surface: Hoy, lexeme: hoy}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: presión, lexeme: presión, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: azúcar, lexeme: azúcar, feats: {Gender: Masc, Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Hoy, lexeme: hoy}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: presión, lexeme: presión, feats: {Number: Sing}, n: 3}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: azúcar, lexeme: azúcar, feats: {Gender: Masc, Number: Sing}, n: 8}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         Hoy la presión está bien pero el azúcar está (alta|alto)
         La presión está bien hoy pero el azúcar está (alta|alto)
@@ -231,7 +231,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo tiene que tomar una pastilla por la mañana.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tiene, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tiene, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}, n: 6}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) tiene que (tomar|tomarse) una pastilla (por|en) la mañana
         (Por|En) la mañana (abuelo|mi abuelo|el abuelo) tiene que (tomar|tomarse) una pastilla
@@ -259,7 +259,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Usted debe caminar media hora por la tarde.
-      tokens: [{surface: Usted, lexeme: usted}, {surface: debe, lexeme: deber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: caminar, lexeme: caminar, feats: {VerbForm: Inf}}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}, {surface: hora, lexeme: hora, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tarde, lexeme: tarde}]
+      tokens: [{surface: Usted, lexeme: usted}, {surface: debe, lexeme: deber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: caminar, lexeme: caminar, feats: {VerbForm: Inf}}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: amod}, {surface: hora, lexeme: hora, feats: {Number: Sing}, n: 5}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tarde, lexeme: tarde}]
       reverse: |-
         [Usted] debe caminar media hora (por|en) la tarde
         (Por|En) la tarde [usted] debe caminar media hora
@@ -283,7 +283,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo no debe tomar café por la noche.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: debe, lexeme: deber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: debe, lexeme: deber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 8}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) no debe (tomar|beber) café (por|en) la noche
         (Por|En) la noche (abuelo|mi abuelo|el abuelo) no debe (tomar|beber) café
@@ -307,7 +307,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tome esta pastilla por la mañana y por la noche.
-      tokens: [{surface: Tome, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: y, lexeme: y}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      tokens: [{surface: Tome, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}, n: 3}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: y, lexeme: y}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 10}]
       reverse: (Tome|Tómese) esta pastilla (por|en) la mañana y (por|en) la noche
   translations:
     en: Take this pill in the morning and (at night|in the evening).
@@ -318,7 +318,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Descanse esta semana y camine por la tarde.
-      tokens: [{surface: Descanse, lexeme: descansar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: semana, lexeme: semana, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: camine, lexeme: caminar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tarde, lexeme: tarde}]
+      tokens: [{surface: Descanse, lexeme: descansar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: semana, lexeme: semana, feats: {Number: Sing}, n: 3}, {surface: y, lexeme: y}, {surface: camine, lexeme: caminar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tarde, lexeme: tarde}]
       reverse: Descanse esta semana y camine (por|en) la tarde
   translations:
     en: (Rest|Get some rest) this week and (walk|go for a walk|take a walk) in the (afternoon|afternoons).
@@ -329,7 +329,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Aquí tiene la receta para la farmacia.
-      tokens: [{surface: Aquí, lexeme: aquí}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: receta, lexeme: receta, feats: {Number: Sing}}, {surface: para, lexeme: para}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: farmacia, lexeme: farmacia, feats: {Number: Sing}}]
+      tokens: [{surface: Aquí, lexeme: aquí}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: receta, lexeme: receta, feats: {Number: Sing}, n: 4}, {surface: para, lexeme: para}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: farmacia, lexeme: farmacia, feats: {Number: Sing}, n: 7}]
       reverse: Aquí (tiene|está) la receta para la farmacia
   translations:
     en: (Here's|Here is|Here you have) the prescription for the (pharmacy|drugstore).
@@ -340,7 +340,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vaya a la farmacia hoy y compre las pastillas.
-      tokens: [{surface: Vaya, lexeme: ir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: farmacia, lexeme: farmacia, feats: {Number: Sing}}, {surface: hoy, lexeme: hoy}, {surface: y, lexeme: y}, {surface: compre, lexeme: comprar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: pastillas, lexeme: pastilla, feats: {Number: Plur}}]
+      tokens: [{surface: Vaya, lexeme: ir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: farmacia, lexeme: farmacia, feats: {Number: Sing}, n: 4}, {surface: hoy, lexeme: hoy}, {surface: y, lexeme: y}, {surface: compre, lexeme: comprar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 8, head: 9, rel: det}, {surface: pastillas, lexeme: pastilla, feats: {Number: Plur}, n: 9}]
       reverse: |-
         Vaya a la farmacia hoy y compre las pastillas
         Hoy vaya a la farmacia y compre las pastillas
@@ -384,7 +384,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Para el estómago, abuela hace un cocimiento de manzanilla.
-      tokens: [{surface: Para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: estómago, lexeme: estómago, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cocimiento, lexeme: cocimiento, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: manzanilla, lexeme: manzanilla, feats: {Number: Sing}}]
+      tokens: [{surface: Para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: estómago, lexeme: estómago, feats: {Number: Sing}, n: 3}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: cocimiento, lexeme: cocimiento, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de}, {surface: manzanilla, lexeme: manzanilla, feats: {Number: Sing}}]
       reverse: |-
         Para el estómago (abuela|mi abuela|la abuela) hace (un cocimiento|un té|una infusión) de manzanilla
         (Abuela|Mi abuela|La abuela) hace (un cocimiento|un té|una infusión) de manzanilla para el estómago
@@ -397,7 +397,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami toma un tilo por la noche para dormir.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: toma, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: tilo, lexeme: tilo, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: para, lexeme: para}, {surface: dormir, lexeme: dormir, feats: {VerbForm: Inf}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: toma, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: tilo, lexeme: tilo, feats: {Number: Sing}, n: 4}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 7}, {surface: para, lexeme: para}, {surface: dormir, lexeme: dormir, feats: {VerbForm: Inf}}]
       reverse: |-
         (Mami|Mamá|Mi mamá|Mi mami) (toma|se toma) un tilo (por|en) la noche para dormir
         (Por|En) la noche (mami|mamá|mi mamá|mi mami) (toma|se toma) un tilo para dormir
@@ -410,7 +410,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela, ¿tú has tomado tu pastilla hoy?
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: tomado, lexeme: tomar, feats: {Tense: Past, VerbForm: Part}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}}, {surface: hoy, lexeme: hoy}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: tomado, lexeme: tomar, feats: {Tense: Past, VerbForm: Part}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}, n: 6}, {surface: hoy, lexeme: hoy}]
       reverse: (Abuela|Mi abuela) (tú has tomado|has tomado [tú]|tú tomaste|tomaste [tú]) (tu|la) pastilla hoy
   translations:
     en: (Grandma|Abuela|Grandmother|Granny), (have you taken|did you take) your pill today?
@@ -421,7 +421,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El tilo está bien, pero usted tiene que tomar sus pastillas.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: tilo, lexeme: tilo, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: usted, lexeme: usted}, {surface: tiene, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: sus, lexeme: su, feats: {Gender: Fem, Number: Plur}}, {surface: pastillas, lexeme: pastilla, feats: {Number: Plur}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tilo, lexeme: tilo, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: usted, lexeme: usted}, {surface: tiene, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: sus, lexeme: su, feats: {Gender: Fem, Number: Plur}, n: 10, head: 11, rel: det}, {surface: pastillas, lexeme: pastilla, feats: {Number: Plur}, n: 11}]
       reverse: El tilo está bien pero [usted] tiene que tomar (sus|las) pastillas
   translations:
     en: |-
@@ -455,7 +455,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Pepe, hoy tú tienes turno con el médico.
-          tokens: [{surface: Pepe, lexeme: pepe}, {surface: hoy, lexeme: hoy}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: turno, lexeme: turno, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: médico, lexeme: médico, feats: {Number: Sing}}]
+          tokens: [{surface: Pepe, lexeme: pepe}, {surface: hoy, lexeme: hoy}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: turno, lexeme: turno, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: médico, lexeme: médico, feats: {Number: Sing}, n: 8}]
       translations:
         en: Pepe, you have a doctor's appointment today.
   - line:
@@ -471,7 +471,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Tú tienes la presión alta y te duelen las rodillas!
-          tokens: [{surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: presión, lexeme: presión, feats: {Number: Sing}}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}}, {surface: y, lexeme: y}, {surface: te, lexeme: te}, {surface: duelen, lexeme: doler, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: rodillas, lexeme: rodilla, feats: {Number: Plur}}]
+          tokens: [{surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: presión, lexeme: presión, feats: {Number: Sing}, n: 4}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: y, lexeme: y}, {surface: te, lexeme: te}, {surface: duelen, lexeme: doler, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 9, head: 10, rel: det}, {surface: rodillas, lexeme: rodilla, feats: {Number: Plur}, n: 10}]
       translations:
         en: You have high blood pressure, and your knees hurt!
   - line:
@@ -503,7 +503,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Bien, doctora. Pero me duelen las rodillas.
-          tokens: [{surface: Bien, lexeme: bien}, {surface: doctora, lexeme: doctor, feats: {Number: Sing}}, {surface: Pero, lexeme: pero}, {surface: me, lexeme: me}, {surface: duelen, lexeme: doler, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: rodillas, lexeme: rodilla, feats: {Number: Plur}}]
+          tokens: [{surface: Bien, lexeme: bien}, {surface: doctora, lexeme: doctor, feats: {Gender: Fem, Number: Sing}}, {surface: Pero, lexeme: pero}, {surface: me, lexeme: me}, {surface: duelen, lexeme: doler, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 6, head: 7, rel: det}, {surface: rodillas, lexeme: rodilla, feats: {Number: Plur}, n: 7}]
       translations:
         en: Fine, Doctor. But my knees hurt.
   - line:
@@ -511,7 +511,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y el pecho? ¿Le duele el pecho?
-          tokens: [{surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pecho, lexeme: pecho, feats: {Number: Sing}}, {surface: Le, lexeme: le}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pecho, lexeme: pecho, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pecho, lexeme: pecho, feats: {Number: Sing}, n: 3}, {surface: Le, lexeme: le}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: pecho, lexeme: pecho, feats: {Number: Sing}, n: 7}]
       translations:
         en: And your chest? Does your chest hurt?
   - line:
@@ -524,7 +524,7 @@ stories:
       forms:
         es-Latn/standard:
           text: No, el corazón está muy bien.
-          tokens: [{surface: 'No', lexeme: 'no'}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: corazón, lexeme: corazón, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: bien, lexeme: bien}]
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: corazón, lexeme: corazón, feats: {Number: Sing}, n: 3}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: bien, lexeme: bien}]
       translations:
         en: No, my heart is fine.
   - line:
@@ -533,7 +533,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Pero usted tiene la presión alta.
-          tokens: [{surface: Pero, lexeme: pero}, {surface: usted, lexeme: usted}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: presión, lexeme: presión, feats: {Number: Sing}}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}}]
+          tokens: [{surface: Pero, lexeme: pero}, {surface: usted, lexeme: usted}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: presión, lexeme: presión, feats: {Number: Sing}, n: 5}, {surface: alta, lexeme: alto, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}]
       translations:
         en: But you have high blood pressure.
   - line:
@@ -541,7 +541,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Tome esta pastilla por la mañana y camine por la tarde.
-          tokens: [{surface: Tome, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: y, lexeme: y}, {surface: camine, lexeme: caminar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tarde, lexeme: tarde}]
+          tokens: [{surface: Tome, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}, n: 3}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: y, lexeme: y}, {surface: camine, lexeme: caminar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tarde, lexeme: tarde}]
       translations:
         en: Take this pill in the morning and walk in the afternoon.
   - line:
@@ -549,7 +549,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y el café, doctora? ¿Debo tomar menos café?
-          tokens: [{surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: doctora, lexeme: doctor, feats: {Number: Sing}}, {surface: Debo, lexeme: deber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: menos, lexeme: menos}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 3}, {surface: doctora, lexeme: doctor, feats: {Gender: Fem, Number: Sing}}, {surface: Debo, lexeme: deber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: menos, lexeme: menos}, {surface: café, lexeme: café, feats: {Number: Sing}}]
       translations:
         en: And coffee, Doctor? Should I drink less coffee?
   - line:
@@ -557,7 +557,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Un cafecito por la mañana está bien. Por la noche, no.
-          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}]
+          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 2}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 10}, {surface: 'no', lexeme: 'no'}]
       translations:
         en: A cafecito in the morning is fine. At night, no.
   - line:
@@ -570,7 +570,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Aquí tiene la receta. Vaya a la farmacia hoy.
-          tokens: [{surface: Aquí, lexeme: aquí}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: receta, lexeme: receta, feats: {Number: Sing}}, {surface: Vaya, lexeme: ir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: farmacia, lexeme: farmacia, feats: {Number: Sing}}, {surface: hoy, lexeme: hoy}]
+          tokens: [{surface: Aquí, lexeme: aquí}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: receta, lexeme: receta, feats: {Number: Sing}, n: 4}, {surface: Vaya, lexeme: ir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: farmacia, lexeme: farmacia, feats: {Number: Sing}, n: 8}, {surface: hoy, lexeme: hoy}]
       translations:
         en: Here's the prescription. Go to the pharmacy today.
   - choose:
@@ -586,7 +586,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué te ha dicho el médico, Pepe?
-          tokens: [{surface: Qué, lexeme: qué}, {surface: te, lexeme: te}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dicho, lexeme: decir, feats: {Tense: Past, VerbForm: Part}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: médico, lexeme: médico, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}]
+          tokens: [{surface: Qué, lexeme: qué}, {surface: te, lexeme: te}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dicho, lexeme: decir, feats: {Tense: Past, VerbForm: Part}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: médico, lexeme: médico, feats: {Number: Sing}, n: 6}, {surface: Pepe, lexeme: pepe}]
       translations:
         en: What did the doctor tell you, Pepe?
   - line:
@@ -594,7 +594,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Que tengo que tomar una pastilla y caminar.
-          tokens: [{surface: Que, lexeme: que}, {surface: tengo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: caminar, lexeme: caminar, feats: {VerbForm: Inf}}]
+          tokens: [{surface: Que, lexeme: que}, {surface: tengo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: pastilla, lexeme: pastilla, feats: {Number: Sing}, n: 6}, {surface: y, lexeme: y}, {surface: caminar, lexeme: caminar, feats: {VerbForm: Inf}}]
       translations:
         en: That I have to take a pill and walk.
   - line:
@@ -602,7 +602,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Muy bien. Y yo te voy a hacer un cocimiento.
-          tokens: [{surface: Muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: te, lexeme: te}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cocimiento, lexeme: cocimiento, feats: {Number: Sing}}]
+          tokens: [{surface: Muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: te, lexeme: te}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: cocimiento, lexeme: cocimiento, feats: {Number: Sing}, n: 10}]
       translations:
         en: Very good. And I'm going to make you an herbal tea.
   - line:
@@ -610,7 +610,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Un cocimiento? Cachita, ¡yo quiero un cafecito!
-          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cocimiento, lexeme: cocimiento, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: yo, lexeme: yo}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}]
+          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: cocimiento, lexeme: cocimiento, feats: {Number: Sing}, n: 2}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: yo, lexeme: yo}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 7}]
       translations:
         en: An herbal tea? Cachita, I want a cafecito!
   - line:
@@ -618,7 +618,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuelo, la doctora dice que por la noche no.
-          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: doctora, lexeme: doctor, feats: {Number: Sing}}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}]
+          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: doctora, lexeme: doctor, feats: {Gender: Fem, Number: Sing}, n: 3}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 8}, {surface: 'no', lexeme: 'no'}]
       translations:
         en: Grandpa, the doctor says not at night.
   - choose:

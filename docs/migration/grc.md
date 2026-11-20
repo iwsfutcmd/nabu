@@ -102,6 +102,87 @@ the plan's, drafted (REVIEW); the counts are this course's lexemes.
 | lexical feature chosen by the token | 1 |
 | lexical feature stored: no default speaks | 15 |
 
+**Endings a default could still cover:** among the lexemes that store the feature
+with no default for their ending, these endings always go with one value (three
+lexemes or more). Each is a candidate, not a finding: a course's words are few.
+
+| Ending | Value | Lexemes | Such as |
+|---|---|---|---|
+| -ν | Gender=Masc | 6 | Κρίτων, Μένων, Ἕλλην, Γλαύκων, Ἀρίστων, ἀλεκτρυών |
+| -ων | Gender=Masc | 5 | Κρίτων, Μένων, Γλαύκων, Ἀρίστων, ἀλεκτρυών |
+
+## Dimensions
+
+What every member of a category must choose (ADR 0145), as the plan declares it, and
+how many tokens say a value of each: on themselves, or by an ending written on them.
+A token that leaves one unsaid is the unmarked form, or one the course's annotation
+has no name for.
+
+| Category | Dimension | Tokens that say it | Tokens that do not |
+|---|---|---|---|
+| VERB | Mood | 204 | 14 |
+| VERB | Tense | 156 | 62 |
+| VERB | Aspect | 32 | 186 |
+| VERB | Voice | 4 | 214 |
+| VERB | Person | 204 | 14 |
+| VERB | Number | 204 | 14 |
+| VERB | VerbForm | 218 | 0 |
+| AUX | Mood | 99 | 0 |
+| AUX | Tense | 99 | 0 |
+| AUX | Aspect | 5 | 94 |
+| AUX | Person | 99 | 0 |
+| AUX | Number | 99 | 0 |
+| AUX | VerbForm | 99 | 0 |
+| NOUN | Case | 207 | 0 |
+| NOUN | Number | 207 | 0 |
+| PROPN | Case | 111 | 0 |
+| PROPN | Number | 111 | 0 |
+| ADJ | Gender | 61 | 0 |
+| ADJ | Case | 61 | 0 |
+| ADJ | Number | 61 | 0 |
+| ADJ | Degree | 6 | 55 |
+| DET | Gender | 162 | 0 |
+| DET | Case | 162 | 0 |
+| DET | Number | 162 | 0 |
+| PRON | Gender | 45 | 54 |
+| PRON | Case | 85 | 14 |
+| PRON | Number | 85 | 14 |
+
+**Values no dimension declares:** tokens carry them all the same. A category whose
+members do not all inflect (a pronoun, a set phrase said to a woman), or a lexeme
+tagged as another category than it behaves as.
+
+| Category | Feature | Tokens | Lexemes, the commonest first |
+|---|---|---|---|
+| NOUN | Gender | 19 | pais |
+
+## Clips
+
+The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
+by its KC id; these are the clips whose item has one name in the new shape, which the
+switch renames and changes nothing else of. In a cast of several voices the voice
+each has today is pinned (`courses/grc/next/audio/assignment.yaml`), since a voice
+is drawn by the item's id (ADR 0078).
+
+|  | Clips |
+|---|---|
+| clips | 549 |
+| clips keyed by a KC | 135 |
+| clips renamed with their item | 135 |
+
+## Relations
+
+Drafted by the plan's rules (`relations`): a link is written only where the values
+agree and nothing but the words a rule may skip stands between. What is left bare
+waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).
+
+|  | Lexemes |
+|---|---|
+| ADJ with values and no relation | 37 |
+| DET with values and no relation | 15 |
+| amod: written | 24 |
+| det: written | 147 |
+
 ## Lexemes that break a default (3)
 
 The entry stores the feature, and it is a part to learn (ADR 0146). Check each: a wrong default makes parts of regular words, a missing one hides an exception.
@@ -186,6 +267,18 @@ What the node introduced is introduced earlier in the new shape (a sense that wa
 | Where | What |
 |---|---|
 | `grc.u08.it-shall-be-done` | introduces form:fut-3s, form:n-pl: all of it is introduced earlier now, or is a form no value introduces |
+
+## A determiner that does not agree with the noun after it (5)
+
+The two stand side by side and the values the course pins on them differ: one of the two annotations may be wrong, or the noun is not the determiner's.
+
+| Where | What |
+|---|---|
+| `s.02.31 (grc-Grek/polytonic)` | ὁ (Gender=Masc, Case=Nom, Number=Sing) stands before Δαρείου (Gender=Masc, Case=Gen, Number=Sing) and does not agree with it |
+| `s.02.32 (grc-Grek/polytonic)` | ὁ (Gender=Masc, Case=Nom, Number=Sing) stands before Δαρείου (Gender=Masc, Case=Gen, Number=Sing) and does not agree with it |
+| `s.02.33 (grc-Grek/polytonic)` | ἡ (Gender=Fem, Case=Nom, Number=Sing) stands before Κύρου (Gender=Masc, Case=Gen, Number=Sing) and does not agree with it |
+| `s.03.34 (grc-Grek/polytonic)` | ὁ (Gender=Masc, Case=Nom, Number=Sing) stands before Κεφάλου (Gender=Masc, Case=Gen, Number=Sing) and does not agree with it |
+| `s.05.7 (grc-Grek/polytonic)` | ὁ (Gender=Masc, Case=Nom, Number=Sing) stands before Ἀρίστωνος (Gender=Masc, Case=Gen, Number=Sing) and does not agree with it |
 
 ## What no finding above covers
 

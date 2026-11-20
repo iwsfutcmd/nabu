@@ -15,6 +15,7 @@ from typing import Any
 
 from nabu import yamlio
 from nabu.migrate import aliases as aliases_mod
+from nabu.migrate import audio as audio_mod
 from nabu.migrate import checks, report
 from nabu.migrate import plan as plan_mod
 from nabu.migrate import source as source_mod
@@ -22,12 +23,24 @@ from nabu.migrate.convert import Converter, Finding
 from nabu.migrate.course import CourseWriter
 from nabu.migrate.lexicon import Built, build
 from nabu.migrate.plan import Plan, PlanError
+from nabu.migrate.relations import relate
 from nabu.migrate.source import Course, obj
 from nabu.paths import REPO, SCHEMAS
 
 Json = dict[str, Any]
 
-__all__ = ["Migration", "PlanError", "migrate", "stale", "write"]
+__all__ = [
+    "SUMMARY",
+    "Migration",
+    "PlanError",
+    "migrate",
+    "stale",
+    "summary_stale",
+    "write",
+    "write_summary",
+]
+
+SUMMARY = report.SUMMARY
 
 WIDTH = 100_000
 """No folding: a token list, an entry's form and a node stay on one line, so a diff shows a line."""
@@ -42,6 +55,7 @@ class Migration:
     next_course: Json
     next_units: list[tuple[str | None, Json]]
     aliases: Json
+    assignment: Json | None
     findings: list[Finding]
     errors: list[str]
     stats: Json
@@ -55,6 +69,7 @@ def migrate(course_dir: Path, plan_path: Path | None = None) -> Migration:
     if plan.language != course.language:
         raise PlanError(f"the plan is for {plan.language}, the course teaches {course.language}")
     conv = Converter(course, plan)
+    relation_stats, relation_findings = relate(conv)
     built = build(conv)
     writer = CourseWriter(conv)
     next_units = [(path, writer.unit(unit)) for path, unit in course.units]
@@ -62,7 +77,15 @@ def migrate(course_dir: Path, plan_path: Path | None = None) -> Migration:
     if any(path is None for path, _ in next_units):
         next_course["units"] = [path or unit for path, unit in next_units]
     table, alias_stats = aliases_mod.build(conv)
-    findings = [*conv.findings, *built.findings, *writer.findings]
+    assignment, audio_stats, audio_findings, audio_errors = audio_mod.build(conv, table)
+    audio_mod.spoken(conv, table, next_course)
+    findings = [
+        *conv.findings,
+        *built.findings,
+        *writer.findings,
+        *relation_findings,
+        *audio_findings,
+    ]
 
     units = [unit for _, unit in next_units]
     # The entries written as several tokens, by orthography: the lexicon says so itself (its
@@ -79,10 +102,26 @@ def migrate(course_dir: Path, plan_path: Path | None = None) -> Migration:
         *checks.references(built.lexicon, built.language, next_course, units, table),
         *checks.accounted(built.lexicon, built.language, units, multiword),
         *_validate(built, next_course, units, table),
+        *audio_errors,
     ]
-    stats: Json = {"lexicon": built.stats, "aliases": alias_stats}
+    stats: Json = {
+        "lexicon": built.stats,
+        "aliases": alias_stats,
+        "relations": relation_stats,
+        "audio": audio_stats,
+    }
     out = Migration(
-        course, plan, conv, built, next_course, next_units, table, findings, errors, stats
+        course,
+        plan,
+        conv,
+        built,
+        next_course,
+        next_units,
+        table,
+        assignment,
+        findings,
+        errors,
+        stats,
     )
     out.files = _files(out)
     return out
@@ -231,6 +270,10 @@ def _files(m: Migration) -> dict[str, str]:
     files[f"courses/{cid}/aliases.yaml"] = _header(
         f"What each KC id of courses/{cid} became (schemas/aliases.schema.json).", cid
     ) + yamlio.dump(m.aliases, WIDTH)
+    if m.assignment is not None:
+        files[f"courses/{cid}/next/audio/assignment.yaml"] = _header(
+            "The voice each renamed item has today: read before a voice is drawn (ADR 0078).", cid
+        ) + yamlio.dump(m.assignment, WIDTH)
     files[f"docs/migration/{cid}.md"] = report.render(m)
     return files
 
@@ -253,3 +296,14 @@ def stale(m: Migration, repo: Path = REPO) -> list[str]:
         for rel, text in m.files.items()
         if not (repo / rel).exists() or (repo / rel).read_text(encoding="utf-8") != text
     ]
+
+
+def write_summary(migrations: list[Migration], repo: Path = REPO) -> None:
+    path = repo / SUMMARY
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(report.summary(migrations), encoding="utf-8")
+
+
+def summary_stale(migrations: list[Migration], repo: Path = REPO) -> bool:
+    path = repo / SUMMARY
+    return not path.exists() or path.read_text(encoding="utf-8") != report.summary(migrations)

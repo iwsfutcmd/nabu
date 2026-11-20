@@ -400,13 +400,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: جدّو كبير.
-      tokens: [{surface: جدّو, lexeme: jeddo, feats: {Number: Sing}}, {surface: كبير, lexeme: kbir, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: جدّو, lexeme: jeddo, feats: {Number: Sing}, n: 1}, {surface: كبير, lexeme: kbir, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: |-
         جدّو (كبير|ختيار)
         جدّو كبير بالعمر
     apc-Latn/arabizi:
       text: jeddo kbir.
-      tokens: [{surface: jeddo, lexeme: jeddo, feats: {Number: Sing}}, {surface: kbir, lexeme: kbir, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: jeddo, lexeme: jeddo, feats: {Number: Sing}, n: 1}, {surface: kbir, lexeme: kbir, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: |-
         (jeddo|jiddo|jeddu) (kbir|kbeer|kebir|khetyar|khityar)
         (jeddo|jiddo|jeddu) (kbir|kbeer|kebir) (bel|bil) (3omr|3emr)
@@ -551,11 +551,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندك عيلة كبيرة؟
-      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: عيلة, lexeme: 3ayle, feats: {Number: Sing}}, {surface: كبيرة, lexeme: kbir, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: عيلة, lexeme: 3ayle, feats: {Number: Sing}, n: 3}, {surface: كبيرة, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: (عندك|إنت عندك) عيلة كبيرة
     apc-Latn/arabizi:
       text: 3endak 3ayle kbire?
-      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: 3ayle, lexeme: 3ayle, feats: {Number: Sing}}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: 3ayle, lexeme: 3ayle, feats: {Number: Sing}, n: 3}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: ((3endak|3andak|3indak)|(enta|inta) (3endak|3andak|3indak)) (3ayle|3ayli|3eyle) (kbire|kbiri|kbeere)
   translations:
     en: |-

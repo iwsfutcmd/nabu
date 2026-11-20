@@ -53,7 +53,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi casa era chiquita, pero tenía un patio grande.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquita, lexeme: chiquito, feats: {Gender: Fem, Number: Sing}}, {surface: pero, lexeme: pero}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 2}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquita, lexeme: chiquito, feats: {Gender: Fem, Number: Sing}}, {surface: pero, lexeme: pero}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 8}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}, n: 9, head: 8, rel: amod}]
       reverse: |-
         Mi casa era (chiquita|pequeña) pero tenía un patio grande
         Mi casa era chiquitica, pero tenía un patio grande.
@@ -66,7 +66,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mis abuelos vivían cerca y yo comía en su casa.
-      tokens: [{surface: Mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: abuelos, lexeme: abuelo, feats: {Number: Plur}}, {surface: vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: cerca, lexeme: cerca}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: comía, lexeme: comer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      tokens: [{surface: Mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: abuelos, lexeme: abuelo, feats: {Number: Plur}, n: 2}, {surface: vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: cerca, lexeme: cerca}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: comía, lexeme: comer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 10}]
       reverse: |-
         Mis abuelos vivían cerca y [yo] comía en su casa
         Mis abuelos vivían cerca y yo comía en casa de ellos.
@@ -79,7 +79,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo iba a la escuela en guagua con Lili.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
       reverse: '[Yo] iba a la escuela en (guagua|autobús|bus|el autobús|el bus) con Lili'
   translations:
     en: |-
@@ -92,7 +92,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando era chiquito, me gustaba mucho la pelota.
-      tokens: [{surface: Cuando, lexeme: cuando}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquito, lexeme: chiquito, feats: {Gender: Masc, Number: Sing}}, {surface: me, lexeme: me}, {surface: gustaba, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquito, lexeme: chiquito, feats: {Gender: Masc, Number: Sing}}, {surface: me, lexeme: me}, {surface: gustaba, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 8}]
       reverse: |-
         Cuando [yo] era (chiquito|niño|pequeño) me gustaba mucho (la pelota|el béisbol)
         De (chiquito|niño|pequeño) me gustaba mucho (la pelota|el béisbol)
@@ -108,7 +108,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando era chiquita, me gustaba mucho la pelota.
-      tokens: [{surface: Cuando, lexeme: cuando}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquita, lexeme: chiquito, feats: {Gender: Fem, Number: Sing}}, {surface: me, lexeme: me}, {surface: gustaba, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquita, lexeme: chiquito, feats: {Gender: Fem, Number: Sing}}, {surface: me, lexeme: me}, {surface: gustaba, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 8}]
       reverse: |-
         Cuando [yo] era (chiquita|niña|pequeña) me gustaba mucho (la pelota|el béisbol)
         De (chiquita|niña|pequeña) me gustaba mucho (la pelota|el béisbol)
@@ -136,7 +136,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todos los días jugaba pelota en la calle con mis amigos.
-      tokens: [{surface: Todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: días, lexeme: día, feats: {Number: Plur}}, {surface: jugaba, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: calle, lexeme: calle, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: amigos, lexeme: amigo, feats: {Number: Plur}}]
+      tokens: [{surface: Todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 1, head: 3, rel: det}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: días, lexeme: día, feats: {Number: Plur}, n: 3}, {surface: jugaba, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: calle, lexeme: calle, feats: {Number: Sing}, n: 8}, {surface: con, lexeme: con}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}, n: 10, head: 11, rel: det}, {surface: amigos, lexeme: amigo, feats: {Number: Plur}, n: 11}]
       reverse: |-
         Todos los días [yo] jugaba (pelota|béisbol|al béisbol) en la calle con mis amigos
         [Yo] jugaba (pelota|béisbol|al béisbol) en la calle con mis amigos todos los días
@@ -149,7 +149,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili y yo montábamos bicicleta en el barrio.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: montábamos, lexeme: montar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: bicicleta, lexeme: bicicleta, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}}]
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: montábamos, lexeme: montar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: bicicleta, lexeme: bicicleta, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}, n: 8}]
       reverse: Lili y yo (montábamos|andábamos) (bicicleta|en bicicleta|bici|en bici) (en el|por el) barrio
   translations:
     en: Lili and I (rode|used to ride|would ride) (our bikes|bikes|our bicycles|bicycles) (in|around) the (neighborhood|neighbourhood).
@@ -158,7 +158,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los sábados íbamos a casa de Abuela Cachita.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}}, {surface: íbamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 2}, {surface: íbamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}]
       reverse: |-
         Los sábados [nosotros] íbamos a [la] casa de (Abuela|la abuela|mi abuela) Cachita
         Los sábados nosotras íbamos a casa de Abuela Cachita.
@@ -171,7 +171,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela siempre hacía arroz con pollo los domingos.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 8}]
       reverse: |-
         (Abuela|La abuela|Mi abuela) siempre hacía arroz con pollo los domingos
         Los domingos abuela siempre hacía arroz con pollo.
@@ -184,7 +184,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por la noche veíamos la novela con ella.
-      tokens: [{surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: veíamos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: novela, lexeme: novela, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 3}, {surface: veíamos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: novela, lexeme: novela, feats: {Number: Sing}, n: 6}, {surface: con, lexeme: con}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         Por la noche [nosotros] veíamos la novela con ella
         [Nosotros] veíamos la novela con ella por la noche
@@ -200,7 +200,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En el verano hacía mucho calor y no había escuela.
-      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: verano, lexeme: verano, feats: {Number: Sing}}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}]
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}]
       reverse: |-
         En el verano hacía mucho calor y no había (escuela|clases)
         En verano hacía mucho calor y no había escuela.
@@ -213,7 +213,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: De niña, Abuela Cachita vivía en el campo, en Matanzas.
-      tokens: [{surface: De, lexeme: de}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}]
+      tokens: [{surface: De, lexeme: de}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 8}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}]
       reverse: |-
         De niña (Abuela|la abuela|mi abuela) Cachita vivía en el campo en Matanzas
         Cuando era niña (Abuela|la abuela|mi abuela) Cachita vivía en el campo en Matanzas
@@ -228,7 +228,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Su familia era pobre, pero muy feliz.
-      tokens: [{surface: Su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: pobre, lexeme: pobre, feats: {Gender: Fem, Number: Sing}}, {surface: pero, lexeme: pero}, {surface: muy, lexeme: muy}, {surface: feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 2}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: pobre, lexeme: pobre, feats: {Gender: Fem, Number: Sing}}, {surface: pero, lexeme: pero}, {surface: muy, lexeme: muy}, {surface: feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}]
       reverse: Su familia era pobre pero (muy|era muy) feliz
   translations:
     en: Her family was poor, but (very happy|really happy|happy).
@@ -237,7 +237,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vivían en un bohío cerca de un pueblo.
-      tokens: [{surface: Vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: cerca, lexeme: cerca}, {surface: de, lexeme: de}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}}]
+      tokens: [{surface: Vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}, n: 4}, {surface: cerca, lexeme: cerca}, {surface: de, lexeme: de}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}, n: 8}]
       reverse: |-
         [Ellos] vivían en un bohío cerca de un pueblo
         Ellas vivían en un bohío cerca de un pueblo.
@@ -248,7 +248,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En el bohío de Abuela no había luz.
-      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}]
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}, n: 3}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}]
       reverse: En el bohío de (Abuela|la abuela|mi abuela) no había (luz|electricidad|corriente)
   translations:
     en: |-
@@ -259,7 +259,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sus padres tenían gallinas y un caballo.
-      tokens: [{surface: Sus, lexeme: su, feats: {Gender: Masc, Number: Plur}}, {surface: padres, lexeme: padre, feats: {Number: Plur}}, {surface: tenían, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}}]
+      tokens: [{surface: Sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 2}, {surface: tenían, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}, n: 7}]
       reverse: Sus padres tenían gallinas y un caballo
   translations:
     en: (Her|His|Their) parents (had|used to have) (hens|chickens) and a horse.
@@ -268,7 +268,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela iba a la escuela a caballo.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}}]
       reverse: |-
         (Abuela|La abuela|Mi abuela) iba a la escuela a caballo
         (Abuela|La abuela|Mi abuela) iba a caballo a la escuela
@@ -282,7 +282,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los domingos, toda la familia iba al río.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: río, lexeme: río, feats: {Number: Sing}}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 2}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 3, head: 5, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: río, lexeme: río, feats: {Number: Sing}}]
       reverse: |-
         Los domingos toda la familia iba al río
         Toda la familia iba al río los domingos
@@ -295,7 +295,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En el campo, los niños jugaban a la quimbumbia.
-      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: niños, lexeme: niño, feats: {Gender: Masc, Number: Plur}}, {surface: jugaban, lexeme: jugar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}}]
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 3}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 4, head: 5, rel: det}, {surface: niños, lexeme: niño, feats: {Gender: Masc, Number: Plur}, n: 5}, {surface: jugaban, lexeme: jugar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}, n: 9}]
       reverse: |-
         En el campo los niños jugaban (a la quimbumbia|quimbumbia)
         Los niños jugaban (a la quimbumbia|quimbumbia) en el campo
@@ -306,7 +306,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela empinaba papalotes con sus hermanos.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: empinaba, lexeme: empinar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: empinaba, lexeme: empinar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}, n: 6}]
       reverse: |-
         (Abuela|La abuela|Mi abuela) (empinaba|volaba) papalotes con sus hermanos
         Abuela volaba cometas con sus hermanos.
@@ -319,7 +319,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mis hermanos y yo nos bañábamos en el río.
-      tokens: [{surface: Mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: bañábamos, lexeme: bañarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: río, lexeme: río, feats: {Number: Sing}}]
+      tokens: [{surface: Mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}, n: 2}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: bañábamos, lexeme: bañarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: río, lexeme: río, feats: {Number: Sing}, n: 9}]
       reverse: |-
         Mis hermanos y yo nos bañábamos en el río
         Mis hermanos y yo nadábamos en el río.
@@ -345,7 +345,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe nos hacía papalotes en el patio.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 8}]
       reverse: |-
         (Abuelo|El abuelo|Mi abuelo) Pepe nos hacía papalotes en el patio
         Abuelo Pepe nos hacía cometas en el patio.
@@ -359,7 +359,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Antes no había teléfono en el pueblo de Abuela.
-      tokens: [{surface: Antes, lexeme: antes}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Antes, lexeme: antes}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}]
       reverse: Antes no había (teléfono|teléfonos) en el pueblo de (Abuela|la abuela|mi abuela)
   translations:
     en: (Before|Back then|In the old days|In those days), there (was no phone|were no phones|was no telephone|were no telephones) in (Grandma's|Abuela's|Granny's) (town|village).
@@ -440,7 +440,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nos acostábamos con las gallinas, muy temprano.
-      tokens: [{surface: Nos, lexeme: nos, feats: {Number: Plur}}, {surface: acostábamos, lexeme: acostarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}, {surface: muy, lexeme: muy}, {surface: temprano, lexeme: temprano}]
+      tokens: [{surface: Nos, lexeme: nos, feats: {Number: Plur}}, {surface: acostábamos, lexeme: acostarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 4, head: 5, rel: det}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}, n: 5}, {surface: muy, lexeme: muy}, {surface: temprano, lexeme: temprano}]
       reverse: |-
         [Nosotros] nos acostábamos con las gallinas [muy temprano]
         [Nosotros] nos acostábamos muy temprano [con las gallinas]
@@ -477,7 +477,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, ¿cómo era tu vida cuando eras niña?
-          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cómo, lexeme: cómo}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: cuando, lexeme: cuando}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}]
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cómo, lexeme: cómo}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 5}, {surface: cuando, lexeme: cuando}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}]
       translations:
         en: Grandma, what was your life like when you were a girl?
   - line:
@@ -485,7 +485,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo vivía en el campo, en Matanzas, en un bohío.
-          tokens: [{surface: Yo, lexeme: yo}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}]
+          tokens: [{surface: Yo, lexeme: yo}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}, n: 10}]
       translations:
         en: I lived in the country, in Matanzas, in a bohío.
   - line:
@@ -493,7 +493,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿En un bohío? ¿Y había luz?
-          tokens: [{surface: En, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: Y, lexeme: y}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}]
+          tokens: [{surface: En, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}, n: 3}, {surface: Y, lexeme: y}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}]
       translations:
         en: In a bohío? And was there electricity?
   - line:
@@ -501,7 +501,7 @@ stories:
       forms:
         es-Latn/standard:
           text: No, mi vida. No había luz y no había teléfono.
-          tokens: [{surface: 'No', lexeme: 'no'}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: 'No', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}]
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 3}, {surface: 'No', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}]
       translations:
         en: No, darling. There was no electricity and no phone.
   - line:
@@ -509,7 +509,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y qué hacían ustedes por la noche?
-          tokens: [{surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: hacían, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: hacían, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 7}]
       translations:
         en: So what did you all do at night?
   - line:
@@ -517,7 +517,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Nos acostábamos con las gallinas. ¡Muy temprano!
-          tokens: [{surface: Nos, lexeme: nos, feats: {Number: Plur}}, {surface: acostábamos, lexeme: acostarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}, {surface: Muy, lexeme: muy}, {surface: temprano, lexeme: temprano}]
+          tokens: [{surface: Nos, lexeme: nos, feats: {Number: Plur}}, {surface: acostábamos, lexeme: acostarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 4, head: 5, rel: det}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}, n: 5}, {surface: Muy, lexeme: muy}, {surface: temprano, lexeme: temprano}]
       translations:
         en: We went to bed with the chickens. Very early!
   - choose:
@@ -533,7 +533,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y tú ibas a la escuela?
-          tokens: [{surface: Y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: ibas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: ibas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}, n: 6}]
       translations:
         en: And did you go to school?
   - line:
@@ -542,7 +542,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, iba a la escuela a caballo.
-          tokens: [{surface: Sí, lexeme: sí}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}}]
       translations:
         en: Yes, I went to school on horseback.
   - line:
@@ -550,7 +550,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Los domingos íbamos al río y nos bañábamos.
-          tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}, {surface: íbamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: río, lexeme: río, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: bañábamos, lexeme: bañarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}]
+          tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 2}, {surface: íbamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: río, lexeme: río, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: bañábamos, lexeme: bañarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}]
       translations:
         en: On Sundays we went to the river and swam.
   - line:
@@ -563,7 +563,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y mis hermanos y yo empinábamos papalotes.
-          tokens: [{surface: Y, lexeme: y}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: empinábamos, lexeme: empinar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}, n: 3}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: empinábamos, lexeme: empinar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}]
       translations:
         en: And my brothers and I flew kites.
   - line:
@@ -580,7 +580,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Y jugaba a la quimbumbia en la calle!
-          tokens: [{surface: Y, lexeme: y}, {surface: jugaba, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: calle, lexeme: calle, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: jugaba, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: calle, lexeme: calle, feats: {Number: Sing}, n: 8}]
       translations:
         en: And I played quimbumbia in the street!
   - line:
@@ -588,7 +588,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué es la quimbumbia, abuelo?
-          tokens: [{surface: Qué, lexeme: qué}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+          tokens: [{surface: Qué, lexeme: qué}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}, n: 4}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
       translations:
         en: What's quimbumbia, Grandpa?
   - line:
@@ -596,7 +596,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Era como la pelota, pero sin pelota.
-          tokens: [{surface: Era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: sin, lexeme: sin}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+          tokens: [{surface: Era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 4}, {surface: pero, lexeme: pero}, {surface: sin, lexeme: sin}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
       translations:
         en: It was like baseball, but without a ball.
   - choose:
@@ -612,7 +612,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, ¿tú eras feliz en el campo?
-          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}]
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 7}]
       translations:
         en: Grandma, were you happy in the country?
   - line:
@@ -642,7 +642,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Sí, y ahora no me acuesto con las gallinas!
-          tokens: [{surface: Sí, lexeme: sí}, {surface: y, lexeme: y}, {surface: ahora, lexeme: ahora}, {surface: 'no', lexeme: 'no'}, {surface: me, lexeme: me}, {surface: acuesto, lexeme: acostarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: y, lexeme: y}, {surface: ahora, lexeme: ahora}, {surface: 'no', lexeme: 'no'}, {surface: me, lexeme: me}, {surface: acuesto, lexeme: acostarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 8, head: 9, rel: det}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}, n: 9}]
       translations:
         en: Yes, and now I don't go to bed with the chickens!
   - choose:

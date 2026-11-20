@@ -67,7 +67,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָעִיר
-      tokens: [{surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿîr}}]
+      tokens: [{surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʿîr}}]
       reverse: העיר
   translations:
     en: |-
@@ -78,7 +78,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָעִיר הַגְּדוֹלָה
-      tokens: [{surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: haggəḏôlâ}}]
+      tokens: [{surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ, n: 3, head: 4, rel: det}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}, n: 4, head: 2, rel: amod}], readings: {tiberian: haggəḏôlâ}}]
       reverse: העיר הגדולה
   translations:
     en: |-
@@ -89,7 +89,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: נִינְוֵה הָעִיר הַגְּדוֹלָה
-      tokens: [{surface: נִינְוֵה, lexeme: ninveh, feats: {Number: Sing}, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: haggəḏôlâ}}]
+      tokens: [{surface: נִינְוֵה, lexeme: ninveh, feats: {Number: Sing}, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ, n: 4, head: 5, rel: det}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}, n: 5, head: 3, rel: amod}], readings: {tiberian: haggəḏôlâ}}]
       reverse: נינוה העיר הגדולה
   translations:
     en: |-
@@ -139,7 +139,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיַּעַל אֶל־הָהָר׃
-      tokens: [{surface: וַיַּעַל, lexeme: alah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyáʿal}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָהָר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: har, surface: הָר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāhār}}]
+      tokens: [{surface: וַיַּעַל, lexeme: alah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyáʿal}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָהָר, lexemes: [{lexeme: ha, surface: הָ, n: 3, head: 4, rel: det}, {lexeme: har, surface: הָר, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: hāhār}}]
       reverse: |-
         ויעל אל ההר
         עלה אל ההר
@@ -163,7 +163,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כִּי־עָלְתָה רָעָתָם לְפָנָי׃
-      tokens: [{surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, lexeme: alah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, lexemes: [{lexeme: raah.evil, surface: רָעָתָ, base: true, feats: {Gender: Fem, Number: Sing}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, lexemes: [{lexeme: le, surface: לְ}, {lexeme: panim, surface: פָנָ, base: true, feats: {Number: Plur}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ləp̄ānāy}}]
+      tokens: [{surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, lexeme: alah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, lexemes: [{lexeme: raah.evil, surface: רָעָתָ, base: true, feats: {Gender: Fem, Number: Sing}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, lexemes: [{lexeme: le, surface: לְ, n: 5, head: 6, rel: case}, {lexeme: panim, surface: פָנָ, base: true, feats: {Number: Plur}, n: 6}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ləp̄ānāy}}]
       reverse: כי עלתה רעתם לפני
   translations:
     en: |-
@@ -224,7 +224,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיֵּרֶד מִן־הָהָר׃
-      tokens: [{surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָהָר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: har, surface: הָר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāhār}}]
+      tokens: [{surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָהָר, lexemes: [{lexeme: ha, surface: הָ, n: 3, head: 4, rel: det}, {lexeme: har, surface: הָר, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: hāhār}}]
       reverse: |-
         וירד מן ההר
         ירד מן ההר
@@ -379,7 +379,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: קוּם לֵךְ אֶל־נִינְוֵה הָעִיר הַגְּדוֹלָה
-          tokens: [{surface: קוּם, lexeme: qum, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qûm}}, {surface: לֵךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: lēḵ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: נִינְוֵה, lexeme: ninveh, feats: {Number: Sing}, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: haggəḏôlâ}}]
+          tokens: [{surface: קוּם, lexeme: qum, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qûm}}, {surface: לֵךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: lēḵ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: נִינְוֵה, lexeme: ninveh, feats: {Number: Sing}, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ, n: 5, head: 6, rel: det}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}, n: 8, head: 6, rel: amod}], readings: {tiberian: haggəḏôlâ}}]
       translations:
         en: “Get up, go to Nineveh, that great city,
   - line:
@@ -387,7 +387,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וּקְרָא עָלֶיהָ כִּי־עָלְתָה רָעָתָם לְפָנָי׃
-          tokens: [{surface: וּקְרָא, lexemes: [{lexeme: we, surface: וּ}, {lexeme: qara, surface: קְרָא, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}], readings: {tiberian: ûqərāʾ}}, {surface: עָלֶיהָ, lexemes: [{lexeme: al, surface: עָלֶי, base: true}, {lexeme: sfx-3fs, surface: הָ}], readings: {tiberian: ʿālếhā}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, lexeme: alah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, lexemes: [{lexeme: raah.evil, surface: רָעָתָ, base: true, feats: {Gender: Fem, Number: Sing}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, lexemes: [{lexeme: le, surface: לְ}, {lexeme: panim, surface: פָנָ, base: true, feats: {Number: Plur}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ləp̄ānāy}}]
+          tokens: [{surface: וּקְרָא, lexemes: [{lexeme: we, surface: וּ}, {lexeme: qara, surface: קְרָא, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}], readings: {tiberian: ûqərāʾ}}, {surface: עָלֶיהָ, lexemes: [{lexeme: al, surface: עָלֶי, base: true}, {lexeme: sfx-3fs, surface: הָ}], readings: {tiberian: ʿālếhā}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, lexeme: alah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, lexemes: [{lexeme: raah.evil, surface: רָעָתָ, base: true, feats: {Gender: Fem, Number: Sing}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, lexemes: [{lexeme: le, surface: לְ, n: 9, head: 10, rel: case}, {lexeme: panim, surface: פָנָ, base: true, feats: {Number: Plur}, n: 10}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ləp̄ānāy}}]
       translations:
         en: and call out against it, for their wickedness has come up before me.”
   - choose:
@@ -403,7 +403,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיָּקָם יוֹנָה לִבְרֹחַ תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה וַיֵּרֶד׃
-          tokens: [{surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, lexemes: [{lexeme: le, surface: לִ}, {lexeme: barach, surface: בְרֹחַ, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, lexemes: [{lexeme: tarshish, surface: תַּרְשִׁישָׁ, base: true, feats: {Number: Sing}}, {lexeme: dir, surface: ה}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, lexemes: [{lexeme: min, surface: מִ}, {lexeme: le, surface: לִּ}, {lexeme: panim, surface: פְנֵי, base: true, feats: {Definite: Cons, Number: Plur}}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}]
+          tokens: [{surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, lexemes: [{lexeme: le, surface: לִ}, {lexeme: barach, surface: בְרֹחַ, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, lexemes: [{lexeme: tarshish, surface: תַּרְשִׁישָׁ, base: true, feats: {Number: Sing}}, {lexeme: dir, surface: ה}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, lexemes: [{lexeme: min, surface: מִ, n: 7, head: 9, rel: case}, {lexeme: le, surface: לִּ, n: 8, head: 9, rel: case}, {lexeme: panim, surface: פְנֵי, base: true, feats: {Definite: Cons, Number: Plur}, n: 9}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}]
       translations:
         en: But Jonah got up to flee to Tarshish, away from the LORD.
   - line:
@@ -415,7 +415,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: יָפוֹ וַיִּמְצָא אָנִיָּה בָּאָה תַרְשִׁישׁ וַיִּתֵּן שְׂכָרָהּ וַיֵּרֶד בָּהּ לָבוֹא עִמָּהֶם תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה׃
-          tokens: [{surface: יָפוֹ, lexeme: yafo, feats: {Number: Sing}, readings: {tiberian: yāp̄ô}}, {surface: וַיִּמְצָא, lexeme: matsa, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyimṣāʾ}}, {surface: אָנִיָּה, lexeme: oniyyah, feats: {Number: Sing}, readings: {tiberian: ʾoniyyâ}}, {surface: בָּאָה, lexeme: bo, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: bāʾâ}}, {surface: תַרְשִׁישׁ, lexeme: tarshish, feats: {Number: Sing}, readings: {tiberian: ṯaršîš}}, {surface: וַיִּתֵּן, lexeme: natan, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyittēn}}, {surface: שְׂכָרָהּ, lexemes: [{lexeme: sakhar, surface: שְׂכָרָ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: śəḵārāh}}, {surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}, {surface: בָּהּ, lexemes: [{lexeme: be, surface: בָּ, base: true}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: bāh}}, {surface: לָבוֹא, lexemes: [{lexeme: le, surface: לָ}, {lexeme: bo, surface: בוֹא, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lāḇôʾ}}, {surface: עִמָּהֶם, lexemes: [{lexeme: im.with, surface: עִמָּ, base: true}, {lexeme: sfx-3mp, surface: הֶם}], readings: {tiberian: ʿimmāhem}}, {surface: תַּרְשִׁישָׁה, lexemes: [{lexeme: tarshish, surface: תַּרְשִׁישָׁ, base: true, feats: {Number: Sing}}, {lexeme: dir, surface: ה}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, lexemes: [{lexeme: min, surface: מִ}, {lexeme: le, surface: לִּ}, {lexeme: panim, surface: פְנֵי, base: true, feats: {Definite: Cons, Number: Plur}}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}]
+          tokens: [{surface: יָפוֹ, lexeme: yafo, feats: {Number: Sing}, readings: {tiberian: yāp̄ô}}, {surface: וַיִּמְצָא, lexeme: matsa, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyimṣāʾ}}, {surface: אָנִיָּה, lexeme: oniyyah, feats: {Number: Sing}, readings: {tiberian: ʾoniyyâ}}, {surface: בָּאָה, lexeme: bo, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: bāʾâ}}, {surface: תַרְשִׁישׁ, lexeme: tarshish, feats: {Number: Sing}, readings: {tiberian: ṯaršîš}}, {surface: וַיִּתֵּן, lexeme: natan, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyittēn}}, {surface: שְׂכָרָהּ, lexemes: [{lexeme: sakhar, surface: שְׂכָרָ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: śəḵārāh}}, {surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}, {surface: בָּהּ, lexemes: [{lexeme: be, surface: בָּ, base: true}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: bāh}}, {surface: לָבוֹא, lexemes: [{lexeme: le, surface: לָ}, {lexeme: bo, surface: בוֹא, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lāḇôʾ}}, {surface: עִמָּהֶם, lexemes: [{lexeme: im.with, surface: עִמָּ, base: true}, {lexeme: sfx-3mp, surface: הֶם}], readings: {tiberian: ʿimmāhem}}, {surface: תַּרְשִׁישָׁה, lexemes: [{lexeme: tarshish, surface: תַּרְשִׁישָׁ, base: true, feats: {Number: Sing}}, {lexeme: dir, surface: ה}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, lexemes: [{lexeme: min, surface: מִ, n: 18, head: 20, rel: case}, {lexeme: le, surface: לִּ, n: 19, head: 20, rel: case}, {lexeme: panim, surface: פְנֵי, base: true, feats: {Definite: Cons, Number: Plur}, n: 20}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}]
       translations:
         en: He went down to Joppa and found a ship going to Tarshish; he paid its fare and went down into it, to go with them to Tarshish, away from the LORD.
   - choose:

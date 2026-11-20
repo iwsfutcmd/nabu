@@ -18,7 +18,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ ἄνθρωπος.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: ἄνθρωπος, lexeme: anthropos, feats: {Case: Nom, Number: Sing}, readings: {attic: ᾰ̓́νθρωπος}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: ἄνθρωπος, lexeme: anthropos, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: ᾰ̓́νθρωπος}}]
       reverse: ὁ ἄνθρωπος
   translations:
     en: The (man|person|human being).
@@ -27,7 +27,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὗτος ὁ ἄνθρωπος.
-      tokens: [{surface: οὗτος, lexeme: houtos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὗτος}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: ἄνθρωπος, lexeme: anthropos, feats: {Case: Nom, Number: Sing}, readings: {attic: ᾰ̓́νθρωπος}}]
+      tokens: [{surface: οὗτος, lexeme: houtos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὗτος}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ὁ}}, {surface: ἄνθρωπος, lexeme: anthropos, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: ᾰ̓́νθρωπος}}]
       reverse: |-
         οὗτος ὁ ἄνθρωπος
         ὁ ἄνθρωπος οὗτος
@@ -47,7 +47,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ Σωκράτης σοφός ἐστιν.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Σωκράτης, lexeme: sokrates, feats: {Case: Nom, Number: Sing}, readings: {attic: Σωκρᾰ́της}}, {surface: σοφός, lexeme: sophos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: σοφός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: Σωκράτης, lexeme: sokrates, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: Σωκρᾰ́της}}, {surface: σοφός, lexeme: sophos, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod, readings: {attic: σοφός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
       reverse: |-
         ὁ Σωκράτης σοφός ἐστιν
         σοφός ἐστι[ν] [ὁ] Σωκράτης
@@ -102,7 +102,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τούτου τοῦ ἀνθρώπου σοφώτερός εἰμι.
-      tokens: [{surface: τούτου, lexeme: houtos, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τούτου}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τοῦ}}, {surface: ἀνθρώπου, lexeme: anthropos, feats: {Case: Gen, Number: Sing}, readings: {attic: ᾰ̓νθρώπου}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερός}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
+      tokens: [{surface: τούτου, lexeme: houtos, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τούτου}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τοῦ}}, {surface: ἀνθρώπου, lexeme: anthropos, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: ᾰ̓νθρώπου}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερός}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
       reverse: |-
         τούτου τοῦ ἀνθρώπου σοφώτερός εἰμι
         σοφώτερός εἰμι τούτου τοῦ ἀνθρώπου
@@ -115,7 +115,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ ἀνήρ.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: ἀνήρ, lexeme: aner, feats: {Case: Nom, Number: Sing}, readings: {attic: ᾰ̓νήρ}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: ἀνήρ, lexeme: aner, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: ᾰ̓νήρ}}]
       reverse: ὁ ἀνήρ
   translations:
     en: The (man|husband).
@@ -124,7 +124,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὦ ἄνδρες Ἀθηναῖοι.
-      tokens: [{surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: ἄνδρες, lexeme: aner, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: ᾰ̓́νδρες}}, {surface: Ἀθηναῖοι, lexeme: athenaios, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: Ᾰ̓θηναῖοι}}]
+      tokens: [{surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: ἄνδρες, lexeme: aner, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: ᾰ̓́νδρες}}, {surface: Ἀθηναῖοι, lexeme: athenaios, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 3, head: 2, rel: amod, readings: {attic: Ᾰ̓θηναῖοι}}]
       reverse: |-
         ὦ ἄνδρες Ἀθηναῖοι
         ἄνδρες Ἀθηναῖοι
@@ -135,7 +135,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ παῖς σοφώτερός ἐστι τοῦ πατρός.
-      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: παῖς}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερός}}, {surface: ἐστι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τοῦ}}, {surface: πατρός, lexeme: pater, feats: {Case: Gen, Number: Sing}, readings: {attic: πᾰτρός}}]
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, readings: {attic: παῖς}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod, readings: {attic: σοφώτερός}}, {surface: ἐστι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: τοῦ}}, {surface: πατρός, lexeme: pater, feats: {Case: Gen, Number: Sing}, n: 6, readings: {attic: πᾰτρός}}]
       reverse: |-
         ὁ παῖς σοφώτερός ἐστι τοῦ πατρός
         ὁ παῖς τοῦ πατρὸς σοφώτερός ἐστι[ν]
@@ -279,7 +279,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὥσπερ ὁ πατήρ.
-      tokens: [{surface: ὥσπερ, lexeme: hosper, readings: {attic: ὥσπερ}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: πατήρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, readings: {attic: πᾰτήρ}}]
+      tokens: [{surface: ὥσπερ, lexeme: hosper, readings: {attic: ὥσπερ}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ὁ}}, {surface: πατήρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: πᾰτήρ}}]
       reverse: ὥσπερ ὁ πατήρ
   translations:
     en: (Just like|Like|Just as) (the|my|his|her) father.
@@ -325,7 +325,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: τούτου μὲν τοῦ ἀνθρώπου ἐγὼ σοφώτερός εἰμι·
-          tokens: [{surface: τούτου, lexeme: houtos, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τούτου}}, {surface: μὲν, lexeme: men, readings: {attic: μὲν}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τοῦ}}, {surface: ἀνθρώπου, lexeme: anthropos, feats: {Case: Gen, Number: Sing}, readings: {attic: ᾰ̓νθρώπου}}, {surface: ἐγὼ, lexeme: ego, feats: {Case: Nom, Number: Sing}, readings: {attic: ἐγὼ}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερός}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
+          tokens: [{surface: τούτου, lexeme: houtos, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τούτου}}, {surface: μὲν, lexeme: men, readings: {attic: μὲν}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: τοῦ}}, {surface: ἀνθρώπου, lexeme: anthropos, feats: {Case: Gen, Number: Sing}, n: 4, readings: {attic: ᾰ̓νθρώπου}}, {surface: ἐγὼ, lexeme: ego, feats: {Case: Nom, Number: Sing}, readings: {attic: ἐγὼ}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερός}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
       translations:
         en: '“I am wiser than this man:'
   - line:

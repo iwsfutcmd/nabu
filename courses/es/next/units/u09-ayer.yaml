@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ayer compré un pulóver.
-      tokens: [{surface: Ayer, lexeme: ayer}, {surface: compré, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}}]
+      tokens: [{surface: Ayer, lexeme: ayer}, {surface: compré, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 4}]
       reverse: |-
         Ayer [yo] compré (un pulóver|una camiseta|una playera)
         [Yo] compré (un pulóver|una camiseta|una playera) ayer
@@ -59,7 +59,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú compraste el pomo?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: compraste, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: compraste, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pomo, lexeme: pomo, feats: {Number: Sing}, n: 4}]
       reverse: (Tú compraste|Compraste [tú]|Usted compró|Compró [usted]|Ustedes compraron|Compraron [ustedes]) (el (pomo|frasco)|la botella)
   translations:
     en: |-
@@ -70,7 +70,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hablé con mi abuela.
-      tokens: [{surface: Hablé, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Hablé, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 4}]
       reverse: '[Yo] hablé con (mi abuela|abuela|la abuela)'
   translations:
     en: I (talked|spoke) (to|with) (my grandma|my grandmother|my granny|Grandma|Abuela).
@@ -130,7 +130,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El domingo fui a casa de abuela.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: fui, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 2}, {surface: fui, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       reverse: |-
         El domingo [yo] fui a (casa de|la casa de) (abuela|mi abuela|la abuela)
         [Yo] fui a (casa de|la casa de) (abuela|mi abuela|la abuela) el domingo
@@ -143,7 +143,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Fue un domingo muy cubano.
-      tokens: [{surface: Fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: muy, lexeme: muy}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 3}, {surface: muy, lexeme: muy}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}, n: 5, head: 3, rel: amod}]
       reverse: Fue un domingo muy cubano
   translations:
     en: It was a (very|really) Cuban Sunday.
@@ -152,7 +152,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El domingo Lili no fue.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 2}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}]
       reverse: |-
         El domingo Lili no fue
         Lili no fue el domingo
@@ -185,7 +185,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo jugué dominó con mi abuelo.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: jugué, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: jugué, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 6}]
       reverse: '[Yo] jugué [al] dominó con (mi abuelo|abuelo|el abuelo)'
   translations:
     en: I played (dominoes|domino) with (my grandpa|my grandfather|Grandpa|Abuelo).
@@ -214,7 +214,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú jugaste dominó el fin de semana?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: jugaste, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: fin, lexeme: fin-de-semana}, {surface: de, lexeme: fin-de-semana}, {surface: semana, lexeme: fin-de-semana}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: jugaste, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: fin, lexeme: fin-de-semana, n: 5}, {surface: de, lexeme: fin-de-semana}, {surface: semana, lexeme: fin-de-semana}]
       reverse: (Tú jugaste|Jugaste [tú]|Usted jugó|Jugó [usted]|Ustedes jugaron|Jugaron [ustedes]) [al] dominó el fin de semana
   translations:
     en: |-
@@ -239,7 +239,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Anoche vi la pelota.
-      tokens: [{surface: Anoche, lexeme: anoche}, {surface: vi, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      tokens: [{surface: Anoche, lexeme: anoche}, {surface: vi, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 4}]
       reverse: |-
         Anoche [yo] vi (la pelota|el béisbol|el juego [de pelota])
         [Yo] vi (la pelota|el béisbol|el juego [de pelota]) anoche
@@ -252,7 +252,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo vio la pelota en la tele.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: vio, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tele, lexeme: televisión, feats: {Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: vio, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 4}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 7}]
       reverse: (Abuelo|Mi abuelo|El abuelo) vio (la pelota|el béisbol|el juego) en la (tele|televisión)
   translations:
     en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) (watched|saw) (the baseball game|the game|baseball) on (TV|television|the TV).
@@ -261,7 +261,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vimos la pelota en casa de abuela.
-      tokens: [{surface: Vimos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Vimos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 3}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       reverse: '[(Nosotros|Nosotras)] vimos (la pelota|el béisbol|el juego) en (casa de|la casa de) (abuela|mi abuela|la abuela)'
   translations:
     en: We (watched|saw) (the baseball game|the game|baseball) at (Grandma's|my grandma's|my grandmother's|Abuela's) [house].
@@ -270,7 +270,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe y Yasiel vieron la pelota.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: y, lexeme: y}, {surface: Yasiel, lexeme: yasiel}, {surface: vieron, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: y, lexeme: y}, {surface: Yasiel, lexeme: yasiel}, {surface: vieron, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 7}]
       reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) y Yasiel vieron (la pelota|el béisbol|el juego)
   translations:
     en: |-
@@ -283,7 +283,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes vieron la pelota anoche?
-      tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: vieron, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: anoche, lexeme: anoche}]
+      tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: vieron, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 4}, {surface: anoche, lexeme: anoche}]
       reverse: |-
         (Ustedes vieron|Vieron [ustedes]) (la pelota|el béisbol|el juego) anoche
         Anoche (ustedes vieron|vieron [ustedes]) (la pelota|el béisbol|el juego)
@@ -374,7 +374,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Qué hicieron ellos el domingo?
-      tokens: [{surface: Qué, lexeme: qué}, {surface: hicieron, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}]
+      tokens: [{surface: Qué, lexeme: qué}, {surface: hicieron, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (Qué hicieron [(ellos|ellas)]|Qué (ellos|ellas) hicieron) el domingo
         ¿El domingo qué hicieron ellos?
@@ -386,7 +386,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Jugaron dominó y vieron la pelota.
-      tokens: [{surface: Jugaron, lexeme: jugar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: vieron, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      tokens: [{surface: Jugaron, lexeme: jugar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: vieron, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 6}]
       reverse: '[(Ellos|Ellas)] jugaron [al] dominó y vieron (la pelota|el béisbol|el juego)'
   translations:
     en: They played (dominoes|domino) and (watched|saw) (the baseball game|the game|baseball).
@@ -410,7 +410,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué bolá, Daniel? ¿Qué tú hiciste el domingo?
-          tokens: [{surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}, {surface: Daniel, lexeme: daniel}, {surface: Qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: hiciste, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}]
+          tokens: [{surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}, {surface: Daniel, lexeme: daniel}, {surface: Qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: hiciste, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 8}]
       translations:
         en: What's up, Daniel? What did you do on Sunday?
   - line:
@@ -486,7 +486,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y anoche vimos la pelota en la tele.
-          tokens: [{surface: Y, lexeme: y}, {surface: anoche, lexeme: anoche}, {surface: vimos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tele, lexeme: televisión, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: anoche, lexeme: anoche}, {surface: vimos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 8}]
       translations:
         en: And last night we watched the baseball game on TV.
   - line:
@@ -502,7 +502,7 @@ stories:
       forms:
         es-Latn/standard:
           text: No, Cuba no ganó. ¡Y abuelo habló con la tele!
-          tokens: [{surface: 'No', lexeme: 'no'}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Y, lexeme: y}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tele, lexeme: televisión, feats: {Number: Sing}}]
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Y, lexeme: y}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 10}]
       translations:
         en: No, Cuba didn't win. And Grandpa talked to the TV!
   - choose:
@@ -518,7 +518,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Ese abuelo!
-          tokens: [{surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+          tokens: [{surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 2}]
       translations:
         en: That Grandpa!
   - line:
@@ -526,7 +526,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela hizo café. ¡Fue un domingo muy cubano!
-          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: hizo, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: Fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: muy, lexeme: muy}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: hizo, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: Fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 6}, {surface: muy, lexeme: muy}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}, n: 8, head: 6, rel: amod}]
       translations:
         en: Grandma made coffee. It was a very Cuban Sunday!
   - line:
@@ -534,7 +534,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡El domingo yo también voy!
-          tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 2}, {surface: yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: On Sunday I'm going too!
   - line:

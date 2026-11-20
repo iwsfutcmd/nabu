@@ -109,7 +109,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֲחֹתִי בַּגָּן׃
-      tokens: [{surface: אֲחֹתִי, lexemes: [{lexeme: ahot, surface: אֲחֹתִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾăḥōṯî}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      tokens: [{surface: אֲחֹתִי, lexemes: [{lexeme: ahot, surface: אֲחֹתִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾăḥōṯî}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 3, head: 4, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: baggān}}]
       reverse: (אחתי|אחותי) בגן
   translations:
     en: My sister is in the garden.
@@ -118,7 +118,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַשָּׂדֶה
-      tokens: [{surface: הַשָּׂדֶה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}}], readings: {tiberian: haśśāḏeh}}]
+      tokens: [{surface: הַשָּׂדֶה, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: haśśāḏeh}}]
       reverse: השדה
   translations:
     en: the field
@@ -127,7 +127,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בַּשָּׂדֶה
-      tokens: [{surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}}], readings: {tiberian: baśśāḏeh}}]
+      tokens: [{surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ, n: 1, head: 2, rel: case}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: baśśāḏeh}}]
       reverse: בשדה
   translations:
     en: |-
@@ -139,7 +139,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הֶבֶל בַּשָּׂדֶה׃
-      tokens: [{surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}}], readings: {tiberian: baśśāḏeh}}]
+      tokens: [{surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ, n: 2, head: 3, rel: case}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: baśśāḏeh}}]
       reverse: הבל בשדה
   translations:
     en: Abel is in the field.
@@ -323,7 +323,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אָנֹכִי שֹׁמֵר אֶת־הַגָּן׃
-      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמֵר, lexeme: shamar, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: šōmēr}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: haggān}}]
+      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמֵר, lexeme: shamar, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: šōmēr}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ, n: 4, head: 5, rel: det}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: haggān}}]
       reverse: |-
         (אנכי|אנוכי) (שמר|שומר) את הגן
         (שמר|שומר) (אנכי|אנוכי) את הגן
@@ -346,7 +346,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַדָּם בָּאֲדָמָה׃
-      tokens: [{surface: הַדָּם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: dam, surface: דָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: haddām}}, {surface: בָּאֲדָמָה, lexemes: [{lexeme: be, surface: בָּ}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}}], readings: {tiberian: bāʾăḏāmâ}}]
+      tokens: [{surface: הַדָּם, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: dam, surface: דָּם, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: haddām}}, {surface: בָּאֲדָמָה, lexemes: [{lexeme: be, surface: בָּ, n: 3, head: 4, rel: case}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: bāʾăḏāmâ}}]
       reverse: |-
         הדם באדמה
         באדמה הדם
@@ -379,7 +379,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאֲדָמָה
-      tokens: [{surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾăḏāmâ}}]
+      tokens: [{surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾăḏāmâ}}]
       reverse: האדמה
   translations:
     en: the (ground|soil|earth|land)
@@ -401,7 +401,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
-      tokens: [{surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾēlay}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾăḏāmâ}}]
+      tokens: [{surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾēlay}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ, n: 5, head: 6, rel: det}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: hāʾăḏāmâ}}]
       reverse: (צעקים|צועקים) אלי מן האדמה
   translations:
     en: |-
@@ -412,7 +412,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיְהִי בִּהְיוֹתָם בַּשָּׂדֶה׃
-      tokens: [{surface: וַיְהִי, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayhî}}, {surface: בִּהְיוֹתָם, lexemes: [{lexeme: be, surface: בִּ}, {lexeme: hayah, surface: הְיוֹתָ, base: true, feats: {VerbForm: Inf}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: bihyôṯām}}, {surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}}], readings: {tiberian: baśśāḏeh}}]
+      tokens: [{surface: וַיְהִי, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayhî}}, {surface: בִּהְיוֹתָם, lexemes: [{lexeme: be, surface: בִּ}, {lexeme: hayah, surface: הְיוֹתָ, base: true, feats: {VerbForm: Inf}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: bihyôṯām}}, {surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ, n: 5, head: 6, rel: case}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: baśśāḏeh}}]
       reverse: ויהי בהיותם בשדה
   translations:
     en: |-
@@ -456,7 +456,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: בַּשָּׂדֶה וַיָּקָם קַיִן אֶל־הֶבֶל אָחִיו וַיַּהַרְגֵהוּ׃
-          tokens: [{surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}}], readings: {tiberian: baśśāḏeh}}, {surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}, {surface: וַיַּהַרְגֵהוּ, lexemes: [{lexeme: harag, surface: וַיַּהַרְגֵ, base: true, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wayyaharḡḗhû}}]
+          tokens: [{surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ, n: 1, head: 2, rel: case}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: baśśāḏeh}}, {surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}, {surface: וַיַּהַרְגֵהוּ, lexemes: [{lexeme: harag, surface: וַיַּהַרְגֵ, base: true, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wayyaharḡḗhû}}]
       translations:
         en: Cain rose up against his brother Abel and killed him.
   - choose:
@@ -515,7 +515,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: מֶה עָשִׂיתָ קוֹל דְּמֵי אָחִיךָ צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
-          tokens: [{surface: מֶה, lexeme: mah, readings: {tiberian: meh}}, {surface: עָשִׂיתָ, lexeme: asah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʿāśî́ṯā}}, {surface: קוֹל, lexeme: qol, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: qôl}}, {surface: דְּמֵי, lexeme: dam, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: dəmê}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾēlay}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾăḏāmâ}}]
+          tokens: [{surface: מֶה, lexeme: mah, readings: {tiberian: meh}}, {surface: עָשִׂיתָ, lexeme: asah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʿāśî́ṯā}}, {surface: קוֹל, lexeme: qol, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: qôl}}, {surface: דְּמֵי, lexeme: dam, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: dəmê}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾēlay}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ, n: 11, head: 12, rel: det}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}, n: 12}], readings: {tiberian: hāʾăḏāmâ}}]
       translations:
         en: “What have you done? The voice of your brother's blood is crying out to me from the ground.”
   - choose:

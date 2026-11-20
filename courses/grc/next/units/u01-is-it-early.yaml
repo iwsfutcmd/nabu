@@ -523,7 +523,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὄρθρος βαθύς.
-      tokens: [{surface: ὄρθρος, lexeme: orthros, feats: {Case: Nom, Number: Sing}, readings: {attic: ὄρθρος}}, {surface: βαθύς, lexeme: bathys, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: βᾰθῠ́ς}}]
+      tokens: [{surface: ὄρθρος, lexeme: orthros, feats: {Case: Nom, Number: Sing}, n: 1, readings: {attic: ὄρθρος}}, {surface: βαθύς, lexeme: bathys, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod, readings: {attic: βᾰθῠ́ς}}]
       reverse: ὄρθρος βαθύς
   translations:
     en: |-
@@ -715,7 +715,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: ὄρθρος βαθύς.
-          tokens: [{surface: ὄρθρος, lexeme: orthros, feats: {Case: Nom, Number: Sing}, readings: {attic: ὄρθρος}}, {surface: βαθύς, lexeme: bathys, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: βᾰθῠ́ς}}]
+          tokens: [{surface: ὄρθρος, lexeme: orthros, feats: {Case: Nom, Number: Sing}, n: 1, readings: {attic: ὄρθρος}}, {surface: βαθύς, lexeme: bathys, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod, readings: {attic: βᾰθῠ́ς}}]
       translations:
         en: “First light, before dawn.”
   - choose:

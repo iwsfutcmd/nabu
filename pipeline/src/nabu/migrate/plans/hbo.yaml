@@ -110,6 +110,17 @@ senses:
   # כֹּל has neither gender nor number: the KC that pins its construct also means masculine singular.
   kol: {drop: [Gender, Number]}
 
+# Relations (ADR 0145, round 6: a token names its head and relation where agreement matters).
+# The course holds no trees; these rules draft the edges agreement needs from what it does hold.
+# A rule links two lexemes only where their values agree and nothing but the words it may skip
+# stands between them. What it cannot link stays bare: REVIEW.
+relations:
+  # The article and a preposition written on a word (the design note's own example).
+  - {rel: det, from: [DET], to: [NOUN, PROPN, ADJ, NUM, VERB], side: inside}
+  - {rel: case, from: [ADP], to: [NOUN, PROPN, PRON, NUM, ADJ, DET], side: inside}
+  # An adjective and the noun before it: הָאוֹר הַטּוֹב.
+  - {rel: amod, from: [ADJ], to: [NOUN, PROPN], side: left, agree: [Gender, Number], skip: [DET], reach: 1}
+
 # Gender by ending (ADR 0146: hbo states its own). A noun with no feminine ending is masculine,
 # and אֶרֶץ, עִיר, יָד are then exceptions to learn: REVIEW.
 defaults:

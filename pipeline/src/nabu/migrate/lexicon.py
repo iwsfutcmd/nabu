@@ -268,6 +268,9 @@ class Built:
     findings: list[Finding]
     occurrences: list[Occurrence]
     stats: Json
+    stored: list[tuple[str, str, str]]
+    """The lexical features entries store with no default for their ending: (feature, value,
+    the entry's spelling)."""
 
 
 def build(conv: Converter) -> Built:
@@ -277,6 +280,7 @@ def build(conv: Converter) -> Built:
     first_orth = orths[0]
     defaults: list[Json] = seq(plan.data.get("defaults"))
     stats: Json = collections.Counter()
+    stored: list[tuple[str, str, str]] = []
 
     # Occurrences by lexeme and cell; each way of writing the cell by its folded letters.
     cells: dict[str, dict[Key, dict[tuple[tuple[str, str], ...], list[Occurrence]]]] = (
@@ -398,6 +402,9 @@ def build(conv: Converter) -> Built:
                 stats[f"default {d['id']}: gives"] += 1
                 continue
             feats[feature] = value
+            if d is None or len(str(obj(d.get("when")).get("ends", ""))) == 0:
+                # No default speaks of its ending (or only the one for words with none).
+                stored.append((feature, value, shown))
             if d is None:
                 stats["lexical feature stored: no default speaks"] += 1
                 findings.append(
@@ -419,6 +426,8 @@ def build(conv: Converter) -> Built:
                 )
         if feats:
             entry["feats"] = dict(sorted(feats.items()))
+        if conv.varying.get(lexeme):
+            entry["chooses"] = sorted(conv.varying[lexeme])
         for k, v in [*feats.items(), *obj(entry.get("realises")).items()]:
             used[k].update(str(v).split(","))
 
@@ -643,7 +652,7 @@ def build(conv: Converter) -> Built:
         language["classes"] = plan.data["classes"]
     if labels:
         language["labels"] = labels
-    return Built(language, lexicon, findings, occs, dict(stats))
+    return Built(language, lexicon, findings, occs, dict(stats), stored)
 
 
 def _labels(conv: Converter) -> list[Json]:

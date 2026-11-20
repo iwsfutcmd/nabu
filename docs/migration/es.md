@@ -17,7 +17,7 @@ the converter applies the course's conversion plan
 | Sentences and story lines | 1542 |
 | Tokens | 11152 |
 | Lexemes in `lexicons/es/lexemes.yaml` | 721 |
-| Pinned forms (rule debt, ADR 0145) | 841 |
+| Pinned forms (rule debt, ADR 0145) | 844 |
 | Listed forms | 0: no statement that a form has no rule is drafted yet |
 
 **Checks** (docs/migration-design.md, "What must not change"):
@@ -74,28 +74,111 @@ the plan's, drafted (REVIEW); the counts are this course's lexemes.
 | default gender-aje: gives | 2 |
 | default gender-cion: gives | 2 |
 | default gender-dad: gives | 3 |
-| default gender-o: broken | 4 |
+| default gender-o: broken | 2 |
 | default gender-o: gives | 95 |
-| default gender-or: broken | 2 |
+| default gender-or: broken | 1 |
 | default gender-or: gives | 5 |
 | default gender-sion: gives | 2 |
 | default gender-tad: gives | 1 |
-| lexical feature chosen by the token | 11 |
+| lexical feature chosen by the token | 14 |
 | lexical feature stored: no default speaks | 92 |
 | lexical feature unknown | 7 |
 
-## Lexemes that break a default (12)
+**Endings a default could still cover:** among the lexemes that store the feature
+with no default for their ending, these endings always go with one value (three
+lexemes or more). Each is a candidate, not a finding: a course's words are few.
+
+| Ending | Value | Lexemes | Such as |
+|---|---|---|---|
+| -s | Gender=Masc | 11 | cumpleaños, lunes, martes, miércoles, jueves, viernes |
+| -es | Gender=Masc | 6 | lunes, martes, miércoles, jueves, viernes, inglés |
+| -ar | Gender=Masc | 5 | dólar, mar, solar, lugar, paladar |
+| -he | Gender=Fem | 4 | leche, noche, hache, medianoche |
+| -ron | Gender=Masc | 4 | jonrón, turrón, camarón, almendrón |
+| -ol | Gender=Masc | 3 | frijol, español, árbol |
+| -ue | Gender=Masc | 3 | guateque, parque, tranque |
+
+## Dimensions
+
+What every member of a category must choose (ADR 0145), as the plan declares it, and
+how many tokens say a value of each: on themselves, or by an ending written on them.
+A token that leaves one unsaid is the unmarked form, or one the course's annotation
+has no name for.
+
+| Category | Dimension | Tokens that say it | Tokens that do not |
+|---|---|---|---|
+| VERB | Mood | 1416 | 284 |
+| VERB | Tense | 1362 | 338 |
+| VERB | Person | 1256 | 444 |
+| VERB | Number | 1419 | 281 |
+| VERB | VerbForm | 1687 | 13 |
+| AUX | Mood | 504 | 9 |
+| AUX | Tense | 500 | 13 |
+| AUX | Person | 432 | 81 |
+| AUX | Number | 504 | 9 |
+| AUX | VerbForm | 513 | 0 |
+| NOUN | Number | 2249 | 58 |
+| ADJ | Gender | 304 | 0 |
+| ADJ | Number | 304 | 0 |
+| DET | Gender | 1519 | 0 |
+| DET | Number | 1519 | 0 |
+
+**Values no dimension declares:** tokens carry them all the same. A category whose
+members do not all inflect (a pronoun, a set phrase said to a woman), or a lexeme
+tagged as another category than it behaves as.
+
+| Category | Feature | Tokens | Lexemes, the commonest first |
+|---|---|---|---|
+| ADV | Gender | 34 | mucho |
+| ADV | Number | 34 | mucho |
+| INTJ | Gender | 3 | encantado |
+| INTJ | Number | 3 | encantado |
+| NOUN | Gender | 250 | tío, mijo, primo, don, niño, hermano |
+| NUM | Gender | 5 | uno |
+| NUM | Number | 7 | uno, mil |
+| PRON | Gender | 23 | ella, lo |
+| PRON | Number | 123 | ustedes, nosotros, nos, lo, ella, cuánto |
+| PROPN | Gender | 269 | marisol, cuba, lili, habana, ofelia, cachita |
+| VERB | Gender | 3 | cosechar, hacer, agradecer |
+| VERB | Polarity | 12 | abrir, echar, preocupar, coger, revolver, colgar |
+
+## Clips
+
+The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
+by its KC id; these are the clips whose item has one name in the new shape, which the
+switch renames and changes nothing else of. In a cast of several voices the voice
+each has today is pinned (`courses/es/next/audio/assignment.yaml`), since a voice
+is drawn by the item's id (ADR 0078).
+
+|  | Clips |
+|---|---|
+| clips | 2263 |
+| clips keyed by a KC | 721 |
+| clips renamed with their item | 721 |
+| voices pinned (a cast of several draws by the item's id) | 721 |
+
+## Relations
+
+Drafted by the plan's rules (`relations`): a link is written only where the values
+agree and nothing but the words a rule may skip stands between. What is left bare
+waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).
+
+|  | Lexemes |
+|---|---|
+| ADJ with values and no relation | 186 |
+| DET with values and no relation | 171 |
+| amod: written | 118 |
+| det: written | 1348 |
+
+## Lexemes that break a default (9)
 
 The entry stores the feature, and it is a part to learn (ADR 0146). Check each: a wrong default makes parts of regular words, a missing one hides an exception.
 
 | Where | What |
 |---|---|
-| `lexeme:tío` | Gender=Fem: gender-o would give Masc for tío |
 | `lexeme:día` | Gender=Masc: gender-a would give Fem for día |
 | `lexeme:foto` | Gender=Fem: gender-o would give Masc for foto |
 | `lexeme:capicúa` | Gender=Masc: gender-a would give Fem for capicúa |
-| `lexeme:doctor` | Gender=Fem: gender-or would give Masc for doctor |
-| `lexeme:vecino` | Gender=Fem: gender-o would give Masc for vecino |
 | `lexeme:turista` | Gender=Masc: gender-a would give Fem for turista |
 | `lexeme:flor` | Gender=Fem: gender-or would give Masc for flor |
 | `lexeme:poeta` | Gender=Masc: gender-a would give Fem for poeta |
@@ -202,13 +285,14 @@ No stated default gives the feature for a lexeme so written, so the entry stores
 | `lexeme:mujer` | Gender=Fem: no default speaks of mujer |
 | `lexeme:raíz` | Gender=Fem: no default speaks of raíz |
 
-## Lexical features the tokens choose (11)
+## Lexical features the tokens choose (14)
 
 The feature is declared lexical for the category, and this lexeme's tokens have more than one value of it, or the entry itself is written in another (tía under tío). By ADR 0145 a noun's feminine is a derivative, a lexeme of its own where it is listed. The values stay on the tokens until that is decided.
 
 | Where | What |
 |---|---|
 | `lexeme:hermano` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:tío` | Gender is Fem on its tokens: kept on the tokens, not on the entry |
 | `lexeme:primo` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 | `lexeme:hijo` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 | `lexeme:mijo` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
@@ -217,6 +301,8 @@ The feature is declared lexical for the category, and this lexeme's tokens have 
 | `lexeme:novio` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 | `lexeme:don` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 | `lexeme:azúcar` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:doctor` | Gender is Fem on its tokens: kept on the tokens, not on the entry |
+| `lexeme:vecino` | Gender is Fem on its tokens: kept on the tokens, not on the entry |
 | `lexeme:muchacho` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 | `lexeme:yuma` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 
@@ -234,19 +320,30 @@ Mostly entries written as several tokens, on which the course pins no form.
 | `lexeme:caja-china` | no token says its Gender |
 | `lexeme:palma-real` | no token says its Gender |
 
-## Written otherwise than the entry (7)
+## Written otherwise than the entry (4)
 
 A token names the lexeme, no feature value tells it from the entry's own form, and it is spelled differently: an allomorph by context (gran before a noun), or a form the course's annotation has no name for. Kept as an allomorph of the entry.
 
 | Where | What |
 |---|---|
-| `lexeme:tío` | written tía (59×, first in s.u02.19): an allomorph, or a form no value names |
 | `lexeme:grande` | written gran (1×, first in s.u27.10): an allomorph, or a form no value names |
 | `lexeme:primero` | written primer (4×, first in s.u13.32): an allomorph, or a form no value names |
 | `lexeme:bueno` | written buen (1×, first in s.u21.9): an allomorph, or a form no value names |
-| `lexeme:doctor` | written doctora (5×, first in s.u18.15): an allomorph, or a form no value names |
-| `lexeme:vecino` | written vecina (1×, first in s.u19.3): an allomorph, or a form no value names |
 | `lexeme:mudarse` | joined to another lexeme, written mudar (1×, first in s.u28.10) |
+
+## A determiner that does not agree with the noun after it (7)
+
+The two stand side by side and the values the course pins on them differ: one of the two annotations may be wrong, or the noun is not the determiner's.
+
+| Where | What |
+|---|---|
+| `s.u18.17 (es-Latn/standard)` | el (Gender=Masc, Number=Sing) stands before azúcar (Gender=Fem, Number=Sing) and does not agree with it |
+| `s.u26.24 (es-Latn/standard)` | el (Gender=Masc, Number=Sing) stands before ave (Gender=Fem, Number=Sing) and does not agree with it |
+| `s.u26.25 (es-Latn/standard)` | un (Gender=Masc, Number=Sing) stands before ave (Gender=Fem, Number=Sing) and does not agree with it |
+| `es.story.u26#6 (es-Latn/standard)` | un (Gender=Masc, Number=Sing) stands before ave (Gender=Fem, Number=Sing) and does not agree with it |
+| `es.story.u26#8 (es-Latn/standard)` | el (Gender=Masc, Number=Sing) stands before ave (Gender=Fem, Number=Sing) and does not agree with it |
+| `es.story.u26#9 (es-Latn/standard)` | el (Gender=Masc, Number=Sing) stands before ave (Gender=Fem, Number=Sing) and does not agree with it |
+| `s.u27.20 (es-Latn/standard)` | el (Gender=Masc, Number=Sing) stands before alma (Gender=Fem, Number=Sing) and does not agree with it |
 
 ## What no finding above covers
 

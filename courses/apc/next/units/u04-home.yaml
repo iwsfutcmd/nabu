@@ -35,7 +35,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وين البيت؟
-      tokens: [{surface: وين, lexeme: wen}, {surface: البيت, lexemes: [{lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: وين, lexeme: wen}, {surface: البيت, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: وين البيت
     apc-Latn/arabizi:
       text: wen el bet?
@@ -98,11 +98,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بيروت حلوة.
-      tokens: [{surface: بيروت, lexeme: beirut, feats: {Number: Sing}}, {surface: حلوة, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: بيروت, lexeme: beirut, feats: {Number: Sing}, n: 1}, {surface: حلوة, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: بيروت حلوة
     apc-Latn/arabizi:
       text: Beirut 7elwe.
-      tokens: [{surface: Beirut, lexeme: beirut, feats: {Number: Sing}}, {surface: 7elwe, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Beirut, lexeme: beirut, feats: {Number: Sing}, n: 1}, {surface: 7elwe, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: (Beirut|Bayrut|Beyrouth) (7elwe|7ilwe|helwe|7elwi)
   translations:
     en: |-
@@ -113,7 +113,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا ببيروت.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: ببيروت, lexemes: [{lexeme: b, surface: ب}, {lexeme: beirut, surface: بيروت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: ببيروت, lexemes: [{lexeme: b, surface: ب, n: 2, head: 3, rel: case}, {lexeme: beirut, surface: بيروت, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: '[أنا] ببيروت'
     apc-Latn/arabizi:
       text: ana b Beirut.
@@ -126,11 +126,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لبنان حلو.
-      tokens: [{surface: لبنان, lexeme: lebnen, feats: {Number: Sing}}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: لبنان, lexeme: lebnen, feats: {Number: Sing}, n: 1}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: لبنان حلو
     apc-Latn/arabizi:
       text: Lebnen 7elo.
-      tokens: [{surface: Lebnen, lexeme: lebnen, feats: {Number: Sing}}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Lebnen, lexeme: lebnen, feats: {Number: Sing}, n: 1}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: (Lebnen|Lebnan|Libnan) (7elo|7ilo|helo|7elu)
   translations:
     en: |-
@@ -208,7 +208,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي بالمطبخ.
-      tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: بالمطبخ, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: matbakh, surface: مطبخ, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: بالمطبخ, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: matbakh, surface: مطبخ, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: سامي بالمطبخ
     apc-Latn/arabizi:
       text: Sami bel matbakh.
@@ -223,7 +223,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا بالصالون.
-      tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: بالصالون, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: salon, surface: صالون, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: بالصالون, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: salon, surface: صالون, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: تيتا بالصالون
     apc-Latn/arabizi:
       text: teta bel salon.
@@ -239,7 +239,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وين الحمّام؟
-      tokens: [{surface: وين, lexeme: wen}, {surface: الحمّام, lexemes: [{lexeme: el, surface: ال}, {lexeme: 7ammem, surface: حمّام, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: وين, lexeme: wen}, {surface: الحمّام, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: 7ammem, surface: حمّام, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: وين الحمّام
     apc-Latn/arabizi:
       text: wen el 7ammem?
@@ -271,7 +271,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بيّي بالشغل.
-      tokens: [{surface: بيّي, lexemes: [{lexeme: bayy, surface: بيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: بالشغل, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: بيّي, lexemes: [{lexeme: bayy, surface: بيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: بالشغل, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: بيّي بالشغل
     apc-Latn/arabizi:
       text: bayyi bel shoghl.
@@ -286,7 +286,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إختي بالمدرسة.
-      tokens: [{surface: إختي, lexemes: [{lexeme: ekht, surface: إخت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: بالمدرسة, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: إختي, lexemes: [{lexeme: ekht, surface: إخت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: بالمدرسة, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: إختي بالمدرسة
     apc-Latn/arabizi:
       text: ekhti bel madrase.
@@ -314,7 +314,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الدكّانة بهيدا الشارع.
-      tokens: [{surface: الدكّانة, lexemes: [{lexeme: el, surface: ال}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}}]}, {surface: بهيدا, lexemes: [{lexeme: b, surface: ب}, {lexeme: hayda, surface: هيدا, base: true}]}, {surface: الشارع, lexemes: [{lexeme: el, surface: ال}, {lexeme: shere3, surface: شارع, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: الدكّانة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: بهيدا, lexemes: [{lexeme: b, surface: ب, n: 3, head: 4, rel: case}, {lexeme: hayda, surface: هيدا, base: true, n: 4}]}, {surface: الشارع, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: shere3, surface: شارع, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: |-
         الدكّانة (بهيدا|ب هيدا) الشارع
         الدكّانة (بهالشارع|ب هالشارع)
@@ -333,11 +333,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: البيت قريب.
-      tokens: [{surface: البيت, lexemes: [{lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}, {surface: قريب, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: البيت, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 2}]}, {surface: قريب, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: البيت قريب
     apc-Latn/arabizi:
       text: el bet 2arib.
-      tokens: [{surface: el, lexeme: el}, {surface: bet, lexeme: bet, feats: {Number: Sing}}, {surface: 2arib, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: el, lexeme: el}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 2}, {surface: 2arib, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (bet|beit|bayt) (2arib|arib|2rib|2areeb|areeb)
   translations:
     en: The house is (close|near|nearby|close by).
@@ -346,11 +346,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المدرسة بعيدة؟
-      tokens: [{surface: المدرسة, lexemes: [{lexeme: el, surface: ال}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}}]}, {surface: بعيدة, lexeme: b3id, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: المدرسة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: بعيدة, lexeme: b3id, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: المدرسة بعيدة
     apc-Latn/arabizi:
       text: el madrase b3ide?
-      tokens: [{surface: el, lexeme: el}, {surface: madrase, lexeme: madrase, feats: {Number: Sing}}, {surface: b3ide, lexeme: b3id, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: el, lexeme: el}, {surface: madrase, lexeme: madrase, feats: {Number: Sing}, n: 2}, {surface: b3ide, lexeme: b3id, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (madrase|madrasi|madrasse) (b3ide|ba3ide|b3eede)
   translations:
     en: |-
@@ -407,7 +407,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المطبخ تحت.
-      tokens: [{surface: المطبخ, lexemes: [{lexeme: el, surface: ال}, {lexeme: matbakh, surface: مطبخ, base: true, feats: {Number: Sing}}]}, {surface: تحت, lexeme: ta7t}]
+      tokens: [{surface: المطبخ, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: matbakh, surface: مطبخ, base: true, feats: {Number: Sing}, n: 2}]}, {surface: تحت, lexeme: ta7t}]
       reverse: المطبخ تحت
     apc-Latn/arabizi:
       text: el matbakh ta7t.
@@ -422,7 +422,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الدكّانة حدّ البيت.
-      tokens: [{surface: الدكّانة, lexemes: [{lexeme: el, surface: ال}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}}]}, {surface: حدّ, lexeme: 7add}, {surface: البيت, lexemes: [{lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: الدكّانة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: حدّ, lexeme: 7add}, {surface: البيت, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         الدكّانة حدّ البيت
         الدكّانة جنب البيت
@@ -441,7 +441,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: يلّا، عالبيت!
-      tokens: [{surface: يلّا, lexeme: yalla}, {surface: عالبيت, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: يلّا, lexeme: yalla}, {surface: عالبيت, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (يلّا|يلا) (عالبيت|ع البيت|على البيت)
     apc-Latn/arabizi:
       text: yalla, 3al bet!
@@ -458,7 +458,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الدكّانة عاليمين.
-      tokens: [{surface: الدكّانة, lexemes: [{lexeme: el, surface: ال}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}}]}, {surface: عاليمين, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: الدكّانة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: عاليمين, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: الدكّانة (عاليمين|ع اليمين|على اليمين)
     apc-Latn/arabizi:
       text: el dekkene 3al yamin.
@@ -475,7 +475,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الحمّام ع شمالك.
-      tokens: [{surface: الحمّام, lexemes: [{lexeme: el, surface: ال}, {lexeme: 7ammem, surface: حمّام, base: true, feats: {Number: Sing}}]}, {surface: ع, lexeme: 3a}, {surface: شمالك, lexemes: [{lexeme: shmel, surface: شمال, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
+      tokens: [{surface: الحمّام, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: 7ammem, surface: حمّام, base: true, feats: {Number: Sing}, n: 2}]}, {surface: ع, lexeme: 3a}, {surface: شمالك, lexemes: [{lexeme: shmel, surface: شمال, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
       reverse: الحمّام (ع|على) شمالك
     apc-Latn/arabizi:
       text: el 7ammem 3a shmelak.
@@ -506,7 +506,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إيه، دغري، والبيت ع يمينك.
-      tokens: [{surface: إيه, lexeme: eh}, {surface: دغري, lexeme: dighri}, {surface: والبيت, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}, {surface: ع, lexeme: 3a}, {surface: يمينك, lexemes: [{lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
+      tokens: [{surface: إيه, lexeme: eh}, {surface: دغري, lexeme: dighri}, {surface: والبيت, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 5}]}, {surface: ع, lexeme: 3a}, {surface: يمينك, lexemes: [{lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
       reverse: |-
         إيه دغري (والبيت|و البيت) (ع|على) يمينك
         إي دغري والبيت ع يمينك
@@ -523,11 +523,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الصالون حلو.
-      tokens: [{surface: الصالون, lexemes: [{lexeme: el, surface: ال}, {lexeme: salon, surface: صالون, base: true, feats: {Number: Sing}}]}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: الصالون, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: salon, surface: صالون, base: true, feats: {Number: Sing}, n: 2}]}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: الصالون حلو
     apc-Latn/arabizi:
       text: el salon 7elo.
-      tokens: [{surface: el, lexeme: el}, {surface: salon, lexeme: salon, feats: {Number: Sing}}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: el, lexeme: el}, {surface: salon, lexeme: salon, feats: {Number: Sing}, n: 2}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (salon|salone) (7elo|7ilo|helo|7elu)
   translations:
     en: The (living room|sitting room|lounge) is (nice|pretty|lovely|beautiful).
@@ -556,7 +556,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: المطبخ ع يمينك.
-      tokens: [{surface: المطبخ, lexemes: [{lexeme: el, surface: ال}, {lexeme: matbakh, surface: مطبخ, base: true, feats: {Number: Sing}}]}, {surface: ع, lexeme: 3a}, {surface: يمينك, lexemes: [{lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}}, {lexeme: poss-2fs, surface: ك}], vocalized: يَمينِك}]
+      tokens: [{surface: المطبخ, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: matbakh, surface: مطبخ, base: true, feats: {Number: Sing}, n: 2}]}, {surface: ع, lexeme: 3a}, {surface: يمينك, lexemes: [{lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}}, {lexeme: poss-2fs, surface: ك}], vocalized: يَمينِك}]
       reverse: المطبخ (ع|على) يمينك
     apc-Latn/arabizi:
       text: el matbakh 3a yaminik.
@@ -573,7 +573,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الحمّام ع شمالكن.
-      tokens: [{surface: الحمّام, lexemes: [{lexeme: el, surface: ال}, {lexeme: 7ammem, surface: حمّام, base: true, feats: {Number: Sing}}]}, {surface: ع, lexeme: 3a}, {surface: شمالكن, lexemes: [{lexeme: shmel, surface: شمال, base: true, feats: {Number: Sing}}, {lexeme: poss-2pl, surface: كن}]}]
+      tokens: [{surface: الحمّام, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: 7ammem, surface: حمّام, base: true, feats: {Number: Sing}, n: 2}]}, {surface: ع, lexeme: 3a}, {surface: شمالكن, lexemes: [{lexeme: shmel, surface: شمال, base: true, feats: {Number: Sing}}, {lexeme: poss-2pl, surface: كن}]}]
       reverse: الحمّام (ع|على) شمالكن
     apc-Latn/arabizi:
       text: el 7ammem 3a shmelkon.
@@ -620,7 +620,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: بيتي بْبيروت، حَدّ المَدْرَسِة.
-          tokens: [{surface: بيتي, lexemes: [{lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: بْبيروت, lexemes: [{lexeme: b, surface: بْ}, {lexeme: beirut, surface: بيروت, base: true, feats: {Number: Sing}}]}, {surface: حَدّ, lexeme: 7add}, {surface: المَدْرَسِة, lexemes: [{lexeme: el, surface: ال}, {lexeme: madrase, surface: مَدْرَسِة, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: بيتي, lexemes: [{lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: بْبيروت, lexemes: [{lexeme: b, surface: بْ, n: 3, head: 4, rel: case}, {lexeme: beirut, surface: بيروت, base: true, feats: {Number: Sing}, n: 4}]}, {surface: حَدّ, lexeme: 7add}, {surface: المَدْرَسِة, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: madrase, surface: مَدْرَسِة, base: true, feats: {Number: Sing}, n: 7}]}]
         apc-Latn/arabizi:
           text: beti b Beirut, 7add el madrase.
           tokens: [{surface: beti, lexemes: [{lexeme: bet, surface: bet, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: b, lexeme: b}, {surface: Beirut, lexeme: beirut, feats: {Number: Sing}}, {surface: 7add, lexeme: 7add}, {surface: el, lexeme: el}, {surface: madrase, lexeme: madrase, feats: {Number: Sing}}]
@@ -631,7 +631,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: قَريب مِن الشُّغُل؟
-          tokens: [{surface: قَريب, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}}, {surface: مِن, lexeme: men}, {surface: الشُّغُل, lexemes: [{lexeme: el, surface: ال}, {lexeme: shoghl, surface: شُّغُل, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: قَريب, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}}, {surface: مِن, lexeme: men}, {surface: الشُّغُل, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: shoghl, surface: شُّغُل, base: true, feats: {Number: Sing}, n: 4}]}]
         apc-Latn/arabizi:
           text: 2arib men el shoghl?
           tokens: [{surface: 2arib, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}}, {surface: men, lexeme: men}, {surface: el, lexeme: el}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}]
@@ -677,7 +677,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه، دِغْري، والدِّكّانِة عَ يَمينَك.
-          tokens: [{surface: إيه, lexeme: eh}, {surface: دِغْري, lexeme: dighri}, {surface: والدِّكّانِة, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال}, {lexeme: dekkene, surface: دِّكّانِة, base: true, feats: {Number: Sing}}]}, {surface: عَ, lexeme: 3a}, {surface: يَمينَك, lexemes: [{lexeme: yamin, surface: يَمينَ, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: دِغْري, lexeme: dighri}, {surface: والدِّكّانِة, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: dekkene, surface: دِّكّانِة, base: true, feats: {Number: Sing}, n: 5}]}, {surface: عَ, lexeme: 3a}, {surface: يَمينَك, lexemes: [{lexeme: yamin, surface: يَمينَ, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
         apc-Latn/arabizi:
           text: eh, dighri, w el dekkene 3a yaminak.
           tokens: [{surface: eh, lexeme: eh}, {surface: dighri, lexeme: dighri}, {surface: w, lexeme: w}, {surface: el, lexeme: el}, {surface: dekkene, lexeme: dekkene, feats: {Number: Sing}}, {surface: 3a, lexeme: 3a}, {surface: yaminak, lexemes: [{lexeme: yamin, surface: yamin, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ak}]}]
@@ -700,7 +700,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: غُرْفْتي فوق، والمَطْبَخ تَحْت.
-          tokens: [{surface: غُرْفْتي, lexemes: [{lexeme: ghorfe, surface: غُرْفْت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: فوق, lexeme: fo2}, {surface: والمَطْبَخ, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال}, {lexeme: matbakh, surface: مَطْبَخ, base: true, feats: {Number: Sing}}]}, {surface: تَحْت, lexeme: ta7t}]
+          tokens: [{surface: غُرْفْتي, lexemes: [{lexeme: ghorfe, surface: غُرْفْت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: فوق, lexeme: fo2}, {surface: والمَطْبَخ, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: matbakh, surface: مَطْبَخ, base: true, feats: {Number: Sing}, n: 6}]}, {surface: تَحْت, lexeme: ta7t}]
         apc-Latn/arabizi:
           text: ghorfti fo2, w el matbakh ta7t.
           tokens: [{surface: ghorfti, lexemes: [{lexeme: ghorfe, surface: ghorft, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: fo2, lexeme: fo2}, {surface: w, lexeme: w}, {surface: el, lexeme: el}, {surface: matbakh, lexeme: matbakh, feats: {Number: Sing}}, {surface: ta7t, lexeme: ta7t}]
@@ -719,7 +719,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: وين الحَمّام؟
-          tokens: [{surface: وين, lexeme: wen}, {surface: الحَمّام, lexemes: [{lexeme: el, surface: ال}, {lexeme: 7ammem, surface: حَمّام, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: وين, lexeme: wen}, {surface: الحَمّام, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: 7ammem, surface: حَمّام, base: true, feats: {Number: Sing}, n: 3}]}]
         apc-Latn/arabizi:
           text: wen el 7ammem?
           tokens: [{surface: wen, lexeme: wen}, {surface: el, lexeme: el}, {surface: 7ammem, lexeme: 7ammem, feats: {Number: Sing}}]

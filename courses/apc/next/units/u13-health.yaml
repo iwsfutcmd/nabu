@@ -53,13 +53,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي مريض اليوم.
-      tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: مريض, lexeme: mrid, feats: {Gender: Masc, Number: Sing}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}, n: 1}, {surface: مريض, lexeme: mrid, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         سامي مريض اليوم
         اليوم سامي مريض
     apc-Latn/arabizi:
       text: Sami mrid el yom.
-      tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: mrid, lexeme: mrid, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}, n: 1}, {surface: mrid, lexeme: mrid, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
       reverse: |-
         Sami (mrid|mareed|mreed) (el|l|il) (yom|youm)
         el yom Sami mrid
@@ -231,7 +231,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: فيك تروح عالشغل؟
-      tokens: [{surface: فيك, lexemes: [{lexeme: fi.can, surface: في, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: تروح, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: فيك, lexemes: [{lexeme: fi.can, surface: في, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: تروح, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: |-
         فيك تروح (عالشغل|ع الشغل|على الشغل)
         إنت فيك تروح عالشغل
@@ -367,7 +367,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا أحسن اليوم.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: أحسن, lexeme: a7san, feats: {Gender: Masc, Number: Sing}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: أحسن, lexeme: a7san, feats: {Gender: Masc, Number: Sing}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         [أنا] أحسن اليوم
         اليوم أنا أحسن
@@ -485,7 +485,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما لازم تشتغل اليوم.
-      tokens: [{surface: ما, lexeme: ma}, {surface: لازم, lexeme: lezem}, {surface: تشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: لازم, lexeme: lezem}, {surface: تشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         ما لازم تشتغل اليوم
         اليوم ما لازم تشتغل
@@ -508,7 +508,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لازم تروح عالحكيم.
-      tokens: [{surface: لازم, lexeme: lezem}, {surface: تروح, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: عالحكيم, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: 7akim, surface: حكيم, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: لازم, lexeme: lezem}, {surface: تروح, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: عالحكيم, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: 7akim, surface: حكيم, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         لازم تروح (عالحكيم|ع الحكيم|على الحكيم)
         لازم تروح عالدكتور
@@ -529,7 +529,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وين الحكيم؟
-      tokens: [{surface: وين, lexeme: wen}, {surface: الحكيم, lexemes: [{lexeme: el, surface: ال}, {lexeme: 7akim, surface: حكيم, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: وين, lexeme: wen}, {surface: الحكيم, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: 7akim, surface: حكيم, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: |-
         وين الحكيم
         وين الدكتور
@@ -565,7 +565,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لازم تاخدي الدوا.
-      tokens: [{surface: لازم, lexeme: lezem}, {surface: تاخدي, lexeme: akhad, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: الدوا, lexemes: [{lexeme: el, surface: ال}, {lexeme: dawa, surface: دوا, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: لازم, lexeme: lezem}, {surface: تاخدي, lexeme: akhad, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: الدوا, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: dawa, surface: دوا, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         لازم تاخدي الدوا
         إنتي لازم تاخدي الدوا
@@ -743,7 +743,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: لازِم تْروحي عَالحَكيم!
-          tokens: [{surface: لازِم, lexeme: lezem}, {surface: تْروحي, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: عَالحَكيم, lexemes: [{lexeme: 3a, surface: عَ}, {lexeme: el, surface: ال}, {lexeme: 7akim, surface: حَكيم, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: لازِم, lexeme: lezem}, {surface: تْروحي, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: عَالحَكيم, lexemes: [{lexeme: 3a, surface: عَ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: 7akim, surface: حَكيم, base: true, feats: {Number: Sing}, n: 5}]}]
         apc-Latn/arabizi:
           text: lezem tru7i 3al 7akim!
           tokens: [{surface: lezem, lexeme: lezem}, {surface: tru7i, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: 7akim, lexeme: 7akim, feats: {Number: Sing}}]
@@ -766,7 +766,7 @@ stories:
       forms:
         apc-Arab/standard:
           text: لَأ، لازِم تِرْتاحي اليوم.
-          tokens: [{surface: لَأ, lexeme: la2}, {surface: لازِم, lexeme: lezem}, {surface: تِرْتاحي, lexeme: rte7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: لَأ, lexeme: la2}, {surface: لازِم, lexeme: lezem}, {surface: تِرْتاحي, lexeme: rte7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 5}]}]
         apc-Latn/arabizi:
           text: la2, lezem tirte7i el yom.
           tokens: [{surface: la2, lexeme: la2}, {surface: lezem, lexeme: lezem}, {surface: tirte7i, lexeme: rte7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]

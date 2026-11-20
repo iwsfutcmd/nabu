@@ -130,7 +130,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Diez tostones y una colada, por favor.
-      tokens: [{surface: Diez, lexeme: diez}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: colada, lexeme: colada, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      tokens: [{surface: Diez, lexeme: diez}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: colada, lexeme: colada, feats: {Number: Sing}, n: 5}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
       reverse: Diez tostones y una colada por favor
   translations:
     en: Ten (tostones|fried plantains) and a colada, please.
@@ -356,7 +356,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuánto es un cafecito?
-      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}]
+      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 4}]
       reverse: (Cuánto es|Cuánto cuesta|Cuánto vale) un (cafecito|café cubano)
   translations:
     en: |-
@@ -367,7 +367,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Feliz cumpleaños!
-      tokens: [{surface: Feliz, lexeme: feliz, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}]
+      tokens: [{surface: Feliz, lexeme: feliz, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: amod}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 2}]
       reverse: Feliz cumpleaños
   translations:
     en: Happy birthday!
@@ -376,7 +376,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es mi cumpleaños.
-      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}]
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 3}]
       reverse: '[Hoy] es mi cumpleaños'
   translations:
     en: (It's|It is) my birthday [today].
@@ -483,7 +483,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo soy la última, mi vida.
-          tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: última, lexeme: último, feats: {Gender: Fem, Number: Sing}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+          tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: última, lexeme: último, feats: {Gender: Fem, Number: Sing}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 6}]
       translations:
         en: I'm last, darling.
   - line:
@@ -499,7 +499,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Son las ocho y media. ¡Y el cumpleaños de Lili es a las nueve!
-          tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}, {surface: y, lexeme: y}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: nueve, lexeme: nueve}]
+          tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}, {surface: y, lexeme: y}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: nueve, lexeme: nueve}]
       translations:
         en: It's half past eight. And Lili's birthday party is at nine!
   - choose:
@@ -515,7 +515,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué tú quieres, mi vida?
-          tokens: [{surface: Qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+          tokens: [{surface: Qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 5}]
       translations:
         en: What would you like, darling?
   - line:
@@ -524,7 +524,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Una colada y diez tostones, por favor.
-          tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: colada, lexeme: colada, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: diez, lexeme: diez}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+          tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: colada, lexeme: colada, feats: {Number: Sing}, n: 2}, {surface: y, lexeme: y}, {surface: diez, lexeme: diez}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
       translations:
         en: A colada and ten tostones, please.
   - line:
@@ -561,7 +561,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Feliz cumpleaños, mi vida!
-          tokens: [{surface: Feliz, lexeme: feliz, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+          tokens: [{surface: Feliz, lexeme: feliz, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: amod}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 2}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 4}]
       translations:
         en: Happy birthday, darling!
   - line:

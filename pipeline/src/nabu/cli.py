@@ -386,6 +386,7 @@ def migrate_command(
     from nabu import migrate
 
     failed = False
+    done: list[migrate.Migration] = []
     for course_dir in _course_paths(courses):
         try:
             m = migrate.migrate(course_dir)
@@ -399,6 +400,7 @@ def migrate_command(
             typer.echo(f"✗ {course_dir.name}: {len(m.errors)} checks failed", err=True)
             failed = True
             continue
+        done.append(m)
         if check:
             old = migrate.stale(m)
             for rel in old:
@@ -410,6 +412,14 @@ def migrate_command(
                 f"✓ {course_dir.name}: {len(m.built.lexicon['lexemes'])} lexemes, "
                 f"{len(m.findings)} findings, {len(written)} files written"
             )
+    # The page over every course is written only from a run over a directory of them.
+    if any(p.is_dir() and not (p / "course.yaml").is_file() for p in courses) and not failed:
+        if check:
+            if migrate.summary_stale(done):
+                typer.echo(f"✗ {migrate.SUMMARY} is out of date: run `nabu migrate`", err=True)
+                failed = True
+        else:
+            migrate.write_summary(done)
     raise typer.Exit(code=1 if failed else 0)
 
 
