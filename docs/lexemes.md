@@ -1035,12 +1035,57 @@ Consolidated 2026-11-19, in the current terms (concept > lexeme > morpheme > all
   accepting and checking, the authored text always the one shown.
 - Nothing of the model is open now but a derived view of a concept's lexemes (lexeme-model.md, proposed).
 
+**Answers, round 5 (the owner, 2026-11-20, after [the review](review-adr-0145-0151.md) of ADRs 0145–0151,
+through its questions page)**
+- Decided: a slip is any edit within today's typo budget, and it is asked first. It is accepted unless it
+  gives a spelling the sound also allows (✗*havlar*), a form of another lexeme (*cada*) or a changed mark that
+  carries sound. The sound question and the whose-form question are asked only of what a slip doesn't explain.
+- Decided: the device reads the profile's rules. A profile's correspondences are executable data the grader
+  runs ("can this typed spelling be read as the target's sound?"); the compiler puts each accepted answer's
+  phonemic form in the bundle; every profile states its rules so before ADR 0148 lands; the voices keep their
+  Python.
+- Decided: a form has one of three statuses. Given by a stated rule. Derivable, pinned for now: the language
+  has a rule we haven't written, so the form is stored and checked like a listed one, is never a learner's
+  part, and is reported as rule debt. Listed: the language has no rule, so it is a part. Only a reviewed
+  statement makes a form listed.
+- Decided: classes are stated per language and reviewed, as each profile states its projections. This
+  replaces "a class must cover at least two lexemes" (round 1, 8).
+- Decided: "never seen in that form" stands (round 4), and is logged: each card records the words it
+  displayed, as lexeme and form, a story the lines read, and the fold keeps the pairs seen. Nothing logged
+  before the change counts towards a rule.
+- Decided: a typed building card may ask a regular form the course never writes (*cantamos*); a choice never
+  (ADR 0132 stands there).
+- Decided: gender by ending is a default where the language has one. *casa* is 1 of 1; a noun the default
+  misses or that breaks it has a gender part (*la mano*, *el día*, *la noche*); the default is itself a rule;
+  the same in hbo, apc and grc. This narrows round 1's `casa|gender` (3).
+- Decided: hbo keeps the narrative form and the plain one, untagged. ADR 0147's lint lets a difference be when
+  the answer's own order forces it, or when it is a contrast only a context decides; each language marks
+  those contrasts; the contrast is asked on story lines; ADR 0085's answers stay.
+- Decided: apc's participle pattern carries two heads: the participle, a value of aspect as ruled in rounds 2
+  and 4, and the agentive noun, a function head, whose result is a lexeme where its plural or its vowels are
+  listed (*m3allem*). A token names which.
+- Decided: letters after the gate are assumed, and watched. No schedule per letter; the fold counts labelled
+  misses per correspondence; one that keeps coming back reopens that part of the track.
+- Decided: under a variety tag ("in Cuba") a general word is wrong unless that variety's speakers say it too,
+  which a Cuban speaker's review marks; its feedback says "the general word", never "Spain's".
+- Decided: Greek's missing accents and breathings stay a note until the app has its own way to put the marks
+  on (buttons, as vowel marks have); then they are wrong, as es's are at once.
+- Decided, about the work: the review goes to main; its fixes that need no ruling are drafted, one commit per
+  file; no second independent read of the notes.
+- The owner took the reviewer's pick on all fifteen, with no notes. The ADRs were revised from these answers
+  on 2026-11-20. Each lists at its end what the owner decided, what was restored from these notes, and what
+  the revision proposes beyond that, which is not the owner's until the ADR is accepted.
+- The notes above keep their earlier wording where an answer or a correction changed it: the *tener* example,
+  `casa|gender`, the count of two for a class, the slip as "keyboard or IME neighbours, a transposition", the
+  dotted circle as Hebrew's slot, and 生 in 學生 (it is *saang1* there; *sang1* is 醫生's). The ADRs are current.
+
 **For later (not started; the owner, 2026-11-19)**
 - How do we teach syntax?
 
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
 18. Turn the decided parts into a Proposed ADR, or several. Done 2026-11-19: ADRs 0145–0151 (Proposed).
+    Reviewed and revised 2026-11-20 (round 5); still Proposed.
 
 ## References
 
