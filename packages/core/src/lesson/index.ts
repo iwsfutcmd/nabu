@@ -1,5 +1,5 @@
 export { cardGallery, sampleExercise, type GalleryCard } from "./gallery.ts";
-export { courseExclusions, facetExclusions, speechExclusions, speechSupportOf, voiceExclusions, type SpeechSupport } from "./exclusions.ts";
+export { courseExclusions, facetExclusions, PARTS, partsExclusions, speechExclusions, speechSupportOf, voiceExclusions, type SpeechSupport } from "./exclusions.ts";
 export { lessonNodes, type LessonNode } from "./nodes.ts";
 export { allKcs, allSentences, assembleCourse, coreFiles, createGrader, MEDIA_ROLES, prepareGrading, profileOf, readCourse, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
 export { placedBy, runTest, type AdaptiveTest, type TestBlock, type TestRun, type TestStep } from "./adaptive.ts";
@@ -34,7 +34,7 @@ export {
 } from "./player.ts";
 export { doneOf, firstTriesOf, resume, type Done } from "./resume.ts";
 export { seededRng, type Rng } from "./rng.ts";
-export { answerTextOf, cardGloss, chosenWordOf, facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makeSpeakScored, makeToneIdentify, promptOf, rubySchemeOf, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
+export { answerTextOf, cardGloss, chosenWordOf, facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makePartsWhole, makeSpeakScored, makeToneIdentify, makeWholeParts, promptOf, rubySchemeOf, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
 export { chosenTraditionKey, readingTradition, readingTraditions, traditionKey } from "./traditions.ts";
 export { homographsOf, otherReadings, otherReadingsAt, readingAsText, type HomographReading } from "./homographs.ts";
 export { makeLetterPairs, makeLetterRead, makeWordRead, makeWordWrite, SCRIPT_TEMPLATES, scriptCandidates, scriptNodes, type ScriptNode } from "./script.ts";

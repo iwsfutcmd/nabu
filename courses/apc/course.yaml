@@ -55,6 +55,10 @@ consistentReadings: true
 # A noun pins its gender and number (ADR 0132 amendment): a new feminine or plural noun is two KCs on
 # one word (sense + form), so a sentence may bring in two.
 iPlusOne: 2
+# The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
+# carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens
+# carry, and the glossary entries that name them, have not been checked for this by a reader.
+wordParts: true
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-food.yaml, units/u04-home.yaml, units/u05-numbers.yaml, units/u06-day.yaml, units/u07-likes.yaml, units/u08-time.yaml, units/u09-past.yaml, units/u10-plans.yaml, units/u11-people.yaml, units/u12-trip.yaml, units/u13-health.yaml, units/u14-phone.yaml, units/u15-shopping.yaml, units/u16-dates.yaml, units/u17-childhood.yaml, units/u18-getting-around.yaml, units/u19-work.yaml, units/u20-celebrations.yaml]
 # Vowel marks (ADR 0053): the compiler marks each Arabic-script word from vocalization.yaml; Arabizi is untouched.
 vocalization: [vocalization.yaml]

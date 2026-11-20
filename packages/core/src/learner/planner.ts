@@ -454,8 +454,13 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   // of the target success.
   const reviewCap = (): number => Math.max(1, Math.floor(size * (struggling() ? Math.max(REVIEW_SHARE_STRUGGLING, pace.reviewShare) : pace.reviewShare)));
   // A card that has a word show a skill it lacks (ADR 0101): of that facet, credited to such a word
-  // not yet exercised so in this plan.
-  const shows = (c: Candidate, facet: Facet): boolean => facetOf(c.ex.template) === facet && creditedKcs(c.ex).some((kc) => needs.has(key(kc, facet)) && !covered.has(key(kc, facet)));
+  // not yet exercised so in this plan. A word built from its parts (ADR 0152) is typed, and shows that
+  // its forms can be produced, never its words: only a sentence typed shows that. So it takes none of
+  // the sentences' typing slots, counts toward none, and says nothing of how well this learner types
+  // sentences; it has a slot of its own (`builds`, below).
+  const lacks = (c: Candidate, facet: Facet): boolean => facetOf(c.ex.template) === facet && creditedKcs(c.ex).some((kc) => needs.has(key(kc, facet)) && !covered.has(key(kc, facet)));
+  const shows = (c: Candidate, facet: Facet): boolean => c.ex.template !== "parts-whole" && lacks(c, facet);
+  const builds = (c: Candidate): boolean => c.ex.template === "parts-whole" && lacks(c, "produce");
   // How many a session: a share for a skill this learner does well, one for a skill they find hard.
   const quotas = SKILL_SHARES.flatMap(({ facet, share }) => {
     const ps = candidates.filter((c) => shows(c, facet)).map((c) => c.p);
@@ -465,11 +470,25 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     return [{ facet, quota: easy ? Math.min(words, Math.max(1, Math.round(size * share))) : 1, picked: 0 }];
   });
   const quota = quotas.reduce((a, q) => a + q.quota, 0);
+  const sameOf = (template: TemplateId): number => chosen.filter((x) => x.ex.template === template).length;
+  // Built words wait while the session owes a typing slot that a sentence left in the pool could still
+  // take (ADR 0152): picked early, as a new card is, a built word left weak learners' sessions unable
+  // to afford the sentence (a simulated month of Uzbek: 21 typed sentences fell to 3). Set before each
+  // pick, below. Then one built word a session has a slot of its own, where a form met before today
+  // has yet to be produced and the session can afford the card, as it affords a typed sentence.
+  let builtWordsWait = false;
+  const buildSlots = candidates.some(builds) ? 1 : 0;
+  let built = 0;
   const allowed = (c: Candidate): boolean => {
-    const same = chosen.filter((x) => x.ex.template === c.ex.template).length;
+    const same = sameOf(c.ex.template);
     if (same >= capOf(c.ex.template)) return false;
     if (reviewItems.has(c.ex.item) && chosen.filter((x) => reviewItems.has(x.ex.item)).length >= reviewCap()) return false;
     if (RECOGNITION.has(c.ex.template)) return true;
+    if (c.ex.template === "parts-whole" && builtWordsWait) return false;
+    // A word is built from its parts once each form asked was recognized right (the fold's `shown`):
+    // read first, then written, as a reading is typed after it was chosen (ADR 0131). A mistakes
+    // session brings its mistakes back whatever has slipped since.
+    if (c.ex.template === "parts-whole" && request.mode !== "mistakes" && !(askedKcs(c.ex) ?? []).every((kc) => state.shown[key(kc, "recognize")] !== undefined)) return false;
     // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
     const gated = PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" || c.ex.template === "reading-feature" || c.ex.template === "spelling-choice" ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
@@ -498,9 +517,10 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   // Whether the session can take a card of this skill and still come near its target: the cards
   // chosen, the gentlest such card, and the easiest of the rest for the places left (self-rated
   // speaking aside).
-  const affordable = (facet: Facet, remaining: readonly Candidate[]): boolean => {
+  const affordable = (facet: Facet, remaining: readonly Candidate[]): boolean => affordableOf((c) => shows(c, facet), remaining);
+  const affordableOf = (wanted: (c: Candidate) => boolean, remaining: readonly Candidate[]): boolean => {
     const open = remaining.filter((c) => allowed(c) && !selfRated(c));
-    const gentlest = open.filter((c) => shows(c, facet)).sort((a, b) => b.p - a.p)[0];
+    const gentlest = open.filter(wanted).sort((a, b) => b.p - a.p)[0];
     if (gentlest === undefined) return false;
     const counted = chosen.filter((x) => !selfRated(x));
     const rest = open
@@ -522,6 +542,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const remaining = [...candidates];
   const showing = new Set<Candidate>();
   while (chosen.length < size && remaining.length > 0) {
+    builtWordsWait = quotas.some((q) => q.facet === "produce" && q.picked < q.quota) && remaining.some((c) => shows(c, "produce") && sameOf(c.ex.template) < capOf(c.ex.template));
     const missing = [...presentable].filter((kc) => !presented.has(kc));
     const mustPresent = missing.length > 0 && remaining.some((c) => allowed(c) && presents(c).some((kc) => missing.includes(kc)));
     // Once new words are presented, at each spread-out place a card that has a word show a skill it
@@ -531,12 +552,15 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const owed = slot
       ? quotas.filter((q) => q.picked < q.quota && affordable(q.facet, remaining)).sort((a, b) => a.picked / a.quota - b.picked / b.quota)[0]
       : undefined;
+    // The built word's own slot: once the sentences' slots are settled (filled, or none left to fill).
+    const building = !mustPresent && owed === undefined && built < buildSlots && !builtWordsWait && affordableOf(builds, remaining);
     let best = -1;
     let bestScore = Number.NEGATIVE_INFINITY;
     for (const [i, c] of remaining.entries()) {
       if (!allowed(c)) continue;
       if (mustPresent && !presents(c).some((kc) => missing.includes(kc))) continue;
       if (owed !== undefined && !shows(c, owed.facet)) continue;
+      if (building && !builds(c)) continue;
       const s = score(c);
       if (s > bestScore + 1e-12) {
         best = i;
@@ -551,6 +575,10 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
         q.picked += 1;
         showing.add(pick);
       }
+    if (builds(pick)) {
+      built += 1;
+      showing.add(pick);
+    }
     chosen.push(pick);
     const facet = facetOf(pick.ex.template);
     for (const kc of presents(pick)) presented.add(kc);

@@ -52,6 +52,10 @@ license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@887599f213ef', status: draft}
 # Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
 consistentReadings: true
+# The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
+# carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens
+# carry, and the glossary entries that name them, have not been checked for this by a reader.
+wordParts: true
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-home.yaml, units/u04-numbers.yaml, units/u05-food.yaml, units/u06-city.yaml, units/u07-day.yaml, units/u08-bazaar.yaml, units/u09-past.yaml, units/u10-travel.yaml]
 # Audio (§10.1): one recording per sentence, read from the Latin forms; the Cyrillic orthography shares it.
 # Navoiy (ADR 0059): a CosyVoice2 fine-tune for Uzbek, every clip cloning one cast reference

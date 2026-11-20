@@ -60,6 +60,11 @@ export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
     const token = firstToken(ex.options[ex.answer]);
     return token === undefined ? undefined : kcsOfToken(token);
   }
+  // A word and its parts (ADR 0152), built or taken apart: the word's forms, which the card names.
+  // Its words (its own, a clitic, an article) are given: the card shows each as the course writes it,
+  // with what it means, so the answer says nothing of them.
+  if (ex.template === "parts-whole") return ex.parts.filter((p) => p.text === undefined).map((p) => p.kc);
+  if (ex.template === "whole-parts") return ex.solution.flatMap((i) => (ex.options[i] === undefined || ex.options[i].text !== undefined ? [] : [ex.options[i].kc]));
   // A pronunciation card in context (ADR 0095, 0098) asks about one word; the sentence around it is given.
   if (ex.template === "vocalize" || ex.template === "vocalize-build" || ex.template === "transcribe" || ((ex.template === "char-read" || ex.template === "reading-feature") && ex.word !== undefined)) {
     const token = ex.word === undefined ? undefined : ex.prompt.tokens[ex.word];

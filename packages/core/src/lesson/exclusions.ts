@@ -63,8 +63,18 @@ export const facetExclusions = (course: CourseView): ReadonlySet<TemplateId> => 
 export const voiceExclusions = (course: CourseView): ReadonlySet<TemplateId> =>
   course.audioQuality === "iffy" ? LISTENING : new Set();
 
-/** Everything the course itself rules out: its facets' exclusions and its voice's. */
-export const courseExclusions = (course: CourseView): ReadonlySet<TemplateId> => new Set([...facetExclusions(course), ...voiceExclusions(course)]);
+/** The cards that ask a word by its parts (ADR 0152). */
+export const PARTS: ReadonlySet<TemplateId> = new Set<TemplateId>(["parts-whole", "whole-parts"]);
+
+/**
+ * The parts cards, unless the course switched them on (ADR 0152, `wordParts`): a course asks its
+ * words by their parts once the forms and morphs its tokens carry have been checked.
+ */
+export const partsExclusions = (course: CourseView): ReadonlySet<TemplateId> => (course.wordParts === true ? new Set() : PARTS);
+
+/** Everything the course itself rules out: its facets' exclusions, its voice's, and the parts cards it has not switched on. */
+export const courseExclusions = (course: CourseView): ReadonlySet<TemplateId> =>
+  new Set([...facetExclusions(course), ...voiceExclusions(course), ...partsExclusions(course)]);
 
 /** The templates a speech support rules out. */
 export const speechExclusions = (

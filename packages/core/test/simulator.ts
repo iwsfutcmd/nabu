@@ -56,6 +56,8 @@ const TRUE_TEMPLATE: Readonly<Record<TemplateId, number>> = {
   "letter-pairs": -1.0,
   "word-read": -0.4,
   "word-write": 0.2,
+  "parts-whole": 0.6,
+  "whole-parts": 0.4,
 };
 
 const gauss = (rng: Rng): number => Math.sqrt(-2 * Math.log(1 - rng.next())) * Math.cos(2 * Math.PI * rng.next());
@@ -118,6 +120,8 @@ export interface SimulationOptions {
   readonly days?: number;
   /** The hours (UTC) of the day's sessions: two, at 9:00 and 19:00, unless a run asks for more. */
   readonly hours?: readonly number[];
+  /** Card kinds every plan leaves out: a learner on a break from them, or a month without a kind, to compare with. */
+  readonly exclude?: ReadonlySet<TemplateId>;
 }
 
 /** 30 days (or `days`) of a learner who follows the app; `onEvent` sees every event the device would log. */
@@ -159,7 +163,7 @@ export const simulate = (
       const practice = pace !== undefined && pace.due > 0 && (practiceFirst(pace) || next === undefined);
       if (!practice && next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
       const request = next !== undefined && !practice ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
-      const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * hours.length + slot, pace: pace?.band });
+      const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * hours.length + slot, pace: pace?.band, ...(options.exclude === undefined ? {} : { exclude: options.exclude }) });
       if (p.exercises.length === 0) continue;
       sessions++;
       if (request.mode === "lesson") lessons++;

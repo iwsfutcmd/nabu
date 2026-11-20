@@ -3042,6 +3042,8 @@ class ExerciseRef(BaseModel):
         "letter-pairs",
         "word-read",
         "word-write",
+        "parts-whole",
+        "whole-parts",
     ]
     item: Annotated[
         str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
@@ -3781,6 +3783,12 @@ class BundleManifest(BaseModel):
             description="How the placement test probes, where the course says (course source `placement`, ADR 0077)."
         ),
     ] = None
+    wordParts: Annotated[
+        Literal[True] | None,
+        Field(
+            description="The course asks words by their parts (course source `wordParts`, ADR 0152): the templates `parts-whole` and `whole-parts` are planned. Absent: they are not."
+        ),
+    ] = None
     versions: Annotated[
         dict[str, str],
         Field(
@@ -4441,6 +4449,12 @@ class CourseSource(BaseModel):
         bool | None,
         Field(
             description="Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean."
+        ),
+    ] = None
+    wordParts: Annotated[
+        bool | None,
+        Field(
+            description="The course asks words by their parts (ADR 0152): a lesson may ask a word built from its parts (`parts-whole`: its own word and the form or morphs it carries, typed) and a word's parts picked out (`whole-parts`). Off unless set: a course switches it on once the parts its tokens carry (`form`, `morphs`) have been checked."
         ),
     ] = None
     iPlusOne: Annotated[

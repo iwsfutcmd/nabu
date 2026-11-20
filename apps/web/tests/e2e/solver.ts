@@ -234,8 +234,9 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     }
     case "translate-type.l1-l2":
     case "complete-translation":
-    case "listen-type": {
-      const text = surfaceOf(ex.template === "complete-translation" ? ex.blank : ex.canonical);
+    case "listen-type":
+    case "parts-whole": {
+      const text = surfaceOf(ex.template === "complete-translation" ? ex.blank : ex.template === "parts-whole" ? ex.whole : ex.canonical);
       if (mode === "keyboard") {
         await page.keyboard.type(text);
         await page.keyboard.press("Enter");
@@ -245,6 +246,15 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
         await page.keyboard.insertText(text);
         await page.locator("[data-action=check]").tap();
       }
+      return;
+    }
+    case "whole-parts": {
+      // Each of the word's parts picked (ADR 0152): a number key toggles a tile, as a tap does.
+      for (const part of ex.solution) {
+        if (mode === "keyboard" && part < 9) await page.keyboard.press(String(part + 1));
+        else await press(page, mode, `[data-lesson-player] [data-part-option="${part}"]`);
+      }
+      await press(page, mode, "[data-action=check]");
       return;
     }
     case "vocalize-build": {

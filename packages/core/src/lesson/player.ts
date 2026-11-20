@@ -389,6 +389,11 @@ export const retryOf = (ex: Exercise, attempt: number): Exercise => {
     case "listen-tap":
     case "story-arrange":
       return retiled(rng, { ...ex, id });
+    case "whole-parts": {
+      // The parts and the others in a new order, the solution following them.
+      const order = reorder(rng, ex.options.length, (o) => o.some((from, to) => from !== to));
+      return { ...ex, id, options: order.flatMap((i) => ex.options[i] ?? []), solution: ex.solution.map((i) => order.indexOf(i)) };
+    }
     default:
       return { ...ex, id };
   }

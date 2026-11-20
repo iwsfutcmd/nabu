@@ -14,6 +14,7 @@ import {
   ListenTapView,
   ListenTypeView,
   MatchPairsView,
+  PartsWholeView,
   SelectImageView,
   SpeakView,
   SpeechView,
@@ -26,6 +27,7 @@ import {
   TranslateTypeView,
   VocalizeBuildView,
   VocalizeView,
+  WholePartsView,
   type ViewExtras,
 } from "./Views.tsx";
 
@@ -60,6 +62,8 @@ export const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
   "letter-pairs": "player.instruction.letter-pairs",
   "word-read": "player.instruction.word-read",
   "word-write": "player.instruction.word-write",
+  "parts-whole": "player.instruction.parts-whole",
+  "whole-parts": "player.instruction.whole-parts",
 };
 
 /**
@@ -122,6 +126,10 @@ export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
       return <VocalizeBuildView {...props} ex={ex} />;
     case "transcribe":
       return <TranscribeView {...props} ex={ex} />;
+    case "parts-whole":
+      return <PartsWholeView {...props} ex={ex} />;
+    case "whole-parts":
+      return <WholePartsView {...props} ex={ex} />;
     case "speak.tier-0":
       return <SpeakView {...props} ex={ex} />;
     case "speak":

@@ -291,6 +291,8 @@ def write_bundle(
             if course.placement is not None
             else {}
         ),
+        # Only where the course switched it on (ADR 0152): its words are asked by their parts.
+        **({"wordParts": True} if course.wordParts else {}),
         "versions": tool_versions(analyzers, *_used_tools(compiled, profiles)),
         "files": sorted(files, key=lambda f: f["path"]),
         "credits": dict(sorted(credit.texts.items())),

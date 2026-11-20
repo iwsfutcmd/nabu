@@ -349,6 +349,49 @@ def test_classical_chinese_reads_a_character_by_its_sense(core_cli: CoreCli) -> 
     assert several == {}
 
 
+# Courses whose words are asked by their parts (ADR 0152): their tokens carry forms to tell apart.
+WORD_PARTS = {"apc", "chg", "es", "fa", "grc", "hbo", "uz"}
+
+
+def _token_forms(compiled: Compiled) -> set[str]:
+    """The forms a course's words carry: pinned on a token, or a morph that is no word itself."""
+    forms: set[str] = set()
+    for s in sentences(compiled):
+        for form in s["forms"].values():
+            for token in form["text"]["tokens"]:
+                if "form" in token:
+                    forms.add(token["form"])
+                forms.update(
+                    m["kc"] for m in token.get("morphs", []) if not m["kc"].startswith("sense:")
+                )
+    return forms
+
+
+@pytest.mark.parametrize("course", sorted(TOOLS))
+def test_words_are_asked_by_their_parts_only_where_they_carry_forms(
+    core_cli: CoreCli, course: str
+) -> None:
+    """ADR 0152: `wordParts` is on where a course's words carry forms to tell apart, and off
+    elsewhere. Cantonese carries one (the pronouns' plural), with nothing to tell it from."""
+    _, compiled = build(core_cli, course)
+    forms = _token_forms(compiled)
+    assert bool(compiled.course.wordParts) == (course in WORD_PARTS)
+    if course in WORD_PARTS:
+        assert len(forms) >= 10, sorted(forms)
+    else:
+        assert len(forms) <= 1, sorted(forms)
+
+
+def test_the_manifest_says_where_words_are_asked_by_their_parts(
+    core_cli: CoreCli, tmp_path: Path
+) -> None:
+    """The bundle carries the switch only where it is on: an older app reads nothing new."""
+    for course, on in (("uz", True), ("tok", False)):
+        _, compiled = build(core_cli, course)
+        manifest = write_bundle(compiled, PROFILES, ANALYZERS, tmp_path / course)
+        assert manifest.get("wordParts") == (True if on else None), course
+
+
 ES_FORMS = ["pres-1s", "pret-3s", "impf", "imp-tu", "part", "cond", "fut", "subj", "subj-past"]
 
 

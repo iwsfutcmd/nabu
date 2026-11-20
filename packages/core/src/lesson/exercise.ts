@@ -38,7 +38,10 @@ export type TemplateId =
   | "letter-read"
   | "letter-pairs"
   | "word-read"
-  | "word-write";
+  | "word-write"
+  // A word and its parts (ADR 0152): built from them, and taken apart.
+  | "parts-whole"
+  | "whole-parts";
 
 /** Facets of a knowledge component (§9.1): each (KC, facet) pair is its own memory. */
 export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
@@ -273,6 +276,61 @@ export interface Transcribe extends Common {
   readonly tradition?: SchemeId | undefined;
 }
 
+/**
+ * A part of a word (ADR 0152): a word of the course (the word's own, a clitic or a particle written
+ * with it), shown as the course writes it alone, or a form the word takes, named by its gloss. The
+ * cards ask the forms and are credited to them; the words are given.
+ */
+export interface WordPart {
+  readonly kc: KcId;
+  /** A word: its first form in the orthography being learned. Absent for a form, which is named, not written. */
+  readonly text?: TaggedText | undefined;
+  /** What the word means, or which form it is, in the support language. */
+  readonly gloss: TaggedText;
+  /** The word's own word, which the other parts are added to. */
+  readonly base?: true | undefined;
+}
+
+/**
+ * Parts to whole (ADR 0152): a sentence with one word left out, what the sentence means, and that
+ * word's parts (its own word, and the form or morphs it carries here). The learner types the word.
+ * The parts say which form it is; putting them together is what is asked.
+ */
+export interface PartsWhole extends Common {
+  readonly template: "parts-whole";
+  /** What the sentence means. */
+  readonly hint: TaggedText;
+  readonly before: TaggedText;
+  readonly after: TaggedText;
+  /** The word's parts, in the word's order. */
+  readonly parts: readonly WordPart[];
+  /** The word itself: the answer. */
+  readonly whole: TaggedText;
+  /** The word, and the spellings of it the course accepts (a token's variants), as an accept set. */
+  readonly accept: string;
+  /** Who speaks and who is spoken to, where the target marks it and the hint cannot. */
+  readonly persons?: Persons | undefined;
+}
+
+/**
+ * Whole to parts (ADR 0152): a sentence with one word marked. The learner picks that word's parts
+ * (its own word, and the form or morphs it carries here) among others; every part, and no other.
+ * What the sentence means is shown once the card is answered: before, it would name the parts.
+ */
+export interface WholeParts extends Common {
+  readonly template: "whole-parts";
+  /** The sentence. */
+  readonly prompt: TaggedText;
+  /** The word asked about: its token in the prompt. */
+  readonly word: number;
+  /** What the sentence means. */
+  readonly translation: TaggedText;
+  /** The word's parts among others: other words of its kind, and other forms the course's words take. */
+  readonly options: readonly WordPart[];
+  /** The options that are the word's parts, in the word's order. */
+  readonly solution: readonly number[];
+}
+
 /** Speak tier 0 (§10.4): say it, record it, compare, rate yourself. */
 export interface Speak extends Common {
   readonly template: "speak.tier-0";
@@ -403,6 +461,8 @@ export type Exercise =
   | Vocalize
   | VocalizeBuild
   | Transcribe
+  | PartsWhole
+  | WholeParts
   | Speak
   | SpeakScored
   | ListenSpeak

@@ -116,7 +116,16 @@ describe.each(COURSES)("what plan() plans: %s %s", (id, orthography) => {
 
   it("never offers two options that look the same", () => {
     for (const { session, ex } of plannedCards(walked(id, orthography).sessions)) {
-      const options = ex.template === "select-image" ? ex.options.map((o) => o.text) : "options" in ex ? ex.options : ex.template === "match-pairs" ? ex.left : [];
+      const options =
+        ex.template === "select-image"
+          ? ex.options.map((o) => o.text)
+          : ex.template === "whole-parts"
+            ? ex.options.map((o) => o.text ?? o.gloss)
+            : "options" in ex
+              ? ex.options
+              : ex.template === "match-pairs"
+                ? ex.left
+                : [];
       const surfaces = options.map((o) => surfaceOf(o));
       expect(new Set(surfaces).size, `${session.label} ${ex.id}`).toBe(surfaces.length);
     }

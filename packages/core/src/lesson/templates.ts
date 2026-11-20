@@ -31,6 +31,7 @@ import type {
   MatchPairs,
   MinimalPair,
   Outcome,
+  PartsWhole,
   ReadingDisambiguation,
   Transcribe,
   Vocalize,
@@ -43,6 +44,8 @@ import type {
   ToneIdentify,
   TranslateTap,
   TranslateType,
+  WholeParts,
+  WordPart,
 } from "./exercise.ts";
 import { isCorrect } from "./exercise.ts";
 import type { Rng } from "./rng.ts";
@@ -126,6 +129,12 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "letter-pairs": { facet: "read-script", modality: { audioOut: false, mic: false, input: "pairs" }, prior: -1.4, perSession: 1, presents: true },
   "word-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.8, presents: true },
   "word-write": { facet: "write-script", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.2 },
+  // A word and its parts (ADR 0152). Built from them and typed: its own word given and its forms
+  // named, so midway between a blank chosen (gap-fill) and a blank typed (complete-translation).
+  // Taken apart: several picks among a few, as hard as a sentence arranged from tiles. Guesses, until
+  // answers say otherwise (REVIEW on real logs). One of each a session.
+  "parts-whole": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.2, perSession: 1 },
+  "whole-parts": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: 0.0, perSession: 1 },
 };
 
 /** Templates that play audio: "can't listen now" leaves them out (§10, §11.5). */
@@ -937,6 +946,318 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
   return undefined;
 };
 
+// ------------------------------------------------------------------------------------ a word and its parts (ADR 0152)
+
+/**
+ * Whether two spellings are one word as the orthography grades them: the same, or apart only in what
+ * its profile lets pass (case, optional marks, a grave for an acute, a variant). A typo apart is
+ * another spelling: casa and casas are two.
+ */
+const writtenAlike = (course: CourseView, a: string, b: string): boolean => {
+  if (a === b) return true;
+  const set = compileAcceptSet(literalAccept(a), profileOf(course, course.orthography));
+  if (!set.ok) return false;
+  const { verdict } = grade(set.value, b);
+  return verdict === "CORRECT" || verdict === "CORRECT_ALT" || verdict === "CORRECT_MARKS" || verdict === "CORRECT_VARIANT";
+};
+
+/**
+ * A KC as a part of a word: a word of the course by its first form (and its gloss cut for a card), a
+ * form by its gloss, whole (it names the form: "-(i)m: my"). Undefined where the course lacks either.
+ */
+const partOf = (course: CourseView, kc: KcId, base: boolean): WordPart | undefined => {
+  const entry = kcById(course).get(kc);
+  const gloss = entry?.gloss?.[course.supportKey];
+  if (entry === undefined || gloss === undefined) return undefined;
+  if (!(kc as string).startsWith("sense:")) return { kc, gloss };
+  const text = entry.forms?.[course.orthography]?.[0];
+  return text === undefined ? undefined : { kc, text, gloss: cardGloss(gloss), ...(base ? { base: true as const } : {}) };
+};
+
+/**
+ * A word's parts (ADR 0152), in the word's order: its own word (its sense's first form, the lemma),
+ * and what it carries here: each morph the course marks on it (an ending, a clitic, an article written
+ * with it) and the form its source pins it as (es, grc, hbo), which stands next after its own word. A
+ * pinned form the word has of itself is no part (`ownFormsOf`: a noun's own gender): nothing is built
+ * with it. Undefined for a word that carries no form (a word with nothing added, or with other words
+ * alone: a clitic, an article; the cards ask forms, `formsOf`), or with a part the course has no entry
+ * for.
+ */
+const wordPartsOf = (course: CourseView, token: Token): readonly WordPart[] | undefined => {
+  let byToken = wordParts.get(course);
+  if (byToken === undefined) {
+    byToken = new WeakMap();
+    wordParts.set(course, byToken);
+  }
+  let parts = byToken.get(token);
+  if (parts === undefined) {
+    parts = partsOfWord(course, token) ?? null;
+    byToken.set(token, parts);
+  }
+  return parts ?? undefined;
+};
+
+/** Words' parts, per course and token: a plan asks them of every word of every sentence it considers. */
+const wordParts = new WeakMap<CourseView, WeakMap<Token, readonly WordPart[] | null>>();
+
+/** A word as its token writes it, without the morphs beside it: its own morph, else the whole token. */
+const ownSurface = (token: Token, sense: KcId): string => token.morphs?.find((m) => m.kc === sense)?.surface ?? token.surface;
+
+/** Per course: each sense's pinned forms, each with the spellings of the word under it. */
+const pinnedForms = new WeakMap<CourseView, Map<string, Map<KcId, Set<string>>>>();
+const ownForms = new WeakMap<CourseView, Map<string, ReadonlySet<KcId>>>();
+
+/**
+ * The forms a word has of itself (ADR 0152): those the course pins on it where it is written as its
+ * lemma. אֶרֶץ is feminine as it stands, so nothing is added to it by that, in whatever shape a suffix
+ * leaves it (אַרְצְךָ); casa's feminine likewise, while casas's feminine plural is added. Read off the
+ * course's own sentences: no list of genders or inherent forms is written anywhere.
+ */
+const ownFormsOf = (course: CourseView, sense: KcId, lemma: string): ReadonlySet<KcId> => {
+  let pinned = pinnedForms.get(course);
+  if (pinned === undefined) {
+    pinned = new Map();
+    for (const s of allSentences(course)) {
+      for (const token of formOf(course, s)?.text.tokens ?? []) {
+        const of = senseKcOf(token);
+        if (token.kind !== "word" || of === undefined || token.form === undefined) continue;
+        const forms = pinned.get(of) ?? new Map<KcId, Set<string>>();
+        const spellings = forms.get(token.form) ?? new Set<string>();
+        spellings.add(ownSurface(token, of));
+        forms.set(token.form, spellings);
+        pinned.set(of, forms);
+      }
+    }
+    pinnedForms.set(course, pinned);
+  }
+  const bySense = ownForms.get(course) ?? new Map<string, ReadonlySet<KcId>>();
+  ownForms.set(course, bySense);
+  let own = bySense.get(sense);
+  if (own === undefined) {
+    own = new Set([...(pinned.get(sense) ?? [])].filter(([, spellings]) => [...spellings].some((spelling) => writtenAlike(course, spelling, lemma))).map(([form]) => form));
+    bySense.set(sense, own);
+  }
+  return own;
+};
+
+const partsOfWord = (course: CourseView, token: Token): readonly WordPart[] | undefined => {
+  const sense = senseKcOf(token);
+  if (token.kind !== "word" || sense === undefined) return undefined;
+  const lemma = kcById(course).get(sense)?.forms?.[course.orthography]?.[0];
+  if (lemma === undefined) return undefined;
+  const morphs = token.morphs ?? [];
+  const own = morphs.find((m) => m.kc === sense);
+  const kcs: KcId[] = morphs.length === 0 ? [sense] : own === undefined ? [sense, ...morphs.map((m) => m.kc)] : morphs.map((m) => m.kc);
+  if (token.form !== undefined && !kcs.includes(token.form) && !ownFormsOf(course, sense, surfaceOf(lemma)).has(token.form)) kcs.splice(kcs.indexOf(sense) + 1, 0, token.form);
+  const each = [...new Set(kcs)];
+  if (each.length < 2) return undefined;
+  const parts = each.flatMap((kc) => partOf(course, kc, kc === sense) ?? []);
+  return parts.length === each.length && formsOf(parts).length > 0 ? parts : undefined;
+};
+
+/**
+ * What a parts card asks, and is credited to (ADR 0152): the word's forms (its endings, prefixes and
+ * pinned form), which the card names. Its words (its own, a clitic, an article) are given: the card
+ * shows each as the course writes it, with what it means, so an answer says nothing of them.
+ */
+const formsOf = (parts: readonly WordPart[]): readonly KcId[] => parts.filter((p) => p.text === undefined).map((p) => p.kc);
+
+const sameKcs = (kcs: readonly KcId[], asked: readonly string[]): boolean => {
+  const sorted = [...new Set(kcs.map(String))].sort();
+  return sorted.length === asked.length && sorted.every((kc, i) => kc === asked[i]);
+};
+
+interface PartsWord {
+  readonly at: number;
+  readonly token: Token;
+  readonly parts: readonly WordPart[];
+}
+
+/**
+ * The words of a text a parts card may ask (ADR 0152), best first. A mistake's word is asked again
+ * (`MakeContext.ask`: its forms, as its answer was credited), and nothing else. Otherwise a word that
+ * carries a form the session wants typed (ADR 0101), then one that carries a form the node introduces,
+ * then one with a word the node introduces; then the rest; in each group from the last word. A word
+ * needs a sense of its own (`alone`) and a form (`wordPartsOf`).
+ */
+const partsWords = (ctx: MakeContext, text: TaggedText): readonly PartsWord[] => {
+  const all = alone(text).flatMap((at): PartsWord[] => {
+    const token = text.tokens[at] as Token;
+    const parts = wordPartsOf(ctx.course, token);
+    return parts === undefined ? [] : [{ at, token, parts }];
+  });
+  const asked = ctx.ask;
+  if (asked !== undefined) return all.filter((w) => sameKcs(formsOf(w.parts), asked)).slice(0, 1);
+  const rank = (w: PartsWord): number => {
+    const forms = formsOf(w.parts);
+    if (forms.some((kc) => ctx.focus?.has(kc) === true)) return 3;
+    if (forms.some((kc) => ctx.introduced.includes(kc))) return 2;
+    return w.parts.some((p) => ctx.introduced.includes(p.kc)) ? 1 : 0;
+  };
+  return [...all]
+    .reverse()
+    .map((w) => ({ w, r: rank(w) }))
+    .sort((a, b) => b.r - a.r)
+    .map((x) => x.w);
+};
+
+/** A word as an accept set: itself, and the spellings of it the course accepts (a token's variants). */
+const acceptOfWord = (token: Token): string => {
+  const spellings = [token.surface, ...(token.variants ?? [])];
+  return spellings.length === 1 ? literalAccept(token.surface) : `(${spellings.map(literalAccept).join("|")})`;
+};
+
+/**
+ * Parts to whole (ADR 0152): the sentence with one word left out, what it means, and the word's parts;
+ * the learner types the word. The first word (`partsWords`) the card does not give away: none whose
+ * own word, or a word beside it, typed as the card shows it, would be accepted for it (کتابِ with its
+ * unwritten ezafe).
+ */
+export const makePartsWhole = (ctx: MakeContext, s: BundleSentence): PartsWhole | undefined => {
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  if (form === undefined || translation === undefined) return undefined;
+  const { orthography } = ctx.course;
+  const { words: lexicon, inflected, forms } = lexiconOf(ctx.course, orthography);
+  for (const { at, token, parts } of partsWords(ctx, form.text)) {
+    const accept = acceptOfWord(token);
+    const set = compileAcceptSet(accept, profileOf(ctx.course, orthography));
+    if (!set.ok) continue;
+    const given = (text: TaggedText): boolean => isCorrect(grade(set.value, surfaceOf(text), { lexicon, inflected, forms }).verdict);
+    if (parts.some((p) => p.text !== undefined && given(p.text))) continue;
+    return {
+      template: "parts-whole",
+      id: id("parts-whole", s.id),
+      item: s.id,
+      kcs: s.kcs,
+      orthography,
+      hint: translation.text,
+      before: slice(form.text, 0, at),
+      after: slice(form.text, at + 1, form.text.tokens.length),
+      parts,
+      whole: single(form.text, token),
+      accept,
+      ...personsOf(s),
+    };
+  }
+  return undefined;
+};
+
+/** The parts of a form's name (form:f-pl-cstr: f, pl, cstr). */
+const nameParts = (kc: string): readonly string[] => kc.slice(kc.indexOf(":") + 1).split("-");
+
+/**
+ * Whether two forms may both be true of one word, as far as their names say: one's name is made of
+ * parts of the other's (feminine beside feminine plural; plural beside plural construct). Forms carry
+ * no feature values yet (ADR 0145), so the names are what there is: REVIEW with each course's forms.
+ */
+const overlapping = (a: string, b: string): boolean => {
+  const x = nameParts(a);
+  const y = nameParts(b);
+  return x.every((p) => y.includes(p)) || y.every((p) => x.includes(p));
+};
+
+/** How many letters two words begin alike with, in their own lower case. */
+const sharedStart = (course: CourseView, a: TaggedText, b: TaggedText): number => {
+  const x = graphemes(lowerIn(course, a.lang, surfaceOf(a)));
+  const y = graphemes(lowerIn(course, b.lang, surfaceOf(b)));
+  let n = 0;
+  while (n < x.length && n < y.length && x[n] === y[n]) n += 1;
+  return n;
+};
+
+/**
+ * Parts a word does not have, to offer beside its own (ADR 0152), from its unit or earlier (ADR
+ * 0050). Up to two other words of its kind (ADR 0132's `sameKind`), those that begin most like its
+ * own first: never one whose meaning its own shares, or that the course writes as this word. And up
+ * to three forms or clitics the course's words carry: those this very word takes elsewhere first,
+ * then those of words of its kind, then any; never one that may be true of this word too
+ * (`overlapping` with a form it carries, its pinned form included where that is no part).
+ */
+const otherParts = (ctx: MakeContext, s: BundleSentence, token: Token, whole: TaggedText, parts: readonly WordPart[]): readonly WordPart[] => {
+  const { course } = ctx;
+  const kcs = kcById(course);
+  const sense = senseKcOf(token) as KcId;
+  const kind = kcs.get(sense);
+  const own = new Set<string>(parts.map((p) => p.kc));
+  const carried = formSignature(token);
+  const attested = attestedFor(ctx, s);
+  const before = known(course, s.id);
+  const base = parts.find((p) => p.base === true)?.text;
+  const wholeKey = keyOf(course, whole);
+
+  const wordPool = allKcs(course)
+    .filter(
+      (k) =>
+        (k.id as string).startsWith("sense:") &&
+        !own.has(k.id) &&
+        before(k.id) &&
+        sameKind(kind, k) &&
+        !sharesMeaning(course, sense, k.id) &&
+        !(attested.bySense.get(k.id) ?? []).some((w) => keyOf(course, w.option) === wholeKey),
+    )
+    .flatMap((k) => partOf(course, k.id, false) ?? []);
+  const taken = parts.flatMap((p) => p.text ?? []);
+  const wordTexts = new Map(wordPool.map((p) => [p.text as TaggedText, p]));
+  const words = pickRanked(ctx, [...wordTexts.keys()], taken, 2, (text) => (base === undefined ? 0 : sharedStart(course, base, text))).flatMap((text) => wordTexts.get(text) ?? []);
+
+  const nearness = new Map<KcId, number>();
+  for (const [other, attestedWords] of attested.bySense) {
+    const near = other === sense ? 2 : sameKind(kind, kcs.get(other)) ? 1 : 0;
+    for (const w of attestedWords) {
+      for (const kc of w.signature) {
+        if (own.has(kc) || carried.some((c) => overlapping(c, kc))) continue;
+        if ((nearness.get(kc) ?? -1) < near) nearness.set(kc, near);
+      }
+    }
+  }
+  const families = new Set(carried.map((c) => nameParts(c)[0]));
+  const ordered = ctx.rng
+    .shuffle([...nearness.keys()].sort())
+    .map((kc) => ({ kc, score: (nearness.get(kc) ?? 0) + (families.has(nameParts(kc)[0]) ? 0.5 : 0) }))
+    .sort((a, b) => b.score - a.score);
+  const formParts: WordPart[] = [];
+  const shown = new Set<string>([...parts, ...words].map((p) => surfaceOf(p.text ?? p.gloss)));
+  for (const { kc } of ordered) {
+    if (formParts.length === 3) break;
+    const part = partOf(course, kc, false);
+    const label = part === undefined ? undefined : surfaceOf(part.text ?? part.gloss);
+    if (part === undefined || label === undefined || shown.has(label)) continue;
+    shown.add(label);
+    formParts.push(part);
+  }
+  return [...words, ...formParts];
+};
+
+/**
+ * Whole to parts (ADR 0152): the sentence with one word marked; the learner picks that word's parts
+ * among others. The first word (`partsWords`) the course has two other parts to set beside, a form
+ * among them: the card asks which forms the word has, and a form offered alone would say so.
+ */
+export const makeWholeParts = (ctx: MakeContext, s: BundleSentence): WholeParts | undefined => {
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  if (form === undefined || translation === undefined) return undefined;
+  for (const { at, token, parts } of partsWords(ctx, form.text)) {
+    const others = otherParts(ctx, s, token, single(form.text, token), parts);
+    if (others.length < 2 || formsOf(others).length === 0) continue;
+    const shuffled = ctx.rng.shuffle([...parts.map((part, own) => ({ part, own })), ...others.map((part) => ({ part, own: -1 }))]);
+    return {
+      template: "whole-parts",
+      id: id("whole-parts", s.id),
+      item: s.id,
+      kcs: s.kcs,
+      orthography: ctx.course.orthography,
+      prompt: form.text,
+      word: at,
+      translation: translation.text,
+      options: shuffled.map((x) => x.part),
+      solution: parts.map((_, own) => shuffled.findIndex((x) => x.own === own)),
+    };
+  }
+  return undefined;
+};
+
 // ------------------------------------------------------------------------------------ spelling choice
 
 /** Each character the course's first reading layer reads, by its reading (Jyutping): a character's homophones. Per course. */
@@ -1676,6 +1997,8 @@ export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeC
   "translate-type.l1-l2": makeTranslateType,
   "complete-translation": makeCompleteTranslation,
   "gap-fill": makeGapFill,
+  "parts-whole": makePartsWhole,
+  "whole-parts": makeWholeParts,
   "spelling-choice": makeSpellingChoice,
   "char-read": makeCharRead,
   "reading-feature": makeReadingFeature,
@@ -1725,7 +2048,7 @@ const mismatch = (ex: Exercise, response: Response): never => {
 export const answerTextOf = (ex: Exercise, response: Response): string | undefined => {
   if (response.tag === "text") return response.text;
   if (response.tag === "tiles" && "tiles" in ex && "joiner" in ex) return tilesText(ex, response.order);
-  if (response.tag !== "choice" || !("options" in ex)) return undefined;
+  if (response.tag !== "choice" || !("options" in ex) || ex.template === "whole-parts") return undefined;
   const option: TaggedText | { readonly text: TaggedText } | undefined = ex.options[response.index];
   if (option === undefined) return undefined;
   const chosen = surfaceOf("tokens" in option ? option : option.text);
@@ -1738,7 +2061,7 @@ export const answerTextOf = (ex: Exercise, response: Response): string | undefin
  * right choice, or another card.
  */
 export const chosenWordOf = (ex: Exercise, response: Response | null | undefined): TaggedText | undefined => {
-  if (response?.tag !== "choice" || TEMPLATES[ex.template].wordOptions !== true || !("options" in ex) || !("answer" in ex) || response.index === ex.answer) return undefined;
+  if (response?.tag !== "choice" || TEMPLATES[ex.template].wordOptions !== true || ex.template === "whole-parts" || !("options" in ex) || !("answer" in ex) || response.index === ex.answer) return undefined;
   const option: TaggedText | { readonly text: TaggedText } | undefined = ex.options[response.index];
   return option === undefined ? undefined : "tokens" in option ? option : option.text;
 };
@@ -1822,6 +2145,15 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       return response.tag === "text"
         ? graded(grader, ex, `${surfaceOf(ex.before)}${response.text}${surfaceOf(ex.after)}`, ex.canonical)
         : mismatch(ex, response);
+    case "parts-whole":
+      return response.tag === "text" ? graded(grader, ex, response.text, ex.whole) : mismatch(ex, response);
+    case "whole-parts": {
+      if (response.tag !== "tiles") return mismatch(ex, response);
+      // Every part, and no other: in whatever order they were picked.
+      const picked = new Set(response.order);
+      const right = picked.size === ex.solution.length && ex.solution.every((i) => picked.has(i));
+      return { verdict: right ? "CORRECT" : "WRONG", notes: [] };
+    }
     case "speak.tier-0":
       if (response.tag !== "self-rating") return mismatch(ex, response);
       return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [], selfRated: true };
@@ -1867,6 +2199,10 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
       return ex.vocalized;
     case "transcribe":
       return ex.reading;
+    case "parts-whole":
+      return ex.whole;
+    // A word's parts are several things, some named in the support language: the card marks them itself.
+    case "whole-parts":
     case "match-pairs":
     case "letter-pairs":
       return undefined;
@@ -1896,9 +2232,11 @@ export const promptOf = (ex: Exercise): TaggedText | undefined => {
     case "transcribe":
     case "story-choose":
     case "story-arrange":
+    case "whole-parts":
       return ex.prompt;
     case "gap-fill":
     case "spelling-choice":
+    case "parts-whole":
       return ex.hint;
     case "reading-disambiguation":
       return ex.context;

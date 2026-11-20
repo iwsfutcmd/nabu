@@ -56,4 +56,8 @@ iPlusOne: 2
 # Read and written (as lzh, ADR 0071): no one speaks Chaghatay today, and the course has no audio. The script facets
 # are the alphabet track's (units/abc.yaml: reading letters and words, writing words from letters).
 facets: [recognize, produce, read-script, write-script]
+# The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
+# carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens
+# carry, and the glossary entries that name them, have not been checked for this by a reader.
+wordParts: true
 units: [units/abc.yaml, units/u01-a-small-country.yaml, units/u02-seven-towns.yaml, units/u03-the-pears-of-andijan.yaml, units/u04-do-you-have-a-king.yaml, units/u05-they-drink-wine.yaml, units/u06-king-at-twelve.yaml, units/u07-four-men-and-a-pheasant.yaml, units/u08-at-dawn.yaml, units/u09-the-orphan.yaml, units/u10-the-seven-sleepers.yaml, units/u11-the-pavilion-at-osh.yaml, units/u12-the-kalmyks-came.yaml, units/u13-the-giant.yaml, units/u14-a-coin-of-decius.yaml, units/u15-the-old-womans-box.yaml, units/u16-the-call-at-dawn.yaml, units/u17-where-are-you-from.yaml, units/u18-the-first-smith.yaml, units/u19-the-red-tent.yaml]

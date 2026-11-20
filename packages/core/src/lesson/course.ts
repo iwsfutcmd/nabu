@@ -39,6 +39,8 @@ export interface CourseView {
   readonly audioQuality?: "iffy" | undefined;
   /** How the placement test probes, where the course says (ADR 0077). */
   readonly placement?: PlacementPolicy | undefined;
+  /** The course asks words by their parts (ADR 0152): `parts-whole` and `whole-parts` are planned. */
+  readonly wordParts?: true | undefined;
 }
 
 /** Bundle files that stay URLs (pictures, audio); every other file is JSON the course needs. */
@@ -166,6 +168,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
     ...(manifest.facets === undefined ? {} : { facets: manifest.facets }),
     ...(manifest.audioQuality === undefined ? {} : { audioQuality: manifest.audioQuality }),
     ...(manifest.placement === undefined ? {} : { placement: manifest.placement }),
+    ...(manifest.wordParts === true ? { wordParts: true as const } : {}),
   });
 };
 

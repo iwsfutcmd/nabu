@@ -19,6 +19,7 @@ import { useIsTarget, useTranslator } from "../context.tsx";
 import { CorrectIcon, WrongIcon } from "../icons.tsx";
 import { T, useShowsRuby, type TProps } from "../T.tsx";
 import { FormNote, GlossEntry, GlossList } from "./Gloss.tsx";
+import { PartsList } from "./Parts.tsx";
 import type { Glossing } from "./shared.ts";
 import styles from "./Player.module.css";
 
@@ -299,6 +300,14 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing 
         <div className={styles.solution} data-solution="">
           {solutionLabel !== undefined && <span className={styles.label}>{solutionLabel}</span>}
           <T as="p" text={outcome.solution} ruby={ruby} marks={marks} highlight={solutionMarked} {...solutionTaps} />
+        </div>
+      )}
+      {/* A word taken apart wrongly (ADR 0152): its parts, in the word's order. The tiles mark them by
+          colour; this says them, to a screen reader too. */}
+      {ex.template === "whole-parts" && !right && (
+        <div className={styles.solution} data-solution="">
+          <span className={styles.label}>{t.format("player.feedback.solution")}</span>
+          <PartsList parts={ex.solution.flatMap((i) => ex.options[i] ?? [])} lang={ex.prompt.lang} label={t.format("player.parts.label")} ruby={ruby} marks={marks} />
         </div>
       )}
       {missed.length > 0 && <Meanings meant={missed} label={t.format("player.feedback.right-meaning")} ruby={ruby} marks={marks} data="right" />}

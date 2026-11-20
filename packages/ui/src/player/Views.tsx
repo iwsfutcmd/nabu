@@ -21,6 +21,7 @@ import type {
   MatchPairs,
   MinimalPair,
   Outcome,
+  PartsWhole,
   ReadingDisambiguation,
   SelectImage,
   SelfRating,
@@ -32,6 +33,7 @@ import type {
   ToneIdentify,
   TranslateTap,
   TranslateType,
+  WholeParts,
 } from "@nabu/core/lesson";
 import { isCorrect } from "@nabu/core/lesson";
 import {
@@ -71,6 +73,7 @@ import {
 } from "./Audio.tsx";
 import styles from "./Player.module.css";
 import { schemeName } from "./Readings.tsx";
+import { PartLabel, PartsList } from "./Parts.tsx";
 import { FEEDBACK_SOUND_MS, playFeedbackSound } from "./sound.ts";
 import {
   toPcm16k,
@@ -1019,6 +1022,159 @@ export const CompleteTranslationView = (
         answer={ex.blank}
         parts={["hint", "gap"]}
       />
+    </div>
+  );
+};
+
+// ------------------------------------------------------------------------------------ a word and its parts (ADR 0152)
+
+/**
+ * What the gap of a word being built shows (as `gapFillOf`): what is typed, then the sentence's word
+ * itself once the answer is accepted as it, so its reading shows as the rest of the sentence's does.
+ */
+const builtFill = (
+  ex: PartsWhole,
+  draft: ViewProps["draft"],
+  outcome: Outcome | undefined,
+): TaggedText | undefined => {
+  if (
+    outcome !== undefined &&
+    isCorrect(outcome.verdict) &&
+    outcome.verdict !== "CORRECT_ALT" &&
+    outcome.verdict !== "CORRECT_PROVISIONAL"
+  )
+    return ex.whole;
+  return draft.tag === "text" && draft.text !== ""
+    ? textOfSurface(ex.whole, draft.text)
+    : undefined;
+};
+
+/**
+ * Parts to whole (ADR 0152): what the sentence means, the sentence with one word left out, that
+ * word's parts in its own order (in the target's direction), and a field to type the word in. The
+ * field is described by all three, so a screen reader hears the parts as focus lands on it.
+ */
+export const PartsWholeView = (props: Props<PartsWhole>): JSX.Element => {
+  const { ex } = props;
+  const t = useTranslator();
+  return (
+    <div className={styles.body}>
+      <div
+        className={styles.hint}
+        role="group"
+        aria-label={t.format("player.prompt.hint")}
+        id={partId(props.ids, "hint")}
+      >
+        <T as="p" text={ex.hint} />
+        <PersonsNote persons={ex.persons} prompt={ex.hint} />
+      </div>
+      <AnswerAudio props={props} />
+      <GapSentence
+        before={ex.before}
+        after={ex.after}
+        fill={builtFill(ex, props.draft, props.outcome)}
+        props={props}
+        gloss="always"
+      />
+      <PartsList
+        parts={ex.parts}
+        lang={ex.whole.lang}
+        label={t.format("player.parts.label")}
+        ruby={props.ruby}
+        marks={props.marks}
+        id={partId(props.ids, "prompt")}
+      />
+      <TypedAnswer
+        props={props}
+        label={t.format("player.blank.label")}
+        answer={ex.whole}
+        parts={["hint", "gap", "prompt"]}
+      />
+    </div>
+  );
+};
+
+/**
+ * Whole to parts (ADR 0152): the sentence with one word marked, and parts to pick that word's from:
+ * toggle tiles, in any order; a number key toggles a tile and Backspace takes the last pick back.
+ * What the sentence means would name the parts, so it shows once the card is answered, in room kept
+ * for it (P15); so do the words' meanings on a tap. Once answered, the word's parts are marked, and
+ * any other the learner picked.
+ */
+export const WholePartsView = (props: Props<WholeParts>): JSX.Element => {
+  const { ex, dispatch, locked } = props;
+  const t = useTranslator();
+  const picked = props.draft.tag === "tiles" ? props.draft.order : [];
+  const answered = props.outcome !== undefined;
+  const pick = (order: readonly number[]): void =>
+    dispatch({ tag: "input", draft: { tag: "tiles", order } });
+  const toggle = (i: number): void => {
+    if (locked || i >= ex.options.length) return;
+    pick(picked.includes(i) ? picked.filter((x) => x !== i) : [...picked, i]);
+  };
+  useShortcuts(props, toggle, () => {
+    if (picked.length > 0) pick(picked.slice(0, -1));
+  });
+  const described = describedBy(props.ids, ["prompt"]);
+  return (
+    <div className={styles.body}>
+      <div
+        className={styles.prompt}
+        role="group"
+        aria-label={t.format("player.word-in-sentence.label")}
+        id={partId(props.ids, "prompt")}
+        data-ink-container="prompt"
+        data-parts-word=""
+      >
+        <T
+          as="p"
+          text={ex.prompt}
+          emphasis={[ex.word]}
+          ruby={props.ruby}
+          marks={props.marks}
+          {...tapsOn(props, "sentence", ex.prompt, "answered")}
+        />
+      </div>
+      <div
+        className={`${styles.hint} ${styles.afterAnswer}`}
+        role="group"
+        aria-label={t.format("player.meaning.label")}
+        data-hidden={answered ? undefined : ""}
+        data-parts-meaning=""
+      >
+        <T as="p" text={ex.translation} />
+      </div>
+      <AnswerAudio props={props} />
+      <div
+        className={styles.bank}
+        role="group"
+        aria-label={t.format("player.parts.options")}
+        data-parts-options=""
+      >
+        {ex.options.map((part, i) => {
+          const own = ex.solution.includes(i);
+          const chosen = picked.includes(i);
+          return (
+            <button
+              key={part.kc}
+              type="button"
+              className={`${styles.tile} ${styles.partTile}`}
+              aria-pressed={chosen}
+              disabled={locked}
+              autoFocus={i === 0}
+              {...(i === 0 && described !== undefined
+                ? { "aria-describedby": described }
+                : {})}
+              data-part-option={i}
+              data-correct={(answered && own) || undefined}
+              data-wrong={(answered && !own && chosen) || undefined}
+              onClick={() => toggle(i)}
+            >
+              <PartLabel part={part} ruby={props.ruby} marks={props.marks} />
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 };

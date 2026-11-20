@@ -34,6 +34,10 @@ export const rightAnswer = (ex: Exercise): Response => {
       return { tag: "text", text: surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: surfaceOf(ex.blank) };
+    case "parts-whole":
+      return { tag: "text", text: surfaceOf(ex.whole) };
+    case "whole-parts":
+      return { tag: "tiles", order: ex.solution };
     case "vocalize":
       return { tag: "choice", index: ex.answer };
     case "vocalize-build":
@@ -79,7 +83,11 @@ export const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "translate-type.l1-l2":
     case "complete-translation":
     case "listen-type":
+    case "parts-whole":
       return { tag: "text", text: "qqqq zzzz" };
+    // Its parts but one, and one that is not its own.
+    case "whole-parts":
+      return { tag: "tiles", order: [...ex.solution.slice(1), ex.options.findIndex((_, i) => !ex.solution.includes(i))] };
     case "vocalize":
       return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
     case "vocalize-build":

@@ -486,10 +486,77 @@
   line-height: 1.6;
 }
 
-/* The letter being marked, and the marks it has (vocalize-build, ADR 0137). */
+/* The letter being marked, and the marks it has (vocalize-build, ADR 0137); a part picked
+   (whole-parts, ADR 0152). */
 .tile[aria-pressed="true"] {
   border-color: var(--nabu-color-accent);
   box-shadow: inset 0 0 0 1px var(--nabu-color-accent);
+}
+
+/* A word and its parts (ADR 0152). The parts of a word to build stand in the word's own order, in
+   the target's direction: its own word with what it means, then each form or clitic it carries. */
+.parts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.part,
+.partTile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--nabu-space-1);
+  text-align: start;
+}
+
+.part {
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  background-color: var(--nabu-color-tile);
+  border: 1px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+/* Parts to pick (whole-parts): tiles that keep their place and say, once the card is answered, which
+   are the word's and which the learner picked that are not. */
+.partTile {
+  padding-block: var(--nabu-space-2);
+}
+
+.partWord {
+  font-size: 1.25rem;
+}
+
+.partGloss {
+  color: var(--nabu-color-muted);
+  font-size: 0.9375rem;
+}
+
+/* A form has no spelling of its own: its name is what the part shows. */
+.partName {
+  font-size: 1rem;
+}
+
+.tile[data-correct] {
+  background-color: var(--nabu-color-correct-bg);
+  border-color: var(--nabu-color-correct);
+}
+
+.tile[data-wrong] {
+  background-color: var(--nabu-color-wrong-bg);
+  border-color: var(--nabu-color-wrong);
+  border-style: dashed;
+}
+
+/* What shows once a card is answered, in room kept for it from the start (P15). */
+.afterAnswer[data-hidden] {
+  visibility: hidden;
 }
 
 /* A placed tile leaves its shape behind, so the bank never reflows. */

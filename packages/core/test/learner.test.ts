@@ -155,6 +155,10 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.blank) };
+    case "parts-whole":
+      return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.whole) };
+    case "whole-parts":
+      return { tag: "tiles", order: bad ? ex.solution.slice(1) : ex.solution };
     case "vocalize":
       return { tag: "choice", index: bad ? (ex.answer + 1) % ex.options.length : ex.answer };
     case "vocalize-build":

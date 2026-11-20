@@ -35,6 +35,7 @@ import { T } from "../T.tsx";
 import { AudioButtons, useClipPlayer } from "./Audio.tsx";
 import { MarkedAnswer } from "./Feedback.tsx";
 import styles from "./Player.module.css";
+import { PartsList } from "./Parts.tsx";
 
 /** Where the next step goes: a lesson (its number on the path), the unit's story, or practice first. */
 /**
@@ -165,7 +166,7 @@ const unmarked = (text: TaggedText): AnswerDiff => ({ text, marked: [], missing:
 const yoursOf = (course: CourseView, grader: Grader, ex: Exercise, response: Response | undefined): { readonly answer: AnswerDiff; readonly solutionMarked: readonly number[] } | undefined => {
   if (response === undefined) return undefined;
   if (response.tag === "choice") {
-    if (!("options" in ex)) return undefined;
+    if (!("options" in ex) || ex.template === "whole-parts") return undefined;
     const option: TaggedText | { readonly text: TaggedText } | undefined = ex.options[response.index];
     if (option === undefined) return undefined;
     return { answer: unmarked("tokens" in option ? option : option.text), solutionMarked: [] };
@@ -204,7 +205,15 @@ const MissedCard = ({ course, grader, missed, ruby, marks, extra }: MissedCardPr
   const answer = yours?.answer;
   return (
     <li className={styles.missedCard} data-missed={ex.id} data-verdict={missed.verdict} data-ink-container={`missed:${ex.id}`}>
-      {prompt !== undefined && <T as="p" text={prompt} ruby={ruby} marks={marks} className={styles.missedPrompt} />}
+      {/* A word taken apart (ADR 0152): the word marked in its sentence, as its card marked it. */}
+      {prompt !== undefined && <T as="p" text={prompt} ruby={ruby} marks={marks} className={styles.missedPrompt} {...(ex.template === "whole-parts" ? { emphasis: [ex.word] } : {})} />}
+      {/* Its right answer is the word's parts, in the word's order: there is no text to show. */}
+      {ex.template === "whole-parts" && (
+        <div className={styles.solution} data-solution="">
+          <span className={styles.label}>{t.format("player.feedback.solution")}</span>
+          <PartsList parts={ex.solution.flatMap((i) => ex.options[i] ?? [])} lang={ex.prompt.lang} label={t.format("player.parts.label")} ruby={ruby} marks={marks} />
+        </div>
+      )}
       {solution !== undefined && (
         <div className={styles.solution} data-solution="">
           <span className={styles.label}>{t.format("player.feedback.solution")}</span>

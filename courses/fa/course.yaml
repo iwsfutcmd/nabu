@@ -43,6 +43,10 @@ license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@83a16c835c32', status: draft}
 # Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
 consistentReadings: true
+# The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
+# carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens
+# carry, and the glossary entries that name them, have not been checked for this by a reader.
+wordParts: true
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-numbers.yaml, units/u04-food.yaml, units/u05-home.yaml, units/u06-day.yaml, units/u07-time.yaml, units/u08-city.yaml, units/u09-shopping.yaml, units/u10-past.yaml]
 # Vowel marks (ADR 0053): the compiler marks each word from vocalization.yaml, so "Show vowel marks" has marks to show.
 vocalization: [vocalization.yaml]
