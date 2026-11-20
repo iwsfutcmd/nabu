@@ -97,7 +97,9 @@ describe("draft catalogs (ADR 0070)", () => {
         expect(() => draft.format(id as MessageId, values), `${locale} ${id}`).not.toThrow();
       }
     }
-  });
+    // Every draft catalog loaded and every message formatted: 0.2 s alone, over the default 5 s on a CI
+    // runner that is running the other packages' suites beside it (run 227 on main).
+  }, 60_000);
 
   it("format numbers in the locale's own digits", async () => {
     const draft = await loadTranslator("fa", { ...strict, drafts: true });
