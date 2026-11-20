@@ -4,10 +4,16 @@ You are picking up work the owner and Claude did on 2026-11-19: a new model of w
 (concepts, lexemes, morphemes, forms), written up as seven Proposed ADRs. The owner will tell you which of the
 three tasks below to do. Do only that one, and stop to ask where a decision is theirs.
 
-**Where the files are.** Everything this file names is on the branch `claude/nabu-morpheme-learning-p9jzs0`
-(ADRs 0145–0151, `docs/lexeme-model.md`, `docs/lexemes.md`, this file). If your checkout lacks
-`docs/adr/0145-lexical-model.md`, run `git fetch origin claude/nabu-morpheme-learning-p9jzs0` and merge it into
-your working branch before you start.
+**Where things stand (2026-11-20).** Task A is done: [the review](review-adr-0145-0151.md). The owner
+answered a fifth round of questions that came out of it (lexemes.md §16), and the seven ADRs were revised from
+those answers. They are still Proposed. Each ends with what the owner decided in round 5, what was restored
+from the notes, and what the revision proposes that the owner has not ruled on: don't treat that last list as
+decided. Tasks B and C are not started.
+
+**Where the files are.** The ADRs as first written, the notes and the review are on `main`. The revision of
+2026-11-20 (the ADRs, the notes' round 5, this file) is on the branch `ccr-aebe970e-q9o4q4` until the owner
+takes it to main. If your checkout's `docs/adr/0145-lexical-model.md` has no "Revised" line, fetch that branch
+and merge it into your working branch before you start.
 
 ## Read first
 
@@ -19,10 +25,11 @@ your working branch before you start.
    [0148](adr/0148-projections-and-misses.md) (projections and misses), [0149](adr/0149-script-first.md) (script
    first), [0150](adr/0150-pattern-display.md) (pattern display), [0151](adr/0151-fonts-build-step.md) (fonts).
    Also [0144](adr/0144-read-first-then-write.md) (Proposed, from another session) and the accepted ADRs they
-   amend (0061, 0066, 0085, 0088, 0100, 0131, 0132, 0142).
-3. The working notes, for the reasons behind each decision: [lexemes.md](lexemes.md) (the discussion and four
+   amend, which each ADR's header lists.
+3. The working notes, for the reasons behind each decision: [lexemes.md](lexemes.md) (the discussion and five
    rounds of the owner's answers, at the end of §16) and [lexeme-model.md](lexeme-model.md) (the model,
-   diagrammed). **The ADRs are the decisions; the notes are why.** Every decision is in an ADR; the notes grew
+   diagrammed), and [the review](review-adr-0145-0151.md), for what was wrong with the first version and why
+   each revision was made. **The ADRs are the decisions; the notes are why.** Every decision is in an ADR; the notes grew
    over one long day, so where they disagree with an ADR (a passage since superseded, often marked so), the
    ADR is the current one. Tell the owner if you find a decision in the notes that no ADR states.
 4. What isn't prose: [the explainer](explainers/inflection-or-derivation.html) (open it in a browser: the
@@ -47,6 +54,9 @@ The ADRs are Proposed until the owner accepts them. Don't treat them as settled 
 then, and don't mark them Accepted yourself.
 
 ## Task A: an independent review of ADRs 0145–0151
+
+Done on 2026-11-20: [review-adr-0145-0151.md](review-adr-0145-0151.md). The brief stays here as the record of
+what was asked.
 
 The ADRs were written by the session that held the conversation, so they share its blind spots. You are the
 reviewer who didn't. Read the ADRs and the code first, the notes after, so your reading isn't anchored on
@@ -85,15 +95,28 @@ For apc, the schema must say:
   as Kline writes them; a damma before ـه; ج marked as a sun letter in new vocalizations);
 - which existing Unicode marks it uses before inventing any (Unicode's Arabic block has vowel signs some
   orthographies use for e and o, U+065A–065C), and how invented marks are written in source (as `\u` escapes, never
-  literal invisibles).
+  literal invisibles);
+- **the shape of a verb's form:** its radicals, stored (a hollow verb's middle radical shows only in some of
+  its forms), its Form and its stem vowels, with the root class derived from the radicals (ADR 0145, "The
+  lexicon and the lexical form", "Roots and families"). A lexical form is not always one string;
+- **a pattern's template:** its slots, its own letters and vowels, and a template per root class. Kline forms
+  the participle so, by the verb's form and type (2022, ch. 17). ADR 0145's first migration, apc's
+  participles folding into their verbs, can't be done without this;
+- **the participle's two heads** (the owner, round 5): the participle, a value of aspect, and the agentive
+  noun, a function head on the same pattern. The form must be able to tell them apart where their vowels
+  differ (Kline: a woman writing, *ketbe*; a woman who is a writer, *ketibe*) and give a listed agentive noun
+  its plural;
+- **which correspondences Lebanese spelling leaves free** in each script, and which it fixes word by word
+  (ADR 0148): Kline says neither script has a codified spelling (ch. 2).
 
 Deliver:
 1. the schema and its conventions, as a note the owner can read (`docs/lexical-forms/apc.md`);
 2. the projections, as tables: lexical form → apc-Arab/standard (the course's Arabic), → apc-Latn/arabizi,
    → the vowel-marked text the voices read, → phonemes;
-3. worked entries for every apc KC form, in a data file beside the note, and a list of every pinned form in
-   `courses/apc` the projections don't reproduce, with why. That list is the review list: don't change
-   course text to make it shorter.
+3. worked entries for every apc KC form, in a data file beside the note, each verb with its radicals, and
+   each participle KC with which of the two heads it is (`sense:raye7`, `seken`, `2a3ed`, `wa2ef`;
+   `sense:m3allem`); and a list of every pinned form in `courses/apc` the projections don't reproduce, with
+   why. That list is the review list: don't change course text to make it shorter.
 
 Facts come from references, never invented: Kline (2022) is the apc grammar (CLAUDE.md, "Reference library":
 find it with `cd pipeline && uv run nabu refs find kline lebanese`; notes in the library's `nabu/notes/apc/`).
@@ -110,21 +133,34 @@ definition of done.
 
 **Propose the formats before building them.** The ADRs decide what is stored and how it behaves, not the file
 shapes. Write a short design note for the owner's approval first, covering: the per-language lexicon file
-(lexemes, morphemes with features, parts and scope, lexical forms) and each language's dimensions; how a
-token names its lexemes and feature values; each profile's statement of what reading and writing lose; prompt
-tags; the learner-event change (credit per part) and the migration from today's KC ids, including how each
-existing `form:` KC converts (a feature lexeme, a listed form, or a lexical feature); the MF2 message ids for
-the miss labels; and the UI for a lexeme's parts and for labelled feedback (the explainer's mockups are a
-starting point, not a design).
+(lexemes, morphemes with features, parts and scope, lexical forms, and the mark that a form is pinned or
+listed), where it lives and how an entry is signed off; each language's categories, dimensions, classes and
+defaults; how a token names its lexemes and feature values, and what it agrees with; each profile's
+executable statement of what reading and writing lose, fixed and free; prompt tags; the learner-event change
+(credit per part, the words a card displayed, the story lines read) and the migration from today's KC ids,
+which ADR 0145's Consequences list point by point; how each existing `form:` and `construction:` KC converts;
+the MF2 message ids for the miss labels; and the UI for a lexeme's parts and for labelled feedback (the
+explainer's mockups are a starting point, not a design).
 
 What must survive untouched, and what you must check did:
-- **Every sentence, story line and translation as displayed.** Sign-offs hash only the compiled text and
-  the translations (`signoffText`): 148 reviewed items today (apc 82, fa 37, uz 29). A migration that changes
-  none of that text keeps every sign-off valid; verify it.
-- **The audio:** about 8,000 clips, some made on a GPU. Nothing you change may make a clip stale
-  (`audio.stale`); if a projection's reading differs from a pinned one, that is a finding, not a regeneration.
-- **The learner's log:** the KC rename and the per-part credit (ADR 0146) migrate in the fold, with
-  `packages/core/test/fold-before-r2.ts` mirrored and the simulation and golden files rerun.
+- **Every sentence, story line and translation as displayed.** Sign-offs hash the compiled text and the
+  translations (`signoffText`), and ADR 0147 as revised proposes that they hash a sentence's tags too. No
+  sentence, story or unit in any course has a sign-off today: every one is `status: draft`. So there is no
+  sign-off to keep valid yet, and the text itself is what to check: it must come through unchanged.
+- **The reviewed clips.** The 148 reviewed items (apc 82, fa 37, uz 29) are audio clips a listener marked
+  right in the audio check (courses/{apc,fa,uz}/audio/index.yaml), not sentences. A reviewed clip depends on
+  its item id, its voice, and the exact text or reading its voice was given: verify that each keeps all
+  three, byte for byte. 34 of fa's are word clips whose item is a KC id; apc's 82 are read from the
+  vowel-marked text, which Task B's projection will produce.
+- **The audio:** 7,696 clips, some made on a GPU. Nothing you change may make a clip stale (`audio.stale`); if
+  a projection's reading differs from a pinned one, that is a finding, not a regeneration. 2,193 clips are
+  keyed by a KC id, and an item's voice is drawn from a seed of its id: a renamed id keeps its clip and its
+  voice only through an alias or a pinned assignment (in the two-voice casts, apc, es and yue, about half the
+  1,335 word clips would otherwise change voice).
+- **The learner's log:** the KC rename and the per-part credit (ADR 0146) can't migrate in the fold alone,
+  which sees no course. ADR 0145's Consequences list what the migration has to settle; design it in the note
+  above, with `packages/core/test/fold-before-r2.ts` mirrored, the simulation and golden files rerun, and a
+  test on real exported logs.
 
 Before calling a deliverable done: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm conformance`,
 `pnpm courses`, `pnpm bundles` (committed), and for UI changes the visual matrix (`pnpm test:visual:docker`,
