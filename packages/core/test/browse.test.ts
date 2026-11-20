@@ -99,6 +99,42 @@ describe.each(COURSES)("the data of %s (%s)", (id, orthography) => {
   });
 });
 
+describe("ids on the Data page", () => {
+  it("sets an id written in the course's script as text of that script, and leaves the rest as code", () => {
+    const yue = courseData(loadCourse("yue", "yue-Latn/jyutping"));
+    const han = yue.words.filter((w) => w.id.text !== undefined);
+    expect(han.length).toBeGreaterThan(200);
+    // Under the Jyutping orthography too, a Han id is tagged as the course's Han orthography.
+    for (const w of han) expect(w.id.text?.orthography, w.kc.id).toBe("yue-Hant-HK/standard");
+    for (const w of han) expect(surfaceOf(w.id.text as NonNullable<typeof w.id.text>), w.kc.id).toBe(w.kc.id);
+    expect(yue.sentences.every((s) => s.listed.map((k) => k.id).join(" ") === s.sentence.kcs.join(" "))).toBe(true);
+
+    const uz = courseData(loadCourse("uz", "uz-Latn/standard"));
+    expect(uz.words.every((w) => w.id.text === undefined && w.id.id === w.kc.id)).toBe(true);
+    const cyrillic = uz.letters.filter((l) => l.id.text !== undefined);
+    expect(cyrillic.length).toBeGreaterThan(0);
+    for (const l of cyrillic) expect(l.id.text?.orthography, l.kc.id).toBe("uz-Cyrl/standard");
+
+    const fa = courseData(loadCourse("fa", "fa-Arab/standard"));
+    expect([...fa.words, ...fa.forms, ...fa.letters].every((r) => r.id.text === undefined)).toBe(true);
+  });
+
+  it("tags a row as the course tags it, and gives each token its readings as text", () => {
+    const es = courseData(loadCourse("es", "es-Latn/standard"));
+    const noun = es.words.find((w) => w.kc.pos === "NOUN");
+    expect(noun?.tags[0]).toBe("NOUN");
+    expect(es.forms.every((f) => f.tags[0] === f.kc.kind)).toBe(true);
+    expect(es.sentences.every((s) => s.tags[0] === s.sentence.provenance.status)).toBe(true);
+    const tagged = es.sentences.find((s) => s.sentence.persons?.speaker !== undefined);
+    expect(tagged?.tags).toContain(`speaker=${String(tagged?.sentence.persons?.speaker)}`);
+
+    const lzh = courseData(loadCourse("lzh", "lzh-Hant/standard"));
+    const word = lzh.sentences[0]?.words[0];
+    expect(word?.readings.map((r) => r.scheme).sort()).toEqual(["baxter", "jyutping", "pinyin"]);
+    for (const r of word?.readings ?? []) expect(surfaceOf(r.text), r.scheme).not.toBe("");
+  });
+});
+
 describe("search across a course's text", () => {
   it("finds Persian letters whatever the vowel marks, and Cantonese by Jyutping with or without tones", () => {
     const fa = loadCourse("fa", "fa-Arab/standard");

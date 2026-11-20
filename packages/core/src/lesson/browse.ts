@@ -4,16 +4,34 @@
  * tracks teach, and every sentence with what its tokens say. It reads the course as lessons do and
  * adds nothing: what it lists is what cards are made from. Built once per course view.
  */
-import type { BundleKc, BundleSentence, KcId, TaggedText, Token } from "@nabu/schema";
+import type { BundleKc, BundleSentence, KcId, SchemeId, TaggedText, Token } from "@nabu/schema";
 import type { CourseView } from "./course.ts";
+import { readingAsText } from "./homographs.ts";
 import { textMatcher } from "./search.ts";
 import { senseKcOf } from "./signature.ts";
 import { tokenParts, tokenText, type TokenParts } from "./templates.ts";
+
+/**
+ * An id as the page shows it. A course may name a KC by the word itself (sense:係, grapheme:ҳ): such an
+ * id is text in one of the course's scripts and is set as that (`text`); the rest are plain code.
+ */
+export interface EntryId {
+  readonly id: string;
+  readonly text?: TaggedText | undefined;
+}
+
+/** A reading a token pins, as text of its own in its scheme. */
+export interface PinnedReading {
+  readonly scheme: SchemeId;
+  readonly text: TaggedText;
+}
 
 /** A word as one or more sentences write it: one token, with what it carries. */
 export interface WrittenWord {
   /** The token alone, readings and all. */
   readonly text: TaggedText;
+  /** Every reading it pins, by scheme: ruby shows one layer at most. */
+  readonly readings: readonly PinnedReading[];
   /** What it carries (`tokenParts`); undefined for a token that is no word of the course (a name left unglossed). */
   readonly carries?: TokenParts | undefined;
   /** The sentences that write it so, in course order. */
@@ -22,6 +40,9 @@ export interface WrittenWord {
 
 export interface WordRow {
   readonly kc: BundleKc;
+  readonly id: EntryId;
+  /** Its part of speech and features as the course tags them (UD: NOUN, Gender=Fem). */
+  readonly tags: readonly string[];
   /** The unit that lists it, from 0. */
   readonly unit: number;
   /** Its first form in the orthography being learned (its lemma), and the rest (its variants). */
@@ -45,6 +66,9 @@ export interface Carrier {
 /** A form, a pattern or any other KC that is neither a word nor a letter. */
 export interface FormRow {
   readonly kc: BundleKc;
+  readonly id: EntryId;
+  /** Its kind (form, construction), then its part of speech and features where the course tags them. */
+  readonly tags: readonly string[];
   readonly unit: number;
   readonly gloss?: TaggedText | undefined;
   /** The words whose tokens carry it. */
@@ -56,6 +80,8 @@ export interface FormRow {
 /** A letter (a grapheme KC of a script track). */
 export interface LetterRow {
   readonly kc: BundleKc;
+  readonly id: EntryId;
+  readonly tags: readonly string[];
   readonly unit: number;
   readonly forms: readonly TaggedText[];
   readonly gloss?: TaggedText | undefined;
@@ -66,11 +92,16 @@ export interface SentenceWord {
   /** Its place among the text's tokens. */
   readonly at: number;
   readonly text: TaggedText;
+  readonly readings: readonly PinnedReading[];
   readonly carries?: TokenParts | undefined;
 }
 
 export interface SentenceRow {
   readonly sentence: BundleSentence;
+  /** The KCs it lists, in its own order. */
+  readonly listed: readonly EntryId[];
+  /** Its review status, and who speaks to whom where the course says (speaker=f, addressee=pl). */
+  readonly tags: readonly string[];
   readonly unit: number;
   readonly text: TaggedText;
   readonly translation?: TaggedText | undefined;
@@ -84,6 +115,45 @@ export interface CourseData {
   readonly sentences: readonly SentenceRow[];
 }
 
+/** Unicode's name for an ISO 15924 script a course is written in: the Han subsets are Han. */
+const unicodeScript = (script: string): string => (script === "Hant" || script === "Hans" || script === "Hanb" ? "Hani" : script);
+
+/**
+ * Ids as the page shows them: one that is not plain ASCII is text in the first of the course's
+ * orthographies whose script has its first such letter (sense:係 in yue-Hant-HK, grapheme:ҳ in
+ * uz-Cyrl), so it is set in that script's face and never in a fallback one.
+ */
+const entryIds = (course: CourseView): ((id: string) => EntryId) => {
+  // A text in each of the course's orthographies, the one being learned first: its tags are the id's.
+  const first = course.units.flatMap((u) => u.sentences)[0]?.forms ?? {};
+  const texts = [first[course.orthography]?.text, ...Object.values(first).map((f) => f.text)].flatMap((text) => text ?? []);
+  const scripts = texts.flatMap((text) => {
+    try {
+      const script = new Intl.Locale(text.lang).maximize().script;
+      return script === undefined ? [] : [{ text, letters: new RegExp(`\\p{Script=${unicodeScript(script)}}`, "u") }];
+    } catch {
+      return [];
+    }
+  });
+  const made = new Map<string, EntryId>();
+  return (id) => {
+    let entry = made.get(id);
+    if (entry === undefined) {
+      const letter = /(?=\P{ASCII})\p{L}/u.exec(id)?.[0];
+      const home = letter === undefined ? undefined : (scripts.find((s) => s.letters.test(letter)) ?? scripts[0]);
+      entry = home === undefined ? { id } : { id, text: { lang: home.text.lang, orthography: home.text.orthography, tokens: [{ surface: id, kind: "word" }] } };
+      made.set(id, entry);
+    }
+    return entry;
+  };
+};
+
+/** A KC's part of speech and features, as the course tags them. */
+const tagsOf = (kc: BundleKc): readonly string[] => [...(kc.pos === undefined ? [] : [kc.pos as string]), ...Object.entries(kc.features ?? {}).map(([name, value]) => `${name}=${String(value)}`)];
+
+const readingsOf = (text: TaggedText, token: Token): readonly PinnedReading[] =>
+  (Object.entries(token.readings ?? {}) as [SchemeId, string][]).map(([scheme, reading]) => ({ scheme, text: readingAsText(scheme, reading, text) }));
+
 /** What tells two tokens of a word apart: its spelling, its analysis and its readings. */
 const writtenKey = (token: Token): string => JSON.stringify([token.surface, token.sense ?? null, token.form ?? null, token.morphs ?? [], token.readings ?? {}]);
 
@@ -94,10 +164,12 @@ export const courseData = (course: CourseView): CourseData => {
   const cached = built.get(course);
   if (cached !== undefined) return cached;
   const { orthography, supportKey } = course;
+  const idOf = entryIds(course);
 
   // Every sentence, with its words; and each word's tokens, grouped by how they are written.
   const listed = new Map<string, number>();
-  const writtenBy = new Map<string, Map<string, { readonly text: TaggedText; readonly carries: TokenParts | undefined; readonly sentences: string[] }>>();
+  type Way = { readonly text: TaggedText; readonly readings: readonly PinnedReading[]; readonly carries: TokenParts | undefined; readonly sentences: string[] };
+  const writtenBy = new Map<string, Map<string, Way>>();
   const sentences: SentenceRow[] = [];
   for (const [unit, u] of course.units.entries()) {
     for (const s of u.sentences) {
@@ -109,17 +181,19 @@ export const courseData = (course: CourseView): CourseData => {
         if (token.kind !== "word") continue;
         const carries = tokenParts(course, token);
         const alone = tokenText(text, token);
-        words.push({ at, text: alone, carries });
+        const readings = readingsOf(text, token);
+        words.push({ at, text: alone, readings, carries });
         const sense = senseKcOf(token);
         if (sense === undefined) continue;
-        const ways = writtenBy.get(sense) ?? new Map<string, { readonly text: TaggedText; readonly carries: TokenParts | undefined; readonly sentences: string[] }>();
+        const ways = writtenBy.get(sense) ?? new Map<string, Way>();
         writtenBy.set(sense, ways);
         const key = writtenKey(token);
-        const way = ways.get(key) ?? { text: alone, carries, sentences: [] };
+        const way = ways.get(key) ?? { text: alone, readings, carries, sentences: [] };
         ways.set(key, way);
         if (way.sentences.at(-1) !== s.id) way.sentences.push(s.id);
       }
-      sentences.push({ sentence: s, unit, text, translation: s.translations[supportKey]?.text, words });
+      const tags = [s.provenance.status as string, ...(s.persons?.speaker === undefined ? [] : [`speaker=${s.persons.speaker}`]), ...(s.persons?.addressee === undefined ? [] : [`addressee=${s.persons.addressee}`])];
+      sentences.push({ sentence: s, listed: s.kcs.map(idOf), tags, unit, text, translation: s.translations[supportKey]?.text, words });
     }
   }
 
@@ -144,11 +218,11 @@ export const courseData = (course: CourseView): CourseData => {
             list.push({ word: kc.id, text: w.text, ofItself: w.carries?.ofItself === part.kc, sentences: w.sentences.length });
           }
         }
-        words.push({ kc, unit, forms: own, gloss, written, sentences: listed.get(kc.id) ?? 0 });
+        words.push({ kc, id: idOf(kc.id), tags: tagsOf(kc), unit, forms: own, gloss, written, sentences: listed.get(kc.id) ?? 0 });
       } else if (kc.kind === "grapheme") {
-        letters.push({ kc, unit, forms: own, gloss });
+        letters.push({ kc, id: idOf(kc.id), tags: tagsOf(kc), unit, forms: own, gloss });
       } else {
-        forms.push({ kc, unit, gloss, carriers: [], sentences: listed.get(kc.id) ?? 0 });
+        forms.push({ kc, id: idOf(kc.id), tags: [kc.kind, ...tagsOf(kc)], unit, gloss, carriers: [], sentences: listed.get(kc.id) ?? 0 });
       }
     }
   }
