@@ -330,3 +330,7 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 4. **The review list:** 84 words where the course's three spellings do not agree with one form, and 9 with
    none. Most are for a speaker of Lebanese, not for a rule.
 5. **The seven verbs Kline does not list,** and the three whose middle or last radical no form shows.
+6. **A fault in the course this turned up,** left as it is: `sense:mara`, a woman, and `sense:marra`, once, are
+   both spelled مرة, and `vocalization.yaml` gives the spelling one set of marks, مَرَّة. So the word card for
+   "woman" shows the shadda, and its clip was made from مَرَّة (`audio/index.yaml`, a draft clip). The fix is
+   the course's: an `ambiguous` entry, the marks pinned on the word, and the clip made again.
