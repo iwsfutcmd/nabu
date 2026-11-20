@@ -1115,8 +1115,8 @@ lexemes:
     vowels: {present: "i"}
     past: {form: "ف\u065cاق", arabizi: "fe2"}
     present: {form: "يْفِيق", arabizi: "yfi2"}
-    source: "inferred"
-    note: "Kline does not list it. The course writes only bfi2; whether the past is said fe2 or fa2 is for a speaker."
+    source: "deduced"
+    basis: "Kline does not list it. The course writes only bfi2, which gives the present. The past is a hollow verb's, and its long a is cited e, as in shef, ken and nem. Where the course's hollow verbs keep a, a back consonant stands before it (ra7, 2al, sar, 3ash) or ر after it (zar); whether ق after it does the same is for a speaker. The course never writes the form."
   forms:
   - form: "بْفِيق"
     gives: {arabic: "بفيق", marked: "بْفيق", arabizi: ["bfi2", "bfee2"], phonemes: "bfiːʔ"}
@@ -1299,7 +1299,8 @@ lexemes:
     past: {form: "قَرَا", arabizi: "2ara"}
     present: {form: "يِقْرَا", arabizi: "ye2ra"}
     source: "kline 78"
-    note: "His 'irregular defective': the last vowel stays a (p. 78). Its third radical is a hamza no form of the course writes: REVIEW whether to store it as ي, as it is conjugated."
+    note: "His 'irregular defective': the last vowel stays a (p. 78)."
+    basis: "The third radical is stored as ي, as the verb is conjugated: Kline classes it with the defective verbs, and where a defective verb's last radical shows it is ي. Standard Arabic's hamza shows in no form of the verb."
   forms:
   - form: "بِقْرَا"
     gives: {arabic: "بقرا", marked: "بِقْرا", arabizi: ["be2ra", "bi2ra"], phonemes: "biʔra"}
@@ -1332,7 +1333,8 @@ lexemes:
     past: {form: "ن\u065cام", arabizi: "nem"}
     present: {form: "يْن\u065cام", arabizi: "ynem"}
     source: "kline 77"
-    note: "One of the hollow verbs whose vowel does not change (Kline, p. 77). The middle radical is not seen in any form the course writes: و is from the verbal noun nom, which the course has as a noun. REVIEW."
+    note: "One of the hollow verbs whose vowel does not change (Kline, p. 77)."
+    basis: "The middle radical shows in no form of the verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; the course has no other word of the root, and shared radicals link nothing (ADR 0145)."
   forms:
   - form: "بْن\u065cام"
     gives: {arabic: "بنام", marked: "بْنام", arabizi: ["bnem"], phonemes: "bneːm"}
@@ -1712,8 +1714,8 @@ lexemes:
     vowels: {past: "a", present: "u"}
     past: {form: "رَقَص", arabizi: "ra2as"}
     present: {form: "يِرْقُص", arabizi: "yer2os"}
-    source: "inferred"
-    note: "Kline does not list it. The course writes only or2os."
+    source: "deduced"
+    basis: "Kline does not list it. The course writes only or2os (I dance): the present vowel is o, and the past is the one the course names the verb by. The prefix is cited ye-, as the course writes its other verbs of this class (edros, elbos, ekol, ekhod); in or2os it writes o."
   forms:
   - form: "اُرْقُص"
     gives: {arabic: "ارقص", marked: "اُرْقُص", arabizi: ["or2os", "or2us", "ur2os", "ur2us"], phonemes: "urʔusˤ"}
@@ -1853,13 +1855,11 @@ lexemes:
   pos: VERB
   gloss: "wait (to a man)"
   verb:
-    form: X
-    radicals: [ء, ن, ي]
-    class: defective  # from the radicals
+    listed: true  # a listed stem: no radicals and no Form are stored
     past: {form: "ا\u06dfسْتَنَّى", arabizi: "stanna"}
     present: {form: "يِسْتَنَّى", arabizi: "yestanna"}
-    source: "inferred"
-    note: "Kline does not list it. Its Form and radicals are the usual account (istanna, from ʔ-n-y) and not from a reference in the library: REVIEW, or store it as a listed stem."
+    source: "deduced"
+    basis: "Kline does not list it. The course writes its commands (stanna, stanni, stanno): the stem is stann- with a defective verb's endings, and a command in -a goes with a present in -a (yestanna). No form shows a third radical or a Form's prefix apart from st-, so no radicals and no Form are stored: the usual account (form X of ʔ-n-y) is etymology, which the model does not formalise (ADR 0145)."
   forms:
   - form: "ا\u06dfسْتَنَّى"
     gives: {arabic: "استنى", marked: "اسْتَنّى", arabizi: ["stanna"], phonemes: "stanːa"}
@@ -2450,10 +2450,9 @@ lexemes:
   pos: NOUN
   gloss: "woman; wife"
   forms:
-  - form: "مَرَّة"
-    gives: {arabic: "مرة", marked: "مَرَّة", arabizi: ["marra"], phonemes: "marːa"}
-    course: {arabic: "مرة", marked: "مَرَّة", arabizi: "mara"}
-    review: ["doubled in the marks, written once in Arabizi", "arabizi: mara is not among the projected spellings (marra first)"]
+  - form: "مَرَة"
+    gives: {arabic: "مرة", marked: "مَرَة", arabizi: ["mara"], phonemes: "mara"}
+    course: {arabic: "مرة", marked: "مَرَة", arabizi: "mara"}
 - id: "sense:seken"
   unit: "u11-people"
   pos: VERB
@@ -2461,7 +2460,8 @@ lexemes:
   participle:
     head: participle
     of: {form: "I", radicals: ["س", "ك", "ن"], past: "sakan", present: "yeskon"}
-    note: "The course has no other form of the verb, and Kline does not list it: the verb's vowels are a guess. REVIEW."
+    note: "The course has no other form of the verb, and Kline does not list it."
+    basis: "The verb is cited sakan / yeskon: its radicals are the participle's own, and its vowels are cited as those of 2a3ad / ye23od (Kline, p. 75), by analogy. No form of the course depends on them."
     by the template: {masculine: "س\u065cاكِن", feminine: "س\u065cاكْن\u065cة", plural: "س\u065cاكْنِين"}
   forms:
   - form: "س\u065cاكِن"
@@ -2707,7 +2707,7 @@ lexemes:
     past: {form: "ا\u06dfرْت\u065cاح", arabizi: "rte7"}
     present: {form: "يِرْت\u065cاح", arabizi: "yerte7"}
     source: "kline 91"
-    note: "The middle radical is not seen in any form of the verb; و is from the noun ra7a. REVIEW."
+    basis: "The middle radical shows in no form of a hollow form VIII verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; that links it to nothing, ra7 (go) included (ADR 0145: shared radicals only sort together)."
   forms:
   - form: "اِرْتَاح"
     gives: {arabic: "ارتاح", marked: "اِرْتاح", arabizi: ["erta7", "irta7"], phonemes: "irtaːħ"}
@@ -3027,8 +3027,8 @@ lexemes:
     class: sound  # from the radicals
     past: {form: "جَرَّب", arabizi: "jarrab"}
     present: {form: "يْجَرِّب", arabizi: "yjarreb"}
-    source: "inferred"
-    note: "Kline gives its participle mjarreb (p. 125), not the verb."
+    source: "deduced"
+    basis: "Kline gives its participle mjarreb (p. 125), not the verb. A form II verb's citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course's jarrbi and jarrbo agree."
   forms:
   - form: "جَرِّب"
     gives: {arabic: "جرب", marked: "جَرِّب", arabizi: ["jarreb", "jarrib"], phonemes: "ʒarːib"}
@@ -3607,8 +3607,8 @@ lexemes:
     class: sound  # from the radicals
     past: {form: "فَكَّر", arabizi: "fakkar"}
     present: {form: "يْفَكِّر", arabizi: "yfakker"}
-    source: "inferred"
-    note: "Kline does not list it."
+    source: "deduced"
+    basis: "Kline does not list it. A form II verb's citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course's bfakker and btfakkri agree."
   forms:
   - form: "بْفَكِّر"
     gives: {arabic: "بفكر", marked: "بْفَكِّر", arabizi: ["bfakker", "bfakkir"], phonemes: "bfakːir"}
@@ -3659,8 +3659,8 @@ lexemes:
     vowels: {past: "a", present: "i"}
     past: {form: "عَزَم", arabizi: "3azam"}
     present: {form: "يِعْزِم", arabizi: "ye3zem"}
-    source: "inferred"
-    note: "Kline does not list it. The present vowel is read off e3zmak, where it has dropped: REVIEW."
+    source: "deduced"
+    basis: "Kline does not list it. The course writes the past (3azamni) and e3zmak, where the present vowel has dropped: a vowel that drops there is i or u, never a (ta3mli, tedrso; yitla3o keeps its a), and it is cited i, as in 3emel and 3eref. The prefix is the course's e-; Kline's ya- before ع (p. 75) is what the course writes in ba3mel and ba3ref."
   forms:
   - form: "عَزَم"
     gives: {arabic: "عزم", marked: "عَزَم", arabizi: ["3azam"], phonemes: "ʕazam"}
@@ -3682,8 +3682,8 @@ lexemes:
     vowels: {past: "a", present: "i"}
     past: {form: "عَجَب", arabizi: "3ajab"}
     present: {form: "يِعْجِب", arabizi: "ye3jeb"}
-    source: "inferred"
-    note: "Kline does not list it, and the course has no present form: the present is a guess. REVIEW."
+    source: "deduced"
+    basis: "Kline does not list it. The course writes the past (3ajabni, 3ajabetni) and no present: the present is cited as 3azam's, the one other verb of its shape, and no form of the course depends on it."
   forms:
   - form: "عَجَب"
     gives: {arabic: "عجب", marked: "عَجَب", arabizi: ["3ajab"], phonemes: "ʕaʒab"}

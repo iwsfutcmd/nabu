@@ -1,7 +1,9 @@
 # apc: the lexical form
 
-- Status: a draft for the owner's review (Task B of [the handoff](../handoff-lexical-model.md)), 2026-11-20.
-  Everything here is a proposal marked REVIEW until signed off; nothing in `courses/apc` or the app reads it.
+- Status: a draft (Task B of [the handoff](../handoff-lexical-model.md)), 2026-11-20. The owner ruled on its
+  six questions the same day: [the last section](#the-owners-rulings-2026-11-20) says what each ruling was
+  read as and what was done. What a ruling settles is no longer marked REVIEW; the rest is a proposal until
+  signed off. Nothing in `courses/apc` or the app reads it.
 - What it is for: [ADR 0145](../adr/0145-lexical-model.md) stores one lexical form per morpheme, in its own
   script and fully specified, and [ADR 0148](../adr/0148-projections-and-misses.md) projects every spelling and
   the phonemes from it. apc (North Levantine Arabic, Beirut) comes first.
@@ -23,12 +25,13 @@
   among the spellings the correspondences give. **84** have a form and differ in one of the three. **9** have
   no form. Ten of those 93 are the prototype's own doing, not the course's: its reader paired the wrong
   Arabizi word (the review list's first section).
-- Of the **415** forms the KCs list, 366 come back, 42 do not, 2 have no form and 5 are written in one script.
+- Of the **415** forms the KCs list, 367 come back, 41 do not, 2 have no form and 5 are written in one script.
 - Of the **82** clips a listener marked right, the projection writes the very marks the voice was given for
   **64**. For 18 it writes other marks for one word: هَيدا or هَيدي in 15 (the course leaves the sukun off
   their glide), a helping vowel in 2, الحمدلله in 1.
-- No conjugation rule is written. A verb's entry has its radicals, Form, vowels and citation forms; the 251
-  forms the sentences write are kept as **pinned** forms (ADR 0145: derivable, the rule not yet written).
+- No conjugation rule is written. A verb's entry has its radicals, Form, vowels and citation forms (one verb,
+  *stanna*, is a listed stem with no radicals); the 251 forms the sentences write are kept as **pinned**
+  forms (ADR 0145: derivable, the rule not yet written).
 
 ## The notation
 
@@ -80,16 +83,21 @@ vowel is written, by these rules.
 
 ### Why these three signs
 
-All three are in Unicode's Arabic block already, so nothing is invented.
+All three are in Unicode's Arabic block already, so nothing is invented. **The owner accepted the three
+(2026-11-20).** What Unicode says of each is quoted from the names list of Unicode 18.0.0, read that day.
 
-- **U+065C, vowel sign dot below, for e.** The names list gives it to African languages and to Quranic text in
-  African and other orthographies. It is the one sign the script already has for what happens here: an a
+- **U+065C, vowel sign dot below, for e.** The names list: "African languages" and "also used in Quranic text
+  in African and other orthographies". It is the one sign the script already has for what happens here: an a
   written with alef and said e.
-- **U+065D, reversed damma, for o.** Also listed for African languages. It is needed only for long o. This is
-  the weakest of the three choices: any free vowel sign would do. REVIEW.
-- **U+06DF, small high rounded zero, for a letter written and not said.** The names list says only that it is
-  smaller than a sukun. Its use in Quranic text for a letter that is not read is my recollection, not something
-  I checked in a source. REVIEW.
+- **U+065D, reversed damma, for o.** The names list: "African languages". It is needed only for long o, and
+  any free vowel sign would have done.
+- **U+06DF, small high rounded zero, for a letter written and not said.** It stands among the "Quranic
+  annotation signs", and the names list says only that it is "smaller than the typical circular shape used
+  for 0652". That a rounded zero over a letter marks it as not read was recalled when the sign was chosen
+  and is still unsourced: it was looked for that day in the names list, in chapter 9 of the core
+  specification (16.0) and in L2/19-306, and none says it. The nearest the Standard comes is its note on
+  the sukun, U+0652: "used in some Qurans to mark a long vowel as ignored". The notation does not rest on
+  it: the sign means here what this note says it means.
 - Kurdish writes long e and o as ێ and ۆ, a small v over the letter. U+065A on ي and و would look the same and
   was the other candidate. It cannot say that an alef is fronted without a second convention, so it lost.
 
@@ -98,7 +106,8 @@ them and an editor may drop what it cannot show. [apc.yaml](apc.yaml) does so. O
 
 ### What the form does not write
 
-- **A helping vowel.** خبز is said *khebz* or *khebez*. The form has a sukun there; see "Free and fixed" below.
+- **A helping vowel.** خبز is said *khebz* or *khebez*. The form has a sukun there, and the marks the voices
+  read write none (the owner, 2026-11-20); see "Free and fixed" below.
 - **Stress.** Kline gives no stress rule (the notes, §1.5). Al-Masri, *Colloquial Arabic (Levantine)* (2015,
   p. xxi–xxii), says stress does not tell words apart in Arabic and follows weight: it falls on the heaviest
   syllable (a long vowel outweighs a short one), on the first of them where they are equal, and a word's last
@@ -207,8 +216,8 @@ majority ([apc-review.md](apc-review.md), last section).
 A verb's lexical form is not one string (ADR 0145). Its entry holds:
 
 - **Its radicals,** stored. A hollow verb's middle radical shows only in some forms (راح, يروح), so it cannot
-  be read off the citation form. For three verbs it shows in no form the course writes, and the entry says so
-  (*nem*, *rte7*, *2ara*).
+  be read off the citation form. For three verbs a radical shows in no form the course writes (*nem*, *rte7*,
+  *2ara*): each is deduced, and the entry says from what (below).
 - **Its Form,** numbered as Arabic grammars number them. Kline's own "form IV" is the four-radical one (p. 84).
 - **Its vowels,** where its Form leaves them open: a form I verb's past vowel (a or i: *daras*, *shereb*) and
   present vowel (a, i or u: *yeshrab*, *ya3mel*, *yedros*); a hollow verb's present vowel (*yru7*, *ysir*,
@@ -217,8 +226,24 @@ A verb's lexical form is not one string (ADR 0145). Its entry holds:
 - **Its root class is not stored:** it follows from the radicals (sound, doubled, hollow, defective,
   hamza-initial, w-initial).
 
-Of the 41 verbs, 34 are in Kline's lists. Seven are not, and their citation forms are read off the course's
-other forms: they head the verbs section of the review list.
+Of the 41 verbs, 34 are in Kline's lists. Seven are not, and three more hide a radical. **The owner's ruling
+(2026-11-20) is to deduce what needs to be deduced,** so each is filled in, with its `basis` in the data and
+a line on the review list for a speaker to correct:
+
+- **Citation forms** come from the course's other forms of the verb, its class and Kline's paradigms: a
+  form II verb's follow from its radicals (*jarrab*, *fakkar*); a vowel that drops before an ending is i or
+  u, never a (*e3zmak*, so *ye3zem*); a hollow past the course never writes is cited with the vowel of the
+  hollow verbs like it (*fe2*).
+- **A radical no form shows** is stored as the letter Arabic dictionaries file the word under (*nem*, *rte7*:
+  و), since no form depends on which it is and shared radicals link nothing (ADR 0145: they only sort
+  together). *2ara*'s last radical is stored as ي, as the verb is conjugated; Standard Arabic's hamza shows
+  in no form of it.
+- **A stem no rule builds is listed.** *stanna* (wait) has a defective verb's endings on a stem *stann-*, and
+  no form shows a third radical or a Form's prefix. The usual account (form X of ʔ-n-y) is etymology, which
+  the model does not formalise, so the entry stores no radicals and no Form: `listed: true`, the one such
+  verb.
+- **What deduction could not settle** is said on the line: whether ق after a long a keeps it a (*fe2* or
+  *fa2*), and which prefix ع takes (*e3zmak* beside *ba3mel*).
 
 ## A pattern's template
 
@@ -289,12 +314,16 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 - a or e for the long vowel written ا (*ktab*, *kamen*). Kline writes both with no rule (the notes, §1.3).
 - A loan in its own language's spelling (*merci*, *football*, *taxi*, *bus*). Listed on the word.
 
+**Decided by the owner (2026-11-20):**
+- A helping vowel is not written in the marks the voices read. The course writes one in 22 words (خِبِز,
+  شُغُل) and none in others of the same shape (صُبْح, إِبْن, شَهْر): those 22 change when the projection
+  replaces the course's vowel marks, and not before. Two of the 82 reviewed clips were made from marks with
+  the vowel (`s.food.7`, `s.food.16`).
+
 **Not decided here, and on the review list:**
 - Whether a doubled letter may be written once in Arabizi (*bas*, *nos*, *hala2*). It is not free here: the
-  course itself tells *mara*, a woman, from *marra*, once, by it, and both are written مرة. The course's
-  vocalization gives both the shadda.
-- Whether a helping vowel belongs in the marks the voices read. The course writes one in 22 words (خِبِز,
-  شُغُل) and none in others of the same shape (صُبْح, إِبْن, شَهْر).
+  course itself tells *mara*, a woman, from *marra*, once, by it. Arabic writes both مرة; the course writes
+  *marra* with its shadda, and its vowel marks now tell the two apart (ruling 6, below).
 - Whether a last -e and a last -i are one vowel. The form writes -e only before ة.
 
 ## The course's spelling conventions the form reproduces
@@ -321,16 +350,52 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 - **A word that begins with a vowel on a bare alef, after the article** (الامتحان *el emte7an*): the notation
   cannot write the two in one piece. One word of the course.
 
-## For the owner
+## The owner's rulings (2026-11-20)
 
-1. **The three signs** (U+065C, U+065D, U+06DF), and whether U+06DF's Quranic use is as I remember it.
-2. **The helping vowel:** written in the marks the voices read, or not. This decides 18 of the 82 reviewed
-   clips.
-3. **Long a said e:** stored on each word, as here, or given by a rule with exceptions. Kline has no rule.
-4. **The review list:** 84 words where the course's three spellings do not agree with one form, and 9 with
-   none. Most are for a speaker of Lebanese, not for a rule.
-5. **The seven verbs Kline does not list,** and the three whose middle or last radical no form shows.
-6. **A fault in the course this turned up,** left as it is: `sense:mara`, a woman, and `sense:marra`, once, are
-   both spelled مرة, and `vocalization.yaml` gives the spelling one set of marks, مَرَّة. So the word card for
-   "woman" shows the shadda, and its clip was made from مَرَّة (`audio/index.yaml`, a draft clip). The fix is
-   the course's: an `ambiguous` entry, the marks pinned on the word, and the clip made again.
+The six questions this note ended with, the owner's answer to each in their own words, how it was read, and
+what was done.
+
+1. **The three signs** (U+065C, U+065D, U+06DF): *"sounds good."*
+   - All three stand, and the choice is no longer marked REVIEW.
+   - What Unicode says of each is quoted under "Why these three signs". That a rounded zero marks a letter
+     as not read is still unsourced; the notation does not rest on it.
+2. **The helping vowel, written in the marks the voices read or not:** *"sounds good."*
+   - Read as: as drafted. The form writes a sukun there, and the marks write no vowel.
+   - The question was put as either-or and the answer names neither side. If the owner meant the vowel
+     written, this is the ruling to undo.
+   - The question said this decides 18 of the 82 reviewed clips. It decides 2 (`s.food.7`, `s.food.16`). Of
+     the other 16, 15 turn on the sukun of the glide in هَيدا and هَيدي and 1 on الحمدلله: both are on the
+     review list.
+   - Nothing in the course changes now. Its 22 words written with a helping vowel keep it until the
+     projection replaces the course's vowel marks.
+3. **Long a said e:** *"stored on each word"*.
+   - As drafted: a word's form writes U+065C and its alef.
+   - One rule stays, since a template has no word to store the vowel on: the active participle's long a is
+     said e unless the radical before it is a back consonant (REVIEW; the course's five participles fit).
+     An exception would be pinned on its verb.
+4. **The review list:** *"that's fine"*.
+   - It stands as a list for a speaker of Lebanese. Nothing in the course was changed to shorten it.
+5. **The seven verbs Kline does not list, and the three radicals no form shows:** *"deduce what needs to be
+   deduced"*.
+   - Done: "A verb's form" above. Eleven entries carry a `basis`: the ten, and the verb of *seken*, which
+     the course has only as a participle.
+   - One reading goes beyond filling in: *stanna* lost its radicals and its Form and is a listed stem,
+     since what stood there was etymology.
+   - Two things deduction could not settle are said on their lines of the review list: *fe2* or *fa2*, and
+     the prefix before ع.
+6. **The fault in the course:** *"i think the shadda in "mara" is a mistake"*.
+   - Fixed in `courses/apc/vocalization.yaml`: مرة, a woman, is مَرَة; مرّة, once, which the course always
+     writes with its shadda, is مَرَّة. No token changed.
+   - The word card for "woman" lost its shadda. No sentence's marks changed: *mara* stands in the course's
+     sentences only after the article or *hal*, and those were marked rightly.
+   - Its clip was made again from مَرَة, by the same voice. The round-trip check fails it, as it failed
+     the old one (a word of two syllables, heard as *mar7aba*), so it stays out of the bundle until a
+     listener checks it in the audio check.
+
+**What the rulings leave open.** None of it blocks anything:
+
+- the participle template's rule for a and e (ruling 3);
+- what this note still marks REVIEW: stress, the stop written ذ in آذار, the phonemes' qualities, and the
+  letters the feminine ending is -a after;
+- the review list's lines for a speaker, the two under ruling 5 among them;
+- everything under "What is not done".

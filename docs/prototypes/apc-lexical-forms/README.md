@@ -23,7 +23,7 @@ uv run --frozen python ../docs/prototypes/apc-lexical-forms/check.py -v  # every
 | `course.py` | `courses/apc` read as the compiler reads it: each Arabic word with its marks, the Arabizi tokens that say it, and its analysis |
 | `derive.py` | A first draft of a word's form from its Arabic, its marks and its Arabizi, read together letter by letter; where they disagree it keeps a note |
 | `check.py` | Drafts every word, projects it back and compares |
-| `authored.yaml` | What a person adds: each verb's radicals, Form and citation forms with their source, which head each participle-shaped word is, and the active participle's template |
+| `authored.yaml` | What a person adds: each verb's radicals, Form and citation forms with their source and, where one was deduced, from what (`basis`); which head each participle-shaped word is; and the active participle's template |
 | `build.py` | Writes the entries and the review list |
 
 ## Inputs

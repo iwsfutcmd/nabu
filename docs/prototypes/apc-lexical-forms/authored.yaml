@@ -7,7 +7,11 @@
 # form from the pair. `source` says where the pair is from:
 #   kline N    Kline gives the verb, on that page (his spelling may differ: he writes T S D Z 5 8)
 #   course     the course writes that very form
-#   inferred   neither: read off the course's other forms of the verb. REVIEW first.
+#   deduced    neither: worked out from the course's other forms of the verb, its class and Kline's
+#              paradigms (the owner, 2026-11-20: "deduce what needs to be deduced")
+# `basis` says what a deduced citation form or radical was deduced from; every verb that has one is
+# on the review list, for a speaker to correct, not for a ruling. A verb with `listed: true` stores
+# no radicals and no Form: its stem is listed, and no rule builds it.
 # Forms are numbered as Arabic grammars number them (I, II, III, V, VI, VII, VIII, IX, X, and Q for
 # four radicals). Kline's own "form IV" is the four-radical one (p. 84): Q here.
 license: CC-BY-SA-4.0
@@ -26,10 +30,10 @@ verbs:
   - {id: 'sense:3eref', form: I, radicals: [ع, ر, ف], past: [عرف, 3eref], present: [يعرف, ya3ref], source: 'kline 75', vowels: {past: i, present: i}}
   - {id: 'sense:lebes', form: I, radicals: [ل, ب, س], past: [لبس, lebes], present: [يلبس, yelbos], source: 'kline 76', vowels: {past: i, present: u}}
   - {id: 'sense:daras', form: I, radicals: [د, ر, س], past: [درس, daras], present: [يدرس, yedros], source: 'kline 74', vowels: {past: a, present: u}}
-  - {id: 'sense:ra2as', form: I, radicals: [ر, ق, ص], past: [رقص, ra2as], present: [يرقص, yer2os], source: inferred, vowels: {past: a, present: u}, note: "Kline does not list it. The course writes only or2os."}
+  - {id: 'sense:ra2as', form: I, radicals: [ر, ق, ص], past: [رقص, ra2as], present: [يرقص, yer2os], source: deduced, vowels: {past: a, present: u}, basis: "Kline does not list it. The course writes only or2os (I dance): the present vowel is o, and the past is the one the course names the verb by. The prefix is cited ye-, as the course writes its other verbs of this class (edros, elbos, ekol, ekhod); in or2os it writes o."}
   - {id: 'sense:b3at', form: I, radicals: [ب, ع, ت], past: [بعت, b3at], present: [يبعت, yeb3at], source: 'kline 75', vowels: {past: a, present: a}, note: "Kline cites the past with a cluster, b3at; the course also writes ba3atli."}
-  - {id: 'sense:3azam', form: I, radicals: [ع, ز, م], past: [عزم, 3azam], present: [يعزم, ye3zem], source: inferred, vowels: {past: a, present: i}, note: "Kline does not list it. The present vowel is read off e3zmak, where it has dropped: REVIEW."}
-  - {id: 'sense:3ajab', form: I, radicals: [ع, ج, ب], past: [عجب, 3ajab], present: [يعجب, ye3jeb], source: inferred, vowels: {past: a, present: i}, note: "Kline does not list it, and the course has no present form: the present is a guess. REVIEW."}
+  - {id: 'sense:3azam', form: I, radicals: [ع, ز, م], past: [عزم, 3azam], present: [يعزم, ye3zem], source: deduced, vowels: {past: a, present: i}, basis: "Kline does not list it. The course writes the past (3azamni) and e3zmak, where the present vowel has dropped: a vowel that drops there is i or u, never a (ta3mli, tedrso; yitla3o keeps its a), and it is cited i, as in 3emel and 3eref. The prefix is the course's e-; Kline's ya- before ع (p. 75) is what the course writes in ba3mel and ba3ref."}
+  - {id: 'sense:3ajab', form: I, radicals: [ع, ج, ب], past: [عجب, 3ajab], present: [يعجب, ye3jeb], source: deduced, vowels: {past: a, present: i}, basis: "Kline does not list it. The course writes the past (3ajabni, 3ajabetni) and no present: the present is cited as 3azam's, the one other verb of its shape, and no form of the course depends on it."}
   - {id: 'sense:wesel', form: I, radicals: [و, ص, ل], past: [وصل, wesel], present: [يوصل, yusal], source: 'kline 76', vowels: {past: i, present: a}}
   - {id: 'sense:ra7', form: I, radicals: [ر, و, ح], past: [راح, ra7], present: [يروح, yru7], source: 'kline 77', vowels: {present: u}}
   - {id: 'sense:zar', form: I, radicals: [ز, و, ر], past: [زار, zar], present: [يزور, yzur], source: 'kline 77', vowels: {present: u}}
@@ -38,29 +42,29 @@ verbs:
   - {id: 'sense:shef', form: I, radicals: [ش, و, ف], past: [شاف, shef], present: [يشوف, yshuf], source: 'kline 77', vowels: {present: u}}
   - {id: 'sense:sar', form: I, radicals: [ص, ي, ر], past: [صار, sar], present: [يصير, ysir], source: 'kline 77', vowels: {present: i}}
   - {id: 'sense:3ash', form: I, radicals: [ع, ي, ش], past: [عاش, 3ash], present: [يعيش, y3ish], source: 'kline 77', vowels: {present: i}}
-  - {id: 'sense:fi2', form: I, radicals: [ف, ي, ق], past: [فاق, fe2], present: [يفيق, yfi2], source: inferred, vowels: {present: i}, note: "Kline does not list it. The course writes only bfi2; whether the past is said fe2 or fa2 is for a speaker."}
-  - {id: 'sense:nem', form: I, radicals: [ن, و, م], past: [نام, nem], present: [ينام, ynem], source: 'kline 77', vowels: {present: a}, note: "One of the hollow verbs whose vowel does not change (Kline, p. 77). The middle radical is not seen in any form the course writes: و is from the verbal noun nom, which the course has as a noun. REVIEW."}
+  - {id: 'sense:fi2', form: I, radicals: [ف, ي, ق], past: [فاق, fe2], present: [يفيق, yfi2], source: deduced, vowels: {present: i}, basis: "Kline does not list it. The course writes only bfi2, which gives the present. The past is a hollow verb's, and its long a is cited e, as in shef, ken and nem. Where the course's hollow verbs keep a, a back consonant stands before it (ra7, 2al, sar, 3ash) or ر after it (zar); whether ق after it does the same is for a speaker. The course never writes the form."}
+  - {id: 'sense:nem', form: I, radicals: [ن, و, م], past: [نام, nem], present: [ينام, ynem], source: 'kline 77', vowels: {present: a}, note: "One of the hollow verbs whose vowel does not change (Kline, p. 77).", basis: "The middle radical shows in no form of the verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; the course has no other word of the root, and shared radicals link nothing (ADR 0145)."}
   - {id: 'sense:7aka', form: I, radicals: [ح, ك, ي], past: [حكى, 7aka], present: [يحكي, ye7ki], source: 'kline 78', vowels: {present: i}, note: "Kline writes the past 7eke on p. 78 and 7aka on p. 123."}
-  - {id: 'sense:2ara', form: I, radicals: [ق, ر, ء], past: [قرا, 2ara], present: [يقرا, ye2ra], source: 'kline 78', vowels: {present: a}, note: "His 'irregular defective': the last vowel stays a (p. 78). Its third radical is a hamza no form of the course writes: REVIEW whether to store it as ي, as it is conjugated."}
+  - {id: 'sense:2ara', form: I, radicals: [ق, ر, ء], past: [قرا, 2ara], present: [يقرا, ye2ra], source: 'kline 78', vowels: {present: a}, note: "His 'irregular defective': the last vowel stays a (p. 78).", basis: "The third radical is stored as ي, as the verb is conjugated: Kline classes it with the defective verbs, and where a defective verb's last radical shows it is ي. Standard Arabic's hamza shows in no form of the verb."}
   - {id: 'sense:7abb', form: I, radicals: [ح, ب, ب], past: [حبّ, 7abb], present: [يحبّ, y7ebb], source: 'kline 79', vowels: {present: i}}
   - {id: 'sense:de22', form: I, radicals: [د, ق, ق], past: [دقّ, da22], present: [يدقّ, yde22], source: 'kline 79', vowels: {present: i}}
   - {id: 'sense:laff', form: I, radicals: [ل, ف, ف], past: [لفّ, laff], present: [يلفّ, yleff], source: 'kline 79', vowels: {present: i}}
   - {id: 'sense:ghanne', form: II, radicals: [غ, ن, ي], past: [غنّى, ghanna], present: [يغنّي, yghanni], source: 'kline 81', vowels: {}}
-  - {id: 'sense:jarrab', form: II, radicals: [ج, ر, ب], past: [جرّب, jarrab], present: [يجرّب, yjarreb], source: inferred, vowels: {}, note: "Kline gives its participle mjarreb (p. 125), not the verb."}
+  - {id: 'sense:jarrab', form: II, radicals: [ج, ر, ب], past: [جرّب, jarrab], present: [يجرّب, yjarreb], source: deduced, vowels: {}, basis: "Kline gives its participle mjarreb (p. 125), not the verb. A form II verb's citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course's jarrbi and jarrbo agree."}
   - {id: 'sense:wa22ef', form: II, radicals: [و, ق, ف], past: [وقّف, wa22af], present: [يوقّف, ywa22ef], source: 'kline 80', vowels: {}}
-  - {id: 'sense:fakkar', form: II, radicals: [ف, ك, ر], past: [فكّر, fakkar], present: [يفكّر, yfakker], source: inferred, vowels: {}, note: "Kline does not list it."}
+  - {id: 'sense:fakkar', form: II, radicals: [ف, ك, ر], past: [فكّر, fakkar], present: [يفكّر, yfakker], source: deduced, vowels: {}, basis: "Kline does not list it. A form II verb's citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course's bfakker and btfakkri agree."}
   - {id: 'sense:safar', form: III, radicals: [س, ف, ر], past: [سافر, sefar], present: [يسافر, ysefer], source: 'kline 83', vowels: {}, note: "Kline cites sefar/ysefir. The course writes safart beside ysefro: its a for the past is one of the review list's entries."}
   - {id: 'sense:eshteghel', form: VIII, radicals: [ش, غ, ل], past: [اشتغل, shtaghal], present: [يشتغل, yeshteghel], source: 'kline 91', vowels: {}}
   - {id: 'sense:eshtara', form: VIII, radicals: [ش, ر, ي], past: [اشترى, shtara], present: [يشتري, yeshteri], source: 'kline 91', vowels: {}}
-  - {id: 'sense:rte7', form: VIII, radicals: [ر, و, ح], past: [ارتاح, rte7], present: [يرتاح, yerte7], source: 'kline 91', vowels: {}, note: "The middle radical is not seen in any form of the verb; و is from the noun ra7a. REVIEW."}
-  - {id: 'sense:stanna', form: X, radicals: [ء, ن, ي], past: [استنّى, stanna], present: [يستنّى, yestanna], source: inferred, vowels: {}, note: "Kline does not list it. Its Form and radicals are the usual account (istanna, from ʔ-n-y) and not from a reference in the library: REVIEW, or store it as a listed stem."}
+  - {id: 'sense:rte7', form: VIII, radicals: [ر, و, ح], past: [ارتاح, rte7], present: [يرتاح, yerte7], source: 'kline 91', vowels: {}, basis: "The middle radical shows in no form of a hollow form VIII verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; that links it to nothing, ra7 (go) included (ADR 0145: shared radicals only sort together)."}
+  - {id: 'sense:stanna', listed: true, past: [استنّى, stanna], present: [يستنّى, yestanna], source: deduced, vowels: {}, basis: "Kline does not list it. The course writes its commands (stanna, stanni, stanno): the stem is stann- with a defective verb's endings, and a command in -a goes with a present in -a (yestanna). No form shows a third radical or a Form's prefix apart from st-, so no radicals and no Form are stored: the usual account (form X of ʔ-n-y) is etymology, which the model does not formalise (ADR 0145)."}
 # Words with a participle's shape (ADR 0145: the pattern carries two heads).
 #   participle  a value of the verb's aspect: a form of its verb, with a feminine and a plural in -in
 #   agent       the agentive noun: a derivative, a lexeme where its plural or its vowels are listed
 #   listed      a word of that shape whose verb the course does not have, or whose sense has drifted
 participles:
   - {id: 'sense:raye7', head: participle, of: 'sense:ra7', note: "Kline, p. 123 (raye7). Folds into ra7 at the migration."}
-  - {id: 'sense:seken', head: participle, of: {form: I, radicals: [س, ك, ن], past: [سكن, sakan], present: [يسكن, yeskon]}, note: "The course has no other form of the verb, and Kline does not list it: the verb's vowels are a guess. REVIEW."}
+  - {id: 'sense:seken', head: participle, of: {form: I, radicals: [س, ك, ن], past: [سكن, sakan], present: [يسكن, yeskon]}, note: "The course has no other form of the verb, and Kline does not list it.", basis: "The verb is cited sakan / yeskon: its radicals are the participle's own, and its vowels are cited as those of 2a3ad / ye23od (Kline, p. 75), by analogy. No form of the course depends on them."}
   - {id: 'sense:2a3ed', head: participle, of: {form: I, radicals: [ق, ع, د], past: [قعد, 2a3ad], present: [يقعد, ye23od]}, note: "Kline, p. 75 (2a3ad/ye23od)."}
   - {id: 'sense:wa2ef', head: participle, of: {form: I, radicals: [و, ق, ف], past: [وقف, we2ef], present: [يوقف, yu2af]}, note: "Kline, p. 76 (we2ef/yu2af)."}
   - {id: 'sense:nezel', head: participle, of: 'sense:nezel', forms: [نازل], note: "The KC's first form, nezel نازل, is the participle; nenzal is the verb."}

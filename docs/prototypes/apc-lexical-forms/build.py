@@ -181,8 +181,8 @@ WHY = {
     "sun": "These come back, since the form was drafted from the marks: but the marks have no shadda on a sun letter after the article, where other words of the course have one (\u0627\u0644\u0633\u064e\u0651\u0644\u0627\u0645\u0650\u0629, \u0627\u0644\u062c\u0651\u0627\u0645\u0652\u0639\u064e\u0629). Kline counts jim a sun letter in Lebanese (p. 8).",
     "loan": "A loan kept in its French or English spelling (merci, football, taxi), or two different forms of a word in the two scripts (the teens: Arabic with -ar, Arabizi without). No correspondence gives the spelling; it has to be listed with the word, or the Arabizi changed.",
     "vowel": "One of the two is wrong, or the word is said both ways. The drafted form follows the Arabizi where it has a vowel and the marks where it has none.",
-    "helper": "A helping vowel (\u062e\u0650\u0628\u0650\u0632 khebz): the drafted form leaves it out, as the Arabizi does, and the projection writes none. Kline writes shames but wa2t, and kalb beside kalib (the notes, \u00a71.4): no rule. The voices were given these marks, so they said the vowel.",
-    "doubled": "A doubled letter tells words apart (mara, a woman; marra, once), so the projection writes it twice and takes nothing else. Here the marks have a shadda and the Arabizi one letter (bas, nos), or the Arabizi doubles a letter the marks leave single (a loan's spelling: dollar). Some are one spelling for two words: the course's vocalization gives \u0645\u0631\u0629, a woman, the shadda of once.",
+    "helper": "A helping vowel (\u062e\u0650\u0628\u0650\u0632 khebz): the drafted form leaves it out, as the Arabizi does, and the projection writes none. Kline writes shames but wa2t, and kalb beside kalib (the notes, \u00a71.4): no rule. The voices were given these marks, so they said the vowel. By the owner's ruling (2026-11-20) the marks write none: these words change when the projection replaces the course's vowel marks, and not before.",
+    "doubled": "A doubled letter tells words apart (mara, a woman; marra, once), so the projection writes it twice and takes nothing else. Here the marks have a shadda and the Arabizi one letter (bas, nos), or the Arabizi doubles a letter the marks leave single (a loan's spelling: dollar).",
     "silent": "Arabizi writes the word as it is said, Arabic as it is built (3enna, written with its d).",
     "letter": "The course spells a stop with its own letter nearly everywhere, so each of these letters has one sound in it; here the letter is the fricative's and the Arabizi the stop's. Either the word is respelled or the lexical form needs a sign for it (the note, 'Letters whose sound is not their letter's').",
     "glide": "The course writes a diphthong's glide with a sukun in some words (\u0639\u064e\u064a\u0652\u0644\u0650\u0629) and without in others (\u0647\u064e\u064a\u062f\u0627); and the marks write ay where the Arabizi has a long e (7zeiran).",
@@ -243,6 +243,7 @@ def main() -> None:
     review: dict[str, list[str]] = collections.defaultdict(list)
     counts: collections.Counter[str] = collections.Counter()
     verb_lines: list[str] = []
+    deduced_lines: list[str] = []
     for kc_id, kc in course.kcs.items():
         if not kc_id.startswith("sense:"):
             continue
@@ -257,14 +258,16 @@ def main() -> None:
         verb = verbs.get(kc_id)
         part = parts.get(kc_id)
         if verb is not None:
-            radicals = verb["radicals"]
-            cls = root_class(radicals)
             past = draft(verb["past"][0], None, verb["past"][1])
             present = draft(verb["present"][0], None, verb["present"][1])
             out.append("  verb:")
-            out.append(f"    form: {verb['form']}")
-            out.append("    radicals: [" + ", ".join(radicals) + "]")
-            out.append(f"    class: {cls}  # from the radicals")
+            if verb.get("listed"):
+                out.append("    listed: true  # a listed stem: no radicals and no Form are stored")
+            else:
+                radicals = verb["radicals"]
+                out.append(f"    form: {verb['form']}")
+                out.append("    radicals: [" + ", ".join(radicals) + "]")
+                out.append(f"    class: {root_class(radicals)}  # from the radicals")
             if verb.get("vowels"):
                 out.append("    vowels: " + flow(verb["vowels"]))
             out.append(f"    past: {flow({'form': past.form or '?', 'arabizi': verb['past'][1]})}")
@@ -272,9 +275,12 @@ def main() -> None:
             out.append(f"    source: {q(verb['source'])}")
             if verb.get("note"):
                 out.append(f"    note: {q(verb['note'])}")
+            if verb.get("basis"):
+                out.append(f"    basis: {q(verb['basis'])}")
             counts["verbs"] += 1
-            if verb["source"] == "inferred":
-                verb_lines.append(f"- `{kc_id}` {verb['past'][1]} / {verb['present'][1]}: {verb.get('note', 'Kline does not list it.')}")
+            counts["listed verbs"] += bool(verb.get("listed"))
+            if verb.get("basis"):
+                deduced_lines.append(f"`{kc_id}` {verb['past'][1]} / {verb['present'][1]}: {verb['basis']}")
             if past.form is None or present.form is None:
                 verb_lines.append(f"- `{kc_id}`: a citation form could not be drafted ({past.why} {present.why})")
         if part is not None:
@@ -287,6 +293,10 @@ def main() -> None:
             elif of:
                 out.append(f"    of: {flow({'form': of['form'], 'radicals': of['radicals'], 'past': of['past'][1], 'present': of['present'][1]})}")
             out.append(f"    note: {q(part['note'])}")
+            if part.get("basis"):
+                out.append(f"    basis: {q(part['basis'])}")
+                cited = f", of {base['past'][1]} / {base['present'][1]}" if base else ""
+                deduced_lines.append(f"`{kc_id}`{cited}: {part['basis']}")
             if base is not None and base["form"] == "I" and part["head"] == "participle":
                 cls = root_class(base["radicals"])
                 tpl = templates["I"].get(cls)
@@ -432,7 +442,7 @@ def main() -> None:
     md.append(f"- **{total - came_back - len([1 for (d, p, i) in drafts.values() if d.form is None])}** have a lexical form and do not come back in one of the three.")
     md.append(f"- **{len([1 for (d, p, i) in drafts.values() if d.form is None])}** have no lexical form.")
     md.append(f"- **{counts['lexemes']}** sense KCs with **{counts['KC forms']}** listed forms: {counts['KC forms that come back']} come back, {counts['KC forms that do not come back']} do not, {counts['KC forms with no lexical form']} have no form, {counts['KC forms in one script']} are written in one script only.")
-    md.append(f"- **{counts['verbs']}** verbs with radicals, a Form and citation forms; {counts['pinned verb forms']} of their forms in the sentences are pinned, since no conjugation rule is written yet.")
+    md.append(f"- **{counts['verbs']}** verbs with citation forms, {counts['verbs'] - counts['listed verbs']} of them with radicals and a Form and {counts['listed verbs']} a listed stem; {counts['pinned verb forms']} of their forms in the sentences are pinned, since no conjugation rule is written yet.")
     md.append(f"- **{len(reviewed)}** clips a listener marked right: for {clip_ok} the projection writes the very marks the voice was given; for {clip_bad} it writes other marks for a word; {clip_unknown} were given text the sentences no longer hold.")
     md.append("")
     n = 0
@@ -448,12 +458,22 @@ def main() -> None:
         md.extend(f"- {line}" for line in lines)
         md.append("")
     n += 1
-    md.append(f"## {n}. Verbs and participles ({len(verb_lines)})")
+    md.append(f"## {n}. Deduced, not found in a source ({len(deduced_lines)})")
     md.append("")
-    md.append("A citation form the course does not write and Kline does not list, or a participle the template makes otherwise.")
+    md.append("A citation form the course does not write and Kline does not list, or a radical no form shows. The")
+    md.append("owner's ruling (2026-11-20) is to deduce what needs to be deduced, so each is filled in, and its line")
+    md.append("says from what. They are listed for a speaker to correct, not for a ruling.")
     md.append("")
-    md.extend(verb_lines or ["- none"])
+    md.extend(f"- {line}" for line in deduced_lines or ["none"])
     md.append("")
+    if verb_lines:
+        n += 1
+        md.append(f"## {n}. Verb forms the drafting or the template does not give ({len(verb_lines)})")
+        md.append("")
+        md.append("A citation form that could not be drafted, or a participle the template makes otherwise than the course writes it.")
+        md.append("")
+        md.extend(verb_lines)
+        md.append("")
     n += 1
     md.append(f"## {n}. The reviewed clips whose marks the projection does not write ({len(bad_clips)})")
     md.append("")
