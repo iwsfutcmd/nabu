@@ -116,7 +116,8 @@ Deliver:
 3. worked entries for every apc KC form, in a data file beside the note, each verb with its radicals, and
    each participle KC with which of the two heads it is (`sense:raye7`, `seken`, `2a3ed`, `wa2ef`;
    `sense:m3allem`); and a list of everything `courses/apc` pins (a KC form, a reading, a vocalization) that
-   the projections don't reproduce, with why. That list is the review list: don't change course text to make it shorter.
+   the projections don't reproduce, with why. That list is the review list: don't change course text to make
+   it shorter.
 
 Facts come from references, never invented: Kline (2022) is the apc grammar (CLAUDE.md, "Reference library":
 find it with `cd pipeline && uv run nabu refs find kline lebanese`; notes in the library's `nabu/notes/apc/`).
@@ -133,14 +134,14 @@ definition of done.
 
 **Propose the formats before building them.** The ADRs decide what is stored and how it behaves, not the file
 shapes. Write a short design note for the owner's approval first, covering: the per-language lexicon file
-(lexemes, morphemes with features, parts and scope, lexical forms, and the mark that a form the rules don't reach is
-pinned or listed), where it lives and how an entry is signed off; each language's categories, dimensions, classes and
-defaults; how a token names its lexemes and feature values, and what it agrees with; each profile's
-executable statement of what reading and writing lose, fixed and free; prompt tags; the learner-event change
-(credit per part, the words a card displayed, the story lines read) and the migration from today's KC ids,
-which ADR 0145's Consequences list point by point; how each existing `form:` and `construction:` KC converts;
-the MF2 message ids for the miss labels; and the UI for a lexeme's parts and for labelled feedback (the
-explainer's mockups are a starting point, not a design).
+(lexemes, morphemes with features, parts and scope, lexical forms, and the mark that a form the rules don't
+reach is pinned or listed), where it lives and how an entry is signed off; each language's categories,
+dimensions, classes and defaults; how a token names its lexemes and feature values, and what it agrees
+with; each profile's executable statement of what reading and writing lose, fixed and free; prompt tags; the
+learner-event change (credit per part, the words a card displayed, the story lines read) and the migration
+from today's KC ids, which ADR 0145's Consequences list point by point; how each existing `form:` and
+`construction:` KC converts; the MF2 message ids for the miss labels; and the UI for a lexeme's parts and for
+labelled feedback (the explainer's mockups are a starting point, not a design).
 
 What must survive untouched, and what you must check did:
 - **Every sentence, story line and translation as displayed.** Sign-offs hash the compiled text and the
