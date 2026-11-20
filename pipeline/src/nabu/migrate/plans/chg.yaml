@@ -1,0 +1,87 @@
+# The conversion plan for courses/chg (docs/migration-design.md): what each form KC is, as a
+# lexeme of the language. Drafted by an LLM and awaiting a linguist's review (REVIEW).
+language: chg
+varieties: [chg]
+registers: [formal]
+
+# What every member of a category must choose (ADR 0145). REVIEW: the course marks only what
+# an ending writes.
+dimensions:
+  NOUN: [Number, Case]
+  VERB: [Tense, Person, Number]
+
+# A verb is cited as its stem with a hyphen (ADR 0128): the stem is the entry less the hyphen.
+stems:
+  - {pos: VERB, strip: {chg-Arab/standard: '-'}}
+  - {pos: AUX, strip: {chg-Arab/standard: '-'}}
+
+# Every form KC of this course is an ending with letters of its own: a lexeme (ADR 0145).
+forms:
+  # The copula and person on a predicate or a verb.
+  form:dur: {lexeme: dur, pos: AUX}
+  form:p1s: {lexeme: p1s, realises: {Person: 1, Number: Sing}}
+  form:p2s: {lexeme: p2s, realises: {Person: 2, Number: Sing}}
+  form:p2: {lexeme: p2, realises: {Person: 2, Polite: Form}}
+  form:p1p: {lexeme: p1p, realises: {Person: 1, Number: Plur}}
+  form:p2pl: {lexeme: p2pl, realises: {Person: 2, Number: Plur}}
+  form:p3pl: {lexeme: p3pl, realises: {Person: 3, Number: Plur}}
+  # Possessors.
+  form:poss1s: {lexeme: poss1s, realises: {'Person[psor]': 1, 'Number[psor]': Sing}}
+  form:poss2s: {lexeme: poss2s, realises: {'Person[psor]': 2, 'Number[psor]': Sing}}
+  form:poss2: {lexeme: poss2, realises: {'Person[psor]': 2, Polite: Form}}
+  form:poss3: {lexeme: poss3, realises: {'Person[psor]': 3}}
+  form:poss1p: {lexeme: poss1p, realises: {'Person[psor]': 1, 'Number[psor]': Plur}}
+  # Number and case.
+  form:pl: {lexeme: pl, realises: {Number: Plur}}
+  form:gen: {lexeme: gen, realises: {Case: Gen}}
+  form:acc: {lexeme: acc, realises: {Case: Acc}}
+  form:dat: {lexeme: dat, realises: {Case: Dat}}
+  form:loc: {lexeme: loc, realises: {Case: Loc}}
+  form:abl: {lexeme: abl, realises: {Case: Abl}}
+  form:ca: {lexeme: ca, realises: {Case: Equ}}
+  # Tense, mood and the like on a verb.
+  # The aorist is no tense of Universal Dependencies' own: as its Turkish treebanks tag theirs,
+  # the present with the habitual (REVIEW).
+  form:aor: {lexeme: aor, realises: {Tense: Pres, Aspect: Hab}}
+  form:aor-neg: {lexeme: aor-neg, realises: {Tense: Pres, Aspect: Hab, Polarity: Neg}}
+  form:pres: {lexeme: pres, realises: {Tense: Pres}}
+  form:pres-neg: {lexeme: pres-neg, realises: {Tense: Pres, Polarity: Neg}}
+  form:neg: {lexeme: neg, realises: {Polarity: Neg}}
+  form:pass: {lexeme: pass, realises: {Voice: Pass}}
+  form:cond: {lexeme: cond, realises: {Mood: Cnd}}
+  form:cond-1s: {lexeme: cond-1s, realises: {Mood: Cnd, Person: 1, Number: Sing}}
+  form:cond-2s: {lexeme: cond-2s, realises: {Mood: Cnd, Person: 2, Number: Sing}}
+  form:past-1s: {lexeme: past-1s, realises: {Tense: Past, Person: 1, Number: Sing}}
+  form:past-2s: {lexeme: past-2s, realises: {Tense: Past, Person: 2, Number: Sing}}
+  form:past-2: {lexeme: past-2, realises: {Tense: Past, Person: 2, Polite: Form}}
+  form:past-3: {lexeme: past-3, realises: {Tense: Past, Person: 3}}
+  form:past-1p: {lexeme: past-1p, realises: {Tense: Past, Person: 1, Number: Plur}}
+  form:past-2pl: {lexeme: past-2pl, realises: {Tense: Past, Person: 2, Number: Plur}}
+  form:past-3pl: {lexeme: past-3pl, realises: {Tense: Past, Person: 3, Number: Plur}}
+  form:mis: {lexeme: mis, realises: {Tense: Past, Evident: Nfh}}
+  form:narr: {lexeme: narr, realises: {Aspect: Perf, Evident: Nfh}, note: 'the told past, -p and tur: REVIEW against mis'}
+  form:gay: {lexeme: gay, realises: {Tense: Fut}, note: 'shall, will; with a person ending also a wish: REVIEW'}
+  form:imp: {lexeme: imp, realises: {Mood: Imp, Person: 2}}
+  form:juss: {lexeme: juss, realises: {Mood: Jus, Person: 3}}
+  form:let: {lexeme: let, realises: {Mood: Opt, Person: 1, Number: Plur}}
+  form:vol-1s: {lexeme: vol-1s, realises: {Mood: Opt, Person: 1, Number: Sing}}
+  # Verb forms that are not finite.
+  form:pcp: {lexeme: pcp, realises: {VerbForm: Part, Tense: Past}}
+  form:cv-p: {lexeme: cv-p, realises: {VerbForm: Conv, Aspect: Perf}}
+  form:cv-a: {lexeme: cv-a, realises: {VerbForm: Conv, Aspect: Imp}}
+  form:cv-may: {lexeme: cv-may, realises: {VerbForm: Conv, Polarity: Neg}}
+  form:gac: {lexeme: gac, realises: {VerbForm: Conv}, note: 'as soon as: REVIEW, no value tells it from the other converbs'}
+  form:gali: {lexeme: gali, realises: {VerbForm: Conv, Mood: Prp}}
+  # On adjectives and numbers.
+  form:cmp: {lexeme: cmp, realises: {Degree: Cmp}}
+  form:ord: {lexeme: ord, realises: {NumType: Ord}}
+  # Endings that make another word (ADR 0145: function heads). REVIEW: what each takes and makes.
+  form:liq: {lexeme: liq, head: {takes: [NOUN, ADJ], makes: NOUN}, note: 'with, having; of a place; -ness: it makes adjectives too'}
+  form:nisba: {lexeme: nisba, head: {takes: [NOUN, PROPN], makes: ADJ}}
+  form:ci: {lexeme: ci, head: {takes: [NOUN], makes: NOUN}}
+  form:daki: {lexeme: daki, head: {takes: [NOUN], makes: ADJ}}
+  form:cilik: {lexeme: cilik, head: {takes: [NOUN], makes: NOUN}}
+  form:la: {lexeme: la, head: {takes: [NOUN], makes: VERB}}
+  # Particles written on the word before them.
+  form:q: {lexeme: q, pos: PART, has: {PartType: Int}}
+  form:ke: {lexeme: ke, pos: SCONJ}

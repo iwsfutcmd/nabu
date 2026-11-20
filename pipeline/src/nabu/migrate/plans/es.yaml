@@ -1,0 +1,149 @@
+# The conversion plan for courses/es (docs/migration-design.md): what each form KC says, as
+# Universal Dependencies feature values, and what the converter cannot read off the course.
+# Drafted by an LLM and awaiting a linguist's review, like every profile policy (REVIEW).
+language: es
+course:
+  variety: es-CU
+varieties: [es-CU]
+registers: [formal, neutral, colloquial]
+
+# What every member of a category must choose (ADR 0145).
+dimensions:
+  VERB: [Mood, Tense, Person, Number, VerbForm]
+  AUX: [Mood, Tense, Person, Number, VerbForm]
+  NOUN: [Number]
+  ADJ: [Gender, Number]
+  DET: [Gender, Number]
+# What a lexeme has of itself, and a learner learns unless a default gives it (ADR 0146).
+lexical:
+  NOUN: [Gender]
+# The cell an entry is spelled in. What a lexeme has of itself is no part of it: casa is cited
+# in the singular; hermano, whose gender its tokens choose, in the masculine singular.
+citation:
+  NOUN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  DET: {Gender: Masc, Number: Sing}
+  VERB: {VerbForm: Inf}
+  AUX: {VerbForm: Inf}
+# What a token says when the course pins no form on it (ADR 0132's amendment: masculine singular
+# is bare; a verb with no form is its infinitive).
+bare:
+  NOUN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  DET: {Gender: Masc, Number: Sing}
+  VERB: {VerbForm: Inf}
+  AUX: {VerbForm: Inf}
+
+forms:
+  form:fem:
+    feats: {Gender: Fem, Number: Sing}
+    byPos: {PROPN: {Gender: Fem}}
+    introduces: [Gender=Fem]
+  form:pl:
+    feats: {Gender: Masc, Number: Plur}
+    # A pronoun's plural says nothing of gender (ustedes, nos, les).
+    byPos: {PRON: {Number: Plur}}
+    introduces: [Number=Plur]
+  form:fem-pl:
+    feats: {Gender: Fem, Number: Plur}
+  form:pres-1s: {feats: {Mood: Ind, Tense: Pres, Person: 1, Number: Sing, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-2s: {feats: {Mood: Ind, Tense: Pres, Person: 2, Number: Sing, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-3s: {feats: {Mood: Ind, Tense: Pres, Person: 3, Number: Sing, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-1p: {feats: {Mood: Ind, Tense: Pres, Person: 1, Number: Plur, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-3p: {feats: {Mood: Ind, Tense: Pres, Person: 3, Number: Plur, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pret-1s: {feats: {Mood: Ind, Tense: Past, Person: 1, Number: Sing, VerbForm: Fin}, introduces: [Tense=Past]}
+  form:pret-2s: {feats: {Mood: Ind, Tense: Past, Person: 2, Number: Sing, VerbForm: Fin}, introduces: [Tense=Past]}
+  form:pret-3s: {feats: {Mood: Ind, Tense: Past, Person: 3, Number: Sing, VerbForm: Fin}, introduces: [Tense=Past]}
+  form:pret-1p: {feats: {Mood: Ind, Tense: Past, Person: 1, Number: Plur, VerbForm: Fin}, introduces: [Tense=Past]}
+  form:pret-3p: {feats: {Mood: Ind, Tense: Past, Person: 3, Number: Plur, VerbForm: Fin}, introduces: [Tense=Past]}
+  # The course names no person on these: one KC for every person of the tense. The ending
+  # says the person where it has one of its own (-mos, -s, -n); a form with none of them is
+  # singular, first or third person alike (era, sea, sería), which stays unsaid.
+  form:impf:
+    feats: {Mood: Ind, Tense: Imp, VerbForm: Fin}
+    refine: &persons
+      - {ends: mos, feats: {Person: 1, Number: Plur}}
+      - {ends: s, feats: {Person: 2, Number: Sing}}
+      - {ends: n, feats: {Person: 3, Number: Plur}}
+      - {ends: '', feats: {Number: Sing}}
+    introduces: [Tense=Imp]
+  form:fut:
+    feats: {Mood: Ind, Tense: Fut, VerbForm: Fin}
+    refine:
+      - {ends: mos, feats: {Person: 1, Number: Plur}}
+      - {ends: s, feats: {Person: 2, Number: Sing}}
+      - {ends: n, feats: {Person: 3, Number: Plur}}
+      - {ends: é, feats: {Person: 1, Number: Sing}}
+      - {ends: á, feats: {Person: 3, Number: Sing}}
+    introduces: [Tense=Fut]
+  form:cond: {feats: {Mood: Cnd, VerbForm: Fin}, refine: *persons, introduces: [Mood=Cnd]}
+  form:subj: {feats: {Mood: Sub, Tense: Pres, VerbForm: Fin}, refine: *persons, introduces: [Mood=Sub]}
+  form:subj-past: {feats: {Mood: Sub, Tense: Imp, VerbForm: Fin}, refine: *persons, introduces: [Mood=Sub]}
+  form:imp-tu: {feats: {Mood: Imp, Person: 2, Number: Sing, VerbForm: Fin}, introduces: [Mood=Imp]}
+  # usted and ustedes: third person in form, and -n is ustedes.
+  form:imp-ud:
+    feats: {Mood: Imp, Person: 3, VerbForm: Fin}
+    refine: [{ends: n, feats: {Number: Plur}}, {ends: '', feats: {Number: Sing}}]
+    introduces: [Mood=Imp]
+  # REVIEW: its forms are the present subjunctive's. The course teaches it as one thing, so it
+  # keeps values of its own here; by ADR 0146 it is a use of the subjunctive.
+  form:imp-neg:
+    feats: {Mood: Imp, Polarity: Neg, VerbForm: Fin}
+    refine: *persons
+    introduces: [Mood=Imp]
+  form:ger: {feats: {VerbForm: Ger}, introduces: [VerbForm=Ger]}
+  # A participle that agrees shows it in its ending (hecha, hechos); he hablado does not agree.
+  form:part:
+    feats: {VerbForm: Part, Tense: Past}
+    refine:
+      - {ends: os, feats: {Gender: Masc, Number: Plur}}
+      - {ends: as, feats: {Gender: Fem, Number: Plur}}
+      - {ends: a, feats: {Gender: Fem, Number: Sing}}
+    introduces: [VerbForm=Part]
+
+# Gender by ending (ADR 0145, "Decided per language": REVIEW). The longest ending that fits wins.
+defaults:
+  - {id: gender-a, when: {pos: NOUN, ends: a}, gives: {Gender: Fem}}
+  - {id: gender-o, when: {pos: NOUN, ends: o}, gives: {Gender: Masc}}
+  - {id: gender-cion, when: {pos: NOUN, ends: ción}, gives: {Gender: Fem}}
+  - {id: gender-sion, when: {pos: NOUN, ends: sión}, gives: {Gender: Fem}}
+  - {id: gender-dad, when: {pos: NOUN, ends: dad}, gives: {Gender: Fem}}
+  - {id: gender-tad, when: {pos: NOUN, ends: tad}, gives: {Gender: Fem}}
+  - {id: gender-tud, when: {pos: NOUN, ends: tud}, gives: {Gender: Fem}}
+  - {id: gender-umbre, when: {pos: NOUN, ends: umbre}, gives: {Gender: Fem}}
+  - {id: gender-aje, when: {pos: NOUN, ends: aje}, gives: {Gender: Masc}}
+  - {id: gender-or, when: {pos: NOUN, ends: or}, gives: {Gender: Masc}}
+
+# Tokens the course pins no form on and writes otherwise than their entry.
+tokens:
+  ese:
+    eso: {feats: {Gender: Neut, Number: Sing}}
+  mil:
+    miles: {feats: {Number: Plur}}
+  encantado:
+    encantada: {feats: {Gender: Fem, Number: Sing}}
+  # An infinitive with a pronoun written on it: two lexemes.
+  ser:
+    serte: {parts: [ser, te]}
+  ver:
+    vernos: {parts: [ver, nos], feats: [{}, {Number: Plur}]}
+  llamar:
+    llamarnos: {parts: [llamar, nos], feats: [{}, {Number: Plur}]}
+  dar:
+    darse: {parts: [dar, se]}
+  buscar:
+    buscarlos: {parts: [buscar, lo], split: [buscar, los], feats: [{}, {Number: Plur}]}
+    buscarnos: {parts: [buscar, nos], feats: [{}, {Number: Plur}]}
+  morir:
+    morirme: {parts: [morir, me]}
+  mudarse:
+    mudarme: {parts: [mudarse, me], split: [mudar, me]}
+  agradecer:
+    agradecerles: {parts: [agradecer, le], split: [agradecer, les], feats: [{}, {Number: Plur}]}
+  # A command with a pronoun written on it.
+  echar:
+    échale: {parts: [echar, le], split: [écha, le]}
+    échalo: {parts: [echar, lo], split: [écha, lo]}
+  palma-real:
+    palmas: {feats: {Number: Plur}}
+    reales: {feats: {Number: Plur}}

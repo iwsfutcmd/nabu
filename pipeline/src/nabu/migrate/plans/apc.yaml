@@ -1,0 +1,150 @@
+# The conversion plan for courses/apc (docs/migration-design.md): what each form KC says, as
+# Universal Dependencies feature values, and what each ending is. Drafted by an LLM and awaiting
+# a linguist's review (REVIEW). It reads nothing of docs/lexical-forms/, which waits for the owner.
+language: apc
+course:
+  variety: apc-LB
+  # Every sentence of the course carries this register: it is the course's range, not a tag
+  # on a sentence (the design note, "Prompt tags").
+  register: colloquial
+varieties: [apc-LB]
+registers: [colloquial]
+
+# What every member of a category must choose (ADR 0145 gives the verb's: aspect, person,
+# gender, number). REVIEW: Mood is added for b- against no b-, and for the imperative.
+dimensions:
+  VERB: [Aspect, Mood, Person, Gender, Number]
+  AUX: [Aspect, Mood, Person, Gender, Number]
+  NOUN: [Number]
+  ADJ: [Gender, Number]
+# What a lexeme has of itself, and a learner learns unless a default gives it (ADR 0146).
+lexical:
+  NOUN: [Gender]
+  PROPN: [Gender]
+# The cell an entry is spelled in: a verb's he-past (Kline's citation form), a noun's and an
+# adjective's masculine singular. The course's entries are not all spelled so: the report lists
+# the verbs shown in another form.
+citation:
+  NOUN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  VERB: {Aspect: Perf, Person: 3, Gender: Masc, Number: Sing}
+  AUX: {Aspect: Perf, Person: 3, Gender: Masc, Number: Sing}
+# What a token says when the course pins no form on it (ADR 0132's amendment: masculine singular
+# is bare). The course has KCs for the command to a woman and to several people and none for
+# the command to a man: a verb with no form is that.
+bare:
+  NOUN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  VERB: {Mood: Imp, Person: 2, Gender: Masc, Number: Sing}
+
+# A noun in ta marbuta before an ending is written with t (3ayle, 3ayelt-i): the entry less
+# its last letter, and t. Stated on the Arabic spelling, where it is regular.
+stems:
+  - {pos: NOUN, strip: {apc-Arab/standard: "\u0629"}, add: {apc-Arab/standard: "\u062a"}}
+
+# apc's own value, which Universal Dependencies has none for (ADR 0145: the participle is a
+# value of the verb's aspect).
+features:
+  Aspect: [Part]
+
+forms:
+  # Gender and number. The plural has no gender (ADR 0132's amendment).
+  form:fem: {feats: {Gender: Fem, Number: Sing}, introduces: [Gender=Fem]}
+  form:pl: {feats: {Number: Plur}, introduces: [Number=Plur]}
+  # The verb: the present with b-, the same without it after baddi, 3am, ra7 (the subjunctive),
+  # the past, the command.
+  form:impf-1sg: {feats: {Aspect: Imp, Mood: Ind, Person: 1, Number: Sing}, introduces: [Aspect=Imp, Mood=Ind]}
+  form:impf-2ms: {feats: {Aspect: Imp, Mood: Ind, Person: 2, Gender: Masc, Number: Sing}, introduces: [Aspect=Imp, Mood=Ind]}
+  form:impf-2fs: {feats: {Aspect: Imp, Mood: Ind, Person: 2, Gender: Fem, Number: Sing}, introduces: [Aspect=Imp, Mood=Ind]}
+  form:impf-3ms: {feats: {Aspect: Imp, Mood: Ind, Person: 3, Gender: Masc, Number: Sing}, introduces: [Aspect=Imp, Mood=Ind]}
+  form:impf-3fs: {feats: {Aspect: Imp, Mood: Ind, Person: 3, Gender: Fem, Number: Sing}, introduces: [Aspect=Imp, Mood=Ind]}
+  form:impf-1pl: {feats: {Aspect: Imp, Mood: Ind, Person: 1, Number: Plur}, introduces: [Aspect=Imp, Mood=Ind]}
+  form:impf-2pl: {feats: {Aspect: Imp, Mood: Ind, Person: 2, Number: Plur}, introduces: [Aspect=Imp, Mood=Ind]}
+  form:impf-3pl: {feats: {Aspect: Imp, Mood: Ind, Person: 3, Number: Plur}, introduces: [Aspect=Imp, Mood=Ind]}
+  form:subj-1sg: {feats: {Aspect: Imp, Mood: Sub, Person: 1, Number: Sing}, introduces: [Mood=Sub]}
+  form:subj-2ms: {feats: {Aspect: Imp, Mood: Sub, Person: 2, Gender: Masc, Number: Sing}, introduces: [Mood=Sub]}
+  form:subj-2fs: {feats: {Aspect: Imp, Mood: Sub, Person: 2, Gender: Fem, Number: Sing}, introduces: [Mood=Sub]}
+  form:subj-3ms: {feats: {Aspect: Imp, Mood: Sub, Person: 3, Gender: Masc, Number: Sing}, introduces: [Mood=Sub]}
+  form:subj-3fs: {feats: {Aspect: Imp, Mood: Sub, Person: 3, Gender: Fem, Number: Sing}, introduces: [Mood=Sub]}
+  form:subj-1pl: {feats: {Aspect: Imp, Mood: Sub, Person: 1, Number: Plur}, introduces: [Mood=Sub]}
+  form:subj-2pl: {feats: {Aspect: Imp, Mood: Sub, Person: 2, Number: Plur}, introduces: [Mood=Sub]}
+  form:subj-3pl: {feats: {Aspect: Imp, Mood: Sub, Person: 3, Number: Plur}, introduces: [Mood=Sub]}
+  form:past-1sg: {feats: {Aspect: Perf, Person: 1, Number: Sing}, introduces: [Aspect=Perf]}
+  form:past-2ms: {feats: {Aspect: Perf, Person: 2, Gender: Masc, Number: Sing}, introduces: [Aspect=Perf]}
+  form:past-2fs: {feats: {Aspect: Perf, Person: 2, Gender: Fem, Number: Sing}, introduces: [Aspect=Perf]}
+  form:past-3ms: {feats: {Aspect: Perf, Person: 3, Gender: Masc, Number: Sing}, introduces: [Aspect=Perf]}
+  form:past-3fs: {feats: {Aspect: Perf, Person: 3, Gender: Fem, Number: Sing}, introduces: [Aspect=Perf]}
+  form:past-1pl: {feats: {Aspect: Perf, Person: 1, Number: Plur}, introduces: [Aspect=Perf]}
+  form:past-2pl: {feats: {Aspect: Perf, Person: 2, Number: Plur}, introduces: [Aspect=Perf]}
+  form:past-3pl: {feats: {Aspect: Perf, Person: 3, Number: Plur}, introduces: [Aspect=Perf]}
+  form:imp-2fs: {feats: {Mood: Imp, Person: 2, Gender: Fem, Number: Sing}, introduces: [Mood=Imp]}
+  form:imp-2pl: {feats: {Mood: Imp, Person: 2, Number: Plur}, introduces: [Mood=Imp]}
+  # Pronouns written on the end of a noun, a preposition or a verb: lexemes, each a pronoun.
+  # REVIEW: the course keeps the endings on a noun (your) apart from those on a verb (you),
+  # which are one set but for the first person.
+  form:poss-1sg: {lexeme: poss-1sg, pos: PRON, has: {PronType: Prs, Poss: 'Yes', Person: 1, Number: Sing}}
+  form:poss-2ms: {lexeme: poss-2ms, pos: PRON, has: {PronType: Prs, Poss: 'Yes', Person: 2, Gender: Masc, Number: Sing}}
+  # Two of them are also pinned on a set phrase said to a woman or to several people
+  # (salemtik, shu bkon): there they say whom the phrase is said to.
+  form:poss-2fs:
+    lexeme: poss-2fs
+    pos: PRON
+    has: {PronType: Prs, Poss: 'Yes', Person: 2, Gender: Fem, Number: Sing}
+    feats: {'Person[psor]': 2, 'Gender[psor]': Fem, 'Number[psor]': Sing}
+  form:poss-2pl:
+    lexeme: poss-2pl
+    pos: PRON
+    has: {PronType: Prs, Poss: 'Yes', Person: 2, Number: Plur}
+    feats: {'Person[psor]': 2, 'Number[psor]': Plur}
+  form:poss-3ms: {lexeme: poss-3ms, pos: PRON, has: {PronType: Prs, Poss: 'Yes', Person: 3, Gender: Masc, Number: Sing}}
+  form:poss-3fs: {lexeme: poss-3fs, pos: PRON, has: {PronType: Prs, Poss: 'Yes', Person: 3, Gender: Fem, Number: Sing}}
+  form:poss-1pl: {lexeme: poss-1pl, pos: PRON, has: {PronType: Prs, Poss: 'Yes', Person: 1, Number: Plur}}
+  form:poss-3pl: {lexeme: poss-3pl, pos: PRON, has: {PronType: Prs, Poss: 'Yes', Person: 3, Number: Plur}}
+  form:obj-1sg: {lexeme: obj-1sg, pos: PRON, has: {PronType: Prs, Case: Acc, Person: 1, Number: Sing}}
+  form:obj-2ms: {lexeme: obj-2ms, pos: PRON, has: {PronType: Prs, Case: Acc, Person: 2, Gender: Masc, Number: Sing}}
+  form:obj-2fs: {lexeme: obj-2fs, pos: PRON, has: {PronType: Prs, Case: Acc, Person: 2, Gender: Fem, Number: Sing}}
+  form:obj-3ms: {lexeme: obj-3ms, pos: PRON, has: {PronType: Prs, Case: Acc, Person: 3, Gender: Masc, Number: Sing}}
+  form:obj-3fs: {lexeme: obj-3fs, pos: PRON, has: {PronType: Prs, Case: Acc, Person: 3, Gender: Fem, Number: Sing}}
+  form:obj-1pl: {lexeme: obj-1pl, pos: PRON, has: {PronType: Prs, Case: Acc, Person: 1, Number: Plur}}
+  form:obj-2pl: {lexeme: obj-2pl, pos: PRON, has: {PronType: Prs, Case: Acc, Person: 2, Number: Plur}}
+  form:la-1sg: {lexeme: la-1sg, pos: PRON, has: {PronType: Prs, Case: Dat, Person: 1, Number: Sing}}
+  form:la-2ms: {lexeme: la-2ms, pos: PRON, has: {PronType: Prs, Case: Dat, Person: 2, Gender: Masc, Number: Sing}}
+  # The dual, an ending with letters of its own.
+  form:dual: {lexeme: dual, realises: {Number: Dual}}
+
+# ADR 0145: a construction is a rule where its meaning is its parts', a listed item with slots
+# where it is not; decided per construction with its course. None is decided: each keeps a
+# rule's name to point at, and `note` is the drafter's reading.
+constructions:
+  construction:used-to: {rule: used-to, note: 'a rule: kan and a verb without b- (ADR 0145 names it: it fills a feature in two words)'}
+  construction:was-doing: {rule: was-doing, note: 'a rule: kan, 3am and a verb without b-'}
+  construction:shu-excl: {rule: shu-excl, note: 'a listed item with a slot: shu before an adjective exclaims, which "what" does not say'}
+
+senses:
+  # ADR 0145: the participle is a value of the verb's aspect, a form of its verb.
+  raye7: {formOf: ra7, feats: {Aspect: Part}, bare: {Gender: Masc, Number: Sing}, note: 'the participle of ra7'}
+  # The same for these three, whose verbs the course does not have: each stays an entry, shown
+  # as its participle, and its tokens say so.
+  seken: {feats: {Aspect: Part}, bare: {Gender: Masc, Number: Sing}}
+  2a3ed: {feats: {Aspect: Part}, bare: {Gender: Masc, Number: Sing}}
+  wa2ef: {feats: {Aspect: Part}, bare: {Gender: Masc, Number: Sing}}
+  # Built words the first units teach whole (the design note names baddi and esmak).
+  baddi: {parts: [badd, poss-1sg], note: 'badd and -i'}
+  baddak: {parts: [badd, poss-2ms], note: 'badd and -ak; pinned as -ik, badd and that'}
+  esmi: {parts: [esm, poss-1sg], note: 'esm and -i'}
+  esmak: {parts: [esm, poss-2ms], note: 'esm and -ak'}
+  kifak: {parts: [kif, poss-2ms], note: 'kif and -ak: a sentence, not a listed item (ADR 0146 on chunks)'}
+  # Words that take an ending where a verb takes a subject: no form of their own to be bare.
+  badd: {bare: {}}
+  fi: {bare: {}}
+  fi.can: {bare: {}}
+  lezem: {bare: {}}
+
+# Gender by ending, on the Arabic spelling (ADR 0146: apc states its own): a noun in ta marbuta
+# is feminine, any other masculine. REVIEW.
+defaults:
+  - {id: gender-ta, when: {ends: "\u0629"}, gives: {Gender: Fem}}
+  - {id: gender-none, when: {pos: NOUN}, gives: {Gender: Masc}}
+  - {id: gender-none-name, when: {pos: PROPN}, gives: {Gender: Masc}}

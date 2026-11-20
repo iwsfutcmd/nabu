@@ -1,0 +1,16 @@
+# The conversion plan for courses/lzh (docs/migration-design.md). Classical Chinese has no
+# inflection: every sense KC is a lexeme as it stands. Drafted by an LLM, awaiting review (REVIEW).
+language: lzh
+varieties: [lzh]
+registers: [formal]
+dimensions: {}
+
+# ADR 0145: a construction is a rule where its meaning is its parts', a listed item with slots
+# where it is not; decided per construction with its course. None is decided: each keeps a
+# rule's name to point at, and `note` is the drafter's reading.
+constructions:
+  construction:ye: {rule: ye, note: 'a rule: a noun predicate with no verb, closed by 也'}
+  construction:neg-pronoun: {rule: neg-pronoun, note: 'a rule of order: after a negative a pronoun object stands before the verb (CLAUDE.md, lzh)'}
+  construction:buyi-hu: {rule: buyi-hu, note: 'a listed item with slots: 不亦…乎 expects "yes", which its parts do not say'}
+  construction:you-zhe: {rule: you-zhe, note: 'a listed item with slots: the formula that brings in a story''s hero'}
+  construction:wei-passive: {rule: wei-passive, note: 'a rule: 為 with an agent before the verb makes a passive'}

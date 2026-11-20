@@ -1,0 +1,114 @@
+# The conversion plan for courses/grc (docs/migration-design.md): what each form KC says, as
+# Universal Dependencies feature values. Drafted by an LLM and awaiting a linguist's review
+# (REVIEW).
+language: grc
+varieties: [grc]
+registers: [neutral]
+
+# What every member of a category must choose (ADR 0145).
+dimensions:
+  VERB: [Mood, Tense, Aspect, Voice, Person, Number, VerbForm]
+  AUX: [Mood, Tense, Aspect, Person, Number, VerbForm]
+  NOUN: [Case, Number]
+  PROPN: [Case, Number]
+  ADJ: [Gender, Case, Number, Degree]
+  DET: [Gender, Case, Number]
+  PRON: [Gender, Case, Number]
+# What a lexeme has of itself, and a learner learns unless a default gives it (ADR 0146).
+lexical:
+  NOUN: [Gender]
+  PROPN: [Gender]
+# The cell an entry is spelled in: the nominative singular, masculine where the word has all
+# three; a verb's first person singular of the present.
+citation:
+  NOUN: {Gender: Masc, Case: Nom, Number: Sing}
+  PROPN: {Gender: Masc, Case: Nom, Number: Sing}
+  ADJ: {Gender: Masc, Case: Nom, Number: Sing}
+  DET: {Gender: Masc, Case: Nom, Number: Sing}
+  PRON: {Gender: Masc, Case: Nom, Number: Sing}
+  VERB: {Mood: Ind, Tense: Pres, Person: 1, Number: Sing, VerbForm: Fin}
+  AUX: {Mood: Ind, Tense: Pres, Person: 1, Number: Sing, VerbForm: Fin}
+# What a token says when the course pins no form on it (ADR 0132's amendment: gender, case and
+# number are each left out when masculine, nominative, singular).
+bare:
+  NOUN: {Gender: Masc, Case: Nom, Number: Sing}
+  PROPN: {Gender: Masc, Case: Nom, Number: Sing}
+  ADJ: {Gender: Masc, Case: Nom, Number: Sing}
+  DET: {Gender: Masc, Case: Nom, Number: Sing}
+  PRON: {Gender: Masc, Case: Nom, Number: Sing}
+  VERB: {Mood: Ind, Tense: Pres, Person: 1, Number: Sing, VerbForm: Fin}
+
+# Tense and aspect as the Universal Dependencies treebanks of Ancient Greek tag them (Perseus):
+# the imperfect is the past with the imperfect aspect, the aorist the past alone, the perfect
+# the perfect aspect alone (REVIEW: the two treebanks differ, and neither documents its choice).
+forms:
+  # Gender, case and number in one KC. Where the course says one form serves several cases
+  # (a neuter as subject, object and address; a plural as subject and address), the value lists
+  # them, as Universal Dependencies writes a form it cannot tell apart.
+  form:f: {feats: {Gender: Fem, Case: Nom, Number: Sing}, introduces: [Gender=Fem]}
+  form:f-voc: {feats: {Gender: Fem, Case: Voc, Number: Sing}}
+  form:f-acc: {feats: {Gender: Fem, Case: Acc, Number: Sing}}
+  form:f-gen: {feats: {Gender: Fem, Case: Gen, Number: Sing}}
+  form:f-dat: {feats: {Gender: Fem, Case: Dat, Number: Sing}}
+  form:f-pl: {feats: {Gender: Fem, Case: 'Nom,Voc', Number: Plur}}
+  form:f-acc-pl: {feats: {Gender: Fem, Case: Acc, Number: Plur}}
+  form:voc: {feats: {Gender: Masc, Case: Voc, Number: Sing}, introduces: [Case=Voc]}
+  form:acc: {feats: {Gender: Masc, Case: Acc, Number: Sing}, introduces: [Case=Acc]}
+  form:gen: {feats: {Gender: Masc, Case: Gen, Number: Sing}, introduces: [Case=Gen]}
+  form:dat: {feats: {Gender: Masc, Case: Dat, Number: Sing}, introduces: [Case=Dat]}
+  form:pl: {feats: {Gender: Masc, Case: 'Nom,Voc', Number: Plur}, introduces: [Number=Plur]}
+  form:acc-pl: {feats: {Gender: Masc, Case: Acc, Number: Plur}}
+  form:gen-pl: {feats: {Gender: Masc, Case: Gen, Number: Plur}}
+  form:dat-pl: {feats: {Gender: Masc, Case: Dat, Number: Plur}}
+  form:n: {feats: {Gender: Neut, Case: 'Acc,Nom,Voc', Number: Sing}, introduces: [Gender=Neut]}
+  form:n-gen: {feats: {Gender: Neut, Case: Gen, Number: Sing}}
+  form:n-dat: {feats: {Gender: Neut, Case: Dat, Number: Sing}}
+  form:n-pl: {feats: {Gender: Neut, Case: 'Acc,Nom', Number: Plur}}
+  form:n-dat-pl: {feats: {Gender: Neut, Case: Dat, Number: Plur}}
+  form:comp: {feats: {Degree: Cmp, Gender: Masc, Case: Nom, Number: Sing}, introduces: [Degree=Cmp]}
+  form:comp-f: {feats: {Degree: Cmp, Gender: Fem, Case: Nom, Number: Sing}}
+  # The verb.
+  form:pres-1s: {feats: {Mood: Ind, Tense: Pres, Person: 1, Number: Sing, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-2s: {feats: {Mood: Ind, Tense: Pres, Person: 2, Number: Sing, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-3s: {feats: {Mood: Ind, Tense: Pres, Person: 3, Number: Sing, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-1p: {feats: {Mood: Ind, Tense: Pres, Person: 1, Number: Plur, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-2p: {feats: {Mood: Ind, Tense: Pres, Person: 2, Number: Plur, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-3p: {feats: {Mood: Ind, Tense: Pres, Person: 3, Number: Plur, VerbForm: Fin}, introduces: [Tense=Pres]}
+  form:pres-3p-mid: {feats: {Mood: Ind, Tense: Pres, Voice: Mid, Person: 3, Number: Plur, VerbForm: Fin}, introduces: [Voice=Mid]}
+  form:impf-1s: {feats: {Mood: Ind, Tense: Past, Aspect: Imp, Person: 1, Number: Sing, VerbForm: Fin}, introduces: [Aspect=Imp]}
+  form:impf-3s: {feats: {Mood: Ind, Tense: Past, Aspect: Imp, Person: 3, Number: Sing, VerbForm: Fin}, introduces: [Aspect=Imp]}
+  form:impf-3p: {feats: {Mood: Ind, Tense: Past, Aspect: Imp, Person: 3, Number: Plur, VerbForm: Fin}, introduces: [Aspect=Imp]}
+  form:aor-1s: {feats: {Mood: Ind, Tense: Past, Person: 1, Number: Sing, VerbForm: Fin}, introduces: [Tense=Past]}
+  form:aor-3s: {feats: {Mood: Ind, Tense: Past, Person: 3, Number: Sing, VerbForm: Fin}, introduces: [Tense=Past]}
+  form:aor-subj-2p: {feats: {Mood: Sub, Tense: Past, Person: 2, Number: Plur, VerbForm: Fin}, introduces: [Mood=Sub]}
+  form:perf-2s: {feats: {Mood: Ind, Aspect: Perf, Person: 2, Number: Sing, VerbForm: Fin}, introduces: [Aspect=Perf]}
+  form:fut-1p: {feats: {Mood: Ind, Tense: Fut, Person: 1, Number: Plur, VerbForm: Fin}, introduces: [Tense=Fut]}
+  form:fut-3s: {feats: {Mood: Ind, Tense: Fut, Person: 3, Number: Sing, VerbForm: Fin}, introduces: [Tense=Fut]}
+  form:impv-2s: {feats: {Mood: Imp, Person: 2, Number: Sing, VerbForm: Fin}, introduces: [Mood=Imp]}
+  form:impv-2p: {feats: {Mood: Imp, Person: 2, Number: Plur, VerbForm: Fin}, introduces: [Mood=Imp]}
+  form:inf: {feats: {VerbForm: Inf}, introduces: [VerbForm=Inf]}
+  form:ptc: {feats: {VerbForm: Part}, introduces: [VerbForm=Part]}
+
+constructions:
+  construction:esti-moi: {rule: esti-moi, note: 'a rule: "there is to me" says "I have"; the dative says whose (ADR 0145: its meaning is its parts'')'}
+
+senses:
+  # Pronouns that have no gender: the KCs that pin their case also mean masculine.
+  ego: {drop: [Gender]}
+  sy: {drop: [Gender]}
+  hemeis: {drop: [Gender]}
+  hymeis: {drop: [Gender]}
+  # τί is one form, and the entry is it.
+  ti: {bare: {}}
+  # ἦ, "said he": the entry is the third person singular of an imperfect, the only form there is.
+  emi: {bare: {Mood: Ind, Tense: Past, Aspect: Imp, Person: 3, Number: Sing, VerbForm: Fin}}
+
+# Gender by the nominative's ending (ADR 0146: grc states its own, and ἡ ὁδός breaks it): REVIEW.
+defaults:
+  - {id: gender-os, when: {ends: ος}, gives: {Gender: Masc}}
+  - {id: gender-es, when: {ends: ης}, gives: {Gender: Masc}}
+  - {id: gender-e, when: {ends: η}, gives: {Gender: Fem}}
+  - {id: gender-a, when: {ends: α}, gives: {Gender: Fem}}
+  - {id: gender-is, when: {ends: ις}, gives: {Gender: Fem}}
+  - {id: gender-on, when: {ends: ον}, gives: {Gender: Neut}}
+  - {id: gender-ma, when: {ends: μα}, gives: {Gender: Neut}}

@@ -369,6 +369,50 @@ def import_librelingo(
     typer.echo(f"wrote {out} ({len(imported.units)} units)")
 
 
+@app.command("migrate")
+def migrate_command(
+    courses: Annotated[
+        list[Path],
+        typer.Argument(exists=True, help="Course directories, or a directory of them."),
+    ],
+    check: Annotated[
+        bool,
+        typer.Option("--check", help="Write nothing: fail if a written file is out of date."),
+    ] = False,
+) -> None:
+    """Convert a course to the lexical model, beside what it is today
+    (docs/migration-design.md, deliverable 2): its language's lexicon, the course in the new
+    shape, its alias table and a report. Nothing in the app reads them until the switch."""
+    from nabu import migrate
+
+    failed = False
+    for course_dir in _course_paths(courses):
+        try:
+            m = migrate.migrate(course_dir)
+        except migrate.PlanError as e:
+            typer.echo(f"✗ {course_dir.name}: {e}", err=True)
+            failed = True
+            continue
+        for error in m.errors[:40]:
+            typer.echo(f"✗ {course_dir.name}: {error}", err=True)
+        if m.errors:
+            typer.echo(f"✗ {course_dir.name}: {len(m.errors)} checks failed", err=True)
+            failed = True
+            continue
+        if check:
+            old = migrate.stale(m)
+            for rel in old:
+                typer.echo(f"✗ {rel} is out of date: run `nabu migrate`", err=True)
+            failed = failed or bool(old)
+        else:
+            written = migrate.write(m)
+            typer.echo(
+                f"✓ {course_dir.name}: {len(m.built.lexicon['lexemes'])} lexemes, "
+                f"{len(m.findings)} findings, {len(written)} files written"
+            )
+    raise typer.Exit(code=1 if failed else 0)
+
+
 @app.command()
 def tables(
     out: Annotated[Path, typer.Option(help="Output directory.")] = Path("../profiles/tables"),

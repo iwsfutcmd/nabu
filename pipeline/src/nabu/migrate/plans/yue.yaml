@@ -1,0 +1,19 @@
+# The conversion plan for courses/yue (docs/migration-design.md). Drafted by an LLM, awaiting
+# review (REVIEW).
+language: yue
+course:
+  variety: yue-HK
+varieties: [yue-HK]
+registers: [formal, neutral, colloquial]
+dimensions: {}
+
+forms:
+  # 哋 after a pronoun: its plural, written as a morph of its own.
+  form:plural-dei: {lexeme: pl, realises: {Number: Plur}}
+
+# ADR 0145: a construction is a rule where its meaning is its parts', a listed item with slots
+# where it is not; decided per construction with its course. None is decided: each keeps a
+# rule's name to point at, and `note` is the drafter's reading.
+constructions:
+  construction:a-not-a: {rule: a-not-a, note: 'a rule: a predicate, 唔 and the predicate again ask yes or no; a two-syllable word repeats only its first (得唔得閒)'}
+  construction:cl-possessive: {rule: cl-possessive, note: 'a rule: a classifier between a pronoun and its noun says whose it is'}

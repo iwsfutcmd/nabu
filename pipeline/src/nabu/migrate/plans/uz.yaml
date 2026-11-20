@@ -1,0 +1,59 @@
+# The conversion plan for courses/uz (docs/migration-design.md): what each form KC is, as a
+# lexeme of the language. Drafted by an LLM and awaiting a linguist's review (REVIEW).
+language: uz
+course:
+  variety: uz-UZ
+varieties: [uz-UZ]
+registers: [formal, neutral, colloquial]
+
+# What every member of a category must choose (ADR 0145). REVIEW: the course marks only what
+# an ending writes, so a noun with no ending is singular and in no case.
+dimensions:
+  NOUN: [Number, Case]
+  VERB: [Tense, Person, Number]
+
+# A verb is cited with -moq, and the copula as its stem with a hyphen: the stem is the entry
+# less that.
+stems:
+  - {pos: VERB, strip: {uz-Latn/standard: moq, uz-Cyrl/standard: моқ}}
+  - {pos: AUX, strip: {uz-Latn/standard: '-', uz-Cyrl/standard: '-'}}
+
+# Every form KC of this course is an ending with letters of its own: a lexeme (ADR 0145), named
+# for what it is, not for one of its shapes (dat, of -ga, -ka, -qa).
+forms:
+  # Person on a predicate or a verb: agreement, written apart. REVIEW: by ADR 0145 agreement
+  # merges no head; these stay lexemes because the tokens write them as morphs. -man and -m
+  # (after the past's -di) are one value in two shapes, kept as the course's two.
+  form:cop-1sg-man: {lexeme: cop-1sg, realises: {Person: 1, Number: Sing}}
+  form:cop-2-siz: {lexeme: cop-2, realises: {Person: 2, Polite: Form}}
+  form:cop-1pl-miz: {lexeme: cop-1pl, realises: {Person: 1, Number: Plur}}
+  form:past-1sg-m: {lexeme: past-1sg, realises: {Person: 1, Number: Sing}, note: 'the same value as cop-1sg, in the shape the past takes'}
+  form:past-2-ngiz: {lexeme: past-2, realises: {Person: 2, Polite: Form}, note: 'the same value as cop-2, in the shape the past takes'}
+  form:past-1pl-k: {lexeme: past-1pl, realises: {Person: 1, Number: Plur}, note: 'the same value as cop-1pl, in the shape the past takes'}
+  form:pres-3sg-di: {lexeme: pres-3sg, realises: {Person: 3}}
+  # Possessors.
+  form:poss-1sg-im: {lexeme: poss-1sg, realises: {'Person[psor]': 1, 'Number[psor]': Sing}}
+  form:poss-2-ingiz: {lexeme: poss-2, realises: {'Person[psor]': 2, Polite: Form}}
+  form:poss-3-si: {lexeme: poss-3, realises: {'Person[psor]': 3}}
+  form:poss-1pl-imiz: {lexeme: poss-1pl, realises: {'Person[psor]': 1, 'Number[psor]': Plur}}
+  # Number and case.
+  form:plural-lar: {lexeme: pl, realises: {Number: Plur}}
+  form:gen-ning: {lexeme: gen, realises: {Case: Gen}}
+  form:acc-ni: {lexeme: acc, realises: {Case: Acc}}
+  form:dat-ga: {lexeme: dat, realises: {Case: Dat}}
+  form:loc-da: {lexeme: loc, realises: {Case: Loc}}
+  form:abl-dan: {lexeme: abl, realises: {Case: Abl}}
+  form:term-gacha: {lexeme: term, realises: {Case: Ter}}
+  # On verbs.
+  form:pres-a: {lexeme: pres, realises: {Tense: Pres}}
+  form:past-di: {lexeme: past, realises: {Tense: Past}}
+  form:prog-yap: {lexeme: prog, realises: {Aspect: Prog}}
+  form:neg-ma: {lexeme: neg, realises: {Polarity: Neg}}
+  form:imp-ing: {lexeme: imp, realises: {Mood: Imp, Person: 2, Polite: Form}}
+  form:want-moqchi: {lexeme: want, realises: {Mood: Des}}
+  # On adjectives and numbers.
+  form:comp-roq: {lexeme: comp, realises: {Degree: Cmp}}
+  form:count-ta: {lexeme: count, head: {takes: [NUM], makes: NUM}, note: 'the counting form of a number (bitta, ikkita): REVIEW'}
+  # Particles written on the word before them.
+  form:q-mi: {lexeme: q, pos: PART, has: {PartType: Int}}
+  form:part-chi: {lexeme: chi, pos: PART}

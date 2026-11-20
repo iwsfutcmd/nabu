@@ -1,0 +1,17 @@
+# The conversion plan for courses/tok (docs/migration-design.md). Toki Pona has no inflection:
+# every sense KC is a lexeme as it stands. Drafted by an LLM, awaiting review (REVIEW).
+language: tok
+varieties: [tok]
+registers: [neutral]
+dimensions: {}
+
+# ADR 0145: a construction is a rule where its meaning is its parts', a listed item with slots
+# where it is not; decided per construction with its course. None is decided: each keeps a
+# rule's name to point at, and `note` is the drafter's reading.
+constructions:
+  construction:x-ala-x: {rule: x-ala-x, note: 'a rule: a word, ala and the word again ask yes or no of any predicate'}
+  construction:pona-tawa: {rule: pona-tawa, note: 'a listed item with slots: "X is good to Y" is how liking is said, and the parts do not say "like"'}
+  construction:la-if: {rule: la-if, note: 'a rule: la after a clause makes it the condition'}
+  construction:preverb: {rule: preverb, note: 'a rule: a verb of wanting, knowing or being able stands before the verb it governs'}
+  construction:counting: {rule: counting, note: 'a rule: number words add up in the order said'}
+  construction:ni-colon: {rule: ni-colon, note: 'a rule: ni stands for the sentence that follows'}

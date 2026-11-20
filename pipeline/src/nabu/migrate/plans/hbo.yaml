@@ -1,0 +1,119 @@
+# The conversion plan for courses/hbo (docs/migration-design.md): what each form KC says, as
+# Universal Dependencies feature values, and what each suffix is. Drafted by an LLM and awaiting
+# a linguist's review (REVIEW).
+language: hbo
+varieties: [hbo]
+registers: [formal]
+
+# What every member of a category must choose (ADR 0145).
+dimensions:
+  VERB: [Aspect, Tense, Mood, VerbForm, Person, Gender, Number]
+  NOUN: [Number, Definite]
+  ADJ: [Gender, Number]
+# What a lexeme has of itself, and a learner learns unless a default gives it (ADR 0146).
+lexical:
+  NOUN: [Gender]
+  PROPN: [Gender]
+# The cell an entry is spelled in: a noun's singular in the absolute state; a verb's qatal,
+# third person masculine singular.
+citation:
+  NOUN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  VERB: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Masc, Number: Sing}
+# What a token says when the course pins no form on it (ADR 0132's amendment: masculine,
+# singular and the absolute state are bare). A verb with no form says nothing: its qatal is
+# always pinned.
+bare:
+  NOUN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+
+# Hebrew's own, which Universal Dependencies has no value for.
+features:
+  VerbForm: [InfAbs]
+
+# The conjugations as the Universal Dependencies treebank of Biblical Hebrew (PTNK) tags them:
+# qatal the perfect aspect, yiqtol the imperfect, wayyiqtol the past tense. It tags nothing
+# apart for weqatal, the jussive, the cohortative or the infinitive absolute, so those are
+# drafted here: weqatal the future (the twin of wayyiqtol's past: REVIEW), the jussive Jus, the
+# cohortative Opt, the infinitive absolute a value of Hebrew's own. A learner is shown the
+# course's own names for all of them (the labels).
+forms:
+  form:qatal-3ms: {feats: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Masc, Number: Sing}, introduces: [Aspect=Perf]}
+  form:qatal-3fs: {feats: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Fem, Number: Sing}, introduces: [Aspect=Perf]}
+  form:qatal-2ms: {feats: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: 2, Gender: Masc, Number: Sing}, introduces: [Aspect=Perf]}
+  form:qatal-2fs: {feats: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: 2, Gender: Fem, Number: Sing}, introduces: [Aspect=Perf]}
+  form:qatal-1cs: {feats: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: 1, Number: Sing}, introduces: [Aspect=Perf]}
+  form:qatal-3cp: {feats: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: 3, Number: Plur}, introduces: [Aspect=Perf]}
+  form:yiqtol-3ms: {feats: {Aspect: Imp, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Masc, Number: Sing}, introduces: [Aspect=Imp]}
+  form:yiqtol-2ms: {feats: {Aspect: Imp, Mood: Ind, VerbForm: Fin, Person: 2, Gender: Masc, Number: Sing}, introduces: [Aspect=Imp]}
+  form:yiqtol-2fs: {feats: {Aspect: Imp, Mood: Ind, VerbForm: Fin, Person: 2, Gender: Fem, Number: Sing}, introduces: [Aspect=Imp]}
+  form:yiqtol-1cs: {feats: {Aspect: Imp, Mood: Ind, VerbForm: Fin, Person: 1, Number: Sing}, introduces: [Aspect=Imp]}
+  form:yiqtol-3mp: {feats: {Aspect: Imp, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Masc, Number: Plur}, introduces: [Aspect=Imp]}
+  form:yiqtol-2mp: {feats: {Aspect: Imp, Mood: Ind, VerbForm: Fin, Person: 2, Gender: Masc, Number: Plur}, introduces: [Aspect=Imp]}
+  form:wayyiqtol-3ms: {feats: {Tense: Past, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Masc, Number: Sing}, introduces: [Tense=Past]}
+  form:wayyiqtol-3fs: {feats: {Tense: Past, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Fem, Number: Sing}, introduces: [Tense=Past]}
+  form:wayyiqtol-1cs: {feats: {Tense: Past, Mood: Ind, VerbForm: Fin, Person: 1, Number: Sing}, introduces: [Tense=Past]}
+  form:wayyiqtol-3mp: {feats: {Tense: Past, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Masc, Number: Plur}, introduces: [Tense=Past]}
+  form:wayyiqtol-3fp: {feats: {Tense: Past, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Fem, Number: Plur}, introduces: [Tense=Past]}
+  form:weqatal-3ms: {feats: {Tense: Fut, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Masc, Number: Sing}, introduces: [Tense=Fut]}
+  form:weqatal-2ms: {feats: {Tense: Fut, Mood: Ind, VerbForm: Fin, Person: 2, Gender: Masc, Number: Sing}, introduces: [Tense=Fut]}
+  form:weqatal-3cp: {feats: {Tense: Fut, Mood: Ind, VerbForm: Fin, Person: 3, Number: Plur}, introduces: [Tense=Fut]}
+  # The course names no person on these two.
+  form:juss: {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, introduces: [Mood=Jus]}
+  form:coh: {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, introduces: [Mood=Opt]}
+  form:impv-ms: {feats: {Mood: Imp, VerbForm: Fin, Person: 2, Gender: Masc, Number: Sing}, introduces: [Mood=Imp]}
+  form:impv-fs: {feats: {Mood: Imp, VerbForm: Fin, Person: 2, Gender: Fem, Number: Sing}, introduces: [Mood=Imp]}
+  form:impv-mp: {feats: {Mood: Imp, VerbForm: Fin, Person: 2, Gender: Masc, Number: Plur}, introduces: [Mood=Imp]}
+  form:inf: {feats: {VerbForm: Inf}, introduces: [VerbForm=Inf]}
+  form:inf-abs: {feats: {VerbForm: InfAbs}, introduces: [VerbForm=InfAbs]}
+  form:ptc-ms: {feats: {VerbForm: Part, Gender: Masc, Number: Sing}, introduces: [VerbForm=Part]}
+  form:ptc-fs: {feats: {VerbForm: Part, Gender: Fem, Number: Sing}, introduces: [VerbForm=Part]}
+  form:ptc-mp: {feats: {VerbForm: Part, Gender: Masc, Number: Plur}, introduces: [VerbForm=Part]}
+  form:ptc-pass: {feats: {VerbForm: Part, Voice: Pass, Gender: Masc, Number: Sing}, introduces: [Voice=Pass]}
+  form:ptc-pass-fs: {feats: {VerbForm: Part, Voice: Pass, Gender: Fem, Number: Sing}, introduces: [Voice=Pass]}
+  # A noun's gender, number and state in one KC; the construct state as Definite=Cons, which
+  # Universal Dependencies has for it (the PTNK treebank marks it by a relation instead).
+  form:f:
+    feats: {Gender: Fem, Number: Sing}
+    introduces: [Gender=Fem]
+  form:pl:
+    feats: {Gender: Masc, Number: Plur}
+    # אֵלֶּה, "these", is of both genders.
+    byPos: {DET: {Number: Plur}}
+    introduces: [Number=Plur]
+  form:f-pl: {feats: {Gender: Fem, Number: Plur}}
+  form:cstr: {feats: {Gender: Masc, Number: Sing, Definite: Cons}, introduces: [Definite=Cons]}
+  form:f-cstr: {feats: {Gender: Fem, Number: Sing, Definite: Cons}}
+  form:pl-cstr: {feats: {Gender: Masc, Number: Plur, Definite: Cons}}
+  form:f-pl-cstr: {feats: {Gender: Fem, Number: Plur, Definite: Cons}}
+  # The dual says nothing of gender (רַגְלַיִם, feet, is feminine).
+  form:du: {feats: {Number: Dual}, introduces: [Number=Dual]}
+  # Suffixes: pronouns written on a noun, a preposition or a verb (the treebank's own analysis).
+  form:sfx-1cs: {lexeme: sfx-1cs, pos: PRON, has: {PronType: Prs, Person: 1, Number: Sing}}
+  form:sfx-2ms: {lexeme: sfx-2ms, pos: PRON, has: {PronType: Prs, Person: 2, Gender: Masc, Number: Sing}}
+  form:sfx-2fs: {lexeme: sfx-2fs, pos: PRON, has: {PronType: Prs, Person: 2, Gender: Fem, Number: Sing}}
+  form:sfx-3ms: {lexeme: sfx-3ms, pos: PRON, has: {PronType: Prs, Person: 3, Gender: Masc, Number: Sing}}
+  form:sfx-3fs: {lexeme: sfx-3fs, pos: PRON, has: {PronType: Prs, Person: 3, Gender: Fem, Number: Sing}}
+  form:sfx-1cp: {lexeme: sfx-1cp, pos: PRON, has: {PronType: Prs, Person: 1, Number: Plur}}
+  form:sfx-2mp: {lexeme: sfx-2mp, pos: PRON, has: {PronType: Prs, Person: 2, Gender: Masc, Number: Plur}}
+  form:sfx-3mp: {lexeme: sfx-3mp, pos: PRON, has: {PronType: Prs, Person: 3, Gender: Masc, Number: Plur}}
+  # The directional ending: toward.
+  form:dir: {lexeme: dir, realises: {Case: Lat}}
+
+constructions:
+  construction:nominal: {rule: nominal, note: 'a rule: a sentence with a noun, an adjective or a participle as its predicate and no verb'}
+  construction:yesh-le: {rule: yesh-le, note: 'a rule: "there is to" says "has"; its meaning is its parts'' (ADR 0145)'}
+
+senses:
+  # כֹּל has neither gender nor number: the KC that pins its construct also means masculine singular.
+  kol: {drop: [Gender, Number]}
+
+# Gender by ending (ADR 0146: hbo states its own). A noun with no feminine ending is masculine,
+# and אֶרֶץ, עִיר, יָד are then exceptions to learn: REVIEW.
+defaults:
+  - {id: gender-ah, when: {ends: "\u05b8\u05d4"}, gives: {Gender: Fem}}
+  - {id: gender-t, when: {ends: "\u05ea"}, gives: {Gender: Fem}}
+  - {id: gender-none, when: {pos: NOUN}, gives: {Gender: Masc}}
+  - {id: gender-none-name, when: {pos: PROPN}, gives: {Gender: Masc}}

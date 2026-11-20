@@ -1,0 +1,63 @@
+# The conversion plan for courses/fa (docs/migration-design.md): what each form KC is, as a
+# lexeme of the language. Drafted by an LLM and awaiting a linguist's review (REVIEW).
+language: fa
+course:
+  variety: fa-IR
+varieties: [fa-IR]
+registers: [formal, neutral, colloquial]
+
+# What every member of a category must choose (ADR 0145). REVIEW: the course marks only what
+# a prefix or an ending writes.
+dimensions:
+  NOUN: [Number]
+  VERB: [Tense, Person, Number]
+
+# A verb is cited as its infinitive: its past stem is the entry less -n. The present stem is
+# its own (dār- of dāštan), which the report lists as written otherwise.
+stems:
+  - {pos: VERB, strip: {fa-Arab/standard: ن}}
+  - {pos: AUX, strip: {fa-Arab/standard: ن}}
+
+forms:
+  # Person endings on a verb: agreement, written apart. REVIEW: by ADR 0145 agreement merges no
+  # head; these stay lexemes because the tokens write them as morphs.
+  form:1sg-am: {lexeme: 1sg, realises: {Person: 1, Number: Sing}}
+  form:2sg-i: {lexeme: 2sg, realises: {Person: 2, Number: Sing}}
+  form:3sg-ad: {lexeme: 3sg, realises: {Person: 3, Number: Sing}}
+  form:1pl-im: {lexeme: 1pl, realises: {Person: 1, Number: Plur}}
+  form:2pl-id: {lexeme: 2pl, realises: {Person: 2, Number: Plur}}
+  form:3pl-and: {lexeme: 3pl, realises: {Person: 3, Number: Plur}}
+  # Verb prefixes.
+  form:neg-na: {lexeme: neg, realises: {Polarity: Neg}}
+  form:mi-present: {lexeme: mi, realises: {Aspect: Imp}, note: 'the course teaches it as the present''s prefix; it is the durative, which the past takes too (mi-raftam): REVIEW'}
+  form:subj-be: {lexeme: subj, realises: {Mood: Sub}, note: 'the imperative takes it too'}
+  # On nouns and adjectives.
+  form:plural-ha: {lexeme: pl, realises: {Number: Plur}}
+  form:plural-an: {lexeme: pl-an, realises: {Number: Plur}, note: 'the plural of people and living things: the same value as pl in another shape, chosen by the noun'}
+  form:indef-i: {lexeme: indef, realises: {Definite: Ind}}
+  form:comparative-tar: {lexeme: comp, realises: {Degree: Cmp}}
+  # Pronouns written on the noun they own.
+  form:poss-1sg: {lexeme: poss-1sg, pos: PRON, has: {Person: 1, Number: Sing, PronType: Prs, Poss: 'Yes'}}
+  form:poss-2sg: {lexeme: poss-2sg, pos: PRON, has: {Person: 2, Number: Sing, PronType: Prs, Poss: 'Yes'}}
+
+constructions:
+  # The ezafe is written as a morph, mostly with no letter of its own (ADR 0136): a lexeme.
+  construction:ezafe: {lexeme: ezafe, pos: PART}
+  # ADR 0145's listed item whose form is its parts': only its meaning is listed.
+  construction:doost-dashtan:
+    lexeme: doost-dashtan
+    pos: VERB
+    listed: {parts: ['lexeme:doost', 'lexeme:dashtan'], inflects: 'lexeme:dashtan'}
+    note: 'a listed item: دوست and داشتن, of which داشتن inflects'
+  # It has a spelling and a clip of its own today, as a word has.
+  construction:existential-hast: {lexeme: existential-hast, pos: AUX, note: 'هست on its own says "there is": a use of بودن, kept as the entry the course has; no token names it'}
+  # ADR 0145: a rule where its meaning is its parts'. Neither is written: each keeps a rule's
+  # name to point at.
+  construction:subjunctive: {rule: subjunctive, note: 'a rule: be-, the present stem and an ending, after a verb of wanting or being able'}
+  construction:past: {rule: past, note: 'a rule: the past stem and an ending'}
+
+# Senses that are forms of the verb "to be" (ADR 0145's test: knowing بودن without بود is not
+# knowing it).
+senses:
+  bud: {formOf: budan, feats: {Tense: Past}, note: 'the past stem of بودن'}
+  nist: {formOf: budan, feats: {Polarity: Neg}, note: 'the negative of است, written as one word'}
