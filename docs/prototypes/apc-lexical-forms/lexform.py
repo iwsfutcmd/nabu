@@ -294,7 +294,10 @@ def _options(segs: list[Seg], k: int, helper: int | None) -> list[tuple[str, ...
         parts.append(("2", ""))  # ق beginning a word: 2arib, and ahwe
     else:
         cons = CONSONANTS[s.letter]
-        parts.append(tuple(c + c for c in cons) + cons if s.geminate else cons)
+        # A doubled letter is written twice (mara is not marra); but one doubled by the article's
+        # lam is also written once, with the lam (el salame, essalame).
+        by_article = k > 0 and segs[k - 1].silent and segs[k - 1].letter == "\u0644"
+        parts.append(tuple(c + c for c in cons) + (cons if by_article else ()) if s.geminate else cons)
     if s.tanwin:
         parts.append(("an",))
     elif s.long:

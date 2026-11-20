@@ -19,11 +19,11 @@
 
 - The course's sentences and stories hold **1,025** distinct words (an Arabic spelling, its vowel marks and its
   Arabizi, taken together). A lexical form was drafted for each from those three.
-- **939** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
-  among the spellings the correspondences give. **77** have a form and differ in one of the three. **9** have
-  no form. Ten of those 86 are the prototype's own doing, not the course's: its reader paired the wrong
+- **933** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
+  among the spellings the correspondences give. **83** have a form and differ in one of the three. **9** have
+  no form. Ten of those 92 are the prototype's own doing, not the course's: its reader paired the wrong
   Arabizi word (the review list's first section).
-- Of the **415** forms the KCs list, 369 come back, 40 do not, 1 has no form and 5 are written in one script.
+- Of the **415** forms the KCs list, 367 come back, 41 do not, 2 have no form and 5 are written in one script.
 - Of the **82** clips a listener marked right, the projection writes the very marks the voice was given for
   **64**. For 18 it writes other marks for one word: هَيدا or هَيدي in 15 (the course leaves the sukun off
   their glide), a helping vowel in 2, الحمدلله in 1.
@@ -171,7 +171,7 @@ majority ([apc-review.md](apc-review.md), last section).
 | ص ض ط ظ | s d t z: the emphatics are not told apart (Kline writes capitals) |
 | ق | 2; also nothing where it begins a word (*ahwe*) |
 | a hamza | nothing where it begins a word or follows the article; 2 elsewhere |
-| a doubled letter | written twice; also once |
+| a doubled letter | written twice. One doubled by the article's lam is also written once, with the lam |
 | fatha | a |
 | kasra | e; also i |
 | damma | o; also u |
@@ -271,7 +271,6 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
   sound (p. 6, 122). The course writes e 263 times and i 109, o 78 and u 22.
 - u or ou, i or ee, e or ei for the long vowels.
 - A long vowel at the end of a word: i or e (*ghali*, *3arabe*), o or u (*7elo*, *shu*).
-- A doubled letter written once (*bas*, *nos*).
 - ق beginning a word, written 2 or not at all (*2arib*, *ahwe*).
 - The helping vowel, written or not (*khebz*, *rebe3*).
 - The article's vowel and its lam before a sun letter (*el bet*, *l bet*, *essalame*).
@@ -291,6 +290,9 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 - A loan in its own language's spelling (*merci*, *football*, *taxi*, *bus*). Listed on the word.
 
 **Not decided here, and on the review list:**
+- Whether a doubled letter may be written once in Arabizi (*bas*, *nos*, *hala2*). It is not free here: the
+  course itself tells *mara*, a woman, from *marra*, once, by it, and both are written مرة. The course's
+  vocalization gives both the shadda.
 - Whether a helping vowel belongs in the marks the voices read. The course writes one in 22 words (خِبِز,
   شُغُل) and none in others of the same shape (صُبْح, إِبْن, شَهْر).
 - Whether a last -e and a last -i are one vowel. The form writes -e only before ة.
@@ -325,6 +327,6 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 2. **The helping vowel:** written in the marks the voices read, or not. This decides 18 of the 82 reviewed
    clips.
 3. **Long a said e:** stored on each word, as here, or given by a rule with exceptions. Kline has no rule.
-4. **The review list:** 77 words where the course's three spellings do not agree with one form, and 9 with
+4. **The review list:** 83 words where the course's three spellings do not agree with one form, and 9 with
    none. Most are for a speaker of Lebanese, not for a rule.
 5. **The seven verbs Kline does not list,** and the three whose middle or last radical no form shows.

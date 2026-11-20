@@ -133,7 +133,7 @@ def classify(problem: str, notes: tuple[str, ...]) -> str:
         return "loan"
     if "helping vowel" in text:
         return "helper"
-    if "doubled in Arabizi" in text:
+    if "doubled in Arabizi" in text or "doubled in the marks" in text:
         return "doubled"
     if "written, not said" in text:
         return "silent"
@@ -167,7 +167,7 @@ HEADINGS = {
     "loan": "The Arabizi is not this word's sounds in Arabizi's letters",
     "vowel": "The marks and the Arabizi give different vowels",
     "helper": "The marks write a vowel the Arabizi leaves out, between a word's last two consonants",
-    "doubled": "Doubled in Arabizi, with no shadda in the marks",
+    "doubled": "Doubled in one script and not in the other",
     "silent": "A letter is written and the Arabizi does not say it",
     "glide": "ay and aw: the marks and the Arabizi differ, or the glide has no sukun",
     "other": "The marks do not follow the convention the other words follow",
@@ -179,7 +179,7 @@ WHY = {
     "loan": "A loan kept in its French or English spelling (merci, football, taxi), or two different forms of a word in the two scripts (the teens: Arabic with -ar, Arabizi without). No correspondence gives the spelling; it has to be listed with the word, or the Arabizi changed.",
     "vowel": "One of the two is wrong, or the word is said both ways. The drafted form follows the Arabizi where it has a vowel and the marks where it has none.",
     "helper": "A helping vowel (\u062e\u0650\u0628\u0650\u0632 khebz): the drafted form leaves it out, as the Arabizi does, and the projection writes none. Kline writes shames but wa2t, and kalb beside kalib (the notes, \u00a71.4): no rule. The voices were given these marks, so they said the vowel.",
-    "doubled": "Either the marks lack a shadda or the Arabizi doubles a letter that is single (a loan's spelling: dollar).",
+    "doubled": "A doubled letter tells words apart (mara, a woman; marra, once), so the projection writes it twice and takes nothing else. Here the marks have a shadda and the Arabizi one letter (bas, nos), or the Arabizi doubles a letter the marks leave single (a loan's spelling: dollar). Some are one spelling for two words: the course's vocalization gives \u0645\u0631\u0629, a woman, the shadda of once.",
     "silent": "Arabizi writes the word as it is said, Arabic as it is built (3enna, written with its d).",
     "glide": "The course writes a diphthong's glide with a sukun in some words (\u0639\u064e\u064a\u0652\u0644\u0650\u0629) and without in others (\u0647\u064e\u064a\u062f\u0627); and the marks write ay where the Arabizi has a long e (7zeiran).",
     "other": "Each differs from what the projection writes in its own way: the difference is on the line.",

@@ -96,6 +96,22 @@ def draft(arabic: str, marked: str | None, arabizi: str, articles: frozenset[int
     the word begins; only the course's analysis knows either. Parts are joined by + in the form."""
     words_a = nfc(marked or arabic).split()
     words_l = arabizi.split()
+    if len(words_a) > 1 and len(words_l) > len(words_a):
+        # Arabizi writes the article and the clitics apart (kanoun el tene): join each to its word.
+        joined: list[str] = []
+        carry = ""
+        for w in words_l:
+            if w.lower() in ("el", "l", "w", "b", "3a", "bel", "3al", "wel") and len(joined) + 1 < len(words_a) + (1 if carry else 0) + 1:
+                carry += w
+            else:
+                joined.append(carry + w)
+                carry = ""
+        if carry:
+            joined.append(carry)
+        if len(joined) == len(words_a):
+            words_l = joined
+    if len(words_a) > 1 and len(words_a) != len(words_l):
+        return Draft(None, why=f"{nfc(marked or arabic)} is {len(words_a)} words and {arabizi} is {len(words_l)}")
     if len(words_a) > 1 and len(words_a) == len(words_l):
         parts = [draft(a, a, l, frozenset({0}) if a.startswith("\u0627\u0644") and len(a) > 4 else frozenset()) for a, l in zip(words_a, words_l, strict=True)]
         if any(p.form is None for p in parts):
@@ -186,7 +202,8 @@ def draft(arabic: str, marked: str | None, arabizi: str, articles: frozenset[int
             if c and latin.startswith(c, j2):
                 # Written doubled.
                 cons.append((j2 + len(c), True, miss + (0.0 if marked_double else 0.3), notes + (() if marked_double else ("doubled in Arabizi, no shadda in the course's marks",))))
-            cons.append((j2, marked_double, miss, notes))
+            once = ("doubled in the marks, written once in Arabizi",) if marked_double and c and not doubled else ()
+            cons.append((j2, marked_double, miss + (0.3 if once else 0.0), notes + once))
         for j2, gem, c_cost, c_notes in cons:
             said_g = u.letter == "\u0643" and latin.startswith("g", j) and not latin.startswith("k", j)
             head = (GAF if said_g else u.letter) + (lf.SHADDA if gem else "")

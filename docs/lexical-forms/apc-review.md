@@ -11,10 +11,10 @@ Lebanese, not a verdict: the course may be right and the convention wrong.
 ## In numbers
 
 - **1025** distinct words in the sentences and stories (Arabic, its marks and its Arabizi together).
-- **939** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
-- **77** have a lexical form and do not come back in one of the three.
+- **933** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
+- **83** have a lexical form and do not come back in one of the three.
 - **9** have no lexical form.
-- **358** sense KCs with **415** listed forms: 369 come back, 40 do not, 1 have no form, 5 are written in one script only.
+- **358** sense KCs with **415** listed forms: 367 come back, 41 do not, 2 have no form, 5 are written in one script only.
 - **41** verbs with radicals, a Form and citation forms; 251 of their forms in the sentences are pinned, since no conjugation rule is written yet.
 - **82** clips a listener marked right: for 64 the projection writes the very marks the voice was given; for 18 it writes other marks for a word; 0 were given text the sentences no longer hold.
 
@@ -33,11 +33,12 @@ Not a finding about the course: in these sentences the two scripts order or spli
 - وإِنْتي / w (u16-dates:apc.story.birthday#7)
 - سالْمِة / enti (u16-dates:apc.story.birthday#7)
 
-## 2. No lexical form (7)
+## 2. No lexical form (8)
 
 The Arabic and the Arabizi could not be read as one word, letter by letter.
 
 - `sense:miyye` مية / mit: مِيِّة cannot be read as mit
+- `sense:inshalla` إن شاء الله / inshalla: إِن شاء الله is 3 words and inshalla is 1
 - الفوتبول / el football (u07-likes:s.like.23): الفوتْبول cannot be read as el football
 - بالتاكسي / bel taxi (u18-getting-around:s.road.3): بِالتّاكْسي cannot be read as bel taxi
 - التاكسي / el taxi (u18-getting-around:s.road.4): التّاكْسي cannot be read as el taxi
@@ -118,14 +119,20 @@ A helping vowel (خِبِز khebz): the drafted form leaves it out, as the Arabi
 - شُغُل / shoghl (u19-work:apc.story.new-job#3): helping vowel: in the marks, not in Arabizi: marks: projected شُغْل, pinned شُغُل
 - هالأكل / hal akl (u20-celebrations:s.party.29): helping vowel: in the marks, not in Arabizi: marks: projected هَالأَكْل, pinned هَالأَكَل
 
-## 7. Doubled in Arabizi, with no shadda in the marks (4)
+## 7. Doubled in one script and not in the other (10)
 
-Either the marks lack a shadda or the Arabizi doubles a letter that is single (a loan's spelling: dollar).
+A doubled letter tells words apart (mara, a woman; marra, once), so the projection writes it twice and takes nothing else. Here the marks have a shadda and the Arabizi one letter (bas, nos), or the Arabizi doubles a letter the marks leave single (a loan's spelling: dollar). Some are one spelling for two words: the course's vocalization gives مرة, a woman, the shadda of once.
 
 - صحتين / sa77tein (u03-food:s.food.4): doubled in Arabizi, no shadda in the course's marks: marks: projected صَحّْتين, pinned صَحْتين
+- بسّ / bas (u03-food:s.food.22): doubled in the marks, written once in Arabizi: arabizi: bas is not among the projected spellings (bass first)
 - صَحْتين / sa77tein (u03-food:apc.story.teta-lunch#2): doubled in Arabizi, no shadda in the course's marks: marks: projected صَحّْتين, pinned صَحْتين
+- بَسّ / bas (u03-food:apc.story.teta-lunch#5): doubled in the marks, written once in Arabizi: arabizi: bas is not among the projected spellings (bass first)
 - بالدولار / bel dollar (u05-numbers:s.num.11): doubled in Arabizi, no shadda in the course's marks: marks: projected بِالدّولّار, pinned بِالدّولار
 - دولار / dollar (u05-numbers:s.num.17): doubled in Arabizi, no shadda in the course's marks: marks: projected دولّار, pinned دولار
+- هلّق / hala2 (u06-day:s.day.22): doubled in the marks, written once in Arabizi: arabizi: hala2 is not among the projected spellings (halla2 first)
+- ونصّ / w nos (u08-time:s.time.14): doubled in the marks, written once in Arabizi: arabizi: w nos is not among the projected spellings (wnoss first)
+- ونُصّ / w nos (u08-time:apc.story.free-on-saturday#6): doubled in the marks, written once in Arabizi: arabizi: w nos is not among the projected spellings (wnoss first)
+- هَلَّق / hala2 (u19-work:apc.story.new-job#0): doubled in the marks, written once in Arabizi: arabizi: hala2 is not among the projected spellings (halla2 first)
 
 ## 8. A letter is written and the Arabizi does not say it (1)
 
