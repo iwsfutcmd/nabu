@@ -8,6 +8,10 @@
   with them [0144](adr/0144-read-first-then-write.md), the accepted ADRs they amend or touch, both notes files,
   the explainer and the two prototypes.
 - No ADR was edited. The owner decides which fixes to take.
+- **Amended the same day, after a pass through the reference library.** The first version checked the
+  linguistic examples against course data, three web sources and memory, and did not open the library, though
+  it was reachable. The pass corrected finding 6, confirmed C2, C4 and C5 from the books, and added finding 24
+  and C20. What was read is under "Evidence".
 
 ## How it was done
 
@@ -17,11 +21,14 @@
   course's real lexicon (`createGrader` over the committed bundles). Schemas, the fold, profiles, courses,
   workflows and Dockerfiles were read where an ADR describes them. The prototype font build was run, and its
   page rendered in Chromium. What was run is listed under "Evidence".
-- **Linguistic examples** were checked against the courses' own data first, then outside sources where the
-  network allowed (named with the finding). Where I rely on memory, I say so.
+- **Linguistic examples** were checked against the courses' own data, then the reference library where it has a
+  book (Kline for apc, Joüon–Muraoka and Holladay for hbo, Matthews & Yip for yue, Ryding for Arabic, Robson
+  for Javanese, Sjoberg for Uzbek), then outside sources. The library has no grammar of modern Spanish, Korean,
+  Russian or Persian that I could find: those examples rest on memory, and the finding says so.
 - Every finding gives the ADR and section (line numbers are the ADR file's), what is wrong, why, how sure I
-  am, and a proposed fix. Most serious first. "Sure" means verified by a run, a count or both texts read;
-  "fairly sure" means the reasoning is mine and unverified.
+  am, and a proposed fix. Most serious first (finding 24 was added after the reference pass). "Sure" means
+  verified by a run, a count, a reference or both texts read; "fairly sure" means the reasoning is mine and
+  unverified.
 
 ## The findings at a glance
 
@@ -50,6 +57,7 @@
 | 21 | 0145 | One lexicon per language: ownership, review, and authored accept sets | gap |
 | 22 | 0146 | Wug cards: the guardrails stayed in the notes | gap |
 | 23 | 0145–0149 | What it costs: the ADRs count the reviews, not the rule sets | cost |
+| 24 | 0145 | apc's participle is two things in Kline; the ADR's ruling covers one | gap |
 | C | | Corrections: examples, citations, wording | errors |
 | D | | The notes and the ADRs: who decided what | record |
 
@@ -129,10 +137,11 @@ Four things in the same ADR, or already in the courses, don't fit:
 for apc's vowels, consonants, spelling conventions and marks; not for radicals, root classes or pattern
 templates. Yet the first thing ADR 0145 asks of apc is that "its participles fold into their verbs" (lines
 96–98, 208): رايح from راح needs the hollow root's middle radical and the participle's template by root
-class. A schema built to the brief can't do the ADR's first migration.
+class. Kline forms the participle exactly so, by the verb's form and type: regular, hollow, doubled and on
+(2022, ch. 17, pp. 122–123). A schema built to the brief can't do the ADR's first migration.
 
-**How sure.** Sure that the texts disagree as quoted, and of the course lines. That Task B's brief is too narrow
-is my reading of it.
+**How sure.** Sure that the texts disagree as quoted, and of the course lines and Kline's chapter. That Task B's
+brief is too narrow is my reading of it.
 
 **Fix.**
 - Define the lexical form as a value with a shape per kind of morpheme: a string in the script (most); radicals,
@@ -258,9 +267,17 @@ Either way, add the performance budget to the definition of done.
   one, because English can't tell them apart: for וַתֹּאמֶר הָאִשָּׁה the set also takes האשה אמרה and והאשה אמרה
   (courses/hbo/units/u04-what-have-you-done.yaml:515–521). A wayyiqtol and a qatal differ in conjugation,
   which the notes name as an inherent contrast of its language (lexeme-model.md:800–801). The lint fires on
-  every such set. No tag that "names the situation, not the grammar" (line 42) tells the two apart: the choice
-  follows the clause's order, which ADR 0085 leaves to the learner. ADR 0147 lists ADR 0085 as amended, not
-  ADR 0084, and its Consequences speak of es and of persons only.
+  every such set. ADR 0147 lists ADR 0085 as amended, not ADR 0084, and its Consequences speak of es and of
+  persons only.
+- **What the two forms differ in** (corrected after reading Joüon–Muraoka; the first version of this review
+  said the choice only follows the clause's order). Two things are true at once. A subject put first can't
+  take a wayyiqtol at all (ADR 0084, citing § 155k): there the form follows the order. But the wayyiqtol also
+  adds succession to what a qatal says, and a writer who doesn't want succession avoids it on purpose: for an
+  action that came before, where English has "had said", or for a contrast (§ 118c–d, pp. 361–362). So in a
+  story the two can mean different things, and a situation could tell them apart ("next", "before that"). On
+  one sentence with nothing before it, both are "the woman said", which is ADR 0085's ground for taking both.
+  ADR 0147 has to choose and doesn't: keep both and say why the lint lets them be, or tag succession and take
+  some of ADR 0085's 204 answers back out.
 - **Agreement with an open controller.** "The features tagged are the inherent ones. Contextual ones (agreement
   […]) are fixed by the sentence" (lines 36–37). The first case on its list, a speaker's gender, is agreement:
   in *ana ta3ban* / *ana ta3bane* the adjective agrees with *ana*, which shows no gender. The feature is
@@ -270,14 +287,15 @@ Either way, add the performance budget to the definition of done.
   dimension (line 119). *tú* and *usted* are two lexemes of one concept and differ in no feature, so the lint
   as worded doesn't see them.
 
-**How sure.** Sure of the hbo lines and the quotes. That no situation tag separates wayyiqtol from X-qatal is my
-judgement, not a reference check.
+**How sure.** Sure of the hbo lines and the quotes, and of what Joüon–Muraoka says (read on the page images).
+Which way to choose is the owner's.
 
 **Fix.**
 - Word the lint by what the prompt leaves open, not by a kind of feature: two alternatives that differ in a
   feature value or a scope that neither the prompt, a tag, nor the answer's own syntax decides.
-- Say that a form the answer's order forces is no choice (hbo's wayyiqtol and X-qatal stay, untagged), and
-  list ADR 0084.
+- For hbo, say which. My suggestion: a contrast that only a context decides (succession) is not tagged on a
+  sentence that has no context, so the sets stay; a form the answer's own order forces is no choice either.
+  List ADR 0084.
 - Use one phrase in ADRs 0145–0147 for what is tagged: "what the target demands and the prompt leaves open"
   covers features, agreement with an open controller, and scopes.
 
@@ -337,9 +355,11 @@ exported logs.
 - **The notes had the missing clause.** The orthographic test is "checked after normalization and accepted
   variants (Arabizi's)" (lexeme-model.md:1061). The ADR dropped it. With it the silent equivalences stand; the
   noted ones still have no outcome.
-- **An orthography without a norm is hit hardest.** Arabizi has no standard spelling, and today a one-letter
-  variation passes. Under "the right sound with the wrong letter is never accepted", each is wrong unless an
-  accept set lists it. The same goes for chg's scribal letters and hbo's full and defective spellings.
+- **An orthography without a norm is hit hardest.** Lebanese has no standard spelling in either script: Kline
+  tells learners to expect written variation in both, with nothing yet codified (2022, ch. 2, p. 9). Today a
+  one-letter variation passes. Under "the right sound with the wrong letter is never accepted", each is wrong
+  unless an accept set lists it. The same goes for chg's scribal letters and hbo's full and defective
+  spellings.
 - **The judge.** An answer goes to the LLM judge when its verdict is `WRONG` and never when it is `WRONG_WORD`
   (`judgeable`, packages/core/src/ai/judge.ts:23–24). The ADR never mentions the judge. A synonym the accept
   set lacks is "another lexeme": if lexical means no judge, the judge loses the cases it exists for; if the
@@ -629,8 +649,9 @@ the cost.
   Syrc). The table gives a tatweel rule for Arabic and Syriac only.
 
 **How sure.** Sure of the colours (computed from tokens.css), the grep, and the Unicode data (Unicode 16's
-ScriptExtensions.txt). The Hebrew and Arabic stems are from memory. Every code point in the slot table is the
-letter the ADR names (checked with unicodedata).
+ScriptExtensions.txt). Holladay's lexicon labels verbs polel, pilpel and hitpolel (1971, abbreviations and
+entries); the hitpaʿel's metathesis and the Arabic example are from memory. Every code point in the slot table
+is the letter the ADR names (checked with unicodedata).
 
 **Fix.** List ADR 0083 and write the exception into the token test. Give a palette per surface a shape can stand
 on, or say shapes stand on the surface token only. Record the bare-slot cost. Say what a repeated radical looks
@@ -749,6 +770,34 @@ that runs both ways on the device.
 **Fix.** Finding 4's middle status (derivable, pinned for now) is what lets a course move whole before its rules
 are complete. Without it, say in the ADR how long the branch is expected to live.
 
+### 24. ADR 0145: apc's participle is two things in Kline
+
+**What is wrong.** "apc's active participle (شايف, رايح) is its verb + the participle pattern, a value of apc's
+aspect dimension […]: a form. Its sense KCs go; a listed sense (جاي 'next (week)') stays a lexeme" (lines
+96–98). Kline gives the participle two uses, with different morphology (2022, ch. 17, pp. 122–131):
+- **a verbal adjective**, for an action unfinished or going on, often in place of a continuous tense (his
+  tables give it a perfect sense as well), with a feminine and a plural in ‑in;
+- **an agentive noun**, which takes the article, usually has a broken plural, and sometimes has other vowels:
+  a woman who is a writer is *ketibe*, a woman writing is *ketbe*.
+
+The second is not one verb's listed sense. It is a second head on one pattern, as the ADR's own table says of
+English ‑ing ("one exponent, three heads"). The table's row for apc has one head.
+
+**Why it matters.** The course has both already. `sense:raye7`, `seken`, `2a3ed` and `wa2ef` are the first kind;
+`sense:m3allem` "teacher" (courses/apc/units/u17-childhood.yaml:16) is the second. A converter that folds
+participle KCs into their verbs has to tell them apart, and the lexical form has to give *ketibe* beside
+*ketbe* (finding 2).
+
+**A note for the owner's ruling.** Kline introduces the participle as working much like an adjective that is
+derived from a verb: the pull the explainer lists against "value". He doesn't discuss the contrast with the
+perfect and imperfect that the owner decided on, nor object suffixes.
+
+**How sure.** Sure of what Kline's chapter says (its English and its Latin forms, from the text layer; no Arabic
+spelling is taken from it). I did not check the course's participle KCs one by one against it.
+
+**Fix.** Give apc two rows: the participle (a value, as decided) and the agentive noun (a function; a lexeme
+where its plural or its vowels are listed). Say how a token names which.
+
 ## C. Corrections
 
 Examples, citations and wording. Several came into the ADRs from the notes.
@@ -756,10 +805,10 @@ Examples, citations and wording. Several came into the ADRs from the notes.
 | # | Where | It says | What is the case | How sure |
 |---|---|---|---|---|
 | C1 | 0148, line 19 | "*esta* for *está* is 'accepted with a note'" | Today it is `WRONG_WORD` with the note `accent-word`: *esta* is a word of the course (u02, u14). ADR 0076 gives this very pair as its example of wrong. *cafe* for *café* is the true example | sure (run) |
-| C2 | 0145, lines 189–190 | "生 *saang1* in 生日, *sang1* in 學生" | 學生 is *hok6 saang1*: the course pins it so seven times. Its *sang1* word is 醫生 *ji1 sang1*. 生日 is not in the course. Use 學生 and 醫生. The notes have the same slip (lexeme-model.md:184, 327) | sure (course data) |
+| C2 | 0145, lines 189–190 | "生 *saang1* in 生日, *sang1* in 學生" | 學生 is *hok6 saang1*: the course pins it so seven times. Its *sang1* word is 醫生 *ji1 sang1*. 生日 is not in the course. Use 學生 and 醫生. Matthews & Yip write "student" with the same vowel (2011, in the section on nasals, before §1.1.4). The notes have the same slip (lexeme-model.md:184, 327) | sure (course data, reference) |
 | C3 | 0146, line 98 | φλόμος, ‑ου, ἡ as a made-up noun | A real word, "mullein", and masculine (Wiktionary's entry, which cites LSJ, Bailly and Beekes; LSJ itself not opened). The notes mean it as a wug (lexemes.md:893–894) | sure it is real |
-| C4 | 0145, line 115 | לָמַד → לִמֵּד | The Bible's form is לִמַּד (Eccl 12:9, before a maqaf; read in a Masoretic text online, not the WLC). The course's own rule is never to guess a pointing | fairly sure |
-| C5 | 0145, line 84 | "Arabic plural, since ‑ون exists: كُتُب" | ‑ون is for male persons. The regular plural a noun like كتاب could take is ‑ات. The argument holds with either | sure (from memory) |
+| C4 | 0145, line 115 | לָמַד → לִמֵּד | Holladay gives the piel perfect as לִמַּד (1971, s.v. למד, read from the page image), as Eccl 12:9 has it before a maqaf. The course's own rule is never to guess a pointing | sure (reference) |
+| C5 | 0145, line 84 | "Arabic plural, since ‑ون exists: كُتُب" | ‑ون occurs, almost without exception, only on words for male persons or mixed groups (Ryding 2005, pp. 140–141). The regular plural a noun like كتاب could take is ‑ات. The argument holds with either | sure (reference) |
 | C6 | 0146, line 112 | 安 as "a woman under a roof" is out | That is the Shuowen's own analysis, and one many palaeographers keep. By the ADR's rule (a scholarly source of its own) it would be in. 東 as "the sun behind a tree" is the cleaner example of a story the script's history refutes | fairly sure (from memory) |
 | C7 | 0145, line 86 | "native apc judgement: خال / خالة one word" | Reads as evidence for inflection. The notes say "one word, one derived from the other" (lexemes.md:971–974). Add the clause | sure |
 | C8 | 0145, lines 16–17 | "inflected words crept into KC forms until ADR 0061 forbade it" | apc's verbs still list them: `sense:ra7` has ten conjugated forms. ADR 0061 says apc verbs "are not analysed yet" | sure |
@@ -774,6 +823,7 @@ Examples, citations and wording. Several came into the ADRs from the notes.
 | C17 | 0147, line 27 | "decided … in round 1" | The notes record these as Decided in §12 (lexemes.md:816–830), not among round 1's answers (955–993) | sure |
 | C18 | 0145, lines 143, 183 | "a course picks its scope"; fa "teaches both registers" | A course picks a range. The notes: "an utterance has one of each, a course a range" (lexeme-model.md:263–265) | sure |
 | C19 | 0146, line 81 | *tener*'s five parts | See finding 4 (classes, by the guard) and finding 12 (*ten*) | sure of the texts |
+| C20 | 0145, line 35; 0146, line 35 | "‑ga, ‑ka after k, ‑qa after q" as an allomorph's contexts | That is the spelling rule, and the course's own note (courses/uz/units/u06-city.yaml:10). Sjoberg's grammar of the spoken standard has ‑ka after any voiceless consonant (after t, for one) and ‑qa, often, after q, x or ɣ (1963, pp. 83–84). By ADR 0148 the sound's rule and the spelling's are two rules with different branches. Say which the example is | sure of both texts; that speech today agrees is from memory |
 
 ## D. The notes and the ADRs
 
@@ -850,12 +900,16 @@ So that the owner knows what was looked at and held.
   the letter's); the prototype builds from a clean checkout with its pinned inputs and renders as described,
   marks and pattern letters dark, slots faint, in both themes.
 - **ADR 0151.** One committed font binary; every number about it and its source.
-- **Linguistic examples that look right** (from memory unless a source is named above): Javanese *mangan*,
-  *nedha*, *dhahar* and *dipun‑*; Korean 먹다 and 드시다; Russian победить; Uzbek *ishchilarimiz*,
-  *kitoblarimdan*, ‑ga / ‑ka / ‑qa, *oʻqi‑* and *oʻqit‑*, ‑ibdi beside ‑di; Arabic مَكْتَب and مَجْلِس by the
-  imperfective's vowel, المَغْضُوبِ عَلَيْهِمْ, شُمَيْسَة, كاتِب and كُتّاب, the verbal nouns; Persian *kotob*,
-  *mi‑ram*, *hālā* and *aknun*, the two ـی, خواهر, زمین خوردن; Spanish *probar* and *robar*, *el abrelatas*, *el
-  problemita*, *ahorita*, *hablara* and *hablase*; Hebrew בָּנָה; Indonesian *kita* and *kami*.
+- **Linguistic examples checked against the library.** Javanese *mangan*, *nedha* and *dhahar*, with the
+  honorific word free of the speech level (Robson 1992, pp. 14–17). Uzbek's past in ‑ib as a reported past
+  (Sjoberg 1963, pp. 113–114), and its causatives under derivation, as the owner ruled (pp. 77–78). Arabic's
+  Form I verbal nouns as unpredictable, and nouns of place in مَفْعَل (Ryding 2005). apc *raye7* from *ra7* as
+  a hollow verb's participle (Kline 2022, p. 123). hbo's wayyiqtol as succession (Joüon–Muraoka, § 118).
+- **Linguistic examples that look right, from memory** (no book in the library, or not opened): Javanese
+  *dipun‑*; Korean 먹다 and 드시다; Russian победить; Uzbek *ishchilarimiz*, *kitoblarimdan*, *oʻqi‑* and
+  *oʻqit‑*; Arabic مَجْلِس by the imperfective's vowel, المَغْضُوبِ عَلَيْهِمْ, شُمَيْسَة, كاتِب and كُتّاب; Persian
+  *kotob*, *mi‑ram*, *hālā* and *aknun*, the two ـی, خواهر, زمین خوردن; Spanish *probar* and *robar*, *el
+  abrelatas*, *el problemita*, *ahorita*, *hablara* and *hablase*; Hebrew בָּנָה; Indonesian *kita* and *kami*.
 
 ## Evidence
 
@@ -888,9 +942,23 @@ apc 82 (sentences), fa 37 (34 words, 3 sentences), uz 29 (27 sentences, 2 story 
 `build_slot_fonts.py`, with fontTools 4.68.0 and uharfbuzz 0.57.0 and its three font packages at 5.3.0, wrote
 its four fonts and page, which were rendered in Chromium.
 
-**Outside sources.** Wiktionary's Ancient Greek entry for φλόμος; Ecclesiastes 12:9 in a Masoretic text
-(Sefaria's API); Unicode 16's ScriptExtensions.txt. No reference from the library was used, and nothing from
-one is quoted here.
+**The reference library** (read outside the repository through `nabu refs`; nothing from it is quoted here;
+forms were read from page images where the file is a scan):
+- Kline, *The Fundamentals of Lebanese Grammar* (2022): ch. 2's conclusion (p. 9); ch. 17 (pp. 122–131).
+- Joüon and Muraoka, *A Grammar of Biblical Hebrew* (2011 reprint): § 118c–d (pp. 361–362), by page image.
+  The course's own notes on it and on Holladay were read first.
+- Holladay, *A Concise Hebrew and Aramaic Lexicon of the Old Testament* (1971): s.v. למד, by page image; its
+  stem labels.
+- Matthews and Yip, *Cantonese: A Comprehensive Grammar* (2011): the section on nasals.
+- Ryding, *A Reference Grammar of Modern Standard Arabic* (2005): the sound masculine plural (pp. 140–141);
+  verbal nouns; nouns of place.
+- Robson, *Javanese Grammar for Students* (1992): ch. 3 (pp. 14–17), by page image.
+- Sjoberg, *Uzbek Structural Grammar* (1963): pp. 77–78, 83–84 and 113–114, by OCR.
+- Not opened: the Cambridge Greek grammar and lexicon, Khan, Schluessel, Baxter & Sagart, Kroll, Pulleyblank.
+  Not found by name: a grammar of modern Spanish, Korean, Russian or Persian.
+
+**Other sources.** Wiktionary's Ancient Greek entry for φλόμος; Ecclesiastes 12:9 in a Masoretic text
+(Sefaria's API); Unicode 16's ScriptExtensions.txt.
 
 ## The three that matter most
 
