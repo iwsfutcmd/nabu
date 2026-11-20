@@ -211,7 +211,8 @@ some 60 sessions.
   them as planned cards.
 - **Visual and e2e coverage.** Stories under Player/Parts; `tests/visual/parts.spec.ts` checks fa, uz and
   apc under each UI locale, light and dark. No vertically written orthography plans the cards yet, so
-  there is no vertical cell; the views use logical properties only. The e2e solver answers both.
+  there is no vertical cell; the views use logical properties only. The e2e solver answers both, and
+  `tests/e2e/parts.spec.ts` plays both in the built app, by keyboard and by touch, in uz and fa.
 - **Translated catalogs.** The four messages are new keys; draft catalogs lack them until translated.
 
 ## Not in this ADR
