@@ -1109,9 +1109,10 @@ part asked in the session, once forty-five rows proved too many)**
   would differ on any; three were put to them (the links, the wug check, the unused kinds) and are above.
   Each ADR lists what was accepted as drafted and what was decided against the draft.
 - All seven ADRs are Accepted (2026-11-20).
-- Not answered: where the revision lives (it is on the branch `ccr-aebe970e-q9o4q4`), whether the explainer
-  and lexeme-model.md are brought up to date (both still show the first version), which task comes next, and
-  a grammar of Spanish for the library (ADR 0146's Spanish classes are from memory, REVIEW).
+- The revision and the accepted ADRs went to main the same day (the owner: "get it all into main").
+- Not answered: whether the explainer and lexeme-model.md are brought up to date (both still show the first
+  version), which task comes next, and a grammar of Spanish for the library (ADR 0146's Spanish classes are
+  from memory, REVIEW).
 
 **For later (not started; the owner, 2026-11-19)**
 - How do we teach syntax?

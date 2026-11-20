@@ -12,10 +12,9 @@ restored from the notes, and what was accepted as drafted. Tasks B and C are not
 amend carry a line saying so ("Decided, not yet built"): until the migration lands, those older ADRs still
 describe the code.
 
-**Where the files are.** The ADRs as first written, the notes and the review are on `main`. The revision of
-2026-11-20 (the accepted ADRs, the notes' rounds 5 and 6, this file) is on the branch `ccr-aebe970e-q9o4q4`
-until the owner takes it to main. If your checkout's `docs/adr/0145-lexical-model.md` says "Status: Proposed",
-fetch that branch and merge it into your working branch before you start.
+**Where the files are.** Everything is on `main` since 2026-11-20: the accepted ADRs, the notes with all six
+rounds, the review and this file. If your checkout's `docs/adr/0145-lexical-model.md` says "Status:
+Proposed", it is out of date: fetch `main` and merge it into your working branch before you start.
 
 ## Read first
 
