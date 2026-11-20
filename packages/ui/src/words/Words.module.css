@@ -116,6 +116,7 @@
    never by colour alone. */
 .progress {
   display: flex;
+  grid-area: progress;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--nabu-space-1) var(--nabu-space-2);
@@ -163,25 +164,33 @@
   list-style: none;
 }
 
+/* One layout for every word, whatever its meaning's length or whether it has a clip: the word and its
+   meaning in the first column, its clip at the end of the first row; known or learning, then how well
+   it is remembered, in the second. A long meaning wraps in its column; nothing moves to another row.
+   The grid follows the chrome's direction, so RTL chrome mirrors it. */
 .word {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-areas:
+    "texts audio"
+    "progress band";
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--nabu-space-3);
+  gap: var(--nabu-space-2) var(--nabu-space-3);
   padding-block: var(--nabu-space-2);
   padding-inline: var(--nabu-space-2);
   border: 1px solid var(--nabu-color-border);
   border-radius: var(--nabu-radius-tile);
 }
 
-/* The words hug their text (the row pushes the clip and the meter to its end), so nothing else
-   sits at a text's edge. A little inline padding keeps glyphs that overhang their box inside it:
-   the hook of a line-initial j, a final swash. */
+/* The word and its meaning each hug their text at the column's start, the chrome's: a right-to-left
+   word in left-to-right chrome lines up with its meaning instead of at the end of whatever is widest.
+   A little inline padding keeps glyphs that overhang their box inside it: the hook of a line-initial
+   j, a final swash. */
 .texts {
   display: flex;
-  flex: 0 1 auto;
+  grid-area: texts;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--nabu-space-1);
   min-inline-size: 0;
   padding-inline: var(--nabu-space-1);
@@ -197,18 +206,20 @@
   color: var(--nabu-color-muted);
 }
 
-.side {
+.audio {
   display: flex;
-  align-items: center;
-  gap: var(--nabu-space-3);
+  grid-area: audio;
+  justify-self: end;
+  gap: var(--nabu-space-2);
 }
 
 .band {
   display: flex;
+  grid-area: band;
   flex-direction: column;
   gap: var(--nabu-space-1);
   margin: 0;
-  min-inline-size: 6rem;
+  min-inline-size: 7.5rem;
   font-size: 0.875rem;
   color: var(--nabu-color-muted);
 }

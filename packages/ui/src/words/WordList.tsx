@@ -59,31 +59,33 @@ const Word = ({ course, word, url, ruby }: { course: CourseView; word: LearnedWo
       <div className={styles.texts} data-ink-container={`word:${word.kc}`}>
         <T as="p" className={styles.form} text={word.form} ruby={ruby} />
         {word.gloss !== undefined && <T as="p" className={styles.gloss} text={word.gloss} />}
-        <div className={styles.progress}>
-          <p className={styles.status} data-status={word.known ? "known" : "learning"}>
-            {t.format(word.known ? "words.status.known" : "words.status.learning")}
-          </p>
-          {!word.known && missing.length > 0 && (
-            <p className={styles.skills} data-skills-missing={missing.join(" ")}>
-              <span>{t.format("words.skills.label")}</span>
-              {missing.map((s) => (
-                <span key={s} className={styles.skill} data-skill={s}>
-                  {t.format(SKILL_MESSAGES[s])}
-                </span>
-              ))}
-            </p>
-          )}
+      </div>
+      {audio !== undefined && (
+        <div className={styles.audio}>
+          <AudioButtons player={player} audio={audio} label={false} />
         </div>
-      </div>
-      <div className={styles.side}>
-        {audio !== undefined && <AudioButtons player={player} audio={audio} label={false} />}
-        <p className={styles.band} data-band={band}>
-          <span className={styles.meter} aria-hidden="true">
-            <span className={styles.fill} style={{ inlineSize: `${String(Math.round(word.strength * 100))}%` }} />
-          </span>
-          {t.format(BAND_MESSAGES[band])}
+      )}
+      <div className={styles.progress}>
+        <p className={styles.status} data-status={word.known ? "known" : "learning"}>
+          {t.format(word.known ? "words.status.known" : "words.status.learning")}
         </p>
+        {!word.known && missing.length > 0 && (
+          <p className={styles.skills} data-skills-missing={missing.join(" ")}>
+            <span>{t.format("words.skills.label")}</span>
+            {missing.map((s) => (
+              <span key={s} className={styles.skill} data-skill={s}>
+                {t.format(SKILL_MESSAGES[s])}
+              </span>
+            ))}
+          </p>
+        )}
       </div>
+      <p className={styles.band} data-band={band}>
+        <span className={styles.meter} aria-hidden="true">
+          <span className={styles.fill} style={{ inlineSize: `${String(Math.round(word.strength * 100))}%` }} />
+        </span>
+        {t.format(BAND_MESSAGES[band])}
+      </p>
     </li>
   );
 };
