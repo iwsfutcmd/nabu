@@ -2,10 +2,12 @@
 
 - Status: Proposed
 - Date: 2026-11-19
+- Revised: 2026-11-20, after the review and the owner's round 5 (what changed is listed at the end)
 - Amends: [ADR 0085](0085-what-the-prompt-leaves-open.md) (accept sets), [ADR 0056](0056-persons.md) and
   [ADR 0075](0075-persons-coverage.md) (person tags), [ADR 0076](0076-cuban-spanish.md) (es: pan-Hispanic
-  forms accepted), [ADR 0084](0084-hbo-references.md) (hbo: the other orders and forms its accept sets take,
-  which the lint below meets)
+  forms accepted), [ADR 0132](0132-a-choice-asks-one-thing.md) (a story's which-form question may ask a
+  contrast only the passage decides), [ADR 0072](0072-sign-off.md) (a sign-off covers a sentence's tags)
+- Leaves standing: [ADR 0084](0084-hbo-references.md) (hbo: the other orders and forms its accept sets take)
 - Builds on: [ADR 0145](0145-lexical-model.md) (inherent features, scopes, concepts)
 
 ## Context
@@ -35,35 +37,90 @@ The owner decided these, and the two below (the notes record them as decided in 
   *guagua* / *autobús*), the prompt says which variety.
 
 With this ADR:
-- **The features tagged are the inherent ones** (ADR 0145). Contextual ones (agreement, classifiers, a
-  governed case) are fixed by the sentence. In our courses and planned ones: the speaker's and addressee's
-  gender and number (apc, hbo, es); register (uz *sen* / *siz*, fa تو / شما, es *tú* / *usted*, Javanese); dialect
-  where the meaning has dialect synonyms (es); the gender of an unnamed "it" or "this" (apc); aspect where
-  English has one past (es *comí* / *comía*); evidentiality (uz ‑ibdi beside ‑di, once taught); later,
-  clusivity (Indonesian *kita* / *kami*) and Korean and Japanese honorifics.
+- **What is tagged is what the answer must say and the prompt leaves open.** That is an inherent feature
+  (aspect, evidentiality), agreement whose controller shows nothing (a speaker's gender: in *ana ta3ban* /
+  *ana ta3bane* the adjective agrees with *ana*, which shows none), or a scope (register, variety). Agreement
+  the sentence itself fixes (a classifier, a governed case, an adjective beside its noun) needs no tag. In
+  our courses and planned ones: the speaker's and addressee's gender and number (apc, hbo, es); register (uz
+  *sen* / *siz*, fa تو / شما, es *tú* / *usted*, Javanese); dialect where the meaning has dialect synonyms
+  (es); the gender of an unnamed "it" or "this" (apc); aspect where English has one past (es *comí* /
+  *comía*); evidentiality (uz ‑ibdi beside ‑di, once taught); later, clusivity (Indonesian *kita* / *kami*)
+  and Korean and Japanese honorifics.
 - **Tags name the situation, not the grammar:** "a woman speaking", "to your grandmother", "it (the school)",
   "(every day)", "in Cuba". They read naturally, carry meaning rather than metalanguage, and never show the
   answer's form. A tag is shown only where the answer's language marks it, as persons are now.
+- **A tag is data of one of two kinds.** A value from a closed set (persons, number, register, variety) is
+  rendered from the UI catalog, in the UI's language, as person tags are (ADR 0056). An authored situation
+  ("it (the school)", "(every day)", "to your grandmother") is TaggedText in the support language, with
+  provenance, translated as the sentence's translations are.
+- **A tag is reviewed with its sentence.** It decides which answers are right, so a sign-off covers it:
+  `signoffText` and its Python twin hash it. No sentence is signed off today, so no sign-off is lost.
 - **The accept set keeps only the forms the tags allow** when the learner writes the target; ADR 0085 still
   governs what no tag decides (word order, optional words, spelling variants) and everything written in the
   learner's own language.
-- **Dialect tags are derived, not authored.** A course states its variety once (es: Cuban); the compiler
-  knows which lexemes have dialect synonyms (lexemes of one concept differing by variety) and tags those
-  prompts.
-- **A scope slip has its own feedback** (the `scope` label, ADR 0148): *coche* under "in Cuba" is wrong, and
-  the feedback says "that's the word in Spain; in Cuba, *carro*". The same for register: "that's how you'd
-  speak to a friend; to your boss, *usted*".
-- **The compiler enforces it:** an accept set for writing the target whose alternatives differ in an inherent
-  feature, with no tag to pick one, is a lint. That needs the alternatives analysed through the lexicon (ADR
-  0145), not only the sentence's own text.
+- **Dialect tags are derived, not authored.** A course states its variety once (es: Cuban). A lexeme's scope
+  is a range of varieties (ADR 0145), and the compiler tags a prompt whose meaning has a word outside the
+  course's variety.
+- **Under the tag, a word of another variety is wrong, and so is a general word the variety doesn't use**
+  (the owner, round 5). *coche* is Spain's. *autobús* is general Spanish, and wrong under "in Cuba" unless
+  Cubans say it too: the lexicon marks where a general word is also Cuban, by a Cuban speaker's review, and
+  there it is accepted. Two words of the prompt's own variety are both right (*máquina* and *carro*): ADR
+  0085 still governs a choice inside a variety.
+- **A scope slip has its own feedback** (the `scope` label, ADR 0148), which names where the word belongs:
+  "that's the word in Spain; in Cuba, *carro*"; for a general word, "that's the general word; in Cuba,
+  *guagua*", never "Spain's". The same for register: "that's how you'd speak to a friend; to your boss,
+  *usted*".
+- **The compiler enforces it:** an accept set for writing the target whose alternatives differ in something
+  the answer must say, with nothing to pick one (the prompt, a tag, the answer's own syntax), is a lint.
+  That needs the alternatives analysed through the lexicon (ADR 0145), not only the sentence's own text.
+- **The lint lets two differences be** (the owner, round 5):
+  - **one the answer's own order forces.** In hbo a subject put first can't take a wayyiqtol (ADR 0084), so
+    וַתֹּאמֶר הָאִשָּׁה and האשה אמרה (unpointed, as the course's accept set writes it) are each the form
+    their order allows;
+  - **a contrast only a context decides, on a sentence that has none.** The wayyiqtol adds succession to
+    what a qatal says, and a writer avoids it for an earlier action or a contrast (Joüon–Muraoka § 118). A
+    lone sentence has nothing before it, so both mean "the woman said": ADR 0085's ground for taking both.
+
+  Each language marks which of its contrasts are context-only (REVIEW). hbo's accept sets stay as they are.
+- **A context-only contrast is asked where there is context:** a which-form question on a line of a story,
+  where what came before decides. For these contrasts that widens ADR 0132's rule for story questions: the
+  wrong form is one the line could take by itself and the passage rules out, not an ungrammatical one.
 
 ## Consequences
 
-- **es stops accepting pan-Hispanic words where the prompt says Cuban**; prompts without a dialect synonym
-  are unchanged. Cuban forms stay canonical (ADR 0076).
+- **Where the prompt says Cuban, es stops accepting a word of another variety, and a general word Cubans
+  don't say**; prompts without a dialect synonym are unchanged. Cuban forms stay canonical (ADR 0076).
+- **A dialect tag is only as good as the lexicon.** A synonym nobody entered leaves its prompt untagged and
+  that word plainly wrong; a learner's report is how such a word arrives. Which general words are also Cuban
+  waits on a Cuban speaker's review.
 - **Untagged person forms stop being accepted all at once** when writing the target: apc's kifak / kifik /
   kifkon sentences need their tags, which the lint finds. The spread of persons each course exercises (ADR
   0075) still holds.
-- **New tag data:** register, aspect situations, the referent of an unnamed "it", the variety. Authored tags
-  are drafted (`llm:`) and reviewed; dialect tags are computed.
+- **hbo's accept sets are untouched** (ADR 0085's 204 answers), and its stories gain which-form questions on
+  the narrative and the plain form.
+- **New tag data:** register, aspect situations, the referent of an unnamed "it", the variety; and each
+  language's list of context-only contrasts. Authored tags are drafted (`llm:`) and reviewed; dialect tags
+  are computed.
+- **`signoffText` changes,** with its pinned test text in both languages, before any sentence is signed off.
 - **Prompts tagged in the learner's own language are untouched:** that direction accepts every rendering.
+
+## Revision (2026-11-20): the review and round 5
+
+After [the review](../review-adr-0145-0151.md) (findings 6, 10, 15; C17) and the owner's fifth round of
+answers ([lexemes.md](../lexemes.md) §16).
+
+**Decided by the owner in round 5:**
+- hbo keeps the narrative form and the plain one, untagged. The lint lets a difference be when the answer's
+  own order forces it, or when it is a contrast only a context decides; each language marks those; the
+  contrast is asked on story lines.
+- A general word under a variety tag is wrong unless that variety's speakers say it too, and its feedback
+  says "the general word", never "Spain's".
+
+**Proposed with this revision, not yet the owner's:**
+1. What is tagged, in one phrase: what the answer must say and the prompt leaves open. It covers agreement
+   with an open controller and scopes, which "the inherent features" did not.
+2. A tag's two kinds of data: a catalog value, or authored TaggedText in the support language.
+3. A sign-off covers a sentence's tags, so `signoffText` hashes them (ADR 0072).
+4. A story's which-form question may ask a context-only contrast, its wrong option a form the passage rules
+   out. It follows from the ruling on hbo, which did not name ADR 0132.
+5. Two words of the prompt's own variety are both right.
