@@ -10,8 +10,9 @@
 - No ADR was edited. The owner decides which fixes to take.
 - **Since then** (2026-11-20): the owner answered a fifth round of questions drawn from findings 1, 3 to 6, 10
   to 12, 15 and 24 ([lexemes.md](lexemes.md) §16), and the seven ADRs were revised. Each ends with a section
-  saying what the owner decided, what was restored from the notes, and what the revision proposes beyond
-  that. This file is the review as it stood at 98a9031; its line numbers are that commit's.
+  saying what the owner decided, what was restored from the notes, and what the revision proposed beyond
+  that. A sixth round ruled on those proposals, and the owner accepted all seven ADRs. This file is the
+  review as it stood at 98a9031; its line numbers are that commit's.
 - **Amended the same day, after a pass through the reference library.** The first version checked the
   linguistic examples against course data, three web sources and memory, and did not open the library, though
   it was reachable. The pass corrected finding 6, confirmed C2, C4 and C5 from the books, and added finding 24

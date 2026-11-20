@@ -1079,13 +1079,47 @@ through its questions page)**
   `casa|gender`, the count of two for a class, the slip as "keyboard or IME neighbours, a transposition", the
   dotted circle as Hebrew's slot, and 生 in 學生 (it is *saang1* there; *sang1* is 醫生's). The ADRs are current.
 
+**Answers, round 6 (the owner, 2026-11-20, on what the revision had proposed: part on its questions page,
+part asked in the session, once forty-five rows proved too many)**
+- Decided: any form of the answer's own lexeme stops a slip, so the lexicon does what contrast sets and the
+  course's word list do today (as drafted). Run on fifteen such slips in es, uz and apc, today's graders
+  already refuse all fifteen.
+- Decided: chg's typed readings split their consonant marks by sound. š, ž, ḫ and ǧ are required, as the
+  vowels' marks are; the rest stay noted. Amends ADR 0134. Against the draft, which left ADR 0134 standing.
+- Decided: a story asks a contrast only a context decides by a third kind of question, which use, beside
+  which word and which form. Against the draft, which widened which form.
+- Decided: a drafted statement that a form is listed counts until it is signed off, as every REVIEW policy
+  does.
+- Decided: Latin orthographies don't gate. The gate is for a script a learner can't read, and Spanish
+  spelling is taught inside the course, as rules and leftovers. A reading typed in Latin gates nothing
+  either (Jyutping, lzh's typed traditions, tok's Latin for sitelen pona). Against the draft, which left a
+  Latin track's card open and made the gate wait on it. This takes back part of round 2: "script" means
+  letters again.
+- Decided: "let's just use UD tags". A lexeme's part of speech is written as its UD tag; no category system
+  is declared per language. Against the draft's categories with subclasses and UD as a mapping. Read as
+  leaving the principle standing: no distinction is inserted that a language doesn't make.
+- Decided: agreement and government are written as a token's UD head and relation, on the tokens where they
+  matter, from the migration on. Against the draft's links of our own.
+- Decided: `reading:`, `phone:` and `tone:` leave the schema.
+- Decided: a made-up word is checked against the course's own words, and that is enough, so every course can
+  have wug cards. Against the draft's "no word list, no wug cards" (which had also named hbo wrongly: the
+  Codex is a closed corpus).
+- Not now: marking a dimension as social, so that its misses get a scope's feedback.
+- Accepted with the ADRs, as drafted: the revision's other thirty proposals. The owner asked whether they
+  would differ on any; three were put to them (the links, the wug check, the unused kinds) and are above.
+  Each ADR lists what was accepted as drafted and what was decided against the draft.
+- All seven ADRs are Accepted (2026-11-20).
+- Not answered: where the revision lives (it is on the branch `ccr-aebe970e-q9o4q4`), whether the explainer
+  and lexeme-model.md are brought up to date (both still show the first version), which task comes next, and
+  a grammar of Spanish for the library (ADR 0146's Spanish classes are from memory, REVIEW).
+
 **For later (not started; the owner, 2026-11-19)**
 - How do we teach syntax?
 
 **Housekeeping**
 17. Rename the KC ids (`sense:`, `form:` → lexemes, morphemes, features), with a migration for logged events.
 18. Turn the decided parts into a Proposed ADR, or several. Done 2026-11-19: ADRs 0145–0151 (Proposed).
-    Reviewed and revised 2026-11-20 (round 5); still Proposed.
+    Reviewed and revised 2026-11-20 (round 5); accepted 2026-11-20 (round 6).
 
 ## References
 

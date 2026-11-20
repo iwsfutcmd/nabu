@@ -1,19 +1,21 @@
 # Handoff: the lexical model (ADRs 0145–0151), for a new session
 
 You are picking up work the owner and Claude did on 2026-11-19: a new model of what Nabu teaches and stores
-(concepts, lexemes, morphemes, forms), written up as seven Proposed ADRs. The owner will tell you which of the
-three tasks below to do. Do only that one, and stop to ask where a decision is theirs.
+(concepts, lexemes, morphemes, forms), written up as seven ADRs, which the owner accepted on 2026-11-20. The
+owner will tell you which of the three tasks below to do. Do only that one, and stop to ask where a decision
+is theirs.
 
 **Where things stand (2026-11-20).** Task A is done: [the review](review-adr-0145-0151.md). The owner
-answered a fifth round of questions that came out of it (lexemes.md §16), and the seven ADRs were revised from
-those answers. They are still Proposed. Each ends with what the owner decided in round 5, what was restored
-from the notes, and what the revision proposes that the owner has not ruled on: don't treat that last list as
-decided. Tasks B and C are not started.
+answered a fifth round of questions that came out of it and a sixth on what the revision proposed
+(lexemes.md §16), and accepted all seven ADRs. Each ends with what the owner decided in each round, what was
+restored from the notes, and what was accepted as drafted. Tasks B and C are not started. The older ADRs they
+amend carry a line saying so ("Decided, not yet built"): until the migration lands, those older ADRs still
+describe the code.
 
 **Where the files are.** The ADRs as first written, the notes and the review are on `main`. The revision of
-2026-11-20 (the ADRs, the notes' round 5, this file) is on the branch `ccr-aebe970e-q9o4q4` until the owner
-takes it to main. If your checkout's `docs/adr/0145-lexical-model.md` has no "Revised" line, fetch that branch
-and merge it into your working branch before you start.
+2026-11-20 (the accepted ADRs, the notes' rounds 5 and 6, this file) is on the branch `ccr-aebe970e-q9o4q4`
+until the owner takes it to main. If your checkout's `docs/adr/0145-lexical-model.md` says "Status: Proposed",
+fetch that branch and merge it into your working branch before you start.
 
 ## Read first
 
@@ -26,7 +28,7 @@ and merge it into your working branch before you start.
    first), [0150](adr/0150-pattern-display.md) (pattern display), [0151](adr/0151-fonts-build-step.md) (fonts).
    Also [0144](adr/0144-read-first-then-write.md) (Proposed, from another session) and the accepted ADRs they
    amend, which each ADR's header lists.
-3. The working notes, for the reasons behind each decision: [lexemes.md](lexemes.md) (the discussion and five
+3. The working notes, for the reasons behind each decision: [lexemes.md](lexemes.md) (the discussion and six
    rounds of the owner's answers, at the end of §16) and [lexeme-model.md](lexeme-model.md) (the model,
    diagrammed), and [the review](review-adr-0145-0151.md), for what was wrong with the first version and why
    each revision was made. **The ADRs are the decisions; the notes are why.** Every decision is in an ADR; the notes grew
@@ -45,13 +47,14 @@ with: say so when something is wrong, and say what you would do instead. Their s
 - **Only synchronic relations are formalised.** No etymology, folk or real, as a link; a memory aid at most,
   with a source.
 - **A language's own categories, never English's** (Uzbek *yaxshi* is one lexeme, not an adjective and an
-  adverb). Inserting a distinction a language doesn't make is Anglicization.
+  adverb). Inserting a distinction a language doesn't make is Anglicization. Since round 6 a lexeme's part of
+  speech is written as a UD tag, one per lexeme, and no category system is declared per language.
 - **Learn what can't be derived; derive the rest.** It decides what is stored, what is learned, what a miss
   is.
 - **Nothing half-done.** A change lands whole, with its definition of done met, or not at all.
 
-The ADRs are Proposed until the owner accepts them. Don't treat them as settled code requirements before
-then, and don't mark them Accepted yourself.
+ADRs 0145 to 0151 are Accepted (2026-11-20). ADR 0144 and ADR 0152 are still Proposed: don't treat those as
+settled, and never mark an ADR Accepted yourself.
 
 ## Task A: an independent review of ADRs 0145–0151
 
@@ -125,7 +128,7 @@ References are copyrighted: never put their text in the repo, and check every Ar
 not the PDF's text layer. Where a form needs a native speaker's judgement, flag it for the owner; don't decide
 it.
 
-## Task C: the migration (only once the owner has accepted the ADRs)
+## Task C: the migration (the ADRs are accepted; it starts with a design note for the owner's approval)
 
 The owner's order: schemas first; a one-time converter in the pipeline that writes the new course sources;
 the lexical-form schemas (Task B's); prompt tags (ADR 0147); script tracks (ADR 0149). Each is one deliverable
@@ -135,9 +138,10 @@ definition of done.
 **Propose the formats before building them.** The ADRs decide what is stored and how it behaves, not the file
 shapes. Write a short design note for the owner's approval first, covering: the per-language lexicon file
 (lexemes, morphemes with features, parts and scope, lexical forms, and the mark that a form the rules don't
-reach is pinned or listed), where it lives and how an entry is signed off; each language's categories,
-dimensions, classes and defaults; how a token names its lexemes and feature values, and what it agrees
-with; each profile's executable statement of what reading and writing lose, fixed and free; prompt tags; the
+reach is pinned or listed), where it lives and how an entry is signed off; each language's dimensions,
+classes and defaults (a part of speech is a UD tag); how a token names its lexemes and feature values, and
+its UD head and relation where it agrees or is governed; each profile's executable statement of what reading
+and writing lose, fixed and free; prompt tags; the
 learner-event change (credit per part, the words a card displayed, the story lines read) and the migration
 from today's KC ids, which ADR 0145's Consequences list point by point; how each existing `form:` and
 `construction:` KC converts; the MF2 message ids for the miss labels; and the UI for a lexeme's parts and for
@@ -145,7 +149,7 @@ labelled feedback (the explainer's mockups are a starting point, not a design).
 
 What must survive untouched, and what you must check did:
 - **Every sentence, story line and translation as displayed.** Sign-offs hash the compiled text and the
-  translations (`signoffText`), and ADR 0147 as revised proposes that they hash a sentence's tags too. No
+  translations (`signoffText`), and by ADR 0147 they will hash a sentence's tags too (not built). No
   sentence, story or unit in any course has a sign-off today: every one is `status: draft`. So there is no
   sign-off to keep valid yet, and the text itself is what to check: it must come through unchanged.
 - **The reviewed clips.** The 148 reviewed items (apc 82, fa 37, uz 29) are audio clips a listener marked
