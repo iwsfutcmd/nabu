@@ -19,6 +19,7 @@ import type { BundleKc, SchemeId, TaggedText } from "@nabu/schema";
 import { courseExclusions } from "../lesson/exclusions.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
+import { textMatcher } from "../lesson/search.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
 import { chosenTraditionKey } from "../lesson/traditions.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
@@ -199,41 +200,15 @@ export const orderWords = (words: readonly LearnedWord[], order: WordOrder): rea
   return [...words].sort((a, b) => collator.compare(surfaceOf(a.form), surfaceOf(b.form)) || tie(a, b));
 };
 
-/** A reading as search compares it: lowercase, without marks, spaces or (unless typed) tone digits. */
-const readingKey = (reading: string, digits: boolean): string => {
-  const bare = reading.normalize("NFD").replace(/\p{M}/gu, "").toLocaleLowerCase("und").replace(/[\s'’-]/gu, "");
-  return (digits ? bare : bare.replace(/\p{Nd}/gu, "")).normalize("NFC");
-};
-
-/** The readings its form's tokens pin (Jyutping, pinyin, SBL, sitelen Lasina). */
-const readingsOf = (form: TaggedText): readonly string[] => form.tokens.flatMap((t) => Object.values(t.readings ?? {}));
-
 /**
- * Whether a word matches what the learner typed: in its form as the orthography compares letters
- * (normalized, vowel marks stripped, variants keyed, case folded: سلام finds سَلام); in its readings,
- * with or without tone digits and marks (zousan and zou2 find 早晨 zou2 san4); or in its gloss,
- * case-folded in the gloss's own language. An empty query matches every word.
+ * Whether a word matches what the learner typed (`textMatcher`): in its form as the orthography
+ * compares letters (normalized, vowel marks stripped, variants keyed, case folded: سلام finds سَلام); in
+ * its readings, with or without tone digits and marks (zousan and zou2 find 早晨 zou2 san4); or in its
+ * gloss, case-folded in the gloss's own language. An empty query matches every word.
  */
 export const wordMatcher = (course: CourseView, query: string): ((word: LearnedWord) => boolean) => {
-  const q = query.normalize("NFC").trim();
-  if (q === "") return () => true;
-  const profile = course.profiles.get(course.orthography);
-  const targetKey = (text: string): string => {
-    if (profile === undefined) return text.normalize("NFC");
-    const normalized = profile.normalize(text);
-    const bare = profile.marks?.strip(normalized) ?? normalized;
-    return profile.fold(profile.variants?.key(bare) ?? bare);
-  };
-  const target = targetKey(q);
-  const digits = /\p{Nd}/u.test(q);
-  const reading = readingKey(q, digits);
-  return (word) => {
-    if (targetKey(surfaceOf(word.form)).includes(target)) return true;
-    if (reading !== "" && readingKey(readingsOf(word.form).join(""), digits).includes(reading)) return true;
-    if (word.gloss === undefined) return false;
-    const lang = word.gloss.lang;
-    return surfaceOf(word.gloss).normalize("NFC").toLocaleLowerCase(lang).includes(q.toLocaleLowerCase(lang));
-  };
+  const matches = textMatcher(course, query);
+  return (word) => matches({ target: [word.form], support: word.gloss === undefined ? [] : [word.gloss] });
 };
 
 /**

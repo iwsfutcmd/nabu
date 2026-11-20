@@ -247,6 +247,9 @@ const single = (text: TaggedText, token: Token): TaggedText => {
   return { ...text, tokens: [rest] };
 };
 
+/** One token of a text as text of its own, readings and all (an option, a blank; a word on the Data page). */
+export const tokenText = single;
+
 /** Texts' comparison keys, per course: distractor picking asks for the same texts again and again. */
 const keys = new WeakMap<CourseView, WeakMap<TaggedText, string>>();
 
@@ -1053,6 +1056,34 @@ const partsOfWord = (course: CourseView, token: Token): readonly WordPart[] | un
   if (each.length < 2) return undefined;
   const parts = each.flatMap((kc) => partOf(course, kc, kc === sense) ?? []);
   return parts.length === each.length && formsOf(parts).length > 0 ? parts : undefined;
+};
+
+/** What a word's token carries, laid out for reading (the Data page). */
+export interface TokenParts {
+  /** Its own word, the words written with it and its forms, in the word's order, as the parts cards label them. */
+  readonly parts: readonly WordPart[];
+  /** The pinned form the word has of itself (a noun's own gender): listed among `parts`, though nothing is built with it. */
+  readonly ofItself?: KcId | undefined;
+  /** Whether the parts cards can ask this word (ADR 0152): it carries a form that is added to it. */
+  readonly asked: boolean;
+}
+
+/**
+ * Everything a word's token carries (ADR 0152), for browsing: `partsOfWord`'s parts, and its pinned
+ * form even where the word has it of itself, marked so. A part the course has no entry for is left
+ * out. Undefined for a token that is no word of the course.
+ */
+export const tokenParts = (course: CourseView, token: Token): TokenParts | undefined => {
+  const sense = senseKcOf(token);
+  if (token.kind !== "word" || sense === undefined) return undefined;
+  const lemma = kcById(course).get(sense)?.forms?.[course.orthography]?.[0];
+  if (lemma === undefined) return undefined;
+  const morphs = token.morphs ?? [];
+  const kcs: KcId[] = morphs.length === 0 || !morphs.some((m) => m.kc === sense) ? [sense, ...morphs.map((m) => m.kc)] : morphs.map((m) => m.kc);
+  const pinned = token.form !== undefined && !kcs.includes(token.form) ? token.form : undefined;
+  if (pinned !== undefined) kcs.splice(kcs.indexOf(sense) + 1, 0, pinned);
+  const ofItself = pinned !== undefined && ownFormsOf(course, sense, surfaceOf(lemma)).has(pinned) ? pinned : undefined;
+  return { parts: [...new Set(kcs)].flatMap((kc) => partOf(course, kc, kc === sense) ?? []), ofItself, asked: wordPartsOf(course, token) !== undefined };
 };
 
 /**
