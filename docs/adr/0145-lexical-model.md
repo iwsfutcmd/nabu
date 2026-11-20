@@ -3,18 +3,27 @@
 - Status: Proposed
 - Date: 2026-11-19
 - Amends: the gameplan's §7.1 and glossary (what a KC is), [ADR 0061](0061-lemmas-and-morphs.md) (a KC's
-  forms), [ADR 0132](0132-a-choice-asks-one-thing.md) ("which form" and "which word"), [ADR
-  0066](0066-meaningful-endings.md) (contrast sets)
+  forms), [ADR 0132](0132-a-choice-asks-one-thing.md) ("which form" and "which word"; UD `pos` and features
+  on every KC; "no KC carries a gender"), [ADR 0066](0066-meaningful-endings.md) (contrast sets)
+- Also amends, since a reading and a word's marks become projections of one lexical form: [ADR
+  0053](0053-vocalization.md) (vocalization files), [ADR 0117](0117-pinned-readings-on-kc-forms.md) and [ADR
+  0135](0135-readings-fixed-by-their-words.md) (readings pinned on KC forms and on tokens), and the readings
+  each course pins: [ADR 0071](0071-classical-chinese.md), [0127](0127-lzh-checked-against-references.md) and
+  [0138](0138-reading-traditions.md) (lzh), [0082](0082-biblical-hebrew.md) and [0084](0084-hbo-references.md)
+  (hbo), [0086](0086-toki-pona-and-sitelen-pona.md) (tok), [0087](0087-attic-greek.md) (grc),
+  [0126](0126-yue-jyutping-orthography.md) (yue), [0129](0129-chaghatay-arabic-with-word-ruby.md) (chg)
 - Working notes: [lexemes.md](../lexemes.md) (the discussion, its rounds of answers),
   [lexeme-model.md](../lexeme-model.md) (the model, diagrammed). Followed by ADRs 0146–0151.
 
 ## Context
 
-**A KC is a word-sized unit with four prefixes, and the courses have outgrown it.**
+**A KC is a word-sized unit, and the courses have outgrown it.** The schema's `KcId` allows seven kinds
+(sense, form, construction, grapheme, reading, phone, tone); the courses use the first four.
 - `sense:` is a word and one meaning; `form:` mixes feature values (es `form:pret-3s`) with affixes (uz
   `form:abl-dan`); `construction:` and `grapheme:` sit beside them.
-- Inflected words crept into KC forms until ADR 0061 forbade it, and nothing says where an irregular form
-  lives: *ran*, *fue*, کتب, Persian *rav‑*.
+- Inflected words crept into KC forms until ADR 0061 forbade it (apc's verbs, which it left unanalysed, still
+  list them: `sense:ra7` has ten conjugated forms), and nothing says where an irregular form lives: *ran*,
+  *fue*, کتب, Persian *rav‑*.
 - Like things are analysed unlike: apc makes its active participles sense KCs of their own (`sense:raye7`,
   which even lists رايحة as a form), hbo tags the same participle as a verb form (`form:ptc-ms`).
 - Nothing says what is derivable, so nothing says what is learned: a learner who knows *‑ed* and *scan*
@@ -32,7 +41,7 @@ is the owner's, and the notes record each one where it was made.
 | **concept** | links lexemes, or forms, that differ only socially (variety, speech level, honorific); never in what is said; no learning state | EAT: *mangan*, *nedha*, *dhahar*; CAR: *carro* (Cuba), *coche* (Spain) |
 | **lexeme** | a meaning, a part of speech, lexical features and a paradigm; stored, and learned | SER; *casa* (feminine); AGENT; PAST |
 | **morpheme** | a listed sign: a pairing of form and meaning no rule gives (Bloomfield's, stretched to portmanteaus, multi-word and semi-transparent listed items) | *kitob*, ‑dan, 呀, *ran*, 東西, *darse cuenta*, *writer* "author" |
-| **allomorph** | a morpheme's forms by context, each stored with its context or given by a rule | ‑ga, ‑ka after k, ‑qa after q |
+| **allomorph** | a morpheme's forms by context, each stored with its context or given by a rule | the uz dative as it is written: ‑ga, ‑ka after k, ‑qa after q (the spoken forms have wider contexts: two rules, ADR 0148) |
 | **lemma** | a lexeme's citation form: one of its forms, by the language's convention | *hablar* (HABLAR + INF), كَتَبَ, λύω |
 | **form** | a lexeme with one set of inflectional values; may be several tokens | *ran* = RUN + PAST; *he comido*; 食咗 |
 | **derivative** | what a function head makes from a base: lexeme-shaped, computed | *writer* "one who writes", *rápidamente*, كاتِب "one who writes" |
@@ -81,9 +90,10 @@ is the owner's, and the notes record each one where it was made.
 - **Dimensions are declared per language, one list per category, beside the lexicon** (apc verb: aspect,
   person, gender, number; Spanish noun: number). **The base-case rule decides them:** a feature with an
   overt, regular base-case morpheme is a dimension, and its suppletive forms are forms of the one lexeme
-  (English past: *ran*; Arabic plural, since ‑ون exists: كُتُب; Persian present: *rav‑*; Korean honorific:
-  드시다). A noun's gender is a lexical feature, and noun gender marking is derivation (*niña* is *niño* + a
-  derivational feminine; *padre* and *madre* are two lexemes; native apc judgement: خال / خالة one word).
+  (English past: *ran*; Arabic plural, since the sound plurals exist, ‑ات and, for male persons, ‑ون: كُتُب;
+  Persian present: *rav‑*; Korean honorific: 드시다). A noun's gender is a lexical feature, and noun gender
+  marking is derivation (*niña* is *niño* + a derivational feminine; *padre* and *madre* are two lexemes;
+  native apc judgement: خال / خالة are one word, one derived from the other).
 - **Which feature values are lexemes:** one with a meaning, merged as a head (PAST, lemma ‑ed; a noun's PL;
   preterite and imperfect; INF, lemma ‑r; DAT where it means "to"). A class value is a lexical feature, not a
   lexeme (*casa*'s feminine). Agreement and government merge no head: a rule plus a lexical feature (*blanca*'s
@@ -112,7 +122,7 @@ is the owner's, and the notes record each one where it was made.
   | Cantonese aspect 咗, 緊, 過 | value, a two-token form |
   | Persian ـی: indefinite کتابی / adjectival ایرانی | value / function: one letter, two heads |
   | Uzbek causative ‑t, ‑tir | function |
-  | Biblical Hebrew stems (לָמַד → לִמֵּד) | function, mostly listed |
+  | Biblical Hebrew stems (לָמַד → לִמַּד) | function, mostly listed |
 
 ### Concepts and scopes
 
@@ -140,7 +150,8 @@ is the owner's, and the notes record each one where it was made.
 
 ### The lexicon and the lexical form
 
-- **One lexicon per language**, which every course of the language draws on; a course picks its scope.
+- **One lexicon per language**, which every course of the language draws on; a course picks a range of
+  varieties and registers (an utterance has one of each).
 - **A morpheme stores one lexical form**: one tier, in its own script, fully specified (the vowels, stress,
   the letters an orthography distinguishes). Every orthography and phonemic form is a projection of it
   (ADR 0148). Where a script can't say something, the language's schema invents an in-script convention,
@@ -186,8 +197,8 @@ is the owner's, and the notes record each one where it was made.
 - **Javanese** (when it comes): ngoko and krama taught from the start; every register form at the concept
   level.
 - **yue:** 嘅 is one linker (possessive and attributive, its head left out by rule): fix its gloss and drop
-  `Poss=Yes`, in the new lexicon. Literary and colloquial readings are different words (生 *saang1* in 生日,
-  *sang1* in 學生).
+  `Poss=Yes`, in the new lexicon. Literary and colloquial readings are different words (生 *saang1* in 學生,
+  *sang1* in 醫生, as the course pins them).
 - **apc:** its lexical-form schema comes first; its participles are forms (above).
 - **lzh:** characters carry their Qieyun positions (TshetUinh), Baxter, Pinyin and Jyutping derived, with
   overrides (a loan reading, a variant lookup, a missing position, Baxter & Sagart where they differ, modern
