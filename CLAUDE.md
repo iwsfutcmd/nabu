@@ -652,6 +652,24 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   KC's chg-Latn/schluessel form (the scheme's `latin`, ADR 0133; that profile is the track's Latin side, not a course
   orthography); no verb stems (their hyphen).
 
+## Word parts notes (see docs/adr/0152, Proposed)
+- Two cards ask a word by its parts: `parts-whole` (the sentence with the word left out, its own word and its forms
+  given; typed) and `whole-parts` (the word marked in its sentence, its parts picked among others in any order). A
+  course switches them on with `wordParts: true` (course.yaml; on in apc, chg, es, fa, grc, hbo, uz; yue has one form,
+  nothing to tell it from); elsewhere `courseExclusions` leaves them out.
+- A part is the word's own word (its sense's first form), a word written with it (a `sense:` morph: a clitic, an
+  article) or a form (any other morph KC, and the pinned `form` unless the word has it of itself: `ownFormsOf`, pinned
+  where the word is written as its lemma). Parts come from tokens (`wordPartsOf`, lesson/templates.ts) and a form's
+  label from its glossary entry: never a list of forms, endings or genders in code.
+- The cards ask and credit forms only (`formsOf`, `askedKcs`); a word the card shows is given. A word with no form gets
+  no card. Never credit a part whose text the card shows, and never make a built word the card hands over (its own
+  word typed as shown and accepted: fa's unwritten ezafe).
+- Other parts offered (`otherParts`): from the unit or earlier, at least one a form, never a form whose name overlaps
+  one the word carries (`overlapping`: f beside f-pl; REVIEW). What the sentence means shows only once answered.
+- A built word is read first (each form recognized right, the fold's `shown`), never takes a sentence's typing slot
+  (ADR 0101: it waits while a sentence could still take one) and has a slot of its own where the session can afford it
+  (planner `builds`). One of each card a session. Their `prior`s are guesses (REVIEW on real logs).
+
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
   (`:root[data-theme="dark"]`, and `prefers-color-scheme: dark` when nothing is chosen). A new colour gets a value in
