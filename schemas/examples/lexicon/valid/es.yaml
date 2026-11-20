@@ -25,3 +25,12 @@ lexemes:
     classes: [e-ie, go, short-future]
     forms:
       - {feats: {Tense: Past}, stem: tuv, status: listed, statement: {author: 'llm:claude@lexical-model-v1', status: draft}}
+  # A noun written in both genders: its tokens choose the gender, and the entry says so
+  # (ADR 0145: the feminine is a derivative; kept on the token until that is decided).
+  - id: lexeme:hermano
+    pos: NOUN
+    gloss: {en: "brother (hermana: sister)"}
+    chooses: [Gender]
+    spelled: {es-Latn/standard: [hermano]}
+    forms:
+      - {feats: {Gender: Fem, Number: Sing}, spelled: {es-Latn/standard: [hermana]}, status: pinned}

@@ -1,0 +1,16 @@
+# `base` marks the one lexeme a token's others are merged onto: it is said, or left out.
+id: u04-home
+nodes:
+  - {id: apc.home.where, kind: lesson}
+sentences:
+  - id: s.home.9
+    node: apc.home.where
+    forms:
+      apc-Arab/standard:
+        text: بالمطبخ
+        tokens:
+          - surface: بالمطبخ
+            lexemes:
+              - {lexeme: b, surface: ب, base: false}
+              - {lexeme: matbakh, surface: المطبخ, base: true}
+    translations: {en: "in the kitchen"}

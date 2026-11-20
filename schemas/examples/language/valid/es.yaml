@@ -8,6 +8,13 @@ dimensions:
   VERB: [Mood, Tense, Person, Number, VerbForm]
   NOUN: [Number]
   ADJ: [Gender, Number]
+# What a noun has of itself, and the cell an entry is spelled in.
+lexical:
+  NOUN: [Gender]
+citation:
+  NOUN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  VERB: {VerbForm: Inf}
 features:
   Gender: [Fem, Masc]
   Number: [Sing, Plur]
@@ -22,3 +29,7 @@ classes:
   - {id: e-ie, pos: VERB, gloss: {en: "e → ie"}}
   - {id: go, pos: VERB, gloss: {en: "yo form in -go"}}
   - {id: short-future, pos: VERB, gloss: {en: "short future stem"}}
+# What a learner is shown for a set of feature values.
+labels:
+  - {feats: {Tense: Past, Person: "3", Number: Sing}, gloss: {en: "past tense (preterite): he, she, it"}, notes: {en: "-ó, -ió: compró, comió."}, was: 'form:pret-3s'}
+  - {feats: {Gender: Fem}, pos: PROPN, gloss: {en: "feminine"}}

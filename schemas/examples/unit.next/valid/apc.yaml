@@ -1,4 +1,5 @@
-# A token that writes several lexemes lists them: a clitic, the article and a noun alike.
+# A token that writes several lexemes lists them: a clitic, the article and a noun alike, and
+# marks its base (the one a question about the token asks).
 id: u04-home
 title: {en: "At home"}
 graphemes:
@@ -18,8 +19,28 @@ sentences:
             lexemes:
               - {n: 2, lexeme: b, surface: ب, head: 4, rel: case}
               - {n: 3, lexeme: el, surface: ال, head: 4, rel: det}
-              - {n: 4, lexeme: matbakh, surface: مطبخ}
+              - {n: 4, lexeme: matbakh, surface: مطبخ, base: true, feats: {Number: Sing}}
           - {surface: ., kind: punct}
     translations: {en: "Sami is in the kitchen."}
     tags:
       - {situation: {en: "(at home)"}}
+stories:
+  - id: apc.story.cafe
+    node: apc.home.where
+    title: {en: "Coffee or tea?"}
+    steps:
+      - choose: {prompt: {en: "Where is Sami?"}, options: [{en: "at home"}, {en: "at school"}], answer: 0}
+      - line:
+          ask: complete
+          gap: 'lexeme:matbakh'
+          # A wrong option may be another lexeme, or a word built of two (esm and its ending).
+          distractors: ['lexeme:sami', ['lexeme:esm', 'lexeme:poss-2ms']]
+          forms:
+            apc-Arab/standard:
+              text: المطبخ
+              tokens:
+                - surface: المطبخ
+                  lexemes:
+                    - {lexeme: el, surface: ال}
+                    - {lexeme: matbakh, surface: مطبخ, base: true}
+          translations: {en: "the kitchen"}

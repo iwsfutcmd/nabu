@@ -14,3 +14,10 @@ lexemes:
     pos: NOUN
     gloss: {en: house; home}
     form: uy
+  # Until the language has a lexical-form notation an allomorph is pinned by its spellings.
+  - id: lexeme:poss-1sg
+    realises: {'Person[psor]': "1", 'Number[psor]': Sing}
+    gloss: {en: "my"}
+    allomorphs:
+      - {spelled: {uz-Latn/standard: [m], uz-Cyrl/standard: [м]}}
+      - {spelled: {uz-Latn/standard: [im], uz-Cyrl/standard: [им]}}
