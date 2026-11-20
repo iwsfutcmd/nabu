@@ -5,7 +5,13 @@
 - Amends: [ADR 0142](0142-sound-alike-spelling.md) (`soundAlike`), [ADR 0131](0131-readings-on-new-words.md)
   (a scheme's `variants`), [ADR 0066](0066-meaningful-endings.md) (contrast sets), [ADR
   0054](0054-pronunciation-exercises.md), [ADR 0098](0098-pronunciation-by-choice.md) and [ADR
-  0139](0139-feature-cards.md) (where their options come from); the marks policies of the es and grc profiles
+  0139](0139-feature-cards.md) (where their options come from); the marks policies of the es and grc
+  profiles, which [ADR 0076](0076-cuban-spanish.md) and [ADR 0087](0087-attic-greek.md) decided (a missing
+  accent, and a missing Greek mark, are noted, not failed); [ADR 0141](0141-minimal-ruby.md) (its
+  "Unwritten" ruby reads a scheme's `variants`, removed here); [ADR 0045](0045-ai-services.md) (the judge
+  sees what the grader calls `WRONG`, a verdict that becomes a set of labels)
+- Touches: [ADR 0133](0133-script-tracks-ask-the-reading.md) and [ADR 0134](0134-required-marks.md)
+  (grc-Latn's macrons and chg-Latn's consonant marks are noted, not failed, and some of them carry sound)
 - Builds on: [ADR 0145](0145-lexical-model.md) (one lexical form, projected), [ADR 0146](0146-what-is-learned.md)
   (credit per node)
 
@@ -16,7 +22,8 @@ Several mechanisms already say, piecemeal, what a projection loses: fa's `soundA
 one sound, so which a word takes is learned per word), a profile's marks set (the vowels the script leaves
 out), a scheme's `variants` (chg's vowels written alike), attested tones. Each drives its own cards and its own
 grading. And the grader decides a miss by mechanism (a keyboard typo, a mark, a contrast, another course
-word), so ✗*havlar* is a typo and *esta* for *está* is "accepted with a note".
+word), so ✗*havlar* is a typo and *cafe* for *café* is accepted with a note. (*esta* for *está* is already
+wrong, since *esta* is another word of the course: ADR 0076's own example.)
 
 ## Decision
 
@@ -48,9 +55,9 @@ word), so ✗*havlar* is a typo and *esta* for *está* is "accepted with a note"
 - **The compiler lists each word's leftovers per direction**, and lints any pinned form the stated rules
   can't account for: the per-word parts to teach, and a review list.
 - **A projection may be code, but it is part of the language's data**, kept with it rather than in the
-  pipeline's audio modules (tiberian, attic, toki_pona, greek_translit). A conformance check confirms the code
-  and the profile agree: where the profile says a reading follows from the spelling, the code must get it
-  from the spelling alone. **A standing goal: every transformation as pure data**, so it can be analysed and
+  pipeline's modules (nabu/audio's tiberian, attic and toki_pona; nabu/greek_translit). A conformance check
+  confirms the code and the profile agree: where the profile says a reading follows from the spelling, the
+  code must get it from the spelling alone. **A standing goal: every transformation as pure data**, so it can be analysed and
   run backwards (ordered rewrite rules compile to invertible transducers: Kaplan & Kay 1994).
 
 ### What a miss is
