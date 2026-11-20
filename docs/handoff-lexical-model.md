@@ -15,9 +15,11 @@ restored from the notes, and what was accepted as drafted. The older ADRs they a
 - **Task B, apc:** a draft of all three deliverables is in [lexical-forms/](lexical-forms/apc.md): the schema
   note, a worked entry for every KC, and the review list. No conjugation rule and no affix form is written;
   the note's last two sections say what is open and what the owner has to rule on. Nothing reads it.
-- **Task C:** [the design note](migration-design.md) proposes the formats, the ids, the event change and the
-  order, with eight decisions for the owner at its end. Nothing is built from it, and nothing may be until
-  they approve it.
+- **Task C:** [the design note](migration-design.md) gives the formats, the ids, the event change and the
+  order. The owner approved it on 2026-11-20 with three changes, recorded at its end: the lexicon is flat
+  (units point at it; it is never arranged by unit), old events may be rewritten and old apps need not keep
+  working, and no unit of the new formats is a "word". Deliverable 1, the schemas, is next. Two things read
+  into those answers still wait for the owner, marked "for the owner" in the note.
 - One ruling of round 6 is built: chg's š, ž, ḫ and ǧ are required ([ADR 0134](adr/0134-required-marks.md)'s
   amendment).
 
@@ -168,8 +170,8 @@ it.
 
 ## Task C: the migration (the ADRs are accepted; it starts with a design note for the owner's approval)
 
-The design note is written: [migration-design.md](migration-design.md), awaiting approval. Build nothing
-before the owner has answered its last section.
+The design note is written and approved with changes (2026-11-20): [migration-design.md](migration-design.md).
+Build its deliverables in its order, each whole.
 
 The owner's order: schemas first; a one-time converter in the pipeline that writes the new course sources;
 the lexical-form schemas (Task B's); prompt tags (ADR 0147); script tracks (ADR 0149). Each is one deliverable

@@ -704,10 +704,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   yet built; the older ADRs they amend say so in their headers and still describe the code until the migration lands).
   0144 and 0152 are Proposed. A new ADR is Proposed until the owner accepts it. docs/gameplan-errata.md lists where the
   gameplan was wrong.
-- The lexical model's drafts wait for the owner and nothing reads them: docs/lexical-forms/ (apc's lexical-form schema,
-  entries and review list; rebuilt by docs/prototypes/apc-lexical-forms/build.py, never by hand) and
-  docs/migration-design.md (the migration's formats, with docs/migration/kc-conversion.md). Build nothing from the
-  design note before its last section is answered. docs/handoff-lexical-model.md says where each task stands.
+- The lexical model's migration follows docs/migration-design.md, which the owner approved on 2026-11-20 with three
+  changes: the lexicon is flat (lexicons/<lang>/lexemes.yaml; units point at it, it is never arranged by unit), old
+  events may be rewritten (one `upgrade` function; no reader of the old shape is kept), and nothing in the new formats
+  is a "word" (a token lists its `lexemes`; "word" is for what a learner is shown). Its deliverables land in its
+  order, each whole. docs/lexical-forms/ (apc's lexical-form schema, entries and review list; rebuilt by
+  docs/prototypes/apc-lexical-forms/build.py, never by hand) still waits for the owner, and nothing reads it.
+  docs/handoff-lexical-model.md says where each task stands.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

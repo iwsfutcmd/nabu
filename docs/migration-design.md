@@ -1,13 +1,17 @@
-# The migration to the lexical model: formats, for approval
+# The migration to the lexical model: formats
 
-- Status: a design note for the owner's approval (Task C of [the handoff](handoff-lexical-model.md)),
-  2026-11-20. **Nothing is built from it.** The ADRs decide what is stored and how it behaves
-  ([0145](adr/0145-lexical-model.md) to [0149](adr/0149-script-first.md)); this note proposes the file shapes,
-  the ids, the event change and the order of work. Where it goes beyond an ADR it says "proposed".
+- Status: **approved by the owner on 2026-11-20, with three changes** (Task C of
+  [the handoff](handoff-lexical-model.md)). The lexicon is flat, not arranged by unit; old events may be
+  rewritten, and keeping old apps working is no goal; and no unit of the new formats is a "word". The eight
+  questions and the owner's answers are at the end, and the sections they change are rewritten to them.
+- The ADRs decide what is stored and how it behaves ([0145](adr/0145-lexical-model.md) to
+  [0149](adr/0149-script-first.md)); this note gives the file shapes, the ids, the event change and the order
+  of work. Deliverable 1 (the schemas) may start; nothing is built yet.
 - Its numbers are counted from the repo by
   [prototypes/migration-inventory](prototypes/migration-inventory/) and, for apc, by
   [Task B's prototype](prototypes/apc-lexical-forms/).
-- Decisions it needs from the owner are listed at the end, each with a recommendation.
+- Two things follow from the owner's answers that they have not seen spelled out, and are marked "for the
+  owner" where they stand: what "word" still names in the code, and whether sentences leave their unit files.
 
 ## What there is to convert
 
@@ -23,15 +27,15 @@
 
 ## The order, and what "done" is for each
 
-The owner's order stands. Proposed: the first two deliverables change nothing a learner sees, and the third
-switches all ten courses at once.
+The owner's order stands, and the staging is approved: the first two deliverables change nothing a learner
+sees, and the third switches all ten courses at once.
 
 1. **Schemas.** `schemas/lexicon.schema.json` and `schemas/language.schema.json`, the token and tag changes in
    `course-source`, the profile's correspondences, the event schema's new version. Additive, with examples in
    `schemas/examples` and generated models. Done: `pnpm codegen`, lint, typecheck and tests green; nothing reads
    the new files yet.
 2. **The converter.** `nabu migrate <course>` writes a lexicon and a converted course beside the old ones
-   (`lexicons/<lang>/`, `courses/<id>/next/`), and a report. It runs on all ten courses. Done: every course
+   (`lexicons/<lang>/`, `courses/<id>/next/`), the course's alias table, and a report. It runs on all ten courses. Done: every course
    comes through; the compiler's derivability report has no unexplained finding; each finding left is a
    question for the owner; the checks under "What must not change" pass. Nothing in the app reads the output.
 3. **The switch.** The compiler, the bundle, core, the fold, the events and the UI read the new shape, and the
@@ -48,20 +52,31 @@ switches all ten courses at once.
 
 ## Where the lexicon lives
 
-Proposed: `lexicons/<lang>/` at the repo's root, beside `courses/` and `profiles/`, one per language.
+`lexicons/<lang>/` at the repo's root, beside `courses/` and `profiles/`, one per language.
 
 ```
 lexicons/apc/
   language.yaml        dimensions, classes, defaults, varieties and registers
-  lexemes/u01.yaml …   entries, in files by the unit that first teaches them (any split works)
+  lexemes.yaml         every entry, one list, sorted by id
   rules/               one file per rule, with its vectors (later; empty at the switch)
 ```
 
+- **The lexicon is flat** (the owner): no file of it is a unit's, and no entry says which unit teaches it.
+  Units point at it. A unit's nodes name the lexemes, features and rules they introduce, as they name KCs now,
+  and that is the only place the teaching order is written.
+- So a unit can be rearranged or rebuilt without touching the lexicon: moving a lexeme to another unit edits
+  two `introduces` lists.
+- A unit file has no `kcs:` list any more. "Its own unit or an earlier one" (ADR 0050: distractors, stories)
+  is computed from the course's order, as now.
+- One file a language, sorted by id, so an entry's place never moves and a diff shows only what changed. If a
+  file grows past what can be read (es will have about 750 entries), it is split by the first letter of the
+  id, never by anything a course decides.
 - A course names its lexicon and the range it teaches: `lexicon: apc`, `variety: apc-LB`, `registers:
-  [colloquial]` in `course.yaml`.
-- Two courses of one language share the entries. A unit lists the lexemes it introduces by id, as it lists KCs
-  now.
+  [colloquial]` in `course.yaml`. Two courses of one language share the entries.
 - Entries are written with `nabu.yamlio.dump`.
+- **For the owner:** sentences and stories stay in their unit files, each naming its node, as now. If
+  rearranging units should not move them either, they become a pool the nodes point at. That is a larger
+  change to the course source, and nothing here needs it.
 
 ## The language file
 
@@ -78,7 +93,7 @@ dimensions:                                # what every member of a category mus
   VERB: [Mood, Tense, Person, Number, VerbForm]
   NOUN: [Number]
   ADJ: [Gender, Number]
-defaults:                                  # a default is a rule (ADR 0148): what it gives is no part of a word
+defaults:                                  # a default is a rule (ADR 0148): what it gives is no part of a lexeme
   - {id: gender-a, when: {pos: NOUN, ends: a}, gives: {Gender: Fem}}
   - {id: gender-o, when: {pos: NOUN, ends: o}, gives: {Gender: Masc}}
 classes:                                   # stated, never counted
@@ -92,7 +107,7 @@ classes:                                   # stated, never counted
 
 ## A lexicon entry
 
-One entry is a lexeme. Its id is proposed as `lexeme:<name>`, unique in its language. The name is today's KC
+One entry is a lexeme. Its id is `lexeme:<name>`, unique in its language. The name is today's KC
 name where the KC is a lexeme (`sense:tener` becomes `lexeme:tener`), so most ids change only their prefix.
 
 ```yaml
@@ -166,19 +181,36 @@ Proposed, on the model of ADR 0072:
 
 ## A token
 
-A token names its lexemes, their feature values and, where it agrees or is governed, its UD head and relation
-(round 6). Proposed: UD's multiword tokens, since apc, hbo, fa and chg write several words as one.
+A token is a stretch of text. It names the lexemes it writes and their feature values, and where one of them
+agrees or is governed, its UD head and relation (round 6).
+
+**There is no unit between the token and the lexeme** (the owner: "word" may be used in what a learner is
+shown, never as an internal unit). The note's first version split a token into UD's words. That is gone: a
+stem, a clitic and an affix are all lexemes the token writes, in one list, and nothing has to rule which of
+them is a word. ADR 0145 already says so of the model: Merge goes above the word, and words don't matter for
+learning.
 
 ```yaml
-# today (apc): one written word, clitics as morphs
+# today (apc): the clitics are morphs
 - {surface: بالمطبخ, sense: matbakh, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: مطبخ, kc: 'sense:matbakh'}]}
 
-# proposed
+# the new shape
 - surface: بالمطبخ
-  words:
+  lexemes:
     - {n: 3, lexeme: b, surface: ب, head: 5, rel: case}
     - {n: 4, lexeme: el, surface: ال, head: 5, rel: det}
     - {n: 5, lexeme: matbakh, surface: مطبخ, head: 2, rel: obl}
+```
+
+```yaml
+# today (uz): the affix is a morph
+- {surface: uyga, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: ga, kc: 'form:dat-ga'}]}
+
+# the new shape: the same list, and the same kind of entry as a clitic's
+- surface: uyga
+  lexemes:
+    - {lexeme: uy, surface: uy}
+    - {lexeme: dat, surface: ga}
 ```
 
 ```yaml
@@ -186,22 +218,43 @@ A token names its lexemes, their feature values and, where it agrees or is gover
 - {surface: la, sense: el, form: 'form:fem'}
 - {surface: mano, sense: mano, form: 'form:fem'}
 
-# proposed
+# the new shape: a token that writes one lexeme names it itself
 - {n: 1, surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, head: 2, rel: det}
 - {n: 2, surface: mano, lexeme: mano, feats: {Number: Sing}}
 ```
 
-- **`n`** numbers the words of a sentence, as CoNLL-U does; `head` points at one. It is written only where
-  `head` is.
+- **`lexemes`** lists what the token writes, in the order it writes them. A token that writes one lexeme
+  carries `lexeme` and `feats` itself.
+- **`feats` holds only what is chosen there**: the dimension values. A lexical feature (*mano*'s gender) is
+  the lexeme's and is not repeated. A value that is a lexeme of its own (ADR 0145: PAST, a noun's PL) is
+  written as a feature value where the token does not write it apart (*hablamos*), and as an entry of
+  `lexemes` where it does (uz ‑ga).
+- **`n`** numbers the lexemes an utterance writes, in order; `head` points at one. Both are written only where
+  a relation is.
 - **`head` and `rel` are needed only where agreement or government matters** (ADR 0145): a determiner, an
-  agreeing adjective, a governed case. The converter writes them for those and leaves the rest bare. A full
-  tree comes with the first rule that needs one.
-- **`feats` holds only what the token chooses**: the dimension values. A lexical feature (*mano*'s gender) is
-  the lexeme's and is not repeated.
-- **`surface` on a word of a multiword token** stays, as the morph's surface does today: taps, corrections and
-  the marks' split need it.
+  agreeing adjective, a governed case. The converter writes them for those and leaves the rest bare. UD
+  defines its relations between what it calls words, so an affix takes none: inside a token the list's order
+  is all the structure there is, until a rule needs more. A full tree comes with the first rule that needs
+  one.
+- **`surface` on a lexeme** of a token that writes several stays, as a morph's does today: taps, corrections
+  and the marks' split need it. A lexeme the script does not write keeps an empty surface (ADR 0136).
 - **A token's readings and `vocalized`** stay as pins until its orthography's projections are written, then
   go. `context` (hbo's pause) becomes a feature value or stays a pin, per language.
+
+### What "word" still names
+
+- **In the new formats, nothing.** The lexicon, a token, an event and the fold's new state have lexemes,
+  forms, features, parts and tokens.
+- **What a learner is shown keeps the word:** the word list, a word bank, "new words", the feedback's "another
+  word". Those are messages and the names of cards and pages.
+- **For the owner:** today's code uses it inside in three places, and the note proposes this for each at the
+  switch, when every bundle is rewritten anyway:
+  - TaggedText's token kind `word` (a token of letters, against `punct`, `space`, `number`, `symbol`) is
+    renamed `lexical`. It is the one place the schema itself calls a unit a word.
+  - The fold's and the planner's names (`learnedWords`, `WORD_KINDS`, `wordMatcher`) become the lexeme's, with
+    the fold's rewrite.
+  - Template ids that name a card (`word-bank`, `word-read`, `word-write`) stay: they model nothing, and they
+    are in every logged event.
 
 ## What each KC becomes
 
@@ -210,15 +263,15 @@ By its use, which the inventory counts ([migration/kc-conversion.md](migration/k
 
 | Today | Use | Becomes |
 |---|---|---|
-| `sense:` | a word | `lexeme:` of the same name; or a pinned or listed form of another lexeme, where it is an inflected word (apc `sense:baddi`, `sense:esmak`; the participles) |
+| `sense:` | a glossary entry | `lexeme:` of the same name; or a pinned or listed form of another lexeme, where it is an inflected form (apc `sense:baddi`, `sense:esmak`; the participles) |
 | `form:` pinned on a token (133) | es `form:pret-3s`, grc `form:f-acc`, hbo `form:qatal-3ms` | the token's `feats`. The KC itself goes; what was learned under it is a feature's uses and a rule's branches (ADR 0146) |
 | `form:` written as a morph (127, and 2 also pinned) | uz `form:dat-ga`, apc `form:poss-1sg`, chg's suffixes | a lexeme with `realises` and allomorphs |
-| `form:` with no letters | fa's ezafe on a word that does not write it | a feature value on the token |
+| `form:` with no letters | fa's ezafe on a token that does not write it | a lexeme with an empty surface, as now (ADR 0136) |
 | `construction:` (24) | apc `used-to`, tok `x-ala-x`, lzh `wei-passive` | a rule where its meaning is its parts'; a listed item with slots where it isn't. Decided per construction, with its course (ADR 0145) |
 | `grapheme:` (75) | script tracks | unchanged |
 
-- **Gender and number KCs** (es, apc, hbo, grc: ADR 0132's amendment) become `feats` on agreeing words and a
-  lexical feature on the noun only where no default gives it. The converter proposes each language's defaults
+- **Gender and number KCs** (es, apc, hbo, grc: ADR 0132's amendment) become `feats` on the lexemes that agree
+  and a lexical feature on the noun only where no default gives it. The converter proposes each language's defaults
   from its nouns and lists the exceptions for review.
 - **The 67 second forms** are sorted by the converter: a variant spelling stays a free correspondence's
   output; an inflected form becomes a pinned form with its feats; what it cannot sort is a finding.
@@ -239,7 +292,7 @@ correspondences:
 ```
 
 - `says` is in the lexical form's notation; `written` in the orthography; `when` a context; `kind` free or
-  fixed; `loses` what the other direction cannot recover, which is what makes a word's leftover.
+  fixed; `loses` what the other direction cannot recover, which is what makes a lexeme's leftover.
 - **It is data the grader runs** (ADR 0148): core compiles it once per profile, as it compiles `typo` today,
   and reads a typed answer forwards against the accepted answers' phonemic forms, which the compiler puts in
   the bundle.
@@ -267,8 +320,8 @@ tags:
 
 ### New events
 
-Proposed: the event schema gains a version, and `answer_submitted` and `exercise_presented` change shape under
-it. Old events stay valid as they are, for ever.
+The event schema gains a version, and `answer_submitted` and `exercise_presented` change shape under it. Old
+events are upgraded to it once (below); none stays in the old shape.
 
 ```json
 {"type": "answer_submitted", "schema": 2,
@@ -283,7 +336,7 @@ it. Old events stay valid as they are, for ever.
   part, only where the card made the learner supply it).
 - **`labels`** is ADR 0148's set (slip, orthographic, phonemic, grammatical, regularised, lexical, scope). The
   outcome is still recorded, and follows from the set.
-- **`displayed`** is the words a card showed, each as a lexeme and its feats (ADR 0146: seen is logged).
+- **`displayed`** is what a card showed: each lexeme with its feats (ADR 0146: seen is logged).
 - **A story line read** is not an exercise, so it gets a small event of its own, `story_line_read`, with the
   story, the line and its `displayed`. It is the one new event type.
 - **A part's id** is its node and what of it: `lexeme:tener` (itself), `lexeme:tener|class:go`,
@@ -293,12 +346,19 @@ it. Old events stay valid as they are, for ever.
 
 ### Old events
 
-The fold sees no course, so it cannot rename anything itself (ADR 0145). Proposed:
+The fold sees no course, so it cannot rename anything itself (ADR 0145). The owner: fold old events through a
+table, broadly, and rewrite whatever needs rewriting to fit the schema; keeping old things working is not a
+priority. So:
 
-- **An alias table per course,** written by the converter and committed: `courses/<id>/aliases.yaml`. The
-  compiler puts it in the bundle, so the device and the server fold with the same file.
-- **`replay(events, aliases)`.** An old event is read through its course's table; a new one is read as it is.
-  No event is rewritten, on the device or on the server.
+- **One function upgrades an old event:** `upgrade(event, aliases)` gives the same event in the new shape. It
+  is pure, in core, and the same on the device and the server.
+- **The logs are rewritten once.** The device upgrades its log on the first run of the new build, as it
+  already re-sends held events then (ADR 0108), and keeps the old log aside until the release after. The
+  server upgrades its rows in a job at the deploy. After that every stored event is schema 2.
+- **The fold reads one shape.** No reader of schema 1 is kept: not in the fold, not in the game's replay, not
+  in the server's projections.
+- **An alias table per course** is what `upgrade` reads, written by the converter and committed:
+  `courses/<id>/aliases.yaml`. The compiler puts it in the bundle.
 - **One id that is now several parts** is resolved by the sentence, which an old event names
   (`exercise.item`):
 
@@ -313,25 +373,26 @@ The fold sees no course, so it cannot rename anything itself (ADR 0145). Propose
   The converter knows every sentence's old KCs and new parts, so it writes `by-item` for all of them. A credit
   whose sentence is gone, or that came from a drill, goes to the lexeme itself and to nothing else: it never
   invents a listed form or a rule's branch.
-- **Nothing old counts towards a rule** (ADR 0146): old events do not say what was displayed.
-- **The other places an id is kept** go through the same table: card keys and their FSRS state, open mistakes,
-  a placement's `seeded`, corrections whose item is a KC, and a session's plan kept on the device (a session
-  under way finishes on the plan it has; the next one is planned on the new ids).
-- **The performance model** takes its difficulties per KC today, and ADR 0146 leaves its key open. Proposed for
-  the switch: per part, seeded from the old KC's value through the table. It is retuned before anything is
-  tuned against the simulation.
-- **Old apps** keep uploading schema 1. The server accepts both and folds both. An old app that downloads a
-  new bundle cannot read it. Proposed: the manifest carries a format version, and an app that does not know
-  it keeps the bundle it has and asks to be updated.
-- **`fold-before-r2.ts`** gets a successor: the oracle folds a mixed log (old events, then new) and must agree
-  with `replay`.
+- **Nothing old counts towards a rule** (ADR 0146): an upgraded event has no `displayed`.
+- **The other places an id is kept** are rewritten with the log, through the same table: card keys and their
+  FSRS state come out of the fold again; open mistakes, a placement's `seeded` and corrections whose item is a
+  KC are in events; a session's plan kept on the device is dropped (a session under way is started again).
+- **The performance model** takes its difficulties per KC today, and ADR 0146 leaves its key open. For the
+  switch: per part, seeded from the old KC's value through the table. It is retuned before anything is tuned
+  against the simulation.
+- **Old apps are not kept working.** After the switch the server takes schema 2 only. What an old app uploads
+  is refused event by event and held on the device, as a bad event is today (ADR 0108), and goes up once the
+  app has updated and rewritten its log. An old app cannot read a new bundle: the manifest carries a format
+  version, and an app that does not know it keeps the bundle it has and asks to be updated.
+- **A download made before the switch** (Your progress, restore) is upgraded as it is read.
+- **`fold-before-r2.ts`** gets a successor: the oracle folds an upgraded log and must agree with `replay`.
 
 ### What must be true of a real log on the day
 
 Tested on exported logs, not the simulator (ADR 0145):
 - Every word the old fold calls known or learning is a lexeme the new fold calls the same, or the report says
   why not (it became a form of another lexeme).
-- No word is due that was not, and none stops being due, on the day of the switch.
+- Nothing is due that was not, and nothing stops being due, on the day of the switch.
 - Streaks, XP and the game's projections do not move: they read answers and sessions, not KC ids.
 
 ## What must not change, and how it is checked
@@ -342,7 +403,7 @@ Tested on exported logs, not the simulator (ADR 0145):
 | The 148 reviewed clips (apc 82, fa 37, uz 29) | Each keeps its item, its voice and the exact text its voice was given |
 | The 7,696 clips | None becomes stale: the compiler reports no `audio.stale` in any course (`pnpm courses`) |
 | The 2,193 clips keyed by a KC | The converter renames the item in `audio/index.yaml` with its lexeme and changes nothing else in the entry; a test compares file, sha256, voice and input before and after |
-| A word's voice | A voice is drawn from a seed of the item's id, so a renamed id would redraw it. Proposed: the converter writes the voice every existing item has into `audio/assignment.yaml`, and `assignment` reads a pinned voice before it draws |
+| An item's voice | A voice is drawn from a seed of the item's id, so a renamed id would redraw it. The converter writes the voice every existing item has into `audio/assignment.yaml`, and `assignment` reads a pinned voice before it draws |
 | Sign-offs | None exists on a sentence, story or unit today. The clips' reviews are the ones to keep |
 | A learner's list | The checks on real logs above |
 
@@ -372,7 +433,7 @@ Tested on exported logs, not the simulator (ADR 0145):
   their words now (`AlignOp.note`). No new layout: the list the panel has.
 - **A lexeme's parts** are shown where the word list shows a word today: its entry opens to its parts, each
   with what shows it ("have · 3 of 5"; ADR 0146's table). The explainer's mockups are a starting point. A
-  regular word shows one part and points at its rules.
+  regular lexeme shows one part and points at its rules.
 - **A rule has an entry of its own** in the list ("-ar present: 4 of 6"), new in the UI.
 - All of it is TaggedText through `<T>`, logical CSS, in the visual matrix (LTR, RTL, vertical).
 
@@ -381,7 +442,7 @@ Tested on exported logs, not the simulator (ADR 0145):
 Its own test is the strongest there is (the handoff): every course comes through, and each finding is a
 question. The report, per course:
 
-- sense KCs that are inflected words, and the lexeme each was folded into;
+- sense KCs that are inflected forms, and the lexeme each was folded into;
 - second forms, sorted or not;
 - nouns whose gender no proposed default gives;
 - tokens whose form the lexicon's listed and pinned forms do not account for;
@@ -396,22 +457,25 @@ question. The report, per course:
 - **What the simulated learner knows of a rule** (ADR 0146 leaves it open), and the planner's use of parts.
 - **The script-track gate's test-out** (ADR 0149) and the tracks fa, hbo, apc's Arabic and uz's Cyrillic lack.
 - **How syntax is taught.**
+- **Whether sentences and stories become a pool** the units point at, as the lexicon now is.
 
-## For the owner
+## The owner's decisions (2026-11-20)
 
-Each needs a yes, a no or another answer before deliverable 1 starts. My pick is first.
+The eight questions this note ended with, and what the owner answered. The sections above are rewritten to
+the answers.
 
-1. **The staging:** two silent deliverables (schemas, converter), then one switch of all ten courses. The other
-   way is course by course, with the app reading both shapes for a while.
-2. **`lexicons/<lang>/` at the root,** entries in files by unit. The other way is inside the first course of
-   the language.
-3. **Ids:** `lexeme:<name>`, keeping today's names; a part as `node|what`. The other way is opaque ids with
-   names as labels.
-4. **Old events are never rewritten:** they are folded through a per-course alias table that ships in the
-   bundle. The other way is a one-time rewrite of every stored log, which a device that is offline that day
-   would miss.
-5. **Multiword tokens as UD has them,** for clitic groups. The other way keeps today's `morphs` for clitics
-   and uses `words` nowhere.
-6. **A sign-off per lexicon entry,** hashed as a sentence is, signed once for every course of the language.
-7. **Voices pinned by the converter** in `audio/assignment.yaml`, so a renamed word keeps its voice.
-8. **apc's vocalization stays the voices' source** until the review list's 18 clips are settled.
+| | Asked | Answered | What it changed |
+|---|---|---|---|
+| 1 | Two silent deliverables (schemas, converter), then one switch of all ten courses | "yes, silent then big switch" | Nothing |
+| 2 | `lexicons/<lang>/` at the root, entries in files by unit | Fine, but not by unit: "things should be flatter, to allow for easier rearrangement and retooling of units. units should point towards a common lexicon, the lexicon shouldn't be organized by unit" | One list a language; no entry names a unit; a unit file loses its `kcs:` |
+| 3 | Ids `lexeme:<name>`, keeping today's names; a part as `node` and what of it | "fine by me" | Nothing |
+| 4 | Old events never rewritten, folded through a per-course alias table | "yes broadly, but don't be afraid to rewrite anything if need be to fit the schema. backwards compatibility isn't a high priority" | One `upgrade` function; the logs are rewritten once; no reader of the old shape is kept; old apps are told to update |
+| 5 | UD's multiword tokens for clitic groups | "we should probably shy away from 'word' as a concept at all. it can be used in presenting info to the learner, but not at all as an internal unit" | No `words` under a token: it lists its `lexemes`, stems, clitics and affixes alike. What "word" still names is listed for the owner |
+| 6 | A sign-off per lexicon entry, signed once for every course of the language | "eh, ok, don't care" | Nothing |
+| 7 | Voices pinned by the converter in `audio/assignment.yaml` | "yeah that's fine" | Nothing |
+| 8 | apc's vocalization stays the voices' source until the review list's clips are settled | "that's fine" | Nothing |
+
+**Read into the answers, and not yet seen by the owner** (each is marked "for the owner" where it stands):
+- From 5: the token kind `word` in TaggedText is renamed at the switch, and the fold's names follow; card
+  names that say "word" stay.
+- From 2: sentences and stories stay in their unit files. Whether they should be a pool too was not asked.
