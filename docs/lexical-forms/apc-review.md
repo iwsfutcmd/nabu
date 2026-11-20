@@ -11,10 +11,10 @@ Lebanese, not a verdict: the course may be right and the convention wrong.
 ## In numbers
 
 - **1025** distinct words in the sentences and stories (Arabic, its marks and its Arabizi together).
-- **933** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
-- **83** have a lexical form and do not come back in one of the three.
+- **932** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
+- **84** have a lexical form and do not come back in one of the three.
 - **9** have no lexical form.
-- **358** sense KCs with **415** listed forms: 367 come back, 41 do not, 2 have no form, 5 are written in one script only.
+- **358** sense KCs with **415** listed forms: 366 come back, 42 do not, 2 have no form, 5 are written in one script only.
 - **41** verbs with radicals, a Form and citation forms; 251 of their forms in the sentences are pinned, since no conjugation rule is written yet.
 - **82** clips a listener marked right: for 64 the projection writes the very marks the voice was given; for 18 it writes other marks for a word; 0 were given text the sentences no longer hold.
 
@@ -140,7 +140,13 @@ Arabizi writes the word as it is said, Arabic as it is built (3enna, written wit
 
 - عندنا / 3enna (u12-trip:s.trip.13): written, not said: د: marks: projected عِنْدنا, pinned عِنْدْنا
 
-## 9. ay and aw: the marks and the Arabizi differ, or the glide has no sukun (11)
+## 9. A letter with two sounds, said as the one the projection does not write (1)
+
+The course spells a stop with its own letter nearly everywhere, so each of these letters has one sound in it; here the letter is the fricative's and the Arabizi the stop's. Either the word is respelled or the lexical form needs a sign for it (the note, 'Letters whose sound is not their letter's').
+
+- بآذار / b adar (u16-dates:s.date.15): letter and sound: ذ written d in Arabizi: arabizi: b adar is not among the projected spellings (bazar first)
+
+## 10. ay and aw: the marks and the Arabizi differ, or the glide has no sukun (11)
 
 The course writes a diphthong's glide with a sukun in some words (عَيْلِة) and without in others (هَيدا); and the marks write ay where the Arabizi has a long e (7zeiran).
 
@@ -156,7 +162,7 @@ The course writes a diphthong's glide with a sukun in some words (عَيْلِة
 - بهيدي / b hayde (u11-people:s.ppl.15): marks: projected بْهَيْدي, pinned بْهَيدي
 - بحزيران / b 7zeiran (u16-dates:s.date.18): diphthong: the marks write ay, Arabizi ei: marks: projected بْحْزيران, pinned بْحْزَيْران
 
-## 10. The marks do not follow the convention the other words follow (13)
+## 11. The marks do not follow the convention the other words follow (13)
 
 Each differs from what the projection writes in its own way: the difference is on the line.
 
@@ -174,7 +180,7 @@ Each differs from what the projection writes in its own way: the difference is o
 - فيها / fiya (u13-health:s.health.16): marks: projected فِيها, pinned فيها
 - الله / allah (u20-celebrations:s.party.2): marks: projected اَلْلَه, pinned الله
 
-## 11. Verbs and participles (7)
+## 12. Verbs and participles (7)
 
 A citation form the course does not write and Kline does not list, or a participle the template makes otherwise.
 
@@ -186,7 +192,7 @@ A citation form the course does not write and Kline does not list, or a particip
 - `sense:3azam` 3azam / ye3zem: Kline does not list it. The present vowel is read off e3zmak, where it has dropped: REVIEW.
 - `sense:3ajab` 3ajab / ye3jeb: Kline does not list it, and the course has no present form: the present is a guess. REVIEW.
 
-## 12. The reviewed clips whose marks the projection does not write (18)
+## 13. The reviewed clips whose marks the projection does not write (18)
 
 A reviewed clip depends on the exact text its voice was given (the handoff's Task C). These would be read
 from other marks if the projection replaced the course's vocalization as it stands.
@@ -210,7 +216,7 @@ from other marks if the projection replaced the course's vocalization as it stan
 - `s.food.16`: بَدَّك لَبَن مَع الخِبِز؟: the projection writes other marks for الخِبِز
 - `s.food.7`: بَدّي خِبِز.: the projection writes other marks for خِبِز
 
-## 13. How the course's Arabizi spells what is left free
+## 14. How the course's Arabizi spells what is left free
 
 Not a list of faults: each row is a correspondence with more than one spelling, and how often the
 course's sentences use each (distinct words). The projection writes the commoner one first.

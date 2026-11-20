@@ -27,6 +27,10 @@ READ["\u062c"] |= {"g"}
 READ["\u0643"] |= {"c", "g"}  # g: a loan's g written with kaf (englize); the draft writes it with gaf
 READ["\u0633"] |= {"c"}  # a loan in its French spelling (merci)
 READ["\u0641"] |= {"ph"}
+# The stop a fricative's letter may be said as: read, with a note, since the letter does not say which.
+STOPS = {"\u062b": {"t", "th"}, "\u0630": {"d"}, "\u0638": {"d"}}
+for _letter, _stops in STOPS.items():
+    READ[_letter] |= _stops
 GAF = "\u06af"
 SHORT_OF = {"a": lf.FATHA, "e": lf.KASRA, "i": lf.KASRA, "o": lf.DAMMA, "u": lf.DAMMA}
 CLASS_OF = {"a": "a", "e": "i", "i": "i", "o": "u", "u": "u"}
@@ -203,6 +207,8 @@ def draft(arabic: str, marked: str | None, arabizi: str, articles: frozenset[int
                 # Written doubled.
                 cons.append((j2 + len(c), True, miss + (0.0 if marked_double else 0.3), notes + (() if marked_double else ("doubled in Arabizi, no shadda in the course's marks",))))
             once = ("doubled in the marks, written once in Arabizi",) if marked_double and c and not doubled else ()
+            if c in STOPS.get(u.letter, ()):
+                notes += (f"letter and sound: {u.letter} written {c} in Arabizi",)
             cons.append((j2, marked_double, miss + (0.3 if once else 0.0), notes + once))
         for j2, gem, c_cost, c_notes in cons:
             said_g = u.letter == "\u0643" and latin.startswith("g", j) and not latin.startswith("k", j)

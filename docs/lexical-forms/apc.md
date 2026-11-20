@@ -19,11 +19,11 @@
 
 - The course's sentences and stories hold **1,025** distinct words (an Arabic spelling, its vowel marks and its
   Arabizi, taken together). A lexical form was drafted for each from those three.
-- **933** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
-  among the spellings the correspondences give. **83** have a form and differ in one of the three. **9** have
-  no form. Ten of those 92 are the prototype's own doing, not the course's: its reader paired the wrong
+- **932** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
+  among the spellings the correspondences give. **84** have a form and differ in one of the three. **9** have
+  no form. Ten of those 93 are the prototype's own doing, not the course's: its reader paired the wrong
   Arabizi word (the review list's first section).
-- Of the **415** forms the KCs list, 367 come back, 41 do not, 2 have no form and 5 are written in one script.
+- Of the **415** forms the KCs list, 366 come back, 42 do not, 2 have no form and 5 are written in one script.
 - Of the **82** clips a listener marked right, the projection writes the very marks the voice was given for
   **64**. For 18 it writes other marks for one word: هَيدا or هَيدي in 15 (the course leaves the sukun off
   their glide), a helping vowel in 2, الحمدلله in 1.
@@ -120,8 +120,8 @@ them and an editor may drop what it cannot show. [apc.yaml](apc.yaml) does so. O
 
 - **The course mostly spells the stop where a stop is said** (ت for ث, د for ذ in هيدا, ض for ظ), so each of
   these letters has one sound in it. The one exception is آذار, written with ذ and said *adar* in the course's
-  Arabizi. The projection gives z first and d as well, which is wrong as a free pair: either the word is
-  respelled, or the form needs a sign for "said as the stop". REVIEW.
+  Arabizi. The projection gives z, so the word is on the review list: either it is respelled, or the form
+  needs a sign for "said as the stop". REVIEW.
 - **A q that is said q** (a learned word) will need a sign when the course has one. None is proposed.
 - **A loan's g, p and v** are written گ, پ and ڤ in the lexical form, and the spelling projection turns them
   into ك, ب and ف, which is how the course writes them. إنكليزي is the one such word.
@@ -327,6 +327,6 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 2. **The helping vowel:** written in the marks the voices read, or not. This decides 18 of the 82 reviewed
    clips.
 3. **Long a said e:** stored on each word, as here, or given by a rule with exceptions. Kline has no rule.
-4. **The review list:** 83 words where the course's three spellings do not agree with one form, and 9 with
+4. **The review list:** 84 words where the course's three spellings do not agree with one form, and 9 with
    none. Most are for a speaker of Lebanese, not for a rule.
 5. **The seven verbs Kline does not list,** and the three whose middle or last radical no form shows.

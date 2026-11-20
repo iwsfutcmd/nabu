@@ -137,6 +137,8 @@ def classify(problem: str, notes: tuple[str, ...]) -> str:
         return "doubled"
     if "written, not said" in text:
         return "silent"
+    if "letter and sound" in text:
+        return "letter"
     if "diphthong" in text or re.search("pinned .*\u064e[\u064a\u0648](?![\u0652\u064e\u0650\u064f\u0651])", problem) and "\u064e\u064a\u0652" in problem + "\u064e\u0648\u0652":
         return "glide"
     if "vowel:" in text:
@@ -169,6 +171,7 @@ HEADINGS = {
     "helper": "The marks write a vowel the Arabizi leaves out, between a word's last two consonants",
     "doubled": "Doubled in one script and not in the other",
     "silent": "A letter is written and the Arabizi does not say it",
+    "letter": "A letter with two sounds, said as the one the projection does not write",
     "glide": "ay and aw: the marks and the Arabizi differ, or the glide has no sukun",
     "other": "The marks do not follow the convention the other words follow",
 }
@@ -181,6 +184,7 @@ WHY = {
     "helper": "A helping vowel (\u062e\u0650\u0628\u0650\u0632 khebz): the drafted form leaves it out, as the Arabizi does, and the projection writes none. Kline writes shames but wa2t, and kalb beside kalib (the notes, \u00a71.4): no rule. The voices were given these marks, so they said the vowel.",
     "doubled": "A doubled letter tells words apart (mara, a woman; marra, once), so the projection writes it twice and takes nothing else. Here the marks have a shadda and the Arabizi one letter (bas, nos), or the Arabizi doubles a letter the marks leave single (a loan's spelling: dollar). Some are one spelling for two words: the course's vocalization gives \u0645\u0631\u0629, a woman, the shadda of once.",
     "silent": "Arabizi writes the word as it is said, Arabic as it is built (3enna, written with its d).",
+    "letter": "The course spells a stop with its own letter nearly everywhere, so each of these letters has one sound in it; here the letter is the fricative's and the Arabizi the stop's. Either the word is respelled or the lexical form needs a sign for it (the note, 'Letters whose sound is not their letter's').",
     "glide": "The course writes a diphthong's glide with a sukun in some words (\u0639\u064e\u064a\u0652\u0644\u0650\u0629) and without in others (\u0647\u064e\u064a\u062f\u0627); and the marks write ay where the Arabizi has a long e (7zeiran).",
     "other": "Each differs from what the projection writes in its own way: the difference is on the line.",
 }
