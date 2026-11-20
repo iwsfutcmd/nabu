@@ -684,6 +684,25 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   tones, support text in its own language, ids). The word list's `wordMatcher` and the Data page's `dataMatcher` call
   it; never write another. A sentence is also found by a KC it lists (form:dat).
 
+## Lexical model migration notes (see docs/migration-design.md, ADRs 0145–0149)
+- The migration lands in the note's order, each deliverable whole: the schemas (built), a converter that writes a lexicon
+  and a converted course beside the old ones, then one switch of all ten courses. Until the switch nothing a learner
+  sees changes, and no code outside tests and the converter may name a `Next*` type or read a lexicon.
+- The new shapes: schemas/language.schema.json (a language's dimensions, features, defaults, classes; a category is a
+  UD tag), lexicon.schema.json (`Lexeme`; `status: listed` needs its `statement`, `pinned` is never a learner's part),
+  course-source.next.schema.json and learner-event.next.schema.json (each derived from the shape it replaces: at the
+  switch they take its place and lose the `Next`), aliases.schema.json (what each KC id became).
+- The lexicon is flat (the owner): lexicons/<lang>/lexemes.yaml, sorted by id. No entry names a unit; a unit's nodes
+  point at it and the unit defines nothing but its script track's `graphemes`.
+- Nothing inside is a "word" (the owner): the units are lexeme, form, feature, part and token. A token lists the
+  `lexemes` it writes, stems, clitics and affixes alike; never add a level between a token and a lexeme. "Word" is for
+  what a learner is shown (messages, card and page names).
+- Old events are upgraded, not kept: one `upgrade(event, aliases)`, the logs rewritten once, no reader of schema 1 after
+  the switch. Keeping old apps working is no goal.
+- Schema files are written compactly by hand: add a definition as text. Re-dumping a file with a JSON library rewrites
+  every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
+  (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
+
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
   (`:root[data-theme="dark"]`, and `prefers-color-scheme: dark` when nothing is chosen). A new colour gets a value in

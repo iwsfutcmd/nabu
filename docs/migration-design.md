@@ -6,7 +6,7 @@
   questions and the owner's answers are at the end, and the sections they change are rewritten to them.
 - The ADRs decide what is stored and how it behaves ([0145](adr/0145-lexical-model.md) to
   [0149](adr/0149-script-first.md)); this note gives the file shapes, the ids, the event change and the order
-  of work. Deliverable 1 (the schemas) may start; nothing is built yet.
+  of work. Deliverable 1 (the schemas) is built ("Deliverable 1, as built", below); the converter is next.
 - Its numbers are counted from the repo by
   [prototypes/migration-inventory](prototypes/migration-inventory/) and, for apc, by
   [Task B's prototype](prototypes/apc-lexical-forms/).
@@ -33,7 +33,7 @@ sees, and the third switches all ten courses at once.
 1. **Schemas.** `schemas/lexicon.schema.json` and `schemas/language.schema.json`, the token and tag changes in
    `course-source`, the profile's correspondences, the event schema's new version. Additive, with examples in
    `schemas/examples` and generated models. Done: `pnpm codegen`, lint, typecheck and tests green; nothing reads
-   the new files yet.
+   the new files yet. **Built on 2026-11-20:** "Deliverable 1, as built", below.
 2. **The converter.** `nabu migrate <course>` writes a lexicon and a converted course beside the old ones
    (`lexicons/<lang>/`, `courses/<id>/next/`), the course's alias table, and a report. It runs on all ten courses. Done: every course
    comes through; the compiler's derivability report has no unexplained finding; each finding left is a
@@ -162,7 +162,7 @@ name where the KC is a lexeme (`sense:tener` becomes `lexeme:tener`), so most id
       - {form: ka, after: {ends: k}}
       - {form: qa, after: {ends: q}}
   ```
-- **A concept** links lexemes that differ only socially (ADR 0145): `concept: EAT` on each. No concept file.
+- **A concept** links lexemes that differ only socially (ADR 0145): `concept: concept:EAT` on each. No concept file.
 - **What an entry does not hold:** a spelling in each orthography, a reading, vowel marks. Those are
   projections of `form` (ADR 0148). Where a projection is not written yet, the entry pins them as today's KC
   forms do: `spelled: {apc-Latn/arabizi: ahwe}`, marked pinned.
@@ -253,8 +253,10 @@ learning.
     renamed `lexical`. It is the one place the schema itself calls a unit a word.
   - The fold's and the planner's names (`learnedWords`, `WORD_KINDS`, `wordMatcher`) become the lexeme's, with
     the fold's rewrite.
-  - Template ids that name a card (`word-bank`, `word-read`, `word-write`) stay: they model nothing, and they
-    are in every logged event.
+  - Template ids that name a card (`word-bank`, `word-read`, `word-write`) and the course switch for ADR
+    0152's cards (`wordParts`) stay: they model nothing, and the template ids are in every logged event.
+  - Corrections address a sentence's tokens as "words" (ADR 0051: by their index among a form's words). That
+    becomes an index among its tokens with the events' rewrite.
 
 ## What each KC becomes
 
@@ -268,7 +270,7 @@ By its use, which the inventory counts ([migration/kc-conversion.md](migration/k
 | `form:` written as a morph (127, and 2 also pinned) | uz `form:dat-ga`, apc `form:poss-1sg`, chg's suffixes | a lexeme with `realises` and allomorphs |
 | `form:` with no letters | fa's ezafe on a token that does not write it | a lexeme with an empty surface, as now (ADR 0136) |
 | `construction:` (24) | apc `used-to`, tok `x-ala-x`, lzh `wei-passive` | a rule where its meaning is its parts'; a listed item with slots where it isn't. Decided per construction, with its course (ADR 0145) |
-| `grapheme:` (75) | script tracks | unchanged |
+| `grapheme:` (75) | script tracks | unchanged, and listed by the unit whose script nodes teach them (`graphemes:`), since a unit no longer lists KCs |
 
 - **Gender and number KCs** (es, apc, hbo, grc: ADR 0132's amendment) become `feats` on the lexemes that agree
   and a lexical feature on the noun only where no default gives it. The converter proposes each language's defaults
@@ -364,13 +366,13 @@ priority. So:
 
   ```yaml
   sense:tener:
-    part: lexeme:tener                                   # where the sentence is not known
-    by-item: {s.past.12: [lexeme:tener, 'lexeme:tener|stem:tuv']}
+    part: 'lexeme:tener'                                 # where the sentence is not known
+    byItem: {s.past.12: ['lexeme:tener', 'lexeme:tener|stem:tuv']}
   form:pret-3s:
-    by-item: {s.past.12: ['feature:Tense=Past|use:completed']}
+    byItem: {s.past.12: ['feature:Tense=Past|use:completed']}
   ```
 
-  The converter knows every sentence's old KCs and new parts, so it writes `by-item` for all of them. A credit
+  The converter knows every sentence's old KCs and new parts, so it writes `byItem` for all of them. A credit
   whose sentence is gone, or that came from a drill, goes to the lexeme itself and to nothing else: it never
   invents a listed form or a rule's branch.
 - **Nothing old counts towards a rule** (ADR 0146): an upgraded event has no `displayed`.
@@ -458,6 +460,48 @@ question. The report, per course:
 - **The script-track gate's test-out** (ADR 0149) and the tracks fa, hbo, apc's Arabic and uz's Cyrillic lack.
 - **How syntax is taught.**
 - **Whether sentences and stories become a pool** the units point at, as the lexicon now is.
+
+## Deliverable 1, as built
+
+The schemas, with examples of what validates and what must not (`schemas/examples/`) and the generated
+TypeScript and Pydantic types. Nothing reads them: no code names one of the new types yet.
+
+| File | What it holds |
+|---|---|
+| `schemas/language.schema.json` | `LanguageDeclaration`: varieties, registers, dimensions by UD tag, features and their values, defaults, classes |
+| `schemas/lexicon.schema.json` | `Lexicon` and `Lexeme`, with the shapes of a lexical form (a string, a base's radicals, a pattern's templates, a listed item's parts, a logograph), listed and pinned forms, allomorphs, scope |
+| `schemas/course-source.next.schema.json` | The course source in the new shape: `NextToken` with its `lexemes`, `PromptTag`, units that define no lexemes |
+| `schemas/learner-event.next.schema.json` | Every event at schema 2: `PartCredit`, a miss's labels, `displayed`, `story_line_read` |
+| `schemas/aliases.schema.json` | `AliasTable`: what each old KC id became |
+| `schemas/common.schema.json` | The ids: `LexemeId`, `RuleId`, `FeatureValueId`, `TeachableId`, `PartId`, `ConceptId`; `Skill`, `MissLabel`, `Question` |
+| `schemas/orthography-profile.schema.json`, `reading-scheme.schema.json` | `Correspondence`, as an optional `correspondences` |
+
+**Settled while writing them** (each is small, and none is in the sections above):
+- **The new course source and the new events are files of their own,** with `Next` before the names they
+  replace. Each was derived from the shape it replaces, so nothing else differs. At the switch they take the
+  old files' places and the prefix goes. Changing the live schemas in place would have loosened them for the
+  courses and events that exist.
+- **A unit lists its `graphemes`:** the letters its script nodes teach. They are no lexemes, and a unit has
+  no `kcs` to hold them.
+- **A sentence's `uses`** is what `constructions` was: the rules and listed items it is an example of, until
+  rules are written and the compiler can find them.
+- **`Question`** (`lexeme`, `form`, `use`) replaces `Asks` (`word`, `form`): ADR 0147's third question, and
+  no "word".
+- **`Skill`** is the six facets and two more for a feature's use: `choose` and `read-off` (ADR 0146's table).
+- **A dialect tag is not in the source's `PromptTag`:** the compiler derives it (ADR 0147), so only the bundle
+  will have it.
+- **Conditions are small:** a default's `when` and an allomorph's `after` and `before` look at a part of
+  speech, an ending, a beginning, a class and feature values. They grow with the rule format.
+
+**Left to lints,** since the schema files use none of JSON Schema's conditional keywords and both code
+generators are kept on the constructs they already handle:
+- an entry is one of three kinds: it has `pos`, `realises` or `head`;
+- a form has `form` or `stem`;
+- a token names its one lexeme or lists several, never both;
+- `head` and `rel` come together, and `head` names an `n` of the utterance;
+- a lexeme's classes, a token's feature values and a scope's varieties are ones its language declares.
+
+The converter (deliverable 2) writes against these and reports what they do not hold.
 
 ## The owner's decisions (2026-11-20)
 

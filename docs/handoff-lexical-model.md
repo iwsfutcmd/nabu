@@ -18,8 +18,9 @@ restored from the notes, and what was accepted as drafted. The older ADRs they a
 - **Task C:** [the design note](migration-design.md) gives the formats, the ids, the event change and the
   order. The owner approved it on 2026-11-20 with three changes, recorded at its end: the lexicon is flat
   (units point at it; it is never arranged by unit), old events may be rewritten and old apps need not keep
-  working, and no unit of the new formats is a "word". Deliverable 1, the schemas, is next. Two things read
-  into those answers still wait for the owner, marked "for the owner" in the note.
+  working, and no unit of the new formats is a "word". Deliverable 1, the schemas, is built (the note's
+  "Deliverable 1, as built"); deliverable 2, the converter, is next. Two things read into those answers still
+  wait for the owner, marked "for the owner" in the note.
 - One ruling of round 6 is built: chg's š, ž, ḫ and ǧ are required ([ADR 0134](adr/0134-required-marks.md)'s
   amendment).
 
