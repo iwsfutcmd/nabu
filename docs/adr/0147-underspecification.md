@@ -3,7 +3,9 @@
 - Status: Proposed
 - Date: 2026-11-19
 - Amends: [ADR 0085](0085-what-the-prompt-leaves-open.md) (accept sets), [ADR 0056](0056-persons.md) and
-  [ADR 0075](0075-persons-coverage.md) (person tags), [ADR 0076](0076-cuban-spanish.md) (es: pan-Hispanic forms accepted)
+  [ADR 0075](0075-persons-coverage.md) (person tags), [ADR 0076](0076-cuban-spanish.md) (es: pan-Hispanic
+  forms accepted), [ADR 0084](0084-hbo-references.md) (hbo: the other orders and forms its accept sets take,
+  which the lint below meets)
 - Builds on: [ADR 0145](0145-lexical-model.md) (inherent features, scopes, concepts)
 
 ## Context
@@ -24,7 +26,7 @@ answer per prompt; some will still have several (word order and the like), as cl
 | the target language | **tag the prompt**: one answer | nothing to do (English "he" → lzh 其) |
 | their own language | **accept every rendering** (tok *ona*; lzh's tense) | nothing to do (apc *kifik* → "how are you") |
 
-The owner decided these, and the two below, in round 1:
+The owner decided these, and the two below (the notes record them as decided in lexemes.md §12):
 - **When the answer can't say what the prompt does, nothing is tagged.** The learner is trusted to know that
   lzh doesn't mark gender; the target's gloss already says what collapses (其: his, her, its, their). An
   answer that adds the gender with extra words (男子 "the man") translates back to another sentence, so ADR
