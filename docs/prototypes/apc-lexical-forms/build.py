@@ -237,7 +237,7 @@ def main() -> None:
     out.append("language: apc")
     out.append("variety: apc-LB (Beirut)")
     out.append("license: CC-BY-SA-4.0")
-    out.append("provenance: {author: 'llm:claude@fable-5.2', status: draft}")
+    out.append("provenance: {author: 'llm:claude@apc-lexical-forms-v1', status: draft}")
     out.append("lexemes:")
 
     review: dict[str, list[str]] = collections.defaultdict(list)
