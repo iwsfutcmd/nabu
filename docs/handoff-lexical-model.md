@@ -8,9 +8,18 @@ is theirs.
 **Where things stand (2026-11-20).** Task A is done: [the review](review-adr-0145-0151.md). The owner
 answered a fifth round of questions that came out of it and a sixth on what the revision proposed
 (lexemes.md §16), and accepted all seven ADRs. Each ends with what the owner decided in each round, what was
-restored from the notes, and what was accepted as drafted. Tasks B and C are not started. The older ADRs they
-amend carry a line saying so ("Decided, not yet built"): until the migration lands, those older ADRs still
-describe the code.
+restored from the notes, and what was accepted as drafted. The older ADRs they amend carry a line saying so
+("Decided, not yet built"): until the migration lands, those older ADRs still describe the code.
+
+**Tasks B and C were started the same night, without the owner, and both wait for them:**
+- **Task B, apc:** a draft of all three deliverables is in [lexical-forms/](lexical-forms/apc.md): the schema
+  note, a worked entry for every KC, and the review list. No conjugation rule and no affix form is written;
+  the note's last two sections say what is open and what the owner has to rule on. Nothing reads it.
+- **Task C:** [the design note](migration-design.md) proposes the formats, the ids, the event change and the
+  order, with eight decisions for the owner at its end. Nothing is built from it, and nothing may be until
+  they approve it.
+- One ruling of round 6 is built: chg's š, ž, ḫ and ǧ are required ([ADR 0134](adr/0134-required-marks.md)'s
+  amendment).
 
 **Where the files are.** Everything is on `main` since 2026-11-20: the accepted ADRs, the notes with all six
 rounds, the review and this file. If your checkout's `docs/adr/0145-lexical-model.md` says "Status:
@@ -82,6 +91,9 @@ take. End with the three findings you think matter most.
 
 ## Task B: a lexical-form schema, apc first
 
+Drafted on 2026-11-20 for apc: [lexical-forms/apc.md](lexical-forms/apc.md), awaiting the owner's review. The
+brief stays as the record of what was asked; pick the task up from the note's "What is not done".
+
 ADR 0145: each morpheme stores one lexical form, in its own script, fully specified, and every orthography and
 phonemic form is projected from it; where the script can't say something, invent an in-script convention,
 never a pair of forms side by side. apc (North Levantine Arabic, Beirut) has none yet and comes first. Then, if
@@ -128,6 +140,9 @@ not the PDF's text layer. Where a form needs a native speaker's judgement, flag 
 it.
 
 ## Task C: the migration (the ADRs are accepted; it starts with a design note for the owner's approval)
+
+The design note is written: [migration-design.md](migration-design.md), awaiting approval. Build nothing
+before the owner has answered its last section.
 
 The owner's order: schemas first; a one-time converter in the pipeline that writes the new course sources;
 the lexical-form schemas (Task B's); prompt tags (ADR 0147); script tracks (ADR 0149). Each is one deliverable
