@@ -1,0 +1,9 @@
+# What three KC ids of a course became. Written by the converter.
+course: es
+aliases:
+  sense:casa: {part: 'lexeme:casa'}
+  sense:tener:
+    part: 'lexeme:tener'
+    byItem: {s.past.12: ['lexeme:tener', 'lexeme:tener|stem:tuv']}
+  form:pret-3s:
+    byItem: {s.past.12: ['feature:Tense=Past|use:completed']}

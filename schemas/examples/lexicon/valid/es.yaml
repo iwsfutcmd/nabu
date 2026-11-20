@@ -1,0 +1,27 @@
+# From ADR 0146's table: what each of these stores is what there is to learn of it.
+language: es
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@fable-5.2', status: draft}
+lexemes:
+  - id: lexeme:casa            # feminine by its -a: nothing stored but itself
+    pos: NOUN
+    gloss: {en: house}
+    form: casa
+  - id: lexeme:guagua
+    pos: NOUN
+    gloss: {en: bus}
+    form: guagua
+    scope: {varieties: [es-CU]}
+    concept: concept:BUS
+  - id: lexeme:mano            # the -o default would give Masc, so its gender is stored
+    pos: NOUN
+    gloss: {en: hand}
+    form: mano
+    feats: {Gender: Fem}
+  - id: lexeme:tener
+    pos: VERB
+    gloss: {en: have}
+    form: tener
+    classes: [e-ie, go, short-future]
+    forms:
+      - {feats: {Tense: Past}, stem: tuv, status: listed, statement: {author: 'llm:claude@fable-5.2', status: draft}}

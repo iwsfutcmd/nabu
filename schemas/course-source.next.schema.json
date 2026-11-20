@@ -1,0 +1,497 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/course-source.next.schema.json",
+  "title": "NextCourseSource",
+  "description": "A course in the shape the lexical model needs (docs/migration-design.md, deliverable 1): the same course.yaml, pointing at its language's lexicon. Written by the converter beside the course it converts (courses/<id>/next/) and read by nothing until the switch, when it replaces course-source.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.",
+  "type": "object",
+  "required": ["id", "target", "orthographies", "support", "units", "lexicon"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "course-source.schema.json#/$defs/Slug" },
+    "target": { "$ref": "common.schema.json#/$defs/ScriptedLangTag" },
+    "orthographies": {
+      "description": "Orthographies the course teaches; the first is the default. Learners may switch (§6.3, apc).",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/OrthographyId" }
+    },
+    "support": {
+      "description": "Support-language layers, as orthography ids (en-Latn/standard).",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/OrthographyId" }
+    },
+    "names": {
+      "description": "What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).",
+      "$ref": "common.schema.json#/$defs/CourseNames"
+    },
+    "license": {
+      "$ref": "course-source.schema.json#/$defs/Spdx",
+      "description": "Default SPDX license for every content item that gives none."
+    },
+    "provenance": {
+      "$ref": "course-source.schema.json#/$defs/Provenance",
+      "description": "Default provenance for every content item that gives none."
+    },
+    "facets": {
+      "description": "The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/Facet" }
+    },
+    "placement": { "$ref": "common.schema.json#/$defs/PlacementPolicy" },
+    "consistentReadings": {
+      "description": "Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.",
+      "type": "boolean"
+    },
+    "wordParts": {
+      "description": "The course asks words by their parts (ADR 0152): a lesson may ask a word built from its parts (`parts-whole`: its own word and the form or morphs it carries, typed) and a word's parts picked out (`whole-parts`). Off unless set: a course switches it on once the parts its tokens carry (`form`, `morphs`) have been checked.",
+      "type": "boolean"
+    },
+    "iPlusOne": {
+      "description": "Maximum new knowledge components per sentence (§7.5). Default 1.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [{ "type": "string", "description": "Path to a unit file, relative to course.yaml." }, { "$ref": "#/$defs/NextUnitSource" }]
+      }
+    },
+    "drills": {
+      "type": "array",
+      "items": { "$ref": "course-source.schema.json#/$defs/DrillSpec" }
+    },
+    "audio": { "$ref": "course-source.schema.json#/$defs/CourseAudio" },
+    "vocalization": {
+      "description": "Vowel marks for the course's words, by orthography (ADR 0053): a file next to course.yaml, or given inline. The compiler marks every word of sentences, stories and word forms with them, so the vowel-marks toggle has something to show.",
+      "type": "array",
+      "items": {
+        "oneOf": [{ "type": "string", "pattern": "^[A-Za-z0-9_./-]+\\.yaml$" }, { "$ref": "course-source.schema.json#/$defs/VocalizationSource" }]
+      }
+    },
+    "lexicon": {
+      "description": "The language whose lexicon the course draws on (lexicons/<lang>/).",
+      "$ref": "common.schema.json#/$defs/LanguageCode"
+    },
+    "variety": {
+      "description": "The variety the course teaches, one of its language's (ADR 0145: an utterance has one). Dialect tags on prompts are derived from it (ADR 0147).",
+      "$ref": "common.schema.json#/$defs/LangTag"
+    },
+    "registers": {
+      "description": "The registers the course teaches, of its language's.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/RegisterId" }
+    }
+  },
+  "$defs": {
+    "NextUnitSource": {
+      "title": "NextUnitSource",
+      "type": "object",
+      "required": ["id", "nodes", "sentences"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "course-source.schema.json#/$defs/Slug" },
+        "title": {
+          "description": "Per support language (the key is a support orthography's language, e.g. en).",
+          "type": "object",
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "cefr": { "$ref": "course-source.schema.json#/$defs/Cefr" },
+        "nodes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/NextPathNodeSource" }
+        },
+        "sentences": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NextSentenceSource" }
+        },
+        "stories": {
+          "description": "Stories (gameplan §8.2 `story`, Phase 6): dialogue to read, each on a path node of kind story.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/NextStorySource" }
+        },
+        "scenarios": {
+          "description": "Roleplay scenario cards (gameplan §13.4, Phase 8).",
+          "type": "array",
+          "items": { "$ref": "course-source.schema.json#/$defs/ScenarioSource" }
+        },
+        "graphemes": {
+          "description": "The letters this unit's script nodes teach (ADR 0149: a grapheme stays the script track's, never the lexicon's).",
+          "type": "array",
+          "items": { "$ref": "#/$defs/GraphemeSource" }
+        }
+      },
+      "description": "A unit of a course in the new shape (docs/migration-design.md). It defines no lexemes: its nodes point at the language's lexicon, so a unit can be rearranged without touching it. The letters its script nodes teach are the one thing it still lists."
+    },
+    "GraphemeSource": {
+      "title": "GraphemeSource",
+      "description": "A letter, a digraph or a mark a script track teaches: what a grapheme KC was.",
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^grapheme:[^\\s|]+$" },
+        "gloss": {
+          "description": "Short meaning per support language.",
+          "type": "object",
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "forms": {
+          "description": "How it is written, per orthography: a letter's forms, and in a Latin orthography what a script track asks it as (ADR 0133).",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "notes": {
+          "type": "object",
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "NextPathNodeSource": {
+      "title": "NextPathNodeSource",
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "course-source.schema.json#/$defs/Slug" },
+        "kind": { "type": "string", "enum": ["lesson", "practice", "story", "review", "challenge", "script"] },
+        "introduces": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/TeachableId" }
+        },
+        "reinforces": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/TeachableId" }
+        },
+        "alphabet": {
+          "description": "script nodes that teach an orthography from scratch (ADR 0088): lexemes for reading and writing practice, each one whose citation form the letters taught by this node and the ones before it spell.",
+          "type": "object",
+          "required": ["orthography", "lexemes"],
+          "additionalProperties": false,
+          "properties": {
+            "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+            "lexemes": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "common.schema.json#/$defs/LexemeId" }
+            }
+          }
+        },
+        "convert": {
+          "description": "script nodes: convert sentences between two orthographies (script-convert, §6.3).",
+          "type": "object",
+          "required": ["from", "to", "sentences"],
+          "additionalProperties": false,
+          "properties": {
+            "from": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+            "to": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+            "sentences": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "NextSentenceSource": {
+      "title": "NextSentenceSource",
+      "type": "object",
+      "required": ["id", "node", "forms", "translations"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "node": { "$ref": "course-source.schema.json#/$defs/Slug" },
+        "forms": {
+          "description": "The sentence in each orthography of the course.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+          "additionalProperties": { "$ref": "#/$defs/NextSentenceForm" }
+        },
+        "translations": {
+          "description": "Accept sets per support language (key: the support orthography's language, e.g. en). The first alternative is the displayed translation.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "production": {
+          "description": "Used for L1→L2 production (needs `reverse` in every form). Default true.",
+          "type": "boolean"
+        },
+        "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
+        "license": { "$ref": "course-source.schema.json#/$defs/Spdx" },
+        "uses": {
+          "description": "What the sentence is an example of beyond its tokens' lexemes: a rule, or a listed item with slots (what a `construction:` KC became; ADR 0145). Until rules are written the compiler cannot find these itself.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/TeachableId" }
+        },
+        "tags": {
+          "description": "What the answer must say and the prompt leaves open (ADR 0147), shown under the prompt where the answer's language marks it. A dialect tag is derived by the compiler from the course's variety and is never written here.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/PromptTag" }
+        }
+      }
+    },
+    "PromptTag": {
+      "title": "PromptTag",
+      "description": "One tag (ADR 0147): a value from a closed set, rendered from the UI catalog (persons, register), or an authored situation in each support language. Exactly one of the three.",
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["persons"],
+          "additionalProperties": false,
+          "properties": {
+            "persons": { "$ref": "common.schema.json#/$defs/Persons" }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["register"],
+          "additionalProperties": false,
+          "properties": {
+            "register": { "$ref": "common.schema.json#/$defs/RegisterId" }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["situation"],
+          "additionalProperties": false,
+          "properties": {
+            "situation": {
+              "description": "By support language: \"it (the school)\", \"(every day)\". It names the situation, never the grammar, and never shows the answer's form.",
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": { "type": "string", "minLength": 1 }
+            },
+            "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" }
+          }
+        }
+      ]
+    },
+    "NextSentenceForm": {
+      "title": "NextSentenceForm",
+      "description": "The exact surface text, plus tokens that annotate it in order. Gaps between tokens become space and punctuation tokens.",
+      "type": "object",
+      "required": ["text"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "tokens": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/NextToken" }
+        },
+        "reverse": {
+          "description": "Target-language accept set (§7.4) for L1→L2 production.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "NextToken": {
+      "title": "NextToken",
+      "description": "A token: a stretch of text, with the lexemes it writes. There is no unit between a token and a lexeme (the owner, 2026-11-20: no `word` inside): a stem, a clitic and an affix are all lexemes the token writes. One that writes a single lexeme names it itself (`lexeme`, `feats`); one that writes several lists them (`lexemes`). Never both.",
+      "type": "object",
+      "required": ["surface"],
+      "additionalProperties": false,
+      "properties": {
+        "surface": { "type": "string", "minLength": 1 },
+        "kind": { "$ref": "tagged-text.schema.json#/$defs/TokenKind" },
+        "lexeme": {
+          "description": "The one lexeme the token writes.",
+          "$ref": "common.schema.json#/$defs/LexemeName"
+        },
+        "feats": {
+          "description": "The feature values chosen here, never the lexeme's own lexical features (mano's gender is its entry's).",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
+        "lexemes": {
+          "description": "The lexemes the token writes, in the order it writes them (apc b + el + matbakh; uz uy + ga).",
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/TokenLexeme" }
+        },
+        "n": {
+          "description": "Its number among the lexemes the utterance writes, from 1, in order. Written where a relation names it or it names one.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "head": {
+          "description": "The `n` of the lexeme it agrees with or is governed by (ADR 0145: only where agreement or government matters; a full tree comes with the first rule that needs one).",
+          "type": "integer",
+          "minimum": 1
+        },
+        "rel": {
+          "description": "Its Universal Dependencies relation to `head`.",
+          "$ref": "common.schema.json#/$defs/UdRelation"
+        },
+        "readings": {
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/SchemeId" },
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "variants": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "tile": {
+          "description": "Tile group. Default: each token that writes a lexeme is its own tile.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "vocalized": {
+          "description": "This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.",
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "description": "A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.",
+          "type": "string",
+          "pattern": "^[a-z][a-z-]*$"
+        },
+        "readingVariant": {
+          "description": "Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading.",
+          "const": true
+        }
+      }
+    },
+    "TokenLexeme": {
+      "title": "TokenLexeme",
+      "description": "One lexeme of a token that writes several.",
+      "type": "object",
+      "required": ["lexeme", "surface"],
+      "additionalProperties": false,
+      "properties": {
+        "lexeme": { "$ref": "common.schema.json#/$defs/LexemeName" },
+        "surface": {
+          "description": "Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe).",
+          "type": "string"
+        },
+        "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" },
+        "n": {
+          "description": "Its number among the lexemes the utterance writes, from 1, in order. Written where a relation names it or it names one.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "head": {
+          "description": "The `n` of the lexeme it agrees with or is governed by (ADR 0145: only where agreement or government matters; a full tree comes with the first rule that needs one).",
+          "type": "integer",
+          "minimum": 1
+        },
+        "rel": {
+          "description": "Its Universal Dependencies relation to `head`.",
+          "$ref": "common.schema.json#/$defs/UdRelation"
+        }
+      }
+    },
+    "NextStorySource": {
+      "title": "NextStorySource",
+      "description": "A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. A tap glosses a token from the lexemes it writes.",
+      "type": "object",
+      "required": ["id", "node", "title", "steps"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "node": {
+          "description": "The path node (kind story) the story is read at.",
+          "$ref": "course-source.schema.json#/$defs/Slug"
+        },
+        "title": {
+          "description": "The title per support language (key: e.g. en).",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "characters": {
+          "type": "array",
+          "items": { "$ref": "course-source.schema.json#/$defs/StoryCharacter" }
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/NextStoryStep" }
+        },
+        "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
+        "license": { "$ref": "course-source.schema.json#/$defs/Spdx" }
+      }
+    },
+    "NextStoryStep": {
+      "title": "NextStoryStep",
+      "description": "One step of a story: a line, or a comprehension question.",
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "line": { "$ref": "#/$defs/NextStoryLineSource" },
+        "choose": { "$ref": "course-source.schema.json#/$defs/StoryChoiceSource" }
+      }
+    },
+    "NextStoryLineSource": {
+      "title": "NextStoryLineSource",
+      "type": "object",
+      "required": ["forms", "translations"],
+      "additionalProperties": false,
+      "properties": {
+        "speaker": {
+          "description": "A character id; none for narration.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "forms": {
+          "description": "The line in every orthography of the course, tokenized like a sentence's forms.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+          "additionalProperties": { "$ref": "#/$defs/NextSentenceForm" }
+        },
+        "translations": {
+          "description": "The line's meaning per support language: shown on request, never graded.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "ask": {
+          "description": "Ask before showing the line. complete: choose what is missing at `gap`; arrange: build the line from its tiles, given its translation.",
+          "type": "string",
+          "enum": ["complete", "arrange"]
+        },
+        "gap": {
+          "description": "The lexeme the line leaves out and asks for.",
+          "$ref": "common.schema.json#/$defs/LexemeId"
+        },
+        "asks": { "$ref": "common.schema.json#/$defs/Question" },
+        "distractors": {
+          "description": "complete. asks lexeme: other lexemes, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one that writes that lexeme with the gap's feature values; story.distractor-form where there is none). asks form: other feature values, each shown as the gap's lexeme in the attested form that has them; left out, the compiler chooses two attested forms.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "description": "Another lexeme (which lexeme), or another form of the gap's own, as its feature values (which form).",
+            "oneOf": [{ "$ref": "common.schema.json#/$defs/LexemeId" }, { "$ref": "common.schema.json#/$defs/UdFeatures" }]
+          }
+        }
+      }
+    }
+  }
+}

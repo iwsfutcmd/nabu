@@ -1,0 +1,12 @@
+# A dialect tag is derived from the course's variety, never written on a sentence (ADR 0147).
+id: u01
+nodes:
+  - {id: es.u01.bus, kind: lesson}
+sentences:
+  - id: s.1
+    node: es.u01.bus
+    forms:
+      es-Latn/standard: {text: La guagua.}
+    translations: {en: "The bus."}
+    tags:
+      - {variety: es-CU}

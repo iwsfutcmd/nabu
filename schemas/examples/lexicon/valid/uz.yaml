@@ -1,0 +1,16 @@
+# A feature value with a meaning is a lexeme (ADR 0145), with its forms by context.
+language: uz
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@fable-5.2', status: draft}
+lexemes:
+  - id: lexeme:dat
+    realises: {Case: Dat}
+    gloss: {en: "to"}
+    allomorphs:
+      - {form: ga}
+      - {form: ka, after: {ends: k}}
+      - {form: qa, after: {ends: q}}
+  - id: lexeme:uy
+    pos: NOUN
+    gloss: {en: house; home}
+    form: uy

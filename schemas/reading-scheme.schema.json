@@ -99,6 +99,12 @@
           "additionalProperties": { "$ref": "#/$defs/Tone" }
         }
       }
+    },
+    "correspondences": {
+      "description": "What this scheme writes of the lexical form, and what it loses (ADR 0148). It replaces `variants` at the switch (docs/migration-design.md); until then nothing reads it.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "orthography-profile.schema.json#/$defs/Correspondence" }
     }
   },
   "$defs": {

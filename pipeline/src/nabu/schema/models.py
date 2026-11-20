@@ -596,6 +596,129 @@ type OrthographiesAdditionalProperty = Annotated[str, Field(min_length=1)]
 type HintsAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+type LanguageCode = Annotated[
+    str,
+    Field(
+        description="A language as a lexicon is kept for it (ADR 0145: one lexicon per language): its BCP 47 language subtag, with no script, region or variant.",
+        pattern="^[a-z]{2,3}$",
+    ),
+]
+
+
+type LexemeName = Annotated[
+    str,
+    Field(
+        description="A lexeme's name in its language's lexicon: its id without the `lexeme:` prefix, as a token writes it (lexeme: tener). No space, no bar.",
+        pattern="^[^\\s|]+$",
+    ),
+]
+
+
+type LexemeId = Annotated[
+    str,
+    Field(
+        description="A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.",
+        pattern="^lexeme:[^\\s|]+$",
+    ),
+]
+
+
+type RuleId = Annotated[
+    str,
+    Field(
+        description="A rule of a language (ADR 0145, 0148): what gives a combination's form, a projection, a default.",
+        pattern="^rule:[^\\s|]+$",
+    ),
+]
+
+
+type FeatureValueId = Annotated[
+    str,
+    Field(
+        description="One value of one feature of a language, as what is taught and learned (ADR 0146: an inherent feature is learned as its contrast, by its uses): feature:Tense=Past.",
+        pattern="^feature:[A-Z][A-Za-z0-9]*=[A-Z0-9][A-Za-z0-9]*$",
+    ),
+]
+
+
+type TeachableId = Annotated[
+    str,
+    Field(
+        description="What a path node may introduce: a lexeme, a feature value, a rule, or a letter of a script track (ADR 0149: a grapheme stays the track's).",
+        pattern="^(lexeme|rule|grapheme):[^\\s|]+$|^feature:[A-Z][A-Za-z0-9]*=[A-Z0-9][A-Za-z0-9]*$",
+    ),
+]
+
+
+type PartId = Annotated[
+    str,
+    Field(
+        description="What memory is kept for and an answer is evidence of (ADR 0146): a lexeme, a rule or a feature value, and after a bar what of it. lexeme:tener (itself), lexeme:tener|class:go, lexeme:tener|stem:tuv, lexeme:mano|Gender, lexeme:casa|spell:es-Latn/standard, rule:uz-dat|after-q, feature:Tense=Past|use:completed.",
+        pattern="^(lexeme|rule|grapheme):[^\\s|]+(\\|[^\\s|]+)?$|^feature:[A-Z][A-Za-z0-9]*=[A-Z0-9][A-Za-z0-9]*(\\|[^\\s|]+)?$",
+    ),
+]
+
+
+type ConceptId = Annotated[
+    str,
+    Field(
+        description="A concept (ADR 0145): what links lexemes that differ only socially (variety, speech level, honorific). It has no entry and no learning state: lexemes that name the same one are linked.",
+        pattern="^concept:[^\\s|]+$",
+    ),
+]
+
+
+type RegisterId = Annotated[
+    str,
+    Field(
+        description="A register a language declares (ADR 0145: the second axis of a scope): formal, colloquial, krama.",
+        pattern="^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+    ),
+]
+
+
+type UdRelation = Annotated[
+    str,
+    Field(
+        description="A Universal Dependencies relation, with its subtype where it has one: det, case, nsubj, obl, nmod:poss.",
+        pattern="^[a-z]+(:[a-z]+)?$",
+    ),
+]
+
+
+type Skill = Annotated[
+    Literal[
+        "recognize",
+        "produce",
+        "listen",
+        "speak",
+        "read-script",
+        "write-script",
+        "choose",
+        "read-off",
+    ],
+    Field(
+        description="A skill asked of a part (ADR 0146). The six facets, and for a feature's use: `choose` (the value picked where the situation calls for it) and `read-off` (the value read off the form)."
+    ),
+]
+
+
+type MissLabel = Annotated[
+    Literal["slip", "orthographic", "phonemic", "grammatical", "regularised", "lexical", "scope"],
+    Field(
+        description="What a miss is (ADR 0148). A miss may carry several, each from one question: is the sound right (orthographic, phonemic), whose form is it (grammatical, regularised, lexical, scope), how did it happen (slip)."
+    ),
+]
+
+
+type Question = Annotated[
+    Literal["lexeme", "form", "use"],
+    Field(
+        description="The one thing a choice asks (ADR 0132, 0147): which lexeme, which form of the answer's lexeme, or which use (a contrast only the passage decides). Replaces `Asks`, whose first value called a lexeme a word."
+    ),
+]
+
+
 class Corrections(BaseModel):
     """
     Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
@@ -726,6 +849,143 @@ class SentenceCorrection(BaseModel):
 type Vocalization = Annotated[str, Field(pattern="^[A-Za-z0-9_./-]+\\.yaml$")]
 
 
+type TitleAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type GlossAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type FormsAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
+
+
+type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Field(min_length=1)]
+
+
+type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class GraphemeSource(BaseModel):
+    """
+    A letter, a digraph or a mark a script track teaches: what a grapheme KC was.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^grapheme:[^\\s|]+$")]
+    gloss: Annotated[
+        dict[str, GlossAdditionalProperty] | None,
+        Field(description="Short meaning per support language."),
+    ] = None
+    forms: Annotated[
+        dict[OrthographyId, FormsAdditionalProperty] | None,
+        Field(
+            description="How it is written, per orthography: a letter's forms, and in a Latin orthography what a script track asks it as (ADR 0133)."
+        ),
+    ] = None
+    notes: dict[str, NotesAdditionalProperty] | None = None
+
+
+class Alphabet1(BaseModel):
+    """
+    script nodes that teach an orthography from scratch (ADR 0088): lexemes for reading and writing practice, each one whose citation form the letters taught by this node and the ones before it spell.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    orthography: OrthographyId
+    lexemes: Annotated[list[LexemeId], Field(min_length=1)]
+
+
+class Convert1(BaseModel):
+    """
+    script nodes: convert sentences between two orthographies (script-convert, §6.3).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    from_: Annotated[OrthographyId, Field(alias="from")]
+    to: OrthographyId
+    sentences: Annotated[list[str], Field(min_length=1)]
+
+
+type TranslationsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class PromptTag1(BaseModel):
+    """
+    One tag (ADR 0147): a value from a closed set, rendered from the UI catalog (persons, register), or an authored situation in each support language. Exactly one of the three.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    persons: Persons
+
+
+class PromptTag2(BaseModel):
+    """
+    One tag (ADR 0147): a value from a closed set, rendered from the UI catalog (persons, register), or an authored situation in each support language. Exactly one of the three.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    register_: Annotated[RegisterId, Field(alias="register")]
+
+
+type SituationAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type ReadingsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type Variant = Annotated[str, Field(min_length=1)]
+
+
+class TokenLexeme(BaseModel):
+    """
+    One lexeme of a token that writes several.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    lexeme: LexemeName
+    surface: Annotated[
+        str,
+        Field(
+            description="Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe)."
+        ),
+    ]
+    feats: UdFeatures | None = None
+    n: Annotated[
+        int | None,
+        Field(
+            description="Its number among the lexemes the utterance writes, from 1, in order. Written where a relation names it or it names one.",
+            ge=1,
+        ),
+    ] = None
+    head: Annotated[
+        int | None,
+        Field(
+            description="The `n` of the lexeme it agrees with or is governed by (ADR 0145: only where agreement or government matters; a full tree comes with the first rule that needs one).",
+            ge=1,
+        ),
+    ] = None
+    rel: Annotated[
+        UdRelation | None, Field(description="Its Universal Dependencies relation to `head`.")
+    ] = None
+
+
 type Slug = Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$", title="Slug")]
 
 
@@ -754,28 +1014,16 @@ class Provenance(BaseModel):
     reviewedAt: Annotated[str | None, Field(pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}$")] = None
 
 
-type TitleAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
 type Cefr = Annotated[Literal["A1", "A2", "B1", "B2", "C1", "C2"], Field(title="Cefr")]
 
 
-type GlossAdditionalProperty = Annotated[str, Field(min_length=1)]
+type FormsAdditionalProperty1Item = Annotated[str, Field(min_length=1)]
 
 
-type FormsAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
+type FormsAdditionalProperty1 = Annotated[list[FormsAdditionalProperty1Item], Field(min_length=1)]
 
 
-type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Field(min_length=1)]
-
-
-type ReadingsAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
-type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
-class Alphabet1(BaseModel):
+class Alphabet2(BaseModel):
     """
     script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
     """
@@ -788,20 +1036,6 @@ class Alphabet1(BaseModel):
     words: Annotated[list[KcId], Field(min_length=1)]
 
 
-class Convert1(BaseModel):
-    """
-    script nodes: convert sentences between two orthographies (script-convert, §6.3).
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    from_: Annotated[OrthographyId, Field(alias="from")]
-    to: OrthographyId
-    sentences: Annotated[list[str], Field(min_length=1)]
-
-
 class PathNodeSource(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -812,7 +1046,7 @@ class PathNodeSource(BaseModel):
     introduces: list[KcId] | None = None
     reinforces: list[KcId] | None = None
     alphabet: Annotated[
-        Alphabet1 | None,
+        Alphabet2 | None,
         Field(
             description="script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell."
         ),
@@ -823,12 +1057,6 @@ class PathNodeSource(BaseModel):
             description="script nodes: convert sentences between two orthographies (script-convert, §6.3)."
         ),
     ] = None
-
-
-type TranslationsAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
-type Variant = Annotated[str, Field(min_length=1)]
 
 
 type Value = Annotated[int, Field(ge=0)]
@@ -1057,11 +1285,11 @@ type GroupItem = Annotated[str, Field(min_length=1)]
 type Group = Annotated[list[GroupItem], Field(min_length=2)]
 
 
-type ReadingsAdditionalProperty2Item = Annotated[str, Field(min_length=1)]
+type ReadingsAdditionalProperty3Item = Annotated[str, Field(min_length=1)]
 
 
-type ReadingsAdditionalProperty2 = Annotated[
-    list[ReadingsAdditionalProperty2Item], Field(min_length=1)
+type ReadingsAdditionalProperty3 = Annotated[
+    list[ReadingsAdditionalProperty3Item], Field(min_length=1)
 ]
 
 
@@ -1085,7 +1313,7 @@ class DataTable(BaseModel):
         Field(description="variants: each group is a set of mutually acceptable forms."),
     ] = None
     readings: Annotated[
-        dict[str, ReadingsAdditionalProperty2] | None,
+        dict[str, ReadingsAdditionalProperty3] | None,
         Field(description="readings: character → readings in the profile's scheme."),
     ] = None
     chars: Annotated[str | None, Field(description="charset: the characters, concatenated.")] = None
@@ -1134,6 +1362,244 @@ class KeyboardLayout(BaseModel):
             min_length=1,
         ),
     ] = None
+
+
+type DimensionsAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z][A-Za-z0-9]*$")]
+
+
+type DimensionsAdditionalProperty = Annotated[
+    list[DimensionsAdditionalPropertyItem], Field(min_length=1)
+]
+
+
+type FeaturesAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*$")]
+
+
+type FeaturesAdditionalProperty = Annotated[
+    list[FeaturesAdditionalPropertyItem], Field(min_length=1)
+]
+
+
+class Condition(BaseModel):
+    """
+    What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    pos: PartOfSpeech | None = None
+    ends: Annotated[
+        str | None,
+        Field(description="The lexical form ends in this (Spanish -a; uz -k).", min_length=1),
+    ] = None
+    starts: Annotated[
+        str | None, Field(description="The lexical form begins with this.", min_length=1)
+    ] = None
+    class_: Annotated[
+        Slug | None, Field(alias="class", description="It belongs to this class of its language.")
+    ] = None
+    feats: Annotated[UdFeatures | None, Field(description="It has these feature values.")] = None
+
+
+class Default(BaseModel):
+    """
+    One default: where `when` holds of a lexeme, it has `gives` unless its entry says otherwise.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    when: Condition
+    gives: UdFeatures
+    notes: Annotated[
+        dict[str, NotesAdditionalProperty] | None,
+        Field(description="What a reviewer should know, by support language.", min_length=1),
+    ] = None
+
+
+class LexicalClass(BaseModel):
+    """
+    One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    pos: PartOfSpeech
+    gloss: Annotated[
+        dict[str, GlossAdditionalProperty] | None,
+        Field(
+            description="What a learner is shown for it, by support language (pensar: e → ie).",
+            min_length=1,
+        ),
+    ] = None
+    notes: Annotated[
+        dict[str, NotesAdditionalProperty] | None,
+        Field(description="What a reviewer should know, by support language.", min_length=1),
+    ] = None
+
+
+class NextExerciseRef(BaseModel):
+    """
+    What was presented: enough to recompute credit without the bundle.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(min_length=1)]
+    template: Literal[
+        "select-image",
+        "match-pairs",
+        "choose-translation",
+        "translate-tap.l2-l1",
+        "translate-tap.l1-l2",
+        "translate-type.l1-l2",
+        "complete-translation",
+        "gap-fill",
+        "spelling-choice",
+        "char-read",
+        "reading-feature",
+        "reading-disambiguation",
+        "vocalize",
+        "vocalize-build",
+        "transcribe",
+        "speak.tier-0",
+        "speak",
+        "listen-speak",
+        "tone-identify",
+        "listen-tap",
+        "listen-type",
+        "listen-select",
+        "minimal-pair",
+        "story-choose",
+        "story-complete",
+        "story-arrange",
+        "letter-read",
+        "letter-pairs",
+        "word-read",
+        "word-write",
+        "parts-whole",
+        "whole-parts",
+    ]
+    item: Annotated[
+        str,
+        Field(
+            description="What the exercise was built from: a sentence id, a lexeme id or a grapheme id.",
+            min_length=1,
+        ),
+    ]
+    asks: Question | None = None
+    reading: Annotated[
+        SchemeId | None,
+        Field(
+            description="A reading card (char-read, reading-disambiguation, transcribe) of an orthography read in more than one tradition (lzh: Pinyin, Jyutping, Baxter; ADR 0138): the tradition it asked. Its read-script card is that tradition's own. Absent on every other card."
+        ),
+    ] = None
+    parts: Annotated[
+        list[PartId], Field(description="The parts the exercise can give evidence of (ADR 0146).")
+    ]
+
+
+class PartCredit(BaseModel):
+    """
+    What one answer says of one part (ADR 0146: credit is per part, and only where the card made the learner supply it): right, wrong, or given (handed over, so no evidence).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    part: PartId
+    skill: Skill
+    status: Literal["right", "wrong", "given"]
+
+
+class DisplayedLexeme(BaseModel):
+    """
+    A lexeme a card or a story line showed, in the form it showed (ADR 0146: seen is logged, so a rule's branch can be asked on a pair never seen).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    lexeme: LexemeId
+    feats: UdFeatures | None = None
+
+
+class Input(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    method: Literal["choice", "tiles", "text", "pairs", "voice"]
+    raw: Annotated[
+        str | None,
+        Field(description="What the learner typed or chose, as settled text. Personal data."),
+    ] = None
+    latencyMs: Annotated[int, Field(ge=0)]
+    selfRating: Annotated[
+        Literal["good", "hard", "again"] | None,
+        Field(description="Speak tier 0 only: the learner's own rating."),
+    ] = None
+    hinted: Annotated[
+        Literal[True] | None,
+        Field(
+            description="The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up."
+        ),
+    ] = None
+
+
+class Outcome(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kind: Literal[
+        "CORRECT",
+        "CORRECT_ALT",
+        "CORRECT_MARKS",
+        "CORRECT_VARIANT",
+        "CORRECT_WITH_TYPO",
+        "CORRECT_PROVISIONAL",
+        "PARTIAL",
+        "WRONG_WORD",
+        "WRONG",
+        "SKIPPED",
+    ]
+    notes: list[str]
+    labels: Annotated[
+        list[MissLabel],
+        Field(
+            description="What the miss is (ADR 0148). Empty for a right answer; a slip alone is a typo, accepted."
+        ),
+    ]
+    parts: list[PartCredit]
+
+
+type PlacedItem = Annotated[str, Field(min_length=1)]
+
+
+class Judge(BaseModel):
+    """
+    The judge call behind a judge revision (§13.1 provenance).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    model: Annotated[str, Field(min_length=1)]
+    promptHash: Annotated[str, Field(pattern="^[0-9a-f]{12}$")]
+    confidence: Annotated[float, Field(ge=0.0, le=1.0)]
 
 
 type Uuid = Annotated[
@@ -1242,30 +1708,7 @@ class SessionStarted(BaseModel):
     ]
 
 
-class Input(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    method: Literal["choice", "tiles", "text", "pairs", "voice"]
-    raw: Annotated[
-        str | None,
-        Field(description="What the learner typed or chose, as settled text. Personal data."),
-    ] = None
-    latencyMs: Annotated[int, Field(ge=0)]
-    selfRating: Annotated[
-        Literal["good", "hard", "again"] | None,
-        Field(description="Speak tier 0 only: the learner's own rating."),
-    ] = None
-    hinted: Annotated[
-        Literal[True] | None,
-        Field(
-            description="The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up."
-        ),
-    ] = None
-
-
-class Outcome(BaseModel):
+class Outcome2(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
@@ -1284,9 +1727,6 @@ class Outcome(BaseModel):
     ]
     notes: list[str]
     kcs: list[KcCredit]
-
-
-type PlacedItem = Annotated[str, Field(min_length=1)]
 
 
 class SessionCompleted(BaseModel):
@@ -1356,20 +1796,6 @@ class SessionCompleted(BaseModel):
     ] = None
 
 
-class Judge(BaseModel):
-    """
-    The judge call behind a judge revision (§13.1 provenance).
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    model: Annotated[str, Field(min_length=1)]
-    promptHash: Annotated[str, Field(pattern="^[0-9a-f]{12}$")]
-    confidence: Annotated[float, Field(ge=0.0, le=1.0)]
-
-
 class OutcomeRevised(BaseModel):
     """
     A later verdict on an earlier answer (§8.3): the LLM judge accepted it, or a reviewer did. Replay applies the revised outcome in place of the original, retroactively. Only the server issues these; uploads of ones it did not issue are refused.
@@ -1421,7 +1847,7 @@ class OutcomeRevised(BaseModel):
     ]
     tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
     answer: Annotated[Uuid, Field(description="The id of the answer_submitted event this revises.")]
-    outcome: Outcome
+    outcome: Outcome2
     by: Annotated[
         Literal["judge", "review"],
         Field(
@@ -1627,6 +2053,161 @@ class GoalSet(BaseModel):
             le=7,
         ),
     ]
+
+
+type SpelledAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
+
+
+type SpelledAdditionalProperty = Annotated[list[SpelledAdditionalPropertyItem], Field(min_length=1)]
+
+
+type ReadingsAdditionalProperty4 = Annotated[str, Field(min_length=1)]
+
+
+class FunctionHead(BaseModel):
+    """
+    A function head's signature (ADR 0145): what it takes, what it makes, which features it sets.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    takes: Annotated[list[PartOfSpeech], Field(min_length=1)]
+    makes: PartOfSpeech
+    sets: UdFeatures | None = None
+
+
+type LexicalForm1 = Annotated[
+    str,
+    Field(
+        description="A lexeme's one lexical form (ADR 0145): in its own script, fully specified, every spelling and the phonemes projected from it. Its shape depends on the kind of lexeme: a string in the language's notation (docs/lexical-forms/<lang>.md); a base's radicals, Form and vowels; a pattern's templates; a listed item's parts; a logograph with what picks its reading.",
+        min_length=1,
+        title="LexicalForm",
+    ),
+]
+
+
+type Radical = Annotated[str, Field(min_length=1)]
+
+
+type VowelsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class RadicalForm(BaseModel):
+    """
+    A Semitic base (ADR 0145): its radicals, stored (a hollow verb's middle one shows only in some forms); its Form or stem, as its language names them (apc I to X and Q; hbo qal, nifal); and the vowels its Form leaves open. The root class is never stored: it follows from the radicals.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    radicals: Annotated[list[Radical], Field(max_length=5, min_length=2)]
+    form: Annotated[str, Field(pattern="^[A-Za-z][A-Za-z0-9-]*$")]
+    vowels: Annotated[
+        dict[str, VowelsAdditionalProperty] | None,
+        Field(description="By the slot its language names (apc: past, present).", min_length=1),
+    ] = None
+
+
+type TemplatesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class PatternForm(BaseModel):
+    """
+    A pattern (ADR 0145, 0150): its own letters and vowels around numbered slots for a base's radicals, one template per root class.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    templates: Annotated[dict[str, TemplatesAdditionalProperty], Field(min_length=1)]
+
+
+class ListedParts(BaseModel):
+    """
+    A listed item whose form is its parts' (darse cuenta; writer, an author): only its meaning is listed. `inflects` names the part that takes the forms (me di cuenta).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    parts: Annotated[list[LexemeId], Field(min_length=2)]
+    inflects: LexemeId | None = None
+
+
+type ReadingAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class Logograph(BaseModel):
+    """
+    The one exception to a single tier (ADR 0145): a character cannot say its sound, so the form is the character with what picks its reading, in the notation of its tradition (lzh: its Qieyun position; yue: a reading only where the table gives several or a tone changes).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    written: Annotated[str, Field(min_length=1)]
+    reading: Annotated[dict[SchemeId, ReadingAdditionalProperty] | None, Field(min_length=1)] = None
+
+
+type SpelledAdditionalProperty1Item = Annotated[str, Field(min_length=1)]
+
+
+type SpelledAdditionalProperty1 = Annotated[
+    list[SpelledAdditionalProperty1Item], Field(min_length=1)
+]
+
+
+type SpelledAdditionalProperty2Item = Annotated[str, Field(min_length=1)]
+
+
+type SpelledAdditionalProperty2 = Annotated[
+    list[SpelledAdditionalProperty2Item], Field(min_length=1)
+]
+
+
+class Allomorph(BaseModel):
+    """
+    One form of a lexeme by context. With no condition it is the one used elsewhere.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    form: str
+    after: Annotated[Condition | None, Field(description="What it stands after.")] = None
+    before: Annotated[Condition | None, Field(description="What it stands before.")] = None
+    spelled: Annotated[
+        dict[OrthographyId, SpelledAdditionalProperty2] | None,
+        Field(
+            description="Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown."
+        ),
+    ] = None
+    readings: Annotated[
+        dict[SchemeId, ReadingsAdditionalProperty4] | None,
+        Field(
+            description="Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it."
+        ),
+    ] = None
+
+
+class Scope(BaseModel):
+    """
+    Where a lexeme or a form is said (ADR 0145): a range of varieties and a range of registers. Everywhere unless stated.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    varieties: Annotated[list[LangTag] | None, Field(min_length=1)] = None
+    registers: Annotated[list[RegisterId] | None, Field(min_length=1)] = None
 
 
 type MessageKey = Annotated[
@@ -2226,6 +2807,26 @@ class Contrast(BaseModel):
     ] = None
 
 
+type Lose = Annotated[str, Field(min_length=1)]
+
+
+class CorrespondenceContext(BaseModel):
+    """
+    Where a correspondence holds. Every key given must hold. A first, small set: it grows when the grader runs these (the switch).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    at: Annotated[
+        Literal["start", "end"] | None,
+        Field(description="At the start or the end of a token, or of a lexeme a token writes."),
+    ] = None
+    before: Annotated[UnicodeSetPattern | None, Field(description="Before one of these.")] = None
+    after: Annotated[UnicodeSetPattern | None, Field(description="After one of these.")] = None
+
+
 class Bound(BaseModel):
     """
     How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free).
@@ -2239,10 +2840,10 @@ class Bound(BaseModel):
     before: Annotated[str, Field(min_length=1)]
 
 
-type Variant1Item = Annotated[str, Field(min_length=1)]
+type Variant2Item = Annotated[str, Field(min_length=1)]
 
 
-type Variant1 = Annotated[list[Variant1Item], Field(min_length=2)]
+type Variant2 = Annotated[list[Variant2Item], Field(min_length=2)]
 
 
 class Typed(BaseModel):
@@ -2477,10 +3078,7 @@ type TokenKind = Annotated[
 ]
 
 
-type ReadingsAdditionalProperty3 = Annotated[str, Field(min_length=1)]
-
-
-type Variant2 = Annotated[str, Field(min_length=1)]
+type Variant3 = Annotated[str, Field(min_length=1)]
 
 
 class RubySegment(BaseModel):
@@ -2615,6 +3213,27 @@ class EvalGate(BaseModel):
     n: Annotated[int, Field(description="Items evaluated (adversarial and paraphrase).", ge=0)]
     enabled: bool
     evaluatedAt: AwareDatetime
+
+
+class Alias(BaseModel):
+    """
+    One old id. Where the event names its sentence, `byItem` says exactly which parts the id stood for there (tuvo: the lexeme and its stem); elsewhere `part`, never more than the old id can vouch for.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    part: Annotated[
+        PartId | None,
+        Field(
+            description="What the id becomes where the sentence is not known. Absent for an id that became nothing a learner has (a form KC that is now a token's feature values)."
+        ),
+    ] = None
+    byItem: Annotated[
+        dict[str, list[PartId]] | None,
+        Field(description="By sentence or story line id: the parts the id stood for in it."),
+    ] = None
 
 
 class Prompt(BaseModel):
@@ -2838,6 +3457,132 @@ type CourseNames = Annotated[
 ]
 
 
+class NextPathNodeSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    kind: Literal["lesson", "practice", "story", "review", "challenge", "script"]
+    introduces: list[TeachableId] | None = None
+    reinforces: list[TeachableId] | None = None
+    alphabet: Annotated[
+        Alphabet1 | None,
+        Field(
+            description="script nodes that teach an orthography from scratch (ADR 0088): lexemes for reading and writing practice, each one whose citation form the letters taught by this node and the ones before it spell."
+        ),
+    ] = None
+    convert: Annotated[
+        Convert1 | None,
+        Field(
+            description="script nodes: convert sentences between two orthographies (script-convert, §6.3)."
+        ),
+    ] = None
+
+
+class PromptTag3(BaseModel):
+    """
+    One tag (ADR 0147): a value from a closed set, rendered from the UI catalog (persons, register), or an authored situation in each support language. Exactly one of the three.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    situation: Annotated[
+        dict[str, SituationAdditionalProperty],
+        Field(
+            description='By support language: "it (the school)", "(every day)". It names the situation, never the grammar, and never shows the answer\'s form.',
+            min_length=1,
+        ),
+    ]
+    provenance: Provenance | None = None
+
+
+type PromptTag = Annotated[
+    PromptTag1 | PromptTag2 | PromptTag3,
+    Field(
+        description="One tag (ADR 0147): a value from a closed set, rendered from the UI catalog (persons, register), or an authored situation in each support language. Exactly one of the three.",
+        title="PromptTag",
+    ),
+]
+
+
+class NextToken(BaseModel):
+    """
+    A token: a stretch of text, with the lexemes it writes. There is no unit between a token and a lexeme (the owner, 2026-11-20: no `word` inside): a stem, a clitic and an affix are all lexemes the token writes. One that writes a single lexeme names it itself (`lexeme`, `feats`); one that writes several lists them (`lexemes`). Never both.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    surface: Annotated[str, Field(min_length=1)]
+    kind: TokenKind | None = None
+    lexeme: Annotated[LexemeName | None, Field(description="The one lexeme the token writes.")] = (
+        None
+    )
+    feats: Annotated[
+        UdFeatures | None,
+        Field(
+            description="The feature values chosen here, never the lexeme's own lexical features (mano's gender is its entry's)."
+        ),
+    ] = None
+    lexemes: Annotated[
+        list[TokenLexeme] | None,
+        Field(
+            description="The lexemes the token writes, in the order it writes them (apc b + el + matbakh; uz uy + ga).",
+            min_length=2,
+        ),
+    ] = None
+    n: Annotated[
+        int | None,
+        Field(
+            description="Its number among the lexemes the utterance writes, from 1, in order. Written where a relation names it or it names one.",
+            ge=1,
+        ),
+    ] = None
+    head: Annotated[
+        int | None,
+        Field(
+            description="The `n` of the lexeme it agrees with or is governed by (ADR 0145: only where agreement or government matters; a full tree comes with the first rule that needs one).",
+            ge=1,
+        ),
+    ] = None
+    rel: Annotated[
+        UdRelation | None, Field(description="Its Universal Dependencies relation to `head`.")
+    ] = None
+    readings: dict[SchemeId, ReadingsAdditionalProperty] | None = None
+    variants: list[Variant] | None = None
+    tile: Annotated[
+        int | None,
+        Field(
+            description="Tile group. Default: each token that writes a lexeme is its own tile.",
+            ge=0,
+        ),
+    ] = None
+    vocalized: Annotated[
+        str | None,
+        Field(
+            description="This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.",
+            min_length=1,
+        ),
+    ] = None
+    context: Annotated[
+        str | None,
+        Field(
+            description="A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.",
+            pattern="^[a-z][a-z-]*$",
+        ),
+    ] = None
+    readingVariant: Annotated[
+        Literal[True] | None,
+        Field(
+            description="Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading."
+        ),
+    ] = None
+
+
 class KnowledgeComponentSource(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2863,7 +3608,7 @@ class KnowledgeComponentSource(BaseModel):
         Field(description="Short meaning per support language."),
     ] = None
     forms: Annotated[
-        dict[OrthographyId, FormsAdditionalProperty] | None,
+        dict[OrthographyId, FormsAdditionalProperty1] | None,
         Field(
             description="Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7)."
         ),
@@ -2998,6 +3743,749 @@ class AudioVoice(BaseModel):
         Field(
             description="License of the audio this voice produces: it follows the voice's own terms."
         ),
+    ]
+
+
+class LanguageDeclaration(BaseModel):
+    """
+    What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: LanguageCode
+    license: Spdx
+    provenance: Provenance
+    varieties: Annotated[
+        list[LangTag] | None,
+        Field(
+            description="The varieties a scope may name (ADR 0145), as BCP 47 tags: es-CU, es-ES, apc-LB.",
+            min_length=1,
+        ),
+    ] = None
+    registers: Annotated[
+        list[RegisterId] | None, Field(description="The registers a scope may name.", min_length=1)
+    ] = None
+    dimensions: Annotated[
+        dict[PartOfSpeech, DimensionsAdditionalProperty],
+        Field(
+            description="For each category, the inflectional features every member must choose a value of (ADR 0145: what makes a head a value head). Spanish NOUN: [Number]; apc VERB: [Aspect, Person, Gender, Number]."
+        ),
+    ]
+    features: Annotated[
+        dict[
+            Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*$")],
+            FeaturesAdditionalProperty,
+        ]
+        | None,
+        Field(
+            description="Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none."
+        ),
+    ] = None
+    defaults: Annotated[
+        list[Default] | None,
+        Field(
+            description="The language's stated defaults (ADR 0148: a default is a rule; ADR 0146: what one gives is no part of a lexeme). Spanish: a noun in -a is feminine."
+        ),
+    ] = None
+    classes: Annotated[
+        list[LexicalClass] | None,
+        Field(
+            description="The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146)."
+        ),
+    ] = None
+
+
+class NextSessionStarted(BaseModel):
+    """
+    A session began: a lesson (one path node), review, mistakes or placement.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["session_started"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    mode: Literal["lesson", "review", "mistakes", "placement", "story"]
+    node: Annotated[str | None, Field(min_length=1)] = None
+    seed: Annotated[int, Field(ge=0)]
+    exercises: Annotated[int, Field(ge=0)]
+    planner: Annotated[
+        str, Field(description="Planner and model versions that built the session.", min_length=1)
+    ]
+
+
+class NextExercisePresented(BaseModel):
+    """
+    An exercise was shown.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["exercise_presented"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    exercise: NextExerciseRef
+    prediction: Prediction | None = None
+    displayed: Annotated[
+        list[DisplayedLexeme] | None,
+        Field(description="What was shown, each lexeme once in each form."),
+    ] = None
+
+
+class NextAnswerSubmitted(BaseModel):
+    """
+    One graded answer (§9.6). Raw answers are personal data (§14.4).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["answer_submitted"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    exercise: NextExerciseRef
+    attempt: Annotated[
+        int,
+        Field(
+            description="1 for the first try in this session, 2+ for an exercise brought back after a mistake.",
+            ge=1,
+        ),
+    ]
+    input: Input
+    outcome: Outcome
+    prediction: Prediction | None = None
+
+
+class NextExerciseSkipped(BaseModel):
+    """
+    The learner skipped (the answer is revealed) or could not listen or speak.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["exercise_skipped"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    exercise: NextExerciseRef
+    attempt: Annotated[int, Field(ge=1)]
+    reason: Literal["skip", "cant-listen", "cant-speak"]
+
+
+class NextSessionCompleted(BaseModel):
+    """
+    A session ended, finished or quit.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["session_completed"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    mode: Literal["lesson", "review", "mistakes", "placement", "story"]
+    node: Annotated[str | None, Field(min_length=1)] = None
+    summary: SessionSummaryData
+    placed: Annotated[
+        list[PlacedItem] | None,
+        Field(
+            description="Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done. A test the learner stopped part-way (summary.completed false) places by its answers so far, still without the session's XP (D9 in the 2026-11 review)."
+        ),
+    ] = None
+    seeded: Annotated[
+        list[PartId] | None,
+        Field(
+            description="Placement only (ADR 0111): the parts the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them."
+        ),
+    ] = None
+
+
+class NextOutcomeRevised(BaseModel):
+    """
+    A later verdict on an earlier answer (§8.3): the LLM judge accepted it, or a reviewer did. Replay applies the revised outcome in place of the original, retroactively. Only the server issues these; uploads of ones it did not issue are refused.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["outcome_revised"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    answer: Annotated[Uuid, Field(description="The id of the answer_submitted event this revises.")]
+    outcome: Outcome
+    by: Annotated[
+        Literal["judge", "review"],
+        Field(
+            description="Who revised it: the judge (the outcome is CORRECT_PROVISIONAL) or a human reviewer."
+        ),
+    ]
+    judge: Annotated[
+        Judge | None,
+        Field(description="The judge call behind a judge revision (§13.1 provenance)."),
+    ] = None
+
+
+class NextAnswerReported(BaseModel):
+    """
+    A learner's claim about how an answer was graded (§13.2, ADR 0052): "my answer should have been accepted" (claim accept, the default) or "this should have been wrong" (claim reject). It counts that way for the learner at once (projections apply it as a revision of the answer) and goes to the review queue for the course.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["answer_reported"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    answer: Annotated[Uuid, Field(description="The id of the answer_submitted event reported.")]
+    exercise: NextExerciseRef
+    text: Annotated[
+        str,
+        Field(
+            description="The answer as the learner settled it. Personal data.",
+            max_length=1000,
+            min_length=1,
+        ),
+    ]
+    note: Annotated[
+        str | None, Field(description="Optional words from the learner.", max_length=500)
+    ] = None
+    claim: Annotated[
+        Literal["accept", "reject"] | None,
+        Field(
+            description='What the learner says (ADR 0052): accept, "my answer should have been accepted" (the default), or reject, "this should have been wrong" (an answer graded right that should not be). Either way it counts that way for the learner at once, and goes to review for the course.'
+        ),
+    ] = None
+
+
+class NextProgressReset(BaseModel):
+    """
+    The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["progress_reset"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Annotated[
+        Uuid,
+        Field(
+            description="Id of the reset itself (a session of one event), so every event names a session."
+        ),
+    ]
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+
+
+class NextSentenceReported(BaseModel):
+    """
+    A learner marked a sentence, a story line or a word as incorrect and said what it should be (ADR 0051, 0057). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["sentence_reported"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Annotated[
+        Uuid,
+        Field(
+            description="The session the learner was in, or a session of this one event (the sentence list)."
+        ),
+    ]
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    item: Annotated[
+        str,
+        Field(
+            description="A sentence id, a story id with `step`, or a lexeme id (ADR 0057).",
+            min_length=1,
+        ),
+    ]
+    step: Annotated[
+        int | None,
+        Field(
+            description="For a story line: the step's index in the story (0-based, every step counted).",
+            ge=0,
+        ),
+    ] = None
+    shown: Annotated[
+        CorrectionFields,
+        Field(
+            description="Every orthography's text and readings, and the translation, as the device showed them: `nabu corrections apply` checks the course source still says this."
+        ),
+    ]
+    correction: Annotated[
+        CorrectionFields,
+        Field(description="Only what the learner changed. Empty when they only wrote a note."),
+    ]
+    note: Annotated[
+        str | None,
+        Field(description="Optional words from the learner. Personal data.", max_length=1000),
+    ] = None
+
+
+class NextGoalSet(BaseModel):
+    """
+    The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["goal_set"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    days: Annotated[
+        int | None,
+        Field(
+            description="Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.",
+            ge=1,
+            le=7,
+        ),
+    ]
+
+
+class StoryLineRead(BaseModel):
+    """
+    A story line the learner read (ADR 0146: a story records the lines read). A line is no exercise, so it has an event of its own.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["story_line_read"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[2], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    story: Annotated[str, Field(description="The story's id.", min_length=1)]
+    line: Annotated[
+        int, Field(description="The line's place among the story's steps, from 0.", ge=0)
+    ]
+    displayed: Annotated[
+        list[DisplayedLexeme], Field(description="What was shown, each lexeme once in each form.")
     ]
 
 
@@ -3176,7 +4664,7 @@ class AnswerSubmitted(BaseModel):
         ),
     ]
     input: Input
-    outcome: Outcome
+    outcome: Outcome2
     prediction: Prediction | None = None
 
 
@@ -3302,6 +4790,62 @@ class AnswerReported(BaseModel):
         Literal["accept", "reject"] | None,
         Field(
             description='What the learner says (ADR 0052): accept, "my answer should have been accepted" (the default), or reject, "this should have been wrong" (an answer graded right that should not be). Either way it counts that way for the learner at once, and goes to review for the course.'
+        ),
+    ] = None
+
+
+type LexicalForm = Annotated[
+    LexicalForm1 | RadicalForm | PatternForm | ListedParts | Logograph,
+    Field(
+        description="A lexeme's one lexical form (ADR 0145): in its own script, fully specified, every spelling and the phonemes projected from it. Its shape depends on the kind of lexeme: a string in the language's notation (docs/lexical-forms/<lang>.md); a base's radicals, Form and vowels; a pattern's templates; a listed item's parts; a logograph with what picks its reading.",
+        title="LexicalForm",
+    ),
+]
+
+
+class LexemeForm(BaseModel):
+    """
+    A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    feats: UdFeatures
+    form: Annotated[
+        str | None,
+        Field(
+            description="The whole form, in the language's lexical-form notation (fue).",
+            min_length=1,
+        ),
+    ] = None
+    stem: Annotated[
+        str | None, Field(description="A stem the regular endings go on (tuv).", min_length=1)
+    ] = None
+    status: Annotated[
+        Literal["listed", "pinned"],
+        Field(
+            description="listed: the language has no rule for it, so it is a part to learn; it needs its `statement`. pinned: a rule gives it and ours is not written yet; stored and checked, never counted, never a learner's part."
+        ),
+    ]
+    statement: Annotated[
+        Provenance | None,
+        Field(
+            description="Who says the language has no rule for it. A draft counts until it is signed off (the owner, round 6)."
+        ),
+    ] = None
+    scope: Scope | None = None
+    spelled: Annotated[
+        dict[OrthographyId, SpelledAdditionalProperty1] | None,
+        Field(
+            description="Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown."
+        ),
+    ] = None
+    readings: Annotated[
+        dict[SchemeId, ReadingsAdditionalProperty4] | None,
+        Field(
+            description="Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it."
         ),
     ] = None
 
@@ -3535,6 +5079,49 @@ class Recognizer(BaseModel):
     fineTuned: FineTunedRecognizer | None = None
 
 
+class Correspondence(BaseModel):
+    """
+    One correspondence between a language's lexical form and a way of writing it (ADR 0148: the projections are rules, and the profile states them). It says both directions at once: what is written for a piece of the lexical form, and what reading back cannot recover. Whatever the stated correspondences do not give is per lexeme: a leftover to learn, or a pinned spelling to review.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    says: Annotated[
+        str,
+        Field(
+            description="The piece of the lexical form, in its language's notation (docs/lexical-forms/<lang>.md): a letter, a sign, a letter with its sign.",
+            min_length=1,
+        ),
+    ]
+    written: Annotated[
+        list[str],
+        Field(
+            description="How it is written here, the spelling a projection writes first. An empty string: it is not written.",
+            min_length=1,
+        ),
+    ]
+    kind: Annotated[
+        Literal["fixed", "free"],
+        Field(
+            description="fixed: the norm picks one spelling for each lexeme, so where there are several, which one is a leftover (fa: sin, sad or se). free: no norm picks one, so each is right and none is a leftover (Arabizi: e or i)."
+        ),
+    ]
+    when: CorrespondenceContext | None = None
+    loses: Annotated[
+        list[Lose] | None,
+        Field(
+            description="The other pieces of the lexical form written the same way here, which reading back cannot tell from `says` (Arabizi s: sin and sad).",
+            min_length=1,
+        ),
+    ] = None
+    note: Annotated[
+        NoteId | None,
+        Field(description="The feedback note for a spelling that differs only by this."),
+    ] = None
+
+
 class Tones(BaseModel):
     """
     Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use.
@@ -3615,7 +5202,7 @@ class ReadingScheme(BaseModel):
         ),
     ] = None
     variants: Annotated[
-        list[Variant1] | None,
+        list[Variant2] | None,
         Field(
             description="Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.",
             min_length=1,
@@ -3643,6 +5230,13 @@ class ReadingScheme(BaseModel):
         Tones | None,
         Field(
             description="Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use."
+        ),
+    ] = None
+    correspondences: Annotated[
+        list[Correspondence] | None,
+        Field(
+            description="What this scheme writes of the lexical form, and what it loses (ADR 0148). It replaces `variants` at the switch (docs/migration-design.md); until then nothing reads it.",
+            min_length=1,
         ),
     ] = None
 
@@ -3694,7 +5288,7 @@ class TokenModel(BaseModel):
         ),
     ] = None
     readings: Annotated[
-        dict[SchemeId, ReadingsAdditionalProperty3] | None,
+        dict[SchemeId, ReadingsAdditionalProperty4] | None,
         Field(
             description='Readings per scheme, e.g. {"jyutping": "hong4"}. Pinned in content, never guessed at runtime.'
         ),
@@ -3716,7 +5310,7 @@ class TokenModel(BaseModel):
         int | None, Field(description="Tokens with the same group form one word-bank tile.", ge=0)
     ] = None
     variants: Annotated[
-        list[Variant2] | None,
+        list[Variant3] | None,
         Field(description="Accepted orthographic variants, e.g. HK and TW character forms."),
     ] = None
     morphs: Annotated[
@@ -3726,6 +5320,19 @@ class TokenModel(BaseModel):
             min_length=1,
         ),
     ] = None
+
+
+class AliasTable(BaseModel):
+    """
+    What each KC id of a course became (courses/<id>/aliases.yaml; docs/migration-design.md): the table `upgrade` reads to turn an event of the old shape into the new one. Written by the converter, never by hand.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    course: Slug
+    aliases: dict[KcId, Alias]
 
 
 class AudioIndex(BaseModel):
@@ -3847,6 +5454,65 @@ class BundleAudio(BaseModel):
     items: dict[str, BundleAudioItem]
 
 
+class NextSentenceForm(BaseModel):
+    """
+    The exact surface text, plus tokens that annotate it in order. Gaps between tokens become space and punctuation tokens.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: Annotated[str, Field(min_length=1)]
+    tokens: list[NextToken] | None = None
+    reverse: Annotated[
+        str | None,
+        Field(description="Target-language accept set (§7.4) for L1→L2 production.", min_length=1),
+    ] = None
+
+
+class NextStoryLineSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    speaker: Annotated[
+        str | None,
+        Field(description="A character id; none for narration.", pattern="^[a-z][a-z0-9-]*$"),
+    ] = None
+    forms: Annotated[
+        dict[OrthographyId, NextSentenceForm],
+        Field(
+            description="The line in every orthography of the course, tokenized like a sentence's forms.",
+            min_length=1,
+        ),
+    ]
+    translations: Annotated[
+        dict[str, TranslationsAdditionalProperty],
+        Field(
+            description="The line's meaning per support language: shown on request, never graded.",
+            min_length=1,
+        ),
+    ]
+    ask: Annotated[
+        Literal["complete", "arrange"] | None,
+        Field(
+            description="Ask before showing the line. complete: choose what is missing at `gap`; arrange: build the line from its tiles, given its translation."
+        ),
+    ] = None
+    gap: Annotated[
+        LexemeId | None, Field(description="The lexeme the line leaves out and asks for.")
+    ] = None
+    asks: Question | None = None
+    distractors: Annotated[
+        list[LexemeId | UdFeatures] | None,
+        Field(
+            description="complete. asks lexeme: other lexemes, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one that writes that lexeme with the gap's feature values; story.distractor-form where there is none). asks form: other feature values, each shown as the gap's lexeme in the attested form that has them; left out, the compiler chooses two attested forms.",
+            min_length=1,
+        ),
+    ] = None
+
+
 class SentenceForm(BaseModel):
     """
     The exact surface text, plus tokens that annotate its words in order. Gaps between tokens become space and punctuation tokens.
@@ -3938,6 +5604,25 @@ class StoryLineSource(BaseModel):
     ] = None
 
 
+type NextLearnerEvent = Annotated[
+    NextSessionStarted
+    | NextExercisePresented
+    | NextAnswerSubmitted
+    | NextExerciseSkipped
+    | NextSessionCompleted
+    | NextOutcomeRevised
+    | NextAnswerReported
+    | NextProgressReset
+    | NextSentenceReported
+    | NextGoalSet
+    | StoryLineRead,
+    Field(
+        description="A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. Nothing writes or reads it until the switch, when every stored event is upgraded to it, it replaces learner-event.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.",
+        title="NextLearnerEvent",
+    ),
+]
+
+
 type LearnerEvent = Annotated[
     SessionStarted
     | ExercisePresented
@@ -3954,6 +5639,86 @@ type LearnerEvent = Annotated[
         title="LearnerEvent",
     ),
 ]
+
+
+class Lexeme(BaseModel):
+    """
+    One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: LexemeId
+    pos: Annotated[PartOfSpeech | None, Field(description="Its one part of speech, a UD tag.")] = (
+        None
+    )
+    realises: Annotated[
+        UdFeatures | None,
+        Field(description="The dimension value it is (ADR 0145: a value head): {Case: Dat}."),
+    ] = None
+    head: FunctionHead | None = None
+    feats: Annotated[
+        UdFeatures | None,
+        Field(
+            description="Its lexical features, only those no default of its language gives (ADR 0146: each is a part to learn): mano {Gender: Fem}."
+        ),
+    ] = None
+    classes: Annotated[
+        list[Slug] | None,
+        Field(
+            description="The classes of its language it belongs to: tener [e-ie, go].", min_length=1
+        ),
+    ] = None
+    gloss: Annotated[
+        dict[str, GlossAdditionalProperty] | None,
+        Field(description="Its meaning, by support language.", min_length=1),
+    ] = None
+    notes: Annotated[
+        dict[str, NotesAdditionalProperty] | None,
+        Field(description="Notes shown with it, by support language.", min_length=1),
+    ] = None
+    image: ImageAsset | None = None
+    form: LexicalForm | None = None
+    forms: Annotated[
+        list[LexemeForm] | None,
+        Field(
+            description="The forms and stems no rule gives yet (ADR 0145): each listed or pinned.",
+            min_length=1,
+        ),
+    ] = None
+    allomorphs: Annotated[
+        list[Allomorph] | None,
+        Field(
+            description="Its forms by context, where it has several and no rule gives them (uz -ga, -ka after k, -qa after q).",
+            min_length=1,
+        ),
+    ] = None
+    scope: Scope | None = None
+    concept: ConceptId | None = None
+    base: Annotated[
+        LexemeId | None,
+        Field(
+            description="A derivative's base lexeme, where something about the derivative is listed (ADR 0145: m3allem, from 3allam)."
+        ),
+    ] = None
+    pattern: Annotated[
+        LexemeId | None, Field(description="A derivative's function head (the agentive pattern).")
+    ] = None
+    spelled: Annotated[
+        dict[OrthographyId, SpelledAdditionalProperty] | None,
+        Field(
+            description="Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown."
+        ),
+    ] = None
+    readings: Annotated[
+        dict[SchemeId, ReadingsAdditionalProperty4] | None,
+        Field(
+            description="Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it."
+        ),
+    ] = None
+    provenance: Provenance | None = None
 
 
 type NormalizeStep = Annotated[
@@ -4221,6 +5986,60 @@ class BundleSentence(BaseModel):
     license: str
 
 
+class NextSentenceSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    node: Slug
+    forms: Annotated[
+        dict[OrthographyId, NextSentenceForm],
+        Field(description="The sentence in each orthography of the course.", min_length=1),
+    ]
+    translations: Annotated[
+        dict[str, TranslationsAdditionalProperty],
+        Field(
+            description="Accept sets per support language (key: the support orthography's language, e.g. en). The first alternative is the displayed translation.",
+            min_length=1,
+        ),
+    ]
+    production: Annotated[
+        bool | None,
+        Field(
+            description="Used for L1→L2 production (needs `reverse` in every form). Default true."
+        ),
+    ] = None
+    provenance: Provenance | None = None
+    license: Spdx | None = None
+    uses: Annotated[
+        list[TeachableId] | None,
+        Field(
+            description="What the sentence is an example of beyond its tokens' lexemes: a rule, or a listed item with slots (what a `construction:` KC became; ADR 0145). Until rules are written the compiler cannot find these itself."
+        ),
+    ] = None
+    tags: Annotated[
+        list[PromptTag] | None,
+        Field(
+            description="What the answer must say and the prompt leaves open (ADR 0147), shown under the prompt where the answer's language marks it. A dialect tag is derived by the compiler from the course's variety and is never written here.",
+            min_length=1,
+        ),
+    ] = None
+
+
+class NextStoryStep(BaseModel):
+    """
+    One step of a story: a line, or a comprehension question.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    line: NextStoryLineSource | None = None
+    choose: StoryChoiceSource | None = None
+
+
 class SentenceSource(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -4265,6 +6084,23 @@ class StoryStep(BaseModel):
     )
     line: StoryLineSource | None = None
     choose: StoryChoiceSource | None = None
+
+
+class Lexicon(BaseModel):
+    """
+    A language's lexicon (lexicons/<lang>/lexemes.yaml; ADR 0145): every lexeme, in one list sorted by id. It is flat (the owner, 2026-11-20): no entry says which unit of which course teaches it. Courses point at it.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    language: LanguageCode
+    license: Spdx
+    provenance: Annotated[
+        Provenance, Field(description="For every entry that gives none of its own.")
+    ]
+    lexemes: list[Lexeme]
 
 
 class OrthographyProfile(BaseModel):
@@ -4316,6 +6152,13 @@ class OrthographyProfile(BaseModel):
     scriptTrack: ScriptTrack | None = None
     transliterate: Transliteration | None = None
     speech: SpeechSetup | None = None
+    correspondences: Annotated[
+        list[Correspondence] | None,
+        Field(
+            description="What this orthography writes of the lexical form, and what it loses (ADR 0148): one statement for reading and writing. It replaces `soundAlike` at the switch (docs/migration-design.md); until then nothing reads it.",
+            min_length=1,
+        ),
+    ] = None
 
 
 class BundleStoryStep(BaseModel):
@@ -4325,6 +6168,27 @@ class BundleStoryStep(BaseModel):
     )
     line: BundleStoryLine | None = None
     choose: Choose | None = None
+
+
+class NextStorySource(BaseModel):
+    """
+    A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. A tap glosses a token from the lexemes it writes.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    node: Annotated[Slug, Field(description="The path node (kind story) the story is read at.")]
+    title: Annotated[
+        dict[str, TitleAdditionalProperty],
+        Field(description="The title per support language (key: e.g. en).", min_length=1),
+    ]
+    characters: list[StoryCharacter] | None = None
+    steps: Annotated[list[NextStoryStep], Field(min_length=2)]
+    provenance: Provenance | None = None
+    license: Spdx | None = None
 
 
 class StorySource(BaseModel):
@@ -4365,6 +6229,43 @@ class BundleStory(BaseModel):
     kcs: Annotated[list[KcId], Field(description="Every KC its lines use.")]
     provenance: Provenance | None = None
     license: str
+
+
+class NextUnitSource(BaseModel):
+    """
+    A unit of a course in the new shape (docs/migration-design.md). It defines no lexemes: its nodes point at the language's lexicon, so a unit can be rearranged without touching it. The letters its script nodes teach are the one thing it still lists.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    title: Annotated[
+        dict[str, TitleAdditionalProperty] | None,
+        Field(
+            description="Per support language (the key is a support orthography's language, e.g. en)."
+        ),
+    ] = None
+    cefr: Cefr | None = None
+    nodes: Annotated[list[NextPathNodeSource], Field(min_length=1)]
+    sentences: list[NextSentenceSource]
+    stories: Annotated[
+        list[NextStorySource] | None,
+        Field(
+            description="Stories (gameplan §8.2 `story`, Phase 6): dialogue to read, each on a path node of kind story."
+        ),
+    ] = None
+    scenarios: Annotated[
+        list[ScenarioSource] | None,
+        Field(description="Roleplay scenario cards (gameplan §13.4, Phase 8)."),
+    ] = None
+    graphemes: Annotated[
+        list[GraphemeSource] | None,
+        Field(
+            description="The letters this unit's script nodes teach (ADR 0149: a grapheme stays the script track's, never the lexicon's)."
+        ),
+    ] = None
 
 
 class UnitSource(BaseModel):
@@ -4408,6 +6309,94 @@ class BundleUnit(BaseModel):
     sentences: list[BundleSentence]
     stories: list[BundleStory] | None = None
     scenarios: list[BundleScenario] | None = None
+
+
+class NextCourseSource(BaseModel):
+    """
+    A course in the shape the lexical model needs (docs/migration-design.md, deliverable 1): the same course.yaml, pointing at its language's lexicon. Written by the converter beside the course it converts (courses/<id>/next/) and read by nothing until the switch, when it replaces course-source.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    target: ScriptedLangTag
+    orthographies: Annotated[
+        list[OrthographyId],
+        Field(
+            description="Orthographies the course teaches; the first is the default. Learners may switch (§6.3, apc).",
+            min_length=1,
+        ),
+    ]
+    support: Annotated[
+        list[OrthographyId],
+        Field(
+            description="Support-language layers, as orthography ids (en-Latn/standard).",
+            min_length=1,
+        ),
+    ]
+    names: Annotated[
+        CourseNames | None,
+        Field(
+            description="What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names)."
+        ),
+    ] = None
+    license: Annotated[
+        Spdx | None,
+        Field(description="Default SPDX license for every content item that gives none."),
+    ] = None
+    provenance: Annotated[
+        Provenance | None,
+        Field(description="Default provenance for every content item that gives none."),
+    ] = None
+    facets: Annotated[
+        list[Facet] | None,
+        Field(
+            description="The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.",
+            min_length=1,
+        ),
+    ] = None
+    placement: PlacementPolicy | None = None
+    consistentReadings: Annotated[
+        bool | None,
+        Field(
+            description="Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean."
+        ),
+    ] = None
+    wordParts: Annotated[
+        bool | None,
+        Field(
+            description="The course asks words by their parts (ADR 0152): a lesson may ask a word built from its parts (`parts-whole`: its own word and the form or morphs it carries, typed) and a word's parts picked out (`whole-parts`). Off unless set: a course switches it on once the parts its tokens carry (`form`, `morphs`) have been checked."
+        ),
+    ] = None
+    iPlusOne: Annotated[
+        int | None,
+        Field(description="Maximum new knowledge components per sentence (§7.5). Default 1.", ge=1),
+    ] = None
+    units: Annotated[list[str | NextUnitSource], Field(min_length=1)]
+    drills: list[DrillSpec] | None = None
+    audio: CourseAudio | None = None
+    vocalization: Annotated[
+        list[Vocalization | VocalizationSource] | None,
+        Field(
+            description="Vowel marks for the course's words, by orthography (ADR 0053): a file next to course.yaml, or given inline. The compiler marks every word of sentences, stories and word forms with them, so the vowel-marks toggle has something to show."
+        ),
+    ] = None
+    lexicon: Annotated[
+        LanguageCode,
+        Field(description="The language whose lexicon the course draws on (lexicons/<lang>/)."),
+    ]
+    variety: Annotated[
+        LangTag | None,
+        Field(
+            description="The variety the course teaches, one of its language's (ADR 0145: an utterance has one). Dialect tags on prompts are derived from it (ADR 0147)."
+        ),
+    ] = None
+    registers: Annotated[
+        list[RegisterId] | None,
+        Field(description="The registers the course teaches, of its language's.", min_length=1),
+    ] = None
 
 
 class CourseSource(BaseModel):
@@ -4486,14 +6475,19 @@ class CourseSource(BaseModel):
 
 type NabuSchemaBundle = Annotated[
     AiOutputs
+    | AliasTable
     | AudioIndex
     | AudioVerdicts
     | BundleManifest
     | Corrections
+    | NextCourseSource
     | CourseSource
     | DataTable
     | KeyboardLayout
+    | LanguageDeclaration
+    | NextLearnerEvent
     | LearnerEvent
+    | Lexicon
     | MessageCatalog
     | OrthographyProfile
     | ReadingScheme

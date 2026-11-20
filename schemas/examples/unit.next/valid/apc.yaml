@@ -1,0 +1,25 @@
+# A token that writes several lexemes lists them: a clitic, the article and a noun alike.
+id: u04-home
+title: {en: "At home"}
+graphemes:
+  - {id: 'grapheme:7', gloss: {en: "Arabizi 7 for ح"}}
+nodes:
+  - {id: apc.home.where, kind: lesson, introduces: ['lexeme:matbakh', 'lexeme:b']}
+  - {id: apc.arabizi, kind: script, introduces: ['grapheme:7'], alphabet: {orthography: apc-Latn/arabizi, lexemes: ['lexeme:matbakh']}}
+sentences:
+  - id: s.home.9
+    node: apc.home.where
+    forms:
+      apc-Arab/standard:
+        text: سامي بالمطبخ.
+        tokens:
+          - {n: 1, surface: سامي, lexeme: sami}
+          - surface: بالمطبخ
+            lexemes:
+              - {n: 2, lexeme: b, surface: ب, head: 4, rel: case}
+              - {n: 3, lexeme: el, surface: ال, head: 4, rel: det}
+              - {n: 4, lexeme: matbakh, surface: مطبخ}
+          - {surface: ., kind: punct}
+    translations: {en: "Sami is in the kitchen."}
+    tags:
+      - {situation: {en: "(at home)"}}

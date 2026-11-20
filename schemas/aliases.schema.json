@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/aliases.schema.json",
+  "title": "AliasTable",
+  "description": "What each KC id of a course became (courses/<id>/aliases.yaml; docs/migration-design.md): the table `upgrade` reads to turn an event of the old shape into the new one. Written by the converter, never by hand.",
+  "type": "object",
+  "required": ["course", "aliases"],
+  "additionalProperties": false,
+  "properties": {
+    "course": { "$ref": "course-source.schema.json#/$defs/Slug" },
+    "aliases": {
+      "type": "object",
+      "propertyNames": { "$ref": "common.schema.json#/$defs/KcId" },
+      "additionalProperties": { "$ref": "#/$defs/Alias" }
+    }
+  },
+  "$defs": {
+    "Alias": {
+      "title": "Alias",
+      "description": "One old id. Where the event names its sentence, `byItem` says exactly which parts the id stood for there (tuvo: the lexeme and its stem); elsewhere `part`, never more than the old id can vouch for.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "part": {
+          "description": "What the id becomes where the sentence is not known. Absent for an id that became nothing a learner has (a form KC that is now a token's feature values).",
+          "$ref": "common.schema.json#/$defs/PartId"
+        },
+        "byItem": {
+          "description": "By sentence or story line id: the parts the id stood for in it.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "$ref": "common.schema.json#/$defs/PartId" }
+          }
+        }
+      }
+    }
+  }
+}

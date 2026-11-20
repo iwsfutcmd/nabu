@@ -1,0 +1,1016 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/learner-event.next.schema.json",
+  "title": "NextLearnerEvent",
+  "description": "A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. Nothing writes or reads it until the switch, when every stored event is upgraded to it, it replaces learner-event.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.",
+  "oneOf": [
+    { "$ref": "#/$defs/NextSessionStarted" },
+    { "$ref": "#/$defs/NextExercisePresented" },
+    { "$ref": "#/$defs/NextAnswerSubmitted" },
+    { "$ref": "#/$defs/NextExerciseSkipped" },
+    { "$ref": "#/$defs/NextSessionCompleted" },
+    { "$ref": "#/$defs/NextOutcomeRevised" },
+    { "$ref": "#/$defs/NextAnswerReported" },
+    { "$ref": "#/$defs/NextProgressReset" },
+    { "$ref": "#/$defs/NextSentenceReported" },
+    { "$ref": "#/$defs/NextGoalSet" },
+    { "$ref": "#/$defs/StoryLineRead" }
+  ],
+  "$defs": {
+    "NextExerciseRef": {
+      "title": "NextExerciseRef",
+      "description": "What was presented: enough to recompute credit without the bundle.",
+      "type": "object",
+      "required": ["id", "template", "item", "parts"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "template": {
+          "type": "string",
+          "enum": [
+            "select-image",
+            "match-pairs",
+            "choose-translation",
+            "translate-tap.l2-l1",
+            "translate-tap.l1-l2",
+            "translate-type.l1-l2",
+            "complete-translation",
+            "gap-fill",
+            "spelling-choice",
+            "char-read",
+            "reading-feature",
+            "reading-disambiguation",
+            "vocalize",
+            "vocalize-build",
+            "transcribe",
+            "speak.tier-0",
+            "speak",
+            "listen-speak",
+            "tone-identify",
+            "listen-tap",
+            "listen-type",
+            "listen-select",
+            "minimal-pair",
+            "story-choose",
+            "story-complete",
+            "story-arrange",
+            "letter-read",
+            "letter-pairs",
+            "word-read",
+            "word-write",
+            "parts-whole",
+            "whole-parts"
+          ]
+        },
+        "item": {
+          "description": "What the exercise was built from: a sentence id, a lexeme id or a grapheme id.",
+          "type": "string",
+          "minLength": 1
+        },
+        "asks": { "$ref": "common.schema.json#/$defs/Question" },
+        "reading": {
+          "description": "A reading card (char-read, reading-disambiguation, transcribe) of an orthography read in more than one tradition (lzh: Pinyin, Jyutping, Baxter; ADR 0138): the tradition it asked. Its read-script card is that tradition's own. Absent on every other card.",
+          "$ref": "common.schema.json#/$defs/SchemeId"
+        },
+        "parts": {
+          "description": "The parts the exercise can give evidence of (ADR 0146).",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/PartId" }
+        }
+      }
+    },
+    "PartCredit": {
+      "title": "PartCredit",
+      "description": "What one answer says of one part (ADR 0146: credit is per part, and only where the card made the learner supply it): right, wrong, or given (handed over, so no evidence).",
+      "type": "object",
+      "required": ["part", "skill", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "part": { "$ref": "common.schema.json#/$defs/PartId" },
+        "skill": { "$ref": "common.schema.json#/$defs/Skill" },
+        "status": { "type": "string", "enum": ["right", "wrong", "given"] }
+      }
+    },
+    "DisplayedLexeme": {
+      "title": "DisplayedLexeme",
+      "description": "A lexeme a card or a story line showed, in the form it showed (ADR 0146: seen is logged, so a rule's branch can be asked on a pair never seen).",
+      "type": "object",
+      "required": ["lexeme"],
+      "additionalProperties": false,
+      "properties": {
+        "lexeme": { "$ref": "common.schema.json#/$defs/LexemeId" },
+        "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" }
+      }
+    },
+    "NextSessionStarted": {
+      "title": "NextSessionStarted",
+      "description": "A session began: a lesson (one path node), review, mistakes or placement.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "mode",
+        "seed",
+        "exercises",
+        "planner"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "session_started" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": { "type": "string", "enum": ["lesson", "review", "mistakes", "placement", "story"] },
+        "node": { "type": "string", "minLength": 1 },
+        "seed": { "type": "integer", "minimum": 0 },
+        "exercises": { "type": "integer", "minimum": 0 },
+        "planner": {
+          "description": "Planner and model versions that built the session.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "NextExercisePresented": {
+      "title": "NextExercisePresented",
+      "description": "An exercise was shown.",
+      "type": "object",
+      "required": ["id", "type", "schema", "device", "course", "orthography", "support", "bundle", "session", "clientTime", "localDate", "tz", "exercise"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "exercise_presented" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "exercise": { "$ref": "#/$defs/NextExerciseRef" },
+        "prediction": { "$ref": "learner-event.schema.json#/$defs/Prediction" },
+        "displayed": {
+          "description": "What was shown, each lexeme once in each form.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/DisplayedLexeme" }
+        }
+      }
+    },
+    "NextAnswerSubmitted": {
+      "title": "NextAnswerSubmitted",
+      "description": "One graded answer (§9.6). Raw answers are personal data (§14.4).",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "exercise",
+        "attempt",
+        "input",
+        "outcome"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "answer_submitted" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "exercise": { "$ref": "#/$defs/NextExerciseRef" },
+        "attempt": {
+          "description": "1 for the first try in this session, 2+ for an exercise brought back after a mistake.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "input": {
+          "type": "object",
+          "required": ["method", "latencyMs"],
+          "additionalProperties": false,
+          "properties": {
+            "method": { "type": "string", "enum": ["choice", "tiles", "text", "pairs", "voice"] },
+            "raw": {
+              "description": "What the learner typed or chose, as settled text. Personal data.",
+              "type": "string"
+            },
+            "latencyMs": { "type": "integer", "minimum": 0 },
+            "selfRating": {
+              "description": "Speak tier 0 only: the learner's own rating.",
+              "type": "string",
+              "enum": ["good", "hard", "again"]
+            },
+            "hinted": {
+              "description": "The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up.",
+              "const": true
+            }
+          }
+        },
+        "outcome": {
+          "type": "object",
+          "required": ["kind", "notes", "labels", "parts"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "CORRECT",
+                "CORRECT_ALT",
+                "CORRECT_MARKS",
+                "CORRECT_VARIANT",
+                "CORRECT_WITH_TYPO",
+                "CORRECT_PROVISIONAL",
+                "PARTIAL",
+                "WRONG_WORD",
+                "WRONG",
+                "SKIPPED"
+              ]
+            },
+            "notes": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "labels": {
+              "description": "What the miss is (ADR 0148). Empty for a right answer; a slip alone is a typo, accepted.",
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "common.schema.json#/$defs/MissLabel" }
+            },
+            "parts": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/PartCredit" }
+            }
+          }
+        },
+        "prediction": { "$ref": "learner-event.schema.json#/$defs/Prediction" }
+      }
+    },
+    "NextExerciseSkipped": {
+      "title": "NextExerciseSkipped",
+      "description": "The learner skipped (the answer is revealed) or could not listen or speak.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "exercise",
+        "attempt",
+        "reason"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "exercise_skipped" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "exercise": { "$ref": "#/$defs/NextExerciseRef" },
+        "attempt": { "type": "integer", "minimum": 1 },
+        "reason": { "type": "string", "enum": ["skip", "cant-listen", "cant-speak"] }
+      }
+    },
+    "NextSessionCompleted": {
+      "title": "NextSessionCompleted",
+      "description": "A session ended, finished or quit.",
+      "type": "object",
+      "required": ["id", "type", "schema", "device", "course", "orthography", "support", "bundle", "session", "clientTime", "localDate", "tz", "mode", "summary"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "session_completed" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": { "type": "string", "enum": ["lesson", "review", "mistakes", "placement", "story"] },
+        "node": { "type": "string", "minLength": 1 },
+        "summary": { "$ref": "learner-event.schema.json#/$defs/SessionSummaryData" },
+        "placed": {
+          "description": "Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done. A test the learner stopped part-way (summary.completed false) places by its answers so far, still without the session's XP (D9 in the 2026-11 review).",
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "seeded": {
+          "description": "Placement only (ADR 0111): the parts the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them.",
+          "type": "array",
+          "items": { "$ref": "common.schema.json#/$defs/PartId" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "NextOutcomeRevised": {
+      "title": "NextOutcomeRevised",
+      "description": "A later verdict on an earlier answer (§8.3): the LLM judge accepted it, or a reviewer did. Replay applies the revised outcome in place of the original, retroactively. Only the server issues these; uploads of ones it did not issue are refused.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "answer",
+        "outcome",
+        "by"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "outcome_revised" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "description": "The id of the answer_submitted event this revises.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "outcome": {
+          "type": "object",
+          "required": ["kind", "notes", "labels", "parts"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "CORRECT",
+                "CORRECT_ALT",
+                "CORRECT_MARKS",
+                "CORRECT_VARIANT",
+                "CORRECT_WITH_TYPO",
+                "CORRECT_PROVISIONAL",
+                "PARTIAL",
+                "WRONG_WORD",
+                "WRONG",
+                "SKIPPED"
+              ]
+            },
+            "notes": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "labels": {
+              "description": "What the miss is (ADR 0148). Empty for a right answer; a slip alone is a typo, accepted.",
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "$ref": "common.schema.json#/$defs/MissLabel" }
+            },
+            "parts": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/PartCredit" }
+            }
+          }
+        },
+        "by": {
+          "description": "Who revised it: the judge (the outcome is CORRECT_PROVISIONAL) or a human reviewer.",
+          "type": "string",
+          "enum": ["judge", "review"]
+        },
+        "judge": {
+          "description": "The judge call behind a judge revision (§13.1 provenance).",
+          "type": "object",
+          "required": ["model", "promptHash", "confidence"],
+          "additionalProperties": false,
+          "properties": {
+            "model": { "type": "string", "minLength": 1 },
+            "promptHash": { "type": "string", "pattern": "^[0-9a-f]{12}$" },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "NextAnswerReported": {
+      "title": "NextAnswerReported",
+      "description": "A learner's claim about how an answer was graded (§13.2, ADR 0052): \"my answer should have been accepted\" (claim accept, the default) or \"this should have been wrong\" (claim reject). It counts that way for the learner at once (projections apply it as a revision of the answer) and goes to the review queue for the course.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "answer",
+        "exercise",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "answer_reported" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "description": "The id of the answer_submitted event reported.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "exercise": { "$ref": "#/$defs/NextExerciseRef" },
+        "text": {
+          "description": "The answer as the learner settled it. Personal data.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "note": {
+          "description": "Optional words from the learner.",
+          "type": "string",
+          "maxLength": 500
+        },
+        "claim": {
+          "description": "What the learner says (ADR 0052): accept, \"my answer should have been accepted\" (the default), or reject, \"this should have been wrong\" (an answer graded right that should not be). Either way it counts that way for the learner at once, and goes to review for the course.",
+          "enum": ["accept", "reject"]
+        }
+      }
+    },
+    "NextProgressReset": {
+      "title": "NextProgressReset",
+      "description": "The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.",
+      "type": "object",
+      "required": ["id", "type", "schema", "device", "course", "orthography", "support", "bundle", "session", "clientTime", "localDate", "tz"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "progress_reset" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": {
+          "description": "Id of the reset itself (a session of one event), so every event names a session.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "NextSentenceReported": {
+      "title": "NextSentenceReported",
+      "description": "A learner marked a sentence, a story line or a word as incorrect and said what it should be (ADR 0051, 0057). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "item",
+        "shown",
+        "correction"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "sentence_reported" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": {
+          "description": "The session the learner was in, or a session of this one event (the sentence list).",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "item": {
+          "description": "A sentence id, a story id with `step`, or a lexeme id (ADR 0057).",
+          "type": "string",
+          "minLength": 1
+        },
+        "step": {
+          "description": "For a story line: the step's index in the story (0-based, every step counted).",
+          "type": "integer",
+          "minimum": 0
+        },
+        "shown": {
+          "description": "Every orthography's text and readings, and the translation, as the device showed them: `nabu corrections apply` checks the course source still says this.",
+          "$ref": "correction.schema.json#/$defs/CorrectionFields"
+        },
+        "correction": {
+          "description": "Only what the learner changed. Empty when they only wrote a note.",
+          "$ref": "correction.schema.json#/$defs/CorrectionFields"
+        },
+        "note": {
+          "description": "Optional words from the learner. Personal data.",
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    },
+    "NextGoalSet": {
+      "title": "NextGoalSet",
+      "description": "The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.",
+      "type": "object",
+      "required": ["id", "type", "schema", "device", "clientTime", "localDate", "tz", "days"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "goal_set" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "days": {
+          "description": "Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.",
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "maximum": 7
+        }
+      }
+    },
+    "StoryLineRead": {
+      "title": "StoryLineRead",
+      "description": "A story line the learner read (ADR 0146: a story records the lines read). A line is no exercise, so it has an event of its own.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "story",
+        "line",
+        "displayed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "story_line_read" },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
+        "schema": { "const": 2 },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "story": {
+          "description": "The story's id.",
+          "type": "string",
+          "minLength": 1
+        },
+        "line": {
+          "description": "The line's place among the story's steps, from 0.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "displayed": {
+          "description": "What was shown, each lexeme once in each form.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/DisplayedLexeme" }
+        }
+      }
+    }
+  }
+}

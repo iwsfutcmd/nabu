@@ -1,0 +1,24 @@
+# Spanish, as docs/migration-design.md sketches it. REVIEW: the classes and defaults are a draft.
+id: es
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@fable-5.2', status: draft}
+varieties: [es-CU, es-419, es-ES]
+registers: [neutral, formal, colloquial]
+dimensions:
+  VERB: [Mood, Tense, Person, Number, VerbForm]
+  NOUN: [Number]
+  ADJ: [Gender, Number]
+features:
+  Gender: [Fem, Masc]
+  Number: [Sing, Plur]
+  Person: ["1", "2", "3"]
+  Tense: [Pres, Past, Imp, Fut]
+  Mood: [Ind, Sub, Imp, Cnd]
+  VerbForm: [Fin, Inf, Part, Ger]
+defaults:
+  - {id: gender-a, when: {pos: NOUN, ends: a}, gives: {Gender: Fem}}
+  - {id: gender-o, when: {pos: NOUN, ends: o}, gives: {Gender: Masc}}
+classes:
+  - {id: e-ie, pos: VERB, gloss: {en: "e → ie"}}
+  - {id: go, pos: VERB, gloss: {en: "yo form in -go"}}
+  - {id: short-future, pos: VERB, gloss: {en: "short future stem"}}

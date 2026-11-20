@@ -1,0 +1,31 @@
+# A unit points at the lexicon: it defines no lexemes.
+id: u01
+title: {en: "The hand"}
+nodes:
+  - {id: es.u01.hand, kind: lesson, introduces: ['lexeme:el', 'lexeme:mano', 'feature:Number=Plur']}
+sentences:
+  - id: s.1
+    node: es.u01.hand
+    forms:
+      es-Latn/standard:
+        text: La mano.
+        tokens:
+          - {n: 1, surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, head: 2, rel: det}
+          - {n: 2, surface: mano, lexeme: mano, feats: {Number: Sing}}
+          - {surface: ., kind: punct}
+        reverse: la mano
+    translations: {en: "The hand."}
+  - id: s.2
+    node: es.u01.hand
+    forms:
+      es-Latn/standard:
+        text: ¿Cómo estás?
+        tokens:
+          - {surface: ¿, kind: punct}
+          - {surface: Cómo, lexeme: como}
+          - {surface: estás, lexeme: estar, feats: {Tense: Pres, Person: "2", Number: Sing}}
+          - {surface: "?", kind: punct}
+    translations: {en: "How are you?"}
+    tags:
+      - {persons: {addressee: sg}}
+      - {register: colloquial}

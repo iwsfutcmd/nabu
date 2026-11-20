@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/language.schema.json",
+  "title": "LanguageDeclaration",
+  "description": "What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.",
+  "type": "object",
+  "required": ["id", "license", "provenance", "dimensions"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/LanguageCode" },
+    "license": { "$ref": "course-source.schema.json#/$defs/Spdx" },
+    "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
+    "varieties": {
+      "description": "The varieties a scope may name (ADR 0145), as BCP 47 tags: es-CU, es-ES, apc-LB.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/LangTag" }
+    },
+    "registers": {
+      "description": "The registers a scope may name.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "common.schema.json#/$defs/RegisterId" }
+    },
+    "dimensions": {
+      "description": "For each category, the inflectional features every member must choose a value of (ADR 0145: what makes a head a value head). Spanish NOUN: [Number]; apc VERB: [Aspect, Person, Gender, Number].",
+      "type": "object",
+      "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*$" }
+      }
+    },
+    "features": {
+      "description": "Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none.",
+      "type": "object",
+      "propertyNames": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*$" },
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": { "type": "string", "pattern": "^[A-Z0-9][A-Za-z0-9]*$" }
+      }
+    },
+    "defaults": {
+      "description": "The language's stated defaults (ADR 0148: a default is a rule; ADR 0146: what one gives is no part of a lexeme). Spanish: a noun in -a is feminine.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Default" }
+    },
+    "classes": {
+      "description": "The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146).",
+      "type": "array",
+      "items": { "$ref": "#/$defs/LexicalClass" }
+    }
+  },
+  "$defs": {
+    "Condition": {
+      "title": "Condition",
+      "description": "What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "pos": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+        "ends": {
+          "description": "The lexical form ends in this (Spanish -a; uz -k).",
+          "type": "string",
+          "minLength": 1
+        },
+        "starts": {
+          "description": "The lexical form begins with this.",
+          "type": "string",
+          "minLength": 1
+        },
+        "class": {
+          "description": "It belongs to this class of its language.",
+          "$ref": "course-source.schema.json#/$defs/Slug"
+        },
+        "feats": {
+          "description": "It has these feature values.",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
+        }
+      }
+    },
+    "Default": {
+      "title": "Default",
+      "description": "One default: where `when` holds of a lexeme, it has `gives` unless its entry says otherwise.",
+      "type": "object",
+      "required": ["id", "when", "gives"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "course-source.schema.json#/$defs/Slug" },
+        "when": { "$ref": "#/$defs/Condition" },
+        "gives": { "$ref": "common.schema.json#/$defs/UdFeatures" },
+        "notes": {
+          "description": "What a reviewer should know, by support language.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "LexicalClass": {
+      "title": "LexicalClass",
+      "description": "One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).",
+      "type": "object",
+      "required": ["id", "pos"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "course-source.schema.json#/$defs/Slug" },
+        "pos": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+        "gloss": {
+          "description": "What a learner is shown for it, by support language (pensar: e → ie).",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "notes": {
+          "description": "What a reviewer should know, by support language.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

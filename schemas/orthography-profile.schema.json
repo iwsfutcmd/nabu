@@ -84,6 +84,12 @@
     },
     "speech": {
       "$ref": "#/$defs/Speech"
+    },
+    "correspondences": {
+      "description": "What this orthography writes of the lexical form, and what it loses (ADR 0148): one statement for reading and writing. It replaces `soundAlike` at the switch (docs/migration-design.md); until then nothing reads it.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "orthography-profile.schema.json#/$defs/Correspondence" }
     }
   },
   "$defs": {
@@ -1168,6 +1174,66 @@
           "description": "The feedback note shown with the verdict (MF2 message feedback.note.<note>).",
           "type": "string",
           "pattern": "^[a-z][a-z0-9-]*$"
+        }
+      }
+    },
+    "Correspondence": {
+      "title": "Correspondence",
+      "description": "One correspondence between a language's lexical form and a way of writing it (ADR 0148: the projections are rules, and the profile states them). It says both directions at once: what is written for a piece of the lexical form, and what reading back cannot recover. Whatever the stated correspondences do not give is per lexeme: a leftover to learn, or a pinned spelling to review.",
+      "type": "object",
+      "required": ["says", "written", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "says": {
+          "description": "The piece of the lexical form, in its language's notation (docs/lexical-forms/<lang>.md): a letter, a sign, a letter with its sign.",
+          "type": "string",
+          "minLength": 1
+        },
+        "written": {
+          "description": "How it is written here, the spelling a projection writes first. An empty string: it is not written.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string" }
+        },
+        "kind": {
+          "description": "fixed: the norm picks one spelling for each lexeme, so where there are several, which one is a leftover (fa: sin, sad or se). free: no norm picks one, so each is right and none is a leftover (Arabizi: e or i).",
+          "type": "string",
+          "enum": ["fixed", "free"]
+        },
+        "when": { "$ref": "#/$defs/CorrespondenceContext" },
+        "loses": {
+          "description": "The other pieces of the lexical form written the same way here, which reading back cannot tell from `says` (Arabizi s: sin and sad).",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "note": {
+          "description": "The feedback note for a spelling that differs only by this.",
+          "$ref": "#/$defs/NoteId"
+        }
+      }
+    },
+    "CorrespondenceContext": {
+      "title": "CorrespondenceContext",
+      "description": "Where a correspondence holds. Every key given must hold. A first, small set: it grows when the grader runs these (the switch).",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "description": "At the start or the end of a token, or of a lexeme a token writes.",
+          "type": "string",
+          "enum": ["start", "end"]
+        },
+        "before": {
+          "description": "Before one of these.",
+          "$ref": "#/$defs/UnicodeSetPattern"
+        },
+        "after": {
+          "description": "After one of these.",
+          "$ref": "#/$defs/UnicodeSetPattern"
         }
       }
     }

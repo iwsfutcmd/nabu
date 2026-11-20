@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/lexicon.schema.json",
+  "title": "Lexicon",
+  "description": "A language's lexicon (lexicons/<lang>/lexemes.yaml; ADR 0145): every lexeme, in one list sorted by id. It is flat (the owner, 2026-11-20): no entry says which unit of which course teaches it. Courses point at it.",
+  "type": "object",
+  "required": ["language", "license", "provenance", "lexemes"],
+  "additionalProperties": false,
+  "properties": {
+    "language": { "$ref": "common.schema.json#/$defs/LanguageCode" },
+    "license": { "$ref": "course-source.schema.json#/$defs/Spdx" },
+    "provenance": {
+      "description": "For every entry that gives none of its own.",
+      "$ref": "course-source.schema.json#/$defs/Provenance"
+    },
+    "lexemes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Lexeme" }
+    }
+  },
+  "$defs": {
+    "Lexeme": {
+      "title": "Lexeme",
+      "description": "One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three.",
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/LexemeId" },
+        "pos": {
+          "description": "Its one part of speech, a UD tag.",
+          "$ref": "common.schema.json#/$defs/PartOfSpeech"
+        },
+        "realises": {
+          "description": "The dimension value it is (ADR 0145: a value head): {Case: Dat}.",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
+        "head": { "$ref": "#/$defs/FunctionHead" },
+        "feats": {
+          "description": "Its lexical features, only those no default of its language gives (ADR 0146: each is a part to learn): mano {Gender: Fem}.",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
+        "classes": {
+          "description": "The classes of its language it belongs to: tener [e-ie, go].",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "course-source.schema.json#/$defs/Slug" }
+        },
+        "gloss": {
+          "description": "Its meaning, by support language.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "notes": {
+          "description": "Notes shown with it, by support language.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "image": { "$ref": "course-source.schema.json#/$defs/ImageAsset" },
+        "form": { "$ref": "#/$defs/LexicalForm" },
+        "forms": {
+          "description": "The forms and stems no rule gives yet (ADR 0145): each listed or pinned.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/LexemeForm" }
+        },
+        "allomorphs": {
+          "description": "Its forms by context, where it has several and no rule gives them (uz -ga, -ka after k, -qa after q).",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Allomorph" }
+        },
+        "scope": { "$ref": "#/$defs/Scope" },
+        "concept": { "$ref": "common.schema.json#/$defs/ConceptId" },
+        "base": {
+          "description": "A derivative's base lexeme, where something about the derivative is listed (ADR 0145: m3allem, from 3allam).",
+          "$ref": "common.schema.json#/$defs/LexemeId"
+        },
+        "pattern": {
+          "description": "A derivative's function head (the agentive pattern).",
+          "$ref": "common.schema.json#/$defs/LexemeId"
+        },
+        "spelled": {
+          "description": "Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "readings": {
+          "description": "Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/SchemeId" },
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" }
+      }
+    },
+    "FunctionHead": {
+      "title": "FunctionHead",
+      "description": "A function head's signature (ADR 0145): what it takes, what it makes, which features it sets.",
+      "type": "object",
+      "required": ["takes", "makes"],
+      "additionalProperties": false,
+      "properties": {
+        "takes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/PartOfSpeech" }
+        },
+        "makes": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+        "sets": { "$ref": "common.schema.json#/$defs/UdFeatures" }
+      }
+    },
+    "LexicalForm": {
+      "title": "LexicalForm",
+      "description": "A lexeme's one lexical form (ADR 0145): in its own script, fully specified, every spelling and the phonemes projected from it. Its shape depends on the kind of lexeme: a string in the language's notation (docs/lexical-forms/<lang>.md); a base's radicals, Form and vowels; a pattern's templates; a listed item's parts; a logograph with what picks its reading.",
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "$ref": "#/$defs/RadicalForm" },
+        { "$ref": "#/$defs/PatternForm" },
+        { "$ref": "#/$defs/ListedParts" },
+        { "$ref": "#/$defs/Logograph" }
+      ]
+    },
+    "RadicalForm": {
+      "title": "RadicalForm",
+      "description": "A Semitic base (ADR 0145): its radicals, stored (a hollow verb's middle one shows only in some forms); its Form or stem, as its language names them (apc I to X and Q; hbo qal, nifal); and the vowels its Form leaves open. The root class is never stored: it follows from the radicals.",
+      "type": "object",
+      "required": ["radicals", "form"],
+      "additionalProperties": false,
+      "properties": {
+        "radicals": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "form": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9-]*$" },
+        "vowels": {
+          "description": "By the slot its language names (apc: past, present).",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "PatternForm": {
+      "title": "PatternForm",
+      "description": "A pattern (ADR 0145, 0150): its own letters and vowels around numbered slots for a base's radicals, one template per root class.",
+      "type": "object",
+      "required": ["templates"],
+      "additionalProperties": false,
+      "properties": {
+        "templates": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "ListedParts": {
+      "title": "ListedParts",
+      "description": "A listed item whose form is its parts' (darse cuenta; writer, an author): only its meaning is listed. `inflects` names the part that takes the forms (me di cuenta).",
+      "type": "object",
+      "required": ["parts"],
+      "additionalProperties": false,
+      "properties": {
+        "parts": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "common.schema.json#/$defs/LexemeId" }
+        },
+        "inflects": { "$ref": "common.schema.json#/$defs/LexemeId" }
+      }
+    },
+    "Logograph": {
+      "title": "Logograph",
+      "description": "The one exception to a single tier (ADR 0145): a character cannot say its sound, so the form is the character with what picks its reading, in the notation of its tradition (lzh: its Qieyun position; yue: a reading only where the table gives several or a tone changes).",
+      "type": "object",
+      "required": ["written"],
+      "additionalProperties": false,
+      "properties": {
+        "written": { "type": "string", "minLength": 1 },
+        "reading": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/SchemeId" },
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "LexemeForm": {
+      "title": "LexemeForm",
+      "description": "A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.",
+      "type": "object",
+      "required": ["feats", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" },
+        "form": {
+          "description": "The whole form, in the language's lexical-form notation (fue).",
+          "type": "string",
+          "minLength": 1
+        },
+        "stem": {
+          "description": "A stem the regular endings go on (tuv).",
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "description": "listed: the language has no rule for it, so it is a part to learn; it needs its `statement`. pinned: a rule gives it and ours is not written yet; stored and checked, never counted, never a learner's part.",
+          "type": "string",
+          "enum": ["listed", "pinned"]
+        },
+        "statement": {
+          "description": "Who says the language has no rule for it. A draft counts until it is signed off (the owner, round 6).",
+          "$ref": "course-source.schema.json#/$defs/Provenance"
+        },
+        "scope": { "$ref": "#/$defs/Scope" },
+        "spelled": {
+          "description": "Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "readings": {
+          "description": "Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/SchemeId" },
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "Allomorph": {
+      "title": "Allomorph",
+      "description": "One form of a lexeme by context. With no condition it is the one used elsewhere.",
+      "type": "object",
+      "required": ["form"],
+      "additionalProperties": false,
+      "properties": {
+        "form": { "type": "string" },
+        "after": {
+          "description": "What it stands after.",
+          "$ref": "language.schema.json#/$defs/Condition"
+        },
+        "before": {
+          "description": "What it stands before.",
+          "$ref": "language.schema.json#/$defs/Condition"
+        },
+        "spelled": {
+          "description": "Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "readings": {
+          "description": "Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/SchemeId" },
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "Scope": {
+      "title": "Scope",
+      "description": "Where a lexeme or a form is said (ADR 0145): a range of varieties and a range of registers. Everywhere unless stated.",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "varieties": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/LangTag" }
+        },
+        "registers": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/RegisterId" }
+        }
+      }
+    }
+  }
+}

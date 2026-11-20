@@ -156,6 +156,71 @@
         }
       },
       "examples": [{ "en": { "course": "Cantonese", "orthographies": { "yue-Hant-HK/standard": "Traditional characters" } } }]
+    },
+    "LanguageCode": {
+      "description": "A language as a lexicon is kept for it (ADR 0145: one lexicon per language): its BCP 47 language subtag, with no script, region or variant.",
+      "type": "string",
+      "pattern": "^[a-z]{2,3}$"
+    },
+    "LexemeName": {
+      "description": "A lexeme's name in its language's lexicon: its id without the `lexeme:` prefix, as a token writes it (lexeme: tener). No space, no bar.",
+      "type": "string",
+      "pattern": "^[^\\s|]+$"
+    },
+    "LexemeId": {
+      "description": "A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.",
+      "type": "string",
+      "pattern": "^lexeme:[^\\s|]+$"
+    },
+    "RuleId": {
+      "description": "A rule of a language (ADR 0145, 0148): what gives a combination's form, a projection, a default.",
+      "type": "string",
+      "pattern": "^rule:[^\\s|]+$"
+    },
+    "FeatureValueId": {
+      "description": "One value of one feature of a language, as what is taught and learned (ADR 0146: an inherent feature is learned as its contrast, by its uses): feature:Tense=Past.",
+      "type": "string",
+      "pattern": "^feature:[A-Z][A-Za-z0-9]*=[A-Z0-9][A-Za-z0-9]*$"
+    },
+    "TeachableId": {
+      "description": "What a path node may introduce: a lexeme, a feature value, a rule, or a letter of a script track (ADR 0149: a grapheme stays the track's).",
+      "type": "string",
+      "pattern": "^(lexeme|rule|grapheme):[^\\s|]+$|^feature:[A-Z][A-Za-z0-9]*=[A-Z0-9][A-Za-z0-9]*$"
+    },
+    "PartId": {
+      "description": "What memory is kept for and an answer is evidence of (ADR 0146): a lexeme, a rule or a feature value, and after a bar what of it. lexeme:tener (itself), lexeme:tener|class:go, lexeme:tener|stem:tuv, lexeme:mano|Gender, lexeme:casa|spell:es-Latn/standard, rule:uz-dat|after-q, feature:Tense=Past|use:completed.",
+      "type": "string",
+      "pattern": "^(lexeme|rule|grapheme):[^\\s|]+(\\|[^\\s|]+)?$|^feature:[A-Z][A-Za-z0-9]*=[A-Z0-9][A-Za-z0-9]*(\\|[^\\s|]+)?$"
+    },
+    "ConceptId": {
+      "description": "A concept (ADR 0145): what links lexemes that differ only socially (variety, speech level, honorific). It has no entry and no learning state: lexemes that name the same one are linked.",
+      "type": "string",
+      "pattern": "^concept:[^\\s|]+$"
+    },
+    "RegisterId": {
+      "description": "A register a language declares (ADR 0145: the second axis of a scope): formal, colloquial, krama.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+    },
+    "UdRelation": {
+      "description": "A Universal Dependencies relation, with its subtype where it has one: det, case, nsubj, obl, nmod:poss.",
+      "type": "string",
+      "pattern": "^[a-z]+(:[a-z]+)?$"
+    },
+    "Skill": {
+      "description": "A skill asked of a part (ADR 0146). The six facets, and for a feature's use: `choose` (the value picked where the situation calls for it) and `read-off` (the value read off the form).",
+      "type": "string",
+      "enum": ["recognize", "produce", "listen", "speak", "read-script", "write-script", "choose", "read-off"]
+    },
+    "MissLabel": {
+      "description": "What a miss is (ADR 0148). A miss may carry several, each from one question: is the sound right (orthographic, phonemic), whose form is it (grammatical, regularised, lexical, scope), how did it happen (slip).",
+      "type": "string",
+      "enum": ["slip", "orthographic", "phonemic", "grammatical", "regularised", "lexical", "scope"]
+    },
+    "Question": {
+      "description": "The one thing a choice asks (ADR 0132, 0147): which lexeme, which form of the answer's lexeme, or which use (a contrast only the passage decides). Replaces `Asks`, whose first value called a lexeme a word.",
+      "type": "string",
+      "enum": ["lexeme", "form", "use"]
     }
   }
 }

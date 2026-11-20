@@ -107,10 +107,24 @@ describe("fixture courses in /courses", () => {
   }
 });
 
+// Each directory of examples and the schema it is checked against: a file's root, or one of its
+// definitions. The last six are the lexical model's (docs/migration-design.md, deliverable 1).
+const EXAMPLES: readonly (readonly [string, string])[] = [
+  ["tagged-text", ID("tagged-text.schema.json")],
+  ["orthography-profile", ID("orthography-profile.schema.json")],
+  ["message-catalog", ID("message-catalog.schema.json")],
+  ["language", ID("language.schema.json")],
+  ["lexicon", ID("lexicon.schema.json")],
+  ["aliases", ID("aliases.schema.json")],
+  ["course.next", ID("course-source.next.schema.json")],
+  ["unit.next", `${ID("course-source.next.schema.json")}#/$defs/NextUnitSource`],
+  ["learner-event.next", ID("learner-event.next.schema.json")],
+];
+
 describe("examples", () => {
   const ajv = makeAjv();
-  for (const kind of ["tagged-text", "orthography-profile", "message-catalog"]) {
-    const validate = ajv.getSchema(ID(`${kind}.schema.json`))!;
+  for (const [kind, schema] of EXAMPLES) {
+    const validate = ajv.getSchema(schema)!;
     for (const path of filesIn(join(EXAMPLES_DIR, kind, "valid"))) {
       it(`${kind}/valid/${path.split("/").at(-1)} validates`, () => {
         const ok = validate(load(path));
