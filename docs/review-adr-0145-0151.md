@@ -8,6 +8,10 @@
   with them [0144](adr/0144-read-first-then-write.md), the accepted ADRs they amend or touch, both notes files,
   the explainer and the two prototypes.
 - No ADR was edited. The owner decides which fixes to take.
+- **Since then** (2026-11-20): the owner answered a fifth round of questions drawn from findings 1, 3 to 6, 10
+  to 12, 15 and 24 ([lexemes.md](lexemes.md) §16), and the seven ADRs were revised. Each ends with a section
+  saying what the owner decided, what was restored from the notes, and what the revision proposes beyond
+  that. This file is the review as it stood at 98a9031; its line numbers are that commit's.
 - **Amended the same day, after a pass through the reference library.** The first version checked the
   linguistic examples against course data, three web sources and memory, and did not open the library, though
   it was reachable. The pass corrected finding 6, confirmed C2, C4 and C5 from the books, and added finding 24
@@ -412,7 +416,7 @@ The seven list sixteen ADRs as amended. These also change:
 | 0117, 0135 | readings are pinned per token and per KC form, "nothing is guessed"; grc "keeps its Greek text and Attic readings both" | 0145: one lexical form, everything projected | no |
 | 0053 | vowel marks come from `vocalization.yaml` at compile time | 0145: the lexical form is fully specified | no |
 | 0071, 0127, 0138 | every lzh token pins Pinyin, Jyutping and Baxter, checked against Baxter & Sagart row by row | 0145: derived from Qieyun positions, with overrides | no |
-| 0082–0084, 0086, 0087, 0126, 0129 | hbo, tok, grc, yue and chg tokens pin their readings | 0145, 0148: projections | no |
+| 0082, 0084, 0086, 0087, 0126, 0129 | hbo, tok, grc, yue and chg tokens pin their readings | 0145, 0148: projections | no |
 | 0084 | hbo's other orders and forms in accept sets | 0147's lint (finding 6) | no |
 | 0076, 0087 | a missing accent is a note (es); missing Greek marks are a note, since "learners may have no polytonic keyboard" (grc) | 0148 names "the marks policies of the es and grc profiles", not the ADRs, and doesn't answer grc's reason | in part |
 | 0134, 0133 | chg-Latn's consonant marks and grc-Latn's macrons are noted, not failed | 0148: a mark that carries sound is never excused | no |
