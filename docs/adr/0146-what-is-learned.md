@@ -1,8 +1,8 @@
 # 0146. What is learned: every part no rule gives
 
-- Status: Proposed
+- Status: Accepted (2026-11-20)
 - Date: 2026-11-19
-- Revised: 2026-11-20, after the review and the owner's round 5 (what changed is listed at the end)
+- Revised: 2026-11-20, after the review and the owner's rounds 5 and 6 (what changed is listed at the end)
 - Amends: the gameplan's §1 decisions 6 (memory per KC and facet) and 7 (credit per token), [ADR
   0100](0100-known-words.md) (what is known), [ADR 0050](0050-ten-unit-courses.md) (what a lesson presents),
   [ADR 0132](0132-a-choice-asks-one-thing.md) (only attested forms: it stands for a choice, while a typed
@@ -148,10 +148,12 @@ derivable.
 - **Closed classes are taught early** (round 1), which leaves formulas less to do.
 - **Wug cards come last and light:** a confirmation that a productive rule is known after real words have
   shown it, an easter egg, never the main evidence. Made up at compile time from real stems (a nonce root in
-  a real pattern for Semitic), checked against the course and a large word list, shipped with `generated`
-  provenance; a rule that needs a listed property shows it, as a dictionary entry would (a made-up Greek noun
-  with its genitive ending and its article). **Always labelled as made up, and never in the word list,
-  stories or gloss panels.** A language with no word list to check against gets no wug cards.
+  a real pattern for Semitic), checked against the course's own words (the owner, round 6: they are enough,
+  so every course can have these cards), shipped with `generated` provenance; a rule that needs a listed
+  property shows it, as a dictionary entry would (a made-up Greek noun with its genitive ending and its
+  article). **Always labelled as made up, and never in the word list, stories or gloss panels.** A made-up
+  word may then be a real word the course never teaches: the label says it is asked as a form, not as a
+  word.
 
 ### Glosses and literal hints
 
@@ -223,7 +225,17 @@ the owner's fifth round of answers ([lexemes.md](../lexemes.md) §16).
 **Restored from the notes:** a part is asked only where the course can ask it and the learner hasn't turned it
 off; wug cards are always labelled as made up and never appear in the word list, stories or gloss panels.
 
-**Proposed with this revision, not yet the owner's:**
+## Round 6 (2026-11-20): accepted
+
+The owner's sixth round ([lexemes.md](../lexemes.md) §16) ruled on what the revision had proposed, and
+accepted the ADR.
+
+**Decided against the draft:**
+- **A made-up word is checked against the course's own words, and that is enough.** The draft asked for a
+  large word list and gave a language without one no wug cards. (It also named hbo among those, wrongly: the
+  Codex is a closed corpus.)
+
+**Accepted as drafted:**
 1. "Every part the course will ever teach" means every listed part some content asks, and a part first
    written in a later unit waits for it (ADR 0050).
 2. The table of parts, their skills and what shows each: listening is a skill of the lexeme, and there is no
@@ -231,5 +243,4 @@ off; wug cards are always labelled as made up and never appear in the word list,
 3. A confusable pair has no state: the miss is kept on the asked word's spelling leftover.
 4. A built gloss is an MF2 message over language data; the support language's own word is authored on the
    listed form.
-5. A language with no word list to check against gets no wug cards.
-6. Named as not decided: what the performance model keys, and what a simulated learner knows of a rule.
+5. Named as not decided: what the performance model keys, and what a simulated learner knows of a rule.

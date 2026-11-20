@@ -1,11 +1,11 @@
 # 0145. The lexical model: concepts, lexemes, morphemes, forms
 
-- Status: Proposed
+- Status: Accepted (2026-11-20)
 - Date: 2026-11-19
-- Revised: 2026-11-20, after the review and the owner's round 5 (what changed is listed at the end)
+- Revised: 2026-11-20, after the review and the owner's rounds 5 and 6 (what changed is listed at the end)
 - Amends: the gameplan's §7.1 and glossary (what a KC is), [ADR 0061](0061-lemmas-and-morphs.md) (a KC's
   forms), [ADR 0132](0132-a-choice-asks-one-thing.md) ("which form" and "which word"; UD `pos` and features
-  on every KC; "no KC carries a gender"), [ADR 0066](0066-meaningful-endings.md) (contrast sets)
+  are a lexeme's; "no KC carries a gender"), [ADR 0066](0066-meaningful-endings.md) (contrast sets)
 - Also amends, since a reading and a word's marks become projections of one lexical form: [ADR
   0053](0053-vocalization.md) (vocalization files), [ADR 0117](0117-pinned-readings-on-kc-forms.md) and [ADR
   0135](0135-readings-fixed-by-their-words.md) (readings pinned on KC forms and on tokens), and the readings
@@ -88,12 +88,13 @@ is the owner's, and the notes record each one where it was made.
   unspecified comes up from the base (Spanish ‑ito sets neither category nor gender: *ahorita* an adverb, *el
   problemita* masculine). Where both specify a feature, the selector wins; there is no hierarchy or strength.
   A construction can select (verb + noun compounds make masculine nouns: *el abrelatas*).
-- **A lexeme has a part of speech, in its language's own categories** (Arabic's ism, fiʿl, ḥarf; Uzbek
-  *yaxshi* is one lexeme, never split into adjective and adverb). A language declares its categories with
-  their subclasses, finely enough that a word question's options share the answer's class (ADR 0132: under
-  ism, Arabic grammar has ṣifa, ḍamīr, ẓarf). UD's tags stay as a mapping from each class, which ADR 0132's
-  features and ADR 0144's `PROPN` default read. A function head stores a signature: what it takes, what it
-  makes, which features it sets.
+- **A lexeme has one part of speech, written as its UD tag with UD's features** (the owner, round 6: "let's
+  just use UD tags"). No language declares a category system of its own as data. The principle behind "a
+  language's own categories" stands: no distinction is inserted that the language doesn't make, so Uzbek
+  *yaxshi* is one lexeme under one tag, never split into an adjective and an adverb. UD's tags are what a
+  word question's options share with the answer (ADR 0132: a pronoun is `PRON` and never among a noun's
+  options), and ADR 0144's `PROPN` default reads them as now. A function head stores a signature: what it
+  takes, what it makes, which features it sets.
 - **The learner's test** (the owner's, 2026-11-19): Y belongs to X's lexeme if knowing X without Y is not
   fully knowing X. Knowing *run* without *ran* is not knowing RUN; knowing *write* without *writer* is still
   knowing WRITE; knowing *carro* without *coche*, or *padre* without *madre*, is knowing CARRO and PADRE. The
@@ -103,8 +104,8 @@ is the owner's, and the notes record each one where it was made.
     lexeme;
   - a **function head** is every other head; its result is a **derivative**: another word, its category from
     the head, its meaning from both, its paradigm from its category.
-- **Dimensions are declared per language, one list per category, beside the lexicon** (apc verb: aspect,
-  person, gender, number; Spanish noun: number). A dimension is what every member of the category must
+- **Dimensions are declared per language, one list per category (a UD tag), beside the lexicon** (apc verb:
+  aspect, person, gender, number; Spanish noun: number). A dimension is what every member of the category must
   choose a value of. **The base-case rule checks the declaration:** a feature with an overt, regular
   base-case morpheme is a dimension, and its suppletive forms are forms of the one lexeme
   (English past: *ran*; Arabic plural, since the sound plurals exist, ‑ات and, for male persons, ‑ون: كُتُب;
@@ -200,8 +201,8 @@ is the owner's, and the notes record each one where it was made.
     which one inflects (*me di cuenta*). Only its meaning is listed.
 - **A logography is the one exception to "never a pair":** a character can't say its sound, so the form is
   the character with what picks its reading. lzh: its Qieyun position, the tradition's own notation.
-  Proposed for yue: the character, with a reading only where the table gives several or a tone changes.
-  Proposed for tok: the Latin word, its sitelen pona glyph a listed correspondence (ADR 0148).
+  yue: the character, with a reading only where the table gives several or a tone changes. tok: the Latin
+  word, its sitelen pona glyph a listed correspondence (ADR 0148).
 - **A source's spelling is the utterance's, not the morpheme's.** Where an orthography leaves a
   correspondence free (ADR 0148: chg's scribes write p as پ, ب or ف; hbo spells a vowel full or defective),
   the projection gives every such spelling, the utterance keeps the one its source wrote, and the others are
@@ -232,9 +233,10 @@ is the owner's, and the notes record each one where it was made.
   with conformance vectors; they only accept and check (the compiler checks the authored order is one the
   rules give, and adds the others to accept sets). The text shown is always the authored text.
 - **Trees come with the first rule that needs them,** drafted by a parser and corrected by a reviewer; no one
-  writes 5,269 of them at the migration. **Agreement and government links are on tokens from the migration
-  on** (which word a form agrees with, which word governs a case), since credit for a lexical feature needs
-  them: ✗*el mano* counts against *mano*'s gender only if *el* is known to agree with it (ADR 0146).
+  writes 5,269 of them at the migration. **From the migration on a token names its UD head and relation
+  where agreement or government matters** (the owner, round 6: UD's notation, no links of our own), since
+  credit for a lexical feature needs them: *el* is `det` of *mano*, so ✗*el mano* counts against *mano*'s
+  gender (ADR 0146). These are edges of the tree to come, and a full tree extends them.
 
 ### Decided per language
 
@@ -289,7 +291,7 @@ is the owner's, and the notes record each one where it was made.
   - a test on real exported logs: the simulation can't say what an existing learner's list does on the day.
 - **New schemas** (schemas/, then `pnpm codegen`): the per-language lexicon (lexemes, morphemes with features,
   parts and scope, lexical forms; each form the rules don't reach marked pinned or listed), each language's
-  categories, dimensions, classes and defaults, concepts. Courses reference the lexicon; tokens name lexemes
+  dimensions, classes and defaults, concepts. Courses reference the lexicon; tokens name lexemes
   and features, and the compiler realises them.
 - **The compiler checks derivability both ways:** a token analysed as a combination must come out of the
   stated rules or be pinned, and a listed form needs its statement (generalising `kc.inflected-form`). It
@@ -310,7 +312,7 @@ is the owner's, and the notes record each one where it was made.
 - **Not decided here:** what is learned and how progress counts (ADR 0146), underspecification (0147),
   projections and miss labels (0148), script first (0149), pattern display (0150), fonts (0151). How
   syntax is taught is left for later.
-- **Costs:** every course needs a lexicon, categories, dimensions, classes and lexical forms, reviewed
+- **Costs:** every course needs a lexicon, dimensions, classes and lexical forms, reviewed
   (REVIEW) like profile policies. Rules that reproduce every inflected token a course writes are the larger
   cost, and for hbo and grc they are most of those languages' morphology: the pinned status is what lets a
   course move before they are written. Over-generation is the risk of every rule, so every rule ships with
@@ -333,16 +335,28 @@ to C9, C18, C20) and the owner's fifth round of answers ([lexemes.md](../lexemes
 listed form carries its own register range; a listed item whose form is its parts' stores the parts and which
 one inflects; a construction is a rule or a listed item with slots; trees are drafted by a parser.
 
-**Proposed with this revision, not yet the owner's:**
+## Round 6 (2026-11-20): accepted
+
+The owner's sixth round ([lexemes.md](../lexemes.md) §16) ruled on what the revision had proposed, and
+accepted the ADR.
+
+**Decided against the draft:**
+- **A lexeme's part of speech is written as its UD tag.** The draft had each language declare categories
+  with subclasses and keep UD as a mapping. The owner: "let's just use UD tags". Read here as: no category
+  system is declared per language; the principle that no distinction is inserted which a language doesn't
+  make stands (one lexeme, one tag).
+- **Agreement and government are written as a token's UD head and relation,** not as links of our own.
+
+**Accepted as drafted:**
 1. The shapes of a lexical form by kind of morpheme, the logography exception, and yue's and tok's forms.
 2. A source's spelling belongs to the utterance, and a free correspondence gives the others.
-3. A drafted statement that a form is listed counts while it awaits review, as every REVIEW policy does.
-4. Categories declared with subclasses, UD's tags kept as a mapping.
-5. The base case checks a declared dimension; alone it doesn't make one.
-6. A scope is a social distinction with no exponent of its own (so Korean's honorifics are a dimension, as
-   the ADR already ruled). Not taken from the review: marking a dimension as social, so that its misses get
-   a scope's feedback. Say if you want it.
-7. Regularised forms are shipped only for listed parts and stated classes, never for a pinned form.
-8. What becomes of each kind of KC id, and what the migration has to settle before anything is renamed.
-9. Agreement and government links on tokens from the migration on; trees with the first rule that needs them.
-10. A lexicon entry's provenance, licence and review; generated alternatives marked as generated.
+3. A drafted statement that a form is listed counts while it awaits review, as every REVIEW policy does
+   (ruling 4).
+4. The base case checks a declared dimension; alone it doesn't make one.
+5. A scope is a social distinction with no exponent of its own (so Korean's honorifics are a dimension).
+   Marking a dimension as social, so that its misses get a scope's feedback: not now. It is decided when a
+   course has such a dimension.
+6. Regularised forms are shipped only for listed parts and stated classes, never for a pinned form.
+7. What becomes of each kind of KC id, and what the migration has to settle before anything is renamed.
+   `reading:`, `phone:` and `tone:` leave the schema; a tone is part of a word's reading.
+8. A lexicon entry's provenance, licence and review; generated alternatives marked as generated.

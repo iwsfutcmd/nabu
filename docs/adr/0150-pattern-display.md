@@ -1,8 +1,8 @@
 # 0150. Showing a pattern: faint slots in a colour font
 
-- Status: Proposed
+- Status: Accepted (2026-11-20)
 - Date: 2026-11-19
-- Revised: 2026-11-20, after the review (what changed is listed at the end)
+- Revised: 2026-11-20, after the review; accepted in the owner's round 6 (what changed is listed at the end)
 - Amends: [ADR 0083](0083-themes.md) (a colour that carries text has an AA pairing in both themes: the slot
   colour is below AA on purpose)
 - Builds on: [ADR 0145](0145-lexical-model.md) (a pattern is a head: a function head, or a value head as
@@ -94,7 +94,12 @@ owner weighed when deciding against a bar and a stronger tatweel.
 §§ 53 and 59); reduplicated quadriliteral verbs (Ryding 2005, ch. 33), which replaces "a quadriliteral from a
 doubled root", written from memory.
 
-**Proposed with this revision, not yet the owner's:**
+## Round 6 (2026-11-20): accepted
+
+The owner's sixth round ([lexemes.md](../lexemes.md) §16) accepted the ADR with what the revision had
+proposed.
+
+**Accepted as drafted:**
 1. The slot token's exemption in the token test, with a test of its own (ADR 0083 is listed as amended).
 2. A shape stands on the surface token only.
 3. A pattern that repeats or moves a radical is shown beside an aligned word until slots are numbered.

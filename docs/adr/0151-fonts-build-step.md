@@ -1,8 +1,8 @@
 # 0151. Fonts are built, never committed
 
-- Status: Proposed
+- Status: Accepted (2026-11-20)
 - Date: 2026-11-19
-- Revised: 2026-11-20, after the review (what changed is listed at the end)
+- Revised: 2026-11-20, after the review; accepted in the owner's round 6 (what changed is listed at the end)
 - Supersedes: sitelen pona's committed subset (packages/ui/src/fonts/sitelen-seli-kiwen, its README's
   pyftsubset command)
 - Needed by: [ADR 0150](0150-pattern-display.md) (the pattern colour fonts)
@@ -69,7 +69,12 @@ font today.
 **Restored from the prototype's notes:** a ligature that takes in one of the pattern's own letters is never
 coloured.
 
-**Proposed with this revision, not yet the owner's:**
+## Round 6 (2026-11-20): accepted
+
+The owner's sixth round ([lexemes.md](../lexemes.md) §16) accepted the ADR with what the revision had
+proposed.
+
+**Accepted as drafted:**
 1. The fonts are a step of the packages' own scripts, and the four build paths without Python get it or
    fetch the fonts.
 2. A build that ships fails without its fonts; only `pnpm dev` may go without. (The ADR let every machine

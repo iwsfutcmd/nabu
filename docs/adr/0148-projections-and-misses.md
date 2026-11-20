@@ -1,8 +1,8 @@
 # 0148. Projections as rules, and what a miss is
 
-- Status: Proposed
+- Status: Accepted (2026-11-20)
 - Date: 2026-11-19
-- Revised: 2026-11-20, after the review and the owner's round 5 (what changed is listed at the end)
+- Revised: 2026-11-20, after the review and the owner's rounds 5 and 6 (what changed is listed at the end)
 - Amends: [ADR 0142](0142-sound-alike-spelling.md) (`soundAlike`), [ADR 0131](0131-readings-on-new-words.md)
   (a scheme's `variants`), [ADR 0066](0066-meaningful-endings.md) (contrast sets), [ADR
   0054](0054-pronunciation-exercises.md), [ADR 0098](0098-pronunciation-by-choice.md) and [ADR
@@ -11,9 +11,10 @@
   Greek's marks on, the grc profile's, which [ADR 0087](0087-attic-greek.md) decided; [ADR
   0141](0141-minimal-ruby.md) (its "Unwritten" ruby reads a scheme's `variants`, removed here); [ADR
   0045](0045-ai-services.md) (the judge sees what the grader calls `WRONG`, a verdict that becomes a set of
-  labels)
-- Leaves standing: [ADR 0133](0133-script-tracks-ask-the-reading.md) and [ADR 0134](0134-required-marks.md)
-  (grc-Latn's macrons and chg-Latn's consonant marks stay noted, not failed)
+  labels); [ADR 0134](0134-required-marks.md) (chg-Latn's consonant marks are split by sound: š, ž, ḫ and ǧ
+  become required)
+- Leaves standing: [ADR 0133](0133-script-tracks-ask-the-reading.md) (grc-Latn's macrons stay noted: its
+  readings are only ever chosen, never typed)
 - Builds on: [ADR 0145](0145-lexical-model.md) (one lexical form, projected), [ADR 0146](0146-what-is-learned.md)
   (credit per node)
 
@@ -104,6 +105,12 @@ wrong, since *esta* is another word of the course: ADR 0076's own example.)
   that carries sound is never excused as a mark**: Spanish stress accents and ü (*pinguino* says /ɡi/). Marks
   an orthography leaves out (fa's vowels) are no miss: the unmarked form is a possible spelling, the usual
   one. Which marks carry sound falls out of the projection.
+- **chg's typed readings split their consonant marks by sound** (the owner, round 6; amends ADR 0134, which
+  noted them all). š, ž, ḫ and ǧ are required, as the vowels' marks are: without the mark they are s, z, h and
+  g, other sounds and other Arabic letters (*kisi* for *kiši*, *tag* for *taǧ*). The rest stay noted: ṣ, s̱, ḥ,
+  ṭ, ẓ, ż, ź and ṗ sound like their plain letter and only name another Arabic letter (*hujra* for *ḥujra*),
+  and č has no plain letter to be taken for. The split is from Schluessel's table of letters (2018, pp. xi to
+  xxxii) and stays a statement marked REVIEW in the profile. ž joins the answer bar.
 - **Greek waits for its buttons** (the owner, round 5). Greek accents and the rough breathing carry sound too,
   and a learner may have no polytonic keyboard (ADR 0087's reason for noting them). grc keeps that note until
   the app has its own way to put the marks on, from buttons, as ADR 0137 gave vowel marks; then a missing one
@@ -130,7 +137,7 @@ wrong, since *esta* is another word of the course: ADR 0076's own example.)
   and `PARTIAL` (yue's homophone characters) becomes the orthographic label, not accepted, as now.
   `CORRECT_VARIANT` and `CORRECT_MARKS` stay what a profile's policy gives in step 1: es's accents leave
   `CORRECT_MARKS`; grc's marks leave it with their buttons; the marks a transliteration notes stay (grc-Latn's
-  macrons, ADR 0133; chg-Latn's consonant marks, ADR 0134).
+  macrons, ADR 0133; chg-Latn's consonant marks that say no other sound, above).
 - **Another lexeme is decided by lexeme, not by string.** A scribe's or a variant spelling of the answer's own
   word is never another word (chg بادشاه for پادشاه is `WRONG_WORD` today, because another sentence's accept
   set holds it). The lexicon the grader asks is the course's: the lexemes it teaches, in every form the stated
@@ -218,15 +225,23 @@ round of answers ([lexemes.md](../lexemes.md) §16).
 after normalization and accepted variants; the worst label decides the outcome; what each label counts
 against.
 
-**Proposed with this revision, not yet the owner's:**
+## Round 6 (2026-11-20): accepted
+
+The owner's sixth round ([lexemes.md](../lexemes.md) §16) ruled on what the revision had proposed, and
+accepted the ADR.
+
+**Decided against the draft:**
+- **chg-Latn's consonant marks are split by sound** (ruling 2). The draft left ADR 0134 standing, with every
+  consonant mark noted. š, ž, ḫ and ǧ become required; the others stay noted.
+
+**Accepted as drafted:**
 1. A correspondence is fixed or free, and a free one is an accepted variant, not a leftover.
-2. "Another form of the answer's own lexeme" stops a slip, as a contrast set does today (the round-5 question
-   named only another lexeme).
+2. "Another form of the answer's own lexeme" stops a slip, as a contrast set does today (ruling 1). Run on
+   fifteen such slips in es, uz and apc, today's graders already refuse all fifteen.
 3. The label **regularised**, for the forms the compiler ships with blocking off.
 4. Another lexeme is decided by lexeme, and the grader's lexicon is the lexemes the course teaches.
 5. The judge's gate keeps today's reach, and labels that depend on it are held.
 6. What becomes of each verdict: `PARTIAL` is the orthographic label; `CORRECT_VARIANT` and `CORRECT_MARKS`
    stay as profile policies.
-7. ADRs 0133 and 0134 stand: the marks a transliteration notes (grc-Latn's macrons, chg-Latn's consonant
-   marks) stay notes, though some carry sound. Say if they should turn strict with es.
+7. ADR 0133 stands: grc-Latn's macrons stay notes, since its readings are chosen, never typed.
 8. The grading budget and the order of grading join the definition of done.

@@ -1,12 +1,13 @@
 # 0147. What one language says and the other leaves open
 
-- Status: Proposed
+- Status: Accepted (2026-11-20)
 - Date: 2026-11-19
-- Revised: 2026-11-20, after the review and the owner's round 5 (what changed is listed at the end)
+- Revised: 2026-11-20, after the review and the owner's rounds 5 and 6 (what changed is listed at the end)
 - Amends: [ADR 0085](0085-what-the-prompt-leaves-open.md) (accept sets), [ADR 0056](0056-persons.md) and
   [ADR 0075](0075-persons-coverage.md) (person tags), [ADR 0076](0076-cuban-spanish.md) (es: pan-Hispanic
-  forms accepted), [ADR 0132](0132-a-choice-asks-one-thing.md) (a story's which-form question may ask a
-  contrast only the passage decides), [ADR 0072](0072-sign-off.md) (a sign-off covers a sentence's tags)
+  forms accepted), [ADR 0132](0132-a-choice-asks-one-thing.md) (a story line may ask a third thing, which
+  use: a contrast only the passage decides; its rule for which form stands), [ADR 0072](0072-sign-off.md) (a
+  sign-off covers a sentence's tags)
 - Leaves standing: [ADR 0084](0084-hbo-references.md) (hbo: the other orders and forms its accept sets take)
 - Builds on: [ADR 0145](0145-lexical-model.md) (inherent features, scopes, concepts)
 
@@ -82,9 +83,16 @@ With this ADR:
     lone sentence has nothing before it, so both mean "the woman said": ADR 0085's ground for taking both.
 
   Each language marks which of its contrasts are context-only (REVIEW). hbo's accept sets stay as they are.
-- **A context-only contrast is asked where there is context:** a which-form question on a line of a story,
-  where what came before decides. For these contrasts that widens ADR 0132's rule for story questions: the
-  wrong form is one the line could take by itself and the passage rules out, not an ungrammatical one.
+- **A context-only contrast is asked where there is context:** on a line of a story, by a third kind of
+  question, **which use** (the owner, round 6), beside ADR 0132's which word and which form.
+  - Its options are one word in the forms of one contrast (hbo: the wayyiqtol and the qatal of the line's
+    verb), and what came before decides. The wrong form is one the line could take by itself and the passage
+    rules out.
+  - It has an instruction of its own, so a card still says what it asks, and it credits the feature's use
+    (ADR 0146).
+  - ADR 0132's rule for which form is untouched: there a wrong form still makes the line ungrammatical.
+  - It comes with its messages and a lint: the contrast is one its language marks as context-only, and the
+    line is not the story's first.
 
 ## Consequences
 
@@ -96,7 +104,7 @@ With this ADR:
 - **Untagged person forms stop being accepted all at once** when writing the target: apc's kifak / kifik /
   kifkon sentences need their tags, which the lint finds. The spread of persons each course exercises (ADR
   0075) still holds.
-- **hbo's accept sets are untouched** (ADR 0085's 204 answers), and its stories gain which-form questions on
+- **hbo's accept sets are untouched** (ADR 0085's 204 answers), and its stories gain which-use questions on
   the narrative and the plain form.
 - **New tag data:** register, aspect situations, the referent of an unnamed "it", the variety; and each
   language's list of context-only contrasts. Authored tags are drafted (`llm:`) and reviewed; dialect tags
@@ -116,11 +124,18 @@ answers ([lexemes.md](../lexemes.md) §16).
 - A general word under a variety tag is wrong unless that variety's speakers say it too, and its feedback
   says "the general word", never "Spain's".
 
-**Proposed with this revision, not yet the owner's:**
+## Round 6 (2026-11-20): accepted
+
+The owner's sixth round ([lexemes.md](../lexemes.md) §16) ruled on what the revision had proposed, and
+accepted the ADR.
+
+**Decided against the draft:**
+- **A story asks a context-only contrast by a question of its own, which use.** The draft widened ADR 0132's
+  which-form question instead, so one instruction would have covered two different questions.
+
+**Accepted as drafted:**
 1. What is tagged, in one phrase: what the answer must say and the prompt leaves open. It covers agreement
    with an open controller and scopes, which "the inherent features" did not.
 2. A tag's two kinds of data: a catalog value, or authored TaggedText in the support language.
 3. A sign-off covers a sentence's tags, so `signoffText` hashes them (ADR 0072).
-4. A story's which-form question may ask a context-only contrast, its wrong option a form the passage rules
-   out. It follows from the ruling on hbo, which did not name ADR 0132.
-5. Two words of the prompt's own variety are both right.
+4. Two words of the prompt's own variety are both right.
