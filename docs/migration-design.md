@@ -6,7 +6,9 @@
   questions and the owner's answers are at the end, and the sections they change are rewritten to them.
 - The ADRs decide what is stored and how it behaves ([0145](adr/0145-lexical-model.md) to
   [0149](adr/0149-script-first.md)); this note gives the file shapes, the ids, the event change and the order
-  of work. Deliverable 1 (the schemas) is built ("Deliverable 1, as built", below); the converter is next.
+  of work. Deliverables 1 (the schemas) and 2 (the converter) are built ("Deliverable 1, as built" and
+  "Deliverable 2, as built", below); the switch is next, and it waits for the owner's reading of what the
+  converter found.
 - Its numbers are counted from the repo by
   [prototypes/migration-inventory](prototypes/migration-inventory/) and, for apc, by
   [Task B's prototype](prototypes/apc-lexical-forms/).
@@ -38,6 +40,7 @@ sees, and the third switches all ten courses at once.
    (`lexicons/<lang>/`, `courses/<id>/next/`), the course's alias table, and a report. It runs on all ten courses. Done: every course
    comes through; the compiler's derivability report has no unexplained finding; each finding left is a
    question for the owner; the checks under "What must not change" pass. Nothing in the app reads the output.
+   **Built on 2026-11-20:** "Deliverable 2, as built", below, and [migration/](migration/README.md).
 3. **The switch.** The compiler, the bundle, core, the fold, the events and the UI read the new shape, and the
    ten courses' converted sources replace the old. One branch, landed whole. Done: ADR 0148's "Done in one go"
    list, and the checks below, on real exported logs too.
@@ -502,6 +505,154 @@ generators are kept on the constructs they already handle:
 - a lexeme's classes, a token's feature values and a scope's varieties are ones its language declares.
 
 The converter (deliverable 2) writes against these and reports what they do not hold.
+
+## Deliverable 2, as built
+
+`cd pipeline && uv run nabu migrate ../courses` (`pnpm migrate`) converts all ten courses. For each it
+writes, and never by hand:
+
+| File | What it is |
+|---|---|
+| `lexicons/<lang>/language.yaml` | The language's declaration: dimensions, lexical features, the citation cell, features and values, defaults, labels |
+| `lexicons/<lang>/lexemes.yaml` | Its lexicon, flat and sorted by id |
+| `courses/<id>/next/` | The course in the new shape: `course.yaml`, its units, and `audio/assignment.yaml` where the cast has several voices |
+| `courses/<id>/aliases.yaml` | What each KC id became |
+| `docs/migration/<id>.md` | What the converter found: [the page over all ten](migration/README.md) |
+
+Nothing in the app reads any of it. `pipeline/tests/test_migrate.py` converts every course and fails where
+a check fails or a committed file is out of date, so **a change to a course's source needs the converter
+run again**, as it needs `pnpm bundles`.
+
+**Ten courses: 3,145 lexemes** (3,021 senses, less 8 that are forms or built words now, plus 132 endings and
+other lexemes that were `form:` and `construction:` KCs), **1,639 pinned forms, no listed form.** Every
+check passes in every course.
+
+### The plan
+
+What a course does not say, the converter cannot decide: that `form:pret-3s` is Tense=Past with the third
+person singular, that uz *-ga* realises the dative, that apc *raye7* is a form of *ra7*. Each course has a
+**conversion plan** (`pipeline/src/nabu/migrate/plans/<id>.yaml`) that states these, drafted by an LLM and
+awaiting review like every profile policy (REVIEW). The converter applies the plan and decides nothing.
+
+| A plan states | For |
+|---|---|
+| `forms`: a form KC's feature values (by part of speech where they differ), or the lexeme it is | every `form:` KC |
+| `constructions`: the lexeme a construction is, or the rule's name it keeps | every `construction:` KC |
+| `bare`: what a token says when no form is pinned on it | masculine singular; an es verb's infinitive; an apc verb's command to a man |
+| `citation`: the cell an entry is spelled in | es infinitive; apc he-past; grc first person singular |
+| `lexical`, `defaults`: what a lexeme has of itself, and the endings that give it | a noun's gender |
+| `senses`: a sense that is a form of another lexeme, or built of several | apc *raye7*, *baddi*; fa *bud* |
+| `tokens`: one token the course pins nothing on and that is not what a bare token is | es *eso*; an infinitive with a pronoun on it |
+| `stems`: the ending an entry is cited with, so that its stem explains itself | uz *-moq*; fa *-n* |
+| `relations`: the rules that draft agreement's edges | es, apc, hbo, grc |
+| `questions`: what the drafter saw and did not decide | every course with any |
+
+### What it does
+
+- **A form KC pinned on a token is feature values;** one written as a morph is a lexeme. Both tables are
+  the plan's. Where the KC names less than the forms differ by (es `form:impf` names no person), the plan
+  may read the rest off the ending (`refine`: *-mos*, *-s*, *-n*).
+- **A token lists the lexemes it writes and marks its base,** the one today's `sense` named. A sense that is
+  built of several lexemes (apc *baddi*) is cut by how each is written elsewhere in the course.
+- **Every form the entry's own spelling does not account for is pinned.** A token stands in its entry's
+  cell where every value it names is the citation cell's; any other form is a pinned form with its values.
+  Another spelling in the entry's own cell is an allomorph (uz *singl-*, fa *dār-*, es *gran*).
+- **Spellings are paired across orthographies** by the lexemes a sentence names: it names the same ones in
+  the same order in each (868 of apc's 868 items, once an entry written as several tokens is one).
+- **A noun's gender is its lexeme's** where every token of it agrees. An entry stores it only where no
+  default of the plan gives it: 158 lexemes, each a part to learn (ADR 0146).
+- **Relations are drafted by the plan's rules:** a determiner and an adjective to their noun, a
+  preposition and an article to the word after them or the word they are written on. A rule links only
+  where the values agree and nothing but the words it may skip stands between. 4,610 edges in four courses.
+- **Letters are compared, never marks** (CLAUDE.md): case, Arabic vowel signs and the shadda, Hebrew
+  points, a Greek grave and invisible characters make no difference to whether a token is written as its
+  entry. Where an entry is written with its marks (hbo), the lexicon keeps every pointing of a form.
+
+### What it checks
+
+Each on what was written, not on what the converter meant (`pipeline/src/nabu/migrate/checks.py`):
+
+| Check | What it reads |
+|---|---|
+| Every sentence and story line as displayed | Text, tokens in order, readings, vowel marks, accept sets and translations, item by item, byte for byte |
+| No two annotations became one | Whatever the course told apart, the converted course still does |
+| Every lexeme a token writes is accounted for | Its entry's spelling, a pinned form with its values, or an allomorph: from the files alone |
+| Every name points at something | Lexemes, feature values, letters, relations' numbers |
+| Every file fits its schema | The generated models and the JSON Schemas themselves |
+| Every word clip has one name | 2,193 clips keyed by a KC: 2,185 renamed with their item, 8 listed |
+
+The old and new bundles cannot be compared until the compiler reads the new shape; the first check is its
+stand-in on the sources.
+
+### Settled while building it
+
+None of these is in the sections above. Each is small, and each is the owner's to overrule.
+
+- **A form KC's gloss and notes become a label.** The note said the KC goes and did not say where its
+  words go. `language.yaml` has `labels`: what a learner is shown for a set of feature values (ADR 0146: a
+  built gloss is a message over the names of feature values, which are language data).
+- **A node introduces feature values,** each once, at the first node whose form KC brings it
+  (`feature:Tense=Past`). A later form KC that brings no new value leaves its node with less to introduce
+  (7 nodes). No rule's name is invented for a form: what was learned under it is a rule's branch, and no
+  rule is written (ADR 0146).
+- **A construction keeps a rule's name** (`rule:used-to`) and is not decided; the plan's note gives the
+  drafter's reading of each. Three are lexemes already: fa's ezafe, which is written as a morph; *dust
+  dāštan*, a listed item whose form is its parts'; and *hast* "there is", which has a spelling and a clip.
+- **A token's base is marked** (`base: true`). A card that asks which lexeme, or which form, needs to know
+  which of a token's lexemes it asks. It is ADR 0145's base (what the others are merged onto), not a word.
+- **A noun written in both genders keeps the gender on its tokens,** and its entry says so (`chooses`):
+  es *hermano*, *tío* (the course writes *tía* under it and never *tío*); apc *rfi2*; 23 lexemes. By ADR
+  0145 the feminine is a derivative, a lexeme of its own where it is listed: decided per noun.
+- **Old credits for a form KC have nowhere to go** (133 KCs): feature values have no uses authored, and
+  nothing old counts towards a rule. The alias table gives them no part.
+- **The audio index is not rewritten.** The converter says what each word clip's item is called now and
+  pins the voice each has (four casts of two voices: 1,455 items).
+
+### What the schemas gained
+
+| Where | What | Why |
+|---|---|---|
+| A token's lexeme | `base` | Above |
+| `language.yaml` | `lexical`, `citation`, `labels` | Which features a lexeme has of itself; the cell an entry is spelled in; a form KC's words |
+| A lexeme | `chooses` | A lexical feature its tokens choose instead |
+| An allomorph | `spelled` with no `form`; `form: ''` | No lexical-form notation yet; a lexeme the script does not write (ADR 0136) |
+| A feature name | A layer (`Person[psor]`) | A possessor's person on a noun |
+| A story's wrong option | A list of lexemes | A built word offered against a word (apc *esmak*) |
+
+### For the owner
+
+The reports list 465 findings; most are for whoever reviews a course. These are the ones that bear on the
+switch, or on a decision above:
+
+1. **Labels, and feature values as what a node introduces:** both are read into the note's "the KC itself
+   goes". The alternative is a rule's name for each form KC, kept until the rule is written.
+2. **`base` on a token's lexeme:** it is no unit between a token and a lexeme, and it is one more thing
+   the format says of a token than the owner's "a token lists its lexemes".
+3. **Nouns in both genders** (23): a feature the token chooses, or two lexemes, per noun.
+4. **Proper names:** apc, hbo and grc keep a name's gender on its lexeme; es keeps it on the token, since
+   the course pins it only on single-word names. One rule for all four would be better.
+5. **Feature names where Universal Dependencies has none or its treebanks differ:** hbo's weqatal,
+   jussive, cohortative and infinitive absolute; grc's aorist against its perfect; chg's aorist. Each
+   plan says what it chose and why.
+6. **Eight word clips** say a word that is no lexeme of its own now (apc *baddi*, *baddak*, *esmi*,
+   *esmak*, *kifak*, *raye7*; fa *bud*, *nist*): what keys a form's clip is the switch's to say. None was
+   checked by a person.
+7. **What the reports found in the courses themselves:** es *el ave*, *el alma*, *el azúcar* pinned
+   against the course's own rule; apc verbs cited as a command or a b-present, not as Kline cites them;
+   uz entries shown as a built word; hbo words with a suffix not analysed; fa present stems, which ADR
+   0145 calls listed and no statement lists.
+
+### Not done
+
+- **No form is listed.** A listed form needs a statement that the language has no rule for it (ADR 0145);
+  none is drafted, so every form is pinned and no lexeme has a part but itself and a stored gender.
+- **No lexical form.** Every entry pins its spellings (`spelled`) and its readings stay on the tokens.
+  apc's drafted notation ([lexical-forms/apc.md](lexical-forms/apc.md)) waits for the owner and is not read.
+- **No rule, no class, no feature's use.** A sentence's `uses` name rules that are not written.
+- **Relations are a draft:** a determiner, an adjective and a preposition. A subject and its verb, a
+  governed case's value and everything else wait for trees (ADR 0145).
+- **One course a language.** Two courses of one language would write one lexicon between them, which the
+  converter refuses rather than merge.
 
 ## The owner's decisions (2026-11-20)
 

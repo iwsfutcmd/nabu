@@ -42,6 +42,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - pnpm courses                     # compile every course in courses/ (lint only; diagnostics as file:line)
 - cd pipeline && uv run nabu build ../courses/<id>   # write the bundle to dist/<id>; `uv run nabu lints` lists lints
 - pnpm bundles                     # rebuild apps/web/public/bundles (committed; CI fails if stale)
+- pnpm migrate                     # reconvert every course to the lexical model (committed; tests fail if stale)
 - pnpm test:e2e                    # lesson per course by keyboard and touch, IME composition, axe
 - pnpm license-check               # what ships (web, API, mobile) has only allowed licenses (packages/lint/src/licenses.ts)
 - pnpm check:catalogs              # every UI catalog in packages/i18n/messages passes the catalog check (ADR 0070)
@@ -86,6 +87,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (ADR 0050), so adding a unit never changes earlier lessons. The player shell and views are @nabu/ui/player; views
   render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
+  After changing courses/, run `pnpm migrate` too (the lexical model's converted copies, until the switch).
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
   A new text field for language text spreads `keyboardHint` (ADR 0143), so the Android app can switch the keyboard.
 - Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
@@ -686,8 +688,20 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Lexical model migration notes (see docs/migration-design.md, ADRs 0145–0149)
 - The migration lands in the note's order, each deliverable whole: the schemas (built), a converter that writes a lexicon
-  and a converted course beside the old ones, then one switch of all ten courses. Until the switch nothing a learner
-  sees changes, and no code outside tests and the converter may name a `Next*` type or read a lexicon.
+  and a converted course beside the old ones (built), then one switch of all ten courses. Until the switch nothing a
+  learner sees changes, and no code outside tests and the converter may name a `Next*` type or read a lexicon.
+- The converter (pipeline/src/nabu/migrate, `pnpm migrate`) writes lexicons/<lang>/, courses/<id>/next/,
+  courses/<id>/aliases.yaml and docs/migration/. Never edit those by hand. After changing a course's source or its
+  audio index, run `pnpm migrate` as well as `pnpm bundles`: pipeline/tests/test_migrate.py fails where a committed
+  file is out of date.
+- The converter decides nothing. What a course does not say is in its conversion plan
+  (pipeline/src/nabu/migrate/plans/<id>.yaml, drafted, REVIEW): a form KC's feature values or the lexeme it is, what a
+  bare token says, the citation cell, gender defaults, senses that are forms or built words, relation rules. A new
+  `form:` or `construction:` KC needs its entry there; a course with no plan does not convert.
+- A converted course must say everything the old one did: the checks (migrate/checks.py) compare text and tokens item
+  by item, refuse two annotations that became one, and account for every lexeme a token writes by its entry, a pinned
+  form or an allomorph. A finding (docs/migration/<id>.md) is a question for a reviewer, never an error.
+- Letters are compared, never marks (migrate/source.py `fold`): a new script's optional marks go there.
 - The new shapes: schemas/language.schema.json (a language's dimensions, features, defaults, classes; a category is a
   UD tag), lexicon.schema.json (`Lexeme`; `status: listed` needs its `statement`, `pinned` is never a learner's part),
   course-source.next.schema.json and learner-event.next.schema.json (each derived from the shape it replaces: at the

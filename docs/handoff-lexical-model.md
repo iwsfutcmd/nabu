@@ -18,9 +18,12 @@ restored from the notes, and what was accepted as drafted. The older ADRs they a
 - **Task C:** [the design note](migration-design.md) gives the formats, the ids, the event change and the
   order. The owner approved it on 2026-11-20 with three changes, recorded at its end: the lexicon is flat
   (units point at it; it is never arranged by unit), old events may be rewritten and old apps need not keep
-  working, and no unit of the new formats is a "word". Deliverable 1, the schemas, is built (the note's
-  "Deliverable 1, as built"); deliverable 2, the converter, is next. Two things read into those answers still
-  wait for the owner, marked "for the owner" in the note.
+  working, and no unit of the new formats is a "word". Deliverables 1 (the schemas) and 2 (the converter) are
+  built: the note's "Deliverable 1, as built" and "Deliverable 2, as built". All ten courses are converted
+  beside what they are today, each with a report ([migration/](migration/README.md)). **The switch,
+  deliverable 3, is next and should not start before the owner has read "For the owner" in the note:** it
+  lists what was settled while building the converter and what the reports found. Two things read into the
+  owner's answers also still wait, marked "for the owner" in the note.
 - One ruling of round 6 is built: chg's š, ž, ḫ and ǧ are required ([ADR 0134](adr/0134-required-marks.md)'s
   amendment).
 
@@ -172,7 +175,13 @@ it.
 ## Task C: the migration (the ADRs are accepted; it starts with a design note for the owner's approval)
 
 The design note is written and approved with changes (2026-11-20): [migration-design.md](migration-design.md).
-Build its deliverables in its order, each whole.
+Build its deliverables in its order, each whole. Deliverables 1 and 2 are built; the next is the switch.
+
+**If you pick up the converter** (`pipeline/src/nabu/migrate/`): it applies a conversion plan per course
+(`plans/<id>.yaml`) and decides nothing itself. To change what a course becomes, change its plan or the
+course and run `pnpm migrate`; never edit `lexicons/`, `courses/<id>/next/`, `aliases.yaml` or
+`docs/migration/` by hand. `pipeline/tests/test_migrate.py` pins each behaviour on a small course and
+fails where a committed file is out of date.
 
 The owner's order: schemas first; a one-time converter in the pipeline that writes the new course sources;
 the lexical-form schemas (Task B's); prompt tags (ADR 0147); script tracks (ADR 0149). Each is one deliverable
