@@ -394,6 +394,14 @@ def migrate_command(
             typer.echo(f"✗ {course_dir.name}: {e}", err=True)
             failed = True
             continue
+        other = next((d.course.id for d in done if d.plan.language == m.plan.language), None)
+        if other is not None:
+            # A language has one lexicon; merging two courses' entries is not built.
+            typer.echo(
+                f"✗ {course_dir.name}: {other} already wrote lexicons/{m.plan.language}", err=True
+            )
+            failed = True
+            continue
         for error in m.errors[:40]:
             typer.echo(f"✗ {course_dir.name}: {error}", err=True)
         if m.errors:

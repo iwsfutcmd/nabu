@@ -2,8 +2,7 @@
 
 Written by `nabu migrate ../courses/hbo`; do not edit by hand. It belongs to
 [the migration's design note](../migration-design.md), deliverable 2. Nothing here is
-decided:
-the converter applies the course's conversion plan
+decided: the converter applies the course's conversion plan
 (`pipeline/src/nabu/migrate/plans/hbo.yaml`, drafted, REVIEW) and lists what it found.
 
 ## What was converted
@@ -91,6 +90,26 @@ the converter applies the course's conversion plan
 | `form:dir` | toward: the directional -â (שְׁכֶמָה 'to Shechem', הַבַּיְתָה 'home') | `lexeme:dir` (realises Case=Lat) |  |
 | `construction:nominal` | a noun sentence: no verb 'to be' (הָאוֹר טוֹב 'the light is good') | `rule:nominal`, not written | a rule: a sentence with a noun, an adjective or a participle as its predicate and no verb |
 | `construction:yesh-le` | יֵשׁ לְ…: … has (there is to …); אֵין לְ…: … has no | `rule:yesh-le`, not written | a rule: "there is to" says "has"; its meaning is its parts' (ADR 0145) |
+
+**Constructions, each with its sentences** (ADR 0145: a rule where its meaning is its
+parts', a listed item with slots where it is not; decided per construction with its
+course). None is decided here: the last column is the plan's drafter's reading.
+
+| KC | Sentences that name it | Keeps | Reading |
+|---|---|---|---|
+| `construction:nominal` | 47 (s.01.9, s.01.10, s.01.12…) | `rule:nominal` | a rule: a sentence with a noun, an adjective or a participle as its predicate and no verb |
+| `construction:yesh-le` | 3 (s.15.22, s.15.23, s.15.24…) | `rule:yesh-le` | a rule: "there is to" says "has"; its meaning is its parts' (ADR 0145) |
+
+## What the lexicon holds
+
+Counts of what the converter wrote into the entries, beyond one entry a lexeme.
+
+|  | Count |
+|---|---|
+| cells written more than one way | 15 |
+| entries spelled as a form other than the citation form | 3 |
+| pinned forms | 326 |
+| written otherwise than the entry | 40 |
 
 ## Defaults
 
@@ -341,6 +360,5 @@ What the plan's drafter saw and did not decide.
   spelling and reading stays pinned as it is; there is nothing to compare them with
   (ADR 0148).
 - **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
-  no
-  part to go to: a feature's uses are not authored, and nothing old counts towards a rule
-  (ADR 0146).
+  no part to go to: a feature's uses are not authored, and nothing old counts towards a
+  rule (ADR 0146).

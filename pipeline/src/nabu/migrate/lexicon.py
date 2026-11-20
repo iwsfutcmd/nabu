@@ -145,7 +145,10 @@ def occurrences(conv: Converter) -> tuple[list[Occurrence], list[Finding]]:
         }
         first = next(iter(shapes.values()))
         if all(s == first for s in shapes.values()):
-            orths = list(by_orth)
+            # In the course's order of its orthographies, whichever a sentence lists first: two
+            # occurrences written alike must pair alike.
+            orths = [o for o in conv.course.orthographies if o in by_orth]
+            orths += [o for o in by_orth if o not in orths]
             for i, (lexeme, feats) in enumerate(first):
                 spelled = tuple((o, by_orth[o][i].surface) for o in orths)
                 bound = any(by_orth[o][i].bound for o in orths)
@@ -255,6 +258,14 @@ def _ends(spelling: str, ending: str) -> bool:
         if letter != want or not needed <= marks:
             return False
     return not leading or leading <= word[start - 1][1]
+
+
+def _in_order(spelled: Json, orths: list[str]) -> Json:
+    """Spellings by orthography, in the course's order of its orthographies."""
+    return {
+        **{o: spelled[o] for o in orths if o in spelled},
+        **{o: v for o, v in spelled.items() if o not in orths},
+    }
 
 
 def default_for(defaults: list[Json], pos: str | None, spelling: str, feature: str) -> Json | None:
@@ -656,6 +667,9 @@ def build(conv: Converter) -> Built:
                 entry["spelled"] = allomorphs[0]["spelled"]
             else:
                 entry["allomorphs"] = allomorphs
+        for written in (entry, *forms, *allomorphs):
+            if "spelled" in written:
+                written["spelled"] = _in_order(obj(written["spelled"]), orths)
         if not cells.get(lexeme):
             stats["lexemes no token writes"] += 1
             findings.append(

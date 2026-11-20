@@ -278,6 +278,18 @@ def _files(m: Migration) -> dict[str, str]:
     return files
 
 
+def _left_over(m: Migration, repo: Path) -> list[str]:
+    """Files under the converted course that the converter no longer writes (a unit renamed)."""
+    root = repo / "courses" / m.course.id / "next"
+    if not root.exists():
+        return []
+    return sorted(
+        rel
+        for p in root.rglob("*")
+        if p.is_file() and (rel := p.relative_to(repo).as_posix()) not in m.files
+    )
+
+
 def write(m: Migration, repo: Path = REPO) -> list[Path]:
     written: list[Path] = []
     for rel, text in m.files.items():
@@ -286,6 +298,9 @@ def write(m: Migration, repo: Path = REPO) -> list[Path]:
         if not path.exists() or path.read_text(encoding="utf-8") != text:
             path.write_text(text, encoding="utf-8")
             written.append(path)
+    for rel in _left_over(m, repo):
+        (repo / rel).unlink()
+        written.append(repo / rel)
     return written
 
 
@@ -295,7 +310,7 @@ def stale(m: Migration, repo: Path = REPO) -> list[str]:
         rel
         for rel, text in m.files.items()
         if not (repo / rel).exists() or (repo / rel).read_text(encoding="utf-8") != text
-    ]
+    ] + _left_over(m, repo)
 
 
 def write_summary(migrations: list[Migration], repo: Path = REPO) -> None:

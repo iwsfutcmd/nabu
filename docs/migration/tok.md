@@ -2,8 +2,7 @@
 
 Written by `nabu migrate ../courses/tok`; do not edit by hand. It belongs to
 [the migration's design note](../migration-design.md), deliverable 2. Nothing here is
-decided:
-the converter applies the course's conversion plan
+decided: the converter applies the course's conversion plan
 (`pipeline/src/nabu/migrate/plans/tok.yaml`, drafted, REVIEW) and lists what it found.
 
 ## What was converted
@@ -45,6 +44,19 @@ the converter applies the course's conversion plan
 | `construction:counting` | numbers that add up: tu wan (three), tu tu (four) | `rule:counting`, not written | a rule: number words add up in the order said |
 | `construction:ni-colon` | e ni: before a reported sentence (says that, thinks that) | `rule:ni-colon`, not written | a rule: ni stands for the sentence that follows |
 
+**Constructions, each with its sentences** (ADR 0145: a rule where its meaning is its
+parts', a listed item with slots where it is not; decided per construction with its
+course). None is decided here: the last column is the plan's drafter's reading.
+
+| KC | Sentences that name it | Keeps | Reading |
+|---|---|---|---|
+| `construction:x-ala-x` | 10 (s.u04.8, s.u04.9, s.u04.10…) | `rule:x-ala-x` | a rule: a word, ala and the word again ask yes or no of any predicate |
+| `construction:pona-tawa` | 8 (s.u06.34, s.u06.35, s.u06.36…) | `rule:pona-tawa` | a listed item with slots: "X is good to Y" is how liking is said, and the parts do not say "like" |
+| `construction:la-if` | 4 (s.u07.35, s.u07.36, s.u07.37…) | `rule:la-if` | a rule: la after a clause makes it the condition |
+| `construction:preverb` | 8 (s.u08.9, s.u08.10, s.u08.11…) | `rule:preverb` | a rule: a verb of wanting, knowing or being able stands before the verb it governs |
+| `construction:counting` | 2 (s.u09.34, s.u09.35…) | `rule:counting` | a rule: number words add up in the order said |
+| `construction:ni-colon` | 3 (s.u10.35, s.u10.36, s.u10.37…) | `rule:ni-colon` | a rule: ni stands for the sentence that follows |
+
 ## Clips
 
 The audio index is not rewritten: the compiler still reads it. A word's clip is keyed
@@ -66,6 +78,5 @@ is drawn by the item's id (ADR 0078).
   spelling and reading stays pinned as it is; there is nothing to compare them with
   (ADR 0148).
 - **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
-  no
-  part to go to: a feature's uses are not authored, and nothing old counts towards a rule
-  (ADR 0146).
+  no part to go to: a feature's uses are not authored, and nothing old counts towards a
+  rule (ADR 0146).

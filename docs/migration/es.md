@@ -2,8 +2,7 @@
 
 Written by `nabu migrate ../courses/es`; do not edit by hand. It belongs to
 [the migration's design note](../migration-design.md), deliverable 2. Nothing here is
-decided:
-the converter applies the course's conversion plan
+decided: the converter applies the course's conversion plan
 (`pipeline/src/nabu/migrate/plans/es.yaml`, drafted, REVIEW) and lists what it found.
 
 ## What was converted
@@ -61,6 +60,16 @@ the converter applies the course's conversion plan
 | `form:imp-neg` | negative command (¡no hables!, ¡no coma!) | values Mood=Imp, Polarity=Neg, VerbForm=Fin; by ending: -mos: Number=Plur, Person=1, -s: Number=Sing, Person=2, -n: Number=Plur, Person=3, -(any other): Number=Sing |  |
 | `form:ger` | gerund, -ando, -iendo (estoy trabajando: I'm working) | values VerbForm=Ger |  |
 | `form:part` | past participle (hablado, comido, hecho; he hablado) | values Tense=Past, VerbForm=Part; by ending: -os: Gender=Masc, Number=Plur, -as: Gender=Fem, Number=Plur, -a: Gender=Fem, Number=Sing |  |
+
+## What the lexicon holds
+
+Counts of what the converter wrote into the entries, beyond one entry a lexeme.
+
+|  | Count |
+|---|---|
+| pinned forms | 844 |
+| second forms: a variant spelling | 2 |
+| written otherwise than the entry | 4 |
 
 ## Defaults
 
@@ -349,6 +358,5 @@ What the plan's drafter saw and did not decide.
   spelling and reading stays pinned as it is; there is nothing to compare them with
   (ADR 0148).
 - **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
-  no
-  part to go to: a feature's uses are not authored, and nothing old counts towards a rule
-  (ADR 0146).
+  no part to go to: a feature's uses are not authored, and nothing old counts towards a
+  rule (ADR 0146).

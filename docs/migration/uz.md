@@ -2,8 +2,7 @@
 
 Written by `nabu migrate ../courses/uz`; do not edit by hand. It belongs to
 [the migration's design note](../migration-design.md), deliverable 2. Nothing here is
-decided:
-the converter applies the course's conversion plan
+decided: the converter applies the course's conversion plan
 (`pipeline/src/nabu/migrate/plans/uz.yaml`, drafted, REVIEW) and lists what it found.
 
 ## What was converted
@@ -67,6 +66,18 @@ the converter applies the course's conversion plan
 | `form:count-ta` | -ta: counting suffix | `lexeme:count` (a function head) | the counting form of a number (bitta, ikkita): REVIEW |
 | `form:q-mi` | -mi: yes/no question | `lexeme:q` (PART) |  |
 | `form:part-chi` | -chi: and ...? what about ...? | `lexeme:chi` (PART) |  |
+
+## What the lexicon holds
+
+Counts of what the converter wrote into the entries, beyond one entry a lexeme.
+
+|  | Count |
+|---|---|
+| entries shown as a built word | 11 |
+| second forms: a built word, now its lexemes | 58 |
+| second forms: a variant spelling | 2 |
+| stems: the entry less its citation ending | 24 |
+| written otherwise than the entry | 13 |
 
 ## Dimensions
 
@@ -150,6 +161,5 @@ What the plan's drafter saw and did not decide.
   spelling and reading stays pinned as it is; there is nothing to compare them with
   (ADR 0148).
 - **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
-  no
-  part to go to: a feature's uses are not authored, and nothing old counts towards a rule
-  (ADR 0146).
+  no part to go to: a feature's uses are not authored, and nothing old counts towards a
+  rule (ADR 0146).

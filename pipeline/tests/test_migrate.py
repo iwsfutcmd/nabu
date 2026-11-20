@@ -9,8 +9,10 @@ from typing import Any
 
 import pytest
 import yaml
+from typer.testing import CliRunner
 
 from nabu import migrate
+from nabu.cli import app
 from nabu.migrate import checks, plan
 from nabu.migrate.lexicon import _ends, offsets, runs  # pyright: ignore[reportPrivateUsage]
 from nabu.migrate.report import SECTIONS
@@ -497,6 +499,37 @@ def test_a_name_that_points_nowhere_is_caught(spanish: migrate.Migration) -> Non
         spanish.built.lexicon, spanish.built.language, spanish.next_course, units, spanish.aliases
     )
     assert any("lexeme:nowhere" in e for e in errors)
+
+
+# The files it owns, and the command
+
+
+def test_a_file_it_no_longer_writes_is_out_of_date_and_removed(
+    spanish: migrate.Migration, tmp_path: Path
+) -> None:
+    """A unit renamed leaves its old file under next/: the converter owns that folder."""
+    repo = tmp_path / "repo"
+    migrate.write(spanish, repo)
+    assert migrate.stale(spanish, repo) == []
+    left = repo / "courses" / spanish.course.id / "next" / "units" / "renamed.yaml"
+    left.write_text("id: gone\n", encoding="utf-8")
+    assert migrate.stale(spanish, repo) == [left.relative_to(repo).as_posix()]
+    assert left in migrate.write(spanish, repo)
+    assert not left.exists()
+    assert migrate.stale(spanish, repo) == []
+
+
+def test_the_command_checks_a_course_and_writes_nothing() -> None:
+    result = CliRunner().invoke(app, ["migrate", str(ROOT / "courses" / "tok"), "--check"])
+    assert result.exit_code == 0, result.output
+
+
+def test_two_courses_of_one_language_are_refused() -> None:
+    """A language has one lexicon, and merging two courses' entries is not built."""
+    tok = str(ROOT / "courses" / "tok")
+    result = CliRunner().invoke(app, ["migrate", tok, tok, "--check"])
+    assert result.exit_code == 1
+    assert "already wrote lexicons/tok" in result.output
 
 
 # What a plan may not do

@@ -124,6 +124,9 @@ class Converter:
         for kc in self.plan.forms:
             if kc not in self.kcs:
                 raise PlanError(f"the plan names {kc}, which the course does not have")
+        for kc in self.kcs:
+            if kc.partition(":")[0] in ("form", "construction") and kc not in self.plan.forms:
+                raise PlanError(f"the plan has no entry for {kc}: say what it becomes")
         self.taken = taken
 
     def lexeme_pos(self, lexeme: str) -> str | None:

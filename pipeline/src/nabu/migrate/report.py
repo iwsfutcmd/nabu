@@ -148,8 +148,7 @@ def render(m: Migration) -> str:
         "",
         f"Written by `nabu migrate ../courses/{cid}`; do not edit by hand. It belongs to",
         "[the migration's design note](../migration-design.md), deliverable 2. Nothing here is",
-        "decided:",
-        "the converter applies the course's conversion plan",
+        "decided: the converter applies the course's conversion plan",
         f"(`pipeline/src/nabu/migrate/plans/{cid}.yaml`, drafted, REVIEW) and lists what it found.",
         "",
         "## What was converted",
@@ -241,7 +240,46 @@ def render(m: Migration) -> str:
             kinds_.append((f"`{kc}`", gloss, "; ".join(said), fp.note or ""))
         lines += _table(kinds_, ("KC", "Gloss", "Becomes", "Note"))
 
+    constructions = [(k, fp) for k, fp in m.plan.forms.items() if k.startswith("construction:")]
+    if constructions:
+        named: dict[str, list[str]] = collections.defaultdict(list)
+        for item in m.course.items():
+            for kc in seq(item.data.get("constructions")):
+                named[str(kc)].append(item.id)
+        lines += [
+            "",
+            "**Constructions, each with its sentences** (ADR 0145: a rule where its meaning is its",
+            "parts', a listed item with slots where it is not; decided per construction with its",
+            "course). None is decided here: the last column is the plan's drafter's reading.",
+            "",
+        ]
+        named_rows: list[tuple[str, ...]] = []
+        for kc, fp in constructions:
+            sentences = named.get(kc, [])
+            where = f"{len(sentences)}" + (f" ({', '.join(sentences[:3])}…)" if sentences else "")
+            keeps = (
+                f"`lexeme:{fp.lexeme}`"
+                if fp.lexeme is not None
+                else f"`rule:{fp.rule}`"
+                if fp.rule is not None
+                else "feature values"
+            )
+            named_rows.append((f"`{kc}`", where, keeps, fp.note or ""))
+        lines += _table(named_rows, ("KC", "Sentences that name it", "Keeps", "Reading"))
+
     stats = m.stats["lexicon"]
+    held = [
+        (k, str(v))
+        for k, v in sorted(stats.items())
+        if not k.startswith(("default ", "lexical feature"))
+    ]
+    if held:
+        lines += ["", "## What the lexicon holds", ""]
+        lines += [
+            "Counts of what the converter wrote into the entries, beyond one entry a lexeme.",
+            "",
+        ]
+        lines += _table(held, ("", "Count"))
     defaults = [(k, v) for k, v in sorted(stats.items()) if k.startswith("default ")]
     if defaults or m.plan.lexical:
         lines += ["", "## Defaults", ""]
@@ -339,9 +377,8 @@ def render(m: Migration) -> str:
         "  spelling and reading stays pinned as it is; there is nothing to compare them with",
         "  (ADR 0148).",
         "- **Credits by sentence:** an old credit for a `form:` KC that is feature values now has",
-        "  no",
-        "  part to go to: a feature's uses are not authored, and nothing old counts towards a rule",
-        "  (ADR 0146).",
+        "  no part to go to: a feature's uses are not authored, and nothing old counts towards a",
+        "  rule (ADR 0146).",
     ]
     return "\n".join(lines) + "\n"
 

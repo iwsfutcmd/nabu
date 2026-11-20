@@ -2,8 +2,7 @@
 
 Written by `nabu migrate ../courses/fa`; do not edit by hand. It belongs to
 [the migration's design note](../migration-design.md), deliverable 2. Nothing here is
-decided:
-the converter applies the course's conversion plan
+decided: the converter applies the course's conversion plan
 (`pipeline/src/nabu/migrate/plans/fa.yaml`, drafted, REVIEW) and lists what it found.
 
 ## What was converted
@@ -69,6 +68,31 @@ the converter applies the course's conversion plan
 | `construction:existential-hast` | هست: there is, there are | `lexeme:existential-hast` (AUX) | هست on its own says "there is": a use of بودن, kept as the entry the course has; no token names it |
 | `construction:subjunctive` | the subjunctive: be- + present stem + ending after 'want' and 'can' | `rule:subjunctive`, not written | a rule: be-, the present stem and an ending, after a verb of wanting or being able |
 | `construction:past` | the simple past: past stem + ending (رفتم, I went) | `rule:past`, not written | a rule: the past stem and an ending |
+
+**Constructions, each with its sentences** (ADR 0145: a rule where its meaning is its
+parts', a listed item with slots where it is not; decided per construction with its
+course). None is decided here: the last column is the plan's drafter's reading.
+
+| KC | Sentences that name it | Keeps | Reading |
+|---|---|---|---|
+| `construction:ezafe` | 2 (s.time.31, s.time.32…) | `lexeme:ezafe` |  |
+| `construction:doost-dashtan` | 14 (s.food.8, s.food.9, s.food.10…) | `lexeme:doost-dashtan` | a listed item: دوست and داشتن, of which داشتن inflects |
+| `construction:existential-hast` | 4 (s.home.27, s.home.28, s.home.29…) | `lexeme:existential-hast` | هست on its own says "there is": a use of بودن, kept as the entry the course has; no token names it |
+| `construction:subjunctive` | 5 (s.shopping.10, s.shopping.11, s.shopping.12…) | `rule:subjunctive` | a rule: be-, the present stem and an ending, after a verb of wanting or being able |
+| `construction:past` | 16 (s.past.4, s.past.5, s.past.6…) | `rule:past` | a rule: the past stem and an ending |
+
+## What the lexicon holds
+
+Counts of what the converter wrote into the entries, beyond one entry a lexeme.
+
+|  | Count |
+|---|---|
+| lexemes no token writes | 2 |
+| pinned forms | 2 |
+| second forms: a built word, now its lexemes | 1 |
+| second forms: a variant spelling | 6 |
+| stems: the entry less its citation ending | 7 |
+| written otherwise than the entry | 15 |
 
 ## Dimensions
 
@@ -166,6 +190,5 @@ What the plan's drafter saw and did not decide.
   spelling and reading stays pinned as it is; there is nothing to compare them with
   (ADR 0148).
 - **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
-  no
-  part to go to: a feature's uses are not authored, and nothing old counts towards a rule
-  (ADR 0146).
+  no part to go to: a feature's uses are not authored, and nothing old counts towards a
+  rule (ADR 0146).

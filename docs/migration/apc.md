@@ -2,8 +2,7 @@
 
 Written by `nabu migrate ../courses/apc`; do not edit by hand. It belongs to
 [the migration's design note](../migration-design.md), deliverable 2. Nothing here is
-decided:
-the converter applies the course's conversion plan
+decided: the converter applies the course's conversion plan
 (`pipeline/src/nabu/migrate/plans/apc.yaml`, drafted, REVIEW) and lists what it found.
 
 ## What was converted
@@ -103,6 +102,30 @@ the converter applies the course's conversion plan
 | `construction:used-to` | kent + a verb without b-: used to; would | `rule:used-to`, not written | a rule: kan and a verb without b- (ADR 0145 names it: it fills a feature in two words) |
 | `construction:was-doing` | kent 3am + verb: was …ing | `rule:was-doing`, not written | a rule: kan, 3am and a verb without b- |
 | `construction:shu-excl` | shu + adjective: how …! | `rule:shu-excl`, not written | a listed item with a slot: shu before an adjective exclaims, which "what" does not say |
+
+**Constructions, each with its sentences** (ADR 0145: a rule where its meaning is its
+parts', a listed item with slots where it is not; decided per construction with its
+course). None is decided here: the last column is the plan's drafter's reading.
+
+| KC | Sentences that name it | Keeps | Reading |
+|---|---|---|---|
+| `construction:used-to` | 13 (s.child.1, s.child.2, s.child.3…) | `rule:used-to` | a rule: kan and a verb without b- (ADR 0145 names it: it fills a feature in two words) |
+| `construction:was-doing` | 6 (s.child.12, s.child.13, s.child.14…) | `rule:was-doing` | a rule: kan, 3am and a verb without b- |
+| `construction:shu-excl` | 5 (s.party.28, s.party.29, s.party.30…) | `rule:shu-excl` | a listed item with a slot: shu before an adjective exclaims, which "what" does not say |
+
+## What the lexicon holds
+
+Counts of what the converter wrote into the entries, beyond one entry a lexeme.
+
+|  | Count |
+|---|---|
+| cells written more than one way | 2 |
+| entries spelled as a form other than the citation form | 35 |
+| pinned forms | 267 |
+| second forms: a variant spelling | 4 |
+| second forms: an inflected form, now pinned | 107 |
+| stems: the entry less its citation ending | 5 |
+| written otherwise than the entry | 17 |
 
 ## Defaults
 
@@ -366,6 +389,5 @@ What the plan's drafter saw and did not decide.
   spelling and reading stays pinned as it is; there is nothing to compare them with
   (ADR 0148).
 - **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
-  no
-  part to go to: a feature's uses are not authored, and nothing old counts towards a rule
-  (ADR 0146).
+  no part to go to: a feature's uses are not authored, and nothing old counts towards a
+  rule (ADR 0146).
