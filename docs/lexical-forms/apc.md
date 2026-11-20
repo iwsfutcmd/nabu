@@ -11,8 +11,8 @@
   - [apc-review.md](apc-review.md): everything the course pins that the projections do not give back, with why.
   - [../prototypes/apc-lexical-forms](../prototypes/apc-lexical-forms/): the code that drafted the entries, runs
     the projections and writes both files.
-- Sources: Kline, *The Fundamentals of Lebanese Grammar* (2022), cited by page; the course itself; the Unicode
-  Standard's names list. Notes on Kline are in the reference library (`nabu/notes/apc/kline-forms.md`). Where
+- Sources: Kline, *The Fundamentals of Lebanese Grammar* (2022), cited by page; Al-Masri (2015) for stress;
+  the course itself; the Unicode Standard's names list. Notes on Kline are in the reference library (`nabu/notes/apc/kline-forms.md`). Where
   Kline is silent this note says so and does not fill the gap.
 
 ## What was checked, in numbers
@@ -99,9 +99,13 @@ them and an editor may drop what it cannot show. [apc.yaml](apc.yaml) does so. O
 ### What the form does not write
 
 - **A helping vowel.** خبز is said *khebz* or *khebez*. The form has a sukun there; see "Free and fixed" below.
-- **Stress.** Kline gives no stress rule (the notes, §1.5), and no word of the course is known to need its
-  stress stored. Nothing is written for it. A rule needs a reference: Al-Masri (2015) and Watson (2007) are in
-  the library and were not read for this. Open.
+- **Stress.** Kline gives no stress rule (the notes, §1.5). Al-Masri, *Colloquial Arabic (Levantine)* (2015,
+  p. xxi–xxii), says stress does not tell words apart in Arabic and follows weight: it falls on the heaviest
+  syllable (a long vowel outweighs a short one), on the first of them where they are equal, and a word's last
+  consonant does not count. So the form stores no stress: it is computed. The phoneme projection does not
+  mark it yet. His statement is for Levantine at large and leaves choices open (what a doubled consonant
+  weighs; words with suffixes), so the rule as code waits for a fuller source. Watson (2007) is in the
+  library and was not read. REVIEW.
 - **The article's helping vowel** (*el bet*, *l bet*): the article is ل, and its alef is silent.
 
 ## Letters whose sound is not their letter's
@@ -307,7 +311,8 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 - **The affixes' lexical forms and their conditions.** [apc.yaml](apc.yaml) lists every shape the sentences
   write for each suffix and clitic, with counts, and no forms.
 - **Patterns other than the form I active participle.**
-- **Stress,** and **the helping vowel's place:** no source.
+- **Stress** as code (a general rule is cited above), and **the helping vowel's place:** no source for the
+  second.
 - **A sign for a q that is said q.**
 - **The course's 7 sentences that pair no word across the two scripts** (*inshalla* written as three words in
   Arabic; the month names of two words) are left out of the count.
