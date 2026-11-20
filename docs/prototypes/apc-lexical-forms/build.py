@@ -148,7 +148,20 @@ def classify(problem: str, notes: tuple[str, ...]) -> str:
 SUN = "\u062a\u062b\u062c\u062f\u0630\u0631\u0632\u0633\u0634\u0635\u0636\u0637\u0638\u0644\u0646"
 ARTICLE_KEPT = re.compile(lf.ALEF + lf.SILENT + "\u0644" + lf.SUKUN + "([" + SUN + "])")
 
+def mispaired(arabic: str, arabizi: str) -> bool:
+    """Whether the Arabizi is plainly another word: fewer than half of the Arabic's consonants
+    have their letter in it. Then the reader (course.py) paired the wrong tokens."""
+    latin = arabizi.lower()
+    # Not the letters Arabizi may leave out or that are also vowels: waw, ya, h, hamza, qaf.
+    cons = [c for c in unmark(arabic) if c in lf.CONSONANTS and c not in (lf.WAW, lf.YA, lf.HA, "\u0642") and c not in lf.HAMZAS]
+    if len(cons) < 2:
+        return False
+    found = sum(1 for c in cons if any(s and s[0] in latin for s in lf.CONSONANTS[c]))
+    return found * 2 < len(cons)
+
+
 HEADINGS = {
+    "reader": "Not paired by the prototype's reader",
     "none": "No lexical form",
     "sun": "The article before a sun letter, with the letter not doubled",
     "loan": "The Arabizi is not this word's sounds in Arabizi's letters",
@@ -160,6 +173,7 @@ HEADINGS = {
     "other": "The marks do not follow the convention the other words follow",
 }
 WHY = {
+    "reader": "Not a finding about the course: in these sentences the two scripts order or split their words differently (a phrase that is one KC), and the reader took the wrong Arabizi token for the Arabic word. They are counted among the words that do not come back.",
     "none": "The Arabic and the Arabizi could not be read as one word, letter by letter.",
     "sun": "These come back, since the form was drafted from the marks: but the marks have no shadda on a sun letter after the article, where other words of the course have one (\u0627\u0644\u0633\u064e\u0651\u0644\u0627\u0645\u0650\u0629, \u0627\u0644\u062c\u0651\u0627\u0645\u0652\u0639\u064e\u0629). Kline counts jim a sun letter in Lebanese (p. 8).",
     "loan": "A loan kept in its French or English spelling (merci, football, taxi), or two different forms of a word in the two scripts (the teens: Arabic with -ar, Arabizi without). No correspondence gives the spelling; it has to be listed with the word, or the Arabizi changed.",
@@ -352,6 +366,9 @@ def main() -> None:
     came_back = 0
     marked_ok: set[str] = set()
     for (a, marked, l), (d, problems, item) in drafts.items():
+        if mispaired(a, l):
+            review["reader"].append(f"{a} / {l} ({item})")
+            continue
         if d.form is None:
             review["none"].append(f"{a} / {l} ({item}): {d.why}")
             continue

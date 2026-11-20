@@ -18,22 +18,34 @@ Lebanese, not a verdict: the course may be right and the convention wrong.
 - **41** verbs with radicals, a Form and citation forms; 251 of their forms in the sentences are pinned, since no conjugation rule is written yet.
 - **82** clips a listener marked right: for 64 the projection writes the very marks the voice was given; for 18 it writes other marks for a word; 0 were given text the sentences no longer hold.
 
-## 1. No lexical form (10)
+## 1. Not paired by the prototype's reader (10)
+
+Not a finding about the course: in these sentences the two scripts order or split their words differently (a phrase that is one KC), and the reader took the wrong Arabizi token for the Arabic word. They are counted among the words that do not come back.
+
+- وسهلا / w (u10-plans:s.plans.28)
+- التاني / el (u16-dates:s.date.13)
+- وإنت / w (u16-dates:s.date.29)
+- سالم / enta (u16-dates:s.date.29)
+- وإنتي / w (u16-dates:s.date.30)
+- سالمة / enti (u16-dates:s.date.30)
+- وإنتو / w (u16-dates:s.date.31)
+- سالمين / ento (u16-dates:s.date.31)
+- وإِنْتي / w (u16-dates:apc.story.birthday#7)
+- سالْمِة / enti (u16-dates:apc.story.birthday#7)
+
+## 2. No lexical form (7)
 
 The Arabic and the Arabizi could not be read as one word, letter by letter.
 
 - `sense:miyye` مية / mit: مِيِّة cannot be read as mit
 - الفوتبول / el football (u07-likes:s.like.23): الفوتْبول cannot be read as el football
-- التاني / el (u16-dates:s.date.13): التّاني cannot be read as el
-- سالمة / enti (u16-dates:s.date.30): سالْمِة cannot be read as enti
-- سالْمِة / enti (u16-dates:apc.story.birthday#7): سالْمِة cannot be read as enti
 - بالتاكسي / bel taxi (u18-getting-around:s.road.3): بِالتّاكْسي cannot be read as bel taxi
 - التاكسي / el taxi (u18-getting-around:s.road.4): التّاكْسي cannot be read as el taxi
 - الباص / el bus (u18-getting-around:s.road.5): الباص cannot be read as el bus
 - بِالسِّرْفيس / bel servees (u18-getting-around:apc.story.service#1): بِالسِّرْفيس cannot be read as bel servees
 - الامتحان / el emte7an (u19-work:s.work.11): drafted ا\u06dfلْاِمْتِحَان, which is not a form: 'ا\u06dfلْاِمْتِحَان': an alef inside a word is a length letter, a seat, or silent
 
-## 2. The article before a sun letter, with the letter not doubled (12)
+## 3. The article before a sun letter, with the letter not doubled (12)
 
 These come back, since the form was drafted from the marks: but the marks have no shadda on a sun letter after the article, where other words of the course have one (السَّلامِة, الجّامْعَة). Kline counts jim a sun letter in Lebanese (p. 8).
 
@@ -50,24 +62,17 @@ These come back, since the form was drafted from the marks: but the marks have n
 - بِالجِمْعَة / bel jem3a (u16-dates:s.date.32): no shadda on ج
 - هَالجِمْعَة / hal jem3a (u19-work:apc.story.new-job#6): no shadda on ج
 
-## 3. The Arabizi is not this word's sounds in Arabizi's letters (12)
+## 4. The Arabizi is not this word's sounds in Arabizi's letters (5)
 
 A loan kept in its French or English spelling (merci, football, taxi), or two different forms of a word in the two scripts (the teens: Arabic with -ar, Arabizi without). No correspondence gives the spelling; it has to be listed with the word, or the Arabizi changed.
 
 - فوتبول / football (u07-likes:s.like.24): Arabizi not read: فوتْبول cannot be read as football: arabizi: football is not among the projected spellings (futbul first)
-- وسهلا / w (u10-plans:s.plans.28): Arabizi not read: وسَهْلا cannot be read as w: marks: projected وْسَهْلا, pinned وسَهْلا; arabizi: w is not among the projected spellings (wsahla first)
 - حدعشر / 7da3sh (u16-dates:s.date.1): Arabizi not read: حْدَعْشَر cannot be read as 7da3sh: arabizi: 7da3sh is not among the projected spellings (7da3shar first)
 - تنعشر / tna3sh (u16-dates:s.date.4): Arabizi not read: تْنَعْشَر cannot be read as tna3sh: arabizi: tna3sh is not among the projected spellings (tna3shar first)
-- وإنت / w (u16-dates:s.date.29): Arabizi not read: وإِنْتَ cannot be read as w: marks: projected وْإِنْتَ, pinned وإِنْتَ; arabizi: w is not among the projected spellings (w2enta first)
-- سالم / enta (u16-dates:s.date.29): Arabizi not read: سالِم cannot be read as enta: arabizi: enta is not among the projected spellings (salem first)
-- وإنتي / w (u16-dates:s.date.30): Arabizi not read: وإِنْتي cannot be read as w: marks: projected وْإِنْتي, pinned وإِنْتي; arabizi: w is not among the projected spellings (w2enti first)
-- وإنتو / w (u16-dates:s.date.31): Arabizi not read: وإِنْتو cannot be read as w: marks: projected وْإِنْتو, pinned وإِنْتو; arabizi: w is not among the projected spellings (w2ento first)
-- سالمين / ento (u16-dates:s.date.31): Arabizi not read: سالْمين cannot be read as ento: arabizi: ento is not among the projected spellings (salmin first)
 - تْلاتَعْشَر / tleta3sh (u16-dates:apc.story.birthday#1): Arabizi not read: تْلاتَعْشَر cannot be read as tleta3sh: arabizi: tleta3sh is not among the projected spellings (tlata3shar first)
-- وإِنْتي / w (u16-dates:apc.story.birthday#7): Arabizi not read: وإِنْتي cannot be read as w: marks: projected وْإِنْتي, pinned وإِنْتي; arabizi: w is not among the projected spellings (w2enti first)
 - سرفيس / servees (u18-getting-around:s.road.1): Arabizi not read: سِرْفيس cannot be read as servees: arabizi: servees is not among the projected spellings (serfis first)
 
-## 4. The marks and the Arabizi give different vowels (14)
+## 5. The marks and the Arabizi give different vowels (14)
 
 One of the two is wrong, or the word is said both ways. The drafted form follows the Arabizi where it has a vowel and the marks where it has none.
 
@@ -86,7 +91,7 @@ One of the two is wrong, or the word is said both ways. The drafted form follows
 - تسعتعشر / tsa3ta3shar (u16-dates:s.date.11): vowel: marked i, none in Arabizi: arabizi: tsa3ta3shar is not among the projected spellings (tesa3ta3shar first)
 - عملي / 3emli (u18-getting-around:s.road.26): vowel: Arabizi e where the marks have a sukun; vowel: marked i, none in Arabizi: marks: projected عِمِلي, pinned عْمِلي; arabizi: 3emli is not among the projected spellings (3emeli first)
 
-## 5. The marks write a vowel the Arabizi leaves out, between a word's last two consonants (22)
+## 6. The marks write a vowel the Arabizi leaves out, between a word's last two consonants (22)
 
 A helping vowel (خِبِز khebz): the drafted form leaves it out, as the Arabizi does, and the projection writes none. Kline writes shames but wa2t, and kalb beside kalib (the notes, §1.4): no rule. The voices were given these marks, so they said the vowel.
 
@@ -113,7 +118,7 @@ A helping vowel (خِبِز khebz): the drafted form leaves it out, as the Arabi
 - شُغُل / shoghl (u19-work:apc.story.new-job#3): helping vowel: in the marks, not in Arabizi: marks: projected شُغْل, pinned شُغُل
 - هالأكل / hal akl (u20-celebrations:s.party.29): helping vowel: in the marks, not in Arabizi: marks: projected هَالأَكْل, pinned هَالأَكَل
 
-## 6. Doubled in Arabizi, with no shadda in the marks (4)
+## 7. Doubled in Arabizi, with no shadda in the marks (4)
 
 Either the marks lack a shadda or the Arabizi doubles a letter that is single (a loan's spelling: dollar).
 
@@ -122,13 +127,13 @@ Either the marks lack a shadda or the Arabizi doubles a letter that is single (a
 - بالدولار / bel dollar (u05-numbers:s.num.11): doubled in Arabizi, no shadda in the course's marks: marks: projected بِالدّولّار, pinned بِالدّولار
 - دولار / dollar (u05-numbers:s.num.17): doubled in Arabizi, no shadda in the course's marks: marks: projected دولّار, pinned دولار
 
-## 7. A letter is written and the Arabizi does not say it (1)
+## 8. A letter is written and the Arabizi does not say it (1)
 
 Arabizi writes the word as it is said, Arabic as it is built (3enna, written with its d).
 
 - عندنا / 3enna (u12-trip:s.trip.13): written, not said: د: marks: projected عِنْدنا, pinned عِنْدْنا
 
-## 8. ay and aw: the marks and the Arabizi differ, or the glide has no sukun (11)
+## 9. ay and aw: the marks and the Arabizi differ, or the glide has no sukun (11)
 
 The course writes a diphthong's glide with a sukun in some words (عَيْلِة) and without in others (هَيدا); and the marks write ay where the Arabizi has a long e (7zeiran).
 
@@ -144,7 +149,7 @@ The course writes a diphthong's glide with a sukun in some words (عَيْلِة
 - بهيدي / b hayde (u11-people:s.ppl.15): marks: projected بْهَيْدي, pinned بْهَيدي
 - بحزيران / b 7zeiran (u16-dates:s.date.18): diphthong: the marks write ay, Arabizi ei: marks: projected بْحْزيران, pinned بْحْزَيْران
 
-## 9. The marks do not follow the convention the other words follow (13)
+## 10. The marks do not follow the convention the other words follow (13)
 
 Each differs from what the projection writes in its own way: the difference is on the line.
 
@@ -162,7 +167,7 @@ Each differs from what the projection writes in its own way: the difference is o
 - فيها / fiya (u13-health:s.health.16): marks: projected فِيها, pinned فيها
 - الله / allah (u20-celebrations:s.party.2): marks: projected اَلْلَه, pinned الله
 
-## 10. Verbs and participles (7)
+## 11. Verbs and participles (7)
 
 A citation form the course does not write and Kline does not list, or a participle the template makes otherwise.
 
@@ -174,7 +179,7 @@ A citation form the course does not write and Kline does not list, or a particip
 - `sense:3azam` 3azam / ye3zem: Kline does not list it. The present vowel is read off e3zmak, where it has dropped: REVIEW.
 - `sense:3ajab` 3ajab / ye3jeb: Kline does not list it, and the course has no present form: the present is a guess. REVIEW.
 
-## 11. The reviewed clips whose marks the projection does not write (18)
+## 12. The reviewed clips whose marks the projection does not write (18)
 
 A reviewed clip depends on the exact text its voice was given (the handoff's Task C). These would be read
 from other marks if the projection replaced the course's vocalization as it stands.
@@ -198,7 +203,7 @@ from other marks if the projection replaced the course's vocalization as it stan
 - `s.food.16`: بَدَّك لَبَن مَع الخِبِز؟: the projection writes other marks for الخِبِز
 - `s.food.7`: بَدّي خِبِز.: the projection writes other marks for خِبِز
 
-## 12. How the course's Arabizi spells what is left free
+## 13. How the course's Arabizi spells what is left free
 
 Not a list of faults: each row is a correspondence with more than one spelling, and how often the
 course's sentences use each (distinct words). The projection writes the commoner one first.

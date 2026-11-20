@@ -21,7 +21,8 @@
   Arabizi, taken together). A lexical form was drafted for each from those three.
 - **939** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
   among the spellings the correspondences give. **77** have a form and differ in one of the three. **9** have
-  no form.
+  no form. Ten of those 86 are the prototype's own doing, not the course's: its reader paired the wrong
+  Arabizi word (the review list's first section).
 - Of the **415** forms the KCs list, 369 come back, 40 do not, 1 has no form and 5 are written in one script.
 - Of the **82** clips a listener marked right, the projection writes the very marks the voice was given for
   **64**. For 18 it writes other marks for one word: هَيدا or هَيدي in 15 (the course leaves the sukun off
@@ -310,6 +311,8 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 - **A sign for a q that is said q.**
 - **The course's 7 sentences that pair no word across the two scripts** (*inshalla* written as three words in
   Arabic; the month names of two words) are left out of the count.
+- **A word that begins with a vowel on a bare alef, after the article** (الامتحان *el emte7an*): the notation
+  cannot write the two in one piece. One word of the course.
 
 ## For the owner
 
