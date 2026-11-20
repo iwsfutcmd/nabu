@@ -159,8 +159,8 @@ is the owner's, and the notes record each one where it was made.
   scopes that have it, everywhere unless stated; an utterance has one of each, a course a range; a listed
   form carries its own register range (کتب is written only).
 - **A general word is not thereby the local one** (the owner, round 5). *autobús* is general Spanish, *guagua*
-  Cuban. The lexicon marks where a general word is also said in a variety, by a speaker's review; where it
-  isn't, the word is outside that variety (ADR 0147).
+  Cuban. Where a concept has a word of a variety's own, its general word is outside that variety until the
+  lexicon marks it as said there too, by a speaker's review (ADR 0147).
 - **All Javanese register is at the concept level**; Spanish and French T–V are concept-linked pronoun
   lexemes; Korean and Japanese honorifics are dimensions (they have base cases).
 - **A concept links what differs only socially, and nothing else.** Two lexemes that share a base and differ
