@@ -25,6 +25,33 @@ restored from the notes, and what was accepted as drafted. The older ADRs they a
 rounds, the review and this file. If your checkout's `docs/adr/0145-lexical-model.md` says "Status:
 Proposed", it is out of date: fetch `main` and merge it into your working branch before you start.
 
+## Open, found on 2026-11-20 and not ruled on
+
+Found while the notes and the explainer were brought up to the accepted ADRs. None is decided.
+
+**An ADR is contradicted or silent, and the notes could not say what replaces it:**
+1. Which UD tag a word made by Arabic's participle pattern takes (كاتِب: `NOUN` or `ADJ`). It follows from
+   round 6's "UD tags". [lexeme-model.md](lexeme-model.md) says only that the pattern "takes a verb and makes
+   another category".
+2. The family object held a label for literal hints ("to do with writing"). The object is gone (families are
+   computed) and no ADR gives the label a home.
+3. Diagram 2 of the model notes lists *siendo* as a listed morpheme of SER beside the stem *s‑*, which would
+   give it by rule. No ADR mentions it; it was left.
+4. Two statements were left as they stood: that order variants in accept sets are generated (hbo, ADR 0084),
+   as a future payoff, and that *‑ra* is the norm in Cuba.
+
+**Decisions the notes record that no ADR states** (beyond the review's section D):
+- the citation form per language, and naming one stem as "elsewhere" where none is the default;
+- a plural with a sense of its own is a separate morpheme (اخبار);
+- bound stems with a meaning are morphemes (Indonesian *ajar*, Bantu *‑swahili*);
+- a coinage on a root with no verb is a listed morpheme;
+- data for a word form (a clip, a homograph mark) is keyed by its content;
+- Thai and Lao visual order is the projection's job;
+- the verdicts on *tayyora* / *samolyot* and 佢 / 他.
+
+**The owner's "let's just use UD tags" was read as:** no category system is declared per language, and the
+rule against inserting a distinction a language does not make stands. The owner has not confirmed the reading.
+
 ## Read first
 
 1. `CLAUDE.md`: the project's rules. Its non-negotiables bind you (TaggedText, logical CSS, no user-facing
