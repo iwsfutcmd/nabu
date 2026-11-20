@@ -1,0 +1,72 @@
+# What apc declares beside its lexicon (schemas/language.schema.json).
+# Written by `nabu migrate` from courses/apc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: apc
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@7dc39b6923d8', status: draft}
+varieties: [apc-LB]
+registers: [colloquial]
+dimensions:
+  VERB: [Aspect, Mood, Person, Gender, Number]
+  AUX: [Aspect, Mood, Person, Gender, Number]
+  NOUN: [Number]
+  ADJ: [Gender, Number]
+lexical:
+  NOUN: [Gender]
+  PROPN: [Gender]
+citation:
+  NOUN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  VERB: {Aspect: Perf, Person: '3', Gender: Masc, Number: Sing}
+  AUX: {Aspect: Perf, Person: '3', Gender: Masc, Number: Sing}
+features:
+  Aspect: [Imp, Part, Perf]
+  Case: [Acc, Dat]
+  Gender: [Fem, Masc]
+  Gender[psor]: [Fem]
+  Mood: [Imp, Ind, Sub]
+  NumType: [Card, Ord]
+  Number: [Dual, Plur, Sing]
+  Number[psor]: [Plur, Sing]
+  Person: ['1', '2', '3']
+  Person[psor]: ['2']
+  Polarity: [Neg]
+  Poss: ['Yes']
+  PronType: [Dem, Ind, Int, Prs, Tot]
+defaults:
+- {id: gender-ta, when: {ends: ة}, gives: {Gender: Fem}}
+- {id: gender-none, when: {pos: NOUN}, gives: {Gender: Masc}}
+- {id: gender-none-name, when: {pos: PROPN}, gives: {Gender: Masc}}
+labels:
+- {feats: {Gender: Fem, Number: Sing}, gloss: {en: 'feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending on an adjective with one (kbir → kbire)'}, notes: {en: 'kbir → kbire, zghir → zghire. Arabic script: ة (كبيرة). Most nouns in -e / -a (ة) are feminine (ahwe, قهوة), not all (zalame, a man); some feminines have no ending (emm, mother; shams, the sun).'}, was: 'form:fem'}
+- {feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, gloss: {en: '-ik: your (to a woman)'}, notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}, was: 'form:poss-2fs'}
+- {feats: {'Number[psor]': Plur, 'Person[psor]': '2'}, gloss: {en: '-kon: your (to several people)'}, notes: {en: 'kifkon? how are you (all)?; 3endkon: you have. Arabic script: كن joined to the word (كيفكن).'}, was: 'form:poss-2pl'}
+- {feats: {Number: Plur}, gloss: {en: 'plural: a plural noun (wlad, jiren), or the -in ending on an adjective with one (jou3an → jou3anin)'}, notes: {en: 'jou3anin: hungry (several people); mabsoutin: happy. Arabic script: ين (جوعانين). Lebanese makes no gender in the plural: one form for men and women.'}, was: 'form:pl'}
+- {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, gloss: {en: '-i: telling a woman to do something'}, notes: {en: 'tfaddal → tfaddali, eshrab → eshrabi, kol → kili.'}, was: 'form:imp-2fs'}
+- {feats: {Mood: Imp, Number: Plur, Person: '2'}, gloss: {en: '-o: telling several people to do something'}, notes: {en: 'tfaddalo! kilo! eshrabo! Arabic script: وا after the verb (تفضّلوا).'}, was: 'form:imp-2pl'}
+- {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, gloss: {en: 'b-: I (present)'}, notes: {en: 'bekol: I eat; bishrab: I drink. Present, habit, or what I''m about to do.'}, was: 'form:impf-1sg'}
+- {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, gloss: {en: 'bt-: you (present, to a man)'}, notes: {en: 'btishrab: you drink. The same form means ''she'': bt- is both.'}, was: 'form:impf-2ms'}
+- {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3'}, gloss: {en: 'bi-: he (present)'}, notes: {en: 'byishteghel: he works. Arabic script: بي joined to the verb (بيشتغل).'}, was: 'form:impf-3ms'}
+- {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}, gloss: {en: 'bt-: she (present)'}, notes: {en: 'btishteghel: she works; the same form as ''you'' to a man.'}, was: 'form:impf-3fs'}
+- {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, gloss: {en: 'mn-: we (present)'}, notes: {en: 'mnru7: we go; mnishrab: we drink. Arabic script: من joined to the verb (منروح).'}, was: 'form:impf-1pl'}
+- {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, gloss: {en: 'bt-…-i: you (present, to a woman)'}, notes: {en: 'btishrabi: you drink; bta3mli: you do. Arabic script: بت before the verb and ي after it (بتشربي).'}, was: 'form:impf-2fs'}
+- {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}, gloss: {en: 'bt-…-o: you (present, to several people)'}, notes: {en: 'btishrabo: you drink; bta3mlo: you do. Arabic script: بت before the verb and وا after it (بتشربوا).'}, was: 'form:impf-2pl'}
+- {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, gloss: {en: 'e- / no b-: I (after baddi, b7ebb, 3am…)'}, notes: {en: 'baddi ekol: I want to eat; b7ebb esma3: I like to listen. The b- of the present drops.'}, was: 'form:subj-1sg'}
+- {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, gloss: {en: 't-: you (after baddak, 3am…; to a man)'}, notes: {en: 'baddak tishrab? Do you want to drink? 3am ta3mel: you are doing.'}, was: 'form:subj-2ms'}
+- {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, gloss: {en: 'n-: we (after badna, ta…)'}, notes: {en: 'badna nru7: we want to go.'}, was: 'form:subj-1pl'}
+- {feats: {Aspect: Perf, Number: Sing, Person: '1'}, gloss: {en: '-t: I (past)'}, notes: {en: 'ru7t: I went; akalt: I ate. The same word means ''you (a man)'': context decides.'}, was: 'form:past-1sg'}
+- {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, gloss: {en: '-t: you (past, to a man)'}, notes: {en: 'shu 3melt? What did you do? Spelled like ''I'': ru7t, 3melt.'}, was: 'form:past-2ms'}
+- {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}, gloss: {en: 'he (past): the bare verb'}, notes: {en: 'ra7: he went; akal: he ate.'}, was: 'form:past-3ms'}
+- {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, gloss: {en: '-et: she (past)'}, notes: {en: 'ra7et: she went; kenet: she was. Arabic script: ت at the end (راحت).'}, was: 'form:past-3fs'}
+- {feats: {Aspect: Perf, Number: Plur, Person: '1'}, gloss: {en: '-na: we (past)'}, notes: {en: 'ru7na: we went; akalna: we ate.'}, was: 'form:past-1pl'}
+- {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}, gloss: {en: '-ti: you (past, to a woman)'}, notes: {en: 'ru7ti: you went; kenti: you were.'}, was: 'form:past-2fs'}
+- {feats: {Aspect: Perf, Number: Plur, Person: '2'}, gloss: {en: '-to: you (past, to several people)'}, notes: {en: 'ru7to: you went; akalto: you ate. Arabic script: توا (رحتوا).'}, was: 'form:past-2pl'}
+- {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3'}, gloss: {en: 'bi-…-o: they (present)'}, notes: {en: 'byishrabo: they drink; byi7ko: they speak. Arabic script: بي before the verb and وا after it (بيشربوا), also written بيشربو.'}, was: 'form:impf-3pl'}
+- {feats: {Aspect: Perf, Number: Plur, Person: '3'}, gloss: {en: '-o: they (past)'}, notes: {en: 'ra7o: they went; keno: they were; akalo: they ate. Arabic script: وا at the end (راحوا), also written راحو.'}, was: 'form:past-3pl'}
+- {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}, gloss: {en: 'y-: he (after ra7, baddo, lezem…)'}, notes: {en: 'ra7 yru7: he''ll go; ra7 yishteghel: he''ll work. The present without its b- (byru7 → yru7). Arabic script: ي before the verb (يروح).'}, was: 'form:subj-3ms'}
+- {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '3'}, gloss: {en: 't-: she (after ra7, badda…)'}, notes: {en: 'ra7 tishrab: she''ll drink. The same form as ''you'' to a man.'}, was: 'form:subj-3fs'}
+- {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, gloss: {en: 't-…-i: you (to a woman, after ra7, baddik…)'}, notes: {en: 'ra7 tru7i: you''ll go. Arabic script: ت before the verb and ي after it (تروحي).'}, was: 'form:subj-2fs'}
+- {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}, gloss: {en: 't-…-o: you (to several people, after ra7, badkon…)'}, notes: {en: 'ra7 ta3mlo: you''ll do. Arabic script: ت before the verb and وا after it (تعملوا).'}, was: 'form:subj-2pl'}
+- {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '3'}, gloss: {en: 'y-…-o: they (after ra7, baddon…)'}, notes: {en: 'ra7 ysefro: they''ll travel. Arabic script: ي before the verb and وا after it (يسافروا).'}, was: 'form:subj-3pl'}

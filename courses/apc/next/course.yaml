@@ -1,0 +1,118 @@
+# courses/apc in the new shape (schemas/course-source.next.schema.json).
+# Written by `nabu migrate` from courses/apc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: apc
+target: apc-Arab-LB
+orthographies:
+- apc-Arab/standard
+- apc-Latn/arabizi
+support:
+- en-Latn/standard
+lexicon: apc
+variety: apc-LB
+registers:
+- colloquial
+names:
+  en:
+    course: Lebanese Arabic
+    blurb: The Arabic of Lebanon, as people speak it every day.
+    orthographies:
+      apc-Arab/standard: Arabic script
+      apc-Latn/arabizi: Arabizi (Latin letters and numbers)
+    hints:
+      apc-Arab/standard: Arabic letters, right to left, with vowel marks to help you read.
+      apc-Latn/arabizi: Latin letters and digits, as many Lebanese write in messages.
+  ar:
+    course: العربية اللبنانية
+    orthographies:
+      apc-Arab/standard: الحروف العربية
+      apc-Latn/arabizi: العربيزي (حروف لاتينية وأرقام)
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  fa:
+    course: عربی لبنانی
+    orthographies:
+      apc-Arab/standard: خط عربی
+      apc-Latn/arabizi: عربیزی (حروف و اعداد لاتین)
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  uz:
+    course: Livan arab tili
+    orthographies:
+      apc-Arab/standard: Arab yozuvi
+      apc-Latn/arabizi: Arabizi (lotin harflari va raqamlar)
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  uz-Cyrl:
+    course: Ливан араб тили
+    orthographies:
+      apc-Arab/standard: Араб ёзуви
+      apc-Latn/arabizi: Арабизи (лотин ҳарфлари ва рақамлар)
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  zh-Hant-HK:
+    course: 黎巴嫩阿拉伯語
+    orthographies:
+      apc-Arab/standard: 阿拉伯字母
+      apc-Latn/arabizi: Arabizi（拉丁字母和數字）
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+license: CC-BY-SA-4.0
+provenance:
+  author: llm:claude@6914f241714e
+  status: draft
+consistentReadings: true
+iPlusOne: 2
+wordParts: true
+units:
+- units/intro.yaml
+- units/u02-family.yaml
+- units/u03-food.yaml
+- units/u04-home.yaml
+- units/u05-numbers.yaml
+- units/u06-day.yaml
+- units/u07-likes.yaml
+- units/u08-time.yaml
+- units/u09-past.yaml
+- units/u10-plans.yaml
+- units/u11-people.yaml
+- units/u12-trip.yaml
+- units/u13-health.yaml
+- units/u14-phone.yaml
+- units/u15-shopping.yaml
+- units/u16-dates.yaml
+- units/u17-childhood.yaml
+- units/u18-getting-around.yaml
+- units/u19-work.yaml
+- units/u20-celebrations.yaml
+vocalization:
+- vocalization.yaml
+audio:
+  quality: good
+  voices:
+  - id: beirut
+    provider: omnivoice
+    voice: beirut-m
+    speaker: m
+    model: oddadmix/lahgtna-omnivoice-v2@55c38a613e316499829eef60b006edc6da9499e2
+    language: lb
+    orthography: apc-Arab/standard
+    reading: text
+    vowelMarks: true
+    license: CC-BY-NC-4.0
+  - id: beirut-f
+    provider: omnivoice
+    voice: beirut-f
+    speaker: f
+    model: oddadmix/lahgtna-omnivoice-v2@55c38a613e316499829eef60b006edc6da9499e2
+    language: lb
+    orthography: apc-Arab/standard
+    reading: text
+    vowelMarks: true
+    license: CC-BY-NC-4.0

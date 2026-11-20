@@ -1,0 +1,803 @@
+# Unit u06 of courses/tok in the new shape.
+# Written by `nabu migrate` from courses/tok and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u06
+title:
+  en: 'mi lon tomo: I''m at home'
+cefr: A1
+nodes:
+- {id: tok.u06.at, kind: lesson, introduces: ['lexeme:lon', 'lexeme:supa', 'lexeme:poki']}
+- {id: tok.u06.in-on, kind: lesson, introduces: ['lexeme:insa', 'lexeme:sewi', 'lexeme:anpa']}
+- {id: tok.u06.around, kind: lesson, introduces: ['lexeme:poka', 'lexeme:monsi', 'lexeme:sinpin', 'lexeme:lupa']}
+- {id: tok.u06.from, kind: lesson, introduces: ['lexeme:tan', 'lexeme:ma', 'lexeme:kanata']}
+- {id: tok.u06.way, kind: lesson, introduces: ['lexeme:nasin', 'lexeme:kepeken', 'rule:pona-tawa']}
+- {id: tok.u06.story, kind: story}
+sentences:
+- id: s.u06.1
+  node: tok.u06.at
+  forms:
+    tok-Latn/standard:
+      text: mi lon tomo.
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: |-
+        mi lon tomo
+        mi lon tomo mi
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤬󱥭
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: |-
+        󱤴󱤬󱥭
+        󱤴󱤬󱥭󱤴
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) (at home|home|in the house).
+      (I was|We were) (at home|home|in the house)
+- id: s.u06.2
+  node: tok.u06.at
+  forms:
+    tok-Latn/standard:
+      text: kili li lon supa.
+      tokens: [{surface: kili, lexeme: kili, readings: {lasina: kili}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
+      reverse: kili li lon supa
+    tok-Qaap/sitelen-pona:
+      text: 󱤚󱤧󱤬󱥥
+      tokens: [{surface: 󱤚, lexeme: kili, readings: {lasina: kili}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
+      reverse: 󱤚󱤧󱤬󱥥
+  translations:
+    en: |-
+      The fruit is on the table.
+      (There's|There is) fruit on the table
+      The fruits are on the table
+- id: s.u06.3
+  node: tok.u06.at
+  forms:
+    tok-Latn/standard:
+      text: pan li lon poki.
+      tokens: [{surface: pan, lexeme: pan, readings: {lasina: pan}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poki, lexeme: poki, readings: {lasina: poki}}]
+      reverse: pan li lon poki
+    tok-Qaap/sitelen-pona:
+      text: 󱥋󱤧󱤬󱥓
+      tokens: [{surface: 󱥋, lexeme: pan, readings: {lasina: pan}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥓, lexeme: poki, readings: {lasina: poki}}]
+      reverse: 󱥋󱤧󱤬󱥓
+  translations:
+    en: |-
+      The bread is in the (box|bag|basket|container).
+      (There's|There is) bread in the (box|bag|basket|container)
+- id: s.u06.4
+  node: tok.u06.at
+  forms:
+    tok-Latn/standard:
+      text: telo li lon poki ni.
+      tokens: [{surface: telo, lexeme: telo, readings: {lasina: telo}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poki, lexeme: poki, readings: {lasina: poki}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}]
+      reverse: telo li lon poki ni
+    tok-Qaap/sitelen-pona:
+      text: 󱥪󱤧󱤬󱥓󱥁
+      tokens: [{surface: 󱥪, lexeme: telo, readings: {lasina: telo}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥓, lexeme: poki, readings: {lasina: poki}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}]
+      reverse: 󱥪󱤧󱤬󱥓󱥁
+  translations:
+    en: |-
+      The water is in (this|that) (cup|glass|bowl|container).
+      (There's|There is) water in (this|that) (cup|glass|bowl|container)
+- id: s.u06.5
+  node: tok.u06.at
+  uses: ['rule:x-ala-x']
+  forms:
+    tok-Latn/standard:
+      text: ilo toki sina li lon ala lon supa?
+      tokens: [{surface: ilo, lexeme: ilo, readings: {lasina: ilo}}, {surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: ala, lexeme: ala, readings: {lasina: ala}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
+      reverse: |-
+        ilo toki sina li lon ala lon supa
+        ilo toki sina li lon supa anu seme
+    tok-Qaap/sitelen-pona:
+      text: 󱤎󱥬󱥞󱤧󱤬󱤂󱤬󱥥
+      tokens: [{surface: 󱤎, lexeme: ilo, readings: {lasina: ilo}}, {surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤂, lexeme: ala, readings: {lasina: ala}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
+      reverse: |-
+        󱤎󱥬󱥞󱤧󱤬󱤂󱤬󱥥
+        󱤎󱥬󱥞󱤧󱤬󱥥󱤇󱥙
+  translations:
+    en: Is your phone on the table?
+- id: s.u06.6
+  node: tok.u06.at
+  forms:
+    tok-Latn/standard:
+      text: lon. ona li lon supa.
+      tokens: [{surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: ona, lexeme: ona, readings: {lasina: ona}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
+      reverse: lon ona li lon supa
+    tok-Qaap/sitelen-pona:
+      text: "\U000F192C\u3000\U000F1946\U000F1927\U000F192C\U000F1965"
+      tokens: [{surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥆, lexeme: ona, readings: {lasina: ona}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
+      reverse: 󱤬󱥆󱤧󱤬󱥥
+  translations:
+    en: Yes. (It's|It is) on the table.
+- id: s.u06.7
+  node: tok.u06.at
+  forms:
+    tok-Latn/standard:
+      text: ilo toki mi li lon poki.
+      tokens: [{surface: ilo, lexeme: ilo, readings: {lasina: ilo}}, {surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poki, lexeme: poki, readings: {lasina: poki}}]
+      reverse: ilo toki mi li lon poki
+    tok-Qaap/sitelen-pona:
+      text: 󱤎󱥬󱤴󱤧󱤬󱥓
+      tokens: [{surface: 󱤎, lexeme: ilo, readings: {lasina: ilo}}, {surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥓, lexeme: poki, readings: {lasina: poki}}]
+      reverse: 󱤎󱥬󱤴󱤧󱤬󱥓
+  translations:
+    en: |-
+      My phone is in the (bag|box|container).
+      My phone's in the (bag|box|container)
+      Our phone is in the bag.
+- id: s.u06.8
+  node: tok.u06.in-on
+  forms:
+    tok-Latn/standard:
+      text: kala li lon insa telo.
+      tokens: [{surface: kala, lexeme: kala, readings: {lasina: kala}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: insa, lexeme: insa, readings: {lasina: insa}}, {surface: telo, lexeme: telo, readings: {lasina: telo}}]
+      reverse: |-
+        kala li lon insa telo
+        kala li lon telo
+    tok-Qaap/sitelen-pona:
+      text: 󱤔󱤧󱤬󱤏󱥪
+      tokens: [{surface: 󱤔, lexeme: kala, readings: {lasina: kala}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤏, lexeme: insa, readings: {lasina: insa}}, {surface: 󱥪, lexeme: telo, readings: {lasina: telo}}]
+      reverse: |-
+        󱤔󱤧󱤬󱤏󱥪
+        󱤔󱤧󱤬󱥪
+  translations:
+    en: |-
+      The fish (is|are) (in|inside) the water.
+      (There's|There is) (a fish|fish) in the water
+- id: s.u06.9
+  node: tok.u06.in-on
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li lon insa tomo.
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Mila, lexeme: mila, readings: {lasina: Mila}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: insa, lexeme: insa, readings: {lasina: insa}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: |-
+        jan Mila li lon insa tomo
+        jan Mila li lon tomo
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤬󱤏󱥭
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, lexeme: mila}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤏, lexeme: insa, readings: {lasina: insa}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: |-
+        󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤬󱤏󱥭
+        󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤬󱥭
+  translations:
+    en: |-
+      Mila is (inside|in) the house.
+      Mila's (inside|in) the house
+      Mila is (inside|indoors)
+- id: s.u06.10
+  node: tok.u06.in-on
+  forms:
+    tok-Latn/standard:
+      text: waso li lon sewi tomo.
+      tokens: [{surface: waso, lexeme: waso, readings: {lasina: waso}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sewi, lexeme: sewi, readings: {lasina: sewi}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: waso li lon sewi tomo
+    tok-Qaap/sitelen-pona:
+      text: 󱥴󱤧󱤬󱥚󱥭
+      tokens: [{surface: 󱥴, lexeme: waso, readings: {lasina: waso}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥚, lexeme: sewi, readings: {lasina: sewi}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: 󱥴󱤧󱤬󱥚󱥭
+  translations:
+    en: |-
+      The bird is on (the roof|top of the house).
+      (A|The) bird is (on|above|over) the house
+      (There's|There is) a bird on (the roof|top of the house)
+- id: s.u06.11
+  node: tok.u06.in-on
+  forms:
+    tok-Latn/standard:
+      text: soweli li lon anpa supa.
+      tokens: [{surface: soweli, lexeme: soweli, readings: {lasina: soweli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: anpa, lexeme: anpa, readings: {lasina: anpa}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
+      reverse: soweli li lon anpa supa
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤧󱤬󱤅󱥥
+      tokens: [{surface: 󱥢, lexeme: soweli, readings: {lasina: soweli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤅, lexeme: anpa, readings: {lasina: anpa}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
+      reverse: 󱥢󱤧󱤬󱤅󱥥
+  translations:
+    en: |-
+      The (cat|dog|animal|pet) is under the table.
+      The (cat|dog|animal|pet) is (below|beneath|underneath) the table
+      (There's|There is) (a cat|a dog|an animal) under the table
+- id: s.u06.12
+  node: tok.u06.in-on
+  forms:
+    tok-Latn/standard:
+      text: pipi li lon anpa kasi.
+      tokens: [{surface: pipi, lexeme: pipi, readings: {lasina: pipi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: anpa, lexeme: anpa, readings: {lasina: anpa}}, {surface: kasi, lexeme: kasi, readings: {lasina: kasi}}]
+      reverse: pipi li lon anpa kasi
+    tok-Qaap/sitelen-pona:
+      text: 󱥑󱤧󱤬󱤅󱤗
+      tokens: [{surface: 󱥑, lexeme: pipi, readings: {lasina: pipi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤅, lexeme: anpa, readings: {lasina: anpa}}, {surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}]
+      reverse: 󱥑󱤧󱤬󱤅󱤗
+  translations:
+    en: |-
+      (There's|There is) a bug under the plant.
+      (A|The) (bug|insect) is under the (plant|leaf|tree)
+      (There's|There is) (an insect|a bug) under the (leaf|tree)
+- id: s.u06.13
+  node: tok.u06.in-on
+  forms:
+    tok-Latn/standard:
+      text: ona li lape lon anpa.
+      tokens: [{surface: ona, lexeme: ona, readings: {lasina: ona}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lape, lexeme: lape, readings: {lasina: lape}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: anpa, lexeme: anpa, readings: {lasina: anpa}}]
+      reverse: ona li lape lon anpa
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱤢󱤬󱤅
+      tokens: [{surface: 󱥆, lexeme: ona, readings: {lasina: ona}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤢, lexeme: lape, readings: {lasina: lape}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤅, lexeme: anpa, readings: {lasina: anpa}}]
+      reverse: 󱥆󱤧󱤢󱤬󱤅
+  translations:
+    en: |-
+      (She's|She is|He's|He is|They're|They are) sleeping on the (floor|ground).
+      (She|He) (sleeps|slept) on the (floor|ground)
+      They (sleep|slept) on the (floor|ground)
+      It's sleeping on the floor.
+- id: s.u06.14
+  node: tok.u06.in-on
+  forms:
+    tok-Latn/standard:
+      text: mi lukin e waso lon sewi.
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: lukin, lexeme: lukin, readings: {lasina: lukin}}, {surface: e, lexeme: e, readings: {lasina: e}}, {surface: waso, lexeme: waso, readings: {lasina: waso}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sewi, lexeme: sewi, readings: {lasina: sewi}}]
+      reverse: mi lukin e waso lon sewi
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤮󱤉󱥴󱤬󱥚
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤮, lexeme: lukin, readings: {lasina: lukin}}, {surface: 󱤉, lexeme: e, readings: {lasina: e}}, {surface: 󱥴, lexeme: waso, readings: {lasina: waso}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥚, lexeme: sewi, readings: {lasina: sewi}}]
+      reverse: 󱤴󱤮󱤉󱥴󱤬󱥚
+  translations:
+    en: |-
+      (I|We) (see|saw|watch) (a bird|the bird|birds) in the sky.
+      (I|We) (see|saw|watch) (a bird|the bird|birds) (up there|above)
+      (I'm|I am|We're|We are) watching (a bird|the bird|birds) in the sky
+      I'm looking at a bird in the sky.
+- id: s.u06.15
+  node: tok.u06.in-on
+  forms:
+    tok-Latn/standard:
+      text: kili li lon insa poki lon sewi supa.
+      tokens: [{surface: kili, lexeme: kili, readings: {lasina: kili}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: insa, lexeme: insa, readings: {lasina: insa}}, {surface: poki, lexeme: poki, readings: {lasina: poki}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sewi, lexeme: sewi, readings: {lasina: sewi}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
+      reverse: |-
+        kili li lon insa poki lon sewi supa
+        kili li lon poki lon sewi supa
+        kili li lon insa poki lon supa
+        kili li lon poki lon supa
+    tok-Qaap/sitelen-pona:
+      text: 󱤚󱤧󱤬󱤏󱥓󱤬󱥚󱥥
+      tokens: [{surface: 󱤚, lexeme: kili, readings: {lasina: kili}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤏, lexeme: insa, readings: {lasina: insa}}, {surface: 󱥓, lexeme: poki, readings: {lasina: poki}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥚, lexeme: sewi, readings: {lasina: sewi}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
+      reverse: |-
+        󱤚󱤧󱤬󱤏󱥓󱤬󱥚󱥥
+        󱤚󱤧󱤬󱥓󱤬󱥚󱥥
+        󱤚󱤧󱤬󱤏󱥓󱤬󱥥
+        󱤚󱤧󱤬󱥓󱤬󱥥
+  translations:
+    en: |-
+      The fruit is (in|inside) the (box|bag|basket) (on|on top of) the table.
+      (There's|There is) fruit (in|inside) the (box|bag|basket) (on|on top of) the table
+- id: s.u06.16
+  node: tok.u06.around
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li lon poka mi.
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Pita, lexeme: pita, readings: {lasina: Pita}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poka, lexeme: poka, readings: {lasina: poka}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
+      reverse: jan Pita li lon poka mi
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤬󱥒󱤴
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, lexeme: pita}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥒, lexeme: poka, readings: {lasina: poka}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤬󱥒󱤴
+  translations:
+    en: |-
+      Pita is (next to|beside|with) (me|us).
+      Pita's (next to|beside|with) (me|us)
+- id: s.u06.17
+  node: tok.u06.around
+  forms:
+    tok-Latn/standard:
+      text: soweli li lape lon poka sina.
+      tokens: [{surface: soweli, lexeme: soweli, readings: {lasina: soweli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lape, lexeme: lape, readings: {lasina: lape}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poka, lexeme: poka, readings: {lasina: poka}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
+      reverse: soweli li lape lon poka sina
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤧󱤢󱤬󱥒󱥞
+      tokens: [{surface: 󱥢, lexeme: soweli, readings: {lasina: soweli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤢, lexeme: lape, readings: {lasina: lape}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥒, lexeme: poka, readings: {lasina: poka}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
+      reverse: 󱥢󱤧󱤢󱤬󱥒󱥞
+  translations:
+    en: The (dog|cat|animal|pet) (is sleeping|sleeps|slept) (next to|beside) you.
+- id: s.u06.18
+  node: tok.u06.around
+  forms:
+    tok-Latn/standard:
+      text: kasi li lon monsi tomo.
+      tokens: [{surface: kasi, lexeme: kasi, readings: {lasina: kasi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: kasi li lon monsi tomo
+    tok-Qaap/sitelen-pona:
+      text: 󱤗󱤧󱤬󱤸󱥭
+      tokens: [{surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: 󱤗󱤧󱤬󱤸󱥭
+  translations:
+    en: |-
+      There are plants behind the house.
+      (The|Some) plants are behind the house
+      (The|A) (plant|tree) is behind the house
+      (There's|There is) a (plant|tree) behind the house
+- id: s.u06.19
+  node: tok.u06.around
+  forms:
+    tok-Latn/standard:
+      text: jan Lina li lon sinpin tomo.
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Lina, lexeme: lina, readings: {lasina: Lina}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sinpin, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: jan Lina li lon sinpin tomo
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤬󱥟󱥭
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, lexeme: lina}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥟, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤬󱥟󱥭
+  translations:
+    en: |-
+      Lina is in front of the (house|building).
+      Lina's in front of the (house|building)
+- id: s.u06.20
+  node: tok.u06.around
+  forms:
+    tok-Latn/standard:
+      text: soweli li lon monsi sina!
+      tokens: [{surface: soweli, lexeme: soweli, readings: {lasina: soweli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
+      reverse: soweli li lon monsi sina
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤧󱤬󱤸󱥞
+      tokens: [{surface: 󱥢, lexeme: soweli, readings: {lasina: soweli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
+      reverse: 󱥢󱤧󱤬󱤸󱥞
+  translations:
+    en: |-
+      (There's|There is) an animal behind you!
+      (There's|There is) a (dog|cat) behind you
+      (The|An) animal is behind you
+      (The|A) (dog|cat) is behind you
+- id: s.u06.21
+  node: tok.u06.around
+  forms:
+    tok-Latn/standard:
+      text: lupa li lon sinpin tomo.
+      tokens: [{surface: lupa, lexeme: lupa, readings: {lasina: lupa}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sinpin, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: lupa li lon sinpin tomo
+    tok-Qaap/sitelen-pona:
+      text: 󱤯󱤧󱤬󱥟󱥭
+      tokens: [{surface: 󱤯, lexeme: lupa, readings: {lasina: lupa}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥟, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: 󱤯󱤧󱤬󱥟󱥭
+  translations:
+    en: |-
+      The (door|window) is (at|on|in) the front of the house.
+      (There's|There is) a (door|window) (at|on|in) the front of the house
+      The (door|window) is in front of the house
+- id: s.u06.22
+  node: tok.u06.around
+  forms:
+    tok-Latn/standard:
+      text: lupa tomo li lon monsi sina.
+      tokens: [{surface: lupa, lexeme: lupa, readings: {lasina: lupa}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
+      reverse: |-
+        lupa tomo li lon monsi sina
+        lupa li lon monsi sina
+    tok-Qaap/sitelen-pona:
+      text: 󱤯󱥭󱤧󱤬󱤸󱥞
+      tokens: [{surface: 󱤯, lexeme: lupa, readings: {lasina: lupa}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
+      reverse: |-
+        󱤯󱥭󱤧󱤬󱤸󱥞
+        󱤯󱤧󱤬󱤸󱥞
+  translations:
+    en: |-
+      The door is behind you.
+      The door's behind you
+- id: s.u06.23
+  node: tok.u06.around
+  forms:
+    tok-Latn/standard:
+      text: lipu li lon sinpin lon poka lupa.
+      tokens: [{surface: lipu, lexeme: lipu, readings: {lasina: lipu}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sinpin, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poka, lexeme: poka, readings: {lasina: poka}}, {surface: lupa, lexeme: lupa, readings: {lasina: lupa}}]
+      reverse: lipu li lon sinpin lon poka lupa
+    tok-Qaap/sitelen-pona:
+      text: 󱤪󱤧󱤬󱥟󱤬󱥒󱤯
+      tokens: [{surface: 󱤪, lexeme: lipu, readings: {lasina: lipu}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥟, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥒, lexeme: poka, readings: {lasina: poka}}, {surface: 󱤯, lexeme: lupa, readings: {lasina: lupa}}]
+      reverse: 󱤪󱤧󱤬󱥟󱤬󱥒󱤯
+  translations:
+    en: |-
+      The (paper|poster|sheet|document) is on the wall (next to|beside|by) the (door|window).
+      (There's|There is) a (paper|poster|sheet|document) on the wall (next to|beside|by) the (door|window)
+- id: s.u06.24
+  node: tok.u06.from
+  forms:
+    tok-Latn/standard:
+      text: mi kama tan tomo.
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: kama, lexeme: kama, readings: {lasina: kama}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: |-
+        mi kama tan tomo
+        mi kama tan tomo mi
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤖󱥧󱥭
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤖, lexeme: kama, readings: {lasina: kama}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      reverse: |-
+        󱤴󱤖󱥧󱥭
+        󱤴󱤖󱥧󱥭󱤴
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) coming from (home|the house).
+      (I|We) (come|came) from (home|the house)
+- id: s.u06.25
+  node: tok.u06.from
+  forms:
+    tok-Latn/standard:
+      text: jan Tomasi li kama tan ma Kanata.
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Tomasi, lexeme: tomasi, readings: {lasina: Tomasi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: kama, lexeme: kama, readings: {lasina: kama}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}]
+      reverse: |-
+        jan Tomasi li kama tan ma Kanata
+        jan Tomasi li tan ma Kanata
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱤖󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑, lexeme: tomasi}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤖, lexeme: kama, readings: {lasina: kama}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}]
+      reverse: |-
+        󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱤖󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+        󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+  translations:
+    en: |-
+      Tomasi (comes|is coming|came) from Canada.
+      Tomasi is from Canada
+      Tomasi's from Canada
+- id: s.u06.26
+  node: tok.u06.from
+  forms:
+    tok-Latn/standard:
+      text: mi tawa ma Kanata.
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}]
+      reverse: mi tawa ma Kanata
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}]
+      reverse: 󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) going to Canada.
+      (I|We) (go|went) to Canada
+- id: s.u06.27
+  node: tok.u06.from
+  forms:
+    tok-Latn/standard:
+      text: ona li toki tawa mi.
+      tokens: [{surface: ona, lexeme: ona, readings: {lasina: ona}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
+      reverse: ona li toki tawa mi
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱥬󱥩󱤴
+      tokens: [{surface: 󱥆, lexeme: ona, readings: {lasina: ona}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
+      reverse: 󱥆󱤧󱥬󱥩󱤴
+  translations:
+    en: |-
+      (He's|He is|She's|She is|They're|They are) (talking|speaking) to (me|us).
+      (He|She) (talks|talked|speaks|spoke) to (me|us)
+      They (talk|talked|speak|spoke) to (me|us)
+- id: s.u06.28
+  node: tok.u06.from
+  forms:
+    tok-Latn/standard:
+      text: mi pilin pona tan sina.
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: pilin, lexeme: pilin, readings: {lasina: pilin}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
+      reverse: mi pilin pona tan sina
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥎󱥔󱥧󱥞
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱥎, lexeme: pilin, readings: {lasina: pilin}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
+      reverse: 󱤴󱥎󱥔󱥧󱥞
+  translations:
+    en: |-
+      (I|We) feel (good|happy) because of you.
+      (I'm|I am|We're|We are) happy because of you
+- id: s.u06.29
+  node: tok.u06.from
+  forms:
+    tok-Latn/standard:
+      text: mi jan pi ma Kanata.
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: pi, lexeme: pi, readings: {lasina: pi}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}]
+      reverse: mi jan pi ma Kanata
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤑󱥍󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱥍, lexeme: pi, readings: {lasina: pi}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}]
+      reverse: 󱤴󱤑󱥍󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+  translations:
+    en: |-
+      (I'm|I am) Canadian.
+      (I'm|I am) (a Canadian|from Canada)
+      (We're|We are) (Canadian|Canadians|from Canada)
+- id: s.u06.30
+  node: tok.u06.from
+  forms:
+    tok-Latn/standard:
+      text: sina kama tan ma seme?
+      tokens: [{surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: kama, lexeme: kama, readings: {lasina: kama}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: seme, lexeme: seme, readings: {lasina: seme}}]
+      reverse: |-
+        sina kama tan ma seme
+        sina jan pi ma seme
+        sina tan ma seme
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱤖󱥧󱤰󱥙
+      tokens: [{surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤖, lexeme: kama, readings: {lasina: kama}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥙, lexeme: seme, readings: {lasina: seme}}]
+      reverse: |-
+        󱥞󱤖󱥧󱤰󱥙
+        󱥞󱤑󱥍󱤰󱥙
+        󱥞󱥧󱤰󱥙
+  translations:
+    en: |-
+      (What|Which) country (are you from|do you come from)?
+      Where (are you from|do you come from)
+- id: s.u06.31
+  node: tok.u06.way
+  forms:
+    tok-Latn/standard:
+      text: nasin ni li suli.
+      tokens: [{surface: nasin, lexeme: nasin, readings: {lasina: nasin}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: suli, lexeme: suli, readings: {lasina: suli}}]
+      reverse: nasin ni li suli
+    tok-Qaap/sitelen-pona:
+      text: 󱤿󱥁󱤧󱥣
+      tokens: [{surface: 󱤿, lexeme: nasin, readings: {lasina: nasin}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥣, lexeme: suli, readings: {lasina: suli}}]
+      reverse: 󱤿󱥁󱤧󱥣
+  translations:
+    en: (This|That) (road|path|way|street) is (long|big|wide).
+- id: s.u06.32
+  node: tok.u06.way
+  forms:
+    tok-Latn/standard:
+      text: mi moku kepeken ilo.
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: moku, lexeme: moku, readings: {lasina: moku}}, {surface: kepeken, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: ilo, lexeme: ilo, readings: {lasina: ilo}}]
+      reverse: |-
+        mi moku kepeken ilo
+        mi moku kepeken ilo moku
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤶󱤙󱤎
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤶, lexeme: moku, readings: {lasina: moku}}, {surface: 󱤙, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: 󱤎, lexeme: ilo, readings: {lasina: ilo}}]
+      reverse: |-
+        󱤴󱤶󱤙󱤎
+        󱤴󱤶󱤙󱤎󱤶
+  translations:
+    en: |-
+      (I|We) (eat|ate) with (a fork|a spoon|chopsticks|utensils|a utensil|a tool).
+      (I'm|I am|We're|We are) eating with (a fork|a spoon|chopsticks|utensils|a utensil|a tool)
+- id: s.u06.33
+  node: tok.u06.way
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li pali kepeken ilo.
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Pita, lexeme: pita, readings: {lasina: Pita}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pali, lexeme: pali, readings: {lasina: pali}}, {surface: kepeken, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: ilo, lexeme: ilo, readings: {lasina: ilo}}]
+      reverse: jan Pita li pali kepeken ilo
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥉󱤙󱤎
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, lexeme: pita}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥉, lexeme: pali, readings: {lasina: pali}}, {surface: 󱤙, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: 󱤎, lexeme: ilo, readings: {lasina: ilo}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥉󱤙󱤎
+  translations:
+    en: Pita (works|is working|worked) (with|using) (a tool|tools).
+- id: s.u06.34
+  node: tok.u06.way
+  uses: ['rule:pona-tawa']
+  forms:
+    tok-Latn/standard:
+      text: kili li pona tawa mi.
+      tokens: [{surface: kili, lexeme: kili, readings: {lasina: kili}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
+      reverse: kili li pona tawa mi
+    tok-Qaap/sitelen-pona:
+      text: 󱤚󱤧󱥔󱥩󱤴
+      tokens: [{surface: 󱤚, lexeme: kili, readings: {lasina: kili}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
+      reverse: 󱤚󱤧󱥔󱥩󱤴
+  translations:
+    en: |-
+      (I|We) like (fruit|the fruit).
+      I liked the fruit.
+- id: s.u06.35
+  node: tok.u06.way
+  uses: ['rule:pona-tawa']
+  forms:
+    tok-Latn/standard:
+      text: nasin pi toki pona li pona tawa mi.
+      tokens: [{surface: nasin, lexeme: nasin, readings: {lasina: nasin}}, {surface: pi, lexeme: pi, readings: {lasina: pi}}, {surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
+      reverse: nasin pi toki pona li pona tawa mi
+    tok-Qaap/sitelen-pona:
+      text: 󱤿󱥍󱥬󱥔󱤧󱥔󱥩󱤴
+      tokens: [{surface: 󱤿, lexeme: nasin, readings: {lasina: nasin}}, {surface: 󱥍, lexeme: pi, readings: {lasina: pi}}, {surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
+      reverse: 󱤿󱥍󱥬󱥔󱤧󱥔󱥩󱤴
+  translations:
+    en: (I|We) like the (Toki Pona way|way of Toki Pona|Toki Pona way of life).
+- id: s.u06.36
+  node: tok.u06.way
+  uses: ['rule:pona-tawa']
+  forms:
+    tok-Latn/standard:
+      text: ma Kanata li pona tawa sina, anu seme?
+      tokens: [{surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: anu, lexeme: anu, readings: {lasina: anu}}, {surface: seme, lexeme: seme, readings: {lasina: seme}}]
+      reverse: |-
+        ma Kanata li pona tawa sina anu seme
+        ma Kanata li pona ala pona tawa sina
+    tok-Qaap/sitelen-pona:
+      text: 󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤧󱥔󱥩󱥞󱤇󱥙
+      tokens: [{surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤇, lexeme: anu, readings: {lasina: anu}}, {surface: 󱥙, lexeme: seme, readings: {lasina: seme}}]
+      reverse: |-
+        󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤧󱥔󱥩󱥞󱤇󱥙
+        󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤧󱥔󱤂󱥔󱥩󱥞
+  translations:
+    en: |-
+      Do you like Canada?
+      You like Canada, (don't you|right)
+- id: s.u06.37
+  node: tok.u06.way
+  forms:
+    tok-Latn/standard:
+      text: mi tawa ma tomo kepeken tomo tawa.
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: kepeken, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}]
+      reverse: mi tawa ma tomo kepeken tomo tawa
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥩󱤰󱥭󱤙󱥭󱥩
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱤙, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}]
+      reverse: 󱤴󱥩󱤰󱥭󱤙󱥭󱥩
+  translations:
+    en: |-
+      (I|We) (go|went|drive|drove) to the city (by car|in a car).
+      (I'm|I am|We're|We are) (going|driving) to the city (by car|in a car)
+      (I|We) (go|went|drive|drove) to town (by car|in a car)
+- id: s.u06.38
+  node: tok.u06.way
+  forms:
+    tok-Latn/standard:
+      text: nasin ni li tawa tomo sina.
+      tokens: [{surface: nasin, lexeme: nasin, readings: {lasina: nasin}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
+      reverse: nasin ni li tawa tomo sina
+    tok-Qaap/sitelen-pona:
+      text: 󱤿󱥁󱤧󱥩󱥭󱥞
+      tokens: [{surface: 󱤿, lexeme: nasin, readings: {lasina: nasin}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
+      reverse: 󱤿󱥁󱤧󱥩󱥭󱥞
+  translations:
+    en: (This|That) (road|path|street|way) (goes|leads) to your (house|home).
+stories:
+- id: tok.story.lina-shows-the-town
+  node: tok.u06.story
+  title:
+    en: 'ma tomo ni: A walk in town'
+  characters:
+  - id: lina
+    name:
+      tok-Latn/standard: jan Lina
+      tok-Qaap/sitelen-pona: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑
+  - id: tomasi
+    name:
+      tok-Latn/standard: jan Tomasi
+      tok-Qaap/sitelen-pona: 󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑
+  steps:
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: toki, jan Tomasi! ma tomo ni li pona tawa sina, anu seme?
+          tokens: [{surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Tomasi, lexeme: tomasi, readings: {lasina: Tomasi}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: anu, lexeme: anu, readings: {lasina: anu}}, {surface: seme, lexeme: seme, readings: {lasina: seme}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F196C\U000F1911\U000F1990\U000F196D\U000F1945\U000F1932\U000F1908\U000F1961\U000F190E\U000F1991\u3000\U000F1930\U000F196D\U000F1941\U000F1927\U000F1954\U000F1969\U000F195E\U000F1907\U000F1959"
+          tokens: [{surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑, lexeme: tomasi}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤇, lexeme: anu, readings: {lasina: anu}}, {surface: 󱥙, lexeme: seme, readings: {lasina: seme}}]
+      translations:
+        en: Hi, Tomasi! Do you like this town?
+  - line:
+      speaker: tomasi
+      forms:
+        tok-Latn/standard:
+          text: pona! ma tomo ni li suli. mi kama tan ma tomo lili.
+          tokens: [{surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: suli, lexeme: suli, readings: {lasina: suli}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: kama, lexeme: kama, readings: {lasina: kama}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: lili, lexeme: lili, readings: {lasina: lili}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1954\u3000\U000F1930\U000F196D\U000F1941\U000F1927\U000F1963\u3000\U000F1934\U000F1916\U000F1967\U000F1930\U000F196D\U000F1928"
+          tokens: [{surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥣, lexeme: suli, readings: {lasina: suli}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤖, lexeme: kama, readings: {lasina: kama}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱤨, lexeme: lili, readings: {lasina: lili}}]
+      translations:
+        en: Yes! This town is big. I come from a small town.
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: ma tomo sina li lon ma Kanata, anu seme?
+          tokens: [{surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}, {surface: anu, lexeme: anu, readings: {lasina: anu}}, {surface: seme, lexeme: seme, readings: {lasina: seme}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤰󱥭󱥞󱤧󱤬󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤇󱥙
+          tokens: [{surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}, {surface: 󱤇, lexeme: anu, readings: {lasina: anu}}, {surface: 󱥙, lexeme: seme, readings: {lasina: seme}}]
+      translations:
+        en: Your town is in Canada, right?
+  - line:
+      speaker: tomasi
+      forms:
+        tok-Latn/standard:
+          text: lon. ma Kanata li suli li lete.
+          tokens: [{surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: suli, lexeme: suli, readings: {lasina: suli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lete, lexeme: lete, readings: {lasina: lete}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F192C\u3000\U000F1930\U000F1990\U000F1917\U000F1903\U000F193F\U000F1908\U000F196A\U000F1900\U000F1991\U000F1927\U000F1963\U000F1927\U000F1926"
+          tokens: [{surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥣, lexeme: suli, readings: {lasina: suli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤦, lexeme: lete, readings: {lasina: lete}}]
+      translations:
+        en: Yes. Canada is big and cold.
+  - choose:
+      prompt:
+        en: Where is Tomasi's home town?
+      options:
+      - en: in Canada
+      - en: next to Lina's house
+      - en: under the sea
+      answer: 0
+  - line:
+      speaker: lina
+      ask: arrange
+      forms:
+        tok-Latn/standard:
+          text: tomo mi li lon poka nasin ni.
+          tokens: [{surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poka, lexeme: poka, readings: {lasina: poka}}, {surface: nasin, lexeme: nasin, readings: {lasina: nasin}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥭󱤴󱤧󱤬󱥒󱤿󱥁
+          tokens: [{surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥒, lexeme: poka, readings: {lasina: poka}}, {surface: 󱤿, lexeme: nasin, readings: {lasina: nasin}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}]
+      translations:
+        en: My house is next to this road.
+  - line:
+      speaker: tomasi
+      forms:
+        tok-Latn/standard:
+          text: kasi suli li lon sinpin tomo sina!
+          tokens: [{surface: kasi, lexeme: kasi, readings: {lasina: kasi}}, {surface: suli, lexeme: suli, readings: {lasina: suli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sinpin, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤗󱥣󱤧󱤬󱥟󱥭󱥞
+          tokens: [{surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}, {surface: 󱥣, lexeme: suli, readings: {lasina: suli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥟, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
+      translations:
+        en: There's a big tree in front of your house!
+  - line:
+      speaker: lina
+      ask: complete
+      gap: lexeme:soweli
+      distractors:
+      - lexeme:kala
+      - lexeme:tomo
+      forms:
+        tok-Latn/standard:
+          text: lon. soweli mi li lape lon anpa kasi.
+          tokens: [{surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: soweli, lexeme: soweli, readings: {lasina: soweli}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lape, lexeme: lape, readings: {lasina: lape}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: anpa, lexeme: anpa, readings: {lasina: anpa}}, {surface: kasi, lexeme: kasi, readings: {lasina: kasi}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F192C\u3000\U000F1962\U000F1934\U000F1927\U000F1922\U000F192C\U000F1905\U000F1917"
+          tokens: [{surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥢, lexeme: soweli, readings: {lasina: soweli}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤢, lexeme: lape, readings: {lasina: lape}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤅, lexeme: anpa, readings: {lasina: anpa}}, {surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}]
+      translations:
+        en: Yes. My cat sleeps under the tree.
+  - line:
+      speaker: tomasi
+      forms:
+        tok-Latn/standard:
+          text: seme li lon monsi tomo?
+          tokens: [{surface: seme, lexeme: seme, readings: {lasina: seme}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥙󱤧󱤬󱤸󱥭
+          tokens: [{surface: 󱥙, lexeme: seme, readings: {lasina: seme}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      translations:
+        en: What's behind the house?
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: ma kasi lili li lon monsi tomo.
+          tokens: [{surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: kasi, lexeme: kasi, readings: {lasina: kasi}}, {surface: lili, lexeme: lili, readings: {lasina: lili}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤰󱤗󱤨󱤧󱤬󱤸󱥭
+          tokens: [{surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}, {surface: 󱤨, lexeme: lili, readings: {lasina: lili}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
+      translations:
+        en: There's a little garden behind the house.
+  - choose:
+      prompt:
+        en: What is behind Lina's house?
+      options:
+      - en: a little garden
+      - en: a big road
+      - en: a big tree
+      answer: 0
+  - line:
+      speaker: tomasi
+      forms:
+        tok-Latn/standard:
+          text: mi wile lukin e ma kasi! ma tomo ni li pona tawa mi.
+          tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: wile, lexeme: wile, readings: {lasina: wile}}, {surface: lukin, lexeme: lukin, readings: {lasina: lukin}}, {surface: e, lexeme: e, readings: {lasina: e}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: kasi, lexeme: kasi, readings: {lasina: kasi}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1934\U000F1977\U000F192E\U000F1909\U000F1930\U000F1917\u3000\U000F1930\U000F196D\U000F1941\U000F1927\U000F1954\U000F1969\U000F1934"
+          tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱥷, lexeme: wile, readings: {lasina: wile}}, {surface: 󱤮, lexeme: lukin, readings: {lasina: lukin}}, {surface: 󱤉, lexeme: e, readings: {lasina: e}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
+      translations:
+        en: I want to see the garden! I like this town.
+scenarios:
+- id: tok.where-is-it
+  after: tok.u06.around
+  title:
+    en: Where did I put it?
+  setting:
+    en: A messy flat in the morning. Things lie on the table, under the bed, in boxes and by the door.
+  character:
+    en: jan Lina, in a hurry, who can't find her phone, her book or her bag.
+  goal:
+    en: Answer Lina's questions with lon and position words (lon sewi supa, lon anpa supa, lon insa poki, lon poka lupa), and ask where one of your own things is.

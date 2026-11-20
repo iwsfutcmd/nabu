@@ -1,0 +1,1181 @@
+# The lexicon of uz (schemas/lexicon.schema.json): every lexeme, sorted by id.
+# Written by `nabu migrate` from courses/uz and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+language: uz
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@887599f213ef', status: draft}
+lexemes:
+- id: lexeme:abl
+  realises: {Case: Abl}
+  gloss: {en: '-dan: from; out of'}
+  notes: {en: 'Qayerdansiz? Where are you from? Ishdan: from work.'}
+  spelled: {uz-Latn/standard: [dan], uz-Cyrl/standard: [дан]}
+- id: lexeme:acc
+  realises: {Case: Acc}
+  gloss: {en: '-ni: the (definite object)'}
+  notes: {en: 'Choyingizni iching: drink your tea. An object that is not definite takes nothing: choy iching.'}
+  spelled: {uz-Latn/standard: [ni], uz-Cyrl/standard: [ни]}
+- id: lexeme:aka
+  pos: NOUN
+  gloss: {en: older brother}
+  spelled: {uz-Latn/standard: [aka], uz-Cyrl/standard: [ака]}
+- id: lexeme:angliya
+  pos: PROPN
+  gloss: {en: England}
+  spelled: {uz-Latn/standard: [Angliya], uz-Cyrl/standard: [Англия]}
+- id: lexeme:arzon
+  pos: ADJ
+  gloss: {en: cheap}
+  spelled: {uz-Latn/standard: [arzon], uz-Cyrl/standard: [арзон]}
+- id: lexeme:avtobus
+  pos: NOUN
+  gloss: {en: bus}
+  notes: {en: 'Avtobusda: by bus (in the bus).'}
+  spelled: {uz-Latn/standard: [avtobus], uz-Cyrl/standard: [автобус]}
+- id: lexeme:aziz
+  pos: PROPN
+  gloss: {en: Aziz (a name)}
+  spelled: {uz-Latn/standard: [Aziz], uz-Cyrl/standard: [Азиз]}
+- id: lexeme:bahor
+  pos: NOUN
+  gloss: {en: spring}
+  spelled: {uz-Latn/standard: [bahor], uz-Cyrl/standard: [баҳор]}
+- id: lexeme:bekat
+  pos: NOUN
+  gloss: {en: 'stop, station'}
+  notes: {en: 'Metro bekati: metro station. Avtobus bekati: bus stop.'}
+  spelled: {uz-Latn/standard: [bekat], uz-Cyrl/standard: [бекат]}
+- id: lexeme:bermoq
+  pos: VERB
+  gloss: {en: to give}
+  spelled: {uz-Latn/standard: [bermoq], uz-Cyrl/standard: [бермоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ber], uz-Cyrl/standard: [бер]}}
+- id: lexeme:besh
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: five}
+  spelled: {uz-Latn/standard: [besh], uz-Cyrl/standard: [беш]}
+- id: lexeme:bilan
+  pos: ADP
+  gloss: {en: with; by means of}
+  notes: {en: 'Akam bilan: with my older brother.'}
+  spelled: {uz-Latn/standard: [bilan], uz-Cyrl/standard: [билан]}
+- id: lexeme:bilet
+  pos: NOUN
+  gloss: {en: ticket}
+  spelled: {uz-Latn/standard: [bilet], uz-Cyrl/standard: [билет]}
+- id: lexeme:bilmoq
+  pos: VERB
+  gloss: {en: to know}
+  spelled: {uz-Latn/standard: [bilmayman], uz-Cyrl/standard: [билмайман]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [bil], uz-Cyrl/standard: [бил]}}
+- id: lexeme:bir
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: 'one; a, an'}
+  notes: {en: Bir + -ta is written bitta.}
+  spelled: {uz-Latn/standard: [bir], uz-Cyrl/standard: [бир]}
+- id: lexeme:biz
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: we}
+  spelled: {uz-Latn/standard: [biz], uz-Cyrl/standard: [биз]}
+- id: lexeme:bobur
+  pos: PROPN
+  gloss: {en: Bobur (a name)}
+  spelled: {uz-Latn/standard: [Bobur], uz-Cyrl/standard: [Бобур]}
+- id: lexeme:bola
+  pos: NOUN
+  gloss: {en: 'child, kid; boy'}
+  spelled: {uz-Latn/standard: [bola], uz-Cyrl/standard: [бола]}
+- id: lexeme:bor
+  pos: ADJ
+  gloss: {en: there is; (with a possessive) to have}
+  notes: {en: 'Akam bor: I have an older brother (my older brother exists). Its opposite is yoʻq.'}
+  spelled: {uz-Latn/standard: [bor], uz-Cyrl/standard: [бор]}
+- id: lexeme:bormoq
+  pos: VERB
+  gloss: {en: to go}
+  notes: {en: 'Boraman: I go, I will go. Boring: go (polite).'}
+  spelled: {uz-Latn/standard: [bormoq], uz-Cyrl/standard: [бормоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [bor], uz-Cyrl/standard: [бор]}}
+- id: lexeme:boshqa
+  pos: ADJ
+  gloss: {en: 'other, another; else'}
+  notes: {en: 'Boshqasi bormi? Is there another one?'}
+  spelled: {uz-Latn/standard: [boshqasi], uz-Cyrl/standard: [бошқаси]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [boshqa], uz-Cyrl/standard: [бошқа]}}
+- id: lexeme:bozor
+  pos: NOUN
+  gloss: {en: 'bazaar, market'}
+  spelled: {uz-Latn/standard: [bozor], uz-Cyrl/standard: [бозор]}
+- id: lexeme:bu
+  pos: PRON
+  feats: {PronType: Dem}
+  gloss: {en: this}
+  spelled: {uz-Latn/standard: [bu], uz-Cyrl/standard: [бу]}
+- id: lexeme:bugun
+  pos: ADV
+  gloss: {en: today}
+  spelled: {uz-Latn/standard: [bugun], uz-Cyrl/standard: [бугун]}
+- id: lexeme:burilmoq
+  pos: VERB
+  gloss: {en: to turn}
+  spelled: {uz-Latn/standard: [burilmoq], uz-Cyrl/standard: [бурилмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [buril], uz-Cyrl/standard: [бурил]}}
+- id: lexeme:buvi
+  pos: NOUN
+  gloss: {en: grandmother}
+  spelled: {uz-Latn/standard: [buvi], uz-Cyrl/standard: [буви]}
+- id: lexeme:buxoro
+  pos: PROPN
+  gloss: {en: Bukhara}
+  spelled: {uz-Latn/standard: [Buxoro], uz-Cyrl/standard: [Бухоро]}
+- id: lexeme:chap
+  pos: NOUN
+  gloss: {en: left}
+  spelled: {uz-Latn/standard: [chap], uz-Cyrl/standard: [чап]}
+- id: lexeme:charchamoq
+  pos: VERB
+  gloss: {en: to get tired}
+  notes: {en: 'Charchadim: I''m tired (I have got tired).'}
+  spelled: {uz-Latn/standard: [charchamoq], uz-Cyrl/standard: [чарчамоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [charcha], uz-Cyrl/standard: [чарча]}}
+- id: lexeme:chi
+  pos: PART
+  gloss: {en: '-chi: and ...? what about ...?'}
+  notes: {en: 'Sizchi? And you?'}
+  spelled: {uz-Latn/standard: [chi], uz-Cyrl/standard: [чи]}
+- id: lexeme:chiroyli
+  pos: ADJ
+  gloss: {en: 'beautiful, pretty, nice'}
+  spelled: {uz-Latn/standard: [chiroyli], uz-Cyrl/standard: [чиройли]}
+- id: lexeme:chorshanba
+  pos: PROPN
+  gloss: {en: Wednesday}
+  notes: {en: 'Chorshanba kuni: on Wednesday.'}
+  spelled: {uz-Latn/standard: [chorshanba], uz-Cyrl/standard: [чоршанба]}
+- id: lexeme:choy
+  pos: NOUN
+  gloss: {en: tea}
+  image: {file: ../../courses/images/tea.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3715ffdb2952', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {uz-Latn/standard: [choy], uz-Cyrl/standard: [чой]}
+- id: lexeme:comp
+  realises: {Degree: Cmp}
+  gloss: {en: '-roq: -er, more (comparative)'}
+  notes: {en: 'Arzonroq: cheaper. Arzonroq qiling! Make it cheaper!'}
+  spelled: {uz-Latn/standard: [roq], uz-Cyrl/standard: [роқ]}
+- id: lexeme:cop-1pl
+  realises: {Number: Plur, Person: '1'}
+  gloss: {en: '-miz: we are (suffix on the predicate)'}
+  spelled: {uz-Latn/standard: [miz], uz-Cyrl/standard: [миз]}
+- id: lexeme:cop-1sg
+  realises: {Number: Sing, Person: '1'}
+  gloss: {en: '-man: I am (suffix on the predicate)'}
+  spelled: {uz-Latn/standard: [man], uz-Cyrl/standard: [ман]}
+- id: lexeme:cop-2
+  realises: {Person: '2', Polite: Form}
+  gloss: {en: '-siz: you are (polite; suffix on the predicate)'}
+  spelled: {uz-Latn/standard: [siz], uz-Cyrl/standard: [сиз]}
+- id: lexeme:count
+  head: {takes: [NUM], makes: NUM}
+  gloss: {en: '-ta: counting suffix'}
+  notes: {en: 'Ikkita kitob: two books. Nechta? How many? Numbers work with or without it.'}
+  spelled: {uz-Latn/standard: [ta], uz-Cyrl/standard: [та]}
+- id: lexeme:dam
+  pos: NOUN
+  gloss: {en: rest}
+  notes: {en: 'Dam olmoq: to rest, to have time off.'}
+  spelled: {uz-Latn/standard: [dam], uz-Cyrl/standard: [дам]}
+- id: lexeme:dat
+  realises: {Case: Dat}
+  gloss: {en: '-ga: to, toward; for'}
+  notes: {en: '-ka after k (parkka), -qa after q (qishloqqa). Men + -ga = menga: to me.'}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ga], uz-Cyrl/standard: [га]}}
+  - {spelled: {uz-Latn/standard: [ka], uz-Cyrl/standard: [ка]}}
+- id: lexeme:deraza
+  pos: NOUN
+  gloss: {en: window}
+  spelled: {uz-Latn/standard: [deraza], uz-Cyrl/standard: [дераза]}
+- id: lexeme:divan
+  pos: NOUN
+  gloss: {en: 'sofa, couch'}
+  spelled: {uz-Latn/standard: [divan], uz-Cyrl/standard: [диван]}
+- id: lexeme:dost
+  pos: NOUN
+  gloss: {en: friend}
+  spelled: {uz-Latn/standard: [doʻstim], uz-Cyrl/standard: [дўстим]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [doʻst], uz-Cyrl/standard: [дўст]}}
+- id: lexeme:dushanba
+  pos: PROPN
+  gloss: {en: Monday}
+  spelled: {uz-Latn/standard: [dushanba], uz-Cyrl/standard: [душанба]}
+- id: lexeme:edi
+  pos: AUX
+  gloss: {en: 'to be (the copula stem: edi, was, were)'}
+  notes: {en: 'Uyda edim: I was at home. Qayerda edingiz? Where were you?'}
+  spelled: {uz-Latn/standard: [e-], uz-Cyrl/standard: [э-]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [e], uz-Cyrl/standard: [э]}}
+- id: lexeme:ellik
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: fifty}
+  spelled: {uz-Latn/standard: [ellik], uz-Cyrl/standard: [эллик]}
+- id: lexeme:emas
+  pos: AUX
+  feats: {Polarity: Neg}
+  gloss: {en: not (with nouns and adjectives)}
+  notes: {en: 'Men talaba emasman: I am not a student. The person suffix goes on emas.'}
+  spelled: {uz-Latn/standard: [emas], uz-Cyrl/standard: [эмас]}
+- id: lexeme:erta
+  pos: ADV
+  gloss: {en: early}
+  spelled: {uz-Latn/standard: [erta], uz-Cyrl/standard: [эрта]}
+- id: lexeme:ertaga
+  pos: ADV
+  gloss: {en: tomorrow}
+  spelled: {uz-Latn/standard: [ertaga], uz-Cyrl/standard: [эртага]}
+- id: lexeme:ertalab
+  pos: ADV
+  gloss: {en: in the morning}
+  image: {file: ../../courses/images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {uz-Latn/standard: [ertalab], uz-Cyrl/standard: [эрталаб]}
+- id: lexeme:eski
+  pos: ADJ
+  gloss: {en: old (of things)}
+  spelled: {uz-Latn/standard: [eski], uz-Cyrl/standard: [эски]}
+- id: lexeme:farzand
+  pos: NOUN
+  gloss: {en: child (son or daughter)}
+  spelled: {uz-Latn/standard: [farzand], uz-Cyrl/standard: [фарзанд]}
+- id: lexeme:fasl
+  pos: NOUN
+  gloss: {en: season}
+  spelled: {uz-Latn/standard: [fasl], uz-Cyrl/standard: [фасл]}
+- id: lexeme:gen
+  realises: {Case: Gen}
+  gloss: {en: '-(n)ing: of, ''s'}
+  notes: {en: men + -ning is written mening.}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ing], uz-Cyrl/standard: [инг]}}
+  - {spelled: {uz-Latn/standard: [ning], uz-Cyrl/standard: [нинг]}}
+- id: lexeme:gosht
+  pos: NOUN
+  gloss: {en: meat}
+  spelled: {uz-Latn/standard: [goʻsht], uz-Cyrl/standard: [гўшт]}
+- id: lexeme:ha
+  pos: INTJ
+  gloss: {en: 'yes'}
+  spelled: {uz-Latn/standard: [ha], uz-Cyrl/standard: [ҳа]}
+- id: lexeme:hafta
+  pos: NOUN
+  gloss: {en: week}
+  spelled: {uz-Latn/standard: [hafta], uz-Cyrl/standard: [ҳафта]}
+- id: lexeme:ham
+  pos: ADV
+  gloss: {en: 'also, too'}
+  spelled: {uz-Latn/standard: [ham], uz-Cyrl/standard: [ҳам]}
+- id: lexeme:hamma
+  pos: PRON
+  feats: {PronType: Tot}
+  gloss: {en: all; everybody}
+  notes: {en: 'Hammasi: all of it, everything.'}
+  spelled: {uz-Latn/standard: [hammasi], uz-Cyrl/standard: [ҳаммаси]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [hamma], uz-Cyrl/standard: [ҳамма]}}
+- id: lexeme:har
+  pos: DET
+  feats: {PronType: Tot}
+  gloss: {en: 'every, each'}
+  notes: {en: 'Har kuni: every day.'}
+  spelled: {uz-Latn/standard: [har], uz-Cyrl/standard: [ҳар]}
+- id: lexeme:havo
+  pos: NOUN
+  gloss: {en: weather; air}
+  spelled: {uz-Latn/standard: [havo], uz-Cyrl/standard: [ҳаво]}
+- id: lexeme:hech
+  pos: DET
+  feats: {PronType: Neg}
+  gloss: {en: 'no, not any'}
+  notes: {en: 'Hech kim: nobody. Uyda hech kim yoʻq: there is nobody at home.'}
+  spelled: {uz-Latn/standard: [hech], uz-Cyrl/standard: [ҳеч]}
+- id: lexeme:hozir
+  pos: ADV
+  gloss: {en: now}
+  spelled: {uz-Latn/standard: [hozir], uz-Cyrl/standard: [ҳозир]}
+- id: lexeme:ichmoq
+  pos: VERB
+  gloss: {en: to drink}
+  notes: {en: 'Ich! Drink! (to a friend or a child). Iching! (polite). Ichaman: I drink.'}
+  spelled: {uz-Latn/standard: [ichmoq, ich], uz-Cyrl/standard: [ичмоқ, ич]}
+- id: lexeme:ikki
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: two}
+  spelled: {uz-Latn/standard: [ikki], uz-Cyrl/standard: [икки]}
+- id: lexeme:iltimos
+  pos: INTJ
+  gloss: {en: please}
+  spelled: {uz-Latn/standard: [iltimos], uz-Cyrl/standard: [илтимос]}
+- id: lexeme:imp
+  realises: {Mood: Imp, Person: '2', Polite: Form}
+  gloss: {en: '-(i)ng: please do (polite imperative)'}
+  notes: {en: '-ing after a consonant (iching, oling), -ng after a vowel (yeng).'}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ing], uz-Cyrl/standard: [инг]}}
+  - {spelled: {uz-Latn/standard: [ng], uz-Cyrl/standard: [нг]}}
+- id: lexeme:ish
+  pos: NOUN
+  gloss: {en: 'work, job'}
+  spelled: {uz-Latn/standard: [ish], uz-Cyrl/standard: [иш]}
+- id: lexeme:ishlamoq
+  pos: VERB
+  gloss: {en: to work}
+  spelled: {uz-Latn/standard: [ishlamoq], uz-Cyrl/standard: [ишламоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ishla], uz-Cyrl/standard: [ишла]}}
+- id: lexeme:ism
+  pos: NOUN
+  gloss: {en: name}
+  spelled: {uz-Latn/standard: [ism], uz-Cyrl/standard: [исм]}
+- id: lexeme:issiq
+  pos: ADJ
+  gloss: {en: 'hot, warm'}
+  spelled: {uz-Latn/standard: [issiq], uz-Cyrl/standard: [иссиқ]}
+- id: lexeme:juda
+  pos: ADV
+  gloss: {en: very}
+  spelled: {uz-Latn/standard: [juda], uz-Cyrl/standard: [жуда]}
+- id: lexeme:juma
+  pos: PROPN
+  gloss: {en: Friday}
+  spelled: {uz-Latn/standard: [juma], uz-Cyrl/standard: [жума]}
+- id: lexeme:kalit
+  pos: NOUN
+  gloss: {en: key}
+  spelled: {uz-Latn/standard: [kalit], uz-Cyrl/standard: [калит]}
+- id: lexeme:katta
+  pos: ADJ
+  gloss: {en: big; older}
+  spelled: {uz-Latn/standard: [katta], uz-Cyrl/standard: [катта]}
+- id: lexeme:kech
+  pos: ADV
+  gloss: {en: late}
+  spelled: {uz-Latn/standard: [kech], uz-Cyrl/standard: [кеч]}
+- id: lexeme:kecha
+  pos: ADV
+  gloss: {en: yesterday}
+  spelled: {uz-Latn/standard: [kecha], uz-Cyrl/standard: [кеча]}
+- id: lexeme:kechirmoq
+  pos: VERB
+  gloss: {en: to forgive}
+  notes: {en: 'Kechirasiz: excuse me; sorry (lit. you will forgive).'}
+  spelled: {uz-Latn/standard: [kechirasiz], uz-Cyrl/standard: [кечирасиз]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [kechir], uz-Cyrl/standard: [кечир]}}
+- id: lexeme:kechqurun
+  pos: ADV
+  gloss: {en: in the evening}
+  spelled: {uz-Latn/standard: [kechqurun], uz-Cyrl/standard: [кечқурун]}
+- id: lexeme:kelasi
+  pos: ADJ
+  gloss: {en: next}
+  notes: {en: 'Kelasi hafta: next week.'}
+  spelled: {uz-Latn/standard: [kelasi], uz-Cyrl/standard: [келаси]}
+- id: lexeme:kelmoq
+  pos: VERB
+  gloss: {en: to come}
+  spelled: {uz-Latn/standard: [kelmoq], uz-Cyrl/standard: [келмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [kel], uz-Cyrl/standard: [кел]}}
+- id: lexeme:kerak
+  pos: ADJ
+  gloss: {en: 'needed, necessary'}
+  notes: {en: 'Menga non kerak: I need bread (to me bread is needed).'}
+  spelled: {uz-Latn/standard: [kerak], uz-Cyrl/standard: [керак]}
+- id: lexeme:ketmoq
+  pos: VERB
+  gloss: {en: 'to leave, to go away'}
+  spelled: {uz-Latn/standard: [ketmoq], uz-Cyrl/standard: [кетмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ket], uz-Cyrl/standard: [кет]}}
+- id: lexeme:keyin
+  pos: ADV
+  gloss: {en: 'then, after that; later'}
+  spelled: {uz-Latn/standard: [keyin], uz-Cyrl/standard: [кейин]}
+- id: lexeme:kichik
+  pos: ADJ
+  gloss: {en: 'small, little; younger'}
+  spelled: {uz-Latn/standard: [kichik], uz-Cyrl/standard: [кичик]}
+- id: lexeme:kilo
+  pos: NOUN
+  gloss: {en: 'kilo, kilogram'}
+  notes: {en: 'Olmaning kilosi: a kilo of apples (the apples'' kilo).'}
+  spelled: {uz-Latn/standard: [kilo], uz-Cyrl/standard: [кило]}
+- id: lexeme:kim
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: who}
+  spelled: {uz-Latn/standard: [kim], uz-Cyrl/standard: [ким]}
+- id: lexeme:kino
+  pos: NOUN
+  gloss: {en: 'cinema; film, movie'}
+  notes: {en: 'Kino koʻrmoq: to watch a film.'}
+  spelled: {uz-Latn/standard: [kino], uz-Cyrl/standard: [кино]}
+- id: lexeme:kishi
+  pos: NOUN
+  gloss: {en: person; people (after numbers)}
+  spelled: {uz-Latn/standard: [kishi], uz-Cyrl/standard: [киши]}
+- id: lexeme:kitob
+  pos: NOUN
+  gloss: {en: book}
+  image: {file: ../../courses/images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {uz-Latn/standard: [kitob], uz-Cyrl/standard: [китоб]}
+- id: lexeme:kop
+  pos: ADJ
+  gloss: {en: 'much, many; a lot'}
+  spelled: {uz-Latn/standard: [koʻp], uz-Cyrl/standard: [кўп]}
+- id: lexeme:kormoq
+  pos: VERB
+  gloss: {en: to see; to watch}
+  spelled: {uz-Latn/standard: [koʻrmoq], uz-Cyrl/standard: [кўрмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [koʻr], uz-Cyrl/standard: [кўр]}}
+- id: lexeme:kun
+  pos: NOUN
+  gloss: {en: day}
+  spelled: {uz-Latn/standard: [kun], uz-Cyrl/standard: [кун]}
+- id: lexeme:kuz
+  pos: NOUN
+  gloss: {en: 'autumn, fall'}
+  spelled: {uz-Latn/standard: [kuzda], uz-Cyrl/standard: [кузда]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [kuz], uz-Cyrl/standard: [куз]}}
+- id: lexeme:lekin
+  pos: CCONJ
+  gloss: {en: but}
+  spelled: {uz-Latn/standard: [lekin], uz-Cyrl/standard: [лекин]}
+- id: lexeme:loc
+  realises: {Case: Loc}
+  gloss: {en: '-da: in, at, on'}
+  notes: {en: 'Uyda: at home. Toshkentda: in Tashkent. Men uydaman: I am at home.'}
+  spelled: {uz-Latn/standard: [da], uz-Cyrl/standard: [да]}
+- id: lexeme:maktab
+  pos: NOUN
+  gloss: {en: school}
+  spelled: {uz-Latn/standard: [maktab], uz-Cyrl/standard: [мактаб]}
+- id: lexeme:malika
+  pos: PROPN
+  gloss: {en: Malika (a name)}
+  spelled: {uz-Latn/standard: [Malika], uz-Cyrl/standard: [Малика]}
+- id: lexeme:mana
+  pos: ADV
+  feats: {PronType: Dem}
+  gloss: {en: here is}
+  spelled: {uz-Latn/standard: [mana], uz-Cyrl/standard: [мана]}
+- id: lexeme:marhamat
+  pos: INTJ
+  gloss: {en: please; here you are; go ahead}
+  spelled: {uz-Latn/standard: [marhamat], uz-Cyrl/standard: [марҳамат]}
+- id: lexeme:markaz
+  pos: NOUN
+  gloss: {en: 'centre, center'}
+  notes: {en: 'Shahar markazi: the city centre.'}
+  spelled: {uz-Latn/standard: [markaz], uz-Cyrl/standard: [марказ]}
+- id: lexeme:mashina
+  pos: NOUN
+  gloss: {en: car}
+  spelled: {uz-Latn/standard: [mashina], uz-Cyrl/standard: [машина]}
+- id: lexeme:mazali
+  pos: ADJ
+  gloss: {en: 'tasty, delicious'}
+  spelled: {uz-Latn/standard: [mazali], uz-Cyrl/standard: [мазали]}
+- id: lexeme:mehmonxona
+  pos: NOUN
+  gloss: {en: hotel}
+  spelled: {uz-Latn/standard: [mehmonxona], uz-Cyrl/standard: [меҳмонхона]}
+- id: lexeme:men
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: I}
+  spelled: {uz-Latn/standard: [men], uz-Cyrl/standard: [мен]}
+- id: lexeme:metro
+  pos: NOUN
+  gloss: {en: 'metro, subway, underground'}
+  spelled: {uz-Latn/standard: [metro], uz-Cyrl/standard: [метро]}
+- id: lexeme:meva
+  pos: NOUN
+  gloss: {en: fruit}
+  spelled: {uz-Latn/standard: [meva], uz-Cyrl/standard: [мева]}
+- id: lexeme:ming
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: thousand}
+  spelled: {uz-Latn/standard: [ming], uz-Cyrl/standard: [минг]}
+- id: lexeme:mushuk
+  pos: NOUN
+  gloss: {en: cat}
+  spelled: {uz-Latn/standard: [mushuk], uz-Cyrl/standard: [мушук]}
+- id: lexeme:necha
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: how many; what number}
+  notes: {en: 'Necha + -ta = nechta: how many (things).'}
+  spelled: {uz-Latn/standard: [necha], uz-Cyrl/standard: [неча]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [nech], uz-Cyrl/standard: [неч]}}
+- id: lexeme:neg
+  realises: {Polarity: Neg}
+  gloss: {en: '-ma: not (on verbs)'}
+  notes: {en: 'Ye + -ma + -y + -man = yemayman: I don''t eat.'}
+  spelled: {uz-Latn/standard: [ma], uz-Cyrl/standard: [ма]}
+- id: lexeme:nima
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: what}
+  spelled: {uz-Latn/standard: [nima], uz-Cyrl/standard: [нима]}
+- id: lexeme:non
+  pos: NOUN
+  gloss: {en: bread (round flatbread)}
+  spelled: {uz-Latn/standard: [non], uz-Cyrl/standard: [нон]}
+- id: lexeme:nonushta
+  pos: NOUN
+  gloss: {en: breakfast}
+  notes: {en: 'Nonushta qilmoq: to have breakfast.'}
+  spelled: {uz-Latn/standard: [nonushta], uz-Cyrl/standard: [нонушта]}
+- id: lexeme:ogil
+  pos: NOUN
+  gloss: {en: son}
+  notes: {en: 'The second i drops before a vowel: oʻgʻil + -i = oʻgʻli.'}
+  spelled: {uz-Latn/standard: [oʻgʻil], uz-Cyrl/standard: [ўғил]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [oʻgʻl], uz-Cyrl/standard: [ўғл]}}
+- id: lexeme:oila
+  pos: NOUN
+  gloss: {en: family}
+  spelled: {uz-Latn/standard: [oila], uz-Cyrl/standard: [оила]}
+- id: lexeme:olma
+  pos: NOUN
+  gloss: {en: apple}
+  spelled: {uz-Latn/standard: [olma], uz-Cyrl/standard: [олма]}
+- id: lexeme:olmoq
+  pos: VERB
+  gloss: {en: 'to take; to buy, get'}
+  spelled: {uz-Latn/standard: [olmoq], uz-Cyrl/standard: [олмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ol], uz-Cyrl/standard: [ол]}}
+- id: lexeme:olti
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: six}
+  spelled: {uz-Latn/standard: [olti], uz-Cyrl/standard: [олти]}
+- id: lexeme:on
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: ten}
+  spelled: {uz-Latn/standard: [oʻn], uz-Cyrl/standard: [ўн]}
+- id: lexeme:ona
+  pos: NOUN
+  gloss: {en: mother}
+  spelled: {uz-Latn/standard: [ona], uz-Cyrl/standard: [она]}
+- id: lexeme:ong
+  pos: NOUN
+  gloss: {en: right (side)}
+  spelled: {uz-Latn/standard: [oʻngga], uz-Cyrl/standard: [ўнгга]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [oʻng], uz-Cyrl/standard: [ўнг]}}
+- id: lexeme:opa
+  pos: NOUN
+  gloss: {en: older sister}
+  spelled: {uz-Latn/standard: [opa], uz-Cyrl/standard: [опа]}
+- id: lexeme:oq
+  pos: ADJ
+  gloss: {en: white}
+  notes: {en: Oq yoʻl! Have a good trip! (lit. a white road)}
+  spelled: {uz-Latn/standard: [oq], uz-Cyrl/standard: [оқ]}
+- id: lexeme:oqimoq
+  pos: VERB
+  gloss: {en: to read; to study}
+  spelled: {uz-Latn/standard: [oʻqimoq], uz-Cyrl/standard: [ўқимоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [oʻqi], uz-Cyrl/standard: [ўқи]}}
+- id: lexeme:oqituvchi
+  pos: NOUN
+  gloss: {en: teacher}
+  image: {file: ../../courses/images/teacher.svg, license: CC0-1.0, provenance: {author: 'llm:claude@ff0d70b80db5', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {uz-Latn/standard: [oʻqituvchi], uz-Cyrl/standard: [ўқитувчи]}
+- id: lexeme:osh
+  pos: NOUN
+  gloss: {en: 'plov, pilaf; a meal'}
+  notes: {en: 'Osh (also palov) is rice cooked with carrots, onions and meat.'}
+  spelled: {uz-Latn/standard: [osh], uz-Cyrl/standard: [ош]}
+- id: lexeme:oshxona
+  pos: NOUN
+  gloss: {en: kitchen}
+  spelled: {uz-Latn/standard: [oshxona], uz-Cyrl/standard: [ошхона]}
+- id: lexeme:ota
+  pos: NOUN
+  gloss: {en: father}
+  spelled: {uz-Latn/standard: [ota], uz-Cyrl/standard: [ота]}
+- id: lexeme:otgan
+  pos: ADJ
+  gloss: {en: 'last, past'}
+  notes: {en: 'Oʻtgan hafta: last week. Oʻtgan yili: last year.'}
+  spelled: {uz-Latn/standard: [oʻtgan], uz-Cyrl/standard: [ўтган]}
+- id: lexeme:otmoq
+  pos: VERB
+  gloss: {en: 'to pass, to go (of time or a trip)'}
+  notes: {en: 'Sayohat qanday oʻtdi? How did the trip go?'}
+  spelled: {uz-Latn/standard: [oʻtmoq], uz-Cyrl/standard: [ўтмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [oʻt], uz-Cyrl/standard: [ўт]}}
+- id: lexeme:ottiz
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: thirty}
+  spelled: {uz-Latn/standard: [oʻttiz], uz-Cyrl/standard: [ўттиз]}
+- id: lexeme:ozbekiston
+  pos: PROPN
+  gloss: {en: Uzbekistan}
+  spelled: {uz-Latn/standard: [Oʻzbekiston], uz-Cyrl/standard: [Ўзбекистон]}
+- id: lexeme:park
+  pos: NOUN
+  gloss: {en: park}
+  spelled: {uz-Latn/standard: [park], uz-Cyrl/standard: [парк]}
+- id: lexeme:past
+  realises: {Tense: Past}
+  gloss: {en: '-di: past tense (he, she, it did)'}
+  notes: {en: 'Keldi: he/she came. With a person ending: keldim, keldingiz, keldik.'}
+  spelled: {uz-Latn/standard: [di], uz-Cyrl/standard: [ди]}
+- id: lexeme:past-1pl
+  realises: {Number: Plur, Person: '1'}
+  gloss: {en: '-k: we (past tense)'}
+  notes: {en: 'Keldik: we came.'}
+  spelled: {uz-Latn/standard: [k], uz-Cyrl/standard: [к]}
+- id: lexeme:past-1sg
+  realises: {Number: Sing, Person: '1'}
+  gloss: {en: '-m: I (past tense)'}
+  notes: {en: 'Keldim: I came.'}
+  spelled: {uz-Latn/standard: [m], uz-Cyrl/standard: [м]}
+- id: lexeme:past-2
+  realises: {Person: '2', Polite: Form}
+  gloss: {en: '-ngiz: you (past tense, polite)'}
+  notes: {en: 'Keldingiz: you came.'}
+  spelled: {uz-Latn/standard: [ngiz], uz-Cyrl/standard: [нгиз]}
+- id: lexeme:payshanba
+  pos: PROPN
+  gloss: {en: Thursday}
+  spelled: {uz-Latn/standard: [payshanba], uz-Cyrl/standard: [пайшанба]}
+- id: lexeme:pishirmoq
+  pos: VERB
+  gloss: {en: to cook}
+  spelled: {uz-Latn/standard: [pishirmoq], uz-Cyrl/standard: [пиширмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [pishir], uz-Cyrl/standard: [пишир]}}
+- id: lexeme:piyoda
+  pos: ADV
+  gloss: {en: on foot}
+  spelled: {uz-Latn/standard: [piyoda], uz-Cyrl/standard: [пиёда]}
+- id: lexeme:piyoz
+  pos: NOUN
+  gloss: {en: 'onion, onions'}
+  spelled: {uz-Latn/standard: [piyoz], uz-Cyrl/standard: [пиёз]}
+- id: lexeme:pl
+  realises: {Number: Plur}
+  gloss: {en: '-lar: plural (-s)'}
+  notes: {en: 'Not used after numbers: ikki kitob, two books.'}
+  spelled: {uz-Latn/standard: [lar], uz-Cyrl/standard: [лар]}
+- id: lexeme:pomidor
+  pos: NOUN
+  gloss: {en: 'tomato, tomatoes'}
+  spelled: {uz-Latn/standard: [pomidor], uz-Cyrl/standard: [помидор]}
+- id: lexeme:poss-1pl
+  realises: {'Number[psor]': Plur, 'Person[psor]': '1'}
+  gloss: {en: '-(i)miz: our'}
+  notes: {en: '-imiz after a consonant (uyimiz), -miz after a vowel (oilamiz).'}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [imiz], uz-Cyrl/standard: [имиз]}}
+  - {spelled: {uz-Latn/standard: [miz], uz-Cyrl/standard: [миз]}}
+- id: lexeme:poss-1sg
+  realises: {'Number[psor]': Sing, 'Person[psor]': '1'}
+  gloss: {en: '-(i)m: my'}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [m], uz-Cyrl/standard: [м]}}
+  - {spelled: {uz-Latn/standard: [im], uz-Cyrl/standard: [им]}}
+- id: lexeme:poss-2
+  realises: {'Person[psor]': '2', Polite: Form}
+  gloss: {en: '-(i)ngiz: your (polite)'}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ingiz], uz-Cyrl/standard: [ингиз]}}
+  - {spelled: {uz-Latn/standard: [ngiz], uz-Cyrl/standard: [нгиз]}}
+- id: lexeme:poss-3
+  realises: {'Person[psor]': '3'}
+  gloss: {en: '-(s)i: his, her, its'}
+  notes: {en: '-i after a consonant (ismi), -si after a vowel (onasi).'}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [i], uz-Cyrl/standard: [и]}}
+  - {spelled: {uz-Latn/standard: [si], uz-Cyrl/standard: [си]}}
+- id: lexeme:poyezd
+  pos: NOUN
+  gloss: {en: train}
+  spelled: {uz-Latn/standard: [poyezd], uz-Cyrl/standard: [поезд]}
+- id: lexeme:pres
+  realises: {Tense: Pres}
+  gloss: {en: '-a / -y: present-future tense'}
+  notes: {en: '-a after a consonant (ichaman), -y after a vowel (yeyman, ishlayman), then a person ending: -man I, -siz you, -di he/she, -miz we.'}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [a], uz-Cyrl/standard: [а]}}
+  - {spelled: {uz-Latn/standard: [y], uz-Cyrl/standard: [й]}}
+- id: lexeme:pres-3sg
+  realises: {Person: '3'}
+  gloss: {en: '-di: he, she, it (present tense)'}
+  notes: {en: 'Ichadi: he/she drinks. After -yap it is -ti: uxlayapti.'}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [di], uz-Cyrl/standard: [ди]}}
+  - {spelled: {uz-Latn/standard: [ti], uz-Cyrl/standard: [ти]}}
+- id: lexeme:prog
+  realises: {Aspect: Prog}
+  gloss: {en: '-yap: right now (present continuous)'}
+  notes: {en: 'Nima qilyapsiz? What are you doing? Kitob oʻqiyapman: I am reading. He/she: -yapti.'}
+  spelled: {uz-Latn/standard: [yap], uz-Cyrl/standard: [яп]}
+- id: lexeme:pul
+  pos: NOUN
+  gloss: {en: money}
+  spelled: {uz-Latn/standard: [pul], uz-Cyrl/standard: [пул]}
+- id: lexeme:q
+  pos: PART
+  feats: {PartType: Int}
+  gloss: {en: '-mi: yes/no question'}
+  notes: {en: 'Bormi? Is there? Yaxshimisiz? Are you well?'}
+  spelled: {uz-Latn/standard: [mi], uz-Cyrl/standard: [ми]}
+- id: lexeme:qachon
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: when}
+  spelled: {uz-Latn/standard: [qachon], uz-Cyrl/standard: [қачон]}
+- id: lexeme:qahva
+  pos: NOUN
+  gloss: {en: coffee}
+  image: {file: ../../courses/images/coffee.svg, license: CC0-1.0, provenance: {author: 'llm:claude@0b7ee10fe47d', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {uz-Latn/standard: [qahva], uz-Cyrl/standard: [қаҳва]}
+- id: lexeme:qancha
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: 'how much, how many'}
+  spelled: {uz-Latn/standard: [qancha], uz-Cyrl/standard: [қанча]}
+- id: lexeme:qanday
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: how; what kind of}
+  notes: {en: 'Havo qanday? What is the weather like?'}
+  spelled: {uz-Latn/standard: [qanday], uz-Cyrl/standard: [қандай]}
+- id: lexeme:qani
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: where is}
+  spelled: {uz-Latn/standard: [qani], uz-Cyrl/standard: [қани]}
+- id: lexeme:qayer
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: 'where, what place'}
+  notes: {en: 'Qayerda: where (at what place). Qayerga: where to. Qayerdan: where from.'}
+  spelled: {uz-Latn/standard: [qayer], uz-Cyrl/standard: [қаер]}
+- id: lexeme:qaysi
+  pos: DET
+  feats: {PronType: Int}
+  gloss: {en: which}
+  spelled: {uz-Latn/standard: [qaysi], uz-Cyrl/standard: [қайси]}
+- id: lexeme:qaytmoq
+  pos: VERB
+  gloss: {en: 'to come back, to return'}
+  spelled: {uz-Latn/standard: [qaytmoq], uz-Cyrl/standard: [қайтмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [qayt], uz-Cyrl/standard: [қайт]}}
+- id: lexeme:qilmoq
+  pos: VERB
+  gloss: {en: 'to do, to make'}
+  notes: {en: 'Many verbs are a noun + qilmoq: nonushta qilmoq, telefon qilmoq.'}
+  spelled: {uz-Latn/standard: [qilmoq], uz-Cyrl/standard: [қилмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [qil], uz-Cyrl/standard: [қил]}}
+- id: lexeme:qimmat
+  pos: ADJ
+  gloss: {en: expensive}
+  spelled: {uz-Latn/standard: [qimmat], uz-Cyrl/standard: [қиммат]}
+- id: lexeme:qirq
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: forty}
+  spelled: {uz-Latn/standard: [qirq], uz-Cyrl/standard: [қирқ]}
+- id: lexeme:qish
+  pos: NOUN
+  gloss: {en: winter}
+  spelled: {uz-Latn/standard: [qishda], uz-Cyrl/standard: [қишда]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [qish], uz-Cyrl/standard: [қиш]}}
+- id: lexeme:qiz
+  pos: NOUN
+  gloss: {en: daughter; girl}
+  spelled: {uz-Latn/standard: [qiz], uz-Cyrl/standard: [қиз]}
+- id: lexeme:qor
+  pos: NOUN
+  gloss: {en: snow}
+  spelled: {uz-Latn/standard: [qor], uz-Cyrl/standard: [қор]}
+- id: lexeme:qovun
+  pos: NOUN
+  gloss: {en: melon}
+  spelled: {uz-Latn/standard: [qovun], uz-Cyrl/standard: [қовун]}
+- id: lexeme:rahmat
+  pos: INTJ
+  gloss: {en: thank you; thanks}
+  spelled: {uz-Latn/standard: [rahmat], uz-Cyrl/standard: [раҳмат]}
+- id: lexeme:rasm
+  pos: NOUN
+  gloss: {en: 'picture, photo'}
+  notes: {en: 'Rasm olmoq: to take a photo.'}
+  spelled: {uz-Latn/standard: [rasm], uz-Cyrl/standard: [расм]}
+- id: lexeme:sabzi
+  pos: NOUN
+  gloss: {en: 'carrot, carrots'}
+  spelled: {uz-Latn/standard: [sabzi], uz-Cyrl/standard: [сабзи]}
+- id: lexeme:sakkiz
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: eight}
+  spelled: {uz-Latn/standard: [sakkiz], uz-Cyrl/standard: [саккиз]}
+- id: lexeme:salom
+  pos: INTJ
+  gloss: {en: hello}
+  image: {file: ../../courses/images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {uz-Latn/standard: [salom], uz-Cyrl/standard: [салом]}
+- id: lexeme:samarqand
+  pos: PROPN
+  gloss: {en: Samarkand}
+  spelled: {uz-Latn/standard: [Samarqand], uz-Cyrl/standard: [Самарқанд]}
+- id: lexeme:samolyot
+  pos: NOUN
+  gloss: {en: 'plane, airplane, aeroplane'}
+  spelled: {uz-Latn/standard: [samolyotda], uz-Cyrl/standard: [самолётда]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [samolyot], uz-Cyrl/standard: [самолёт]}}
+- id: lexeme:sayohat
+  pos: NOUN
+  gloss: {en: 'journey, trip; travel'}
+  notes: {en: 'Sayohat qilmoq: to travel.'}
+  spelled: {uz-Latn/standard: [sayohat], uz-Cyrl/standard: [саёҳат]}
+- id: lexeme:seshanba
+  pos: PROPN
+  gloss: {en: Tuesday}
+  spelled: {uz-Latn/standard: [seshanba], uz-Cyrl/standard: [сешанба]}
+- id: lexeme:shahar
+  pos: NOUN
+  gloss: {en: 'city, town'}
+  spelled: {uz-Latn/standard: [shahar], uz-Cyrl/standard: [шаҳар]}
+- id: lexeme:shakar
+  pos: NOUN
+  gloss: {en: sugar}
+  spelled: {uz-Latn/standard: [shakar], uz-Cyrl/standard: [шакар]}
+- id: lexeme:shanba
+  pos: PROPN
+  gloss: {en: Saturday}
+  spelled: {uz-Latn/standard: [shanba], uz-Cyrl/standard: [шанба]}
+- id: lexeme:shirin
+  pos: ADJ
+  gloss: {en: sweet}
+  spelled: {uz-Latn/standard: [shirin], uz-Cyrl/standard: [ширин]}
+- id: lexeme:singil
+  pos: NOUN
+  gloss: {en: younger sister}
+  notes: {en: 'The second i drops before a vowel: singil + -im = singlim.'}
+  spelled: {uz-Latn/standard: [singlim], uz-Cyrl/standard: [синглим]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [singl], uz-Cyrl/standard: [сингл]}}
+- id: lexeme:siz
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: you (polite)}
+  spelled: {uz-Latn/standard: [siz], uz-Cyrl/standard: [сиз]}
+- id: lexeme:soat
+  pos: NOUN
+  gloss: {en: 'hour; o''clock; clock, watch'}
+  notes: {en: 'Soat necha? What time is it? Soat yettida: at seven o''clock.'}
+  spelled: {uz-Latn/standard: [soat], uz-Cyrl/standard: [соат]}
+- id: lexeme:som
+  pos: NOUN
+  gloss: {en: soʻm (the Uzbek currency)}
+  spelled: {uz-Latn/standard: [soʻm], uz-Cyrl/standard: [сўм]}
+- id: lexeme:sotmoq
+  pos: VERB
+  gloss: {en: to sell}
+  spelled: {uz-Latn/standard: [sotmoq], uz-Cyrl/standard: [сотмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [sot], uz-Cyrl/standard: [сот]}}
+- id: lexeme:sotuvchi
+  pos: NOUN
+  gloss: {en: 'seller, vendor'}
+  spelled: {uz-Latn/standard: [sotuvchi], uz-Cyrl/standard: [сотувчи]}
+- id: lexeme:sovuq
+  pos: ADJ
+  gloss: {en: cold}
+  spelled: {uz-Latn/standard: [sovuq], uz-Cyrl/standard: [совуқ]}
+- id: lexeme:stol
+  pos: NOUN
+  gloss: {en: table}
+  spelled: {uz-Latn/standard: [stol], uz-Cyrl/standard: [стол]}
+- id: lexeme:suv
+  pos: NOUN
+  gloss: {en: water}
+  spelled: {uz-Latn/standard: [suv], uz-Cyrl/standard: [сув]}
+- id: lexeme:talaba
+  pos: NOUN
+  gloss: {en: student}
+  image: {file: ../../courses/images/student.svg, license: CC0-1.0, provenance: {author: 'llm:claude@db6a47561192', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {uz-Latn/standard: [talaba], uz-Cyrl/standard: [талаба]}
+- id: lexeme:tarvuz
+  pos: NOUN
+  gloss: {en: watermelon}
+  spelled: {uz-Latn/standard: [tarvuz], uz-Cyrl/standard: [тарвуз]}
+- id: lexeme:tayyor
+  pos: ADJ
+  gloss: {en: ready}
+  spelled: {uz-Latn/standard: [tayyor], uz-Cyrl/standard: [тайёр]}
+- id: lexeme:telefon
+  pos: NOUN
+  gloss: {en: 'phone, telephone'}
+  spelled: {uz-Latn/standard: [telefon], uz-Cyrl/standard: [телефон]}
+- id: lexeme:term
+  realises: {Case: Ter}
+  gloss: {en: '-gacha: until, up to, as far as'}
+  notes: {en: 'Toʻqqizdan beshgacha: from nine to five.'}
+  spelled: {uz-Latn/standard: [gacha], uz-Cyrl/standard: [гача]}
+- id: lexeme:togri
+  pos: ADV
+  gloss: {en: 'straight; right, correct'}
+  spelled: {uz-Latn/standard: [toʻgʻri], uz-Cyrl/standard: [тўғри]}
+- id: lexeme:toqqiz
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: nine}
+  spelled: {uz-Latn/standard: [toʻqqiz], uz-Cyrl/standard: [тўққиз]}
+- id: lexeme:tort
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: four}
+  spelled: {uz-Latn/standard: [toʻrt], uz-Cyrl/standard: [тўрт]}
+- id: lexeme:toshkent
+  pos: PROPN
+  gloss: {en: Tashkent}
+  spelled: {uz-Latn/standard: [Toshkent], uz-Cyrl/standard: [Тошкент]}
+- id: lexeme:toymoq
+  pos: VERB
+  gloss: {en: to be full (after eating)}
+  notes: {en: 'Toʻydim: I''m full.'}
+  spelled: {uz-Latn/standard: [toʻydim], uz-Cyrl/standard: [тўйдим]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [toʻy], uz-Cyrl/standard: [тўй]}}
+- id: lexeme:toza
+  pos: ADJ
+  gloss: {en: clean}
+  spelled: {uz-Latn/standard: [toza], uz-Cyrl/standard: [тоза]}
+- id: lexeme:turmoq
+  pos: VERB
+  gloss: {en: to get up; to stand}
+  spelled: {uz-Latn/standard: [turmoq], uz-Cyrl/standard: [турмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [tur], uz-Cyrl/standard: [тур]}}
+- id: lexeme:tushlik
+  pos: NOUN
+  gloss: {en: lunch}
+  notes: {en: 'Tushlik qilmoq: to have lunch.'}
+  spelled: {uz-Latn/standard: [tushlik], uz-Cyrl/standard: [тушлик]}
+- id: lexeme:tushunmoq
+  pos: VERB
+  gloss: {en: to understand}
+  spelled: {uz-Latn/standard: [tushunmoq], uz-Cyrl/standard: [тушунмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [tushun], uz-Cyrl/standard: [тушун]}}
+- id: lexeme:u
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'he, she, it; that'}
+  notes: {en: 'Uzbek has one third-person pronoun for he, she and it.'}
+  spelled: {uz-Latn/standard: [u], uz-Cyrl/standard: [у]}
+- id: lexeme:uch
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: three}
+  spelled: {uz-Latn/standard: [uch], uz-Cyrl/standard: [уч]}
+- id: lexeme:uchrashmoq
+  pos: VERB
+  gloss: {en: to meet}
+  notes: {en: 'Bobur bilan uchrashdim: I met Bobur.'}
+  spelled: {uz-Latn/standard: [uchrashmoq], uz-Cyrl/standard: [учрашмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [uchrash], uz-Cyrl/standard: [учраш]}}
+- id: lexeme:uchun
+  pos: ADP
+  gloss: {en: for}
+  notes: {en: 'Osh uchun: for plov.'}
+  spelled: {uz-Latn/standard: [uchun], uz-Cyrl/standard: [учун]}
+- id: lexeme:uka
+  pos: NOUN
+  gloss: {en: younger brother}
+  spelled: {uz-Latn/standard: [uka], uz-Cyrl/standard: [ука]}
+- id: lexeme:ust
+  pos: NOUN
+  gloss: {en: 'top, upper side'}
+  notes: {en: 'Stol ustida: on the table (on its top): ust + -i + -da.'}
+  spelled: {uz-Latn/standard: [ust], uz-Cyrl/standard: [уст]}
+- id: lexeme:uxlamoq
+  pos: VERB
+  gloss: {en: to sleep}
+  spelled: {uz-Latn/standard: [uxlamoq], uz-Cyrl/standard: [ухламоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [uxla], uz-Cyrl/standard: [ухла]}}
+- id: lexeme:uy
+  pos: NOUN
+  gloss: {en: 'house, home'}
+  spelled: {uz-Latn/standard: [uy], uz-Cyrl/standard: [уй]}
+- id: lexeme:uzoq
+  pos: ADJ
+  gloss: {en: far; long}
+  spelled: {uz-Latn/standard: [uzoq], uz-Cyrl/standard: [узоқ]}
+- id: lexeme:uzum
+  pos: NOUN
+  gloss: {en: grapes}
+  spelled: {uz-Latn/standard: [uzum], uz-Cyrl/standard: [узум]}
+- id: lexeme:va
+  pos: CCONJ
+  gloss: {en: and}
+  spelled: {uz-Latn/standard: [va], uz-Cyrl/standard: [ва]}
+- id: lexeme:want
+  realises: {Mood: Des}
+  gloss: {en: '-moqchi: want to; be going to'}
+  notes: {en: 'Olmoqchiman: I want to buy. Bormoqchimiz: we want to go, we plan to go.'}
+  spelled: {uz-Latn/standard: [moqchi], uz-Cyrl/standard: [моқчи]}
+- id: lexeme:xayr
+  pos: INTJ
+  gloss: {en: goodbye}
+  spelled: {uz-Latn/standard: [xayr], uz-Cyrl/standard: [хайр]}
+- id: lexeme:xiva
+  pos: PROPN
+  gloss: {en: Khiva}
+  spelled: {uz-Latn/standard: [Xiva], uz-Cyrl/standard: [Хива]}
+- id: lexeme:xohlamoq
+  pos: VERB
+  gloss: {en: 'to want, to wish'}
+  spelled: {uz-Latn/standard: [xohlamoq], uz-Cyrl/standard: [хоҳламоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [xohla], uz-Cyrl/standard: [хоҳла]}}
+- id: lexeme:xona
+  pos: NOUN
+  gloss: {en: room}
+  spelled: {uz-Latn/standard: [xona], uz-Cyrl/standard: [хона]}
+- id: lexeme:yakshanba
+  pos: PROPN
+  gloss: {en: Sunday}
+  spelled: {uz-Latn/standard: [yakshanba], uz-Cyrl/standard: [якшанба]}
+- id: lexeme:yana
+  pos: ADV
+  gloss: {en: 'more, again; else'}
+  spelled: {uz-Latn/standard: [yana], uz-Cyrl/standard: [яна]}
+- id: lexeme:yangi
+  pos: ADJ
+  gloss: {en: new; fresh}
+  spelled: {uz-Latn/standard: [yangi], uz-Cyrl/standard: [янги]}
+- id: lexeme:yaqin
+  pos: ADJ
+  gloss: {en: 'near, close'}
+  spelled: {uz-Latn/standard: [yaqin], uz-Cyrl/standard: [яқин]}
+- id: lexeme:yaxshi
+  pos: ADJ
+  gloss: {en: good}
+  image: {file: ../../courses/images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {uz-Latn/standard: [yaxshi], uz-Cyrl/standard: [яхши]}
+- id: lexeme:yemoq
+  pos: VERB
+  gloss: {en: to eat}
+  spelled: {uz-Latn/standard: [yemoq], uz-Cyrl/standard: [емоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ye], uz-Cyrl/standard: [е]}}
+- id: lexeme:yer
+  pos: NOUN
+  gloss: {en: place}
+  notes: {en: 'Bu yerda (or shu yerda): here. U yerda: there.'}
+  spelled: {uz-Latn/standard: [yer], uz-Cyrl/standard: [ер]}
+- id: lexeme:yetmish
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: seventy}
+  spelled: {uz-Latn/standard: [yetmish], uz-Cyrl/standard: [етмиш]}
+- id: lexeme:yetti
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: seven}
+  spelled: {uz-Latn/standard: [yetti], uz-Cyrl/standard: [етти]}
+- id: lexeme:yigirma
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: twenty}
+  spelled: {uz-Latn/standard: [yigirma], uz-Cyrl/standard: [йигирма]}
+- id: lexeme:yil
+  pos: NOUN
+  gloss: {en: year}
+  spelled: {uz-Latn/standard: [yil], uz-Cyrl/standard: [йил]}
+- id: lexeme:yogmoq
+  pos: VERB
+  gloss: {en: to fall (of rain or snow)}
+  notes: {en: 'Yomgʻir yogʻyapti: it is raining.'}
+  spelled: {uz-Latn/standard: [yogʻmoq], uz-Cyrl/standard: [ёғмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [yogʻ], uz-Cyrl/standard: [ёғ]}}
+- id: lexeme:yol
+  pos: NOUN
+  gloss: {en: 'road, way'}
+  spelled: {uz-Latn/standard: [yoʻl], uz-Cyrl/standard: [йўл]}
+- id: lexeme:yomgir
+  pos: NOUN
+  gloss: {en: rain}
+  spelled: {uz-Latn/standard: [yomgʻir], uz-Cyrl/standard: [ёмғир]}
+- id: lexeme:yon
+  pos: NOUN
+  gloss: {en: side}
+  notes: {en: 'Deraza yonida: next to the window: yon + -i + -da.'}
+  spelled: {uz-Latn/standard: [yon], uz-Cyrl/standard: [ён]}
+- id: lexeme:yoq
+  pos: ADJ
+  feats: {Polarity: Neg}
+  gloss: {en: 'no'}
+  spelled: {uz-Latn/standard: [yoʻq], uz-Cyrl/standard: [йўқ]}
+- id: lexeme:yoqmoq
+  pos: VERB
+  gloss: {en: 'to please, to be liked'}
+  notes: {en: 'Menga uzum yoqadi: I like grapes (grapes please me). The person who likes takes -ga.'}
+  spelled: {uz-Latn/standard: [yoqmoq], uz-Cyrl/standard: [ёқмоқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [yoq], uz-Cyrl/standard: [ёқ]}}
+- id: lexeme:yosh
+  pos: NOUN
+  gloss: {en: young; age}
+  notes: {en: 'Necha yoshdasiz? How old are you? Yigirma yoshdaman: I am twenty.'}
+  spelled: {uz-Latn/standard: [yosh], uz-Cyrl/standard: [ёш]}
+- id: lexeme:yoz
+  pos: NOUN
+  gloss: {en: summer}
+  notes: {en: 'Yozda: in summer.'}
+  spelled: {uz-Latn/standard: [yoz], uz-Cyrl/standard: [ёз]}
+- id: lexeme:yuz
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: hundred}
+  spelled: {uz-Latn/standard: [yuz], uz-Cyrl/standard: [юз]}

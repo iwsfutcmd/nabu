@@ -1,0 +1,451 @@
+# Unit u17-where-are-you-from of courses/chg in the new shape.
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u17-where-are-you-from
+title:
+  en: Where are you from?
+cefr: B1
+nodes:
+- {id: chg.u17.right-and-left, kind: lesson, introduces: ['lexeme:on.right', 'lexeme:yan', 'lexeme:sol', 'lexeme:pahlawan', 'lexeme:shah', 'lexeme:ziwar']}
+- {id: chg.u17.where-from, kind: lesson, introduces: ['lexeme:ne', 'lexeme:bukhara']}
+- {id: chg.u17.since-we-came, kind: lesson, introduces: ['lexeme:gali']}
+- {id: chg.u17.we-shall, kind: lesson, introduces: ['lexeme:sayr', 'lexeme:alam', 'lexeme:ruy', 'lexeme:gay', 'lexeme:maqsud', 'lexeme:mudda']}
+- {id: chg.u17.your-answer, kind: lesson, introduces: ['lexeme:jawab', 'lexeme:alqissa']}
+- {id: chg.u17.story, kind: story}
+sentences:
+- id: s.17.1
+  node: chg.u17.right-and-left
+  forms:
+    chg-Arab/standard:
+      text: اونک یان.
+      tokens: [{surface: اونک, lexeme: on.right, readings: {schluessel: oŋ}}, {surface: یان, lexeme: yan, readings: {schluessel: yan}}]
+      reverse: اونک یان
+  translations:
+    en: The right (side|hand side).
+- id: s.17.2
+  node: chg.u17.right-and-left
+  forms:
+    chg-Arab/standard:
+      text: سول یان.
+      tokens: [{surface: سول, lexeme: sol, readings: {schluessel: sol}}, {surface: یان, lexeme: yan, readings: {schluessel: yan}}]
+      reverse: سول یان
+  translations:
+    en: The left (side|hand side).
+- id: s.17.3
+  node: chg.u17.right-and-left
+  forms:
+    chg-Arab/standard:
+      text: اونک یانیده بیر باغ بار.
+      tokens: [{surface: اونک, lexeme: on.right, readings: {schluessel: oŋ}}, {surface: یانیده, lexemes: [{lexeme: yan, surface: یان, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: yanida}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: باغ, lexeme: bagh, readings: {schluessel: bāǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      reverse: اونک (یانیده|یانیدا) (بیر|بر) باغ بار
+  translations:
+    en: (On the right|To the right) there is a (garden|orchard).
+- id: s.17.4
+  node: chg.u17.right-and-left
+  forms:
+    chg-Arab/standard:
+      text: سول یانیده بیر تاغ بار.
+      tokens: [{surface: سول, lexeme: sol, readings: {schluessel: sol}}, {surface: یانیده, lexemes: [{lexeme: yan, surface: یان, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: yanida}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      reverse: سول (یانیده|یانیدا) (بیر|بر) تاغ بار
+  translations:
+    en: (On the left|To the left) there is a mountain.
+- id: s.17.5
+  node: chg.u17.right-and-left
+  forms:
+    chg-Arab/standard:
+      text: الیک پهلوان.
+      tokens: [{surface: الیک, lexeme: allik, readings: {schluessel: ällik}}, {surface: پهلوان, lexeme: pahlawan, readings: {schluessel: pahlawān}}]
+      reverse: (الیک|ایللیک) (پهلوان|فهلوان)
+  translations:
+    en: Fifty (champions|heroes|warriors).
+- id: s.17.6
+  node: chg.u17.right-and-left
+  forms:
+    chg-Arab/standard:
+      text: شاه.
+      tokens: [{surface: شاه, lexeme: shah, readings: {schluessel: šāh}}]
+      reverse: شاه
+  translations:
+    en: The (shah|king).
+- id: s.17.7
+  node: chg.u17.right-and-left
+  forms:
+    chg-Arab/standard:
+      text: زیور شاه.
+      tokens: [{surface: زیور, lexeme: ziwar, readings: {schluessel: Zīwar}}, {surface: شاه, lexeme: shah, readings: {schluessel: Šāh}}]
+      reverse: زیور شاه
+  translations:
+    en: Ziwar Shah.
+- id: s.17.8
+  node: chg.u17.right-and-left
+  forms:
+    chg-Arab/standard:
+      text: زیور شاهنینک اونک یانیده الیک پهلوان بار ایردی.
+      tokens: [{surface: زیور, lexeme: ziwar, readings: {schluessel: Zīwar}}, {surface: شاهنینک, lexemes: [{lexeme: shah, surface: شاه, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Šāhniŋ}}, {surface: اونک, lexeme: on.right, readings: {schluessel: oŋ}}, {surface: یانیده, lexemes: [{lexeme: yan, surface: یان, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: yanida}}, {surface: الیک, lexeme: allik, readings: {schluessel: ällik}}, {surface: پهلوان, lexeme: pahlawan, readings: {schluessel: pahlawān}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: زیور شاهنینک اونک (یانیده|یانیدا) (الیک|ایللیک) (پهلوان|فهلوان) بار (ایردی|ایدی)
+  translations:
+    en: (On|At) Ziwar Shah's right (side|) there were fifty (champions|heroes|warriors).
+- id: s.17.9
+  node: chg.u17.where-from
+  forms:
+    chg-Arab/standard:
+      text: نه؟
+      tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}]
+      reverse: نه
+  translations:
+    en: (What|Which)?
+- id: s.17.10
+  node: chg.u17.where-from
+  forms:
+    chg-Arab/standard:
+      text: نه یرلیک بولورسیز؟
+      tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: yärlik}}, {surface: بولورسیز, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2, surface: سیز}], readings: {schluessel: bolursiz}}]
+      reverse: نه (یرلیک|یارلیک) بولورسیز
+  translations:
+    en: Where are you from?
+- id: s.17.11
+  node: chg.u17.where-from
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    chg-Arab/standard:
+      text: نه یرلیک بولورسیزلار؟
+      tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: yärlik}}, {surface: بولورسیزلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: bolursizlär}}]
+      reverse: نه (یرلیک|یارلیک) بولورسیزلار
+  translations:
+    en: Where are you (all|) from?
+- id: s.17.12
+  node: chg.u17.where-from
+  forms:
+    chg-Arab/standard:
+      text: بیز بخارالیک.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: بخارالیک, lexemes: [{lexeme: bukhara, surface: بخارا, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: Buḫārālik}}]
+      reverse: |-
+        بیز بخارالیک
+        بیز بخارالیکمیز
+  translations:
+    en: We are from Bukhara.
+- id: s.17.13
+  node: chg.u17.where-from
+  forms:
+    chg-Arab/standard:
+      text: من سمرقندلیک.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: سمرقندلیک, lexemes: [{lexeme: samarqand, surface: سمرقند, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: Samarqandlik}}]
+      reverse: |-
+        من سمرقندلیک
+        من سمرقندلیکمن
+  translations:
+    en: I am from Samarkand.
+- id: s.17.14
+  node: chg.u17.where-from
+  forms:
+    chg-Arab/standard:
+      text: مونده نچه کون یورورسیز؟
+      tokens: [{surface: مونده, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: munda}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: یورورسیز, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2, surface: سیز}], readings: {schluessel: yürürsiz}}]
+      reverse: (مونده|موندا) (نچه|نچچه) کون یورورسیز
+  translations:
+    en: How (many days|long) will you (be|stay) here?
+- id: s.17.15
+  node: chg.u17.where-from
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    chg-Arab/standard:
+      text: مونده نچه کون یورورسیزلار؟
+      tokens: [{surface: مونده, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: munda}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: یورورسیزلار, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: yürürsizlär}}]
+      reverse: (مونده|موندا) (نچه|نچچه) کون یورورسیزلار
+  translations:
+    en: How (many days|long) will you (all|) (be|stay) here?
+- id: s.17.16
+  node: chg.u17.since-we-came
+  forms:
+    chg-Arab/standard:
+      text: بیز بخارادین کلیب ایردوک.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: بخارادین, lexemes: [{lexeme: bukhara, surface: بخارا, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Buḫārādin}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: ایردوک, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-1p, surface: دوک}], readings: {schluessel: erdük}}]
+      reverse: بیز (بخارادین|بخارادن) کلیب (ایردوک|ایردوق|ایدوک|ایدوق)
+  translations:
+    en: We (came|had come) from Bukhara.
+- id: s.17.17
+  node: chg.u17.since-we-came
+  forms:
+    chg-Arab/standard:
+      text: بخارادین چیقیب کلیب ایردوک.
+      tokens: [{surface: بخارادین, lexemes: [{lexeme: bukhara, surface: بخارا, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Buḫārādin}}, {surface: چیقیب, lexemes: [{lexeme: chiq, surface: چیق, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: čiqip}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: ایردوک, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-1p, surface: دوک}], readings: {schluessel: erdük}}]
+      reverse: (بخارادین|بخارادن) (چیقیب|چقیب|جقیب) کلیب (ایردوک|ایردوق|ایدوک|ایدوق)
+  translations:
+    en: We (had set out|set out|left) from Bukhara and come (here|).
+- id: s.17.18
+  node: chg.u17.since-we-came
+  forms:
+    chg-Arab/standard:
+      text: بو شهرغه کلکالی اوچ کون بولدی.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: کلکالی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: gali, surface: کالی}], readings: {schluessel: kälgäli}}, {surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      reverse: بو (شهرغه|شهرکه|شهرقه|شهرغا) (کلکالی|کلکلی|کیلکالی|کیلکلی) اوچ کون بولدی
+  translations:
+    en: It has been three days since (we|I|he|she|they) came to this (city|town).
+- id: s.17.19
+  node: chg.u17.since-we-came
+  forms:
+    chg-Arab/standard:
+      text: کلکالی نچه کون بولدی؟
+      tokens: [{surface: کلکالی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: gali, surface: کالی}], readings: {schluessel: kälgäli}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      reverse: (کلکالی|کلکلی|کیلکالی|کیلکلی) (نچه|نچچه) کون بولدی
+  translations:
+    en: How many days has it been since (you|he|she|they) came?
+- id: s.17.20
+  node: chg.u17.since-we-came
+  forms:
+    chg-Arab/standard:
+      text: بو شهرغه کلکالی نچه کون بولدی.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: کلکالی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: gali, surface: کالی}], readings: {schluessel: kälgäli}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      reverse: بو (شهرغه|شهرکه|شهرقه|شهرغا) (کلکالی|کلکلی|کیلکالی|کیلکلی) (نچه|نچچه) کون بولدی
+  translations:
+    en: It has been (a few|some|several) days since (we|I|they) came to this (city|town).
+- id: s.17.21
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: سیر.
+      tokens: [{surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}]
+      reverse: سیر
+  translations:
+    en: (A|) (journey|trip|travel).
+- id: s.17.22
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: سیر قیلدی.
+      tokens: [{surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qildi}}]
+      reverse: سیر (قیلدی|قلدی)
+  translations:
+    en: (He|She) (travelled|traveled|went travelling).
+- id: s.17.23
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: عالم.
+      tokens: [{surface: عالم, lexeme: alam, readings: {schluessel: ʿālam}}]
+      reverse: عالم
+  translations:
+    en: The world.
+- id: s.17.24
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: روی عالم.
+      tokens: [{surface: روی, lexeme: ruy, readings: {schluessel: rūy-i}}, {surface: عالم, lexeme: alam, readings: {schluessel: ʿālam}}]
+      reverse: روی عالم
+  translations:
+    en: The face of the world.
+- id: s.17.25
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: سمرقندغه بارغایمیز.
+      tokens: [{surface: سمرقندغه, lexemes: [{lexeme: samarqand, surface: سمرقند, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Samarqandǧa}}, {surface: بارغایمیز, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: gay, surface: غای}, {lexeme: p1p, surface: میز}], readings: {schluessel: barǧaymiz}}]
+      reverse: (سمرقندغه|سمرقندکه|سمرقندقه|سمرقندغا) بارغایمیز
+  translations:
+    en: We (shall|will) go to Samarkand.
+- id: s.17.26
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: روی عالمنی سیر قیلیب یورکایمیز.
+      tokens: [{surface: روی, lexeme: ruy, readings: {schluessel: rūy-i}}, {surface: عالمنی, lexemes: [{lexeme: alam, surface: عالم, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ʿālamni}}, {surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: یورکایمیز, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: gay, surface: کای}, {lexeme: p1p, surface: میز}], readings: {schluessel: yürgäymiz}}]
+      reverse: روی عالمنی سیر (قیلیب|قلیب) یورکایمیز
+  translations:
+    en: We (shall|will) travel (about|around|) the (face of the world|world).
+- id: s.17.27
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: کلکایمن.
+      tokens: [{surface: کلکایمن, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: gay, surface: کای}, {lexeme: p1s, surface: من}], readings: {schluessel: kälgäymän}}]
+      reverse: (کلکایمن|کیلکایمن)
+  translations:
+    en: I (shall|will) come.
+- id: s.17.28
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: سمرقندغه بارغایمنمو؟
+      tokens: [{surface: سمرقندغه, lexemes: [{lexeme: samarqand, surface: سمرقند, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Samarqandǧa}}, {surface: بارغایمنمو, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: gay, surface: غای}, {lexeme: p1s, surface: من}, {lexeme: q, surface: مو}], readings: {schluessel: barǧaymänmu}}]
+      reverse: (سمرقندغه|سمرقندکه|سمرقندقه|سمرقندغا) بارغایمنمو
+  translations:
+    en: Shall I go to Samarkand?
+- id: s.17.29
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: مقصود.
+      tokens: [{surface: مقصود, lexeme: maqsud, readings: {schluessel: maqṣūd}}]
+      reverse: مقصود
+  translations:
+    en: (The|A) (goal|aim|intention).
+- id: s.17.30
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: مقصودیمیز بو.
+      tokens: [{surface: مقصودیمیز, lexemes: [{lexeme: maqsud, surface: مقصود, base: true}, {lexeme: poss1p, surface: یمیز}], readings: {schluessel: maqṣūdimiz}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}]
+      reverse: مقصودیمیز بو
+  translations:
+    en: This is our (goal|aim|intention).
+- id: s.17.31
+  node: chg.u17.we-shall
+  forms:
+    chg-Arab/standard:
+      text: مدعایمیز بو.
+      tokens: [{surface: مدعایمیز, lexemes: [{lexeme: mudda, surface: مدعا, base: true}, {lexeme: poss1p, surface: یمیز}], readings: {schluessel: mudaʿʿāymiz}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}]
+      reverse: (مدعایمیز|مدعایمز|مدّعایمیز|مدّعایمز) بو
+  translations:
+    en: This is our (purpose|aim).
+- id: s.17.32
+  node: chg.u17.your-answer
+  forms:
+    chg-Arab/standard:
+      text: جواب.
+      tokens: [{surface: جواب, lexeme: jawab, readings: {schluessel: jawāb}}]
+      reverse: جواب
+  translations:
+    en: (The|An|) (answer|reply).
+- id: s.17.33
+  node: chg.u17.your-answer
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: جوابینک نه؟
+      tokens: [{surface: جوابینک, lexemes: [{lexeme: jawab, surface: جواب, base: true}, {lexeme: poss2s, surface: ینک}], readings: {schluessel: jawābiŋ}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}]
+      reverse: جوابینک نه
+  translations:
+    en: What is your (answer|reply)?
+- id: s.17.34
+  node: chg.u17.your-answer
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: جوابینک نه تورور؟
+      tokens: [{surface: جوابینک, lexemes: [{lexeme: jawab, surface: جواب, base: true}, {lexeme: poss2s, surface: ینک}], readings: {schluessel: jawābiŋ}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}]
+      reverse: جوابینک نه تورور
+  translations:
+    en: What is your (answer|reply)?
+- id: s.17.35
+  node: chg.u17.your-answer
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: ایغیل!
+      tokens: [{surface: ایغیل, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: imp, surface: غیل}], readings: {schluessel: ayǧil}}]
+      reverse: ایغیل
+  translations:
+    en: (Tell|Say|Tell me|Tell us|Speak)!
+- id: s.17.36
+  node: chg.u17.your-answer
+  forms:
+    chg-Arab/standard:
+      text: جواب بیرکایمن.
+      tokens: [{surface: جواب, lexeme: jawab, readings: {schluessel: jawāb}}, {surface: بیرکایمن, lexemes: [{lexeme: bar.give, surface: بیر, base: true}, {lexeme: gay, surface: کای}, {lexeme: p1s, surface: من}], readings: {schluessel: bärgäymän}}]
+      reverse: جواب (بیرکایمن|برکایمن)
+  translations:
+    en: I (shall|will) (give an answer|answer|reply).
+- id: s.17.37
+  node: chg.u17.your-answer
+  forms:
+    chg-Arab/standard:
+      text: القصه.
+      tokens: [{surface: القصه, lexeme: alqissa, readings: {schluessel: al-qiṣṣa}}]
+      reverse: (القصه|القصّه)
+  translations:
+    en: (Back to the story|Back to our story|To return to the story|In short).
+stories:
+- id: chg.story.where-are-you-from
+  node: chg.u17.story
+  title:
+    en: Where are you from? (The Tadhkira of Jalāl ud-Dīn Katakī)
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: اما زیور شاه اولوغ فادشاه ایردی.
+          tokens: [{surface: اما, lexeme: amma, readings: {schluessel: ammā}}, {surface: زیور, lexeme: ziwar, readings: {schluessel: Zīwar}}, {surface: شاه, lexeme: shah, readings: {schluessel: Šāh}}, {surface: اولوغ, lexeme: ulugh, readings: {schluessel: uluǧ}}, {surface: فادشاه, lexeme: padishah, readings: {schluessel: ṗādišāh}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: Now, Ziwar Shah was a great king.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "زیور شاه\u200cنینک اونک یانیدا الیک فهلوان…، سول یانیدا اللیک فهلوان…."
+          tokens: [{surface: زیور, lexeme: ziwar, readings: {schluessel: Zīwar}}, {surface: "شاه\u200cنینک", lexemes: [{lexeme: shah, surface: "شاه\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Šahniŋ}}, {surface: اونک, lexeme: on.right, readings: {schluessel: oŋ}}, {surface: یانیدا, lexemes: [{lexeme: yan, surface: یان, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: yanida}}, {surface: الیک, lexeme: allik, readings: {schluessel: ällik}}, {surface: فهلوان, lexeme: pahlawan, readings: {schluessel: ṗahlawān}}, {surface: سول, lexeme: sol, readings: {schluessel: sol}}, {surface: یانیدا, lexemes: [{lexeme: yan, surface: یان, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: yanida}}, {surface: اللیک, lexeme: allik, readings: {schluessel: ällik}}, {surface: فهلوان, lexeme: pahlawan, readings: {schluessel: ṗahlawān}}]
+      translations:
+        en: On Ziwar Shah’s right were fifty champions …, and on his left fifty champions …
+  - line:
+      ask: complete
+      gap: lexeme:yigit
+      distractors:
+      - lexeme:nashpati
+      - lexeme:darwaza
+      forms:
+        chg-Arab/standard:
+          text: "القصّه، زیور شاه ایدی، «ای، یکت\u200cلار! نه یرلیک بولورسیزلار؟ موندا نچه یورورسیزلار؟» دیدی."
+          tokens: [{surface: القصّه, lexeme: alqissa, readings: {schluessel: al-qiṣṣa}}, {surface: زیور, lexeme: ziwar, readings: {schluessel: Zīwar}}, {surface: شاه, lexeme: shah, readings: {schluessel: Šāh}}, {surface: ایدی, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: aydi}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: "یکت\u200cلار", lexemes: [{lexeme: yigit, surface: "یکت\u200c", base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: yigitlär}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: yärlik}}, {surface: بولورسیزلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: bolursizlär}}, {surface: موندا, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: munda}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: یورورسیزلار, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: yürürsizlär}}, {surface: دیدی, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: dedi}}]
+      translations:
+        en: 'Back to our story: Ziwar Shah said, “Oh, young men! Where are you from? How long will you be here?”'
+  - choose:
+      prompt:
+        en: What did Ziwar Shah ask the young men?
+      options:
+      - en: Where they were from and how long they would stay
+      - en: Whether they were hungry
+      - en: Who their king was
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: … پز بخارادین جقیب کلیب ایردوک.
+          tokens: [{surface: پز, lexeme: biz, readings: {schluessel: biz}}, {surface: بخارادین, lexemes: [{lexeme: bukhara, surface: بخارا, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Buḫārādin}}, {surface: جقیب, lexemes: [{lexeme: chiq, surface: جق, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: čiqip}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: ایردوک, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-1p, surface: دوک}], readings: {schluessel: erdük}}]
+      translations:
+        en: … “We came from Bukhara.
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: بو شهرکه کلکالی نچه کون بولدی.
+          tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهرکه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: که}], readings: {schluessel: šahargä}}, {surface: کلکالی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: gali, surface: کالی}], readings: {schluessel: kälgäli}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      translations:
+        en: It has been some days since we came to this city.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "اما مقصود مدعّایمز بو کم، روی عالم\u200cنی سیر قلیب یورکای\u200cمز."
+          tokens: [{surface: اما, lexeme: amma, readings: {schluessel: ammā}}, {surface: مقصود, lexeme: maqsud, readings: {schluessel: maqṣūd}}, {surface: مدعّایمز, lexemes: [{lexeme: mudda, surface: مدعّا, base: true}, {lexeme: poss1p, surface: یمز}], readings: {schluessel: mudaʿʿāymiz}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: روی, lexeme: ruy, readings: {schluessel: rūy-i}}, {surface: "عالم\u200cنی", lexemes: [{lexeme: alam, surface: "عالم\u200c", base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ʿālamni}}, {surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}, {surface: قلیب, lexemes: [{lexeme: qil, surface: قل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: "یورکای\u200cمز", lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: gay, surface: "کای\u200c"}, {lexeme: p1p, surface: مز}], readings: {schluessel: yürgäymiz}}]
+      translations:
+        en: 'But our aim and purpose is this: we shall travel the face of the world.'
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: … ای، زیور شاه! جوابنک نه ترور؟ ایغیل!»
+          tokens: [{surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: زیور, lexeme: ziwar, readings: {schluessel: Zīwar}}, {surface: شاه, lexeme: shah, readings: {schluessel: Šāh}}, {surface: جوابنک, lexemes: [{lexeme: jawab, surface: جواب, base: true}, {lexeme: poss2s, surface: نک}], readings: {schluessel: jawābiŋ}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: ترور, lexeme: turur, readings: {schluessel: turur}}, {surface: ایغیل, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: imp, surface: غیل}], readings: {schluessel: ayǧil}}]
+      translations:
+        en: … Oh, Ziwar Shah! What is your answer? Tell us!”
+  - choose:
+      prompt:
+        en: Why had the travellers come?
+      options:
+      - en: To travel the world
+      - en: To trade in the bazaar
+      - en: To serve the king
+      answer: 0
+scenarios:
+- id: chg.at-court
+  after: chg.u17.your-answer
+  title:
+    en: At court
+  setting:
+    en: The throne room of a king of the Tadhkira, with champions on his right and left. You are a traveller.
+  character:
+    en: The king, proud and suspicious of strangers, who speaks only Turki.
+  goal:
+    en: Say where you are from, how long ago you came to his city and how long you will stay, and what you mean to do; then ask him for his answer.

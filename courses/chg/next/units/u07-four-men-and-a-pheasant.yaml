@@ -1,0 +1,431 @@
+# Unit u07-four-men-and-a-pheasant of courses/chg in the new shape.
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u07-four-men-and-a-pheasant
+title:
+  en: Four men and a pheasant
+cefr: A2
+nodes:
+- {id: chg.u07.birds, kind: lesson, introduces: ['lexeme:qush', 'lexeme:kop', 'lexeme:qirghawul', 'lexeme:semiz', 'lexeme:daghi', 'lexeme:awi', 'lexeme:behadd']}
+- {id: chg.u07.as-a-rule, kind: lesson, introduces: ['lexeme:oltur']}
+- {id: chg.u07.can, kind: lesson, introduces: ['lexeme:cv-a', 'lexeme:tugat']}
+- {id: chg.u07.and-then, kind: lesson, introduces: ['lexeme:cv-p', 'lexeme:ye']}
+- {id: chg.u07.they-tell, kind: lesson, introduces: ['lexeme:andaq', 'lexeme:riwayat', 'lexeme:kim.that', 'lexeme:ishkina', 'lexeme:bila', 'lexeme:qalam', 'lexeme:lafaz', 'lexeme:rast', 'lexeme:nisba']}
+- {id: chg.u07.story, kind: story}
+sentences:
+- id: s.07.1
+  node: chg.u07.birds
+  forms:
+    chg-Arab/standard:
+      text: قوش بار.
+      tokens: [{surface: قوش, lexeme: qush, readings: {schluessel: quš}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      reverse: قوش بار
+  translations:
+    en: There (is a bird|are birds).
+- id: s.07.2
+  node: chg.u07.birds
+  forms:
+    chg-Arab/standard:
+      text: کوب قوش بار.
+      tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: قوش, lexeme: qush, readings: {schluessel: quš}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      reverse: (کوب|کوپ) قوش بار
+  translations:
+    en: There are many birds.
+- id: s.07.3
+  node: chg.u07.birds
+  forms:
+    chg-Arab/standard:
+      text: قیرغاول.
+      tokens: [{surface: قیرغاول, lexeme: qirghawul, readings: {schluessel: qirǧawul}}]
+      reverse: قیرغاول
+  translations:
+    en: (A|The) pheasant.
+- id: s.07.4
+  node: chg.u07.birds
+  forms:
+    chg-Arab/standard:
+      text: قیرغاول سیمیز بولور.
+      tokens: [{surface: قیرغاول, lexeme: qirghawul, readings: {schluessel: qirǧawul}}, {surface: سیمیز, lexeme: semiz, readings: {schluessel: semiz}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
+      reverse: قیرغاول (سیمیز|سمیز) بولور
+  translations:
+    en: (Pheasants are|The pheasants are) fat.
+- id: s.07.5
+  node: chg.u07.birds
+  forms:
+    chg-Arab/standard:
+      text: بو یرده قوش کوب بولور.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: قوش, lexeme: qush, readings: {schluessel: quš}}, {surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
+      reverse: |-
+        بو (یرده|یردا|یارده|یاردا) قوش (کوب|کوپ) بولور
+        بو (یرده|یردا|یارده|یاردا) (کوب|کوپ) قوش بولور
+  translations:
+    en: (Here|In this place) there are many birds.
+- id: s.07.6
+  node: chg.u07.birds
+  forms:
+    chg-Arab/standard:
+      text: تاغده داغی قوش بار.
+      tokens: [{surface: تاغده, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: taǧda}}, {surface: داغی, lexeme: daghi, readings: {schluessel: daǧi}}, {surface: قوش, lexeme: qush, readings: {schluessel: quš}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      reverse: |-
+        (تاغده|تاغدا) داغی قوش بار
+        (تاغده|تاغدا) داغی قوش باردور
+  translations:
+    en: There are birds on the mountain too.
+- id: s.07.7
+  node: chg.u07.birds
+  forms:
+    chg-Arab/standard:
+      text: اوی قوشی داغی کوب بولور.
+      tokens: [{surface: اوی, lexeme: awi, readings: {schluessel: awī}}, {surface: قوشی, lexemes: [{lexeme: qush, surface: قوش, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: quši}}, {surface: داغی, lexeme: daghi, readings: {schluessel: daǧi}}, {surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
+      reverse: اوی قوشی داغی (کوب|کوپ) بولور
+  translations:
+    en: Its game birds are (also|too) (many|plentiful).
+- id: s.07.8
+  node: chg.u07.birds
+  forms:
+    chg-Arab/standard:
+      text: قیرغاولی بیحد سیمیز بولور.
+      tokens: [{surface: قیرغاولی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: qirǧawuli}}, {surface: بیحد, lexeme: behadd, readings: {schluessel: bē-ḥadd}}, {surface: سیمیز, lexeme: semiz, readings: {schluessel: semiz}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
+      reverse: قیرغاولی بیحد (سیمیز|سمیز) بولور
+  translations:
+    en: Its pheasants are (endlessly|enormously|extremely|very) fat.
+- id: s.07.9
+  node: chg.u07.as-a-rule
+  forms:
+    chg-Arab/standard:
+      text: من ترکی بیلورمن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: ترکی, lexeme: turki, readings: {schluessel: Turkī}}, {surface: بیلورمن, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor, surface: ور}, {lexeme: p1s, surface: من}], readings: {schluessel: bilürmän}}]
+      reverse: '[من] (ترکی|تورکی) بیلورمن'
+  translations:
+    en: I know Turki.
+- id: s.07.10
+  node: chg.u07.as-a-rule
+  forms:
+    chg-Arab/standard:
+      text: اول خط یازار.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: خط, lexeme: khat, readings: {schluessel: ḫaṭ}}, {surface: یازار, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: yazar}}]
+      reverse: اول خط یازار
+  translations:
+    en: (He|She) writes (letters|a letter).
+- id: s.07.11
+  node: chg.u07.as-a-rule
+  forms:
+    chg-Arab/standard:
+      text: بیز شراب ایچماسمیز.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: شراب, lexeme: sharab, readings: {schluessel: šarāb}}, {surface: ایچماسمیز, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p1p, surface: میز}], readings: {schluessel: ičmäsmiz}}]
+      reverse: '[بیز] شراب ایچماسمیز'
+  translations:
+    en: We (do not|don't) drink wine.
+- id: s.07.12
+  node: chg.u07.as-a-rule
+  forms:
+    chg-Arab/standard:
+      text: اولار بزارده اولتورورلار.
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: بزارده, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bazārda}}, {surface: اولتورورلار, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: aor, surface: ور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oltururlar}}]
+      reverse: |-
+        (اولار|الار) (بزارده|بزاردا|بازارده|بازاردا) اولتورورلار
+        (اولار|الار) (بزارده|بزاردا|بازارده|بازاردا) اولتورور
+  translations:
+    en: They sit in the (market|bazaar).
+- id: s.07.13
+  node: chg.u07.as-a-rule
+  forms:
+    chg-Arab/standard:
+      text: سیز چای ایچارسیزمو؟
+      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچارسیزمو, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: aor, surface: ار}, {lexeme: p2, surface: سیز}, {lexeme: q, surface: مو}], readings: {schluessel: ičärsizmu}}]
+      reverse: |-
+        [سیز] چای ایچارسیزمو
+        [سن] چای ایچارسنمو
+        [سیزلار] چای ایچارسیزلارمو
+  translations:
+    en: Do you drink tea?
+- id: s.07.14
+  node: chg.u07.as-a-rule
+  forms:
+    chg-Arab/standard:
+      text: ترکی بیلماس کشی یوق.
+      tokens: [{surface: ترکی, lexeme: turki, readings: {schluessel: Turkī}}, {surface: بیلماس, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}], readings: {schluessel: bilmäs}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      reverse: "(ترکی|تورکی) بیلماس (کشی|کیشی) یوق\n(ترکی|تورکی) بیلماس (کشی|کیشی) یوق\u200cتور"
+  translations:
+    en: There is no one who (does not|doesn't) know Turki.
+- id: s.07.15
+  node: chg.u07.as-a-rule
+  forms:
+    chg-Arab/standard:
+      text: اول اویده اولتورماس.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: اویده, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: öydä}}, {surface: اولتورماس, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: aor-neg, surface: ماس}], readings: {schluessel: olturmas}}]
+      reverse: اول (اویده|اویدا) اولتورماس
+  translations:
+    en: (He|She) (does not|doesn't) (stay|sit|live) (in the house|at home).
+- id: s.07.16
+  node: chg.u07.can
+  forms:
+    chg-Arab/standard:
+      text: من اوقوی الامن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: اوقوی, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: cv-a, surface: ی}], readings: {schluessel: oquy}}, {surface: الامن, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres, surface: ا}, {lexeme: p1s, surface: من}], readings: {schluessel: alamän}}]
+      reverse: '[من] اوقوی (الامن|آلامن)'
+  translations:
+    en: I can read.
+- id: s.07.17
+  node: chg.u07.can
+  forms:
+    chg-Arab/standard:
+      text: اول یازا المایدور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: یازا, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: yaza}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      reverse: اول یازا (المایدور|آلمایدور)
+  translations:
+    en: (He|She) (cannot|can't) write.
+- id: s.07.18
+  node: chg.u07.can
+  forms:
+    chg-Arab/standard:
+      text: بیز بارا المایمیز.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: بارا, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: bara}}, {surface: المایمیز, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1p, surface: میز}], readings: {schluessel: almaymiz}}]
+      reverse: '[بیز] بارا (المایمیز|آلمایمیز)'
+  translations:
+    en: We (cannot|can't) go.
+- id: s.07.19
+  node: chg.u07.can
+  forms:
+    chg-Arab/standard:
+      text: سیز تاغنی کورا الاسیزمو؟
+      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: تاغنی, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: taǧni}}, {surface: کورا, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: körä}}, {surface: الاسیزمو, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2, surface: سیز}, {lexeme: q, surface: مو}], readings: {schluessel: alasizmu}}]
+      reverse: |-
+        [سیز] تاغنی کورا (الاسیزمو|آلاسیزمو)
+        [سن] تاغنی کورا (الاسنمو|آلاسنمو)
+        [سیزلار] تاغنی کورا (الاسیزلارمو|آلاسیزلارمو)
+  translations:
+    en: Can you see the mountain?
+- id: s.07.20
+  node: chg.u07.can
+  forms:
+    chg-Arab/standard:
+      text: بلا قندنی توکاتا المایدور.
+      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: قندنی, lexemes: [{lexeme: qand, surface: قند, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qandni}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      reverse: (بلا|بالا) قندنی توکاتا (المایدور|آلمایدور)
+  translations:
+    en: The child (cannot|can't) finish the sugar.
+- id: s.07.21
+  node: chg.u07.can
+  forms:
+    chg-Arab/standard:
+      text: من بو کتابنی اوقوی الماسمن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: اوقوی, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: cv-a, surface: ی}], readings: {schluessel: oquy}}, {surface: الماسمن, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p1s, surface: من}], readings: {schluessel: almasmän}}]
+      reverse: '[من] بو کتابنی اوقوی (الماسمن|آلماسمن)'
+  translations:
+    en: I (cannot|can't) read this book.
+- id: s.07.22
+  node: chg.u07.and-then
+  forms:
+    chg-Arab/standard:
+      text: من بزارغه باریب، نان الدیم.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: الدیم, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: aldim}}]
+      reverse: '[من] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باریب نان (الدیم|آلدیم)'
+  translations:
+    en: I went to the (market|bazaar) and (bought|got) bread.
+- id: s.07.23
+  node: chg.u07.and-then
+  forms:
+    chg-Arab/standard:
+      text: اول کلیب اولتوردی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: اولتوردی, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: olturdi}}]
+      reverse: اول کلیب اولتوردی
+  translations:
+    en: (He|She) came and sat (down).
+- id: s.07.24
+  node: chg.u07.and-then
+  forms:
+    chg-Arab/standard:
+      text: بیز نان ییب، چای ایچتوق.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچتوق, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: past-1p, surface: توق}], readings: {schluessel: ičtuq}}]
+      reverse: '[بیز] نان ییب چای ایچتوق'
+  translations:
+    en: We ate bread and drank tea.
+- id: s.07.25
+  node: chg.u07.and-then
+  forms:
+    chg-Arab/standard:
+      text: اولار کتاب الیب، اویغه باردیلار.
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: اویغه, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: öygä}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: bardilar}}]
+      reverse: |-
+        (اولار|الار) کتاب (الیب|آلیب) (اویغه|اویکه|اویقه|اویغا) باردیلار
+        (اولار|الار) کتاب (الیب|آلیب) (اویغه|اویکه|اویقه|اویغا) باردی
+  translations:
+    en: They (bought|got) a book and went (home|to the house).
+- id: s.07.26
+  node: chg.u07.and-then
+  forms:
+    chg-Arab/standard:
+      text: تورت کشی ییب توکاتا المایدور.
+      tokens: [{surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      reverse: تورت (کشی|کیشی) ییب توکاتا (المایدور|آلمایدور)
+  translations:
+    en: Four (people|men) (cannot|can't) finish (eating it|it).
+- id: s.07.27
+  node: chg.u07.and-then
+  forms:
+    chg-Arab/standard:
+      text: قیرغاولنی ییب توکاتتی.
+      tokens: [{surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتتی, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: tügätti}}]
+      reverse: قیرغاولنی ییب توکاتتی
+  translations:
+    en: (He|She) ate (up|) the pheasant.
+- id: s.07.28
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: انداق.
+      tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}]
+      reverse: انداق
+  translations:
+    en: (So|Thus|Like that).
+- id: s.07.29
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: بیر روایت.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}]
+      reverse: (بیر|بر) روایت
+  translations:
+    en: A (story|tale).
+- id: s.07.30
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: انداق روایت قیلدیلار کیم، قیرغاول سیمیز.
+      tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: قیرغاول, lexeme: qirghawul, readings: {schluessel: qirǧawul}}, {surface: سیمیز, lexeme: semiz, readings: {schluessel: semiz}}]
+      reverse: |-
+        انداق روایت (قیلدیلار|قلدیلار) کیم قیرغاول (سیمیز|سمیز)
+        انداق روایت (قیلدی|قلدی) کیم قیرغاول (سیمیز|سمیز)
+        انداق روایت (قیلدیلار|قلدیلار) کیم قیرغاول (سیمیز|سمیز) بولور
+  translations:
+    en: (They tell|They say|It is told) that the pheasants are fat.
+- id: s.07.31
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: "بیر قیرغاولنی اشکنه\u200cسی بیله."
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: "اشکنه\u200cسی", lexemes: [{lexeme: ishkina, surface: "اشکنه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: iškinasi}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}]
+      reverse: "(بیر|بر) قیرغاولنی اشکنه\u200cسی (بیله|بیلان|بیرله)"
+  translations:
+    en: A pheasant with its stew.
+- id: s.07.32
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: قلم بیله یازدیم.
+      tokens: [{surface: قلم, lexeme: qalam, readings: {schluessel: qalam}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: یازدیم, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: yazdim}}]
+      reverse: '[من] قلم (بیله|بیلان|بیرله) یازدیم'
+  translations:
+    en: I wrote with a pen.
+- id: s.07.33
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: "بو لفظ راست\u200cتور."
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: لفظ, lexeme: lafaz, readings: {schluessel: lafaẓ}}, {surface: "راست\u200cتور", lexemes: [{lexeme: rast, surface: "راست\u200c", base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: rāsttur}}]
+      reverse: "بو لفظ راست\u200cتور\nبو لفظ راست"
+  translations:
+    en: This (word|speech) is (true|right).
+- id: s.07.34
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: شهری کشی.
+      tokens: [{surface: شهری, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: nisba, surface: ی}], readings: {schluessel: šaharī}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      reverse: شهری (کشی|کیشی)
+  translations:
+    en: A (city person|townsman|person of the city).
+- id: s.07.35
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: بازاری کشی.
+      tokens: [{surface: بازاری, lexemes: [{lexeme: bazar, surface: بازار, base: true}, {lexeme: nisba, surface: ی}], readings: {schluessel: bāzārī}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      reverse: بازاری (کشی|کیشی)
+  translations:
+    en: A (market person|person of the market|man of the bazaar).
+- id: s.07.36
+  node: chg.u07.they-tell
+  forms:
+    chg-Arab/standard:
+      text: "ایلینینک لفظی قلم بیله راست\u200cتور."
+      tokens: [{surface: ایلینینک, lexemes: [{lexeme: el, surface: ایل, base: true}, {lexeme: poss3, surface: ی}, {lexeme: gen, surface: نینک}], readings: {schluessel: eliniŋ}}, {surface: لفظی, lexemes: [{lexeme: lafaz, surface: لفظ, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: lafaẓi}}, {surface: قلم, lexeme: qalam, readings: {schluessel: qalam}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: "راست\u200cتور", lexemes: [{lexeme: rast, surface: "راست\u200c", base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: rāsttur}}]
+      reverse: "ایلینینک لفظی قلم (بیله|بیلان|بیرله) راست\u200cتور"
+  translations:
+    en: The people's speech (is the same as|agrees with) the (written word|pen).
+stories:
+- id: chg.story.four-men-and-a-pheasant
+  node: chg.u07.story
+  title:
+    en: 'Four men and a pheasant (Babur, Bāburnāma: Andijan)'
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: اوی قوشی داغی کوب بولور.
+          tokens: [{surface: اوی, lexeme: awi, readings: {schluessel: awī}}, {surface: قوشی, lexemes: [{lexeme: qush, surface: قوش, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: quši}}, {surface: داغی, lexeme: daghi, readings: {schluessel: daǧi}}, {surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
+      translations:
+        en: Its game birds are also plentiful.
+  - line:
+      ask: complete
+      gap: lexeme:semiz
+      distractors:
+      - lexeme:sawuq
+      - lexeme:mukhtasar
+      forms:
+        chg-Arab/standard:
+          text: قیرغاولی بیحد سیمیز بولور.
+          tokens: [{surface: قیرغاولی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: qirǧawuli}}, {surface: بیحد, lexeme: behadd, readings: {schluessel: bē-ḥadd}}, {surface: سیمیز, lexeme: semiz, readings: {schluessel: semiz}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
+      translations:
+        en: Its pheasants are endlessly fat.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "انداق روایت قیلدیلار کیم، بیر قیرغاولنی اشکنه\u200cسی بیله تورت کیشی ییب توکاتا المایدور."
+          tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: "اشکنه\u200cسی", lexemes: [{lexeme: ishkina, surface: "اشکنه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: iškinasi}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      translations:
+        en: They tell that four men cannot finish one pheasant with its stew.
+  - choose:
+      prompt:
+        en: What can four men not finish?
+      options:
+      - en: One pheasant with its stew
+      - en: A sack of pears
+      - en: A pot of tea
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "شهری و بازاری\u200cسیدا ترکی بیلماس کیشی یوقتور."
+          tokens: [{surface: شهری, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: nisba, surface: ی}], readings: {schluessel: šaharī}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: "بازاری\u200cسیدا", lexemes: [{lexeme: bazar, surface: بازار, base: true}, {lexeme: nisba, surface: "ی\u200c"}, {lexeme: poss3, surface: سی}, {lexeme: loc, surface: دا}], readings: {schluessel: bāzārīsida}}, {surface: ترکی, lexeme: turki, readings: {schluessel: Turkī}}, {surface: بیلماس, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}], readings: {schluessel: bilmäs}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: یوقتور, lexemes: [{lexeme: yoq, surface: یوق, base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: yoqtur}}]
+      translations:
+        en: There is no one in its city or its market who does not know Turki.
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: "ایلی\u200cنینک لفظی قلم بیله راست\u200cتور."
+          tokens: [{surface: "ایلی\u200cنینک", lexemes: [{lexeme: el, surface: ایل, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: eliniŋ}}, {surface: لفظی, lexemes: [{lexeme: lafaz, surface: لفظ, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: lafaẓi}}, {surface: قلم, lexeme: qalam, readings: {schluessel: qalam}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: "راست\u200cتور", lexemes: [{lexeme: rast, surface: "راست\u200c", base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: rāsttur}}]
+      translations:
+        en: The people's speech is the same as the written word.
+  - choose:
+      prompt:
+        en: What language do the people of Andijan speak?
+      options:
+      - en: Turki, as it is written
+      - en: Only Persian
+      - en: Arabic
+      answer: 0
+scenarios:
+- id: chg.the-hunting-party
+  after: chg.u07.and-then
+  title:
+    en: The hunting party
+  setting:
+    en: A hunt in the hills above Andijan, about 1500. The falconers have brought back pheasants.
+  character:
+    en: A cook at the hunting camp, who loves to boast about the local game and speaks only Turki.
+  goal:
+    en: Ask what birds there are and whether they are fat, say what you ate and drank, and say what you can and cannot finish.

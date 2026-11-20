@@ -1,0 +1,628 @@
+# Unit u05 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u05
+title:
+  en: 'Los números: numbers, prices and time'
+cefr: A1
+nodes:
+- {id: es.u05.dos-cafecitos, kind: lesson, introduces: ['lexeme:dos', 'lexeme:tres', 'lexeme:cuánto', 'lexeme:cuatro', 'lexeme:cinco']}
+- {id: es.u05.seis-diez, kind: lesson, introduces: ['lexeme:seis', 'lexeme:siete', 'lexeme:ocho', 'lexeme:nueve', 'lexeme:diez']}
+- {id: es.u05.que-hora-es, kind: lesson, introduces: ['lexeme:hora', 'lexeme:uno', 'lexeme:medio', 'lexeme:veinte', 'lexeme:quince', 'lexeme:a']}
+- {id: es.u05.cuantos-anos, kind: lesson, introduces: ['lexeme:año', 'lexeme:veinticuatro', 'lexeme:diecinueve', 'lexeme:setenta']}
+- {id: es.u05.cuanto-es, kind: lesson, introduces: ['lexeme:dólar', 'lexeme:cien', 'lexeme:peso', 'lexeme:treinta', 'lexeme:cincuenta']}
+- {id: es.u05.cumpleanos, kind: lesson, introduces: ['lexeme:feliz', 'lexeme:cumpleaños', 'lexeme:cola', 'lexeme:último']}
+- {id: es.u05.story, kind: story}
+sentences:
+- id: s.u05.1
+  node: es.u05.dos-cafecitos
+  forms:
+    es-Latn/standard:
+      text: Dos cafecitos, por favor.
+      tokens: [{surface: Dos, lexeme: dos}, {surface: cafecitos, lexeme: cafecito, feats: {Number: Plur}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      reverse: Dos (cafecitos|cafés cubanos|cafés) por favor
+  translations:
+    en: Two (Cuban coffees|cafecitos|coffees|Cuban espressos), please.
+- id: s.u05.2
+  node: es.u05.dos-cafecitos
+  forms:
+    es-Latn/standard:
+      text: Quiero tres tostones.
+      tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: tres, lexeme: tres}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}]
+      reverse: '[Yo] quiero tres tostones'
+  translations:
+    en: |-
+      I want three (tostones|fried plantains).
+      (I'd like|I would like) three (tostones|fried plantains).
+- id: s.u05.3
+  node: es.u05.dos-cafecitos
+  forms:
+    es-Latn/standard:
+      text: ¿Cuántos tostones tú quieres?
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Cuántos tostones (tú quieres|quieres [tú]|usted quiere|quiere [usted]|ustedes quieren|quieren [ustedes])
+  translations:
+    en: |-
+      How many (tostones|fried plantains) do you want?
+      How many (tostones|fried plantains) would you like?
+- id: s.u05.4
+  node: es.u05.dos-cafecitos
+  forms:
+    es-Latn/standard:
+      text: Cuatro, por favor.
+      tokens: [{surface: Cuatro, lexeme: cuatro}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      reverse: Cuatro por favor
+  translations:
+    en: Four, please.
+- id: s.u05.5
+  node: es.u05.dos-cafecitos
+  forms:
+    es-Latn/standard:
+      text: ¿Cuántos son?
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Cuántos son [ustedes]|Cuántos ustedes son|Cuántas son [ustedes]|Cuántas ustedes son)
+  translations:
+    en: |-
+      How many of you are there?
+      How many are you?
+      How many are there?
+- id: s.u05.6
+  node: es.u05.dos-cafecitos
+  forms:
+    es-Latn/standard:
+      text: Somos cinco.
+      tokens: [{surface: Somos, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: cinco, lexeme: cinco}]
+      reverse: |-
+        [Nosotros] somos cinco
+        Nosotras somos cinco.
+  translations:
+    en: |-
+      There are five of us.
+      (We're|We are) five.
+      (We're|We are) a party of five.
+- id: s.u05.7
+  node: es.u05.seis-diez
+  forms:
+    es-Latn/standard:
+      text: Abuela toma seis cafecitos.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: toma, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: seis, lexeme: seis}, {surface: cafecitos, lexeme: cafecito, feats: {Number: Plur}}]
+      reverse: (Abuela|La abuela|Mi abuela) (toma|bebe) seis (cafecitos|cafés)
+  translations:
+    en: (Grandma|Grandmother|Granny|My grandma|My grandmother) (drinks|is drinking|has) six (cafecitos|Cuban coffees|coffees).
+- id: s.u05.8
+  node: es.u05.seis-diez
+  forms:
+    es-Latn/standard:
+      text: Daniel come siete tostones.
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: come, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: siete, lexeme: siete}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}]
+      reverse: Daniel come siete tostones
+  translations:
+    en: Daniel (eats|is eating|has) seven (tostones|fried plantains).
+- id: s.u05.9
+  node: es.u05.seis-diez
+  forms:
+    es-Latn/standard:
+      text: Son las ocho.
+      tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}]
+      reverse: Son las ocho [en punto]
+  translations:
+    en: (It's|It is) eight [o'clock].
+- id: s.u05.10
+  node: es.u05.seis-diez
+  forms:
+    es-Latn/standard:
+      text: Somos nueve con abuela.
+      tokens: [{surface: Somos, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nueve, lexeme: nueve}, {surface: con, lexeme: con}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      reverse: |-
+        [Nosotros] somos nueve con (abuela|la abuela)
+        Con (abuela|la abuela) somos nueve
+        Nosotras somos nueve con abuela.
+  translations:
+    en: |-
+      There are nine of us with (Grandma|Grandmother|Granny).
+      There are nine of us (counting|including) (Grandma|Grandmother|Granny).
+      (With|Counting|Including) (Grandma|Grandmother|Granny), there are nine of us.
+      (We're|We are) nine with (Grandma|Grandmother|Granny).
+      There are nine of us with my grandma.
+- id: s.u05.11
+  node: es.u05.seis-diez
+  forms:
+    es-Latn/standard:
+      text: Diez tostones y una colada, por favor.
+      tokens: [{surface: Diez, lexeme: diez}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: colada, lexeme: colada, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      reverse: Diez tostones y una colada por favor
+  translations:
+    en: Ten (tostones|fried plantains) and a colada, please.
+- id: s.u05.12
+  node: es.u05.seis-diez
+  forms:
+    es-Latn/standard:
+      text: Abuela, ¿cuántos cafecitos tú tomas?
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: cafecitos, lexeme: cafecito, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tomas, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        Abuela cuántos (cafecitos|cafés) (tú tomas|tomas [tú]|usted toma|toma [usted])
+        ¿Cuántos cafecitos tú tomas, abuela?
+  translations:
+    en: |-
+      Grandma, how many (cafecitos|Cuban coffees|coffees) do you drink?
+      How many coffees do you drink, Grandma?
+- id: s.u05.13
+  node: es.u05.que-hora-es
+  forms:
+    es-Latn/standard:
+      text: ¿Qué hora es?
+      tokens: [{surface: Qué, lexeme: qué}, {surface: hora, lexeme: hora, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Qué hora es|Qué horas son)
+  translations:
+    en: |-
+      What time is it?
+      What's the time?
+      What is the time?
+- id: s.u05.14
+  node: es.u05.que-hora-es
+  forms:
+    es-Latn/standard:
+      text: Es la una.
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}}]
+      reverse: Es la una [en punto]
+  translations:
+    en: (It's|It is) one [o'clock].
+- id: s.u05.15
+  node: es.u05.que-hora-es
+  forms:
+    es-Latn/standard:
+      text: Son las dos y media.
+      tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: dos, lexeme: dos}, {surface: y, lexeme: y}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        Son las dos y media
+        Son las dos y treinta.
+  translations:
+    en: (It's|It is) (two thirty|half past two).
+- id: s.u05.16
+  node: es.u05.que-hora-es
+  forms:
+    es-Latn/standard:
+      text: Son las ocho y veinte.
+      tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}, {surface: y, lexeme: y}, {surface: veinte, lexeme: veinte}]
+      reverse: Son las ocho y veinte
+  translations:
+    en: (It's|It is) (eight twenty|twenty past eight|twenty after eight).
+- id: s.u05.17
+  node: es.u05.que-hora-es
+  forms:
+    es-Latn/standard:
+      text: Es la una y quince.
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}}, {surface: y, lexeme: y}, {surface: quince, lexeme: quince}]
+      reverse: Es la una y (quince|cuarto)
+  translations:
+    en: (It's|It is) (one fifteen|quarter past one|a quarter past one|quarter after one|a quarter after one).
+- id: s.u05.18
+  node: es.u05.que-hora-es
+  forms:
+    es-Latn/standard:
+      text: Comemos a la una.
+      tokens: [{surface: Comemos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        [Nosotros] comemos a la una
+        Nosotras comemos a la una.
+  translations:
+    en: |-
+      We eat at one.
+      We eat at one o'clock.
+      (We're|We are) eating at one [o'clock].
+      We have lunch at one [o'clock].
+- id: s.u05.19
+  node: es.u05.que-hora-es
+  forms:
+    es-Latn/standard:
+      text: ¿A qué hora tú comes?
+      tokens: [{surface: A, lexeme: a}, {surface: qué, lexeme: qué}, {surface: hora, lexeme: hora, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: comes, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        A qué hora (tú comes|comes [tú]|usted come|come [usted]|ustedes comen|comen [ustedes])
+        ¿Tú a qué hora comes?
+  translations:
+    en: |-
+      What time do you eat?
+      At what time do you eat?
+      When do you eat?
+- id: s.u05.20
+  node: es.u05.cuantos-anos
+  forms:
+    es-Latn/standard:
+      text: ¿Cuántos años tú tienes?
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        Cuántos años (tú tienes|tienes [tú]|usted tiene|tiene [usted]|ustedes tienen|tienen [ustedes])
+        ¿Tú cuántos años tienes?
+  translations:
+    en: How old are you?
+- id: s.u05.21
+  node: es.u05.cuantos-anos
+  forms:
+    es-Latn/standard:
+      text: Tengo veinticuatro años.
+      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: veinticuatro, lexeme: veinticuatro}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      reverse: '[Yo] tengo veinticuatro [años]'
+  translations:
+    en: (I'm|I am) twenty-four [years old].
+- id: s.u05.22
+  node: es.u05.cuantos-anos
+  forms:
+    es-Latn/standard:
+      text: Lili tiene diecinueve años.
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: diecinueve, lexeme: diecinueve}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      reverse: Lili tiene diecinueve [años]
+  translations:
+    en: (Lili is|Lili's) nineteen [years old].
+- id: s.u05.23
+  node: es.u05.cuantos-anos
+  forms:
+    es-Latn/standard:
+      text: Abuela tiene setenta y nueve años.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: setenta, lexeme: setenta}, {surface: y, lexeme: y}, {surface: nueve, lexeme: nueve}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      reverse: (Abuela|La abuela|Mi abuela) tiene setenta y nueve [años]
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny|My grandma|My grandmother) is seventy-nine [years old].
+      Grandma's seventy-nine years old.
+- id: s.u05.24
+  node: es.u05.cuantos-anos
+  tags:
+  - {register: formal}
+  forms:
+    es-Latn/standard:
+      text: ¿Cuántos años tiene usted, señora?
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: usted, lexeme: usted}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
+      reverse: |-
+        Cuántos años (tiene [usted]|usted tiene) señora
+        Señora, ¿cuántos años tiene usted?
+  translations:
+    en: |-
+      How old are you, (ma'am|madam)?
+      Ma'am, how old are you?
+- id: s.u05.25
+  node: es.u05.cuantos-anos
+  forms:
+    es-Latn/standard:
+      text: Yasiel también tiene veinticuatro años.
+      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: también, lexeme: también}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veinticuatro, lexeme: veinticuatro}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      reverse: |-
+        Yasiel también tiene veinticuatro [años]
+        Yasiel tiene veinticuatro [años] también
+  translations:
+    en: |-
+      Yasiel is also twenty-four [years old].
+      Yasiel is twenty-four [years old] (too|as well).
+      Yasiel's also twenty-four years old.
+- id: s.u05.26
+  node: es.u05.cuanto-es
+  forms:
+    es-Latn/standard:
+      text: ¿Cuánto es?
+      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        (Cuánto es|Cuánto cuesta|Cuánto le debo|Cuánto te debo)
+        ¿Cuánto vale?
+  translations:
+    en: |-
+      How much is it?
+      How much (is that|does it cost)?
+      How much?
+- id: s.u05.27
+  node: es.u05.cuanto-es
+  forms:
+    es-Latn/standard:
+      text: Son dos dólares.
+      tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dos, lexeme: dos}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}]
+      reverse: Son dos dólares
+  translations:
+    en: (It's|That's|It is|That is|That'll be) two dollars.
+- id: s.u05.28
+  node: es.u05.cuanto-es
+  forms:
+    es-Latn/standard:
+      text: Son cien pesos.
+      tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cien, lexeme: cien}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}]
+      reverse: Son cien pesos
+  translations:
+    en: (It's|That's|It is|That is|That'll be) (a hundred|one hundred) pesos.
+- id: s.u05.29
+  node: es.u05.cuanto-es
+  forms:
+    es-Latn/standard:
+      text: Tengo treinta dólares.
+      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: treinta, lexeme: treinta}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}]
+      reverse: '[Yo] tengo treinta dólares'
+  translations:
+    en: |-
+      I have thirty dollars.
+      (I've got|I have got) thirty dollars.
+- id: s.u05.30
+  node: es.u05.cuanto-es
+  forms:
+    es-Latn/standard:
+      text: Son cincuenta pesos, señora.
+      tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cincuenta, lexeme: cincuenta}, {surface: pesos, lexeme: peso, feats: {Number: Plur}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
+      reverse: |-
+        Son cincuenta pesos señora
+        Señora, son cincuenta pesos.
+  translations:
+    en: |-
+      (It's|That's|It is|That is|That'll be) fifty pesos, (ma'am|madam).
+      Ma'am, that's fifty pesos.
+- id: s.u05.31
+  node: es.u05.cuanto-es
+  forms:
+    es-Latn/standard:
+      text: ¿Cuánto es un cafecito?
+      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}]
+      reverse: (Cuánto es|Cuánto cuesta|Cuánto vale) un (cafecito|café cubano)
+  translations:
+    en: |-
+      How much is a (cafecito|Cuban coffee)?
+      How much does a (cafecito|Cuban coffee) cost?
+- id: s.u05.32
+  node: es.u05.cumpleanos
+  forms:
+    es-Latn/standard:
+      text: ¡Feliz cumpleaños!
+      tokens: [{surface: Feliz, lexeme: feliz, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}]
+      reverse: Feliz cumpleaños
+  translations:
+    en: Happy birthday!
+- id: s.u05.33
+  node: es.u05.cumpleanos
+  forms:
+    es-Latn/standard:
+      text: Es mi cumpleaños.
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}]
+      reverse: '[Hoy] es mi cumpleaños'
+  translations:
+    en: (It's|It is) my birthday [today].
+- id: s.u05.34
+  node: es.u05.cumpleanos
+  forms:
+    es-Latn/standard:
+      text: ¡Qué cola!
+      tokens: [{surface: Qué, lexeme: qué}, {surface: cola, lexeme: cola, feats: {Number: Sing}}]
+      reverse: (Qué cola|Qué fila|Qué cola tan grande|Qué cola más grande|Qué fila tan larga|Qué fila más larga)
+  translations:
+    en: |-
+      What a line!
+      What a (queue|long line|long queue)!
+      Look at that line!
+- id: s.u05.35
+  node: es.u05.cumpleanos
+  forms:
+    es-Latn/standard:
+      text: ¿El último?
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: último, lexeme: último, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (El último|Último|Quién es el último|Quién es la última|Quién es el último en la cola)
+  translations:
+    en: |-
+      Who's last?
+      Who's last in line?
+      Who is last [in line]?
+      (Who's|Who is) the last (one|person) [in line]?
+- id: s.u05.36
+  node: es.u05.cumpleanos
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    es-Latn/standard:
+      text: Yo soy el último.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: último, lexeme: último, feats: {Gender: Masc, Number: Sing}}]
+      reverse: '[Yo] soy el último'
+  translations:
+    en: |-
+      (I'm|I am) last [in line].
+      (I'm|I am) the last [one|person] [in line].
+- id: s.u05.37
+  node: es.u05.cumpleanos
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    es-Latn/standard:
+      text: Yo soy la última.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: última, lexeme: último, feats: {Gender: Fem, Number: Sing}}]
+      reverse: '[Yo] soy la última'
+  translations:
+    en: |-
+      (I'm|I am) last [in line].
+      (I'm|I am) the last [one|person] [in line].
+stories:
+- id: es.story.u05
+  node: es.u05.story
+  title:
+    en: Lili's birthday
+  characters:
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: yasiel
+    speaker: m
+    name:
+      es-Latn/standard: Yasiel
+  - id: senora
+    speaker: f
+    name:
+      es-Latn/standard: Una señora
+  - id: dependienta
+    speaker: f
+    name:
+      es-Latn/standard: La dependienta
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: lili
+    speaker: f
+    name:
+      es-Latn/standard: Lili
+  steps:
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: ¡Qué cola, asere!
+          tokens: [{surface: Qué, lexeme: qué}, {surface: cola, lexeme: cola, feats: {Number: Sing}}, {surface: asere, lexeme: asere, feats: {Number: Sing}}]
+      translations:
+        en: What a line, man!
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿El último?
+          tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: último, lexeme: último, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: Who's last?
+  - line:
+      speaker: senora
+      forms:
+        es-Latn/standard:
+          text: Yo soy la última, mi vida.
+          tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: última, lexeme: último, feats: {Gender: Fem, Number: Sing}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+      translations:
+        en: I'm last, darling.
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: ¿Qué hora es?
+          tokens: [{surface: Qué, lexeme: qué}, {surface: hora, lexeme: hora, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: What time is it?
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Son las ocho y media. ¡Y el cumpleaños de Lili es a las nueve!
+          tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}, {surface: y, lexeme: y}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: nueve, lexeme: nueve}]
+      translations:
+        en: It's half past eight. And Lili's birthday party is at nine!
+  - choose:
+      prompt:
+        en: When is Lili's birthday party?
+      options:
+      - en: At nine
+      - en: At half past eight
+      - en: At one
+      answer: 0
+  - line:
+      speaker: dependienta
+      forms:
+        es-Latn/standard:
+          text: ¿Qué tú quieres, mi vida?
+          tokens: [{surface: Qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+      translations:
+        en: What would you like, darling?
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Una colada y diez tostones, por favor.
+          tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: colada, lexeme: colada, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: diez, lexeme: diez}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      translations:
+        en: A colada and ten tostones, please.
+  - line:
+      speaker: dependienta
+      forms:
+        es-Latn/standard:
+          text: Son veinte dólares.
+          tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veinte, lexeme: veinte}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}]
+      translations:
+        en: That's twenty dollars.
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: ¿Veinte dólares? ¡Asere!
+          tokens: [{surface: Veinte, lexeme: veinte}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}, {surface: Asere, lexeme: asere, feats: {Number: Sing}}]
+      translations:
+        en: Twenty dollars? Man!
+  - choose:
+      prompt:
+        en: How much do the colada and the tostones cost?
+      options:
+      - en: Twenty dollars
+      - en: Ten dollars
+      - en: A hundred pesos
+      answer: 0
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:cumpleaños
+      distractors:
+      - lexeme:arroz
+      - lexeme:pollo
+      forms:
+        es-Latn/standard:
+          text: ¡Feliz cumpleaños, mi vida!
+          tokens: [{surface: Feliz, lexeme: feliz, feats: {Gender: Masc, Number: Sing}}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+      translations:
+        en: Happy birthday, darling!
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¡Gracias, abuela!
+          tokens: [{surface: Gracias, lexeme: gracias}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: Thank you, Grandma!
+  - line:
+      speaker: yasiel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Lili, ¿cuántos años tú tienes?
+          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Lili, how old are you?
+  - line:
+      speaker: lili
+      ask: complete
+      gap: lexeme:año
+      distractors:
+      - lexeme:peso
+      - lexeme:padre
+      forms:
+        es-Latn/standard:
+          text: Tengo diecinueve años.
+          tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: diecinueve, lexeme: diecinueve}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      translations:
+        en: I'm nineteen.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Diecinueve! Y yo tengo setenta y nueve.
+          tokens: [{surface: Diecinueve, lexeme: diecinueve}, {surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: setenta, lexeme: setenta}, {surface: y, lexeme: y}, {surface: nueve, lexeme: nueve}]
+      translations:
+        en: Nineteen! And I'm seventy-nine.
+  - choose:
+      prompt:
+        en: How old is Abuela Cachita?
+      options:
+      - en: Seventy-nine
+      - en: Nineteen
+      - en: Twenty-four
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuela, tenemos hambre.
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hambre, lexeme: hambre, feats: {Number: Sing}}]
+      translations:
+        en: Grandma, we're hungry.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡A comer!
+          tokens: [{surface: A, lexeme: a}, {surface: comer, lexeme: comer, feats: {VerbForm: Inf}}]
+      translations:
+        en: Let's eat!

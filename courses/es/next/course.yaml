@@ -1,0 +1,115 @@
+# courses/es in the new shape (schemas/course-source.next.schema.json).
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: es
+target: es-Latn-CU
+orthographies:
+- es-Latn/standard
+support:
+- en-Latn/standard
+lexicon: es
+variety: es-CU
+names:
+  en:
+    course: Cuban Spanish
+    blurb: 'Spanish as Cuban families speak it, in Cuba and in Miami: for heritage speakers, and from the start.'
+    orthographies:
+      es-Latn/standard: Spanish spelling
+  ar:
+    course: الإسبانية الكوبية
+    orthographies:
+      es-Latn/standard: الإملاء الإسباني
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  fa:
+    course: اسپانیایی کوبایی
+    orthographies:
+      es-Latn/standard: املای اسپانیایی
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  uz:
+    course: Kuba ispan tili
+    orthographies:
+      es-Latn/standard: Ispan imlosi
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  uz-Cyrl:
+    course: Куба испан тили
+    orthographies:
+      es-Latn/standard: Испан имлоси
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  zh-Hant-HK:
+    course: 古巴西班牙語
+    orthographies:
+      es-Latn/standard: 西班牙文拼寫
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+license: CC-BY-SA-4.0
+provenance:
+  author: llm:claude@1ebc6e7db77a
+  status: draft
+iPlusOne: 2
+placement:
+  production: typed
+audio:
+  voices:
+  - id: coral-m
+    provider: omnivoice
+    voice: coral-m
+    speaker: m
+    model: k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4
+    language: es
+    orthography: es-Latn/standard
+    reading: text
+    finalStop: true
+    license: CC-BY-NC-4.0
+  - id: zapata-f
+    provider: omnivoice
+    voice: zapata-f
+    speaker: f
+    model: k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4
+    language: es
+    orthography: es-Latn/standard
+    reading: text
+    finalStop: true
+    license: CC-BY-NC-4.0
+consistentReadings: true
+wordParts: true
+units:
+- units/u01-que-bola.yaml
+- units/u02-la-familia.yaml
+- units/u03-la-casa.yaml
+- units/u04-la-comida.yaml
+- units/u05-los-numeros.yaml
+- units/u06-el-barrio.yaml
+- units/u07-el-dia.yaml
+- units/u08-de-compras.yaml
+- units/u09-ayer.yaml
+- units/u10-el-viaje.yaml
+- units/u11-las-tildes.yaml
+- units/u12-cuando-era-nino.yaml
+- units/u13-los-cuentos-de-abuela.yaml
+- units/u14-la-cocina-cubana.yaml
+- units/u15-la-carta.yaml
+- units/u16-la-musica.yaml
+- units/u17-pelota-y-domino.yaml
+- units/u18-la-salud.yaml
+- units/u19-con-respeto.yaml
+- units/u20-nochebuena.yaml
+- units/u21-los-consejos.yaml
+- units/u22-la-llamada.yaml
+- units/u23-refranes.yaml
+- units/u24-la-historia.yaml
+- units/u25-la-habana.yaml
+- units/u26-el-campo.yaml
+- units/u27-marti.yaml
+- units/u28-si-pudiera.yaml
+- units/u29-quien-soy.yaml
+- units/u30-el-brindis.yaml

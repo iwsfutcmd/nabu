@@ -1,0 +1,565 @@
+# Unit u04-what-have-you-done of courses/hbo in the new shape.
+# Written by `nabu migrate` from courses/hbo and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u04-what-have-you-done
+title:
+  en: What have you done?
+cefr: A1
+nodes:
+- {id: hbo.u04.who-are-you, kind: lesson, introduces: ['lexeme:mi', 'lexeme:atta', 'lexeme:at', 'lexeme:nagad', 'lexeme:hu', 'lexeme:hi']}
+- {id: hbo.u04.the-tree, kind: lesson, introduces: ['lexeme:asher', 'lexeme:ha.q', 'lexeme:akhal', 'feature:VerbForm=Inf', 'lexeme:tsivvah', 'lexeme:bilti']}
+- {id: hbo.u04.she-gave, kind: lesson, introduces: ['lexeme:natan', 'lexeme:immad', 'lexeme:sfx-1cs']}
+- {id: hbo.u04.what-have-you-done, kind: lesson, introduces: ['lexeme:mah', 'lexeme:zot', 'lexeme:asah']}
+- {id: hbo.u04.the-serpent, kind: lesson, introduces: ['lexeme:nahash', 'lexeme:nasha']}
+- {id: hbo.u04.story, kind: story}
+sentences:
+- id: s.04.1
+  node: hbo.u04.who-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִי
+      tokens: [{surface: מִי, lexeme: mi, readings: {tiberian: mî}}]
+      reverse: מי
+  translations:
+    en: who?
+- id: s.04.2
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַתָּה
+      tokens: [{surface: אַתָּה, lexeme: atta, readings: {tiberian: ʾattâ}}]
+      reverse: אתה
+  translations:
+    en: you
+- id: s.04.3
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִי אַתָּה׃
+      tokens: [{surface: מִי, lexeme: mi, readings: {tiberian: mî}}, {surface: אַתָּה, lexeme: atta, readings: {tiberian: ʾattâ}}]
+      reverse: מי אתה
+  translations:
+    en: Who are you?
+- id: s.04.4
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַתְּ
+      tokens: [{surface: אַתְּ, lexeme: at, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: ʾatt}}]
+      reverse: את
+  translations:
+    en: you
+- id: s.04.5
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: f}}
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִי־אָתְּ׃
+      tokens: [{surface: מִי, lexeme: mi, readings: {tiberian: mî-}}, {surface: אָתְּ, lexeme: at, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: ʾātt}}]
+      reverse: מי את
+  translations:
+    en: Who are you?
+- id: s.04.6
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַתָּה בַּגָּן׃
+      tokens: [{surface: אַתָּה, lexeme: atta, readings: {tiberian: ʾattâ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      reverse: |-
+        אתה בגן
+        בגן אתה
+  translations:
+    en: |-
+      You are in the garden.
+      You're in the garden.
+- id: s.04.7
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: f}}
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַתְּ בַּגָּן׃
+      tokens: [{surface: אַתְּ, lexeme: at, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: ʾatt}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      reverse: |-
+        את בגן
+        בגן את
+  translations:
+    en: |-
+      You are in the garden.
+      You're in the garden.
+- id: s.04.8
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִי הִגִּיד לְךָ׃
+      tokens: [{surface: מִי, lexeme: mi, readings: {tiberian: mî}}, {surface: הִגִּיד, lexeme: nagad, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: higgîḏ}}, {surface: לְךָ, lexemes: [{lexeme: le, surface: לְ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḵā}}]
+      reverse: מי הגיד לך
+  translations:
+    en: Who told you?
+- id: s.04.9
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵירֹם אַתָּה׃
+      tokens: [{surface: עֵירֹם, lexeme: erom, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ʿêrōm}}, {surface: אַתָּה, lexeme: atta, readings: {tiberian: ʾattâ}}]
+      reverse: |-
+        (עירם|עירום) אתה
+        אתה (עירם|עירום)
+  translations:
+    en: |-
+      You are naked.
+      You're naked.
+- id: s.04.10
+  node: hbo.u04.who-are-you
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הוּא בַּגָּן׃
+      tokens: [{surface: הוּא, lexeme: hu, readings: {tiberian: hûʾ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      reverse: |-
+        הוא בגן
+        בגן הוא
+  translations:
+    en: |-
+      He is in the garden.
+      (He's|It is|It's) in the garden.
+- id: s.04.11
+  node: hbo.u04.who-are-you
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִיא בַּגָּן׃
+      tokens: [{surface: הִיא, lexeme: hi, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: hîʾ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      reverse: |-
+        היא בגן
+        בגן היא
+  translations:
+    en: |-
+      She is in the garden.
+      (She's|It is|It's) in the garden.
+- id: s.04.12
+  node: hbo.u04.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הוּא הִגִּיד לְךָ׃
+      tokens: [{surface: הוּא, lexeme: hu, readings: {tiberian: hûʾ}}, {surface: הִגִּיד, lexeme: nagad, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: higgîḏ}}, {surface: לְךָ, lexemes: [{lexeme: le, surface: לְ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḵā}}]
+      reverse: |-
+        הוא הגיד לך
+        הגיד הוא לך
+  translations:
+    en: |-
+      He told you.
+      He (has told|declared to) you.
+- id: s.04.13
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲשֶׁר
+      tokens: [{surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}]
+      reverse: אשר
+  translations:
+    en: (who|which|that)
+- id: s.04.14
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָעֵץ אֲשֶׁר בְּתוֹךְ הַגָּן
+      tokens: [{surface: הָעֵץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ets, surface: עֵץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿēṣ}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: בְּתוֹךְ, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: tokh, surface: תוֹךְ, base: true, feats: {Definite: Cons, Number: Sing}}], readings: {tiberian: bəṯôḵ}}, {surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: haggān}}]
+      reverse: העץ אשר בתוך הגן
+  translations:
+    en: the tree (that|which) is in the (middle|midst) of the garden
+- id: s.04.15
+  node: hbo.u04.the-tree
+  tags:
+  - {persons: {addressee: m}}
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַאַתָּה בַּגָּן׃
+      tokens: [{surface: הַאַתָּה, lexemes: [{lexeme: ha.q, surface: הַ}, {lexeme: atta, surface: אַתָּה, base: true}], readings: {tiberian: haʾattâ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      reverse: האתה בגן
+  translations:
+    en: Are you in the garden?
+- id: s.04.16
+  node: hbo.u04.the-tree
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָכַלְתָּ
+      tokens: [{surface: אָכַלְתָּ, lexeme: akhal, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʾāḵáltā}}]
+      reverse: |-
+        אכלת
+        אתה אכלת
+  translations:
+    en: |-
+      you ate
+      you have eaten
+- id: s.04.17
+  node: hbo.u04.the-tree
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הֲמִן־הָעֵץ אָכַלְתָּ׃
+      tokens: [{surface: הֲמִן, lexemes: [{lexeme: ha.q, surface: הֲ}, {lexeme: min, surface: מִן, base: true}], readings: {tiberian: hămin-}}, {surface: הָעֵץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ets, surface: עֵץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿēṣ}}, {surface: אָכַלְתָּ, lexeme: akhal, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʾāḵáltā}}]
+      reverse: המן העץ אכלת
+  translations:
+    en: |-
+      Did you eat from the tree?
+      Have you eaten (from|of) the tree?
+- id: s.04.18
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֶאֱכֹל
+      tokens: [{surface: לֶאֱכֹל, lexemes: [{lexeme: le, surface: לֶ}, {lexeme: akhal, surface: אֱכֹל, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: leʾĕḵōl}}]
+      reverse: (לאכל|לאכול)
+  translations:
+    en: |-
+      to eat
+      eating
+- id: s.04.19
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְצַו יְהוָה אֱלֹהִים עַל־הָאָדָם׃
+      tokens: [{surface: וַיְצַו, lexeme: tsivvah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayṣaw}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾāḏām}}]
+      reverse: |-
+        ויצו יהוה (אלהים|אלוהים) על האדם
+        יהוה (אלהים|אלוהים) צוה על האדם
+        ויהוה (אלהים|אלוהים) צוה על האדם
+        צוה יהוה (אלהים|אלוהים) על האדם
+  translations:
+    en: '[(And|Then)] the LORD God commanded the man.'
+- id: s.04.20
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְבִלְתִּי אֲכָל־מִמֶּנּוּ
+      tokens: [{surface: לְבִלְתִּי, lexemes: [{lexeme: le, surface: לְ}, {lexeme: bilti, surface: בִלְתִּי, base: true}], readings: {tiberian: ləḇiltî}}, {surface: אֲכָל, lexeme: akhal, feats: {VerbForm: Inf}, readings: {tiberian: ʾăḵol-}}, {surface: מִמֶּנּוּ, lexemes: [{lexeme: min, surface: מִמֶּ, base: true}, {lexeme: sfx-3ms, surface: נּוּ}], readings: {tiberian: mimménnû}}]
+      reverse: לבלתי אכל ממנו
+  translations:
+    en: not to eat (from|of|any of) it
+- id: s.04.21
+  node: hbo.u04.she-gave
+  forms:
+    hbo-Hebr/tiberian:
+      text: נָתַן
+      tokens: [{surface: נָתַן, lexeme: natan, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: nāṯan}}]
+      reverse: |-
+        נתן
+        הוא נתן
+  translations:
+    en: |-
+      he gave
+      he has given
+- id: s.04.22
+  node: hbo.u04.she-gave
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִיא נָתְנָה־לִּי׃
+      tokens: [{surface: הִיא, lexeme: hi, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: hîʾ}}, {surface: נָתְנָה, lexeme: natan, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: nāṯənâ-}}, {surface: לִּי, lexemes: [{lexeme: le, surface: לִּ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}]
+      reverse: |-
+        היא נתנה לי
+        נתנה לי היא
+        נתנה היא לי
+  translations:
+    en: |-
+      She gave (it|some) to me.
+      She gave me (it|some).
+- id: s.04.23
+  node: hbo.u04.she-gave
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִמָּדִי
+      tokens: [{surface: עִמָּדִי, lexemes: [{lexeme: immad, surface: עִמָּדִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʿimmāḏî}}]
+      reverse: עמדי
+  translations:
+    en: with me
+- id: s.04.24
+  node: hbo.u04.she-gave
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאִשָּׁה אֲשֶׁר נָתַתָּה עִמָּדִי
+      tokens: [{surface: הָאִשָּׁה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: נָתַתָּה, lexeme: natan, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: nāṯáttâ}}, {surface: עִמָּדִי, lexemes: [{lexeme: immad, surface: עִמָּדִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʿimmāḏî}}]
+      reverse: האשה אשר נתתה עמדי
+  translations:
+    en: |-
+      the woman (whom|that|who) you gave to be with me
+      the woman (whom|that|who) you (put|placed|gave) [here] with me
+- id: s.04.25
+  node: hbo.u04.she-gave
+  forms:
+    hbo-Hebr/tiberian:
+      text: נָתְנָה לִי מִן־הָעֵץ וָאֹכֵל׃
+      tokens: [{surface: נָתְנָה, lexeme: natan, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: nāṯənâ}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָעֵץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ets, surface: עֵץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿēṣ}}, {surface: וָאֹכֵל, lexeme: akhal, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾōḵēl}}]
+      reverse: נתנה לי מן העץ (ואכל|ואוכל)
+  translations:
+    en: |-
+      She gave me [(some|fruit)] from the tree, and I ate [it].
+      She gave me (some|fruit) of the tree, and I ate [it].
+- id: s.04.26
+  node: hbo.u04.what-have-you-done
+  forms:
+    hbo-Hebr/tiberian:
+      text: מַה־זֹּאת׃
+      tokens: [{surface: מַה, lexeme: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, lexeme: zot, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: zōʾṯ}}]
+      reverse: מה (זאת|זואת)
+  translations:
+    en: |-
+      What is this?
+      What's this?
+- id: s.04.27
+  node: hbo.u04.what-have-you-done
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מַה־זֹּאת עָשִׂית׃
+      tokens: [{surface: מַה, lexeme: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, lexeme: zot, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: zōʾṯ}}, {surface: עָשִׂית, lexeme: asah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʿāśîṯ}}]
+      reverse: מה (זאת|זואת) עשית
+  translations:
+    en: |-
+      What is this [that] you have done?
+      What have you done?
+- id: s.04.28
+  node: hbo.u04.what-have-you-done
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מֶה עָשִׂיתָ׃
+      tokens: [{surface: מֶה, lexeme: mah, readings: {tiberian: meh}}, {surface: עָשִׂיתָ, lexeme: asah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʿāśî́ṯā}}]
+      reverse: מה עשית
+  translations:
+    en: |-
+      What have you done?
+      What did you do?
+- id: s.04.29
+  node: hbo.u04.what-have-you-done
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתֹּאמֶר הָאִשָּׁה׃
+      tokens: [{surface: וַתֹּאמֶר, lexeme: amar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾiššâ}}]
+      reverse: |-
+        (ותאמר|ותואמר) האשה
+        האשה אמרה
+        והאשה אמרה
+        אמרה האשה
+  translations:
+    en: '[(And|Then)] the woman said.'
+- id: s.04.30
+  node: hbo.u04.what-have-you-done
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתֹּאמֶר הָאִשָּׁה אֶל־הָאָדָם׃
+      tokens: [{surface: וַתֹּאמֶר, lexeme: amar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾiššâ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾāḏām}}]
+      reverse: |-
+        (ותאמר|ותואמר) האשה אל האדם
+        האשה אמרה אל האדם
+        והאשה אמרה אל האדם
+        אמרה האשה אל האדם
+  translations:
+    en: '[(And|Then)] the woman said to the man.'
+- id: s.04.31
+  node: hbo.u04.what-have-you-done
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי מִתְהַלֶּכֶת בַּגָּן׃
+      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מִתְהַלֶּכֶת, lexeme: hithallekh, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: miṯhalléḵeṯ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      reverse: |-
+        (אנכי|אנוכי) מתהלכת בגן
+        מתהלכת (אנכי|אנוכי) בגן
+  translations:
+    en: |-
+      I am walking [(about|around)] in the garden.
+      I'm walking [(about|around)] in the garden.
+- id: s.04.32
+  node: hbo.u04.what-have-you-done
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי מִתְהַלֵּךְ בַּגָּן׃
+      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מִתְהַלֵּךְ, lexeme: hithallekh, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      reverse: |-
+        (אנכי|אנוכי) מתהלך בגן
+        מתהלך (אנכי|אנוכי) בגן
+  translations:
+    en: |-
+      I am walking [(about|around)] in the garden.
+      I'm walking [(about|around)] in the garden.
+- id: s.04.33
+  node: hbo.u04.the-serpent
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנָּחָשׁ
+      tokens: [{surface: הַנָּחָשׁ, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: nahash, surface: נָּחָשׁ, base: true, feats: {Number: Sing}}], readings: {tiberian: hannāḥāš}}]
+      reverse: הנחש
+  translations:
+    en: the (serpent|snake)
+- id: s.04.34
+  node: hbo.u04.the-serpent
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנָּחָשׁ בַּגָּן׃
+      tokens: [{surface: הַנָּחָשׁ, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: nahash, surface: נָּחָשׁ, base: true, feats: {Number: Sing}}], readings: {tiberian: hannāḥāš}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}}], readings: {tiberian: baggān}}]
+      reverse: הנחש בגן
+  translations:
+    en: The (serpent|snake) is in the garden.
+- id: s.04.35
+  node: hbo.u04.the-serpent
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנָּחָשׁ הִשִּׁיאַנִי׃
+      tokens: [{surface: הַנָּחָשׁ, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: nahash, surface: נָּחָשׁ, base: true, feats: {Number: Sing}}], readings: {tiberian: hannāḥāš}}, {surface: הִשִּׁיאַנִי, lexemes: [{lexeme: nasha, surface: הִשִּׁיאַ, base: true, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: hiššîʾánî}}]
+      reverse: |-
+        הנחש השיאני
+        השיאני הנחש
+  translations:
+    en: The (serpent|snake) (deceived|tricked|beguiled) me.
+- id: s.04.36
+  node: hbo.u04.the-serpent
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנָּחָשׁ הִשִּׁיאַנִי וָאֹכֵל׃
+      tokens: [{surface: הַנָּחָשׁ, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: nahash, surface: נָּחָשׁ, base: true, feats: {Number: Sing}}], readings: {tiberian: hannāḥāš}}, {surface: הִשִּׁיאַנִי, lexemes: [{lexeme: nasha, surface: הִשִּׁיאַ, base: true, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: hiššîʾánî}}, {surface: וָאֹכֵל, lexeme: akhal, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾōḵēl}}]
+      reverse: הנחש השיאני (ואכל|ואוכל)
+  translations:
+    en: The (serpent|snake) (deceived|tricked|beguiled) me, and I ate.
+stories:
+- id: hbo.story.what-have-you-done
+  node: hbo.u04.story
+  title:
+    en: What have you done? (Genesis 3:11–13)
+  characters:
+  - id: god
+    name:
+      hbo-Hebr/tiberian: יְהוָה
+  - id: adam
+    speaker: m
+    name:
+      hbo-Hebr/tiberian: הָאָדָם
+  - id: woman
+    speaker: f
+    name:
+      hbo-Hebr/tiberian: הָאִשָּׁה
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: god
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: מִי הִגִּיד לְךָ כִּי עֵירֹם אָתָּה
+          tokens: [{surface: מִי, lexeme: mi, readings: {tiberian: mî}}, {surface: הִגִּיד, lexeme: nagad, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: higgîḏ}}, {surface: לְךָ, lexemes: [{lexeme: le, surface: לְ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḵā}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî}}, {surface: עֵירֹם, lexeme: erom, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ʿêrōm}}, {surface: אָתָּה, lexeme: atta, readings: {tiberian: ʾā́ttâ}}]
+      translations:
+        en: “Who told you that you were naked?
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: הֲמִן־הָעֵץ אֲשֶׁר צִוִּיתִיךָ לְבִלְתִּי אֲכָל־מִמֶּנּוּ אָכָלְתָּ׃
+          tokens: [{surface: הֲמִן, lexemes: [{lexeme: ha.q, surface: הֲ}, {lexeme: min, surface: מִן, base: true}], readings: {tiberian: hămin-}}, {surface: הָעֵץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ets, surface: עֵץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿēṣ}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: צִוִּיתִיךָ, lexemes: [{lexeme: tsivvah, surface: צִוִּיתִי, base: true, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ṣiwwîṯî́ḵā}}, {surface: לְבִלְתִּי, lexemes: [{lexeme: le, surface: לְ}, {lexeme: bilti, surface: בִלְתִּי, base: true}], readings: {tiberian: ləḇiltî}}, {surface: אֲכָל, lexeme: akhal, feats: {VerbForm: Inf}, readings: {tiberian: ʾăḵol-}}, {surface: מִמֶּנּוּ, lexemes: [{lexeme: min, surface: מִמֶּ, base: true}, {lexeme: sfx-3ms, surface: נּוּ}], readings: {tiberian: mimménnû}}, {surface: אָכָלְתָּ, lexeme: akhal, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʾāḵā́ltā}}]
+      translations:
+        en: Have you eaten from the tree that I commanded you not to eat from?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר הָאָדָם
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾāḏām}}]
+      translations:
+        en: And the man said,
+  - line:
+      speaker: adam
+      ask: complete
+      gap: lexeme:ets
+      distractors:
+      - lexeme:qol
+      - lexeme:or
+      forms:
+        hbo-Hebr/tiberian:
+          text: הָאִשָּׁה אֲשֶׁר נָתַתָּה עִמָּדִי הִוא נָתְנָה־לִּי מִן־הָעֵץ וָאֹכֵל׃
+          tokens: [{surface: הָאִשָּׁה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: נָתַתָּה, lexeme: natan, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: nāṯáttâ}}, {surface: עִמָּדִי, lexemes: [{lexeme: immad, surface: עִמָּדִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʿimmāḏî}}, {surface: הִוא, lexeme: hi, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: hîʾ}}, {surface: נָתְנָה, lexeme: natan, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: nāṯənâ-}}, {surface: לִּי, lexemes: [{lexeme: le, surface: לִּ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָעֵץ, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ets, surface: עֵץ, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿēṣ}}, {surface: וָאֹכֵל, lexeme: akhal, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾōḵēl}}]
+      translations:
+        en: “The woman whom you gave to be with me, she gave me (fruit) from the tree, and I ate.”
+  - choose:
+      prompt:
+        en: Who gave the man fruit from the tree, as he tells it?
+      options:
+      - en: the woman
+      - en: the serpent
+      - en: the LORD God
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר יְהוָה אֱלֹהִים לָאִשָּׁה
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: לָאִשָּׁה, lexemes: [{lexeme: le, surface: לָ}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: lāʾiššâ}}]
+      translations:
+        en: And the LORD God said to the woman,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: מַה־זֹּאת עָשִׂית
+          tokens: [{surface: מַה, lexeme: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, lexeme: zot, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: zōʾṯ}}, {surface: עָשִׂית, lexeme: asah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʿāśîṯ}}]
+      translations:
+        en: “What is this that you have done?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַתֹּאמֶר הָאִשָּׁה
+          tokens: [{surface: וַתֹּאמֶר, lexeme: amar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾiššâ}}]
+      translations:
+        en: And the woman said,
+  - line:
+      speaker: woman
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: הַנָּחָשׁ הִשִּׁיאַנִי וָאֹכֵל׃
+          tokens: [{surface: הַנָּחָשׁ, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: nahash, surface: נָּחָשׁ, base: true, feats: {Number: Sing}}], readings: {tiberian: hannāḥāš}}, {surface: הִשִּׁיאַנִי, lexemes: [{lexeme: nasha, surface: הִשִּׁיאַ, base: true, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: hiššîʾánî}}, {surface: וָאֹכֵל, lexeme: akhal, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾōḵēl}}]
+      translations:
+        en: “The serpent deceived me, and I ate.”
+  - choose:
+      prompt:
+        en: Whom does the woman blame?
+      options:
+      - en: the serpent
+      - en: the man
+      - en: herself
+      answer: 0

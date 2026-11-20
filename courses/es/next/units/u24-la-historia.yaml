@@ -1,0 +1,618 @@
+# Unit u24 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u24
+title:
+  en: 'La historia: the family''s story'
+cefr: B2
+nodes:
+- {id: es.u24.la-historia, kind: lesson, introduces: ['lexeme:historia', 'lexeme:irse', 'lexeme:ochenta', 'lexeme:nacer', 'lexeme:exilio', 'lexeme:sesenta']}
+- {id: es.u24.el-mariel, kind: lesson, introduces: ['lexeme:puerto', 'lexeme:mariel', 'lexeme:buscar', 'lexeme:lancha', 'lexeme:mar', 'lexeme:cayo-hueso', 'lexeme:mil']}
+- {id: es.u24.marisol, kind: lesson, introduces: ['lexeme:quedarse', 'lexeme:dejar', 'lexeme:pensar']}
+- {id: es.u24.los-balseros, kind: lesson, introduces: ['lexeme:cienfuegos', 'lexeme:noventa', 'lexeme:balsa', 'lexeme:miedo', 'lexeme:balsero', 'lexeme:guardacostas', 'lexeme:guantánamo']}
+- {id: es.u24.la-pequena-habana, kind: lesson, introduces: ['lexeme:pequeña-habana', 'lexeme:factoría', 'lexeme:papel', 'lexeme:libertad']}
+- {id: es.u24.juntos, kind: lesson, introduces: ['lexeme:separarse', 'lexeme:reunirse']}
+- {id: es.u24.story, kind: story}
+sentences:
+- id: s.u24.1
+  node: es.u24.la-historia
+  forms:
+    es-Latn/standard:
+      text: Daniel quiere saber la historia de su familia.
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: saber, lexeme: saber, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: historia, lexeme: historia, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}]
+      reverse: Daniel quiere (saber|conocer) la historia de su familia
+  translations:
+    en: Daniel wants to know (his family's (history|story)|the (history|story) of his family).
+- id: s.u24.2
+  node: es.u24.la-historia
+  forms:
+    es-Latn/standard:
+      text: Abuela y abuelo se fueron de Cuba en el ochenta.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: fueron, lexeme: irse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ochenta, lexeme: ochenta}]
+      reverse: (Abuela y abuelo|Los abuelos|Mis abuelos) (se fueron|salieron) de Cuba en (el ochenta|mil novecientos ochenta|1980)
+  translations:
+    en: (Grandma and Grandpa|My grandparents|The grandparents|Grandmother and Grandfather) left Cuba in (1980|'80|nineteen eighty).
+- id: s.u24.3
+  node: es.u24.la-historia
+  forms:
+    es-Latn/standard:
+      text: Antes del ochenta, abuelo Pepe nunca había salido de Matanzas.
+      tokens: [{surface: Antes, lexeme: antes}, {surface: del, lexeme: del}, {surface: ochenta, lexeme: ochenta}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: nunca, lexeme: nunca}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: salido, lexeme: salir, feats: {Tense: Past, VerbForm: Part}}, {surface: de, lexeme: de}, {surface: Matanzas, lexeme: matanzas}]
+      reverse: |-
+        (Antes del ochenta|Antes de mil novecientos ochenta|Antes de 1980) (abuelo Pepe|el abuelo Pepe|mi abuelo Pepe) nunca había salido de Matanzas
+        (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) nunca había salido de Matanzas (antes del ochenta|antes de mil novecientos ochenta|antes de 1980)
+        Antes del ochenta, abuelo Pepe no había salido nunca de Matanzas
+  translations:
+    en: |-
+      Before (1980|'80), (Grandpa|Grandfather|Abuelo|my grandpa|my grandfather) Pepe had never (left|been out of|been outside) Matanzas.
+      (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe had never (left|been out of|been outside) Matanzas before (1980|'80).
+- id: s.u24.4
+  node: es.u24.la-historia
+  forms:
+    es-Latn/standard:
+      text: Cuando Mami nació, abuela ya había llegado a Miami.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: nació, lexeme: nacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: ya, lexeme: ya}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: llegado, lexeme: llegar, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}]
+      reverse: |-
+        Cuando (Mami|mamá|mi mamá|mi mami) nació (abuela|la abuela|mi abuela) ya había llegado a Miami
+        (Abuela|La abuela|Mi abuela) ya había llegado a Miami cuando (Mami|mamá|mi mamá|mi mami) nació
+  translations:
+    en: |-
+      When (Mom|Mommy|Mum|my mom) was born, (Grandma|Grandmother|Abuela|my grandma|my grandmother) had already (arrived in|come to|gotten to|got to) Miami.
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) had already (arrived in|come to|gotten to|got to) Miami when (Mom|Mommy|Mum|my mom) was born.
+- id: s.u24.5
+  node: es.u24.la-historia
+  forms:
+    es-Latn/standard:
+      text: Muchos cubanos se fueron al exilio en los años sesenta.
+      tokens: [{surface: Muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: fueron, lexeme: irse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: exilio, lexeme: exilio, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: sesenta, lexeme: sesenta}]
+      reverse: Muchos cubanos se fueron al exilio en los (años sesenta|sesenta)
+  translations:
+    en: Many Cubans went into exile in the (sixties|1960s|'60s).
+- id: s.u24.6
+  node: es.u24.la-historia
+  forms:
+    es-Latn/standard:
+      text: Doña Ofelia había llegado a Miami antes que abuela.
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: llegado, lexeme: llegar, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}, {surface: antes, lexeme: antes}, {surface: que, lexeme: que}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      reverse: |-
+        Doña Ofelia había llegado a Miami antes que (abuela|la abuela|mi abuela)
+        Doña Ofelia había llegado a Miami antes de la abuela
+  translations:
+    en: (Doña Ofelia|Ofelia) had (arrived in|come to|gotten to|got to) Miami before (Grandma|Grandmother|Abuela|my grandma|my grandmother) [did].
+- id: s.u24.7
+  node: es.u24.el-mariel
+  forms:
+    es-Latn/standard:
+      text: El puerto del Mariel está cerca de La Habana.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: puerto, lexeme: puerto, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: Mariel, lexeme: mariel}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cerca, lexeme: cerca}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      reverse: El puerto (del|de) Mariel está cerca de La Habana
+  translations:
+    en: |-
+      The port of Mariel is (near|close to) Havana.
+      (Mariel's port|The Mariel port) is (near|close to) Havana.
+- id: s.u24.8
+  node: es.u24.el-mariel
+  forms:
+    es-Latn/standard:
+      text: Un primo de abuelo vino a buscarlos en una lancha.
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: vino, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: buscarlos, lexemes: [{lexeme: buscar, surface: buscar, base: true, feats: {VerbForm: Inf}}, {lexeme: lo, surface: los, feats: {Number: Plur}}]}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: lancha, lexeme: lancha, feats: {Number: Sing}}]
+      reverse: |-
+        Un primo (de abuelo|del abuelo|de mi abuelo) vino a (buscarlos|recogerlos) en (una lancha|un barco|un bote)
+        Un primo de abuelo los vino a buscar en una lancha
+  translations:
+    en: |-
+      A cousin of (Grandpa's|Grandfather's|Abuelo's|my grandpa's|my grandfather's) came to (pick them up|get them|fetch them) in a (motorboat|boat|launch).
+      One of (Grandpa's|Grandfather's|Abuelo's|my grandpa's|my grandfather's) cousins came to (pick them up|get them|fetch them) in a (motorboat|boat|launch).
+- id: s.u24.9
+  node: es.u24.el-mariel
+  forms:
+    es-Latn/standard:
+      text: La lancha salió del Mariel de noche con treinta cubanos.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: lancha, lexeme: lancha, feats: {Number: Sing}}, {surface: salió, lexeme: salir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: del, lexeme: del}, {surface: Mariel, lexeme: mariel}, {surface: de, lexeme: de}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: treinta, lexeme: treinta}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}]
+      reverse: |-
+        La lancha salió (del|de) Mariel de noche con treinta cubanos
+        La lancha salió de noche (del|de) Mariel con treinta cubanos
+  translations:
+    en: The (motorboat|boat|launch) (left|sailed from|left from) Mariel at night with thirty Cubans [on board].
+- id: s.u24.10
+  node: es.u24.el-mariel
+  forms:
+    es-Latn/standard:
+      text: Abuela nunca había visto el mar de noche.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: nunca, lexeme: nunca}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mar, lexeme: mar, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) nunca había visto el mar de noche
+        Abuela no había visto nunca el mar de noche
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) had never seen the sea at night.
+      Grandma had never seen the ocean at night.
+- id: s.u24.11
+  node: es.u24.el-mariel
+  forms:
+    es-Latn/standard:
+      text: Después de un día en el mar, llegaron a Cayo Hueso.
+      tokens: [{surface: Después, lexeme: después}, {surface: de, lexeme: de}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: día, lexeme: día, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mar, lexeme: mar, feats: {Number: Sing}}, {surface: llegaron, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Cayo, lexeme: cayo-hueso}, {surface: Hueso, lexeme: cayo-hueso}]
+      reverse: |-
+        Después de un día en el mar llegaron a Cayo Hueso
+        Llegaron a Cayo Hueso después de un día en el mar
+        Después de un día en el mar, ellos llegaron a Cayo Hueso
+  translations:
+    en: |-
+      After a day at sea, they (arrived in|got to|reached|made it to|landed in) Key West.
+      They (arrived in|got to|reached|made it to|landed in) Key West after a day at sea.
+- id: s.u24.12
+  node: es.u24.el-mariel
+  forms:
+    es-Latn/standard:
+      text: En el ochenta llegaron más de cien mil cubanos.
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ochenta, lexeme: ochenta}, {surface: llegaron, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: de, lexeme: de}, {surface: cien, lexeme: cien}, {surface: mil, lexeme: mil}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}]
+      reverse: |-
+        En (el ochenta|mil novecientos ochenta|1980) llegaron más de cien mil cubanos
+        Más de cien mil cubanos llegaron en (el ochenta|mil novecientos ochenta|1980)
+  translations:
+    en: |-
+      In (1980|'80), more than (a hundred|one hundred) thousand Cubans (arrived|came).
+      More than (a hundred|one hundred) thousand Cubans (arrived|came) in (1980|'80).
+- id: s.u24.13
+  node: es.u24.marisol
+  forms:
+    es-Latn/standard:
+      text: Tía Marisol se quedó en Cuba con su abuela.
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: se, lexeme: se}, {surface: quedó, lexeme: quedarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: con, lexeme: con}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      reverse: (Tía Marisol|Mi tía Marisol|Marisol) se quedó en Cuba con su abuela
+  translations:
+    en: (Aunt Marisol|My aunt Marisol|Marisol) stayed in Cuba with her (grandmother|grandma).
+- id: s.u24.14
+  node: es.u24.marisol
+  forms:
+    es-Latn/standard:
+      text: Cuando los llamaron, Marisol estaba con su abuela en el campo.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: los, lexeme: lo, feats: {Number: Plur}}, {surface: llamaron, lexeme: llamar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: estaba, lexeme: estar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}]
+      reverse: |-
+        Cuando los llamaron Marisol estaba con su abuela en el campo
+        Marisol estaba con su abuela en el campo cuando los llamaron
+  translations:
+    en: |-
+      When (they were called|they called them|the call came), Marisol was with her (grandmother|grandma) in the (countryside|country).
+      Marisol was with her (grandmother|grandma) in the (countryside|country) when (they were called|they called them|the call came).
+- id: s.u24.15
+  node: es.u24.marisol
+  forms:
+    es-Latn/standard:
+      text: Abuela tuvo que dejar a su hija en Cuba.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tuvo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: dejar, lexeme: dejar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: hija, lexeme: hijo, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      reverse: (Abuela|La abuela|Mi abuela) tuvo que dejar a su hija en Cuba
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) had to leave her daughter [behind] in Cuba.
+- id: s.u24.16
+  node: es.u24.marisol
+  forms:
+    es-Latn/standard:
+      text: Abuela pensaba que Marisol iba a salir después, pero no pudo.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: pensaba, lexeme: pensar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: salir, lexeme: salir, feats: {VerbForm: Inf}}, {surface: después, lexeme: después}, {surface: pero, lexeme: pero}, {surface: 'no', lexeme: 'no'}, {surface: pudo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}]
+      reverse: (Abuela|La abuela|Mi abuela) (pensaba|creía) que Marisol iba a salir después pero no pudo
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) (thought|believed) [that] Marisol (was going to|would) (leave|get out|come) later, but she (couldn't|could not|wasn't able to).
+- id: s.u24.17
+  node: es.u24.marisol
+  forms:
+    es-Latn/standard:
+      text: Cuando abuela volvió a Cuba, Marisol ya se había casado.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: volvió, lexeme: volver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: ya, lexeme: ya}, {surface: se, lexeme: se}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: casado, lexeme: casarse, feats: {Tense: Past, VerbForm: Part}}]
+      reverse: |-
+        Cuando (abuela|la abuela|mi abuela) volvió a Cuba Marisol ya se había casado
+        Marisol ya se había casado cuando (abuela|la abuela|mi abuela) volvió a Cuba
+  translations:
+    en: |-
+      When (Grandma|Grandmother|Abuela|my grandma|my grandmother) (went back|returned|came back) to Cuba, Marisol had already (gotten|got) married.
+      Marisol had already (gotten|got) married when (Grandma|Grandmother|Abuela|my grandma|my grandmother) (went back|returned|came back) to Cuba.
+- id: s.u24.18
+  node: es.u24.los-balseros
+  forms:
+    es-Latn/standard:
+      text: Papi y su familia vivían en Cienfuegos, cerca del mar.
+      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Cienfuegos, lexeme: cienfuegos}, {surface: cerca, lexeme: cerca}, {surface: del, lexeme: del}, {surface: mar, lexeme: mar, feats: {Number: Sing}}]
+      reverse: (Papi|Papá|Mi papá|Mi papi) y su familia vivían en Cienfuegos cerca del mar
+  translations:
+    en: (Dad|Daddy|My dad) and his family (lived|used to live) in Cienfuegos, (near|close to|by) the sea.
+- id: s.u24.19
+  node: es.u24.los-balseros
+  forms:
+    es-Latn/standard:
+      text: En el noventa y cuatro, Papi y su padre salieron en una balsa.
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: noventa, lexeme: noventa}, {surface: y, lexeme: y}, {surface: cuatro, lexeme: cuatro}, {surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}, {surface: salieron, lexeme: salir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: balsa, lexeme: balsa, feats: {Number: Sing}}]
+      reverse: |-
+        En (el noventa y cuatro|mil novecientos noventa y cuatro|1994) (Papi|papá|mi papá|mi papi) y su (padre|papá) (salieron|se fueron) en una balsa
+        (Papi|Papá|Mi papá|Mi papi) y su (padre|papá) (salieron|se fueron) en una balsa en (el noventa y cuatro|mil novecientos noventa y cuatro|1994)
+  translations:
+    en: |-
+      In (1994|'94), (Dad|Daddy|my dad) and his father (left|set out|went) on a raft.
+      (Dad|Daddy|My dad) and his father (left|set out|went) on a raft in (1994|'94).
+- id: s.u24.20
+  node: es.u24.los-balseros
+  forms:
+    es-Latn/standard:
+      text: Papi era muy joven y tenía mucho miedo.
+      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: joven, lexeme: joven, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}}]
+      reverse: (Papi|Papá|Mi papá|Mi papi) era muy joven y tenía mucho miedo
+  translations:
+    en: |-
+      (Dad|Daddy|My dad) was (very|really) young and (was very scared|was very afraid|was really scared|was really afraid|was so scared).
+      Dad was very young and very scared.
+- id: s.u24.21
+  node: es.u24.los-balseros
+  forms:
+    es-Latn/standard:
+      text: Ellos fueron balseros, como miles de cubanos ese verano.
+      tokens: [{surface: Ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: fueron, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: balseros, lexeme: balsero, feats: {Number: Plur}}, {surface: como, lexeme: como.like}, {surface: miles, lexeme: mil, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: verano, lexeme: verano, feats: {Number: Sing}}]
+      reverse: '[Ellos] fueron balseros como miles de cubanos ese verano'
+  translations:
+    en: They were (rafters|balseros), like thousands of Cubans that summer.
+- id: s.u24.22
+  node: es.u24.los-balseros
+  forms:
+    es-Latn/standard:
+      text: Los guardacostas los llevaron a Guantánamo.
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: guardacostas, lexeme: guardacostas, feats: {Number: Plur}}, {surface: los, lexeme: lo, feats: {Number: Plur}}, {surface: llevaron, lexeme: llevar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Guantánamo, lexeme: guantánamo}]
+      reverse: Los guardacostas los llevaron a (Guantánamo|la base de Guantánamo)
+  translations:
+    en: The (Coast Guard|coastguard) (took|brought) them to Guantánamo.
+- id: s.u24.23
+  node: es.u24.los-balseros
+  forms:
+    es-Latn/standard:
+      text: Cuando llegaron a Miami, habían pasado mucho tiempo en Guantánamo.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: llegaron, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}, {surface: habían, lexeme: haber, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: pasado, lexeme: pasar, feats: {Tense: Past, VerbForm: Part}}, {surface: mucho, lexeme: mucho}, {surface: tiempo, lexeme: tiempo, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Guantánamo, lexeme: guantánamo}]
+      reverse: |-
+        Cuando llegaron a Miami [ya] habían pasado mucho tiempo en Guantánamo
+        [Ya] habían pasado mucho tiempo en Guantánamo cuando llegaron a Miami
+        Cuando ellos llegaron a Miami, habían pasado mucho tiempo en Guantánamo
+  translations:
+    en: |-
+      When they (arrived in|got to|reached|made it to) Miami, they had (spent|been) a long time (in|at) Guantánamo.
+      They had (spent|been) a long time (in|at) Guantánamo when they (arrived in|got to|reached|made it to) Miami.
+      When they arrived in Miami, they'd spent a long time in Guantánamo.
+- id: s.u24.24
+  node: es.u24.los-balseros
+  forms:
+    es-Latn/standard:
+      text: 'Muchos balseros nunca llegaron: el mar se los llevó.'
+      tokens: [{surface: Muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: balseros, lexeme: balsero, feats: {Number: Plur}}, {surface: nunca, lexeme: nunca}, {surface: llegaron, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mar, lexeme: mar, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: los, lexeme: lo, feats: {Number: Plur}}, {surface: llevó, lexeme: llevarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}]
+      reverse: |-
+        Muchos balseros nunca llegaron [porque] el mar se los llevó
+        Muchos balseros no llegaron nunca: el mar se los llevó
+  translations:
+    en: 'Many (rafters|balseros) never (arrived|made it): the sea (took them|swept them away|carried them off).'
+- id: s.u24.25
+  node: es.u24.la-pequena-habana
+  forms:
+    es-Latn/standard:
+      text: Primero vivieron en la Pequeña Habana, cerca de la Calle Ocho.
+      tokens: [{surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: vivieron, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Pequeña, lexeme: pequeña-habana}, {surface: Habana, lexeme: pequeña-habana}, {surface: cerca, lexeme: cerca}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Calle, lexeme: calle-ocho}, {surface: Ocho, lexeme: calle-ocho}]
+      reverse: |-
+        (Primero|Al principio) vivieron en la Pequeña Habana cerca de [la] Calle Ocho
+        Primero ellos vivieron en la Pequeña Habana, cerca de la Calle Ocho
+  translations:
+    en: (At first|First), they lived in Little Havana, (near|close to) Calle Ocho.
+- id: s.u24.26
+  node: es.u24.la-pequena-habana
+  forms:
+    es-Latn/standard:
+      text: Abuela trabajaba en una factoría y estudiaba inglés por la noche.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: trabajaba, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: factoría, lexeme: factoría, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: estudiaba, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: inglés, lexeme: inglés, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      reverse: (Abuela|La abuela|Mi abuela) trabajaba en una (factoría|fábrica) y estudiaba inglés (por la noche|en la noche|de noche)
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) (worked|used to work) in a factory and (studied|used to study) English (at night|in the evening).
+- id: s.u24.27
+  node: es.u24.la-pequena-habana
+  forms:
+    es-Latn/standard:
+      text: Cuando Mami nació, todavía no tenían los papeles.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: nació, lexeme: nacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: todavía, lexeme: todavía}, {surface: 'no', lexeme: 'no'}, {surface: tenían, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: papeles, lexeme: papel, feats: {Number: Plur}}]
+      reverse: |-
+        Cuando (Mami|mamá|mi mamá|mi mami) nació [ellos] todavía no tenían [los] papeles
+        [Ellos] todavía no tenían [los] papeles cuando (Mami|mamá|mi mamá|mi mami) nació
+  translations:
+    en: |-
+      When (Mom|Mommy|Mum|my mom) was born, they still (didn't have|did not have) (their|the) (papers|documents).
+      They still (didn't have|did not have) (their|the) (papers|documents) when (Mom|Mommy|Mum|my mom) was born.
+- id: s.u24.28
+  node: es.u24.la-pequena-habana
+  forms:
+    es-Latn/standard:
+      text: Abuelo siempre dice que vino por la libertad.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: vino, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: libertad, lexeme: libertad, feats: {Number: Sing}}]
+      reverse: (Abuelo|El abuelo|Mi abuelo) siempre dice que vino por la libertad
+  translations:
+    en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) always says [that] he came (for freedom|for the sake of freedom|for liberty).
+- id: s.u24.29
+  node: es.u24.la-pequena-habana
+  forms:
+    es-Latn/standard:
+      text: Para abuela, la libertad vale más que todo.
+      tokens: [{surface: Para, lexeme: para}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: libertad, lexeme: libertad, feats: {Number: Sing}}, {surface: vale, lexeme: valer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: que, lexeme: que.than}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        Para (abuela|la abuela|mi abuela) la libertad vale más que (todo|nada)
+        La libertad vale más que (todo|nada) para (abuela|la abuela|mi abuela)
+  translations:
+    en: |-
+      (For|To) (Grandma|Grandmother|Abuela|my grandma|my grandmother), freedom is worth more than (anything|everything).
+      Freedom is worth more than (anything|everything) (to|for) (Grandma|Grandmother|Abuela|my grandma|my grandmother).
+- id: s.u24.30
+  node: es.u24.juntos
+  forms:
+    es-Latn/standard:
+      text: 'En el ochenta, la familia se separó: unos se fueron y otros se quedaron.'
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ochenta, lexeme: ochenta}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: separó, lexeme: separarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: unos, lexeme: un, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: fueron, lexeme: irse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: otros, lexeme: otro, feats: {Number: Plur}}, {surface: se, lexeme: se}, {surface: quedaron, lexeme: quedarse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}]
+      reverse: |-
+        En (el ochenta|mil novecientos ochenta|1980) la familia se separó unos se fueron y otros se quedaron
+        La familia se separó en (el ochenta|mil novecientos ochenta|1980) unos se fueron y otros se quedaron
+  translations:
+    en: |-
+      In (1980|'80), the family (was split up|was separated|got separated|split up): some (left|went) and (others|some) stayed.
+      The family (was split up|was separated|got separated|split up) in (1980|'80): some (left|went) and (others|some) stayed.
+- id: s.u24.31
+  node: es.u24.juntos
+  forms:
+    es-Latn/standard:
+      text: Abuela y Marisol se reunieron en La Habana después de quince años.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: se, lexeme: se}, {surface: reunieron, lexeme: reunirse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: después, lexeme: después}, {surface: de, lexeme: de}, {surface: quince, lexeme: quince}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) y Marisol (se reunieron|se volvieron a ver|se vieron otra vez) en La Habana después de quince años
+        Después de quince años (abuela|la abuela|mi abuela) y Marisol (se reunieron|se volvieron a ver|se vieron otra vez) en La Habana
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) and Marisol (were reunited|met again|saw each other again) in Havana after fifteen years.
+      After fifteen years, (Grandma|Grandmother|Abuela|my grandma|my grandmother) and Marisol (were reunited|met again|saw each other again) in Havana.
+- id: s.u24.32
+  node: es.u24.juntos
+  forms:
+    es-Latn/standard:
+      text: Antes de ese viaje, Marisol nunca había conocido a su hermana.
+      tokens: [{surface: Antes, lexeme: antes}, {surface: de, lexeme: de}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: viaje, lexeme: viaje, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: nunca, lexeme: nunca}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: conocido, lexeme: conocer, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        Antes de ese viaje Marisol nunca había conocido a su hermana
+        Marisol nunca había conocido a su hermana antes de ese viaje
+        Antes de ese viaje, Marisol no había conocido nunca a su hermana
+  translations:
+    en: |-
+      Before that trip, Marisol had never met her sister.
+      Marisol had never met her sister before that trip.
+- id: s.u24.33
+  node: es.u24.juntos
+  forms:
+    es-Latn/standard:
+      text: Los domingos, la familia se reúne en casa de abuela y llama a Marisol.
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: reúne, lexeme: reunirse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: llama, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      reverse: |-
+        Los domingos la familia se reúne en casa de (abuela|la abuela|mi abuela) y llama a Marisol
+        La familia se reúne en casa de (abuela|la abuela|mi abuela) los domingos y llama a Marisol
+  translations:
+    en: |-
+      On Sundays, the family (gets together|meets) at (Grandma's|Grandmother's|Abuela's|my grandma's|my grandmother's) [house] and calls Marisol.
+      The family (gets together|meets) at (Grandma's|Grandmother's|Abuela's|my grandma's|my grandmother's) [house] on Sundays and calls Marisol.
+- id: s.u24.34
+  node: es.u24.juntos
+  forms:
+    es-Latn/standard:
+      text: Abuela todavía extraña a Marisol todos los días.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: todavía, lexeme: todavía}, {surface: extraña, lexeme: extrañar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: días, lexeme: día, feats: {Number: Plur}}]
+      reverse: (Abuela|La abuela|Mi abuela) todavía (extraña|echa de menos) a Marisol todos los días
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) still misses Marisol every day.
+- id: s.u24.35
+  node: es.u24.juntos
+  forms:
+    es-Latn/standard:
+      text: Antes, Daniel no sabía cómo su familia había llegado a Miami.
+      tokens: [{surface: Antes, lexeme: antes}, {surface: Daniel, lexeme: daniel}, {surface: 'no', lexeme: 'no'}, {surface: sabía, lexeme: saber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: cómo, lexeme: cómo}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: llegado, lexeme: llegar, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}]
+      reverse: |-
+        Antes Daniel no sabía cómo su familia había llegado a Miami
+        Antes, Daniel no sabía cómo había llegado su familia a Miami
+  translations:
+    en: |-
+      (Before|Until now), Daniel (didn't know|did not know) how his family had (come|gotten|got) to Miami.
+      Before, Daniel didn't know how his family had arrived in Miami.
+stories:
+- id: es.story.u24
+  node: es.u24.story
+  title:
+    en: How we came
+  characters:
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: pepe
+    speaker: m
+    name:
+      es-Latn/standard: Abuelo Pepe
+  - id: papi
+    speaker: m
+    name:
+      es-Latn/standard: Papi
+  steps:
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Una noche, Daniel quiere saber la historia de abuela.
+          tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: Daniel, lexeme: daniel}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: saber, lexeme: saber, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: historia, lexeme: historia, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: One evening, Daniel wants to know Abuela's story.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¿cómo ustedes salieron de Cuba?
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cómo, lexeme: cómo}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: salieron, lexeme: salir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      translations:
+        en: Grandma, how did you leave Cuba?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: En el ochenta, un primo de tu abuelo vino a buscarnos en una lancha.
+          tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ochenta, lexeme: ochenta}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: vino, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: buscarnos, lexemes: [{lexeme: buscar, surface: buscar, base: true, feats: {VerbForm: Inf}}, {lexeme: nos, surface: nos, feats: {Number: Plur}}]}, {surface: en, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: lancha, lexeme: lancha, feats: {Number: Sing}}]
+      translations:
+        en: In 1980 a cousin of your grandfather's came to get us in a motorboat.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Yo nunca había salido de Matanzas, y ahora tenía que salir de Cuba.
+          tokens: [{surface: Yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: salido, lexeme: salir, feats: {Tense: Past, VerbForm: Part}}, {surface: de, lexeme: de}, {surface: Matanzas, lexeme: matanzas}, {surface: y, lexeme: y}, {surface: ahora, lexeme: ahora}, {surface: tenía, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: salir, lexeme: salir, feats: {VerbForm: Inf}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      translations:
+        en: I had never been out of Matanzas, and now I had to leave Cuba.
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:puerto
+      distractors:
+      - lexeme:examen
+      - lexeme:cuchillo
+      forms:
+        es-Latn/standard:
+          text: Pasamos una semana en el puerto. Había miles de cubanos.
+          tokens: [{surface: Pasamos, lexeme: pasar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: semana, lexeme: semana, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: puerto, lexeme: puerto, feats: {Number: Sing}}, {surface: Había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: miles, lexeme: mil, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}]
+      translations:
+        en: We spent a week at the port. There were thousands of Cubans.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y tía Marisol? ¿Por qué no salió con ustedes?
+          tokens: [{surface: Y, lexeme: y}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: Por, lexeme: por}, {surface: qué, lexeme: qué}, {surface: 'no', lexeme: 'no'}, {surface: salió, lexeme: salir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}]
+      translations:
+        en: And Aunt Marisol? Why didn't she leave with you?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Cuando nos llamaron, Marisol estaba con su abuela en el campo.
+          tokens: [{surface: Cuando, lexeme: cuando}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: llamaron, lexeme: llamar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: estaba, lexeme: estar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}]
+      translations:
+        en: When they called us, Marisol was with her grandmother in the countryside.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: La lancha salió esa noche, y Marisol se quedó en Cuba.
+          tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: lancha, lexeme: lancha, feats: {Number: Sing}}, {surface: salió, lexeme: salir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: esa, lexeme: ese, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: se, lexeme: se}, {surface: quedó, lexeme: quedarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      translations:
+        en: The boat left that night, and Marisol stayed in Cuba.
+  - choose:
+      prompt:
+        en: Why did Marisol stay in Cuba?
+      options:
+      - en: She was in the countryside with her grandmother when the family was called.
+      - en: She didn't want to leave Cuba.
+      - en: There was no room for her in the boat.
+      answer: 0
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Pensábamos que Marisol iba a salir después, pero nunca pudo.
+          tokens: [{surface: Pensábamos, lexeme: pensar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: salir, lexeme: salir, feats: {VerbForm: Inf}}, {surface: después, lexeme: después}, {surface: pero, lexeme: pero}, {surface: nunca, lexeme: nunca}, {surface: pudo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}]
+      translations:
+        en: We thought Marisol would leave later, but she never could.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Después de un día en el mar, llegamos a Cayo Hueso.
+          tokens: [{surface: Después, lexeme: después}, {surface: de, lexeme: de}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: día, lexeme: día, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mar, lexeme: mar, feats: {Number: Sing}}, {surface: llegamos, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Cayo, lexeme: cayo-hueso}, {surface: Hueso, lexeme: cayo-hueso}]
+      translations:
+        en: After a day at sea, we got to Key West.
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¿tú tenías miedo en el mar?
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: tenías, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mar, lexeme: mar, feats: {Number: Sing}}]
+      translations:
+        en: Grandma, were you afraid at sea?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Mucho miedo, mi'jo. Pero la libertad vale más que el miedo.
+          tokens: [{surface: Mucho, lexeme: mucho}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Pero, lexeme: pero}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: libertad, lexeme: libertad, feats: {Number: Sing}}, {surface: vale, lexeme: valer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: que, lexeme: que.than}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}}]
+      translations:
+        en: Very afraid, sweetheart. But freedom is worth more than fear.
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Papi llega a la sala con un cafecito.
+          tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: sala, lexeme: sala, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}]
+      translations:
+        en: Papi comes into the living room with a Cuban coffee.
+  - line:
+      speaker: papi
+      forms:
+        es-Latn/standard:
+          text: Mi padre y yo también llegamos por el mar, en el noventa y cuatro.
+          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: llegamos, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mar, lexeme: mar, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: noventa, lexeme: noventa}, {surface: y, lexeme: y}, {surface: cuatro, lexeme: cuatro}]
+      translations:
+        en: My father and I came by sea too, in 1994.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿En una balsa? Papi, ¡tú nunca me habías dicho eso!
+          tokens: [{surface: En, lexeme: en}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: balsa, lexeme: balsa, feats: {Number: Sing}}, {surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: nunca, lexeme: nunca}, {surface: me, lexeme: me}, {surface: habías, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: dicho, lexeme: decir, feats: {Tense: Past, VerbForm: Part}}, {surface: eso, lexeme: ese, feats: {Gender: Neut, Number: Sing}}]
+      translations:
+        en: On a raft? Dad, you'd never told me that!
+  - choose:
+      prompt:
+        en: How did Papi come to the United States?
+      options:
+      - en: On a raft with his father, in 1994
+      - en: In a boat from Mariel, in 1980
+      - en: By plane, from Havana
+      answer: 0
+  - line:
+      speaker: papi
+      ask: complete
+      gap: lexeme:guantánamo
+      distractors:
+      - lexeme:miami
+      - lexeme:hialeah
+      forms:
+        es-Latn/standard:
+          text: Sí. Los guardacostas nos llevaron a Guantánamo, y después llegamos a Miami.
+          tokens: [{surface: Sí, lexeme: sí}, {surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: guardacostas, lexeme: guardacostas, feats: {Number: Plur}}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: llevaron, lexeme: llevar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Guantánamo, lexeme: guantánamo}, {surface: y, lexeme: y}, {surface: después, lexeme: después}, {surface: llegamos, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}]
+      translations:
+        en: Yes. The Coast Guard took us to Guantánamo, and then we got to Miami.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Por eso esta familia se reúne todos los domingos, mi'jo.
+          tokens: [{surface: Por, lexeme: por}, {surface: eso, lexeme: ese, feats: {Gender: Neut, Number: Sing}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: reúne, lexeme: reunirse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: That's why this family gets together every Sunday, sweetheart.
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Ahora sé la historia de mi familia.
+          tokens: [{surface: Ahora, lexeme: ahora}, {surface: sé, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: historia, lexeme: historia, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}]
+      translations:
+        en: Now I know my family's story.
+  - choose:
+      prompt:
+        en: What does Abuela say is worth more than fear?
+      options:
+      - en: Freedom
+      - en: The family
+      - en: A Cuban coffee
+      answer: 0

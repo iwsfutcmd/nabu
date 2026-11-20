@@ -1,0 +1,826 @@
+# Unit u02-family of courses/apc in the new shape.
+# Written by `nabu migrate` from courses/apc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u02-family
+title:
+  en: My family
+cefr: A1
+nodes:
+- {id: apc.fam.this, kind: lesson, introduces: ['lexeme:hayda', 'lexeme:meen', 'lexeme:maya', 'lexeme:hayde']}
+- {id: apc.fam.parents, kind: lesson, introduces: ['lexeme:bayy', 'lexeme:emm']}
+- {id: apc.fam.siblings, kind: lesson, introduces: ['lexeme:khayy', 'lexeme:ekht', 'lexeme:3end', 'lexeme:ma']}
+- {id: apc.fam.his-her, kind: lesson, introduces: ['lexeme:poss-3ms', 'lexeme:poss-3fs', 'lexeme:poss-2fs']}
+- {id: apc.fam.grandparents, kind: lesson, introduces: ['lexeme:teta', 'lexeme:jeddo', 'lexeme:3ayle', 'lexeme:kbir', 'lexeme:zghir']}
+- {id: apc.fam.children, kind: lesson, introduces: ['lexeme:ebn', 'lexeme:bent', 'lexeme:7elo', 'lexeme:wlad', 'feature:Number=Plur']}
+- {id: apc.fam.you-pl, kind: lesson, introduces: ['lexeme:poss-2pl']}
+- {id: apc.fam.story, kind: story}
+sentences:
+- id: s.fam.1
+  node: apc.fam.this
+  forms:
+    apc-Arab/standard:
+      text: هيدا سامي.
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      reverse: هيدا سامي
+    apc-Latn/arabizi:
+      text: hayda Sami.
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      reverse: (hayda|haida|hyda) Sami
+  translations:
+    en: |-
+      (This|That|He) is Sami.
+      (That|He)'s Sami.
+- id: s.fam.2
+  node: apc.fam.this
+  forms:
+    apc-Arab/standard:
+      text: مين هيدا؟
+      tokens: [{surface: مين, lexeme: meen}, {surface: هيدا, lexeme: hayda}]
+      reverse: |-
+        مين هيدا
+        هيدا مين
+        مين هيدي
+        هيدي مين
+    apc-Latn/arabizi:
+      text: meen hayda?
+      tokens: [{surface: meen, lexeme: meen}, {surface: hayda, lexeme: hayda}]
+      reverse: |-
+        (meen|min|mien) (hayda|haida|hyda)
+        hayda meen
+  translations:
+    en: |-
+      Who is (this|that|he)?
+      Who's (this|that|he)?
+- id: s.fam.3
+  node: apc.fam.this
+  forms:
+    apc-Arab/standard:
+      text: مرحبا مايا!
+      tokens: [{surface: مرحبا, lexeme: marhaba}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}]
+      reverse: مرحبا مايا
+    apc-Latn/arabizi:
+      text: mar7aba Maya!
+      tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}]
+      reverse: (mar7aba|marhaba|mar7ba) Maya
+  translations:
+    en: (Hello|Hi), Maya!
+- id: s.fam.4
+  node: apc.fam.this
+  forms:
+    apc-Arab/standard:
+      text: هيدي مايا.
+      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}]
+      reverse: هيدي مايا
+    apc-Latn/arabizi:
+      text: hayde Maya.
+      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}]
+      reverse: (hayde|haide|haydi) Maya
+  translations:
+    en: |-
+      (This|That|She) is Maya.
+      (That|She)'s Maya.
+- id: s.fam.5
+  node: apc.fam.parents
+  forms:
+    apc-Arab/standard:
+      text: هيدا بيّ سامي.
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: بيّ, lexeme: bayy, feats: {Number: Sing}}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      reverse: هيدا بيّ سامي
+    apc-Latn/arabizi:
+      text: hayda bayy Sami.
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: bayy, lexeme: bayy, feats: {Number: Sing}}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      reverse: (hayda|haida|hyda) (bayy|bay|beyy) Sami
+  translations:
+    en: |-
+      (This|That|He) is Sami's (father|dad).
+      (That|He)'s Sami's (father|dad).
+- id: s.fam.6
+  node: apc.fam.parents
+  forms:
+    apc-Arab/standard:
+      text: هيدا بيّي.
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: بيّي, lexemes: [{lexeme: bayy, surface: بيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: هيدا بيّي
+    apc-Latn/arabizi:
+      text: hayda bayyi.
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: bayyi, lexemes: [{lexeme: bayy, surface: bayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (hayda|haida|hyda) (bayyi|bayye|bayi|baye|beyyi|beyye)
+  translations:
+    en: |-
+      (This|That|He) is my (father|dad).
+      (That|He)'s my (father|dad).
+- id: s.fam.7
+  node: apc.fam.parents
+  forms:
+    apc-Arab/standard:
+      text: هيدي إمّ سامي.
+      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: إمّ, lexeme: emm, feats: {Number: Sing}}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      reverse: هيدي إمّ سامي
+    apc-Latn/arabizi:
+      text: hayde emm Sami.
+      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: emm, lexeme: emm, feats: {Number: Sing}}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      reverse: (hayde|haide|haydi) (emm|em|imm) Sami
+  translations:
+    en: |-
+      (This|That|She) is Sami's (mother|mom|mum).
+      (That|She)'s Sami's (mother|mom|mum).
+- id: s.fam.8
+  node: apc.fam.parents
+  forms:
+    apc-Arab/standard:
+      text: هيدي إمّي.
+      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: إمّي, lexemes: [{lexeme: emm, surface: إمّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: هيدي إمّي
+    apc-Latn/arabizi:
+      text: hayde emmi.
+      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: emmi, lexemes: [{lexeme: emm, surface: emm, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (hayde|haide|haydi) (emmi|emme|emi|eme|immi|imme)
+  translations:
+    en: |-
+      (This|That|She) is my (mother|mom|mum).
+      (That|She)'s my (mother|mom|mum).
+- id: s.fam.9
+  node: apc.fam.parents
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: مين هيدا؟ بيّك؟
+      tokens: [{surface: مين, lexeme: meen}, {surface: هيدا, lexeme: hayda}, {surface: بيّك, lexemes: [{lexeme: bayy, surface: بيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
+      reverse: |-
+        مين هيدا بيّك
+        هيدا مين بيّك
+    apc-Latn/arabizi:
+      text: meen hayda? bayyak?
+      tokens: [{surface: meen, lexeme: meen}, {surface: hayda, lexeme: hayda}, {surface: bayyak, lexemes: [{lexeme: bayy, surface: bayy, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ak}]}]
+      reverse: |-
+        (meen|min|mien) (hayda|haida|hyda) (bayyak|bayak|beyyak)
+        hayda meen bayyak
+  translations:
+    en: |-
+      Who is (this|that)? Your (father|dad)?
+      Who's (this|that)? Your (father|dad)?
+      Who is (this|that)? Is (that|this|he) your (father|dad)?
+- id: s.fam.10
+  node: apc.fam.siblings
+  forms:
+    apc-Arab/standard:
+      text: هيدا خيّي.
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: خيّي, lexemes: [{lexeme: khayy, surface: خيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: هيدا خيّي
+    apc-Latn/arabizi:
+      text: hayda khayyi.
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (hayda|haida|hyda) (khayyi|khayye|khayi|khaye|5ayyi|5ayye)
+  translations:
+    en: |-
+      (This|That|He) is my brother.
+      (That|He)'s my brother.
+- id: s.fam.11
+  node: apc.fam.siblings
+  forms:
+    apc-Arab/standard:
+      text: هيدي إختي.
+      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: إختي, lexemes: [{lexeme: ekht, surface: إخت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: هيدي إختي
+    apc-Latn/arabizi:
+      text: hayde ekhti.
+      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: ekhti, lexemes: [{lexeme: ekht, surface: ekht, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (hayde|haide|haydi) (ekhti|ekhte|ikhti|ikhte|e5ti|e5te)
+  translations:
+    en: |-
+      (This|That|She) is my sister.
+      (That|She)'s my sister.
+- id: s.fam.12
+  node: apc.fam.siblings
+  forms:
+    apc-Arab/standard:
+      text: عندي خيّ وإخت.
+      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: خيّ, lexeme: khayy, feats: {Number: Sing}}, {surface: وإخت, lexemes: [{lexeme: w, surface: و}, {lexeme: ekht, surface: إخت, base: true, feats: {Number: Sing}}]}]
+      reverse: (عندي|أنا عندي) خيّ (وإخت|و إخت)
+    apc-Latn/arabizi:
+      text: 3endi khayy w ekht.
+      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: khayy, lexeme: khayy, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
+      reverse: ((3endi|3ende|3andi|3ande|3indi|3inde)|ana (3endi|3ende|3andi|3ande|3indi|3inde)) (khayy|khay|5ayy) (w|wa) (ekht|ikht|e5t)
+  translations:
+    en: |-
+      I have a brother and a sister.
+      I('ve| have) got a brother and a sister.
+- id: s.fam.13
+  node: apc.fam.siblings
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: عندك إخت؟
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: إخت, lexeme: ekht, feats: {Number: Sing}}]
+      reverse: (عندك|إنت عندك) إخت
+    apc-Latn/arabizi:
+      text: 3endak ekht?
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
+      reverse: ((3endak|3andak|3indak)|(enta|inta) (3endak|3andak|3indak)) (ekht|ikht|e5t)
+  translations:
+    en: |-
+      Do you have a sister?
+      Have you got a sister?
+- id: s.fam.14
+  node: apc.fam.siblings
+  forms:
+    apc-Arab/standard:
+      text: لأ، ما عندي إخت.
+      tokens: [{surface: لأ, lexeme: la2}, {surface: ما, lexeme: ma}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: إخت, lexeme: ekht, feats: {Number: Sing}}]
+      reverse: (لأ|لا) (ما عندي|أنا ما عندي|معندي) إخت
+    apc-Latn/arabizi:
+      text: la2, ma 3endi ekht.
+      tokens: [{surface: la2, lexeme: la2}, {surface: ma, lexeme: ma}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
+      reverse: |-
+        (la2|la) (ma|ana ma) (3endi|3ende|3andi|3ande|3indi|3inde) (ekht|ikht|e5t)
+        la2 ma3endi ekht
+        la ma3ende ekht
+  translations:
+    en: |-
+      No, I (don't|do not) have a sister.
+      No, I (haven't|have not) got a sister.
+- id: s.fam.15
+  node: apc.fam.his-her
+  forms:
+    apc-Arab/standard:
+      text: هيدا بيّه.
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: بيّه, lexemes: [{lexeme: bayy, surface: بيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: ه}]}]
+      reverse: هيدا (بيّه|بيّو)
+    apc-Latn/arabizi:
+      text: hayda bayyo.
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: bayyo, lexemes: [{lexeme: bayy, surface: bayy, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: o}]}]
+      reverse: (hayda|haida|hyda) (bayyo|bayyu|bayo|bayu|beyyo|beyyu)
+  translations:
+    en: |-
+      (This|That|He) is his (father|dad).
+      (That|He)'s his (father|dad).
+- id: s.fam.16
+  node: apc.fam.his-her
+  forms:
+    apc-Arab/standard:
+      text: شو اسمه؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: اسمه, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: ه}]}]
+      reverse: شو (اسمه|اسمو)
+    apc-Latn/arabizi:
+      text: shu esmo?
+      tokens: [{surface: shu, lexeme: shu}, {surface: esmo, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: o}]}]
+      reverse: (shu|sho) (esmo|esmu|ismo|ismu)
+  translations:
+    en: |-
+      What is his name?
+      What's his name?
+- id: s.fam.17
+  node: apc.fam.his-her
+  forms:
+    apc-Arab/standard:
+      text: اسمه سامي.
+      tokens: [{surface: اسمه, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: ه}]}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      reverse: (اسمه|اسمو) سامي
+    apc-Latn/arabizi:
+      text: esmo Sami.
+      tokens: [{surface: esmo, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: o}]}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      reverse: (esmo|esmu|ismo|ismu) Sami
+  translations:
+    en: |-
+      His name is Sami.
+      His name's Sami.
+      He's called Sami.
+- id: s.fam.18
+  node: apc.fam.his-her
+  forms:
+    apc-Arab/standard:
+      text: وهيدي إمّها.
+      tokens: [{surface: وهيدي, lexemes: [{lexeme: w, surface: و}, {lexeme: hayde, surface: هيدي, base: true, feats: {Gender: Fem, Number: Sing}}]}, {surface: إمّها, lexemes: [{lexeme: emm, surface: إمّ, base: true, feats: {Number: Sing}}, {lexeme: poss-3fs, surface: ها}]}]
+      reverse: (وهيدي|و هيدي) (إمّها|إمّا)
+    apc-Latn/arabizi:
+      text: w hayde emma.
+      tokens: [{surface: w, lexeme: w}, {surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: emma, lexemes: [{lexeme: emm, surface: emm, base: true, feats: {Number: Sing}}, {lexeme: poss-3fs, surface: a}]}]
+      reverse: (w|wa) (hayde|haide|haydi) (emma|ema|imma)
+  translations:
+    en: |-
+      And (this|that|she) is her (mother|mom|mum).
+      And (that|she)'s her (mother|mom|mum).
+- id: s.fam.19
+  node: apc.fam.his-her
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: كيفه بيّك؟
+      tokens: [{surface: كيفه, lexemes: [{lexeme: kif, surface: كيف, base: true}, {lexeme: poss-3ms, surface: ه}]}, {surface: بيّك, lexemes: [{lexeme: bayy, surface: بيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
+      reverse: |-
+        (كيفه|كيفو) بيّك
+        كيف بيّك
+    apc-Latn/arabizi:
+      text: kifo bayyak?
+      tokens: [{surface: kifo, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-3ms, surface: o}]}, {surface: bayyak, lexemes: [{lexeme: bayy, surface: bayy, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ak}]}]
+      reverse: |-
+        (kifo|kifu|keefo|keefu) (bayyak|bayak|beyyak)
+        kif bayyak
+  translations:
+    en: |-
+      How is your (father|dad)?
+      How's your (father|dad)?
+      How is your (father|dad) doing?
+- id: s.fam.20
+  node: apc.fam.his-her
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: كيفك مايا؟
+      tokens: [{surface: كيفك, lexemes: [{lexeme: kif, surface: كيف, base: true}, {lexeme: poss-2fs, surface: ك}], vocalized: كيفِك}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}]
+      reverse: |-
+        كيفك مايا
+        مايا كيفك
+    apc-Latn/arabizi:
+      text: kifik Maya?
+      tokens: [{surface: kifik, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2fs, surface: ik}]}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}]
+      reverse: |-
+        (kifik|kifek|keefik|keefek) Maya
+        Maya kifik
+  translations:
+    en: |-
+      How are you, Maya?
+      How are you doing, Maya?
+      Maya, how are you?
+      How's it going, Maya?
+- id: s.fam.21
+  node: apc.fam.grandparents
+  forms:
+    apc-Arab/standard:
+      text: هيدي تيتا.
+      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}]
+      reverse: هيدي تيتا
+    apc-Latn/arabizi:
+      text: hayde teta.
+      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: teta, lexeme: teta, feats: {Number: Sing}}]
+      reverse: (hayde|haide|haydi) (teta|tayta)
+  translations:
+    en: |-
+      (This|That|She) is (grandma|my grandma|granny|my grandmother).
+      (That|She)'s (grandma|my grandma|granny|my grandmother).
+      This is my granny.
+- id: s.fam.22
+  node: apc.fam.grandparents
+  forms:
+    apc-Arab/standard:
+      text: وهيدا جدّو.
+      tokens: [{surface: وهيدا, lexemes: [{lexeme: w, surface: و}, {lexeme: hayda, surface: هيدا, base: true}]}, {surface: جدّو, lexeme: jeddo, feats: {Number: Sing}}]
+      reverse: (وهيدا|و هيدا) جدّو
+    apc-Latn/arabizi:
+      text: w hayda jeddo.
+      tokens: [{surface: w, lexeme: w}, {surface: hayda, lexeme: hayda}, {surface: jeddo, lexeme: jeddo, feats: {Number: Sing}}]
+      reverse: (w|wa) (hayda|haida|hyda) (jeddo|jiddo|jeddu)
+  translations:
+    en: |-
+      And (this|that|he) is (grandpa|my grandpa|grandad|my grandfather).
+      And (that|he)'s (grandpa|my grandpa|grandad|my grandfather).
+      And this is my grandad.
+- id: s.fam.23
+  node: apc.fam.grandparents
+  forms:
+    apc-Arab/standard:
+      text: هيدي عيلتي.
+      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: عيلتي, lexemes: [{lexeme: 3ayle, surface: عيلت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: هيدي عيلتي
+    apc-Latn/arabizi:
+      text: hayde 3ayelti.
+      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: 3ayelti, lexemes: [{lexeme: 3ayle, surface: 3ayelt, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (hayde|haide|haydi) (3ayelti|3ayelte|3ayleti|3aylete|3aylti|3aylte)
+  translations:
+    en: |-
+      (This|That) is my family.
+      That's my family.
+- id: s.fam.24
+  node: apc.fam.grandparents
+  forms:
+    apc-Arab/standard:
+      text: جدّو كبير.
+      tokens: [{surface: جدّو, lexeme: jeddo, feats: {Number: Sing}}, {surface: كبير, lexeme: kbir, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        جدّو (كبير|ختيار)
+        جدّو كبير بالعمر
+    apc-Latn/arabizi:
+      text: jeddo kbir.
+      tokens: [{surface: jeddo, lexeme: jeddo, feats: {Number: Sing}}, {surface: kbir, lexeme: kbir, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        (jeddo|jiddo|jeddu) (kbir|kbeer|kebir|khetyar|khityar)
+        (jeddo|jiddo|jeddu) (kbir|kbeer|kebir) (bel|bil) (3omr|3emr)
+  translations:
+    en: |-
+      (Grandpa|Grandad|My grandpa|My grandfather) is (old|elderly).
+      (Grandpa|Grandad|My grandpa|My grandfather)'s (old|elderly).
+      My grandad is old.
+- id: s.fam.25
+  node: apc.fam.grandparents
+  forms:
+    apc-Arab/standard:
+      text: خيّي زغير.
+      tokens: [{surface: خيّي, lexemes: [{lexeme: khayy, surface: خيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: زغير, lexeme: zghir, feats: {Gender: Masc, Number: Sing}}]
+      reverse: خيّي (زغير|صغير)
+    apc-Latn/arabizi:
+      text: khayyi zghir.
+      tokens: [{surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: zghir, lexeme: zghir, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (khayyi|khayye|khayi|khaye|5ayyi|5ayye) (zghir|zgheer|z8ir)
+  translations:
+    en: |-
+      My brother is (little|young|small).
+      My brother's (little|young|small).
+- id: s.fam.26
+  node: apc.fam.grandparents
+  forms:
+    apc-Arab/standard:
+      text: إختي زغيرة.
+      tokens: [{surface: إختي, lexemes: [{lexeme: ekht, surface: إخت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: زغيرة, lexeme: zghir, feats: {Gender: Fem, Number: Sing}}]
+      reverse: إختي (زغيرة|صغيرة)
+    apc-Latn/arabizi:
+      text: ekhti zghire.
+      tokens: [{surface: ekhti, lexemes: [{lexeme: ekht, surface: ekht, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: zghire, lexeme: zghir, feats: {Gender: Fem, Number: Sing}}]
+      reverse: (ekhti|ekhte|ikhti|ikhte|e5ti|e5te) (zghire|zghiri|z8ire)
+  translations:
+    en: |-
+      My sister is (little|young|small).
+      My sister's (little|young|small).
+- id: s.fam.27
+  node: apc.fam.children
+  forms:
+    apc-Arab/standard:
+      text: هيدا إبني.
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: إبني, lexemes: [{lexeme: ebn, surface: إبن, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: هيدا إبني
+    apc-Latn/arabizi:
+      text: hayda ebni.
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: ebni, lexemes: [{lexeme: ebn, surface: ebn, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (hayda|haida|hyda) (ebni|ebne|ibni|ibne)
+  translations:
+    en: |-
+      (This|That|He) is my son.
+      (That|He)'s my son.
+- id: s.fam.28
+  node: apc.fam.children
+  forms:
+    apc-Arab/standard:
+      text: وهيدي بنتي.
+      tokens: [{surface: وهيدي, lexemes: [{lexeme: w, surface: و}, {lexeme: hayde, surface: هيدي, base: true, feats: {Gender: Fem, Number: Sing}}]}, {surface: بنتي, lexemes: [{lexeme: bent, surface: بنت, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: (وهيدي|و هيدي) بنتي
+    apc-Latn/arabizi:
+      text: w hayde benti.
+      tokens: [{surface: w, lexeme: w}, {surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: benti, lexemes: [{lexeme: bent, surface: bent, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (w|wa) (hayde|haide|haydi) (benti|bente|binti|binte)
+  translations:
+    en: |-
+      And (this|that|she) is my daughter.
+      And (that|she)'s my daughter.
+- id: s.fam.29
+  node: apc.fam.children
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: بنتك حلوة!
+      tokens: [{surface: بنتك, lexemes: [{lexeme: bent, surface: بنت, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}, {surface: حلوة, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
+      reverse: بنتك حلوة
+    apc-Latn/arabizi:
+      text: bentak 7elwe!
+      tokens: [{surface: bentak, lexemes: [{lexeme: bent, surface: bent, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ak}]}, {surface: 7elwe, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
+      reverse: (bentak|bintak) (7elwe|7ilwe|helwe|7elwi)
+  translations:
+    en: |-
+      Your daughter is (lovely|pretty|cute|sweet|beautiful)!
+      Your daughter's (lovely|pretty|cute|sweet|beautiful)!
+- id: s.fam.30
+  node: apc.fam.children
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: عندك ولاد؟
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
+      reverse: (عندك|إنت عندك) ولاد
+    apc-Latn/arabizi:
+      text: 3endak wlad?
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
+      reverse: ((3endak|3andak|3indak)|(enta|inta) (3endak|3andak|3indak)) (wlad|wled)
+  translations:
+    en: |-
+      Do you have (kids|children)?
+      Have you got (kids|children)?
+- id: s.fam.31
+  node: apc.fam.children
+  forms:
+    apc-Arab/standard:
+      text: إيه، عندي إبن وبنت.
+      tokens: [{surface: إيه, lexeme: eh}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: إبن, lexeme: ebn, feats: {Number: Sing}}, {surface: وبنت, lexemes: [{lexeme: w, surface: و}, {lexeme: bent, surface: بنت, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        إيه (عندي|أنا عندي) (إبن|صبي) (وبنت|و بنت)
+        إي عندي إبن وبنت
+    apc-Latn/arabizi:
+      text: eh, 3endi ebn w bent.
+      tokens: [{surface: eh, lexeme: eh}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ebn, lexeme: ebn, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: bent, lexeme: bent, feats: {Number: Sing}}]
+      reverse: (eh|ee|e) ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (ebn|ibn|sabi|sabe) (w|wa) (bent|bint)
+  translations:
+    en: |-
+      Yes, I have a son and a daughter.
+      Yes, I('ve| have) got a son and a daughter.
+- id: s.fam.32
+  node: apc.fam.children
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو اسم بنتك؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: اسم, lexeme: esm, feats: {Number: Sing}}, {surface: بنتك, lexemes: [{lexeme: bent, surface: بنت, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
+      reverse: شو اسم بنتك
+    apc-Latn/arabizi:
+      text: shu esm bentak?
+      tokens: [{surface: shu, lexeme: shu}, {surface: esm, lexeme: esm, feats: {Number: Sing}}, {surface: bentak, lexemes: [{lexeme: bent, surface: bent, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ak}]}]
+      reverse: (shu|sho) (esm|ism) (bentak|bintak)
+  translations:
+    en: |-
+      What is your daughter's name?
+      What's your daughter's name?
+      What's your daughter called?
+- id: s.fam.33
+  node: apc.fam.children
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: عندك عيلة كبيرة؟
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: عيلة, lexeme: 3ayle, feats: {Number: Sing}}, {surface: كبيرة, lexeme: kbir, feats: {Gender: Fem, Number: Sing}}]
+      reverse: (عندك|إنت عندك) عيلة كبيرة
+    apc-Latn/arabizi:
+      text: 3endak 3ayle kbire?
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: 3ayle, lexeme: 3ayle, feats: {Number: Sing}}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}}]
+      reverse: ((3endak|3andak|3indak)|(enta|inta) (3endak|3andak|3indak)) (3ayle|3ayli|3eyle) (kbire|kbiri|kbeere)
+  translations:
+    en: |-
+      Do you have a big family?
+      Have you got a big family?
+      Is your family big?
+- id: s.fam.34
+  node: apc.fam.children
+  forms:
+    apc-Arab/standard:
+      text: عندي بنت.
+      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: بنت, lexeme: bent, feats: {Number: Sing}}]
+      reverse: (عندي|أنا عندي) بنت
+    apc-Latn/arabizi:
+      text: 3endi bent.
+      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: bent, lexeme: bent, feats: {Number: Sing}}]
+      reverse: ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (bent|bint)
+  translations:
+    en: |-
+      I have a (daughter|girl).
+      I've got a (daughter|girl).
+- id: s.fam.35
+  node: apc.fam.children
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: مايا، عندك ولاد؟
+      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2fs, surface: ك}], vocalized: عِنْدِك}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
+      reverse: |-
+        مايا (عندك|إنتي عندك) ولاد
+        عندك ولاد مايا
+    apc-Latn/arabizi:
+      text: Maya, 3endik wlad?
+      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: 3endik, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2fs, surface: ik}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
+      reverse: |-
+        Maya ((3endik|3andik|3indik|3endek)|(enti|inti) (3endik|3andik|3indik|3endek)) (wlad|wled)
+        3endik wlad Maya
+  translations:
+    en: |-
+      Maya, do you have (kids|children)?
+      Maya, have you got (kids|children)?
+      Do you have kids, Maya?
+      Do you have children, Maya?
+- id: s.fam.36
+  node: apc.fam.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: كيفكن؟
+      tokens: [{surface: كيفكن, lexemes: [{lexeme: kif, surface: كيف, base: true}, {lexeme: poss-2pl, surface: كن}]}]
+      reverse: كيفكن
+    apc-Latn/arabizi:
+      text: kifkon?
+      tokens: [{surface: kifkon, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2pl, surface: kon}]}]
+      reverse: (kifkon|kifkun|keefkon|kifkoun)
+  translations:
+    en: |-
+      How are you?
+      How are you doing?
+      How's it going?
+      How are you all?
+      How are you all doing?
+- id: s.fam.37
+  node: apc.fam.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: عندكن ولاد؟
+      tokens: [{surface: عندكن, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2pl, surface: كن}]}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
+      reverse: عندكن ولاد
+    apc-Latn/arabizi:
+      text: 3endkon wlad?
+      tokens: [{surface: 3endkon, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2pl, surface: kon}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
+      reverse: (3endkon|3andkon|3indkon|3andkun) (wlad|wled)
+  translations:
+    en: |-
+      Do you have (kids|children)?
+      Have you got (kids|children)?
+- id: s.fam.38
+  node: apc.fam.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: شو اسم بنتكن؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: اسم, lexeme: esm, feats: {Number: Sing}}, {surface: بنتكن, lexemes: [{lexeme: bent, surface: بنت, base: true, feats: {Number: Sing}}, {lexeme: poss-2pl, surface: كن}]}]
+      reverse: شو اسم بنتكن
+    apc-Latn/arabizi:
+      text: shu esm bentkon?
+      tokens: [{surface: shu, lexeme: shu}, {surface: esm, lexeme: esm, feats: {Number: Sing}}, {surface: bentkon, lexemes: [{lexeme: bent, surface: bent, base: true, feats: {Number: Sing}}, {lexeme: poss-2pl, surface: kon}]}]
+      reverse: (shu|sho) (esm|ism) (bentkon|bintkon|bentkun)
+  translations:
+    en: |-
+      What is your daughter's name?
+      What's your daughter's name?
+      What's your daughter called?
+- id: s.fam.39
+  node: apc.fam.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: بنتكن حلوة!
+      tokens: [{surface: بنتكن, lexemes: [{lexeme: bent, surface: بنت, base: true, feats: {Number: Sing}}, {lexeme: poss-2pl, surface: كن}]}, {surface: حلوة, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
+      reverse: بنتكن حلوة
+    apc-Latn/arabizi:
+      text: bentkon 7elwe!
+      tokens: [{surface: bentkon, lexemes: [{lexeme: bent, surface: bent, base: true, feats: {Number: Sing}}, {lexeme: poss-2pl, surface: kon}]}, {surface: 7elwe, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
+      reverse: (bentkon|bintkon|bentkun) (7elwe|7ilwe|helwe|7elwi)
+  translations:
+    en: |-
+      Your daughter is (lovely|pretty|cute|sweet|beautiful)!
+      Your daughter's (lovely|pretty|cute|sweet|beautiful)!
+stories:
+- id: apc.story.family
+  node: apc.fam.story
+  title:
+    en: Who's this?
+  provenance:
+    author: llm:claude@6914f241714e
+    status: draft
+  characters:
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مايا، مين هَيدا؟
+          tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: مين, lexeme: meen}, {surface: هَيدا, lexeme: hayda}]
+        apc-Latn/arabizi:
+          text: Maya, meen hayda?
+          tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: meen, lexeme: meen}, {surface: hayda, lexeme: hayda}]
+      translations:
+        en: Maya, who's this?
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: هَيدا بَيّي، وهَيدي إِمّي.
+          tokens: [{surface: هَيدا, lexeme: hayda}, {surface: بَيّي, lexemes: [{lexeme: bayy, surface: بَيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: وهَيدي, lexemes: [{lexeme: w, surface: و}, {lexeme: hayde, surface: هَيدي, base: true, feats: {Gender: Fem, Number: Sing}}]}, {surface: إِمّي, lexemes: [{lexeme: emm, surface: إِمّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+        apc-Latn/arabizi:
+          text: hayda bayyi, w hayde emmi.
+          tokens: [{surface: hayda, lexeme: hayda}, {surface: bayyi, lexemes: [{lexeme: bayy, surface: bayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: w, lexeme: w}, {surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: emmi, lexemes: [{lexeme: emm, surface: emm, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      translations:
+        en: This is my dad, and this is my mom.
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وهَيدا مين؟ خَيِّك؟
+          tokens: [{surface: وهَيدا, lexemes: [{lexeme: w, surface: و}, {lexeme: hayda, surface: هَيدا, base: true}]}, {surface: مين, lexeme: meen}, {surface: خَيِّك, lexemes: [{lexeme: khayy, surface: خَيِّ, base: true, feats: {Number: Sing}}, {lexeme: poss-2fs, surface: ك}]}]
+        apc-Latn/arabizi:
+          text: w hayda meen? khayyik?
+          tokens: [{surface: w, lexeme: w}, {surface: hayda, lexeme: hayda}, {surface: meen, lexeme: meen}, {surface: khayyik, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}}, {lexeme: poss-2fs, surface: ik}]}]
+      translations:
+        en: And who's this? Your brother?
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: إيه، خَيّي. عِنْدي خَيّ وإِخْت.
+          tokens: [{surface: إيه, lexeme: eh}, {surface: خَيّي, lexemes: [{lexeme: khayy, surface: خَيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: عِنْدي, lexemes: [{lexeme: 3end, surface: عِنْد, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: خَيّ, lexeme: khayy, feats: {Number: Sing}}, {surface: وإِخْت, lexemes: [{lexeme: w, surface: و}, {lexeme: ekht, surface: إِخْت, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: eh, khayyi. 3endi khayy w ekht.
+          tokens: [{surface: eh, lexeme: eh}, {surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: khayy, lexeme: khayy, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
+      translations:
+        en: Yes, my brother. I have a brother and a sister.
+  - choose:
+      prompt:
+        en: How many brothers and sisters does Maya have?
+      options:
+      - en: A brother and a sister
+      - en: Two brothers
+      - en: None
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وهَيدي مين؟
+          tokens: [{surface: وهَيدي, lexemes: [{lexeme: w, surface: و}, {lexeme: hayde, surface: هَيدي, base: true, feats: {Gender: Fem, Number: Sing}}]}, {surface: مين, lexeme: meen}]
+        apc-Latn/arabizi:
+          text: w hayde meen?
+          tokens: [{surface: w, lexeme: w}, {surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: meen, lexeme: meen}]
+      translations:
+        en: And who's this?
+  - line:
+      speaker: maya
+      ask: complete
+      gap: lexeme:teta
+      distractors:
+      - lexeme:ekht
+      - lexeme:3ayle
+      forms:
+        apc-Arab/standard:
+          text: هَيدي تيتا، إِمّ بَيّي.
+          tokens: [{surface: هَيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: إِمّ, lexeme: emm, feats: {Number: Sing}}, {surface: بَيّي, lexemes: [{lexeme: bayy, surface: بَيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+        apc-Latn/arabizi:
+          text: hayde teta, emm bayyi.
+          tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: emm, lexeme: emm, feats: {Number: Sing}}, {surface: bayyi, lexemes: [{lexeme: bayy, surface: bayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      translations:
+        en: This is grandma, my dad's mother.
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وجِدّو؟
+          tokens: [{surface: وجِدّو, lexemes: [{lexeme: w, surface: و}, {lexeme: jeddo, surface: جِدّو, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: w jeddo?
+          tokens: [{surface: w, lexeme: w}, {surface: jeddo, lexeme: jeddo, feats: {Number: Sing}}]
+      translations:
+        en: And grandpa?
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: هَيدا جِدّو، بَيّ إِمّي.
+          tokens: [{surface: هَيدا, lexeme: hayda}, {surface: جِدّو, lexeme: jeddo, feats: {Number: Sing}}, {surface: بَيّ, lexeme: bayy, feats: {Number: Sing}}, {surface: إِمّي, lexemes: [{lexeme: emm, surface: إِمّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+        apc-Latn/arabizi:
+          text: hayda jeddo, bayy emmi.
+          tokens: [{surface: hayda, lexeme: hayda}, {surface: jeddo, lexeme: jeddo, feats: {Number: Sing}}, {surface: bayy, lexeme: bayy, feats: {Number: Sing}}, {surface: emmi, lexemes: [{lexeme: emm, surface: emm, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      translations:
+        en: This is grandpa, my mom's father.
+  - choose:
+      prompt:
+        en: Whose mother is Teta?
+      options:
+      - en: Maya's dad's
+      - en: Maya's mom's
+      - en: Sami's
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: عَيِلْتِك كْبيرِة!
+          tokens: [{surface: عَيِلْتِك, lexemes: [{lexeme: 3ayle, surface: عَيِلْتِ, base: true, feats: {Number: Sing}}, {lexeme: poss-2fs, surface: ك}]}, {surface: كْبيرِة, lexeme: kbir, feats: {Gender: Fem, Number: Sing}}]
+        apc-Latn/arabizi:
+          text: 3ayeltik kbire!
+          tokens: [{surface: 3ayeltik, lexemes: [{lexeme: 3ayle, surface: 3ayelt, base: true, feats: {Number: Sing}}, {lexeme: poss-2fs, surface: ik}]}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: Your family is big!
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: إيه، الحَمْدِلله!
+          tokens: [{surface: إيه, lexeme: eh}, {surface: الحَمْدِلله, lexeme: el7amdella}]
+        apc-Latn/arabizi:
+          text: eh, el7amdella!
+          tokens: [{surface: eh, lexeme: eh}, {surface: el7amdella, lexeme: el7amdella}]
+      translations:
+        en: Yes, thank God!

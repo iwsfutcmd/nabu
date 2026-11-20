@@ -1,0 +1,658 @@
+# Unit u18-getting-around of courses/apc in the new shape.
+# Written by `nabu migrate` from courses/apc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u18-getting-around
+title:
+  en: Getting around
+cefr: A2
+nodes:
+- {id: apc.road.transport, kind: lesson, introduces: ['lexeme:servees', 'lexeme:taxi', 'lexeme:bus', 'lexeme:tari2', 'lexeme:3aj2a']}
+- {id: apc.road.where, kind: lesson, introduces: ['lexeme:2a3ed', 'lexeme:wa2ef']}
+- {id: apc.road.directions, kind: lesson, introduces: ['lexeme:laff', 'lexeme:ishara', 'lexeme:wa22ef']}
+- {id: apc.road.story, kind: story}
+sentences:
+- id: s.road.1
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: بدّي سرفيس.
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: سرفيس, lexeme: servees, feats: {Number: Sing}}]
+      reverse: (بدّي|أنا بدّي) (سرفيس|سيرفيس|سرڤيس)
+    apc-Latn/arabizi:
+      text: baddi servees.
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: servees, lexeme: servees, feats: {Number: Sing}}]
+      reverse: |-
+        (baddi|badde|badi) (servees|service|servis|srvis)
+        ana baddi servees
+  translations:
+    en: |-
+      I want a (service|shared taxi).
+      I need a (service|shared taxi).
+      I'd like a service.
+- id: s.road.2
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: سرفيس؟ ع بيروت؟
+      tokens: [{surface: سرفيس, lexeme: servees, feats: {Number: Sing}}, {surface: ع, lexeme: 3a}, {surface: بيروت, lexeme: beirut, feats: {Number: Sing}}]
+      reverse: |-
+        (سرفيس|سيرفيس|سرڤيس) ع بيروت
+        سرفيس على بيروت
+    apc-Latn/arabizi:
+      text: servees? 3a Beirut?
+      tokens: [{surface: servees, lexeme: servees, feats: {Number: Sing}}, {surface: 3a, lexeme: 3a}, {surface: Beirut, lexeme: beirut, feats: {Number: Sing}}]
+      reverse: (servees|service|servis|srvis) (3a|3ala) (Beirut|Bayrut|Beyrouth)
+  translations:
+    en: (Service|Shared taxi)? To Beirut?
+- id: s.road.3
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: منروح بالتاكسي.
+      tokens: [{surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: بالتاكسي, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: taxi, surface: تاكسي, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        (منروح|نحنا منروح) بالتاكسي
+        رح نروح بالتاكسي
+    apc-Latn/arabizi:
+      text: mnru7 bel taxi.
+      tokens: [{surface: mnru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: taxi, lexeme: taxi, feats: {Number: Sing}}]
+      reverse: |-
+        (mnru7|mnro7) (bel|bil|b el) (taxi|taksi|taxe)
+        ne7na mnru7 bel taxi
+        ra7 nru7 bel taxi
+  translations:
+    en: |-
+      We('ll| will) go by taxi.
+      Let's take a taxi.
+      We('re| are) going by taxi.
+- id: s.road.4
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: التاكسي غالي.
+      tokens: [{surface: التاكسي, lexemes: [{lexeme: el, surface: ال}, {lexeme: taxi, surface: تاكسي, base: true, feats: {Number: Sing}}]}, {surface: غالي, lexeme: ghali, feats: {Gender: Masc, Number: Sing}}]
+      reverse: التاكسي غالي
+    apc-Latn/arabizi:
+      text: el taxi ghali.
+      tokens: [{surface: el, lexeme: el}, {surface: taxi, lexeme: taxi, feats: {Number: Sing}}, {surface: ghali, lexeme: ghali, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (el|l|il) (taxi|taksi|taxe) (ghali|ghale)
+  translations:
+    en: |-
+      The taxi is expensive.
+      Taxis are expensive.
+- id: s.road.5
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: وين الباص؟
+      tokens: [{surface: وين, lexeme: wen}, {surface: الباص, lexemes: [{lexeme: el, surface: ال}, {lexeme: bus, surface: باص, base: true, feats: {Number: Sing}}]}]
+      reverse: وين (الباص|البص)
+    apc-Latn/arabizi:
+      text: wen el bus?
+      tokens: [{surface: wen, lexeme: wen}, {surface: el, lexeme: el}, {surface: bus, lexeme: bus, feats: {Number: Sing}}]
+      reverse: (wen|wein) (el|l|il) (bus|bas|busS)
+  translations:
+    en: Where('s| is) the bus?
+- id: s.road.6
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: الباص أرخص من التاكسي.
+      tokens: [{surface: الباص, lexemes: [{lexeme: el, surface: ال}, {lexeme: bus, surface: باص, base: true, feats: {Number: Sing}}]}, {surface: أرخص, lexeme: arkhas, feats: {Gender: Masc, Number: Sing}}, {surface: من, lexeme: men.than}, {surface: التاكسي, lexemes: [{lexeme: el, surface: ال}, {lexeme: taxi, surface: تاكسي, base: true, feats: {Number: Sing}}]}]
+      reverse: (الباص|البص) أرخص من التاكسي
+    apc-Latn/arabizi:
+      text: el bus arkhas men el taxi.
+      tokens: [{surface: el, lexeme: el}, {surface: bus, lexeme: bus, feats: {Number: Sing}}, {surface: arkhas, lexeme: arkhas, feats: {Gender: Masc, Number: Sing}}, {surface: men, lexeme: men.than}, {surface: el, lexeme: el}, {surface: taxi, lexeme: taxi, feats: {Number: Sing}}]
+      reverse: (el|l|il) (bus|bas|busS) (arkhas|arkhass|arkhes) (men|min|mn) (el|l|il) (taxi|taksi|taxe)
+  translations:
+    en: |-
+      The bus is cheaper than the taxi.
+      The bus is cheaper than a taxi.
+- id: s.road.7
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: أنا عالطريق.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: عالطريق, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: tari2, surface: طريق, base: true, feats: {Number: Sing}}]}]
+      reverse: '[أنا] (عالطريق|ع الطريق|على الطريق)'
+    apc-Latn/arabizi:
+      text: ana 3al tari2.
+      tokens: [{surface: ana, lexeme: ana}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: tari2, lexeme: tari2, feats: {Number: Sing}}]
+      reverse: '[ana] (3al|3a l|3a el) (tari2|tare2|tari)'
+  translations:
+    en: I('m| am) on (the|my) way.
+- id: s.road.8
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: في عجقة كتير.
+      tokens: [{surface: في, lexeme: fi}, {surface: عجقة, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
+      reverse: |-
+        في عجقة كتير
+        في كتير عجقة
+    apc-Latn/arabizi:
+      text: fi 3aj2a ktir.
+      tokens: [{surface: fi, lexeme: fi}, {surface: 3aj2a, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: ktir, lexeme: ktir}]
+      reverse: |-
+        fi (3aj2a|3aj2e|3aj2ah|3aja) (ktir|kteer)
+        fi ktir 3aj2a
+  translations:
+    en: |-
+      There('s| is) a lot of traffic.
+      There('s| is) a (big|bad) traffic jam.
+      The traffic is really bad.
+- id: s.road.9
+  node: apc.road.transport
+  forms:
+    apc-Arab/standard:
+      text: ما في عجقة اليوم.
+      tokens: [{surface: ما, lexeme: ma}, {surface: في, lexeme: fi}, {surface: عجقة, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        ما في عجقة اليوم
+        اليوم ما في عجقة
+    apc-Latn/arabizi:
+      text: ma fi 3aj2a el yom.
+      tokens: [{surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: 3aj2a, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      reverse: |-
+        ma fi (3aj2a|3aj2e|3aj2ah|3aja) (el|l|il) (yom|youm)
+        el yom ma fi 3aj2a
+  translations:
+    en: |-
+      There('s| is) no traffic today.
+      There isn't any traffic today.
+- id: s.road.10
+  node: apc.road.where
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: وينك؟
+      tokens: [{surface: وينك, lexemes: [{lexeme: wen, surface: وين, base: true}, {lexeme: poss-2ms, surface: ك}]}]
+      reverse: |-
+        وينك
+        وين إنت
+    apc-Latn/arabizi:
+      text: wenak?
+      tokens: [{surface: wenak, lexemes: [{lexeme: wen, surface: wen, base: true}, {lexeme: poss-2ms, surface: ak}]}]
+      reverse: |-
+        (wenak|weinak|wenek)
+        wen enta
+  translations:
+    en: Where are you?
+- id: s.road.11
+  node: apc.road.where
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: وينك؟
+      tokens: [{surface: وينك, lexemes: [{lexeme: wen, surface: وين, base: true}, {lexeme: poss-2fs, surface: ك}], vocalized: وينِك}]
+      reverse: |-
+        وينك
+        وين إنتي
+    apc-Latn/arabizi:
+      text: wenik?
+      tokens: [{surface: wenik, lexemes: [{lexeme: wen, surface: wen, base: true}, {lexeme: poss-2fs, surface: ik}]}]
+      reverse: |-
+        (wenik|weinik|wenek|wenke)
+        wen enti
+  translations:
+    en: Where are you?
+- id: s.road.12
+  node: apc.road.where
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: أنا جاي!
+      tokens: [{surface: أنا, lexeme: ana}, {surface: جاي, lexeme: jeye, feats: {Gender: Masc, Number: Sing}}]
+      reverse: '[أنا] جاي'
+    apc-Latn/arabizi:
+      text: ana jey!
+      tokens: [{surface: ana, lexeme: ana}, {surface: jey, lexeme: jeye, feats: {Gender: Masc, Number: Sing}}]
+      reverse: '[ana] (jey|jeye|jay|jaye|jeyi)'
+  translations:
+    en: |-
+      I('m| am) coming!
+      I('m| am) on my way!
+- id: s.road.13
+  node: apc.road.where
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: أنا جاية!
+      tokens: [{surface: أنا, lexeme: ana}, {surface: جاية, lexeme: jeye, feats: {Gender: Fem, Number: Sing}}]
+      reverse: '[أنا] جاية'
+    apc-Latn/arabizi:
+      text: ana jeye!
+      tokens: [{surface: ana, lexeme: ana}, {surface: jeye, lexeme: jeye, feats: {Gender: Fem, Number: Sing}}]
+      reverse: '[ana] (jeye|jeyye|jaye|jeyi|jayye)'
+  translations:
+    en: |-
+      I('m| am) coming!
+      I('m| am) on my way!
+- id: s.road.14
+  node: apc.road.where
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: أنا قاعد بالبيت.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: قاعد, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}]
+      reverse: '[أنا] قاعد بالبيت'
+    apc-Latn/arabizi:
+      text: ana 2a3ed bel bet.
+      tokens: [{surface: ana, lexeme: ana}, {surface: 2a3ed, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}}]
+      reverse: '[ana] (2a3ed|a3ed|2a3id|2e3id) (bel|bil|b el) (bet|beit)'
+  translations:
+    en: |-
+      I('m| am) (sitting|staying) at home.
+      I('m| am) (at home|home).
+- id: s.road.15
+  node: apc.road.where
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: وين قاعدين؟
+      tokens: [{surface: وين, lexeme: wen}, {surface: قاعدين, lexeme: 2a3ed, feats: {Aspect: Part, Number: Plur}}]
+      reverse: |-
+        [إنتو] وين قاعدين
+        وين إنتو قاعدين
+    apc-Latn/arabizi:
+      text: wen 2a3din?
+      tokens: [{surface: wen, lexeme: wen}, {surface: 2a3din, lexeme: 2a3ed, feats: {Aspect: Part, Number: Plur}}]
+      reverse: |-
+        [(ento|into)] (wen|wein) (2a3din|a3din|2a3deen|2a3dein)
+        wen ento 2a3din
+  translations:
+    en: |-
+      Where are you (sitting|staying)?
+      Where are you?
+- id: s.road.16
+  node: apc.road.where
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: أنا قاعدة بالسيّارة.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: قاعدة, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: بالسيّارة, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: siyyara, surface: سيّارة, base: true, feats: {Number: Sing}}]}]
+      reverse: '[أنا] قاعدة بالسيّارة'
+    apc-Latn/arabizi:
+      text: ana 2a3de bel siyyara.
+      tokens: [{surface: ana, lexeme: ana}, {surface: 2a3de, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: siyyara, lexeme: siyyara, feats: {Number: Sing}}]
+      reverse: '[ana] (2a3de|a3de|2a3di|2a3da) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)'
+  translations:
+    en: |-
+      I('m| am) sitting in the car.
+      I('m| am) in the car.
+- id: s.road.17
+  node: apc.road.where
+  forms:
+    apc-Arab/standard:
+      text: التاكسي واقف هون.
+      tokens: [{surface: التاكسي, lexemes: [{lexeme: el, surface: ال}, {lexeme: taxi, surface: تاكسي, base: true, feats: {Number: Sing}}]}, {surface: واقف, lexeme: wa2ef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: هون, lexeme: hon}]
+      reverse: التاكسي واقف هون
+    apc-Latn/arabizi:
+      text: el taxi wa2ef hon.
+      tokens: [{surface: el, lexeme: el}, {surface: taxi, lexeme: taxi, feats: {Number: Sing}}, {surface: wa2ef, lexeme: wa2ef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: hon, lexeme: hon}]
+      reverse: (el|l|il) (taxi|taksi|taxe) (wa2ef|wa2if|waaef|we2ef) (hon|hone|houn)
+  translations:
+    en: |-
+      The taxi is (stopped|waiting|parked) here.
+      The taxi's (stopped|waiting|parked) here.
+- id: s.road.18
+  node: apc.road.where
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: أنا واقف حدّ الدكّانة.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: واقف, lexeme: wa2ef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: حدّ, lexeme: 7add}, {surface: الدكّانة, lexemes: [{lexeme: el, surface: ال}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}}]}]
+      reverse: '[أنا] واقف حدّ الدكّانة'
+    apc-Latn/arabizi:
+      text: ana wa2ef 7add el dekkene.
+      tokens: [{surface: ana, lexeme: ana}, {surface: wa2ef, lexeme: wa2ef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: 7add, lexeme: 7add}, {surface: el, lexeme: el}, {surface: dekkene, lexeme: dekkene, feats: {Number: Sing}}]
+      reverse: '[ana] (wa2ef|wa2if|waaef|we2ef) (7add|7ad|hadd) (el|l|il) (dekkene|dekene|dekkane|dikkene)'
+  translations:
+    en: |-
+      I('m| am) standing (next to|by) the (shop|corner shop|store).
+      I('m| am) waiting (next to|by) the (shop|corner shop|store).
+- id: s.road.19
+  node: apc.road.where
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: نازل ع بيروت؟
+      tokens: [{surface: نازل, lexeme: nezel, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ع, lexeme: 3a}, {surface: بيروت, lexeme: beirut, feats: {Number: Sing}}]
+      reverse: |-
+        نازل ع بيروت
+        إنت نازل ع بيروت
+        نازل على بيروت
+    apc-Latn/arabizi:
+      text: nezel 3a Beirut?
+      tokens: [{surface: nezel, lexeme: nezel, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3a, lexeme: 3a}, {surface: Beirut, lexeme: beirut, feats: {Number: Sing}}]
+      reverse: |-
+        (nezel|nazel|nezil|nazil) (3a|3ala) (Beirut|Bayrut|Beyrouth)
+        enta nezel 3a Beirut
+  translations:
+    en: |-
+      Are you going (down|) to Beirut?
+      Are you heading down to Beirut?
+- id: s.road.20
+  node: apc.road.where
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: رايحة عالشغل؟
+      tokens: [{surface: رايحة, lexeme: ra7, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        رايحة (عالشغل|ع الشغل|على الشغل)
+        إنتي رايحة عالشغل
+    apc-Latn/arabizi:
+      text: ray7a 3al shoghl?
+      tokens: [{surface: ray7a, lexeme: ra7, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}]
+      reverse: |-
+        (ray7a|rayi7a|ray7e|rey7a|raye7a|rayha) (3al|3a l|3a el) (shoghl|shoghol|shughl)
+        enti ray7a 3al shoghl
+  translations:
+    en: |-
+      Are you going to work?
+      Are you on your way to work?
+      Are you heading to work?
+- id: s.road.21
+  node: apc.road.directions
+  forms:
+    apc-Arab/standard:
+      text: كيف بوصل عالبحر؟
+      tokens: [{surface: كيف, lexeme: kif}, {surface: بوصل, lexeme: wesel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}}]}]
+      reverse: كيف بوصل (عالبحر|ع البحر|على البحر)
+    apc-Latn/arabizi:
+      text: kif busal 3al ba7r?
+      tokens: [{surface: kif, lexeme: kif}, {surface: busal, lexeme: wesel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}}]
+      reverse: (kif|keef) (busal|buwsal|bewsal|bisal) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+  translations:
+    en: |-
+      How do I get to the (beach|sea)?
+      How can I get to the (beach|sea)?
+- id: s.road.22
+  node: apc.road.directions
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: لفّ عاليمين!
+      tokens: [{surface: لفّ, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عاليمين, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}}]}]
+      reverse: لفّ (عاليمين|ع اليمين|على اليمين)
+    apc-Latn/arabizi:
+      text: liff 3al yamin!
+      tokens: [{surface: liff, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: yamin, lexeme: yamin, feats: {Number: Sing}}]
+      reverse: (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
+  translations:
+    en: |-
+      Turn right!
+      Turn to the right!
+- id: s.road.23
+  node: apc.road.directions
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: لفّي عالشمال.
+      tokens: [{surface: لفّي, lexeme: laff, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عالشمال, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: shmel, surface: شمال, base: true, feats: {Number: Sing}}]}]
+      reverse: لفّي (عالشمال|ع الشمال|على الشمال)
+    apc-Latn/arabizi:
+      text: liffi 3al shmel.
+      tokens: [{surface: liffi, lexeme: laff, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shmel, lexeme: shmel, feats: {Number: Sing}}]
+      reverse: (liffi|leffi|liffe|lifi) (3al|3a l|3a el) shmel
+  translations:
+    en: |-
+      Turn left.
+      Turn to the left.
+- id: s.road.24
+  node: apc.road.directions
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: بعد الإشارة، لفّ عاليمين.
+      tokens: [{surface: بعد, lexeme: ba3d}, {surface: الإشارة, lexemes: [{lexeme: el, surface: ال}, {lexeme: ishara, surface: إشارة, base: true, feats: {Number: Sing}}]}, {surface: لفّ, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عاليمين, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        بعد الإشارة لفّ (عاليمين|ع اليمين|على اليمين)
+        لفّ عاليمين بعد الإشارة
+    apc-Latn/arabizi:
+      text: ba3d el ishara, liff 3al yamin.
+      tokens: [{surface: ba3d, lexeme: ba3d}, {surface: el, lexeme: el}, {surface: ishara, lexeme: ishara, feats: {Number: Sing}}, {surface: liff, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: yamin, lexeme: yamin, feats: {Number: Sing}}]
+      reverse: |-
+        (ba3d|ba3ed) (el|l|il) (ishara|ishare|2ishara) (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
+        liff 3al yamin ba3d el ishara
+  translations:
+    en: |-
+      After the (traffic light|traffic lights|lights), turn right.
+      Turn right after the (traffic light|traffic lights|lights).
+- id: s.road.25
+  node: apc.road.directions
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: وقّف هون، عمول معروف.
+      tokens: [{surface: وقّف, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عمول, lexeme: 3mol-ma3rouf}, {surface: معروف, lexeme: 3mol-ma3rouf}]
+      reverse: |-
+        وقّف هون (عمول|اعمول|عمل) معروف
+        عمول معروف وقّف هون
+    apc-Latn/arabizi:
+      text: wa22ef hon, 3mol ma3rouf.
+      tokens: [{surface: wa22ef, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3mol, lexeme: 3mol-ma3rouf}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+      reverse: |-
+        (wa22ef|wa2af|wa22if|wa22af) (hon|hone|houn) (3mol|3mul|e3mol) (ma3rouf|ma3roof)
+        3mol ma3rouf wa22ef hon
+  translations:
+    en: |-
+      Stop here, please.
+      (Please|) stop here(, please|).
+- id: s.road.26
+  node: apc.road.directions
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: وقّفي هون، عملي معروف.
+      tokens: [{surface: وقّفي, lexeme: wa22ef, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عملي, lexeme: 3mol-ma3rouf, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: معروف, lexeme: 3mol-ma3rouf}]
+      reverse: |-
+        وقّفي هون عملي معروف
+        عملي معروف وقّفي هون
+    apc-Latn/arabizi:
+      text: wa22fi hon, 3emli ma3rouf.
+      tokens: [{surface: wa22fi, lexeme: wa22ef, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3emli, lexeme: 3mol-ma3rouf, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+      reverse: |-
+        (wa22fi|wa22efi|wa22ife|wa2fi) (hon|hone|houn) (3emli|3emle|3imli|a3mli) (ma3rouf|ma3roof)
+        3emli ma3rouf wa22fi hon
+  translations:
+    en: |-
+      Stop here, please.
+      (Please|) stop here(, please|).
+- id: s.road.27
+  node: apc.road.directions
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: دغري، وبعدين لفّ عالشمال.
+      tokens: [{surface: دغري, lexeme: dighri}, {surface: وبعدين, lexemes: [{lexeme: w, surface: و}, {lexeme: ba3dein, surface: بعدين, base: true}]}, {surface: لفّ, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عالشمال, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: shmel, surface: شمال, base: true, feats: {Number: Sing}}]}]
+      reverse: دغري (وبعدين|و بعدين) لفّ (عالشمال|ع الشمال|على الشمال)
+    apc-Latn/arabizi:
+      text: dighri, w ba3dein liff 3al shmel.
+      tokens: [{surface: dighri, lexeme: dighri}, {surface: w, lexeme: w}, {surface: ba3dein, lexeme: ba3dein}, {surface: liff, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shmel, lexeme: shmel, feats: {Number: Sing}}]
+      reverse: |-
+        (dighri|deghri|doghri|dughri) (w|wa) (ba3dein|ba3dain|ba3den) (liff|leff|lef|lif) (3al|3a l|3a el) shmel
+        dighri ba3dein liff 3al shmel
+  translations:
+    en: |-
+      Straight (on|ahead), and then turn left.
+      Go straight, then turn left.
+      Go straight, and then turn left.
+      Go straight ahead, then turn left.
+- id: s.road.28
+  node: apc.road.directions
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: وقّفوا!
+      tokens: [{surface: وقّفوا, lexeme: wa22ef, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
+      reverse: (وقّفوا|وقّفو)
+    apc-Latn/arabizi:
+      text: wa22fo!
+      tokens: [{surface: wa22fo, lexeme: wa22ef, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
+      reverse: (wa22fo|wa22efo|wa22fu|wa2fo)
+  translations:
+    en: Stop!
+stories:
+- id: apc.story.service
+  node: apc.road.story
+  title:
+    en: In the service
+  provenance:
+    author: llm:claude@a659420f546f
+    status: draft
+  characters:
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  steps:
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: أَلو سامي، وينَك؟
+          tokens: [{surface: أَلو, lexeme: alo}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: وينَك, lexemes: [{lexeme: wen, surface: وينَ, base: true}, {lexeme: poss-2ms, surface: ك}]}]
+        apc-Latn/arabizi:
+          text: alo Sami, wenak?
+          tokens: [{surface: alo, lexeme: alo}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: wenak, lexemes: [{lexeme: wen, surface: wen, base: true}, {lexeme: poss-2ms, surface: ak}]}]
+      translations:
+        en: Hello Sami, where are you?
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: أَنا بِالسِّرْفيس، جاي.
+          tokens: [{surface: أَنا, lexeme: ana}, {surface: بِالسِّرْفيس, lexemes: [{lexeme: b, surface: بِ}, {lexeme: el, surface: ال}, {lexeme: servees, surface: سِّرْفيس, base: true, feats: {Number: Sing}}]}, {surface: جاي, lexeme: jeye, feats: {Gender: Masc, Number: Sing}}]
+        apc-Latn/arabizi:
+          text: ana bel servees, jey.
+          tokens: [{surface: ana, lexeme: ana}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: servees, lexeme: servees, feats: {Number: Sing}}, {surface: jey, lexeme: jeye, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: I'm in the service, I'm coming.
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: في عَجْقَة؟
+          tokens: [{surface: في, lexeme: fi}, {surface: عَجْقَة, lexeme: 3aj2a, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: fi 3aj2a?
+          tokens: [{surface: fi, lexeme: fi}, {surface: 3aj2a, lexeme: 3aj2a, feats: {Number: Sing}}]
+      translations:
+        en: Is there traffic?
+  - line:
+      speaker: sami
+      ask: complete
+      gap: lexeme:3aj2a
+      distractors:
+      - lexeme:jebne
+      - lexeme:man2oushe
+      forms:
+        apc-Arab/standard:
+          text: إيه، في عَجْقَة كْتير!
+          tokens: [{surface: إيه, lexeme: eh}, {surface: في, lexeme: fi}, {surface: عَجْقَة, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: كْتير, lexeme: ktir}]
+        apc-Latn/arabizi:
+          text: eh, fi 3aj2a ktir!
+          tokens: [{surface: eh, lexeme: eh}, {surface: fi, lexeme: fi}, {surface: 3aj2a, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: ktir, lexeme: ktir}]
+      translations:
+        en: Yes, there's a lot of traffic!
+  - choose:
+      prompt:
+        en: How is Sami travelling?
+      options:
+      - en: By service taxi
+      - en: By bus
+      - en: On foot
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: أَنا قاعْدِة بِالمَطْعَم حَدّ البَحِر.
+          tokens: [{surface: أَنا, lexeme: ana}, {surface: قاعْدِة, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: بِالمَطْعَم, lexemes: [{lexeme: b, surface: بِ}, {lexeme: el, surface: ال}, {lexeme: mat3am, surface: مَطْعَم, base: true, feats: {Number: Sing}}]}, {surface: حَدّ, lexeme: 7add}, {surface: البَحِر, lexemes: [{lexeme: el, surface: ال}, {lexeme: ba7r, surface: بَحِر, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: ana 2a3de bel mat3am 7add el ba7r.
+          tokens: [{surface: ana, lexeme: ana}, {surface: 2a3de, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}}, {surface: 7add, lexeme: 7add}, {surface: el, lexeme: el}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}}]
+      translations:
+        en: I'm sitting in the restaurant by the sea.
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: كيف بوصَل عَالمَطْعَم؟
+          tokens: [{surface: كيف, lexeme: kif}, {surface: بوصَل, lexeme: wesel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عَالمَطْعَم, lexemes: [{lexeme: 3a, surface: عَ}, {lexeme: el, surface: ال}, {lexeme: mat3am, surface: مَطْعَم, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: kif busal 3al mat3am?
+          tokens: [{surface: kif, lexeme: kif}, {surface: busal, lexeme: wesel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}}]
+      translations:
+        en: How do I get to the restaurant?
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: بَعْد الإِشارَة، لِفّ عَاليَمين.
+          tokens: [{surface: بَعْد, lexeme: ba3d}, {surface: الإِشارَة, lexemes: [{lexeme: el, surface: ال}, {lexeme: ishara, surface: إِشارَة, base: true, feats: {Number: Sing}}]}, {surface: لِفّ, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عَاليَمين, lexemes: [{lexeme: 3a, surface: عَ}, {lexeme: el, surface: ال}, {lexeme: yamin, surface: يَمين, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: ba3d el ishara, liff 3al yamin.
+          tokens: [{surface: ba3d, lexeme: ba3d}, {surface: el, lexeme: el}, {surface: ishara, lexeme: ishara, feats: {Number: Sing}}, {surface: liff, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: yamin, lexeme: yamin, feats: {Number: Sing}}]
+      translations:
+        en: After the traffic lights, turn right.
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وَقِّف هون، عْمول مَعْروف!
+          tokens: [{surface: وَقِّف, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عْمول, lexeme: 3mol-ma3rouf}, {surface: مَعْروف, lexeme: 3mol-ma3rouf}]
+        apc-Latn/arabizi:
+          text: wa22ef hon, 3mol ma3rouf!
+          tokens: [{surface: wa22ef, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3mol, lexeme: 3mol-ma3rouf}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+      translations:
+        en: Stop here, please! (to the driver)
+  - choose:
+      prompt:
+        en: Where is Maya waiting?
+      options:
+      - en: In a restaurant by the sea
+      - en: At home
+      - en: On the bus
+      answer: 0
+scenarios:
+- id: apc.taxi-ride
+  after: apc.road.story
+  title:
+    en: Taking a service
+  setting:
+    en: A street corner in Beirut; a service with one free seat slows down.
+  character:
+    en: The driver, in a hurry, who asks where you are going and talks about the traffic.
+  goal:
+    en: Ask whether the service goes where you want, agree on the fare, give directions (straight on, turn right or left, after the traffic light) and ask him to stop.
+  provenance:
+    author: llm:claude@a659420f546f
+    status: draft

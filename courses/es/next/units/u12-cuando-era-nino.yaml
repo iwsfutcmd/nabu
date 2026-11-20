@@ -1,0 +1,655 @@
+# Unit u12 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u12
+title:
+  en: 'Cuando era niño: When I was a boy'
+cefr: A2
+nodes:
+- {id: es.u12.cuando-era-nino, kind: lesson, introduces: ['feature:Tense=Imp', 'lexeme:niño', 'lexeme:escuela']}
+- {id: es.u12.en-hialeah, kind: lesson, introduces: ['lexeme:todo', 'lexeme:amigo', 'lexeme:montar', 'lexeme:bicicleta']}
+- {id: es.u12.en-matanzas, kind: lesson, introduces: ['lexeme:campo', 'lexeme:pobre', 'lexeme:bohío', 'lexeme:pueblo', 'lexeme:luz', 'lexeme:gallina', 'lexeme:caballo', 'lexeme:río']}
+- {id: es.u12.los-juegos, kind: lesson, introduces: ['lexeme:quimbumbia', 'lexeme:papalote', 'lexeme:empinar', 'lexeme:nos']}
+- {id: es.u12.antes, kind: lesson, introduces: ['lexeme:antes', 'lexeme:contestar', 'lexeme:inglés']}
+- {id: es.u12.story, kind: story}
+sentences:
+- id: s.u12.1
+  node: es.u12.cuando-era-nino
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era niño, vivía en Hialeah.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: yo, lexeme: yo}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      reverse: |-
+        Cuando [yo] era (niño|chiquito|pequeño) [yo] vivía en Hialeah
+        De (niño|chiquito|pequeño) [yo] vivía en Hialeah
+        [Yo] vivía en Hialeah cuando [yo] era (niño|chiquito|pequeño)
+  translations:
+    en: |-
+      When I was (a child|a kid|a boy|little|young|small), I (lived|used to live) in Hialeah.
+      As a (child|kid|boy), I (lived|used to live) in Hialeah.
+      I (lived|used to live) in Hialeah when I was (a child|a kid|a boy|little|young|small).
+- id: s.u12.32
+  node: es.u12.cuando-era-nino
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era niña, vivía en Hialeah.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: yo, lexeme: yo}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      reverse: |-
+        Cuando [yo] era (niña|chiquita|pequeña) [yo] vivía en Hialeah
+        De (niña|chiquita|pequeña) [yo] vivía en Hialeah
+        [Yo] vivía en Hialeah cuando [yo] era (niña|chiquita|pequeña)
+  translations:
+    en: |-
+      When I was (a child|a kid|a girl|little|young|small), I (lived|used to live) in Hialeah.
+      As a (child|kid|girl), I (lived|used to live) in Hialeah.
+      I (lived|used to live) in Hialeah when I was (a child|a kid|a girl|little|young|small).
+- id: s.u12.2
+  node: es.u12.cuando-era-nino
+  forms:
+    es-Latn/standard:
+      text: Mi casa era chiquita, pero tenía un patio grande.
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquita, lexeme: chiquito, feats: {Gender: Fem, Number: Sing}}, {surface: pero, lexeme: pero}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        Mi casa era (chiquita|pequeña) pero tenía un patio grande
+        Mi casa era chiquitica, pero tenía un patio grande.
+  translations:
+    en: |-
+      My (house|home) was (small|little|tiny), but it had a (big|large) (yard|backyard).
+      My house was small, but it had a big garden.
+- id: s.u12.3
+  node: es.u12.cuando-era-nino
+  forms:
+    es-Latn/standard:
+      text: Mis abuelos vivían cerca y yo comía en su casa.
+      tokens: [{surface: Mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: abuelos, lexeme: abuelo, feats: {Number: Plur}}, {surface: vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: cerca, lexeme: cerca}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: comía, lexeme: comer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      reverse: |-
+        Mis abuelos vivían cerca y [yo] comía en su casa
+        Mis abuelos vivían cerca y yo comía en casa de ellos.
+  translations:
+    en: |-
+      My grandparents lived (close by|nearby|near us|close), and I (ate|used to eat|would eat) at their (house|place).
+      My grandparents used to live (close by|nearby|near us|close), and I (ate|used to eat|would eat) at their (house|place).
+- id: s.u12.4
+  node: es.u12.cuando-era-nino
+  forms:
+    es-Latn/standard:
+      text: Yo iba a la escuela en guagua con Lili.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      reverse: '[Yo] iba a la escuela en (guagua|autobús|bus|el autobús|el bus) con Lili'
+  translations:
+    en: |-
+      I (went|used to go|would go) to school (by bus|on the bus) with Lili.
+      I (took|used to take|would take) the bus to school with Lili.
+- id: s.u12.5
+  node: es.u12.cuando-era-nino
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    es-Latn/standard:
+      text: Cuando era chiquito, me gustaba mucho la pelota.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquito, lexeme: chiquito, feats: {Gender: Masc, Number: Sing}}, {surface: me, lexeme: me}, {surface: gustaba, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      reverse: |-
+        Cuando [yo] era (chiquito|niño|pequeño) me gustaba mucho (la pelota|el béisbol)
+        De (chiquito|niño|pequeño) me gustaba mucho (la pelota|el béisbol)
+  translations:
+    en: |-
+      When I was (little|a kid|a child|a boy|small|young), I (really liked|loved) baseball.
+      When I was (little|a kid|a child|a boy|small|young), I liked baseball a lot.
+      As a (kid|child|boy), I (really liked|loved|liked) baseball.
+- id: s.u12.33
+  node: es.u12.cuando-era-nino
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    es-Latn/standard:
+      text: Cuando era chiquita, me gustaba mucho la pelota.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: chiquita, lexeme: chiquito, feats: {Gender: Fem, Number: Sing}}, {surface: me, lexeme: me}, {surface: gustaba, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      reverse: |-
+        Cuando [yo] era (chiquita|niña|pequeña) me gustaba mucho (la pelota|el béisbol)
+        De (chiquita|niña|pequeña) me gustaba mucho (la pelota|el béisbol)
+  translations:
+    en: |-
+      When I was (little|a kid|a child|a girl|small|young), I (really liked|loved) baseball.
+      When I was (little|a kid|a child|a girl|small|young), I liked baseball a lot.
+      As a (kid|child|girl), I (really liked|loved|liked) baseball.
+- id: s.u12.6
+  node: es.u12.cuando-era-nino
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde tú vivías cuando eras niño?
+      tokens: [{surface: Dónde, lexeme: dónde}, {surface: tú, lexeme: tú}, {surface: vivías, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: cuando, lexeme: cuando}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        (Dónde tú vivías|Dónde vivías [tú]) cuando (eras|tú eras) (niño|chiquito|pequeño)
+        (Dónde usted vivía|Dónde vivía [usted]) cuando (era|usted era) (niño|chiquito|pequeño)
+        ¿Tú dónde vivías cuando eras niño?
+  translations:
+    en: Where did you (live|use to live) when you were (a child|a kid|a boy|little|young|small)?
+- id: s.u12.7
+  node: es.u12.en-hialeah
+  forms:
+    es-Latn/standard:
+      text: Todos los días jugaba pelota en la calle con mis amigos.
+      tokens: [{surface: Todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: días, lexeme: día, feats: {Number: Plur}}, {surface: jugaba, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: calle, lexeme: calle, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: amigos, lexeme: amigo, feats: {Number: Plur}}]
+      reverse: |-
+        Todos los días [yo] jugaba (pelota|béisbol|al béisbol) en la calle con mis amigos
+        [Yo] jugaba (pelota|béisbol|al béisbol) en la calle con mis amigos todos los días
+  translations:
+    en: |-
+      Every day I (played|used to play|would play) baseball in the street with my friends.
+      I (played|used to play|would play) baseball in the street with my friends every day.
+- id: s.u12.8
+  node: es.u12.en-hialeah
+  forms:
+    es-Latn/standard:
+      text: Lili y yo montábamos bicicleta en el barrio.
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: montábamos, lexeme: montar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: bicicleta, lexeme: bicicleta, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}}]
+      reverse: Lili y yo (montábamos|andábamos) (bicicleta|en bicicleta|bici|en bici) (en el|por el) barrio
+  translations:
+    en: Lili and I (rode|used to ride|would ride) (our bikes|bikes|our bicycles|bicycles) (in|around) the (neighborhood|neighbourhood).
+- id: s.u12.9
+  node: es.u12.en-hialeah
+  forms:
+    es-Latn/standard:
+      text: Los sábados íbamos a casa de Abuela Cachita.
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}}, {surface: íbamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}]
+      reverse: |-
+        Los sábados [nosotros] íbamos a [la] casa de (Abuela|la abuela|mi abuela) Cachita
+        Los sábados nosotras íbamos a casa de Abuela Cachita.
+  translations:
+    en: |-
+      On Saturdays we (went|used to go|would go) to (Grandma|Abuela|Granny) Cachita's [house].
+      Every Saturday we (went|used to go|would go) to (Grandma|Abuela|Granny) Cachita's [house].
+- id: s.u12.10
+  node: es.u12.en-hialeah
+  forms:
+    es-Latn/standard:
+      text: Abuela siempre hacía arroz con pollo los domingos.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}]
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) siempre hacía arroz con pollo los domingos
+        Los domingos abuela siempre hacía arroz con pollo.
+  translations:
+    en: |-
+      (Grandma|Abuela|Granny) always (made|used to make|cooked) (chicken and rice|arroz con pollo|rice with chicken) on Sundays.
+      My grandmother always made chicken and rice on Sundays.
+- id: s.u12.11
+  node: es.u12.en-hialeah
+  forms:
+    es-Latn/standard:
+      text: Por la noche veíamos la novela con ella.
+      tokens: [{surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}, {surface: veíamos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: novela, lexeme: novela, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        Por la noche [nosotros] veíamos la novela con ella
+        [Nosotros] veíamos la novela con ella por la noche
+        Por la noche nosotras veíamos la novela con ella.
+        En la noche veíamos la novela con ella.
+        Por la noche mirábamos la novela con ella.
+  translations:
+    en: |-
+      (At night|In the evening|In the evenings), we (watched|used to watch|would watch) the (soap opera|telenovela|novela) with her.
+      We (watched|used to watch|would watch) the (soap opera|telenovela|novela) with her (at night|in the evening|in the evenings).
+- id: s.u12.12
+  node: es.u12.en-hialeah
+  forms:
+    es-Latn/standard:
+      text: En el verano hacía mucho calor y no había escuela.
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: verano, lexeme: verano, feats: {Number: Sing}}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}]
+      reverse: |-
+        En el verano hacía mucho calor y no había (escuela|clases)
+        En verano hacía mucho calor y no había escuela.
+  translations:
+    en: |-
+      In [the] summer it was (very hot|really hot|so hot) and there was no school.
+      In [the] summer it used to be (very hot|really hot|so hot) and there was no school.
+- id: s.u12.13
+  node: es.u12.en-matanzas
+  forms:
+    es-Latn/standard:
+      text: De niña, Abuela Cachita vivía en el campo, en Matanzas.
+      tokens: [{surface: De, lexeme: de}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}]
+      reverse: |-
+        De niña (Abuela|la abuela|mi abuela) Cachita vivía en el campo en Matanzas
+        Cuando era niña (Abuela|la abuela|mi abuela) Cachita vivía en el campo en Matanzas
+        (Abuela|La abuela|Mi abuela) Cachita vivía en el campo en Matanzas cuando era niña
+  translations:
+    en: |-
+      As a (child|girl), (Grandma|Abuela|Granny) Cachita (lived|used to live) in the (countryside|country), in Matanzas.
+      When she was (a child|a girl|little|young), (Grandma|Abuela|Granny) Cachita (lived|used to live) in the (countryside|country), in Matanzas.
+      As a child, my grandma Cachita lived in the countryside, in Matanzas.
+- id: s.u12.14
+  node: es.u12.en-matanzas
+  forms:
+    es-Latn/standard:
+      text: Su familia era pobre, pero muy feliz.
+      tokens: [{surface: Su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: pobre, lexeme: pobre, feats: {Gender: Fem, Number: Sing}}, {surface: pero, lexeme: pero}, {surface: muy, lexeme: muy}, {surface: feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}]
+      reverse: Su familia era pobre pero (muy|era muy) feliz
+  translations:
+    en: Her family was poor, but (very happy|really happy|happy).
+- id: s.u12.15
+  node: es.u12.en-matanzas
+  forms:
+    es-Latn/standard:
+      text: Vivían en un bohío cerca de un pueblo.
+      tokens: [{surface: Vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: cerca, lexeme: cerca}, {surface: de, lexeme: de}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}}]
+      reverse: |-
+        [Ellos] vivían en un bohío cerca de un pueblo
+        Ellas vivían en un bohío cerca de un pueblo.
+  translations:
+    en: They (lived|used to live) in a (bohío|hut|thatched hut|palm hut) near a (town|village|small town).
+- id: s.u12.16
+  node: es.u12.en-matanzas
+  forms:
+    es-Latn/standard:
+      text: En el bohío de Abuela no había luz.
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}]
+      reverse: En el bohío de (Abuela|la abuela|mi abuela) no había (luz|electricidad|corriente)
+  translations:
+    en: |-
+      In (Grandma's|Abuela's|Granny's) (bohío|hut) there was no (electricity|power|light).
+      There was no (electricity|power|light) in (Grandma's|Abuela's|Granny's) (bohío|hut).
+- id: s.u12.17
+  node: es.u12.en-matanzas
+  forms:
+    es-Latn/standard:
+      text: Sus padres tenían gallinas y un caballo.
+      tokens: [{surface: Sus, lexeme: su, feats: {Gender: Masc, Number: Plur}}, {surface: padres, lexeme: padre, feats: {Number: Plur}}, {surface: tenían, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}}]
+      reverse: Sus padres tenían gallinas y un caballo
+  translations:
+    en: (Her|His|Their) parents (had|used to have) (hens|chickens) and a horse.
+- id: s.u12.18
+  node: es.u12.en-matanzas
+  forms:
+    es-Latn/standard:
+      text: Abuela iba a la escuela a caballo.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}}]
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) iba a la escuela a caballo
+        (Abuela|La abuela|Mi abuela) iba a caballo a la escuela
+  translations:
+    en: |-
+      (Grandma|Abuela|Granny) (went|used to go|would go) to school on horseback.
+      (Grandma|Abuela|Granny) (rode|used to ride) a horse to school.
+      My grandmother went to school on horseback.
+- id: s.u12.19
+  node: es.u12.en-matanzas
+  forms:
+    es-Latn/standard:
+      text: Los domingos, toda la familia iba al río.
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: río, lexeme: río, feats: {Number: Sing}}]
+      reverse: |-
+        Los domingos toda la familia iba al río
+        Toda la familia iba al río los domingos
+  translations:
+    en: |-
+      On Sundays (the whole family|all the family) (went|used to go|would go) to the river.
+      (The whole family|All the family) (went|used to go|would go) to the river on Sundays.
+- id: s.u12.20
+  node: es.u12.los-juegos
+  forms:
+    es-Latn/standard:
+      text: En el campo, los niños jugaban a la quimbumbia.
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: niños, lexeme: niño, feats: {Gender: Masc, Number: Plur}}, {surface: jugaban, lexeme: jugar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}}]
+      reverse: |-
+        En el campo los niños jugaban (a la quimbumbia|quimbumbia)
+        Los niños jugaban (a la quimbumbia|quimbumbia) en el campo
+  translations:
+    en: In the (countryside|country), (the children|children|the kids|kids) (played|used to play|would play) (quimbumbia|tipcat).
+- id: s.u12.21
+  node: es.u12.los-juegos
+  forms:
+    es-Latn/standard:
+      text: Abuela empinaba papalotes con sus hermanos.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: empinaba, lexeme: empinar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}}]
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) (empinaba|volaba) papalotes con sus hermanos
+        Abuela volaba cometas con sus hermanos.
+  translations:
+    en: |-
+      (Grandma|Abuela|Granny) (flew|used to fly|would fly) kites with her (brothers|siblings|brothers and sisters).
+      My grandmother flew kites with her brothers.
+- id: s.u12.22
+  node: es.u12.los-juegos
+  forms:
+    es-Latn/standard:
+      text: Mis hermanos y yo nos bañábamos en el río.
+      tokens: [{surface: Mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: bañábamos, lexeme: bañarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: río, lexeme: río, feats: {Number: Sing}}]
+      reverse: |-
+        Mis hermanos y yo nos bañábamos en el río
+        Mis hermanos y yo nadábamos en el río.
+  translations:
+    en: My (brothers|siblings|brothers and sisters) and I (swam|used to swim|would swim|bathed|used to bathe|went swimming|used to go swimming) in the river.
+- id: s.u12.23
+  node: es.u12.los-juegos
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    es-Latn/standard:
+      text: ¿Tú empinabas papalote cuando eras niño?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: empinabas, lexeme: empinar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: papalote, lexeme: papalote, feats: {Number: Sing}}, {surface: cuando, lexeme: cuando}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        (Tú empinabas|Empinabas [tú]) (papalote|papalotes) cuando (eras|tú eras) (niño|chiquito|pequeño)
+        (Usted empinaba|Empinaba [usted]) (papalote|papalotes) cuando (era|usted era) (niño|chiquito|pequeño)
+        ¿Tú volabas papalotes cuando eras niño?
+        ¿Tú volabas papalote cuando eras niño?
+  translations:
+    en: Did you (fly|use to fly) kites when you were (a kid|a child|a boy|little|young|small)?
+- id: s.u12.24
+  node: es.u12.los-juegos
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe nos hacía papalotes en el patio.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: hacía, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      reverse: |-
+        (Abuelo|El abuelo|Mi abuelo) Pepe nos hacía papalotes en el patio
+        Abuelo Pepe nos hacía cometas en el patio.
+  translations:
+    en: |-
+      (Grandpa|Abuelo|Granddad) Pepe (made|used to make|would make) (us kites|kites for us) in the (yard|backyard).
+      Grandpa Pepe used to make us kites in the garden.
+      My grandfather Pepe used to make us kites in the yard.
+- id: s.u12.25
+  node: es.u12.antes
+  forms:
+    es-Latn/standard:
+      text: Antes no había teléfono en el pueblo de Abuela.
+      tokens: [{surface: Antes, lexeme: antes}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pueblo, lexeme: pueblo, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}]
+      reverse: Antes no había (teléfono|teléfonos) en el pueblo de (Abuela|la abuela|mi abuela)
+  translations:
+    en: (Before|Back then|In the old days|In those days), there (was no phone|were no phones|was no telephone|were no telephones) in (Grandma's|Abuela's|Granny's) (town|village).
+- id: s.u12.26
+  node: es.u12.antes
+  forms:
+    es-Latn/standard:
+      text: Antes Abuela no tenía teléfono; ahora tiene WhatsApp.
+      tokens: [{surface: Antes, lexeme: antes}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: ahora, lexeme: ahora}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: WhatsApp, lexeme: whatsapp}]
+      reverse: Antes (Abuela|la abuela|mi abuela) no tenía teléfono [y|pero] ahora tiene WhatsApp
+  translations:
+    en: |-
+      (Before|Back then|In the old days), (Grandma|Abuela|Granny) (didn't have a phone|did not have a phone|had no phone)[, but] now she has WhatsApp.
+      Back then, my grandmother didn't have a phone, but now she has WhatsApp.
+- id: s.u12.27
+  node: es.u12.antes
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era niño, Abuela me hablaba en español.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: yo, lexeme: yo}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: hablaba, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
+      reverse: |-
+        Cuando [yo] era (niño|chiquito|pequeño) (Abuela|la abuela|mi abuela) me hablaba en español
+        De (niño|chiquito|pequeño) (Abuela|la abuela|mi abuela) me hablaba en español
+  translations:
+    en: |-
+      When I was (a kid|a child|a boy|little|young|small), (Grandma|Abuela|Granny) (spoke|talked|used to speak|used to talk|would speak|would talk) to me in Spanish.
+      When I was a kid, my grandmother spoke to me in Spanish.
+- id: s.u12.34
+  node: es.u12.antes
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era niña, Abuela me hablaba en español.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: yo, lexeme: yo}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: hablaba, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
+      reverse: |-
+        Cuando [yo] era (niña|chiquita|pequeña) (Abuela|la abuela|mi abuela) me hablaba en español
+        De (niña|chiquita|pequeña) (Abuela|la abuela|mi abuela) me hablaba en español
+  translations:
+    en: |-
+      When I was (a kid|a child|a girl|little|young|small), (Grandma|Abuela|Granny) (spoke|talked|used to speak|used to talk|would speak|would talk) to me in Spanish.
+      When I was a kid, my grandmother spoke to me in Spanish.
+- id: s.u12.28
+  node: es.u12.antes
+  forms:
+    es-Latn/standard:
+      text: Yo siempre le contestaba en inglés.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: siempre, lexeme: siempre}, {surface: le, lexeme: le}, {surface: contestaba, lexeme: contestar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: inglés, lexeme: inglés, feats: {Number: Sing}}]
+      reverse: |-
+        [Yo] siempre le (contestaba|respondía) en inglés
+        Yo le contestaba siempre en inglés.
+  translations:
+    en: I always (answered her|used to answer her|answered|replied|used to reply|would answer|would reply) in English.
+- id: s.u12.29
+  node: es.u12.antes
+  forms:
+    es-Latn/standard:
+      text: Ahora yo hablo más español que antes.
+      tokens: [{surface: Ahora, lexeme: ahora}, {surface: yo, lexeme: yo}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: español, lexeme: español, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: antes, lexeme: antes}]
+      reverse: Ahora [yo] hablo más español que antes
+  translations:
+    en: (Now|These days) I speak more Spanish than (before|I used to|I did before).
+- id: s.u12.30
+  node: es.u12.antes
+  forms:
+    es-Latn/standard:
+      text: ¿Qué hacían ustedes cuando no había luz?
+      tokens: [{surface: Qué, lexeme: qué}, {surface: hacían, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: cuando, lexeme: cuando}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}]
+      reverse: |-
+        (Qué hacían [ustedes]|Qué ustedes hacían|Qué hacías [tú]|Qué tú hacías|Qué hacía [usted]|Qué usted hacía) cuando no había (luz|electricidad|corriente)
+        ¿Ustedes qué hacían cuando no había luz?
+  translations:
+    en: What did you (do|use to do) when there was no (electricity|power|light)?
+- id: s.u12.31
+  node: es.u12.antes
+  forms:
+    es-Latn/standard:
+      text: Nos acostábamos con las gallinas, muy temprano.
+      tokens: [{surface: Nos, lexeme: nos, feats: {Number: Plur}}, {surface: acostábamos, lexeme: acostarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}, {surface: muy, lexeme: muy}, {surface: temprano, lexeme: temprano}]
+      reverse: |-
+        [Nosotros] nos acostábamos con las gallinas [muy temprano]
+        [Nosotros] nos acostábamos muy temprano [con las gallinas]
+        Nosotras nos acostábamos con las gallinas, muy temprano.
+  translations:
+    en: |-
+      We (went|used to go|would go) to bed with the (chickens|hens)[, very early].
+      We (went|used to go|would go) to bed (very|really) early.
+stories:
+- id: es.story.u12
+  node: es.u12.story
+  title:
+    en: When Abuela was a girl
+  characters:
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: lili
+    speaker: f
+    name:
+      es-Latn/standard: Lili
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: pepe
+    speaker: m
+    name:
+      es-Latn/standard: Abuelo Pepe
+  steps:
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¿cómo era tu vida cuando eras niña?
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cómo, lexeme: cómo}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: cuando, lexeme: cuando}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: Grandma, what was your life like when you were a girl?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Yo vivía en el campo, en Matanzas, en un bohío.
+          tokens: [{surface: Yo, lexeme: yo}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Matanzas, lexeme: matanzas}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}]
+      translations:
+        en: I lived in the country, in Matanzas, in a bohío.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿En un bohío? ¿Y había luz?
+          tokens: [{surface: En, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: Y, lexeme: y}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}]
+      translations:
+        en: In a bohío? And was there electricity?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: No, mi vida. No había luz y no había teléfono.
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: 'No', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: luz, lexeme: luz, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: había, lexeme: hay, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}]
+      translations:
+        en: No, darling. There was no electricity and no phone.
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿Y qué hacían ustedes por la noche?
+          tokens: [{surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: hacían, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      translations:
+        en: So what did you all do at night?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Nos acostábamos con las gallinas. ¡Muy temprano!
+          tokens: [{surface: Nos, lexeme: nos, feats: {Number: Plur}}, {surface: acostábamos, lexeme: acostarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}, {surface: Muy, lexeme: muy}, {surface: temprano, lexeme: temprano}]
+      translations:
+        en: We went to bed with the chickens. Very early!
+  - choose:
+      prompt:
+        en: Why did Abuela's family go to bed so early?
+      options:
+      - en: There was no electricity.
+      - en: The school was far away.
+      - en: The hens woke them up at night.
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y tú ibas a la escuela?
+          tokens: [{surface: Y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: ibas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}]
+      translations:
+        en: And did you go to school?
+  - line:
+      speaker: cachita
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Sí, iba a la escuela a caballo.
+          tokens: [{surface: Sí, lexeme: sí}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: caballo, lexeme: caballo, feats: {Number: Sing}}]
+      translations:
+        en: Yes, I went to school on horseback.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Los domingos íbamos al río y nos bañábamos.
+          tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}, {surface: íbamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: río, lexeme: río, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: bañábamos, lexeme: bañarse, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}]
+      translations:
+        en: On Sundays we went to the river and swam.
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:papalote
+      distractors:
+      - lexeme:frijol
+      - lexeme:plátano
+      forms:
+        es-Latn/standard:
+          text: Y mis hermanos y yo empinábamos papalotes.
+          tokens: [{surface: Y, lexeme: y}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: hermanos, lexeme: hermano, feats: {Gender: Masc, Number: Plur}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: empinábamos, lexeme: empinar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}]
+      translations:
+        en: And my brothers and I flew kites.
+  - line:
+      speaker: pepe
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Yo también empinaba papalotes.
+          tokens: [{surface: Yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: empinaba, lexeme: empinar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: papalotes, lexeme: papalote, feats: {Number: Plur}}]
+      translations:
+        en: I flew kites too.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¡Y jugaba a la quimbumbia en la calle!
+          tokens: [{surface: Y, lexeme: y}, {surface: jugaba, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: calle, lexeme: calle, feats: {Number: Sing}}]
+      translations:
+        en: And I played quimbumbia in the street!
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Qué es la quimbumbia, abuelo?
+          tokens: [{surface: Qué, lexeme: qué}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: quimbumbia, lexeme: quimbumbia, feats: {Number: Sing}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+      translations:
+        en: What's quimbumbia, Grandpa?
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Era como la pelota, pero sin pelota.
+          tokens: [{surface: Era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: sin, lexeme: sin}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      translations:
+        en: It was like baseball, but without a ball.
+  - choose:
+      prompt:
+        en: What was the quimbumbia?
+      options:
+      - en: A game a bit like baseball
+      - en: A kind of kite
+      - en: A river in Matanzas
+      answer: 0
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¿tú eras feliz en el campo?
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}]
+      translations:
+        en: Grandma, were you happy in the country?
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:ser
+      asks: form
+      distractors:
+      - {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}
+      - {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}
+      forms:
+        es-Latn/standard:
+          text: Sí. Éramos pobres, pero muy felices.
+          tokens: [{surface: Sí, lexeme: sí}, {surface: Éramos, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: pobres, lexeme: pobre, feats: {Gender: Masc, Number: Plur}}, {surface: pero, lexeme: pero}, {surface: muy, lexeme: muy}, {surface: felices, lexeme: feliz, feats: {Gender: Masc, Number: Plur}}]
+      translations:
+        en: Yes. We were poor, but very happy.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Y ahora tienes WhatsApp, abuela.
+          tokens: [{surface: Y, lexeme: y}, {surface: ahora, lexeme: ahora}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: WhatsApp, lexeme: whatsapp}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: And now you have WhatsApp, Grandma.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Sí, y ahora no me acuesto con las gallinas!
+          tokens: [{surface: Sí, lexeme: sí}, {surface: y, lexeme: y}, {surface: ahora, lexeme: ahora}, {surface: 'no', lexeme: 'no'}, {surface: me, lexeme: me}, {surface: acuesto, lexeme: acostarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: gallinas, lexeme: gallina, feats: {Number: Plur}}]
+      translations:
+        en: Yes, and now I don't go to bed with the chickens!
+  - choose:
+      prompt:
+        en: How does Abuela remember her childhood?
+      options:
+      - en: Her family was poor, but happy.
+      - en: Her family was rich.
+      - en: She didn't like the countryside.
+      answer: 0

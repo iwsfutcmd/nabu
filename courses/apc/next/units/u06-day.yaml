@@ -1,0 +1,889 @@
+# Unit u06-day of courses/apc in the new shape.
+# Written by `nabu migrate` from courses/apc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u06-day
+title:
+  en: My day
+cefr: A1
+nodes:
+- {id: apc.day.morning, kind: lesson, introduces: ['feature:Aspect=Imp', 'feature:Mood=Ind', 'lexeme:sob7', 'lexeme:fi2', 'lexeme:bakkir', 'lexeme:ra7']}
+- {id: apc.day.you, kind: lesson, introduces: ['lexeme:3emel', 'lexeme:eshteghel', 'lexeme:2ara']}
+- {id: apc.day.he-she, kind: lesson, introduces: ['lexeme:nem', 'lexeme:masa']}
+- {id: apc.day.we, kind: lesson, introduces: ['lexeme:yom', 'lexeme:kell', 'lexeme:dayman', 'lexeme:ba3dein']}
+- {id: apc.day.talk, kind: lesson, introduces: ['lexeme:hala2', 'lexeme:7aka', 'lexeme:3arabe', 'lexeme:englize']}
+- {id: apc.day.you-f, kind: lesson, introduces: ['lexeme:enti', 'lexeme:m2akhkhar']}
+- {id: apc.day.you-pl, kind: lesson, introduces: ['lexeme:ento']}
+- {id: apc.day.story, kind: story}
+sentences:
+- id: s.day.1
+  node: apc.day.morning
+  forms:
+    apc-Arab/standard:
+      text: باكل منقوشة.
+      tokens: [{surface: باكل, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: منقوشة, lexeme: man2oushe, feats: {Number: Sing}}]
+      reverse: (باكل|أنا باكل) منقوشة
+    apc-Latn/arabizi:
+      text: bekol man2oushe.
+      tokens: [{surface: bekol, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}}]
+      reverse: ((bekol|bakol|b2akol)|ana (bekol|bakol|b2akol)) (man2oushe|manoushe|man2ushi|mankoushe)
+  translations:
+    en: |-
+      I eat a (man'oushe|manakish).
+      I('ll| will) (eat|have) a (man'oushe|manakish).
+      I('m| am) having a (man'oushe|manakish).
+- id: s.day.2
+  node: apc.day.morning
+  forms:
+    apc-Arab/standard:
+      text: بشرب قهوة.
+      tokens: [{surface: بشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: (بشرب|أنا بشرب) قهوة
+    apc-Latn/arabizi:
+      text: bishrab ahwe.
+      tokens: [{surface: bishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: ((bishrab|beshrab|bshrab)|ana (bishrab|beshrab|bshrab)) (ahwe|2ahwe|ahwi|2ahwi)
+  translations:
+    en: |-
+      I drink coffee.
+      I('ll| will) (drink|have) (a coffee|some coffee|coffee).
+      I('m| am) having (a coffee|coffee).
+- id: s.day.3
+  node: apc.day.morning
+  forms:
+    apc-Arab/standard:
+      text: الصبح بشرب قهوة.
+      tokens: [{surface: الصبح, lexemes: [{lexeme: el, surface: ال}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}}]}, {surface: بشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: |-
+        (الصبح|عالصبح|ع الصبح) بشرب قهوة
+        بشرب قهوة (الصبح|عالصبح|ع الصبح)
+        أنا بشرب قهوة الصبح
+    apc-Latn/arabizi:
+      text: el sob7 bishrab ahwe.
+      tokens: [{surface: el, lexeme: el}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}}, {surface: bishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: |-
+        (el|l|il|3al) (sob7|sobe7|sub7) (bishrab|beshrab|bshrab) (ahwe|2ahwe)
+        (bishrab|beshrab|bshrab) (ahwe|2ahwe) (el|l|il|3al) (sob7|sobe7|sub7)
+        ana bishrab ahwe el sob7
+  translations:
+    en: |-
+      In the morning I drink coffee.
+      I drink coffee in the morning.
+- id: s.day.4
+  node: apc.day.morning
+  forms:
+    apc-Arab/standard:
+      text: بفيق الصبح.
+      tokens: [{surface: بفيق, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        (بفيق|أنا بفيق) (الصبح|عالصبح|ع الصبح)
+        الصبح بفيق
+    apc-Latn/arabizi:
+      text: bfi2 el sob7.
+      tokens: [{surface: bfi2, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: el, lexeme: el}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}}]
+      reverse: |-
+        ((bfi2|bfe2)|ana (bfi2|bfe2)) (el|l|il|3al) (sob7|sobe7|sub7)
+        el sob7 bfi2
+  translations:
+    en: |-
+      I wake up in the morning.
+      I get up in the morning.
+- id: s.day.5
+  node: apc.day.morning
+  forms:
+    apc-Arab/standard:
+      text: بفيق بكّير.
+      tokens: [{surface: بفيق, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: بكّير, lexeme: bakkir}]
+      reverse: (بفيق|أنا بفيق) بكّير
+    apc-Latn/arabizi:
+      text: bfi2 bakkir.
+      tokens: [{surface: bfi2, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bakkir, lexeme: bakkir}]
+      reverse: ((bfi2|bfe2)|ana (bfi2|bfe2)) (bakkir|bakir|bakkeer)
+  translations:
+    en: |-
+      I wake up early.
+      I get up early.
+- id: s.day.6
+  node: apc.day.morning
+  forms:
+    apc-Arab/standard:
+      text: بروح عالشغل.
+      tokens: [{surface: بروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}}]}]
+      reverse: (بروح|أنا بروح) (عالشغل|ع الشغل|على الشغل)
+    apc-Latn/arabizi:
+      text: bru7 3al shoghl.
+      tokens: [{surface: bru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}]
+      reverse: |-
+        ((bru7|brou7|bro7|bruh)|ana (bru7|brou7|bro7)) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+        ana bruh 3al shoghl
+  translations:
+    en: |-
+      I go to work.
+      I('m| am) going to work.
+- id: s.day.7
+  node: apc.day.you
+  forms:
+    apc-Arab/standard:
+      text: بعمل قهوة.
+      tokens: [{surface: بعمل, lexeme: 3emel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: (بعمل|أنا بعمل) قهوة
+    apc-Latn/arabizi:
+      text: ba3mel ahwe.
+      tokens: [{surface: ba3mel, lexeme: 3emel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: ((ba3mel|ba3mil|b3mel|ba3mol)|ana (ba3mel|ba3mil|b3mel|ba3mol)) (ahwe|2ahwe)
+  translations:
+    en: |-
+      I make coffee.
+      I('ll| will) make (coffee|some coffee).
+- id: s.day.8
+  node: apc.day.you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو بتعمل؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: بتعمل, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        شو (بتعمل|بتشتغل)
+        إنت شو (بتعمل|بتشتغل)
+    apc-Latn/arabizi:
+      text: shu bta3mel?
+      tokens: [{surface: shu, lexeme: shu}, {surface: bta3mel, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        (shu|sho) (bta3mel|bte3mel|bta3mil|btishteghel|bteshteghel)
+        (enta|inta) (shu|sho) (bta3mel|bte3mel|bta3mil|btishteghel|bteshteghel)
+  translations:
+    en: |-
+      What do you do?
+      What are you doing?
+      What are you up to?
+      What is she doing?
+      What does she do?
+- id: s.day.9
+  node: apc.day.you
+  forms:
+    apc-Arab/standard:
+      text: بشتغل ببيروت.
+      tokens: [{surface: بشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ببيروت, lexemes: [{lexeme: b, surface: ب}, {lexeme: beirut, surface: بيروت, base: true, feats: {Number: Sing}}]}]
+      reverse: (بشتغل|أنا بشتغل) ببيروت
+    apc-Latn/arabizi:
+      text: bishteghel b Beirut.
+      tokens: [{surface: bishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: b, lexeme: b}, {surface: Beirut, lexeme: beirut, feats: {Number: Sing}}]
+      reverse: ((bishteghel|beshteghel|bishtighil)|ana (bishteghel|beshteghel|bishtighil)) (b|bi) (Beirut|Bayrut|Beyrouth)
+  translations:
+    en: I work in Beirut.
+- id: s.day.10
+  node: apc.day.you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: وين بتشتغل؟
+      tokens: [{surface: وين, lexeme: wen}, {surface: بتشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        وين بتشتغل
+        إنت وين بتشتغل
+    apc-Latn/arabizi:
+      text: wen btishteghel?
+      tokens: [{surface: wen, lexeme: wen}, {surface: btishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        (wen|wein|wayn) (btishteghel|bteshteghel)
+        (enta|inta) (wen|wein|wayn) (btishteghel|bteshteghel)
+  translations:
+    en: |-
+      Where do you work?
+      Where does she work?
+- id: s.day.11
+  node: apc.day.you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو بتقرا؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: بتقرا, lexeme: 2ara, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        شو بتقرا
+        إنت شو بتقرا
+    apc-Latn/arabizi:
+      text: shu bti2ra?
+      tokens: [{surface: shu, lexeme: shu}, {surface: bti2ra, lexeme: 2ara, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        (shu|sho) (bti2ra|bte2ra|bt2ra)
+        (enta|inta) (shu|sho) (bti2ra|bte2ra|bt2ra)
+  translations:
+    en: |-
+      What do you read?
+      What are you reading [(these days|at the moment)]?
+      What is she reading?
+      What does she read?
+- id: s.day.12
+  node: apc.day.he-she
+  forms:
+    apc-Arab/standard:
+      text: سامي بيشتغل كتير.
+      tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: بيشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3'}}, {surface: كتير, lexeme: ktir}]
+      reverse: سامي بيشتغل كتير
+    apc-Latn/arabizi:
+      text: Sami byishteghel ktir.
+      tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: byishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3'}}, {surface: ktir, lexeme: ktir}]
+      reverse: Sami (byishteghel|byeshteghel) (ktir|kteer|kter|ktiir)
+  translations:
+    en: |-
+      Sami works a lot.
+      Sami works hard.
+- id: s.day.13
+  node: apc.day.he-she
+  forms:
+    apc-Arab/standard:
+      text: مايا بتشتغل بالمدرسة.
+      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: بتشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}}, {surface: بالمدرسة, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}}]}]
+      reverse: مايا بتشتغل بالمدرسة
+    apc-Latn/arabizi:
+      text: Maya btishteghel bel madrase.
+      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: btishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: madrase, lexeme: madrase, feats: {Number: Sing}}]
+      reverse: Maya (btishteghel|bteshteghel) (bel|bil|b el) (madrase|madrasi|madrasse)
+  translations:
+    en: |-
+      Maya works at the school.
+      Maya works at a school.
+      Maya works in a school.
+      Maya works in the school.
+- id: s.day.14
+  node: apc.day.he-she
+  forms:
+    apc-Arab/standard:
+      text: تيتا بتنام بكّير.
+      tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: بتنام, lexeme: nem, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}}, {surface: بكّير, lexeme: bakkir}]
+      reverse: تيتا بتنام بكّير
+    apc-Latn/arabizi:
+      text: teta btnem bakkir.
+      tokens: [{surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: btnem, lexeme: nem, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}}, {surface: bakkir, lexeme: bakkir}]
+      reverse: (teta|tayta) (btnem|btnam) (bakkir|bakir|bakkeer)
+  translations:
+    en: |-
+      (Grandma|Granny) (goes to bed|goes to sleep|sleeps) early.
+      My grandma goes to bed early.
+- id: s.day.15
+  node: apc.day.he-she
+  forms:
+    apc-Arab/standard:
+      text: المسا بقرا.
+      tokens: [{surface: المسا, lexemes: [{lexeme: el, surface: ال}, {lexeme: masa, surface: مسا, base: true, feats: {Number: Sing}}]}, {surface: بقرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]
+      reverse: |-
+        (المسا|بالمسا) بقرا
+        بقرا (المسا|بالمسا)
+    apc-Latn/arabizi:
+      text: el masa b2ra.
+      tokens: [{surface: el, lexeme: el}, {surface: masa, lexeme: masa, feats: {Number: Sing}}, {surface: b2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]
+      reverse: |-
+        (el|l|il|bel|bil) (masa|masa2) (b2ra|be2ra|bi2ra|b2ara)
+        (b2ra|be2ra|bi2ra|b2ara) (el|l|il|bel|bil) (masa|masa2)
+  translations:
+    en: |-
+      In the evening I read.
+      I read in the evening.
+- id: s.day.16
+  node: apc.day.he-she
+  forms:
+    apc-Arab/standard:
+      text: جدّو بيقرا كتير.
+      tokens: [{surface: جدّو, lexeme: jeddo, feats: {Number: Sing}}, {surface: بيقرا, lexeme: 2ara, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3'}}, {surface: كتير, lexeme: ktir}]
+      reverse: جدّو بيقرا كتير
+    apc-Latn/arabizi:
+      text: jeddo byi2ra ktir.
+      tokens: [{surface: jeddo, lexeme: jeddo, feats: {Number: Sing}}, {surface: byi2ra, lexeme: 2ara, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3'}}, {surface: ktir, lexeme: ktir}]
+      reverse: (jeddo|jiddo|jeddu) (byi2ra|bye2ra) (ktir|kteer|kter|ktiir)
+  translations:
+    en: |-
+      (Grandpa|Grandad) reads a lot.
+      My grandpa reads a lot.
+      My grandfather reads a lot.
+- id: s.day.17
+  node: apc.day.we
+  forms:
+    apc-Arab/standard:
+      text: منروح عالبيت.
+      tokens: [{surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالبيت, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}]
+      reverse: (منروح|نحنا منروح) (عالبيت|ع البيت|على البيت)
+    apc-Latn/arabizi:
+      text: mnru7 3al bet.
+      tokens: [{surface: mnru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}}]
+      reverse: ((mnru7|mnrou7|mnro7)|(ne7na|na7na) (mnru7|mnrou7|mnro7)) (3al|3a l|3a el) (bet|beit|bayt)
+  translations:
+    en: |-
+      We('re| are) going home.
+      We go home.
+      Let's go home.
+- id: s.day.18
+  node: apc.day.we
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو بتعمل اليوم؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: بتعمل, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        شو بتعمل اليوم
+        اليوم شو بتعمل
+        إنت شو بتعمل اليوم
+    apc-Latn/arabizi:
+      text: shu bta3mel el yom?
+      tokens: [{surface: shu, lexeme: shu}, {surface: bta3mel, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      reverse: |-
+        (shu|sho) (bta3mel|bte3mel|bta3mil) (el|l|il) (yom|yawm|youm)
+        (el|l|il) (yom|yawm|youm) (shu|sho) (bta3mel|bte3mel|bta3mil)
+        enta shu bta3mel el yom
+  translations:
+    en: |-
+      What are you doing today?
+      What are you up to today?
+      What is she doing today?
+- id: s.day.19
+  node: apc.day.we
+  forms:
+    apc-Arab/standard:
+      text: كلّ يوم بفيق بكّير.
+      tokens: [{surface: كلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}, {surface: بفيق, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: بكّير, lexeme: bakkir}]
+      reverse: |-
+        كلّ يوم بفيق بكّير
+        بفيق بكّير كلّ يوم
+        أنا بفيق بكّير كلّ يوم
+    apc-Latn/arabizi:
+      text: kell yom bfi2 bakkir.
+      tokens: [{surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}, {surface: bfi2, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bakkir, lexeme: bakkir}]
+      reverse: |-
+        (kell|kil|kel|kull) (yom|yawm|youm) (bfi2|bfe2) (bakkir|bakir|bakkeer)
+        (bfi2|bfe2) (bakkir|bakir|bakkeer) (kell|kil|kel|kull) (yom|yawm|youm)
+        ana bfi2 bakkir kell yom
+  translations:
+    en: |-
+      Every day I (wake|get) up early.
+      I (wake|get) up early every day.
+- id: s.day.20
+  node: apc.day.we
+  forms:
+    apc-Arab/standard:
+      text: دايما منشرب قهوة الصبح.
+      tokens: [{surface: دايما, lexeme: dayman}, {surface: منشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        (دايما|دايماً|دائماً) منشرب قهوة الصبح
+        نحنا دايما منشرب قهوة الصبح
+        الصبح دايما منشرب قهوة
+        دايما الصبح منشرب قهوة
+    apc-Latn/arabizi:
+      text: dayman mnishrab ahwe el sob7.
+      tokens: [{surface: dayman, lexeme: dayman}, {surface: mnishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: el, lexeme: el}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}}]
+      reverse: |-
+        (dayman|daymen|daiman) (mnishrab|mneshrab|mnshrab) (ahwe|2ahwe) (el|l|il) (sob7|sobe7|sub7)
+        ne7na dayman mnishrab ahwe el sob7
+        el sob7 dayman mnishrab ahwe
+        dayman el sob7 mnishrab ahwe
+        dayman mnishrab ahwe 3al sob7
+  translations:
+    en: |-
+      We always drink coffee in the morning.
+      In the morning we always drink coffee.
+- id: s.day.21
+  node: apc.day.we
+  forms:
+    apc-Arab/standard:
+      text: بعدين منروح عالشغل.
+      tokens: [{surface: بعدين, lexeme: ba3dein}, {surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}}]}]
+      reverse: بعدين منروح (عالشغل|ع الشغل|على الشغل)
+    apc-Latn/arabizi:
+      text: ba3dein mnru7 3al shoghl.
+      tokens: [{surface: ba3dein, lexeme: ba3dein}, {surface: mnru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}]
+      reverse: (ba3dein|ba3den|ba3dain) (mnru7|mnrou7|mnro7) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+  translations:
+    en: |-
+      Then we go to work.
+      After that we go to work.
+      Later we('ll| will) go to work.
+- id: s.day.22
+  node: apc.day.talk
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو بتعمل هلّق؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: بتعمل, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: هلّق, lexeme: hala2}]
+      reverse: |-
+        شو بتعمل (هلّق|هلق|هلأ)
+        شو عم (تعمل|بتعمل) (هلّق|هلق|هلأ)
+        إنت شو بتعمل هلّق
+        هلّق شو بتعمل
+        هلّق شو عم تعمل
+    apc-Latn/arabizi:
+      text: shu bta3mel hala2?
+      tokens: [{surface: shu, lexeme: shu}, {surface: bta3mel, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: hala2, lexeme: hala2}]
+      reverse: |-
+        (shu|sho) (bta3mel|bte3mel|bta3mil) (hala2|halla2|hal2|hala)
+        (shu|sho) (3am|3m) (ta3mel|te3mel|bta3mel) (hala2|halla2|hal2|hala)
+        enta shu bta3mel hala2
+        hala2 shu bta3mel
+        hala2 shu 3am ta3mel
+  translations:
+    en: |-
+      What are you doing now?
+      What are you going to do now?
+      What is she doing now?
+- id: s.day.23
+  node: apc.day.talk
+  forms:
+    apc-Arab/standard:
+      text: بحكي مع تيتا.
+      tokens: [{surface: بحكي, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: مع, lexeme: ma3}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}]
+      reverse: (بحكي|أنا بحكي) مع تيتا
+    apc-Latn/arabizi:
+      text: b7ki ma3 teta.
+      tokens: [{surface: b7ki, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ma3, lexeme: ma3}, {surface: teta, lexeme: teta, feats: {Number: Sing}}]
+      reverse: ((b7ki|be7ke|b7ke|bhki|bi7ki)|ana (b7ki|be7ke|b7ke|bhki|bi7ki)) (ma3|ma3a) (teta|tayta)
+  translations:
+    en: |-
+      I talk (to|with) (grandma|granny).
+      I('ll| will) talk (to|with) (grandma|granny).
+      I talk to my grandma.
+- id: s.day.24
+  node: apc.day.talk
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    apc-Arab/standard:
+      text: بتحكي عربي؟
+      tokens: [{surface: بتحكي, lexeme: 7aka, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: عربي, lexeme: 3arabe, feats: {Number: Sing}}]
+      reverse: (بتحكي|إنت بتحكي|إنتي بتحكي) عربي
+    apc-Latn/arabizi:
+      text: bt7ki 3arabe?
+      tokens: [{surface: bt7ki, lexeme: 7aka, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: 3arabe, lexeme: 3arabe, feats: {Number: Sing}}]
+      reverse: ((bt7ki|bte7ke|bt7ke|bti7ki)|(enta|inta|enti|inti) (bt7ki|bte7ke|bt7ke|bti7ki)) (3arabe|3arabi|arabi)
+  translations:
+    en: |-
+      Do you speak Arabic?
+      Can you speak Arabic?
+      Does she speak Arabic?
+- id: s.day.25
+  node: apc.day.talk
+  forms:
+    apc-Arab/standard:
+      text: إيه، بسّ شوي.
+      tokens: [{surface: إيه, lexeme: eh}, {surface: بسّ, lexeme: bas}, {surface: شوي, lexeme: shway}]
+      reverse: |-
+        إيه بسّ (شوي|شوية)
+        إي بسّ شوي
+    apc-Latn/arabizi:
+      text: eh, bas shway.
+      tokens: [{surface: eh, lexeme: eh}, {surface: bas, lexeme: bas}, {surface: shway, lexeme: shway}]
+      reverse: (eh|ee|e) (bas|bass) (shway|shwayy|shwei|shwai)
+  translations:
+    en: |-
+      Yes, but (only|just) a (little|bit).
+      Yes, (only|just) a (little|bit).
+- id: s.day.26
+  node: apc.day.talk
+  forms:
+    apc-Arab/standard:
+      text: بحكي إنكليزي.
+      tokens: [{surface: بحكي, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: إنكليزي, lexeme: englize, feats: {Number: Sing}}]
+      reverse: (بحكي|أنا بحكي) (إنكليزي|انجليزي)
+    apc-Latn/arabizi:
+      text: b7ki englize.
+      tokens: [{surface: b7ki, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: englize, lexeme: englize, feats: {Number: Sing}}]
+      reverse: ((b7ki|be7ke|b7ke|bhki|bi7ki)|ana (b7ki|be7ke|b7ke|bhki|bi7ki)) (englize|inglizi|englizi|inglize)
+  translations:
+    en: |-
+      I speak English.
+      I can speak English.
+- id: s.day.27
+  node: apc.day.you-f
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: مايا، شو بتعملي؟
+      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: شو, lexeme: shu}, {surface: بتعملي, lexeme: 3emel, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        مايا شو بتعملي
+        شو بتعملي مايا
+    apc-Latn/arabizi:
+      text: Maya, shu bta3mli?
+      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: shu, lexeme: shu}, {surface: bta3mli, lexeme: 3emel, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        Maya (shu|sho) (bta3mli|bte3mle|bta3mile)
+        shu bta3mli Maya
+  translations:
+    en: |-
+      Maya, what are you doing?
+      Maya, what do you do?
+      Maya, what are you up to?
+      What are you doing, Maya?
+- id: s.day.28
+  node: apc.day.you-f
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: إنتي بتشربي قهوة؟
+      tokens: [{surface: إنتي, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: بتشربي, lexeme: shereb, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: '[(إنتي|إنتِ)] بتشربي قهوة'
+    apc-Latn/arabizi:
+      text: enti btishrabi ahwe?
+      tokens: [{surface: enti, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: btishrabi, lexeme: shereb, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: '[(enti|inti|ente)] (btishrabi|bteshrabi|btshrabi) (ahwe|2ahwe)'
+  translations:
+    en: |-
+      Do you drink coffee?
+      Would you like (a coffee|some coffee|coffee)?
+      Will you have (a coffee|some coffee|coffee)?
+- id: s.day.29
+  node: apc.day.you-f
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: أنا مأخّر!
+      tokens: [{surface: أنا, lexeme: ana}, {surface: مأخّر, lexeme: m2akhkhar, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        [أنا] (مأخّر|متأخّر)
+        [أنا] تأخّرت
+    apc-Latn/arabizi:
+      text: ana m2akhkhar!
+      tokens: [{surface: ana, lexeme: ana}, {surface: m2akhkhar, lexeme: m2akhkhar, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        [ana] (m2akhkhar|m2akhar|m2a5ar|met2akhkher|mit2akhkhir)
+        [ana] (t2akhkhart|t2akhart|ta2akhart|t2a5art)
+  translations:
+    en: I('m| am) late!
+- id: s.day.30
+  node: apc.day.you-f
+  forms:
+    apc-Arab/standard:
+      text: مايا مأخّرة كلّ يوم!
+      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: مأخّرة, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}}, {surface: كلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}]
+      reverse: |-
+        مايا (مأخّرة|متأخّرة) كلّ يوم
+        مايا كلّ يوم (مأخّرة|متأخّرة)
+        مايا كلّ يوم (بتتأخّر|بتأخّر)
+        مايا بتتأخّر كلّ يوم
+    apc-Latn/arabizi:
+      text: Maya m2akhkhra kell yom!
+      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: m2akhkhra, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      reverse: |-
+        Maya (m2akhkhra|m2akhra|m2a5ra|met2akhkhra) (kell|kil|kel|kull) (yom|yawm|youm)
+        Maya (kell|kil|kel|kull) (yom|yawm|youm) (m2akhkhra|m2akhra|m2a5ra|met2akhkhra)
+        Maya kell yom btit2akhkhar
+        Maya btit2akhkhar kell yom
+  translations:
+    en: |-
+      Maya is late every day!
+      Maya's late every day!
+- id: s.day.31
+  node: apc.day.you-f
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: بتروحي عالمدرسة؟
+      tokens: [{surface: بتروحي, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}, {surface: عالمدرسة, lexemes: [{lexeme: 3a, surface: ع}, {lexeme: el, surface: ال}, {lexeme: madrase, surface: مدرسة, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        بتروحي (عالمدرسة|ع المدرسة|على المدرسة)
+        إنتي بتروحي عالمدرسة
+    apc-Latn/arabizi:
+      text: btru7i 3al madrase?
+      tokens: [{surface: btru7i, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: madrase, lexeme: madrase, feats: {Number: Sing}}]
+      reverse: |-
+        (btru7i|btrou7e|btro7i) (3al|3a l|3a el) (madrase|madrasi|madrasse)
+        enti btru7i 3al madrase
+  translations:
+    en: |-
+      Do you go to school?
+      Are you going to school?
+- id: s.day.32
+  node: apc.day.you-f
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: أنا مأخّرة!
+      tokens: [{surface: أنا, lexeme: ana}, {surface: مأخّرة, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        [أنا] (مأخّرة|متأخّرة)
+        تأخّرت
+        أنا تأخّرت
+    apc-Latn/arabizi:
+      text: ana m2akhkhra!
+      tokens: [{surface: ana, lexeme: ana}, {surface: m2akhkhra, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        [ana] (m2akhkhra|m2akhra|m2a5ra|met2akhkhra)
+        t2akhkhart
+  translations:
+    en: I('m| am) late!
+- id: s.day.33
+  node: apc.day.you-f
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: وين بتشتغلي؟
+      tokens: [{surface: وين, lexeme: wen}, {surface: بتشتغلي, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        وين بتشتغلي
+        إنتي وين بتشتغلي
+    apc-Latn/arabizi:
+      text: wen btishteghli?
+      tokens: [{surface: wen, lexeme: wen}, {surface: btishteghli, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}]
+      reverse: |-
+        (wen|wein|wayn) (btishteghli|bteshteghli|btishtighli)
+        (enti|inti) (wen|wein|wayn) (btishteghli|bteshteghli|btishtighli)
+  translations:
+    en: Where do you work?
+- id: s.day.34
+  node: apc.day.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: شو بتعملوا؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: بتعملوا, lexeme: 3emel, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}]
+      reverse: |-
+        شو (بتعملوا|بتعملو)
+        إنتو شو بتعملوا
+    apc-Latn/arabizi:
+      text: shu bta3mlo?
+      tokens: [{surface: shu, lexeme: shu}, {surface: bta3mlo, lexeme: 3emel, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}]
+      reverse: |-
+        (shu|sho) (bta3mlo|bte3mlo|bta3mlu|bta3mlou)
+        ento shu bta3mlo
+  translations:
+    en: |-
+      What are you doing?
+      What do you do?
+      What are you up to?
+      What are you all doing?
+- id: s.day.35
+  node: apc.day.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: إنتو بتشربوا قهوة؟
+      tokens: [{surface: إنتو, lexeme: ento, feats: {Number: Plur}}, {surface: بتشربوا, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: '[إنتو] (بتشربوا|بتشربو) قهوة'
+    apc-Latn/arabizi:
+      text: ento btishrabo ahwe?
+      tokens: [{surface: ento, lexeme: ento, feats: {Number: Plur}}, {surface: btishrabo, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: '[(ento|into|entu|intu)] (btishrabo|bteshrabo|btshrabo|btishrabu) (ahwe|2ahwe)'
+  translations:
+    en: |-
+      Do you drink coffee?
+      Would you like (a coffee|some coffee|coffee)?
+      Will you have (a coffee|some coffee|coffee)?
+- id: s.day.36
+  node: apc.day.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: وين بتروحوا الصبح؟
+      tokens: [{surface: وين, lexeme: wen}, {surface: بتروحوا, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        وين (بتروحوا|بتروحو) الصبح
+        الصبح وين (بتروحوا|بتروحو)
+        إنتو وين بتروحوا الصبح
+    apc-Latn/arabizi:
+      text: wen btru7o el sob7?
+      tokens: [{surface: wen, lexeme: wen}, {surface: btru7o, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: el, lexeme: el}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}}]
+      reverse: |-
+        (wen|wein|wayn) (btru7o|btrou7o|btro7o|btru7u) (el|l|il) (sob7|sobo7|sobh)
+        (el|l|il) (sob7|sobo7|sobh) (wen|wein|wayn) (btru7o|btrou7o|btro7o|btru7u)
+        ento wen btru7o el sob7
+  translations:
+    en: Where do you go in the morning?
+- id: s.day.37
+  node: apc.day.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: بتحكوا عربي؟
+      tokens: [{surface: بتحكوا, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: عربي, lexeme: 3arabe, feats: {Number: Sing}}]
+      reverse: '[إنتو] (بتحكوا|بتحكو) عربي'
+    apc-Latn/arabizi:
+      text: bti7ko 3arabe?
+      tokens: [{surface: bti7ko, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: 3arabe, lexeme: 3arabe, feats: {Number: Sing}}]
+      reverse: '[(ento|into)] (bti7ko|bt7ko|bti7ku) (3arabe|3arabi|arabi)'
+  translations:
+    en: Do you speak Arabic?
+- id: s.day.38
+  node: apc.day.you-pl
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: إنتو مأخّرين!
+      tokens: [{surface: إنتو, lexeme: ento, feats: {Number: Plur}}, {surface: مأخّرين, lexeme: m2akhkhar, feats: {Number: Plur}}]
+      reverse: |-
+        [إنتو] (مأخّرين|متأخّرين)
+        تأخّرتوا
+        إنتو تأخّرتوا
+    apc-Latn/arabizi:
+      text: ento m2akhkhrin!
+      tokens: [{surface: ento, lexeme: ento, feats: {Number: Plur}}, {surface: m2akhkhrin, lexeme: m2akhkhar, feats: {Number: Plur}}]
+      reverse: |-
+        [(ento|into|entu)] (m2akhkhrin|m2akhrin|m2a5rin|met2akhkhrin)
+        t2akhkharto
+  translations:
+    en: |-
+      You('re| are) late!
+      You're all late!
+stories:
+- id: apc.story.my-day
+  node: apc.day.story
+  title:
+    en: Every day
+  provenance:
+    author: llm:claude@6914f241714e
+    status: draft
+  characters:
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  steps:
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: سامي، شو بْتَعْمِل كِلّ يوم؟
+          tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: شو, lexeme: shu}, {surface: بْتَعْمِل, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: كِلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: Sami, shu bta3mel kell yom?
+          tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: shu, lexeme: shu}, {surface: bta3mel, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      translations:
+        en: Sami, what do you do every day?
+  - line:
+      speaker: sami
+      ask: complete
+      gap: lexeme:ahwe
+      distractors:
+      - lexeme:jebne
+      - lexeme:ghorfe
+      forms:
+        apc-Arab/standard:
+          text: بْفيق بَكّير وبِشْرَب قَهْوِة.
+          tokens: [{surface: بْفيق, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: بَكّير, lexeme: bakkir}, {surface: وبِشْرَب, lexemes: [{lexeme: w, surface: و}, {lexeme: shereb, surface: بِشْرَب, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]}, {surface: قَهْوِة, lexeme: ahwe, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: bfi2 bakkir w bishrab ahwe.
+          tokens: [{surface: bfi2, lexeme: fi2, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bakkir, lexeme: bakkir}, {surface: w, lexeme: w}, {surface: bishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      translations:
+        en: I wake up early and drink coffee.
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: وبْتاكُل؟
+          tokens: [{surface: وبْتاكُل, lexemes: [{lexeme: w, surface: و}, {lexeme: akal, surface: بْتاكُل, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}]}]
+        apc-Latn/arabizi:
+          text: w btekol?
+          tokens: [{surface: w, lexeme: w}, {surface: btekol, lexeme: akal, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}]
+      translations:
+        en: And do you eat?
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: إيه، باكُل مَنْقوشِة زَعْتَر.
+          tokens: [{surface: إيه, lexeme: eh}, {surface: باكُل, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: مَنْقوشِة, lexeme: man2oushe, feats: {Number: Sing}}, {surface: زَعْتَر, lexeme: za3tar, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: eh, bekol man2oushe za3tar.
+          tokens: [{surface: eh, lexeme: eh}, {surface: bekol, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}}, {surface: za3tar, lexeme: za3tar, feats: {Number: Sing}}]
+      translations:
+        en: Yes, I eat a za'atar man'oushe.
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: وبَعْدين؟
+          tokens: [{surface: وبَعْدين, lexemes: [{lexeme: w, surface: و}, {lexeme: ba3dein, surface: بَعْدين, base: true}]}]
+        apc-Latn/arabizi:
+          text: w ba3dein?
+          tokens: [{surface: w, lexeme: w}, {surface: ba3dein, lexeme: ba3dein}]
+      translations:
+        en: And then?
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: بَعْدين بْروح عَالشُّغُل. بِشْتِغِل كْتير!
+          tokens: [{surface: بَعْدين, lexeme: ba3dein}, {surface: بْروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عَالشُّغُل, lexemes: [{lexeme: 3a, surface: عَ}, {lexeme: el, surface: ال}, {lexeme: shoghl, surface: شُّغُل, base: true, feats: {Number: Sing}}]}, {surface: بِشْتِغِل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: كْتير, lexeme: ktir}]
+        apc-Latn/arabizi:
+          text: ba3dein bru7 3al shoghl. bishteghel ktir!
+          tokens: [{surface: ba3dein, lexeme: ba3dein}, {surface: bru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}, {surface: bishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ktir, lexeme: ktir}]
+      translations:
+        en: Then I go to work. I work a lot!
+  - choose:
+      prompt:
+        en: What does Sami do after breakfast?
+      options:
+      - en: He goes to work
+      - en: He goes back to sleep
+      - en: He goes to school
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: والمَسا؟
+          tokens: [{surface: والمَسا, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال}, {lexeme: masa, surface: مَسا, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: w el masa?
+          tokens: [{surface: w, lexeme: w}, {surface: el, lexeme: el}, {surface: masa, lexeme: masa, feats: {Number: Sing}}]
+      translations:
+        en: And in the evening?
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: المَسا بِقْرا، وبْنام بَكّير.
+          tokens: [{surface: المَسا, lexemes: [{lexeme: el, surface: ال}, {lexeme: masa, surface: مَسا, base: true, feats: {Number: Sing}}]}, {surface: بِقْرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: وبْنام, lexemes: [{lexeme: w, surface: و}, {lexeme: nem, surface: بْنام, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]}, {surface: بَكّير, lexeme: bakkir}]
+        apc-Latn/arabizi:
+          text: el masa b2ra, w bnem bakkir.
+          tokens: [{surface: el, lexeme: el}, {surface: masa, lexeme: masa, feats: {Number: Sing}}, {surface: b2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: w, lexeme: w}, {surface: bnem, lexeme: nem, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bakkir, lexeme: bakkir}]
+      translations:
+        en: In the evening I read, and I go to bed early.
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: أَنا دايْماً مْأَخّْرَة!
+          tokens: [{surface: أَنا, lexeme: ana}, {surface: دايْماً, lexeme: dayman}, {surface: مْأَخّْرَة, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}}]
+        apc-Latn/arabizi:
+          text: ana dayman m2akhkhra!
+          tokens: [{surface: ana, lexeme: ana}, {surface: dayman, lexeme: dayman}, {surface: m2akhkhra, lexeme: m2akhkhar, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: I'm always late!
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: إيه، كِلّ يوم!
+          tokens: [{surface: إيه, lexeme: eh}, {surface: كِلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: eh, kell yom!
+          tokens: [{surface: eh, lexeme: eh}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      translations:
+        en: Yes, every day!
+  - choose:
+      prompt:
+        en: Who is always late?
+      options:
+      - en: Maya
+      - en: Sami
+      - en: Grandma
+      answer: 0

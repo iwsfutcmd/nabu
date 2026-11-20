@@ -1,0 +1,91 @@
+# courses/uz in the new shape (schemas/course-source.next.schema.json).
+# Written by `nabu migrate` from courses/uz and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: uz
+target: uz-Latn-UZ
+orthographies:
+- uz-Latn/standard
+- uz-Cyrl/standard
+support:
+- en-Latn/standard
+lexicon: uz
+variety: uz-UZ
+names:
+  en:
+    course: Uzbek
+    blurb: The Uzbek of Uzbekistan, in Latin or Cyrillic letters.
+    orthographies:
+      uz-Latn/standard: Latin
+      uz-Cyrl/standard: Cyrillic
+    hints:
+      uz-Latn/standard: The official alphabet in Uzbekistan today.
+      uz-Cyrl/standard: The older alphabet, still widely read.
+  ar:
+    course: الأوزبكية
+    orthographies:
+      uz-Latn/standard: الحروف اللاتينية
+      uz-Cyrl/standard: الحروف السيريلية
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  fa:
+    course: ازبکی
+    orthographies:
+      uz-Latn/standard: لاتین
+      uz-Cyrl/standard: سیریلیک
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  uz:
+    course: Oʻzbek tili
+    orthographies:
+      uz-Latn/standard: Lotin
+      uz-Cyrl/standard: Kirill
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  uz-Cyrl:
+    course: Ўзбек тили
+    orthographies:
+      uz-Latn/standard: Лотин
+      uz-Cyrl/standard: Кирилл
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  zh-Hant-HK:
+    course: 烏茲別克語
+    orthographies:
+      uz-Latn/standard: 拉丁字母
+      uz-Cyrl/standard: 西里爾字母
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+license: CC-BY-SA-4.0
+provenance:
+  author: llm:claude@887599f213ef
+  status: draft
+consistentReadings: true
+wordParts: true
+units:
+- units/intro.yaml
+- units/u02-family.yaml
+- units/u03-home.yaml
+- units/u04-numbers.yaml
+- units/u05-food.yaml
+- units/u06-city.yaml
+- units/u07-day.yaml
+- units/u08-bazaar.yaml
+- units/u09-past.yaml
+- units/u10-travel.yaml
+audio:
+  voices:
+  - id: toshkent
+    provider: navoiy
+    voice: toshkent-f
+    model: aisha-org/navoiy-tts@9445f41ee5f38bd3a34eb16b0279dc05f9997fc2
+    language: uz
+    orthography: uz-Latn/standard
+    reading: text
+    finalStop: true
+    license: Apache-2.0

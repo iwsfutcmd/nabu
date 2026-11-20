@@ -1,0 +1,794 @@
+# Unit u14-phone of courses/apc in the new shape.
+# Written by `nabu migrate` from courses/apc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u14-phone
+title:
+  en: Call me!
+cefr: A2
+nodes:
+- {id: apc.phone.call, kind: lesson, introduces: ['lexeme:alo', 'lexeme:telefon', 'lexeme:de22', 'lexeme:la-1sg', 'lexeme:7ada']}
+- {id: apc.phone.me-you, kind: lesson, introduces: ['lexeme:obj-1sg', 'lexeme:fehem', 'lexeme:obj-2ms', 'lexeme:obj-2fs']}
+- {id: apc.phone.him-her, kind: lesson, introduces: ['lexeme:obj-3ms', 'lexeme:obj-3fs', 'lexeme:2al', 'lexeme:wa2t']}
+- {id: apc.phone.send, kind: lesson, introduces: ['lexeme:resele', 'lexeme:b3at']}
+- {id: apc.phone.story, kind: story}
+sentences:
+- id: s.phone.1
+  node: apc.phone.call
+  forms:
+    apc-Arab/standard:
+      text: ألو؟
+      tokens: [{surface: ألو, lexeme: alo}]
+      reverse: ألو
+    apc-Latn/arabizi:
+      text: alo?
+      tokens: [{surface: alo, lexeme: alo}]
+      reverse: (alo|allo|2alo)
+  translations:
+    en: Hello?
+- id: s.phone.2
+  node: apc.phone.call
+  forms:
+    apc-Arab/standard:
+      text: ألو، مين معي؟
+      tokens: [{surface: ألو, lexeme: alo}, {surface: مين, lexeme: meen}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: ألو مين معي
+    apc-Latn/arabizi:
+      text: alo, meen ma3i?
+      tokens: [{surface: alo, lexeme: alo}, {surface: meen, lexeme: meen}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (alo|allo|2alo) (meen|mien|min) (ma3i|m3i|ma3e)
+  translations:
+    en: |-
+      Hello, who('s| is) (this|speaking|calling)?
+      Hello, who am I speaking to?
+      Hello, who am I talking to?
+- id: s.phone.3
+  node: apc.phone.call
+  forms:
+    apc-Arab/standard:
+      text: وين تلفوني؟
+      tokens: [{surface: وين, lexeme: wen}, {surface: تلفوني, lexemes: [{lexeme: telefon, surface: تلفون, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: وين (تلفوني|تليفوني)
+    apc-Latn/arabizi:
+      text: wen telefoni?
+      tokens: [{surface: wen, lexeme: wen}, {surface: telefoni, lexemes: [{lexeme: telefon, surface: telefon, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: (wen|wein) (telefoni|telefone|talifoni|tilifoni)
+  translations:
+    en: Where('s| is) my phone?
+- id: s.phone.4
+  node: apc.phone.call
+  forms:
+    apc-Arab/standard:
+      text: ما معي تلفون.
+      tokens: [{surface: ما, lexeme: ma}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: تلفون, lexeme: telefon, feats: {Number: Sing}}]
+      reverse: |-
+        ما معي (تلفون|تليفون)
+        أنا ما معي تلفون
+    apc-Latn/arabizi:
+      text: ma ma3i telefon.
+      tokens: [{surface: ma, lexeme: ma}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: telefon, lexeme: telefon, feats: {Number: Sing}}]
+      reverse: |-
+        ma (ma3i|m3i|ma3e) (telefon|talifon|tilifon|telephone)
+        ana ma ma3i telefon
+  translations:
+    en: |-
+      I (don't|do not) have a phone (on me|with me|).
+      I (haven't|have not) got a phone (on me|with me|).
+- id: s.phone.5
+  node: apc.phone.call
+  forms:
+    apc-Arab/standard:
+      text: رح دقّ بكرا.
+      tokens: [{surface: رح, lexeme: ra7.fut}, {surface: دقّ, lexeme: de22, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: بكرا, lexeme: bukra}]
+      reverse: |-
+        (رح|لح) دقّ (بكرا|بكرة)
+        أنا رح دقّ بكرا
+        بكرا رح دقّ
+        بدقّ بكرا
+    apc-Latn/arabizi:
+      text: ra7 de22 bukra.
+      tokens: [{surface: ra7, lexeme: ra7.fut}, {surface: de22, lexeme: de22, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: bukra, lexeme: bukra}]
+      reverse: |-
+        (ra7|la7|rah) (de22|da22|de22a) (bukra|bokra|bukrah)
+        ana ra7 de22 bukra
+        bukra ra7 de22
+        bde22 bukra
+  translations:
+    en: |-
+      I('ll| will) call tomorrow.
+      I('m| am) going to call tomorrow.
+      I'll phone tomorrow.
+      I'll ring tomorrow.
+- id: s.phone.6
+  node: apc.phone.call
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: دقّلي بكرا!
+      tokens: [{surface: دقّلي, lexemes: [{lexeme: de22, surface: دقّ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: بكرا, lexeme: bukra}]
+      reverse: |-
+        دقّلي (بكرا|بكرة)
+        بكرا دقّلي
+    apc-Latn/arabizi:
+      text: de22elli bukra!
+      tokens: [{surface: de22elli, lexemes: [{lexeme: de22, surface: de22, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: bukra, lexeme: bukra}]
+      reverse: |-
+        (de22elli|da22elli|de22li|de22ele) (bukra|bokra|bukrah)
+        bukra de22elli
+  translations:
+    en: |-
+      Call me tomorrow!
+      Give me a call tomorrow!
+      (Ring|Phone) me tomorrow!
+- id: s.phone.7
+  node: apc.phone.call
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: دقّيلي المسا.
+      tokens: [{surface: دقّيلي, lexemes: [{lexeme: de22, surface: دقّي, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: المسا, lexemes: [{lexeme: el, surface: ال}, {lexeme: masa, surface: مسا, base: true, feats: {Number: Sing}}]}]
+      reverse: |-
+        دقّيلي (المسا|بالمسا)
+        المسا دقّيلي
+    apc-Latn/arabizi:
+      text: de22ili el masa.
+      tokens: [{surface: de22ili, lexemes: [{lexeme: de22, surface: de22i, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: li}]}, {surface: el, lexeme: el}, {surface: masa, lexeme: masa, feats: {Number: Sing}}]
+      reverse: |-
+        (de22ili|de22ele|da22ili|de22eli) (el|l|il) (masa|masa2)
+        de22ili bel masa
+        el masa de22ili
+  translations:
+    en: |-
+      Call me (this|in the) evening.
+      Give me a call (this|in the) evening.
+      Phone me this evening!
+      Ring me this evening!
+- id: s.phone.8
+  node: apc.phone.call
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: دقّولي بكرا!
+      tokens: [{surface: دقّولي, lexemes: [{lexeme: de22, surface: دقّو, base: true, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: بكرا, lexeme: bukra}]
+      reverse: |-
+        دقّولي (بكرا|بكرة)
+        بكرا دقّولي
+    apc-Latn/arabizi:
+      text: de22uli bukra!
+      tokens: [{surface: de22uli, lexemes: [{lexeme: de22, surface: de22u, base: true, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {lexeme: la-1sg, surface: li}]}, {surface: bukra, lexeme: bukra}]
+      reverse: |-
+        (de22uli|de22oli|da22uli) (bukra|bokra|bukrah)
+        bukra de22uli
+  translations:
+    en: |-
+      Call me tomorrow!
+      Give me a call tomorrow!
+      Phone me tomorrow!
+      Ring me tomorrow!
+- id: s.phone.9
+  node: apc.phone.call
+  forms:
+    apc-Arab/standard:
+      text: في حدا بالبيت؟
+      tokens: [{surface: في, lexeme: fi}, {surface: حدا, lexeme: 7ada}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب}, {lexeme: el, surface: ال}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}}]}]
+      reverse: في حدا بالبيت
+    apc-Latn/arabizi:
+      text: fi 7ada bel bet?
+      tokens: [{surface: fi, lexeme: fi}, {surface: 7ada, lexeme: 7ada}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}}]
+      reverse: fi (7ada|hada|7add|7ade) (bel|bil|b el) (bet|beit)
+  translations:
+    en: |-
+      Is (there|) anyone (at home|home|in the house)?
+      Is anybody (at home|home)?
+- id: s.phone.10
+  node: apc.phone.call
+  forms:
+    apc-Arab/standard:
+      text: ما في حدا هون.
+      tokens: [{surface: ما, lexeme: ma}, {surface: في, lexeme: fi}, {surface: حدا, lexeme: 7ada}, {surface: هون, lexeme: hon}]
+      reverse: |-
+        ما في حدا هون
+        هون ما في حدا
+    apc-Latn/arabizi:
+      text: ma fi 7ada hon.
+      tokens: [{surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: 7ada, lexeme: 7ada}, {surface: hon, lexeme: hon}]
+      reverse: |-
+        ma fi (7ada|hada|7add|7ade) (hon|hone|houn)
+        hon ma fi 7ada
+  translations:
+    en: |-
+      There('s| is) no one here.
+      (Nobody|No one)('s| is) here.
+      There isn't anyone here.
+- id: s.phone.11
+  node: apc.phone.me-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: سمعتني؟
+      tokens: [{surface: سمعتني, lexemes: [{lexeme: sama3, surface: سمعت, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}]
+      reverse: |-
+        سمعتني
+        إنت سمعتني
+    apc-Latn/arabizi:
+      text: sme3tni?
+      tokens: [{surface: sme3tni, lexemes: [{lexeme: sama3, surface: sme3t, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}]
+      reverse: |-
+        (sme3tni|sme3teni|smi3tni|sm3tni)
+        enta sme3tni
+  translations:
+    en: |-
+      Did you hear me?
+      (Can|Could) you hear me?
+- id: s.phone.12
+  node: apc.phone.me-you
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: سمعتيني؟
+      tokens: [{surface: سمعتيني, lexemes: [{lexeme: sama3, surface: سمعتي, base: true, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}]
+      reverse: |-
+        سمعتيني
+        إنتي سمعتيني
+    apc-Latn/arabizi:
+      text: sme3tini?
+      tokens: [{surface: sme3tini, lexemes: [{lexeme: sama3, surface: sme3ti, base: true, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}]
+      reverse: |-
+        (sme3tini|smi3tini|sme3teene)
+        enti sme3tini
+  translations:
+    en: |-
+      Did you hear me?
+      (Can|Could) you hear me?
+- id: s.phone.13
+  node: apc.phone.me-you
+  forms:
+    apc-Arab/standard:
+      text: لأ، ما فهمت.
+      tokens: [{surface: لأ, lexeme: la2}, {surface: ما, lexeme: ma}, {surface: فهمت, lexeme: fehem, feats: {Aspect: Perf, Number: Sing, Person: '1'}}]
+      reverse: |-
+        لأ ما فهمت
+        لأ أنا ما فهمت
+    apc-Latn/arabizi:
+      text: la2, ma fhemt.
+      tokens: [{surface: la2, lexeme: la2}, {surface: ma, lexeme: ma}, {surface: fhemt, lexeme: fehem, feats: {Aspect: Perf, Number: Sing, Person: '1'}}]
+      reverse: |-
+        (la2|la) ma (fhemt|fhimt|fhemet|fhemit)
+        la2 ana ma fhemt
+  translations:
+    en: |-
+      No, I (didn't|did not) understand.
+      No, I (don't|do not) understand.
+      No, I didn't get it.
+- id: s.phone.14
+  node: apc.phone.me-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: فهمتني؟
+      tokens: [{surface: فهمتني, lexemes: [{lexeme: fehem, surface: فهمت, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}]
+      reverse: |-
+        فهمتني
+        إنت فهمتني
+    apc-Latn/arabizi:
+      text: fhemtni?
+      tokens: [{surface: fhemtni, lexemes: [{lexeme: fehem, surface: fhemt, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}]
+      reverse: |-
+        (fhemtni|fhemteni|fhimtni|fhemtne)
+        enta fhemtni
+  translations:
+    en: |-
+      Did you understand me?
+      Do you understand me?
+      Do you get me?
+- id: s.phone.15
+  node: apc.phone.me-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: ما فهمتك.
+      tokens: [{surface: ما, lexeme: ma}, {surface: فهمتك, lexemes: [{lexeme: fehem, surface: فهمت, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ك}]}]
+      reverse: |-
+        ما فهمتك
+        أنا ما فهمتك
+    apc-Latn/arabizi:
+      text: ma fhemtak.
+      tokens: [{surface: ma, lexeme: ma}, {surface: fhemtak, lexemes: [{lexeme: fehem, surface: fhemt, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ak}]}]
+      reverse: |-
+        ma (fhemtak|fhimtak|fhemtek)
+        ana ma fhemtak
+  translations:
+    en: |-
+      I (didn't|did not) understand you.
+      I (don't|do not) understand you.
+- id: s.phone.16
+  node: apc.phone.me-you
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: فهمتوني؟
+      tokens: [{surface: فهمتوني, lexemes: [{lexeme: fehem, surface: فهمتو, base: true, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}]
+      reverse: |-
+        (فهمتوني|فهمتني)
+        إنتو فهمتوني
+    apc-Latn/arabizi:
+      text: fhemtuni?
+      tokens: [{surface: fhemtuni, lexemes: [{lexeme: fehem, surface: fhemtu, base: true, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}]
+      reverse: |-
+        (fhemtuni|fhemtoni|fhimtuni)
+        ento fhemtuni
+  translations:
+    en: |-
+      Did you understand me?
+      Do you understand me?
+- id: s.phone.17
+  node: apc.phone.me-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: بحبّك.
+      tokens: [{surface: بحبّك, lexemes: [{lexeme: 7abb, surface: بحبّ, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ك}]}]
+      reverse: |-
+        بحبّك
+        أنا بحبّك
+    apc-Latn/arabizi:
+      text: b7ebbak.
+      tokens: [{surface: b7ebbak, lexemes: [{lexeme: 7abb, surface: b7ebb, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ak}]}]
+      reverse: |-
+        (b7ebbak|b7ebak|bhebbak|b7ibbak)
+        ana b7ebbak
+  translations:
+    en: I love you.
+- id: s.phone.18
+  node: apc.phone.me-you
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: بحبّك كتير.
+      tokens: [{surface: بحبّك, lexemes: [{lexeme: 7abb, surface: بحبّ, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ك}], vocalized: بْحِبِّك}, {surface: كتير, lexeme: ktir}]
+      reverse: |-
+        بحبّك كتير
+        أنا بحبّك كتير
+    apc-Latn/arabizi:
+      text: b7ebbik ktir.
+      tokens: [{surface: b7ebbik, lexemes: [{lexeme: 7abb, surface: b7ebb, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ik}]}, {surface: ktir, lexeme: ktir}]
+      reverse: |-
+        (b7ebbik|b7ebik|bhebbik|b7ibbik|b7ebbek) (ktir|kteer)
+        ana b7ebbik ktir
+  translations:
+    en: I love you (so much|very much|a lot).
+- id: s.phone.19
+  node: apc.phone.him-her
+  forms:
+    apc-Arab/standard:
+      text: شفته مبارح.
+      tokens: [{surface: شفته, lexemes: [{lexeme: shef, surface: شفت, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-3ms, surface: ه}]}, {surface: مبارح, lexeme: mbere7}]
+      reverse: |-
+        (شفته|شفتو) (مبارح|مبارحة)
+        مبارح شفته
+        أنا شفته مبارح
+    apc-Latn/arabizi:
+      text: shefto mbere7.
+      tokens: [{surface: shefto, lexemes: [{lexeme: shef, surface: sheft, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-3ms, surface: o}]}, {surface: mbere7, lexeme: mbere7}]
+      reverse: |-
+        (shefto|shifto|shefetto) (mbere7|embere7|mbare7|mberi7)
+        mbere7 shefto
+        ana shefto mbere7
+  translations:
+    en: |-
+      I saw him yesterday.
+      Yesterday I saw him.
+- id: s.phone.20
+  node: apc.phone.him-her
+  forms:
+    apc-Arab/standard:
+      text: ما شفتها.
+      tokens: [{surface: ما, lexeme: ma}, {surface: شفتها, lexemes: [{lexeme: shef, surface: شفت, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-3fs, surface: ها}]}]
+      reverse: |-
+        ما (شفتها|شفتا)
+        أنا ما شفتها
+    apc-Latn/arabizi:
+      text: ma shefta.
+      tokens: [{surface: ma, lexeme: ma}, {surface: shefta, lexemes: [{lexeme: shef, surface: sheft, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-3fs, surface: a}]}]
+      reverse: |-
+        ma (shefta|shifta|shefeta)
+        ana ma shefta
+  translations:
+    en: |-
+      I (didn't|did not) see her.
+      I (haven't|have not) seen her.
+- id: s.phone.21
+  node: apc.phone.him-her
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: بتعرفه؟
+      tokens: [{surface: بتعرفه, lexemes: [{lexeme: 3eref, surface: بتعرف, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {lexeme: obj-3ms, surface: ه}]}]
+      reverse: |-
+        (بتعرفه|بتعرفو)
+        إنت بتعرفه
+    apc-Latn/arabizi:
+      text: bta3rfo?
+      tokens: [{surface: bta3rfo, lexemes: [{lexeme: 3eref, surface: bta3rf, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {lexeme: obj-3ms, surface: o}]}]
+      reverse: |-
+        (bta3rfo|bta3refo|bta3rfu)
+        enta bta3rfo
+  translations:
+    en: Do you know him?
+- id: s.phone.22
+  node: apc.phone.him-her
+  forms:
+    apc-Arab/standard:
+      text: إيه، بعرفها منيح.
+      tokens: [{surface: إيه, lexeme: eh}, {surface: بعرفها, lexemes: [{lexeme: 3eref, surface: بعرف, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-3fs, surface: ها}]}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        إيه (بعرفها|بعرفا) (منيح|منيحة)
+        إيه أنا بعرفها منيح
+    apc-Latn/arabizi:
+      text: eh, ba3rfa mni7.
+      tokens: [{surface: eh, lexeme: eh}, {surface: ba3rfa, lexemes: [{lexeme: 3eref, surface: ba3rf, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-3fs, surface: a}]}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        (eh|e) (ba3rfa|ba3refa|ba3rifa) (mni7|mnee7|mnih)
+        eh ana ba3rfa mni7
+  translations:
+    en: |-
+      Yes, I know her well.
+      Yeah, I know her well.
+- id: s.phone.23
+  node: apc.phone.him-her
+  forms:
+    apc-Arab/standard:
+      text: شو قال؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: قال, lexeme: 2al, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}]
+      reverse: |-
+        شو قال
+        هو شو قال
+    apc-Latn/arabizi:
+      text: shu 2al?
+      tokens: [{surface: shu, lexeme: shu}, {surface: 2al, lexeme: 2al, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}]
+      reverse: |-
+        (shu|sho) (2al|al)
+        huwwe shu 2al
+  translations:
+    en: What did he say?
+- id: s.phone.24
+  node: apc.phone.him-her
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: قلّي!
+      tokens: [{surface: قلّي, lexemes: [{lexeme: 2al, surface: ق, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لّي}]}]
+      reverse: |-
+        قلّي
+        خبّرني
+    apc-Latn/arabizi:
+      text: 2elli!
+      tokens: [{surface: 2elli, lexemes: [{lexeme: 2al, surface: '2', base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}]
+      reverse: |-
+        (2elli|2olli|2illi|elli|2ele)
+        khabberni
+  translations:
+    en: Tell me!
+- id: s.phone.25
+  node: apc.phone.him-her
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: قوليلي!
+      tokens: [{surface: قوليلي, lexemes: [{lexeme: 2al, surface: قولي, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}]
+      reverse: |-
+        قوليلي
+        خبّريني
+    apc-Latn/arabizi:
+      text: 2ulili!
+      tokens: [{surface: 2ulili, lexemes: [{lexeme: 2al, surface: 2uli, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: li}]}]
+      reverse: |-
+        (2ulili|2oolili|ulili|2ulile)
+        khabbrini
+  translations:
+    en: Tell me!
+- id: s.phone.26
+  node: apc.phone.him-her
+  forms:
+    apc-Arab/standard:
+      text: ما عندي وقت.
+      tokens: [{surface: ما, lexeme: ma}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: وقت, lexeme: wa2t, feats: {Number: Sing}}]
+      reverse: |-
+        ما (عندي|أنا عندي) وقت
+        أنا ما عندي وقت
+    apc-Latn/arabizi:
+      text: ma 3endi wa2t.
+      tokens: [{surface: ma, lexeme: ma}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: wa2t, lexeme: wa2t, feats: {Number: Sing}}]
+      reverse: |-
+        ma (3endi|3andi|3ende|3indi) (wa2t|wa2et|wa2ed|wa2it|wa2at)
+        ana ma 3endi wa2t
+  translations:
+    en: |-
+      I (don't|do not) have time.
+      I (haven't|have not) got time.
+      I have no time.
+- id: s.phone.27
+  node: apc.phone.him-her
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: عندك وقت بكرا؟
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: وقت, lexeme: wa2t, feats: {Number: Sing}}, {surface: بكرا, lexeme: bukra}]
+      reverse: |-
+        (عندك|إنت عندك) وقت (بكرا|بكرة)
+        بكرا عندك وقت
+    apc-Latn/arabizi:
+      text: 3endak wa2t bukra?
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: wa2t, lexeme: wa2t, feats: {Number: Sing}}, {surface: bukra, lexeme: bukra}]
+      reverse: |-
+        (3endak|3andak|3indak) (wa2t|wa2et|wa2ed|wa2it|wa2at) (bukra|bokra|bukrah)
+        enta 3endak wa2t bukra
+        bukra 3endak wa2t
+  translations:
+    en: |-
+      Do you have time tomorrow?
+      Have you got time tomorrow?
+      Are you free tomorrow?
+- id: s.phone.28
+  node: apc.phone.send
+  forms:
+    apc-Arab/standard:
+      text: عندي رسالة.
+      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: رسالة, lexeme: resele, feats: {Number: Sing}}]
+      reverse: (عندي|أنا عندي) (رسالة|مسج)
+    apc-Latn/arabizi:
+      text: 3endi resele.
+      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: resele, lexeme: resele, feats: {Number: Sing}}]
+      reverse: |-
+        (3endi|3andi|3ende|3indi) (resele|risele|risale|rsele|resale)
+        ana 3endi resele
+  translations:
+    en: |-
+      I have a message.
+      I('ve| have) got a message.
+- id: s.phone.29
+  node: apc.phone.send
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: بعتلي رسالة!
+      tokens: [{surface: بعتلي, lexemes: [{lexeme: b3at, surface: بعت, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: رسالة, lexeme: resele, feats: {Number: Sing}}]
+      reverse: بعتلي (رسالة|مسج)
+    apc-Latn/arabizi:
+      text: b3atli resele!
+      tokens: [{surface: b3atli, lexemes: [{lexeme: b3at, surface: b3at, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: li}]}, {surface: resele, lexeme: resele, feats: {Number: Sing}}]
+      reverse: (b3atli|b3atle|ba3atli) (resele|risele|risale|rsele|resale)
+  translations:
+    en: |-
+      Send me a message!
+      (Text|Message) me!
+      Send me a text!
+- id: s.phone.30
+  node: apc.phone.send
+  forms:
+    apc-Arab/standard:
+      text: سامي بعتلي رسالة مبارح.
+      tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: بعتلي, lexemes: [{lexeme: b3at, surface: بعت, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: لي}]}, {surface: رسالة, lexeme: resele, feats: {Number: Sing}}, {surface: مبارح, lexeme: mbere7}]
+      reverse: |-
+        سامي بعتلي (رسالة|مسج) (مبارح|مبارحة)
+        مبارح سامي بعتلي رسالة
+    apc-Latn/arabizi:
+      text: Sami ba3atli resele mbere7.
+      tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: ba3atli, lexemes: [{lexeme: b3at, surface: ba3at, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: li}]}, {surface: resele, lexeme: resele, feats: {Number: Sing}}, {surface: mbere7, lexeme: mbere7}]
+      reverse: |-
+        Sami (ba3atli|b3atli|ba3atle) (resele|risele|risale|rsele|resale) (mbere7|embere7|mbare7|mberi7)
+        mbere7 Sami ba3atli resele
+  translations:
+    en: |-
+      Sami sent me a message yesterday.
+      Yesterday Sami sent me a message.
+      Sami texted me yesterday.
+      Sami sent me a text yesterday.
+- id: s.phone.31
+  node: apc.phone.send
+  forms:
+    apc-Arab/standard:
+      text: ما فيّي دقّ، ما معي تلفوني.
+      tokens: [{surface: ما, lexeme: ma}, {surface: فيّي, lexemes: [{lexeme: fi.can, surface: فيّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: دقّ, lexeme: de22, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: ما, lexeme: ma}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: تلفوني, lexemes: [{lexeme: telefon, surface: تلفون, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: |-
+        ما (فيّي|فيني) دقّ ما معي (تلفوني|تليفوني)
+        أنا ما فيّي دقّ ما معي تلفوني
+    apc-Latn/arabizi:
+      text: ma fiyyi de22, ma ma3i telefoni.
+      tokens: [{surface: ma, lexeme: ma}, {surface: fiyyi, lexemes: [{lexeme: fi.can, surface: fiyy, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: de22, lexeme: de22, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: ma, lexeme: ma}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: telefoni, lexemes: [{lexeme: telefon, surface: telefon, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: |-
+        ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (de22|da22|de22a) ma (ma3i|m3i|ma3e) (telefoni|telefone|talifoni|tilifoni)
+        ana ma fiyyi de22 ma ma3i telefoni
+  translations:
+    en: |-
+      I can't call, I (don't|do not) have my phone (on me|with me).
+      I can't call, I don't have my phone.
+      I can't call, I haven't got my phone on me.
+      I cannot call, I don't have my phone on me.
+- id: s.phone.32
+  node: apc.phone.send
+  tags:
+  - {persons: {speaker: f, addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: أنا مشغولة، دقّلي بعدين.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: مشغولة, lexeme: mashghoul, feats: {Gender: Fem, Number: Sing}}, {surface: دقّلي, lexemes: [{lexeme: de22, surface: دقّ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: بعدين, lexeme: ba3dein}]
+      reverse: '[أنا] مشغولة دقّلي بعدين'
+    apc-Latn/arabizi:
+      text: ana mashghoule, de22elli ba3dein.
+      tokens: [{surface: ana, lexeme: ana}, {surface: mashghoule, lexeme: mashghoul, feats: {Gender: Fem, Number: Sing}}, {surface: de22elli, lexemes: [{lexeme: de22, surface: de22, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: ba3dein, lexeme: ba3dein}]
+      reverse: '[ana] (mashghoule|mashghoula) (de22elli|da22elli|de22li|de22ele) (ba3dein|ba3dain|ba3den)'
+  translations:
+    en: |-
+      I('m| am) busy, call me later.
+      I('m| am) busy, give me a call later.
+stories:
+- id: apc.story.teta-calls
+  node: apc.phone.story
+  title:
+    en: Teta calls
+  provenance:
+    author: llm:claude@99d8501c54f6
+    status: draft
+  characters:
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  - id: teta
+    speaker: f
+    name:
+      apc-Arab/standard: تيتا
+      apc-Latn/arabizi: Teta
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: أَلو؟
+          tokens: [{surface: أَلو, lexeme: alo}]
+        apc-Latn/arabizi:
+          text: alo?
+          tokens: [{surface: alo, lexeme: alo}]
+      translations:
+        en: Hello?
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: أَلو سامي! أَنا تيتا. سْمِعْتْني؟
+          tokens: [{surface: أَلو, lexeme: alo}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: أَنا, lexeme: ana}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: سْمِعْتْني, lexemes: [{lexeme: sama3, surface: سْمِعْتْ, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}]
+        apc-Latn/arabizi:
+          text: alo Sami! ana teta. sme3tni?
+          tokens: [{surface: alo, lexeme: alo}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: ana, lexeme: ana}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: sme3tni, lexemes: [{lexeme: sama3, surface: sme3t, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}]
+      translations:
+        en: Hello Sami! It's grandma. Can you hear me?
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: إيه تيتا، كيفِك؟
+          tokens: [{surface: إيه, lexeme: eh}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: كيفِك, lexemes: [{lexeme: kif, surface: كيفِ, base: true}, {lexeme: poss-2fs, surface: ك}]}]
+        apc-Latn/arabizi:
+          text: eh teta, kifik?
+          tokens: [{surface: eh, lexeme: eh}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: kifik, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2fs, surface: ik}]}]
+      translations:
+        en: Yes, grandma, how are you?
+  - line:
+      speaker: teta
+      ask: complete
+      gap: lexeme:telefon
+      distractors:
+      - lexeme:talj
+      - lexeme:matar
+      forms:
+        apc-Arab/standard:
+          text: مْنيحَة. ما عِنْدَك تِلِفون؟ ما بْتْدِقِّلّي أَبَداً!
+          tokens: [{surface: مْنيحَة, lexeme: mni7, feats: {Gender: Fem, Number: Sing}}, {surface: ما, lexeme: ma}, {surface: عِنْدَك, lexemes: [{lexeme: 3end, surface: عِنْدَ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: تِلِفون, lexeme: telefon, feats: {Number: Sing}}, {surface: ما, lexeme: ma}, {surface: بْتْدِقِّلّي, lexemes: [{lexeme: de22, surface: بْتْدِقِّ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لّي}]}, {surface: أَبَداً, lexeme: abadan}]
+        apc-Latn/arabizi:
+          text: mni7a. ma 3endak telefon? ma btde22elli abadan!
+          tokens: [{surface: mni7a, lexeme: mni7, feats: {Gender: Fem, Number: Sing}}, {surface: ma, lexeme: ma}, {surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: telefon, lexeme: telefon, feats: {Number: Sing}}, {surface: ma, lexeme: ma}, {surface: btde22elli, lexemes: [{lexeme: de22, surface: btde22, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: abadan, lexeme: abadan}]
+      translations:
+        en: Fine. Don't you have a phone? You never call me!
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مَعْليش تيتا، كِنْت مَشْغول كْتير.
+          tokens: [{surface: مَعْليش, lexeme: ma3lesh}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: كِنْت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: مَشْغول, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}, {surface: كْتير, lexeme: ktir}]
+        apc-Latn/arabizi:
+          text: ma3lesh teta, kent mashghoul ktir.
+          tokens: [{surface: ma3lesh, lexeme: ma3lesh}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mashghoul, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}, {surface: ktir, lexeme: ktir}]
+      translations:
+        en: Sorry, grandma, I was very busy.
+  - choose:
+      prompt:
+        en: Why is Teta upset?
+      options:
+      - en: Sami never calls her
+      - en: Sami is sick
+      - en: Sami lost his phone
+      answer: 0
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: قِلّي، رَح تْزورْني الأَحَد؟
+          tokens: [{surface: قِلّي, lexemes: [{lexeme: 2al, surface: قِ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لّي}]}, {surface: رَح, lexeme: ra7.fut}, {surface: تْزورْني, lexemes: [{lexeme: zar, surface: تْزورْ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: 2elli, ra7 tzurni el a7ad?
+          tokens: [{surface: 2elli, lexemes: [{lexeme: 2al, surface: '2', base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: ra7, lexeme: ra7.fut}, {surface: tzurni, lexemes: [{lexeme: zar, surface: tzur, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}, {surface: el, lexeme: el}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}}]
+      translations:
+        en: Tell me, are you going to visit me on Sunday?
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: أَكيد، رَح زورِك الأَحَد.
+          tokens: [{surface: أَكيد, lexeme: akid}, {surface: رَح, lexeme: ra7.fut}, {surface: زورِك, lexemes: [{lexeme: zar, surface: زورِ, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ك}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: akid, ra7 zurik el a7ad.
+          tokens: [{surface: akid, lexeme: akid}, {surface: ra7, lexeme: ra7.fut}, {surface: zurik, lexemes: [{lexeme: zar, surface: zur, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ik}]}, {surface: el, lexeme: el}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}}]
+      translations:
+        en: Of course, I'll visit you on Sunday.
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: يَلّا حَبيبي، بْحِبَّك!
+          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: حَبيبي, lexeme: 7abibi, feats: {Gender: Masc, Number: Sing}}, {surface: بْحِبَّك, lexemes: [{lexeme: 7abb, surface: بْحِبَّ, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ك}]}]
+        apc-Latn/arabizi:
+          text: yalla 7abibi, b7ebbak!
+          tokens: [{surface: yalla, lexeme: yalla}, {surface: 7abibi, lexeme: 7abibi, feats: {Gender: Masc, Number: Sing}}, {surface: b7ebbak, lexemes: [{lexeme: 7abb, surface: b7ebb, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ak}]}]
+      translations:
+        en: OK, sweetheart, I love you!
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وأَنا كَمان بْحِبِّك، تيتا!
+          tokens: [{surface: وأَنا, lexemes: [{lexeme: w, surface: و}, {lexeme: ana, surface: أَنا, base: true}]}, {surface: كَمان, lexeme: kamen}, {surface: بْحِبِّك, lexemes: [{lexeme: 7abb, surface: بْحِبِّ, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ك}]}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: w ana kamen b7ebbik, teta!
+          tokens: [{surface: w, lexeme: w}, {surface: ana, lexeme: ana}, {surface: kamen, lexeme: kamen}, {surface: b7ebbik, lexemes: [{lexeme: 7abb, surface: b7ebb, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ik}]}, {surface: teta, lexeme: teta, feats: {Number: Sing}}]
+      translations:
+        en: I love you too, grandma!
+  - choose:
+      prompt:
+        en: When will Sami visit Teta?
+      options:
+      - en: On Sunday
+      - en: Tomorrow
+      - en: Next week
+      answer: 0
+scenarios:
+- id: apc.phone-call
+  after: apc.phone.story
+  title:
+    en: A phone call
+  setting:
+    en: Your phone rings on a Saturday afternoon; the line is bad.
+  character:
+    en: Nour, a friend who wants to make plans and keeps asking whether you can hear her.
+  goal:
+    en: Answer the phone, say who you are, say when you can't hear or understand, ask her to call or message you later, and agree when to talk again.
+  provenance:
+    author: llm:claude@99d8501c54f6
+    status: draft

@@ -1,0 +1,667 @@
+# Unit u20 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u20
+title:
+  en: 'Nochebuena: Christmas Eve'
+cefr: B1
+nodes:
+- {id: es.u20.nochebuena, kind: lesson, introduces: ['lexeme:nochebuena', 'lexeme:diciembre', 'feature:Tense=Fut', 'lexeme:entero', 'lexeme:fiesta', 'lexeme:navidad']}
+- {id: es.u20.el-lechon, kind: lesson, introduces: ['lexeme:asar', 'lexeme:lechón', 'lexeme:asado', 'lexeme:caja-china', 'lexeme:preparar']}
+- {id: es.u20.la-mesa, kind: lesson, introduces: ['lexeme:invitar', 'lexeme:turrón', 'lexeme:vino']}
+- {id: es.u20.fin-de-ano, kind: lesson, introduces: ['lexeme:celebrar', 'lexeme:doce', 'lexeme:uva', 'lexeme:medianoche', 'lexeme:tirar']}
+- {id: es.u20.los-reyes, kind: lesson, introduces: ['lexeme:enero', 'lexeme:rey', 'lexeme:regalo']}
+- {id: es.u20.los-quince, kind: lesson, introduces: ['lexeme:quinceañera', 'lexeme:vals']}
+- {id: es.u20.story, kind: story}
+sentences:
+- id: s.u20.1
+  node: es.u20.nochebuena
+  forms:
+    es-Latn/standard:
+      text: La Nochebuena es el veinticuatro de diciembre.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: veinticuatro, lexeme: veinticuatro}, {surface: de, lexeme: de}, {surface: diciembre, lexeme: diciembre}]
+      reverse: '[La] Nochebuena es el (veinticuatro|24) de diciembre'
+  translations:
+    en: Christmas Eve is [on] (December (24th|24|twenty-fourth)|the (24th|twenty-fourth) of December).
+- id: s.u20.2
+  node: es.u20.nochebuena
+  forms:
+    es-Latn/standard:
+      text: Este año, la Nochebuena será en casa de abuela.
+      tokens: [{surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: año, lexeme: año, feats: {Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}}, {surface: será, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      reverse: |-
+        Este año [la] Nochebuena (será|va a ser) en casa de (abuela|la abuela|mi abuela)
+        [La] Nochebuena (será|va a ser) en casa de (abuela|la abuela|mi abuela) este año
+  translations:
+    en: |-
+      This year, Christmas Eve will be at (Grandma's|Grandmother's|Granny's|Abuela's|my grandma's|my grandmother's) [house].
+      Christmas Eve will be at (Grandma's|Grandmother's|Granny's|Abuela's|my grandma's|my grandmother's) [house] this year.
+      This year, Christmas Eve is going to be at Grandma's.
+- id: s.u20.3
+  node: es.u20.nochebuena
+  forms:
+    es-Latn/standard:
+      text: Para la Nochebuena vendrá toda la familia.
+      tokens: [{surface: Para, lexeme: para}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}}, {surface: vendrá, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}]
+      reverse: |-
+        (Para|En) la Nochebuena (vendrá|va a venir) toda la familia
+        Toda la familia (vendrá|va a venir) (para|en) la Nochebuena
+  translations:
+    en: |-
+      (The whole family|All the family|Everyone in the family) (will come|is coming) for Christmas Eve.
+      For Christmas Eve, (the whole family|all the family) (will come|is coming).
+      The whole family is going to come for Christmas Eve.
+- id: s.u20.4
+  node: es.u20.nochebuena
+  forms:
+    es-Latn/standard:
+      text: La familia entera estará en Hialeah.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: entera, lexeme: entero, feats: {Gender: Fem, Number: Sing}}, {surface: estará, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      reverse: (La familia entera|Toda la familia) (estará|va a estar) en Hialeah
+  translations:
+    en: |-
+      (The whole family|The entire family|All the family) will be in Hialeah.
+      The whole family is going to be in Hialeah.
+- id: s.u20.5
+  node: es.u20.nochebuena
+  forms:
+    es-Latn/standard:
+      text: Será una fiesta muy grande.
+      tokens: [{surface: Será, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: fiesta, lexeme: fiesta, feats: {Number: Sing}}, {surface: muy, lexeme: muy}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}}]
+      reverse: (Será|Va a ser) una (fiesta muy grande|fiesta grandísima)
+  translations:
+    en: |-
+      (It'll|It will) be a (very big|really big|huge) party.
+      It's going to be a really big party.
+- id: s.u20.6
+  node: es.u20.nochebuena
+  forms:
+    es-Latn/standard:
+      text: Después de la Nochebuena viene la Navidad.
+      tokens: [{surface: Después, lexeme: después}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Navidad, lexeme: navidad, feats: {Gender: Fem}}]
+      reverse: |-
+        Después de [la] Nochebuena viene [la] Navidad
+        [La] Navidad viene después de [la] Nochebuena
+  translations:
+    en: |-
+      After Christmas Eve comes (Christmas|Christmas Day).
+      (Christmas|Christmas Day) comes after Christmas Eve.
+- id: s.u20.7
+  node: es.u20.el-lechon
+  forms:
+    es-Latn/standard:
+      text: Papi asará el lechón en el patio.
+      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: asará, lexeme: asar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lechón, lexeme: lechón, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      reverse: |-
+        (Papi|Papá) (asará|va a asar) el lechón en el patio
+        Mi papá asará el lechón en el patio
+  translations:
+    en: |-
+      (Dad|Daddy|Papi) will roast the (pig|suckling pig|lechón) in the (yard|backyard).
+      Dad is going to roast the pig in the backyard.
+- id: s.u20.8
+  node: es.u20.el-lechon
+  forms:
+    es-Latn/standard:
+      text: A Yasiel le gusta mucho el lechón asado.
+      tokens: [{surface: A, lexeme: a}, {surface: Yasiel, lexeme: yasiel}, {surface: le, lexeme: le}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lechón, lexeme: lechón, feats: {Number: Sing}}, {surface: asado, lexeme: asado, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        A Yasiel le gusta mucho el lechón asado
+        A Yasiel le encanta el lechón asado
+  translations:
+    en: |-
+      Yasiel really likes (roast pork|roast pig|lechón asado).
+      Yasiel likes (roast pork|roast pig|lechón asado) a lot.
+      Yasiel loves (roast pork|roast pig|lechón asado).
+- id: s.u20.9
+  node: es.u20.el-lechon
+  forms:
+    es-Latn/standard:
+      text: Abuelo y papi asarán el lechón en la caja china.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: papi, lexeme: papi, feats: {Number: Sing}}, {surface: asarán, lexeme: asar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lechón, lexeme: lechón, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: caja, lexeme: caja-china}, {surface: china, lexeme: caja-china}]
+      reverse: |-
+        (Abuelo|El abuelo) y (papi|papá) (asarán|van a asar) el lechón en la caja china
+        (Papi|Papá) y (abuelo|el abuelo) (asarán|van a asar) el lechón en la caja china
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Abuelo) and (Dad|Daddy|Papi) will roast the (pig|suckling pig|lechón) in the (caja china|roasting box|China box).
+      Grandpa and Dad are going to roast the pig in the caja china.
+- id: s.u20.10
+  node: es.u20.el-lechon
+  forms:
+    es-Latn/standard:
+      text: Mami preparará la yuca y los frijoles negros.
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: preparará, lexeme: preparar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: yuca, lexeme: yuca, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}}]
+      reverse: |-
+        (Mami|Mamá) (preparará|va a preparar|hará|va a hacer) la yuca y los frijoles negros
+        (Mami|Mamá) (preparará|va a preparar|hará|va a hacer) los frijoles negros y la yuca
+        Mi mamá preparará la yuca y los frijoles negros
+  translations:
+    en: |-
+      (Mom|Mommy|Mum) will (make|prepare|cook) the (yuca|cassava) and the black beans.
+      Mom is going to make the yuca and the black beans.
+- id: s.u20.11
+  node: es.u20.el-lechon
+  forms:
+    es-Latn/standard:
+      text: Yo prepararé los tostones con Lili.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: prepararé, lexeme: preparar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      reverse: '[Yo] (prepararé|voy a preparar|haré|voy a hacer) los tostones con Lili'
+  translations:
+    en: |-
+      (I'll|I will) (make|prepare|cook) the (tostones|fried plantains|fried green plantains) with Lili.
+      I'm going to make the tostones with Lili.
+- id: s.u20.12
+  node: es.u20.el-lechon
+  forms:
+    es-Latn/standard:
+      text: Asaremos el lechón temprano por la mañana.
+      tokens: [{surface: Asaremos, lexeme: asar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lechón, lexeme: lechón, feats: {Number: Sing}}, {surface: temprano, lexeme: temprano}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}]
+      reverse: |-
+        [(Nosotros|Nosotras)] (asaremos|vamos a asar) el lechón temprano (por|en) la mañana
+        [(Nosotros|Nosotras)] (asaremos|vamos a asar) el lechón (por|en) la mañana temprano
+  translations:
+    en: |-
+      (We'll|We will) roast the (pig|suckling pig|lechón) early in the morning.
+      We're going to roast the pig early in the morning.
+- id: s.u20.13
+  node: es.u20.la-mesa
+  forms:
+    es-Latn/standard:
+      text: Comeremos lechón, congrí y yuca.
+      tokens: [{surface: Comeremos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: lechón, lexeme: lechón, feats: {Number: Sing}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: yuca, lexeme: yuca, feats: {Number: Sing}}]
+      reverse: '[(Nosotros|Nosotras)] (comeremos|vamos a comer) lechón congrí y yuca'
+  translations:
+    en: |-
+      (We'll|We will) (eat|have) (roast pork|roast pig|lechón), (congrí|rice and beans) and (yuca|cassava).
+      We're going to eat lechón, congrí and yuca.
+- id: s.u20.14
+  node: es.u20.la-mesa
+  forms:
+    es-Latn/standard:
+      text: Abuela invitará a doña Ofelia y a su hija.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: invitará, lexeme: invitar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: hija, lexeme: hijo, feats: {Gender: Fem, Number: Sing}}]
+      reverse: (Abuela|La abuela|Mi abuela) (invitará|va a invitar) a doña Ofelia y a su hija
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny|Abuela|My grandma|My grandmother) will invite (Doña|Miss|Mrs.) Ofelia and her daughter.
+      Grandma is going to invite Doña Ofelia and her daughter.
+- id: s.u20.15
+  node: es.u20.la-mesa
+  forms:
+    es-Latn/standard:
+      text: Habrá mucha gente en la casa.
+      tokens: [{surface: Habrá, lexeme: hay, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      reverse: (Habrá|Va a haber) mucha gente en (la casa|casa)
+  translations:
+    en: |-
+      (There'll|There will) be (a lot of|lots of|many) people (in the house|at the house|at home).
+      There are going to be a lot of people at the house.
+- id: s.u20.16
+  node: es.u20.la-mesa
+  forms:
+    es-Latn/standard:
+      text: Abuela compró turrones en la bodega.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: compró, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: turrones, lexeme: turrón, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}}]
+      reverse: (Abuela|La abuela|Mi abuela) compró (turrones|turrón) en la bodega
+  translations:
+    en: (Grandma|Grandmother|Granny|Abuela|My grandma|My grandmother) bought (turrones|turrón|nougat) at the (bodega|corner store|store).
+- id: s.u20.17
+  node: es.u20.la-mesa
+  forms:
+    es-Latn/standard:
+      text: Papi comprará el vino y la cerveza.
+      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: comprará, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: vino, lexeme: vino, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cerveza, lexeme: cerveza, feats: {Number: Sing}}]
+      reverse: |-
+        (Papi|Papá) (comprará|va a comprar) el vino y la cerveza
+        (Papi|Papá) (comprará|va a comprar) la cerveza y el vino
+        Mi papá comprará el vino y la cerveza
+  translations:
+    en: |-
+      (Dad|Daddy|Papi) will buy the wine and the beer.
+      Dad is going to buy the wine and the beer.
+- id: s.u20.18
+  node: es.u20.la-mesa
+  forms:
+    es-Latn/standard:
+      text: ¿Tú vendrás con Yasiel?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: vendrás, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: Yasiel, lexeme: yasiel}]
+      reverse: |-
+        (Tú vendrás|Vendrás [tú]|Tú vas a venir|Vas [tú] a venir|Usted vendrá|Vendrá [usted]|Ustedes vendrán|Vendrán [ustedes]) con Yasiel
+        ¿Usted va a venir con Yasiel?
+        ¿Ustedes van a venir con Yasiel?
+  translations:
+    en: |-
+      Will you come with Yasiel?
+      Are you coming with Yasiel?
+      Are you going to come with Yasiel?
+- id: s.u20.19
+  node: es.u20.la-mesa
+  forms:
+    es-Latn/standard:
+      text: Invitaremos a Yasiel. Su familia está en Cuba.
+      tokens: [{surface: Invitaremos, lexeme: invitar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Yasiel, lexeme: yasiel}, {surface: Su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      reverse: '[(Nosotros|Nosotras)] (invitaremos|vamos a invitar) a Yasiel [porque] su familia está en Cuba'
+  translations:
+    en: |-
+      (We'll|We will) invite Yasiel. His family is in Cuba.
+      (We'll|We will) invite Yasiel (because|since) his family is in Cuba.
+      We're going to invite Yasiel. His family is in Cuba.
+- id: s.u20.20
+  node: es.u20.fin-de-ano
+  forms:
+    es-Latn/standard:
+      text: Celebraremos el Año Nuevo en casa.
+      tokens: [{surface: Celebraremos, lexeme: celebrar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Año, lexeme: año, feats: {Number: Sing}}, {surface: Nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      reverse: '[(Nosotros|Nosotras)] (celebraremos|vamos a celebrar) el Año Nuevo en (casa|la casa)'
+  translations:
+    en: |-
+      (We'll|We will) celebrate (the New Year|New Year's|New Year) (at home|at the house).
+      We're going to celebrate New Year's at home.
+- id: s.u20.21
+  node: es.u20.fin-de-ano
+  forms:
+    es-Latn/standard:
+      text: A las doce, todos comeremos uvas.
+      tokens: [{surface: A, lexeme: a}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: doce, lexeme: doce}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: comeremos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: uvas, lexeme: uva, feats: {Number: Plur}}]
+      reverse: |-
+        A las doce [todos] (comeremos|vamos a comer) uvas
+        [Todos] (comeremos|vamos a comer) uvas a las doce
+  translations:
+    en: |-
+      At (twelve|twelve o'clock|midnight), (we'll all|we will all|all of us will|everyone will) eat grapes.
+      (We'll all|We will all|All of us will|Everyone will) eat grapes at (twelve|twelve o'clock|midnight).
+      At midnight, we're all going to eat grapes.
+- id: s.u20.22
+  node: es.u20.fin-de-ano
+  forms:
+    es-Latn/standard:
+      text: Comeremos las doce uvas a medianoche.
+      tokens: [{surface: Comeremos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: doce, lexeme: doce}, {surface: uvas, lexeme: uva, feats: {Number: Plur}}, {surface: a, lexeme: a}, {surface: medianoche, lexeme: medianoche, feats: {Number: Sing}}]
+      reverse: |-
+        [(Nosotros|Nosotras)] (comeremos|vamos a comer) las doce uvas a (medianoche|la medianoche|las doce)
+        A (medianoche|la medianoche|las doce) [(nosotros|nosotras)] (comeremos|vamos a comer) las doce uvas
+  translations:
+    en: |-
+      (We'll|We will) eat the twelve grapes at midnight.
+      At midnight, (we'll|we will) eat the twelve grapes.
+      We're going to eat the twelve grapes at midnight.
+- id: s.u20.23
+  node: es.u20.fin-de-ano
+  forms:
+    es-Latn/standard:
+      text: A medianoche, abuela tirará agua a la calle.
+      tokens: [{surface: A, lexeme: a}, {surface: medianoche, lexeme: medianoche, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tirará, lexeme: tirar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: agua, lexeme: agua, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: calle, lexeme: calle, feats: {Number: Sing}}]
+      reverse: |-
+        A (medianoche|la medianoche) (abuela|la abuela) (tirará|va a tirar) (agua|un cubo de agua|un balde de agua) a la calle
+        (Abuela|La abuela) (tirará|va a tirar) (agua|un cubo de agua|un balde de agua) a la calle a (medianoche|la medianoche)
+        A medianoche mi abuela tirará agua a la calle
+  translations:
+    en: |-
+      At midnight, (Grandma|Grandmother|Granny|Abuela) will throw water (into|out into|onto) the street.
+      (Grandma|Grandmother|Granny|Abuela) will throw water (into|out into|onto) the street at midnight.
+      At midnight, Grandma is going to throw water into the street.
+- id: s.u20.24
+  node: es.u20.fin-de-ano
+  forms:
+    es-Latn/standard:
+      text: Lili caminará por la calle con una maleta.
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: caminará, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: calle, lexeme: calle, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: maleta, lexeme: maleta, feats: {Number: Sing}}]
+      reverse: |-
+        Lili (caminará|va a caminar) por la calle con una maleta
+        Lili (caminará|va a caminar) con una maleta por la calle
+  translations:
+    en: |-
+      Lili will walk (down|along|around|up and down) the street with a suitcase.
+      Lili will walk with a suitcase (down|along|around|up and down) the street.
+      Lili is going to walk down the street with a suitcase.
+- id: s.u20.25
+  node: es.u20.fin-de-ano
+  forms:
+    es-Latn/standard:
+      text: El año que viene viajaremos a Cuba.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: año, lexeme: año, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: viajaremos, lexeme: viajar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      reverse: |-
+        (El año que viene|El próximo año) [(nosotros|nosotras)] (viajaremos|vamos a viajar|iremos|vamos a ir) a Cuba
+        [(Nosotros|Nosotras)] (viajaremos|vamos a viajar|iremos|vamos a ir) a Cuba (el año que viene|el próximo año)
+  translations:
+    en: |-
+      Next year (we'll|we will) (travel|go) to Cuba.
+      (We'll|We will) (travel|go) to Cuba next year.
+      Next year we're going to go to Cuba.
+- id: s.u20.26
+  node: es.u20.los-reyes
+  forms:
+    es-Latn/standard:
+      text: El seis de enero es el Día de Reyes.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: seis, lexeme: seis}, {surface: de, lexeme: de}, {surface: enero, lexeme: enero}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Día, lexeme: día, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Reyes, lexeme: rey, feats: {Number: Plur}}]
+      reverse: |-
+        El (seis|6) de enero es el Día de [los] Reyes
+        El Día de [los] Reyes es el (seis|6) de enero
+  translations:
+    en: |-
+      (January (6th|6|sixth)|The sixth of January) is (Three Kings Day|the Day of the Kings|Epiphany).
+      (Three Kings Day|The Day of the Kings|Epiphany) is [on] (January (6th|6|sixth)|the sixth of January).
+- id: s.u20.27
+  node: es.u20.los-reyes
+  forms:
+    es-Latn/standard:
+      text: El Día de Reyes, abuela tendrá regalos para todos.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Día, lexeme: día, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Reyes, lexeme: rey, feats: {Number: Plur}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tendrá, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: regalos, lexeme: regalo, feats: {Number: Plur}}, {surface: para, lexeme: para}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}]
+      reverse: |-
+        El Día de [los] Reyes (abuela|la abuela) (tendrá|va a tener) regalos para todos
+        (Abuela|La abuela) (tendrá|va a tener) regalos para todos el Día de [los] Reyes
+        El Día de Reyes mi abuela tendrá regalos para todos
+  translations:
+    en: |-
+      On Three Kings Day, (Grandma|Grandmother|Granny|Abuela) will have (presents|gifts) for everyone.
+      (Grandma|Grandmother|Granny|Abuela) will have (presents|gifts) for everyone on Three Kings Day.
+      On Three Kings Day, Grandma is going to have presents for everyone.
+- id: s.u20.28
+  node: es.u20.los-reyes
+  forms:
+    es-Latn/standard:
+      text: ¿Qué regalo le comprarás a Lili?
+      tokens: [{surface: Qué, lexeme: qué}, {surface: regalo, lexeme: regalo, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: comprarás, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      reverse: |-
+        Qué regalo (le comprarás [tú]|tú le comprarás|le vas a comprar|tú le vas a comprar|le comprará [usted]|usted le comprará) a Lili
+        ¿Qué regalo le comprarán a Lili?
+        ¿Qué regalo le van a comprar a Lili?
+        ¿Qué regalo usted le va a comprar a Lili?
+        ¿Qué regalo vas a comprarle a Lili?
+  translations:
+    en: |-
+      What (present|gift) will you (buy|get) (Lili|for Lili)?
+      What present are you going to buy Lili?
+- id: s.u20.29
+  node: es.u20.los-reyes
+  forms:
+    es-Latn/standard:
+      text: Le compraré un pulóver azul.
+      tokens: [{surface: Le, lexeme: le}, {surface: compraré, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}}, {surface: azul, lexeme: azul, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        [Yo] le (compraré|voy a comprar) (un pulóver|una camiseta|una playera) azul
+        Voy a comprarle un pulóver azul
+  translations:
+    en: |-
+      (I'll|I will) (buy|get) (her|him) a blue (T-shirt|tee shirt|shirt).
+      (I'll|I will) (buy|get) a blue (T-shirt|tee shirt|shirt) for (her|him).
+      I'm going to buy her a blue T-shirt.
+- id: s.u20.30
+  node: es.u20.los-reyes
+  forms:
+    es-Latn/standard:
+      text: Llevaremos regalos para Yunior a La Habana.
+      tokens: [{surface: Llevaremos, lexeme: llevar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: regalos, lexeme: regalo, feats: {Number: Plur}}, {surface: para, lexeme: para}, {surface: Yunior, lexeme: yunior}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      reverse: |-
+        [(Nosotros|Nosotras)] (llevaremos|vamos a llevar) regalos (para|pa') Yunior a La Habana
+        [(Nosotros|Nosotras)] (llevaremos|vamos a llevar) regalos a La Habana (para|pa') Yunior
+  translations:
+    en: |-
+      (We'll|We will) take (presents|gifts) for Yunior to Havana.
+      (We'll|We will) take (presents|gifts) to Havana for Yunior.
+      We're going to take presents for Yunior to Havana.
+- id: s.u20.31
+  node: es.u20.los-quince
+  forms:
+    es-Latn/standard:
+      text: En los quince de mi prima, todos bailarán.
+      tokens: [{surface: En, lexeme: en}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: quince, lexeme: quince}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: prima, lexeme: primo, feats: {Gender: Fem, Number: Sing}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: bailarán, lexeme: bailar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Fut, VerbForm: Fin}}]
+      reverse: |-
+        En los quince de mi prima todos (bailarán|van a bailar)
+        Todos (bailarán|van a bailar) en los quince de mi prima
+  translations:
+    en: |-
+      At my cousin's (quince|quinceañera|fifteenth birthday party), everyone will dance.
+      Everyone will dance at my cousin's (quince|quinceañera|fifteenth birthday party).
+      At my cousin's quince, everyone is going to dance.
+- id: s.u20.32
+  node: es.u20.los-quince
+  forms:
+    es-Latn/standard:
+      text: La quinceañera bailará el vals con su padre.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: quinceañera, lexeme: quinceañera, feats: {Number: Sing}}, {surface: bailará, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: vals, lexeme: vals, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}]
+      reverse: La quinceañera (bailará|va a bailar) el vals con su (padre|papá|papi)
+  translations:
+    en: |-
+      The (quinceañera|birthday girl) will dance the waltz with her (father|dad).
+      The quinceañera is going to dance the waltz with her father.
+- id: s.u20.33
+  node: es.u20.los-quince
+  forms:
+    es-Latn/standard:
+      text: Mi prima de La Habana tendrá quince años en enero.
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: prima, lexeme: primo, feats: {Gender: Fem, Number: Sing}}, {surface: de, lexeme: de}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: tendrá, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: quince, lexeme: quince}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: enero, lexeme: enero}]
+      reverse: |-
+        Mi (prima|primo) de La Habana (tendrá|va a tener|cumplirá|va a cumplir) quince [años] en enero
+        En enero mi (prima|primo) de La Habana (tendrá|va a tener|cumplirá|va a cumplir) quince [años]
+  translations:
+    en: |-
+      My cousin (in|from) Havana will (be|turn) fifteen in January.
+      In January, my cousin (in|from) Havana will (be|turn) fifteen.
+      My cousin from Havana is going to turn fifteen in January.
+- id: s.u20.34
+  node: es.u20.los-quince
+  forms:
+    es-Latn/standard:
+      text: Yo no bailo bien, pero bailaré en los quince.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}, {surface: bailo, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: bailaré, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: quince, lexeme: quince}]
+      reverse: '[Yo] no bailo bien pero (bailaré|voy a bailar) en los quince'
+  translations:
+    en: |-
+      I don't dance well, but (I'll|I will) dance at the (quince|quinceañera|fifteenth birthday party).
+      I don't dance well, but I'm going to dance at the quince.
+      I do not dance well, but I'll dance at the quince.
+- id: s.u20.35
+  node: es.u20.los-quince
+  forms:
+    es-Latn/standard:
+      text: Tía Marisol preparará una fiesta grande en La Habana.
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: preparará, lexeme: preparar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: fiesta, lexeme: fiesta, feats: {Number: Sing}}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      reverse: (Tía Marisol|Mi tía Marisol|La tía Marisol) (preparará|va a preparar|hará|va a hacer|dará|va a dar) una (fiesta grande|gran fiesta) en La Habana
+  translations:
+    en: |-
+      (Aunt|Auntie|Tía) Marisol will (throw|have|prepare|organize|plan) a big party in Havana.
+      Aunt Marisol is going to throw a big party in Havana.
+stories:
+- id: es.story.u20
+  node: es.u20.story
+  title:
+    en: Nochebuena at Abuela's
+  characters:
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: mami
+    speaker: f
+    name:
+      es-Latn/standard: Mami
+  - id: papi
+    speaker: m
+    name:
+      es-Latn/standard: Papi
+  - id: lili
+    speaker: f
+    name:
+      es-Latn/standard: Lili
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: pepe
+    speaker: m
+    name:
+      es-Latn/standard: Abuelo Pepe
+  - id: yasiel
+    speaker: m
+    name:
+      es-Latn/standard: Yasiel
+  steps:
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Es el veinticuatro de diciembre en Hialeah.
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: veinticuatro, lexeme: veinticuatro}, {surface: de, lexeme: de}, {surface: diciembre, lexeme: diciembre}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      translations:
+        en: It's December 24th in Hialeah.
+  - line:
+      speaker: papi
+      ask: complete
+      gap: lexeme:lechón
+      distractors:
+      - lexeme:vino
+      - lexeme:teléfono
+      forms:
+        es-Latn/standard:
+          text: Abuelo y yo asaremos el lechón en la caja china.
+          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: asaremos, lexeme: asar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lechón, lexeme: lechón, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: caja, lexeme: caja-china}, {surface: china, lexeme: caja-china}]
+      translations:
+        en: Grandpa and I will roast the pig in the caja china.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: En Cuba yo asé muchos lechones en el patio.
+          tokens: [{surface: En, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: yo, lexeme: yo}, {surface: asé, lexeme: asar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: lechones, lexeme: lechón, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      translations:
+        en: In Cuba I roasted a lot of pigs in the yard.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Y este año, ¿quién vendrá?
+          tokens: [{surface: Y, lexeme: y}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: año, lexeme: año, feats: {Number: Sing}}, {surface: quién, lexeme: quién}, {surface: vendrá, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}]
+      translations:
+        en: And this year, who's coming?
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: Vendrá toda la familia, y también doña Ofelia y Yasiel.
+          tokens: [{surface: Vendrá, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: también, lexeme: también}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: Yasiel, lexeme: yasiel}]
+      translations:
+        en: The whole family is coming, and Doña Ofelia and Yasiel too.
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿Y tía Marisol? ¿Y Yunior?
+          tokens: [{surface: Y, lexeme: y}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: Y, lexeme: y}, {surface: Yunior, lexeme: yunior}]
+      translations:
+        en: What about Aunt Marisol? And Yunior?
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: Ellos están en La Habana, pero hablaremos con ellos por teléfono.
+          tokens: [{surface: Ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: pero, lexeme: pero}, {surface: hablaremos, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}]
+      translations:
+        en: They're in Havana, but we'll talk to them on the phone.
+  - choose:
+      prompt:
+        en: Who will roast the pig?
+      options:
+      - en: Papi and Abuelo Pepe
+      - en: Mami and Abuela Cachita
+      - en: Yasiel
+      answer: 0
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: Muchas gracias, señora. Mi familia está en Cuba.
+          tokens: [{surface: Muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: gracias, lexeme: gracias}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      translations:
+        en: Thank you very much, ma'am. My family is in Cuba.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Aquí tú también tienes familia, mi'jo.
+          tokens: [{surface: Aquí, lexeme: aquí}, {surface: tú, lexeme: tú}, {surface: también, lexeme: también}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: You have family here too, son.
+  - choose:
+      prompt:
+        en: Why is Yasiel spending Nochebuena with Daniel's family?
+      options:
+      - en: His family is in Cuba.
+      - en: He is roasting the pig.
+      - en: He lives in Abuela's house.
+      answer: 0
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿Y qué comeremos?
+          tokens: [{surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: comeremos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}]
+      translations:
+        en: And what will we eat?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Lechón asado, congrí, yuca y tostones.
+          tokens: [{surface: Lechón, lexeme: lechón, feats: {Number: Sing}}, {surface: asado, lexeme: asado, feats: {Gender: Masc, Number: Sing}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}, {surface: yuca, lexeme: yuca, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}]
+      translations:
+        en: Roast pork, congrí, yuca and tostones.
+  - line:
+      speaker: lili
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: ¡Y a medianoche comeremos las doce uvas!
+          tokens: [{surface: Y, lexeme: y}, {surface: a, lexeme: a}, {surface: medianoche, lexeme: medianoche, feats: {Number: Sing}}, {surface: comeremos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: doce, lexeme: doce}, {surface: uvas, lexeme: uva, feats: {Number: Plur}}]
+      translations:
+        en: And at midnight we'll eat the twelve grapes!
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: No, mi'ja. Las uvas son para el Año Nuevo.
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: Las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: uvas, lexeme: uva, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Año, lexeme: año, feats: {Number: Sing}}, {surface: Nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: No, sweetheart. The grapes are for New Year's.
+  - choose:
+      prompt:
+        en: When do Cubans eat the twelve grapes?
+      options:
+      - en: At midnight on New Year's Eve
+      - en: On Christmas Eve after dinner
+      - en: On Three Kings Day
+      answer: 0
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿Y los turrones?
+          tokens: [{surface: Y, lexeme: y}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: turrones, lexeme: turrón, feats: {Number: Plur}}]
+      translations:
+        en: And the turrones?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Los turrones son para hoy, para mañana y para el Año Nuevo.
+          tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: turrones, lexeme: turrón, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: hoy, lexeme: hoy}, {surface: para, lexeme: para}, {surface: mañana, lexeme: mañana}, {surface: y, lexeme: y}, {surface: para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Año, lexeme: año, feats: {Number: Sing}}, {surface: Nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: The turrones are for today, for tomorrow and for New Year's.
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: ¡Será una Nochebuena muy cubana!
+          tokens: [{surface: Será, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}}, {surface: muy, lexeme: muy}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: It'll be a very Cuban Christmas Eve!
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Con la familia entera, mi'jo. ¡Feliz Nochebuena!
+          tokens: [{surface: Con, lexeme: con}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: entera, lexeme: entero, feats: {Gender: Fem, Number: Sing}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}}]
+      translations:
+        en: With the whole family, son. Merry Christmas Eve!

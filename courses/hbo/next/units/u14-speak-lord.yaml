@@ -1,0 +1,535 @@
+# Unit u14-speak-lord of courses/hbo in the new shape.
+# Written by `nabu migrate` from courses/hbo and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u14-speak-lord
+title:
+  en: Speak, LORD
+cefr: A2
+nodes:
+- {id: hbo.u14.samuel-and-eli, kind: lesson, introduces: ['lexeme:shmuel', 'lexeme:naar']}
+- {id: hbo.u14.you-called-me, kind: lesson, introduces: ['lexeme:eli']}
+- {id: hbo.u14.speak, kind: lesson}
+- {id: hbo.u14.he-stood-and-called, kind: lesson, introduces: ['lexeme:hityatsev', 'lexeme:paam']}
+- {id: hbo.u14.story, kind: story}
+sentences:
+- id: s.14.1
+  node: hbo.u14.samuel-and-eli
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁמוּאֵל
+      tokens: [{surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
+      reverse: שמואל
+  translations:
+    en: Samuel
+- id: s.14.2
+  node: hbo.u14.samuel-and-eli
+  forms:
+    hbo-Hebr/tiberian:
+      text: נַעַר
+      tokens: [{surface: נַעַר, lexeme: naar, feats: {Number: Sing}, readings: {tiberian: náʿar}}]
+      reverse: נער
+  translations:
+    en: |-
+      a boy
+      a (young man|lad|servant)
+- id: s.14.3
+  node: hbo.u14.samuel-and-eli
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנַּעַר שְׁמוּאֵל
+      tokens: [{surface: הַנַּעַר, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: naar, surface: נַּעַר, base: true, feats: {Number: Sing}}], readings: {tiberian: hannáʿar}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
+      reverse: הנער שמואל
+  translations:
+    en: |-
+      the boy Samuel
+      Samuel the boy
+- id: s.14.4
+  node: hbo.u14.samuel-and-eli
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּקְרָא יְהוָה אֶל־שְׁמוּאֵל׃
+      tokens: [{surface: וַיִּקְרָא, lexeme: qara, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
+      reverse: |-
+        ויקרא יהוה אל שמואל
+        יהוה קרא אל שמואל
+        ויהוה קרא אל שמואל
+        קרא יהוה אל שמואל
+  translations:
+    en: |-
+      [(And|Then)] the LORD called Samuel.
+      [(And|Then)] the LORD called (to|out to) Samuel.
+- id: s.14.5
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵלִי
+      tokens: [{surface: עֵלִי, lexeme: eli, feats: {Number: Sing}, readings: {tiberian: ʿēlî}}]
+      reverse: עלי
+  translations:
+    en: Eli
+- id: s.14.6
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּרָץ אֶל־עֵלִי׃
+      tokens: [{surface: וַיָּרָץ, lexeme: ruts, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́roṣ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: עֵלִי, lexeme: eli, feats: {Number: Sing}, readings: {tiberian: ʿēlî}}]
+      reverse: |-
+        וירץ אל עלי
+        רץ אל עלי
+        הוא רץ אל עלי
+        והוא רץ אל עלי
+  translations:
+    en: '[(And|Then|So)] he ran to Eli.'
+- id: s.14.7
+  node: hbo.u14.samuel-and-eli
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנַּעַר יֹשֵׁב בַּבַּיִת׃
+      tokens: [{surface: הַנַּעַר, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: naar, surface: נַּעַר, base: true, feats: {Number: Sing}}], readings: {tiberian: hannáʿar}}, {surface: יֹשֵׁב, lexeme: yashav, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: yōšēḇ}}, {surface: בַּבַּיִת, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: bayit, surface: בַּיִת, base: true, feats: {Number: Sing}}], readings: {tiberian: babbáyiṯ}}]
+      reverse: |-
+        הנער (ישב|יושב) בבית
+        (ישב|יושב) הנער בבית
+  translations:
+    en: |-
+      The boy is sitting in the house.
+      The boy (is staying|lives) in the house.
+- id: s.14.8
+  node: hbo.u14.you-called-me
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קָרָאתָ לִּי׃
+      tokens: [{surface: קָרָאתָ, lexeme: qara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qārā́ʾṯā}}, {surface: לִּי, lexemes: [{lexeme: le, surface: לִּ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}]
+      reverse: |-
+        קראת לי
+        אתה קראת לי
+  translations:
+    en: |-
+      You called me.
+      You called (for|to) me.
+- id: s.14.9
+  node: hbo.u14.you-called-me
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קָרָאת לִי׃
+      tokens: [{surface: קָרָאת, lexeme: qara, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qārāʾṯ}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}]
+      reverse: |-
+        קראת לי
+        את קראת לי
+  translations:
+    en: |-
+      You called me.
+      You called (for|to) me.
+- id: s.14.10
+  node: hbo.u14.you-called-me
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִנְנִי כִּי־קָרָאתָ לִּי׃
+      tokens: [{surface: הִנְנִי, lexemes: [{lexeme: hinneh, surface: הִנְ, base: true}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: hinənî}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: קָרָאתָ, lexeme: qara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qārā́ʾṯā}}, {surface: לִּי, lexemes: [{lexeme: le, surface: לִּ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}]
+      reverse: הנני כי קראת לי
+  translations:
+    en: |-
+      Here I am, for you called me.
+      Here I am; you called me.
+- id: s.14.11
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא־קָרָאתִי׃
+      tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ-}}, {surface: קָרָאתִי, lexeme: qara, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: qārā́ʾṯî}}]
+      reverse: (לא|לוא) קראתי
+  translations:
+    en: I (did not|didn't) call [you].
+- id: s.14.12
+  node: hbo.u14.you-called-me
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שׁוּב שְׁכָב׃
+      tokens: [{surface: שׁוּב, lexeme: shuv, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šûḇ}}, {surface: שְׁכָב, lexeme: shakhav, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəḵāḇ}}]
+      reverse: שוב שכב
+  translations:
+    en: |-
+      Go back [and] lie down!
+      Go back to bed!
+- id: s.14.13
+  node: hbo.u14.you-called-me
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שׁוּבִי שִׁכְבִי׃
+      tokens: [{surface: שׁוּבִי, lexeme: shuv, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šû́ḇî}}, {surface: שִׁכְבִי, lexeme: shakhav, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šiḵḇî}}]
+      reverse: שובי שכבי
+  translations:
+    en: |-
+      Go back [and] lie down!
+      Go back to bed!
+- id: s.14.14
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּלֶךְ וַיִּשְׁכַּב׃
+      tokens: [{surface: וַיֵּלֶךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗleḵ}}, {surface: וַיִּשְׁכַּב, lexeme: shakhav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiškaḇ}}]
+      reverse: וילך וישכב
+  translations:
+    en: '[(And|So)] he went and lay down.'
+- id: s.14.15
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּשְׁכַּב בִּמְקוֹמוֹ׃
+      tokens: [{surface: וַיִּשְׁכַּב, lexeme: shakhav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, lexemes: [{lexeme: be, surface: בִּ}, {lexeme: maqom, surface: מְקוֹמ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: bimqômô}}]
+      reverse: |-
+        וישכב במקומו
+        שכב במקומו
+        הוא שכב במקומו
+        והוא שכב במקומו
+  translations:
+    en: '[(And|Then|So)] he lay down in his place.'
+- id: s.14.16
+  node: hbo.u14.speak
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָיָה
+      tokens: [{surface: וְהָיָה, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəhāyâ}}]
+      reverse: והיה
+  translations:
+    en: |-
+      and it will be
+      and it shall (be|happen)
+- id: s.14.17
+  node: hbo.u14.speak
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָיָה אִם־יִקְרָא אֵלֶיךָ
+      tokens: [{surface: וְהָיָה, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəhāyâ}}, {surface: אִם, lexeme: im, readings: {tiberian: ʾim-}}, {surface: יִקְרָא, lexeme: qara, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yiqrāʾ}}, {surface: אֵלֶיךָ, lexemes: [{lexeme: el, surface: אֵלֶי, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾēlếḵā}}]
+      reverse: והיה אם יקרא אליך
+  translations:
+    en: |-
+      and if he calls you
+      and it shall be, if he calls [to] you
+- id: s.14.18
+  node: hbo.u14.speak
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאָמַרְתָּ
+      tokens: [{surface: וְאָמַרְתָּ, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəʾāmartā}}]
+      reverse: |-
+        ואמרת
+        ואתה (תאמר|תואמר)
+  translations:
+    en: |-
+      and you shall say
+      then you will say
+- id: s.14.19
+  node: hbo.u14.speak
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: דַּבֵּר׃
+      tokens: [{surface: דַּבֵּר, lexeme: dibber, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: dabbēr}}]
+      reverse: דבר
+  translations:
+    en: Speak!
+- id: s.14.20
+  node: hbo.u14.speak
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: דַּבְּרוּ׃
+      tokens: [{surface: דַּבְּרוּ, lexeme: dibber, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: dabbərû}}]
+      reverse: דברו
+  translations:
+    en: Speak!
+- id: s.14.21
+  node: hbo.u14.speak
+  forms:
+    hbo-Hebr/tiberian:
+      text: שֹׁמֵעַ
+      tokens: [{surface: שֹׁמֵעַ, lexeme: shama, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: šōmēaʿ}}]
+      reverse: (שמע|שומע)
+  translations:
+    en: |-
+      listening
+      hearing
+- id: s.14.22
+  node: hbo.u14.speak
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַבְדְּךָ
+      tokens: [{surface: עַבְדְּךָ, lexemes: [{lexeme: eved, surface: עַבְדְּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʿaḇdəḵā}}]
+      reverse: עבדך
+  translations:
+    en: your servant
+- id: s.14.23
+  node: hbo.u14.speak
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: דַּבֵּר כִּי שֹׁמֵעַ עַבְדֶּךָ׃
+      tokens: [{surface: דַּבֵּר, lexeme: dibber, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: dabbēr}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî}}, {surface: שֹׁמֵעַ, lexeme: shama, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: šōmēaʿ}}, {surface: עַבְדֶּךָ, lexemes: [{lexeme: eved, surface: עַבְדֶּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʿaḇdéḵā}}]
+      reverse: דבר כי (שמע|שומע) עבדך
+  translations:
+    en: |-
+      Speak, for your servant is listening.
+      Speak, (because|since) your servant is listening.
+- id: s.14.24
+  node: hbo.u14.speak
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי שֹׁמַעַת׃
+      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמַעַת, lexeme: shama, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: šōmáʿaṯ}}]
+      reverse: |-
+        (אנכי|אנוכי) (שמעת|שומעת)
+        (שמעת|שומעת) (אנכי|אנוכי)
+  translations:
+    en: I( am|'m) listening.
+- id: s.14.25
+  node: hbo.u14.speak
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי שֹׁמֵעַ׃
+      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמֵעַ, lexeme: shama, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: šōmēaʿ}}]
+      reverse: |-
+        (אנכי|אנוכי) (שמע|שומע)
+        (שמע|שומע) (אנכי|אנוכי)
+  translations:
+    en: I( am|'m) listening.
+- id: s.14.26
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּתְיַצַּב׃
+      tokens: [{surface: וַיִּתְיַצַּב, lexeme: hityatsev, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiṯyaṣṣaḇ}}]
+      reverse: ויתיצב
+  translations:
+    en: |-
+      [(And|Then)] he stood [there].
+      [(And|Then)] he took his stand.
+- id: s.14.27
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: פַּעַם
+      tokens: [{surface: פַּעַם, lexeme: paam, feats: {Number: Sing}, readings: {tiberian: páʿam}}]
+      reverse: פעם
+  translations:
+    en: |-
+      a time
+      once
+- id: s.14.28
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: כְפַעַם־בְּפַעַם
+      tokens: [{surface: כְפַעַם, lexemes: [{lexeme: ke, surface: כְ}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}}], readings: {tiberian: bəp̄áʿam}}]
+      reverse: כפעם בפעם
+  translations:
+    en: |-
+      as at other times
+      as [he had] (before|the other times)
+- id: s.14.29
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּבֹא יְהוָה וַיִּתְיַצַּב׃
+      tokens: [{surface: וַיָּבֹא, lexeme: bo, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyāḇōʾ}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיִּתְיַצַּב, lexeme: hityatsev, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiṯyaṣṣaḇ}}]
+      reverse: (ויבא|ויבוא) יהוה ויתיצב
+  translations:
+    en: |-
+      [(And|Then)] the LORD came and stood [there].
+      [(And|Then)] the LORD came and took his stand.
+- id: s.14.30
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁמוּאֵל שְׁמוּאֵל׃
+      tokens: [{surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
+      reverse: שמואל שמואל
+  translations:
+    en: Samuel! Samuel!
+stories:
+- id: hbo.story.speak-lord
+  node: hbo.u14.story
+  title:
+    en: Speak, LORD (1 Samuel 3:4–5, 9–10)
+  characters:
+  - id: god
+    name:
+      hbo-Hebr/tiberian: יְהוָה
+  - id: samuel
+    speaker: m
+    name:
+      hbo-Hebr/tiberian: שְׁמוּאֵל
+  - id: eli
+    speaker: m
+    name:
+      hbo-Hebr/tiberian: עֵלִי
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיִּקְרָא יְהוָה אֶל־שְׁמוּאֵל
+          tokens: [{surface: וַיִּקְרָא, lexeme: qara, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
+      translations:
+        en: And the LORD called Samuel,
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: and he said,
+  - line:
+      speaker: samuel
+      forms:
+        hbo-Hebr/tiberian:
+          text: הִנֵּנִי׃
+          tokens: [{surface: הִנֵּנִי, lexemes: [{lexeme: hinneh, surface: הִנֵּ, base: true}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: hinnḗnî}}]
+      translations:
+        en: “Here I am.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיָּרָץ אֶל־עֵלִי וַיֹּאמֶר
+          tokens: [{surface: וַיָּרָץ, lexeme: ruts, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́roṣ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: עֵלִי, lexeme: eli, feats: {Number: Sing}, readings: {tiberian: ʿēlî}}, {surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he ran to Eli and said,
+  - line:
+      speaker: samuel
+      ask: complete
+      gap: lexeme:qara
+      asks: form
+      distractors:
+      - {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}
+      - {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}
+      forms:
+        hbo-Hebr/tiberian:
+          text: הִנְנִי כִּי־קָרָאתָ לִּי
+          tokens: [{surface: הִנְנִי, lexemes: [{lexeme: hinneh, surface: הִנְ, base: true}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: hinənî}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: קָרָאתָ, lexeme: qara, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qārā́ʾṯā}}, {surface: לִּי, lexemes: [{lexeme: le, surface: לִּ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}]
+      translations:
+        en: “Here I am, for you called me.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: But he said,
+  - line:
+      speaker: eli
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא־קָרָאתִי שׁוּב שְׁכָב
+          tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ-}}, {surface: קָרָאתִי, lexeme: qara, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: qārā́ʾṯî}}, {surface: שׁוּב, lexeme: shuv, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šûḇ}}, {surface: שְׁכָב, lexeme: shakhav, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəḵāḇ}}]
+      translations:
+        en: “I did not call; go back, lie down.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֵּלֶךְ וַיִּשְׁכָּב׃
+          tokens: [{surface: וַיֵּלֶךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗleḵ}}, {surface: וַיִּשְׁכָּב, lexeme: shakhav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiškāḇ}}]
+      translations:
+        en: So he went and lay down.
+  - choose:
+      prompt:
+        en: Who does Samuel think is calling him?
+      options:
+      - en: Eli
+      - en: his father
+      - en: the LORD
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר עֵלִי לִשְׁמוּאֵל
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: עֵלִי, lexeme: eli, feats: {Number: Sing}, readings: {tiberian: ʿēlî}}, {surface: לִשְׁמוּאֵל, lexemes: [{lexeme: le, surface: לִ}, {lexeme: shmuel, surface: שְׁמוּאֵל, base: true, feats: {Number: Sing}}], readings: {tiberian: lišmûʾēl}}]
+      translations:
+        en: Then Eli said to Samuel,
+  - line:
+      speaker: eli
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֵךְ שְׁכָב וְהָיָה אִם־יִקְרָא אֵלֶיךָ וְאָמַרְתָּ דַּבֵּר יְהוָה כִּי שֹׁמֵעַ עַבְדֶּךָ
+          tokens: [{surface: לֵךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: lēḵ}}, {surface: שְׁכָב, lexeme: shakhav, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəḵāḇ}}, {surface: וְהָיָה, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəhāyâ}}, {surface: אִם, lexeme: im, readings: {tiberian: ʾim-}}, {surface: יִקְרָא, lexeme: qara, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yiqrāʾ}}, {surface: אֵלֶיךָ, lexemes: [{lexeme: el, surface: אֵלֶי, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾēlếḵā}}, {surface: וְאָמַרְתָּ, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəʾāmartā}}, {surface: דַּבֵּר, lexeme: dibber, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: dabbēr}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî}}, {surface: שֹׁמֵעַ, lexeme: shama, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: šōmēaʿ}}, {surface: עַבְדֶּךָ, lexemes: [{lexeme: eved, surface: עַבְדֶּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʿaḇdéḵā}}]
+      translations:
+        en: “Go, lie down; and if he calls you, say, ‘Speak, LORD, for your servant is listening.’”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֵּלֶךְ שְׁמוּאֵל וַיִּשְׁכַּב בִּמְקוֹמוֹ׃
+          tokens: [{surface: וַיֵּלֶךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗleḵ}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}, {surface: וַיִּשְׁכַּב, lexeme: shakhav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, lexemes: [{lexeme: be, surface: בִּ}, {lexeme: maqom, surface: מְקוֹמ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: bimqômô}}]
+      translations:
+        en: So Samuel went and lay down in his place.
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיָּבֹא יְהוָה וַיִּתְיַצַּב וַיִּקְרָא כְפַעַם־בְּפַעַם
+          tokens: [{surface: וַיָּבֹא, lexeme: bo, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyāḇōʾ}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיִּתְיַצַּב, lexeme: hityatsev, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiṯyaṣṣaḇ}}, {surface: וַיִּקְרָא, lexeme: qara, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiqrāʾ}}, {surface: כְפַעַם, lexemes: [{lexeme: ke, surface: כְ}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: paam, surface: פַעַם, base: true, feats: {Number: Sing}}], readings: {tiberian: bəp̄áʿam}}]
+      translations:
+        en: And the LORD came and stood there, and called as at other times,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: שְׁמוּאֵל שְׁמוּאֵל
+          tokens: [{surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
+      translations:
+        en: “Samuel! Samuel!”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר שְׁמוּאֵל
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: שְׁמוּאֵל, lexeme: shmuel, feats: {Number: Sing}, readings: {tiberian: šəmûʾēl}}]
+      translations:
+        en: And Samuel said,
+  - line:
+      speaker: samuel
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: דַּבֵּר כִּי שֹׁמֵעַ עַבְדֶּךָ׃
+          tokens: [{surface: דַּבֵּר, lexeme: dibber, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: dabbēr}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî}}, {surface: שֹׁמֵעַ, lexeme: shama, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: šōmēaʿ}}, {surface: עַבְדֶּךָ, lexemes: [{lexeme: eved, surface: עַבְדֶּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʿaḇdéḵā}}]
+      translations:
+        en: “Speak, for your servant is listening.”
+  - choose:
+      prompt:
+        en: What does Eli tell Samuel to answer?
+      options:
+      - en: “Speak, LORD, for your servant is listening.”
+      - en: “I did not hear.”
+      - en: “Go back and lie down.”
+      answer: 0
+scenarios:
+- id: hbo.in-the-temple-at-shiloh
+  after: hbo.u14.he-stood-and-called
+  title:
+    en: In the temple at Shiloh
+  setting:
+    en: The house of the LORD at Shiloh, before dawn; the lamp of God has not yet gone out.
+  character:
+    en: Eli the old priest, half asleep and nearly blind, who speaks only Biblical Hebrew.
+  goal:
+    en: Tell Eli that someone called you three times, ask him what to say, and say that you will go back and lie down.

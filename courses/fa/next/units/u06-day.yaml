@@ -1,0 +1,528 @@
+# Unit day of courses/fa in the new shape.
+# Written by `nabu migrate` from courses/fa and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: day
+title:
+  en: My day
+cefr: A1
+nodes:
+- {id: fa.day.work, kind: lesson, introduces: ['lexeme:kar', 'lexeme:kardan', 'lexeme:mi', 'lexeme:daneshgah', 'lexeme:sherkat']}
+- {id: fa.day.go, kind: lesson, introduces: ['lexeme:raftan', 'lexeme:be', 'lexeme:amadan', 'lexeme:madrese']}
+- {id: fa.day.meals, kind: lesson, introduces: ['lexeme:khordan', 'lexeme:nahar', 'lexeme:sham', 'lexeme:sobh']}
+- {id: fa.day.night, kind: lesson, introduces: ['lexeme:khandan', 'lexeme:shab', 'lexeme:khabidan', 'lexeme:zud', 'lexeme:dir']}
+- {id: fa.day.every, kind: lesson, introduces: ['lexeme:ruz', 'lexeme:har', 'lexeme:hamishe', 'lexeme:mamulan']}
+- {id: fa.day.study, kind: lesson, introduces: ['lexeme:ra', 'lexeme:dars', 'lexeme:farsi', 'lexeme:sohbat', 'lexeme:kami']}
+- {id: fa.day.story, kind: story}
+sentences:
+- id: s.day.1
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: من کار دارم.
+      tokens: [{surface: من, lexeme: man}, {surface: کار, lexeme: kar}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: '[من] کار دارم'
+  translations:
+    en: |-
+      I('m| am) busy.
+      I have (work|things to do).
+      I've got things to do.
+- id: s.day.2
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: کار کردن خوب است.
+      tokens: [{surface: کار, lexeme: kar}, {surface: کردن, lexeme: kardan}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
+      reverse: کار کردن (خوب است|خوبه)
+  translations:
+    en: |-
+      Working is good.
+      It('s| is) good to work.
+      Work is good.
+- id: s.day.3
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: "من کار می\u200cکنم."
+      tokens: [{surface: من, lexeme: man}, {surface: کار, lexeme: kar}, {surface: "می\u200cکنم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] کار می\u200cکنم"
+  translations:
+    en: |-
+      I work.
+      I('m| am) working.
+- id: s.day.4
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: "پدرم هم کار می\u200cکند."
+      tokens: [{surface: پدرم, lexemes: [{lexeme: pedar, surface: پدر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: هم, lexeme: ham}, {surface: کار, lexeme: kar}, {surface: "می\u200cکند", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 3sg, surface: د}]}]
+      reverse: "(پدرم|پدر من) هم کار می\u200cکند"
+  translations:
+    en: |-
+      My (father|dad) (works|is working) too.
+      My (father|dad) also works.
+      My father is also working.
+- id: s.day.5
+  node: fa.day.work
+  tags:
+  - {register: formal}
+  forms:
+    fa-Arab/standard:
+      text: "شما کجا کار می\u200cکنید؟"
+      tokens: [{surface: شما, lexeme: shoma}, {surface: کجا, lexeme: koja}, {surface: کار, lexeme: kar}, {surface: "می\u200cکنید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 2pl, surface: ید}]}]
+      reverse: "[شما] کجا کار می\u200cکنید\n[تو] کجا کار می\u200cکنی"
+  translations:
+    en: |-
+      Where do you work?
+      Where are you working?
+- id: s.day.6
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: "من در دانشگاه کار می\u200cکنم."
+      tokens: [{surface: من, lexeme: man}, {surface: در, lexeme: dar}, {surface: دانشگاه, lexeme: daneshgah}, {surface: کار, lexeme: kar}, {surface: "می\u200cکنم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] (در|توی) دانشگاه کار می\u200cکنم"
+  translations:
+    en: |-
+      I work (at|in) (the|a) university.
+      I'm working at the university.
+- id: s.day.7
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: "مادرم در یک شرکت کار می\u200cکند."
+      tokens: [{surface: مادرم, lexemes: [{lexeme: madar, surface: مادر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: در, lexeme: dar}, {surface: یک, lexeme: yek}, {surface: شرکت, lexeme: sherkat}, {surface: کار, lexeme: kar}, {surface: "می\u200cکند", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 3sg, surface: د}]}]
+      reverse: "(مادرم|مادر من) (در|توی) یک شرکت کار می\u200cکند"
+  translations:
+    en: |-
+      My (mother|mom|mum) works (at|in|for) a company.
+      My mother is working at a company.
+- id: s.day.8
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "من می\u200cروم. خداحافظ!"
+      tokens: [{surface: من, lexeme: man}, {surface: "می\u200cروم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 1sg, surface: م}]}, {surface: خداحافظ, lexeme: khodahafez}]
+      reverse: "[من] می\u200cروم (خداحافظ|خدا حافظ|خدانگهدار)\nمن دارم می\u200cروم خداحافظ"
+  translations:
+    en: |-
+      I('m| am) (going|leaving). (Goodbye|Bye)!
+      I'm off. Bye!
+- id: s.day.9
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "من به دانشگاه می\u200cروم."
+      tokens: [{surface: من, lexeme: man}, {surface: به, lexeme: be}, {surface: دانشگاه, lexeme: daneshgah}, {surface: "می\u200cروم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] [به] دانشگاه می\u200cروم\nمن دارم به دانشگاه می\u200cروم"
+  translations:
+    en: I('m going| am going| go) to [the] university.
+- id: s.day.10
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "تو کجا می\u200cروی؟"
+      tokens: [{surface: تو, lexeme: to}, {surface: کجا, lexeme: koja}, {surface: "می\u200cروی", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 2sg, surface: ی}]}]
+      reverse: "[تو] کجا می\u200cروی\n[شما] کجا می\u200cروید\nکجا داری می\u200cروی\nداری کجا می\u200cروی\nشما کجا دارید می\u200cروید"
+  translations:
+    en: |-
+      Where are you going?
+      Where do you go?
+- id: s.day.11
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "علی به خانه می\u200cآید."
+      tokens: [{surface: علی, lexeme: ali}, {surface: به, lexeme: be}, {surface: خانه, lexeme: khane}, {surface: "می\u200cآید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true}, {lexeme: 3sg, surface: د}]}]
+      reverse: "علی [به] خانه می\u200cآید\nعلی دارد به خانه می\u200cآید"
+  translations:
+    en: |-
+      Ali('s coming| is coming| comes) home.
+      Ali will come home.
+- id: s.day.12
+  node: fa.day.go
+  tags:
+  - {register: formal}
+  forms:
+    fa-Arab/standard:
+      text: "شما هم می\u200cآیید؟"
+      tokens: [{surface: شما, lexeme: shoma}, {surface: هم, lexeme: ham}, {surface: "می\u200cآیید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true}, {lexeme: 2pl, surface: ید}]}]
+      reverse: "[شما] هم می\u200cآیید\n[تو] هم می\u200cآیی\nآیا شما هم می\u200cآیید\nتو هم داری می\u200cآیی"
+  translations:
+    en: |-
+      Are you coming too?
+      Are you also coming?
+      Will you come too?
+      Are you coming as well?
+- id: s.day.13
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "بچه\u200cها به مدرسه می\u200cروند."
+      tokens: [{surface: "بچه\u200cها", lexemes: [{lexeme: bachche, surface: "بچه\u200c", base: true}, {lexeme: pl, surface: ها}]}, {surface: به, lexeme: be}, {surface: مدرسه, lexeme: madrese}, {surface: "می\u200cروند", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 3pl, surface: ند}]}]
+      reverse: "بچه\u200cها [به] مدرسه می\u200cروند"
+  translations:
+    en: The (children|kids) (go|are going) to school.
+- id: s.day.14
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "من صبحانه می\u200cخورم."
+      tokens: [{surface: من, lexeme: man}, {surface: صبحانه, lexeme: sobhane}, {surface: "می\u200cخورم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] صبحانه می\u200cخورم"
+  translations:
+    en: |-
+      I (eat|have) breakfast.
+      I('m| am) (eating|having) breakfast.
+- id: s.day.15
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "ما در دانشگاه ناهار می\u200cخوریم."
+      tokens: [{surface: ما, lexeme: ma}, {surface: در, lexeme: dar}, {surface: دانشگاه, lexeme: daneshgah}, {surface: ناهار, lexeme: nahar}, {surface: "می\u200cخوریم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 1pl, surface: یم}]}]
+      reverse: "[ما] (در|توی) دانشگاه (ناهار|نهار) می\u200cخوریم"
+  translations:
+    en: |-
+      We (have|eat) lunch (at|in) [the] university.
+      We're having lunch at the university.
+- id: s.day.16
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "ما با خانواده شام می\u200cخوریم."
+      tokens: [{surface: ما, lexeme: ma}, {surface: با, lexeme: ba}, {surface: خانواده, lexeme: khanevade}, {surface: شام, lexeme: sham}, {surface: "می\u200cخوریم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 1pl, surface: یم}]}]
+      reverse: "[ما] با خانواده شام می\u200cخوریم\nما با خانواده\u200cمان شام می\u200cخوریم"
+  translations:
+    en: |-
+      We (have|eat) dinner with [the|our] family.
+      We're having dinner with the family.
+- id: s.day.17
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "تو چای می\u200cخوری؟"
+      tokens: [{surface: تو, lexeme: to}, {surface: چای, lexeme: chay}, {surface: "می\u200cخوری", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 2sg, surface: ی}]}]
+      reverse: "[تو] چای می\u200cخوری\n[شما] چای می\u200cخورید\nآیا تو چای می\u200cخوری\nتو چای می\u200cنوشی"
+  translations:
+    en: (Do you drink|Will you have|Would you like) [some] tea?
+- id: s.day.18
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "من قهوه نمی\u200cخورم."
+      tokens: [{surface: من, lexeme: man}, {surface: قهوه, lexeme: ghahve}, {surface: "نمی\u200cخورم", lexemes: [{lexeme: neg, surface: ن}, {lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] قهوه نمی\u200cخورم\nمن قهوه نمی\u200cنوشم"
+  translations:
+    en: I (don't|do not) drink coffee.
+- id: s.day.19
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "من صبح چای می\u200cخورم."
+      tokens: [{surface: من, lexeme: man}, {surface: صبح, lexeme: sobh}, {surface: چای, lexeme: chay}, {surface: "می\u200cخورم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] (صبح|صبح\u200cها) چای می\u200cخورم\nمن صبح چای می\u200cنوشم\nصبح\u200cها من چای می\u200cخورم"
+  translations:
+    en: |-
+      I (drink|have) tea in the morning.
+      In the morning I (drink|have) tea.
+- id: s.day.20
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "من کتاب می\u200cخوانم."
+      tokens: [{surface: من, lexeme: man}, {surface: کتاب, lexeme: ketab}, {surface: "می\u200cخوانم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khandan, surface: خوان, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] کتاب می\u200cخوانم\nمن دارم کتاب می\u200cخوانم"
+  translations:
+    en: |-
+      I('m| am) reading a book.
+      I read (books|a book).
+- id: s.day.21
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "من شب کتاب می\u200cخوانم."
+      tokens: [{surface: من, lexeme: man}, {surface: شب, lexeme: shab}, {surface: کتاب, lexeme: ketab}, {surface: "می\u200cخوانم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khandan, surface: خوان, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] (شب|شب\u200cها) کتاب می\u200cخوانم\nشب\u200cها من کتاب می\u200cخوانم"
+  translations:
+    en: |-
+      I read [books] (at night|in the evening).
+      (At night|In the evening) I read [books].
+- id: s.day.22
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "بچه\u200cها می\u200cخوابند."
+      tokens: [{surface: "بچه\u200cها", lexemes: [{lexeme: bachche, surface: "بچه\u200c", base: true}, {lexeme: pl, surface: ها}]}, {surface: "می\u200cخوابند", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khabidan, surface: خواب, base: true}, {lexeme: 3pl, surface: ند}]}]
+      reverse: "بچه\u200cها می\u200cخوابند"
+  translations:
+    en: |-
+      The (children|kids) are (sleeping|asleep).
+      The (children|kids) sleep.
+- id: s.day.23
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "من زود می\u200cخوابم."
+      tokens: [{surface: من, lexeme: man}, {surface: زود, lexeme: zud}, {surface: "می\u200cخوابم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khabidan, surface: خواب, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] زود می\u200cخوابم"
+  translations:
+    en: |-
+      I (go to bed|sleep) early.
+      I go to sleep early.
+- id: s.day.24
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "علی دیر می\u200cآید."
+      tokens: [{surface: علی, lexeme: ali}, {surface: دیر, lexeme: dir}, {surface: "می\u200cآید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true}, {lexeme: 3sg, surface: د}]}]
+      reverse: "علی دیر می\u200cآید"
+  translations:
+    en: Ali('s coming| is coming| comes| will come) late.
+- id: s.day.25
+  node: fa.day.every
+  forms:
+    fa-Arab/standard:
+      text: "من پنج روز کار می\u200cکنم."
+      tokens: [{surface: من, lexeme: man}, {surface: پنج, lexeme: panj}, {surface: روز, lexeme: ruz}, {surface: کار, lexeme: kar}, {surface: "می\u200cکنم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] پنج روز کار می\u200cکنم\n[من] پنج روز در هفته کار می\u200cکنم\n[من] هفته\u200cای پنج روز کار می\u200cکنم"
+  translations:
+    en: I work (five|5) days [a week].
+- id: s.day.26
+  node: fa.day.every
+  forms:
+    fa-Arab/standard:
+      text: "من هر روز کار می\u200cکنم."
+      tokens: [{surface: من, lexeme: man}, {surface: هر, lexeme: har}, {surface: روز, lexeme: ruz}, {surface: کار, lexeme: kar}, {surface: "می\u200cکنم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] هر روز کار می\u200cکنم\nهر روز من کار می\u200cکنم"
+  translations:
+    en: I work every day.
+- id: s.day.27
+  node: fa.day.every
+  forms:
+    fa-Arab/standard:
+      text: "او همیشه دیر می\u200cآید!"
+      tokens: [{surface: او, lexeme: u}, {surface: همیشه, lexeme: hamishe}, {surface: دیر, lexeme: dir}, {surface: "می\u200cآید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true}, {lexeme: 3sg, surface: د}]}]
+      reverse: "[او] همیشه دیر می\u200cآید\nاو همیشه دیر می\u200cکند\nاو همیشه دیر می\u200cرسد"
+  translations:
+    en: (He|She)('s always| is always| always comes) late!
+- id: s.day.28
+  node: fa.day.every
+  forms:
+    fa-Arab/standard:
+      text: "ما معمولاً در خانه شام می\u200cخوریم."
+      tokens: [{surface: ما, lexeme: ma}, {surface: معمولاً, lexeme: mamulan}, {surface: در, lexeme: dar}, {surface: خانه, lexeme: khane}, {surface: شام, lexeme: sham}, {surface: "می\u200cخوریم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 1pl, surface: یم}]}]
+      reverse: "[ما] معمولاً (در|توی) خانه شام می\u200cخوریم\nمعمولا ما در خانه شام می\u200cخوریم"
+  translations:
+    en: We usually (have|eat) dinner at home.
+- id: s.day.29
+  node: fa.day.study
+  forms:
+    fa-Arab/standard:
+      text: "من این کتاب را می\u200cخوانم."
+      tokens: [{surface: من, lexeme: man}, {surface: این, lexeme: in}, {surface: کتاب, lexeme: ketab}, {surface: را, lexeme: ra}, {surface: "می\u200cخوانم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khandan, surface: خوان, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] این کتاب را می\u200cخوانم\nمن دارم این کتاب را می\u200cخوانم"
+  translations:
+    en: |-
+      I('m| am) reading this book.
+      I read this book.
+- id: s.day.30
+  node: fa.day.study
+  forms:
+    fa-Arab/standard:
+      text: "ما درس می\u200cخوانیم."
+      tokens: [{surface: ما, lexeme: ma}, {surface: درس, lexeme: dars}, {surface: "می\u200cخوانیم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khandan, surface: خوان, base: true}, {lexeme: 1pl, surface: یم}]}]
+      reverse: "[ما] درس می\u200cخوانیم\nما داریم درس می\u200cخوانیم"
+  translations:
+    en: |-
+      We('re| are) studying.
+      We study.
+- id: s.day.31
+  node: fa.day.study
+  forms:
+    fa-Arab/standard:
+      text: "من فارسی می\u200cخوانم."
+      tokens: [{surface: من, lexeme: man}, {surface: فارسی, lexeme: farsi}, {surface: "می\u200cخوانم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khandan, surface: خوان, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] فارسی می\u200cخوانم\n[من] فارسی یاد می\u200cگیرم\nمن دارم فارسی می\u200cخوانم\nدارم فارسی یاد می\u200cگیرم"
+  translations:
+    en: |-
+      I('m| am) (studying|learning) (Persian|Farsi).
+      I (study|learn) (Persian|Farsi).
+- id: s.day.32
+  node: fa.day.study
+  tags:
+  - {register: formal}
+  forms:
+    fa-Arab/standard:
+      text: "شما فارسی صحبت می\u200cکنید؟"
+      tokens: [{surface: شما, lexeme: shoma}, {surface: فارسی, lexeme: farsi}, {surface: صحبت, lexeme: sohbat}, {surface: "می\u200cکنید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 2pl, surface: ید}]}]
+      reverse: "[شما] فارسی (صحبت می\u200cکنید|حرف می\u200cزنید)\n[تو] فارسی (صحبت می\u200cکنی|حرف می\u200cزنی)\nآیا شما فارسی صحبت می\u200cکنید"
+  translations:
+    en: Do you speak (Persian|Farsi)?
+- id: s.day.33
+  node: fa.day.study
+  forms:
+    fa-Arab/standard:
+      text: "بله، کمی فارسی صحبت می\u200cکنم."
+      tokens: [{surface: بله, lexeme: bale}, {surface: کمی, lexeme: kami}, {surface: فارسی, lexeme: farsi}, {surface: صحبت, lexeme: sohbat}, {surface: "می\u200cکنم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "(بله|آره) [من] (کمی|یک کمی) فارسی (صحبت می\u200cکنم|حرف می\u200cزنم)\nبله یک کم فارسی صحبت می\u200cکنم"
+  translations:
+    en: |-
+      Yes, I speak a little (Persian|Farsi).
+      Yes, I speak Persian a little.
+      Yes, I speak a bit of Persian.
+- id: s.day.34
+  node: fa.day.go
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    fa-Arab/standard:
+      text: "شما کجا می\u200cروید؟"
+      tokens: [{surface: شما, lexeme: shoma}, {surface: کجا, lexeme: koja}, {surface: "می\u200cروید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 2pl, surface: ید}]}]
+      reverse: "[شما] کجا می\u200cروید\nشما کجا دارید می\u200cروید"
+  translations:
+    en: |-
+      Where are you going?
+      Where do you go?
+- id: s.day.35
+  node: fa.day.meals
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    fa-Arab/standard:
+      text: "شما چای می\u200cخورید؟"
+      tokens: [{surface: شما, lexeme: shoma}, {surface: چای, lexeme: chay}, {surface: "می\u200cخورید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 2pl, surface: ید}]}]
+      reverse: "[شما] چای می\u200cخورید\nآیا شما چای می\u200cخورید\nشما چای می\u200cنوشید"
+  translations:
+    en: (Do you drink|Will you have|Would you like) [some] tea?
+stories:
+- id: fa.story.reza-day
+  node: fa.day.story
+  title:
+    en: Reza's day
+  provenance:
+    author: llm:claude@83a16c835c32
+    status: draft
+  characters:
+  - id: maryam
+    name:
+      fa-Arab/standard: مریم
+  - id: reza
+    name:
+      fa-Arab/standard: رضا
+  steps:
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: "سلام رضا! کجا می\u200cروی؟"
+          tokens: [{surface: سلام, lexeme: salam}, {surface: رضا, lexeme: reza}, {surface: کجا, lexeme: koja}, {surface: "می\u200cروی", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 2sg, surface: ی}]}]
+      translations:
+        en: Hi Reza! Where are you going?
+  - line:
+      speaker: reza
+      forms:
+        fa-Arab/standard:
+          text: "سلام! به دانشگاه می\u200cروم."
+          tokens: [{surface: سلام, lexeme: salam}, {surface: به, lexeme: be}, {surface: دانشگاه, lexeme: daneshgah}, {surface: "می\u200cروم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 1sg, surface: م}]}]
+      translations:
+        en: Hi! I'm going to the university.
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: "تو هر روز به دانشگاه می\u200cروی؟"
+          tokens: [{surface: تو, lexeme: to}, {surface: هر, lexeme: har}, {surface: روز, lexeme: ruz}, {surface: به, lexeme: be}, {surface: دانشگاه, lexeme: daneshgah}, {surface: "می\u200cروی", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 2sg, surface: ی}]}]
+      translations:
+        en: Do you go to the university every day?
+  - line:
+      speaker: reza
+      forms:
+        fa-Arab/standard:
+          text: "بله، من دانشجو هستم. در دانشگاه درس می\u200cخوانم."
+          tokens: [{surface: بله, lexeme: bale}, {surface: من, lexeme: man}, {surface: دانشجو, lexeme: daneshju}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}, {surface: در, lexeme: dar}, {surface: دانشگاه, lexeme: daneshgah}, {surface: درس, lexeme: dars}, {surface: "می\u200cخوانم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khandan, surface: خوان, base: true}, {lexeme: 1sg, surface: م}]}]
+      translations:
+        en: Yes, I'm a student. I study at the university.
+  - choose:
+      prompt:
+        en: Why does Reza go to the university every day?
+      options:
+      - en: He's a student there.
+      - en: He's a teacher there.
+      - en: He works in a company there.
+      answer: 0
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: "ناهار کجا می\u200cخوری؟"
+          tokens: [{surface: ناهار, lexeme: nahar}, {surface: کجا, lexeme: koja}, {surface: "می\u200cخوری", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 2sg, surface: ی}]}]
+      translations:
+        en: Where do you have lunch?
+  - line:
+      speaker: reza
+      ask: complete
+      gap: lexeme:daneshgah
+      distractors:
+      - lexeme:ketab
+      - lexeme:pool
+      forms:
+        fa-Arab/standard:
+          text: "در دانشگاه ناهار می\u200cخورم."
+          tokens: [{surface: در, lexeme: dar}, {surface: دانشگاه, lexeme: daneshgah}, {surface: ناهار, lexeme: nahar}, {surface: "می\u200cخورم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khordan, surface: خور, base: true}, {lexeme: 1sg, surface: م}]}]
+      translations:
+        en: I have lunch at the university.
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: "شب کتاب می\u200cخوانی؟"
+          tokens: [{surface: شب, lexeme: shab}, {surface: کتاب, lexeme: ketab}, {surface: "می\u200cخوانی", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khandan, surface: خوان, base: true}, {lexeme: 2sg, surface: ی}]}]
+      translations:
+        en: Do you read in the evening?
+  - line:
+      speaker: reza
+      forms:
+        fa-Arab/standard:
+          text: "بله، شب کتاب می\u200cخوانم و زود می\u200cخوابم."
+          tokens: [{surface: بله, lexeme: bale}, {surface: شب, lexeme: shab}, {surface: کتاب, lexeme: ketab}, {surface: "می\u200cخوانم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khandan, surface: خوان, base: true}, {lexeme: 1sg, surface: م}]}, {surface: و, lexeme: va}, {surface: زود, lexeme: zud}, {surface: "می\u200cخوابم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khabidan, surface: خواب, base: true}, {lexeme: 1sg, surface: م}]}]
+      translations:
+        en: Yes, I read in the evening and go to bed early.
+  - line:
+      speaker: maryam
+      ask: arrange
+      forms:
+        fa-Arab/standard:
+          text: "من همیشه دیر می\u200cخوابم!"
+          tokens: [{surface: من, lexeme: man}, {surface: همیشه, lexeme: hamishe}, {surface: دیر, lexeme: dir}, {surface: "می\u200cخوابم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khabidan, surface: خواب, base: true}, {lexeme: 1sg, surface: م}]}]
+      translations:
+        en: I always go to bed late!
+  - line:
+      speaker: reza
+      forms:
+        fa-Arab/standard:
+          text: خداحافظ، مریم!
+          tokens: [{surface: خداحافظ, lexeme: khodahafez}, {surface: مریم, lexeme: maryam}]
+      translations:
+        en: Bye, Maryam!
+  - choose:
+      prompt:
+        en: What does Reza do in the evening?
+      options:
+      - en: He reads and goes to bed early.
+      - en: He works late.
+      - en: He has dinner at the university.
+      answer: 0
+scenarios:
+- id: fa.colleague
+  after: fa.day.story
+  title:
+    en: A new colleague
+  setting:
+    en: Your first week at an office in Tehran. At lunchtime a colleague sits down next to you in the kitchen.
+  character:
+    en: Sara, a friendly colleague who has worked there for years and likes to chat.
+  goal:
+    en: Say what you do and where you work, describe a normal day (breakfast, work, dinner, bedtime), and ask Sara about hers.
+  provenance:
+    author: llm:claude@83a16c835c32
+    status: draft

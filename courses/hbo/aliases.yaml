@@ -1,0 +1,368 @@
+# What each KC id of courses/hbo became (schemas/aliases.schema.json).
+# Written by `nabu migrate` from courses/hbo and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+course: hbo
+aliases:
+  sense:or: {part: 'lexeme:or'}
+  sense:hoshekh: {part: 'lexeme:hoshekh'}
+  sense:we: {part: 'lexeme:we'}
+  sense:yom: {part: 'lexeme:yom'}
+  sense:layla: {part: 'lexeme:layla'}
+  sense:ha: {part: 'lexeme:ha'}
+  sense:tov: {part: 'lexeme:tov'}
+  construction:nominal: {part: 'rule:nominal'}
+  sense:erev: {part: 'lexeme:erev'}
+  sense:boqer: {part: 'lexeme:boqer'}
+  sense:elohim: {part: 'lexeme:elohim'}
+  sense:amar: {part: 'lexeme:amar'}
+  form:wayyiqtol-3ms: {}
+  sense:hayah: {part: 'lexeme:hayah'}
+  form:juss: {}
+  sense:raah: {part: 'lexeme:raah'}
+  sense:et: {part: 'lexeme:et'}
+  sense:ki: {part: 'lexeme:ki'}
+  sense:qara: {part: 'lexeme:qara'}
+  form:qatal-3ms: {}
+  sense:le: {part: 'lexeme:le'}
+  sense:ehad: {part: 'lexeme:ehad'}
+  sense:beyn: {part: 'lexeme:beyn'}
+  sense:badal: {part: 'lexeme:badal'}
+  sense:shamayim: {part: 'lexeme:shamayim'}
+  sense:erets: {part: 'lexeme:erets'}
+  sense:bara: {part: 'lexeme:bara'}
+  sense:be: {part: 'lexeme:be'}
+  sense:reshit: {part: 'lexeme:reshit'}
+  form:qatal-3fs: {}
+  form:f: {}
+  sense:tohu: {part: 'lexeme:tohu'}
+  sense:bohu: {part: 'lexeme:bohu'}
+  sense:al: {part: 'lexeme:al'}
+  sense:panim: {part: 'lexeme:panim'}
+  form:pl-cstr: {}
+  sense:tehom: {part: 'lexeme:tehom'}
+  sense:mayim: {part: 'lexeme:mayim'}
+  sense:ruach: {part: 'lexeme:ruach'}
+  sense:rachaf: {part: 'lexeme:rachaf'}
+  form:ptc-fs: {}
+  form:pl: {}
+  form:f-cstr: {}
+  sense:gan: {part: 'lexeme:gan'}
+  sense:adam: {part: 'lexeme:adam'}
+  sense:ishah: {part: 'lexeme:ishah'}
+  sense:yhwh: {part: 'lexeme:yhwh'}
+  sense:el: {part: 'lexeme:el'}
+  sense:qol: {part: 'lexeme:qol'}
+  sense:shama: {part: 'lexeme:shama'}
+  form:wayyiqtol-3mp: {}
+  form:qatal-1cs: {}
+  sense:ets: {part: 'lexeme:ets'}
+  sense:tokh: {part: 'lexeme:tokh'}
+  sense:hithallekh: {part: 'lexeme:hithallekh'}
+  form:ptc-ms: {}
+  sense:hava: {part: 'lexeme:hava'}
+  sense:hitchabbe: {part: 'lexeme:hitchabbe'}
+  sense:min: {part: 'lexeme:min'}
+  form:sfx-3ms: {part: 'lexeme:sfx-3ms'}
+  sense:ay: {part: 'lexeme:ay'}
+  form:sfx-2ms: {part: 'lexeme:sfx-2ms'}
+  sense:anokhi: {part: 'lexeme:anokhi'}
+  sense:yare: {part: 'lexeme:yare'}
+  form:wayyiqtol-1cs: {}
+  sense:erom: {part: 'lexeme:erom'}
+  form:cstr: {}
+  sense:mi: {part: 'lexeme:mi'}
+  sense:atta: {part: 'lexeme:atta'}
+  sense:at: {part: 'lexeme:at'}
+  sense:nagad: {part: 'lexeme:nagad'}
+  sense:hu: {part: 'lexeme:hu'}
+  sense:hi: {part: 'lexeme:hi'}
+  sense:asher: {part: 'lexeme:asher'}
+  sense:ha.q: {part: 'lexeme:ha.q'}
+  sense:akhal: {part: 'lexeme:akhal'}
+  form:qatal-2ms: {}
+  form:inf: {}
+  sense:tsivvah: {part: 'lexeme:tsivvah'}
+  sense:bilti: {part: 'lexeme:bilti'}
+  sense:natan: {part: 'lexeme:natan'}
+  sense:immad: {part: 'lexeme:immad'}
+  form:sfx-1cs: {part: 'lexeme:sfx-1cs'}
+  sense:mah: {part: 'lexeme:mah'}
+  sense:zot: {part: 'lexeme:zot'}
+  sense:asah: {part: 'lexeme:asah'}
+  form:qatal-2fs: {}
+  form:wayyiqtol-3fs: {}
+  sense:nahash: {part: 'lexeme:nahash'}
+  sense:nasha: {part: 'lexeme:nasha'}
+  sense:ah: {part: 'lexeme:ah'}
+  sense:ahot: {part: 'lexeme:ahot'}
+  form:sfx-2fs: {part: 'lexeme:sfx-2fs'}
+  sense:qayin: {part: 'lexeme:qayin'}
+  sense:hevel: {part: 'lexeme:hevel'}
+  sense:sadeh: {part: 'lexeme:sadeh'}
+  sense:qum: {part: 'lexeme:qum'}
+  sense:harag: {part: 'lexeme:harag'}
+  sense:lo: {part: 'lexeme:lo'}
+  sense:yada: {part: 'lexeme:yada'}
+  sense:shamar: {part: 'lexeme:shamar'}
+  sense:dam: {part: 'lexeme:dam'}
+  sense:tsaaq: {part: 'lexeme:tsaaq'}
+  form:ptc-mp: {}
+  sense:adamah: {part: 'lexeme:adamah'}
+  form:sfx-3mp: {part: 'lexeme:sfx-3mp'}
+  sense:avram: {part: 'lexeme:avram'}
+  sense:halakh: {part: 'lexeme:halakh'}
+  form:impv-ms: {}
+  form:impv-fs: {}
+  form:impv-mp: {}
+  sense:bayit: {part: 'lexeme:bayit'}
+  sense:av: {part: 'lexeme:av'}
+  sense:moledet: {part: 'lexeme:moledet'}
+  sense:hirah: {part: 'lexeme:hirah'}
+  form:yiqtol-1cs: {}
+  sense:goy: {part: 'lexeme:goy'}
+  sense:gadol: {part: 'lexeme:gadol'}
+  sense:shem: {part: 'lexeme:shem'}
+  sense:berakhah: {part: 'lexeme:berakhah'}
+  sense:barakh: {part: 'lexeme:barakh'}
+  sense:gadal: {part: 'lexeme:gadal'}
+  form:coh: {}
+  sense:ke: {part: 'lexeme:ke'}
+  sense:dibber: {part: 'lexeme:dibber'}
+  sense:davar: {part: 'lexeme:davar'}
+  sense:elleh: {part: 'lexeme:elleh'}
+  sense:ahar: {part: 'lexeme:ahar'}
+  sense:avraham: {part: 'lexeme:avraham'}
+  sense:nissah: {part: 'lexeme:nissah'}
+  sense:hinneh: {part: 'lexeme:hinneh'}
+  sense:ben: {part: 'lexeme:ben'}
+  sense:laqach: {part: 'lexeme:laqach'}
+  sense:na: {part: 'lexeme:na'}
+  sense:yahid: {part: 'lexeme:yahid'}
+  sense:ahav: {part: 'lexeme:ahav'}
+  sense:yitshaq: {part: 'lexeme:yitshaq'}
+  sense:har: {part: 'lexeme:har'}
+  sense:sham: {part: 'lexeme:sham'}
+  sense:olah: {part: 'lexeme:olah'}
+  sense:heelah: {part: 'lexeme:heelah'}
+  sense:moriyyah: {part: 'lexeme:moriyyah'}
+  sense:esh: {part: 'lexeme:esh'}
+  sense:seh: {part: 'lexeme:seh'}
+  sense:ayyeh: {part: 'lexeme:ayyeh'}
+  form:yiqtol-3ms: {}
+  sense:shnayim: {part: 'lexeme:shnayim'}
+  sense:yahdav: {part: 'lexeme:yahdav'}
+  sense:eved: {part: 'lexeme:eved'}
+  sense:ruts: {part: 'lexeme:ruts'}
+  sense:liqrat: {part: 'lexeme:liqrat'}
+  form:sfx-3fs: {part: 'lexeme:sfx-3fs'}
+  sense:rivqah: {part: 'lexeme:rivqah'}
+  sense:kad: {part: 'lexeme:kad'}
+  sense:meat: {part: 'lexeme:meat'}
+  sense:gama: {part: 'lexeme:gama'}
+  sense:shatah: {part: 'lexeme:shatah'}
+  sense:adon: {part: 'lexeme:adon'}
+  sense:mahar: {part: 'lexeme:mahar'}
+  sense:horid: {part: 'lexeme:horid'}
+  sense:yad: {part: 'lexeme:yad'}
+  sense:hishqah: {part: 'lexeme:hishqah'}
+  sense:gamal: {part: 'lexeme:gamal'}
+  sense:gam: {part: 'lexeme:gam'}
+  sense:shaav: {part: 'lexeme:shaav'}
+  sense:ad: {part: 'lexeme:ad'}
+  sense:im: {part: 'lexeme:im'}
+  sense:killah: {part: 'lexeme:killah'}
+  form:qatal-3cp: {}
+  sense:beer: {part: 'lexeme:beer'}
+  sense:od: {part: 'lexeme:od'}
+  sense:kol: {part: 'lexeme:kol'}
+  sense:arah: {part: 'lexeme:arah'}
+  sense:shoqet: {part: 'lexeme:shoqet'}
+  sense:yisrael: {part: 'lexeme:yisrael'}
+  sense:yosef: {part: 'lexeme:yosef'}
+  sense:hem: {part: 'lexeme:hem'}
+  sense:raah.graze: {part: 'lexeme:raah.graze'}
+  sense:tson: {part: 'lexeme:tson'}
+  sense:shalom: {part: 'lexeme:shalom'}
+  form:sfx-2mp: {part: 'lexeme:sfx-2mp'}
+  sense:shalach: {part: 'lexeme:shalach'}
+  sense:heshiv: {part: 'lexeme:heshiv'}
+  sense:bo: {part: 'lexeme:bo'}
+  sense:hevron: {part: 'lexeme:hevron'}
+  sense:emeq: {part: 'lexeme:emeq'}
+  sense:shekhem: {part: 'lexeme:shekhem'}
+  form:dir: {part: 'lexeme:dir'}
+  sense:ish: {part: 'lexeme:ish'}
+  sense:matsa: {part: 'lexeme:matsa'}
+  sense:taah: {part: 'lexeme:taah'}
+  sense:shaal: {part: 'lexeme:shaal'}
+  sense:biqqesh: {part: 'lexeme:biqqesh'}
+  form:yiqtol-2ms: {}
+  form:yiqtol-2fs: {}
+  sense:eifoh: {part: 'lexeme:eifoh'}
+  sense:malakh: {part: 'lexeme:malakh'}
+  sense:nirah: {part: 'lexeme:nirah'}
+  sense:seneh: {part: 'lexeme:seneh'}
+  sense:labbah: {part: 'lexeme:labbah'}
+  sense:baar: {part: 'lexeme:baar'}
+  sense:eyn: {part: 'lexeme:eyn'}
+  form:ptc-pass: {}
+  sense:moshe: {part: 'lexeme:moshe'}
+  sense:sur: {part: 'lexeme:sur'}
+  sense:marah: {part: 'lexeme:marah'}
+  sense:zeh: {part: 'lexeme:zeh'}
+  sense:maddua: {part: 'lexeme:maddua'}
+  sense:al.neg: {part: 'lexeme:al.neg'}
+  sense:qarav: {part: 'lexeme:qarav'}
+  sense:halom: {part: 'lexeme:halom'}
+  sense:nashal: {part: 'lexeme:nashal'}
+  sense:naal: {part: 'lexeme:naal'}
+  sense:regel: {part: 'lexeme:regel'}
+  form:du: {}
+  sense:maqom: {part: 'lexeme:maqom'}
+  sense:amad: {part: 'lexeme:amad'}
+  sense:qodesh: {part: 'lexeme:qodesh'}
+  sense:yaaqov: {part: 'lexeme:yaaqov'}
+  sense:histir: {part: 'lexeme:histir'}
+  sense:hibbit: {part: 'lexeme:hibbit'}
+  form:f-pl: {}
+  sense:mitsrayim: {part: 'lexeme:mitsrayim'}
+  sense:yatsa: {part: 'lexeme:yatsa'}
+  sense:hotsi: {part: 'lexeme:hotsi'}
+  sense:aher: {part: 'lexeme:aher'}
+  sense:em: {part: 'lexeme:em'}
+  sense:kibbed: {part: 'lexeme:kibbed'}
+  form:inf-abs: {}
+  sense:lemaan: {part: 'lexeme:lemaan'}
+  sense:heerikh: {part: 'lexeme:heerikh'}
+  form:yiqtol-3mp: {}
+  sense:ratsach: {part: 'lexeme:ratsach'}
+  sense:naaf: {part: 'lexeme:naaf'}
+  sense:ganav: {part: 'lexeme:ganav'}
+  form:yiqtol-2mp: {}
+  sense:anah: {part: 'lexeme:anah'}
+  sense:rea: {part: 'lexeme:rea'}
+  sense:ed: {part: 'lexeme:ed'}
+  sense:sheqer: {part: 'lexeme:sheqer'}
+  form:weqatal-2ms: {}
+  sense:kemo: {part: 'lexeme:kemo'}
+  form:sfx-1cp: {part: 'lexeme:sfx-1cp'}
+  sense:levav: {part: 'lexeme:levav'}
+  sense:nefesh: {part: 'lexeme:nefesh'}
+  sense:meod: {part: 'lexeme:meod'}
+  form:weqatal-3cp: {}
+  sense:shinnen: {part: 'lexeme:shinnen'}
+  sense:yashav: {part: 'lexeme:yashav'}
+  sense:derekh: {part: 'lexeme:derekh'}
+  sense:shakhav: {part: 'lexeme:shakhav'}
+  sense:shuv: {part: 'lexeme:shuv'}
+  sense:am: {part: 'lexeme:am'}
+  sense:yevemet: {part: 'lexeme:yevemet'}
+  sense:naomi: {part: 'lexeme:naomi'}
+  sense:rut: {part: 'lexeme:rut'}
+  sense:bat: {part: 'lexeme:bat'}
+  sense:paga: {part: 'lexeme:paga'}
+  sense:azav: {part: 'lexeme:azav'}
+  sense:lun: {part: 'lexeme:lun'}
+  sense:mut: {part: 'lexeme:mut'}
+  sense:mawet: {part: 'lexeme:mawet'}
+  sense:nikbar: {part: 'lexeme:nikbar'}
+  sense:koh: {part: 'lexeme:koh'}
+  sense:hosif: {part: 'lexeme:hosif'}
+  sense:hifrid: {part: 'lexeme:hifrid'}
+  sense:shmuel: {part: 'lexeme:shmuel'}
+  sense:eli: {part: 'lexeme:eli'}
+  sense:naar: {part: 'lexeme:naar'}
+  form:weqatal-3ms: {}
+  sense:hityatsev: {part: 'lexeme:hityatsev'}
+  sense:paam: {part: 'lexeme:paam'}
+  sense:david: {part: 'lexeme:david'}
+  sense:pelishti: {part: 'lexeme:pelishti'}
+  sense:herev: {part: 'lexeme:herev'}
+  sense:hanit: {part: 'lexeme:hanit'}
+  sense:kidon: {part: 'lexeme:kidon'}
+  sense:tsava: {part: 'lexeme:tsava'}
+  sense:maarakhah: {part: 'lexeme:maarakhah'}
+  sense:heref: {part: 'lexeme:heref'}
+  sense:siggar: {part: 'lexeme:siggar'}
+  sense:yesh: {part: 'lexeme:yesh'}
+  construction:yesh-le: {part: 'rule:yesh-le'}
+  sense:qahal: {part: 'lexeme:qahal'}
+  sense:milhamah: {part: 'lexeme:milhamah'}
+  sense:hoshia: {part: 'lexeme:hoshia'}
+  form:f-pl-cstr: {}
+  sense:melekh: {part: 'lexeme:melekh'}
+  sense:chai: {part: 'lexeme:chai'}
+  sense:yeled: {part: 'lexeme:yeled'}
+  form:wayyiqtol-3fp: {}
+  sense:hevi: {part: 'lexeme:hevi'}
+  sense:gazar: {part: 'lexeme:gazar'}
+  sense:hatsi: {part: 'lexeme:hatsi'}
+  sense:yalad: {part: 'lexeme:yalad'}
+  sense:nikhmar: {part: 'lexeme:nikhmar'}
+  sense:rahamim: {part: 'lexeme:rahamim'}
+  sense:bi: {part: 'lexeme:bi'}
+  sense:hemit: {part: 'lexeme:hemit'}
+  sense:yonah: {part: 'lexeme:yonah'}
+  sense:amittai: {part: 'lexeme:amittai'}
+  sense:ninveh: {part: 'lexeme:ninveh'}
+  sense:ir: {part: 'lexeme:ir'}
+  sense:alah: {part: 'lexeme:alah'}
+  sense:raah.evil: {part: 'lexeme:raah.evil'}
+  sense:barach: {part: 'lexeme:barach'}
+  sense:tarshish: {part: 'lexeme:tarshish'}
+  sense:yarad: {part: 'lexeme:yarad'}
+  sense:yafo: {part: 'lexeme:yafo'}
+  sense:oniyyah: {part: 'lexeme:oniyyah'}
+  sense:sakhar: {part: 'lexeme:sakhar'}
+  sense:im.with: {part: 'lexeme:im.with'}
+  sense:yam: {part: 'lexeme:yam'}
+  sense:saar: {part: 'lexeme:saar'}
+  sense:hetil: {part: 'lexeme:hetil'}
+  sense:hishev: {part: 'lexeme:hishev'}
+  sense:nishbar: {part: 'lexeme:nishbar'}
+  sense:goral: {part: 'lexeme:goral'}
+  sense:hippil: {part: 'lexeme:hippil'}
+  sense:nafal: {part: 'lexeme:nafal'}
+  sense:she: {part: 'lexeme:she'}
+  sense:melakhah: {part: 'lexeme:melakhah'}
+  sense:ayin.whence: {part: 'lexeme:ayin.whence'}
+  sense:ivri: {part: 'lexeme:ivri'}
+  sense:ani: {part: 'lexeme:ani'}
+  sense:yabbashah: {part: 'lexeme:yabbashah'}
+  sense:mizmor: {part: 'lexeme:mizmor'}
+  sense:hasar: {part: 'lexeme:hasar'}
+  sense:naah: {part: 'lexeme:naah'}
+  sense:deshe: {part: 'lexeme:deshe'}
+  sense:hirbits: {part: 'lexeme:hirbits'}
+  sense:menuchah: {part: 'lexeme:menuchah'}
+  sense:nihel: {part: 'lexeme:nihel'}
+  sense:shovev: {part: 'lexeme:shovev'}
+  sense:hinchah: {part: 'lexeme:hinchah'}
+  sense:magal: {part: 'lexeme:magal'}
+  sense:tsedeq: {part: 'lexeme:tsedeq'}
+  sense:gay: {part: 'lexeme:gay'}
+  sense:tsalmawet: {part: 'lexeme:tsalmawet'}
+  sense:shevet: {part: 'lexeme:shevet'}
+  sense:mishenet: {part: 'lexeme:mishenet'}
+  sense:nicham: {part: 'lexeme:nicham'}
+  sense:et.time: {part: 'lexeme:et.time'}
+  sense:zeman: {part: 'lexeme:zeman'}
+  sense:hefets: {part: 'lexeme:hefets'}
+  sense:tahat: {part: 'lexeme:tahat'}
+  sense:nata: {part: 'lexeme:nata'}
+  sense:aqar: {part: 'lexeme:aqar'}
+  sense:rafa: {part: 'lexeme:rafa'}
+  sense:parats: {part: 'lexeme:parats'}
+  sense:banah: {part: 'lexeme:banah'}
+  sense:bakhah: {part: 'lexeme:bakhah'}
+  sense:sachaq: {part: 'lexeme:sachaq'}
+  sense:safad: {part: 'lexeme:safad'}
+  sense:raqad: {part: 'lexeme:raqad'}
+  sense:barukh: {part: 'lexeme:barukh'}
+  sense:heir: {part: 'lexeme:heir'}
+  sense:hanan: {part: 'lexeme:hanan'}
+  sense:nasa: {part: 'lexeme:nasa'}
+  sense:sim: {part: 'lexeme:sim'}
+  sense:ayin.eye: {part: 'lexeme:ayin.eye'}
+  form:ptc-pass-fs: {}

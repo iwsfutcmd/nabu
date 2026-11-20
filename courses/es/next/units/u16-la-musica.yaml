@@ -1,0 +1,614 @@
+# Unit u16 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u16
+title:
+  en: 'La música: Music'
+cefr: B1
+nodes:
+- {id: es.u16.me-encanta, kind: lesson, introduces: ['lexeme:encantar', 'lexeme:salsa']}
+- {id: es.u16.el-son, kind: lesson, introduces: ['lexeme:son', 'lexeme:cantar', 'lexeme:canción', 'lexeme:bolero', 'lexeme:benny-moré', 'lexeme:disco']}
+- {id: es.u16.me-fascina, kind: lesson, introduces: ['lexeme:fascinar', 'lexeme:danzón', 'lexeme:molestar', 'lexeme:interesar', 'lexeme:celia-cruz', 'lexeme:azúcar']}
+- {id: es.u16.el-bongo, kind: lesson, introduces: ['lexeme:tocar', 'lexeme:bongó', 'lexeme:maraca', 'lexeme:clave']}
+- {id: es.u16.mas-que, kind: lesson, introduces: ['lexeme:que.than', 'lexeme:menos', 'lexeme:tan']}
+- {id: es.u16.el-mejor, kind: lesson, introduces: ['lexeme:mejor', 'lexeme:peor', 'lexeme:buena-vista', 'lexeme:compay-segundo']}
+- {id: es.u16.story, kind: story}
+sentences:
+- id: s.u16.1
+  node: es.u16.me-encanta
+  forms:
+    es-Latn/standard:
+      text: Me encanta la música cubana.
+      tokens: [{surface: Me, lexeme: me}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: música, lexeme: música, feats: {Number: Sing}}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        [A mí] me encanta la música cubana
+        La música cubana me encanta
+  translations:
+    en: |-
+      I love Cuban music.
+      I really like Cuban music.
+- id: s.u16.2
+  node: es.u16.me-encanta
+  forms:
+    es-Latn/standard:
+      text: A mi abuela le encanta bailar.
+      tokens: [{surface: A, lexeme: a}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bailar, lexeme: bailar, feats: {VerbForm: Inf}}]
+      reverse: A (mi|la) abuela le encanta bailar
+  translations:
+    en: My (grandmother|grandma|granny) loves (to dance|dancing).
+- id: s.u16.3
+  node: es.u16.me-encanta
+  forms:
+    es-Latn/standard:
+      text: En casa, a nosotros nos encanta la salsa.
+      tokens: [{surface: En, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: nos, lexeme: nos, feats: {Number: Plur}}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}]
+      reverse: |-
+        En casa [a nosotros|a nosotras] nos encanta la salsa
+        [A nosotros|A nosotras] nos encanta la salsa en casa
+        En la casa nos encanta la salsa
+        A nosotros en casa nos encanta la salsa
+  translations:
+    en: |-
+      (At home|In our house|In our family), we love salsa [music].
+      We love salsa [music] at home.
+- id: s.u16.4
+  node: es.u16.me-encanta
+  forms:
+    es-Latn/standard:
+      text: A Lili y a Daniel les encanta bailar salsa.
+      tokens: [{surface: A, lexeme: a}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: a, lexeme: a}, {surface: Daniel, lexeme: daniel}, {surface: les, lexeme: le, feats: {Number: Plur}}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bailar, lexeme: bailar, feats: {VerbForm: Inf}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}]
+      reverse: |-
+        A Lili y a Daniel les encanta bailar [la] salsa
+        A Daniel y a Lili les encanta bailar [la] salsa
+        A Lili y Daniel les encanta bailar salsa
+  translations:
+    en: |-
+      Lili and Daniel love (to dance|dancing) salsa.
+      Daniel and Lili love (to dance|dancing) salsa.
+- id: s.u16.5
+  node: es.u16.me-encanta
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    es-Latn/standard:
+      text: ¿A ustedes les gusta bailar?
+      tokens: [{surface: A, lexeme: a}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: les, lexeme: le, feats: {Number: Plur}}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bailar, lexeme: bailar, feats: {VerbForm: Inf}}]
+      reverse: (A ustedes les gusta bailar|Les gusta bailar [a ustedes])
+  translations:
+    en: (Do you|Do you guys|Do you all|Do y'all) like (to dance|dancing)?
+- id: s.u16.6
+  node: es.u16.el-son
+  forms:
+    es-Latn/standard:
+      text: El son es música cubana.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: son, lexeme: son, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: música, lexeme: música, feats: {Number: Sing}}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}}]
+      reverse: El son es [una] música cubana
+  translations:
+    en: (Son|The son|Son music) is Cuban music.
+- id: s.u16.7
+  node: es.u16.el-son
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe canta sones en el patio.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: canta, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sones, lexeme: son, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      reverse: |-
+        [El] abuelo [Pepe] canta sones en el patio
+        En el patio abuelo Pepe canta sones
+        Mi abuelo Pepe canta sones en el patio
+  translations:
+    en: (Grandpa|Grandfather|Granddad) Pepe (sings|is singing) (sones|son songs|son) in the (yard|backyard|patio).
+- id: s.u16.8
+  node: es.u16.el-son
+  forms:
+    es-Latn/standard:
+      text: Esta canción es un bolero.
+      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: canción, lexeme: canción, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: bolero, lexeme: bolero, feats: {Number: Sing}}]
+      reverse: Esta canción es un bolero
+  translations:
+    en: |-
+      This song is a bolero.
+      This song's a bolero.
+- id: s.u16.9
+  node: es.u16.el-son
+  forms:
+    es-Latn/standard:
+      text: Benny Moré cantó boleros y sones.
+      tokens: [{surface: Benny, lexeme: benny-moré}, {surface: Moré, lexeme: benny-moré}, {surface: cantó, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: boleros, lexeme: bolero, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: sones, lexeme: son, feats: {Number: Plur}}]
+      reverse: Benny Moré cantó (boleros y sones|sones y boleros)
+  translations:
+    en: Benny Moré sang (boleros and sones|sones and boleros|boleros and son|son and boleros).
+- id: s.u16.10
+  node: es.u16.el-son
+  forms:
+    es-Latn/standard:
+      text: Abuelo tiene muchos discos de Benny Moré.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: discos, lexeme: disco, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: Benny, lexeme: benny-moré}, {surface: Moré, lexeme: benny-moré}]
+      reverse: |-
+        [El] abuelo tiene muchos discos de Benny Moré
+        Mi abuelo tiene muchos discos de Benny Moré
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Granddad) has (a lot of|lots of|many) Benny Moré (records|albums|LPs).
+      (Grandpa|Grandfather|Granddad) has (a lot of|lots of|many) (records|albums|LPs) (by|of) Benny Moré.
+- id: s.u16.11
+  node: es.u16.me-fascina
+  forms:
+    es-Latn/standard:
+      text: A Daniel le fascinan los discos de abuelo.
+      tokens: [{surface: A, lexeme: a}, {surface: Daniel, lexeme: daniel}, {surface: le, lexeme: le}, {surface: fascinan, lexeme: fascinar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: discos, lexeme: disco, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+      reverse: |-
+        A Daniel le fascinan los discos (de|del) abuelo
+        A Daniel le encantan los discos de abuelo
+        A Daniel le fascinan los discos de su abuelo
+  translations:
+    en: |-
+      Daniel (loves|is fascinated by|is crazy about) (Grandpa's|his grandpa's|Grandfather's|his grandfather's) records.
+      (Grandpa's|Grandfather's) records fascinate Daniel.
+      Daniel is fascinated by Grandpa's albums
+      Daniel loves Granddad's records
+- id: s.u16.12
+  node: es.u16.me-fascina
+  forms:
+    es-Latn/standard:
+      text: A mi abuela le fascina el danzón.
+      tokens: [{surface: A, lexeme: a}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: fascina, lexeme: fascinar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: danzón, lexeme: danzón, feats: {Number: Sing}}]
+      reverse: |-
+        A (mi|la) abuela le fascina el danzón
+        A mi abuela le encanta el danzón
+  translations:
+    en: |-
+      My (grandmother|grandma|granny) (loves|adores|is crazy about|is fascinated by) (danzón|the danzón).
+      (Danzón|The danzón) fascinates my (grandmother|grandma|granny).
+- id: s.u16.13
+  node: es.u16.me-fascina
+  forms:
+    es-Latn/standard:
+      text: Abuela es de Matanzas, y el danzón también.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Matanzas, lexeme: matanzas}, {surface: y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: danzón, lexeme: danzón, feats: {Number: Sing}}, {surface: también, lexeme: también}]
+      reverse: |-
+        [La] abuela es de Matanzas y el danzón también
+        Mi abuela es de Matanzas, y el danzón también
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) is from Matanzas, and (so is the danzón|so is danzón|the danzón is too|danzón is too).
+      Grandma's from Matanzas, and so is danzón
+- id: s.u16.14
+  node: es.u16.me-fascina
+  forms:
+    es-Latn/standard:
+      text: ¿Te molesta la música de Lili?
+      tokens: [{surface: Te, lexeme: te}, {surface: molesta, lexeme: molestar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: música, lexeme: música, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      reverse: |-
+        [A ti] te molesta la música de Lili
+        [A usted] le molesta la música de Lili
+        [A ustedes] les molesta la música de Lili
+  translations:
+    en: |-
+      Does Lili's music bother you?
+      Is Lili's music bothering you?
+      Does Lili's music annoy you?
+- id: s.u16.15
+  node: es.u16.me-fascina
+  forms:
+    es-Latn/standard:
+      text: Me interesa mucho la música cubana.
+      tokens: [{surface: Me, lexeme: me}, {surface: interesa, lexeme: interesar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: música, lexeme: música, feats: {Number: Sing}}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        [A mí] me interesa mucho la música cubana
+        La música cubana me interesa mucho
+  translations:
+    en: |-
+      (I'm|I am) (very|really) interested in Cuban music.
+      Cuban music interests me (a lot|very much).
+      Cuban music really interests me
+- id: s.u16.16
+  node: es.u16.me-fascina
+  forms:
+    es-Latn/standard:
+      text: A Lili le fascina Celia Cruz.
+      tokens: [{surface: A, lexeme: a}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: le, lexeme: le}, {surface: fascina, lexeme: fascinar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Celia, lexeme: celia-cruz}, {surface: Cruz, lexeme: celia-cruz}]
+      reverse: A Lili le (fascina|encanta) Celia Cruz
+  translations:
+    en: |-
+      Lili (loves|adores|is crazy about|is fascinated by) Celia Cruz.
+      Celia Cruz fascinates Lili.
+- id: s.u16.17
+  node: es.u16.me-fascina
+  forms:
+    es-Latn/standard:
+      text: 'En sus canciones, Celia Cruz dice: ¡Azúcar!'
+      tokens: [{surface: En, lexeme: en}, {surface: sus, lexeme: su, feats: {Gender: Fem, Number: Plur}}, {surface: canciones, lexeme: canción, feats: {Number: Plur}}, {surface: Celia, lexeme: celia-cruz}, {surface: Cruz, lexeme: celia-cruz}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Azúcar, lexeme: azúcar, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        En sus canciones Celia Cruz (dice|grita) azúcar
+        Celia Cruz (dice|grita) azúcar en sus canciones
+  translations:
+    en: |-
+      In her songs, Celia Cruz (says|shouts|cries) (Azúcar|Sugar)!
+      Celia Cruz (says|shouts|cries) (Azúcar|Sugar) in her songs.
+- id: s.u16.18
+  node: es.u16.el-bongo
+  forms:
+    es-Latn/standard:
+      text: En La Habana, Yunior toca el bongó los sábados.
+      tokens: [{surface: En, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: Yunior, lexeme: yunior}, {surface: toca, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bongó, lexeme: bongó, feats: {Number: Sing}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}}]
+      reverse: |-
+        En La Habana Yunior toca (el bongó|los bongós|el bongo|los bongos) los sábados
+        Yunior toca (el bongó|los bongós|el bongo|los bongos) los sábados en La Habana
+        Los sábados Yunior toca (el bongó|los bongós|el bongo|los bongos) en La Habana
+  translations:
+    en: |-
+      In Havana, Yunior plays (the bongos|bongos|the bongo|the bongo drums) on Saturdays.
+      Yunior plays (the bongos|bongos|the bongo|the bongo drums) on Saturdays in Havana.
+      Yunior plays (the bongos|bongos|the bongo|the bongo drums) in Havana on Saturdays.
+      On Saturdays, Yunior plays (the bongos|bongos|the bongo|the bongo drums) in Havana.
+- id: s.u16.19
+  node: es.u16.el-bongo
+  forms:
+    es-Latn/standard:
+      text: Abuelo toca las maracas y abuela canta.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: toca, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: maracas, lexeme: maraca, feats: {Number: Plur}}, {surface: y, lexeme: y}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: canta, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        [El] abuelo toca las maracas y [la] abuela canta
+        Mi abuelo toca las maracas y mi abuela canta
+  translations:
+    en: (Grandpa|Grandfather|Granddad) plays (the maracas|maracas) and (Grandma|Grandmother|Granny) sings.
+- id: s.u16.20
+  node: es.u16.el-bongo
+  forms:
+    es-Latn/standard:
+      text: ¿Tú quieres tocar la clave con nosotros?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: tocar, lexeme: tocar, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: clave, lexeme: clave, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}}]
+      reverse: (Tú quieres|Quieres [tú]|Usted quiere|Quiere [usted]|Ustedes quieren|Quieren [ustedes]) tocar (la clave|las claves) con (nosotros|nosotras)
+  translations:
+    en: |-
+      Do you want to play (the claves|claves|the clave) with us?
+      Would you like to play (the claves|claves|the clave) with us?
+- id: s.u16.21
+  node: es.u16.el-bongo
+  forms:
+    es-Latn/standard:
+      text: Lili toca la clave y yo toco las maracas.
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: toca, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: clave, lexeme: clave, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: toco, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: maracas, lexeme: maraca, feats: {Number: Plur}}]
+      reverse: Lili toca (la clave|las claves) y [yo] toco las maracas
+  translations:
+    en: |-
+      Lili plays (the claves|the clave) and I play the maracas.
+      Lili plays claves and I play the maracas.
+- id: s.u16.22
+  node: es.u16.el-bongo
+  forms:
+    es-Latn/standard:
+      text: Yo no toco el bongó, pero juego dominó.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}, {surface: toco, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bongó, lexeme: bongó, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: juego, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}]
+      reverse: '[Yo] no toco (el bongó|los bongós|el bongo|los bongos) pero juego [al] dominó'
+  translations:
+    en: |-
+      I (don't|do not) play the (bongos|bongo|bongo drums), but I play (dominoes|domino).
+      I don't play bongos, but I play dominoes
+- id: s.u16.23
+  node: es.u16.mas-que
+  forms:
+    es-Latn/standard:
+      text: Lili baila mucho más que Daniel.
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: más, lexeme: más}, {surface: que, lexeme: que.than}, {surface: Daniel, lexeme: daniel}]
+      reverse: Lili baila mucho más que Daniel
+  translations:
+    en: Lili dances (a lot|much) more than Daniel [does].
+- id: s.u16.24
+  node: es.u16.mas-que
+  forms:
+    es-Latn/standard:
+      text: El bolero es más viejo que la salsa.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bolero, lexeme: bolero, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}]
+      reverse: El bolero es más (viejo|antiguo) que la salsa
+  translations:
+    en: (The bolero|Bolero) is older than salsa.
+- id: s.u16.25
+  node: es.u16.mas-que
+  forms:
+    es-Latn/standard:
+      text: Yo canto menos que abuela, pero bailo más.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: canto, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: menos, lexeme: menos}, {surface: que, lexeme: que.than}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: bailo, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}]
+      reverse: '[Yo] canto menos que [la|mi] abuela pero bailo más'
+  translations:
+    en: I sing less than (Grandma|my grandma|my grandmother), but I dance more.
+- id: s.u16.26
+  node: es.u16.mas-que
+  forms:
+    es-Latn/standard:
+      text: Daniel no baila tan bien como Lili.
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: 'no', lexeme: 'no'}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tan, lexeme: tan}, {surface: bien, lexeme: bien}, {surface: como, lexeme: como.like}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      reverse: Daniel no baila tan bien como Lili
+  translations:
+    en: Daniel (doesn't|does not) dance as well as Lili [does].
+- id: s.u16.27
+  node: es.u16.mas-que
+  forms:
+    es-Latn/standard:
+      text: El danzón es tan cubano como el son.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: danzón, lexeme: danzón, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tan, lexeme: tan}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}, {surface: como, lexeme: como.like}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: son, lexeme: son, feats: {Number: Sing}}]
+      reverse: El danzón es tan cubano como el son
+  translations:
+    en: (Danzón|The danzón) is as Cuban as (son|the son).
+- id: s.u16.28
+  node: es.u16.mas-que
+  forms:
+    es-Latn/standard:
+      text: Abuelo tiene más de cien discos.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: de, lexeme: de}, {surface: cien, lexeme: cien}, {surface: discos, lexeme: disco, feats: {Number: Plur}}]
+      reverse: |-
+        [El] abuelo tiene más de (cien|100) discos
+        Mi abuelo tiene más de cien discos
+  translations:
+    en: (Grandpa|Grandfather|Granddad) has (more than|over) (a hundred|one hundred|100) (records|albums).
+- id: s.u16.29
+  node: es.u16.el-mejor
+  forms:
+    es-Latn/standard:
+      text: Para abuelo, Benny Moré es el mejor.
+      tokens: [{surface: Para, lexeme: para}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Benny, lexeme: benny-moré}, {surface: Moré, lexeme: benny-moré}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        Para [el] abuelo Benny Moré es el mejor
+        Benny Moré es el mejor para [el] abuelo
+        Para mi abuelo, Benny Moré es el mejor
+  translations:
+    en: |-
+      For (Grandpa|Grandfather|Granddad), Benny Moré is the best.
+      (Grandpa|Grandfather|Granddad) (thinks|says) Benny Moré is the best.
+      Benny Moré is the best for Grandpa.
+- id: s.u16.30
+  node: es.u16.el-mejor
+  forms:
+    es-Latn/standard:
+      text: Lili baila mejor que yo.
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: yo, lexeme: yo}]
+      reverse: Lili baila mejor que yo
+  translations:
+    en: |-
+      Lili dances better than (me|I do).
+      Lili dances better than I
+- id: s.u16.31
+  node: es.u16.el-mejor
+  forms:
+    es-Latn/standard:
+      text: Yo canto peor que abuelo, pero bailo mejor.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: canto, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: peor, lexeme: peor, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: bailo, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}]
+      reverse: '[Yo] canto peor que [el|mi] abuelo pero bailo mejor'
+  translations:
+    en: I sing worse than (Grandpa|my grandpa|my grandfather), but I dance better.
+- id: s.u16.32
+  node: es.u16.el-mejor
+  forms:
+    es-Latn/standard:
+      text: Celia Cruz es la más grande.
+      tokens: [{surface: Celia, lexeme: celia-cruz}, {surface: Cruz, lexeme: celia-cruz}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: más, lexeme: más}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}}]
+      reverse: |-
+        Celia Cruz es la más grande
+        La más grande es Celia Cruz
+  translations:
+    en: Celia Cruz is the greatest.
+- id: s.u16.33
+  node: es.u16.el-mejor
+  forms:
+    es-Latn/standard:
+      text: El mejor disco de abuelo es Buena Vista Social Club.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: disco, lexeme: disco, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Buena, lexeme: buena-vista}, {surface: Vista, lexeme: buena-vista}, {surface: Social, lexeme: buena-vista}, {surface: Club, lexeme: buena-vista}]
+      reverse: |-
+        El mejor disco (de|del) abuelo es [el] Buena Vista Social Club
+        El mejor disco de mi abuelo es Buena Vista Social Club
+  translations:
+    en: (Grandpa's|Grandfather's) best (record|album) is [the] Buena Vista Social Club.
+- id: s.u16.34
+  node: es.u16.el-mejor
+  forms:
+    es-Latn/standard:
+      text: En el Buena Vista Social Club, Compay Segundo es el más viejo.
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Buena, lexeme: buena-vista}, {surface: Vista, lexeme: buena-vista}, {surface: Social, lexeme: buena-vista}, {surface: Club, lexeme: buena-vista}, {surface: Compay, lexeme: compay-segundo}, {surface: Segundo, lexeme: compay-segundo}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: más, lexeme: más}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        En el Buena Vista Social Club Compay Segundo (es|era|fue) el (más viejo|mayor)
+        Compay Segundo (es|era|fue) el (más viejo|mayor) del Buena Vista Social Club
+  translations:
+    en: |-
+      In the Buena Vista Social Club, Compay Segundo (is|was) the oldest [one|member].
+      Compay Segundo (is|was) the oldest [one|member] (in|of) the Buena Vista Social Club.
+- id: s.u16.35
+  node: es.u16.el-mejor
+  forms:
+    es-Latn/standard:
+      text: Esa es la peor canción del disco.
+      tokens: [{surface: Esa, lexeme: ese, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: peor, lexeme: peor, feats: {Gender: Fem, Number: Sing}}, {surface: canción, lexeme: canción, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: disco, lexeme: disco, feats: {Number: Sing}}]
+      reverse: Esa es la peor canción del disco
+  translations:
+    en: (That's|That is) the worst song (on|in|of) the (record|album).
+stories:
+- id: es.story.u16
+  node: es.u16.story
+  title:
+    en: Abuelo's records
+  characters:
+  - id: pepe
+    speaker: m
+    name:
+      es-Latn/standard: Abuelo Pepe
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: lili
+    speaker: f
+    name:
+      es-Latn/standard: Lili
+  steps:
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Es domingo, y en casa de abuela hay música.
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: música, lexeme: música, feats: {Number: Sing}}]
+      translations:
+        en: It's Sunday, and there's music at Grandma's house.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Daniel, este es un disco de Benny Moré. ¡Es el mejor!
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: disco, lexeme: disco, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Benny, lexeme: benny-moré}, {surface: Moré, lexeme: benny-moré}, {surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: Daniel, this is a Benny Moré record. He's the best!
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Me encantan sus boleros, abuelo.
+          tokens: [{surface: Me, lexeme: me}, {surface: encantan, lexeme: encantar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}}, {surface: boleros, lexeme: bolero, feats: {Number: Plur}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+      translations:
+        en: I love his boleros, Grandpa.
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Los boleros me molestan, abuelo. ¡Son muy viejos!
+          tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: boleros, lexeme: bolero, feats: {Number: Plur}}, {surface: me, lexeme: me}, {surface: molestan, lexeme: molestar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: viejos, lexeme: viejo, feats: {Gender: Masc, Number: Plur}}]
+      translations:
+        en: Boleros get on my nerves, Grandpa. They're so old!
+  - line:
+      speaker: pepe
+      ask: complete
+      gap: lexeme:música
+      distractors:
+      - lexeme:guagua
+      - lexeme:esquina
+      forms:
+        es-Latn/standard:
+          text: ¿Viejos? El bolero es más viejo que tú, ¡pero es mejor que tu música!
+          tokens: [{surface: Viejos, lexeme: viejo, feats: {Gender: Masc, Number: Plur}}, {surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bolero, lexeme: bolero, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: tú, lexeme: tú}, {surface: pero, lexeme: pero}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: música, lexeme: música, feats: {Number: Sing}}]
+      translations:
+        en: Old? The bolero is older than you, but it's better than your music!
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Ay, Pepe. A Lili le encanta la salsa, y la salsa también es cubana.
+          tokens: [{surface: Ay, lexeme: ay}, {surface: Pepe, lexeme: pepe}, {surface: A, lexeme: a}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: le, lexeme: le}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: Oh, Pepe. Lili loves salsa, and salsa is Cuban too.
+  - choose:
+      prompt:
+        en: Why doesn't Lili like boleros?
+      options:
+      - en: She thinks they are too old.
+      - en: She doesn't like any Cuban music.
+      - en: Abuelo sings them badly.
+      answer: 0
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Bueno, bueno. Ahora, ¡Celia Cruz!
+          tokens: [{surface: Bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: Ahora, lexeme: ahora}, {surface: Celia, lexeme: celia-cruz}, {surface: Cruz, lexeme: celia-cruz}]
+      translations:
+        en: All right, all right. Now, Celia Cruz!
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Azúcar!
+          tokens: [{surface: Azúcar, lexeme: azúcar, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: Azúcar!
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Abuela y Lili bailan salsa en la sala.
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: bailan, lexeme: bailar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: sala, lexeme: sala, feats: {Number: Sing}}]
+      translations:
+        en: Grandma and Lili dance salsa in the living room.
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: ¡Lili baila tan bien como abuela!
+          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tan, lexeme: tan}, {surface: bien, lexeme: bien}, {surface: como, lexeme: como.like}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: Lili dances as well as Grandma!
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Y tú, mi vida, ¿no bailas?
+          tokens: [{surface: Y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: bailas, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: And you, darling, aren't you dancing?
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: No, abuela. Yo toco las maracas.
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Yo, lexeme: yo}, {surface: toco, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: maracas, lexeme: maraca, feats: {Number: Plur}}]
+      translations:
+        en: No, Grandma. I play the maracas.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Y yo toco la clave. ¡Vamos!
+          tokens: [{surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: toco, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: clave, lexeme: clave, feats: {Number: Sing}}, {surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: And I'll play the claves. Let's go!
+  - choose:
+      prompt:
+        en: What does Daniel do while Abuela and Lili dance?
+      options:
+      - en: He plays the maracas.
+      - en: He sings a bolero.
+      - en: He plays the bongos.
+      answer: 0
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Después, en el disco canta Compay Segundo.
+          tokens: [{surface: Después, lexeme: después}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: disco, lexeme: disco, feats: {Number: Sing}}, {surface: canta, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Compay, lexeme: compay-segundo}, {surface: Segundo, lexeme: compay-segundo}]
+      translations:
+        en: Later, Compay Segundo sings on the record.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Compay Segundo canta muy bien. ¡Y yo canto como él!
+          tokens: [{surface: Compay, lexeme: compay-segundo}, {surface: Segundo, lexeme: compay-segundo}, {surface: canta, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: bien, lexeme: bien}, {surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: canto, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: él, lexeme: él}]
+      translations:
+        en: Compay Segundo sings really well. And I sing like him!
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:pepe
+      distractors:
+      - lexeme:daniel
+      - lexeme:miami
+      forms:
+        es-Latn/standard:
+          text: ¡Ay, Pepe! Tú cantas peor que Compay Segundo.
+          tokens: [{surface: Ay, lexeme: ay}, {surface: Pepe, lexeme: pepe}, {surface: Tú, lexeme: tú}, {surface: cantas, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: peor, lexeme: peor, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: Compay, lexeme: compay-segundo}, {surface: Segundo, lexeme: compay-segundo}]
+      translations:
+        en: Oh, Pepe! You sing worse than Compay Segundo.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Sí, ¡pero yo bailo mejor que él!
+          tokens: [{surface: Sí, lexeme: sí}, {surface: pero, lexeme: pero}, {surface: yo, lexeme: yo}, {surface: bailo, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: él, lexeme: él}]
+      translations:
+        en: Yes, but I dance better than he does!
+  - choose:
+      prompt:
+        en: What does Abuela think of Abuelo's singing?
+      options:
+      - en: He sings worse than Compay Segundo.
+      - en: He sings better than Benny Moré.
+      - en: He sings like Celia Cruz.
+      answer: 0

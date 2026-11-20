@@ -1,0 +1,510 @@
+# Unit u11-the-ten-words of courses/hbo in the new shape.
+# Written by `nabu migrate` from courses/hbo and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u11-the-ten-words
+title:
+  en: The ten words
+cefr: A2
+nodes:
+- {id: hbo.u11.out-of-egypt, kind: lesson, introduces: ['lexeme:mitsrayim', 'lexeme:yatsa', 'lexeme:hotsi']}
+- {id: hbo.u11.other-gods, kind: lesson, introduces: ['lexeme:aher']}
+- {id: hbo.u11.honour, kind: lesson, introduces: ['lexeme:em', 'lexeme:kibbed', 'feature:VerbForm=InfAbs', 'lexeme:lemaan', 'lexeme:heerikh']}
+- {id: hbo.u11.you-shall-not, kind: lesson, introduces: ['lexeme:ratsach', 'lexeme:naaf', 'lexeme:ganav']}
+- {id: hbo.u11.false-witness, kind: lesson, introduces: ['lexeme:anah', 'lexeme:rea', 'lexeme:ed', 'lexeme:sheqer', 'feature:Tense=Fut', 'lexeme:kemo']}
+- {id: hbo.u11.story, kind: story}
+sentences:
+- id: s.11.1
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִצְרַיִם
+      tokens: [{surface: מִצְרַיִם, lexeme: mitsrayim, feats: {Number: Sing}, readings: {tiberian: miṣráyim}}]
+      reverse: מצרים
+  translations:
+    en: Egypt
+- id: s.11.2
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶרֶץ מִצְרַיִם
+      tokens: [{surface: אֶרֶץ, lexeme: erets, feats: {Number: Sing}, readings: {tiberian: ʾéreṣ}}, {surface: מִצְרַיִם, lexeme: mitsrayim, feats: {Number: Sing}, readings: {tiberian: miṣráyim}}]
+      reverse: ארץ מצרים
+  translations:
+    en: the land of Egypt
+- id: s.11.3
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּצֵא׃
+      tokens: [{surface: וַיֵּצֵא, lexeme: yatsa, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyēṣēʾ}}]
+      reverse: |-
+        ויצא
+        יצא
+        הוא יצא
+        והוא יצא
+  translations:
+    en: '[(And|Then)] he went out.'
+- id: s.11.4
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּצְאוּ מִמִּצְרַיִם׃
+      tokens: [{surface: וַיֵּצְאוּ, lexeme: yatsa, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyēṣəʾû}}, {surface: מִמִּצְרַיִם, lexemes: [{lexeme: min, surface: מִ}, {lexeme: mitsrayim, surface: מִּצְרַיִם, base: true, feats: {Number: Sing}}], readings: {tiberian: mimmiṣráyim}}]
+      reverse: |-
+        ויצאו ממצרים
+        יצאו ממצרים
+        (הם|המה) יצאו ממצרים
+        (והם|והמה) יצאו ממצרים
+  translations:
+    en: |-
+      [(And|Then)] they went out (of|from) Egypt.
+      [(And|Then)] they left Egypt.
+- id: s.11.5
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: בֵּית עֲבָדִים
+      tokens: [{surface: בֵּית, lexeme: bayit, feats: {Number: Sing}, readings: {tiberian: bêṯ}}, {surface: עֲבָדִים, lexeme: eved, feats: {Number: Plur}, readings: {tiberian: ʿăḇāḏîm}}]
+      reverse: בית עבדים
+  translations:
+    en: |-
+      a house of (slaves|slavery|bondage)
+      the house of (slaves|slavery|bondage)
+- id: s.11.6
+  node: hbo.u11.out-of-egypt
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי יְהוָה אֱלֹהֶיךָ׃
+      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, lexemes: [{lexeme: elohim, surface: אֱלֹהֶי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾĕlōhếḵā}}]
+      reverse: (אנכי|אנוכי) יהוה (אלהיך|אלוהיך)
+  translations:
+    en: I am the LORD your God.
+- id: s.11.7
+  node: hbo.u11.out-of-egypt
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה אֱלֹהַיִךְ
+      tokens: [{surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהַיִךְ, lexemes: [{lexeme: elohim, surface: אֱלֹהַיִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ʾĕlōháyiḵ}}]
+      reverse: יהוה (אלהיך|אלוהיך)
+  translations:
+    en: the LORD your God
+- id: s.11.8
+  node: hbo.u11.out-of-egypt
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲשֶׁר הוֹצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם
+      tokens: [{surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: הוֹצֵאתִיךָ, lexemes: [{lexeme: hotsi, surface: הוֹצֵאתִי, base: true, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: hôṣēʾṯî́ḵā}}, {surface: מֵאֶרֶץ, lexemes: [{lexeme: min, surface: מֵ}, {lexeme: erets, surface: אֶרֶץ, base: true, feats: {Number: Sing}}], readings: {tiberian: mēʾéreṣ}}, {surface: מִצְרַיִם, lexeme: mitsrayim, feats: {Number: Sing}, readings: {tiberian: miṣráyim}}]
+      reverse: אשר הוצאתיך מארץ מצרים
+  translations:
+    en: (who|that) (brought|led) you out of the land of Egypt
+- id: s.11.9
+  node: hbo.u11.other-gods
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֱלֹהִים אֲחֵרִים
+      tokens: [{surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֲחֵרִים, lexeme: aher, feats: {Gender: Masc, Number: Plur}, readings: {tiberian: ʾăḥērîm}}]
+      reverse: (אלהים|אלוהים) אחרים
+  translations:
+    en: other gods
+- id: s.11.10
+  node: hbo.u11.other-gods
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִישׁ אַחֵר
+      tokens: [{surface: אִישׁ, lexeme: ish, feats: {Number: Sing}, readings: {tiberian: ʾîš}}, {surface: אַחֵר, lexeme: aher, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ʾaḥēr}}]
+      reverse: איש אחר
+  translations:
+    en: |-
+      another man
+      someone else
+- id: s.11.11
+  node: hbo.u11.other-gods
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא יִהְיֶה לְךָ אֱלֹהִים אֲחֵרִים׃
+      tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: יִהְיֶה, lexeme: hayah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yihyeh}}, {surface: לְךָ, lexemes: [{lexeme: le, surface: לְ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḵā}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֲחֵרִים, lexeme: aher, feats: {Gender: Masc, Number: Plur}, readings: {tiberian: ʾăḥērîm}}]
+      reverse: (לא|לוא) יהיה לך (אלהים|אלוהים) אחרים
+  translations:
+    en: |-
+      You shall have no other gods.
+      You (shall|will) not have other gods.
+      There shall be no other gods for you.
+- id: s.11.12
+  node: hbo.u11.other-gods
+  forms:
+    hbo-Hebr/tiberian:
+      text: יִשְׁמְעוּ׃
+      tokens: [{surface: יִשְׁמְעוּ, lexeme: shama, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, readings: {tiberian: yišməʿû}}]
+      reverse: |-
+        ישמעו
+        (הם|המה) ישמעו
+  translations:
+    en: They (will|shall) (hear|listen).
+- id: s.11.13
+  node: hbo.u11.other-gods
+  forms:
+    hbo-Hebr/tiberian:
+      text: יִשְׁמְעוּ אֶת־קוֹלִי׃
+      tokens: [{surface: יִשְׁמְעוּ, lexeme: shama, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, readings: {tiberian: yišməʿû}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹלִי, lexemes: [{lexeme: qol, surface: קוֹלִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: qôlî}}]
+      reverse: |-
+        ישמעו את קולי
+        (הם|המה) ישמעו את קולי
+  translations:
+    en: They (will|shall) (hear|listen to|obey) my voice.
+- id: s.11.14
+  node: hbo.u11.honour
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֵם
+      tokens: [{surface: אֵם, lexeme: em, feats: {Number: Sing}, readings: {tiberian: ʾēm}}]
+      reverse: אם
+  translations:
+    en: |-
+      a mother
+      mother
+- id: s.11.15
+  node: hbo.u11.honour
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִמִּי
+      tokens: [{surface: אִמִּי, lexemes: [{lexeme: em, surface: אִמִּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾimmî}}]
+      reverse: אמי
+  translations:
+    en: my mother
+- id: s.11.16
+  node: hbo.u11.honour
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִמֶּךָ
+      tokens: [{surface: אִמֶּךָ, lexemes: [{lexeme: em, surface: אִמֶּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾimméḵā}}]
+      reverse: אמך
+  translations:
+    en: your mother
+- id: s.11.17
+  node: hbo.u11.honour
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִמֵּךְ
+      tokens: [{surface: אִמֵּךְ, lexemes: [{lexeme: em, surface: אִמֵּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ʾimmēḵ}}]
+      reverse: אמך
+  translations:
+    en: your mother
+- id: s.11.18
+  node: hbo.u11.honour
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: כַּבֵּד אֶת־אָבִיךָ וְאֶת־אִמֶּךָ׃
+      tokens: [{surface: כַּבֵּד, lexeme: kibbed, feats: {VerbForm: InfAbs}, readings: {tiberian: kabbēḏ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: אָבִיךָ, lexemes: [{lexeme: av, surface: אָבִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḇî́ḵā}}, {surface: וְאֶת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֶת, base: true}], readings: {tiberian: wəʾeṯ-}}, {surface: אִמֶּךָ, lexemes: [{lexeme: em, surface: אִמֶּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾimméḵā}}]
+      reverse: כבד את אביך ואת אמך
+  translations:
+    en: |-
+      Honour your father and your mother!
+      Honor your father and your mother!
+      Honour your father and mother!
+      Honor your father and mother!
+- id: s.11.19
+  node: hbo.u11.honour
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְמַעַן
+      tokens: [{surface: לְמַעַן, lexeme: lemaan, readings: {tiberian: ləmáʿan}}]
+      reverse: למען
+  translations:
+    en: |-
+      so that
+      in order that
+- id: s.11.20
+  node: hbo.u11.honour
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָמִים
+      tokens: [{surface: יָמִים, lexeme: yom, feats: {Number: Plur}, readings: {tiberian: yāmîm}}]
+      reverse: ימים
+  translations:
+    en: days
+- id: s.11.21
+  node: hbo.u11.honour
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָמֶיךָ
+      tokens: [{surface: יָמֶיךָ, lexemes: [{lexeme: yom, surface: יָמֶי, base: true, feats: {Number: Plur}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: yāmếḵā}}]
+      reverse: ימיך
+  translations:
+    en: your days
+- id: s.11.22
+  node: hbo.u11.honour
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְמַעַן יַאֲרִכוּן יָמֶיךָ
+      tokens: [{surface: לְמַעַן, lexeme: lemaan, readings: {tiberian: ləmáʿan}}, {surface: יַאֲרִכוּן, lexeme: heerikh, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, readings: {tiberian: yaʾăriḵûn}}, {surface: יָמֶיךָ, lexemes: [{lexeme: yom, surface: יָמֶי, base: true, feats: {Number: Plur}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: yāmếḵā}}]
+      reverse: למען יארכון ימיך
+  translations:
+    en: |-
+      so that your days may be long
+      so that you may live long
+- id: s.11.23
+  node: hbo.u11.you-shall-not
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא תִּרְצָח׃
+      tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תִּרְצָח, lexeme: ratsach, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tirṣāḥ}}]
+      reverse: (לא|לוא) תרצח
+  translations:
+    en: |-
+      You (shall|must) not (murder|kill).
+      (Do not|Don't) (murder|kill).
+- id: s.11.24
+  node: hbo.u11.you-shall-not
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא תִּנְאָף׃
+      tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תִּנְאָף, lexeme: naaf, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tinʾāp̄}}]
+      reverse: (לא|לוא) תנאף
+  translations:
+    en: |-
+      You shall not commit adultery.
+      (Do not|Don't) commit adultery.
+- id: s.11.25
+  node: hbo.u11.you-shall-not
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא תִּגְנֹב׃
+      tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תִּגְנֹב, lexeme: ganav, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tiḡnōḇ}}]
+      reverse: (לא|לוא) (תגנב|תגנוב)
+  translations:
+    en: |-
+      You shall not steal.
+      You must not steal.
+      (Do not|Don't) steal.
+- id: s.11.26
+  node: hbo.u11.you-shall-not
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא תִּגְנֹבוּ׃
+      tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תִּגְנֹבוּ, lexeme: ganav, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tiḡnṓḇû}}]
+      reverse: (לא|לוא) (תגנבו|תגנובו)
+  translations:
+    en: |-
+      You shall not steal.
+      You must not steal.
+      (Do not|Don't) steal.
+- id: s.11.27
+  node: hbo.u11.false-witness
+  forms:
+    hbo-Hebr/tiberian:
+      text: רֵעַ
+      tokens: [{surface: רֵעַ, lexeme: rea, feats: {Number: Sing}, readings: {tiberian: rēaʿ}}]
+      reverse: רע
+  translations:
+    en: a (neighbour|neighbor|friend|fellow)
+- id: s.11.28
+  node: hbo.u11.false-witness
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: רֵעֲךָ
+      tokens: [{surface: רֵעֲךָ, lexemes: [{lexeme: rea, surface: רֵעֲ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: rēʿăḵā}}]
+      reverse: רעך
+  translations:
+    en: your (neighbour|neighbor|friend|fellow)
+- id: s.11.29
+  node: hbo.u11.false-witness
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵד
+      tokens: [{surface: עֵד, lexeme: ed, feats: {Number: Sing}, readings: {tiberian: ʿēḏ}}]
+      reverse: עד
+  translations:
+    en: a witness
+- id: s.11.30
+  node: hbo.u11.false-witness
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵד שֶׁקֶר
+      tokens: [{surface: עֵד, lexeme: ed, feats: {Number: Sing}, readings: {tiberian: ʿēḏ}}, {surface: שֶׁקֶר, lexeme: sheqer, feats: {Number: Sing}, readings: {tiberian: šéqer}}]
+      reverse: עד שקר
+  translations:
+    en: |-
+      a false witness
+      a lying witness
+- id: s.11.31
+  node: hbo.u11.false-witness
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּעַן יוֹסֵף׃
+      tokens: [{surface: וַיַּעַן, lexeme: anah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyáʿan}}, {surface: יוֹסֵף, lexeme: yosef, feats: {Number: Sing}, readings: {tiberian: yôsēp̄}}]
+      reverse: |-
+        ויען יוסף
+        יוסף ענה
+        ויוסף ענה
+        ענה יוסף
+  translations:
+    en: '[(And|Then)] Joseph answered.'
+- id: s.11.32
+  node: hbo.u11.false-witness
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא־תַעֲנֶה בְרֵעֲךָ עֵד שָׁקֶר׃
+      tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ-}}, {surface: תַעֲנֶה, lexeme: anah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ṯaʿăneh}}, {surface: בְרֵעֲךָ, lexemes: [{lexeme: be, surface: בְ}, {lexeme: rea, surface: רֵעֲ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ḇərēʿăḵā}}, {surface: עֵד, lexeme: ed, feats: {Number: Sing}, readings: {tiberian: ʿēḏ}}, {surface: שָׁקֶר, lexeme: sheqer, feats: {Number: Sing}, readings: {tiberian: šā́qer}}]
+      reverse: (לא|לוא) תענה ברעך עד שקר
+  translations:
+    en: |-
+      You shall not bear false witness against your (neighbour|neighbor).
+      You (shall|must) not testify falsely against your (neighbour|neighbor).
+- id: s.11.33
+  node: hbo.u11.false-witness
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאָהַבְתָּ לְרֵעֲךָ כָּמוֹךָ׃
+      tokens: [{surface: וְאָהַבְתָּ, lexeme: ahav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəʾāhaḇtā}}, {surface: לְרֵעֲךָ, lexemes: [{lexeme: le, surface: לְ}, {lexeme: rea, surface: רֵעֲ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: lərēʿăḵā}}, {surface: כָּמוֹךָ, lexemes: [{lexeme: kemo, surface: כָּמוֹ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: kāmốḵā}}]
+      reverse: |-
+        ואהבת לרעך כמוך
+        תאהב לרעך כמוך
+        אתה תאהב לרעך כמוך
+        ואתה תאהב לרעך כמוך
+  translations:
+    en: |-
+      And you shall love your (neighbour|neighbor) as yourself.
+      Love your (neighbour|neighbor) as yourself.
+- id: s.11.34
+  node: hbo.u11.false-witness
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאָהַבְתָּ אֶת־יְהוָה אֱלֹהֶיךָ׃
+      tokens: [{surface: וְאָהַבְתָּ, lexeme: ahav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəʾāhaḇtā}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, lexemes: [{lexeme: elohim, surface: אֱלֹהֶי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾĕlōhếḵā}}]
+      reverse: |-
+        ואהבת את יהוה (אלהיך|אלוהיך)
+        תאהב את יהוה (אלהיך|אלוהיך)
+        אתה תאהב את יהוה (אלהיך|אלוהיך)
+        ואתה תאהב את יהוה (אלהיך|אלוהיך)
+  translations:
+    en: |-
+      And you shall love the LORD your God.
+      You shall love the LORD your God.
+stories:
+- id: hbo.story.the-ten-words
+  node: hbo.u11.story
+  title:
+    en: The ten words (Exodus 20:2–3, 12–16)
+  characters:
+  - id: god
+    name:
+      hbo-Hebr/tiberian: אֱלֹהִים
+  steps:
+  - line:
+      speaker: god
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: אָנֹכִי יְהוָה אֱלֹהֶיךָ אֲשֶׁר הוֹצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם מִבֵּית עֲבָדִים׃
+          tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, lexemes: [{lexeme: elohim, surface: אֱלֹהֶי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: הוֹצֵאתִיךָ, lexemes: [{lexeme: hotsi, surface: הוֹצֵאתִי, base: true, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: hôṣēʾṯî́ḵā}}, {surface: מֵאֶרֶץ, lexemes: [{lexeme: min, surface: מֵ}, {lexeme: erets, surface: אֶרֶץ, base: true, feats: {Definite: Cons, Number: Sing}}], readings: {tiberian: mēʾéreṣ}}, {surface: מִצְרַיִם, lexeme: mitsrayim, feats: {Number: Sing}, readings: {tiberian: miṣráyim}}, {surface: מִבֵּית, lexemes: [{lexeme: min, surface: מִ}, {lexeme: bayit, surface: בֵּית, base: true, feats: {Definite: Cons, Number: Sing}}], readings: {tiberian: mibbêṯ}}, {surface: עֲבָדִים, lexeme: eved, feats: {Number: Plur}, readings: {tiberian: ʿăḇāḏîm}}]
+      translations:
+        en: “I am the LORD your God, who brought you out of the land of Egypt, out of the house of slavery.
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא יִהְיֶה־לְךָ אֱלֹהִים אֲחֵרִים עַל־פָּנָיַ׃
+          tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: יִהְיֶה, lexeme: hayah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yihyeh-}}, {surface: לְךָ, lexemes: [{lexeme: le, surface: לְ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḵā}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֲחֵרִים, lexeme: aher, feats: {Gender: Masc, Number: Plur}, readings: {tiberian: ʾăḥērîm}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: פָּנָיַ, lexemes: [{lexeme: panim, surface: פָּנָ, base: true, feats: {Number: Plur}}, {lexeme: sfx-1cs, surface: יַ}], readings: {tiberian: pānā́y}}]
+      translations:
+        en: You shall have no other gods before me.
+  - choose:
+      prompt:
+        en: Who speaks these words?
+      options:
+      - en: the LORD, who brought Israel out of Egypt
+      - en: Moses, to his father-in-law
+      - en: a king of Egypt
+      answer: 0
+  - line:
+      speaker: god
+      ask: complete
+      gap: lexeme:adamah
+      distractors:
+      - lexeme:ruach
+      - lexeme:ishah
+      forms:
+        hbo-Hebr/tiberian:
+          text: כַּבֵּד אֶת־אָבִיךָ וְאֶת־אִמֶּךָ לְמַעַן יַאֲרִכוּן יָמֶיךָ עַל הָאֲדָמָה אֲשֶׁר־יְהוָה אֱלֹהֶיךָ נֹתֵן לָךְ׃
+          tokens: [{surface: כַּבֵּד, lexeme: kibbed, feats: {VerbForm: InfAbs}, readings: {tiberian: kabbēḏ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: אָבִיךָ, lexemes: [{lexeme: av, surface: אָבִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḇî́ḵā}}, {surface: וְאֶת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֶת, base: true}], readings: {tiberian: wəʾeṯ-}}, {surface: אִמֶּךָ, lexemes: [{lexeme: em, surface: אִמֶּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾimméḵā}}, {surface: לְמַעַן, lexeme: lemaan, readings: {tiberian: ləmáʿan}}, {surface: יַאֲרִכוּן, lexeme: heerikh, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, readings: {tiberian: yaʾăriḵûn}}, {surface: יָמֶיךָ, lexemes: [{lexeme: yom, surface: יָמֶי, base: true, feats: {Number: Plur}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: yāmếḵā}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʾăḏāmâ}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer-}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, lexemes: [{lexeme: elohim, surface: אֱלֹהֶי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: נֹתֵן, lexeme: natan, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: nōṯēn}}, {surface: לָךְ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-2ms, surface: ךְ}], readings: {tiberian: lāḵ}}]
+      translations:
+        en: Honour your father and your mother, so that your days may be long on the land that the LORD your God is giving you.
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא תִּרְצָח׃
+          tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תִּרְצָח, lexeme: ratsach, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tirṣāḥ}}]
+      translations:
+        en: You shall not murder.
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא תִּנְאָף׃
+          tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תִּנְאָף, lexeme: naaf, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tinʾāp̄}}]
+      translations:
+        en: You shall not commit adultery.
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא תִּגְנֹב׃
+          tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תִּגְנֹב, lexeme: ganav, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tiḡnōḇ}}]
+      translations:
+        en: You shall not steal.
+  - line:
+      speaker: god
+      ask: complete
+      gap: lexeme:ed
+      distractors:
+      - lexeme:ets
+      - lexeme:malakh
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא־תַעֲנֶה בְרֵעֲךָ עֵד שָׁקֶר׃
+          tokens: [{surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ-}}, {surface: תַעֲנֶה, lexeme: anah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ṯaʿăneh}}, {surface: בְרֵעֲךָ, lexemes: [{lexeme: be, surface: בְ}, {lexeme: rea, surface: רֵעֲ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ḇərēʿăḵā}}, {surface: עֵד, lexeme: ed, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: ʿēḏ}}, {surface: שָׁקֶר, lexeme: sheqer, feats: {Number: Sing}, readings: {tiberian: šā́qer}}]
+      translations:
+        en: You shall not bear false witness against your neighbour.”
+  - choose:
+      prompt:
+        en: What is promised to those who honour their father and mother?
+      options:
+      - en: that their days will be long on the land
+      - en: that they will be rich
+      - en: that they will see God
+      answer: 0

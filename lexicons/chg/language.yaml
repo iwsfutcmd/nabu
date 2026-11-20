@@ -1,0 +1,32 @@
+# What chg declares beside its lexicon (schemas/language.schema.json).
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: chg
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@9d8105612439', status: draft}
+varieties: [chg]
+registers: [formal]
+dimensions:
+  NOUN: [Number, Case]
+  VERB: [Tense, Person, Number]
+features:
+  Aspect: [Hab, Imp, Perf]
+  Case: [Abl, Acc, Dat, Equ, Gen, Loc]
+  Degree: [Cmp]
+  Evident: [Nfh]
+  Mood: [Cnd, Imp, Jus, Opt, Prp]
+  NounType: [Clf]
+  NumType: [Card, Ord]
+  Number: [Plur, Sing]
+  Number[psor]: [Plur, Sing]
+  PartType: [Int]
+  Person: ['1', '2', '3']
+  Person[psor]: ['1', '2', '3']
+  Polarity: [Neg]
+  Polite: [Form]
+  PronType: [Dem, Ind, Int, Neg, Prs, Tot]
+  Reflex: ['Yes']
+  Tense: [Fut, Past, Pres]
+  VerbForm: [Conv, Part]
+  Voice: [Pass]

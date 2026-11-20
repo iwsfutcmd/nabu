@@ -1,0 +1,363 @@
+# Unit u18-the-first-smith of courses/chg in the new shape.
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u18-the-first-smith
+title:
+  en: The first smith
+cefr: B1
+nodes:
+- {id: chg.u18.the-craft, kind: lesson, introduces: ['lexeme:kasb', 'lexeme:ahangar']}
+- {id: chg.u18.easy-and-hard, kind: lesson, introduces: ['lexeme:asan', 'lexeme:mushkil', 'lexeme:kar']}
+- {id: chg.u18.i-have-made, kind: lesson, introduces: ['lexeme:yarat', 'lexeme:jannat', 'lexeme:saat', 'lexeme:shul', 'lexeme:darhal']}
+- {id: chg.u18.the-command, kind: lesson, introduces: ['lexeme:farman', 'lexeme:juss', 'lexeme:dawud', 'lexeme:jibrail', 'lexeme:munajat', 'lexeme:parwardigar', 'lexeme:dargah', 'lexeme:haqq']}
+- {id: chg.u18.story, kind: story}
+sentences:
+- id: s.18.1
+  node: chg.u18.the-craft
+  forms:
+    chg-Arab/standard:
+      text: بیر کسب.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کسب, lexeme: kasb, readings: {schluessel: kasb}}]
+      reverse: (بیر|بر) کسب
+  translations:
+    en: A (craft|trade|profession).
+- id: s.18.2
+  node: chg.u18.the-craft
+  forms:
+    chg-Arab/standard:
+      text: اهنکر.
+      tokens: [{surface: اهنکر, lexeme: ahangar, readings: {schluessel: ahangir}}]
+      reverse: (اهنکر|آهنگر)
+  translations:
+    en: A (smith|blacksmith).
+- id: s.18.3
+  node: chg.u18.the-craft
+  forms:
+    chg-Arab/standard:
+      text: اهنکرلیک.
+      tokens: [{surface: اهنکرلیک, lexemes: [{lexeme: ahangar, surface: اهنکر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: ahangirlik}}]
+      reverse: (اهنکرلیک|آهنگرلیک)
+  translations:
+    en: (Smithing|Blacksmithing).
+- id: s.18.4
+  node: chg.u18.the-craft
+  forms:
+    chg-Arab/standard:
+      text: اهنکرلیک بیر کسب.
+      tokens: [{surface: اهنکرلیک, lexemes: [{lexeme: ahangar, surface: اهنکر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: ahangirlik}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کسب, lexeme: kasb, readings: {schluessel: kasb}}]
+      reverse: "(اهنکرلیک|آهنگرلیک) (بیر|بر) کسب\n(اهنکرلیک|آهنگرلیک) (بیر|بر) کسب\u200cدور"
+  translations:
+    en: (Smithing|Blacksmithing) is a (craft|trade|profession).
+- id: s.18.5
+  node: chg.u18.the-craft
+  forms:
+    chg-Arab/standard:
+      text: یغاچچیلیک.
+      tokens: [{surface: یغاچچیلیک, lexemes: [{lexeme: yaghach, surface: یغاچ, base: true}, {lexeme: ci, surface: چی}, {lexeme: liq, surface: لیک}], readings: {schluessel: yaǧaččilik}}]
+      reverse: (یغاچچیلیک|یاغاچچیلیک)
+  translations:
+    en: (Carpentry|Woodworking).
+- id: s.18.6
+  node: chg.u18.the-craft
+  forms:
+    chg-Arab/standard:
+      text: اتامنینک کسبی اهنکرلیک ایردی.
+      tokens: [{surface: اتامنینک, lexemes: [{lexeme: ata, surface: اتا, base: true}, {lexeme: poss1s, surface: م}, {lexeme: gen, surface: نینک}], readings: {schluessel: atamniŋ}}, {surface: کسبی, lexemes: [{lexeme: kasb, surface: کسب, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: kasbi}}, {surface: اهنکرلیک, lexemes: [{lexeme: ahangar, surface: اهنکر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: ahangirlik}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: (اتامنینک|آتامنینک) کسبی (اهنکرلیک|آهنگرلیک) (ایردی|ایدی)
+  translations:
+    en: My father's (craft|trade|profession) was (smithing|blacksmithing).
+- id: s.18.7
+  node: chg.u18.easy-and-hard
+  forms:
+    chg-Arab/standard:
+      text: بو اسان.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: اسان, lexeme: asan, readings: {schluessel: asān}}]
+      reverse: "بو (اسان|آسان)\nبو (اسان\u200cدور|آسان\u200cدور)"
+  translations:
+    en: (This|It) is easy.
+- id: s.18.8
+  node: chg.u18.easy-and-hard
+  forms:
+    chg-Arab/standard:
+      text: بو مشکل.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: مشکل, lexeme: mushkil, readings: {schluessel: muškil}}]
+      reverse: "بو مشکل\nبو مشکل\u200cدور"
+  translations:
+    en: (This|It) is (difficult|hard).
+- id: s.18.9
+  node: chg.u18.easy-and-hard
+  forms:
+    chg-Arab/standard:
+      text: منکا.
+      tokens: [{surface: منکا, lexemes: [{lexeme: man, surface: م, base: true}, {lexeme: dat, surface: نکا}], readings: {schluessel: maŋa}}]
+      reverse: (منکا|منکه)
+  translations:
+    en: (To|For) me.
+- id: s.18.10
+  node: chg.u18.easy-and-hard
+  forms:
+    chg-Arab/standard:
+      text: بو کار منکا اسان.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کار, lexeme: kar, readings: {schluessel: kār}}, {surface: منکا, lexemes: [{lexeme: man, surface: م, base: true}, {lexeme: dat, surface: نکا}], readings: {schluessel: maŋa}}, {surface: اسان, lexeme: asan, readings: {schluessel: asān}}]
+      reverse: بو کار (منکا|منکه) (اسان|آسان)
+  translations:
+    en: This (task|work|job) is easy for me.
+- id: s.18.11
+  node: chg.u18.easy-and-hard
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: هر کار سنکا اسان.
+      tokens: [{surface: هر, lexeme: har, readings: {schluessel: här}}, {surface: کار, lexeme: kar, readings: {schluessel: kār}}, {surface: سنکا, lexemes: [{lexeme: san, surface: س, base: true}, {lexeme: dat, surface: نکا}], readings: {schluessel: saŋa}}, {surface: اسان, lexeme: asan, readings: {schluessel: asān}}]
+      reverse: هر کار (سنکا|سنکه) (اسان|آسان)
+  translations:
+    en: Every (task|craft|job) is easy for you.
+- id: s.18.12
+  node: chg.u18.easy-and-hard
+  forms:
+    chg-Arab/standard:
+      text: بو کسب بیزلارغه مشکل.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کسب, lexeme: kasb, readings: {schluessel: kasb}}, {surface: بیزلارغه, lexemes: [{lexeme: biz, surface: بیز, base: true}, {lexeme: pl, surface: لار}, {lexeme: dat, surface: غه}], readings: {schluessel: bizlärgä}}, {surface: مشکل, lexeme: mushkil, readings: {schluessel: muškil}}]
+      reverse: بو کسب (بیزلارغه|بیزلارکه|بیزلارقه|بیزلارغا) مشکل
+  translations:
+    en: This (craft|trade) is (difficult|hard) for us.
+- id: s.18.13
+  node: chg.u18.easy-and-hard
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: سنکا بیر کتاب بیردیم.
+      tokens: [{surface: سنکا, lexemes: [{lexeme: san, surface: س, base: true}, {lexeme: dat, surface: نکا}], readings: {schluessel: saŋa}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: بیردیم, lexemes: [{lexeme: bar.give, surface: بیر, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: bärdim}}]
+      reverse: (سنکا|سنکه) (بیر|بر) کتاب (بیردیم|بردیم)
+  translations:
+    en: I gave you a book.
+- id: s.18.14
+  node: chg.u18.i-have-made
+  forms:
+    chg-Arab/standard:
+      text: تنکری عالمنی یراتتی.
+      tokens: [{surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: عالمنی, lexemes: [{lexeme: alam, surface: عالم, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ʿālamni}}, {surface: یراتتی, lexemes: [{lexeme: yarat, surface: یرات, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: yaratti}}]
+      reverse: (تنکری|تانکری) عالمنی (یراتتی|یاراتتی)
+  translations:
+    en: God created the world.
+- id: s.18.15
+  node: chg.u18.i-have-made
+  forms:
+    chg-Arab/standard:
+      text: بیر صندوق یاساغانمن.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: صندوق, lexeme: sanduq, readings: {schluessel: ṣandūq}}, {surface: یاساغانمن, lexemes: [{lexeme: yasa, surface: یاسا, base: true}, {lexeme: pcp, surface: غان}, {lexeme: p1s, surface: من}], readings: {schluessel: yasaǧanmän}}]
+      reverse: (بیر|بر) صندوق یاساغانمن
+  translations:
+    en: I have (made|built) a (box|chest).
+- id: s.18.16
+  node: chg.u18.i-have-made
+  forms:
+    chg-Arab/standard:
+      text: بو کتابنی اوقوغانمن.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: اوقوغانمن, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: pcp, surface: غان}, {lexeme: p1s, surface: من}], readings: {schluessel: oquǧanmän}}]
+      reverse: بو کتابنی اوقوغانمن
+  translations:
+    en: I have read this book.
+- id: s.18.17
+  node: chg.u18.i-have-made
+  forms:
+    chg-Arab/standard:
+      text: تنکری عالمنی یراتکان.
+      tokens: [{surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: عالمنی, lexemes: [{lexeme: alam, surface: عالم, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ʿālamni}}, {surface: یراتکان, lexemes: [{lexeme: yarat, surface: یرات, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: yaratkan}}]
+      reverse: (تنکری|تانکری) عالمنی (یراتکان|یراتقان|یراتغان|یاراتکان|یاراتقان|یاراتغان)
+  translations:
+    en: God (has created|created) the world.
+- id: s.18.18
+  node: chg.u18.i-have-made
+  forms:
+    chg-Arab/standard:
+      text: جنت.
+      tokens: [{surface: جنت, lexeme: jannat, readings: {schluessel: jannat}}]
+      reverse: جنت
+  translations:
+    en: Paradise.
+- id: s.18.19
+  node: chg.u18.i-have-made
+  forms:
+    chg-Arab/standard:
+      text: بیر ساعت.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ساعت, lexeme: saat, readings: {schluessel: sāʿat}}]
+      reverse: (بیر|بر) ساعت
+  translations:
+    en: (An|One) hour.
+- id: s.18.20
+  node: chg.u18.i-have-made
+  forms:
+    chg-Arab/standard:
+      text: شول ساعتده کلدی.
+      tokens: [{surface: شول, lexeme: shul, readings: {schluessel: šul}}, {surface: ساعتده, lexemes: [{lexeme: saat, surface: ساعت, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: sāʿatdä}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      reverse: شول (ساعتده|ساعتدا) (کلدی|کیلدی)
+  translations:
+    en: (He|She) came (at that very hour|at that moment|that very hour).
+- id: s.18.21
+  node: chg.u18.i-have-made
+  forms:
+    chg-Arab/standard:
+      text: درحال کلدی.
+      tokens: [{surface: درحال, lexeme: darhal, readings: {schluessel: darḥāl}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      reverse: درحال (کلدی|کیلدی)
+  translations:
+    en: (He|She) came (immediately|at once).
+- id: s.18.22
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: فرمان.
+      tokens: [{surface: فرمان, lexeme: farman, readings: {schluessel: farmān}}]
+      reverse: فرمان
+  translations:
+    en: (An|The) (order|command).
+- id: s.18.23
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: پادشاهدین فرمان کلدی.
+      tokens: [{surface: پادشاهدین, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: pādišāhdin}}, {surface: فرمان, lexeme: farman, readings: {schluessel: farmān}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      reverse: (پادشاهدین|پادشاهدن|بادشاهدین|بادشاهدن|فادشاهدین|فادشاهدن) فرمان (کلدی|کیلدی)
+  translations:
+    en: (An|The) (order|command) came from the king.
+- id: s.18.24
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: فرمان بولدیکه، اول کلسون.
+      tokens: [{surface: فرمان, lexeme: farman, readings: {schluessel: farmān}}, {surface: بولدیکه, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}, {lexeme: ke, surface: که}], readings: {schluessel: boldike}}, {surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کلسون, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: juss, surface: سون}], readings: {schluessel: kälsun}}]
+      reverse: فرمان (بولدیکه|بولدیکی) اول (کلسون|کیلسون)
+  translations:
+    en: (The|An) (order|command) (came|was given) that (he|she) should come.
+- id: s.18.25
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: داود.
+      tokens: [{surface: داود, lexeme: dawud, readings: {schluessel: Dāwud}}]
+      reverse: داود
+  translations:
+    en: (David|Dawud).
+- id: s.18.26
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: جبرائیل.
+      tokens: [{surface: جبرائیل, lexeme: jibrail, readings: {schluessel: Jibrāʾīl}}]
+      reverse: (جبرائیل|جبرئیل)
+  translations:
+    en: (Gabriel|Jibrail).
+- id: s.18.27
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: مناجات قیلدی.
+      tokens: [{surface: مناجات, lexeme: munajat, readings: {schluessel: munājāt}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qildi}}]
+      reverse: مناجات (قیلدی|قلدی)
+  translations:
+    en: (He|She) prayed.
+- id: s.18.28
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: ای، پروردگاریم!
+      tokens: [{surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: پروردگاریم, lexemes: [{lexeme: parwardigar, surface: پروردگار, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: parwardigārim}}]
+      reverse: ای (پروردگاریم|فروردیکاریم|پروردیکاریم)
+  translations:
+    en: (Oh|O) my Lord!
+- id: s.18.29
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: درکاه حق.
+      tokens: [{surface: درکاه, lexeme: dargah, readings: {schluessel: dargāh-i}}, {surface: حق, lexeme: haqq, readings: {schluessel: ḥaqq}}]
+      reverse: درکاه حق
+  translations:
+    en: The presence of God.
+- id: s.18.30
+  node: chg.u18.the-command
+  forms:
+    chg-Arab/standard:
+      text: جبرائیل درکاه حقغه باردی.
+      tokens: [{surface: جبرائیل, lexeme: jibrail, readings: {schluessel: Jibrāʾīl}}, {surface: درکاه, lexeme: dargah, readings: {schluessel: dargāh-i}}, {surface: حقغه, lexemes: [{lexeme: haqq, surface: حق, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ḥaqqgä}}, {surface: باردی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: bardi}}]
+      reverse: (جبرائیل|جبرئیل) درکاه (حقغه|حقکه|حققه|حقغا) باردی
+  translations:
+    en: (Gabriel|Jibrail) went (in|) to the presence of God.
+stories:
+- id: chg.story.the-first-smith
+  node: chg.u18.story
+  title:
+    en: The first smith (The Manual of the Blacksmiths)
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: حضرت جبرائیل… درکاه حقکه باریب، حضرت داود سوزینی قیلدیلار.
+          tokens: [{surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: جبرائیل, lexeme: jibrail, readings: {schluessel: Jibrāʾīl}}, {surface: درکاه, lexeme: dargah, readings: {schluessel: dargāh-i}}, {surface: حقکه, lexemes: [{lexeme: haqq, surface: حق, base: true}, {lexeme: dat, surface: که}], readings: {schluessel: ḥaqqgä}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: داود, lexeme: dawud, readings: {schluessel: Dāwud}}, {surface: سوزینی, lexemes: [{lexeme: soz, surface: سوز, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: sözini}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}]
+      translations:
+        en: Jibrāʾīl (peace be upon him) went into the presence of God and spoke of Dawud.
+  - line:
+      ask: complete
+      gap: lexeme:kasb
+      distractors:
+      - lexeme:jannat
+      - lexeme:tash
+      forms:
+        chg-Arab/standard:
+          text: حضرت جبرائیل… حضرت داودغه کلیب دیدیکه، «ای، داود! سنکا اهنکرلیک کسب فرمان بولدیلار.»
+          tokens: [{surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: جبرائیل, lexeme: jibrail, readings: {schluessel: Jibrāʾīl}}, {surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: داودغه, lexemes: [{lexeme: dawud, surface: داود, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Dāwudǧa}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: دیدیکه, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past-3, surface: دی}, {lexeme: ke, surface: که}], readings: {schluessel: dedike}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: داود, lexeme: dawud, readings: {schluessel: Dāwud}}, {surface: سنکا, lexemes: [{lexeme: san, surface: سن, base: true}, {lexeme: dat, surface: کا}], readings: {schluessel: saŋa}}, {surface: اهنکرلیک, lexemes: [{lexeme: ahangar, surface: اهنکر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: ahangirlik}}, {surface: کسب, lexeme: kasb, readings: {schluessel: kasb}}, {surface: فرمان, lexeme: farman, readings: {schluessel: farmān}}, {surface: بولدیلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: boldilar}}]
+      translations:
+        en: Jibrāʾīl came to Dawud and said, “Oh, Dawud! The craft of smithing has been commanded to you.”
+  - choose:
+      prompt:
+        en: What craft was Dawud given?
+      options:
+      - en: Smithing
+      - en: Carpentry
+      - en: Farming
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: … حضرت داود مناجات قیلدیلار کیم، دیدیکه، «ای، فروردیکاریم، هر کارلار سنکا اسان، و بزلارکه مشکل ترور!»
+          tokens: [{surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: داود, lexeme: dawud, readings: {schluessel: Dāwud}}, {surface: مناجات, lexeme: munajat, readings: {schluessel: munājāt}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: دیدیکه, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past-3, surface: دی}, {lexeme: ke, surface: که}], readings: {schluessel: dedike}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: فروردیکاریم, lexemes: [{lexeme: parwardigar, surface: فروردیکار, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: ṗarwardigārim}}, {surface: هر, lexeme: har, readings: {schluessel: här}}, {surface: کارلار, lexemes: [{lexeme: kar, surface: کار, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: kārlar}}, {surface: سنکا, lexemes: [{lexeme: san, surface: سن, base: true}, {lexeme: dat, surface: کا}], readings: {schluessel: saŋa}}, {surface: اسان, lexeme: asan, readings: {schluessel: asān}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: بزلارکه, lexemes: [{lexeme: biz, surface: بز, base: true}, {lexeme: pl, surface: لار}, {lexeme: dat, surface: که}], readings: {schluessel: bizlärgä}}, {surface: مشکل, lexeme: mushkil, readings: {schluessel: muškil}}, {surface: ترور, lexeme: turur, readings: {schluessel: turur}}]
+      translations:
+        en: … Dawud prayed, saying, “Oh, my Lord, every craft is easy for you, and hard for us!”
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "شول ساعتده فرمان بولدیکه، «ای، جبرائیل! جنت\u200cده بر قوی و بر تاش یراتکان\u200cمن. انی الیب کلکیل،» دیدی."
+          tokens: [{surface: شول, lexeme: shul, readings: {schluessel: šul}}, {surface: ساعتده, lexemes: [{lexeme: saat, surface: ساعت, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: sāʿatdä}}, {surface: فرمان, lexeme: farman, readings: {schluessel: farmān}}, {surface: بولدیکه, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}, {lexeme: ke, surface: که}], readings: {schluessel: boldike}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: جبرائیل, lexeme: jibrail, readings: {schluessel: Jibrāʾīl}}, {surface: "جنت\u200cده", lexemes: [{lexeme: jannat, surface: "جنت\u200c", base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: jannatdä}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: قوی, lexeme: qoy, readings: {schluessel: qoy}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: تاش, lexeme: tash, readings: {schluessel: taš}}, {surface: "یراتکان\u200cمن", lexemes: [{lexeme: yarat, surface: یرات, base: true}, {lexeme: pcp, surface: "کان\u200c"}, {lexeme: p1s, surface: من}], readings: {schluessel: yaratkanmän}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: کلکیل, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: imp, surface: کیل}], readings: {schluessel: kälgil}}, {surface: دیدی, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: dedi}}]
+      translations:
+        en: 'At that very hour the command came: “Oh, Jibrāʾīl! In Paradise I have created a sheep and a stone. Bring them.”'
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: درحال حضرت جبرائیل الیب کلدیلار.
+          tokens: [{surface: درحال, lexeme: darhal, readings: {schluessel: darḥāl}}, {surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: جبرائیل, lexeme: jibrail, readings: {schluessel: Jibrāʾīl}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: کلدیلار, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: käldilär}}]
+      translations:
+        en: Immediately Jibrāʾīl brought them.
+  - choose:
+      prompt:
+        en: What had God created in Paradise for the first smith?
+      options:
+      - en: A sheep and a stone
+      - en: A horse and a sword
+      - en: A tree and a river
+      answer: 0
+scenarios:
+- id: chg.at-the-smithy
+  after: chg.u18.easy-and-hard
+  title:
+    en: At the smithy
+  setting:
+    en: A smithy in the bazaar of Yarkand, around 1900. You want to learn a craft.
+  character:
+    en: An old blacksmith, proud of his guild and its legends, who speaks only Turki.
+  goal:
+    en: Ask him what his craft is and who taught it, say which crafts are easy or hard for you, and ask whether he has made the knife on his wall himself.

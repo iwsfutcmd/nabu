@@ -1,0 +1,629 @@
+# The lexicon of tok (schemas/lexicon.schema.json): every lexeme, sorted by id.
+# Written by `nabu migrate` from courses/tok and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+language: tok
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@tok-draft-v1', status: draft}
+lexemes:
+- id: lexeme:a
+  pos: PART
+  feats: {PartType: Mod}
+  gloss: {en: 'ah! oh! ha! (feeling, emphasis)'}
+  notes: {en: a shows feeling. a a a! is a laugh.}
+  spelled: {tok-Latn/standard: [a], tok-Qaap/sitelen-pona: [󱤀]}
+- id: lexeme:akesi
+  pos: NOUN
+  gloss: {en: 'reptile, amphibian: lizard, frog, snake, turtle'}
+  spelled: {tok-Latn/standard: [akesi], tok-Qaap/sitelen-pona: [󱤁]}
+- id: lexeme:ala
+  pos: ADV
+  feats: {Polarity: Neg}
+  gloss: {en: 'not, no; nothing, none'}
+  notes: {en: 'ala follows the word it negates: mi moku ala, I''m not eating. Alone, ala! means No!'}
+  spelled: {tok-Latn/standard: [ala], tok-Qaap/sitelen-pona: [󱤂]}
+- id: lexeme:alasa
+  pos: VERB
+  gloss: {en: 'hunt, gather, forage; try to (before a verb)'}
+  notes: {en: 'mi alasa e kili: I pick fruit. Before another verb it means try: mi alasa pali, I try to work.'}
+  spelled: {tok-Latn/standard: [alasa], tok-Qaap/sitelen-pona: [󱤃]}
+- id: lexeme:ale
+  pos: DET
+  feats: {PronType: Tot}
+  gloss: {en: 'all, every; everything; always'}
+  notes: {en: 'ale li pona: all is well. ijo ale is everything, jan ale is everyone.'}
+  spelled: {tok-Latn/standard: [ale], tok-Qaap/sitelen-pona: [󱤄]}
+- id: lexeme:anpa
+  pos: NOUN
+  gloss: {en: 'bottom, under, below, down; floor'}
+  notes: {en: 'lon anpa supa: under the table. lon anpa alone is down below, on the floor.'}
+  spelled: {tok-Latn/standard: [anpa], tok-Qaap/sitelen-pona: [󱤅]}
+- id: lexeme:ante
+  pos: ADJ
+  gloss: {en: 'other, different; change'}
+  notes: {en: 'jan ante: someone else, other people. With e it is change: mi ante e tomo, I change the house.'}
+  spelled: {tok-Latn/standard: [ante], tok-Qaap/sitelen-pona: [󱤆]}
+- id: lexeme:anu
+  pos: CCONJ
+  gloss: {en: or}
+  notes: {en: 'anu joins choices: kili anu pan? Ending with , anu seme? makes a yes/no question: sina moku, anu seme?'}
+  spelled: {tok-Latn/standard: [anu], tok-Qaap/sitelen-pona: [󱤇]}
+- id: lexeme:awen
+  pos: VERB
+  gloss: {en: 'stay, wait, remain; keep; still'}
+  notes: {en: 'As a preverb it means still or keep doing: ona li awen lape, she''s still asleep. With e it is keep: mi awen e moku.'}
+  spelled: {tok-Latn/standard: [awen], tok-Qaap/sitelen-pona: [󱤈]}
+- id: lexeme:e
+  pos: PART
+  gloss: {en: (comes before the direct object)}
+  notes: {en: 'e marks what the verb acts on: mi moku e kili. Each object takes its own e: mi moku e kili e pan.'}
+  spelled: {tok-Latn/standard: [e], tok-Qaap/sitelen-pona: [󱤉]}
+- id: lexeme:en
+  pos: CCONJ
+  gloss: {en: and (between subjects)}
+  notes: {en: 'en joins subjects only: jan Lina en jan Pita li moku. Objects each take e, predicates each take li.'}
+  spelled: {tok-Latn/standard: [en], tok-Qaap/sitelen-pona: [󱤊]}
+- id: lexeme:esun
+  pos: NOUN
+  gloss: {en: 'market, shop, store; trade, buy, sell'}
+  notes: {en: mi esun e kili can be buying or selling fruit. jan esun is a shopkeeper or a seller.}
+  spelled: {tok-Latn/standard: [esun], tok-Qaap/sitelen-pona: [󱤋]}
+- id: lexeme:ijo
+  pos: NOUN
+  gloss: {en: 'thing, something, object'}
+  spelled: {tok-Latn/standard: [ijo], tok-Qaap/sitelen-pona: [󱤌]}
+- id: lexeme:ike
+  pos: ADJ
+  gloss: {en: 'bad, wrong, evil'}
+  spelled: {tok-Latn/standard: [ike], tok-Qaap/sitelen-pona: [󱤍]}
+- id: lexeme:ilo
+  pos: NOUN
+  gloss: {en: 'tool, device, machine'}
+  spelled: {tok-Latn/standard: [ilo], tok-Qaap/sitelen-pona: [󱤎]}
+- id: lexeme:insa
+  pos: NOUN
+  gloss: {en: 'inside, middle; belly'}
+  notes: {en: 'Position words are nouns after lon: lon insa poki, inside the box.'}
+  spelled: {tok-Latn/standard: [insa], tok-Qaap/sitelen-pona: [󱤏]}
+- id: lexeme:jaki
+  pos: ADJ
+  gloss: {en: 'gross, dirty, disgusting; trash'}
+  notes: {en: ni li jaki! is That's gross!}
+  spelled: {tok-Latn/standard: [jaki], tok-Qaap/sitelen-pona: [󱤐]}
+- id: lexeme:jan
+  pos: NOUN
+  gloss: {en: 'person, someone, people; human'}
+  notes: {en: 'Names follow jan: jan Lina is a person called Lina.'}
+  spelled: {tok-Latn/standard: [jan], tok-Qaap/sitelen-pona: [󱤑]}
+- id: lexeme:jelo
+  pos: ADJ
+  gloss: {en: yellow; yellowish}
+  spelled: {tok-Latn/standard: [jelo], tok-Qaap/sitelen-pona: [󱤒]}
+- id: lexeme:jo
+  pos: VERB
+  gloss: {en: 'have, own, hold, carry'}
+  spelled: {tok-Latn/standard: [jo], tok-Qaap/sitelen-pona: [󱤓]}
+- id: lexeme:kala
+  pos: NOUN
+  gloss: {en: fish; sea creature}
+  image: {file: ../../courses/images/fish.svg, license: CC0-1.0, provenance: {author: 'llm:claude@39173f79ba6d', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [kala], tok-Qaap/sitelen-pona: [󱤔]}
+- id: lexeme:kalama
+  pos: NOUN
+  gloss: {en: 'sound, noise; make a sound; play (music)'}
+  notes: {en: kalama musi is music.}
+  spelled: {tok-Latn/standard: [kalama], tok-Qaap/sitelen-pona: [󱤕]}
+- id: lexeme:kama
+  pos: VERB
+  gloss: {en: 'come, arrive; become'}
+  notes: {en: kama pona! is Welcome!}
+  spelled: {tok-Latn/standard: [kama], tok-Qaap/sitelen-pona: [󱤖]}
+- id: lexeme:kanata
+  pos: PROPN
+  gloss: {en: Kanata (Canada; a place name)}
+  notes: {en: 'ma Kanata is Canada. In sitelen pona: kasi, alasa, nasin, awen, telo, a give K, a, n, a, t, a.'}
+  spelled: {tok-Latn/standard: [Kanata], tok-Qaap/sitelen-pona: [󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑]}
+- id: lexeme:kasi
+  pos: NOUN
+  gloss: {en: 'plant, tree, grass; leaf'}
+  image: {file: ../../courses/images/tree.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3868bb19b496', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [kasi], tok-Qaap/sitelen-pona: [󱤗]}
+- id: lexeme:ken
+  pos: VERB
+  gloss: {en: 'can, may, be able; possible; chance'}
+  notes: {en: 'Before a verb, with no e: mi ken toki, I can talk. ken la at the start of a sentence is maybe.'}
+  spelled: {tok-Latn/standard: [ken], tok-Qaap/sitelen-pona: [󱤘]}
+- id: lexeme:kepeken
+  pos: ADP
+  gloss: {en: 'using, with; use'}
+  notes: {en: 'mi moku kepeken ilo: I eat with a utensil. Like lon and tawa, kepeken comes after the predicate.'}
+  spelled: {tok-Latn/standard: [kepeken], tok-Qaap/sitelen-pona: [󱤙]}
+- id: lexeme:kili
+  pos: NOUN
+  gloss: {en: 'fruit, vegetable; mushroom'}
+  spelled: {tok-Latn/standard: [kili], tok-Qaap/sitelen-pona: [󱤚]}
+- id: lexeme:kin
+  pos: ADV
+  gloss: {en: 'too, also; indeed, really'}
+  notes: {en: 'kin follows the word it stresses: mi kin is me too. It is not in pu but in jan Sonja''s later book, and every speaker uses it.'}
+  spelled: {tok-Latn/standard: [kin], tok-Qaap/sitelen-pona: [󱥹]}
+- id: lexeme:kiwen
+  pos: NOUN
+  gloss: {en: 'stone, rock; hard, solid; metal'}
+  spelled: {tok-Latn/standard: [kiwen], tok-Qaap/sitelen-pona: [󱤛]}
+- id: lexeme:ko
+  pos: NOUN
+  gloss: {en: 'paste, powder, dough, sand, mud; goo'}
+  notes: {en: 'ko is anything soft or crumbly, between a solid and a liquid.'}
+  spelled: {tok-Latn/standard: [ko], tok-Qaap/sitelen-pona: [󱤜]}
+- id: lexeme:kon
+  pos: NOUN
+  gloss: {en: 'air, wind, breath; spirit, soul; essence'}
+  notes: {en: 'kon li tawa: the air moves, the wind is blowing.'}
+  spelled: {tok-Latn/standard: [kon], tok-Qaap/sitelen-pona: [󱤝]}
+- id: lexeme:kule
+  pos: NOUN
+  gloss: {en: colour; colourful; paint}
+  notes: {en: 'kasi kule is a flower. … li kule seme? asks what colour something is.'}
+  spelled: {tok-Latn/standard: [kule], tok-Qaap/sitelen-pona: [󱤞]}
+- id: lexeme:kulupu
+  pos: NOUN
+  gloss: {en: 'group, community, team; society'}
+  notes: {en: kulupu pi toki pona is the Toki Pona community.}
+  spelled: {tok-Latn/standard: [kulupu], tok-Qaap/sitelen-pona: [󱤟]}
+- id: lexeme:kute
+  pos: VERB
+  gloss: {en: 'hear, listen; ear; obey'}
+  notes: {en: 'kute e is listen to: mi kute e sina, I''m listening to you.'}
+  spelled: {tok-Latn/standard: [kute], tok-Qaap/sitelen-pona: [󱤠]}
+- id: lexeme:la
+  pos: PART
+  gloss: {en: '(sets the scene: what comes before la is the time or condition for the rest)'}
+  notes: {en: 'X la Y: in the setting X, Y. tenpo ni la mi moku: now I''m eating. Toki Pona has no tenses; la gives the time when it matters.'}
+  spelled: {tok-Latn/standard: [la], tok-Qaap/sitelen-pona: [󱤡]}
+- id: lexeme:lape
+  pos: VERB
+  gloss: {en: 'sleep, rest'}
+  spelled: {tok-Latn/standard: [lape], tok-Qaap/sitelen-pona: [󱤢]}
+- id: lexeme:laso
+  pos: ADJ
+  gloss: {en: 'blue, green'}
+  notes: {en: 'One word covers blue and green: sewi li laso, the sky is blue; kasi li laso, the plants are green.'}
+  spelled: {tok-Latn/standard: [laso], tok-Qaap/sitelen-pona: [󱤣]}
+- id: lexeme:lawa
+  pos: NOUN
+  gloss: {en: 'head, mind; main, leading; lead, control'}
+  notes: {en: jan lawa is a leader; ona li lawa e kulupu is she leads the group.}
+  spelled: {tok-Latn/standard: [lawa], tok-Qaap/sitelen-pona: [󱤤]}
+- id: lexeme:len
+  pos: NOUN
+  gloss: {en: 'clothes, cloth, fabric; cover; privacy'}
+  spelled: {tok-Latn/standard: [len], tok-Qaap/sitelen-pona: [󱤥]}
+- id: lexeme:lete
+  pos: ADJ
+  gloss: {en: 'cold, cool; raw'}
+  spelled: {tok-Latn/standard: [lete], tok-Qaap/sitelen-pona: [󱤦]}
+- id: lexeme:li
+  pos: PART
+  gloss: {en: (comes before the predicate)}
+  notes: {en: 'li separates the subject from what is said about it: ona li lape. After a bare mi or sina it is left out: mi lape, sina lape.'}
+  spelled: {tok-Latn/standard: [li], tok-Qaap/sitelen-pona: [󱤧]}
+- id: lexeme:lili
+  pos: ADJ
+  gloss: {en: 'small, little, young; a bit'}
+  spelled: {tok-Latn/standard: [lili], tok-Qaap/sitelen-pona: [󱤨]}
+- id: lexeme:lina
+  pos: PROPN
+  gloss: {en: Lina (a name)}
+  notes: {en: 'In sitelen pona a name is a cartouche: linja, ilo, nasin, a give L, i, n, a.'}
+  spelled: {tok-Latn/standard: [Lina], tok-Qaap/sitelen-pona: [󱦐󱤩󱤎󱤿󱤀󱦑]}
+- id: lexeme:linja
+  pos: NOUN
+  gloss: {en: 'string, rope, thread, line; hair'}
+  notes: {en: linja lawa is the hair on your head.}
+  spelled: {tok-Latn/standard: [linja], tok-Qaap/sitelen-pona: [󱤩]}
+- id: lexeme:lipu
+  pos: NOUN
+  gloss: {en: 'book, paper, page; document, card'}
+  image: {file: ../../courses/images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [lipu], tok-Qaap/sitelen-pona: [󱤪]}
+- id: lexeme:loje
+  pos: ADJ
+  gloss: {en: red; reddish}
+  spelled: {tok-Latn/standard: [loje], tok-Qaap/sitelen-pona: [󱤫]}
+- id: lexeme:lon
+  pos: ADP
+  gloss: {en: 'at, in, on; be there, exist; true, yes'}
+  notes: {en: 'mi lon tomo: I''m at home. lon also means true: ni li lon, that''s true; and lon answers yes to a lon ala lon? question.'}
+  spelled: {tok-Latn/standard: [lon], tok-Qaap/sitelen-pona: [󱤬]}
+- id: lexeme:luka
+  pos: NOUN
+  gloss: {en: 'hand, arm; five'}
+  notes: {en: 'As a number luka is five: soweli luka is five animals.'}
+  image: {file: ../../courses/images/hand.svg, license: CC0-1.0, provenance: {author: 'llm:claude@b081ec947041', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [luka], tok-Qaap/sitelen-pona: [󱤭]}
+- id: lexeme:lukin
+  pos: VERB
+  gloss: {en: 'see, look at, watch; eye; read'}
+  notes: {en: lukin e lipu is reading.}
+  image: {file: ../../courses/images/eye.svg, license: CC0-1.0, provenance: {author: 'llm:claude@778ae7bbd2f2', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [lukin], tok-Qaap/sitelen-pona: [󱤮]}
+- id: lexeme:lupa
+  pos: NOUN
+  gloss: {en: 'door, window, hole; opening'}
+  notes: {en: lupa is any hole or opening. lupa tomo is a door.}
+  spelled: {tok-Latn/standard: [lupa], tok-Qaap/sitelen-pona: [󱤯]}
+- id: lexeme:ma
+  pos: NOUN
+  gloss: {en: 'land, country, ground; place; outdoors'}
+  notes: {en: ma Kanata is Canada. ma tomo (a land of houses) is a town or city.}
+  spelled: {tok-Latn/standard: [ma], tok-Qaap/sitelen-pona: [󱤰]}
+- id: lexeme:mama
+  pos: NOUN
+  gloss: {en: 'parent, mother, father; caretaker'}
+  notes: {en: 'mama is a parent of either kind. mama meli is a mother, mama mije a father.'}
+  spelled: {tok-Latn/standard: [mama], tok-Qaap/sitelen-pona: [󱤱]}
+- id: lexeme:mani
+  pos: NOUN
+  gloss: {en: 'money, cash; savings, wealth'}
+  spelled: {tok-Latn/standard: [mani], tok-Qaap/sitelen-pona: [󱤲]}
+- id: lexeme:meli
+  pos: NOUN
+  gloss: {en: 'woman, female; feminine'}
+  notes: {en: meli or jan meli is a woman.}
+  spelled: {tok-Latn/standard: [meli], tok-Qaap/sitelen-pona: [󱤳]}
+- id: lexeme:mi
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'I, me, we, us; my, our'}
+  notes: {en: 'mi is one person or more: I or we.'}
+  spelled: {tok-Latn/standard: [mi], tok-Qaap/sitelen-pona: [󱤴]}
+- id: lexeme:mije
+  pos: NOUN
+  gloss: {en: 'man, male; masculine'}
+  notes: {en: mije or jan mije is a man.}
+  spelled: {tok-Latn/standard: [mije], tok-Qaap/sitelen-pona: [󱤵]}
+- id: lexeme:mila
+  pos: PROPN
+  gloss: {en: Mila (a name)}
+  notes: {en: 'In sitelen pona: mama, ilo, lipu, a give M, i, l, a.'}
+  spelled: {tok-Latn/standard: [Mila], tok-Qaap/sitelen-pona: [󱦐󱤱󱤎󱤪󱤀󱦑]}
+- id: lexeme:moku
+  pos: VERB
+  gloss: {en: 'eat, drink; food'}
+  image: {file: ../../courses/images/bread.svg, license: CC0-1.0, provenance: {author: 'llm:claude@5e86bf893364', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [moku], tok-Qaap/sitelen-pona: [󱤶]}
+- id: lexeme:moli
+  pos: VERB
+  gloss: {en: 'die, dead; death; kill'}
+  notes: {en: 'With e it means kill: o moli ala e pipi! (don''t kill the bug!)'}
+  spelled: {tok-Latn/standard: [moli], tok-Qaap/sitelen-pona: [󱤷]}
+- id: lexeme:monsi
+  pos: NOUN
+  gloss: {en: 'back, behind, rear'}
+  notes: {en: 'lon monsi tomo: behind the house.'}
+  spelled: {tok-Latn/standard: [monsi], tok-Qaap/sitelen-pona: [󱤸]}
+- id: lexeme:mu
+  pos: VERB
+  gloss: {en: '(an animal''s sound: moo, woof, meow, tweet)'}
+  notes: {en: 'mu is any animal noise, and making it: soweli li mu.'}
+  spelled: {tok-Latn/standard: [mu], tok-Qaap/sitelen-pona: [󱤹]}
+- id: lexeme:mun
+  pos: NOUN
+  gloss: {en: 'moon, star; light in the night sky'}
+  notes: {en: 'mun is any light in the night sky: mun mute, many stars.'}
+  image: {file: ../../courses/images/moon.svg, license: CC0-1.0, provenance: {author: 'llm:claude@2c94300bb951', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [mun], tok-Qaap/sitelen-pona: [󱤺]}
+- id: lexeme:musi
+  pos: ADJ
+  gloss: {en: 'fun, play; game, art'}
+  spelled: {tok-Latn/standard: [musi], tok-Qaap/sitelen-pona: [󱤻]}
+- id: lexeme:mute
+  pos: ADJ
+  gloss: {en: 'many, a lot of, very; more'}
+  notes: {en: 'mute after a word makes it many: jan mute, many people. mi mute is we, sina mute is you (all), ona mute is they.'}
+  spelled: {tok-Latn/standard: [mute], tok-Qaap/sitelen-pona: [󱤼]}
+- id: lexeme:nanpa
+  pos: NOUN
+  gloss: {en: 'number; -th (nanpa wan: first)'}
+  notes: {en: 'nanpa before a number gives the order: jan nanpa wan is the first person, lipu nanpa tu is the second page.'}
+  spelled: {tok-Latn/standard: [nanpa], tok-Qaap/sitelen-pona: [󱤽]}
+- id: lexeme:nasa
+  pos: ADJ
+  gloss: {en: 'strange, weird, silly, crazy'}
+  spelled: {tok-Latn/standard: [nasa], tok-Qaap/sitelen-pona: [󱤾]}
+- id: lexeme:nasin
+  pos: NOUN
+  gloss: {en: 'road, path, way; method, custom'}
+  notes: {en: 'nasin is a road and a way of doing things: nasin pona, a good way.'}
+  spelled: {tok-Latn/standard: [nasin], tok-Qaap/sitelen-pona: [󱤿]}
+- id: lexeme:nena
+  pos: NOUN
+  gloss: {en: 'hill, mountain; bump, button; nose'}
+  notes: {en: 'Any bump sticking out: a hill, a button, or the nose on your face.'}
+  image: {file: ../../courses/images/mountain.svg, license: CC0-1.0, provenance: {author: 'llm:claude@a8e4d984f938', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [nena], tok-Qaap/sitelen-pona: [󱥀]}
+- id: lexeme:ni
+  pos: DET
+  feats: {PronType: Dem}
+  gloss: {en: 'this, that; these, those'}
+  notes: {en: 'After a noun ni means this or that: soweli ni, this animal. As the subject it takes li: ni li tomo.'}
+  spelled: {tok-Latn/standard: [ni], tok-Qaap/sitelen-pona: [󱥁]}
+- id: lexeme:nimi
+  pos: NOUN
+  gloss: {en: name; word}
+  notes: {en: 'nimi mi li Lina: my name is Lina. nimi sina li seme? asks someone''s name.'}
+  image: {file: ../../courses/images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [nimi], tok-Qaap/sitelen-pona: [󱥂]}
+- id: lexeme:noka
+  pos: NOUN
+  gloss: {en: 'foot, leg; bottom, lower part'}
+  spelled: {tok-Latn/standard: [noka], tok-Qaap/sitelen-pona: [󱥃]}
+- id: lexeme:o
+  pos: PART
+  gloss: {en: 'hey! (calling someone); do it! (a command); should, let''s'}
+  notes: {en: 'Before a verb o gives an order (o kama!), after a name it calls someone (jan Lina o, …), and after a subject it means should (sina o lape).'}
+  spelled: {tok-Latn/standard: [o], tok-Qaap/sitelen-pona: [󱥄]}
+- id: lexeme:olin
+  pos: VERB
+  gloss: {en: 'love; care for, respect'}
+  spelled: {tok-Latn/standard: [olin], tok-Qaap/sitelen-pona: [󱥅]}
+- id: lexeme:ona
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'she, he, it, they; her, him, them'}
+  notes: {en: 'ona is any third person or thing, one or more. After a noun it means his, her, its or their.'}
+  spelled: {tok-Latn/standard: [ona], tok-Qaap/sitelen-pona: [󱥆]}
+- id: lexeme:open
+  pos: VERB
+  gloss: {en: 'open; begin, start'}
+  notes: {en: 'mi open e lupa: I open the door. As a preverb: mi open pali, I start working.'}
+  spelled: {tok-Latn/standard: [open], tok-Qaap/sitelen-pona: [󱥇]}
+- id: lexeme:pakala
+  pos: VERB
+  gloss: {en: 'break, damage, mess up; broken; oops!'}
+  notes: {en: pakala! on its own is what you say when something goes wrong.}
+  spelled: {tok-Latn/standard: [pakala], tok-Qaap/sitelen-pona: [󱥈]}
+- id: lexeme:pali
+  pos: VERB
+  gloss: {en: 'do, make, build; work'}
+  notes: {en: pali e moku is cooking.}
+  spelled: {tok-Latn/standard: [pali], tok-Qaap/sitelen-pona: [󱥉]}
+- id: lexeme:palisa
+  pos: NOUN
+  gloss: {en: 'stick, rod, pole; long hard thing'}
+  spelled: {tok-Latn/standard: [palisa], tok-Qaap/sitelen-pona: [󱥊]}
+- id: lexeme:pan
+  pos: NOUN
+  gloss: {en: 'bread, grain; rice, pasta, cereal'}
+  spelled: {tok-Latn/standard: [pan], tok-Qaap/sitelen-pona: [󱥋]}
+- id: lexeme:pana
+  pos: VERB
+  gloss: {en: 'give, send, hand over; emit, release'}
+  notes: {en: 'Who gets it follows tawa: o pana e telo tawa mi! (give me water!)'}
+  spelled: {tok-Latn/standard: [pana], tok-Qaap/sitelen-pona: [󱥌]}
+- id: lexeme:pi
+  pos: PART
+  gloss: {en: of (groups the next words into one modifier)}
+  notes: {en: 'jan toki pona is a good talking person; jan pi toki pona is a person of Toki Pona, a speaker. pi comes before two or more words.'}
+  spelled: {tok-Latn/standard: [pi], tok-Qaap/sitelen-pona: [󱥍]}
+- id: lexeme:pilin
+  pos: VERB
+  gloss: {en: feel; feeling; heart}
+  notes: {en: 'mi pilin pona: I feel good. mi pilin ike: I feel bad.'}
+  spelled: {tok-Latn/standard: [pilin], tok-Qaap/sitelen-pona: [󱥎]}
+- id: lexeme:pimeja
+  pos: ADJ
+  gloss: {en: 'black, dark; shadow'}
+  notes: {en: tenpo pimeja is night.}
+  spelled: {tok-Latn/standard: [pimeja], tok-Qaap/sitelen-pona: [󱥏]}
+- id: lexeme:pini
+  pos: VERB
+  gloss: {en: 'end, finish, stop; done; past'}
+  notes: {en: 'As a preverb: mi pini moku, I''ve finished eating. tenpo pini is the past.'}
+  spelled: {tok-Latn/standard: [pini], tok-Qaap/sitelen-pona: [󱥐]}
+- id: lexeme:pipi
+  pos: NOUN
+  gloss: {en: 'bug, insect, spider'}
+  spelled: {tok-Latn/standard: [pipi], tok-Qaap/sitelen-pona: [󱥑]}
+- id: lexeme:pita
+  pos: PROPN
+  gloss: {en: Pita (a name)}
+  notes: {en: 'In sitelen pona: pipi, ilo, tomo, a give P, i, t, a.'}
+  spelled: {tok-Latn/standard: [Pita], tok-Qaap/sitelen-pona: [󱦐󱥑󱤎󱥭󱤀󱦑]}
+- id: lexeme:poka
+  pos: NOUN
+  gloss: {en: 'side; next to, beside, with; nearby'}
+  notes: {en: 'lon poka mi: beside me, with me.'}
+  spelled: {tok-Latn/standard: [poka], tok-Qaap/sitelen-pona: [󱥒]}
+- id: lexeme:poki
+  pos: NOUN
+  gloss: {en: 'box, cup, bag, bowl; container'}
+  notes: {en: poki is anything that holds things.}
+  spelled: {tok-Latn/standard: [poki], tok-Qaap/sitelen-pona: [󱥓]}
+- id: lexeme:pona
+  pos: ADJ
+  gloss: {en: 'good, nice, simple; fix'}
+  image: {file: ../../courses/images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [pona], tok-Qaap/sitelen-pona: [󱥔]}
+- id: lexeme:pu
+  pos: NOUN
+  gloss: {en: the official book of Toki Pona; read or use pu}
+  notes: {en: 'pu is jan Sonja''s book Toki Pona: The Language of Good. mi pu is I''m reading pu; the book itself is lipu pu.'}
+  spelled: {tok-Latn/standard: [pu], tok-Qaap/sitelen-pona: [󱥕]}
+- id: lexeme:sama
+  pos: ADJ
+  gloss: {en: 'same, alike, equal; like, as'}
+  notes: {en: 'jan sama is a sibling: a person of the same family. mi sama sina: I''m like you.'}
+  spelled: {tok-Latn/standard: [sama], tok-Qaap/sitelen-pona: [󱥖]}
+- id: lexeme:seli
+  pos: ADJ
+  gloss: {en: 'hot, warm; fire, heat'}
+  image: {file: ../../courses/images/fire.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4aeb9b9d9ea0', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [seli], tok-Qaap/sitelen-pona: [󱥗]}
+- id: lexeme:selo
+  pos: NOUN
+  gloss: {en: 'skin, outside, surface; peel, shell, bark'}
+  spelled: {tok-Latn/standard: [selo], tok-Qaap/sitelen-pona: [󱥘]}
+- id: lexeme:seme
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: 'what? which? who?'}
+  notes: {en: 'seme stands where the answer goes: ni li seme? What is this? soweli seme? Which animal?'}
+  spelled: {tok-Latn/standard: [seme], tok-Qaap/sitelen-pona: [󱥙]}
+- id: lexeme:sewi
+  pos: NOUN
+  gloss: {en: 'top, above, up; sky; holy'}
+  notes: {en: 'lon sewi supa: on (top of) the table. lon sewi alone is up above, in the sky.'}
+  spelled: {tok-Latn/standard: [sewi], tok-Qaap/sitelen-pona: [󱥚]}
+- id: lexeme:sijelo
+  pos: NOUN
+  gloss: {en: body; physical state; torso}
+  notes: {en: 'sijelo mi li pilin ike: I feel sick (my body feels bad).'}
+  spelled: {tok-Latn/standard: [sijelo], tok-Qaap/sitelen-pona: [󱥛]}
+- id: lexeme:sike
+  pos: NOUN
+  gloss: {en: 'circle, ball, wheel; round; cycle'}
+  notes: {en: 'tenpo sike is a year: one round of the seasons. tenpo sike kama is next year.'}
+  spelled: {tok-Latn/standard: [sike], tok-Qaap/sitelen-pona: [󱥜]}
+- id: lexeme:sin
+  pos: ADJ
+  gloss: {en: 'new, fresh; again; another'}
+  notes: {en: 'tomo sin: a new house. After a verb it means again: mi kama sin, I come again.'}
+  spelled: {tok-Latn/standard: [sin], tok-Qaap/sitelen-pona: [󱥝]}
+- id: lexeme:sina
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: you; your}
+  notes: {en: sina is one person or more.}
+  spelled: {tok-Latn/standard: [sina], tok-Qaap/sitelen-pona: [󱥞]}
+- id: lexeme:sinpin
+  pos: NOUN
+  gloss: {en: 'front, face; wall'}
+  notes: {en: 'lon sinpin tomo: in front of the house. sinpin is also a wall.'}
+  spelled: {tok-Latn/standard: [sinpin], tok-Qaap/sitelen-pona: [󱥟]}
+- id: lexeme:sitelen
+  pos: NOUN
+  gloss: {en: 'picture, image, drawing; writing, sign; draw, write'}
+  notes: {en: 'sitelen pona is Toki Pona''s own writing: one sign for each word.'}
+  spelled: {tok-Latn/standard: [sitelen], tok-Qaap/sitelen-pona: [󱥠]}
+- id: lexeme:sona
+  pos: VERB
+  gloss: {en: know; knowledge; know how to}
+  notes: {en: 'sona e is knowing something: mi sona e toki pona.'}
+  spelled: {tok-Latn/standard: [sona], tok-Qaap/sitelen-pona: [󱥡]}
+- id: lexeme:sonja
+  pos: PROPN
+  gloss: {en: Sonja (a name)}
+  notes: {en: 'jan Sonja (Sonja Lang) made Toki Pona in 2001 and wrote pu. In sitelen pona: sona, olin, nasin, jan, a give S, o, n, j, a.'}
+  spelled: {tok-Latn/standard: [Sonja], tok-Qaap/sitelen-pona: [󱦐󱥡󱥅󱤿󱤑󱤀󱦑]}
+- id: lexeme:soweli
+  pos: NOUN
+  gloss: {en: 'animal, land mammal'}
+  notes: {en: 'soweli is any furry four-legged animal: a cat, a dog, a sheep, a bear.'}
+  image: {file: ../../courses/images/sheep.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4c000b664265', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [soweli], tok-Qaap/sitelen-pona: [󱥢]}
+- id: lexeme:suli
+  pos: ADJ
+  gloss: {en: 'big, tall, long; important; adult'}
+  spelled: {tok-Latn/standard: [suli], tok-Qaap/sitelen-pona: [󱥣]}
+- id: lexeme:suno
+  pos: NOUN
+  gloss: {en: 'sun; light; shine, bright'}
+  notes: {en: 'tenpo suno is a day: tenpo suno ni is today, tenpo suno kama tomorrow, tenpo suno pini yesterday.'}
+  image: {file: ../../courses/images/sun.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bc6746e0390b', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [suno], tok-Qaap/sitelen-pona: [󱥤]}
+- id: lexeme:supa
+  pos: NOUN
+  gloss: {en: 'table, surface; furniture'}
+  notes: {en: Anything flat to put things on or sit on. supa lape (a sleeping surface) is a bed.}
+  spelled: {tok-Latn/standard: [supa], tok-Qaap/sitelen-pona: [󱥥]}
+- id: lexeme:suwi
+  pos: ADJ
+  gloss: {en: sweet; cute}
+  notes: {en: 'moku suwi is sweets, candy.'}
+  spelled: {tok-Latn/standard: [suwi], tok-Qaap/sitelen-pona: [󱥦]}
+- id: lexeme:tan
+  pos: ADP
+  gloss: {en: 'from; because of; cause, origin'}
+  notes: {en: 'mi kama tan ma Kanata: I come from Canada. tan sina: because of you.'}
+  spelled: {tok-Latn/standard: [tan], tok-Qaap/sitelen-pona: [󱥧]}
+- id: lexeme:taso
+  pos: ADV
+  gloss: {en: but; only}
+  notes: {en: 'At the start of a sentence taso is but. After a word it means only: mi taso, only me.'}
+  spelled: {tok-Latn/standard: [taso], tok-Qaap/sitelen-pona: [󱥨]}
+- id: lexeme:tawa
+  pos: ADP
+  gloss: {en: 'go, move; to, toward'}
+  notes: {en: 'mi tawa tomo: I''m going home. tawa pona! is Goodbye! to someone who is leaving.'}
+  spelled: {tok-Latn/standard: [tawa], tok-Qaap/sitelen-pona: [󱥩]}
+- id: lexeme:telo
+  pos: NOUN
+  gloss: {en: 'water; liquid, drink; wash'}
+  image: {file: ../../courses/images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@e7d707f749db', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [telo], tok-Qaap/sitelen-pona: [󱥪]}
+- id: lexeme:tenpo
+  pos: NOUN
+  gloss: {en: 'time; moment, period'}
+  notes: {en: 'tenpo ni is now (this time), tenpo pini the past, tenpo kama the future. tenpo seme? asks when.'}
+  spelled: {tok-Latn/standard: [tenpo], tok-Qaap/sitelen-pona: [󱥫]}
+- id: lexeme:toki
+  pos: VERB
+  gloss: {en: 'hello; talk, speak, say; language'}
+  notes: {en: 'toki! is hello. toki pona is the language: good talk, simple talk.'}
+  image: {file: ../../courses/images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [toki], tok-Qaap/sitelen-pona: [󱥬]}
+- id: lexeme:tomasi
+  pos: PROPN
+  gloss: {en: Tomasi (a name)}
+  notes: {en: 'In sitelen pona: tomo, olin, mani, awen, sona, ilo give T, o, m, a, s, i.'}
+  spelled: {tok-Latn/standard: [Tomasi], tok-Qaap/sitelen-pona: [󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑]}
+- id: lexeme:tomo
+  pos: NOUN
+  gloss: {en: 'house, home, room, building'}
+  image: {file: ../../courses/images/house.svg, license: CC0-1.0, provenance: {author: 'llm:claude@0d95656f8477', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [tomo], tok-Qaap/sitelen-pona: [󱥭]}
+- id: lexeme:tu
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: 'two; split, divide'}
+  notes: {en: 'Numbers add up: tu wan is three, tu tu is four.'}
+  spelled: {tok-Latn/standard: [tu], tok-Qaap/sitelen-pona: [󱥮]}
+- id: lexeme:uta
+  pos: NOUN
+  gloss: {en: 'mouth, lips'}
+  spelled: {tok-Latn/standard: [uta], tok-Qaap/sitelen-pona: [󱥰]}
+- id: lexeme:utala
+  pos: VERB
+  gloss: {en: 'fight, battle, war; compete; challenge'}
+  image: {file: ../../courses/images/sword.svg, license: CC0-1.0, provenance: {author: 'llm:claude@974a394d608f', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {tok-Latn/standard: [utala], tok-Qaap/sitelen-pona: [󱥱]}
+- id: lexeme:walo
+  pos: ADJ
+  gloss: {en: 'white; pale, light-coloured'}
+  spelled: {tok-Latn/standard: [walo], tok-Qaap/sitelen-pona: [󱥲]}
+- id: lexeme:wan
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: one; single; united}
+  notes: {en: 'wan follows its noun: jan wan is one person.'}
+  spelled: {tok-Latn/standard: [wan], tok-Qaap/sitelen-pona: [󱥳]}
+- id: lexeme:waso
+  pos: NOUN
+  gloss: {en: bird; flying animal}
+  spelled: {tok-Latn/standard: [waso], tok-Qaap/sitelen-pona: [󱥴]}
+- id: lexeme:wawa
+  pos: ADJ
+  gloss: {en: 'strong, powerful; energy'}
+  spelled: {tok-Latn/standard: [wawa], tok-Qaap/sitelen-pona: [󱥵]}
+- id: lexeme:weka
+  pos: ADJ
+  gloss: {en: 'away, gone, absent; remove'}
+  notes: {en: 'ona li weka: he''s away. With e it is take away: mi weka e jaki, I clean up the mess.'}
+  spelled: {tok-Latn/standard: [weka], tok-Qaap/sitelen-pona: [󱥶]}
+- id: lexeme:wile
+  pos: VERB
+  gloss: {en: 'want, need; want to; wish'}
+  notes: {en: 'Before another verb wile means want to, with no e: mi wile moku, I want to eat.'}
+  spelled: {tok-Latn/standard: [wile], tok-Qaap/sitelen-pona: [󱥷]}

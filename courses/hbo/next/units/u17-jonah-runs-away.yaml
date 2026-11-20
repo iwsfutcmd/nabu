@@ -1,0 +1,439 @@
+# Unit u17-jonah-runs-away of courses/hbo in the new shape.
+# Written by `nabu migrate` from courses/hbo and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u17-jonah-runs-away
+title:
+  en: Jonah runs away
+cefr: A2
+nodes:
+- {id: hbo.u17.the-word-came, kind: lesson, introduces: ['lexeme:yonah', 'lexeme:amittai']}
+- {id: hbo.u17.go-to-nineveh, kind: lesson, introduces: ['lexeme:ninveh', 'lexeme:ir', 'lexeme:alah', 'lexeme:raah.evil']}
+- {id: hbo.u17.to-flee, kind: lesson, introduces: ['lexeme:barach', 'lexeme:tarshish', 'lexeme:yarad', 'lexeme:yafo']}
+- {id: hbo.u17.a-ship, kind: lesson, introduces: ['lexeme:oniyyah', 'lexeme:sakhar', 'lexeme:im.with']}
+- {id: hbo.u17.story, kind: story}
+sentences:
+- id: s.17.1
+  node: hbo.u17.the-word-came
+  forms:
+    hbo-Hebr/tiberian:
+      text: יוֹנָה
+      tokens: [{surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}]
+      reverse: יונה
+  translations:
+    en: Jonah
+- id: s.17.2
+  node: hbo.u17.the-word-came
+  forms:
+    hbo-Hebr/tiberian:
+      text: יוֹנָה בֶן־אֲמִתַּי
+      tokens: [{surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}, {surface: בֶן, lexeme: ben, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: ḇen-}}, {surface: אֲמִתַּי, lexeme: amittai, feats: {Number: Sing}, readings: {tiberian: ʾămittay}}]
+      reverse: יונה בן אמתי
+  translations:
+    en: |-
+      Jonah son of Amittai
+      Jonah, the son of Amittai
+- id: s.17.3
+  node: hbo.u17.the-word-came
+  forms:
+    hbo-Hebr/tiberian:
+      text: דְּבַר יְהוָה
+      tokens: [{surface: דְּבַר, lexeme: davar, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: dəḇar}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: דבר יהוה
+  translations:
+    en: the word of the LORD
+- id: s.17.4
+  node: hbo.u17.the-word-came
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי דְּבַר־יְהוָה אֶל־יוֹנָה׃
+      tokens: [{surface: וַיְהִי, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayhî}}, {surface: דְּבַר, lexeme: davar, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: dəḇar-}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}]
+      reverse: ויהי דבר יהוה אל יונה
+  translations:
+    en: '[And] the word of the LORD came to Jonah.'
+- id: s.17.5
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִיר
+      tokens: [{surface: עִיר, lexeme: ir, feats: {Number: Sing}, readings: {tiberian: ʿîr}}]
+      reverse: עיר
+  translations:
+    en: |-
+      a city
+      a town
+- id: s.17.6
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָעִיר
+      tokens: [{surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿîr}}]
+      reverse: העיר
+  translations:
+    en: |-
+      the city
+      the town
+- id: s.17.7
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָעִיר הַגְּדוֹלָה
+      tokens: [{surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: haggəḏôlâ}}]
+      reverse: העיר הגדולה
+  translations:
+    en: |-
+      the great city
+      the (big|large) city
+- id: s.17.8
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: נִינְוֵה הָעִיר הַגְּדוֹלָה
+      tokens: [{surface: נִינְוֵה, lexeme: ninveh, feats: {Number: Sing}, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: haggəḏôlâ}}]
+      reverse: נינוה העיר הגדולה
+  translations:
+    en: |-
+      Nineveh, the great city
+      Nineveh the (big|large) city
+- id: s.17.9
+  node: hbo.u17.go-to-nineveh
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוּם לֵךְ אֶל־נִינְוֵה׃
+      tokens: [{surface: קוּם, lexeme: qum, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qûm}}, {surface: לֵךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: lēḵ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: נִינְוֵה, lexeme: ninveh, feats: {Number: Sing}, readings: {tiberian: nînəwēh}}]
+      reverse: קום לך אל נינוה
+  translations:
+    en: |-
+      Get up, go to Nineveh!
+      (Arise|Rise up|Up), go to Nineveh!
+- id: s.17.10
+  node: hbo.u17.go-to-nineveh
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוּמִי׃
+      tokens: [{surface: קוּמִי, lexeme: qum, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qû́mî}}]
+      reverse: קומי
+  translations:
+    en: |-
+      Get up!
+      (Arise|Rise up|Stand up)!
+- id: s.17.11
+  node: hbo.u17.go-to-nineveh
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוּמוּ׃
+      tokens: [{surface: קוּמוּ, lexeme: qum, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: qû́mû}}]
+      reverse: קומו
+  translations:
+    en: |-
+      Get up!
+      (Arise|Rise up|Stand up)!
+- id: s.17.12
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּעַל אֶל־הָהָר׃
+      tokens: [{surface: וַיַּעַל, lexeme: alah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyáʿal}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָהָר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: har, surface: הָר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāhār}}]
+      reverse: |-
+        ויעל אל ההר
+        עלה אל ההר
+        הוא עלה אל ההר
+        והוא עלה אל ההר
+  translations:
+    en: '[(And|Then)] he went up (to|onto) the (mountain|hill).'
+- id: s.17.13
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: רָעָה
+      tokens: [{surface: רָעָה, lexeme: raah.evil, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: rāʿâ}}]
+      reverse: רעה
+  translations:
+    en: |-
+      evil
+      (wickedness|harm|disaster)
+- id: s.17.14
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: כִּי־עָלְתָה רָעָתָם לְפָנָי׃
+      tokens: [{surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, lexeme: alah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, lexemes: [{lexeme: raah.evil, surface: רָעָתָ, base: true, feats: {Gender: Fem, Number: Sing}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, lexemes: [{lexeme: le, surface: לְ}, {lexeme: panim, surface: פָנָ, base: true, feats: {Number: Plur}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ləp̄ānāy}}]
+      reverse: כי עלתה רעתם לפני
+  translations:
+    en: |-
+      for their wickedness has come up before me
+      because their (evil|wickedness) has (come up|risen) before me
+- id: s.17.15
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּבְרַח׃
+      tokens: [{surface: וַיִּבְרַח, lexeme: barach, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiḇraḥ}}]
+      reverse: |-
+        ויברח
+        ברח
+        הוא ברח
+        והוא ברח
+  translations:
+    en: |-
+      [(And|Then|So)] he fled.
+      [(And|Then|So)] he ran away.
+- id: s.17.16
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: לִבְרֹחַ
+      tokens: [{surface: לִבְרֹחַ, lexemes: [{lexeme: le, surface: לִ}, {lexeme: barach, surface: בְרֹחַ, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: liḇrōaḥ}}]
+      reverse: (לברח|לברוח)
+  translations:
+    en: |-
+      to flee
+      to run away
+- id: s.17.17
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: תַּרְשִׁישָׁה
+      tokens: [{surface: תַּרְשִׁישָׁה, lexemes: [{lexeme: tarshish, surface: תַּרְשִׁישָׁ, base: true, feats: {Number: Sing}}, {lexeme: dir, surface: ה}], readings: {tiberian: taršî́šâ}}]
+      reverse: תרשישה
+  translations:
+    en: to Tarshish
+- id: s.17.18
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּרֶד יָפוֹ׃
+      tokens: [{surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}, {surface: יָפוֹ, lexeme: yafo, feats: {Number: Sing}, readings: {tiberian: yāp̄ô}}]
+      reverse: |-
+        וירד יפו
+        ירד יפו
+        הוא ירד יפו
+        והוא ירד יפו
+  translations:
+    en: |-
+      [(And|Then)] he went down to Joppa.
+      [(And|Then)] he went down to Jaffa.
+- id: s.17.19
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּרֶד מִן־הָהָר׃
+      tokens: [{surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָהָר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: har, surface: הָר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāhār}}]
+      reverse: |-
+        וירד מן ההר
+        ירד מן ההר
+        הוא ירד מן ההר
+        והוא ירד מן ההר
+  translations:
+    en: '[(And|Then)] he came down from the (mountain|hill).'
+- id: s.17.20
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּקָם יוֹנָה לִבְרֹחַ תַּרְשִׁישָׁה׃
+      tokens: [{surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, lexemes: [{lexeme: le, surface: לִ}, {lexeme: barach, surface: בְרֹחַ, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, lexemes: [{lexeme: tarshish, surface: תַּרְשִׁישָׁ, base: true, feats: {Number: Sing}}, {lexeme: dir, surface: ה}], readings: {tiberian: taršî́šâ}}]
+      reverse: |-
+        ויקם יונה (לברח|לברוח) תרשישה
+        ויונה קם (לברח|לברוח) תרשישה
+  translations:
+    en: |-
+      But Jonah got up to flee to Tarshish.
+      (And|So|But) Jonah (rose|set out) to (flee|run away) to Tarshish.
+- id: s.17.21
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֳנִיָּה
+      tokens: [{surface: אֳנִיָּה, lexeme: oniyyah, feats: {Number: Sing}, readings: {tiberian: ʾŏniyyâ}}]
+      reverse: אניה
+  translations:
+    en: |-
+      a ship
+      a boat
+- id: s.17.22
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּמְצָא אֳנִיָּה׃
+      tokens: [{surface: וַיִּמְצָא, lexeme: matsa, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyimṣāʾ}}, {surface: אֳנִיָּה, lexeme: oniyyah, feats: {Number: Sing}, readings: {tiberian: ʾŏniyyâ}}]
+      reverse: |-
+        וימצא אניה
+        מצא אניה
+        הוא מצא אניה
+        והוא מצא אניה
+  translations:
+    en: '[(And|Then)] he found a ship.'
+- id: s.17.23
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: שָׂכָר
+      tokens: [{surface: שָׂכָר, lexeme: sakhar, feats: {Number: Sing}, readings: {tiberian: śāḵār}}]
+      reverse: שכר
+  translations:
+    en: |-
+      wages
+      a fare
+- id: s.17.24
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּתֵּן שְׂכָרָהּ׃
+      tokens: [{surface: וַיִּתֵּן, lexeme: natan, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyittēn}}, {surface: שְׂכָרָהּ, lexemes: [{lexeme: sakhar, surface: שְׂכָרָ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: śəḵārāh}}]
+      reverse: |-
+        ויתן שכרה
+        נתן שכרה
+        הוא נתן שכרה
+        והוא נתן שכרה
+  translations:
+    en: |-
+      [(And|Then)] he paid (its|the) fare.
+      [(And|Then)] he paid for it.
+- id: s.17.25
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִמִּי
+      tokens: [{surface: עִמִּי, lexemes: [{lexeme: im.with, surface: עִמִּ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʿimmî}}]
+      reverse: עמי
+  translations:
+    en: with me
+- id: s.17.26
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִמָּהֶם
+      tokens: [{surface: עִמָּהֶם, lexemes: [{lexeme: im.with, surface: עִמָּ, base: true}, {lexeme: sfx-3mp, surface: הֶם}], readings: {tiberian: ʿimmāhem}}]
+      reverse: עמהם
+  translations:
+    en: with them
+- id: s.17.27
+  node: hbo.u17.a-ship
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה עִמְּךָ׃
+      tokens: [{surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: עִמְּךָ, lexemes: [{lexeme: im.with, surface: עִמְּ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʿimməḵā}}]
+      reverse: יהוה עמך
+  translations:
+    en: |-
+      The LORD is with you.
+      The LORD be with you!
+- id: s.17.28
+  node: hbo.u17.a-ship
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה עִמָּךְ׃
+      tokens: [{surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: עִמָּךְ, lexemes: [{lexeme: im.with, surface: עִמָּ, base: true}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ʿimmāḵ}}]
+      reverse: יהוה עמך
+  translations:
+    en: |-
+      The LORD is with you.
+      The LORD be with you!
+- id: s.17.29
+  node: hbo.u17.a-ship
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה עִמָּכֶם׃
+      tokens: [{surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: עִמָּכֶם, lexemes: [{lexeme: im.with, surface: עִמָּ, base: true}, {lexeme: sfx-2mp, surface: כֶם}], readings: {tiberian: ʿimmāḵem}}]
+      reverse: יהוה עמכם
+  translations:
+    en: |-
+      The LORD is with you.
+      The LORD be with you!
+stories:
+- id: hbo.story.jonah-runs-away
+  node: hbo.u17.story
+  title:
+    en: Jonah runs away (Jonah 1:1–3)
+  characters:
+  - id: god
+    name:
+      hbo-Hebr/tiberian: יְהוָה
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיְהִי דְּבַר־יְהוָה אֶל־יוֹנָה בֶן־אֲמִתַּי לֵאמֹר׃
+          tokens: [{surface: וַיְהִי, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayhî}}, {surface: דְּבַר, lexeme: davar, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: dəḇar-}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}, {surface: בֶן, lexeme: ben, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: ḇen-}}, {surface: אֲמִתַּי, lexeme: amittai, feats: {Number: Sing}, readings: {tiberian: ʾămittay}}, {surface: לֵאמֹר, lexemes: [{lexeme: le, surface: לֵ}, {lexeme: amar, surface: אמֹר, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lēʾmōr}}]
+      translations:
+        en: Now the word of the LORD came to Jonah son of Amittai, saying,
+  - line:
+      speaker: god
+      ask: complete
+      gap: lexeme:ir
+      distractors:
+      - lexeme:esh
+      - lexeme:herev
+      forms:
+        hbo-Hebr/tiberian:
+          text: קוּם לֵךְ אֶל־נִינְוֵה הָעִיר הַגְּדוֹלָה
+          tokens: [{surface: קוּם, lexeme: qum, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qûm}}, {surface: לֵךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: lēḵ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: נִינְוֵה, lexeme: ninveh, feats: {Number: Sing}, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: ir, surface: עִיר, base: true, feats: {Number: Sing}}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: gadol, surface: גְּדוֹלָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: haggəḏôlâ}}]
+      translations:
+        en: “Get up, go to Nineveh, that great city,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: וּקְרָא עָלֶיהָ כִּי־עָלְתָה רָעָתָם לְפָנָי׃
+          tokens: [{surface: וּקְרָא, lexemes: [{lexeme: we, surface: וּ}, {lexeme: qara, surface: קְרָא, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}], readings: {tiberian: ûqərāʾ}}, {surface: עָלֶיהָ, lexemes: [{lexeme: al, surface: עָלֶי, base: true}, {lexeme: sfx-3fs, surface: הָ}], readings: {tiberian: ʿālếhā}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, lexeme: alah, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, lexemes: [{lexeme: raah.evil, surface: רָעָתָ, base: true, feats: {Gender: Fem, Number: Sing}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, lexemes: [{lexeme: le, surface: לְ}, {lexeme: panim, surface: פָנָ, base: true, feats: {Number: Plur}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ləp̄ānāy}}]
+      translations:
+        en: and call out against it, for their wickedness has come up before me.”
+  - choose:
+      prompt:
+        en: Where does the LORD send Jonah?
+      options:
+      - en: to Nineveh, the great city
+      - en: to Tarshish
+      - en: to Joppa
+      answer: 0
+  - line:
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיָּקָם יוֹנָה לִבְרֹחַ תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה וַיֵּרֶד׃
+          tokens: [{surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, lexemes: [{lexeme: le, surface: לִ}, {lexeme: barach, surface: בְרֹחַ, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, lexemes: [{lexeme: tarshish, surface: תַּרְשִׁישָׁ, base: true, feats: {Number: Sing}}, {lexeme: dir, surface: ה}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, lexemes: [{lexeme: min, surface: מִ}, {lexeme: le, surface: לִּ}, {lexeme: panim, surface: פְנֵי, base: true, feats: {Definite: Cons, Number: Plur}}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}]
+      translations:
+        en: But Jonah got up to flee to Tarshish, away from the LORD.
+  - line:
+      ask: complete
+      gap: lexeme:oniyyah
+      distractors:
+      - lexeme:ir
+      - lexeme:milhamah
+      forms:
+        hbo-Hebr/tiberian:
+          text: יָפוֹ וַיִּמְצָא אָנִיָּה בָּאָה תַרְשִׁישׁ וַיִּתֵּן שְׂכָרָהּ וַיֵּרֶד בָּהּ לָבוֹא עִמָּהֶם תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה׃
+          tokens: [{surface: יָפוֹ, lexeme: yafo, feats: {Number: Sing}, readings: {tiberian: yāp̄ô}}, {surface: וַיִּמְצָא, lexeme: matsa, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyimṣāʾ}}, {surface: אָנִיָּה, lexeme: oniyyah, feats: {Number: Sing}, readings: {tiberian: ʾoniyyâ}}, {surface: בָּאָה, lexeme: bo, feats: {Gender: Fem, Number: Sing, VerbForm: Part}, readings: {tiberian: bāʾâ}}, {surface: תַרְשִׁישׁ, lexeme: tarshish, feats: {Number: Sing}, readings: {tiberian: ṯaršîš}}, {surface: וַיִּתֵּן, lexeme: natan, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyittēn}}, {surface: שְׂכָרָהּ, lexemes: [{lexeme: sakhar, surface: שְׂכָרָ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: śəḵārāh}}, {surface: וַיֵּרֶד, lexeme: yarad, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗreḏ}}, {surface: בָּהּ, lexemes: [{lexeme: be, surface: בָּ, base: true}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: bāh}}, {surface: לָבוֹא, lexemes: [{lexeme: le, surface: לָ}, {lexeme: bo, surface: בוֹא, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lāḇôʾ}}, {surface: עִמָּהֶם, lexemes: [{lexeme: im.with, surface: עִמָּ, base: true}, {lexeme: sfx-3mp, surface: הֶם}], readings: {tiberian: ʿimmāhem}}, {surface: תַּרְשִׁישָׁה, lexemes: [{lexeme: tarshish, surface: תַּרְשִׁישָׁ, base: true, feats: {Number: Sing}}, {lexeme: dir, surface: ה}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, lexemes: [{lexeme: min, surface: מִ}, {lexeme: le, surface: לִּ}, {lexeme: panim, surface: פְנֵי, base: true, feats: {Definite: Cons, Number: Plur}}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}]
+      translations:
+        en: He went down to Joppa and found a ship going to Tarshish; he paid its fare and went down into it, to go with them to Tarshish, away from the LORD.
+  - choose:
+      prompt:
+        en: Where does Jonah go instead?
+      options:
+      - en: toward Tarshish, by ship
+      - en: to Nineveh
+      - en: home to his father
+      answer: 0
+scenarios:
+- id: hbo.at-the-port-of-joppa
+  after: hbo.u17.a-ship
+  title:
+    en: At the port of Joppa
+  setting:
+    en: 'The harbour of Joppa: ships are loading for Tarshish and the sea is calm.'
+  character:
+    en: A ship's captain, gruff but fair, who speaks only Biblical Hebrew.
+  goal:
+    en: Ask whether the ship is going to Tarshish, say that you want to go with them, and pay your fare.

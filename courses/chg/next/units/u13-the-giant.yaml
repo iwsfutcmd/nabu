@@ -1,0 +1,423 @@
+# Unit u13-the-giant of courses/chg in the new shape.
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u13-the-giant
+title:
+  en: The giant
+cefr: A2
+nodes:
+- {id: chg.u13.sons-and-daughters, kind: lesson, introduces: ['lexeme:oghul', 'lexeme:adam', 'lexeme:hazrat', 'lexeme:aj', 'lexeme:ibn', 'lexeme:anuq']}
+- {id: chg.u13.the-giant, kind: lesson, introduces: ['lexeme:adi', 'lexeme:kimarsa']}
+- {id: chg.u13.a-days-walk, kind: lesson, introduces: ['lexeme:yur', 'lexeme:cilik', 'lexeme:ara']}
+- {id: chg.u13.used-to, kind: lesson, introduces: ['lexeme:jangal', 'lexeme:daki', 'lexeme:alqat', 'lexeme:khorak']}
+- {id: chg.u13.fish, kind: lesson, introduces: ['lexeme:baliq', 'lexeme:aftab', 'lexeme:pishur', 'lexeme:yot', 'lexeme:ustikhwan', 'lexeme:balke']}
+- {id: chg.u13.story, kind: story}
+sentences:
+- id: s.13.1
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: اوغول.
+      tokens: [{surface: اوغول, lexeme: oghul, readings: {schluessel: oǧul}}]
+      reverse: اوغول
+  translations:
+    en: (A|The) son.
+- id: s.13.2
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: "توخته\u200cنینک اوغلی بار."
+      tokens: [{surface: "توخته\u200cنینک", lexemes: [{lexeme: tokhta, surface: "توخته\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Toḫtaniŋ}}, {surface: اوغلی, lexemes: [{lexeme: oghul, surface: اوغل, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: oǧli}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      reverse: "توخته\u200cنینک اوغلی بار"
+  translations:
+    en: Tokhta has a son.
+- id: s.13.3
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: بو اوغلوم.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: اوغلوم, lexemes: [{lexeme: oghul, surface: اوغل, base: true}, {lexeme: poss1s, surface: وم}], readings: {schluessel: oǧlum}}]
+      reverse: بو اوغلوم
+  translations:
+    en: This is my son.
+- id: s.13.4
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: خمانینک قیزی بار.
+      tokens: [{surface: خمانینک, lexemes: [{lexeme: khuma, surface: خما, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Ḫumāniŋ}}, {surface: قیزی, lexemes: [{lexeme: qiz, surface: قیز, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: qizi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      reverse: خمانینک (قیزی|قزی) بار
+  translations:
+    en: Huma has a daughter.
+- id: s.13.5
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: آدم.
+      tokens: [{surface: آدم, lexeme: adam, readings: {schluessel: Ādam}}]
+      reverse: آدم
+  translations:
+    en: Adam.
+- id: s.13.6
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: حضرت آدم.
+      tokens: [{surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: آدم, lexeme: adam, readings: {schluessel: Ādam}}]
+      reverse: حضرت آدم
+  translations:
+    en: (The great|Holy|) Adam.
+- id: s.13.7
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: عاج.
+      tokens: [{surface: عاج, lexeme: aj, readings: {schluessel: ʿĀj}}]
+      reverse: عاج
+  translations:
+    en: ʿĀj.
+- id: s.13.8
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: عاج ابن عنوق.
+      tokens: [{surface: عاج, lexeme: aj, readings: {schluessel: ʿĀj}}, {surface: ابن, lexeme: ibn, readings: {schluessel: ibn-i}}, {surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}]
+      reverse: عاج ابن عنوق
+  translations:
+    en: ʿĀj, son of ʿAnūq.
+- id: s.13.9
+  node: chg.u13.sons-and-daughters
+  forms:
+    chg-Arab/standard:
+      text: عنوق حضرت آدمنینک قیزلاری ایردی.
+      tokens: [{surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}, {surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: آدمنینک, lexemes: [{lexeme: adam, surface: آدم, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Ādamniŋ}}, {surface: قیزلاری, lexemes: [{lexeme: qiz, surface: قیز, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: qizlari}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: |-
+        عنوق حضرت آدمنینک (قیزلاری|قزلاری) (ایردی|ایدی)
+        عنوق آدمنینک (قیزی|قزی) (ایردی|ایدی)
+  translations:
+    en: ʿAnūq was (the daughter of Adam|Adam's daughter).
+- id: s.13.10
+  node: chg.u13.the-giant
+  forms:
+    chg-Arab/standard:
+      text: بیر عادی.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: عادی, lexeme: adi, readings: {schluessel: ʿādī}}]
+      reverse: (بیر|بر) عادی
+  translations:
+    en: A giant.
+- id: s.13.11
+  node: chg.u13.the-giant
+  forms:
+    chg-Arab/standard:
+      text: بیر کمرسه کلدی.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کمرسه, lexeme: kimarsa, readings: {schluessel: kimärsä}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      reverse: (بیر|بر) (کمرسه|کیمرسه) (کلدی|کیلدی)
+  translations:
+    en: Someone came.
+- id: s.13.12
+  node: chg.u13.the-giant
+  forms:
+    chg-Arab/standard:
+      text: بیر عادی کمرسه بار ایردی.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: عادی, lexeme: adi, readings: {schluessel: ʿādī}}, {surface: کمرسه, lexeme: kimarsa, readings: {schluessel: kimärsä}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: (بیر|بر) عادی (کمرسه|کیمرسه) بار (ایردی|ایدی)
+  translations:
+    en: There was a giant.
+- id: s.13.13
+  node: chg.u13.the-giant
+  forms:
+    chg-Arab/standard:
+      text: اوزی بسیار اولوغ ایردی.
+      tokens: [{surface: اوزی, lexemes: [{lexeme: oz, surface: اوز, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: özi}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: اولوغ, lexeme: ulugh, readings: {schluessel: uluǧ}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: اوزی بسیار اولوغ (ایردی|ایدی)
+  translations:
+    en: (He|She) (himself|herself|) was very (big|great|large).
+- id: s.13.14
+  node: chg.u13.the-giant
+  forms:
+    chg-Arab/standard:
+      text: عاج دیکان انینک اوغلی ایردی.
+      tokens: [{surface: عاج, lexeme: aj, readings: {schluessel: ʿĀj}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: انینک, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: aniŋ}}, {surface: اوغلی, lexemes: [{lexeme: oghul, surface: اوغل, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: oǧli}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: عاج دیکان انینک اوغلی (ایردی|ایدی)
+  translations:
+    en: (The one called ʿĀj|ʿĀj) was (her|his) son.
+- id: s.13.15
+  node: chg.u13.a-days-walk
+  forms:
+    chg-Arab/standard:
+      text: یولده یوردیم.
+      tokens: [{surface: یولده, lexemes: [{lexeme: yol, surface: یول, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yolda}}, {surface: یوردیم, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: yürdim}}]
+      reverse: '[من] (یولده|یولدا) یوردیم'
+  translations:
+    en: I walked (on|along) the road.
+- id: s.13.16
+  node: chg.u13.a-days-walk
+  forms:
+    chg-Arab/standard:
+      text: بیر کونجلوک یول.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کونجلوک, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: cilik, surface: جلوک}], readings: {schluessel: künčülük}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}]
+      reverse: (بیر|بر) (کونجلوک|کونچلوک|کونچیلیک) یول
+  translations:
+    en: A day's (journey|walk).
+- id: s.13.17
+  node: chg.u13.a-days-walk
+  forms:
+    chg-Arab/standard:
+      text: ایاغیم.
+      tokens: [{surface: ایاغیم, lexemes: [{lexeme: ayaq, surface: ایاغ, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: ayaǧim}}]
+      reverse: ایاغیم
+  translations:
+    en: My foot.
+- id: s.13.18
+  node: chg.u13.a-days-walk
+  forms:
+    chg-Arab/standard:
+      text: ایکی تاغنینک اراسی.
+      tokens: [{surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: تاغنینک, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: taǧniŋ}}, {surface: اراسی, lexemes: [{lexeme: ara, surface: ارا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: arasi}}]
+      reverse: (ایکی|اکی) تاغنینک اراسی
+  translations:
+    en: (The space|) between (the|) two mountains.
+- id: s.13.19
+  node: chg.u13.a-days-walk
+  forms:
+    chg-Arab/standard:
+      text: شهر و تاغنینک اراسیده بیر باغ بار.
+      tokens: [{surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: تاغنینک, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: taǧniŋ}}, {surface: اراسیده, lexemes: [{lexeme: ara, surface: ارا, base: true}, {lexeme: poss3, surface: سی}, {lexeme: loc, surface: ده}], readings: {schluessel: arasida}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: باغ, lexeme: bagh, readings: {schluessel: bāǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      reverse: شهر و تاغنینک (اراسیده|اراسیدا) (بیر|بر) باغ بار
+  translations:
+    en: Between the (city|town) and (the|) mountain there is a (garden|orchard).
+- id: s.13.20
+  node: chg.u13.used-to
+  forms:
+    chg-Arab/standard:
+      text: اول بزارغه بارور ایردی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: barur}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: اول (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارور (ایردی|ایدی)
+  translations:
+    en: (He|She) (used to go|would go) to the (market|bazaar).
+- id: s.13.21
+  node: chg.u13.used-to
+  forms:
+    chg-Arab/standard:
+      text: بیز چای ایچار ایردوق.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچار, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: ičär}}, {surface: ایردوق, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: erduq}}]
+      reverse: '[بیز] چای ایچار (ایردوق|ایردوک|ایدوق|ایدوک)'
+  translations:
+    en: We (used to drink|would drink) tea.
+- id: s.13.22
+  node: chg.u13.used-to
+  forms:
+    chg-Arab/standard:
+      text: اول کتاب اوقور ایردی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: اوقور, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: aor, surface: ر}], readings: {schluessel: oqur}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: اول کتاب اوقور (ایردی|ایدی)
+  translations:
+    en: (He|She) (used to read|would read) (books|a book).
+- id: s.13.23
+  node: chg.u13.used-to
+  forms:
+    chg-Arab/standard:
+      text: جانکالده یورور ایردی.
+      tokens: [{surface: جانکالده, lexemes: [{lexeme: jangal, surface: جانکال, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: jaŋgalda}}, {surface: یورور, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: yürür}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: (جانکالده|جانکالدا|جنکلده|جنکلدا) یورور (ایردی|ایدی)
+  translations:
+    en: (He|She) (used to go about|would go about|used to walk) in the wilderness.
+- id: s.13.24
+  node: chg.u13.used-to
+  forms:
+    chg-Arab/standard:
+      text: اول نان یر ایردی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: یر, lexemes: [{lexeme: ye, surface: ی, base: true}, {lexeme: aor, surface: ر}], readings: {schluessel: yär}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: اول نان یر (ایردی|ایدی)
+  translations:
+    en: (He|She) (used to eat|would eat) bread.
+- id: s.13.25
+  node: chg.u13.used-to
+  forms:
+    chg-Arab/standard:
+      text: بیر جانکال.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: جانکال, lexeme: jangal, readings: {schluessel: jaŋgal}}]
+      reverse: (بیر|بر) (جانکال|جنکل)
+  translations:
+    en: A wilderness.
+- id: s.13.26
+  node: chg.u13.used-to
+  forms:
+    chg-Arab/standard:
+      text: جانکالداقی آلقات.
+      tokens: [{surface: جانکالداقی, lexemes: [{lexeme: jangal, surface: جانکال, base: true}, {lexeme: daki, surface: داقی}], readings: {schluessel: jaŋgaldaqi}}, {surface: آلقات, lexeme: alqat, readings: {schluessel: alqat}}]
+      reverse: (جانکالداقی|جنکلداقی) آلقات
+  translations:
+    en: The scrub (in|of) the wilderness.
+- id: s.13.27
+  node: chg.u13.used-to
+  forms:
+    chg-Arab/standard:
+      text: خوراکی نان ایردی.
+      tokens: [{surface: خوراکی, lexemes: [{lexeme: khorak, surface: خوراک, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ḫorāki}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: خوراکی نان (ایردی|ایدی)
+  translations:
+    en: (His|Her) food was bread.
+- id: s.13.28
+  node: chg.u13.fish
+  forms:
+    chg-Arab/standard:
+      text: بالیق.
+      tokens: [{surface: بالیق, lexeme: baliq, readings: {schluessel: baliq}}]
+      reverse: (بالیق|بلیق)
+  translations:
+    en: (A|The) fish.
+- id: s.13.29
+  node: chg.u13.fish
+  forms:
+    chg-Arab/standard:
+      text: دریاده بالیق کوب.
+      tokens: [{surface: دریاده, lexemes: [{lexeme: darya, surface: دریا, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: daryāda}}, {surface: بالیق, lexeme: baliq, readings: {schluessel: baliq}}, {surface: کوب, lexeme: kop, readings: {schluessel: köp}}]
+      reverse: |-
+        (دریاده|دریادا) (بالیق|بلیق) (کوب|کوپ)
+        (دریاده|دریادا) (کوب|کوپ) (بالیق|بلیق) بار
+  translations:
+    en: There are many fish in the river.
+- id: s.13.30
+  node: chg.u13.fish
+  forms:
+    chg-Arab/standard:
+      text: بالیقنی توتتوق.
+      tokens: [{surface: بالیقنی, lexemes: [{lexeme: baliq, surface: بالیق, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: baliqni}}, {surface: توتتوق, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: past-1p, surface: توق}], readings: {schluessel: tuttuq}}]
+      reverse: (بالیقنی|بلیقنی) توتتوق
+  translations:
+    en: We caught the fish.
+- id: s.13.31
+  node: chg.u13.fish
+  forms:
+    chg-Arab/standard:
+      text: آفتاب ایسیق.
+      tokens: [{surface: آفتاب, lexeme: aftab, readings: {schluessel: āftāb}}, {surface: ایسیق, lexeme: issiq, readings: {schluessel: issiq}}]
+      reverse: "آفتاب ایسیق\nآفتاب ایسیق\u200cدور"
+  translations:
+    en: The sun is hot.
+- id: s.13.32
+  node: chg.u13.fish
+  forms:
+    chg-Arab/standard:
+      text: بالیقنی پیشوردی.
+      tokens: [{surface: بالیقنی, lexemes: [{lexeme: baliq, surface: بالیق, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: baliqni}}, {surface: پیشوردی, lexemes: [{lexeme: pishur, surface: پیشور, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: ṗišürdi}}]
+      reverse: (بالیقنی|بلیقنی) (پیشوردی|فیشوردی)
+  translations:
+    en: (He|She) cooked the fish.
+- id: s.13.33
+  node: chg.u13.fish
+  forms:
+    chg-Arab/standard:
+      text: بالیقنی یوتتی.
+      tokens: [{surface: بالیقنی, lexemes: [{lexeme: baliq, surface: بالیق, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: baliqni}}, {surface: یوتتی, lexemes: [{lexeme: yot, surface: یوت, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: yötti}}]
+      reverse: (بالیقنی|بلیقنی) یوتتی
+  translations:
+    en: (He|She) swallowed the fish.
+- id: s.13.34
+  node: chg.u13.fish
+  forms:
+    chg-Arab/standard:
+      text: اوستخوانلاری بیله یوتار ایردی.
+      tokens: [{surface: اوستخوانلاری, lexemes: [{lexeme: ustikhwan, surface: اوستخوان, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: ustiḫwānlari}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: یوتار, lexemes: [{lexeme: yot, surface: یوت, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: yötär}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: اوستخوانلاری (بیله|بیلان|بیرله) یوتار (ایردی|ایدی)
+  translations:
+    en: (He|She) (used to swallow|would swallow) them bones and all.
+- id: s.13.35
+  node: chg.u13.fish
+  forms:
+    chg-Arab/standard:
+      text: بلکه اول کلمادی.
+      tokens: [{surface: بلکه, lexeme: balke, readings: {schluessel: balke}}, {surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-3, surface: دی}], readings: {schluessel: kälmädi}}]
+      reverse: بلکه اول (کلمادی|کیلمادی)
+  translations:
+    en: (Indeed|Perhaps) (he|she) (did not|didn't) come.
+stories:
+- id: chg.story.the-giant
+  node: chg.u13.story
+  title:
+    en: The giant ʿĀj (The Stories of the Prophets)
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: عنوق دیکان حضرت آدم… قیزلاری ایردی.
+          tokens: [{surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: آدم, lexeme: adam, readings: {schluessel: Ādam}}, {surface: قیزلاری, lexemes: [{lexeme: qiz, surface: قیز, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: qizlari}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: ʿAnūq was a daughter of Adam (peace be upon him).
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: عاج دیکان انینک اوغلی ایردی.
+          tokens: [{surface: عاج, lexeme: aj, readings: {schluessel: ʿĀj}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: انینک, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: aniŋ}}, {surface: اوغلی, lexemes: [{lexeme: oghul, surface: اوغل, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: oǧli}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: ʿĀj was her son.
+  - line:
+      ask: complete
+      gap: lexeme:adi
+      distractors:
+      - lexeme:nan
+      - lexeme:darwaza
+      forms:
+        chg-Arab/standard:
+          text: اوزی بسیار اولوغ عادی ایردی.
+          tokens: [{surface: اوزی, lexemes: [{lexeme: oz, surface: اوز, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: özi}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: اولوغ, lexeme: ulugh, readings: {schluessel: uluǧ}}, {surface: عادی, lexeme: adi, readings: {schluessel: ʿādī}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: He was a very great giant.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "یول یورسه، بو ایاغی\u200cنینک اول ایاغی\u200cنینک اراسی بر کونجلوک یول ایردی."
+          tokens: [{surface: یول, lexeme: yol, readings: {schluessel: yul}}, {surface: یورسه, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: yürsä}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: "ایاغی\u200cنینک", lexemes: [{lexeme: ayaq, surface: ایاغ, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: ayaǧiniŋ}}, {surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: "ایاغی\u200cنینک", lexemes: [{lexeme: ayaq, surface: ایاغ, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: ayaǧiniŋ}}, {surface: اراسی, lexemes: [{lexeme: ara, surface: ارا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: arasi}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: کونجلوک, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: cilik, surface: جلوک}], readings: {schluessel: künčülük}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: When he walked, between this foot and that foot was a day's journey.
+  - choose:
+      prompt:
+        en: How big was ʿĀj?
+      options:
+      - en: One step of his was a day's journey.
+      - en: He was as tall as a house.
+      - en: He was a small boy.
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: خوراکی جانکالداقی آلقات ایردی.
+          tokens: [{surface: خوراکی, lexemes: [{lexeme: khorak, surface: خوراک, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ḫorāki}}, {surface: جانکالداقی, lexemes: [{lexeme: jangal, surface: جانکال, base: true}, {lexeme: daki, surface: داقی}], readings: {schluessel: jaŋgaldaqi}}, {surface: آلقات, lexeme: alqat, readings: {schluessel: alqat}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: His food was the scrub of the wilderness.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: دریادین اولوغ بالیقلارنی توتوب الیب، آفتابغه توتوب، فیشوروب، یر ایردی.
+          tokens: [{surface: دریادین, lexemes: [{lexeme: darya, surface: دریا, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: daryādin}}, {surface: اولوغ, lexeme: ulugh, readings: {schluessel: uluǧ}}, {surface: بالیقلارنی, lexemes: [{lexeme: baliq, surface: بالیق, base: true}, {lexeme: pl, surface: لار}, {lexeme: acc, surface: نی}], readings: {schluessel: baliqlarni}}, {surface: توتوب, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: tutup}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: آفتابغه, lexemes: [{lexeme: aftab, surface: آفتاب, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: āftābǧa}}, {surface: توتوب, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: tutup}}, {surface: فیشوروب, lexemes: [{lexeme: pishur, surface: فیشور, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: ṗišürüp}}, {surface: یر, lexemes: [{lexeme: ye, surface: ی, base: true}, {lexeme: aor, surface: ر}], readings: {schluessel: yär}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: He would catch great fish from the river, hold them up to the sun, cook them, and eat them.
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: بلکه اوستخوانلاری پله یوتار ایردی.
+          tokens: [{surface: بلکه, lexeme: balke, readings: {schluessel: balke}}, {surface: اوستخوانلاری, lexemes: [{lexeme: ustikhwan, surface: اوستخوان, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: ustiḫwānlari}}, {surface: پله, lexeme: bila, readings: {schluessel: billä}}, {surface: یوتار, lexemes: [{lexeme: yot, surface: یوت, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: yötär}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: Indeed, he would swallow them bones and all.
+  - choose:
+      prompt:
+        en: How did ʿĀj cook his fish?
+      options:
+      - en: He held them up to the sun.
+      - en: He boiled them in the river.
+      - en: He did not cook them at all.
+      answer: 0
+scenarios:
+- id: chg.the-storyteller
+  after: chg.u13.used-to
+  title:
+    en: The storyteller
+  setting:
+    en: A teahouse in Kashgar, around 1800, in the evening. A storyteller is telling the stories of the prophets.
+  character:
+    en: The storyteller, who loves to exaggerate and speaks only Turki.
+  goal:
+    en: Ask him who ʿĀj was and whose son he was, what he used to eat, and how big he was; say what you used to do as a child.

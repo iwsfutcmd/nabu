@@ -1,0 +1,24 @@
+# What fa declares beside its lexicon (schemas/language.schema.json).
+# Written by `nabu migrate` from courses/fa and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: fa
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@121c5143905c', status: draft}
+varieties: [fa-IR]
+registers: [formal, neutral, colloquial]
+dimensions:
+  NOUN: [Number]
+  VERB: [Tense, Person, Number]
+features:
+  Aspect: [Imp]
+  Definite: [Ind]
+  Degree: [Cmp]
+  Mood: [Sub]
+  NumType: [Card]
+  Number: [Plur, Sing]
+  Person: ['1', '2', '3']
+  Polarity: [Neg]
+  Poss: ['Yes']
+  PronType: [Dem, Int, Prs, Tot]
+  Tense: [Past]

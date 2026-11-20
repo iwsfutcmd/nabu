@@ -1,0 +1,18 @@
+# What lzh declares beside its lexicon (schemas/language.schema.json).
+# Written by `nabu migrate` from courses/lzh and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: lzh
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@d414ed40d7c1', status: draft}
+varieties: [lzh]
+registers: [formal]
+dimensions: {}
+features:
+  NounType: [Clf]
+  NumType: [Card]
+  PartType: [Mod]
+  Polarity: [Neg]
+  Poss: ['Yes']
+  PronType: [Dem, Ind, Int, Neg, Prs]
+  Reflex: ['Yes']

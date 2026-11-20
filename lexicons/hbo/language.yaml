@@ -1,0 +1,83 @@
+# What hbo declares beside its lexicon (schemas/language.schema.json).
+# Written by `nabu migrate` from courses/hbo and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: hbo
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@9c1463f61db9', status: draft}
+varieties: [hbo]
+registers: [formal]
+dimensions:
+  VERB: [Aspect, Tense, Mood, VerbForm, Person, Gender, Number]
+  NOUN: [Number, Definite]
+  ADJ: [Gender, Number]
+lexical:
+  NOUN: [Gender]
+  PROPN: [Gender]
+citation:
+  NOUN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  VERB: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: '3', Gender: Masc, Number: Sing}
+features:
+  Aspect: [Imp, Perf]
+  Case: [Lat]
+  Definite: [Cons]
+  Gender: [Fem, Masc]
+  Mood: [Imp, Ind, Jus, Opt]
+  NumType: [Card]
+  Number: [Dual, Plur, Sing]
+  PartType: [Int, Mod]
+  Person: ['1', '2', '3']
+  Polarity: [Neg]
+  PronType: [Dem, Ind, Int, Prs, Tot]
+  Tense: [Fut, Past]
+  VerbForm: [Fin, Inf, InfAbs, Part]
+  Voice: [Pass]
+defaults:
+- {id: gender-ah, when: {ends: ָה}, gives: {Gender: Fem}}
+- {id: gender-t, when: {ends: ת}, gives: {Gender: Fem}}
+- {id: gender-none, when: {pos: NOUN}, gives: {Gender: Masc}}
+- {id: gender-none-name, when: {pos: PROPN}, gives: {Gender: Masc}}
+labels:
+- {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'and he did: the narrative past (wayyiqtol), he or it'}, was: 'form:wayyiqtol-3ms'}
+- {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, gloss: {en: 'let him (it) do: the jussive; with אַל, ''do not …!'''}, was: 'form:juss'}
+- {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, gloss: {en: 'he did: the perfect (qatal), he or it'}, was: 'form:qatal-3ms'}
+- {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, gloss: {en: 'she did: the perfect (qatal), she or it (f.)'}, was: 'form:qatal-3fs'}
+- {feats: {Gender: Fem, Number: Sing}, gloss: {en: 'feminine: a feminine noun (אֶרֶץ ''land'', אִשָּׁה ''woman''), or an adjective with one (-â or -eṯ: טוֹבָה ''good'')'}, was: 'form:f'}
+- {feats: {Definite: Cons, Gender: Masc, Number: Plur}, gloss: {en: 'plural construct (-ê): ''the …s of''; also of nouns always plural (פְּנֵי ''the face of'')'}, was: 'form:pl-cstr'}
+- {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, gloss: {en: 'participle, feminine singular: she/it is doing'}, was: 'form:ptc-fs'}
+- {feats: {Gender: Masc, Number: Plur}, gloss: {en: 'plural, masculine (-îm, some -ôṯ: גּוֹרָלוֹת ''lots''); also nouns always plural (שָׁמַיִם ''heaven'', מַיִם ''water'')'}, was: 'form:pl'}
+- {feats: {Number: Plur}, pos: DET, gloss: {en: 'plural, masculine (-îm, some -ôṯ: גּוֹרָלוֹת ''lots''); also nouns always plural (שָׁמַיִם ''heaven'', מַיִם ''water'')'}, was: 'form:pl'}
+- {feats: {Definite: Cons, Gender: Fem, Number: Sing}, gloss: {en: 'feminine construct: ''X of …'', the noun bound to the next (רוּחַ אֱלֹהִים ''the spirit of God''; -â becomes -aṯ: אַדְמַת ''the ground of'')'}, was: 'form:f-cstr'}
+- {feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'and they did: the narrative past, they'}, was: 'form:wayyiqtol-3mp'}
+- {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, gloss: {en: 'I did: the perfect (qatal), I (-tî)'}, was: 'form:qatal-1cs'}
+- {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, gloss: {en: 'participle, masculine singular: he/it is doing; one who does (of a verb of state, its adjective: יָרֵא ''afraid'')'}, was: 'form:ptc-ms'}
+- {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'and I did: the narrative past, I'}, was: 'form:wayyiqtol-1cs'}
+- {feats: {Definite: Cons, Gender: Masc, Number: Sing}, gloss: {en: 'construct state: ''X of …'', the noun bound to the next (בְּתוֹךְ הַגָּן ''in the middle of the garden''; דְּבַר יְהוָה ''the word of the LORD'')'}, was: 'form:cstr'}
+- {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'you did: the perfect (qatal), you (to a man: -tā)'}, was: 'form:qatal-2ms'}
+- {feats: {VerbForm: Inf}, gloss: {en: 'infinitive (construct): to do; doing (לֶאֱכֹל ''to eat'')'}, was: 'form:inf'}
+- {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'you did: the perfect (qatal), you (to a woman: -t)'}, was: 'form:qatal-2fs'}
+- {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'and she did: the narrative past, she or it (f.)'}, was: 'form:wayyiqtol-3fs'}
+- {feats: {Gender: Masc, Number: Plur, VerbForm: Part}, gloss: {en: 'participle, masculine plural: they are doing; ones who do'}, was: 'form:ptc-mp'}
+- {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'imperative, to a man: do!'}, was: 'form:impv-ms'}
+- {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'imperative, to a woman: do!'}, was: 'form:impv-fs'}
+- {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, gloss: {en: 'imperative, to several people: do!'}, was: 'form:impv-mp'}
+- {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, gloss: {en: 'I will do: the imperfect (yiqtol), I'}, was: 'form:yiqtol-1cs'}
+- {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, gloss: {en: 'let me do, let us do: the cohortative (-â); ''I will …'' after a command'}, was: 'form:coh'}
+- {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, gloss: {en: 'he will do: the imperfect (yiqtol), he or it'}, was: 'form:yiqtol-3ms'}
+- {feats: {Aspect: Perf, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, gloss: {en: 'they did: the perfect (qatal), they (-û)'}, was: 'form:qatal-3cp'}
+- {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'you will do: the imperfect (yiqtol), you (to a man); with לֹא, ''you shall not'''}, was: 'form:yiqtol-2ms'}
+- {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'you will do: the imperfect (yiqtol), you (to a woman)'}, was: 'form:yiqtol-2fs'}
+- {feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, gloss: {en: 'passive participle: done, -ed (בָּרוּךְ ''blessed''; אֻכָּל ''consumed'' is an older kind)'}, was: 'form:ptc-pass'}
+- {feats: {Number: Dual}, gloss: {en: 'dual (-áyim): two of a pair (רַגְלַיִם ''feet'')'}, was: 'form:du'}
+- {feats: {Gender: Fem, Number: Plur}, gloss: {en: 'feminine plural (-ôṯ; some -îm: נָשִׁים ''women'')'}, was: 'form:f-pl'}
+- {feats: {VerbForm: InfAbs}, gloss: {en: 'the infinitive absolute: in laws, ''you shall …'' (כַּבֵּד ''honour''); before its own verb, ''surely'''}, was: 'form:inf-abs'}
+- {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, gloss: {en: 'they will do: the imperfect (yiqtol), they'}, was: 'form:yiqtol-3mp'}
+- {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '2', VerbForm: Fin}, gloss: {en: 'you will do: the imperfect (yiqtol), you (to several people)'}, was: 'form:yiqtol-2mp'}
+- {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, gloss: {en: 'and you shall do: the converted perfect (weqatal), you'}, was: 'form:weqatal-2ms'}
+- {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Fut, VerbForm: Fin}, gloss: {en: 'and they shall: the converted perfect (weqatal), they'}, was: 'form:weqatal-3cp'}
+- {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, gloss: {en: 'and he shall; and it will be: the converted perfect (weqatal), he or it'}, was: 'form:weqatal-3ms'}
+- {feats: {Definite: Cons, Gender: Fem, Number: Plur}, gloss: {en: 'feminine plural construct (-ôṯ): ''the …s of'' (מַעַרְכוֹת יִשְׂרָאֵל ''the ranks of Israel'')'}, was: 'form:f-pl-cstr'}
+- {feats: {Gender: Fem, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'and they (f.) did: the narrative past, they (women)'}, was: 'form:wayyiqtol-3fp'}
+- {feats: {Gender: Fem, Number: Sing, VerbForm: Part, Voice: Pass}, gloss: {en: 'passive participle, feminine singular: done, -ed, of a woman (בְּרוּכָה ''blessed'')'}, was: 'form:ptc-pass-fs'}

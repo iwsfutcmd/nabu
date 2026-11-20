@@ -1,0 +1,663 @@
+# Unit home of courses/uz in the new shape.
+# Written by `nabu migrate` from courses/uz and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: home
+title:
+  en: At home
+cefr: A1
+nodes:
+- {id: uz.home.house, kind: lesson, introduces: ['lexeme:uy', 'lexeme:yangi', 'lexeme:eski']}
+- {id: uz.home.at-home, kind: lesson, introduces: ['lexeme:loc']}
+- {id: uz.home.where, kind: lesson, introduces: ['lexeme:qayer', 'lexeme:toshkent', 'lexeme:samarqand', 'lexeme:yer']}
+- {id: uz.home.rooms, kind: lesson, introduces: ['lexeme:oshxona', 'lexeme:xona', 'lexeme:lekin', 'lexeme:toza']}
+- {id: uz.home.things, kind: lesson, introduces: ['lexeme:stol', 'lexeme:ust', 'lexeme:telefon', 'lexeme:deraza']}
+- {id: uz.home.cat, kind: lesson, introduces: ['lexeme:mushuk', 'lexeme:divan', 'lexeme:yon', 'lexeme:hech', 'lexeme:kalit']}
+- {id: uz.home.story, kind: story}
+sentences:
+- id: s.home.1
+  node: uz.home.house
+  forms:
+    uz-Latn/standard:
+      text: Bu mening uyim.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: mening, lexemes: [{lexeme: men, surface: men, base: true}, {lexeme: gen, surface: ing}]}, {surface: uyim, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: poss-1sg, surface: im}]}]
+      reverse: Bu [mening] uyim
+    uz-Cyrl/standard:
+      text: Бу менинг уйим.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: менинг, lexemes: [{lexeme: men, surface: мен, base: true}, {lexeme: gen, surface: инг}]}, {surface: уйим, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: poss-1sg, surface: им}]}]
+      reverse: Бу [менинг] уйим
+  translations:
+    en: This is my (house|home).
+- id: s.home.2
+  node: uz.home.house
+  forms:
+    uz-Latn/standard:
+      text: Uyimiz katta.
+      tokens: [{surface: Uyimiz, lexemes: [{lexeme: uy, surface: Uy, base: true}, {lexeme: poss-1pl, surface: imiz}]}, {surface: katta, lexeme: katta}]
+      reverse: '[Bizning] uyimiz katta'
+    uz-Cyrl/standard:
+      text: Уйимиз катта.
+      tokens: [{surface: Уйимиз, lexemes: [{lexeme: uy, surface: Уй, base: true}, {lexeme: poss-1pl, surface: имиз}]}, {surface: катта, lexeme: katta}]
+      reverse: '[Бизнинг] уйимиз катта'
+  translations:
+    en: Our (house|home) is (big|large).
+- id: s.home.3
+  node: uz.home.house
+  forms:
+    uz-Latn/standard:
+      text: Uyimiz yangi.
+      tokens: [{surface: Uyimiz, lexemes: [{lexeme: uy, surface: Uy, base: true}, {lexeme: poss-1pl, surface: imiz}]}, {surface: yangi, lexeme: yangi}]
+      reverse: '[Bizning] uyimiz yangi'
+    uz-Cyrl/standard:
+      text: Уйимиз янги.
+      tokens: [{surface: Уйимиз, lexemes: [{lexeme: uy, surface: Уй, base: true}, {lexeme: poss-1pl, surface: имиз}]}, {surface: янги, lexeme: yangi}]
+      reverse: '[Бизнинг] уйимиз янги'
+  translations:
+    en: Our (house|home) is new.
+- id: s.home.4
+  node: uz.home.house
+  forms:
+    uz-Latn/standard:
+      text: Bu uy eski.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: uy, lexeme: uy}, {surface: eski, lexeme: eski}]
+      reverse: Bu uy eski
+    uz-Cyrl/standard:
+      text: Бу уй эски.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: уй, lexeme: uy}, {surface: эски, lexeme: eski}]
+      reverse: Бу уй эски
+  translations:
+    en: This house is old.
+- id: s.home.5
+  node: uz.home.house
+  forms:
+    uz-Latn/standard:
+      text: Uyingiz juda chiroyli!
+      tokens: [{surface: Uyingiz, lexemes: [{lexeme: uy, surface: Uy, base: true}, {lexeme: poss-2, surface: ingiz}]}, {surface: juda, lexeme: juda}, {surface: chiroyli, lexeme: chiroyli}]
+      reverse: |-
+        [Sizning] uyingiz juda chiroyli
+        [Sening] uying juda chiroyli
+    uz-Cyrl/standard:
+      text: Уйингиз жуда чиройли!
+      tokens: [{surface: Уйингиз, lexemes: [{lexeme: uy, surface: Уй, base: true}, {lexeme: poss-2, surface: ингиз}]}, {surface: жуда, lexeme: juda}, {surface: чиройли, lexeme: chiroyli}]
+      reverse: |-
+        [Сизнинг] уйингиз жуда чиройли
+        [Сенинг] уйинг жуда чиройли
+  translations:
+    en: Your (house|home) is very (beautiful|nice|pretty|lovely)!
+- id: s.home.6
+  node: uz.home.at-home
+  forms:
+    uz-Latn/standard:
+      text: Onam uyda.
+      tokens: [{surface: Onam, lexemes: [{lexeme: ona, surface: Ona, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: uyda, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: '[Mening] (onam|oyim) uyda(|lar)'
+    uz-Cyrl/standard:
+      text: Онам уйда.
+      tokens: [{surface: Онам, lexemes: [{lexeme: ona, surface: Она, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: уйда, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: '[Менинг] (онам|ойим) уйда(|лар)'
+  translations:
+    en: My (mother|mom|mum) is (at home|home).
+- id: s.home.7
+  node: uz.home.at-home
+  forms:
+    uz-Latn/standard:
+      text: Men uydaman.
+      tokens: [{surface: Men, lexeme: men}, {surface: uydaman, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: loc, surface: da}, {lexeme: cop-1sg, surface: man}]}]
+      reverse: '[Men] uydaman'
+    uz-Cyrl/standard:
+      text: Мен уйдаман.
+      tokens: [{surface: Мен, lexeme: men}, {surface: уйдаман, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: loc, surface: да}, {lexeme: cop-1sg, surface: ман}]}]
+      reverse: '[Мен] уйдаман'
+  translations:
+    en: I('m| am) (at home|home).
+- id: s.home.8
+  node: uz.home.at-home
+  forms:
+    uz-Latn/standard:
+      text: Otangiz uydami?
+      tokens: [{surface: Otangiz, lexemes: [{lexeme: ota, surface: Ota, base: true}, {lexeme: poss-2, surface: ngiz}]}, {surface: uydami, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: loc, surface: da}, {lexeme: q, surface: mi}]}]
+      reverse: |-
+        [Sizning] (otangiz|dadangiz) (uydami|uydalarmi)
+        [Sening] (otang|dadang) uydami
+    uz-Cyrl/standard:
+      text: Отангиз уйдами?
+      tokens: [{surface: Отангиз, lexemes: [{lexeme: ota, surface: Ота, base: true}, {lexeme: poss-2, surface: нгиз}]}, {surface: уйдами, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: loc, surface: да}, {lexeme: q, surface: ми}]}]
+      reverse: |-
+        [Сизнинг] (отангиз|дадангиз) (уйдами|уйдаларми)
+        [Сенинг] (отанг|даданг) уйдами
+  translations:
+    en: Is your (father|dad) (at home|home)?
+- id: s.home.9
+  node: uz.home.at-home
+  forms:
+    uz-Latn/standard:
+      text: Yoʻq, u uyda emas.
+      tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: u, lexeme: u}, {surface: uyda, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: loc, surface: da}]}, {surface: emas, lexeme: emas}]
+      reverse: Yoʻq [u] uyda (emas|yoʻq)
+    uz-Cyrl/standard:
+      text: Йўқ, у уйда эмас.
+      tokens: [{surface: Йўқ, lexeme: yoq}, {surface: у, lexeme: u}, {surface: уйда, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: loc, surface: да}]}, {surface: эмас, lexeme: emas}]
+      reverse: Йўқ [у] уйда (эмас|йўқ)
+  translations:
+    en: No, (he|she)('s not| isn't| is not) (at home|home).
+- id: s.home.10
+  node: uz.home.at-home
+  forms:
+    uz-Latn/standard:
+      text: Uyda kim bor?
+      tokens: [{surface: Uyda, lexemes: [{lexeme: uy, surface: Uy, base: true}, {lexeme: loc, surface: da}]}, {surface: kim, lexeme: kim}, {surface: bor, lexeme: bor}]
+      reverse: Uyda kim bor
+    uz-Cyrl/standard:
+      text: Уйда ким бор?
+      tokens: [{surface: Уйда, lexemes: [{lexeme: uy, surface: Уй, base: true}, {lexeme: loc, surface: да}]}, {surface: ким, lexeme: kim}, {surface: бор, lexeme: bor}]
+      reverse: Уйда ким бор
+  translations:
+    en: Who('s| is) (at home|home)?
+- id: s.home.11
+  node: uz.home.where
+  forms:
+    uz-Latn/standard:
+      text: Siz qayerdasiz?
+      tokens: [{surface: Siz, lexeme: siz}, {surface: qayerdasiz, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}, {lexeme: cop-2, surface: siz}]}]
+      reverse: |-
+        [Siz] qayerdasiz
+        [Sen] qayerdasan
+    uz-Cyrl/standard:
+      text: Сиз қаердасиз?
+      tokens: [{surface: Сиз, lexeme: siz}, {surface: қаердасиз, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}, {lexeme: cop-2, surface: сиз}]}]
+      reverse: |-
+        [Сиз] қаердасиз
+        [Сен] қаердасан
+  translations:
+    en: Where are you?
+- id: s.home.12
+  node: uz.home.where
+  forms:
+    uz-Latn/standard:
+      text: Men Toshkentdaman.
+      tokens: [{surface: Men, lexeme: men}, {surface: Toshkentdaman, lexemes: [{lexeme: toshkent, surface: Toshkent, base: true}, {lexeme: loc, surface: da}, {lexeme: cop-1sg, surface: man}]}]
+      reverse: '[Men] Toshkentdaman'
+    uz-Cyrl/standard:
+      text: Мен Тошкентдаман.
+      tokens: [{surface: Мен, lexeme: men}, {surface: Тошкентдаман, lexemes: [{lexeme: toshkent, surface: Тошкент, base: true}, {lexeme: loc, surface: да}, {lexeme: cop-1sg, surface: ман}]}]
+      reverse: '[Мен] Тошкентдаман'
+  translations:
+    en: I('m| am) in Tashkent.
+- id: s.home.13
+  node: uz.home.where
+  forms:
+    uz-Latn/standard:
+      text: Uyim Samarqandda.
+      tokens: [{surface: Uyim, lexemes: [{lexeme: uy, surface: Uy, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: Samarqandda, lexemes: [{lexeme: samarqand, surface: Samarqand, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: '[Mening] uyim Samarqandda'
+    uz-Cyrl/standard:
+      text: Уйим Самарқандда.
+      tokens: [{surface: Уйим, lexemes: [{lexeme: uy, surface: Уй, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: Самарқандда, lexemes: [{lexeme: samarqand, surface: Самарқанд, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: '[Менинг] уйим Самарқандда'
+  translations:
+    en: My (house|home) is in Samarkand.
+- id: s.home.14
+  node: uz.home.where
+  forms:
+    uz-Latn/standard:
+      text: Kitobim qayerda?
+      tokens: [{surface: Kitobim, lexemes: [{lexeme: kitob, surface: Kitob, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: |-
+        [Mening] kitobim (qayerda|qani)
+        Qani [mening] kitobim
+    uz-Cyrl/standard:
+      text: Китобим қаерда?
+      tokens: [{surface: Китобим, lexemes: [{lexeme: kitob, surface: Китоб, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: |-
+        [Менинг] китобим (қаерда|қани)
+        Қани [менинг] китобим
+  translations:
+    en: Where('s| is) my book?
+- id: s.home.15
+  node: uz.home.where
+  forms:
+    uz-Latn/standard:
+      text: Kitobingiz bu yerda.
+      tokens: [{surface: Kitobingiz, lexemes: [{lexeme: kitob, surface: Kitob, base: true}, {lexeme: poss-2, surface: ingiz}]}, {surface: bu, lexeme: bu}, {surface: yerda, lexemes: [{lexeme: yer, surface: yer, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: |-
+        [Sizning] kitobingiz (bu|shu) yerda
+        [Sening] kitobing (bu|shu) yerda
+    uz-Cyrl/standard:
+      text: Китобингиз бу ерда.
+      tokens: [{surface: Китобингиз, lexemes: [{lexeme: kitob, surface: Китоб, base: true}, {lexeme: poss-2, surface: ингиз}]}, {surface: бу, lexeme: bu}, {surface: ерда, lexemes: [{lexeme: yer, surface: ер, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: |-
+        [Сизнинг] китобингиз (бу|шу) ерда
+        [Сенинг] китобинг (бу|шу) ерда
+  translations:
+    en: Your book is here.
+- id: s.home.16
+  node: uz.home.where
+  forms:
+    uz-Latn/standard:
+      text: Akam u yerda.
+      tokens: [{surface: Akam, lexemes: [{lexeme: aka, surface: Aka, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: u, lexeme: u}, {surface: yerda, lexemes: [{lexeme: yer, surface: yer, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: '[Mening] akam (u|oʻsha) yerda'
+    uz-Cyrl/standard:
+      text: Акам у ерда.
+      tokens: [{surface: Акам, lexemes: [{lexeme: aka, surface: Ака, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: у, lexeme: u}, {surface: ерда, lexemes: [{lexeme: yer, surface: ер, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: '[Менинг] акам (у|ўша) ерда'
+  translations:
+    en: My (older|elder|big) brother is [over] there.
+- id: s.home.17
+  node: uz.home.rooms
+  forms:
+    uz-Latn/standard:
+      text: Bu oshxona.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: oshxona, lexeme: oshxona}]
+      reverse: Bu oshxona
+    uz-Cyrl/standard:
+      text: Бу ошхона.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: ошхона, lexeme: oshxona}]
+      reverse: Бу ошхона
+  translations:
+    en: This is (the|a) kitchen.
+- id: s.home.18
+  node: uz.home.rooms
+  forms:
+    uz-Latn/standard:
+      text: Onam oshxonada.
+      tokens: [{surface: Onam, lexemes: [{lexeme: ona, surface: Ona, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: oshxonada, lexemes: [{lexeme: oshxona, surface: oshxona, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: '[Mening] (onam|oyim) oshxonada(|lar)'
+    uz-Cyrl/standard:
+      text: Онам ошхонада.
+      tokens: [{surface: Онам, lexemes: [{lexeme: ona, surface: Она, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: ошхонада, lexemes: [{lexeme: oshxona, surface: ошхона, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: '[Менинг] (онам|ойим) ошхонада(|лар)'
+  translations:
+    en: My (mother|mom|mum) is in the kitchen.
+- id: s.home.19
+  node: uz.home.rooms
+  forms:
+    uz-Latn/standard:
+      text: Bu mening xonam.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: mening, lexemes: [{lexeme: men, surface: men, base: true}, {lexeme: gen, surface: ing}]}, {surface: xonam, lexemes: [{lexeme: xona, surface: xona, base: true}, {lexeme: poss-1sg, surface: m}]}]
+      reverse: Bu [mening] xonam
+    uz-Cyrl/standard:
+      text: Бу менинг хонам.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: менинг, lexemes: [{lexeme: men, surface: мен, base: true}, {lexeme: gen, surface: инг}]}, {surface: хонам, lexemes: [{lexeme: xona, surface: хона, base: true}, {lexeme: poss-1sg, surface: м}]}]
+      reverse: Бу [менинг] хонам
+  translations:
+    en: This is my room.
+- id: s.home.20
+  node: uz.home.rooms
+  forms:
+    uz-Latn/standard:
+      text: Xonam kichik, lekin chiroyli.
+      tokens: [{surface: Xonam, lexemes: [{lexeme: xona, surface: Xona, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: kichik, lexeme: kichik}, {surface: lekin, lexeme: lekin}, {surface: chiroyli, lexeme: chiroyli}]
+      reverse: |-
+        [Mening] xonam kichik (lekin|ammo|biroq) chiroyli
+        Xonam kichkina, lekin chiroyli
+    uz-Cyrl/standard:
+      text: Хонам кичик, лекин чиройли.
+      tokens: [{surface: Хонам, lexemes: [{lexeme: xona, surface: Хона, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: кичик, lexeme: kichik}, {surface: лекин, lexeme: lekin}, {surface: чиройли, lexeme: chiroyli}]
+      reverse: |-
+        [Менинг] хонам кичик (лекин|аммо|бироқ) чиройли
+        Хонам кичкина, лекин чиройли
+  translations:
+    en: My room is (small|little), but [it('s| is)] (nice|beautiful|pretty).
+- id: s.home.21
+  node: uz.home.rooms
+  forms:
+    uz-Latn/standard:
+      text: Oshxona toza.
+      tokens: [{surface: Oshxona, lexeme: oshxona}, {surface: toza, lexeme: toza}]
+      reverse: Oshxona toza
+    uz-Cyrl/standard:
+      text: Ошхона тоза.
+      tokens: [{surface: Ошхона, lexeme: oshxona}, {surface: тоза, lexeme: toza}]
+      reverse: Ошхона тоза
+  translations:
+    en: The kitchen is clean.
+- id: s.home.22
+  node: uz.home.things
+  forms:
+    uz-Latn/standard:
+      text: Oshxonada stol bor.
+      tokens: [{surface: Oshxonada, lexemes: [{lexeme: oshxona, surface: Oshxona, base: true}, {lexeme: loc, surface: da}]}, {surface: stol, lexeme: stol}, {surface: bor, lexeme: bor}]
+      reverse: Oshxonada stol bor
+    uz-Cyrl/standard:
+      text: Ошхонада стол бор.
+      tokens: [{surface: Ошхонада, lexemes: [{lexeme: oshxona, surface: Ошхона, base: true}, {lexeme: loc, surface: да}]}, {surface: стол, lexeme: stol}, {surface: бор, lexeme: bor}]
+      reverse: Ошхонада стол бор
+  translations:
+    en: |-
+      There('s| is) a table in the kitchen.
+      The kitchen has a table.
+- id: s.home.23
+  node: uz.home.things
+  forms:
+    uz-Latn/standard:
+      text: Kitob stol ustida.
+      tokens: [{surface: Kitob, lexeme: kitob}, {surface: stol, lexeme: stol}, {surface: ustida, lexemes: [{lexeme: ust, surface: ust, base: true}, {lexeme: poss-3, surface: i}, {lexeme: loc, surface: da}]}]
+      reverse: Kitob (stol ustida|stolda)
+    uz-Cyrl/standard:
+      text: Китоб стол устида.
+      tokens: [{surface: Китоб, lexeme: kitob}, {surface: стол, lexeme: stol}, {surface: устида, lexemes: [{lexeme: ust, surface: уст, base: true}, {lexeme: poss-3, surface: и}, {lexeme: loc, surface: да}]}]
+      reverse: Китоб (стол устида|столда)
+  translations:
+    en: The book is on the table.
+- id: s.home.24
+  node: uz.home.things
+  forms:
+    uz-Latn/standard:
+      text: Telefonim qayerda?
+      tokens: [{surface: Telefonim, lexemes: [{lexeme: telefon, surface: Telefon, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: |-
+        [Mening] telefonim (qayerda|qani)
+        Qani [mening] telefonim
+    uz-Cyrl/standard:
+      text: Телефоним қаерда?
+      tokens: [{surface: Телефоним, lexemes: [{lexeme: telefon, surface: Телефон, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: |-
+        [Менинг] телефоним (қаерда|қани)
+        Қани [менинг] телефоним
+  translations:
+    en: Where('s| is) my (phone|telephone)?
+- id: s.home.25
+  node: uz.home.things
+  forms:
+    uz-Latn/standard:
+      text: Telefoningiz stol ustida.
+      tokens: [{surface: Telefoningiz, lexemes: [{lexeme: telefon, surface: Telefon, base: true}, {lexeme: poss-2, surface: ingiz}]}, {surface: stol, lexeme: stol}, {surface: ustida, lexemes: [{lexeme: ust, surface: ust, base: true}, {lexeme: poss-3, surface: i}, {lexeme: loc, surface: da}]}]
+      reverse: |-
+        [Sizning] telefoningiz (stol ustida|stolda)
+        [Sening] telefoning (stol ustida|stolda)
+    uz-Cyrl/standard:
+      text: Телефонингиз стол устида.
+      tokens: [{surface: Телефонингиз, lexemes: [{lexeme: telefon, surface: Телефон, base: true}, {lexeme: poss-2, surface: ингиз}]}, {surface: стол, lexeme: stol}, {surface: устида, lexemes: [{lexeme: ust, surface: уст, base: true}, {lexeme: poss-3, surface: и}, {lexeme: loc, surface: да}]}]
+      reverse: |-
+        [Сизнинг] телефонингиз (стол устида|столда)
+        [Сенинг] телефонинг (стол устида|столда)
+  translations:
+    en: Your (phone|telephone) is on the table.
+- id: s.home.26
+  node: uz.home.things
+  forms:
+    uz-Latn/standard:
+      text: Xonamda katta deraza bor.
+      tokens: [{surface: Xonamda, lexemes: [{lexeme: xona, surface: Xona, base: true}, {lexeme: poss-1sg, surface: m}, {lexeme: loc, surface: da}]}, {surface: katta, lexeme: katta}, {surface: deraza, lexeme: deraza}, {surface: bor, lexeme: bor}]
+      reverse: '[Mening] xonamda katta deraza bor'
+    uz-Cyrl/standard:
+      text: Хонамда катта дераза бор.
+      tokens: [{surface: Хонамда, lexemes: [{lexeme: xona, surface: Хона, base: true}, {lexeme: poss-1sg, surface: м}, {lexeme: loc, surface: да}]}, {surface: катта, lexeme: katta}, {surface: дераза, lexeme: deraza}, {surface: бор, lexeme: bor}]
+      reverse: '[Менинг] хонамда катта дераза бор'
+  translations:
+    en: |-
+      There('s| is) a (big|large) window in my room.
+      My room has a (big|large) window.
+- id: s.home.27
+  node: uz.home.cat
+  forms:
+    uz-Latn/standard:
+      text: Mushuk qayerda?
+      tokens: [{surface: Mushuk, lexeme: mushuk}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: |-
+        Mushuk (qayerda|qani)
+        Qani mushuk
+    uz-Cyrl/standard:
+      text: Мушук қаерда?
+      tokens: [{surface: Мушук, lexeme: mushuk}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: |-
+        Мушук (қаерда|қани)
+        Қани мушук
+  translations:
+    en: Where('s| is) the cat?
+- id: s.home.28
+  node: uz.home.cat
+  forms:
+    uz-Latn/standard:
+      text: Mushuk divanda.
+      tokens: [{surface: Mushuk, lexeme: mushuk}, {surface: divanda, lexemes: [{lexeme: divan, surface: divan, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: |-
+        Mushuk divanda
+        Mushuk divan ustida
+    uz-Cyrl/standard:
+      text: Мушук диванда.
+      tokens: [{surface: Мушук, lexeme: mushuk}, {surface: диванда, lexemes: [{lexeme: divan, surface: диван, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: |-
+        Мушук диванда
+        Мушук диван устида
+  translations:
+    en: The cat is on the (sofa|couch).
+- id: s.home.29
+  node: uz.home.cat
+  forms:
+    uz-Latn/standard:
+      text: Mushuk deraza yonida.
+      tokens: [{surface: Mushuk, lexeme: mushuk}, {surface: deraza, lexeme: deraza}, {surface: yonida, lexemes: [{lexeme: yon, surface: yon, base: true}, {lexeme: poss-3, surface: i}, {lexeme: loc, surface: da}]}]
+      reverse: Mushuk (deraza|derazaning) yonida
+    uz-Cyrl/standard:
+      text: Мушук дераза ёнида.
+      tokens: [{surface: Мушук, lexeme: mushuk}, {surface: дераза, lexeme: deraza}, {surface: ёнида, lexemes: [{lexeme: yon, surface: ён, base: true}, {lexeme: poss-3, surface: и}, {lexeme: loc, surface: да}]}]
+      reverse: Мушук (дераза|деразанинг) ёнида
+  translations:
+    en: The cat is (next to|by|beside) the window.
+- id: s.home.30
+  node: uz.home.cat
+  forms:
+    uz-Latn/standard:
+      text: Uyda hech kim yoʻq.
+      tokens: [{surface: Uyda, lexemes: [{lexeme: uy, surface: Uy, base: true}, {lexeme: loc, surface: da}]}, {surface: hech, lexeme: hech}, {surface: kim, lexeme: kim}, {surface: yoʻq, lexeme: yoq}]
+      reverse: Uyda hech kim yoʻq
+    uz-Cyrl/standard:
+      text: Уйда ҳеч ким йўқ.
+      tokens: [{surface: Уйда, lexemes: [{lexeme: uy, surface: Уй, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳеч, lexeme: hech}, {surface: ким, lexeme: kim}, {surface: йўқ, lexeme: yoq}]
+      reverse: Уйда ҳеч ким йўқ
+  translations:
+    en: |-
+      There('s| is) (nobody|no one) (at home|home).
+      (Nobody|No one)('s| is) (at home|home).
+- id: s.home.31
+  node: uz.home.cat
+  forms:
+    uz-Latn/standard:
+      text: Kalitim yoʻq.
+      tokens: [{surface: Kalitim, lexemes: [{lexeme: kalit, surface: Kalit, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: yoʻq, lexeme: yoq}]
+      reverse: '[Mening] kalitim yoʻq'
+    uz-Cyrl/standard:
+      text: Калитим йўқ.
+      tokens: [{surface: Калитим, lexemes: [{lexeme: kalit, surface: Калит, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: йўқ, lexeme: yoq}]
+      reverse: '[Менинг] калитим йўқ'
+  translations:
+    en: |-
+      I (don't|do not) have my key.
+      I (don't|do not) have a key.
+      I have no key.
+      I haven't got a key.
+      I haven't got my key.
+- id: s.home.32
+  node: uz.home.cat
+  forms:
+    uz-Latn/standard:
+      text: Kalit bu yerda!
+      tokens: [{surface: Kalit, lexeme: kalit}, {surface: bu, lexeme: bu}, {surface: yerda, lexemes: [{lexeme: yer, surface: yer, base: true}, {lexeme: loc, surface: da}]}]
+      reverse: |-
+        Kalit bu yerda
+        Kalit shu yerda
+    uz-Cyrl/standard:
+      text: Калит бу ерда!
+      tokens: [{surface: Калит, lexeme: kalit}, {surface: бу, lexeme: bu}, {surface: ерда, lexemes: [{lexeme: yer, surface: ер, base: true}, {lexeme: loc, surface: да}]}]
+      reverse: |-
+        Калит бу ерда
+        Калит шу ерда
+  translations:
+    en: The key is here!
+stories:
+- id: uz.story.home
+  node: uz.home.story
+  title:
+    en: Where is my phone?
+  provenance:
+    author: llm:claude@887599f213ef
+    status: draft
+  characters:
+  - id: bobur
+    name:
+      uz-Latn/standard: Bobur
+      uz-Cyrl/standard: Бобур
+  - id: malika
+    name:
+      uz-Latn/standard: Malika
+      uz-Cyrl/standard: Малика
+  steps:
+  - line:
+      speaker: bobur
+      ask: complete
+      gap: lexeme:telefon
+      distractors:
+      - lexeme:ism
+      - lexeme:xona
+      forms:
+        uz-Latn/standard:
+          text: Malika, telefonim qayerda?
+          tokens: [{surface: Malika, lexeme: malika}, {surface: telefonim, lexemes: [{lexeme: telefon, surface: telefon, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
+        uz-Cyrl/standard:
+          text: Малика, телефоним қаерда?
+          tokens: [{surface: Малика, lexeme: malika}, {surface: телефоним, lexemes: [{lexeme: telefon, surface: телефон, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
+      translations:
+        en: Malika, where is my phone?
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Xonangizda emasmi?
+          tokens: [{surface: Xonangizda, lexemes: [{lexeme: xona, surface: Xona, base: true}, {lexeme: poss-2, surface: ngiz}, {lexeme: loc, surface: da}]}, {surface: emasmi, lexemes: [{lexeme: emas, surface: emas, base: true}, {lexeme: q, surface: mi}]}]
+        uz-Cyrl/standard:
+          text: Хонангизда эмасми?
+          tokens: [{surface: Хонангизда, lexemes: [{lexeme: xona, surface: Хона, base: true}, {lexeme: poss-2, surface: нгиз}, {lexeme: loc, surface: да}]}, {surface: эмасми, lexemes: [{lexeme: emas, surface: эмас, base: true}, {lexeme: q, surface: ми}]}]
+      translations:
+        en: Isn't it in your room?
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Yoʻq, xonamda yoʻq.
+          tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: xonamda, lexemes: [{lexeme: xona, surface: xona, base: true}, {lexeme: poss-1sg, surface: m}, {lexeme: loc, surface: da}]}, {surface: yoʻq, lexeme: yoq}]
+        uz-Cyrl/standard:
+          text: Йўқ, хонамда йўқ.
+          tokens: [{surface: Йўқ, lexeme: yoq}, {surface: хонамда, lexemes: [{lexeme: xona, surface: хона, base: true}, {lexeme: poss-1sg, surface: м}, {lexeme: loc, surface: да}]}, {surface: йўқ, lexeme: yoq}]
+      translations:
+        en: No, it's not in my room.
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Stol ustidami?
+          tokens: [{surface: Stol, lexeme: stol}, {surface: ustidami, lexemes: [{lexeme: ust, surface: ust, base: true}, {lexeme: poss-3, surface: i}, {lexeme: loc, surface: da}, {lexeme: q, surface: mi}]}]
+        uz-Cyrl/standard:
+          text: Стол устидами?
+          tokens: [{surface: Стол, lexeme: stol}, {surface: устидами, lexemes: [{lexeme: ust, surface: уст, base: true}, {lexeme: poss-3, surface: и}, {lexeme: loc, surface: да}, {lexeme: q, surface: ми}]}]
+      translations:
+        en: Is it on the table?
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Yoʻq, stol ustida ham yoʻq.
+          tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: stol, lexeme: stol}, {surface: ustida, lexemes: [{lexeme: ust, surface: ust, base: true}, {lexeme: poss-3, surface: i}, {lexeme: loc, surface: da}]}, {surface: ham, lexeme: ham}, {surface: yoʻq, lexeme: yoq}]
+        uz-Cyrl/standard:
+          text: Йўқ, стол устида ҳам йўқ.
+          tokens: [{surface: Йўқ, lexeme: yoq}, {surface: стол, lexeme: stol}, {surface: устида, lexemes: [{lexeme: ust, surface: уст, base: true}, {lexeme: poss-3, surface: и}, {lexeme: loc, surface: да}]}, {surface: ҳам, lexeme: ham}, {surface: йўқ, lexeme: yoq}]
+      translations:
+        en: No, it's not on the table either.
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Oshxonadami?
+          tokens: [{surface: Oshxonadami, lexemes: [{lexeme: oshxona, surface: Oshxona, base: true}, {lexeme: loc, surface: da}, {lexeme: q, surface: mi}]}]
+        uz-Cyrl/standard:
+          text: Ошхонадами?
+          tokens: [{surface: Ошхонадами, lexemes: [{lexeme: oshxona, surface: Ошхона, base: true}, {lexeme: loc, surface: да}, {lexeme: q, surface: ми}]}]
+      translations:
+        en: Is it in the kitchen?
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Oshxonada ham yoʻq.
+          tokens: [{surface: Oshxonada, lexemes: [{lexeme: oshxona, surface: Oshxona, base: true}, {lexeme: loc, surface: da}]}, {surface: ham, lexeme: ham}, {surface: yoʻq, lexeme: yoq}]
+        uz-Cyrl/standard:
+          text: Ошхонада ҳам йўқ.
+          tokens: [{surface: Ошхонада, lexemes: [{lexeme: oshxona, surface: Ошхона, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳам, lexeme: ham}, {surface: йўқ, lexeme: yoq}]
+      translations:
+        en: It's not in the kitchen either.
+  - choose:
+      prompt:
+        en: Where has Bobur already looked?
+      options:
+      - en: In his room, on the table and in the kitchen
+      - en: Only in the kitchen
+      - en: Nowhere yet
+      answer: 0
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Mushuk qayerda?
+          tokens: [{surface: Mushuk, lexeme: mushuk}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
+        uz-Cyrl/standard:
+          text: Мушук қаерда?
+          tokens: [{surface: Мушук, lexeme: mushuk}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
+      translations:
+        en: Where is the cat?
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Mushuk divanda.
+          tokens: [{surface: Mushuk, lexeme: mushuk}, {surface: divanda, lexemes: [{lexeme: divan, surface: divan, base: true}, {lexeme: loc, surface: da}]}]
+        uz-Cyrl/standard:
+          text: Мушук диванда.
+          tokens: [{surface: Мушук, lexeme: mushuk}, {surface: диванда, lexemes: [{lexeme: divan, surface: диван, base: true}, {lexeme: loc, surface: да}]}]
+      translations:
+        en: The cat is on the sofa.
+  - line:
+      speaker: malika
+      ask: arrange
+      forms:
+        uz-Latn/standard:
+          text: Aka, telefoningiz ham divanda!
+          tokens: [{surface: Aka, lexeme: aka}, {surface: telefoningiz, lexemes: [{lexeme: telefon, surface: telefon, base: true}, {lexeme: poss-2, surface: ingiz}]}, {surface: ham, lexeme: ham}, {surface: divanda, lexemes: [{lexeme: divan, surface: divan, base: true}, {lexeme: loc, surface: da}]}]
+        uz-Cyrl/standard:
+          text: Ака, телефонингиз ҳам диванда!
+          tokens: [{surface: Ака, lexeme: aka}, {surface: телефонингиз, lexemes: [{lexeme: telefon, surface: телефон, base: true}, {lexeme: poss-2, surface: ингиз}]}, {surface: ҳам, lexeme: ham}, {surface: диванда, lexemes: [{lexeme: divan, surface: диван, base: true}, {lexeme: loc, surface: да}]}]
+      translations:
+        en: Brother, your phone is on the sofa too!
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Rahmat, Malika!
+          tokens: [{surface: Rahmat, lexeme: rahmat}, {surface: Malika, lexeme: malika}]
+        uz-Cyrl/standard:
+          text: Раҳмат, Малика!
+          tokens: [{surface: Раҳмат, lexeme: rahmat}, {surface: Малика, lexeme: malika}]
+      translations:
+        en: Thank you, Malika!
+  - choose:
+      prompt:
+        en: Where was the phone?
+      options:
+      - en: On the sofa, with the cat
+      - en: In the kitchen
+      - en: On the table
+      answer: 0
+scenarios:
+- id: uz.visit-home
+  after: uz.home.cat
+  title:
+    en: Visiting a friend's home
+  setting:
+    en: A family flat in Tashkent. Your friend's mother has just opened the door to you.
+  character:
+    en: 'Your friend''s mother: warm, curious and proud of her home, happy to show you the rooms.'
+  goal:
+    en: Greet her, say where your own home is, and ask where things and family members are.
+  provenance:
+    author: llm:claude@887599f213ef
+    status: draft

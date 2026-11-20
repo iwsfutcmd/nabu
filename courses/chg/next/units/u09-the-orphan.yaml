@@ -1,0 +1,455 @@
+# Unit u09-the-orphan of courses/chg in the new shape.
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u09-the-orphan
+title:
+  en: The orphan
+cefr: A2
+nodes:
+- {id: chg.u09.was, kind: lesson, introduces: ['lexeme:er']}
+- {id: chg.u09.self, kind: lesson, introduces: ['lexeme:oz']}
+- {id: chg.u09.found-no-one, kind: lesson, introduces: ['lexeme:hech', 'lexeme:tap', 'lexeme:munasib', 'lexeme:har', 'lexeme:fikir', 'lexeme:chand', 'lexeme:zurur', 'lexeme:sabab']}
+- {id: chg.u09.a-proverb, kind: lesson, introduces: ['lexeme:mithl', 'lexeme:turur', 'lexeme:oksuz', 'lexeme:kes', 'lexeme:kindik']}
+- {id: chg.u09.if, kind: lesson, introduces: ['lexeme:cond-1s', 'lexeme:ishit', 'lexeme:ajab']}
+- {id: chg.u09.the-earth, kind: lesson, introduces: ['lexeme:yuz.face', 'lexeme:keng', 'lexeme:taqi', 'lexeme:shajara', 'lexeme:qoy.put']}
+- {id: chg.u09.story, kind: story}
+sentences:
+- id: s.09.1
+  node: chg.u09.was
+  forms:
+    chg-Arab/standard:
+      text: اول اویده ایردی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: اویده, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: öydä}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: اول (اویده|اویدا) (ایردی|ایدی)
+  translations:
+    en: (He|She) was (at home|in the house).
+- id: s.09.2
+  node: chg.u09.was
+  forms:
+    chg-Arab/standard:
+      text: بیر پادشاه بار ایردی.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: (بیر|بر) (پادشاه|بادشاه|فادشاه) بار (ایردی|ایدی)
+  translations:
+    en: There was a king.
+- id: s.09.3
+  node: chg.u09.was
+  forms:
+    chg-Arab/standard:
+      text: بیز کچیک ایردوق.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}, {surface: ایردوق, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: erduq}}]
+      reverse: '[بیز] (کچیک|کیچیک) (ایردوق|ایردوک|ایدوق|ایدوک)'
+  translations:
+    en: We were (small|little|young).
+- id: s.09.4
+  node: chg.u09.was
+  forms:
+    chg-Arab/standard:
+      text: شهرده سو یوق ایردی.
+      tokens: [{surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: (شهرده|شهردا) سو یوق (ایردی|ایدی)
+  translations:
+    en: There was no water in the (city|town).
+- id: s.09.5
+  node: chg.u09.was
+  forms:
+    chg-Arab/standard:
+      text: بزارده ایردیم.
+      tokens: [{surface: بزارده, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bazārda}}, {surface: ایردیم, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: erdim}}]
+      reverse: '[من] (بزارده|بزاردا|بازارده|بازاردا) (ایردیم|ایدیم)'
+  translations:
+    en: I was (in|at) the (market|bazaar).
+- id: s.09.6
+  node: chg.u09.was
+  forms:
+    chg-Arab/standard:
+      text: اول کچیک ایماس ایردی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: اول (کچیک|کیچیک) (ایماس|ایرماس) (ایردی|ایدی)
+  translations:
+    en: (He|She) was not (small|little|young).
+- id: s.09.7
+  node: chg.u09.self
+  forms:
+    chg-Arab/standard:
+      text: اوز اویوم.
+      tokens: [{surface: اوز, lexeme: oz, readings: {schluessel: öz}}, {surface: اویوم, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: poss1s, surface: وم}], readings: {schluessel: öyüm}}]
+      reverse: اوز اویوم
+  translations:
+    en: My own house.
+- id: s.09.8
+  node: chg.u09.self
+  forms:
+    chg-Arab/standard:
+      text: اوزوم باردیم.
+      tokens: [{surface: اوزوم, lexemes: [{lexeme: oz, surface: اوز, base: true}, {lexeme: poss1s, surface: وم}], readings: {schluessel: özüm}}, {surface: باردیم, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: bardim}}]
+      reverse: |-
+        اوزوم باردیم
+        من اوزوم باردیم
+  translations:
+    en: I went myself.
+- id: s.09.9
+  node: chg.u09.self
+  forms:
+    chg-Arab/standard:
+      text: اول اوز کتابینی اوقودی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: اوز, lexeme: oz, readings: {schluessel: öz}}, {surface: کتابینی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābini}}, {surface: اوقودی, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: oqudi}}]
+      reverse: اول اوز کتابینی اوقودی
+  translations:
+    en: (He|She) read (his|her) own book.
+- id: s.09.10
+  node: chg.u09.self
+  forms:
+    chg-Arab/standard:
+      text: اوزیمیز ایتدوق.
+      tokens: [{surface: اوزیمیز, lexemes: [{lexeme: oz, surface: اوز, base: true}, {lexeme: poss1p, surface: یمیز}], readings: {schluessel: özimiz}}, {surface: ایتدوق, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: aytduq}}]
+      reverse: |-
+        اوزیمیز (ایتدوق|ایتدوک)
+        بیز اوزیمیز (ایتدوق|ایتدوک)
+  translations:
+    en: We told (it|) ourselves.
+- id: s.09.11
+  node: chg.u09.self
+  forms:
+    chg-Arab/standard:
+      text: اوز آتینی بیلمایدور.
+      tokens: [{surface: اوز, lexeme: oz, readings: {schluessel: öz}}, {surface: آتینی, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: atini}}, {surface: بیلمایدور, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: bilmäydur}}]
+      reverse: اوز (آتینی|اتینی) بیلمایدور
+  translations:
+    en: (He|She) (does not|doesn't) know (his|her) own name.
+- id: s.09.12
+  node: chg.u09.found-no-one
+  forms:
+    chg-Arab/standard:
+      text: هیچ کشی یوق.
+      tokens: [{surface: هیچ, lexeme: hech, readings: {schluessel: heč}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      reverse: "هیچ (کشی|کیشی) یوق\nهیچ (کشی|کیشی) یوق\u200cتور"
+  translations:
+    en: There is no one.
+- id: s.09.13
+  node: chg.u09.found-no-one
+  forms:
+    chg-Arab/standard:
+      text: هیچ نمه تاپمادیم.
+      tokens: [{surface: هیچ, lexeme: hech, readings: {schluessel: heč}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}, {surface: تاپمادیم, lexemes: [{lexeme: tap, surface: تاپ, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: tapmadim}}]
+      reverse: هیچ (نمه|نیمه) (تاپمادیم|تابمادیم)
+  translations:
+    en: I found nothing.
+- id: s.09.14
+  node: chg.u09.found-no-one
+  forms:
+    chg-Arab/standard:
+      text: مناسب کشی تاپمادوق.
+      tokens: [{surface: مناسب, lexeme: munasib, readings: {schluessel: munāsib}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: تاپمادوق, lexemes: [{lexeme: tap, surface: تاپ, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: tapmaduq}}]
+      reverse: مناسب (کشی|کیشی) (تاپمادوق|تاپمادوک|تابمادوق|تابمادوک)
+  translations:
+    en: We (did not|didn't) find a (suitable|fitting) (person|man).
+- id: s.09.15
+  node: chg.u09.found-no-one
+  forms:
+    chg-Arab/standard:
+      text: هر کون بزارغه بارور.
+      tokens: [{surface: هر, lexeme: har, readings: {schluessel: här}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: barur}}]
+      reverse: هر کون (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارور
+  translations:
+    en: (He|She) goes to the (market|bazaar) every day.
+- id: s.09.16
+  node: chg.u09.found-no-one
+  forms:
+    chg-Arab/standard:
+      text: فکر قیلدیم.
+      tokens: [{surface: فکر, lexeme: fikir, readings: {schluessel: fikir}}, {surface: قیلدیم, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: qildim}}]
+      reverse: فکر (قیلدیم|قلدیم)
+  translations:
+    en: I (thought|considered) (it|).
+- id: s.09.17
+  node: chg.u09.found-no-one
+  forms:
+    chg-Arab/standard:
+      text: هر چند فکر قیلدوق، هیچ مناسب کشی تاپمادوق.
+      tokens: [{surface: هر, lexeme: har, readings: {schluessel: här}}, {surface: چند, lexeme: chand, readings: {schluessel: čand}}, {surface: فکر, lexeme: fikir, readings: {schluessel: fikir}}, {surface: قیلدوق, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: qilduq}}, {surface: هیچ, lexeme: hech, readings: {schluessel: heč}}, {surface: مناسب, lexeme: munasib, readings: {schluessel: munāsib}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: تاپمادوق, lexemes: [{lexeme: tap, surface: تاپ, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: tapmaduq}}]
+      reverse: هر چند فکر (قیلدوق|قیلدوک|قلدوق|قلدوک) هیچ مناسب (کشی|کیشی) (تاپمادوق|تاپمادوک|تابمادوق|تابمادوک)
+  translations:
+    en: However much we thought, we found no (suitable|fitting) (person|man).
+- id: s.09.18
+  node: chg.u09.found-no-one
+  forms:
+    chg-Arab/standard:
+      text: ضرور بولدی.
+      tokens: [{surface: ضرور, lexeme: zurur, readings: {schluessel: żurūr}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      reverse: ضرور بولدی
+  translations:
+    en: It became (necessary|urgent).
+- id: s.09.19
+  node: chg.u09.found-no-one
+  forms:
+    chg-Arab/standard:
+      text: اول سببدین اوزیمیز ایتدوق.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: سببدین, lexemes: [{lexeme: sabab, surface: سبب, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: sababdin}}, {surface: اوزیمیز, lexemes: [{lexeme: oz, surface: اوز, base: true}, {lexeme: poss1p, surface: یمیز}], readings: {schluessel: özimiz}}, {surface: ایتدوق, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: aytduq}}]
+      reverse: اول (سببدین|سببدن) اوزیمیز (ایتدوق|ایتدوک)
+  translations:
+    en: For that reason we told (it|) ourselves.
+- id: s.09.20
+  node: chg.u09.a-proverb
+  forms:
+    chg-Arab/standard:
+      text: بو بیر مثل.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: مثل, lexeme: mithl, readings: {schluessel: mis̱l}}]
+      reverse: "بو (بیر|بر) مثل\nبو (بیر|بر) مثل\u200cدور\nبو (بیر|بر) مثل تورور"
+  translations:
+    en: This is a (proverb|saying).
+- id: s.09.21
+  node: chg.u09.a-proverb
+  forms:
+    chg-Arab/standard:
+      text: تورکنینک بیر مثلی تورور.
+      tokens: [{surface: تورکنینک, lexemes: [{lexeme: turk, surface: تورک, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Türkniŋ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: مثلی, lexemes: [{lexeme: mithl, surface: مثل, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: mis̱li}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}]
+      reverse: |-
+        (تورکنینک|ترکنینک) (بیر|بر) مثلی تورور
+        (تورکنینک|ترکنینک) (بیر|بر) مثلی بار
+  translations:
+    en: There is a (proverb|saying) of the Turks.
+- id: s.09.22
+  node: chg.u09.a-proverb
+  forms:
+    chg-Arab/standard:
+      text: اوکسوز بلا.
+      tokens: [{surface: اوکسوز, lexeme: oksuz, readings: {schluessel: öksüz}}, {surface: بلا, lexeme: bala, readings: {schluessel: bala}}]
+      reverse: اوکسوز (بلا|بالا)
+  translations:
+    en: An orphan (child|).
+- id: s.09.23
+  node: chg.u09.a-proverb
+  forms:
+    chg-Arab/standard:
+      text: اول ناننی کستی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: ناننی, lexemes: [{lexeme: nan, surface: نان, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: nanni}}, {surface: کستی, lexemes: [{lexeme: kes, surface: کس, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: kesti}}]
+      reverse: اول ناننی (کستی|کیستی)
+  translations:
+    en: (He|She) cut the bread.
+- id: s.09.24
+  node: chg.u09.a-proverb
+  forms:
+    chg-Arab/standard:
+      text: اوکسوز اوز کندیکین کسار.
+      tokens: [{surface: اوکسوز, lexeme: oksuz, readings: {schluessel: öksüz}}, {surface: اوز, lexeme: oz, readings: {schluessel: öz}}, {surface: کندیکین, lexemes: [{lexeme: kindik, surface: کندیک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: ن}], readings: {schluessel: kindikin}}, {surface: کسار, lexemes: [{lexeme: kes, surface: کس, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: kesär}}]
+      reverse: |-
+        اوکسوز اوز کندیکین (کسار|کیسار)
+        اوکسوز اوز کندیکینی (کسار|کیسار)
+  translations:
+    en: The orphan cuts (his|her|its) own (navel cord|cord).
+- id: s.09.25
+  node: chg.u09.a-proverb
+  forms:
+    chg-Arab/standard:
+      text: توخته تیکان کشی.
+      tokens: [{surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: تیکان, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: tegän}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      reverse: |-
+        توخته تیکان (کشی|کیشی)
+        توخته دیکان (کشی|کیشی)
+  translations:
+    en: A (man|person) (called|named) Tokhta.
+- id: s.09.26
+  node: chg.u09.if
+  forms:
+    chg-Arab/standard:
+      text: سو بولسه، ایچامن.
+      tokens: [{surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: بولسه, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: bolsa}}, {surface: ایچامن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres, surface: ا}, {lexeme: p1s, surface: من}], readings: {schluessel: ičämän}}]
+      reverse: سو (بولسه|بولسا) ایچامن
+  translations:
+    en: If there is water, I (will drink|drink) (it|).
+- id: s.09.27
+  node: chg.u09.if
+  forms:
+    chg-Arab/standard:
+      text: بزارغه بارسم، نان الامن.
+      tokens: [{surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارسم, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cond-1s, surface: سم}], readings: {schluessel: barsam}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: الامن, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres, surface: ا}, {lexeme: p1s, surface: من}], readings: {schluessel: alamän}}]
+      reverse: (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارسم نان (الامن|آلامن)
+  translations:
+    en: If I go to the (market|bazaar), I (will buy|buy) bread.
+- id: s.09.28
+  node: chg.u09.if
+  forms:
+    chg-Arab/standard:
+      text: ایشیتمادیم.
+      tokens: [{surface: ایشیتمادیم, lexemes: [{lexeme: ishit, surface: ایشیت, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: išitmädim}}]
+      reverse: (ایشیتمادیم|اشتمادیم)
+  translations:
+    en: I (did not|didn't) hear (it|).
+- id: s.09.29
+  node: chg.u09.if
+  forms:
+    chg-Arab/standard:
+      text: ایشیتماکان یر.
+      tokens: [{surface: ایشیتماکان, lexemes: [{lexeme: ishit, surface: ایشیت, base: true}, {lexeme: neg, surface: ما}, {lexeme: pcp, surface: کان}], readings: {schluessel: išitmägän}}, {surface: یر, lexeme: yar, readings: {schluessel: yer}}]
+      reverse: (ایشیتماکان|اشتماکان) یر
+  translations:
+    en: A place (I have not heard of|we have not heard of|no one has heard of|not heard of).
+- id: s.09.30
+  node: chg.u09.if
+  forms:
+    chg-Arab/standard:
+      text: بو عجب ایماس.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: عجب, lexeme: ajab, readings: {schluessel: ʿajab}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      reverse: "بو عجب (ایماس|ایرماس)\nبو عجب (ایماس\u200cدور|ایرماس\u200cدور)"
+  translations:
+    en: This is no wonder.
+- id: s.09.31
+  node: chg.u09.if
+  forms:
+    chg-Arab/standard:
+      text: اول شهرده بولسه، عجب ایماس.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: بولسه, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: bolsa}}, {surface: عجب, lexeme: ajab, readings: {schluessel: ʿajab}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      reverse: اول (شهرده|شهردا) (بولسه|بولسا) عجب (ایماس|ایرماس)
+  translations:
+    en: If (he|she) is in that (city|town), it is no wonder.
+- id: s.09.32
+  node: chg.u09.the-earth
+  forms:
+    chg-Arab/standard:
+      text: یر یوزی.
+      tokens: [{surface: یر, lexeme: yar, readings: {schluessel: yer}}, {surface: یوزی, lexemes: [{lexeme: yuz.face, surface: یوز, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: yüzi}}]
+      reverse: یر یوزی
+  translations:
+    en: The face of the earth.
+- id: s.09.33
+  node: chg.u09.the-earth
+  forms:
+    chg-Arab/standard:
+      text: "بو شهر کینک\u200cدور."
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: "کینک\u200cدور", lexemes: [{lexeme: keng, surface: "کینک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: keŋdur}}]
+      reverse: "بو شهر (کینک\u200cدور|کنک\u200cدور)\nبو شهر (کینک|کنک)\nبو شهر (کینک|کنک) تورور"
+  translations:
+    en: This (city|town) is (wide|broad|big).
+- id: s.09.34
+  node: chg.u09.the-earth
+  forms:
+    chg-Arab/standard:
+      text: یر یوزی کینک تورور.
+      tokens: [{surface: یر, lexeme: yar, readings: {schluessel: yer}}, {surface: یوزی, lexemes: [{lexeme: yuz.face, surface: یوز, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: yüzi}}, {surface: کینک, lexeme: keng, readings: {schluessel: keŋ}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}]
+      reverse: "یر یوزی (کینک|کنک) تورور\nیر یوزی (کینک\u200cدور|کنک\u200cدور)\nیر یوزی (کینک|کنک)"
+  translations:
+    en: The face of the earth is wide.
+- id: s.09.35
+  node: chg.u09.the-earth
+  forms:
+    chg-Arab/standard:
+      text: تقی بیر کتاب یازدیم.
+      tokens: [{surface: تقی, lexeme: taqi, readings: {schluessel: taqi}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: یازدیم, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: yazdim}}]
+      reverse: تقی (بیر|بر) کتاب یازدیم
+  translations:
+    en: And I wrote (another|a) book.
+- id: s.09.36
+  node: chg.u09.the-earth
+  forms:
+    chg-Arab/standard:
+      text: بیر شجره.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: شجره, lexeme: shajara, readings: {schluessel: šajara}}]
+      reverse: (بیر|بر) شجره
+  translations:
+    en: A (tree|family tree|genealogy).
+- id: s.09.37
+  node: chg.u09.the-earth
+  forms:
+    chg-Arab/standard:
+      text: بلانینک آتینی توخته قویدوق.
+      tokens: [{surface: بلانینک, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: balaniŋ}}, {surface: آتینی, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: atini}}, {surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: قویدوق, lexemes: [{lexeme: qoy.put, surface: قوی, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: qoyduq}}]
+      reverse: (بلانینک|بالانینک) (آتینی|اتینی) توخته (قویدوق|قویدوک)
+  translations:
+    en: We named the child Tokhta.
+- id: s.09.38
+  node: chg.u09.the-earth
+  forms:
+    chg-Arab/standard:
+      text: کتابنی «شجرهٔ تورک» تیب آت قویدوق.
+      tokens: [{surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: شجرهٔ, lexeme: shajara, readings: {schluessel: šajara-i}}, {surface: تورک, lexeme: turk, readings: {schluessel: Türk}}, {surface: تیب, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: tep}}, {surface: آت, lexeme: at.name, readings: {schluessel: at}}, {surface: قویدوق, lexemes: [{lexeme: qoy.put, surface: قوی, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: qoyduq}}]
+      reverse: کتابنی شجرهٔ (تورک|ترک) تیب (آت|ات) (قویدوق|قویدوک)
+  translations:
+    en: (We named|We called) the book “(The Genealogy of the Turks|Shajara-i Turk)”.
+stories:
+- id: chg.story.the-orphan
+  node: chg.u09.story
+  title:
+    en: The orphan cuts his own cord (Abu 'l-Ghazi, Shajara-i Turk)
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: هر چند فکر قیلدوق، هیچ مناسب کشی تابمادوق.
+          tokens: [{surface: هر, lexeme: har, readings: {schluessel: här}}, {surface: چند, lexeme: chand, readings: {schluessel: čand}}, {surface: فکر, lexeme: fikir, readings: {schluessel: fikir}}, {surface: قیلدوق, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: qilduq}}, {surface: هیچ, lexeme: hech, readings: {schluessel: heč}}, {surface: مناسب, lexeme: munasib, readings: {schluessel: munāsib}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: تابمادوق, lexemes: [{lexeme: tap, surface: تاب, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: tapmaduq}}]
+      translations:
+        en: However much we thought about it, we found no one suitable.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: ضرور بولدی.
+          tokens: [{surface: ضرور, lexeme: zurur, readings: {schluessel: żurūr}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      translations:
+        en: It became urgent.
+  - line:
+      ask: complete
+      gap: lexeme:oz
+      asks: form
+      forms:
+        chg-Arab/standard:
+          text: "اول سبب\u200cدین اوزیمز ایتدوق."
+          tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: "سبب\u200cدین", lexemes: [{lexeme: sabab, surface: "سبب\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: sababdin}}, {surface: اوزیمز, lexemes: [{lexeme: oz, surface: اوز, base: true}, {lexeme: poss1p, surface: یمز}], readings: {schluessel: özimiz}}, {surface: ایتدوق, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: aytduq}}]
+      translations:
+        en: For that reason we told it ourselves.
+  - choose:
+      prompt:
+        en: Why did Abu 'l-Ghazi write the history himself?
+      options:
+      - en: He found no one suitable to write it.
+      - en: The king ordered him to.
+      - en: He found an old book.
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "ترک\u200cنینک مثلی تورور: «اوکسوز اوز کندیکین کسار،» تیکان."
+          tokens: [{surface: "ترک\u200cنینک", lexemes: [{lexeme: turk, surface: "ترک\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Türkniŋ}}, {surface: مثلی, lexemes: [{lexeme: mithl, surface: مثل, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: mis̱li}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}, {surface: اوکسوز, lexeme: oksuz, readings: {schluessel: öksüz}}, {surface: اوز, lexeme: oz, readings: {schluessel: öz}}, {surface: کندیکین, lexemes: [{lexeme: kindik, surface: کندیک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: ن}], readings: {schluessel: kindikin}}, {surface: کسار, lexemes: [{lexeme: kes, surface: کس, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: kesär}}, {surface: تیکان, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: tegän}}]
+      translations:
+        en: 'There is a proverb of the Turks that goes: “The orphan cuts his own navel cord.”'
+  - choose:
+      prompt:
+        en: What does the proverb mean here?
+      options:
+      - en: 'No one else will do it for you: do it yourself.'
+      - en: Orphans are unlucky.
+      - en: Knives are dangerous.
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: یر یوزی کینک تورور.
+          tokens: [{surface: یر, lexeme: yar, readings: {schluessel: yer}}, {surface: یوزی, lexemes: [{lexeme: yuz.face, surface: یوز, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: yüzi}}, {surface: کینک, lexeme: keng, readings: {schluessel: keŋ}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}]
+      translations:
+        en: The face of the earth is wide.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: ایشیتماکان یرلاریمزدا بولسا، عجب ایرماس.
+          tokens: [{surface: ایشیتماکان, lexemes: [{lexeme: ishit, surface: ایشیت, base: true}, {lexeme: neg, surface: ما}, {lexeme: pcp, surface: کان}], readings: {schluessel: išitmägän}}, {surface: یرلاریمزدا, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss1p, surface: یمز}, {lexeme: loc, surface: دا}], readings: {schluessel: yerlärimizdä}}, {surface: بولسا, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: cond, surface: سا}], readings: {schluessel: bolsa}}, {surface: عجب, lexeme: ajab, readings: {schluessel: ʿajab}}, {surface: ایرماس, lexeme: emas, readings: {schluessel: ermäs}}]
+      translations:
+        en: If there is such a man in lands we have not heard of, it is no wonder.
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: تقی «شجرهٔ ترک» تیب آت قویدوق.
+          tokens: [{surface: تقی, lexeme: taqi, readings: {schluessel: taqi}}, {surface: شجرهٔ, lexeme: shajara, readings: {schluessel: šajara-i}}, {surface: ترک, lexeme: turk, readings: {schluessel: Türk}}, {surface: تیب, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: tep}}, {surface: آت, lexeme: at.name, readings: {schluessel: at}}, {surface: قویدوق, lexemes: [{lexeme: qoy.put, surface: قوی, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: qoyduq}}]
+      translations:
+        en: And we named it “The Genealogy of the Turks”.
+scenarios:
+- id: chg.the-historian
+  after: chg.u09.the-earth
+  title:
+    en: The historian's study
+  setting:
+    en: Khiva, 1664 (1074 of the Hijra). Abu 'l-Ghazi Khan is writing the history of his forefathers.
+  character:
+    en: A young scribe at the khan's court, eager and a little proud, who speaks only Turki.
+  goal:
+    en: Ask who is writing the book and why, what it is called, and say what you would do if there were no one to write it.

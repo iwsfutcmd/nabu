@@ -1,0 +1,544 @@
+# Unit intro of courses/uz in the new shape.
+# Written by `nabu migrate` from courses/uz and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: intro
+title:
+  en: Hello, I'm Aziz
+cefr: A1
+graphemes:
+- {id: 'grapheme:ҳ', gloss: {en: 'Cyrillic ҳ, Latin h'}, notes: {en: 'Раҳмат, Ҳа: Latin h is ҳ; Latin x is х.'}}
+- {id: 'grapheme:ў', gloss: {en: 'Cyrillic ў, Latin oʻ'}}
+- {id: 'grapheme:қ', gloss: {en: 'Cyrillic қ, Latin q'}}
+nodes:
+- {id: uz.greetings, kind: lesson, introduces: ['lexeme:salom', 'lexeme:rahmat', 'lexeme:xayr', 'lexeme:ha', 'lexeme:yoq']}
+- {id: uz.this, kind: lesson, introduces: ['lexeme:aziz', 'lexeme:bu', 'lexeme:kitob', 'lexeme:nima', 'lexeme:mana', 'lexeme:qani', 'lexeme:yaxshi', 'lexeme:juda']}
+- {id: uz.i-am, kind: lesson, introduces: ['lexeme:cop-1sg', 'lexeme:men', 'lexeme:talaba', 'lexeme:cop-2', 'lexeme:siz', 'lexeme:oqituvchi']}
+- {id: uz.my, kind: lesson, introduces: ['lexeme:poss-1sg', 'lexeme:gen', 'lexeme:ism', 'lexeme:poss-2']}
+- {id: uz.story, kind: story}
+- {id: uz.cyrillic, kind: script, introduces: ['grapheme:ҳ', 'grapheme:ў', 'grapheme:қ'], convert: {from: uz-Latn/standard, to: uz-Cyrl/standard, sentences: [s.2, s.4, s.5, s.11, s.20, s.21]}}
+sentences:
+- id: s.1
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Salom!
+      tokens: [{surface: Salom, lexeme: salom}]
+      reverse: |-
+        Salom
+        Assalomu alaykum
+    uz-Cyrl/standard:
+      text: Салом!
+      tokens: [{surface: Салом, lexeme: salom}]
+      reverse: |-
+        Салом
+        Ассалому алайкум
+  translations:
+    en: |-
+      Hello!
+      Hi!
+- id: s.2
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Rahmat!
+      tokens: [{surface: Rahmat, lexeme: rahmat}]
+      reverse: |-
+        Rahmat
+        Tashakkur
+    uz-Cyrl/standard:
+      text: Раҳмат!
+      tokens: [{surface: Раҳмат, lexeme: rahmat}]
+      reverse: |-
+        Раҳмат
+        Ташаккур
+  translations:
+    en: |-
+      Thank you!
+      Thanks!
+- id: s.3
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Xayr!
+      tokens: [{surface: Xayr, lexeme: xayr}]
+      reverse: Xayr
+    uz-Cyrl/standard:
+      text: Хайр!
+      tokens: [{surface: Хайр, lexeme: xayr}]
+      reverse: Хайр
+  translations:
+    en: |-
+      Goodbye!
+      Bye!
+      Good bye!
+      Bye-bye!
+      Bye bye!
+- id: s.4
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Ha.
+      tokens: [{surface: Ha, lexeme: ha}]
+      reverse: Ha
+    uz-Cyrl/standard:
+      text: Ҳа.
+      tokens: [{surface: Ҳа, lexeme: ha}]
+      reverse: Ҳа
+  translations:
+    en: |-
+      Yes.
+      Yeah.
+- id: s.5
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Yoʻq, rahmat.
+      tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: rahmat, lexeme: rahmat}]
+      reverse: |-
+        Yoʻq rahmat
+        Yoʻq, tashakkur
+    uz-Cyrl/standard:
+      text: Йўқ, раҳмат.
+      tokens: [{surface: Йўқ, lexeme: yoq}, {surface: раҳмат, lexeme: rahmat}]
+      reverse: |-
+        Йўқ раҳмат
+        Йўқ, ташаккур
+  translations:
+    en: |-
+      No, thank you.
+      No, thanks.
+- id: s.6
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Salom, Aziz!
+      tokens: [{surface: Salom, lexeme: salom}, {surface: Aziz, lexeme: aziz}]
+      reverse: |-
+        Salom Aziz
+        Assalomu alaykum, Aziz
+    uz-Cyrl/standard:
+      text: Салом, Азиз!
+      tokens: [{surface: Салом, lexeme: salom}, {surface: Азиз, lexeme: aziz}]
+      reverse: |-
+        Салом Азиз
+        Ассалому алайкум, Азиз
+  translations:
+    en: (Hello|Hi), Aziz!
+- id: s.7
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Bu Aziz.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: Aziz, lexeme: aziz}]
+      reverse: Bu Aziz
+    uz-Cyrl/standard:
+      text: Бу Азиз.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: Азиз, lexeme: aziz}]
+      reverse: Бу Азиз
+  translations:
+    en: This is Aziz.
+- id: s.8
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Bu kitob.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: kitob, lexeme: kitob}]
+      reverse: Bu kitob
+    uz-Cyrl/standard:
+      text: Бу китоб.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: китоб, lexeme: kitob}]
+      reverse: Бу китоб
+  translations:
+    en: |-
+      This is a book.
+      This is the book.
+      It('s| is) a book.
+- id: s.9
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Bu nima?
+      tokens: [{surface: Bu, lexeme: bu}, {surface: nima, lexeme: nima}]
+      reverse: Bu nima
+    uz-Cyrl/standard:
+      text: Бу нима?
+      tokens: [{surface: Бу, lexeme: bu}, {surface: нима, lexeme: nima}]
+      reverse: Бу нима
+  translations:
+    en: What('s| is) this?
+- id: s.10
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Mana kitob.
+      tokens: [{surface: Mana, lexeme: mana}, {surface: kitob, lexeme: kitob}]
+      reverse: |-
+        Mana kitob
+        Kitob mana
+    uz-Cyrl/standard:
+      text: Мана китоб.
+      tokens: [{surface: Мана, lexeme: mana}, {surface: китоб, lexeme: kitob}]
+      reverse: |-
+        Мана китоб
+        Китоб мана
+  translations:
+    en: |-
+      Here('s| is) the book.
+      Here('s| is) a book.
+- id: s.11
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Kitob qani?
+      tokens: [{surface: Kitob, lexeme: kitob}, {surface: qani, lexeme: qani}]
+      reverse: |-
+        Kitob (qani|qayerda)
+        Qani kitob
+    uz-Cyrl/standard:
+      text: Китоб қани?
+      tokens: [{surface: Китоб, lexeme: kitob}, {surface: қани, lexeme: qani}]
+      reverse: |-
+        Китоб (қани|қаерда)
+        Қани китоб
+  translations:
+    en: Where('s| is) the book?
+- id: s.12
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Kitob yaxshi.
+      tokens: [{surface: Kitob, lexeme: kitob}, {surface: yaxshi, lexeme: yaxshi}]
+      reverse: Kitob yaxshi
+    uz-Cyrl/standard:
+      text: Китоб яхши.
+      tokens: [{surface: Китоб, lexeme: kitob}, {surface: яхши, lexeme: yaxshi}]
+      reverse: Китоб яхши
+  translations:
+    en: The book is good.
+- id: s.13
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Bu kitob juda yaxshi.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: kitob, lexeme: kitob}, {surface: juda, lexeme: juda}, {surface: yaxshi, lexeme: yaxshi}]
+      reverse: Bu kitob juda yaxshi
+    uz-Cyrl/standard:
+      text: Бу китоб жуда яхши.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: китоб, lexeme: kitob}, {surface: жуда, lexeme: juda}, {surface: яхши, lexeme: yaxshi}]
+      reverse: Бу китоб жуда яхши
+  translations:
+    en: This book is very good.
+- id: s.14
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Azizman.
+      tokens: [{surface: Azizman, lexemes: [{lexeme: aziz, surface: Aziz, base: true}, {lexeme: cop-1sg, surface: man}]}]
+      reverse: '[Men] Azizman'
+    uz-Cyrl/standard:
+      text: Азизман.
+      tokens: [{surface: Азизман, lexemes: [{lexeme: aziz, surface: Азиз, base: true}, {lexeme: cop-1sg, surface: ман}]}]
+      reverse: '[Мен] Азизман'
+  translations:
+    en: I('m| am) Aziz.
+- id: s.15
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Men Azizman.
+      tokens: [{surface: Men, lexeme: men}, {surface: Azizman, lexemes: [{lexeme: aziz, surface: Aziz, base: true}, {lexeme: cop-1sg, surface: man}]}]
+      reverse: '[Men] Azizman'
+    uz-Cyrl/standard:
+      text: Мен Азизман.
+      tokens: [{surface: Мен, lexeme: men}, {surface: Азизман, lexemes: [{lexeme: aziz, surface: Азиз, base: true}, {lexeme: cop-1sg, surface: ман}]}]
+      reverse: '[Мен] Азизман'
+  translations:
+    en: I('m| am) Aziz.
+- id: s.16
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Talabaman.
+      tokens: [{surface: Talabaman, lexemes: [{lexeme: talaba, surface: Talaba, base: true}, {lexeme: cop-1sg, surface: man}]}]
+      reverse: '[Men] talabaman'
+    uz-Cyrl/standard:
+      text: Талабаман.
+      tokens: [{surface: Талабаман, lexemes: [{lexeme: talaba, surface: Талаба, base: true}, {lexeme: cop-1sg, surface: ман}]}]
+      reverse: '[Мен] талабаман'
+  translations:
+    en: I('m| am) a student.
+- id: s.17
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Talabasiz.
+      tokens: [{surface: Talabasiz, lexemes: [{lexeme: talaba, surface: Talaba, base: true}, {lexeme: cop-2, surface: siz}]}]
+      reverse: |-
+        [Siz] talabasiz
+        [Sen] talabasan
+    uz-Cyrl/standard:
+      text: Талабасиз.
+      tokens: [{surface: Талабасиз, lexemes: [{lexeme: talaba, surface: Талаба, base: true}, {lexeme: cop-2, surface: сиз}]}]
+      reverse: |-
+        [Сиз] талабасиз
+        [Сен] талабасан
+  translations:
+    en: You('re| are) a student.
+- id: s.18
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Siz talabasiz.
+      tokens: [{surface: Siz, lexeme: siz}, {surface: talabasiz, lexemes: [{lexeme: talaba, surface: talaba, base: true}, {lexeme: cop-2, surface: siz}]}]
+      reverse: |-
+        [Siz] talabasiz
+        [Sen] talabasan
+    uz-Cyrl/standard:
+      text: Сиз талабасиз.
+      tokens: [{surface: Сиз, lexeme: siz}, {surface: талабасиз, lexemes: [{lexeme: talaba, surface: талаба, base: true}, {lexeme: cop-2, surface: сиз}]}]
+      reverse: |-
+        [Сиз] талабасиз
+        [Сен] талабасан
+  translations:
+    en: You('re| are) a student.
+- id: s.19
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Ha, men talabaman.
+      tokens: [{surface: Ha, lexeme: ha}, {surface: men, lexeme: men}, {surface: talabaman, lexemes: [{lexeme: talaba, surface: talaba, base: true}, {lexeme: cop-1sg, surface: man}]}]
+      reverse: Ha [men] talabaman
+    uz-Cyrl/standard:
+      text: Ҳа, мен талабаман.
+      tokens: [{surface: Ҳа, lexeme: ha}, {surface: мен, lexeme: men}, {surface: талабаман, lexemes: [{lexeme: talaba, surface: талаба, base: true}, {lexeme: cop-1sg, surface: ман}]}]
+      reverse: Ҳа [мен] талабаман
+  translations:
+    en: Yes, I('m| am) a student.
+- id: s.20
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Men oʻqituvchiman.
+      tokens: [{surface: Men, lexeme: men}, {surface: oʻqituvchiman, lexemes: [{lexeme: oqituvchi, surface: oʻqituvchi, base: true}, {lexeme: cop-1sg, surface: man}]}]
+      reverse: '[Men] oʻqituvchiman'
+    uz-Cyrl/standard:
+      text: Мен ўқитувчиман.
+      tokens: [{surface: Мен, lexeme: men}, {surface: ўқитувчиман, lexemes: [{lexeme: oqituvchi, surface: ўқитувчи, base: true}, {lexeme: cop-1sg, surface: ман}]}]
+      reverse: '[Мен] ўқитувчиман'
+  translations:
+    en: I('m| am) a teacher.
+- id: s.21
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Yoʻq, men oʻqituvchiman.
+      tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: men, lexeme: men}, {surface: oʻqituvchiman, lexemes: [{lexeme: oqituvchi, surface: oʻqituvchi, base: true}, {lexeme: cop-1sg, surface: man}]}]
+      reverse: Yoʻq [men] oʻqituvchiman
+    uz-Cyrl/standard:
+      text: Йўқ, мен ўқитувчиман.
+      tokens: [{surface: Йўқ, lexeme: yoq}, {surface: мен, lexeme: men}, {surface: ўқитувчиман, lexemes: [{lexeme: oqituvchi, surface: ўқитувчи, base: true}, {lexeme: cop-1sg, surface: ман}]}]
+      reverse: Йўқ [мен] ўқитувчиман
+  translations:
+    en: No, I('m| am) a teacher.
+- id: s.22
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Bu kitobim.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: kitobim, lexemes: [{lexeme: kitob, surface: kitob, base: true}, {lexeme: poss-1sg, surface: im}]}]
+      reverse: Bu [mening] kitobim
+    uz-Cyrl/standard:
+      text: Бу китобим.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: китобим, lexemes: [{lexeme: kitob, surface: китоб, base: true}, {lexeme: poss-1sg, surface: им}]}]
+      reverse: Бу [менинг] китобим
+  translations:
+    en: This is my book.
+- id: s.23
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Bu mening kitobim.
+      tokens: [{surface: Bu, lexeme: bu}, {surface: mening, lexemes: [{lexeme: men, surface: men, base: true}, {lexeme: gen, surface: ing}]}, {surface: kitobim, lexemes: [{lexeme: kitob, surface: kitob, base: true}, {lexeme: poss-1sg, surface: im}]}]
+      reverse: Bu [mening] kitobim
+    uz-Cyrl/standard:
+      text: Бу менинг китобим.
+      tokens: [{surface: Бу, lexeme: bu}, {surface: менинг, lexemes: [{lexeme: men, surface: мен, base: true}, {lexeme: gen, surface: инг}]}, {surface: китобим, lexemes: [{lexeme: kitob, surface: китоб, base: true}, {lexeme: poss-1sg, surface: им}]}]
+      reverse: Бу [менинг] китобим
+  translations:
+    en: This is my book.
+- id: s.24
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Ismim Aziz.
+      tokens: [{surface: Ismim, lexemes: [{lexeme: ism, surface: Ism, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: Aziz, lexeme: aziz}]
+      reverse: '[Mening] ismim Aziz'
+    uz-Cyrl/standard:
+      text: Исмим Азиз.
+      tokens: [{surface: Исмим, lexemes: [{lexeme: ism, surface: Исм, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: Азиз, lexeme: aziz}]
+      reverse: '[Менинг] исмим Азиз'
+  translations:
+    en: My name('s| is) Aziz.
+- id: s.25
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Mening ismim Aziz.
+      tokens: [{surface: Mening, lexemes: [{lexeme: men, surface: Men, base: true}, {lexeme: gen, surface: ing}]}, {surface: ismim, lexemes: [{lexeme: ism, surface: ism, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: Aziz, lexeme: aziz}]
+      reverse: '[Mening] ismim Aziz'
+    uz-Cyrl/standard:
+      text: Менинг исмим Азиз.
+      tokens: [{surface: Менинг, lexemes: [{lexeme: men, surface: Мен, base: true}, {lexeme: gen, surface: инг}]}, {surface: исмим, lexemes: [{lexeme: ism, surface: исм, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: Азиз, lexeme: aziz}]
+      reverse: '[Менинг] исмим Азиз'
+  translations:
+    en: My name('s| is) Aziz.
+- id: s.26
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Ismingiz nima?
+      tokens: [{surface: Ismingiz, lexemes: [{lexeme: ism, surface: Ism, base: true}, {lexeme: poss-2, surface: ingiz}]}, {surface: nima, lexeme: nima}]
+      reverse: |-
+        Ismingiz nima
+        Sizning ismingiz nima
+        [Sening] isming nima
+    uz-Cyrl/standard:
+      text: Исмингиз нима?
+      tokens: [{surface: Исмингиз, lexemes: [{lexeme: ism, surface: Исм, base: true}, {lexeme: poss-2, surface: ингиз}]}, {surface: нима, lexeme: nima}]
+      reverse: |-
+        Исмингиз нима
+        Сизнинг исмингиз нима
+        [Сенинг] исминг нима
+  translations:
+    en: What('s| is) your name?
+stories:
+- id: uz.story.book
+  node: uz.story
+  title:
+    en: Aziz's book
+  provenance:
+    author: llm:claude@5779af056796
+    status: draft
+  characters:
+  - id: aziz
+    name:
+      uz-Latn/standard: Aziz
+      uz-Cyrl/standard: Азиз
+  - id: oqituvchi
+    name:
+      uz-Latn/standard: Oʻqituvchi
+      uz-Cyrl/standard: Ўқитувчи
+  steps:
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Salom!
+          tokens: [{surface: Salom, lexeme: salom}]
+        uz-Cyrl/standard:
+          text: Салом!
+          tokens: [{surface: Салом, lexeme: salom}]
+      translations:
+        en: Hello!
+  - line:
+      speaker: oqituvchi
+      forms:
+        uz-Latn/standard:
+          text: Salom, Aziz!
+          tokens: [{surface: Salom, lexeme: salom}, {surface: Aziz, lexeme: aziz}]
+        uz-Cyrl/standard:
+          text: Салом, Азиз!
+          tokens: [{surface: Салом, lexeme: salom}, {surface: Азиз, lexeme: aziz}]
+      translations:
+        en: Hello, Aziz!
+  - line:
+      speaker: oqituvchi
+      forms:
+        uz-Latn/standard:
+          text: Siz talabasiz?
+          tokens: [{surface: Siz, lexeme: siz}, {surface: talabasiz, lexemes: [{lexeme: talaba, surface: talaba, base: true}, {lexeme: cop-2, surface: siz}]}]
+        uz-Cyrl/standard:
+          text: Сиз талабасиз?
+          tokens: [{surface: Сиз, lexeme: siz}, {surface: талабасиз, lexemes: [{lexeme: talaba, surface: талаба, base: true}, {lexeme: cop-2, surface: сиз}]}]
+      translations:
+        en: Are you a student?
+  - line:
+      speaker: aziz
+      ask: complete
+      gap: lexeme:talaba
+      distractors:
+      - lexeme:oqituvchi
+      forms:
+        uz-Latn/standard:
+          text: Ha, men talabaman.
+          tokens: [{surface: Ha, lexeme: ha}, {surface: men, lexeme: men}, {surface: talabaman, lexemes: [{lexeme: talaba, surface: talaba, base: true}, {lexeme: cop-1sg, surface: man}]}]
+        uz-Cyrl/standard:
+          text: Ҳа, мен талабаман.
+          tokens: [{surface: Ҳа, lexeme: ha}, {surface: мен, lexeme: men}, {surface: талабаман, lexemes: [{lexeme: talaba, surface: талаба, base: true}, {lexeme: cop-1sg, surface: ман}]}]
+      translations:
+        en: Yes, I'm a student.
+  - choose:
+      prompt:
+        en: Is Aziz a student?
+      options:
+      - en: 'Yes'
+      - en: 'No'
+      - en: We don't know.
+      answer: 0
+  - line:
+      speaker: aziz
+      ask: arrange
+      forms:
+        uz-Latn/standard:
+          text: Bu mening kitobim.
+          tokens: [{surface: Bu, lexeme: bu}, {surface: mening, lexemes: [{lexeme: men, surface: men, base: true}, {lexeme: gen, surface: ing}]}, {surface: kitobim, lexemes: [{lexeme: kitob, surface: kitob, base: true}, {lexeme: poss-1sg, surface: im}]}]
+        uz-Cyrl/standard:
+          text: Бу менинг китобим.
+          tokens: [{surface: Бу, lexeme: bu}, {surface: менинг, lexemes: [{lexeme: men, surface: мен, base: true}, {lexeme: gen, surface: инг}]}, {surface: китобим, lexemes: [{lexeme: kitob, surface: китоб, base: true}, {lexeme: poss-1sg, surface: им}]}]
+      translations:
+        en: This is my book.
+  - line:
+      speaker: oqituvchi
+      forms:
+        uz-Latn/standard:
+          text: Juda yaxshi!
+          tokens: [{surface: Juda, lexeme: juda}, {surface: yaxshi, lexeme: yaxshi}]
+        uz-Cyrl/standard:
+          text: Жуда яхши!
+          tokens: [{surface: Жуда, lexeme: juda}, {surface: яхши, lexeme: yaxshi}]
+      translations:
+        en: Very good!
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Rahmat! Xayr!
+          tokens: [{surface: Rahmat, lexeme: rahmat}, {surface: Xayr, lexeme: xayr}]
+        uz-Cyrl/standard:
+          text: Раҳмат! Хайр!
+          tokens: [{surface: Раҳмат, lexeme: rahmat}, {surface: Хайр, lexeme: xayr}]
+      translations:
+        en: Thank you! Goodbye!
+  - choose:
+      prompt:
+        en: What does Aziz show the teacher?
+      options:
+      - en: his book
+      - en: his name
+      - en: a student
+      answer: 0
+scenarios:
+- id: uz.new-teacher
+  after: uz.my
+  title:
+    en: A new teacher
+  setting:
+    en: A school in Samarkand on the first day of term.
+  character:
+    en: The new teacher, kind and a little formal.
+  goal:
+    en: Greet the teacher, say who you are, and talk about your book.
+  provenance:
+    author: llm:claude@4449b7699ce8
+    status: draft

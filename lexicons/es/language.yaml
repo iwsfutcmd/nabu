@@ -1,0 +1,72 @@
+# What es declares beside its lexicon (schemas/language.schema.json).
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: es
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@40bf9238272b', status: draft}
+varieties: [es-CU]
+registers: [formal, neutral, colloquial]
+dimensions:
+  VERB: [Mood, Tense, Person, Number, VerbForm]
+  AUX: [Mood, Tense, Person, Number, VerbForm]
+  NOUN: [Number]
+  ADJ: [Gender, Number]
+  DET: [Gender, Number]
+lexical:
+  NOUN: [Gender]
+citation:
+  NOUN: {Gender: Masc, Number: Sing}
+  ADJ: {Gender: Masc, Number: Sing}
+  DET: {Gender: Masc, Number: Sing}
+  VERB: {VerbForm: Inf}
+  AUX: {VerbForm: Inf}
+features:
+  Gender: [Fem, Masc, Neut]
+  Mood: [Cnd, Imp, Ind, Sub]
+  NumType: [Card, Ord]
+  Number: [Plur, Sing]
+  Person: ['1', '2', '3']
+  Polarity: [Neg]
+  Poss: ['Yes']
+  PronType: [Dem, Ind, Int, Neg, Prs, Rel, Tot]
+  Reflex: ['Yes']
+  Tense: [Fut, Imp, Past, Pres]
+  VerbForm: [Fin, Ger, Inf, Part]
+defaults:
+- {id: gender-a, when: {pos: NOUN, ends: a}, gives: {Gender: Fem}}
+- {id: gender-o, when: {pos: NOUN, ends: o}, gives: {Gender: Masc}}
+- {id: gender-cion, when: {pos: NOUN, ends: ción}, gives: {Gender: Fem}}
+- {id: gender-sion, when: {pos: NOUN, ends: sión}, gives: {Gender: Fem}}
+- {id: gender-dad, when: {pos: NOUN, ends: dad}, gives: {Gender: Fem}}
+- {id: gender-tad, when: {pos: NOUN, ends: tad}, gives: {Gender: Fem}}
+- {id: gender-tud, when: {pos: NOUN, ends: tud}, gives: {Gender: Fem}}
+- {id: gender-umbre, when: {pos: NOUN, ends: umbre}, gives: {Gender: Fem}}
+- {id: gender-aje, when: {pos: NOUN, ends: aje}, gives: {Gender: Masc}}
+- {id: gender-or, when: {pos: NOUN, ends: or}, gives: {Gender: Masc}}
+labels:
+- {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: I (yo)'}, notes: {en: 'Estoy, soy, me llamo: I am, I''m called.'}, was: 'form:pres-1s'}
+- {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: you (tú)'}, notes: {en: '¿Cómo estás? ¿Tú eres de Cuba?'}, was: 'form:pres-2s'}
+- {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: he, she, it, you (usted)'}, notes: {en: 'Está, es, se llama.'}, was: 'form:pres-3s'}
+- {feats: {Gender: Fem, Number: Sing}, gloss: {en: 'feminine: la, una, cubana'}, notes: {en: 'A noun is masculine or feminine (la casa, el carro), and the words that go with it take its gender: la casa blanca, una amiga cubana. Words that look the same in both (grande, feliz, mi) go with it too: in mi casa, mi is feminine.'}, was: 'form:fem'}
+- {feats: {Gender: Fem}, pos: PROPN, gloss: {en: 'feminine: la, una, cubana'}, notes: {en: 'A noun is masculine or feminine (la casa, el carro), and the words that go with it take its gender: la casa blanca, una amiga cubana. Words that look the same in both (grande, feliz, mi) go with it too: in mi casa, mi is feminine.'}, was: 'form:fem'}
+- {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: we (nosotros)'}, notes: {en: 'Somos, tenemos, vivimos: we are, we have, we live. Always ends in -mos.'}, was: 'form:pres-1p'}
+- {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: they, you all (ellos, ustedes)'}, notes: {en: 'Son, tienen, están: they are, they have. Always ends in -n.'}, was: 'form:pres-3p'}
+- {feats: {Gender: Masc, Number: Plur}, gloss: {en: 'plural: los, unos, cubanos'}, notes: {en: '-s after a vowel (casas), -es after a consonant (mujeres; luz, luces). The words that go with a plural noun are plural too. A masculine plural also covers men and women together: mis padres, los cubanos.'}, was: 'form:pl'}
+- {feats: {Number: Plur}, pos: PRON, gloss: {en: 'plural: los, unos, cubanos'}, notes: {en: '-s after a vowel (casas), -es after a consonant (mujeres; luz, luces). The words that go with a plural noun are plural too. A masculine plural also covers men and women together: mis padres, los cubanos.'}, was: 'form:pl'}
+- {feats: {Gender: Fem, Number: Plur}, gloss: {en: 'feminine plural: las, unas, cubanas'}, notes: {en: 'Feminine and plural: las casas blancas; Lili y yo somos cubanas (two women).'}, was: 'form:fem-pl'}
+- {feats: {VerbForm: Ger}, gloss: {en: 'gerund, -ando, -iendo (estoy trabajando: I''m working)'}, notes: {en: 'Estar + gerund is for what is going on right now. Not for plans as in English: I''m working tomorrow is trabajo mañana. With me, te or se on the end it takes an accent: bañándose.'}, was: 'form:ger'}
+- {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'past tense (preterite): I (yo)'}, notes: {en: '-é, -í: compré, comí. The accent matters: compré is I bought, compre is buy! Irregular: fui, hice, tuve, vi.'}, was: 'form:pret-1s'}
+- {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'past tense (preterite): he, she, it, you (usted)'}, notes: {en: '-ó, -ió: compró, comió. Without its accent compró is compro, I buy. Irregular, and with no accent: fue, hizo, tuvo, vio.'}, was: 'form:pret-3s'}
+- {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}, gloss: {en: 'past tense (preterite): you (tú)'}, notes: {en: '-aste, -iste: compraste, comiste, fuiste. Many Cubans say comprastes, fuistes, with an s; it is written without one.'}, was: 'form:pret-2s'}
+- {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'past tense (preterite): we (nosotros)'}, notes: {en: 'For -ar and -ir verbs it is the same as the present (compramos), and ayer or anoche tells them apart; -er verbs differ: comemos, comimos. Irregular: fuimos, hicimos, tuvimos, vimos.'}, was: 'form:pret-1p'}
+- {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'past tense (preterite): they, you all (ellos, ustedes)'}, notes: {en: '-aron, -ieron: compraron, comieron. Irregular: fueron, hicieron, tuvieron, vieron.'}, was: 'form:pret-3p'}
+- {feats: {Mood: Ind, Tense: Imp, VerbForm: Fin}, gloss: {en: 'imperfect: was …ing, used to (hablaba, comía, era, iba)'}, notes: {en: 'For what used to happen or was going on, and to describe the past: cuando era niño, vivía en Hialeah. -aba for -ar verbs (jugaba; the we form writes an accent: jugábamos), -ía for -er and -ir verbs (tenía, vivía: always an accent on the í). Only three are irregular: era (ser), iba (ir), veía (ver). Hay becomes había, there was or there were. Many say habían muchos niños; it is written había, singular.'}, was: 'form:impf'}
+- {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'command, tú (¡habla!, ¡come!, ¡ven!)'}, notes: {en: 'Like the él form of the present: pica, echa, revuelve, fríe. Irregular: ven, pon, haz, di, sal, ten, ve. With a pronoun on the end it takes a written accent: échale, cómelos. Haz (do!) is not has (you have).'}, was: 'form:imp-tu'}
+- {feats: {Mood: Imp, Person: '3', VerbForm: Fin}, gloss: {en: 'command, usted or ustedes (¡hable!, ¡coman!)'}, notes: {en: '-ar verbs take e, -er and -ir verbs take a: pique, eche; coma, abra. Ustedes adds n: coman, vengan. Irregular: venga, ponga, haga. For elders and strangers (doña Ofelia), and for more than one person.'}, was: 'form:imp-ud'}
+- {feats: {Mood: Imp, Polarity: Neg, VerbForm: Fin}, gloss: {en: 'negative command (¡no hables!, ¡no coma!)'}, notes: {en: 'Tú: no eches, no abras, no revuelvas (the vowel swaps and an s is added). Usted: no eche, no abra. Spelling changes: no piques (c to qu), no pongas, no hagas.'}, was: 'form:imp-neg'}
+- {feats: {Tense: Past, VerbForm: Part}, gloss: {en: 'past participle (hablado, comido, hecho; he hablado)'}, notes: {en: '-ado for -ar verbs, -ido for -er and -ir verbs: jugado, comido, vivido. Cubans often drop the d (jugao, comío, ponchao); it is always written. Irregular: visto, hecho, dicho, vuelto, puesto, escrito. Hecho (done) has an h; echo (I throw) has none. After haber it never changes: Lili ha jugado, ellas han jugado.'}, was: 'form:part'}
+- {feats: {Mood: Cnd, VerbForm: Fin}, gloss: {en: 'conditional: would (hablaría, podría)'}, notes: {en: 'The infinitive plus -ía, always with its accent: hablaría, comería, iría. Some stems shorten as in the future: podría, tendría, haría, vendría. Me gustaría, ¿podría…? and ¿sería posible…? are the polite way to ask.'}, was: 'form:cond'}
+- {feats: {Mood: Sub, Tense: Imp, VerbForm: Fin}, gloss: {en: 'imperfect subjunctive (si hablara, si tuviera)'}, notes: {en: 'Here only quisiera, I would like: the politest way to ask (quisiera una cita). Units 27 and 28 teach the rest.'}, was: 'form:subj-past'}
+- {feats: {Mood: Ind, Tense: Fut, VerbForm: Fin}, gloss: {en: 'future: will (hablará, será)'}, notes: {en: 'Endings on the whole infinitive: hablaré, hablarás, hablará, hablaremos, hablarán. All but -emos carry an accent, and hablara without it is another tense. Some stems shorten: tendré, vendré, haré, podré; hay becomes habrá. In everyday Cuban speech voy a + infinitive is more common, and the future also guesses: ¿Qué hora será? I wonder what time it is.'}, was: 'form:fut'}
+- {feats: {Mood: Sub, Tense: Pres, VerbForm: Fin}, gloss: {en: 'present subjunctive (que hable, que coma)'}, notes: {en: 'After a wish, a hope, advice or a purpose aimed at someone else (quiero que, espero que, ojalá, te aconsejo que, es importante que, para que), the verb swaps its vowel: -ar verbs take e (hable, hables, hablen), -er and -ir verbs take a (coma, viva). The stem is the yo form''s: tengo, tenga; hago, haga; digo, diga; vengo, venga. Sea, esté, vaya and sepa are irregular. Spelling keeps the sound: llegue, saque. Heritage speakers often keep the present (quiero que tú vienes); written Spanish needs quiero que vengas. With one subject there is no que: quiero ir.'}, was: 'form:subj'}

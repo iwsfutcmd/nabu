@@ -1,0 +1,596 @@
+# Unit u27 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u27
+title:
+  en: 'José Martí: the poet of Cuba'
+cefr: B2
+nodes:
+- {id: es.u27.el-apostol, kind: lesson, introduces: ['lexeme:martí', 'lexeme:héroe', 'lexeme:josé', 'lexeme:apóstol', 'lexeme:morir', 'lexeme:luchar', 'lexeme:libre', 'lexeme:patria']}
+- {id: es.u27.nueva-york, kind: lesson, introduces: ['lexeme:nueva-york', 'lexeme:poeta', 'lexeme:poema', 'lexeme:verso', 'lexeme:sencillo', 'lexeme:leer', 'lexeme:libro', 'lexeme:edad-de-oro']}
+- {id: es.u27.hombre-sincero, kind: lesson, introduces: ['lexeme:hombre', 'lexeme:sincero', 'lexeme:crecer', 'lexeme:palma', 'lexeme:alma']}
+- {id: es.u27.guantanamera, kind: lesson, introduces: ['lexeme:guantanamera', 'lexeme:memoria', 'lexeme:entender', 'lexeme:palabra']}
+- {id: es.u27.rosa-blanca, kind: lesson, introduces: ['lexeme:rosa', 'lexeme:julio', 'lexeme:mano', 'lexeme:franco', 'lexeme:cruel']}
+- {id: es.u27.story, kind: story}
+sentences:
+- id: s.u27.1
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Martí es el héroe nacional de Cuba.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: héroe, lexeme: héroe, feats: {Number: Sing}}, {surface: nacional, lexeme: nacional, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      reverse: (Martí|José Martí) es el héroe nacional (de Cuba|cubano)
+  translations:
+    en: (Martí|José Martí) is (Cuba's national hero|the national hero of Cuba).
+- id: s.u27.2
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Todos los cubanos conocen a José Martí.
+      tokens: [{surface: Todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}, {surface: conocen, lexeme: conocer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: José, lexeme: josé}, {surface: Martí, lexeme: martí}]
+      reverse: Todos los cubanos (conocen a|saben quién es) José Martí
+  translations:
+    en: (Every Cuban knows|All Cubans know) (José Martí|who José Martí is|who José Martí was).
+- id: s.u27.3
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: A Martí le dicen el Apóstol.
+      tokens: [{surface: A, lexeme: a}, {surface: Martí, lexeme: martí}, {surface: le, lexeme: le}, {surface: dicen, lexeme: decir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Apóstol, lexeme: apóstol}]
+      reverse: A Martí (le dicen|lo llaman|le llaman) el Apóstol
+  translations:
+    en: (Martí is called|They call Martí|People call Martí) (the Apostle|el Apóstol).
+- id: s.u27.4
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Martí nació en La Habana y murió en Dos Ríos.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: nació, lexeme: nacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: murió, lexeme: morir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Dos, lexeme: dos}, {surface: Ríos, lexeme: río, feats: {Number: Plur}}]
+      reverse: Martí nació en La Habana y murió en Dos Ríos
+  translations:
+    en: Martí was born in Havana and died (in|at) Dos Ríos.
+- id: s.u27.5
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Murió en el noventa y cinco, luchando por la libertad de Cuba.
+      tokens: [{surface: Murió, lexeme: morir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: noventa, lexeme: noventa}, {surface: y, lexeme: y}, {surface: cinco, lexeme: cinco}, {surface: luchando, lexeme: luchar, feats: {VerbForm: Ger}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: libertad, lexeme: libertad, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      reverse: '[Martí] murió en (el noventa y cinco|el 95|mil ochocientos noventa y cinco|1895) luchando por la (libertad de Cuba|independencia de Cuba)'
+  translations:
+    en: (He|Martí) died in ('95|1895|ninety-five), fighting for (Cuba's freedom|the freedom of Cuba|Cuban freedom|Cuba's independence).
+- id: s.u27.6
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Martí quería que Cuba fuera libre.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: quería, lexeme: querer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: fuera, lexeme: ser, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: libre, lexeme: libre, feats: {Gender: Fem, Number: Sing}}]
+      reverse: Martí quería que Cuba (fuera|fuese) libre
+  translations:
+    en: |-
+      Martí wanted Cuba to be free.
+      What Martí wanted was for Cuba to be free.
+- id: s.u27.7
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Para Martí, la patria era de todos los cubanos.
+      tokens: [{surface: Para, lexeme: para}, {surface: Martí, lexeme: martí}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: patria, lexeme: patria, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: cubanos, lexeme: cubano, feats: {Gender: Masc, Number: Plur}}]
+      reverse: Para Martí la patria era de todos los cubanos
+  translations:
+    en: |-
+      For Martí, the (homeland|fatherland|nation) belonged to (all Cubans|every Cuban).
+      For Martí, the (homeland|fatherland|nation) was for (all Cubans|every Cuban).
+- id: s.u27.8
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe se llama José, como Martí.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: se, lexeme: se}, {surface: llama, lexeme: llamarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: José, lexeme: josé}, {surface: como, lexeme: como.like}, {surface: Martí, lexeme: martí}]
+      reverse: (Abuelo|El abuelo|Mi abuelo) Pepe se llama José (como|igual que) Martí
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe's (name|real name) is José, (like Martí|like Martí's|just like Martí|just like Martí's).
+      (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe is called José, (like Martí|just like Martí).
+- id: s.u27.9
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Martí vivió muchos años en Nueva York.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: vivió, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: Nueva, lexeme: nueva-york}, {surface: York, lexeme: nueva-york}]
+      reverse: |-
+        Martí vivió muchos años en Nueva York
+        Martí vivió en Nueva York muchos años
+  translations:
+    en: |-
+      Martí lived in New York for (many|a lot of) years.
+      Martí lived [for] (many|a lot of) years in New York.
+- id: s.u27.10
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Martí era un gran poeta y escribió muchos poemas.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: gran, lexeme: grande, feats: {Gender: Masc, Number: Sing}}, {surface: poeta, lexeme: poeta, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: escribió, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: poemas, lexeme: poema, feats: {Number: Plur}}]
+      reverse: Martí (era|fue) un gran poeta y escribió muchos poemas
+  translations:
+    en: Martí was a great poet and (he wrote|wrote) (many|a lot of|lots of) poems.
+- id: s.u27.11
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Martí escribió los Versos sencillos en Nueva York.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: escribió, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: Versos, lexeme: verso, feats: {Number: Plur}}, {surface: sencillos, lexeme: sencillo, feats: {Gender: Masc, Number: Plur}}, {surface: en, lexeme: en}, {surface: Nueva, lexeme: nueva-york}, {surface: York, lexeme: nueva-york}]
+      reverse: Martí escribió [los] Versos sencillos en Nueva York
+  translations:
+    en: Martí wrote (the Versos sencillos|Versos sencillos|the Simple Verses|Simple Verses) in New York.
+- id: s.u27.12
+  node: es.u27.nueva-york
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era niña, leía a Martí con mi padre.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: yo, lexeme: yo}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}, {surface: leía, lexeme: leer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Martí, lexeme: martí}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}]
+      reverse: |-
+        Cuando [yo] era (niña|chiquita) leía a Martí con mi (padre|papá)
+        [Yo] leía a Martí con mi (padre|papá) cuando era (niña|chiquita)
+        Leía a Martí con mi padre cuando yo era niña
+  translations:
+    en: |-
+      When I was (a girl|a little girl|a child|little), I (used to read|read|would read) Martí with my (father|dad).
+      I (used to read|read|would read) Martí with my (father|dad) when I was (a girl|a little girl|a child|little).
+- id: s.u27.13
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: La Edad de Oro es el libro de Martí para los niños.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Edad, lexeme: edad-de-oro}, {surface: de, lexeme: edad-de-oro}, {surface: Oro, lexeme: edad-de-oro}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: libro, lexeme: libro, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Martí, lexeme: martí}, {surface: para, lexeme: para}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: niños, lexeme: niño, feats: {Gender: Masc, Number: Plur}}]
+      reverse: La Edad de Oro es el libro de Martí para [los] niños
+  translations:
+    en: |-
+      (La Edad de Oro|The Golden Age) is Martí's book for (children|kids).
+      (La Edad de Oro|The Golden Age) is the book [that] Martí wrote for (children|kids).
+- id: s.u27.14
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Abuela me pidió que leyera un poema de Martí.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: pidió, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: leyera, lexeme: leer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poema, lexeme: poema, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Martí, lexeme: martí}]
+      reverse: (Abuela|La abuela|Mi abuela) me pidió que (leyera|leyese) un poema de Martí
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) asked me to read (a poem by Martí|a Martí poem|one of Martí's poems).
+- id: s.u27.15
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Martí escribe como si hablara con un amigo.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: si, lexeme: si}, {surface: hablara, lexeme: hablar, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: amigo, lexeme: amigo, feats: {Number: Sing}}]
+      reverse: |-
+        Martí escribe como si (hablara|hablase|estuviera hablando) con un amigo
+        Martí escribe como si estuviese hablando con un amigo
+  translations:
+    en: Martí writes (as if|as though|like) he (were|was) (talking|speaking) (to|with) a friend.
+- id: s.u27.16
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe es un hombre sincero.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: hombre, lexeme: hombre, feats: {Number: Sing}}, {surface: sincero, lexeme: sincero, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (Abuelo|El abuelo|Mi abuelo) Pepe es un hombre sincero
+  translations:
+    en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe is (a sincere|an honest) man.
+- id: s.u27.17
+  node: es.u27.hombre-sincero
+  tags:
+  - {persons: {speaker: f, addressee: m}}
+  forms:
+    es-Latn/standard:
+      text: 'Yo soy sincera, mi''jo: digo lo que pienso.'
+      tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sincera, lexeme: sincero, feats: {Gender: Fem, Number: Sing}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: digo, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: lo, lexeme: lo-que}, {surface: que, lexeme: lo-que}, {surface: pienso, lexeme: pensar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: '[Yo] soy sincera (mi''jo|mi hijo) [y] digo lo que pienso'
+  translations:
+    en: |-
+      (I'm|I am) (honest|sincere), (sweetheart|son|honey|my boy): I say what I think.
+      (I'm|I am) (honest|sincere), (sweetheart|son|honey|my boy), and I say what I think.
+- id: s.u27.18
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: En Cuba, las palmas crecen en todo el campo.
+      tokens: [{surface: En, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: palmas, lexeme: palma, feats: {Number: Plur}}, {surface: crecen, lexeme: crecer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: campo, lexeme: campo, feats: {Number: Sing}}]
+      reverse: |-
+        En Cuba las palmas crecen (en|por) todo el campo
+        Las palmas crecen (en|por) todo el campo (en Cuba|cubano)
+  translations:
+    en: |-
+      In Cuba, (palm trees|palms|the palm trees|the palms) grow all over the countryside.
+      In Cuba, (palm trees|palms|the palm trees|the palms) grow (everywhere in|throughout|across) the countryside.
+      Palm trees grow all over the countryside in Cuba.
+- id: s.u27.19
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: Daniel creció en Hialeah, lejos de las palmas de Cuba.
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: creció, lexeme: crecer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}, {surface: lejos, lexeme: lejos}, {surface: de, lexeme: de}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: palmas, lexeme: palma, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      reverse: Daniel creció en Hialeah lejos de las palmas (de Cuba|cubanas)
+  translations:
+    en: |-
+      Daniel grew up in Hialeah, far from (the palm trees|the palms) of Cuba.
+      Daniel grew up in Hialeah, far from Cuba's (palm trees|palms).
+- id: s.u27.20
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: Martí escribía sus versos con el alma.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: escribía, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: alma, lexeme: alma, feats: {Number: Sing}}]
+      reverse: Martí escribía sus versos con (el alma|toda el alma|toda su alma)
+  translations:
+    en: Martí wrote his (verses|poems|poetry) (from the soul|from the heart|with his soul|with all his soul|with all his heart).
+- id: s.u27.21
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: Ese poema me llegó al alma, abuela.
+      tokens: [{surface: Ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: poema, lexeme: poema, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: alma, lexeme: alma, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      reverse: (Ese|Este) poema me llegó al alma [abuela]
+  translations:
+    en: |-
+      That poem (touched my soul|moved me deeply|really touched me|went straight to my heart), (Grandma|Abuela).
+      That poem touched my heart, Grandma.
+- id: s.u27.22
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: Todo el mundo conoce la Guantanamera.
+      tokens: [{surface: Todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}}, {surface: conoce, lexeme: conocer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}}]
+      reverse: Todo el mundo (conoce|se sabe) la Guantanamera
+  translations:
+    en: (Everybody|Everyone|The whole world) knows (Guantanamera|the Guantanamera|the song Guantanamera).
+- id: s.u27.23
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: Los versos de la Guantanamera son de Martí.
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Martí, lexeme: martí}]
+      reverse: Los versos de la Guantanamera son de Martí
+  translations:
+    en: |-
+      The (verses|lines|words|lyrics) of (Guantanamera|the Guantanamera) are (by Martí|Martí's).
+      (Guantanamera's|The Guantanamera's) (verses|lines|words|lyrics) are (by Martí|Martí's).
+- id: s.u27.24
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: Daniel canta la Guantanamera, pero nunca ha leído a Martí.
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: canta, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}}, {surface: pero, lexeme: pero}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: leído, lexeme: leer, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Martí, lexeme: martí}]
+      reverse: |-
+        Daniel canta la Guantanamera pero nunca ha leído a Martí
+        Daniel canta la Guantanamera, pero no ha leído nunca a Martí
+  translations:
+    en: Daniel sings (Guantanamera|the Guantanamera), but (he's never|he has never|has never) read Martí.
+- id: s.u27.25
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: En la escuela, Abuela aprendió los versos de memoria.
+      tokens: [{surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: aprendió, lexeme: aprender, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: memoria, lexeme: memoria, feats: {Number: Sing}}]
+      reverse: |-
+        En la escuela (Abuela|la abuela|mi abuela) (aprendió|se aprendió) los versos de memoria
+        (Abuela|La abuela|Mi abuela) (aprendió|se aprendió) los versos de memoria en la escuela
+  translations:
+    en: |-
+      At school, (Grandma|Grandmother|Abuela|my grandma|my grandmother) learned the (verses|poems|lines) by heart.
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) learned the (verses|poems|lines) by heart at school.
+- id: s.u27.26
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: El padre de Abuela quería que ella supiera los versos de memoria.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quería, lexeme: querer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: supiera, lexeme: saber, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: memoria, lexeme: memoria, feats: {Number: Sing}}]
+      reverse: El (padre|papá) de (Abuela|la abuela|mi abuela) quería que [ella] (supiera|supiese|se supiera|se supiese) los versos de memoria
+  translations:
+    en: (Grandma's|Grandmother's|Abuela's|My grandma's|My grandmother's) father wanted her to know the (verses|poems|lines) by heart.
+- id: s.u27.27
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: Abuela, no entiendo esta palabra.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: entiendo, lexeme: entender, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: palabra, lexeme: palabra, feats: {Number: Sing}}]
+      reverse: '[Abuela] [yo] no (entiendo|comprendo) esta palabra'
+  translations:
+    en: (Grandma|Abuela), I (don't|do not) understand this word.
+- id: s.u27.28
+  node: es.u27.guantanamera
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    es-Latn/standard:
+      text: Lili, ¿tú te sabías los versos de memoria cuando eras niña?
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: tú, lexeme: tú}, {surface: te, lexeme: te}, {surface: sabías, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: memoria, lexeme: memoria, feats: {Number: Sing}}, {surface: cuando, lexeme: cuando}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}]
+      reverse: Lili (tú te sabías|te sabías [tú]|tú sabías|sabías [tú]) los versos de memoria cuando eras (niña|chiquita)
+  translations:
+    en: Lili, did you know the (verses|poems|lines) by heart when you were (a girl|a little girl|a child|little)?
+- id: s.u27.29
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: Abuela cultiva rosas blancas en el patio.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cultiva, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rosas, lexeme: rosa, feats: {Number: Plur}}, {surface: blancas, lexeme: blanco, feats: {Gender: Fem, Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      reverse: (Abuela|La abuela|Mi abuela) (cultiva|siembra|tiene) rosas blancas en el patio
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) (grows|cultivates) white roses in the (yard|backyard|garden).
+- id: s.u27.30
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: En Miami hace calor en enero y en julio.
+      tokens: [{surface: En, lexeme: en}, {surface: Miami, lexeme: miami}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: enero, lexeme: enero}, {surface: y, lexeme: y}, {surface: en, lexeme: en}, {surface: julio, lexeme: julio}]
+      reverse: En Miami hace calor (en enero y [en] julio|en julio y [en] enero)
+  translations:
+    en: In Miami (it's|it is) hot (in January and [in] July|in July and [in] January).
+- id: s.u27.31
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: Un amigo sincero te da la mano cuando la necesitas.
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: amigo, lexeme: amigo, feats: {Number: Sing}}, {surface: sincero, lexeme: sincero, feats: {Gender: Masc, Number: Sing}}, {surface: te, lexeme: te}, {surface: da, lexeme: dar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mano, lexeme: mano, feats: {Number: Sing}}, {surface: cuando, lexeme: cuando}, {surface: la, lexeme: lo, feats: {Gender: Fem, Number: Sing}}, {surface: necesitas, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Un amigo sincero (te da la mano cuando la necesitas|le da la mano cuando la necesita)
+  translations:
+    en: A (sincere|true|real) friend (gives you a hand|lends you a hand|helps you) when you need it.
+- id: s.u27.32
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: 'Yasiel es un muchacho franco: siempre dice la verdad.'
+      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: muchacho, lexeme: muchacho, feats: {Gender: Masc, Number: Sing}}, {surface: franco, lexeme: franco, feats: {Gender: Masc, Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: verdad, lexeme: verdad, feats: {Number: Sing}}]
+      reverse: Yasiel es un (muchacho|joven) franco [y] siempre dice la verdad
+  translations:
+    en: |-
+      Yasiel is (a frank|an honest|a straightforward|an open) (guy|young man): he always tells the truth.
+      Yasiel is (a frank|an honest|a straightforward|an open) (guy|young man) and (he always tells|always tells) the truth.
+- id: s.u27.33
+  node: es.u27.rosa-blanca
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    es-Latn/standard:
+      text: Para serte franco, abuela, yo nunca había leído a Martí.
+      tokens: [{surface: Para, lexeme: para}, {surface: serte, lexemes: [{lexeme: ser, surface: ser, base: true, feats: {VerbForm: Inf}}, {lexeme: te, surface: te}]}, {surface: franco, lexeme: franco, feats: {Gender: Masc, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: había, lexeme: haber, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: leído, lexeme: leer, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Martí, lexeme: martí}]
+      reverse: |-
+        Para serte (franco|sincero) [abuela] [yo] nunca había leído a Martí
+        Para serte franco, abuela, yo no había leído nunca a Martí
+        Para ser franco, abuela, yo nunca había leído a Martí
+  translations:
+    en: To be (honest|frank) [with you], (Grandma|Abuela), (I had never|I'd never|I never) read Martí.
+- id: s.u27.34
+  node: es.u27.rosa-blanca
+  tags:
+  - {persons: {speaker: f, addressee: m}}
+  forms:
+    es-Latn/standard:
+      text: Para serte franca, mi'jo, yo lloro cuando leo ese poema.
+      tokens: [{surface: Para, lexeme: para}, {surface: serte, lexemes: [{lexeme: ser, surface: ser, base: true, feats: {VerbForm: Inf}}, {lexeme: te, surface: te}]}, {surface: franca, lexeme: franco, feats: {Gender: Fem, Number: Sing}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: yo, lexeme: yo}, {surface: lloro, lexeme: llorar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: cuando, lexeme: cuando}, {surface: leo, lexeme: leer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: poema, lexeme: poema, feats: {Number: Sing}}]
+      reverse: |-
+        Para serte (franca|sincera) (mi'jo|mi hijo) [yo] lloro (cuando leo|cada vez que leo) (ese|este) poema
+        Para ser franca, mi'jo, yo lloro cuando leo ese poema
+  translations:
+    en: To be (honest|frank) [with you], (sweetheart|son|honey), I cry (when|whenever|every time) I read (that|this) poem.
+- id: s.u27.35
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: Martí cultivaba la rosa blanca también para el hombre cruel.
+      tokens: [{surface: Martí, lexeme: martí}, {surface: cultivaba, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: rosa, lexeme: rosa, feats: {Number: Sing}}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}, {surface: también, lexeme: también}, {surface: para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: hombre, lexeme: hombre, feats: {Number: Sing}}, {surface: cruel, lexeme: cruel, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        Martí cultivaba la rosa blanca también para el (hombre cruel|cruel)
+        Martí cultivaba la rosa blanca para el (hombre cruel|cruel) también
+  translations:
+    en: Martí (grew|cultivated|would grow) the white rose (for the cruel man too|for the cruel one too|for the cruel man as well|even for the cruel man|also for the cruel man).
+- id: s.u27.36
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: En el poema, Martí perdona hasta al hombre cruel.
+      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: poema, lexeme: poema, feats: {Number: Sing}}, {surface: Martí, lexeme: martí}, {surface: perdona, lexeme: perdonar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hasta, lexeme: hasta}, {surface: al, lexeme: al}, {surface: hombre, lexeme: hombre, feats: {Number: Sing}}, {surface: cruel, lexeme: cruel, feats: {Gender: Masc, Number: Sing}}]
+      reverse: En el poema Martí perdona (hasta|incluso|aun) al (hombre cruel|cruel)
+  translations:
+    en: In the poem, Martí forgives even the cruel (man|one).
+stories:
+- id: es.story.u27
+  node: es.u27.story
+  title:
+    en: A sincere man (José Martí, Versos sencillos, 1891)
+  characters:
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: pepe
+    speaker: m
+    name:
+      es-Latn/standard: Abuelo Pepe
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Ven, Daniel. Te voy a leer unos versos de Martí.
+          tokens: [{surface: Ven, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: Daniel, lexeme: daniel}, {surface: Te, lexeme: te}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: leer, lexeme: leer, feats: {VerbForm: Inf}}, {surface: unos, lexeme: un, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: Martí, lexeme: martí}]
+      translations:
+        en: Come here, Daniel. I'm going to read you some of Martí's verses.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Yo me sé la Guantanamera, pero nunca he leído a Martí.
+          tokens: [{surface: Yo, lexeme: yo}, {surface: me, lexeme: me}, {surface: sé, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}}, {surface: pero, lexeme: pero}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: leído, lexeme: leer, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Martí, lexeme: martí}]
+      translations:
+        en: I know Guantanamera by heart, but I've never read Martí.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Mi padre me leía estos versos en el bohío. Oye, mi'jo.
+          tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: padre, lexeme: padre, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: leía, lexeme: leer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: estos, lexeme: este, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: bohío, lexeme: bohío, feats: {Number: Sing}}, {surface: Oye, lexeme: oír, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: My father used to read me these verses in the bohío. Listen, sweetheart.
+  - line:
+      speaker: cachita
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Yo soy un hombre sincero
+          tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: hombre, lexeme: hombre, feats: {Number: Sing}}, {surface: sincero, lexeme: sincero, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: I am a sincere man
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:palma
+      distractors:
+      - lexeme:cocina
+      - lexeme:guagua
+      forms:
+        es-Latn/standard:
+          text: De donde crece la palma.
+          tokens: [{surface: De, lexeme: de}, {surface: donde, lexeme: donde}, {surface: crece, lexeme: crecer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: palma, lexeme: palma, feats: {Number: Sing}}]
+      translations:
+        en: from where the palm tree grows,
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Y antes de morirme quiero
+          tokens: [{surface: Y, lexeme: y}, {surface: antes, lexeme: antes}, {surface: de, lexeme: de}, {surface: morirme, lexemes: [{lexeme: morir, surface: morir, base: true, feats: {VerbForm: Inf}}, {lexeme: me, surface: me}]}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: and before I die I want
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Echar mis versos del alma.
+          tokens: [{surface: Echar, lexeme: echar, feats: {VerbForm: Inf}}, {surface: mis, lexeme: mi, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: del, lexeme: del}, {surface: alma, lexeme: alma, feats: {Number: Sing}}]
+      translations:
+        en: to pour the verses out of my soul.
+  - choose:
+      prompt:
+        en: In the poem, where does the poet say he comes from?
+      options:
+      - en: From where the palm tree grows
+      - en: From New York
+      - en: From the sea
+      answer: 0
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: ¡Pero esos son los versos de la Guantanamera!
+          tokens: [{surface: Pero, lexeme: pero}, {surface: esos, lexeme: ese, feats: {Gender: Masc, Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: versos, lexeme: verso, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}}]
+      translations:
+        en: But those are the words of Guantanamera!
+  - line:
+      speaker: pepe
+      ask: complete
+      gap: lexeme:lejos
+      distractors:
+      - lexeme:cerca
+      - lexeme:debajo
+      forms:
+        es-Latn/standard:
+          text: Sí, mi'jo. Martí los escribió en Nueva York, lejos de su patria.
+          tokens: [{surface: Sí, lexeme: sí}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Martí, lexeme: martí}, {surface: los, lexeme: lo, feats: {Number: Plur}}, {surface: escribió, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Nueva, lexeme: nueva-york}, {surface: York, lexeme: nueva-york}, {surface: lejos, lexeme: lejos}, {surface: de, lexeme: de}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: patria, lexeme: patria, feats: {Number: Sing}}]
+      translations:
+        en: Yes, son. Martí wrote them in New York, far from his homeland.
+  - choose:
+      prompt:
+        en: Where did Martí write these verses?
+      options:
+      - en: In New York
+      - en: In Havana
+      - en: In Abuela's bohío
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Ahora lee tú este, el de la rosa blanca.
+          tokens: [{surface: Ahora, lexeme: ahora}, {surface: lee, lexeme: leer, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: tú, lexeme: tú}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: rosa, lexeme: rosa, feats: {Number: Sing}}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: Now you read this one, the one about the white rose.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Cultivo una rosa blanca
+          tokens: [{surface: Cultivo, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: rosa, lexeme: rosa, feats: {Number: Sing}}, {surface: blanca, lexeme: blanco, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: I grow a white rose
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: En julio como enero,
+          tokens: [{surface: En, lexeme: en}, {surface: julio, lexeme: julio}, {surface: como, lexeme: como.like}, {surface: enero, lexeme: enero}]
+      translations:
+        en: in July as in January,
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Para el amigo sincero
+          tokens: [{surface: Para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: amigo, lexeme: amigo, feats: {Number: Sing}}, {surface: sincero, lexeme: sincero, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: for the sincere friend
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Que me da su mano franca.
+          tokens: [{surface: Que, lexeme: que}, {surface: me, lexeme: me}, {surface: da, lexeme: dar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: mano, lexeme: mano, feats: {Number: Sing}}, {surface: franca, lexeme: franco, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: who gives me his open hand.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Y después, Martí la cultiva también para el cruel.
+          tokens: [{surface: Y, lexeme: y}, {surface: después, lexeme: después}, {surface: Martí, lexeme: martí}, {surface: la, lexeme: lo, feats: {Gender: Fem, Number: Sing}}, {surface: cultiva, lexeme: cultivar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: también, lexeme: también}, {surface: para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cruel, lexeme: cruel, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: And then Martí grows it for the cruel one too.
+  - choose:
+      prompt:
+        en: Who does Martí grow the white rose for?
+      options:
+      - en: For the sincere friend, and for the cruel one too
+      - en: Only for his friends
+      - en: Only for Cuba
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Para el cruel también? No entiendo, abuela.
+          tokens: [{surface: Para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cruel, lexeme: cruel, feats: {Gender: Masc, Number: Sing}}, {surface: también, lexeme: también}, {surface: 'No', lexeme: 'no'}, {surface: entiendo, lexeme: entender, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: For the cruel one too? I don't understand, Grandma.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Martí quería que perdonáramos, mi'jo. Por eso le dicen el Apóstol.
+          tokens: [{surface: Martí, lexeme: martí}, {surface: quería, lexeme: querer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: perdonáramos, lexeme: perdonar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Por, lexeme: por}, {surface: eso, lexeme: ese, feats: {Gender: Neut, Number: Sing}}, {surface: le, lexeme: le}, {surface: dicen, lexeme: decir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: Apóstol, lexeme: apóstol}]
+      translations:
+        en: Martí wanted us to forgive, son. That's why they call him the Apostle.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¡Bueno, ahora todos a cantar la Guantanamera!
+          tokens: [{surface: Bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: ahora, lexeme: ahora}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: a, lexeme: a}, {surface: cantar, lexeme: cantar, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}}]
+      translations:
+        en: Well, now everybody sing Guantanamera!

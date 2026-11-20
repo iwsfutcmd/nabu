@@ -1,0 +1,95 @@
+# What grc declares beside its lexicon (schemas/language.schema.json).
+# Written by `nabu migrate` from courses/grc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: grc
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@f19b26546254', status: draft}
+varieties: [grc]
+registers: [neutral]
+dimensions:
+  VERB: [Mood, Tense, Aspect, Voice, Person, Number, VerbForm]
+  AUX: [Mood, Tense, Aspect, Person, Number, VerbForm]
+  NOUN: [Case, Number]
+  PROPN: [Case, Number]
+  ADJ: [Gender, Case, Number, Degree]
+  DET: [Gender, Case, Number]
+  PRON: [Gender, Case, Number]
+lexical:
+  NOUN: [Gender]
+  PROPN: [Gender]
+citation:
+  NOUN: {Gender: Masc, Case: Nom, Number: Sing}
+  PROPN: {Gender: Masc, Case: Nom, Number: Sing}
+  ADJ: {Gender: Masc, Case: Nom, Number: Sing}
+  DET: {Gender: Masc, Case: Nom, Number: Sing}
+  PRON: {Gender: Masc, Case: Nom, Number: Sing}
+  VERB: {Mood: Ind, Tense: Pres, Person: '1', Number: Sing, VerbForm: Fin}
+  AUX: {Mood: Ind, Tense: Pres, Person: '1', Number: Sing, VerbForm: Fin}
+features:
+  Aspect: [Imp, Perf]
+  Case: [Acc, Dat, Gen, Nom, Voc]
+  Degree: [Cmp]
+  Gender: [Fem, Masc, Neut]
+  Mood: [Imp, Ind, Sub]
+  NumType: [Card, Ord]
+  Number: [Plur, Sing]
+  PartType: [Int]
+  Person: ['1', '2', '3']
+  Polarity: [Neg]
+  Poss: ['Yes']
+  PronType: [Dem, Ind, Int, Neg, Prs, Tot]
+  Tense: [Fut, Past, Pres]
+  VerbForm: [Fin, Inf, Part]
+  Voice: [Mid]
+defaults:
+- {id: gender-os, when: {ends: ος}, gives: {Gender: Masc}}
+- {id: gender-es, when: {ends: ης}, gives: {Gender: Masc}}
+- {id: gender-e, when: {ends: η}, gives: {Gender: Fem}}
+- {id: gender-a, when: {ends: α}, gives: {Gender: Fem}}
+- {id: gender-is, when: {ends: ις}, gives: {Gender: Fem}}
+- {id: gender-on, when: {ends: ον}, gives: {Gender: Neut}}
+- {id: gender-ma, when: {ends: μα}, gives: {Gender: Neut}}
+labels:
+- {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'the imperative, to one person: do!'}, was: 'form:impv-2s'}
+- {feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, gloss: {en: 'the imperative, to several people: do!'}, was: 'form:impv-2p'}
+- {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'the present, I: I do, I am doing'}, was: 'form:pres-1s'}
+- {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'the present, you (one person): you do, you are doing'}, was: 'form:pres-2s'}
+- {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'the present, he, she, it: does, is doing'}, was: 'form:pres-3s'}
+- {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'the perfect, you (one person): you have done (and so it stands)'}, was: 'form:perf-2s'}
+- {feats: {Case: Nom, Gender: Fem, Number: Sing}, gloss: {en: 'feminine, as subject: ἡ μήτηρ, the mother; νεωτέρα, younger (of a woman)'}, was: 'form:f'}
+- {feats: {Case: Voc, Gender: Fem, Number: Sing}, gloss: {en: 'feminine vocative: calling a woman (ὦ Ξανθίππη); in -η and -α as the subject form'}, was: 'form:f-voc'}
+- {feats: {Case: Voc, Gender: Masc, Number: Sing}, gloss: {en: 'the vocative (masculine): the form for calling someone (Σώκρατες, from Σωκράτης)'}, was: 'form:voc'}
+- {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'the present, they: they do, they are doing'}, was: 'form:pres-3p'}
+- {feats: {Case: Acc, Gender: Fem, Number: Sing}, gloss: {en: 'feminine accusative: the object (ἀδελφὴν ἔχω, I have a sister; εἰς τὴν ἀγοράν)'}, was: 'form:f-acc'}
+- {feats: {Case: Gen, Gender: Fem, Number: Sing}, gloss: {en: 'feminine genitive: of, from (ἐκ τῆς οἰκίας, out of the house; Παρυσάτιδος, of Parysatis)'}, was: 'form:f-gen'}
+- {feats: {Case: Acc, Gender: Fem, Number: Plur}, gloss: {en: 'feminine accusative plural: the objects (ἀδελφὰς, sisters)'}, was: 'form:f-acc-pl'}
+- {feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, gloss: {en: 'neuter: one form as subject, as object and when called (τὸ τέκνον, the child; ἐπὶ τὸ ὄρος, onto the mountain)'}, was: 'form:n'}
+- {feats: {Case: Acc, Gender: Masc, Number: Sing}, gloss: {en: 'the accusative (masculine; also με, σε): the object of a verb (ἀδελφὸν ἔχω, I have a brother)'}, was: 'form:acc'}
+- {feats: {Case: Gen, Gender: Masc, Number: Sing}, gloss: {en: 'the genitive (masculine): of, ''s (Δαρείου, of Darius)'}, was: 'form:gen'}
+- {feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, gloss: {en: 'the plural (masculine; also ἡμεῖς, ὑμεῖς), as subject or called: -οι, -ες (ἀδελφοί, brothers)'}, was: 'form:pl'}
+- {feats: {Case: Acc, Gender: Masc, Number: Plur}, gloss: {en: 'the accusative plural (masculine; also ἡμᾶς, ὑμᾶς): the objects (παῖδας, children)'}, was: 'form:acc-pl'}
+- {feats: {Case: Dat, Gender: Fem, Number: Sing}, gloss: {en: 'feminine dative: to, for; on (a day); after ἐν, in (ἐν τῇ ἀγορᾷ, in the market place)'}, was: 'form:f-dat'}
+- {feats: {Case: Gen, Gender: Neut, Number: Sing}, gloss: {en: 'neuter genitive: of; after ἔξω, outside (ἔξω τείχους, outside the wall)'}, was: 'form:n-gen'}
+- {feats: {Case: Dat, Gender: Neut, Number: Sing}, gloss: {en: 'neuter dative: to, for; after ἐν, in (ἐν τῷ ἄστει, in the town)'}, was: 'form:n-dat'}
+- {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'the present, we: we do, we are doing'}, was: 'form:pres-1p'}
+- {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'the present, you (several people): you do, you are doing'}, was: 'form:pres-2p'}
+- {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'the aorist, I: I did (once, in the past)'}, was: 'form:aor-1s'}
+- {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'the imperfect, he, she, it: was doing, did'}, was: 'form:impf-3s'}
+- {feats: {VerbForm: Inf}, gloss: {en: 'the infinitive: to do (κελεύει περιμεῖναι, he tells (you) to wait)'}, was: 'form:inf'}
+- {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, gloss: {en: 'the future, we: we will do'}, was: 'form:fut-1p'}
+- {feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, gloss: {en: 'feminine plural, as subject or called: αἱ γυναῖκες, the women'}, was: 'form:f-pl'}
+- {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, gloss: {en: 'the present, they, with middle endings: -ονται (πορεύονται, they go)'}, was: 'form:pres-3p-mid'}
+- {feats: {VerbForm: Part}, gloss: {en: 'the participle: -ing (βοώντων, shouting)'}, was: 'form:ptc'}
+- {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'the imperfect, they: they were doing, they did'}, was: 'form:impf-3p'}
+- {feats: {Case: Dat, Gender: Masc, Number: Sing}, gloss: {en: 'the dative (masculine; also μοι, σοι): to, for (τῷ Ἀσκληπιῷ, to Asclepius; ὄνομά μοι, my name is)'}, was: 'form:dat'}
+- {feats: {Case: Gen, Gender: Masc, Number: Plur}, gloss: {en: 'the genitive plural (masculine): of (the) … (τῶν στρατιωτῶν, of the soldiers); also after ἀκούω, hear'}, was: 'form:gen-pl'}
+- {feats: {Mood: Sub, Number: Plur, Person: '2', Tense: Past, VerbForm: Fin}, gloss: {en: 'the aorist subjunctive, you (several): after μή, "don''t (do it)!"'}, was: 'form:aor-subj-2p'}
+- {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, gloss: {en: 'the future, he, she, it: will do, will be'}, was: 'form:fut-3s'}
+- {feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, gloss: {en: 'neuter plural: one form as subject and as object, in -α (τὰ ἄνω, the upstairs; ταῦτα, these things)'}, was: 'form:n-pl'}
+- {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'the aorist, he, she, it: did (once, in the past)'}, was: 'form:aor-3s'}
+- {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'the imperfect, I: I was doing, I used to do'}, was: 'form:impf-1s'}
+- {feats: {Case: Dat, Gender: Neut, Number: Plur}, gloss: {en: 'neuter dative plural: to, for (τοῖς κάτω, to the downstairs rooms)'}, was: 'form:n-dat-pl'}
+- {feats: {Case: Dat, Gender: Masc, Number: Plur}, gloss: {en: 'the dative plural (masculine; also ἡμῖν): to, for (ἡμῖν, to us)'}, was: 'form:dat-pl'}
+- {feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, gloss: {en: 'the comparative: more …, -er (σοφώτερος, wiser); the one compared in the genitive (than)'}, was: 'form:comp'}
+- {feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}, gloss: {en: 'the comparative, feminine: more …, -er (σοφωτέρα, wiser, of a woman)'}, was: 'form:comp-f'}

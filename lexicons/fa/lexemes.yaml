@@ -1,0 +1,1206 @@
+# The lexicon of fa (schemas/lexicon.schema.json): every lexeme, sorted by id.
+# Written by `nabu migrate` from courses/fa and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+language: fa
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@83a16c835c32', status: draft}
+lexemes:
+- id: lexeme:1pl
+  realises: {Number: Plur, Person: '1'}
+  gloss: {en: '-im: we (verb ending; هستیم: we are)'}
+  spelled: {fa-Arab/standard: [یم]}
+- id: lexeme:1sg
+  realises: {Number: Sing, Person: '1'}
+  gloss: {en: '-am: I (verb ending)'}
+  spelled: {fa-Arab/standard: [م]}
+- id: lexeme:2pl
+  realises: {Number: Plur, Person: '2'}
+  gloss: {en: '-id: you, polite or more than one (verb ending)'}
+  spelled: {fa-Arab/standard: [ید]}
+- id: lexeme:2sg
+  realises: {Number: Sing, Person: '2'}
+  gloss: {en: '-i: you, one person (verb ending)'}
+  spelled: {fa-Arab/standard: [ی]}
+- id: lexeme:3pl
+  realises: {Number: Plur, Person: '3'}
+  gloss: {en: '-and: they (verb ending)'}
+  spelled: {fa-Arab/standard: [ند]}
+- id: lexeme:3sg
+  realises: {Number: Sing, Person: '3'}
+  gloss: {en: '-ad: he, she, it (verb ending)'}
+  notes: {en: 'دارد (dārad): has. In speech it is -e: داره (dāre).'}
+  spelled: {fa-Arab/standard: [د]}
+- id: lexeme:ab
+  pos: NOUN
+  gloss: {en: water}
+  spelled: {fa-Arab/standard: [آب]}
+- id: lexeme:abi
+  pos: ADJ
+  gloss: {en: blue}
+  notes: {en: 'From آب, water.'}
+  spelled: {fa-Arab/standard: [آبی]}
+- id: lexeme:abri
+  pos: ADJ
+  gloss: {en: cloudy}
+  notes: {en: 'From ابر, cloud.'}
+  spelled: {fa-Arab/standard: [ابری]}
+- id: lexeme:aftabi
+  pos: ADJ
+  gloss: {en: sunny}
+  notes: {en: 'From آفتاب, sunshine.'}
+  spelled: {fa-Arab/standard: [آفتابی]}
+- id: lexeme:agha
+  pos: NOUN
+  gloss: {en: Mr.; sir; gentleman}
+  notes: {en: 'Before a surname with the ezafe: آقای رضایی. After a first name it is friendly: علی آقا.'}
+  spelled: {fa-Arab/standard: [آقا]}
+- id: lexeme:ahl
+  pos: NOUN
+  gloss: {en: 'native of; from (اهلِ کجا؟ where from?)'}
+  spelled: {fa-Arab/standard: [اهل]}
+- id: lexeme:akhar
+  pos: NOUN
+  gloss: {en: end; last}
+  notes: {en: 'آخرِ هفته: the weekend.'}
+  spelled: {fa-Arab/standard: [آخر]}
+- id: lexeme:aks
+  pos: NOUN
+  gloss: {en: photo; picture}
+  spelled: {fa-Arab/standard: [عکس]}
+- id: lexeme:alan
+  pos: ADV
+  gloss: {en: now}
+  spelled: {fa-Arab/standard: [الان]}
+- id: lexeme:ali
+  pos: PROPN
+  gloss: {en: Ali (a name)}
+  spelled: {fa-Arab/standard: [علی]}
+- id: lexeme:amadan
+  pos: VERB
+  gloss: {en: 'to come (present stem آ-, آی-)'}
+  notes: {en: 'Spoken Tehrani: میام (miyām), میاد (miyād).'}
+  spelled: {fa-Arab/standard: [آمدن, آمد]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [آی]}}
+- id: lexeme:amma
+  pos: CCONJ
+  gloss: {en: but}
+  notes: {en: ولی (vali) is a common alternative.}
+  spelled: {fa-Arab/standard: [اما]}
+- id: lexeme:an
+  pos: DET
+  feats: {PronType: Dem}
+  gloss: {en: "that; those (آن\u200cها: they)"}
+  notes: {en: 'Spoken Tehrani: اون (un), اونا (unā).'}
+  spelled: {fa-Arab/standard: [آن]}
+- id: lexeme:anja
+  pos: ADV
+  feats: {PronType: Dem}
+  gloss: {en: there}
+  notes: {en: 'آنجاست = آنجا + است. Spoken: اونجا (unjā).'}
+  spelled: {fa-Arab/standard: [آنجا]}
+- id: lexeme:aparteman
+  pos: NOUN
+  gloss: {en: apartment; flat}
+  spelled: {fa-Arab/standard: [آپارتمان]}
+- id: lexeme:arzan
+  pos: ADJ
+  gloss: {en: cheap; inexpensive}
+  spelled: {fa-Arab/standard: [ارزان]}
+- id: lexeme:ashpazkhane
+  pos: NOUN
+  gloss: {en: kitchen}
+  notes: {en: Literally 'cook-house'.}
+  spelled: {fa-Arab/standard: [آشپزخانه]}
+- id: lexeme:asr
+  pos: NOUN
+  gloss: {en: late afternoon; early evening}
+  spelled: {fa-Arab/standard: [عصر]}
+- id: lexeme:az
+  pos: ADP
+  gloss: {en: from; than}
+  spelled: {fa-Arab/standard: [از]}
+- id: lexeme:ba
+  pos: ADP
+  gloss: {en: 'with; by (bus, metro)'}
+  spelled: {fa-Arab/standard: [با]}
+- id: lexeme:bachche
+  pos: NOUN
+  gloss: {en: child; kid}
+  notes: {en: "بچه\u200cها: children; also a friendly 'guys'."}
+  spelled: {fa-Arab/standard: [بچه]}
+- id: lexeme:bad
+  pos: ADV
+  gloss: {en: then; after; later}
+  notes: {en: 'بعد از: after.'}
+  spelled: {fa-Arab/standard: [بعد]}
+- id: lexeme:bahar
+  pos: NOUN
+  gloss: {en: spring}
+  spelled: {fa-Arab/standard: [بهار]}
+- id: lexeme:bale
+  pos: INTJ
+  gloss: {en: 'yes'}
+  spelled: {fa-Arab/standard: [بله]}
+- id: lexeme:bank
+  pos: NOUN
+  gloss: {en: bank}
+  spelled: {fa-Arab/standard: [بانک]}
+- id: lexeme:baradar
+  pos: NOUN
+  gloss: {en: brother}
+  spelled: {fa-Arab/standard: [برادر]}
+- id: lexeme:baran
+  pos: NOUN
+  gloss: {en: rain}
+  notes: {en: "باران می\u200cآید: it's raining (literally 'rain comes')."}
+  spelled: {fa-Arab/standard: [باران]}
+- id: lexeme:barf
+  pos: NOUN
+  gloss: {en: snow}
+  notes: {en: "برف می\u200cآید: it's snowing."}
+  spelled: {fa-Arab/standard: [برف]}
+- id: lexeme:bazar
+  pos: NOUN
+  gloss: {en: bazaar; market}
+  spelled: {fa-Arab/standard: [بازار]}
+- id: lexeme:be
+  pos: ADP
+  gloss: {en: to}
+  spelled: {fa-Arab/standard: [به]}
+- id: lexeme:bebakhshid
+  pos: INTJ
+  gloss: {en: excuse me; sorry}
+  notes: {en: 'Used to get attention and to apologize. Spoken: ببخشین (bebakhshin).'}
+  spelled: {fa-Arab/standard: [ببخشید]}
+- id: lexeme:befarmayid
+  pos: INTJ
+  gloss: {en: please (go ahead); here you are; come in}
+  notes: {en: 'The polite word for offering something, inviting someone in, or letting them go first.'}
+  spelled: {fa-Arab/standard: [بفرمایید]}
+- id: lexeme:berenj
+  pos: NOUN
+  gloss: {en: rice}
+  notes: {en: Plain steamed rice is چلو (chelow); rice cooked with other ingredients is پلو (polow).}
+  spelled: {fa-Arab/standard: [برنج]}
+- id: lexeme:bist
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: twenty}
+  notes: {en: 'Tens and units are joined with و: بیست و پنج, twenty-five.'}
+  spelled: {fa-Arab/standard: [بیست]}
+- id: lexeme:bozorg
+  pos: ADJ
+  gloss: {en: big; large; (of siblings) older}
+  spelled: {fa-Arab/standard: [بزرگ]}
+- id: lexeme:budan
+  pos: AUX
+  gloss: {en: 'to be: is, am, are'}
+  notes: {en: است is the usual 'is'; the other persons add an ending to هست-.}
+  spelled: {fa-Arab/standard: [بودن, است]}
+  forms:
+  - {feats: {Polarity: Neg}, spelled: {fa-Arab/standard: [نیست]}, status: pinned}
+  - {feats: {Tense: Past}, spelled: {fa-Arab/standard: [بود]}, status: pinned}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [هست]}}
+  - {spelled: {fa-Arab/standard: [ست]}}
+- id: lexeme:chahar
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: four}
+  spelled: {fa-Arab/standard: [چهار]}
+- id: lexeme:chaharshanbe
+  pos: PROPN
+  gloss: {en: Wednesday}
+  spelled: {fa-Arab/standard: [چهارشنبه]}
+- id: lexeme:chand
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: how many; how much (price); what (time)}
+  notes: {en: 'Spoken: چند تا (chand tā), how many. ساعت چند؟ what time?'}
+  spelled: {fa-Arab/standard: [چند]}
+- id: lexeme:chandshanbe
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: 'which day of the week?'}
+  notes: {en: 'Literally ''how-many-shanbe'': the weekdays count up from شنبه.'}
+  spelled: {fa-Arab/standard: [چندشنبه]}
+- id: lexeme:chap
+  pos: NOUN
+  gloss: {en: left}
+  spelled: {fa-Arab/standard: [چپ]}
+- id: lexeme:chay
+  pos: NOUN
+  gloss: {en: tea}
+  notes: {en: 'Served in small glasses, often with sugar cubes (قند).'}
+  image: {file: ../../courses/images/tea.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3715ffdb2952', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [چای]}
+- id: lexeme:che
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: what}
+  notes: {en: 'Spoken: چی (chi).'}
+  spelled: {fa-Arab/standard: [چه]}
+- id: lexeme:cheghadr
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: how much}
+  notes: {en: 'Spoken: چقدره؟ (cheqadre?) How much is it?'}
+  spelled: {fa-Arab/standard: [چقدر]}
+- id: lexeme:chetor
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: how}
+  notes: {en: 'Spoken, to a friend: چطوری؟ (chetori?) How are you?'}
+  spelled: {fa-Arab/standard: [چطور]}
+- id: lexeme:chist
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: 'what is …?'}
+  spelled: {fa-Arab/standard: [چیست]}
+- id: lexeme:comp
+  realises: {Degree: Cmp}
+  gloss: {en: '-tar: -er, more (comparative)'}
+  notes: {en: "Joined with a ZWNJ: گران\u200cتر, more expensive; ارزان\u200cتر, cheaper."}
+  spelled: {fa-Arab/standard: [تر]}
+- id: lexeme:dadan
+  pos: VERB
+  gloss: {en: to give (present stem ده-)}
+  notes: {en: "Spoken: می\u200cدم (midam), I give."}
+  spelled: {fa-Arab/standard: [دادن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ده]}}
+- id: lexeme:daftar
+  pos: NOUN
+  gloss: {en: notebook}
+  spelled: {fa-Arab/standard: [دفتر]}
+- id: lexeme:daghighe
+  pos: NOUN
+  gloss: {en: minute}
+  spelled: {fa-Arab/standard: [دقیقه]}
+- id: lexeme:dah
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: ten}
+  spelled: {fa-Arab/standard: [ده]}
+- id: lexeme:daneshgah
+  pos: NOUN
+  gloss: {en: university}
+  spelled: {fa-Arab/standard: [دانشگاه]}
+- id: lexeme:daneshju
+  pos: NOUN
+  gloss: {en: (university) student}
+  notes: {en: "A school pupil is دانش\u200cآموز."}
+  image: {file: ../../courses/images/student.svg, license: CC0-1.0, provenance: {author: 'llm:claude@db6a47561192', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [دانشجو]}
+- id: lexeme:dar
+  pos: ADP
+  gloss: {en: in; at}
+  notes: {en: 'Everyday speech uses توی or تو (tu): توی آشپزخانه, in the kitchen.'}
+  spelled: {fa-Arab/standard: [در]}
+- id: lexeme:dars
+  pos: NOUN
+  gloss: {en: lesson; studies}
+  spelled: {fa-Arab/standard: [درس]}
+- id: lexeme:darukhane
+  pos: NOUN
+  gloss: {en: pharmacy; chemist's}
+  spelled: {fa-Arab/standard: [داروخانه]}
+- id: lexeme:darya
+  pos: NOUN
+  gloss: {en: sea}
+  spelled: {fa-Arab/standard: [دریا]}
+- id: lexeme:dashtan
+  pos: VERB
+  gloss: {en: to have (present stem دار-)}
+  notes: {en: "No می\u200c in the present: دارم, داری, دارد, داریم, دارید, دارند. Age also uses داشتن: بیست سال دارم, I am twenty (literally 'I have twenty years')."}
+  spelled: {fa-Arab/standard: [داشتن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [دار]}}
+- id: lexeme:dastshui
+  pos: NOUN
+  gloss: {en: toilet; restroom}
+  notes: {en: Literally 'hand-washing'. The bathroom with a shower is حمام (hammām).}
+  spelled: {fa-Arab/standard: [دستشویی]}
+- id: lexeme:didan
+  pos: VERB
+  gloss: {en: to see (present stem بین-)}
+  notes: {en: ببین! Look! See!}
+  spelled: {fa-Arab/standard: [دیدن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [بین]}}
+  - {spelled: {fa-Arab/standard: [دید]}}
+- id: lexeme:digar
+  pos: ADJ
+  gloss: {en: other; another}
+  spelled: {fa-Arab/standard: [دیگر]}
+- id: lexeme:dir
+  pos: ADV
+  gloss: {en: late}
+  spelled: {fa-Arab/standard: [دیر]}
+- id: lexeme:dirooz
+  pos: ADV
+  gloss: {en: yesterday}
+  spelled: {fa-Arab/standard: [دیروز]}
+- id: lexeme:dishab
+  pos: ADV
+  gloss: {en: last night}
+  spelled: {fa-Arab/standard: [دیشب]}
+- id: lexeme:do
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: two}
+  notes: {en: 'After a number the noun stays singular: دو کتاب, two books.'}
+  spelled: {fa-Arab/standard: [دو]}
+- id: lexeme:dokhtar
+  pos: NOUN
+  gloss: {en: daughter; girl}
+  spelled: {fa-Arab/standard: [دختر]}
+- id: lexeme:doost
+  pos: NOUN
+  gloss: {en: 'friend (also in دوست داشتن: to like)'}
+  spelled: {fa-Arab/standard: [دوست]}
+- id: lexeme:doost-dashtan
+  pos: VERB
+  form: {parts: ['lexeme:doost', 'lexeme:dashtan'], inflects: 'lexeme:dashtan'}
+  gloss: {en: 'دوست داشتن: to like, to love'}
+  notes: {en: 'Literally ''to hold as a friend'': چای دوست دارم, I like tea. A definite object takes را: این کتاب را دوست دارم.'}
+- id: lexeme:doshanbe
+  pos: PROPN
+  gloss: {en: Monday}
+  spelled: {fa-Arab/standard: [دوشنبه]}
+- id: lexeme:dur
+  pos: ADJ
+  gloss: {en: far}
+  spelled: {fa-Arab/standard: [دور]}
+- id: lexeme:emruz
+  pos: ADV
+  gloss: {en: today}
+  spelled: {fa-Arab/standard: [امروز]}
+- id: lexeme:esfahan
+  pos: PROPN
+  gloss: {en: Isfahan (Esfahan)}
+  spelled: {fa-Arab/standard: [اصفهان]}
+- id: lexeme:esm
+  pos: NOUN
+  gloss: {en: name}
+  image: {file: ../../courses/images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [اسم]}
+- id: lexeme:existential-hast
+  pos: AUX
+  gloss: {en: 'هست: there is, there are'}
+  notes: {en: 'در آشپزخانه یک میز هست: there is a table in the kitchen. The negative is نیست: نان نیست, there is no bread.'}
+  spelled: {fa-Arab/standard: [هست]}
+- id: lexeme:ezafe
+  pos: PART
+  gloss: {en: 'ezafe: the -e that links a noun to what describes or owns it'}
+  notes: {en: "Usually unwritten after a consonant (کتاب من, ketāb-e man); written ی after -hā (کتاب\u200cهای من)."}
+  allomorphs:
+  - {form: ''}
+  - {spelled: {fa-Arab/standard: [ی]}}
+- id: lexeme:farda
+  pos: ADV
+  gloss: {en: tomorrow}
+  spelled: {fa-Arab/standard: [فردا]}
+- id: lexeme:farsi
+  pos: NOUN
+  gloss: {en: Persian (the language)}
+  spelled: {fa-Arab/standard: [فارسی]}
+- id: lexeme:fasl
+  pos: NOUN
+  gloss: {en: season}
+  spelled: {fa-Arab/standard: [فصل]}
+- id: lexeme:film
+  pos: NOUN
+  gloss: {en: film; movie}
+  spelled: {fa-Arab/standard: [فیلم]}
+- id: lexeme:garm
+  pos: ADJ
+  gloss: {en: warm; hot}
+  spelled: {fa-Arab/standard: [گرم]}
+- id: lexeme:geran
+  pos: ADJ
+  gloss: {en: expensive}
+  spelled: {fa-Arab/standard: [گران]}
+- id: lexeme:gereftan
+  pos: VERB
+  gloss: {en: to take; to get (present stem گیر-)}
+  notes: {en: 'عکس گرفتن: to take a photo.'}
+  spelled: {fa-Arab/standard: [گرفتن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [گرفت]}}
+- id: lexeme:ghadimi
+  pos: ADJ
+  gloss: {en: old (of things)}
+  notes: {en: 'For people, old is پیر (pir).'}
+  spelled: {fa-Arab/standard: [قدیمی]}
+- id: lexeme:ghahve
+  pos: NOUN
+  gloss: {en: coffee}
+  image: {file: ../../courses/images/coffee.svg, license: CC0-1.0, provenance: {author: 'llm:claude@0b7ee10fe47d', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [قهوه]}
+- id: lexeme:ghand
+  pos: NOUN
+  gloss: {en: sugar cube; lump sugar}
+  notes: {en: Held in the mouth while sipping tea.}
+  spelled: {fa-Arab/standard: [قند]}
+- id: lexeme:ghashang
+  pos: ADJ
+  gloss: {en: pretty; beautiful; nice}
+  spelled: {fa-Arab/standard: [قشنگ]}
+- id: lexeme:ghaza
+  pos: NOUN
+  gloss: {en: food; meal}
+  notes: {en: 'After a final ـا the ezafe is written ی: غذای ایرانی, Iranian food.'}
+  spelled: {fa-Arab/standard: [غذا]}
+- id: lexeme:ghermez
+  pos: ADJ
+  gloss: {en: red}
+  spelled: {fa-Arab/standard: [قرمز]}
+- id: lexeme:gheymat
+  pos: NOUN
+  gloss: {en: price}
+  spelled: {fa-Arab/standard: [قیمت]}
+- id: lexeme:gozashtan
+  pos: VERB
+  gloss: {en: to pass (of time) (past stem گذشت-)}
+  notes: {en: 'به شما خوش گذشت؟ Did you have a good time? Literally ''did it pass pleasantly for you?'''}
+  spelled: {fa-Arab/standard: [گذشت]}
+- id: lexeme:gozashte
+  pos: ADJ
+  gloss: {en: 'last; past (هفتهٔ گذشته: last week)'}
+  spelled: {fa-Arab/standard: [گذشته]}
+- id: lexeme:haft
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: seven}
+  spelled: {fa-Arab/standard: [هفت]}
+- id: lexeme:hafte
+  pos: NOUN
+  gloss: {en: week}
+  spelled: {fa-Arab/standard: [هفته, هفتهٔ]}
+- id: lexeme:hal
+  pos: NOUN
+  gloss: {en: 'state; how someone is (حالِ شما: how you are)'}
+  spelled: {fa-Arab/standard: [حال]}
+- id: lexeme:ham
+  pos: ADV
+  gloss: {en: also; too}
+  notes: {en: 'It follows the word it adds to: سارا هم, Sara too.'}
+  spelled: {fa-Arab/standard: [هم]}
+- id: lexeme:hamishe
+  pos: ADV
+  gloss: {en: always}
+  spelled: {fa-Arab/standard: [همیشه]}
+- id: lexeme:har
+  pos: DET
+  feats: {PronType: Tot}
+  gloss: {en: every; each}
+  spelled: {fa-Arab/standard: [هر]}
+- id: lexeme:hasht
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: eight}
+  spelled: {fa-Arab/standard: [هشت]}
+- id: lexeme:hava
+  pos: NOUN
+  gloss: {en: weather; air}
+  notes: {en: 'هوا چطور است؟ What''s the weather like?'}
+  spelled: {fa-Arab/standard: [هوا]}
+- id: lexeme:hezar
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: thousand}
+  spelled: {fa-Arab/standard: [هزار]}
+- id: lexeme:in
+  pos: DET
+  feats: {PronType: Dem}
+  gloss: {en: this; these}
+  spelled: {fa-Arab/standard: [این]}
+- id: lexeme:indef
+  realises: {Definite: Ind}
+  gloss: {en: '-i: a, some, any (indefinite ending)'}
+  notes: {en: 'رنگی: a colour; چه رنگی؟ what colour? On a noun with an adjective it goes on the adjective: شهرِ بزرگی, a big city.'}
+  spelled: {fa-Arab/standard: [ی]}
+- id: lexeme:inja
+  pos: ADV
+  feats: {PronType: Dem}
+  gloss: {en: here}
+  notes: {en: 'اینجاست = اینجا + است. Spoken: اینجاس (injās).'}
+  spelled: {fa-Arab/standard: [اینجا]}
+- id: lexeme:irani
+  pos: ADJ
+  gloss: {en: Iranian}
+  spelled: {fa-Arab/standard: [ایرانی]}
+- id: lexeme:istgah
+  pos: NOUN
+  gloss: {en: station; stop}
+  spelled: {fa-Arab/standard: [ایستگاه]}
+- id: lexeme:jadid
+  pos: ADJ
+  gloss: {en: new}
+  spelled: {fa-Arab/standard: [جدید]}
+- id: lexeme:jome
+  pos: PROPN
+  gloss: {en: Friday}
+  spelled: {fa-Arab/standard: [جمعه]}
+- id: lexeme:kabab
+  pos: NOUN
+  gloss: {en: kebab}
+  spelled: {fa-Arab/standard: [کباب]}
+- id: lexeme:kafsh
+  pos: NOUN
+  gloss: {en: shoe; shoes}
+  notes: {en: A pair of shoes is usually just کفش.}
+  spelled: {fa-Arab/standard: [کفش]}
+- id: lexeme:kami
+  pos: ADV
+  gloss: {en: a little; a bit}
+  spelled: {fa-Arab/standard: [کمی]}
+- id: lexeme:kar
+  pos: NOUN
+  gloss: {en: work; job}
+  notes: {en: 'کار دارم: I''m busy (literally ''I have work'').'}
+  spelled: {fa-Arab/standard: [کار]}
+- id: lexeme:kardan
+  pos: VERB
+  gloss: {en: to do; to make (present stem کن-)}
+  notes: {en: 'With a noun it forms many verbs: کار کردن (to work), صحبت کردن (to talk), زندگی کردن (to live).'}
+  spelled: {fa-Arab/standard: [کردن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [کن]}}
+  - {spelled: {fa-Arab/standard: [کرد]}}
+- id: lexeme:kelas
+  pos: NOUN
+  gloss: {en: class}
+  spelled: {fa-Arab/standard: [کلاس]}
+- id: lexeme:kenar
+  pos: ADP
+  gloss: {en: next to; beside; by}
+  notes: {en: 'With the ezafe: کنارِ پنجره, by the window.'}
+  spelled: {fa-Arab/standard: [کنار]}
+- id: lexeme:ketab
+  pos: NOUN
+  gloss: {en: book}
+  image: {file: ../../courses/images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [کتاب]}
+- id: lexeme:khabidan
+  pos: VERB
+  gloss: {en: to sleep; to go to bed (present stem خواب-)}
+  spelled: {fa-Arab/standard: [خوابیدن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [خواب]}}
+  - {spelled: {fa-Arab/standard: [خوابید]}}
+- id: lexeme:khahar
+  pos: NOUN
+  gloss: {en: sister}
+  notes: {en: 'The و of خواهر is not pronounced: khāhar.'}
+  spelled: {fa-Arab/standard: [خواهر]}
+- id: lexeme:khandan
+  pos: VERB
+  gloss: {en: to read; to study (present stem خوان-)}
+  notes: {en: 'درس خواندن: to study.'}
+  spelled: {fa-Arab/standard: [خواندن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [خوان]}}
+- id: lexeme:khane
+  pos: NOUN
+  gloss: {en: house; home}
+  notes: {en: 'Spoken Tehrani: خونه (khune). The ezafe after its silent -e is written ـٔ: خانهٔ من.'}
+  spelled: {fa-Arab/standard: [خانه, خانهٔ]}
+- id: lexeme:khanevade
+  pos: NOUN
+  gloss: {en: family}
+  notes: {en: 'Usually takes a plural verb when it means the people: خانوادهٔ شما خوب هستند؟'}
+  spelled: {fa-Arab/standard: [خانواده, خانوادهٔ]}
+- id: lexeme:khanom
+  pos: NOUN
+  gloss: {en: Mrs.; Ms.; lady}
+  notes: {en: 'Before a surname: خانمِ احمدی. After a first name it is polite: مریم خانم.'}
+  spelled: {fa-Arab/standard: [خانم]}
+- id: lexeme:kharidan
+  pos: VERB
+  gloss: {en: to buy (present stem خر-)}
+  notes: {en: 'خرید (kharid): shopping; also the past stem.'}
+  spelled: {fa-Arab/standard: [خریدن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [خر]}}
+  - {spelled: {fa-Arab/standard: [خرید]}}
+- id: lexeme:khastan
+  pos: VERB
+  gloss: {en: to want (present stem خواه-)}
+  notes: {en: "The و is silent: mikhāham. Spoken Tehrani: می\u200cخوام (mikhām)."}
+  spelled: {fa-Arab/standard: [خواستن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [خواه]}}
+- id: lexeme:kheyli
+  pos: ADV
+  gloss: {en: very; a lot (of)}
+  spelled: {fa-Arab/standard: [خیلی]}
+- id: lexeme:khiyaban
+  pos: NOUN
+  gloss: {en: street; avenue}
+  spelled: {fa-Arab/standard: [خیابان]}
+- id: lexeme:khodahafez
+  pos: INTJ
+  gloss: {en: goodbye}
+  spelled: {fa-Arab/standard: [خداحافظ]}
+- id: lexeme:khodkar
+  pos: NOUN
+  gloss: {en: (ballpoint) pen}
+  spelled: {fa-Arab/standard: [خودکار]}
+- id: lexeme:khordan
+  pos: VERB
+  gloss: {en: to eat; to drink (present stem خور-)}
+  notes: {en: "Everyday Persian 'eats' tea and water too: چای می\u200cخورم. نوشیدن (to drink) is more formal."}
+  spelled: {fa-Arab/standard: [خوردن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [خور]}}
+  - {spelled: {fa-Arab/standard: [خورد]}}
+- id: lexeme:khosh
+  pos: ADJ
+  gloss: {en: 'pleasant; good (خوش آمدید: welcome)'}
+  spelled: {fa-Arab/standard: [خوش]}
+- id: lexeme:khoshmaze
+  pos: ADJ
+  gloss: {en: delicious; tasty}
+  spelled: {fa-Arab/standard: [خوشمزه]}
+- id: lexeme:khub
+  pos: ADJ
+  gloss: {en: good; well}
+  image: {file: ../../courses/images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [خوب]}
+- id: lexeme:kif
+  pos: NOUN
+  gloss: {en: bag; handbag}
+  spelled: {fa-Arab/standard: [کیف]}
+- id: lexeme:kist
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: 'who is …?'}
+  notes: {en: 'کی + است. Spoken: کیه (kiye)?'}
+  spelled: {fa-Arab/standard: [کیست]}
+- id: lexeme:koja
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: where}
+  notes: {en: 'کجاست = کجا + است: where is …?'}
+  spelled: {fa-Arab/standard: [کجا]}
+- id: lexeme:kuchak
+  pos: ADJ
+  gloss: {en: small; little; (of siblings) younger}
+  spelled: {fa-Arab/standard: [کوچک]}
+- id: lexeme:lebas
+  pos: NOUN
+  gloss: {en: 'clothes; garment; outfit, dress'}
+  spelled: {fa-Arab/standard: [لباس]}
+- id: lexeme:lotfan
+  pos: INTJ
+  gloss: {en: please}
+  notes: {en: 'The ending -an is written ـاً, with a small mark over the alef.'}
+  spelled: {fa-Arab/standard: [لطفاً]}
+- id: lexeme:ma
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: we; our (after a noun)}
+  spelled: {fa-Arab/standard: [ما]}
+- id: lexeme:madar
+  pos: NOUN
+  gloss: {en: mother}
+  notes: {en: 'Everyday speech also says مامان (māmān), mum.'}
+  spelled: {fa-Arab/standard: [مادر]}
+- id: lexeme:madrese
+  pos: NOUN
+  gloss: {en: school}
+  spelled: {fa-Arab/standard: [مدرسه]}
+- id: lexeme:maghaze
+  pos: NOUN
+  gloss: {en: shop; store}
+  spelled: {fa-Arab/standard: [مغازه]}
+- id: lexeme:mamnun
+  pos: INTJ
+  gloss: {en: thank you; thanks}
+  spelled: {fa-Arab/standard: [ممنون]}
+- id: lexeme:mamulan
+  pos: ADV
+  gloss: {en: usually}
+  notes: {en: Written with ـاً like لطفاً.}
+  spelled: {fa-Arab/standard: [معمولاً]}
+- id: lexeme:man
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: I; me; my (after a noun)}
+  spelled: {fa-Arab/standard: [من]}
+- id: lexeme:maryam
+  pos: PROPN
+  gloss: {en: Maryam (a name)}
+  spelled: {fa-Arab/standard: [مریم]}
+- id: lexeme:mast
+  pos: NOUN
+  gloss: {en: yogurt}
+  spelled: {fa-Arab/standard: [ماست]}
+- id: lexeme:mehraban
+  pos: ADJ
+  gloss: {en: kind}
+  spelled: {fa-Arab/standard: [مهربان]}
+- id: lexeme:metro
+  pos: NOUN
+  gloss: {en: metro; subway}
+  spelled: {fa-Arab/standard: [مترو]}
+- id: lexeme:meydan
+  pos: NOUN
+  gloss: {en: square (in a city)}
+  spelled: {fa-Arab/standard: [میدان]}
+- id: lexeme:mi
+  realises: {Aspect: Imp}
+  gloss: {en: 'mi-: present tense (verb prefix)'}
+  notes: {en: "Joined with a ZWNJ: می\u200cکنم. The present also means 'I am doing' and often 'I will do'."}
+  spelled: {fa-Arab/standard: [می]}
+- id: lexeme:mive
+  pos: NOUN
+  gloss: {en: fruit}
+  spelled: {fa-Arab/standard: [میوه]}
+- id: lexeme:miz
+  pos: NOUN
+  gloss: {en: table; desk}
+  spelled: {fa-Arab/standard: [میز]}
+- id: lexeme:moallem
+  pos: NOUN
+  gloss: {en: teacher}
+  image: {file: ../../courses/images/teacher.svg, license: CC0-1.0, provenance: {author: 'llm:claude@ff0d70b80db5', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [معلم]}
+- id: lexeme:mobarak
+  pos: ADJ
+  gloss: {en: blessed; congratulations}
+  notes: {en: تولدت مبارک! Happy birthday! عید مبارک! Happy holiday!}
+  spelled: {fa-Arab/standard: [مبارک]}
+- id: lexeme:morgh
+  pos: NOUN
+  gloss: {en: chicken}
+  spelled: {fa-Arab/standard: [مرغ]}
+- id: lexeme:mostaghim
+  pos: ADV
+  gloss: {en: straight (ahead)}
+  spelled: {fa-Arab/standard: [مستقیم]}
+- id: lexeme:na
+  pos: INTJ
+  gloss: {en: 'no'}
+  spelled: {fa-Arab/standard: [نه]}
+- id: lexeme:nahar
+  pos: NOUN
+  gloss: {en: lunch}
+  spelled: {fa-Arab/standard: [ناهار]}
+- id: lexeme:nan
+  pos: NOUN
+  gloss: {en: bread}
+  notes: {en: 'Spoken Tehrani: نون (nun).'}
+  spelled: {fa-Arab/standard: [نان]}
+- id: lexeme:nazdik
+  pos: ADJ
+  gloss: {en: near; close}
+  notes: {en: 'With a place it takes the ezafe: نزدیکِ بانک, near the bank.'}
+  spelled: {fa-Arab/standard: [نزدیک]}
+- id: lexeme:neg
+  realises: {Polarity: Neg}
+  gloss: {en: 'na-, ne-: not (verb prefix)'}
+  notes: {en: "ندارم: I don't have. Before می\u200c it is ne-: نمی\u200cخورم, I don't eat."}
+  spelled: {fa-Arab/standard: [ن]}
+- id: lexeme:nim
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: half}
+  notes: {en: 'ده و نیم: half past ten.'}
+  spelled: {fa-Arab/standard: [نیم]}
+- id: lexeme:nooshjan
+  pos: INTJ
+  gloss: {en: Enjoy! (to someone eating or drinking)}
+  notes: {en: Literally 'may it nourish your soul'. Also the polite reply when someone thanks you for food.}
+  spelled: {fa-Arab/standard: [نوش جان]}
+- id: lexeme:nowruz
+  pos: PROPN
+  gloss: {en: 'Nowruz, the Persian New Year'}
+  notes: {en: 'Celebrated at the spring equinox, around 21 March.'}
+  spelled: {fa-Arab/standard: [نوروز]}
+- id: lexeme:otagh
+  pos: NOUN
+  gloss: {en: room}
+  spelled: {fa-Arab/standard: [اتاق]}
+- id: lexeme:otobus
+  pos: NOUN
+  gloss: {en: bus}
+  spelled: {fa-Arab/standard: [اتوبوس]}
+- id: lexeme:paeez
+  pos: NOUN
+  gloss: {en: autumn; fall}
+  notes: {en: Also spelled پائیز.}
+  spelled: {fa-Arab/standard: [پاییز]}
+- id: lexeme:panir
+  pos: NOUN
+  gloss: {en: cheese}
+  spelled: {fa-Arab/standard: [پنیر]}
+- id: lexeme:panj
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: five}
+  spelled: {fa-Arab/standard: [پنج]}
+- id: lexeme:panjah
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: fifty}
+  spelled: {fa-Arab/standard: [پنجاه]}
+- id: lexeme:panjere
+  pos: NOUN
+  gloss: {en: window}
+  spelled: {fa-Arab/standard: [پنجره]}
+- id: lexeme:panjshanbe
+  pos: PROPN
+  gloss: {en: Thursday}
+  notes: {en: "Also written پنج\u200cشنبه."}
+  spelled: {fa-Arab/standard: [پنجشنبه]}
+- id: lexeme:park
+  pos: NOUN
+  gloss: {en: park}
+  spelled: {fa-Arab/standard: [پارک]}
+- id: lexeme:pedar
+  pos: NOUN
+  gloss: {en: father}
+  notes: {en: 'Everyday speech also says بابا (bābā), dad.'}
+  spelled: {fa-Arab/standard: [پدر]}
+- id: lexeme:pesar
+  pos: NOUN
+  gloss: {en: son; boy}
+  spelled: {fa-Arab/standard: [پسر]}
+- id: lexeme:pezeshk
+  pos: NOUN
+  gloss: {en: doctor; physician}
+  notes: {en: Everyday speech often says دکتر (doktor).}
+  spelled: {fa-Arab/standard: [پزشک]}
+- id: lexeme:pichidan
+  pos: VERB
+  gloss: {en: to turn (present stem پیچ-)}
+  spelled: {fa-Arab/standard: [پیچیدن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [پیچ]}}
+- id: lexeme:pirahan
+  pos: NOUN
+  gloss: {en: shirt; dress}
+  spelled: {fa-Arab/standard: [پیراهن]}
+- id: lexeme:piyade
+  pos: ADV
+  gloss: {en: on foot}
+  notes: {en: 'پیاده رفتن: to walk (somewhere).'}
+  spelled: {fa-Arab/standard: [پیاده]}
+- id: lexeme:pl
+  realises: {Number: Plur}
+  gloss: {en: '-hā: plural'}
+  notes: {en: "Joined to the noun with a zero-width non-joiner: کتاب\u200cها, not کتابها or کتاب ها."}
+  spelled: {fa-Arab/standard: [ها]}
+- id: lexeme:pl-an
+  realises: {Number: Plur}
+  gloss: {en: '-ān: plural (people and living things)'}
+  notes: {en: "دوستان (friends) is more formal than دوست\u200cها."}
+  spelled: {fa-Arab/standard: [ان]}
+- id: lexeme:pool
+  pos: NOUN
+  gloss: {en: money}
+  spelled: {fa-Arab/standard: [پول]}
+- id: lexeme:porteghal
+  pos: NOUN
+  gloss: {en: orange}
+  spelled: {fa-Arab/standard: [پرتقال]}
+- id: lexeme:poss-1sg
+  pos: PRON
+  feats: {Number: Sing, Person: '1', Poss: 'Yes', PronType: Prs}
+  gloss: {en: '-am: my (joined to a noun)'}
+  notes: {en: "پدرم (pedar-am) means the same as پدرِ من. After a silent -e it is written \u200cام: خانه\u200cام."}
+  spelled: {fa-Arab/standard: [م]}
+- id: lexeme:poss-2sg
+  pos: PRON
+  feats: {Number: Sing, Person: '2', Poss: 'Yes', PronType: Prs}
+  gloss: {en: '-at: your (one person, familiar; joined to a noun)'}
+  notes: {en: 'اتاقت (otāq-at) means the same as اتاقِ تو. Spoken: -et (otāqet).'}
+  spelled: {fa-Arab/standard: [ت]}
+- id: lexeme:ra
+  pos: PART
+  gloss: {en: 'را: marks a definite object'}
+  notes: {en: "It follows the object: این کتاب را می\u200cخوانم. Spoken: رو (ro), or -o after a consonant."}
+  spelled: {fa-Arab/standard: [را]}
+- id: lexeme:raftan
+  pos: VERB
+  gloss: {en: to go (present stem رو-)}
+  notes: {en: "Spoken Tehrani: می\u200cرم (miram), می\u200cره (mire)."}
+  spelled: {fa-Arab/standard: [رفتن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [رو]}}
+  - {spelled: {fa-Arab/standard: [رفت]}}
+- id: lexeme:rang
+  pos: NOUN
+  gloss: {en: colour}
+  spelled: {fa-Arab/standard: [رنگ]}
+- id: lexeme:rast
+  pos: NOUN
+  gloss: {en: right (direction); also true}
+  spelled: {fa-Arab/standard: [راست]}
+- id: lexeme:restoran
+  pos: NOUN
+  gloss: {en: restaurant}
+  spelled: {fa-Arab/standard: [رستوران]}
+- id: lexeme:reza
+  pos: PROPN
+  gloss: {en: Reza (a name)}
+  spelled: {fa-Arab/standard: [رضا]}
+- id: lexeme:ruye
+  pos: ADP
+  gloss: {en: on (top of)}
+  spelled: {fa-Arab/standard: [روی]}
+- id: lexeme:ruz
+  pos: NOUN
+  gloss: {en: day}
+  spelled: {fa-Arab/standard: [روز]}
+- id: lexeme:saat
+  pos: NOUN
+  gloss: {en: 'hour; o''clock; clock, watch'}
+  notes: {en: 'ساعت چند است؟ What time is it? With a number it takes the ezafe: ساعتِ هشت, eight o''clock.'}
+  spelled: {fa-Arab/standard: [ساعت]}
+- id: lexeme:sabz
+  pos: ADJ
+  gloss: {en: green}
+  spelled: {fa-Arab/standard: [سبز]}
+- id: lexeme:sad
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: hundred}
+  spelled: {fa-Arab/standard: [صد]}
+- id: lexeme:safar
+  pos: NOUN
+  gloss: {en: trip; journey; travel}
+  spelled: {fa-Arab/standard: [سفر]}
+- id: lexeme:sal
+  pos: NOUN
+  gloss: {en: year; years (of age)}
+  spelled: {fa-Arab/standard: [سال]}
+- id: lexeme:salam
+  pos: INTJ
+  gloss: {en: hello}
+  image: {file: ../../courses/images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [سلام]}
+- id: lexeme:samt
+  pos: NOUN
+  gloss: {en: side; direction}
+  notes: {en: 'سمتِ چپ: on the left.'}
+  spelled: {fa-Arab/standard: [سمت]}
+- id: lexeme:sandali
+  pos: NOUN
+  gloss: {en: chair}
+  spelled: {fa-Arab/standard: [صندلی]}
+- id: lexeme:sara
+  pos: PROPN
+  gloss: {en: Sara (a name)}
+  spelled: {fa-Arab/standard: [سارا]}
+- id: lexeme:sard
+  pos: ADJ
+  gloss: {en: cold}
+  spelled: {fa-Arab/standard: [سرد]}
+- id: lexeme:se
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: three}
+  spelled: {fa-Arab/standard: [سه]}
+- id: lexeme:sefid
+  pos: ADJ
+  gloss: {en: white}
+  spelled: {fa-Arab/standard: [سفید]}
+- id: lexeme:seshanbe
+  pos: PROPN
+  gloss: {en: Tuesday}
+  spelled: {fa-Arab/standard: ["سه\u200cشنبه"]}
+- id: lexeme:shab
+  pos: NOUN
+  gloss: {en: night; evening}
+  notes: {en: 'شب بخیر: good night.'}
+  spelled: {fa-Arab/standard: [شب]}
+- id: lexeme:shahr
+  pos: NOUN
+  gloss: {en: city; town}
+  spelled: {fa-Arab/standard: [شهر]}
+- id: lexeme:shalvar
+  pos: NOUN
+  gloss: {en: trousers; pants}
+  spelled: {fa-Arab/standard: [شلوار]}
+- id: lexeme:sham
+  pos: NOUN
+  gloss: {en: dinner; supper}
+  spelled: {fa-Arab/standard: [شام]}
+- id: lexeme:shanbe
+  pos: PROPN
+  gloss: {en: Saturday}
+  notes: {en: The Iranian week starts on Saturday; Friday is the weekly day off.}
+  spelled: {fa-Arab/standard: [شنبه]}
+- id: lexeme:sherkat
+  pos: NOUN
+  gloss: {en: company; firm}
+  spelled: {fa-Arab/standard: [شرکت]}
+- id: lexeme:shesh
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: six}
+  spelled: {fa-Arab/standard: [شش]}
+- id: lexeme:shir
+  pos: NOUN
+  gloss: {en: milk}
+  notes: {en: The same word means lion; the context tells.}
+  spelled: {fa-Arab/standard: [شیر]}
+- id: lexeme:shiraz
+  pos: PROPN
+  gloss: {en: Shiraz}
+  spelled: {fa-Arab/standard: [شیراز]}
+- id: lexeme:shoma
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'you (polite, or more than one)'}
+  spelled: {fa-Arab/standard: [شما]}
+- id: lexeme:shomal
+  pos: NOUN
+  gloss: {en: north}
+  notes: {en: In Iran 'the north' usually means the green Caspian coast.}
+  spelled: {fa-Arab/standard: [شمال]}
+- id: lexeme:si
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: thirty}
+  spelled: {fa-Arab/standard: [سی]}
+- id: lexeme:sib
+  pos: NOUN
+  gloss: {en: apple}
+  spelled: {fa-Arab/standard: [سیب]}
+- id: lexeme:siyah
+  pos: ADJ
+  gloss: {en: black}
+  spelled: {fa-Arab/standard: [سیاه]}
+- id: lexeme:sobh
+  pos: NOUN
+  gloss: {en: morning}
+  notes: {en: 'صبح بخیر: good morning.'}
+  image: {file: ../../courses/images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {fa-Arab/standard: [صبح]}
+- id: lexeme:sobhane
+  pos: NOUN
+  gloss: {en: breakfast}
+  notes: {en: 'A classic Iranian breakfast: bread, cheese and tea.'}
+  spelled: {fa-Arab/standard: [صبحانه, صبحانهٔ]}
+- id: lexeme:sohbat
+  pos: NOUN
+  gloss: {en: 'talk; conversation (صحبت کردن: to speak)'}
+  notes: {en: 'Spoken: حرف زدن (harf zadan), to talk.'}
+  spelled: {fa-Arab/standard: [صحبت]}
+- id: lexeme:subj
+  realises: {Mood: Sub}
+  gloss: {en: 'be-: imperative and subjunctive (verb prefix)'}
+  notes: {en: 'بروید: go (polite)! بپیچید: turn! برو: go (to a friend)! The same form follows verbs like ''want'' and ''can''.'}
+  spelled: {fa-Arab/standard: [ب]}
+- id: lexeme:ta
+  pos: ADP
+  gloss: {en: until; to (a time or place)}
+  notes: {en: تا فردا! See you tomorrow!}
+  spelled: {fa-Arab/standard: [تا]}
+- id: lexeme:tabestan
+  pos: NOUN
+  gloss: {en: summer}
+  spelled: {fa-Arab/standard: [تابستان]}
+- id: lexeme:takhfif
+  pos: NOUN
+  gloss: {en: discount}
+  spelled: {fa-Arab/standard: [تخفیف]}
+- id: lexeme:takht
+  pos: NOUN
+  gloss: {en: bed}
+  spelled: {fa-Arab/standard: [تخت]}
+- id: lexeme:taksi
+  pos: NOUN
+  gloss: {en: taxi}
+  spelled: {fa-Arab/standard: [تاکسی]}
+- id: lexeme:tatil
+  pos: ADJ
+  gloss: {en: closed; off (a holiday)}
+  spelled: {fa-Arab/standard: [تعطیل]}
+- id: lexeme:tavallod
+  pos: NOUN
+  gloss: {en: birth; birthday}
+  spelled: {fa-Arab/standard: [تولد]}
+- id: lexeme:tavanestan
+  pos: VERB
+  gloss: {en: can; to be able (present stem توان-)}
+  notes: {en: "Followed by the subjunctive: می\u200cتوانم ببینم؟ Can I see?"}
+  spelled: {fa-Arab/standard: [توانستن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [توان]}}
+- id: lexeme:tehran
+  pos: PROPN
+  gloss: {en: Tehran}
+  notes: {en: 'Spoken: تهرون (tehrun).'}
+  spelled: {fa-Arab/standard: [تهران]}
+- id: lexeme:to
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'you (one person, familiar)'}
+  spelled: {fa-Arab/standard: [تو]}
+- id: lexeme:toman
+  pos: NOUN
+  gloss: {en: toman}
+  notes: {en: 'Prices are said in tomans; one toman is ten rials, the official unit on banknotes.'}
+  spelled: {fa-Arab/standard: [تومان]}
+- id: lexeme:u
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: he; she}
+  notes: {en: 'Persian has no grammatical gender: او is he or she. It is used for people; for things, use آن. Spoken Tehrani often says اون (un).'}
+  spelled: {fa-Arab/standard: [او]}
+- id: lexeme:va
+  pos: CCONJ
+  gloss: {en: and}
+  spelled: {fa-Arab/standard: [و]}
+- id: lexeme:vaght
+  pos: NOUN
+  gloss: {en: time (to do something)}
+  notes: {en: 'وقت دارید؟ Do you have time? Clock time is ساعت.'}
+  spelled: {fa-Arab/standard: [وقت]}
+- id: lexeme:ya
+  pos: CCONJ
+  gloss: {en: or}
+  spelled: {fa-Arab/standard: [یا]}
+- id: lexeme:yakhchal
+  pos: NOUN
+  gloss: {en: fridge; refrigerator}
+  notes: {en: 'Literally ''ice pit'', the old desert ice-houses.'}
+  spelled: {fa-Arab/standard: [یخچال]}
+- id: lexeme:yek
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: 'one; a, an'}
+  spelled: {fa-Arab/standard: [یک]}
+- id: lexeme:yekshanbe
+  pos: PROPN
+  gloss: {en: Sunday}
+  spelled: {fa-Arab/standard: [یکشنبه]}
+- id: lexeme:zemestan
+  pos: NOUN
+  gloss: {en: winter}
+  spelled: {fa-Arab/standard: [زمستان]}
+- id: lexeme:zendegi
+  pos: NOUN
+  gloss: {en: 'life (زندگی کردن: to live)'}
+  spelled: {fa-Arab/standard: [زندگی]}
+- id: lexeme:zir
+  pos: ADP
+  gloss: {en: under}
+  notes: {en: 'With the ezafe: زیرِ میز, under the table.'}
+  spelled: {fa-Arab/standard: [زیر]}
+- id: lexeme:zohr
+  pos: NOUN
+  gloss: {en: noon; midday}
+  spelled: {fa-Arab/standard: [ظهر]}
+- id: lexeme:zud
+  pos: ADV
+  gloss: {en: early; soon}
+  spelled: {fa-Arab/standard: [زود]}

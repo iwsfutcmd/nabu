@@ -1,0 +1,573 @@
+# Unit u03 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u03
+title:
+  en: 'La casa: The house'
+cefr: A1
+nodes:
+- {id: es.u03.mi-casa, kind: lesson, introduces: ['lexeme:casa', 'lexeme:en', 'lexeme:hialeah', 'lexeme:vivir']}
+- {id: es.u03.donde, kind: lesson, introduces: ['lexeme:dónde', 'lexeme:aquí']}
+- {id: es.u03.la-sala, kind: lesson, introduces: ['lexeme:qué', 'lexeme:calor', 'lexeme:hay', 'lexeme:ventilador', 'lexeme:sala']}
+- {id: es.u03.la-cocina, kind: lesson, introduces: ['lexeme:cocina', 'lexeme:café', 'lexeme:al', 'lexeme:lado']}
+- {id: es.u03.los-cuartos, kind: lesson, introduces: ['lexeme:cuarto', 'lexeme:baño', 'lexeme:del', 'lexeme:chiquito', 'lexeme:pero']}
+- {id: es.u03.el-portal, kind: lesson, introduces: ['lexeme:portal', 'lexeme:sillón', 'lexeme:patio', 'lexeme:mata', 'lexeme:mango']}
+- {id: es.u03.story, kind: story}
+sentences:
+- id: s.u03.1
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Esta es mi casa.
+      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      reverse: Esta es mi casa
+  translations:
+    en: |-
+      This is my (house|home).
+      This is my place.
+- id: s.u03.2
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Mi casa está en Hialeah.
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      reverse: Mi casa está en Hialeah
+  translations:
+    en: |-
+      My (house|home) is in Hialeah.
+      My (house's|home's) in Hialeah.
+- id: s.u03.3
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Vivo en Hialeah.
+      tokens: [{surface: Vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      reverse: '[Yo] vivo en Hialeah'
+  translations:
+    en: I live in Hialeah.
+- id: s.u03.4
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: ¿Tú vives en Miami?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: vives, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Miami, lexeme: miami}]
+      reverse: (Tú vives en Miami|Vives [tú] en Miami|Usted vive en Miami|Vive [usted] en Miami|Ustedes viven en Miami|Viven [ustedes] en Miami)
+  translations:
+    en: Do you live in Miami?
+- id: s.u03.5
+  node: es.u03.mi-casa
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    es-Latn/standard:
+      text: Nosotros vivimos en Hialeah.
+      tokens: [{surface: Nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: vivimos, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      reverse: '[Nosotros] vivimos en Hialeah'
+  translations:
+    en: We live in Hialeah.
+- id: s.u03.6
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Mi tía Marisol vive en La Habana.
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      reverse: Mi tía Marisol vive en La Habana
+  translations:
+    en: My aunt Marisol lives in Havana.
+- id: s.u03.7
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Tenemos familia en Cuba.
+      tokens: [{surface: Tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      reverse: '[(Nosotros|Nosotras)] tenemos (familia|parientes|familiares) en Cuba'
+  translations:
+    en: (We have|We've got) (family|relatives) in Cuba.
+- id: s.u03.8
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde está mami?
+      tokens: [{surface: Dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mami, lexeme: mami, feats: {Number: Sing}}]
+      reverse: (Dónde está (mami|mamá)|(Mami|Mamá) dónde está)
+  translations:
+    en: |-
+      Where is (mom|mommy|mother|mum|mama)?
+      Where's (mom|mommy|mother|mum|mama)?
+- id: s.u03.9
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: Mami está aquí.
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: aquí, lexeme: aquí}]
+      reverse: ((Mami|Mamá) está aquí|Aquí está (mami|mamá))
+  translations:
+    en: |-
+      (Mom|Mommy|Mother|Mum|Mama) is here.
+      (Mom's|Mommy's|Mother's|Mum's|Mama's) here.
+- id: s.u03.10
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde tú vives?
+      tokens: [{surface: Dónde, lexeme: dónde}, {surface: tú, lexeme: tú}, {surface: vives, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        (Dónde tú vives|Dónde vives [tú]|Dónde usted vive|Dónde vive [usted]|Dónde ustedes viven|Dónde viven [ustedes])
+        ¿Tú dónde vives?
+  translations:
+    en: Where do you live?
+- id: s.u03.11
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: Yo vivo aquí, en Hialeah.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: aquí, lexeme: aquí}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      reverse: '[Yo] vivo aquí en Hialeah'
+  translations:
+    en: I live here, in Hialeah.
+- id: s.u03.12
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde están los abuelos?
+      tokens: [{surface: Dónde, lexeme: dónde}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: abuelos, lexeme: abuelo, feats: {Number: Plur}}]
+      reverse: (Dónde están (los|mis) abuelos|(Los|Mis) abuelos dónde están)
+  translations:
+    en: |-
+      Where are (the grandparents|grandma and grandpa|grandpa and grandma)?
+      Where're (the grandparents|grandma and grandpa|grandpa and grandma)?
+- id: s.u03.13
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: ¡Qué calor!
+      tokens: [{surface: Qué, lexeme: qué}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      reverse: |-
+        Qué calor
+        ¡Hace tanto calor!
+        ¡Hace mucho calor!
+        ¡Qué calor hace!
+  translations:
+    en: |-
+      (It's|It is) so hot!
+      (It's|It is) (really|very) hot!
+      (How|So) hot!
+      What heat!
+- id: s.u03.14
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: Abuela tiene calor.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      reverse: |-
+        [La] abuela tiene calor
+        Mi abuela tiene calor.
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) is hot.
+      (Grandma's|Grandmother's|Granny's) hot.
+      (Grandma|Grandmother|Granny) feels hot.
+      My grandma is hot.
+- id: s.u03.15
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: Hay un ventilador.
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}]
+      reverse: Hay un ventilador
+  translations:
+    en: (There's|There is) a fan.
+- id: s.u03.16
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: El ventilador está en la sala.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: sala, lexeme: sala, feats: {Number: Sing}}]
+      reverse: El ventilador está en la sala
+  translations:
+    en: |-
+      The fan is in the (living room|front room|sitting room|lounge).
+      The fan's in the (living room|front room|sitting room|lounge).
+- id: s.u03.17
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: ¿Hay un ventilador aquí?
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}, {surface: aquí, lexeme: aquí}]
+      reverse: |-
+        (Hay un ventilador aquí|Aquí hay un ventilador)
+        ¿Hay ventilador aquí?
+        ¿Aquí hay ventilador?
+  translations:
+    en: Is there a fan (here|in here)?
+- id: s.u03.18
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: No, aquí no hay ventilador.
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: aquí, lexeme: aquí}, {surface: 'no', lexeme: 'no'}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}]
+      reverse: No (aquí no hay [un] ventilador|no hay [un] ventilador aquí)
+  translations:
+    en: |-
+      No, there's no fan here.
+      No, there is no fan here.
+      No, there (isn't|is not) a fan here.
+      No, there (isn't|is not) a fan in here.
+      No, there's no fan in here.
+      No, there is no fan in here.
+- id: s.u03.19
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: Hay café en la cocina.
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}}]
+      reverse: (Hay café en la cocina|En la cocina hay café)
+  translations:
+    en: (There's|There is) coffee in the kitchen.
+- id: s.u03.20
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: ¿Hay café?
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      reverse: Hay café
+  translations:
+    en: |-
+      Is there (any coffee|coffee)?
+      (Do we have|Have we got) (any coffee|coffee)?
+- id: s.u03.21
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: Mami y papi están en la cocina.
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: papi, lexeme: papi, feats: {Number: Sing}}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}}]
+      reverse: (Mami|Mamá) y (papi|papá) están en la cocina
+  translations:
+    en: (Mom|Mommy|Mum|Mama) and (dad|daddy|papa) are in the kitchen.
+- id: s.u03.22
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: La cocina está al lado de la sala.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: lado, lexeme: lado, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: sala, lexeme: sala, feats: {Number: Sing}}]
+      reverse: La cocina está al lado de la sala
+  translations:
+    en: |-
+      The kitchen is (next to|beside) the (living room|front room|sitting room|lounge).
+      The kitchen's (next to|beside) the (living room|front room|sitting room|lounge).
+- id: s.u03.23
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: El café está en la cocina.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}}]
+      reverse: El café está en la cocina
+  translations:
+    en: |-
+      The coffee is in the kitchen.
+      The coffee's in the kitchen.
+- id: s.u03.24
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: Este es mi cuarto.
+      tokens: [{surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}}]
+      reverse: (Este es mi (cuarto|dormitorio)|Esta es mi habitación)
+  translations:
+    en: This is my (room|bedroom).
+- id: s.u03.25
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde está el baño?
+      tokens: [{surface: Dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: baño, lexeme: baño, feats: {Number: Sing}}]
+      reverse: |-
+        Dónde está el baño
+        ¿El baño dónde está?
+  translations:
+    en: |-
+      Where is the (bathroom|restroom|toilet|washroom|loo)?
+      Where's the (bathroom|restroom|toilet|washroom|loo)?
+- id: s.u03.26
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: El baño está al lado del cuarto de Lili.
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: baño, lexeme: baño, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: lado, lexeme: lado, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      reverse: El baño está al lado (del (cuarto|dormitorio)|de la habitación) de Lili
+  translations:
+    en: |-
+      The bathroom is (next to|beside) Lili's (room|bedroom).
+      The bathroom's (next to|beside) Lili's (room|bedroom).
+- id: s.u03.27
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: Mi cuarto es chiquito.
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: chiquito, lexeme: chiquito, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (Mi (cuarto|dormitorio) es (chiquito|chiquitico|pequeño)|Mi habitación es (chiquita|chiquitica|pequeña))
+  translations:
+    en: |-
+      My (room|bedroom) is (small|little|tiny).
+      My (room's|bedroom's) (small|little|tiny).
+- id: s.u03.28
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: La casa es chiquita, pero la familia es grande.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: chiquita, lexeme: chiquito, feats: {Gender: Fem, Number: Sing}}, {surface: pero, lexeme: pero}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}}]
+      reverse: La casa es (chiquita|chiquitica|pequeña) pero la familia es grande
+  translations:
+    en: |-
+      The house is (small|little|tiny), but the family is (big|large).
+      The house is (small|little|tiny), but the family's (big|large).
+- id: s.u03.29
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: Hay un baño al lado del cuarto.
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: baño, lexeme: baño, feats: {Number: Sing}}, {surface: al, lexeme: al}, {surface: lado, lexeme: lado, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}}]
+      reverse: |-
+        Hay un baño al lado (del (cuarto|dormitorio)|de la habitación)
+        Al lado del cuarto hay un baño.
+  translations:
+    en: (There's|There is) a bathroom (next to|beside) the (bedroom|room).
+- id: s.u03.30
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Abuela está en el portal.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: portal, lexeme: portal, feats: {Number: Sing}}]
+      reverse: |-
+        [La] abuela está en el portal
+        Mi abuela está en el portal.
+        Abuela está en el porche.
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) is (on|out on) the (porch|front porch).
+      (Grandma's|Grandmother's|Granny's) (on|out on) the (porch|front porch).
+      My grandma is on the porch.
+- id: s.u03.31
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Hay un sillón en el portal.
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: sillón, lexeme: sillón, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: portal, lexeme: portal, feats: {Number: Sing}}]
+      reverse: |-
+        (Hay (un sillón|una mecedora) en el portal|En el portal hay (un sillón|una mecedora))
+        Hay un sillón en el porche.
+  translations:
+    en: (There's|There is) a rocking chair on the (porch|front porch).
+- id: s.u03.32
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Abuela está en su sillón.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: sillón, lexeme: sillón, feats: {Number: Sing}}]
+      reverse: |-
+        [La] abuela está en su (sillón|mecedora)
+        Mi abuela está en su sillón.
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) is in her rocking chair.
+      (Grandma's|Grandmother's|Granny's) in her rocking chair.
+      My grandma is in her rocking chair.
+- id: s.u03.33
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe está en el patio.
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      reverse: |-
+        [El] abuelo Pepe está en el patio
+        Mi abuelo Pepe está en el patio.
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Granddad|Grandad) Pepe is (in|out in) the (yard|backyard|back yard|patio).
+      (Grandpa|Grandfather|Granddad|Grandad) Pepe's (in|out in) the (yard|backyard|back yard|patio).
+      My grandpa Pepe is in the yard.
+- id: s.u03.34
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Hay una mata de mango en el patio.
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: mata, lexeme: mata, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: mango, lexeme: mango, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      reverse: (Hay (una mata de mango|un árbol de mango|un mango) en el patio|En el patio hay (una mata de mango|un árbol de mango|un mango))
+  translations:
+    en: |-
+      (There's|There is) a mango tree in the (yard|backyard|back yard|patio).
+      There's a mango tree in the garden.
+- id: s.u03.35
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: La mata de mango es muy grande.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mata, lexeme: mata, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: mango, lexeme: mango, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}}]
+      reverse: (La mata de mango|El árbol de mango|El mango) es muy grande
+  translations:
+    en: |-
+      The mango tree is (very|really) (big|large).
+      The mango tree's (very|really) (big|large).
+stories:
+- id: es.story.u03
+  node: es.u03.story
+  title:
+    en: Abuela's fan
+  characters:
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: pepe
+    speaker: m
+    name:
+      es-Latn/standard: Abuelo Pepe
+  - id: lili
+    speaker: f
+    name:
+      es-Latn/standard: Lili
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Qué calor! ¿Dónde está mi ventilador?
+          tokens: [{surface: Qué, lexeme: qué}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: Dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}]
+      translations:
+        en: It's so hot! Where's my fan?
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿No está en la sala, abuela?
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: sala, lexeme: sala, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: Isn't it in the living room, Grandma?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: No, mi vida. En la sala no está.
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: sala, lexeme: sala, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: No, darling. It's not in the living room.
+  - line:
+      speaker: pepe
+      ask: complete
+      gap: lexeme:café
+      distractors:
+      - lexeme:portal
+      - lexeme:cuarto
+      forms:
+        es-Latn/standard:
+          text: En la cocina hay café, pero no hay ventilador.
+          tokens: [{surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: 'no', lexeme: 'no'}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}]
+      translations:
+        en: In the kitchen there's coffee, but there's no fan.
+  - choose:
+      prompt:
+        en: What is Abuela looking for?
+      options:
+      - en: Her fan
+      - en: Her rocking chair
+      - en: The coffee
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y en el portal, al lado del sillón?
+          tokens: [{surface: Y, lexeme: y}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: portal, lexeme: portal, feats: {Number: Sing}}, {surface: al, lexeme: al}, {surface: lado, lexeme: lado, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: sillón, lexeme: sillón, feats: {Number: Sing}}]
+      translations:
+        en: And on the porch, next to the rocking chair?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: No, mi'jo. Yo estoy en el portal, y aquí no hay ventilador.
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: portal, lexeme: portal, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: aquí, lexeme: aquí}, {surface: 'no', lexeme: 'no'}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}]
+      translations:
+        en: No, honey. I'm on the porch, and there's no fan here.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y Lili? ¿Dónde está?
+          tokens: [{surface: Y, lexeme: y}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: Dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: And Lili? Where is she?
+  - line:
+      speaker: cachita
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Lili está en su cuarto.
+          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}}]
+      translations:
+        en: Lili is in her room.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¡Lili! ¿Tú tienes el ventilador de abuela?
+          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: Lili! Do you have Grandma's fan?
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Sí. Mi cuarto es chiquito y tengo calor.
+          tokens: [{surface: Sí, lexeme: sí}, {surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: chiquito, lexeme: chiquito, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      translations:
+        en: Yes. My room is tiny and I'm hot.
+  - choose:
+      prompt:
+        en: Why does Lili have the fan?
+      options:
+      - en: Her room is small and she's hot.
+      - en: She is fixing it.
+      - en: Abuela gave it to her.
+      answer: 0
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:calor
+      distractors:
+      - lexeme:ventilador
+      - lexeme:lado
+      forms:
+        es-Latn/standard:
+          text: Mi'ja, yo también tengo calor.
+          tokens: [{surface: Mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      translations:
+        en: Sweetie, I'm hot too.
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¿Calor? Aquí en el patio no hay calor. ¡Hay una mata de mango!
+          tokens: [{surface: Calor, lexeme: calor, feats: {Number: Sing}}, {surface: Aquí, lexeme: aquí}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: patio, lexeme: patio, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: mata, lexeme: mata, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: mango, lexeme: mango, feats: {Number: Sing}}]
+      translations:
+        en: Hot? Out here in the yard it isn't hot. There's a mango tree!
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Lili, Daniel! ¡Al patio!
+          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: Daniel, lexeme: daniel}, {surface: Al, lexeme: al}, {surface: patio, lexeme: patio, feats: {Number: Sing}}]
+      translations:
+        en: Lili, Daniel! Out to the yard!
+  - choose:
+      prompt:
+        en: Where does the family go at the end?
+      options:
+      - en: To the yard, by the mango tree
+      - en: To the kitchen
+      - en: To Lili's room
+      answer: 0

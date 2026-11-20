@@ -1,0 +1,624 @@
+# Unit u22 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u22
+title:
+  en: 'La llamada: The call'
+cefr: B2
+nodes:
+- {id: es.u22.la-videollamada, kind: lesson, introduces: ['lexeme:videollamada', 'lexeme:oír', 'lexeme:conexión', 'lexeme:wifi', 'lexeme:allá', 'lexeme:llamada']}
+- {id: es.u22.se-cayo, kind: lesson, introduces: ['lexeme:caerse', 'lexeme:congelarse', 'lexeme:apagón', 'lexeme:corriente', 'lexeme:nada', 'lexeme:colgar']}
+- {id: es.u22.me-alegra, kind: lesson, introduces: ['lexeme:alegrar', 'lexeme:sentir']}
+- {id: es.u22.me-preocupa, kind: lesson, introduces: ['lexeme:preocupar', 'lexeme:cosa', 'lexeme:recarga']}
+- {id: es.u22.no-creo, kind: lesson, introduces: ['lexeme:creer', 'lexeme:dudar']}
+- {id: es.u22.story, kind: story}
+sentences:
+- id: s.u22.1
+  node: es.u22.la-videollamada
+  forms:
+    es-Latn/standard:
+      text: Los domingos hacemos una videollamada a La Habana.
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}, {surface: hacemos, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      reverse: |-
+        Los domingos [nosotros] hacemos una videollamada a La Habana
+        [Nosotros] hacemos una videollamada a La Habana los domingos
+  translations:
+    en: |-
+      (On Sundays|Every Sunday) we (make|do|have) a video call to Havana.
+      We (make|do|have) a video call to Havana (on Sundays|every Sunday).
+- id: s.u22.2
+  node: es.u22.la-videollamada
+  forms:
+    es-Latn/standard:
+      text: Tía, ¿tú me oyes? Yo no te oigo bien.
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: me, lexeme: me}, {surface: oyes, lexeme: oír, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}, {surface: te, lexeme: te}, {surface: oigo, lexeme: oír, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}]
+      reverse: |-
+        (Tía|Tía Marisol) (tú me oyes|me oyes [tú]) [yo] no te oigo bien
+        Tía, ¿me puedes oír? No te oigo bien.
+        Tía, ¿tú me escuchas? Yo no te escucho bien.
+  translations:
+    en: (Auntie|Tía|Aunt Marisol), can you hear me? I (can't|cannot) hear you (well|very well).
+- id: s.u22.3
+  node: es.u22.la-videollamada
+  forms:
+    es-Latn/standard:
+      text: La conexión está muy mal hoy.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: conexión, lexeme: conexión, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: mal, lexeme: mal}, {surface: hoy, lexeme: hoy}]
+      reverse: |-
+        La conexión está muy (mal|mala) hoy
+        Hoy la conexión está muy (mal|mala)
+  translations:
+    en: |-
+      The connection is (really|very) bad today.
+      Today the connection is (really|very) bad.
+- id: s.u22.4
+  node: es.u22.la-videollamada
+  forms:
+    es-Latn/standard:
+      text: ¿Tú tienes wifi en la casa, o estás en el parque?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: o, lexeme: o}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: parque, lexeme: parque, feats: {Number: Sing}}]
+      reverse: |-
+        (Tú tienes|Tienes [tú]) wifi en [la] casa o (tú estás|estás [tú]) en el parque
+        (Usted tiene|Tiene [usted]) wifi en [la] casa o (usted está|está [usted]) en el parque
+        ¿Ustedes tienen wifi en la casa, o están en el parque?
+  translations:
+    en: (Do you have|Have you got) wifi at home, or are you (in|at) the park?
+- id: s.u22.5
+  node: es.u22.la-videollamada
+  forms:
+    es-Latn/standard:
+      text: Allá en Cuba, el wifi es muy caro.
+      tokens: [{surface: Allá, lexeme: allá}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: caro, lexeme: caro, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        Allá en Cuba el wifi es (muy caro|carísimo)
+        El wifi es (muy caro|carísimo) allá en Cuba
+  translations:
+    en: |-
+      (Over there in|Back in|In) Cuba, wifi is (very|really) expensive.
+      Wifi is (very|really) expensive (over there in|back in|in) Cuba.
+- id: s.u22.6
+  node: es.u22.la-videollamada
+  forms:
+    es-Latn/standard:
+      text: Anoche recibí una llamada de Yunior por WhatsApp.
+      tokens: [{surface: Anoche, lexeme: anoche}, {surface: recibí, lexeme: recibir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Yunior, lexeme: yunior}, {surface: por, lexeme: por}, {surface: WhatsApp, lexeme: whatsapp}]
+      reverse: |-
+        Anoche [yo] recibí una llamada de Yunior por WhatsApp
+        [Yo] recibí una llamada de Yunior por WhatsApp anoche
+  translations:
+    en: |-
+      Last night I (got|received|had) a call from Yunior on WhatsApp.
+      I (got|received|had) a call from Yunior on WhatsApp last night.
+- id: s.u22.7
+  node: es.u22.la-videollamada
+  tags:
+  - {register: colloquial}
+  forms:
+    es-Latn/standard:
+      text: Ahora sí te oigo, Yunior. ¡Qué bolá!
+      tokens: [{surface: Ahora, lexeme: ahora}, {surface: sí, lexeme: sí}, {surface: te, lexeme: te}, {surface: oigo, lexeme: oír, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Yunior, lexeme: yunior}, {surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}]
+      reverse: Ahora sí te oigo Yunior (qué bolá|qué volá|qué bola|qué hubo|qué tal)
+  translations:
+    en: (Now I can hear you|I can hear you now), Yunior. (What's up|How's it going)!
+- id: s.u22.8
+  node: es.u22.se-cayo
+  forms:
+    es-Latn/standard:
+      text: Se cayó la llamada cuando Yunior estaba hablando de pelota.
+      tokens: [{surface: Se, lexeme: se}, {surface: cayó, lexeme: caerse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}}, {surface: cuando, lexeme: cuando}, {surface: Yunior, lexeme: yunior}, {surface: estaba, lexeme: estar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hablando, lexeme: hablar, feats: {VerbForm: Ger}}, {surface: de, lexeme: de}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      reverse: (Se cayó la llamada|La llamada se cayó) cuando Yunior (estaba hablando|hablaba) de pelota
+  translations:
+    en: The call (dropped|cut out|got cut off) (when|while) Yunior was talking about baseball.
+- id: s.u22.9
+  node: es.u22.se-cayo
+  forms:
+    es-Latn/standard:
+      text: Tía, te congelaste. No te veo.
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: te, lexeme: te}, {surface: congelaste, lexeme: congelarse, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: 'No', lexeme: 'no'}, {surface: te, lexeme: te}, {surface: veo, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        (Tía|Tía Marisol) te congelaste [yo] no te veo
+        Tía, te quedaste congelada. No te veo.
+        Tía, te congelaste. No te puedo ver.
+  translations:
+    en: (Auntie|Tía|Aunt Marisol), (you froze|you're frozen|you've frozen). I (can't|cannot|don't) see you.
+- id: s.u22.10
+  node: es.u22.se-cayo
+  forms:
+    es-Latn/standard:
+      text: Anoche hubo un apagón de ocho horas en La Habana.
+      tokens: [{surface: Anoche, lexeme: anoche}, {surface: hubo, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: apagón, lexeme: apagón, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: ocho, lexeme: ocho}, {surface: horas, lexeme: hora, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      reverse: |-
+        Anoche hubo un apagón de (ocho|8) horas en La Habana
+        Hubo un apagón de (ocho|8) horas en La Habana anoche
+  translations:
+    en: |-
+      Last night there was an (eight-hour|8-hour) (blackout|power cut|power outage) in Havana.
+      There was an (eight-hour|8-hour) (blackout|power cut|power outage) in Havana last night.
+- id: s.u22.11
+  node: es.u22.se-cayo
+  forms:
+    es-Latn/standard:
+      text: Se fue la corriente, y con este calor no hay ventilador.
+      tokens: [{surface: Se, lexeme: se}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: con, lexeme: con}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}]
+      reverse: Se fue (la corriente|la luz) y con este calor no hay ventilador
+  translations:
+    en: The power went (out|off), and (in|with) this heat (there's|there is) no fan.
+- id: s.u22.12
+  node: es.u22.se-cayo
+  forms:
+    es-Latn/standard:
+      text: No te oigo nada, Yunior. ¿Ya vino la corriente?
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: te, lexeme: te}, {surface: oigo, lexeme: oír, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nada, lexeme: nada}, {surface: Yunior, lexeme: yunior}, {surface: Ya, lexeme: ya}, {surface: vino, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}]
+      reverse: '[Yo] no te oigo nada Yunior (ya vino la corriente|vino ya la corriente|ya volvió la corriente|ya vino la luz)'
+  translations:
+    en: I (can't|cannot) hear (you at all|anything), Yunior. (Is the power back|Has the power come back|Did the power come back|Is the power on) [yet]?
+- id: s.u22.13
+  node: es.u22.se-cayo
+  forms:
+    es-Latn/standard:
+      text: No cuelgues todavía, Yunior. Abuela quiere hablar con Marisol.
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: cuelgues, lexeme: colgar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: todavía, lexeme: todavía}, {surface: Yunior, lexeme: yunior}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hablar, lexeme: hablar, feats: {VerbForm: Inf}}, {surface: con, lexeme: con}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      reverse: |-
+        No cuelgues todavía Yunior (Abuela|la abuela|mi abuela) quiere hablar con (Marisol|tía Marisol|tu mamá|tu mami)
+        No cuelgues aún, Yunior. Abuela quiere hablar con Marisol.
+  translations:
+    en: Don't hang up yet, Yunior. (Grandma|Grandmother|Abuela|My grandma|My grandmother) wants to (talk|speak) (to|with) (Marisol|Aunt Marisol|your mom).
+- id: s.u22.14
+  node: es.u22.se-cayo
+  forms:
+    es-Latn/standard:
+      text: Con los apagones, Marisol no puede dormir por el calor.
+      tokens: [{surface: Con, lexeme: con}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: apagones, lexeme: apagón, feats: {Number: Plur}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dormir, lexeme: dormir, feats: {VerbForm: Inf}}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      reverse: Con los apagones (Marisol|tía Marisol) no puede dormir por el calor
+  translations:
+    en: |-
+      With the (blackouts|power cuts|power outages), (Marisol|Aunt Marisol) can't sleep because of the heat.
+      With the blackouts, Marisol cannot sleep because of the heat.
+- id: s.u22.15
+  node: es.u22.me-alegra
+  forms:
+    es-Latn/standard:
+      text: Me alegra que estés bien, tía.
+      tokens: [{surface: Me, lexeme: me}, {surface: alegra, lexeme: alegrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: estés, lexeme: estar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: tía, lexeme: tío, feats: {Number: Sing}}]
+      reverse: (Me alegra|Me alegro de|Me alegro) que estés bien (tía|tía Marisol)
+  translations:
+    en: |-
+      I'm (glad|happy|so glad) [that] (you're|you are) (well|okay|OK|all right|alright), (Auntie|Tía|Aunt Marisol).
+      I am glad that you're well, Auntie.
+- id: s.u22.16
+  node: es.u22.me-alegra
+  forms:
+    es-Latn/standard:
+      text: ¡Qué bueno que vengas a vernos en el verano!
+      tokens: [{surface: Qué, lexeme: qué}, {surface: bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: vengas, lexeme: venir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: vernos, lexemes: [{lexeme: ver, surface: ver, base: true, feats: {VerbForm: Inf}}, {lexeme: nos, surface: nos, feats: {Number: Plur}}]}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: verano, lexeme: verano, feats: {Number: Sing}}]
+      reverse: |-
+        (Qué bueno|Qué bien|Qué alegría) que vengas a vernos (en el verano|este verano)
+        ¡Qué bueno que venga a vernos en el verano!
+        ¡Qué bueno que vengan a vernos en el verano!
+        ¡Qué bueno que nos vengas a ver en el verano!
+  translations:
+    en: |-
+      (How great|How wonderful|How nice|It's great|It's so good|That's great) [that] you're coming to see us (in the summer|this summer)!
+      (I'm so glad|I'm glad|So glad) [that] you're coming to see us (in the summer|this summer)!
+      How great that you are coming to see us in the summer!
+      I am so glad that you're coming to see us in the summer!
+- id: s.u22.17
+  node: es.u22.me-alegra
+  forms:
+    es-Latn/standard:
+      text: Siento que no puedas venir a la Nochebuena, tía.
+      tokens: [{surface: Siento, lexeme: sentir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: puedas, lexeme: poder, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: venir, lexeme: venir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}]
+      reverse: (Siento|Siento mucho|Lamento) que no puedas venir (a|para|en) la Nochebuena (tía|tía Marisol)
+  translations:
+    en: |-
+      I'm (sorry|so sorry) [that] you can't come (to|for) Christmas Eve, (Auntie|Tía|Aunt Marisol).
+      I am sorry that you cannot come to Christmas Eve, Auntie.
+- id: s.u22.18
+  node: es.u22.me-alegra
+  forms:
+    es-Latn/standard:
+      text: A Abuela le alegra mucho que la llames.
+      tokens: [{surface: A, lexeme: a}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: alegra, lexeme: alegrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: que, lexeme: que}, {surface: la, lexeme: lo, feats: {Gender: Fem, Number: Sing}}, {surface: llames, lexeme: llamar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        A (Abuela|la abuela|mi abuela) le alegra mucho que la llames
+        Abuela se alegra mucho de que la llames
+        A Abuela le alegra mucho que la llame
+        A Abuela le alegra mucho que la llamen
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) is (very|really|so) (glad|happy) [that] you call her.
+      It makes (Grandma|Grandmother|Abuela|my grandma|my grandmother) (very|really|so) happy (that|when) you call her.
+- id: s.u22.19
+  node: es.u22.me-alegra
+  forms:
+    es-Latn/standard:
+      text: ¡Qué bueno que Yunior tenga un trabajo nuevo!
+      tokens: [{surface: Qué, lexeme: qué}, {surface: bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: Yunior, lexeme: yunior}, {surface: tenga, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}}, {surface: nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (Qué bueno|Qué bien) que Yunior tenga (un trabajo nuevo|un nuevo trabajo|trabajo nuevo)
+  translations:
+    en: (How great|How wonderful|How nice|It's great|That's great|It's so good) [that] Yunior has a new job!
+- id: s.u22.20
+  node: es.u22.me-alegra
+  forms:
+    es-Latn/standard:
+      text: Yo también te extraño, y siento que estemos tan lejos.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: te, lexeme: te}, {surface: extraño, lexeme: extrañar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: siento, lexeme: sentir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: estemos, lexeme: estar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: tan, lexeme: tan}, {surface: lejos, lexeme: lejos}]
+      reverse: |-
+        [Yo] también te extraño y siento que estemos tan lejos
+        Yo también los extraño, y siento que estemos tan lejos
+        Yo también te extraño, y lamento que estemos tan lejos
+        Yo también te echo de menos, y siento que estemos tan lejos
+  translations:
+    en: |-
+      I miss you (too|as well), and I'm sorry [that] (we're|we are) so far (apart|away).
+      I miss you too, and I am sorry that we're so far apart.
+- id: s.u22.21
+  node: es.u22.me-alegra
+  forms:
+    es-Latn/standard:
+      text: Me alegra que podamos hablar todos juntos por videollamada.
+      tokens: [{surface: Me, lexeme: me}, {surface: alegra, lexeme: alegrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: podamos, lexeme: poder, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hablar, lexeme: hablar, feats: {VerbForm: Inf}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: juntos, lexeme: junto, feats: {Gender: Masc, Number: Plur}}, {surface: por, lexeme: por}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}}]
+      reverse: |-
+        (Me alegra|Me alegro de|Me alegro) que podamos hablar todos juntos por videollamada
+        Me alegra que todos podamos hablar juntos por videollamada
+  translations:
+    en: |-
+      I'm (glad|happy) [that] we can all talk together (on|over) [a] video call.
+      I am glad that we can all talk together on a video call.
+- id: s.u22.22
+  node: es.u22.me-preocupa
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    es-Latn/standard:
+      text: Me preocupa que ustedes no tengan corriente en el verano.
+      tokens: [{surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: 'no', lexeme: 'no'}, {surface: tengan, lexeme: tener, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: verano, lexeme: verano, feats: {Number: Sing}}]
+      reverse: Me preocupa que [ustedes] no tengan (corriente|luz) en el verano
+  translations:
+    en: |-
+      I'm worried [that] (you|you all|you guys) (don't|won't) have (power|electricity) in the summer.
+      It worries me that (you|you all|you guys) (don't|won't) have (power|electricity) in the summer.
+      I am worried that you do not have power in the summer.
+- id: s.u22.23
+  node: es.u22.me-preocupa
+  forms:
+    es-Latn/standard:
+      text: ¿Cómo está la cosa por allá?
+      tokens: [{surface: Cómo, lexeme: cómo}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cosa, lexeme: cosa, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: allá, lexeme: allá}]
+      reverse: |-
+        (Cómo está la cosa|Cómo anda la cosa|Cómo están las cosas) por allá
+        ¿Cómo están las cosas allá?
+  translations:
+    en: (How are things|How's everything|How is everything) [over] there?
+- id: s.u22.24
+  node: es.u22.me-preocupa
+  forms:
+    es-Latn/standard:
+      text: Yunior hizo tres horas de cola para comprar pollo.
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: hizo, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: tres, lexeme: tres}, {surface: horas, lexeme: hora, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: cola, lexeme: cola, feats: {Number: Sing}}, {surface: para, lexeme: para}, {surface: comprar, lexeme: comprar, feats: {VerbForm: Inf}}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}]
+      reverse: Yunior (hizo (tres|3) horas de cola|estuvo (tres|3) horas en la cola) para comprar pollo
+  translations:
+    en: |-
+      Yunior (stood|waited) in line for (three|3) hours to buy chicken.
+      Yunior spent (three|3) hours in line to buy chicken.
+      Yunior waited in line three hours to buy chicken.
+- id: s.u22.25
+  node: es.u22.me-preocupa
+  forms:
+    es-Latn/standard:
+      text: Me preocupa que el paquete no llegue antes de Navidad.
+      tokens: [{surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: llegue, lexeme: llegar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: antes, lexeme: antes}, {surface: de, lexeme: de}, {surface: Navidad, lexeme: navidad, feats: {Gender: Fem}}]
+      reverse: Me preocupa que el paquete no llegue antes de [la] Navidad
+  translations:
+    en: |-
+      I'm worried [that] the (package|parcel) (won't|will not|might not|may not) (arrive|get there|come) before Christmas.
+      It worries me that the (package|parcel) (won't|will not|might not|may not) (arrive|get there|come) before Christmas.
+      I am worried that the package won't arrive before Christmas.
+- id: s.u22.26
+  node: es.u22.me-preocupa
+  forms:
+    es-Latn/standard:
+      text: Te mandé una recarga para que puedas llamarnos.
+      tokens: [{surface: Te, lexeme: te}, {surface: mandé, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: recarga, lexeme: recarga, feats: {Number: Sing}}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: puedas, lexeme: poder, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: llamarnos, lexemes: [{lexeme: llamar, surface: llamar, base: true, feats: {VerbForm: Inf}}, {lexeme: nos, surface: nos, feats: {Number: Plur}}]}]
+      reverse: |-
+        [Yo] te mandé una recarga para que (puedas llamarnos|nos puedas llamar)
+        Le mandé una recarga para que pueda llamarnos
+        Les mandé una recarga para que puedan llamarnos
+        Te envié una recarga para que puedas llamarnos
+  translations:
+    en: I sent you (a top-up|a recharge|some phone credit|phone credit) (so|so that) you can call us.
+- id: s.u22.27
+  node: es.u22.me-preocupa
+  forms:
+    es-Latn/standard:
+      text: A Abuela le preocupa que Marisol no tenga medicinas para la presión.
+      tokens: [{surface: A, lexeme: a}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: tenga, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: medicinas, lexeme: medicina, feats: {Number: Plur}}, {surface: para, lexeme: para}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: presión, lexeme: presión, feats: {Number: Sing}}]
+      reverse: A (Abuela|la abuela|mi abuela) le preocupa que (Marisol|tía Marisol) no tenga (medicinas|medicina|pastillas) para la presión
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) is worried [that] (Marisol|Aunt Marisol) (doesn't have|won't have|might not have) (medicine|medicines|pills) for her (blood pressure|pressure).
+      Grandma is worried that Marisol does not have medicine for her blood pressure.
+- id: s.u22.28
+  node: es.u22.me-preocupa
+  forms:
+    es-Latn/standard:
+      text: 'No te preocupes, tía: el paquete llega la semana que viene.'
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: te, lexeme: te}, {surface: preocupes, lexeme: preocupar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: semana, lexeme: semana, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: No te preocupes (tía|tía Marisol) el paquete (llega|va a llegar) (la semana que viene|la próxima semana)
+  translations:
+    en: 'Don''t worry, (Auntie|Tía|Aunt Marisol): the (package|parcel) (arrives|is arriving|will arrive|is coming|will come|gets there) next week.'
+- id: s.u22.29
+  node: es.u22.no-creo
+  forms:
+    es-Latn/standard:
+      text: No creo que la corriente vuelva hoy.
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: creo, lexeme: creer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}, {surface: vuelva, lexeme: volver, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: hoy, lexeme: hoy}]
+      reverse: '[Yo] no creo que (la corriente|la luz) (vuelva|venga|regrese) hoy'
+  translations:
+    en: |-
+      I don't think the (power|electricity) (will come back|is coming back|will be back|comes back) today.
+      I do not think the power will come back today.
+- id: s.u22.30
+  node: es.u22.no-creo
+  forms:
+    es-Latn/standard:
+      text: Marisol cree que el paquete llega el lunes, pero yo lo dudo.
+      tokens: [{surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: cree, lexeme: creer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: lunes, lexeme: lunes, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: yo, lexeme: yo}, {surface: lo, lexeme: lo}, {surface: dudo, lexeme: dudar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Marisol|Tía Marisol) cree que el paquete (llega|va a llegar|llegará) el lunes pero [yo] lo dudo
+  translations:
+    en: (Marisol|Aunt Marisol) thinks the (package|parcel) (arrives|will arrive|is arriving|is coming|will come|gets there) [on] Monday, but I doubt it.
+- id: s.u22.31
+  node: es.u22.no-creo
+  forms:
+    es-Latn/standard:
+      text: Dudo que Yunior tenga wifi en su casa.
+      tokens: [{surface: Dudo, lexeme: dudar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Yunior, lexeme: yunior}, {surface: tenga, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      reverse: '[Yo] dudo que Yunior tenga wifi en (su casa|la casa|casa)'
+  translations:
+    en: I doubt [that] Yunior has wifi (at home|at his house|in his house).
+- id: s.u22.32
+  node: es.u22.no-creo
+  forms:
+    es-Latn/standard:
+      text: Es posible que haya un apagón esta noche.
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: haya, lexeme: haber, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: apagón, lexeme: apagón, feats: {Number: Sing}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      reverse: (Es posible|Puede) que haya un apagón esta noche
+  translations:
+    en: |-
+      (It's|It is) possible [that] (there will be|there'll be|there's going to be|there is going to be) a (blackout|power cut|power outage) tonight.
+      There (may|might|could) be a (blackout|power cut|power outage) tonight.
+- id: s.u22.33
+  node: es.u22.no-creo
+  forms:
+    es-Latn/standard:
+      text: No creo que Abuela sepa hacer una videollamada.
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: creo, lexeme: creer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: sepa, lexeme: saber, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}}]
+      reverse: '[Yo] no creo que (Abuela|la abuela|mi abuela) sepa hacer una videollamada'
+  translations:
+    en: |-
+      I don't think (Grandma|Grandmother|Abuela|my grandma|my grandmother) knows how to (make|do) a video call.
+      I do not think Grandma knows how to make a video call.
+- id: s.u22.34
+  node: es.u22.no-creo
+  forms:
+    es-Latn/standard:
+      text: Es posible que Yunior venga a Miami el año que viene.
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: Yunior, lexeme: yunior}, {surface: venga, lexeme: venir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: año, lexeme: año, feats: {Number: Sing}}, {surface: que, lexeme: que}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Es posible|Puede) que Yunior venga a Miami (el año que viene|el próximo año|el año próximo)
+  translations:
+    en: |-
+      (It's|It is) possible [that] Yunior (will come|comes|is coming|might come) to Miami next year.
+      Yunior (may|might|could) come to Miami next year.
+stories:
+- id: es.story.u22
+  node: es.u22.story
+  title:
+    en: The video call
+  characters:
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: marisol
+    speaker: f
+    name:
+      es-Latn/standard: Tía Marisol
+  - id: yunior
+    speaker: m
+    name:
+      es-Latn/standard: Yunior
+  steps:
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Es domingo. Daniel y Abuela hacen una videollamada a La Habana.
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: Daniel, lexeme: daniel}, {surface: y, lexeme: y}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: hacen, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      translations:
+        en: It's Sunday. Daniel and Grandma are making a video call to Havana.
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: ¡Mami! ¡Daniel! ¿Ustedes me oyen?
+          tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: Daniel, lexeme: daniel}, {surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: me, lexeme: me}, {surface: oyen, lexeme: oír, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Mom! Daniel! Can you hear me?
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, tía, te oímos. ¿Cómo está la cosa por allá?
+          tokens: [{surface: Sí, lexeme: sí}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: te, lexeme: te}, {surface: oímos, lexeme: oír, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Cómo, lexeme: cómo}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: cosa, lexeme: cosa, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: allá, lexeme: allá}]
+      translations:
+        en: Yes, Auntie, we can hear you. How are things over there?
+  - line:
+      speaker: marisol
+      ask: complete
+      gap: lexeme:apagón
+      distractors:
+      - lexeme:paquete
+      - lexeme:pulóver
+      forms:
+        es-Latn/standard:
+          text: Bien, pero anoche hubo un apagón de diez horas.
+          tokens: [{surface: Bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: anoche, lexeme: anoche}, {surface: hubo, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: apagón, lexeme: apagón, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: diez, lexeme: diez}, {surface: horas, lexeme: hora, feats: {Number: Plur}}]
+      translations:
+        en: Fine, but last night there was a ten-hour blackout.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Ay, mi'ja! Me preocupa que no tengan corriente con este calor.
+          tokens: [{surface: Ay, lexeme: ay}, {surface: mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: tengan, lexeme: tener, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      translations:
+        en: Oh, honey! I worry that you have no power in this heat.
+  - line:
+      speaker: yunior
+      ask: complete
+      gap: lexeme:corriente
+      distractors:
+      - lexeme:cola
+      - lexeme:pelota
+      forms:
+        es-Latn/standard:
+          text: No te preocupes, abuela. Ya vino la corriente.
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: te, lexeme: te}, {surface: preocupes, lexeme: preocupar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Ya, lexeme: ya}, {surface: vino, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}]
+      translations:
+        en: Don't worry, Grandma. The power's back now.
+  - choose:
+      prompt:
+        en: What happened in Havana last night?
+      options:
+      - en: There was a ten-hour blackout.
+      - en: The package arrived.
+      - en: Yunior lost his phone.
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¡Qué bueno, primo! ¿Y el paquete? ¿Ya llegó?
+          tokens: [{surface: Qué, lexeme: qué}, {surface: bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}}, {surface: Ya, lexeme: ya}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}]
+      translations:
+        en: Great, cousin! And the package? Has it arrived yet?
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: Todavía no. Mami cree que llega el jueves, pero yo lo dudo.
+          tokens: [{surface: Todavía, lexeme: todavía}, {surface: 'no', lexeme: 'no'}, {surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: cree, lexeme: creer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: jueves, lexeme: jueves, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: yo, lexeme: yo}, {surface: lo, lexeme: lo}, {surface: dudo, lexeme: dudar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Not yet. Mom thinks it's coming on Thursday, but I doubt it.
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: Yunior, tú no crees nada.
+          tokens: [{surface: Yunior, lexeme: yunior}, {surface: tú, lexeme: tú}, {surface: 'no', lexeme: 'no'}, {surface: crees, lexeme: creer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: nada, lexeme: nada}]
+      translations:
+        en: Yunior, you never believe anything.
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: Es que aquí todo llega tarde, mami.
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: aquí, lexeme: aquí}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: mami, lexeme: mami, feats: {Number: Sing}}]
+      translations:
+        en: It's just that everything gets here late, Mom.
+  - choose:
+      prompt:
+        en: Who doubts that the package will come on Thursday?
+      options:
+      - en: Yunior
+      - en: Tía Marisol
+      - en: Abuela
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Yunior, te congelaste. No te veo.
+          tokens: [{surface: Yunior, lexeme: yunior}, {surface: te, lexeme: te}, {surface: congelaste, lexeme: congelarse, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: 'No', lexeme: 'no'}, {surface: te, lexeme: te}, {surface: veo, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Yunior, you froze. I can't see you.
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¡Ay, esta conexión! ¿Y ahora?
+          tokens: [{surface: Ay, lexeme: ay}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: conexión, lexeme: conexión, feats: {Number: Sing}}, {surface: Y, lexeme: y}, {surface: ahora, lexeme: ahora}]
+      translations:
+        en: Ugh, this connection! What about now?
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Ahora sí te vemos. Mi'ja, siento mucho que no puedas venir a la Nochebuena.
+          tokens: [{surface: Ahora, lexeme: ahora}, {surface: sí, lexeme: sí}, {surface: te, lexeme: te}, {surface: vemos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: siento, lexeme: sentir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: puedas, lexeme: poder, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: venir, lexeme: venir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}}]
+      translations:
+        en: Now we can see you. Honey, I'm so sorry you can't come for Christmas Eve.
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: Yo también, mami. Los extraño mucho a todos.
+          tokens: [{surface: Yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: mami, lexeme: mami, feats: {Number: Sing}}, {surface: Los, lexeme: lo, feats: {Number: Plur}}, {surface: extraño, lexeme: extrañar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: a, lexeme: a}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}]
+      translations:
+        en: So am I, Mom. I miss you all so much.
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Es posible que yo vaya a Cuba en el verano.
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: yo, lexeme: yo}, {surface: vaya, lexeme: ir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: verano, lexeme: verano, feats: {Number: Sing}}]
+      translations:
+        en: I might go to Cuba in the summer.
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: ¡Qué bueno que vengas, mi amor!
+          tokens: [{surface: Qué, lexeme: qué}, {surface: bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: vengas, lexeme: venir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: amor, lexeme: amor, feats: {Number: Sing}}]
+      translations:
+        en: How wonderful that you're coming, my love!
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¡Ojalá que vengas, primo! Aquí te espero.
+          tokens: [{surface: Ojalá, lexeme: ojalá}, {surface: que, lexeme: que}, {surface: vengas, lexeme: venir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: Aquí, lexeme: aquí}, {surface: te, lexeme: te}, {surface: espero, lexeme: esperar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: I hope you come, cousin! I'll be waiting for you here.
+  - line:
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Y en ese momento, se cayó la llamada.
+          tokens: [{surface: Y, lexeme: y}, {surface: en, lexeme: en}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}}, {surface: momento, lexeme: momento, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: cayó, lexeme: caerse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}}]
+      translations:
+        en: And at that moment, the call dropped.
+  - choose:
+      prompt:
+        en: How does the call end?
+      options:
+      - en: The call drops.
+      - en: Abuela hangs up.
+      - en: The power goes out in Miami.
+      answer: 0
+scenarios:
+- id: es.videollamada
+  after: es.u22.no-creo
+  title:
+    en: A video call with Tía Marisol
+  setting:
+    en: A Sunday evening. You are on a WhatsApp video call from Hialeah to Centro Habana, where Tía Marisol stands on her balcony, the only spot in the apartment with a signal. The picture freezes now and then, there was a blackout last night, and the package the family sent two weeks ago has not arrived.
+  character:
+    en: 'Tía Marisol, Abuela Cachita''s daughter, in her fifties, who stayed in Havana: warm, funny, a little dramatic, and proud of making do with little. She speaks fast Havana Spanish, calls you mi amor, asks about everyone in Miami, and complains cheerfully about the apagones, the colas and the prices. When the line breaks up she says ¿Me oyes? ¿Te congelaste?'
+  goal:
+    en: Greet her, make sure you can hear and see each other (¿Me oyes?, no te oigo bien, te congelaste), ask how things are in Havana, react to her news with the subjunctive (me alegra que…, siento que…, me preocupa que…, ¡qué bueno que…!), say what you doubt about the package (dudo que…, no creo que…), and say goodbye before the call drops again.

@@ -1,0 +1,425 @@
+# Unit u15-the-old-womans-box of courses/chg in the new shape.
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u15-the-old-womans-box
+title:
+  en: The old woman’s box
+cefr: B1
+nodes:
+- {id: chg.u15.the-flood, kind: lesson, introduces: ['lexeme:tufan', 'lexeme:halak', 'lexeme:amma', 'lexeme:yaqa', 'lexeme:tiz', 'lexeme:yat']}
+- {id: chg.u15.the-old-woman, kind: lesson, introduces: ['lexeme:mama', 'lexeme:yigla', 'lexeme:ay.voc', 'lexeme:hal', 'lexeme:bayan', 'lexeme:ke']}
+- {id: chg.u15.come-here, kind: lesson, introduces: ['lexeme:imp', 'lexeme:sanduq', 'lexeme:ettur']}
+- {id: chg.u15.would-you, kind: lesson, introduces: ['lexeme:saqla', 'lexeme:bar.give', 'lexeme:amanat', 'lexeme:cond-2s', 'lexeme:shu', 'lexeme:itimad']}
+- {id: chg.u15.story, kind: story}
+sentences:
+- id: s.15.1
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: طوفان.
+      tokens: [{surface: طوفان, lexeme: tufan, readings: {schluessel: ṭūfān}}]
+      reverse: طوفان
+  translations:
+    en: The Flood.
+- id: s.15.2
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: طوفانده هلاک بولمادی.
+      tokens: [{surface: طوفانده, lexemes: [{lexeme: tufan, surface: طوفان, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭūfānda}}, {surface: هلاک, lexeme: halak, readings: {schluessel: halāk}}, {surface: بولمادی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-3, surface: دی}], readings: {schluessel: bolmadi}}]
+      reverse: (طوفانده|طوفاندا) هلاک بولمادی
+  translations:
+    en: (He|She) did not (perish|die) in the Flood.
+- id: s.15.3
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: کوب کشی هلاک بولدی.
+      tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: هلاک, lexeme: halak, readings: {schluessel: halāk}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      reverse: (کوب|کوپ) (کشی|کیشی) هلاک بولدی
+  translations:
+    en: Many people (perished|died|were killed).
+- id: s.15.4
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: اما اول کافر ایماس ایردی.
+      tokens: [{surface: اما, lexeme: amma, readings: {schluessel: ammā}}, {surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کافر, lexeme: kafir, readings: {schluessel: kāfir}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: (اما|امّا) اول کافر (ایماس|ایرماس) (ایردی|ایدی)
+  translations:
+    en: But (he|she) was not an unbeliever.
+- id: s.15.5
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: دریانینک یقاسی.
+      tokens: [{surface: دریانینک, lexemes: [{lexeme: darya, surface: دریا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: daryāniŋ}}, {surface: یقاسی, lexemes: [{lexeme: yaqa, surface: یقا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: yaqasi}}]
+      reverse: دریانینک (یقاسی|یاقاسی)
+  translations:
+    en: The (bank|edge|side) of the river.
+- id: s.15.6
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: دریالار یقاسیده یورور ایردی.
+      tokens: [{surface: دریالار, lexemes: [{lexeme: darya, surface: دریا, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: daryālar}}, {surface: یقاسیده, lexemes: [{lexeme: yaqa, surface: یقا, base: true}, {lexeme: poss3, surface: سی}, {lexeme: loc, surface: ده}], readings: {schluessel: yaqasida}}, {surface: یورور, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: yürür}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: دریالار (یقاسیده|یقاسیدا|یاقاسیده|یاقاسیدا) یورور (ایردی|ایدی)
+  translations:
+    en: (He|She) (used to|would) (walk|go about|wander) along the (banks of the|) rivers.
+- id: s.15.7
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: تیزیم.
+      tokens: [{surface: تیزیم, lexemes: [{lexeme: tiz, surface: تیز, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: tizim}}]
+      reverse: تیزیم
+  translations:
+    en: My knee.
+- id: s.15.8
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: سو تیزیمغه یتتی.
+      tokens: [{surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: تیزیمغه, lexemes: [{lexeme: tiz, surface: تیز, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: dat, surface: غه}], readings: {schluessel: tizimgä}}, {surface: یتتی, lexemes: [{lexeme: yat, surface: یت, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: yätti}}]
+      reverse: سو (تیزیمغه|تیزیمکه|تیزیمقه|تیزیمغا) (یتتی|ییتتی)
+  translations:
+    en: The water reached my knees.
+- id: s.15.9
+  node: chg.u15.the-flood
+  forms:
+    chg-Arab/standard:
+      text: سو انینک تیزیغه یتمادی.
+      tokens: [{surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: انینک, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: aniŋ}}, {surface: تیزیغه, lexemes: [{lexeme: tiz, surface: تیز, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: tizigä}}, {surface: یتمادی, lexemes: [{lexeme: yat, surface: یت, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-3, surface: دی}], readings: {schluessel: yätmädi}}]
+      reverse: سو انینک (تیزیغه|تیزیکه|تیزیقه|تیزیغا) (یتمادی|ییتمادی)
+  translations:
+    en: The water (did not|didn't) reach (his|her) knees.
+- id: s.15.10
+  node: chg.u15.the-old-woman
+  forms:
+    chg-Arab/standard:
+      text: بیر ماما.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ماما, lexeme: mama, readings: {schluessel: mama}}]
+      reverse: (بیر|بر) ماما
+  translations:
+    en: An old woman.
+- id: s.15.11
+  node: chg.u15.the-old-woman
+  forms:
+    chg-Arab/standard:
+      text: ماما یغلادی.
+      tokens: [{surface: ماما, lexeme: mama, readings: {schluessel: mama}}, {surface: یغلادی, lexemes: [{lexeme: yigla, surface: یغلا, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: yiǧladi}}]
+      reverse: ماما یغلادی
+  translations:
+    en: The old woman (wept|cried).
+- id: s.15.12
+  node: chg.u15.the-old-woman
+  forms:
+    chg-Arab/standard:
+      text: ای، اوغلوم!
+      tokens: [{surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: اوغلوم, lexemes: [{lexeme: oghul, surface: اوغل, base: true}, {lexeme: poss1s, surface: وم}], readings: {schluessel: oǧlum}}]
+      reverse: ای اوغلوم
+  translations:
+    en: (Oh|O), my (son|boy)!
+- id: s.15.13
+  node: chg.u15.the-old-woman
+  forms:
+    chg-Arab/standard:
+      text: ای، قیزیم!
+      tokens: [{surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: قیزیم, lexemes: [{lexeme: qiz, surface: قیز, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: qizim}}]
+      reverse: ای (قیزیم|قزیم)
+  translations:
+    en: (Oh|O), my (daughter|girl)!
+- id: s.15.14
+  node: chg.u15.the-old-woman
+  forms:
+    chg-Arab/standard:
+      text: حالینی بیان قیلدی.
+      tokens: [{surface: حالینی, lexemes: [{lexeme: hal, surface: حال, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: ḥālini}}, {surface: بیان, lexeme: bayan, readings: {schluessel: bayān}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qildi}}]
+      reverse: حالینی بیان (قیلدی|قلدی)
+  translations:
+    en: (He|She) (explained|told|described) (his|her) situation.
+- id: s.15.15
+  node: chg.u15.the-old-woman
+  forms:
+    chg-Arab/standard:
+      text: بو یکیت بیر ماماغه حالینی بیان قیلدی.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یکیت, lexeme: yigit, readings: {schluessel: yigit}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ماماغه, lexemes: [{lexeme: mama, surface: ماما, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: mamaǧa}}, {surface: حالینی, lexemes: [{lexeme: hal, surface: حال, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: ḥālini}}, {surface: بیان, lexeme: bayan, readings: {schluessel: bayān}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qildi}}]
+      reverse: بو (یکیت|ییکیت) (بیر|بر) (ماماغه|ماماکه|ماماقه|ماماغا) حالینی بیان (قیلدی|قلدی)
+  translations:
+    en: This young man (explained|told|described) his situation to an old woman.
+- id: s.15.16
+  node: chg.u15.the-old-woman
+  forms:
+    chg-Arab/standard:
+      text: اول ایتتیکه، بزارغه بارالی.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: ایتتیکه, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: past-3, surface: تی}, {lexeme: ke, surface: که}], readings: {schluessel: eyttike}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارالی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: let, surface: الی}], readings: {schluessel: barali}}]
+      reverse: اول (ایتتیکه|ایتتیکی) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارالی
+  translations:
+    en: (He|She) said, (let's|let us) go to the (market|bazaar).
+- id: s.15.17
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: کلینک!
+      tokens: [{surface: کلینک, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: keliŋ}}]
+      reverse: کلینک
+  translations:
+    en: (Come|Please come)!
+- id: s.15.18
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: بو یرغه کلینک!
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یرغه, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: yärgä}}, {surface: کلینک, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: keliŋ}}]
+      reverse: بو (یرغه|یرکه|یرقه|یرغا|یارغه|یارکه|یارقه|یارغا) کلینک
+  translations:
+    en: (Come|Please come) (here|to this place)!
+- id: s.15.19
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: اولتورونک!
+      tokens: [{surface: اولتورونک, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: imp, surface: ونک}], readings: {schluessel: olturuŋ}}]
+      reverse: اولتورونک
+  translations:
+    en: (Sit down|Sit|Please sit down|Please sit)!
+- id: s.15.20
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: کتابنی الینک!
+      tokens: [{surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: الینک, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: aliŋ}}]
+      reverse: کتابنی (الینک|آلینک)
+  translations:
+    en: (Take|Please take) the book!
+- id: s.15.21
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: بیر صندوق.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: صندوق, lexeme: sanduq, readings: {schluessel: ṣandūq}}]
+      reverse: (بیر|بر) صندوق
+  translations:
+    en: A (box|chest).
+- id: s.15.22
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: یغاچچی.
+      tokens: [{surface: یغاچچی, lexemes: [{lexeme: yaghach, surface: یغاچ, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: yaǧačči}}]
+      reverse: (یغاچچی|یاغاچچی)
+  translations:
+    en: A carpenter.
+- id: s.15.23
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: یغاچچیغه بارینک!
+      tokens: [{surface: یغاچچیغه, lexemes: [{lexeme: yaghach, surface: یغاچ, base: true}, {lexeme: ci, surface: چی}, {lexeme: dat, surface: غه}], readings: {schluessel: yaǧaččiǧa}}, {surface: بارینک, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: bariŋ}}]
+      reverse: (یغاچچیغه|یغاچچیکه|یغاچچیقه|یغاچچیغا|یاغاچچیغه|یاغاچچیکه|یاغاچچیقه|یاغاچچیغا) بارینک
+  translations:
+    en: (Go|Please go) to the carpenter!
+- id: s.15.24
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: بیر صندوق ایتورونک!
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: صندوق, lexeme: sanduq, readings: {schluessel: ṣandūq}}, {surface: ایتورونک, lexemes: [{lexeme: ettur, surface: ایتور, base: true}, {lexeme: imp, surface: ونک}], readings: {schluessel: ettürüŋ}}]
+      reverse: (بیر|بر) صندوق (ایتورونک|ایتتورونک|اتتورونک)
+  translations:
+    en: (Have|Please have|Get) a (box|chest) made!
+- id: s.15.25
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: صندوقنی الیب کلینک!
+      tokens: [{surface: صندوقنی, lexemes: [{lexeme: sanduq, surface: صندوق, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ṣandūqni}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: کلینک, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: keliŋ}}]
+      reverse: صندوقنی (الیب|آلیب) کلینک
+  translations:
+    en: (Bring|Please bring) the (box|chest)!
+- id: s.15.26
+  node: chg.u15.come-here
+  forms:
+    chg-Arab/standard:
+      text: مینینک قاشیمغه کلینک!
+      tokens: [{surface: مینینک, lexemes: [{lexeme: man, surface: مین, base: true}, {lexeme: gen, surface: ینک}], readings: {schluessel: meniŋ}}, {surface: قاشیمغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: dat, surface: غه}], readings: {schluessel: qašimǧa}}, {surface: کلینک, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: keliŋ}}]
+      reverse: مینینک (قاشیمغه|قاشیمکه|قاشیمقه|قاشیمغا) کلینک
+  translations:
+    en: (Come|Please come) to me!
+- id: s.15.27
+  node: chg.u15.would-you
+  forms:
+    chg-Arab/standard:
+      text: کتابنی ساقلادی.
+      tokens: [{surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: ساقلادی, lexemes: [{lexeme: saqla, surface: ساقلا, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: saqladi}}]
+      reverse: کتابنی ساقلادی
+  translations:
+    en: (He|She) kept the book.
+- id: s.15.28
+  node: chg.u15.would-you
+  forms:
+    chg-Arab/standard:
+      text: نان بیردی.
+      tokens: [{surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: بیردی, lexemes: [{lexeme: bar.give, surface: بیر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: bärdi}}]
+      reverse: نان (بیردی|بردی)
+  translations:
+    en: (He|She) gave bread.
+- id: s.15.29
+  node: chg.u15.would-you
+  forms:
+    chg-Arab/standard:
+      text: بو صندوق بیر امانت.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: صندوق, lexeme: sanduq, readings: {schluessel: ṣandūq}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: امانت, lexeme: amanat, readings: {schluessel: amānat}}]
+      reverse: "بو صندوق (بیر|بر) امانت\nبو صندوق (بیر|بر) امانت\u200cدور"
+  translations:
+    en: This (box|chest) is (a trust|held in trust|a deposit).
+- id: s.15.30
+  node: chg.u15.would-you
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: بو کتابنی ساقلاب بیرسانک؟
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: ساقلاب, lexemes: [{lexeme: saqla, surface: ساقلا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: saqlap}}, {surface: بیرسانک, lexemes: [{lexeme: bar.give, surface: بیر, base: true}, {lexeme: cond-2s, surface: سانک}], readings: {schluessel: bärsäŋ}}]
+      reverse: بو کتابنی ساقلاب (بیرسانک|بیرسنک|برسانک|برسنک)
+  translations:
+    en: Would you keep this book for me?
+- id: s.15.31
+  node: chg.u15.would-you
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: شونی ساقلاب بیرسانک؟
+      tokens: [{surface: شونی, lexemes: [{lexeme: shu, surface: شو, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: šuni}}, {surface: ساقلاب, lexemes: [{lexeme: saqla, surface: ساقلا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: saqlap}}, {surface: بیرسانک, lexemes: [{lexeme: bar.give, surface: بیر, base: true}, {lexeme: cond-2s, surface: سانک}], readings: {schluessel: bärsäŋ}}]
+      reverse: شونی ساقلاب (بیرسانک|بیرسنک|برسانک|برسنک)
+  translations:
+    en: Would you keep (this|that|it) for me?
+- id: s.15.32
+  node: chg.u15.would-you
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: کلسانک، بزارغه بارالی.
+      tokens: [{surface: کلسانک, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cond-2s, surface: سانک}], readings: {schluessel: kelsäŋ}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارالی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: let, surface: الی}], readings: {schluessel: barali}}]
+      reverse: (کلسانک|کلسنک) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارالی
+  translations:
+    en: If you come, (let's|let us) go to the (market|bazaar).
+- id: s.15.33
+  node: chg.u15.would-you
+  forms:
+    chg-Arab/standard:
+      text: کشیغه اعتمادیم یوق.
+      tokens: [{surface: کشیغه, lexemes: [{lexeme: kishi, surface: کشی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: kišigä}}, {surface: اعتمادیم, lexemes: [{lexeme: itimad, surface: اعتماد, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: iʿtimādim}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      reverse: (کشیغه|کشیکه|کشیقه|کشیغا|کیشیغه|کیشیکه|کیشیقه|کیشیغا) اعتمادیم یوق
+  translations:
+    en: I (don't|do not) trust (anyone|anybody|people).
+stories:
+- id: chg.story.the-old-womans-box
+  node: chg.u15.story
+  title:
+    en: The old woman’s box (The Stories of the Prophets)
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: … عاج طوفاندا هلاک بولمادی.
+          tokens: [{surface: عاج, lexeme: aj, readings: {schluessel: ʿĀj}}, {surface: طوفاندا, lexemes: [{lexeme: tufan, surface: طوفان, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: ṭūfānda}}, {surface: هلاک, lexeme: halak, readings: {schluessel: halāk}}, {surface: بولمادی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-3, surface: دی}], readings: {schluessel: bolmadi}}]
+      translations:
+        en: … ʿĀj did not perish in the Flood.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: اما کافر ایماس ایردی.
+          tokens: [{surface: اما, lexeme: amma, readings: {schluessel: ammā}}, {surface: کافر, lexeme: kafir, readings: {schluessel: kāfir}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: But he was not an unbeliever.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: دریالار یقاسیدا جنکالدا یورور ایردی.
+          tokens: [{surface: دریالار, lexemes: [{lexeme: darya, surface: دریا, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: daryālar}}, {surface: یقاسیدا, lexemes: [{lexeme: yaqa, surface: یقا, base: true}, {lexeme: poss3, surface: سی}, {lexeme: loc, surface: دا}], readings: {schluessel: yaqasida}}, {surface: جنکالدا, lexemes: [{lexeme: jangal, surface: جنکال, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: jaŋgalda}}, {surface: یورور, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: yürür}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: He would go about along the rivers, in the wilderness.
+  - line:
+      ask: complete
+      gap: lexeme:tiz
+      asks: form
+      forms:
+        chg-Arab/standard:
+          text: طوفان سویی انینک تیزیغه یتمادی.
+          tokens: [{surface: طوفان, lexeme: tufan, readings: {schluessel: ṭūfān}}, {surface: سویی, lexemes: [{lexeme: su, surface: سو, base: true}, {lexeme: poss3, surface: یی}], readings: {schluessel: süyi}}, {surface: انینک, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: aniŋ}}, {surface: تیزیغه, lexemes: [{lexeme: tiz, surface: تیز, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: tiziǧa}}, {surface: یتمادی, lexemes: [{lexeme: yat, surface: یت, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-3, surface: دی}], readings: {schluessel: yätmädi}}]
+      translations:
+        en: The waters of the Flood did not reach his knees.
+  - choose:
+      prompt:
+        en: How big was ʿĀj?
+      options:
+      - en: The Flood did not reach his knees.
+      - en: He was as tall as a house.
+      - en: He was as small as a boy.
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: … بو یکیت باریب، بیر ماماغه حالینی بیان قیلدی.
+          tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یکیت, lexeme: yigit, readings: {schluessel: yigit}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ماماغه, lexemes: [{lexeme: mama, surface: ماما, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: mamaǧa}}, {surface: حالینی, lexemes: [{lexeme: hal, surface: حال, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: ḥālini}}, {surface: بیان, lexeme: bayan, readings: {schluessel: bayān}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qildi}}]
+      translations:
+        en: … This young man went and told an old woman about his situation.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: ماما ایتیکه، «یغاچی قاشیغه باریب، بیر صندوق ایتوروب، مینینک قاشیمغه الیب کلینک،» دیدی.
+          tokens: [{surface: ماما, lexeme: mama, readings: {schluessel: mama}}, {surface: ایتیکه, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: past-3, surface: تی}, {lexeme: ke, surface: که}], readings: {schluessel: eyttike}}, {surface: یغاچی, lexemes: [{lexeme: yaghach, surface: یغا, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: yaǧačči}}, {surface: قاشیغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qašiǧa}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: صندوق, lexeme: sanduq, readings: {schluessel: ṣandūq}}, {surface: ایتوروب, lexemes: [{lexeme: ettur, surface: ایتور, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: ettürüp}}, {surface: مینینک, lexemes: [{lexeme: man, surface: مین, base: true}, {lexeme: gen, surface: ینک}], readings: {schluessel: meniŋ}}, {surface: قاشیمغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: dat, surface: غه}], readings: {schluessel: qašimǧa}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: کلینک, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: keliŋ}}, {surface: دیدی, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: dedi}}]
+      translations:
+        en: The old woman said, “Go to the carpenter, have a box made, and bring it to me.”
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: صندوق ایتوروب، مامانینک قاشیغه الیب باردی.
+          tokens: [{surface: صندوق, lexeme: sanduq, readings: {schluessel: ṣandūq}}, {surface: ایتوروب, lexemes: [{lexeme: ettur, surface: ایتور, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: ettürüp}}, {surface: مامانینک, lexemes: [{lexeme: mama, surface: ماما, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: mamaniŋ}}, {surface: قاشیغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qašiǧa}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: باردی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: bardi}}]
+      translations:
+        en: He had the box made and took it to the old woman.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: ماما یغلاب ایتیکه، «ای، اوغلوم! بو صندوقدا کیشینینک امانتی بار ایردی!
+          tokens: [{surface: ماما, lexeme: mama, readings: {schluessel: mama}}, {surface: یغلاب, lexemes: [{lexeme: yigla, surface: یغلا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yiǧlap}}, {surface: ایتیکه, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: past-3, surface: تی}, {lexeme: ke, surface: که}], readings: {schluessel: eyttike}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: اوغلوم, lexemes: [{lexeme: oghul, surface: اوغل, base: true}, {lexeme: poss1s, surface: وم}], readings: {schluessel: oǧlum}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: صندوقدا, lexemes: [{lexeme: sanduq, surface: صندوق, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: ṣandūqta}}, {surface: کیشینینک, lexemes: [{lexeme: kishi, surface: کیشی, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: kišiniŋ}}, {surface: امانتی, lexemes: [{lexeme: amanat, surface: امانت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: amānati}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: Weeping, the old woman said, “Oh, my son! In this box is something someone left in my keeping!
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: شونی سین ساقلاب برسانک؟ ینه کیشیکا اعتمادیم یوق،» دیب ایردی.
+          tokens: [{surface: شونی, lexemes: [{lexeme: shu, surface: شو, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: šuni}}, {surface: سین, lexeme: san, readings: {schluessel: sen}}, {surface: ساقلاب, lexemes: [{lexeme: saqla, surface: ساقلا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: saqlap}}, {surface: برسانک, lexemes: [{lexeme: bar.give, surface: بر, base: true}, {lexeme: cond-2s, surface: سانک}], readings: {schluessel: bärsäŋ}}, {surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: کیشیکا, lexemes: [{lexeme: kishi, surface: کیشی, base: true}, {lexeme: dat, surface: کا}], readings: {schluessel: kišigä}}, {surface: اعتمادیم, lexemes: [{lexeme: itimad, surface: اعتماد, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: iʿtimādim}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}, {surface: دیب, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: dep}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      translations:
+        en: Would you keep it for me? I trust no one else.”
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: عاج الیب باریب، اویدا قویدی.
+          tokens: [{surface: عاج, lexeme: aj, readings: {schluessel: ʿĀj}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: اویدا, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: öydä}}, {surface: قویدی, lexemes: [{lexeme: qoy.put, surface: قوی, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qoydi}}]
+      translations:
+        en: ʿĀj took it home and put it in his house.
+  - choose:
+      prompt:
+        en: What did the old woman ask ʿĀj to do?
+      options:
+      - en: To keep a box for her
+      - en: To build her a house
+      - en: To find her son
+      answer: 0
+scenarios:
+- id: chg.at-the-carpenters
+  after: chg.u15.would-you
+  title:
+    en: At the carpenter’s
+  setting:
+    en: A carpenter’s shop in the bazaar of Kashgar, around 1800. You need a box made.
+  character:
+    en: The carpenter, busy but polite, who speaks only Turki.
+  goal:
+    en: Ask him politely to make you a box, say how big it should be, ask when to come back, and ask whether he would keep your things for you until then.

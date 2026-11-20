@@ -1,0 +1,495 @@
+# Unit u05-they-drink-wine of courses/chg in the new shape.
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u05-they-drink-wine
+title:
+  en: They drink wine
+cefr: A1
+nodes:
+- {id: chg.u05.i-drink, kind: lesson, introduces: ['lexeme:ich', 'lexeme:al', 'lexeme:kor']}
+- {id: chg.u05.not, kind: lesson, introduces: ['lexeme:pres-neg', 'lexeme:qil']}
+- {id: chg.u05.books, kind: lesson, introduces: ['lexeme:kitab', 'lexeme:oqu', 'lexeme:khat', 'lexeme:yaz', 'lexeme:turki', 'lexeme:sozla', 'lexeme:til', 'lexeme:farsi']}
+- {id: chg.u05.what-do-you-want, kind: lesson, introduces: ['lexeme:ista']}
+- {id: chg.u05.like-muslims, kind: lesson, introduces: ['lexeme:sharab', 'lexeme:namaz', 'lexeme:roza', 'lexeme:tut', 'lexeme:ota', 'lexeme:cv-may', 'lexeme:ca', 'lexeme:iman', 'lexeme:eyt', 'lexeme:kafir', 'lexeme:cond']}
+- {id: chg.u05.story, kind: story}
+sentences:
+- id: s.05.1
+  node: chg.u05.i-drink
+  forms:
+    chg-Arab/standard:
+      text: من چای ایچامن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچامن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres, surface: ا}, {lexeme: p1s, surface: من}], readings: {schluessel: ičämän}}]
+      reverse: '[من] چای ایچامن'
+  translations:
+    en: I (drink|am drinking|will drink) tea.
+- id: s.05.2
+  node: chg.u05.i-drink
+  forms:
+    chg-Arab/standard:
+      text: بیز سو ایچامیز.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: ایچامیز, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres, surface: ا}, {lexeme: p1p, surface: میز}], readings: {schluessel: ičämiz}}]
+      reverse: '[بیز] سو ایچامیز'
+  translations:
+    en: We (drink|are drinking|will drink) water.
+- id: s.05.3
+  node: chg.u05.i-drink
+  forms:
+    chg-Arab/standard:
+      text: اول سوت ایچادور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: سوت, lexeme: sut, readings: {schluessel: süt}}, {surface: ایچادور, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: ičädur}}]
+      reverse: اول سوت ایچادور
+  translations:
+    en: (He|She) (drinks|is drinking|will drink) milk.
+- id: s.05.4
+  node: chg.u05.i-drink
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: سن چای ایچاسن.
+      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچاسن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2s, surface: سن}], readings: {schluessel: ičäsän}}]
+      reverse: |-
+        [سن] چای ایچاسن
+        [سیز] چای ایچاسیز
+  translations:
+    en: You (drink|are drinking|will drink) tea.
+- id: s.05.5
+  node: chg.u05.i-drink
+  forms:
+    chg-Arab/standard:
+      text: سیز نان الاسیز.
+      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: الاسیز, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2, surface: سیز}], readings: {schluessel: alasiz}}]
+      reverse: |-
+        [سیز] نان (الاسیز|آلاسیز)
+        [سن] نان (الاسن|آلاسن)
+        [سیزلار] نان (الاسیزلار|آلاسیزلار)
+  translations:
+    en: You (buy|are buying|will buy|take|are taking|will take) (bread|some bread).
+- id: s.05.6
+  node: chg.u05.i-drink
+  forms:
+    chg-Arab/standard:
+      text: اولار میوه الادورلار.
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: میوه, lexeme: mewa, readings: {schluessel: mewä}}, {surface: الادورلار, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: aladurlar}}]
+      reverse: |-
+        (اولار|الار) میوه (الادورلار|آلادورلار)
+        (اولار|الار) میوه (الادور|آلادور)
+  translations:
+    en: They (buy|are buying|will buy) fruit.
+- id: s.05.7
+  node: chg.u05.i-drink
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    chg-Arab/standard:
+      text: سیزلار قوی الاسیزلار.
+      tokens: [{surface: سیزلار, lexeme: sizlar, readings: {schluessel: sizlär}}, {surface: قوی, lexeme: qoy, readings: {schluessel: qoy}}, {surface: الاسیزلار, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: alasizlär}}]
+      reverse: |-
+        [سیزلار] قوی (الاسیزلار|آلاسیزلار)
+        [سیز] قوی (الاسیز|آلاسیز)
+  translations:
+    en: You (buy|are buying|will buy) (a sheep|sheep).
+- id: s.05.8
+  node: chg.u05.i-drink
+  forms:
+    chg-Arab/standard:
+      text: من تاغنی کورامن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: تاغنی, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: taǧni}}, {surface: کورامن, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: pres, surface: ا}, {lexeme: p1s, surface: من}], readings: {schluessel: körämän}}]
+      reverse: '[من] تاغنی کورامن'
+  translations:
+    en: I (see|can see) the mountain.
+- id: s.05.9
+  node: chg.u05.i-drink
+  forms:
+    chg-Arab/standard:
+      text: بلا آطنی کورادور.
+      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: آطنی, lexemes: [{lexeme: at, surface: آط, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: aṭni}}, {surface: کورادور, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: körädur}}]
+      reverse: (بلا|بالا) (آطنی|آتنی|اتنی) کورادور
+  translations:
+    en: The child (sees|can see) the horse.
+- id: s.05.10
+  node: chg.u05.not
+  forms:
+    chg-Arab/standard:
+      text: من سوت ایچمایمن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: سوت, lexeme: sut, readings: {schluessel: süt}}, {surface: ایچمایمن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1s, surface: من}], readings: {schluessel: ičmäymän}}]
+      reverse: '[من] سوت ایچمایمن'
+  translations:
+    en: I (do not|don't) drink milk.
+- id: s.05.11
+  node: chg.u05.not
+  forms:
+    chg-Arab/standard:
+      text: اول کوشت المایدور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کوشت, lexeme: gosht, readings: {schluessel: göšt}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      reverse: اول کوشت (المایدور|آلمایدور)
+  translations:
+    en: (He|She) (does not|doesn't|will not|won't) buy meat.
+- id: s.05.12
+  node: chg.u05.not
+  forms:
+    chg-Arab/standard:
+      text: بیز تاغنی کورمایمیز.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: تاغنی, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: taǧni}}, {surface: کورمایمیز, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1p, surface: میز}], readings: {schluessel: körmäymiz}}]
+      reverse: '[بیز] تاغنی کورمایمیز'
+  translations:
+    en: We (do not|don't|cannot|can't) see the mountain.
+- id: s.05.13
+  node: chg.u05.not
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: سن چای ایچمایسن.
+      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچمایسن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p2s, surface: سن}], readings: {schluessel: ičmäysän}}]
+      reverse: |-
+        [سن] چای ایچمایسن
+        [سیز] چای ایچمایسیز
+  translations:
+    en: You (do not|don't) drink tea.
+- id: s.05.14
+  node: chg.u05.not
+  forms:
+    chg-Arab/standard:
+      text: اولار بزارغه بارمایدورلار.
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارمایدورلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: barmaydurlar}}]
+      reverse: |-
+        (اولار|الار) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارمایدورلار
+        (اولار|الار) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارمایدور
+  translations:
+    en: They (do not|don't|will not|won't) go to the (market|bazaar).
+- id: s.05.15
+  node: chg.u05.not
+  forms:
+    chg-Arab/standard:
+      text: من بیلمایمن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بیلمایمن, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1s, surface: من}], readings: {schluessel: bilmäymän}}]
+      reverse: '[من] بیلمایمن'
+  translations:
+    en: I (do not|don't) know.
+- id: s.05.16
+  node: chg.u05.not
+  forms:
+    chg-Arab/standard:
+      text: اول قیلمایدور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: قیلمایدور, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: qilmaydur}}]
+      reverse: اول (قیلمایدور|قلمایدور)
+  translations:
+    en: (He|She) (does not|doesn't|will not|won't) do (it|that).
+- id: s.05.17
+  node: chg.u05.books
+  forms:
+    chg-Arab/standard:
+      text: من کتاب اوقویمن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: اوقویمن, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: pres, surface: ی}, {lexeme: p1s, surface: من}], readings: {schluessel: oquymän}}]
+      reverse: '[من] کتاب اوقویمن'
+  translations:
+    en: I (read|am reading|will read) a book.
+- id: s.05.18
+  node: chg.u05.books
+  forms:
+    chg-Arab/standard:
+      text: اول خط یازادور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: خط, lexeme: khat, readings: {schluessel: ḫaṭ}}, {surface: یازادور, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: yazadur}}]
+      reverse: اول خط یازادور
+  translations:
+    en: (He|She) (writes|is writing|will write) a letter.
+- id: s.05.19
+  node: chg.u05.books
+  forms:
+    chg-Arab/standard:
+      text: بیز ترکی سوزلایمیز.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: ترکی, lexeme: turki, readings: {schluessel: Turkī}}, {surface: سوزلایمیز, lexemes: [{lexeme: sozla, surface: سوزلا, base: true}, {lexeme: pres, surface: ی}, {lexeme: p1p, surface: میز}], readings: {schluessel: sözläymiz}}]
+      reverse: '[بیز] (ترکی|تورکی) سوزلایمیز'
+  translations:
+    en: We (speak|are speaking) Turki.
+- id: s.05.20
+  node: chg.u05.books
+  forms:
+    chg-Arab/standard:
+      text: بو تیل ترکی.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: تیل, lexeme: til, readings: {schluessel: til}}, {surface: ترکی, lexeme: turki, readings: {schluessel: Turkī}}]
+      reverse: "بو تیل (ترکی|تورکی)\nبو تیل (ترکی\u200cدور|تورکی\u200cدور)"
+  translations:
+    en: This language is Turki.
+- id: s.05.21
+  node: chg.u05.books
+  forms:
+    chg-Arab/standard:
+      text: من فارسی بیلامن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: فارسی, lexeme: farsi, readings: {schluessel: Fārsī}}, {surface: بیلامن, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: pres, surface: ا}, {lexeme: p1s, surface: من}], readings: {schluessel: bilämän}}]
+      reverse: '[من] فارسی بیلامن'
+  translations:
+    en: I know Persian.
+- id: s.05.22
+  node: chg.u05.books
+  forms:
+    chg-Arab/standard:
+      text: اول فارسی بیلمایدور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: فارسی, lexeme: farsi, readings: {schluessel: Fārsī}}, {surface: بیلمایدور, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: bilmäydur}}]
+      reverse: اول فارسی بیلمایدور
+  translations:
+    en: (He|She) (does not|doesn't) know Persian.
+- id: s.05.23
+  node: chg.u05.books
+  forms:
+    chg-Arab/standard:
+      text: سیز کتاب یازاسیز.
+      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: یازاسیز, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2, surface: سیز}], readings: {schluessel: yazasiz}}]
+      reverse: |-
+        [سیز] کتاب یازاسیز
+        [سن] کتاب یازاسن
+        [سیزلار] کتاب یازاسیزلار
+  translations:
+    en: You (write|are writing|will write) a book.
+- id: s.05.24
+  node: chg.u05.books
+  forms:
+    chg-Arab/standard:
+      text: بو کتابنی اوقویمن.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: اوقویمن, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: pres, surface: ی}, {lexeme: p1s, surface: من}], readings: {schluessel: oquymän}}]
+      reverse: |-
+        بو کتابنی اوقویمن
+        من بو کتابنی اوقویمن
+  translations:
+    en: I (read|am reading|will read) this book.
+- id: s.05.25
+  node: chg.u05.what-do-you-want
+  forms:
+    chg-Arab/standard:
+      text: سیز چای ایچاسیزمو؟
+      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچاسیزمو, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2, surface: سیز}, {lexeme: q, surface: مو}], readings: {schluessel: ičäsizmu}}]
+      reverse: |-
+        [سیز] چای ایچاسیزمو
+        [سن] چای ایچاسنمو
+        [سیزلار] چای ایچاسیزلارمو
+  translations:
+    en: (Do you drink|Will you drink|Are you drinking) tea?
+- id: s.05.26
+  node: chg.u05.what-do-you-want
+  forms:
+    chg-Arab/standard:
+      text: سیز نمه ایستایسیز؟
+      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}, {surface: ایستایسیز, lexemes: [{lexeme: ista, surface: ایستا, base: true}, {lexeme: pres, surface: ی}, {lexeme: p2, surface: سیز}], readings: {schluessel: istäysiz}}]
+      reverse: |-
+        [سیز] (نمه|نیمه) ایستایسیز
+        [سن] (نمه|نیمه) ایستایسن
+        [سیزلار] (نمه|نیمه) ایستایسیزلار
+  translations:
+    en: What do you want?
+- id: s.05.27
+  node: chg.u05.what-do-you-want
+  forms:
+    chg-Arab/standard:
+      text: من نان ایستایمن.
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: ایستایمن, lexemes: [{lexeme: ista, surface: ایستا, base: true}, {lexeme: pres, surface: ی}, {lexeme: p1s, surface: من}], readings: {schluessel: istäymän}}]
+      reverse: '[من] نان ایستایمن'
+  translations:
+    en: I want (bread|some bread).
+- id: s.05.28
+  node: chg.u05.what-do-you-want
+  forms:
+    chg-Arab/standard:
+      text: اول نمه قیلادور؟
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}, {surface: قیلادور, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: qiladur}}]
+      reverse: اول (نمه|نیمه) (قیلادور|قلادور)
+  translations:
+    en: What (is he|is she|does he|does she) (doing|do)?
+- id: s.05.29
+  node: chg.u05.what-do-you-want
+  forms:
+    chg-Arab/standard:
+      text: کیم کلادور؟
+      tokens: [{surface: کیم, lexeme: kim, readings: {schluessel: kim}}, {surface: کلادور, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: kelädur}}]
+      reverse: کیم کلادور
+  translations:
+    en: Who is coming?
+- id: s.05.30
+  node: chg.u05.what-do-you-want
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    chg-Arab/standard:
+      text: سن بزارغه باراسنمو؟
+      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باراسنمو, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2s, surface: سن}, {lexeme: q, surface: مو}], readings: {schluessel: barasänmu}}]
+      reverse: |-
+        [سن] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باراسنمو
+        [سیز] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باراسیزمو
+  translations:
+    en: (Are you going|Will you go|Do you go) to the (market|bazaar)?
+- id: s.05.31
+  node: chg.u05.what-do-you-want
+  forms:
+    chg-Arab/standard:
+      text: اولار نمه ایستایدورلار؟
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}, {surface: ایستایدورلار, lexemes: [{lexeme: ista, surface: ایستا, base: true}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: istäydurlar}}]
+      reverse: |-
+        (اولار|الار) (نمه|نیمه) ایستایدورلار
+        (اولار|الار) (نمه|نیمه) ایستایدور
+  translations:
+    en: What do they want?
+- id: s.05.32
+  node: chg.u05.what-do-you-want
+  forms:
+    chg-Arab/standard:
+      text: سیز ترکی بیلاسیزمو؟
+      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: ترکی, lexeme: turki, readings: {schluessel: Turkī}}, {surface: بیلاسیزمو, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2, surface: سیز}, {lexeme: q, surface: مو}], readings: {schluessel: biläsizmu}}]
+      reverse: |-
+        [سیز] (ترکی|تورکی) بیلاسیزمو
+        [سن] (ترکی|تورکی) بیلاسنمو
+        [سیزلار] (ترکی|تورکی) بیلاسیزلارمو
+  translations:
+    en: Do you know Turki?
+- id: s.05.33
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: اول شراب ایچمایدور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: شراب, lexeme: sharab, readings: {schluessel: šarāb}}, {surface: ایچمایدور, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: ičmäydur}}]
+      reverse: اول شراب ایچمایدور
+  translations:
+    en: (He|She) (does not|doesn't) drink wine.
+- id: s.05.34
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: اولار نماز اوقویدورلار.
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: نماز, lexeme: namaz, readings: {schluessel: namāz}}, {surface: اوقویدورلار, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oquydurlar}}]
+      reverse: |-
+        (اولار|الار) نماز اوقویدورلار
+        (اولار|الار) نماز اوقویدور
+  translations:
+    en: They (pray|are praying|say their prayers).
+- id: s.05.35
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: بیز روزه توتامیز.
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: روزه, lexeme: roza, readings: {schluessel: roza}}, {surface: توتامیز, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: pres, surface: ا}, {lexeme: p1p, surface: میز}], readings: {schluessel: tutamiz}}]
+      reverse: '[بیز] روزه توتامیز'
+  translations:
+    en: We (keep|are keeping|will keep) the fast.
+- id: s.05.36
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: اول نماز اوتایدور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: نماز, lexeme: namaz, readings: {schluessel: namāz}}, {surface: اوتایدور, lexemes: [{lexeme: ota, surface: اوتا, base: true}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: ötäydur}}]
+      reverse: اول نماز اوتایدور
+  translations:
+    en: (He|She) (performs|is performing|will perform) the prayer.
+- id: s.05.37
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: اول چای ایچمای بارادور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچمای, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: ičmäy}}, {surface: بارادور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: baradur}}]
+      reverse: اول چای ایچمای بارادور
+  translations:
+    en: (He|She) (goes|is going|leaves) without drinking (tea|the tea).
+- id: s.05.38
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: اولار مسلمانچه سوزلایدورلار.
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: مسلمانچه, lexemes: [{lexeme: musulman, surface: مسلمان, base: true}, {lexeme: ca, surface: چه}], readings: {schluessel: musulmānčä}}, {surface: سوزلایدورلار, lexemes: [{lexeme: sozla, surface: سوزلا, base: true}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: sözläydurlar}}]
+      reverse: |-
+        (اولار|الار) مسلمانچه سوزلایدورلار
+        (اولار|الار) مسلمانچه سوزلایدور
+  translations:
+    en: They speak (like Muslims|as Muslims do).
+- id: s.05.39
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: اول ایمان ایتادور.
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: ایمان, lexeme: iman, readings: {schluessel: īmān}}, {surface: ایتادور, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: eytadur}}]
+      reverse: اول ایمان ایتادور
+  translations:
+    en: (He|She) (says|recites) the creed.
+- id: s.05.40
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: بو کافر ایماس، مسلمان.
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کافر, lexeme: kafir, readings: {schluessel: kāfir}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}, {surface: مسلمان, lexeme: musulman, readings: {schluessel: musulmān}}]
+      reverse: "بو کافر (ایماس|ایرماس) مسلمان\nبو کافر (ایماس|ایرماس) مسلمان\u200cدور"
+  translations:
+    en: (He|She|This one) is not an unbeliever, but a Muslim.
+- id: s.05.41
+  node: chg.u05.like-muslims
+  forms:
+    chg-Arab/standard:
+      text: کافر دیسه، ایمان ایتادور.
+      tokens: [{surface: کافر, lexeme: kafir, readings: {schluessel: kāfir}}, {surface: دیسه, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: desä}}, {surface: ایمان, lexeme: iman, readings: {schluessel: īmān}}, {surface: ایتادور, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: eytadur}}]
+      reverse: کافر (دیسه|دیسا) ایمان ایتادور
+  translations:
+    en: If (you call him|you call her|one calls him|one calls her) an unbeliever, (he|she) says the creed.
+stories:
+- id: chg.story.they-drink-wine
+  node: chg.u05.story
+  title:
+    en: They drink wine (The Tadhkira of Jalāl ud-Dīn Katakī)
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: نماز اوتامای، روزه توتمایدور.
+          tokens: [{surface: نماز, lexeme: namaz, readings: {schluessel: namāz}}, {surface: اوتامای, lexemes: [{lexeme: ota, surface: اوتا, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: ötämäy}}, {surface: روزه, lexeme: roza, readings: {schluessel: roza}}, {surface: توتمایدور, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: tutmaydur}}]
+      translations:
+        en: They do not perform the prayer, they do not keep the fast.
+  - line:
+      ask: complete
+      gap: lexeme:sharab
+      distractors:
+      - lexeme:kitab
+      - lexeme:at
+      forms:
+        chg-Arab/standard:
+          text: شراب ایچادور.
+          tokens: [{surface: شراب, lexeme: sharab, readings: {schluessel: šarāb}}, {surface: ایچادور, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: ičädur}}]
+      translations:
+        en: They drink wine.
+  - choose:
+      prompt:
+        en: What do the two travellers see the townspeople do?
+      options:
+      - en: They drink wine and skip the prayers.
+      - en: They pray five times a day.
+      - en: They keep the fast of Ramadan.
+      answer: 0
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: کافر دیسه، ایمان ایتادور.
+          tokens: [{surface: کافر, lexeme: kafir, readings: {schluessel: kāfir}}, {surface: دیسه, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: desä}}, {surface: ایمان, lexeme: iman, readings: {schluessel: īmān}}, {surface: ایتادور, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: eytadur}}]
+      translations:
+        en: If you call them unbelievers, they say the creed.
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: مسلمانچه سوزلایدورلار.
+          tokens: [{surface: مسلمانچه, lexemes: [{lexeme: musulman, surface: مسلمان, base: true}, {lexeme: ca, surface: چه}], readings: {schluessel: musulmānčä}}, {surface: سوزلایدورلار, lexemes: [{lexeme: sozla, surface: سوزلا, base: true}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: sözläydurlar}}]
+      translations:
+        en: They speak like Muslims.
+  - choose:
+      prompt:
+        en: Are the people Muslims or unbelievers?
+      options:
+      - en: They say the creed and talk like Muslims, but do not live like them.
+      - en: They are unbelievers who never say the creed.
+      - en: They are learned mullahs.
+      answer: 0
+scenarios:
+- id: chg.at-the-caravanserai
+  after: chg.u05.what-do-you-want
+  title:
+    en: At the caravanserai
+  setting:
+    en: A caravanserai on the road to Kashgar, in the evening. Travellers sit by the fire.
+  character:
+    en: The innkeeper, busy and blunt, who speaks only Turki.
+  goal:
+    en: Say what you want to eat and drink and what you do not drink, ask what the other travellers are doing, and say where you are going tomorrow.

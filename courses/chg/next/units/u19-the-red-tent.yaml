@@ -1,0 +1,336 @@
+# Unit u19-the-red-tent of courses/chg in the new shape.
+# Written by `nabu migrate` from courses/chg and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u19-the-red-tent
+title:
+  en: The red tent
+cefr: B1
+nodes:
+- {id: chg.u19.gold-and-red, kind: lesson, introduces: ['lexeme:altun', 'lexeme:kursi', 'lexeme:et', 'lexeme:baqish', 'lexeme:ghurra', 'lexeme:taygan']}
+- {id: chg.u19.before-him, kind: lesson, introduces: ['lexeme:ald', 'lexeme:qol', 'lexeme:bagla']}
+- {id: chg.u19.seventy-seven, kind: lesson, introduces: ['lexeme:yatmish', 'lexeme:uratur']}
+- {id: chg.u19.face-to-face, kind: lesson, introduces: ['lexeme:mard', 'lexeme:sharr', 'lexeme:rubaru', 'lexeme:mawlana', 'lexeme:shubu']}
+- {id: chg.u19.story, kind: story}
+sentences:
+- id: s.19.1
+  node: chg.u19.gold-and-red
+  forms:
+    chg-Arab/standard:
+      text: التون.
+      tokens: [{surface: التون, lexeme: altun, readings: {schluessel: altun}}]
+      reverse: (التون|آلتون)
+  translations:
+    en: Gold.
+- id: s.19.2
+  node: chg.u19.gold-and-red
+  forms:
+    chg-Arab/standard:
+      text: التون کرسی.
+      tokens: [{surface: التون, lexeme: altun, readings: {schluessel: altun}}, {surface: کرسی, lexeme: kursi, readings: {schluessel: kursī}}]
+      reverse: (التون|آلتون) کرسی
+  translations:
+    en: A golden (chair|throne).
+- id: s.19.3
+  node: chg.u19.gold-and-red
+  forms:
+    chg-Arab/standard:
+      text: بیر قزل اوی.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قزل, lexeme: qizil, readings: {schluessel: qizil}}, {surface: اوی, lexeme: oy, readings: {schluessel: öy}}]
+      reverse: (بیر|بر) (قزل|قیزیل) اوی
+  translations:
+    en: A red (tent|house).
+- id: s.19.4
+  node: chg.u19.gold-and-red
+  forms:
+    chg-Arab/standard:
+      text: بیر قزل اوی اتتی.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قزل, lexeme: qizil, readings: {schluessel: qizil}}, {surface: اوی, lexeme: oy, readings: {schluessel: öy}}, {surface: اتتی, lexemes: [{lexeme: et, surface: ات, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: etti}}]
+      reverse: (بیر|بر) (قزل|قیزیل) اوی (اتتی|ایتتی)
+  translations:
+    en: (He|She) (set up|put up|made) a red tent.
+- id: s.19.5
+  node: chg.u19.gold-and-red
+  forms:
+    chg-Arab/standard:
+      text: اوینینک باقشی.
+      tokens: [{surface: اوینینک, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: öyniŋ}}, {surface: باقشی, lexemes: [{lexeme: baqish, surface: باقش, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: baqiši}}]
+      reverse: اوینینک (باقشی|باقیشی)
+  translations:
+    en: The (frame|structure) of the tent.
+- id: s.19.6
+  node: chg.u19.gold-and-red
+  forms:
+    chg-Arab/standard:
+      text: اق غره.
+      tokens: [{surface: اق, lexeme: aq, readings: {schluessel: aq}}, {surface: غره, lexeme: ghurra, readings: {schluessel: ǧurra}}]
+      reverse: اق غره
+  translations:
+    en: A white spot.
+- id: s.19.7
+  node: chg.u19.gold-and-red
+  forms:
+    chg-Arab/standard:
+      text: "غره غره\u200cلیق ایت."
+      tokens: [{surface: غره, lexeme: ghurra, readings: {schluessel: ǧurra}}, {surface: "غره\u200cلیق", lexemes: [{lexeme: ghurra, surface: "غره\u200c", base: true}, {lexeme: liq, surface: لیق}], readings: {schluessel: ǧurraliq}}, {surface: ایت, lexeme: it, readings: {schluessel: it}}]
+      reverse: "غره غره\u200cلیق ایت"
+  translations:
+    en: A (spotted dog|dog with white spots|dog spotted all over).
+- id: s.19.8
+  node: chg.u19.gold-and-red
+  forms:
+    chg-Arab/standard:
+      text: بیر تایغان.
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: تایغان, lexeme: taygan, readings: {schluessel: tayǧan}}]
+      reverse: (بیر|بر) تایغان
+  translations:
+    en: A (hunting dog|greyhound).
+- id: s.19.9
+  node: chg.u19.before-him
+  forms:
+    chg-Arab/standard:
+      text: الدیده.
+      tokens: [{surface: الدیده, lexemes: [{lexeme: ald, surface: الد, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: aldida}}]
+      reverse: (الدیده|الدیدا|آلدیده|آلدیدا)
+  translations:
+    en: (In front of|Before) (him|her|it).
+- id: s.19.10
+  node: chg.u19.before-him
+  forms:
+    chg-Arab/standard:
+      text: اوینینک الدیده.
+      tokens: [{surface: اوینینک, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: öyniŋ}}, {surface: الدیده, lexemes: [{lexeme: ald, surface: الد, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: aldida}}]
+      reverse: اوینینک (الدیده|الدیدا|آلدیده|آلدیدا)
+  translations:
+    en: In front of the (house|tent).
+- id: s.19.11
+  node: chg.u19.before-him
+  forms:
+    chg-Arab/standard:
+      text: ایت الدیده یتتی.
+      tokens: [{surface: ایت, lexeme: it, readings: {schluessel: it}}, {surface: الدیده, lexemes: [{lexeme: ald, surface: الد, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: aldida}}, {surface: یتتی, lexemes: [{lexeme: yat.lie, surface: یت, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: yatti}}]
+      reverse: ایت (الدیده|الدیدا|آلدیده|آلدیدا) (یتتی|یاتتی)
+  translations:
+    en: The dog lay (down |)(in front of|before) (him|her).
+- id: s.19.12
+  node: chg.u19.before-him
+  forms:
+    chg-Arab/standard:
+      text: تایغان الدیده یتیبدور.
+      tokens: [{surface: تایغان, lexeme: taygan, readings: {schluessel: tayǧan}}, {surface: الدیده, lexemes: [{lexeme: ald, surface: الد, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: aldida}}, {surface: یتیبدور, lexemes: [{lexeme: yat.lie, surface: یت, base: true}, {lexeme: narr, surface: یبدور}], readings: {schluessel: yatipdur}}]
+      reverse: تایغان (الدیده|الدیدا|آلدیده|آلدیدا) (یتیبدور|یاتیبدور)
+  translations:
+    en: The (hunting dog|greyhound) (is lying|was lying|lay) (in front of|before) (him|her).
+- id: s.19.13
+  node: chg.u19.before-him
+  forms:
+    chg-Arab/standard:
+      text: قول.
+      tokens: [{surface: قول, lexeme: qol, readings: {schluessel: qol}}]
+      reverse: قول
+  translations:
+    en: (A|The) hand.
+- id: s.19.14
+  node: chg.u19.before-him
+  forms:
+    chg-Arab/standard:
+      text: قولوم.
+      tokens: [{surface: قولوم, lexemes: [{lexeme: qol, surface: قول, base: true}, {lexeme: poss1s, surface: وم}], readings: {schluessel: qolum}}]
+      reverse: قولوم
+  translations:
+    en: My hand.
+- id: s.19.15
+  node: chg.u19.before-him
+  forms:
+    chg-Arab/standard:
+      text: قول باغلاب اولتوردی.
+      tokens: [{surface: قول, lexeme: qol, readings: {schluessel: qol}}, {surface: باغلاب, lexemes: [{lexeme: bagla, surface: باغلا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: baǧlap}}, {surface: اولتوردی, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: olturdi}}]
+      reverse: قول باغلاب اولتوردی
+  translations:
+    en: (He|She) sat with (hands|his hands|her hands) (clasped|folded).
+- id: s.19.16
+  node: chg.u19.seventy-seven
+  forms:
+    chg-Arab/standard:
+      text: یتمش.
+      tokens: [{surface: یتمش, lexeme: yatmish, readings: {schluessel: yätmiš}}]
+      reverse: (یتمش|ییتمیش|یتمیش)
+  translations:
+    en: Seventy.
+- id: s.19.17
+  node: chg.u19.seventy-seven
+  forms:
+    chg-Arab/standard:
+      text: یتمش یتی کشی.
+      tokens: [{surface: یتمش, lexeme: yatmish, readings: {schluessel: yätmiš}}, {surface: یتی, lexeme: yatti, readings: {schluessel: yätti}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      reverse: (یتمش|ییتمیش|یتمیش) (یتی|ییتی|یته) (کشی|کیشی)
+  translations:
+    en: Seventy-seven (people|men).
+- id: s.19.18
+  node: chg.u19.seventy-seven
+  forms:
+    chg-Arab/standard:
+      text: یکیتنی اوراتوردی.
+      tokens: [{surface: یکیتنی, lexemes: [{lexeme: yigit, surface: یکیت, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: yigitni}}, {surface: اوراتوردی, lexemes: [{lexeme: uratur, surface: اوراتور, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: uraturdi}}]
+      reverse: (یکیتنی|ییکیتنی) اوراتوردی
+  translations:
+    en: (He|She) (stopped|halted|held back) the young man.
+- id: s.19.19
+  node: chg.u19.seventy-seven
+  forms:
+    chg-Arab/standard:
+      text: قالماقلار کشیلارنی اوراتورادور.
+      tokens: [{surface: قالماقلار, lexemes: [{lexeme: qalmaq, surface: قالماق, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: Qalmaqlar}}, {surface: کشیلارنی, lexemes: [{lexeme: kishi, surface: کشی, base: true}, {lexeme: pl, surface: لار}, {lexeme: acc, surface: نی}], readings: {schluessel: kišilärni}}, {surface: اوراتورادور, lexemes: [{lexeme: uratur, surface: اوراتور, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: uraturadur}}]
+      reverse: قالماقلار (کشیلارنی|کیشیلارنی) اوراتورادور
+  translations:
+    en: The Kalmyks (stop|are stopping|hold back) the people.
+- id: s.19.20
+  node: chg.u19.seventy-seven
+  forms:
+    chg-Arab/standard:
+      text: یتمش یتی قالماق قول باغلاب اولتوردی.
+      tokens: [{surface: یتمش, lexeme: yatmish, readings: {schluessel: yätmiš}}, {surface: یتی, lexeme: yatti, readings: {schluessel: yätti}}, {surface: قالماق, lexeme: qalmaq, readings: {schluessel: Qalmaq}}, {surface: قول, lexeme: qol, readings: {schluessel: qol}}, {surface: باغلاب, lexemes: [{lexeme: bagla, surface: باغلا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: baǧlap}}, {surface: اولتوردی, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: olturdi}}]
+      reverse: |-
+        (یتمش|ییتمیش|یتمیش) (یتی|ییتی|یته) قالماق قول باغلاب اولتوردی
+        (یتمش|ییتمیش|یتمیش) (یتی|ییتی|یته) قالماق قول باغلاب اولتوردیلار
+  translations:
+    en: Seventy-seven Kalmyks sat with (their |)hands (clasped|folded).
+- id: s.19.21
+  node: chg.u19.face-to-face
+  forms:
+    chg-Arab/standard:
+      text: مرد.
+      tokens: [{surface: مرد, lexeme: mard, readings: {schluessel: mard}}]
+      reverse: مرد
+  translations:
+    en: (A|The) (man|fellow).
+- id: s.19.22
+  node: chg.u19.face-to-face
+  forms:
+    chg-Arab/standard:
+      text: شر مرد.
+      tokens: [{surface: شر, lexeme: sharr, readings: {schluessel: šarr}}, {surface: مرد, lexeme: mard, readings: {schluessel: mard}}]
+      reverse: شر مرد
+  translations:
+    en: A grim (fellow|man).
+- id: s.19.23
+  node: chg.u19.face-to-face
+  forms:
+    chg-Arab/standard:
+      text: روبرو.
+      tokens: [{surface: روبرو, lexeme: rubaru, readings: {schluessel: rū-ba-rū}}]
+      reverse: روبرو
+  translations:
+    en: Face to face.
+- id: s.19.24
+  node: chg.u19.face-to-face
+  forms:
+    chg-Arab/standard:
+      text: روبرو اولتوردیلار.
+      tokens: [{surface: روبرو, lexeme: rubaru, readings: {schluessel: rū-ba-rū}}, {surface: اولتوردیلار, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: olturdilar}}]
+      reverse: |-
+        روبرو اولتوردیلار
+        روبرو اولتوردی
+  translations:
+    en: They sat face to face.
+- id: s.19.25
+  node: chg.u19.face-to-face
+  forms:
+    chg-Arab/standard:
+      text: مولانا.
+      tokens: [{surface: مولانا, lexeme: mawlana, readings: {schluessel: Mawlānā}}]
+      reverse: مولانا
+  translations:
+    en: (The Master|Our master|Mawlana).
+- id: s.19.26
+  node: chg.u19.face-to-face
+  forms:
+    chg-Arab/standard:
+      text: شبو کشی.
+      tokens: [{surface: شبو, lexeme: shubu, readings: {schluessel: šubu}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      reverse: (شبو|شوبو) (کشی|کیشی)
+  translations:
+    en: This (very|) (person|man).
+- id: s.19.27
+  node: chg.u19.face-to-face
+  forms:
+    chg-Arab/standard:
+      text: "منادی\u200cکر شبو کشی ایکان."
+      tokens: [{surface: "منادی\u200cکر", lexeme: munadagar, readings: {schluessel: munādàgar}}, {surface: شبو, lexeme: shubu, readings: {schluessel: šubu}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ایکان, lexeme: ikan, readings: {schluessel: ikän}}]
+      reverse: "منادی\u200cکر (شبو|شوبو) (کشی|کیشی) ایکان"
+  translations:
+    en: The (crier|herald) (turns out to be|is|was) this (very |)(man|person).
+stories:
+- id: chg.story.the-red-tent
+  node: chg.u19.story
+  title:
+    en: The red tent (The Tadhkira of Jalāl ud-Dīn Katakī)
+  steps:
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "حضرت مولانا کوردی\u200cلار کم، توغلوق تمور خان دیکان بر قزیل اوی اتیب، اوی\u200cنینک باقشیدا التون کرسیغه… اولتوروب\u200cدور."
+          tokens: [{surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: مولانا, lexeme: mawlana, readings: {schluessel: Mawlānā}}, {surface: "کوردی\u200cلار", lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: past-3pl, surface: "دی\u200cلار"}], readings: {schluessel: kördilär}}, {surface: کم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: توغلوق, lexeme: tughluq, readings: {schluessel: Tuǧluq}}, {surface: تمور, lexeme: temur, readings: {schluessel: Temür}}, {surface: خان, lexeme: khan, readings: {schluessel: Ḫan}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: قزیل, lexeme: qizil, readings: {schluessel: qizil}}, {surface: اوی, lexeme: oy, readings: {schluessel: öy}}, {surface: اتیب, lexemes: [{lexeme: et, surface: ات, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: etip}}, {surface: "اوی\u200cنینک", lexemes: [{lexeme: oy, surface: "اوی\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: öyniŋ}}, {surface: باقشیدا, lexemes: [{lexeme: baqish, surface: باقش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: baqišida}}, {surface: التون, lexeme: altun, readings: {schluessel: altun}}, {surface: کرسیغه, lexemes: [{lexeme: kursi, surface: کرسی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: kursīǧa}}, {surface: "اولتوروب\u200cدور", lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: narr, surface: "وب\u200cدور"}], readings: {schluessel: olturupdur}}]
+      translations:
+        en: The Master saw that Tughluq Temür Khan had set up a red tent and sat … on a golden chair in its frame.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: یتمش یته قالماق الدیدا قول باغلاب اوراتورادور.
+          tokens: [{surface: یتمش, lexeme: yatmish, readings: {schluessel: yätmiš}}, {surface: یته, lexeme: yatti, readings: {schluessel: yättä}}, {surface: قالماق, lexeme: qalmaq, readings: {schluessel: Qalmaq}}, {surface: الدیدا, lexemes: [{lexeme: ald, surface: الد, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: aldida}}, {surface: قول, lexeme: qol, readings: {schluessel: qol}}, {surface: باغلاب, lexemes: [{lexeme: bagla, surface: باغلا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: baǧlap}}, {surface: اوراتورادور, lexemes: [{lexeme: uratur, surface: اوراتور, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: uraturadur}}]
+      translations:
+        en: Seventy-seven Kalmyks stood before him with their hands clasped, holding everyone back.
+  - line:
+      ask: complete
+      gap: lexeme:taygan
+      distractors:
+      - lexeme:qol
+      - lexeme:sut
+      forms:
+        chg-Arab/standard:
+          text: "بر التون غره غره\u200cلیق تایغان الدیدا یاتیب\u200cدور."
+          tokens: [{surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: التون, lexeme: altun, readings: {schluessel: altun}}, {surface: غره, lexeme: ghurra, readings: {schluessel: ǧurra}}, {surface: "غره\u200cلیق", lexemes: [{lexeme: ghurra, surface: "غره\u200c", base: true}, {lexeme: liq, surface: لیق}], readings: {schluessel: ǧurraliq}}, {surface: تایغان, lexeme: taygan, readings: {schluessel: tayǧan}}, {surface: الدیدا, lexemes: [{lexeme: ald, surface: الد, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: aldida}}, {surface: "یاتیب\u200cدور", lexemes: [{lexeme: yat.lie, surface: یات, base: true}, {lexeme: narr, surface: "یب\u200cدور"}], readings: {schluessel: yatipdur}}]
+      translations:
+        en: A golden hunting dog with white spots lay before him.
+  - choose:
+      prompt:
+        en: What lay in front of the khan?
+      options:
+      - en: A spotted hunting dog
+      - en: A sleeping Kalmyk
+      - en: A golden sword
+      answer: 0
+  - line:
+      ask: arrange
+      forms:
+        chg-Arab/standard:
+          text: اول ایکی شر مرد کلیب، روبرولاریده اولتوردیلار.
+          tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: شر, lexeme: sharr, readings: {schluessel: šarr}}, {surface: مرد, lexeme: mard, readings: {schluessel: mard}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: روبرولاریده, lexemes: [{lexeme: rubaru, surface: روبرو, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: rū-ba-rūlarida}}, {surface: اولتوردیلار, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: olturdilar}}]
+      translations:
+        en: Those two grim fellows came in and sat face to face with them.
+  - line:
+      forms:
+        chg-Arab/standard:
+          text: "رکابدار ایدی، «ای، تورام! منادی\u200cکرلار شبو کشی\u200cلار ایکان. کلدی،» دیدی."
+          tokens: [{surface: رکابدار, lexeme: rikabdar, readings: {schluessel: rikābdār}}, {surface: ایدی, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: aydi}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: تورام, lexemes: [{lexeme: tora, surface: تورا, base: true}, {lexeme: poss1s, surface: م}], readings: {schluessel: töräm}}, {surface: "منادی\u200cکرلار", lexemes: [{lexeme: munadagar, surface: "منادی\u200cکر", base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: munādàgarlär}}, {surface: شبو, lexeme: shubu, readings: {schluessel: šubu}}, {surface: "کشی\u200cلار", lexemes: [{lexeme: kishi, surface: "کشی\u200c", base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: kišilär}}, {surface: ایکان, lexeme: ikan, readings: {schluessel: ikän}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}, {surface: دیدی, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: dedi}}]
+      translations:
+        en: The stirrup-holder said, “Oh, my lord! The criers turn out to be these men. They have come.”
+  - choose:
+      prompt:
+        en: How many Kalmyks stood before the khan?
+      options:
+      - en: Seventy-seven
+      - en: Seventeen
+      - en: Seven hundred
+      answer: 0
+scenarios:
+- id: chg.the-guard-at-the-tent
+  after: chg.u19.face-to-face
+  title:
+    en: The guard at the tent
+  setting:
+    en: The khan’s red tent at Moon Lake. Kalmyk guards stand before it with their hands clasped.
+  character:
+    en: A Kalmyk guard, polite but unbending, who speaks only Turki.
+  goal:
+    en: Say who you are and why you have come, ask him to let you in, and describe what you can see of the tent.

@@ -1,0 +1,259 @@
+# Converting `courses/es` to the lexical model
+
+Written by `nabu migrate ../courses/es`; do not edit by hand. It belongs to
+[the migration's design note](../migration-design.md), deliverable 2. Nothing here is
+decided:
+the converter applies the course's conversion plan
+(`pipeline/src/nabu/migrate/plans/es.yaml`, drafted, REVIEW) and lists what it found.
+
+## What was converted
+
+|  | Count |
+|---|---|
+| Sense KCs | 721 |
+| `form:` KCs | 23 |
+| `construction:` KCs | 0 |
+| `grapheme:` KCs | 0 |
+| Sentences and story lines | 1542 |
+| Tokens | 11152 |
+| Lexemes in `lexicons/es/lexemes.yaml` | 721 |
+| Pinned forms (rule debt, ADR 0145) | 841 |
+| Listed forms | 0: no statement that a form has no rule is drafted yet |
+
+**Checks** (docs/migration-design.md, "What must not change"):
+
+- every sentence and story line as displayed: text, tokens, readings, accept sets and translations are unchanged, item by item;
+- no two annotations of the course became one;
+- every lexeme a token writes is written as its entry, or as a form or allomorph the lexicon has;
+- every name points at something, and every file fits its schema.
+
+## What each KC id became
+
+| Kind | KCs |
+|---|---|
+| a form pinned on tokens: feature values, no part | 23 |
+| a sense: the lexeme of its name | 721 |
+
+**`form:` and `construction:` KCs** (the plan's statements, REVIEW):
+
+| KC | Gloss | Becomes | Note |
+|---|---|---|---|
+| `form:fem` | feminine: la, una, cubana | values Gender=Fem, Number=Sing; on PROPN: Gender=Fem |  |
+| `form:pl` | plural: los, unos, cubanos | values Gender=Masc, Number=Plur; on PRON: Number=Plur |  |
+| `form:fem-pl` | feminine plural: las, unas, cubanas | values Gender=Fem, Number=Plur |  |
+| `form:pres-1s` | present tense: I (yo) | values Mood=Ind, Number=Sing, Person=1, Tense=Pres, VerbForm=Fin |  |
+| `form:pres-2s` | present tense: you (tú) | values Mood=Ind, Number=Sing, Person=2, Tense=Pres, VerbForm=Fin |  |
+| `form:pres-3s` | present tense: he, she, it, you (usted) | values Mood=Ind, Number=Sing, Person=3, Tense=Pres, VerbForm=Fin |  |
+| `form:pres-1p` | present tense: we (nosotros) | values Mood=Ind, Number=Plur, Person=1, Tense=Pres, VerbForm=Fin |  |
+| `form:pres-3p` | present tense: they, you all (ellos, ustedes) | values Mood=Ind, Number=Plur, Person=3, Tense=Pres, VerbForm=Fin |  |
+| `form:pret-1s` | past tense (preterite): I (yo) | values Mood=Ind, Number=Sing, Person=1, Tense=Past, VerbForm=Fin |  |
+| `form:pret-2s` | past tense (preterite): you (tú) | values Mood=Ind, Number=Sing, Person=2, Tense=Past, VerbForm=Fin |  |
+| `form:pret-3s` | past tense (preterite): he, she, it, you (usted) | values Mood=Ind, Number=Sing, Person=3, Tense=Past, VerbForm=Fin |  |
+| `form:pret-1p` | past tense (preterite): we (nosotros) | values Mood=Ind, Number=Plur, Person=1, Tense=Past, VerbForm=Fin |  |
+| `form:pret-3p` | past tense (preterite): they, you all (ellos, ustedes) | values Mood=Ind, Number=Plur, Person=3, Tense=Past, VerbForm=Fin |  |
+| `form:impf` | imperfect: was …ing, used to (hablaba, comía, era, iba) | values Mood=Ind, Tense=Imp, VerbForm=Fin; by ending: -mos: Number=Plur, Person=1, -s: Number=Sing, Person=2, -n: Number=Plur, Person=3, -(any other): Number=Sing |  |
+| `form:fut` | future: will (hablará, será) | values Mood=Ind, Tense=Fut, VerbForm=Fin; by ending: -mos: Number=Plur, Person=1, -s: Number=Sing, Person=2, -n: Number=Plur, Person=3, -é: Number=Sing, Person=1, -á: Number=Sing, Person=3 |  |
+| `form:cond` | conditional: would (hablaría, podría) | values Mood=Cnd, VerbForm=Fin; by ending: -mos: Number=Plur, Person=1, -s: Number=Sing, Person=2, -n: Number=Plur, Person=3, -(any other): Number=Sing |  |
+| `form:subj` | present subjunctive (que hable, que coma) | values Mood=Sub, Tense=Pres, VerbForm=Fin; by ending: -mos: Number=Plur, Person=1, -s: Number=Sing, Person=2, -n: Number=Plur, Person=3, -(any other): Number=Sing |  |
+| `form:subj-past` | imperfect subjunctive (si hablara, si tuviera) | values Mood=Sub, Tense=Imp, VerbForm=Fin; by ending: -mos: Number=Plur, Person=1, -s: Number=Sing, Person=2, -n: Number=Plur, Person=3, -(any other): Number=Sing |  |
+| `form:imp-tu` | command, tú (¡habla!, ¡come!, ¡ven!) | values Mood=Imp, Number=Sing, Person=2, VerbForm=Fin |  |
+| `form:imp-ud` | command, usted or ustedes (¡hable!, ¡coman!) | values Mood=Imp, Person=3, VerbForm=Fin; by ending: -n: Number=Plur, -(any other): Number=Sing |  |
+| `form:imp-neg` | negative command (¡no hables!, ¡no coma!) | values Mood=Imp, Polarity=Neg, VerbForm=Fin; by ending: -mos: Number=Plur, Person=1, -s: Number=Sing, Person=2, -n: Number=Plur, Person=3, -(any other): Number=Sing |  |
+| `form:ger` | gerund, -ando, -iendo (estoy trabajando: I'm working) | values VerbForm=Ger |  |
+| `form:part` | past participle (hablado, comido, hecho; he hablado) | values Tense=Past, VerbForm=Part; by ending: -os: Gender=Masc, Number=Plur, -as: Gender=Fem, Number=Plur, -a: Gender=Fem, Number=Sing |  |
+
+## Defaults
+
+A default is a rule, and what it gives is no part of a lexeme (ADR 0146). These are
+the plan's, drafted (REVIEW); the counts are this course's lexemes.
+
+|  | Lexemes |
+|---|---|
+| default gender-a: broken | 6 |
+| default gender-a: gives | 91 |
+| default gender-aje: gives | 2 |
+| default gender-cion: gives | 2 |
+| default gender-dad: gives | 3 |
+| default gender-o: broken | 4 |
+| default gender-o: gives | 95 |
+| default gender-or: broken | 2 |
+| default gender-or: gives | 5 |
+| default gender-sion: gives | 2 |
+| default gender-tad: gives | 1 |
+| lexical feature chosen by the token | 11 |
+| lexical feature stored: no default speaks | 92 |
+| lexical feature unknown | 7 |
+
+## Lexemes that break a default (12)
+
+The entry stores the feature, and it is a part to learn (ADR 0146). Check each: a wrong default makes parts of regular words, a missing one hides an exception.
+
+| Where | What |
+|---|---|
+| `lexeme:tío` | Gender=Fem: gender-o would give Masc for tío |
+| `lexeme:día` | Gender=Masc: gender-a would give Fem for día |
+| `lexeme:foto` | Gender=Fem: gender-o would give Masc for foto |
+| `lexeme:capicúa` | Gender=Masc: gender-a would give Fem for capicúa |
+| `lexeme:doctor` | Gender=Fem: gender-or would give Masc for doctor |
+| `lexeme:vecino` | Gender=Fem: gender-o would give Masc for vecino |
+| `lexeme:turista` | Gender=Masc: gender-a would give Fem for turista |
+| `lexeme:flor` | Gender=Fem: gender-or would give Masc for flor |
+| `lexeme:poeta` | Gender=Masc: gender-a would give Fem for poeta |
+| `lexeme:poema` | Gender=Masc: gender-a would give Fem for poema |
+| `lexeme:mano` | Gender=Fem: gender-o would give Masc for mano |
+| `lexeme:idioma` | Gender=Masc: gender-a would give Fem for idioma |
+
+## Lexemes no default speaks of (92)
+
+No stated default gives the feature for a lexeme so written, so the entry stores it and it is a part to learn. A reliable ending among these is a default to add.
+
+| Where | What |
+|---|---|
+| `lexeme:asere` | Gender=Masc: no default speaks of asere |
+| `lexeme:mami` | Gender=Fem: no default speaks of mami |
+| `lexeme:papi` | Gender=Masc: no default speaks of papi |
+| `lexeme:padre` | Gender=Masc: no default speaks of padre |
+| `lexeme:café` | Gender=Masc: no default speaks of café |
+| `lexeme:portal` | Gender=Masc: no default speaks of portal |
+| `lexeme:sillón` | Gender=Masc: no default speaks of sillón |
+| `lexeme:arroz` | Gender=Masc: no default speaks of arroz |
+| `lexeme:frijol` | Gender=Masc: no default speaks of frijol |
+| `lexeme:congrí` | Gender=Masc: no default speaks of congrí |
+| `lexeme:tostón` | Gender=Masc: no default speaks of tostón |
+| `lexeme:leche` | Gender=Fem: no default speaks of leche |
+| `lexeme:hambre` | Gender=Fem: no default speaks of hambre |
+| `lexeme:dólar` | Gender=Masc: no default speaks of dólar |
+| `lexeme:cumpleaños` | Gender=Masc: no default speaks of cumpleaños |
+| `lexeme:calle` | Gender=Fem: no default speaks of calle |
+| `lexeme:noche` | Gender=Fem: no default speaks of noche |
+| `lexeme:lunes` | Gender=Masc: no default speaks of lunes |
+| `lexeme:martes` | Gender=Masc: no default speaks of martes |
+| `lexeme:miércoles` | Gender=Masc: no default speaks of miércoles |
+| `lexeme:jueves` | Gender=Masc: no default speaks of jueves |
+| `lexeme:viernes` | Gender=Masc: no default speaks of viernes |
+| `lexeme:pulóver` | Gender=Masc: no default speaks of pulóver |
+| `lexeme:shopping` | Gender=Fem: no default speaks of shopping |
+| `lexeme:suerte` | Gender=Fem: no default speaks of suerte |
+| `lexeme:avión` | Gender=Masc: no default speaks of avión |
+| `lexeme:pasaporte` | Gender=Masc: no default speaks of pasaporte |
+| `lexeme:té` | Gender=Masc: no default speaks of té |
+| `lexeme:español` | Gender=Masc: no default speaks of español |
+| `lexeme:tilde` | Gender=Fem: no default speaks of tilde |
+| `lexeme:luz` | Gender=Fem: no default speaks of luz |
+| `lexeme:papalote` | Gender=Masc: no default speaks of papalote |
+| `lexeme:inglés` | Gender=Masc: no default speaks of inglés |
+| `lexeme:guateque` | Gender=Masc: no default speaks of guateque |
+| `lexeme:gente` | Gender=Fem: no default speaks of gente |
+| `lexeme:vez` | Gender=Fem: no default speaks of vez |
+| `lexeme:carne` | Gender=Fem: no default speaks of carne |
+| `lexeme:ají` | Gender=Masc: no default speaks of ají |
+| `lexeme:aceite` | Gender=Masc: no default speaks of aceite |
+| `lexeme:sal` | Gender=Fem: no default speaks of sal |
+| `lexeme:paquete` | Gender=Masc: no default speaks of paquete |
+| `lexeme:jabón` | Gender=Masc: no default speaks of jabón |
+| `lexeme:hache` | Gender=Fem: no default speaks of hache |
+| `lexeme:son` | Gender=Masc: no default speaks of son |
+| `lexeme:danzón` | Gender=Masc: no default speaks of danzón |
+| `lexeme:clave` | Gender=Fem: no default speaks of clave |
+| `lexeme:jonrón` | Gender=Masc: no default speaks of jonrón |
+| `lexeme:parque` | Gender=Masc: no default speaks of parque |
+| `lexeme:doble` | Gender=Masc: no default speaks of doble |
+| `lexeme:tranque` | Gender=Masc: no default speaks of tranque |
+| `lexeme:corazón` | Gender=Masc: no default speaks of corazón |
+| `lexeme:lechón` | Gender=Masc: no default speaks of lechón |
+| `lexeme:turrón` | Gender=Masc: no default speaks of turrón |
+| `lexeme:medianoche` | Gender=Fem: no default speaks of medianoche |
+| `lexeme:rey` | Gender=Masc: no default speaks of rey |
+| `lexeme:vals` | Gender=Masc: no default speaks of vals |
+| `lexeme:colchón` | Gender=Masc: no default speaks of colchón |
+| `lexeme:conexión` | Gender=Fem: no default speaks of conexión |
+| `lexeme:wifi` | Gender=Masc: no default speaks of wifi |
+| `lexeme:apagón` | Gender=Masc: no default speaks of apagón |
+| `lexeme:corriente` | Gender=Fem: no default speaks of corriente |
+| `lexeme:refrán` | Gender=Masc: no default speaks of refrán |
+| `lexeme:camarón` | Gender=Masc: no default speaks of camarón |
+| `lexeme:examen` | Gender=Masc: no default speaks of examen |
+| `lexeme:mal.harm` | Gender=Masc: no default speaks of mal |
+| `lexeme:aire` | Gender=Masc: no default speaks of aire |
+| `lexeme:mar` | Gender=Masc: no default speaks of mar |
+| `lexeme:guardacostas` | Gender=Masc: no default speaks of guardacostas |
+| `lexeme:papel` | Gender=Masc: no default speaks of papel |
+| `lexeme:balcón` | Gender=Masc: no default speaks of balcón |
+| `lexeme:solar` | Gender=Masc: no default speaks of solar |
+| `lexeme:lugar` | Gender=Masc: no default speaks of lugar |
+| `lexeme:catedral` | Gender=Fem: no default speaks of catedral |
+| `lexeme:almendrón` | Gender=Masc: no default speaks of almendrón |
+| `lexeme:bicitaxi` | Gender=Masc: no default speaks of bicitaxi |
+| `lexeme:valle` | Gender=Masc: no default speaks of valle |
+| `lexeme:mogote` | Gender=Masc: no default speaks of mogote |
+| `lexeme:central` | Gender=Masc: no default speaks of central |
+| `lexeme:machete` | Gender=Masc: no default speaks of machete |
+| `lexeme:árbol` | Gender=Masc: no default speaks of árbol |
+| `lexeme:ave` | Gender=Fem: no default speaks of ave |
+| `lexeme:yarey` | Gender=Masc: no default speaks of yarey |
+| `lexeme:héroe` | Gender=Masc: no default speaks of héroe |
+| `lexeme:hombre` | Gender=Masc: no default speaks of hombre |
+| `lexeme:país` | Gender=Masc: no default speaks of país |
+| `lexeme:paladar` | Gender=Masc: no default speaks of paladar |
+| `lexeme:cliente` | Gender=Masc: no default speaks of cliente |
+| `lexeme:espanglish` | Gender=Masc: no default speaks of espanglish |
+| `lexeme:cake` | Gender=Masc: no default speaks of cake |
+| `lexeme:brindis` | Gender=Masc: no default speaks of brindis |
+| `lexeme:mujer` | Gender=Fem: no default speaks of mujer |
+| `lexeme:raíz` | Gender=Fem: no default speaks of raíz |
+
+## Lexical features the tokens choose (11)
+
+The feature is declared lexical for the category, and this lexeme's tokens have more than one value of it, or the entry itself is written in another (tía under tío). By ADR 0145 a noun's feminine is a derivative, a lexeme of its own where it is listed. The values stay on the tokens until that is decided.
+
+| Where | What |
+|---|---|
+| `lexeme:hermano` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:primo` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:hijo` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:mijo` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:niño` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:mecánico` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:novio` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:don` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:azúcar` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:muchacho` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+| `lexeme:yuma` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
+
+## Lexemes whose lexical feature no token says (7)
+
+Mostly entries written as several tokens, on which the course pins no form.
+
+| Where | What |
+|---|---|
+| `lexeme:fruta-bomba` | no token says its Gender |
+| `lexeme:fin-de-semana` | no token says its Gender |
+| `lexeme:naranja-agria` | no token says its Gender |
+| `lexeme:ropa-vieja` | no token says its Gender |
+| `lexeme:olla-de-presión` | no token says its Gender |
+| `lexeme:caja-china` | no token says its Gender |
+| `lexeme:palma-real` | no token says its Gender |
+
+## Written otherwise than the entry (7)
+
+A token names the lexeme, no feature value tells it from the entry's own form, and it is spelled differently: an allomorph by context (gran before a noun), or a form the course's annotation has no name for. Kept as an allomorph of the entry.
+
+| Where | What |
+|---|---|
+| `lexeme:tío` | written tía (59×, first in s.u02.19): an allomorph, or a form no value names |
+| `lexeme:grande` | written gran (1×, first in s.u27.10): an allomorph, or a form no value names |
+| `lexeme:primero` | written primer (4×, first in s.u13.32): an allomorph, or a form no value names |
+| `lexeme:bueno` | written buen (1×, first in s.u21.9): an allomorph, or a form no value names |
+| `lexeme:doctor` | written doctora (5×, first in s.u18.15): an allomorph, or a form no value names |
+| `lexeme:vecino` | written vecina (1×, first in s.u19.3): an allomorph, or a form no value names |
+| `lexeme:mudarse` | joined to another lexeme, written mudar (1×, first in s.u28.10) |
+
+## What no finding above covers
+
+- **Projections:** no orthography of this course has a stated projection yet, so every
+  spelling and reading stays pinned as it is; there is nothing to compare them with
+  (ADR 0148).
+- **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
+  no
+  part to go to: a feature's uses are not authored, and nothing old counts towards a rule
+  (ADR 0146).

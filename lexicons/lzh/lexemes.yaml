@@ -1,0 +1,997 @@
+# The lexicon of lzh (schemas/lexicon.schema.json): every lexeme, sorted by id.
+# Written by `nabu migrate` from courses/lzh and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+language: lzh
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@52f9ac56dcce', status: draft}
+lexemes:
+- id: lexeme:一
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: one}
+  spelled: {lzh-Hant/standard: [一]}
+- id: lexeme:七
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: seven}
+  spelled: {lzh-Hant/standard: [七]}
+- id: lexeme:三
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: three}
+  spelled: {lzh-Hant/standard: [三]}
+- id: lexeme:上
+  pos: ADP
+  gloss: {en: 'above, on top of; upper, highest'}
+  notes: {en: 'After a noun it says where: 山上 “on the mountain”, 濠梁之上 “on the bridge over the Hao”.'}
+  spelled: {lzh-Hant/standard: [上]}
+- id: lexeme:下
+  pos: ADP
+  gloss: {en: 'below, under; the foot of'}
+  notes: {en: 'After a noun: 山下 “at the foot of the mountain”.'}
+  spelled: {lzh-Hant/standard: [下]}
+- id: lexeme:不
+  pos: ADV
+  feats: {Polarity: Neg}
+  gloss: {en: not (negates a verb or adjective)}
+  spelled: {lzh-Hant/standard: [不]}
+- id: lexeme:中
+  pos: ADP
+  gloss: {en: 'middle; in, inside (after a noun)'}
+  notes: {en: 'After a noun it says where: 舟中 “in the boat”, 水中 “in the water”.'}
+  spelled: {lzh-Hant/standard: [中]}
+- id: lexeme:之
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'him, her, it, them (after a verb)'}
+  spelled: {lzh-Hant/standard: [之]}
+- id: lexeme:之.de
+  pos: PART
+  feats: {Poss: 'Yes'}
+  gloss: {en: '’s, of (joins a noun to what it describes or owns)'}
+  notes: {en: 'The same character as 之 “him, it”, read the same: between two nouns it joins them, 孔子之道 “the Way of Confucius”. Between a subject and its verb it makes the clause a noun: 吾盾之堅 “the hardness of my shield”, 魚之樂 “the joy of the fish”, 吾劍之所從墜 “the place my sword fell from”.'}
+  spelled: {lzh-Hant/standard: [之]}
+- id: lexeme:乎
+  pos: PART
+  feats: {PartType: Mod}
+  gloss: {en: question particle (yes-or-no questions)}
+  spelled: {lzh-Hant/standard: [乎]}
+- id: lexeme:九
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: nine}
+  spelled: {lzh-Hant/standard: [九]}
+- id: lexeme:也
+  pos: PART
+  feats: {PartType: Mod}
+  gloss: {en: 'sentence-final particle: closes a noun predicate (A，B也 “A is B”); after a verb, states a settled fact'}
+  notes: {en: 'Classical Chinese has no verb "to be" between two nouns: 我，王也 is "I [am] the king", the 也 closing the statement.'}
+  spelled: {lzh-Hant/standard: [也]}
+- id: lexeme:二
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: two}
+  spelled: {lzh-Hant/standard: [二]}
+- id: lexeme:于
+  pos: ADP
+  gloss: {en: 'in, at, on, to'}
+  spelled: {lzh-Hant/standard: [于]}
+- id: lexeme:五
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: five}
+  spelled: {lzh-Hant/standard: [五]}
+- id: lexeme:亦
+  pos: ADV
+  gloss: {en: 'also, too; (in a question or a claim) surely'}
+  spelled: {lzh-Hant/standard: [亦]}
+- id: lexeme:人
+  pos: NOUN
+  gloss: {en: 'person, people; others'}
+  spelled: {lzh-Hant/standard: [人]}
+- id: lexeme:仁
+  pos: NOUN
+  gloss: {en: 'humaneness, benevolence'}
+  spelled: {lzh-Hant/standard: [仁]}
+- id: lexeme:以
+  pos: ADP
+  gloss: {en: 'to use; with, by means of'}
+  spelled: {lzh-Hant/standard: [以]}
+- id: lexeme:低
+  pos: VERB
+  gloss: {en: low; to lower}
+  spelled: {lzh-Hant/standard: [低]}
+- id: lexeme:何
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: what; why; how}
+  notes: {en: 'As an object it comes before the verb: 何學 “study what?”.'}
+  spelled: {lzh-Hant/standard: [何]}
+- id: lexeme:何如
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: 'how is it? what about …?'}
+  spelled: {lzh-Hant/standard: [何如]}
+- id: lexeme:何必
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: 'why must …? what need is there to …?'}
+  spelled: {lzh-Hant/standard: [何必]}
+- id: lexeme:來
+  pos: VERB
+  gloss: {en: to come}
+  spelled: {lzh-Hant/standard: [來]}
+- id: lexeme:光
+  pos: NOUN
+  gloss: {en: light; to shine}
+  spelled: {lzh-Hant/standard: [光]}
+- id: lexeme:兔
+  pos: NOUN
+  gloss: {en: 'hare, rabbit'}
+  spelled: {lzh-Hant/standard: [兔]}
+- id: lexeme:入
+  pos: VERB
+  gloss: {en: 'to enter, to go into'}
+  spelled: {lzh-Hant/standard: [入]}
+- id: lexeme:八
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: eight}
+  spelled: {lzh-Hant/standard: [八]}
+- id: lexeme:六
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: six}
+  spelled: {lzh-Hant/standard: [六]}
+- id: lexeme:其
+  pos: PRON
+  feats: {Poss: 'Yes', PronType: Prs}
+  gloss: {en: 'his, her, its, their; the (one just mentioned)'}
+  spelled: {lzh-Hant/standard: [其]}
+- id: lexeme:兼
+  pos: VERB
+  gloss: {en: both together; to have both at once}
+  spelled: {lzh-Hant/standard: [兼]}
+- id: lexeme:冀
+  pos: VERB
+  gloss: {en: to hope}
+  spelled: {lzh-Hant/standard: [冀]}
+- id: lexeme:出
+  pos: VERB
+  gloss: {en: 'to go out, to come out; (of the sun) to rise'}
+  spelled: {lzh-Hant/standard: [出]}
+- id: lexeme:利
+  pos: ADJ
+  gloss: {en: sharp}
+  spelled: {lzh-Hant/standard: [利]}
+- id: lexeme:利.profit
+  pos: NOUN
+  gloss: {en: 'profit, benefit; to benefit'}
+  notes: {en: The same word as 利 “sharp” in origin; here it is gain.}
+  spelled: {lzh-Hant/standard: [利]}
+- id: lexeme:刻
+  pos: VERB
+  gloss: {en: 'to carve, to engrave'}
+  spelled: {lzh-Hant/standard: [刻]}
+- id: lexeme:則
+  pos: ADV
+  gloss: {en: 'then (in the second clause: if A, then B)'}
+  spelled: {lzh-Hant/standard: [則]}
+- id: lexeme:前
+  pos: ADP
+  gloss: {en: 'in front of, before'}
+  spelled: {lzh-Hant/standard: [前]}
+- id: lexeme:劍
+  pos: NOUN
+  gloss: {en: sword}
+  spelled: {lzh-Hant/standard: [劍]}
+- id: lexeme:力
+  pos: NOUN
+  gloss: {en: 'strength, force'}
+  spelled: {lzh-Hant/standard: [力]}
+- id: lexeme:勝
+  pos: VERB
+  gloss: {en: 'to overcome, to defeat'}
+  spelled: {lzh-Hant/standard: [勝]}
+- id: lexeme:十
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: ten}
+  spelled: {lzh-Hant/standard: [十]}
+- id: lexeme:千
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: thousand}
+  spelled: {lzh-Hant/standard: [千]}
+- id: lexeme:又
+  pos: ADV
+  gloss: {en: 'again; also, moreover'}
+  spelled: {lzh-Hant/standard: [又]}
+- id: lexeme:取
+  pos: VERB
+  gloss: {en: 'to take, to choose'}
+  spelled: {lzh-Hant/standard: [取]}
+- id: lexeme:叟
+  pos: NOUN
+  gloss: {en: old man; venerable sir (a term of address)}
+  notes: {en: 'In Mencius 1A1 the king calls Mencius 叟, “venerable sir”.'}
+  spelled: {lzh-Hant/standard: [叟]}
+- id: lexeme:可
+  pos: VERB
+  gloss: {en: 'possible, acceptable; before a verb, “can be …-ed” (不可得 “cannot be had”)'}
+  notes: {en: '不可 “it will not do”. A verb after 可 is passive: 兔不可得 “the rabbit cannot be caught”. “I can …” is 能.'}
+  spelled: {lzh-Hant/standard: [可]}
+- id: lexeme:君子
+  pos: NOUN
+  gloss: {en: 'gentleman, noble person (by conduct, not birth)'}
+  spelled: {lzh-Hant/standard: [君子]}
+- id: lexeme:否
+  pos: INTJ
+  gloss: {en: no; not so}
+  spelled: {lzh-Hant/standard: [否]}
+- id: lexeme:吾
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'I, my: before the word it goes with (as subject or possessive, or as an object between a negative and its verb: 不吾知); after a verb or alone, 我'}
+  spelled: {lzh-Hant/standard: [吾]}
+- id: lexeme:命
+  pos: VERB
+  gloss: {en: 'to order; command, decree; fate'}
+  spelled: {lzh-Hant/standard: [命]}
+- id: lexeme:哉
+  pos: PART
+  feats: {PartType: Mod}
+  gloss: {en: 'exclamation particle: how …!, … indeed!; also ends a question said with feeling (天何言哉)'}
+  spelled: {lzh-Hant/standard: [哉]}
+- id: lexeme:問
+  pos: VERB
+  gloss: {en: to ask}
+  spelled: {lzh-Hant/standard: [問]}
+- id: lexeme:啼
+  pos: VERB
+  gloss: {en: 'to cry, to sing (of birds)'}
+  spelled: {lzh-Hant/standard: [啼]}
+- id: lexeme:善
+  pos: ADJ
+  gloss: {en: good; excellent; well said}
+  spelled: {lzh-Hant/standard: [善]}
+- id: lexeme:四
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: four}
+  spelled: {lzh-Hant/standard: [四]}
+- id: lexeme:因
+  pos: ADV
+  gloss: {en: 'thereupon, and so'}
+  spelled: {lzh-Hant/standard: [因]}
+- id: lexeme:國
+  pos: NOUN
+  gloss: {en: 'state, country'}
+  spelled: {lzh-Hant/standard: [國]}
+- id: lexeme:地
+  pos: NOUN
+  gloss: {en: 'earth, ground'}
+  spelled: {lzh-Hant/standard: [地]}
+- id: lexeme:堅
+  pos: ADJ
+  gloss: {en: 'hard, solid, strong'}
+  spelled: {lzh-Hant/standard: [堅]}
+- id: lexeme:墜
+  pos: VERB
+  gloss: {en: 'to fall, to drop'}
+  spelled: {lzh-Hant/standard: [墜]}
+- id: lexeme:多
+  pos: ADJ
+  gloss: {en: 'many, much'}
+  spelled: {lzh-Hant/standard: [多]}
+- id: lexeme:多少
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: 'how many, how much'}
+  spelled: {lzh-Hant/standard: [多少]}
+- id: lexeme:夜
+  pos: NOUN
+  gloss: {en: night; at night}
+  spelled: {lzh-Hant/standard: [夜]}
+- id: lexeme:夜來
+  pos: ADV
+  gloss: {en: 'in the night, overnight; last night'}
+  notes: {en: 'A word of medieval poetry: 來 after a time word means “during”, not “come”.'}
+  spelled: {lzh-Hant/standard: [夜來]}
+- id: lexeme:大
+  pos: ADJ
+  gloss: {en: 'big, great'}
+  spelled: {lzh-Hant/standard: [大]}
+- id: lexeme:天
+  pos: NOUN
+  gloss: {en: Heaven; the sky}
+  spelled: {lzh-Hant/standard: [天]}
+- id: lexeme:天下
+  pos: NOUN
+  gloss: {en: 'all under Heaven: the world, the realm'}
+  spelled: {lzh-Hant/standard: [天下]}
+- id: lexeme:天命
+  pos: NOUN
+  gloss: {en: the mandate of Heaven}
+  spelled: {lzh-Hant/standard: [天命]}
+- id: lexeme:失
+  pos: VERB
+  gloss: {en: to lose}
+  spelled: {lzh-Hant/standard: [失]}
+- id: lexeme:契
+  pos: VERB
+  gloss: {en: 'to carve, to cut a notch'}
+  notes: {en: 'In 刻舟求劍 the man 契 “notches” his boat: the same as 刻 here.'}
+  spelled: {lzh-Hant/standard: [契]}
+- id: lexeme:女.ru
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'you (read rǔ, = 汝)'}
+  notes: {en: 'The character for “woman” (nǚ), borrowed for 汝 “you” and read like it.'}
+  spelled: {lzh-Hant/standard: [女]}
+- id: lexeme:子
+  pos: NOUN
+  gloss: {en: 'the Master (Confucius); master, sir'}
+  notes: {en: 'In the Analects, 子曰 is always “the Master said”. Later units meet 子 as a polite “you”.'}
+  image: {file: ../../courses/images/teacher.svg, license: CC0-1.0, provenance: {author: 'llm:claude@ff0d70b80db5', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {lzh-Hant/standard: [子]}
+- id: lexeme:子.you
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'you (polite: “sir”, “my friend”)'}
+  notes: {en: 'The same 子 as in 子曰, used to the person spoken to: 子非魚 “you are not a fish”.'}
+  spelled: {lzh-Hant/standard: [子]}
+- id: lexeme:子路
+  pos: PROPN
+  gloss: {en: 'Zilu, a disciple of Confucius'}
+  spelled: {lzh-Hant/standard: [子路]}
+- id: lexeme:孔子
+  pos: PROPN
+  gloss: {en: Confucius (Master Kong)}
+  spelled: {lzh-Hant/standard: [孔子]}
+- id: lexeme:孟子
+  pos: PROPN
+  gloss: {en: Mencius (Master Meng)}
+  spelled: {lzh-Hant/standard: [孟子]}
+- id: lexeme:學
+  pos: VERB
+  gloss: {en: 'to learn, to study'}
+  spelled: {lzh-Hant/standard: [學]}
+- id: lexeme:守
+  pos: VERB
+  gloss: {en: 'to guard, to keep watch over'}
+  spelled: {lzh-Hant/standard: [守]}
+- id: lexeme:安
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: 'how? where? (安知 “how do you know?”, “where would you know it from?”)'}
+  notes: {en: 'A question word: 安知魚之樂 “how do you know the joy of fish?”'}
+  spelled: {lzh-Hant/standard: [安]}
+- id: lexeme:宋
+  pos: PROPN
+  gloss: {en: 'Song, a small state in the central plain'}
+  spelled: {lzh-Hant/standard: [宋]}
+- id: lexeme:富
+  pos: ADJ
+  gloss: {en: 'rich, wealthy'}
+  spelled: {lzh-Hant/standard: [富]}
+- id: lexeme:將
+  pos: ADV
+  gloss: {en: 'about to, going to; will'}
+  spelled: {lzh-Hant/standard: [將]}
+- id: lexeme:對
+  pos: VERB
+  gloss: {en: to reply (to a superior)}
+  spelled: {lzh-Hant/standard: [對]}
+- id: lexeme:小
+  pos: ADJ
+  gloss: {en: 'small, little'}
+  spelled: {lzh-Hant/standard: [小]}
+- id: lexeme:小人
+  pos: NOUN
+  gloss: {en: 'petty person, small-minded man (the opposite of 君子)'}
+  spelled: {lzh-Hant/standard: [小人]}
+- id: lexeme:少
+  pos: ADJ
+  gloss: {en: 'few, little'}
+  spelled: {lzh-Hant/standard: [少]}
+- id: lexeme:山
+  pos: NOUN
+  gloss: {en: 'mountain, hill'}
+  spelled: {lzh-Hant/standard: [山]}
+- id: lexeme:已
+  pos: ADV
+  gloss: {en: already}
+  spelled: {lzh-Hant/standard: [已]}
+- id: lexeme:年
+  pos: NOUN
+  gloss: {en: year; age}
+  spelled: {lzh-Hant/standard: [年]}
+- id: lexeme:床
+  pos: NOUN
+  gloss: {en: 'bed, couch'}
+  spelled: {lzh-Hant/standard: [床]}
+- id: lexeme:弗
+  pos: ADV
+  feats: {Polarity: Neg}
+  gloss: {en: not (stronger than 不; mostly with the object left out)}
+  notes: {en: '弗 is a stronger 不. In Warring States prose it mostly stands where an object is understood: 弗能應 “could not answer [him]”; but 不 too usually leaves 之 unsaid.'}
+  spelled: {lzh-Hant/standard: [弗]}
+- id: lexeme:弟子
+  pos: NOUN
+  gloss: {en: 'disciple, student'}
+  image: {file: ../../courses/images/student.svg, license: CC0-1.0, provenance: {author: 'llm:claude@db6a47561192', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {lzh-Hant/standard: [弟子]}
+- id: lexeme:強
+  pos: ADJ
+  gloss: {en: strong}
+  spelled: {lzh-Hant/standard: [強]}
+- id: lexeme:強.qiang
+  pos: VERB
+  gloss: {en: 'to force oneself, to make an effort (read qiǎng)'}
+  notes: {en: 'The character 強 “strong”, read qiǎng: 強行 “to keep going by effort”.'}
+  spelled: {lzh-Hant/standard: [強]}
+- id: lexeme:待
+  pos: VERB
+  gloss: {en: to wait for}
+  spelled: {lzh-Hant/standard: [待]}
+- id: lexeme:得
+  pos: VERB
+  gloss: {en: 'to get, to obtain; to catch'}
+  spelled: {lzh-Hant/standard: [得]}
+- id: lexeme:從
+  pos: VERB
+  gloss: {en: to follow}
+  spelled: {lzh-Hant/standard: [從]}
+- id: lexeme:從.from
+  pos: ADP
+  gloss: {en: from (a place)}
+  notes: {en: 'The 從 of u03 is “to follow”; as a preposition it is “from”: 從魯來 “come from Lu”, 所從墜 “where it fell from”.'}
+  spelled: {lzh-Hant/standard: [從]}
+- id: lexeme:從容
+  pos: ADJ
+  gloss: {en: 'at ease, unhurried, leisurely'}
+  notes: {en: 'Read differently from 從 “follow”: cōng róng (Middle Chinese tshjowng, the Guangyun’s 七恭切; Cantonese sung1 jung4). Standard Mandarin today also says cóngróng.'}
+  spelled: {lzh-Hant/standard: [從容]}
+- id: lexeme:復
+  pos: ADV
+  gloss: {en: again}
+  notes: {en: 'As an adverb, “again”, 復 is read in the departing tone: fù, Cantonese fau6, Middle Chinese bjuwH. The verb “return” is bjuwk (Cantonese fuk6).'}
+  spelled: {lzh-Hant/standard: [復]}
+- id: lexeme:德
+  pos: NOUN
+  gloss: {en: 'virtue, moral power'}
+  spelled: {lzh-Hant/standard: [德]}
+- id: lexeme:心
+  pos: NOUN
+  gloss: {en: 'heart, mind'}
+  spelled: {lzh-Hant/standard: [心]}
+- id: lexeme:志
+  pos: VERB
+  gloss: {en: 'aim, will; to set one’s heart on'}
+  spelled: {lzh-Hant/standard: [志]}
+- id: lexeme:思
+  pos: VERB
+  gloss: {en: 'to think, to reflect'}
+  spelled: {lzh-Hant/standard: [思]}
+- id: lexeme:惑
+  pos: ADJ
+  gloss: {en: 'confused, in doubt'}
+  spelled: {lzh-Hant/standard: [惑]}
+- id: lexeme:惠子
+  pos: PROPN
+  gloss: {en: 'Huizi (Master Hui), logician and Zhuangzi''s friend'}
+  spelled: {lzh-Hant/standard: [惠子]}
+- id: lexeme:慍
+  pos: ADJ
+  gloss: {en: 'resentful, indignant'}
+  spelled: {lzh-Hant/standard: [慍]}
+- id: lexeme:應
+  pos: VERB
+  gloss: {en: 'to answer, to respond'}
+  spelled: {lzh-Hant/standard: [應]}
+- id: lexeme:我
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: I; me}
+  spelled: {lzh-Hant/standard: [我]}
+- id: lexeme:或
+  pos: PRON
+  feats: {PronType: Ind}
+  gloss: {en: 'someone, some people'}
+  spelled: {lzh-Hant/standard: [或]}
+- id: lexeme:所
+  pos: PART
+  gloss: {en: 'what, that which (before a verb)'}
+  notes: {en: '所 makes a noun of the verb after it: 所欲 “what one wants”, 吾所欲 “what I want”.'}
+  spelled: {lzh-Hant/standard: [所]}
+- id: lexeme:折
+  pos: VERB
+  gloss: {en: 'to break, to snap'}
+  spelled: {lzh-Hant/standard: [折]}
+- id: lexeme:故鄉
+  pos: NOUN
+  gloss: {en: 'home town, old home'}
+  spelled: {lzh-Hant/standard: [故鄉]}
+- id: lexeme:方
+  pos: NOUN
+  gloss: {en: 'direction, region, place'}
+  spelled: {lzh-Hant/standard: [方]}
+- id: lexeme:於
+  pos: ADP
+  gloss: {en: 'at, in, from; than (after an adjective)'}
+  spelled: {lzh-Hant/standard: [於]}
+- id: lexeme:日
+  pos: NOUN
+  gloss: {en: sun; day}
+  image: {file: ../../courses/images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {lzh-Hant/standard: [日]}
+- id: lexeme:明
+  pos: ADJ
+  gloss: {en: 'bright; clear-sighted, enlightened'}
+  spelled: {lzh-Hant/standard: [明]}
+- id: lexeme:春
+  pos: NOUN
+  gloss: {en: spring}
+  spelled: {lzh-Hant/standard: [春]}
+- id: lexeme:是
+  pos: PRON
+  feats: {PronType: Dem}
+  gloss: {en: 'this, that (pointing back)'}
+  notes: {en: 'In early Classical Chinese 是 points: “this”. Later texts also use it for “to be”.'}
+  spelled: {lzh-Hant/standard: [是]}
+- id: lexeme:是.cop
+  pos: AUX
+  gloss: {en: to be (the copula of later Chinese)}
+  notes: {en: 'Classical texts use 是 for “this”. In speech it became “to be” by the Han, and Tang poems use it so: 疑是地上霜 “I took it to be frost on the ground”. Classical prose would say 此霜也, “this is frost”.'}
+  spelled: {lzh-Hant/standard: [是]}
+- id: lexeme:時
+  pos: NOUN
+  gloss: {en: 'time, season; at the right time'}
+  spelled: {lzh-Hant/standard: [時]}
+- id: lexeme:智
+  pos: ADJ
+  gloss: {en: wise; wisdom}
+  spelled: {lzh-Hant/standard: [智]}
+- id: lexeme:曉
+  pos: NOUN
+  gloss: {en: 'dawn, daybreak'}
+  spelled: {lzh-Hant/standard: [曉]}
+- id: lexeme:曰
+  pos: VERB
+  gloss: {en: to say (introduces what is said)}
+  spelled: {lzh-Hant/standard: [曰]}
+- id: lexeme:月
+  pos: NOUN
+  gloss: {en: moon; month}
+  spelled: {lzh-Hant/standard: [月]}
+- id: lexeme:有
+  pos: VERB
+  gloss: {en: 'to have; there is, there are'}
+  spelled: {lzh-Hant/standard: [有]}
+- id: lexeme:有.you
+  pos: CCONJ
+  gloss: {en: 'and (between a round number and what it adds: 十有五 “fifteen”; read yòu, = 又)'}
+  notes: {en: 'The character 有 “to have”, read yòu and meaning 又 “and” in numbers: 十有五 is ten-and-five. 十五 means the same.'}
+  spelled: {lzh-Hant/standard: [有]}
+- id: lexeme:朋
+  pos: NOUN
+  gloss: {en: 'friend, companion in study'}
+  spelled: {lzh-Hant/standard: [朋]}
+- id: lexeme:望
+  pos: VERB
+  gloss: {en: 'to gaze at, to look into the distance'}
+  spelled: {lzh-Hant/standard: [望]}
+- id: lexeme:株
+  pos: NOUN
+  gloss: {en: tree stump}
+  spelled: {lzh-Hant/standard: [株]}
+- id: lexeme:梁
+  pos: NOUN
+  gloss: {en: bridge; dam}
+  spelled: {lzh-Hant/standard: [梁]}
+- id: lexeme:梁惠王
+  pos: PROPN
+  gloss: {en: King Hui of Liang}
+  spelled: {lzh-Hant/standard: [梁惠王]}
+- id: lexeme:楚
+  pos: PROPN
+  gloss: {en: 'Chu, a large southern state on the Yangzi'}
+  spelled: {lzh-Hant/standard: [楚]}
+- id: lexeme:樂
+  pos: ADJ
+  gloss: {en: 'joyful, happy; joy'}
+  image: {file: ../../courses/images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
+  spelled: {lzh-Hant/standard: [樂]}
+- id: lexeme:欲
+  pos: VERB
+  gloss: {en: 'to want, to desire'}
+  spelled: {lzh-Hant/standard: [欲]}
+- id: lexeme:止
+  pos: VERB
+  gloss: {en: 'to stop, to halt'}
+  spelled: {lzh-Hant/standard: [止]}
+- id: lexeme:此
+  pos: PRON
+  feats: {PronType: Dem}
+  gloss: {en: 'this, here'}
+  spelled: {lzh-Hant/standard: [此]}
+- id: lexeme:死
+  pos: VERB
+  gloss: {en: to die; dead}
+  spelled: {lzh-Hant/standard: [死]}
+- id: lexeme:殆
+  pos: ADJ
+  gloss: {en: 'in danger, perilous'}
+  spelled: {lzh-Hant/standard: [殆]}
+- id: lexeme:水
+  pos: NOUN
+  gloss: {en: water; river}
+  spelled: {lzh-Hant/standard: [水]}
+- id: lexeme:求
+  pos: VERB
+  gloss: {en: 'to seek, to look for; to ask for'}
+  spelled: {lzh-Hant/standard: [求]}
+- id: lexeme:汝
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: you}
+  spelled: {lzh-Hant/standard: [汝]}
+- id: lexeme:江
+  pos: NOUN
+  gloss: {en: the (Yangzi) River; a great river}
+  spelled: {lzh-Hant/standard: [江]}
+- id: lexeme:涉
+  pos: VERB
+  gloss: {en: 'to wade across, to cross (a river)'}
+  spelled: {lzh-Hant/standard: [涉]}
+- id: lexeme:濠
+  pos: PROPN
+  gloss: {en: 'the Hao, a river in the state of Song'}
+  spelled: {lzh-Hant/standard: [濠]}
+- id: lexeme:為
+  pos: VERB
+  gloss: {en: 'to do, to make; to be, to act as, to become'}
+  spelled: {lzh-Hant/standard: [為]}
+- id: lexeme:無
+  pos: VERB
+  gloss: {en: 'there is no; to have no, without'}
+  spelled: {lzh-Hant/standard: [無]}
+- id: lexeme:然
+  pos: INTJ
+  gloss: {en: 'so, thus; yes, it is so'}
+  spelled: {lzh-Hant/standard: [然]}
+- id: lexeme:熊掌
+  pos: NOUN
+  gloss: {en: bear's paw (a delicacy)}
+  spelled: {lzh-Hant/standard: [熊掌]}
+- id: lexeme:爾
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: you}
+  spelled: {lzh-Hant/standard: [爾]}
+- id: lexeme:物
+  pos: NOUN
+  gloss: {en: thing; the things of the world}
+  spelled: {lzh-Hant/standard: [物]}
+- id: lexeme:王
+  pos: NOUN
+  gloss: {en: king}
+  spelled: {lzh-Hant/standard: [王]}
+- id: lexeme:生
+  pos: NOUN
+  gloss: {en: life; to live}
+  spelled: {lzh-Hant/standard: [生]}
+- id: lexeme:田
+  pos: NOUN
+  gloss: {en: 'field, farmland'}
+  spelled: {lzh-Hant/standard: [田]}
+- id: lexeme:由
+  pos: PROPN
+  gloss: {en: 'Yu: Zilu’s personal name, used by his teacher'}
+  notes: {en: 'Zilu is his courtesy name; the Master calls him by his personal name, 由 (Zhong You).'}
+  spelled: {lzh-Hant/standard: [由]}
+- id: lexeme:疑
+  pos: VERB
+  gloss: {en: 'to doubt, to suspect; to take for'}
+  spelled: {lzh-Hant/standard: [疑]}
+- id: lexeme:百
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: hundred}
+  spelled: {lzh-Hant/standard: [百]}
+- id: lexeme:皆
+  pos: ADV
+  gloss: {en: 'all, every one'}
+  spelled: {lzh-Hant/standard: [皆]}
+- id: lexeme:盾
+  pos: NOUN
+  gloss: {en: shield}
+  spelled: {lzh-Hant/standard: [盾]}
+- id: lexeme:眠
+  pos: VERB
+  gloss: {en: to sleep}
+  spelled: {lzh-Hant/standard: [眠]}
+- id: lexeme:矛
+  pos: NOUN
+  gloss: {en: 'spear, lance'}
+  spelled: {lzh-Hant/standard: [矛]}
+- id: lexeme:矣
+  pos: PART
+  feats: {PartType: Mod}
+  gloss: {en: 'sentence-final particle: now, already (a new situation)'}
+  spelled: {lzh-Hant/standard: [矣]}
+- id: lexeme:知
+  pos: VERB
+  gloss: {en: to know; to understand; to recognize (someone)}
+  spelled: {lzh-Hant/standard: [知]}
+- id: lexeme:知.zhi
+  pos: ADJ
+  gloss: {en: 'wise; wisdom (read zhì, = 智)'}
+  notes: {en: 'The character 知 “to know”, read zhì. Later texts write 智.'}
+  spelled: {lzh-Hant/standard: [知]}
+- id: lexeme:矩
+  pos: NOUN
+  gloss: {en: 'carpenter’s square; the rules, the bounds'}
+  spelled: {lzh-Hant/standard: [矩]}
+- id: lexeme:立
+  pos: VERB
+  gloss: {en: to stand; to take one’s stand}
+  spelled: {lzh-Hant/standard: [立]}
+- id: lexeme:笑
+  pos: VERB
+  gloss: {en: 'to laugh, to laugh at'}
+  spelled: {lzh-Hant/standard: [笑]}
+- id: lexeme:罔
+  pos: ADJ
+  gloss: {en: 'lost, confused, bewildered'}
+  spelled: {lzh-Hant/standard: [罔]}
+- id: lexeme:義
+  pos: NOUN
+  gloss: {en: 'rightness, righteousness, duty'}
+  spelled: {lzh-Hant/standard: [義]}
+- id: lexeme:習
+  pos: VERB
+  gloss: {en: 'to practise, to rehearse what one has learned'}
+  spelled: {lzh-Hant/standard: [習]}
+- id: lexeme:老子
+  pos: PROPN
+  gloss: {en: 'Laozi (Master Lao), the Daoist sage'}
+  spelled: {lzh-Hant/standard: [老子]}
+- id: lexeme:者
+  pos: PART
+  gloss: {en: 'the one who …, those who … (after a verb phrase); after a noun, marks the topic; after a number, “… things”'}
+  notes: {en: '者 turns what comes before it into a noun: 知人者 “the one who knows others”. After a noun it marks what the sentence is about: 仁者，人也 “humaneness: it is [being] human”. After a number it counts things: 二者 “the two”.'}
+  spelled: {lzh-Hant/standard: [者]}
+- id: lexeme:而
+  pos: CCONJ
+  gloss: {en: and; and yet (joins two verbs or clauses)}
+  spelled: {lzh-Hant/standard: [而]}
+- id: lexeme:而已
+  pos: PART
+  feats: {PartType: Mod}
+  gloss: {en: and that is all; only}
+  spelled: {lzh-Hant/standard: [而已]}
+- id: lexeme:耒
+  pos: NOUN
+  gloss: {en: plough (a wooden digging plough)}
+  spelled: {lzh-Hant/standard: [耒]}
+- id: lexeme:耕
+  pos: VERB
+  gloss: {en: 'to plough, to till'}
+  spelled: {lzh-Hant/standard: [耕]}
+- id: lexeme:耳
+  pos: NOUN
+  gloss: {en: ear}
+  spelled: {lzh-Hant/standard: [耳]}
+- id: lexeme:聞
+  pos: VERB
+  gloss: {en: to hear}
+  spelled: {lzh-Hant/standard: [聞]}
+- id: lexeme:聲
+  pos: NOUN
+  gloss: {en: 'sound, voice'}
+  spelled: {lzh-Hant/standard: [聲]}
+- id: lexeme:能
+  pos: VERB
+  gloss: {en: 'can, to be able to'}
+  spelled: {lzh-Hant/standard: [能]}
+- id: lexeme:自
+  pos: ADP
+  gloss: {en: from}
+  spelled: {lzh-Hant/standard: [自]}
+- id: lexeme:自.self
+  pos: PRON
+  feats: {PronType: Prs, Reflex: 'Yes'}
+  gloss: {en: 'oneself, by oneself (before a verb)'}
+  notes: {en: 'Written like 自 “from”: 自知 is “know oneself”.'}
+  spelled: {lzh-Hant/standard: [自]}
+- id: lexeme:與
+  pos: CCONJ
+  gloss: {en: 'and; with (joins two nouns, or says who one is with)'}
+  notes: {en: A與B “A and B”; 與A遊 “roam with A”.}
+  spelled: {lzh-Hant/standard: [與]}
+- id: lexeme:舉
+  pos: VERB
+  gloss: {en: 'to raise, to lift'}
+  spelled: {lzh-Hant/standard: [舉]}
+- id: lexeme:舍
+  pos: VERB
+  gloss: {en: 'to give up, to let go'}
+  notes: {en: Later texts write 捨 for this sense; 舍 shè is also “a house”.}
+  spelled: {lzh-Hant/standard: [舍]}
+- id: lexeme:舟
+  pos: NOUN
+  gloss: {en: boat}
+  spelled: {lzh-Hant/standard: [舟]}
+- id: lexeme:花
+  pos: NOUN
+  gloss: {en: 'flower, blossom'}
+  spelled: {lzh-Hant/standard: [花]}
+- id: lexeme:若
+  pos: VERB
+  gloss: {en: 'like, as; to be like'}
+  notes: {en: '若此 “like this”: 上善若水 “the highest good is like water”.'}
+  spelled: {lzh-Hant/standard: [若]}
+- id: lexeme:莊子
+  pos: PROPN
+  gloss: {en: 'Zhuangzi (Master Zhuang), Daoist thinker of the 4th century BCE'}
+  spelled: {lzh-Hant/standard: [莊子]}
+- id: lexeme:莫
+  pos: PRON
+  feats: {PronType: Neg}
+  gloss: {en: 'no one, nothing (莫能: none can)'}
+  notes: {en: '莫 says that none of the subject does it: 物莫能陷 “of things, none can pierce [it]”. An object pronoun comes before the verb: 莫之能知 “no one can know it”.'}
+  spelled: {lzh-Hant/standard: [莫]}
+- id: lexeme:落
+  pos: VERB
+  gloss: {en: to fall (of flowers and leaves); to set (of the moon)}
+  spelled: {lzh-Hant/standard: [落]}
+- id: lexeme:處
+  pos: NOUN
+  gloss: {en: 'place (處處: everywhere)'}
+  spelled: {lzh-Hant/standard: [處]}
+- id: lexeme:行
+  pos: VERB
+  gloss: {en: 'to go, to walk; to act, to put into practice'}
+  spelled: {lzh-Hant/standard: [行]}
+- id: lexeme:見
+  pos: VERB
+  gloss: {en: to see}
+  spelled: {lzh-Hant/standard: [見]}
+- id: lexeme:見.meet
+  pos: VERB
+  gloss: {en: 'to call on, to have an audience with (a ruler)'}
+  notes: {en: '見 “present oneself to a superior” is the word “appear” (later written 現): xiàn, Cantonese jin6, Middle Chinese henH. 見 “see” is jiàn, gin3, kenH. Many readers today say jiàn here too.'}
+  spelled: {lzh-Hant/standard: [見]}
+- id: lexeme:覺
+  pos: VERB
+  gloss: {en: 'to become aware of, to notice; to realize'}
+  spelled: {lzh-Hant/standard: [覺]}
+- id: lexeme:觸
+  pos: VERB
+  gloss: {en: 'to bump into, to run into'}
+  spelled: {lzh-Hant/standard: [觸]}
+- id: lexeme:言
+  pos: VERB
+  gloss: {en: to speak; words}
+  spelled: {lzh-Hant/standard: [言]}
+- id: lexeme:誨
+  pos: VERB
+  gloss: {en: 'to teach, to instruct'}
+  spelled: {lzh-Hant/standard: [誨]}
+- id: lexeme:說.yue
+  pos: ADJ
+  gloss: {en: 'pleased, delighted (read as 悅)'}
+  notes: {en: 'The same character as 說 “to speak”, read differently. Later texts write 悅.'}
+  spelled: {lzh-Hant/standard: [說]}
+- id: lexeme:誰
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: who}
+  spelled: {lzh-Hant/standard: [誰]}
+- id: lexeme:諾
+  pos: INTJ
+  gloss: {en: yes (I will); very well}
+  spelled: {lzh-Hant/standard: [諾]}
+- id: lexeme:譽
+  pos: VERB
+  gloss: {en: 'to praise, to boast of'}
+  spelled: {lzh-Hant/standard: [譽]}
+- id: lexeme:走
+  pos: VERB
+  gloss: {en: to run}
+  notes: {en: In Classical Chinese 走 is “run”; “walk” is 行.}
+  spelled: {lzh-Hant/standard: [走]}
+- id: lexeme:足
+  pos: ADJ
+  gloss: {en: enough; to be enough}
+  spelled: {lzh-Hant/standard: [足]}
+- id: lexeme:踰
+  pos: VERB
+  gloss: {en: 'to overstep, to cross over'}
+  spelled: {lzh-Hant/standard: [踰]}
+- id: lexeme:身
+  pos: NOUN
+  gloss: {en: 'body; oneself, in person'}
+  spelled: {lzh-Hant/standard: [身]}
+- id: lexeme:遊
+  pos: VERB
+  gloss: {en: 'to roam, to stroll, to wander for pleasure'}
+  notes: {en: 'Zhuangzi’s fish 出遊, “come out and roam about”: in English, they swim about. “To swim” itself is 游, which some editions write here.'}
+  spelled: {lzh-Hant/standard: [遊]}
+- id: lexeme:道
+  pos: NOUN
+  gloss: {en: 'the Way; road, path'}
+  spelled: {lzh-Hant/standard: [道]}
+- id: lexeme:遠
+  pos: ADJ
+  gloss: {en: 'far, distant'}
+  spelled: {lzh-Hant/standard: [遠]}
+- id: lexeme:遽
+  pos: ADV
+  gloss: {en: 'hastily, at once'}
+  spelled: {lzh-Hant/standard: [遽]}
+- id: lexeme:釋
+  pos: VERB
+  gloss: {en: 'to let go of, to put down'}
+  spelled: {lzh-Hant/standard: [釋]}
+- id: lexeme:里
+  pos: NOUN
+  feats: {NounType: Clf}
+  gloss: {en: 'li, a measure of distance (about half a kilometre)'}
+  spelled: {lzh-Hant/standard: [里]}
+- id: lexeme:陷
+  pos: VERB
+  gloss: {en: 'to pierce, to break through'}
+  spelled: {lzh-Hant/standard: [陷]}
+- id: lexeme:雨
+  pos: NOUN
+  gloss: {en: rain}
+  spelled: {lzh-Hant/standard: [雨]}
+- id: lexeme:霜
+  pos: NOUN
+  gloss: {en: frost}
+  spelled: {lzh-Hant/standard: [霜]}
+- id: lexeme:非
+  pos: ADV
+  feats: {Polarity: Neg}
+  gloss: {en: 'is not (negates a noun predicate: 非A也)'}
+  spelled: {lzh-Hant/standard: [非]}
+- id: lexeme:順
+  pos: ADJ
+  gloss: {en: 'to go along with; attuned, compliant'}
+  spelled: {lzh-Hant/standard: [順]}
+- id: lexeme:頭
+  pos: NOUN
+  gloss: {en: head}
+  spelled: {lzh-Hant/standard: [頭]}
+- id: lexeme:頸
+  pos: NOUN
+  gloss: {en: neck}
+  spelled: {lzh-Hant/standard: [頸]}
+- id: lexeme:風
+  pos: NOUN
+  gloss: {en: wind}
+  spelled: {lzh-Hant/standard: [風]}
+- id: lexeme:鬻
+  pos: VERB
+  gloss: {en: to sell}
+  spelled: {lzh-Hant/standard: [鬻]}
+- id: lexeme:魚
+  pos: NOUN
+  gloss: {en: fish}
+  spelled: {lzh-Hant/standard: [魚]}
+- id: lexeme:魯
+  pos: PROPN
+  gloss: {en: 'Lu, Confucius''s home state'}
+  spelled: {lzh-Hant/standard: [魯]}
+- id: lexeme:鯈
+  pos: NOUN
+  gloss: {en: 'minnow, a small white river fish'}
+  spelled: {lzh-Hant/standard: [鯈]}
+- id: lexeme:鳥
+  pos: NOUN
+  gloss: {en: bird}
+  spelled: {lzh-Hant/standard: [鳥]}

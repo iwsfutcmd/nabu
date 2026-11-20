@@ -1,0 +1,402 @@
+# Unit u08-a-rooster of courses/grc in the new shape.
+# Written by `nabu migrate` from courses/grc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u08-a-rooster
+title:
+  en: We owe a rooster
+cefr: A2
+nodes:
+- {id: grc.u08.we-owe, kind: lesson, introduces: ['lexeme:asklepios', 'lexeme:alektryon', 'lexeme:opheilo']}
+- {id: grc.u08.pay-it, kind: lesson, introduces: ['lexeme:apodidomi', 'lexeme:ameleo', 'feature:Mood=Sub']}
+- {id: grc.u08.it-shall-be-done, kind: lesson}
+- {id: grc.u08.see-whether, kind: lesson, introduces: ['lexeme:horao', 'lexeme:ei', 'lexeme:tis.indef', 'lexeme:allos', 'lexeme:theos']}
+- {id: grc.u08.story, kind: story}
+sentences:
+- id: s.08.1
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Ἀσκληπιός.
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Ἀσκληπιός, lexeme: asklepios, feats: {Case: Nom, Number: Sing}, readings: {attic: Ᾰ̓σκληπῐός}}]
+      reverse: ὁ Ἀσκληπιός
+  translations:
+    en: Asclepius.
+- id: s.08.2
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ ἀλεκτρυών.
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: ἀλεκτρυών, lexeme: alektryon, feats: {Case: Nom, Number: Sing}, readings: {attic: ᾰ̓λεκτρῠών}}]
+      reverse: ὁ ἀλεκτρυών
+  translations:
+    en: The (rooster|cock).
+- id: s.08.3
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ἀλεκτρυόνα ἔχω.
+      tokens: [{surface: ἀλεκτρυόνα, lexeme: alektryon, feats: {Case: Acc, Number: Sing}, readings: {attic: ᾰ̓λεκτρῠόνᾰ}}, {surface: ἔχω, lexeme: echo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ἔχω}}]
+      reverse: |-
+        ἀλεκτρυόνα ἔχω
+        ἔχω ἀλεκτρυόνα
+  translations:
+    en: I have (a rooster|a cock).
+- id: s.08.4
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ὀφείλω.
+      tokens: [{surface: ὀφείλω, lexeme: opheilo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ὀφείλω}}]
+      reverse: ὀφείλω
+  translations:
+    en: I owe (it|).
+- id: s.08.5
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ὀφείλομεν ἀλεκτρυόνα.
+      tokens: [{surface: ὀφείλομεν, lexeme: opheilo, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ὀφείλομεν}}, {surface: ἀλεκτρυόνα, lexeme: alektryon, feats: {Case: Acc, Number: Sing}, readings: {attic: ᾰ̓λεκτρῠόνᾰ}}]
+      reverse: |-
+        ὀφείλομεν ἀλεκτρυόνα
+        ἀλεκτρυόνα ὀφείλομεν
+  translations:
+    en: We owe (a rooster|a cock).
+- id: s.08.6
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: τῷ Ἀσκληπιῷ ὀφείλομεν ἀλεκτρυόνα.
+      tokens: [{surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Masc, Number: Sing}, readings: {attic: τῷ}}, {surface: Ἀσκληπιῷ, lexeme: asklepios, feats: {Case: Dat, Number: Sing}, readings: {attic: Ᾰ̓σκληπῐῷ}}, {surface: ὀφείλομεν, lexeme: opheilo, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ὀφείλομεν}}, {surface: ἀλεκτρυόνα, lexeme: alektryon, feats: {Case: Acc, Number: Sing}, readings: {attic: ᾰ̓λεκτρῠόνᾰ}}]
+      reverse: |-
+        τῷ Ἀσκληπιῷ ὀφείλομεν ἀλεκτρυόνα
+        ὀφείλομεν τῷ Ἀσκληπιῷ ἀλεκτρυόνα
+        ἀλεκτρυόνα ὀφείλομεν τῷ Ἀσκληπιῷ
+        τῷ Ἀσκληπιῷ ἀλεκτρυόνα ὀφείλομεν
+        ὀφείλομεν ἀλεκτρυόνα τῷ Ἀσκληπιῷ
+        ἀλεκτρυόνα τῷ Ἀσκληπιῷ ὀφείλομεν
+  translations:
+    en: |-
+      We owe (a rooster|a cock) to Asclepius.
+      We owe Asclepius (a rooster|a cock)
+- id: s.08.7
+  node: grc.u08.we-owe
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    grc-Grek/polytonic:
+      text: τί ὀφείλεις;
+      tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: ὀφείλεις, lexeme: opheilo, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: ὀφείλεις}}]
+      reverse: τί ὀφείλεις
+  translations:
+    en: What do you owe?
+- id: s.08.8
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: τῷ Κρίτωνι ὀφείλω.
+      tokens: [{surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Masc, Number: Sing}, readings: {attic: τῷ}}, {surface: Κρίτωνι, lexeme: kriton, feats: {Case: Dat, Number: Sing}, readings: {attic: Κρῐ́τωνῐ}}, {surface: ὀφείλω, lexeme: opheilo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ὀφείλω}}]
+      reverse: |-
+        τῷ Κρίτωνι ὀφείλω
+        ὀφείλω τῷ Κρίτωνι
+  translations:
+    en: I owe (Crito|it to Crito).
+- id: s.08.9
+  node: grc.u08.pay-it
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    grc-Grek/polytonic:
+      text: ἀπόδοτε.
+      tokens: [{surface: ἀπόδοτε, lexeme: apodidomi, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: ᾰ̓πόδοτε}}]
+      reverse: ἀπόδοτε
+  translations:
+    en: (Pay it|Pay it back|Give it back)!
+- id: s.08.10
+  node: grc.u08.pay-it
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    grc-Grek/polytonic:
+      text: ἀπόδος.
+      tokens: [{surface: ἀπόδος, lexeme: apodidomi, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: ᾰ̓πόδος}}]
+      reverse: ἀπόδος
+  translations:
+    en: (Pay it|Pay it back|Give it back)!
+- id: s.08.11
+  node: grc.u08.pay-it
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ ἀμελήσητε.
+      tokens: [{surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: ἀμελήσητε, lexeme: ameleo, feats: {Mood: Sub, Number: Plur, Person: '2', Tense: Past, VerbForm: Fin}, readings: {attic: ᾰ̓μελήσητε}}]
+      reverse: μὴ ἀμελήσητε
+  translations:
+    en: (Don't|Do not) (forget|forget it|neglect it)!
+- id: s.08.12
+  node: grc.u08.pay-it
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    grc-Grek/polytonic:
+      text: ἀλλὰ ἀπόδοτε καὶ μὴ ἀμελήσητε.
+      tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: ἀπόδοτε, lexeme: apodidomi, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: ᾰ̓πόδοτε}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: ἀμελήσητε, lexeme: ameleo, feats: {Mood: Sub, Number: Plur, Person: '2', Tense: Past, VerbForm: Fin}, readings: {attic: ᾰ̓μελήσητε}}]
+      reverse: |-
+        ἀλλὰ ἀπόδοτε καὶ μὴ ἀμελήσητε
+        ἀπόδοτε καὶ μὴ ἀμελήσητε
+        ἀλλ’ ἀπόδοτε καὶ μὴ ἀμελήσητε
+  translations:
+    en: |-
+      (Pay it|Pay it back|Give it back), and (don't|do not) (forget|forget it|neglect it)!
+      (Well|Now), (pay it|pay it back|give it back), and (don't|do not) (forget|forget it|neglect it)
+- id: s.08.13
+  node: grc.u08.pay-it
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    grc-Grek/polytonic:
+      text: τὸν ἀλεκτρυόνα ἀπόδοτε τῷ Ἀσκληπιῷ.
+      tokens: [{surface: τὸν, lexeme: ho, feats: {Case: Acc, Gender: Masc, Number: Sing}, readings: {attic: τὸν}}, {surface: ἀλεκτρυόνα, lexeme: alektryon, feats: {Case: Acc, Number: Sing}, readings: {attic: ᾰ̓λεκτρῠόνᾰ}}, {surface: ἀπόδοτε, lexeme: apodidomi, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: ᾰ̓πόδοτε}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Masc, Number: Sing}, readings: {attic: τῷ}}, {surface: Ἀσκληπιῷ, lexeme: asklepios, feats: {Case: Dat, Number: Sing}, readings: {attic: Ᾰ̓σκληπῐῷ}}]
+      reverse: |-
+        τὸν ἀλεκτρυόνα ἀπόδοτε τῷ Ἀσκληπιῷ
+        ἀπόδοτε τῷ Ἀσκληπιῷ τὸν ἀλεκτρυόνα
+        τῷ Ἀσκληπιῷ ἀπόδοτε τὸν ἀλεκτρυόνα
+        ἀπόδοτε τὸν ἀλεκτρυόνα τῷ Ἀσκληπιῷ
+        τὸν ἀλεκτρυόνα τῷ Ἀσκληπιῷ ἀπόδοτε
+        τῷ Ἀσκληπιῷ τὸν ἀλεκτρυόνα ἀπόδοτε
+  translations:
+    en: |-
+      Give the (rooster|cock) to Asclepius!
+      (Give|Pay) Asclepius the (rooster|cock)
+      Pay the (rooster|cock) to Asclepius
+- id: s.08.14
+  node: grc.u08.pay-it
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ ἀμελήσητε, ὦ παῖδες.
+      tokens: [{surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: ἀμελήσητε, lexeme: ameleo, feats: {Mood: Sub, Number: Plur, Person: '2', Tense: Past, VerbForm: Fin}, readings: {attic: ᾰ̓μελήσητε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: παῖδες, lexeme: pais, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: παῖδες}}]
+      reverse: |-
+        μὴ ἀμελήσητε ὦ παῖδες
+        [ὦ] παῖδες μὴ ἀμελήσητε
+        μὴ ἀμελήσητε παῖδες
+  translations:
+    en: (Don't|Do not) (forget|forget it|neglect it), (children|boys)!
+- id: s.08.15
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ταῦτα.
+      tokens: [{surface: ταῦτα, lexeme: houtos, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: ταῦτᾰ}}]
+      reverse: ταῦτα
+  translations:
+    en: (These things|This|That).
+- id: s.08.16
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ἔσται.
+      tokens: [{surface: ἔσται, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, readings: {attic: ἔσται}}]
+      reverse: ἔσται
+  translations:
+    en: (It will be|It shall be|It will be done|It shall be done).
+- id: s.08.17
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ταῦτα ἔσται.
+      tokens: [{surface: ταῦτα, lexeme: houtos, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: ταῦτᾰ}}, {surface: ἔσται, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, readings: {attic: ἔσται}}]
+      reverse: |-
+        ταῦτα ἔσται
+        ἔσται ταῦτα
+  translations:
+    en: (It shall be done|It will be done|So it shall be|So it will be).
+- id: s.08.18
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ἀλλὰ ταῦτα ἔσται.
+      tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: ταῦτα, lexeme: houtos, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: ταῦτᾰ}}, {surface: ἔσται, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, readings: {attic: ἔσται}}]
+      reverse: ἀλλὰ ταῦτα ἔσται
+  translations:
+    en: (Well|Yes|All right), (it shall be done|it will be done|so it shall be).
+- id: s.08.19
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ταῦτα λέγει.
+      tokens: [{surface: ταῦτα, lexeme: houtos, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: ταῦτᾰ}}, {surface: λέγει, lexeme: lego, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: λέγει}}]
+      reverse: |-
+        ταῦτα λέγει
+        λέγει ταῦτα
+  translations:
+    en: (He|She) (says|is saying) (this|these things|that).
+- id: s.08.20
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ἔσται ἡμέρα.
+      tokens: [{surface: ἔσται, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, readings: {attic: ἔσται}}, {surface: ἡμέρα, lexeme: hemera, feats: {Case: Nom, Number: Sing}, readings: {attic: ἡμέρᾱ}}]
+      reverse: |-
+        ἔσται ἡμέρα
+        ἡμέρα ἔσται
+  translations:
+    en: (It will be|It'll be) (day|daytime).
+- id: s.08.21
+  node: grc.u08.see-whether
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    grc-Grek/polytonic:
+      text: ὅρα.
+      tokens: [{surface: ὅρα, lexeme: horao, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: ὅρᾱ}}]
+      reverse: ὅρα
+  translations:
+    en: (Look|See|Mind)!
+- id: s.08.22
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ὁρῶ.
+      tokens: [{surface: ὁρῶ, lexeme: horao, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ὁρῶ}}]
+      reverse: ὁρῶ
+  translations:
+    en: I (see|can see).
+- id: s.08.23
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: τὴν θάλατταν ὁρῶ.
+      tokens: [{surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, readings: {attic: τὴν}}, {surface: θάλατταν, lexeme: thalatta, feats: {Case: Acc, Number: Sing}, readings: {attic: θᾰ́λᾰττᾰν}}, {surface: ὁρῶ, lexeme: horao, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ὁρῶ}}]
+      reverse: |-
+        τὴν θάλατταν ὁρῶ
+        ὁρῶ τὴν θάλατταν
+  translations:
+    en: I (see|can see) the sea.
+- id: s.08.24
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ἄλλο τι.
+      tokens: [{surface: ἄλλο, lexeme: allos, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: ᾰ̓́λλο}}, {surface: τι, lexeme: tis.indef, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τῐ}}]
+      reverse: ἄλλο τι
+  translations:
+    en: (Something|Anything) else.
+- id: s.08.25
+  node: grc.u08.see-whether
+  tags:
+  - {persons: {addressee: sg}}
+  forms:
+    grc-Grek/polytonic:
+      text: ὅρα εἴ τι ἄλλο λέγεις.
+      tokens: [{surface: ὅρα, lexeme: horao, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: ὅρᾱ}}, {surface: εἴ, lexeme: ei, readings: {attic: εἴ}}, {surface: τι, lexeme: tis.indef, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τῐ}}, {surface: ἄλλο, lexeme: allos, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: ᾰ̓́λλο}}, {surface: λέγεις, lexeme: lego, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: λέγεις}}]
+      reverse: ὅρα εἴ τι ἄλλο λέγεις
+  translations:
+    en: (See|Look|Consider) (if|whether) you (say|are saying|have to say|want to say) anything else.
+- id: s.08.26
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ἄλλος στρατιώτης.
+      tokens: [{surface: ἄλλος, lexeme: allos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ᾰ̓́λλος}}, {surface: στρατιώτης, lexeme: stratiotes, feats: {Case: Nom, Number: Sing}, readings: {attic: στρᾰτῐώτης}}]
+      reverse: ἄλλος στρατιώτης
+  translations:
+    en: Another soldier.
+- id: s.08.27
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ θεός.
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: θεός, lexeme: theos, feats: {Case: Nom, Number: Sing}, readings: {attic: θεός}}]
+      reverse: ὁ θεός
+  translations:
+    en: The god.
+- id: s.08.28
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Ἀσκληπιὸς θεός ἐστιν.
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Ἀσκληπιὸς, lexeme: asklepios, feats: {Case: Nom, Number: Sing}, readings: {attic: Ᾰ̓σκληπῐὸς}}, {surface: θεός, lexeme: theos, feats: {Case: Nom, Number: Sing}, readings: {attic: θεός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
+      reverse: |-
+        ὁ Ἀσκληπιὸς θεός ἐστιν
+        θεός ἐστι[ν] [ὁ] Ἀσκληπιός
+        [ὁ] Ἀσκληπιὸς θεός ἐστι
+        Ἀσκληπιὸς θεός ἐστιν
+  translations:
+    en: Asclepius is a god.
+- id: s.08.29
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ἔστιν ἄλλο τι;
+      tokens: [{surface: ἔστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἔστῐν}}, {surface: ἄλλο, lexeme: allos, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: ᾰ̓́λλο}}, {surface: τι, lexeme: tis.indef, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τῐ}}]
+      reverse: ἔστιν ἄλλο τι
+  translations:
+    en: Is there anything else?
+stories:
+- id: grc.story.a-rooster
+  node: grc.u08.story
+  title:
+    en: We owe a rooster (Plato, Phaedo 118a)
+  characters:
+  - id: socrates
+    name:
+      grc-Grek/polytonic: Σωκράτης
+  - id: kriton
+    name:
+      grc-Grek/polytonic: Κρίτων
+  steps:
+  - line:
+      speaker: socrates
+      ask: complete
+      gap: lexeme:alektryon
+      distractors:
+      - lexeme:peripatos
+      - lexeme:adelphos
+      forms:
+        grc-Grek/polytonic:
+          text: ὦ Κρίτων, ἔφη, τῷ Ἀσκληπιῷ ὀφείλομεν ἀλεκτρυόνα·
+          tokens: [{surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Κρίτων, lexeme: kriton, feats: {Case: Voc, Number: Sing}, readings: {attic: Κρῐ́των}}, {surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Masc, Number: Sing}, readings: {attic: τῷ}}, {surface: Ἀσκληπιῷ, lexeme: asklepios, feats: {Case: Dat, Number: Sing}, readings: {attic: Ᾰ̓σκληπῐῷ}}, {surface: ὀφείλομεν, lexeme: opheilo, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ὀφείλομεν}}, {surface: ἀλεκτρυόνα, lexeme: alektryon, feats: {Case: Acc, Number: Sing}, readings: {attic: ᾰ̓λεκτρῠόνᾰ}}]
+      translations:
+        en: “Crito,” he said, “we owe a rooster to Asclepius.
+  - line:
+      speaker: socrates
+      forms:
+        grc-Grek/polytonic:
+          text: ἀλλὰ ἀπόδοτε καὶ μὴ ἀμελήσητε.
+          tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: ἀπόδοτε, lexeme: apodidomi, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: ᾰ̓πόδοτε}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: ἀμελήσητε, lexeme: ameleo, feats: {Mood: Sub, Number: Plur, Person: '2', Tense: Past, VerbForm: Fin}, readings: {attic: ᾰ̓μελήσητε}}]
+      translations:
+        en: Pay it, and don't forget.”
+  - choose:
+      prompt:
+        en: What does Socrates ask his friends to do?
+      options:
+      - en: Give Asclepius the rooster they owe him
+      - en: Buy a rooster in the agora
+      - en: Go home
+      answer: 0
+  - line:
+      speaker: kriton
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: ἀλλὰ ταῦτα, ἔφη, ἔσται, ὁ Κρίτων·
+          tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: ταῦτα, lexeme: houtos, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: ταῦτᾰ}}, {surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}, {surface: ἔσται, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, readings: {attic: ἔσται}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Κρίτων, lexeme: kriton, feats: {Case: Nom, Number: Sing}, readings: {attic: Κρῐ́των}}]
+      translations:
+        en: “It shall be done,” said Crito,
+  - line:
+      speaker: kriton
+      forms:
+        grc-Grek/polytonic:
+          text: ἀλλ’ ὅρα εἴ τι ἄλλο λέγεις.
+          tokens: [{surface: ἀλλ’, lexeme: alla, readings: {attic: ᾰ̓λλ’}}, {surface: ὅρα, lexeme: horao, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: ὅρᾱ}}, {surface: εἴ, lexeme: ei, readings: {attic: εἴ}}, {surface: τι, lexeme: tis.indef, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τῐ}}, {surface: ἄλλο, lexeme: allos, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: ᾰ̓́λλο}}, {surface: λέγεις, lexeme: lego, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: λέγεις}}]
+      translations:
+        en: “but see whether there is anything else you want to say.”
+  - choose:
+      prompt:
+        en: What does Crito answer?
+      options:
+      - en: That it will be done, and is there anything else
+      - en: That they have no rooster
+      - en: That Asclepius is not a god
+      answer: 0

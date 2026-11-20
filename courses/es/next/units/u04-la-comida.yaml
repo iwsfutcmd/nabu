@@ -1,0 +1,557 @@
+# Unit u04 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u04
+title:
+  en: 'La comida: food and drink'
+cefr: A1
+nodes:
+- {id: es.u04.arroz-con-pollo, kind: lesson, introduces: ['lexeme:comer', 'lexeme:arroz', 'lexeme:con', 'lexeme:pollo', 'lexeme:frijol', 'lexeme:negro', 'lexeme:congrí']}
+- {id: es.u04.me-gusta, kind: lesson, introduces: ['lexeme:gustar', 'lexeme:mucho', 'lexeme:plátano', 'lexeme:maduro', 'lexeme:tostón']}
+- {id: es.u04.que-tu-quieres, kind: lesson, introduces: ['lexeme:querer', 'lexeme:agua', 'lexeme:por-favor', 'lexeme:rico', 'lexeme:fruta-bomba']}
+- {id: es.u04.cafecito, kind: lesson, introduces: ['lexeme:cafecito', 'lexeme:tomar', 'lexeme:leche', 'lexeme:colada']}
+- {id: es.u04.tengo-hambre, kind: lesson, introduces: ['lexeme:hambre', 'lexeme:cerveza']}
+- {id: es.u04.story, kind: story}
+sentences:
+- id: s.u04.1
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: Como arroz.
+      tokens: [{surface: Como, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}]
+      reverse: '[Yo] como arroz'
+  translations:
+    en: |-
+      I eat rice.
+      (I'm|I am) eating rice.
+- id: s.u04.2
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: Daniel come arroz con pollo.
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: come, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}]
+      reverse: Daniel come arroz con pollo
+  translations:
+    en: Daniel (eats|is eating) (chicken and rice|rice with chicken|arroz con pollo).
+- id: s.u04.3
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: ¿Tú comes pollo?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: comes, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}]
+      reverse: (Tú comes pollo|Comes [tú] pollo|Usted come pollo|Come [usted] pollo|Ustedes comen pollo|Comen [ustedes] pollo)
+  translations:
+    en: |-
+      Do you eat chicken?
+      Are you eating chicken?
+- id: s.u04.4
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: Como arroz con frijoles negros.
+      tokens: [{surface: Como, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}}]
+      reverse: '[Yo] como arroz con frijoles negros'
+  translations:
+    en: |-
+      I eat (rice and black beans|rice with black beans|black beans and rice).
+      (I'm|I am) eating (rice and black beans|rice with black beans|black beans and rice).
+- id: s.u04.5
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: ¿Tú comes congrí?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: comes, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}]
+      reverse: (Tú comes congrí|Comes [tú] congrí|Usted come congrí|Come [usted] congrí|Ustedes comen congrí|Comen [ustedes] congrí)
+  translations:
+    en: |-
+      Do you eat (congrí|rice and beans)?
+      Are you eating (congrí|rice and beans)?
+- id: s.u04.6
+  node: es.u04.arroz-con-pollo
+  tags:
+  - {register: formal}
+  forms:
+    es-Latn/standard:
+      text: ¿Usted come frijoles negros, señora?
+      tokens: [{surface: Usted, lexeme: usted}, {surface: come, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
+      reverse: |-
+        (Usted come frijoles negros señora|Come [usted] frijoles negros señora)
+        Señora, ¿usted come frijoles negros?
+  translations:
+    en: |-
+      Do you eat black beans, (ma'am|madam)?
+      Are you eating black beans, (ma'am|madam)?
+      Ma'am, do you eat black beans?
+- id: s.u04.7
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Me gusta el arroz.
+      tokens: [{surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}]
+      reverse: '[A mí] me gusta el arroz'
+  translations:
+    en: |-
+      I like rice.
+      I like the rice.
+- id: s.u04.8
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Me gusta mucho el congrí.
+      tokens: [{surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}]
+      reverse: |-
+        [A mí] me gusta mucho el congrí
+        El congrí me gusta mucho.
+  translations:
+    en: |-
+      I like congrí a lot.
+      I like the congrí a lot.
+      I really like [the] congrí.
+      I like [the] congrí very much.
+- id: s.u04.9
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: ¿Te gusta el pollo?
+      tokens: [{surface: Te, lexeme: te}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}]
+      reverse: (Te gusta el pollo|A ti te gusta el pollo|Le gusta el pollo|A usted le gusta el pollo|Les gusta el pollo|A ustedes les gusta el pollo)
+  translations:
+    en: |-
+      Do you like chicken?
+      Do you like the chicken?
+- id: s.u04.10
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Me gustan los frijoles negros.
+      tokens: [{surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}}]
+      reverse: '[A mí] me gustan los frijoles negros'
+  translations:
+    en: |-
+      I like black beans.
+      I like the black beans.
+- id: s.u04.11
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Me gustan los plátanos maduros.
+      tokens: [{surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: plátanos, lexeme: plátano, feats: {Number: Plur}}, {surface: maduros, lexeme: maduro, feats: {Number: Plur}}]
+      reverse: '[A mí] me gustan los (plátanos maduros|maduros)'
+  translations:
+    en: |-
+      I like (sweet plantains|ripe plantains|maduros).
+      I like the (sweet plantains|ripe plantains|maduros).
+      I like [the] (fried sweet plantains|fried ripe plantains).
+- id: s.u04.12
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: ¿Te gustan los tostones?
+      tokens: [{surface: Te, lexeme: te}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}]
+      reverse: (Te gustan los tostones|A ti te gustan los tostones|Le gustan los tostones|A usted le gustan los tostones|Les gustan los tostones|A ustedes les gustan los tostones)
+  translations:
+    en: |-
+      Do you like (tostones|fried green plantains|fried plantains)?
+      Do you like the (tostones|fried green plantains|fried plantains)?
+- id: s.u04.13
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Sí, me gustan mucho.
+      tokens: [{surface: Sí, lexeme: sí}, {surface: me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}]
+      reverse: Sí [a mí] me gustan mucho
+  translations:
+    en: |-
+      Yes, I like them a lot.
+      Yes, I really like them.
+      Yes, I like them very much.
+- id: s.u04.14
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú quieres?
+      tokens: [{surface: Qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        (Qué tú quieres|Qué quieres [tú]|Qué usted quiere|Qué quiere [usted]|Qué ustedes quieren|Qué quieren [ustedes])
+        ¿Tú qué quieres?
+  translations:
+    en: |-
+      What do you want?
+      What would you like?
+- id: s.u04.15
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Quiero arroz con pollo.
+      tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}]
+      reverse: '[Yo] quiero arroz con pollo'
+  translations:
+    en: |-
+      I want (chicken and rice|rice with chicken|arroz con pollo).
+      (I'd like|I would like) (chicken and rice|rice with chicken|arroz con pollo).
+- id: s.u04.16
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Agua, por favor.
+      tokens: [{surface: Agua, lexeme: agua, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      reverse: (Agua|Un agua|Un vaso de agua) por favor
+  translations:
+    en: (Water|Some water|A water|A glass of water), please.
+- id: s.u04.17
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: ¿Tú quieres un tostón?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: tostón, lexeme: tostón, feats: {Number: Sing}}]
+      reverse: (Tú quieres un tostón|Quieres [tú] un tostón|Usted quiere un tostón|Quiere [usted] un tostón|Ustedes quieren un tostón|Quieren [ustedes] un tostón)
+  translations:
+    en: |-
+      Do you want a (tostón|fried plantain)?
+      Would you like a (tostón|fried plantain)?
+- id: s.u04.18
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: ¡Qué rico!
+      tokens: [{surface: Qué, lexeme: qué}, {surface: rico, lexeme: rico, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (Qué rico|Qué rica|Qué sabroso|Qué sabrosa|Qué bueno|Qué buena|Qué delicioso|Qué delicia)
+  translations:
+    en: |-
+      How delicious!
+      (That's|That is|It's|It is|This is) (delicious|so good|really good)!
+      So good!
+      Delicious!
+      Yum!
+- id: s.u04.19
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Quiero fruta bomba, por favor.
+      tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: fruta, lexeme: fruta-bomba}, {surface: bomba, lexeme: fruta-bomba}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      reverse: '[Yo] quiero (fruta bomba|papaya) por favor'
+  translations:
+    en: |-
+      I want (papaya|some papaya), please.
+      (I'd like|I would like) (papaya|some papaya), please.
+- id: s.u04.20
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: La fruta bomba está rica.
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: fruta, lexeme: fruta-bomba}, {surface: bomba, lexeme: fruta-bomba}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rica, lexeme: rico, feats: {Gender: Fem, Number: Sing}}]
+      reverse: La (fruta bomba|papaya) está (rica|buena|sabrosa|deliciosa)
+  translations:
+    en: |-
+      The papaya is (delicious|good|tasty).
+      The papaya tastes (good|great|delicious).
+- id: s.u04.21
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: Un cafecito, por favor.
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      reverse: (Un cafecito|Un café cubano|Un cafecito cubano) por favor
+  translations:
+    en: |-
+      A (Cuban coffee|cafecito|Cuban espresso), please.
+      One (Cuban coffee|cafecito|Cuban espresso), please.
+- id: s.u04.22
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: Yo tomo mucho café.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: tomo, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      reverse: '[Yo] (tomo|bebo) mucho café'
+  translations:
+    en: |-
+      I drink a lot of coffee.
+      I drink lots of coffee.
+- id: s.u04.23
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: Un café con leche, por favor.
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: leche, lexeme: leche, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      reverse: Un café con leche por favor
+  translations:
+    en: A (café con leche|coffee with milk|milky coffee|latte), please.
+- id: s.u04.24
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: ¿Tú tomas café con leche?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: tomas, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: leche, lexeme: leche, feats: {Number: Sing}}]
+      reverse: |-
+        (Tú (tomas|bebes)|(Tomas|Bebes) [tú]|Usted (toma|bebe)|(Toma|Bebe) [usted]) café con leche
+        (Ustedes (toman|beben)|(Toman|Beben) [ustedes]) café con leche
+  translations:
+    en: |-
+      Do you drink (café con leche|coffee with milk)?
+      Are you drinking (café con leche|coffee with milk)?
+      Do you take your coffee with milk?
+- id: s.u04.25
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: Daniel quiere una colada.
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: colada, lexeme: colada, feats: {Number: Sing}}]
+      reverse: Daniel quiere una colada
+  translations:
+    en: Daniel (wants|would like) a colada.
+- id: s.u04.26
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú quieres tomar?
+      tokens: [{surface: Qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}]
+      reverse: |-
+        Qué (tú quieres|quieres [tú]|usted quiere|quiere [usted]) (tomar|beber)
+        Qué (ustedes quieren|quieren [ustedes]) (tomar|beber)
+        ¿Tú qué quieres tomar?
+  translations:
+    en: |-
+      What do you want to drink?
+      What would you like to drink?
+- id: s.u04.27
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Comemos congrí.
+      tokens: [{surface: Comemos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}]
+      reverse: |-
+        [Nosotros] comemos congrí
+        Nosotras comemos congrí.
+  translations:
+    en: |-
+      We eat (congrí|rice and beans).
+      (We're|We are) eating (congrí|rice and beans).
+- id: s.u04.28
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Abuela y yo tomamos café.
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: tomamos, lexeme: tomar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      reverse: (Abuela|La abuela|Mi abuela) y yo (tomamos|bebemos) café
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny|My grandma|My grandmother) and I drink coffee.
+      (Grandma|Grandmother|Granny|My grandma|My grandmother) and I are drinking coffee.
+- id: s.u04.29
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: ¿Tú tienes hambre?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: hambre, lexeme: hambre, feats: {Number: Sing}}]
+      reverse: (Tú tienes hambre|Tienes [tú] hambre|Usted tiene hambre|Tiene [usted] hambre|Ustedes tienen hambre|Tienen [ustedes] hambre)
+  translations:
+    en: Are you hungry?
+- id: s.u04.30
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Sí, tengo mucha hambre.
+      tokens: [{surface: Sí, lexeme: sí}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: hambre, lexeme: hambre, feats: {Number: Sing}}]
+      reverse: Sí [yo] tengo mucha hambre
+  translations:
+    en: |-
+      Yes, (I'm|I am) (very|really|so) hungry.
+      Yes, (I'm|I am) starving.
+- id: s.u04.31
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Daniel y Yasiel toman cerveza.
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: y, lexeme: y}, {surface: Yasiel, lexeme: yasiel}, {surface: toman, lexeme: tomar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cerveza, lexeme: cerveza, feats: {Number: Sing}}]
+      reverse: Daniel y Yasiel (toman|beben) cerveza
+  translations:
+    en: Daniel and Yasiel (drink|are drinking) beer.
+- id: s.u04.32
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Tenemos hambre. ¿Comemos?
+      tokens: [{surface: Tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hambre, lexeme: hambre, feats: {Number: Sing}}, {surface: Comemos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        [Nosotros] tenemos hambre (comemos|vamos a comer)
+        Nosotras tenemos hambre. ¿Comemos?
+  translations:
+    en: (We're|We are) hungry. (Shall we eat|Should we eat|Let's eat)?
+stories:
+- id: es.story.u04
+  node: es.u04.story
+  title:
+    en: Lunch at Abuela's
+  characters:
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: lili
+    speaker: f
+    name:
+      es-Latn/standard: Lili
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Hola, mi vida! ¿Tú tienes hambre?
+          tokens: [{surface: Hola, lexeme: hola}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: hambre, lexeme: hambre, feats: {Number: Sing}}]
+      translations:
+        en: Hi, darling! Are you hungry?
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: No, abuela, gracias.
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: gracias, lexeme: gracias}]
+      translations:
+        en: No, Grandma, thanks.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Tengo arroz con pollo, congrí y maduros.
+          tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: maduros, lexeme: maduro, feats: {Number: Plur}}]
+      translations:
+        en: I have chicken and rice, congrí and sweet plantains.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Maduros? ¡Me gustan mucho los maduros!
+          tokens: [{surface: Maduros, lexeme: maduro, feats: {Number: Plur}}, {surface: Me, lexeme: me}, {surface: gustan, lexeme: gustar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: maduros, lexeme: maduro, feats: {Number: Plur}}]
+      translations:
+        en: Maduros? I really like maduros!
+  - choose:
+      prompt:
+        en: What is Abuela cooking for lunch?
+      options:
+      - en: Chicken and rice, congrí and sweet plantains
+      - en: Black beans and tostones
+      - en: Nothing; she only has coffee.
+      answer: 0
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Sí, tengo mucha hambre.
+          tokens: [{surface: Sí, lexeme: sí}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: hambre, lexeme: hambre, feats: {Number: Sing}}]
+      translations:
+        en: Yes, I'm very hungry.
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Abuela, yo quiero fruta bomba.
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: yo, lexeme: yo}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: fruta, lexeme: fruta-bomba}, {surface: bomba, lexeme: fruta-bomba}]
+      translations:
+        en: Grandma, I want papaya.
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¿Fruta bomba? Sí, mi vida. ¡Está muy rica!
+          tokens: [{surface: Fruta, lexeme: fruta-bomba}, {surface: bomba, lexeme: fruta-bomba}, {surface: Sí, lexeme: sí}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: rica, lexeme: rico, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: Papaya? Yes, darling. It's really good!
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:agua
+      distractors:
+      - lexeme:abuela
+      - lexeme:mijo
+      forms:
+        es-Latn/standard:
+          text: Daniel, ¿qué tú quieres tomar? ¿Agua? ¿Cerveza?
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: tomar, lexeme: tomar, feats: {VerbForm: Inf}}, {surface: Agua, lexeme: agua, feats: {Number: Sing}}, {surface: Cerveza, lexeme: cerveza, feats: {Number: Sing}}]
+      translations:
+        en: Daniel, what do you want to drink? Water? Beer?
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Agua, por favor.
+          tokens: [{surface: Agua, lexeme: agua, feats: {Number: Sing}}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      translations:
+        en: Water, please.
+  - choose:
+      prompt:
+        en: What does Daniel want to drink?
+      options:
+      - en: Water
+      - en: Beer
+      - en: Coffee with milk
+      answer: 0
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¡Qué rico el congrí, abuela!
+          tokens: [{surface: Qué, lexeme: qué}, {surface: rico, lexeme: rico, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: congrí, lexeme: congrí, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: The congrí is so good, Grandma!
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: lexeme:cafecito
+      distractors:
+      - lexeme:patio
+      - lexeme:primo
+      forms:
+        es-Latn/standard:
+          text: ¿Y un cafecito, mi vida?
+          tokens: [{surface: Y, lexeme: y}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+      translations:
+        en: And a little coffee, darling?
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, por favor. ¡Me gusta mucho el café cubano!
+          tokens: [{surface: Sí, lexeme: sí}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}, {surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: Yes, please. I really like Cuban coffee!
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¡Daniel toma mucho café, abuela!
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: toma, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: Daniel drinks a lot of coffee, Grandma!
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Y yo también!
+          tokens: [{surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: también, lexeme: también}]
+      translations:
+        en: So do I!
+  - choose:
+      prompt:
+        en: Who drinks a lot of coffee?
+      options:
+      - en: Daniel, and Abuela too
+      - en: Only Lili
+      - en: Nobody in the family
+      answer: 0
+scenarios:
+- id: es.ventanita
+  after: es.u04.tengo-hambre
+  title:
+    en: At la ventanita
+  setting:
+    en: The walk-up coffee window (la ventanita) of a Cuban café on Calle Ocho in Little Havana, Miami, at eight in the morning. People on their way to work wait for their coffee; behind the glass there are pastelitos, croquetas and Cuban bread.
+  character:
+    en: 'Mayra, who has worked the ventanita for twenty years: quick, warm and teasing. She calls everyone mi vida or mi amor, speaks fast Miami Cuban Spanish, and switches to English only if you are really lost.'
+  goal:
+    en: Greet Mayra, order a cafecito for yourself and a colada for the office, ask for something to eat, say what you like, and thank her.

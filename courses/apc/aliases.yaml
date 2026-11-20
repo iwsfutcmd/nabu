@@ -1,0 +1,470 @@
+# What each KC id of courses/apc became (schemas/aliases.schema.json).
+# Written by `nabu migrate` from courses/apc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+course: apc
+aliases:
+  sense:marhaba: {part: 'lexeme:marhaba'}
+  sense:shukran: {part: 'lexeme:shukran'}
+  sense:merci: {part: 'lexeme:merci'}
+  sense:ma3-essalame: {part: 'lexeme:ma3-essalame'}
+  sense:yalla: {part: 'lexeme:yalla'}
+  sense:kifak:
+    part: lexeme:kif
+    byItem:
+      apc.story.cafe#1: ['lexeme:kif', 'lexeme:poss-2ms']
+      s.6: ['lexeme:kif', 'lexeme:poss-2ms']
+  sense:mni7: {part: 'lexeme:mni7'}
+  sense:el7amdella: {part: 'lexeme:el7amdella'}
+  sense:ana: {part: 'lexeme:ana'}
+  sense:enta: {part: 'lexeme:enta'}
+  sense:w: {part: 'lexeme:w'}
+  sense:sami: {part: 'lexeme:sami'}
+  sense:shu: {part: 'lexeme:shu'}
+  sense:esmak:
+    part: lexeme:esm
+    byItem:
+      s.14: ['lexeme:esm', 'lexeme:poss-2ms']
+  sense:esmi:
+    part: lexeme:esm
+    byItem:
+      s.15: ['lexeme:esm', 'lexeme:poss-1sg']
+  sense:ahwe: {part: 'lexeme:ahwe'}
+  sense:shay: {part: 'lexeme:shay'}
+  sense:baddi:
+    part: lexeme:badd
+    byItem:
+      apc.story.cafe#5: ['lexeme:badd', 'lexeme:poss-1sg']
+      apc.story.dekkene#2: ['lexeme:badd', 'lexeme:poss-1sg']
+      apc.story.dress#6: ['lexeme:badd', 'lexeme:poss-1sg']
+      apc.story.teta-lunch#9: ['lexeme:badd', 'lexeme:poss-1sg']
+      apc.story.wedding#3: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.19: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.22: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.24: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.food.13: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.food.21: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.food.28: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.food.7: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.health.28: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.like.12: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.like.13: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.like.21: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.party.12: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.party.13: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.road.1: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.shop.1: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.shop.12b: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.shop.24: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.shop.30: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.shop.9: ['lexeme:badd', 'lexeme:poss-1sg']
+      s.trip.20: ['lexeme:badd', 'lexeme:poss-1sg']
+  sense:baddak:
+    part: lexeme:badd
+    byItem:
+      apc.story.cafe#4: ['lexeme:badd', 'lexeme:poss-2ms']
+      apc.story.dekkene#3: ['lexeme:badd', 'lexeme:poss-2ms']
+      apc.story.teta-lunch#7: ['lexeme:badd', 'lexeme:poss-2fs']
+      s.20: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.23: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.food.16: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.food.26: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.food.8: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.food.9: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.like.14: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.like.15: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.like.19: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.plans.6: ['lexeme:badd', 'lexeme:poss-2ms']
+      s.shop.15: ['lexeme:badd', 'lexeme:poss-2fs']
+      s.work.22: ['lexeme:badd', 'lexeme:poss-2ms']
+  sense:la2: {part: 'lexeme:la2'}
+  sense:eh: {part: 'lexeme:eh'}
+  grapheme:7: {part: 'grapheme:7'}
+  grapheme:3: {part: 'grapheme:3'}
+  grapheme:2: {part: 'grapheme:2'}
+  form:fem: {}
+  sense:hayda: {part: 'lexeme:hayda'}
+  sense:meen: {part: 'lexeme:meen'}
+  sense:maya: {part: 'lexeme:maya'}
+  sense:hayde: {part: 'lexeme:hayde'}
+  sense:bayy: {part: 'lexeme:bayy'}
+  form:poss-1sg: {part: 'lexeme:poss-1sg'}
+  sense:emm: {part: 'lexeme:emm'}
+  form:poss-2ms: {part: 'lexeme:poss-2ms'}
+  sense:khayy: {part: 'lexeme:khayy'}
+  sense:ekht: {part: 'lexeme:ekht'}
+  sense:3end: {part: 'lexeme:3end'}
+  sense:ma: {part: 'lexeme:ma'}
+  form:poss-3ms: {part: 'lexeme:poss-3ms'}
+  sense:esm: {part: 'lexeme:esm'}
+  form:poss-3fs: {part: 'lexeme:poss-3fs'}
+  sense:kif: {part: 'lexeme:kif'}
+  form:poss-2fs: {part: 'lexeme:poss-2fs'}
+  sense:teta: {part: 'lexeme:teta'}
+  sense:jeddo: {part: 'lexeme:jeddo'}
+  sense:3ayle: {part: 'lexeme:3ayle'}
+  sense:kbir: {part: 'lexeme:kbir'}
+  sense:zghir: {part: 'lexeme:zghir'}
+  sense:ebn: {part: 'lexeme:ebn'}
+  sense:bent: {part: 'lexeme:bent'}
+  sense:7elo: {part: 'lexeme:7elo'}
+  sense:wlad: {part: 'lexeme:wlad'}
+  form:poss-2pl: {part: 'lexeme:poss-2pl'}
+  form:pl: {}
+  sense:tfaddal: {part: 'lexeme:tfaddal'}
+  sense:akal: {part: 'lexeme:akal'}
+  sense:shereb: {part: 'lexeme:shereb'}
+  sense:sa77tein: {part: 'lexeme:sa77tein'}
+  sense:3a-albak: {part: 'lexeme:3a-albak'}
+  form:imp-2fs: {}
+  sense:khebz: {part: 'lexeme:khebz'}
+  sense:may: {part: 'lexeme:may'}
+  sense:sukkar: {part: 'lexeme:sukkar'}
+  sense:ma3: {part: 'lexeme:ma3'}
+  sense:el: {part: 'lexeme:el'}
+  sense:akl: {part: 'lexeme:akl'}
+  sense:man2oushe: {part: 'lexeme:man2oushe'}
+  sense:za3tar: {part: 'lexeme:za3tar'}
+  sense:jebne: {part: 'lexeme:jebne'}
+  sense:laban: {part: 'lexeme:laban'}
+  sense:bala: {part: 'lexeme:bala'}
+  sense:tayyeb: {part: 'lexeme:tayyeb'}
+  sense:ktir: {part: 'lexeme:ktir'}
+  sense:shway: {part: 'lexeme:shway'}
+  sense:bas: {part: 'lexeme:bas'}
+  sense:jou3an: {part: 'lexeme:jou3an'}
+  sense:3atshan: {part: 'lexeme:3atshan'}
+  sense:kamen: {part: 'lexeme:kamen'}
+  sense:fenjen: {part: 'lexeme:fenjen'}
+  sense:7ummus: {part: 'lexeme:7ummus'}
+  sense:tabbouleh: {part: 'lexeme:tabbouleh'}
+  sense:sa7n: {part: 'lexeme:sa7n'}
+  form:imp-2pl: {}
+  sense:wen: {part: 'lexeme:wen'}
+  sense:bet: {part: 'lexeme:bet'}
+  sense:hon: {part: 'lexeme:hon'}
+  sense:honik: {part: 'lexeme:honik'}
+  sense:beirut: {part: 'lexeme:beirut'}
+  sense:b: {part: 'lexeme:b'}
+  sense:lebnen: {part: 'lexeme:lebnen'}
+  sense:men: {part: 'lexeme:men'}
+  sense:fi: {part: 'lexeme:fi'}
+  sense:ghorfe: {part: 'lexeme:ghorfe'}
+  sense:matbakh: {part: 'lexeme:matbakh'}
+  sense:salon: {part: 'lexeme:salon'}
+  sense:7ammem: {part: 'lexeme:7ammem'}
+  sense:shoghl: {part: 'lexeme:shoghl'}
+  sense:madrase: {part: 'lexeme:madrase'}
+  sense:dekkene: {part: 'lexeme:dekkene'}
+  sense:shere3: {part: 'lexeme:shere3'}
+  sense:2arib: {part: 'lexeme:2arib'}
+  sense:b3id: {part: 'lexeme:b3id'}
+  sense:mish: {part: 'lexeme:mish'}
+  form:poss-1pl: {part: 'lexeme:poss-1pl'}
+  sense:fo2: {part: 'lexeme:fo2'}
+  sense:ta7t: {part: 'lexeme:ta7t'}
+  sense:7add: {part: 'lexeme:7add'}
+  sense:3a: {part: 'lexeme:3a'}
+  sense:yamin: {part: 'lexeme:yamin'}
+  sense:shmel: {part: 'lexeme:shmel'}
+  sense:dighri: {part: 'lexeme:dighri'}
+  sense:wa7ad: {part: 'lexeme:wa7ad'}
+  sense:tnen: {part: 'lexeme:tnen'}
+  sense:tlete: {part: 'lexeme:tlete'}
+  sense:arb3a: {part: 'lexeme:arb3a'}
+  sense:khamse: {part: 'lexeme:khamse'}
+  sense:sette: {part: 'lexeme:sette'}
+  sense:sab3a: {part: 'lexeme:sab3a'}
+  sense:tmene: {part: 'lexeme:tmene'}
+  sense:tes3a: {part: 'lexeme:tes3a'}
+  sense:3ashra: {part: 'lexeme:3ashra'}
+  sense:dollar: {part: 'lexeme:dollar'}
+  sense:lira: {part: 'lexeme:lira'}
+  sense:2addesh: {part: 'lexeme:2addesh'}
+  sense:masari: {part: 'lexeme:masari'}
+  sense:3eshrin: {part: 'lexeme:3eshrin'}
+  sense:miyye: {part: 'lexeme:miyye'}
+  sense:alf: {part: 'lexeme:alf'}
+  sense:khamsin: {part: 'lexeme:khamsin'}
+  sense:ghali: {part: 'lexeme:ghali'}
+  sense:rkhis: {part: 'lexeme:rkhis'}
+  sense:3mol-ma3rouf: {part: 'lexeme:3mol-ma3rouf'}
+  sense:7sab: {part: 'lexeme:7sab'}
+  sense:law-sama7t: {part: 'lexeme:law-sama7t'}
+  sense:3omr: {part: 'lexeme:3omr'}
+  sense:sene: {part: 'lexeme:sene'}
+  sense:ra2m: {part: 'lexeme:ra2m'}
+  form:impf-1sg: {}
+  sense:sob7: {part: 'lexeme:sob7'}
+  sense:fi2: {part: 'lexeme:fi2'}
+  sense:bakkir: {part: 'lexeme:bakkir'}
+  sense:ra7: {part: 'lexeme:ra7'}
+  sense:3emel: {part: 'lexeme:3emel'}
+  form:impf-2ms: {}
+  sense:eshteghel: {part: 'lexeme:eshteghel'}
+  sense:2ara: {part: 'lexeme:2ara'}
+  form:impf-3ms: {}
+  form:impf-3fs: {}
+  sense:nem: {part: 'lexeme:nem'}
+  sense:masa: {part: 'lexeme:masa'}
+  form:impf-1pl: {}
+  sense:yom: {part: 'lexeme:yom'}
+  sense:kell: {part: 'lexeme:kell'}
+  sense:dayman: {part: 'lexeme:dayman'}
+  sense:ba3dein: {part: 'lexeme:ba3dein'}
+  sense:hala2: {part: 'lexeme:hala2'}
+  sense:7aka: {part: 'lexeme:7aka'}
+  sense:3arabe: {part: 'lexeme:3arabe'}
+  sense:englize: {part: 'lexeme:englize'}
+  form:impf-2fs: {}
+  sense:enti: {part: 'lexeme:enti'}
+  sense:m2akhkhar: {part: 'lexeme:m2akhkhar'}
+  form:impf-2pl: {}
+  sense:ento: {part: 'lexeme:ento'}
+  sense:7abb: {part: 'lexeme:7abb'}
+  sense:ba7r: {part: 'lexeme:ba7r'}
+  sense:jabal: {part: 'lexeme:jabal'}
+  sense:aw: {part: 'lexeme:aw'}
+  sense:aktar: {part: 'lexeme:aktar'}
+  sense:abadan: {part: 'lexeme:abadan'}
+  sense:musi2a: {part: 'lexeme:musi2a'}
+  sense:sama3: {part: 'lexeme:sama3'}
+  form:subj-1sg: {}
+  sense:ktab: {part: 'lexeme:ktab'}
+  sense:shi: {part: 'lexeme:shi'}
+  form:subj-2ms: {}
+  sense:badd: {part: 'lexeme:badd'}
+  form:subj-1pl: {}
+  sense:film: {part: 'lexeme:film'}
+  sense:shef: {part: 'lexeme:shef'}
+  sense:football: {part: 'lexeme:football'}
+  sense:le3eb: {part: 'lexeme:le3eb'}
+  sense:3am: {part: 'lexeme:3am'}
+  sense:ghanne: {part: 'lexeme:ghanne'}
+  sense:ra2as: {part: 'lexeme:ra2as'}
+  sense:a7la: {part: 'lexeme:a7la'}
+  sense:bukra: {part: 'lexeme:bukra'}
+  sense:emta: {part: 'lexeme:emta'}
+  sense:sawa: {part: 'lexeme:sawa'}
+  sense:fadi: {part: 'lexeme:fadi'}
+  sense:mashghoul: {part: 'lexeme:mashghoul'}
+  sense:nhar: {part: 'lexeme:nhar'}
+  sense:sabt: {part: 'lexeme:sabt'}
+  sense:a7ad: {part: 'lexeme:a7ad'}
+  sense:jem3a: {part: 'lexeme:jem3a'}
+  sense:hal: {part: 'lexeme:hal'}
+  sense:khamis: {part: 'lexeme:khamis'}
+  sense:sa3a: {part: 'lexeme:sa3a'}
+  sense:nos: {part: 'lexeme:nos'}
+  sense:rebe3: {part: 'lexeme:rebe3'}
+  sense:da2i2a: {part: 'lexeme:da2i2a'}
+  sense:stanna: {part: 'lexeme:stanna'}
+  sense:2abel: {part: 'lexeme:2abel'}
+  sense:dohr: {part: 'lexeme:dohr'}
+  sense:ba3d: {part: 'lexeme:ba3d'}
+  sense:lel: {part: 'lexeme:lel'}
+  sense:3otle: {part: 'lexeme:3otle'}
+  sense:kam: {part: 'lexeme:kam'}
+  sense:shahr: {part: 'lexeme:shahr'}
+  form:past-1sg: {}
+  sense:mbere7: {part: 'lexeme:mbere7'}
+  sense:mat3am: {part: 'lexeme:mat3am'}
+  sense:sou2: {part: 'lexeme:sou2'}
+  form:past-2ms: {}
+  sense:eshtara: {part: 'lexeme:eshtara'}
+  sense:zar: {part: 'lexeme:zar'}
+  sense:sa7eb: {part: 'lexeme:sa7eb'}
+  form:past-3ms: {}
+  form:past-3fs: {}
+  sense:rje3: {part: 'lexeme:rje3'}
+  sense:wesel: {part: 'lexeme:wesel'}
+  form:past-1pl: {}
+  sense:terwi2a: {part: 'lexeme:terwi2a'}
+  sense:ghada: {part: 'lexeme:ghada'}
+  sense:3asha: {part: 'lexeme:3asha'}
+  sense:madi: {part: 'lexeme:madi'}
+  sense:kan: {part: 'lexeme:kan'}
+  sense:7afle: {part: 'lexeme:7afle'}
+  sense:ta3ban: {part: 'lexeme:ta3ban'}
+  sense:mabsout: {part: 'lexeme:mabsout'}
+  sense:sa77: {part: 'lexeme:sa77'}
+  form:past-2fs: {}
+  sense:safar: {part: 'lexeme:safar'}
+  form:past-2pl: {}
+  sense:raye7: {part: 'lexeme:ra7'}
+  sense:ta: {part: 'lexeme:ta'}
+  sense:lele: {part: 'lexeme:lele'}
+  sense:tele3: {part: 'lexeme:tele3'}
+  sense:ta2s: {part: 'lexeme:ta2s'}
+  sense:shob: {part: 'lexeme:shob'}
+  sense:bard: {part: 'lexeme:bard'}
+  sense:shams: {part: 'lexeme:shams'}
+  sense:matar: {part: 'lexeme:matar'}
+  sense:talj: {part: 'lexeme:talj'}
+  sense:nehna: {part: 'lexeme:nehna'}
+  sense:shabeb: {part: 'lexeme:shabeb'}
+  sense:sahra: {part: 'lexeme:sahra'}
+  sense:7abibi: {part: 'lexeme:7abibi'}
+  sense:inshalla: {part: 'lexeme:inshalla'}
+  sense:mumken: {part: 'lexeme:mumken'}
+  sense:3eref: {part: 'lexeme:3eref'}
+  sense:akid: {part: 'lexeme:akid'}
+  sense:ya3ni: {part: 'lexeme:ya3ni'}
+  sense:khalas: {part: 'lexeme:khalas'}
+  sense:ma3lesh: {part: 'lexeme:ma3lesh'}
+  sense:walla: {part: 'lexeme:walla'}
+  sense:ya-reit: {part: 'lexeme:ya-reit'}
+  sense:mazbout: {part: 'lexeme:mazbout'}
+  sense:ahla-w-sahla: {part: 'lexeme:ahla-w-sahla'}
+  sense:huwwe: {part: 'lexeme:huwwe'}
+  sense:hiyye: {part: 'lexeme:hiyye'}
+  sense:jar: {part: 'lexeme:jar'}
+  sense:zalame: {part: 'lexeme:zalame'}
+  sense:mara: {part: 'lexeme:mara'}
+  sense:seken: {part: 'lexeme:seken'}
+  sense:bineye: {part: 'lexeme:bineye'}
+  sense:lebnene: {part: 'lexeme:lebnene'}
+  sense:amerkene: {part: 'lexeme:amerkene'}
+  sense:henne: {part: 'lexeme:henne'}
+  form:impf-3pl: {}
+  sense:rfi2: {part: 'lexeme:rfi2'}
+  form:poss-3pl: {part: 'lexeme:poss-3pl'}
+  sense:ahl: {part: 'lexeme:ahl'}
+  sense:jiren: {part: 'lexeme:jiren'}
+  form:past-3pl: {}
+  sense:ra7.fut: {part: 'lexeme:ra7.fut'}
+  sense:nezel: {part: 'lexeme:nezel'}
+  sense:day3a: {part: 'lexeme:day3a'}
+  form:subj-3ms: {}
+  form:subj-3fs: {}
+  sense:siyyara: {part: 'lexeme:siyyara'}
+  sense:jeye: {part: 'lexeme:jeye'}
+  sense:ba3d-bukra: {part: 'lexeme:ba3d-bukra'}
+  form:dual: {part: 'lexeme:dual'}
+  sense:sayfiyye: {part: 'lexeme:sayfiyye'}
+  sense:shanta: {part: 'lexeme:shanta'}
+  sense:akhad: {part: 'lexeme:akhad'}
+  form:subj-2fs: {}
+  form:subj-2pl: {}
+  form:subj-3pl: {}
+  sense:mrid: {part: 'lexeme:mrid'}
+  sense:shu-bak: {part: 'lexeme:shu-bak'}
+  sense:ras: {part: 'lexeme:ras'}
+  sense:wja3: {part: 'lexeme:wja3'}
+  sense:batn: {part: 'lexeme:batn'}
+  sense:fi.can: {part: 'lexeme:fi.can'}
+  sense:a7san: {part: 'lexeme:a7san'}
+  sense:lezem: {part: 'lexeme:lezem'}
+  sense:rte7: {part: 'lexeme:rte7'}
+  sense:7akim: {part: 'lexeme:7akim'}
+  sense:dawa: {part: 'lexeme:dawa'}
+  sense:salemtak: {part: 'lexeme:salemtak'}
+  sense:alo: {part: 'lexeme:alo'}
+  sense:telefon: {part: 'lexeme:telefon'}
+  sense:de22: {part: 'lexeme:de22'}
+  form:la-1sg: {part: 'lexeme:la-1sg'}
+  sense:7ada: {part: 'lexeme:7ada'}
+  form:obj-1sg: {part: 'lexeme:obj-1sg'}
+  sense:fehem: {part: 'lexeme:fehem'}
+  form:obj-2ms: {part: 'lexeme:obj-2ms'}
+  form:obj-2fs: {part: 'lexeme:obj-2fs'}
+  form:obj-3ms: {part: 'lexeme:obj-3ms'}
+  form:obj-3fs: {part: 'lexeme:obj-3fs'}
+  sense:2al: {part: 'lexeme:2al'}
+  sense:wa2t: {part: 'lexeme:wa2t'}
+  sense:resele: {part: 'lexeme:resele'}
+  sense:b3at: {part: 'lexeme:b3at'}
+  sense:tyeb: {part: 'lexeme:tyeb'}
+  sense:2amis: {part: 'lexeme:2amis'}
+  sense:bantalon: {part: 'lexeme:bantalon'}
+  sense:fostan: {part: 'lexeme:fostan'}
+  sense:sobbat: {part: 'lexeme:sobbat'}
+  sense:lon: {part: 'lexeme:lon'}
+  sense:abyad: {part: 'lexeme:abyad'}
+  sense:aswad: {part: 'lexeme:aswad'}
+  sense:a7mar: {part: 'lexeme:a7mar'}
+  sense:azra2: {part: 'lexeme:azra2'}
+  sense:akhdar: {part: 'lexeme:akhdar'}
+  sense:arkhas: {part: 'lexeme:arkhas'}
+  sense:men.than: {part: 'lexeme:men.than'}
+  sense:aghla: {part: 'lexeme:aghla'}
+  sense:akbar: {part: 'lexeme:akbar'}
+  sense:azghar: {part: 'lexeme:azghar'}
+  sense:7a22: {part: 'lexeme:7a22'}
+  sense:jarrab: {part: 'lexeme:jarrab'}
+  sense:2yes: {part: 'lexeme:2yes'}
+  sense:lebes: {part: 'lexeme:lebes'}
+  sense:7da3sh: {part: 'lexeme:7da3sh'}
+  sense:tna3sh: {part: 'lexeme:tna3sh'}
+  sense:tleta3sh: {part: 'lexeme:tleta3sh'}
+  sense:arba3ta3sh: {part: 'lexeme:arba3ta3sh'}
+  sense:khamsta3sh: {part: 'lexeme:khamsta3sh'}
+  sense:setta3sh: {part: 'lexeme:setta3sh'}
+  sense:saba3ta3sh: {part: 'lexeme:saba3ta3sh'}
+  sense:tmenta3sh: {part: 'lexeme:tmenta3sh'}
+  sense:tsa3ta3sh: {part: 'lexeme:tsa3ta3sh'}
+  sense:tleten: {part: 'lexeme:tleten'}
+  sense:kanoun-tene: {part: 'lexeme:kanoun-tene'}
+  sense:shbat: {part: 'lexeme:shbat'}
+  sense:adar: {part: 'lexeme:adar'}
+  sense:nisan: {part: 'lexeme:nisan'}
+  sense:ayyar: {part: 'lexeme:ayyar'}
+  sense:7zeiran: {part: 'lexeme:7zeiran'}
+  sense:tammouz: {part: 'lexeme:tammouz'}
+  sense:ab: {part: 'lexeme:ab'}
+  sense:aylul: {part: 'lexeme:aylul'}
+  sense:tishrin-awwal: {part: 'lexeme:tishrin-awwal'}
+  sense:tishrin-tene: {part: 'lexeme:tishrin-tene'}
+  sense:kanoun-awwal: {part: 'lexeme:kanoun-awwal'}
+  sense:3id-milad: {part: 'lexeme:3id-milad'}
+  sense:kell-sene: {part: 'lexeme:kell-sene'}
+  sense:marra: {part: 'lexeme:marra'}
+  sense:awwal: {part: 'lexeme:awwal'}
+  sense:tene: {part: 'lexeme:tene'}
+  construction:used-to: {part: 'rule:used-to'}
+  sense:lamma: {part: 'lexeme:lamma'}
+  sense:3ash: {part: 'lexeme:3ash'}
+  construction:was-doing: {part: 'rule:was-doing'}
+  sense:m3allem: {part: 'lexeme:m3allem'}
+  sense:ba3d.still: {part: 'lexeme:ba3d.still'}
+  sense:la7al: {part: 'lexeme:la7al'}
+  sense:ma-3ad: {part: 'lexeme:ma-3ad'}
+  sense:servees: {part: 'lexeme:servees'}
+  sense:taxi: {part: 'lexeme:taxi'}
+  sense:bus: {part: 'lexeme:bus'}
+  sense:tari2: {part: 'lexeme:tari2'}
+  sense:3aj2a: {part: 'lexeme:3aj2a'}
+  sense:2a3ed: {part: 'lexeme:2a3ed'}
+  sense:wa2ef: {part: 'lexeme:wa2ef'}
+  sense:laff: {part: 'lexeme:laff'}
+  sense:ishara: {part: 'lexeme:ishara'}
+  sense:wa22ef: {part: 'lexeme:wa22ef'}
+  sense:jem3a.uni: {part: 'lexeme:jem3a.uni'}
+  sense:tilmiz: {part: 'lexeme:tilmiz'}
+  sense:daras: {part: 'lexeme:daras'}
+  sense:dars: {part: 'lexeme:dars'}
+  sense:emte7an: {part: 'lexeme:emte7an'}
+  sense:mhandes: {part: 'lexeme:mhandes'}
+  sense:sherke: {part: 'lexeme:sherke'}
+  sense:mudir: {part: 'lexeme:mudir'}
+  sense:sar: {part: 'lexeme:sar'}
+  form:la-2ms: {part: 'lexeme:la-2ms'}
+  sense:iza: {part: 'lexeme:iza'}
+  sense:la2anno: {part: 'lexeme:la2anno'}
+  sense:enno: {part: 'lexeme:enno'}
+  sense:fakkar: {part: 'lexeme:fakkar'}
+  sense:mabrouk: {part: 'lexeme:mabrouk'}
+  sense:allah-ybarek: {part: 'lexeme:allah-ybarek'}
+  sense:3irs: {part: 'lexeme:3irs'}
+  sense:hdiyye: {part: 'lexeme:hdiyye'}
+  sense:3azam: {part: 'lexeme:3azam'}
+  form:obj-1pl: {part: 'lexeme:obj-1pl'}
+  sense:3ajab: {part: 'lexeme:3ajab'}
+  form:obj-2pl: {part: 'lexeme:obj-2pl'}
+  sense:za3len: {part: 'lexeme:za3len'}
+  sense:lesh: {part: 'lexeme:lesh'}
+  sense:m3asseb: {part: 'lexeme:m3asseb'}
+  sense:khayef: {part: 'lexeme:khayef'}
+  sense:ya-7aram: {part: 'lexeme:ya-7aram'}
+  construction:shu-excl: {part: 'rule:shu-excl'}
+  sense:lek: {part: 'lexeme:lek'}

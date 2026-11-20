@@ -1,0 +1,551 @@
+# Unit intro of courses/apc in the new shape.
+# Written by `nabu migrate` from courses/apc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: intro
+title:
+  en: Hi! Coffee or tea?
+cefr: A1
+graphemes:
+- {id: 'grapheme:7', gloss: {en: Arabizi 7 for ح}, notes: {en: 'mni7 منيح, mar7aba مرحبا'}}
+- {id: 'grapheme:3', gloss: {en: Arabizi 3 for ع}, notes: {en: ma3 مع}}
+- {id: 'grapheme:2', gloss: {en: 'Arabizi 2 for the glottal stop (ء, or ق in Beirut speech)'}, notes: {en: 'la2 لأ, 2ahwe قهوة'}}
+nodes:
+- {id: apc.greetings, kind: lesson, introduces: ['lexeme:marhaba', 'lexeme:shukran', 'lexeme:merci', 'lexeme:ma3-essalame', 'lexeme:yalla']}
+- {id: apc.how-are-you, kind: lesson, introduces: ['lexeme:kif', 'lexeme:poss-2ms', 'lexeme:mni7', 'lexeme:el7amdella', 'lexeme:ana', 'lexeme:enta', 'lexeme:w']}
+- {id: apc.names, kind: lesson, introduces: ['lexeme:sami', 'lexeme:shu', 'lexeme:esm', 'lexeme:poss-1sg']}
+- {id: apc.cafe, kind: lesson, introduces: ['lexeme:ahwe', 'lexeme:shay', 'lexeme:badd', 'lexeme:la2', 'lexeme:eh', 'feature:Gender=Fem']}
+- {id: apc.story, kind: story}
+- {id: apc.arabizi, kind: script, introduces: ['grapheme:7', 'grapheme:3', 'grapheme:2'], convert: {from: apc-Arab/standard, to: apc-Latn/arabizi, sentences: [s.1, s.4, s.7, s.8, s.21]}}
+sentences:
+- id: s.1
+  node: apc.greetings
+  forms:
+    apc-Arab/standard:
+      text: مرحبا!
+      tokens: [{surface: مرحبا, lexeme: marhaba}]
+      reverse: مرحبا
+    apc-Latn/arabizi:
+      text: mar7aba!
+      tokens: [{surface: mar7aba, lexeme: marhaba}]
+      reverse: (mar7aba|marhaba|mar7ba)
+  translations:
+    en: |-
+      Hello!
+      Hi!
+- id: s.2
+  node: apc.greetings
+  forms:
+    apc-Arab/standard:
+      text: شكرا!
+      tokens: [{surface: شكرا, lexeme: shukran}]
+      reverse: |-
+        شكرا
+        ميرسي
+    apc-Latn/arabizi:
+      text: shukran!
+      tokens: [{surface: shukran, lexeme: shukran}]
+      reverse: |-
+        (shukran|shokran)
+        merci
+  translations:
+    en: |-
+      Thank you!
+      Thanks!
+- id: s.3
+  node: apc.greetings
+  forms:
+    apc-Arab/standard:
+      text: ميرسي!
+      tokens: [{surface: ميرسي, lexeme: merci}]
+      reverse: |-
+        (ميرسي|مرسي)
+        شكرا
+    apc-Latn/arabizi:
+      text: merci!
+      tokens: [{surface: merci, lexeme: merci}]
+      reverse: |-
+        (merci|mersi)
+        shukran
+  translations:
+    en: |-
+      Thanks!
+      Thank you!
+- id: s.4
+  node: apc.greetings
+  forms:
+    apc-Arab/standard:
+      text: مع السلامة!
+      tokens: [{surface: مع, lexeme: ma3-essalame}, {surface: السلامة, lexeme: ma3-essalame}]
+      reverse: مع السلامة
+    apc-Latn/arabizi:
+      text: ma3 essalame!
+      tokens: [{surface: ma3, lexeme: ma3-essalame}, {surface: essalame, lexeme: ma3-essalame}]
+      reverse: (ma3|ma3a) (essalame|el salame|salame|essaleme|el saleme|saleme)
+  translations:
+    en: |-
+      Goodbye!
+      Bye!
+- id: s.5
+  node: apc.greetings
+  forms:
+    apc-Arab/standard:
+      text: يلّا، مع السلامة!
+      tokens: [{surface: يلّا, lexeme: yalla}, {surface: مع, lexeme: ma3-essalame}, {surface: السلامة, lexeme: ma3-essalame}]
+      reverse: (يلّا|يلا) مع السلامة
+    apc-Latn/arabizi:
+      text: yalla, ma3 essalame!
+      tokens: [{surface: yalla, lexeme: yalla}, {surface: ma3, lexeme: ma3-essalame}, {surface: essalame, lexeme: ma3-essalame}]
+      reverse: (yalla|yala|yallah) (ma3|ma3a) (essalame|el salame|salame|essaleme|el saleme|saleme)
+  translations:
+    en: |-
+      OK, (bye|goodbye)!
+      (Okay|Right|Alright|All right|Well), (bye|goodbye)!
+      (OK|Okay|Right|Well) then, (bye|goodbye)!
+- id: s.6
+  node: apc.how-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: كيفك؟
+      tokens: [{surface: كيفك, lexemes: [{lexeme: kif, surface: كيف, base: true}, {lexeme: poss-2ms, surface: ك}], vocalized: كيفَك}]
+      reverse: |-
+        كيفك
+        كيف حالك
+    apc-Latn/arabizi:
+      text: kifak?
+      tokens: [{surface: kifak, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2ms, surface: ak}]}]
+      reverse: |-
+        (kifak|keefak)
+        kif 7alak
+  translations:
+    en: |-
+      How are you?
+      How are you doing?
+      How's it going?
+- id: s.7
+  node: apc.how-are-you
+  forms:
+    apc-Arab/standard:
+      text: منيح!
+      tokens: [{surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (منيح|منيحة)
+    apc-Latn/arabizi:
+      text: mni7!
+      tokens: [{surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: (mni7|mnih|mnee7|mni7a|mnee7a)
+  translations:
+    en: |-
+      Fine!
+      Good!
+      Well!
+      I('m| am) (fine|good|well)!
+- id: s.8
+  node: apc.how-are-you
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: منيح، الحمدلله.
+      tokens: [{surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: الحمدلله, lexeme: el7amdella}]
+      reverse: |-
+        منيح (الحمدلله|الحمد لله)
+        الحمدلله منيح
+    apc-Latn/arabizi:
+      text: mni7, el7amdella.
+      tokens: [{surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: el7amdella, lexeme: el7amdella}]
+      reverse: |-
+        (mni7|mnih|mnee7) (el7amdella|l7amdella|el7amdellah|7amdella|el7amdulillah|al7amdulillah|alhamdulillah|elhamdella)
+        el7amdella mni7
+  translations:
+    en: |-
+      (Fine|Good|Well), thank (God|goodness).
+      (Fine|Good|Well), praise (God|be to God).
+      I('m| am) (fine|good|well), thank (God|goodness).
+- id: s.9
+  node: apc.how-are-you
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: أنا منيح.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: '[أنا] منيح'
+    apc-Latn/arabizi:
+      text: ana mni7.
+      tokens: [{surface: ana, lexeme: ana}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: '[ana] (mni7|mnih|mnee7)'
+  translations:
+    en: |-
+      I('m| am) (fine|good|well).
+      I('m| am) doing (fine|good|well).
+- id: s.10
+  node: apc.how-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: إنت منيح؟
+      tokens: [{surface: إنت, lexeme: enta}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: '[إنت] منيح'
+    apc-Latn/arabizi:
+      text: enta mni7?
+      tokens: [{surface: enta, lexeme: enta}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: '[(enta|inta)] (mni7|mnih|mnee7)'
+  translations:
+    en: Are you (fine|good|well|OK|okay|all right|alright)?
+- id: s.11
+  node: apc.how-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: وإنت؟
+      tokens: [{surface: وإنت, lexemes: [{lexeme: w, surface: و}, {lexeme: enta, surface: إنت}]}]
+      reverse: (وإنت|و إنت)
+    apc-Latn/arabizi:
+      text: w enta?
+      tokens: [{surface: w, lexeme: w}, {surface: enta, lexeme: enta}]
+      reverse: |-
+        (w|wa) (enta|inta)
+        (wenta|winta)
+  translations:
+    en: |-
+      And you?
+      What about you?
+      How about you?
+      And yourself?
+- id: s.12
+  node: apc.names
+  forms:
+    apc-Arab/standard:
+      text: أنا سامي.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      reverse: '[أنا] سامي'
+    apc-Latn/arabizi:
+      text: ana Sami.
+      tokens: [{surface: ana, lexeme: ana}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      reverse: '[ana] Sami'
+  translations:
+    en: I('m| am) Sami.
+- id: s.13
+  node: apc.names
+  forms:
+    apc-Arab/standard:
+      text: شو؟
+      tokens: [{surface: شو, lexeme: shu}]
+      reverse: شو
+    apc-Latn/arabizi:
+      text: shu?
+      tokens: [{surface: shu, lexeme: shu}]
+      reverse: (shu|sho)
+  translations:
+    en: What?
+- id: s.14
+  node: apc.names
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو اسمك؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: اسمك, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
+      reverse: |-
+        شو اسمك
+        إنت شو اسمك
+    apc-Latn/arabizi:
+      text: shu esmak?
+      tokens: [{surface: shu, lexeme: shu}, {surface: esmak, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ak}]}]
+      reverse: |-
+        (shu|sho) (esmak|ismak)
+        enta shu esmak
+  translations:
+    en: What('s| is) your name?
+- id: s.15
+  node: apc.names
+  forms:
+    apc-Arab/standard:
+      text: اسمي سامي.
+      tokens: [{surface: اسمي, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      reverse: |-
+        اسمي سامي
+        أنا اسمي سامي
+    apc-Latn/arabizi:
+      text: esmi Sami.
+      tokens: [{surface: esmi, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      reverse: |-
+        (esmi|ismi|esme|isme) Sami
+        ana esmi Sami
+  translations:
+    en: |-
+      My name('s| is) Sami.
+      I('m| am) called Sami.
+- id: s.16
+  node: apc.names
+  forms:
+    apc-Arab/standard:
+      text: مرحبا سامي!
+      tokens: [{surface: مرحبا, lexeme: marhaba}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      reverse: مرحبا سامي
+    apc-Latn/arabizi:
+      text: mar7aba Sami!
+      tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      reverse: (mar7aba|marhaba|mar7ba) Sami
+  translations:
+    en: (Hello|Hi), Sami!
+- id: s.17
+  node: apc.cafe
+  forms:
+    apc-Arab/standard:
+      text: قهوة؟
+      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: قهوة
+    apc-Latn/arabizi:
+      text: ahwe?
+      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: (ahwe|2ahwe|ahwi|2ahwi)
+  translations:
+    en: |-
+      Coffee?
+      (A|Some) coffee?
+- id: s.18
+  node: apc.cafe
+  forms:
+    apc-Arab/standard:
+      text: شاي؟
+      tokens: [{surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+      reverse: شاي
+    apc-Latn/arabizi:
+      text: shay?
+      tokens: [{surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      reverse: (shay|shai)
+  translations:
+    en: |-
+      Tea?
+      (A|Some) tea?
+- id: s.19
+  node: apc.cafe
+  forms:
+    apc-Arab/standard:
+      text: بدّي قهوة.
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: (بدّي|أنا بدّي) قهوة
+    apc-Latn/arabizi:
+      text: baddi ahwe.
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (ahwe|2ahwe|ahwi|2ahwi)
+  translations:
+    en: |-
+      I want (coffee|some coffee|a coffee).
+      I('d| would) like (coffee|some coffee|a coffee).
+- id: s.20
+  node: apc.cafe
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: بدّك شاي؟
+      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+      reverse: (بدّك|إنت بدّك) شاي
+    apc-Latn/arabizi:
+      text: baddak shay?
+      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (shay|shai)
+  translations:
+    en: |-
+      Do you want (tea|some tea|a tea)?
+      Would you like (tea|some tea|a tea)?
+      Want (tea|some tea|a tea)?
+- id: s.21
+  node: apc.cafe
+  forms:
+    apc-Arab/standard:
+      text: لأ، ميرسي.
+      tokens: [{surface: لأ, lexeme: la2}, {surface: ميرسي, lexeme: merci}]
+      reverse: |-
+        لأ (ميرسي|مرسي)
+        لأ شكرا
+    apc-Latn/arabizi:
+      text: la2, merci.
+      tokens: [{surface: la2, lexeme: la2}, {surface: merci, lexeme: merci}]
+      reverse: |-
+        (la2|la) (merci|mersi)
+        la2 shukran
+  translations:
+    en: No, (thanks|thank you).
+- id: s.22
+  node: apc.cafe
+  forms:
+    apc-Arab/standard:
+      text: إيه، بدّي شاي.
+      tokens: [{surface: إيه, lexeme: eh}, {surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+      reverse: |-
+        إيه (بدّي|أنا بدّي) شاي
+        إي بدّي شاي
+    apc-Latn/arabizi:
+      text: eh, baddi shay.
+      tokens: [{surface: eh, lexeme: eh}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      reverse: (eh|ee|e) ((baddi|badde|badi)|ana (baddi|badde|badi)) (shay|shai)
+  translations:
+    en: |-
+      Yes, I want (tea|some tea|a tea).
+      Yes, I('d| would) like (tea|some tea|a tea).
+- id: s.23
+  node: apc.cafe
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو بدّك؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}]
+      reverse: |-
+        شو بدّك
+        إنت شو بدّك
+    apc-Latn/arabizi:
+      text: shu baddak?
+      tokens: [{surface: shu, lexeme: shu}, {surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}]
+      reverse: |-
+        (shu|sho) (baddak|badak)
+        (enta|inta) (shu|sho) (baddak|badak)
+  translations:
+    en: |-
+      What do you want?
+      What would you like?
+      What will you have?
+- id: s.24
+  node: apc.cafe
+  forms:
+    apc-Arab/standard:
+      text: بدّي شاي، شكرا.
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}, {surface: شكرا, lexeme: shukran}]
+      reverse: (بدّي|أنا بدّي) شاي (شكرا|ميرسي)
+    apc-Latn/arabizi:
+      text: baddi shay, shukran.
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexeme: shay, feats: {Number: Sing}}, {surface: shukran, lexeme: shukran}]
+      reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (shay|shai) (shukran|shokran|merci)
+  translations:
+    en: |-
+      I want (tea|some tea|a tea), (thanks|thank you).
+      I('d| would) like (tea|some tea|a tea), (thanks|thank you).
+stories:
+- id: apc.story.cafe
+  node: apc.story
+  title:
+    en: Coffee or tea?
+  provenance:
+    author: llm:claude@ec206a97f12b
+    status: draft
+  characters:
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مَرْحَبا!
+          tokens: [{surface: مَرْحَبا, lexeme: marhaba}]
+        apc-Latn/arabizi:
+          text: mar7aba!
+          tokens: [{surface: mar7aba, lexeme: marhaba}]
+      translations:
+        en: Hi!
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: مَرْحَبا سامي! كِيفَك؟
+          tokens: [{surface: مَرْحَبا, lexeme: marhaba}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: كِيفَك, lexemes: [{lexeme: kif, surface: كِيفَ, base: true}, {lexeme: poss-2ms, surface: ك}]}]
+        apc-Latn/arabizi:
+          text: mar7aba Sami! kifak?
+          tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: kifak, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2ms, surface: ak}]}]
+      translations:
+        en: Hi Sami! How are you?
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مْنيح، الحَمْدِلله!
+          tokens: [{surface: مْنيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: الحَمْدِلله, lexeme: el7amdella}]
+        apc-Latn/arabizi:
+          text: mni7, el7amdella!
+          tokens: [{surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: el7amdella, lexeme: el7amdella}]
+      translations:
+        en: Fine, thank God!
+  - choose:
+      prompt:
+        en: How is Sami?
+      options:
+      - en: He's fine.
+      - en: He's sad.
+      - en: He's in a hurry.
+      answer: 0
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: شو بَدَّك؟ قَهْوِة؟
+          tokens: [{surface: شو, lexeme: shu}, {surface: بَدَّك, lexemes: [{lexeme: badd, surface: بَدَّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: قَهْوِة, lexeme: ahwe, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: shu baddak? ahwe?
+          tokens: [{surface: shu, lexeme: shu}, {surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      translations:
+        en: What do you want? Coffee?
+  - line:
+      speaker: sami
+      ask: complete
+      gap: lexeme:shay
+      distractors:
+      - ['lexeme:esm', 'lexeme:poss-2ms']
+      - ['lexeme:esm', 'lexeme:poss-1sg']
+      forms:
+        apc-Arab/standard:
+          text: لأ، بَدّي شاي.
+          tokens: [{surface: لأ, lexeme: la2}, {surface: بَدّي, lexemes: [{lexeme: badd, surface: بَدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: la2, baddi shay.
+          tokens: [{surface: la2, lexeme: la2}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      translations:
+        en: No, I want tea.
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: يَلّا!
+          tokens: [{surface: يَلّا, lexeme: yalla}]
+        apc-Latn/arabizi:
+          text: yalla!
+          tokens: [{surface: yalla, lexeme: yalla}]
+      translations:
+        en: OK then!
+  - choose:
+      prompt:
+        en: What does Sami want?
+      options:
+      - en: tea
+      - en: coffee
+      - en: nothing
+      answer: 0
+scenarios:
+- id: apc.cafe-waiter
+  after: apc.cafe
+  title:
+    en: At the café
+  setting:
+    en: A small café in Beirut in the afternoon.
+  character:
+    en: The waiter, chatty and warm, who knows every regular.
+  goal:
+    en: Greet the waiter, say how you are, and order something to drink.
+  provenance:
+    author: llm:claude@9def68a7ecb2
+    status: draft

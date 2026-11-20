@@ -1,0 +1,253 @@
+# What each KC id of courses/grc became (schemas/aliases.schema.json).
+# Written by `nabu migrate` from courses/grc and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+course: grc
+aliases:
+  grapheme:α: {part: 'grapheme:α'}
+  grapheme:ε: {part: 'grapheme:ε'}
+  grapheme:ι: {part: 'grapheme:ι'}
+  grapheme:ο: {part: 'grapheme:ο'}
+  grapheme:τ: {part: 'grapheme:τ'}
+  grapheme:ν: {part: 'grapheme:ν'}
+  grapheme:κ: {part: 'grapheme:κ'}
+  grapheme:σ: {part: 'grapheme:σ'}
+  grapheme:λ: {part: 'grapheme:λ'}
+  grapheme:ρ: {part: 'grapheme:ρ'}
+  grapheme:μ: {part: 'grapheme:μ'}
+  grapheme:η: {part: 'grapheme:η'}
+  grapheme:ω: {part: 'grapheme:ω'}
+  grapheme:π: {part: 'grapheme:π'}
+  grapheme:δ: {part: 'grapheme:δ'}
+  grapheme:υ: {part: 'grapheme:υ'}
+  grapheme:γ: {part: 'grapheme:γ'}
+  grapheme:β: {part: 'grapheme:β'}
+  grapheme:φ: {part: 'grapheme:φ'}
+  grapheme:θ: {part: 'grapheme:θ'}
+  grapheme:χ: {part: 'grapheme:χ'}
+  grapheme:ζ: {part: 'grapheme:ζ'}
+  grapheme:ξ: {part: 'grapheme:ξ'}
+  grapheme:ψ: {part: 'grapheme:ψ'}
+  grapheme:αι: {part: 'grapheme:αι'}
+  grapheme:ει: {part: 'grapheme:ει'}
+  grapheme:οι: {part: 'grapheme:οι'}
+  grapheme:αυ: {part: 'grapheme:αυ'}
+  grapheme:ευ: {part: 'grapheme:ευ'}
+  grapheme:ου: {part: 'grapheme:ου'}
+  grapheme:υι: {part: 'grapheme:υι'}
+  grapheme:smooth: {part: 'grapheme:smooth'}
+  grapheme:rough: {part: 'grapheme:rough'}
+  grapheme:subscript: {part: 'grapheme:subscript'}
+  sense:chairo: {part: 'lexeme:chairo'}
+  form:impv-2s: {}
+  form:impv-2p: {}
+  sense:o: {part: 'lexeme:o'}
+  sense:sokrates: {part: 'lexeme:sokrates'}
+  sense:kriton: {part: 'lexeme:kriton'}
+  sense:xanthippe: {part: 'lexeme:xanthippe'}
+  sense:kai: {part: 'lexeme:kai'}
+  sense:eimi: {part: 'lexeme:eimi'}
+  form:pres-1s: {}
+  form:pres-2s: {}
+  form:pres-3s: {}
+  sense:tis: {part: 'lexeme:tis'}
+  sense:sy: {part: 'lexeme:sy'}
+  sense:ego: {part: 'lexeme:ego'}
+  sense:nai: {part: 'lexeme:nai'}
+  sense:ou: {part: 'lexeme:ou'}
+  sense:nyx: {part: 'lexeme:nyx'}
+  sense:hemera: {part: 'lexeme:hemera'}
+  sense:nyn: {part: 'lexeme:nyn'}
+  sense:ede: {part: 'lexeme:ede'}
+  sense:eti: {part: 'lexeme:eti'}
+  sense:proi: {part: 'lexeme:proi'}
+  sense:pany: {part: 'lexeme:pany'}
+  sense:e: {part: 'lexeme:e'}
+  sense:penika: {part: 'lexeme:penika'}
+  sense:malista: {part: 'lexeme:malista'}
+  sense:orthros: {part: 'lexeme:orthros'}
+  sense:bathys: {part: 'lexeme:bathys'}
+  sense:ti: {part: 'lexeme:ti'}
+  sense:tenikade: {part: 'lexeme:tenikade'}
+  sense:aphikneomai: {part: 'lexeme:aphikneomai'}
+  form:perf-2s: {}
+  sense:men: {part: 'lexeme:men'}
+  sense:oun: {part: 'lexeme:oun'}
+  form:f: {}
+  form:f-voc: {}
+  form:voc: {}
+  sense:ho: {part: 'lexeme:ho'}
+  sense:pater: {part: 'lexeme:pater'}
+  sense:meter: {part: 'lexeme:meter'}
+  sense:pais: {part: 'lexeme:pais'}
+  sense:hyios: {part: 'lexeme:hyios'}
+  sense:teknon: {part: 'lexeme:teknon'}
+  sense:thygater: {part: 'lexeme:thygater'}
+  sense:adelphos: {part: 'lexeme:adelphos'}
+  sense:adelphe: {part: 'lexeme:adelphe'}
+  sense:echo: {part: 'lexeme:echo'}
+  sense:dyo: {part: 'lexeme:dyo'}
+  sense:treis: {part: 'lexeme:treis'}
+  sense:gignomai: {part: 'lexeme:gignomai'}
+  form:pres-3p: {}
+  sense:dareios: {part: 'lexeme:dareios'}
+  sense:kyros: {part: 'lexeme:kyros'}
+  sense:parysatis: {part: 'lexeme:parysatis'}
+  sense:artaxerxes: {part: 'lexeme:artaxerxes'}
+  sense:presbyteros: {part: 'lexeme:presbyteros'}
+  sense:neoteros: {part: 'lexeme:neoteros'}
+  sense:de: {part: 'lexeme:de'}
+  form:f-acc: {}
+  form:f-gen: {}
+  form:f-acc-pl: {}
+  form:n: {}
+  form:acc: {}
+  form:gen: {}
+  form:pl: {}
+  form:acc-pl: {}
+  sense:philos: {part: 'lexeme:philos'}
+  sense:phaidros: {part: 'lexeme:phaidros'}
+  sense:poi: {part: 'lexeme:poi'}
+  sense:pothen: {part: 'lexeme:pothen'}
+  sense:de-indeed: {part: 'lexeme:de-indeed'}
+  sense:poreuomai: {part: 'lexeme:poreuomai'}
+  sense:pros: {part: 'lexeme:pros'}
+  sense:peripatos: {part: 'lexeme:peripatos'}
+  sense:exo: {part: 'lexeme:exo'}
+  sense:teichos: {part: 'lexeme:teichos'}
+  sense:eis: {part: 'lexeme:eis'}
+  sense:agora: {part: 'lexeme:agora'}
+  sense:oikia: {part: 'lexeme:oikia'}
+  sense:badizo: {part: 'lexeme:badizo'}
+  sense:ek: {part: 'lexeme:ek'}
+  sense:pou: {part: 'lexeme:pou'}
+  sense:en: {part: 'lexeme:en'}
+  sense:oikoi: {part: 'lexeme:oikoi'}
+  sense:oikade: {part: 'lexeme:oikade'}
+  sense:hodos: {part: 'lexeme:hodos'}
+  sense:para: {part: 'lexeme:para'}
+  sense:lysias: {part: 'lexeme:lysias'}
+  sense:kephalos: {part: 'lexeme:kephalos'}
+  sense:astu: {part: 'lexeme:astu'}
+  form:f-dat: {}
+  form:n-gen: {}
+  form:n-dat: {}
+  sense:ge: {part: 'lexeme:ge'}
+  sense:deuro: {part: 'lexeme:deuro'}
+  sense:proserchomai: {part: 'lexeme:proserchomai'}
+  sense:menon: {part: 'lexeme:menon'}
+  sense:hellen: {part: 'lexeme:hellen'}
+  sense:hellenizo: {part: 'lexeme:hellenizo'}
+  sense:athenaios: {part: 'lexeme:athenaios'}
+  sense:barbaros: {part: 'lexeme:barbaros'}
+  sense:ara: {part: 'lexeme:ara'}
+  sense:hemeis: {part: 'lexeme:hemeis'}
+  form:pres-1p: {}
+  sense:hymeis: {part: 'lexeme:hymeis'}
+  form:pres-2p: {}
+  sense:lego: {part: 'lexeme:lego'}
+  sense:glotta: {part: 'lexeme:glotta'}
+  sense:akouo: {part: 'lexeme:akouo'}
+  sense:manthano: {part: 'lexeme:manthano'}
+  sense:grapho: {part: 'lexeme:grapho'}
+  sense:sphodra: {part: 'lexeme:sphodra'}
+  sense:oikogenes: {part: 'lexeme:oikogenes'}
+  sense:katabaino: {part: 'lexeme:katabaino'}
+  form:aor-1s: {}
+  sense:chthes: {part: 'lexeme:chthes'}
+  sense:peiraieus: {part: 'lexeme:peiraieus'}
+  sense:meta: {part: 'lexeme:meta'}
+  sense:glaukon: {part: 'lexeme:glaukon'}
+  sense:ariston: {part: 'lexeme:ariston'}
+  sense:phemi: {part: 'lexeme:phemi'}
+  form:impf-3s: {}
+  sense:polemarchos: {part: 'lexeme:polemarchos'}
+  sense:keleuo: {part: 'lexeme:keleuo'}
+  form:inf: {}
+  sense:perimeno: {part: 'lexeme:perimeno'}
+  sense:alla: {part: 'lexeme:alla'}
+  sense:houtos: {part: 'lexeme:houtos'}
+  sense:opisthen: {part: 'lexeme:opisthen'}
+  form:fut-1p: {}
+  sense:emi: {part: 'lexeme:emi'}
+  sense:hos: {part: 'lexeme:hos'}
+  sense:gyne: {part: 'lexeme:gyne'}
+  sense:oudeis: {part: 'lexeme:oudeis'}
+  sense:pareimi: {part: 'lexeme:pareimi'}
+  sense:entautha: {part: 'lexeme:entautha'}
+  sense:emos: {part: 'lexeme:emos'}
+  sense:kometis: {part: 'lexeme:kometis'}
+  sense:plen: {part: 'lexeme:plen'}
+  sense:hode: {part: 'lexeme:hode'}
+  sense:exerchomai: {part: 'lexeme:exerchomai'}
+  sense:kalonike: {part: 'lexeme:kalonike'}
+  sense:lysistrate: {part: 'lexeme:lysistrate'}
+  sense:me: {part: 'lexeme:me'}
+  sense:skythropazo: {part: 'lexeme:skythropazo'}
+  sense:syntaratto: {part: 'lexeme:syntaratto'}
+  sense:hetoimos: {part: 'lexeme:hetoimos'}
+  form:f-pl: {}
+  sense:oros: {part: 'lexeme:oros'}
+  sense:epi: {part: 'lexeme:epi'}
+  form:pres-3p-mid: {}
+  sense:pemptos: {part: 'lexeme:pemptos'}
+  sense:protos: {part: 'lexeme:protos'}
+  sense:onoma: {part: 'lexeme:onoma'}
+  sense:theches: {part: 'lexeme:theches'}
+  sense:stratiotes: {part: 'lexeme:stratiotes'}
+  sense:thalatta: {part: 'lexeme:thalatta'}
+  sense:boao: {part: 'lexeme:boao'}
+  sense:tacha: {part: 'lexeme:tacha'}
+  form:ptc: {}
+  sense:entha: {part: 'lexeme:entha'}
+  sense:theo: {part: 'lexeme:theo'}
+  form:impf-3p: {}
+  sense:pas: {part: 'lexeme:pas'}
+  sense:opisthophylax: {part: 'lexeme:opisthophylax'}
+  sense:heis: {part: 'lexeme:heis'}
+  sense:tettares: {part: 'lexeme:tettares'}
+  sense:pente: {part: 'lexeme:pente'}
+  sense:deuteros: {part: 'lexeme:deuteros'}
+  sense:tritos: {part: 'lexeme:tritos'}
+  form:dat: {}
+  form:gen-pl: {}
+  sense:asklepios: {part: 'lexeme:asklepios'}
+  sense:alektryon: {part: 'lexeme:alektryon'}
+  sense:opheilo: {part: 'lexeme:opheilo'}
+  sense:apodidomi: {part: 'lexeme:apodidomi'}
+  sense:ameleo: {part: 'lexeme:ameleo'}
+  form:aor-subj-2p: {}
+  form:fut-3s: {}
+  sense:horao: {part: 'lexeme:horao'}
+  sense:ei: {part: 'lexeme:ei'}
+  sense:tis.indef: {part: 'lexeme:tis.indef'}
+  sense:allos: {part: 'lexeme:allos'}
+  sense:theos: {part: 'lexeme:theos'}
+  form:n-pl: {}
+  sense:oikidion: {part: 'lexeme:oikidion'}
+  construction:esti-moi: {part: 'rule:esti-moi'}
+  sense:diplous: {part: 'lexeme:diplous'}
+  sense:ano: {part: 'lexeme:ano'}
+  sense:kato: {part: 'lexeme:kato'}
+  sense:isos: {part: 'lexeme:isos'}
+  sense:gynaikonitis: {part: 'lexeme:gynaikonitis'}
+  sense:andronitis: {part: 'lexeme:andronitis'}
+  sense:kata: {part: 'lexeme:kata'}
+  sense:paidion: {part: 'lexeme:paidion'}
+  form:aor-3s: {}
+  sense:epeide: {part: 'lexeme:epeide'}
+  sense:autos: {part: 'lexeme:autos'}
+  sense:thelazo: {part: 'lexeme:thelazo'}
+  sense:diaitaomai: {part: 'lexeme:diaitaomai'}
+  form:impf-1s: {}
+  form:n-dat-pl: {}
+  form:dat-pl: {}
+  sense:anthropos: {part: 'lexeme:anthropos'}
+  sense:sophos: {part: 'lexeme:sophos'}
+  form:comp: {}
+  sense:aner: {part: 'lexeme:aner'}
+  sense:oida: {part: 'lexeme:oida'}
+  sense:oude: {part: 'lexeme:oude'}
+  sense:oiomai: {part: 'lexeme:oiomai'}
+  sense:hosper: {part: 'lexeme:hosper'}
+  form:comp-f: {}

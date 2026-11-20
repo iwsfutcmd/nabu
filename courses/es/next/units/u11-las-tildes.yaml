@@ -1,0 +1,615 @@
+# Unit u11 of courses/es in the new shape.
+# Written by `nabu migrate` from courses/es and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u11
+title:
+  en: 'Las tildes: Accent marks'
+cefr: A2
+nodes:
+- {id: es.u11.el-mensaje, kind: lesson, introduces: ['lexeme:teléfono', 'lexeme:nuevo', 'lexeme:whatsapp', 'lexeme:mensaje', 'lexeme:le', 'lexeme:escribir', 'lexeme:llamar', 'lexeme:o']}
+- {id: es.u11.si-tu-quieres, kind: lesson, introduces: ['lexeme:si', 'lexeme:mandar', 'lexeme:foto', 'lexeme:audio', 'lexeme:más']}
+- {id: es.u11.para-mi, kind: lesson, introduces: ['lexeme:mí', 'lexeme:ti', 'lexeme:té', 'lexeme:sin', 'lexeme:saber']}
+- {id: es.u11.por-que, kind: lesson, introduces: ['lexeme:cuál', 'lexeme:porque']}
+- {id: es.u11.cuando-llego, kind: lesson, introduces: ['lexeme:como.like', 'lexeme:cuando', 'lexeme:llegar', 'lexeme:donde']}
+- {id: es.u11.hablo-hablo, kind: lesson, introduces: ['lexeme:español', 'lexeme:tilde']}
+- {id: es.u11.story, kind: story}
+sentences:
+- id: s.u11.1
+  node: es.u11.el-mensaje
+  forms:
+    es-Latn/standard:
+      text: ¿Tú tienes tu teléfono aquí?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: aquí, lexeme: aquí}]
+      reverse: |-
+        (Tú tienes|Tienes [tú]) tu (teléfono|celular) aquí
+        (Usted tiene|Tiene [usted]|Ustedes tienen|Tienen [ustedes]) su (teléfono|celular) aquí
+        ¿Tú tienes aquí tu teléfono?
+        ¿Tú tienes tu móvil aquí?
+  translations:
+    en: |-
+      Do you have your phone (here|with you)?
+      Have you got your phone (here|with you)?
+      Do you have your phone on you?
+- id: s.u11.2
+  node: es.u11.el-mensaje
+  forms:
+    es-Latn/standard:
+      text: Sí, aquí tengo mi teléfono nuevo.
+      tokens: [{surface: Sí, lexeme: sí}, {surface: aquí, lexeme: aquí}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        Sí aquí [yo] tengo mi (teléfono|celular) nuevo
+        Sí [yo] tengo mi (teléfono|celular) nuevo aquí
+        Sí, tengo aquí mi teléfono nuevo.
+        Sí, aquí tengo mi nuevo teléfono.
+        Sí, aquí tengo mi móvil nuevo.
+  translations:
+    en: |-
+      Yes, (I have|I've got) my new phone (here|with me).
+      Yes, my new phone is here.
+- id: s.u11.3
+  node: es.u11.el-mensaje
+  forms:
+    es-Latn/standard:
+      text: Tía Marisol también tiene WhatsApp.
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: también, lexeme: también}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: WhatsApp, lexeme: whatsapp}]
+      reverse: |-
+        (Tía|La tía|Mi tía) Marisol también tiene WhatsApp
+        Tía Marisol tiene WhatsApp también.
+  translations:
+    en: |-
+      (Aunt|Auntie|Tía) Marisol has WhatsApp too.
+      (Aunt|Auntie|Tía) Marisol also has WhatsApp.
+      (Aunt|Auntie|Tía) Marisol has WhatsApp as well.
+- id: s.u11.4
+  node: es.u11.el-mensaje
+  forms:
+    es-Latn/standard:
+      text: Tengo un mensaje de tía Marisol.
+      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      reverse: '[Yo] tengo un mensaje de (tía|la tía|mi tía) Marisol'
+  translations:
+    en: (I have|I've got) a (message|text) from (Aunt|Auntie|Tía) Marisol.
+- id: s.u11.5
+  node: es.u11.el-mensaje
+  forms:
+    es-Latn/standard:
+      text: Yo le escribo a mi tía por WhatsApp.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: le, lexeme: le}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: WhatsApp, lexeme: whatsapp}]
+      reverse: |-
+        [Yo] le escribo a mi tía por WhatsApp
+        [Yo] le escribo por WhatsApp a mi tía
+        A mi tía [yo] le escribo por WhatsApp
+  translations:
+    en: |-
+      I (write to|write|text|message) my aunt (on|over|via) WhatsApp.
+      (I'm|I am) (writing to|texting|messaging) my aunt (on|over|via) WhatsApp.
+- id: s.u11.6
+  node: es.u11.el-mensaje
+  forms:
+    es-Latn/standard:
+      text: ¿Tú llamas a tu tía o le escribes?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: llamas, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: o, lexeme: o}, {surface: le, lexeme: le}, {surface: escribes, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        (Tú llamas|Llamas [tú]) a tu tía o le escribes
+        (Usted llama|Llama [usted]) a su tía o le escribe
+        (Ustedes llaman|Llaman [ustedes]) a su tía o le escriben
+  translations:
+    en: Do you call your aunt or (write to her|write her|text her|message her)?
+- id: s.u11.7
+  node: es.u11.el-mensaje
+  forms:
+    es-Latn/standard:
+      text: Tía Marisol me llama los domingos por la noche.
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: me, lexeme: me}, {surface: llama, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: noche, lexeme: noche, feats: {Number: Sing}}]
+      reverse: |-
+        (Tía|La tía|Mi tía) Marisol me llama los domingos por la noche
+        Tía Marisol me llama los domingos en la noche.
+  translations:
+    en: |-
+      (Aunt|Auntie|Tía) Marisol calls me (on Sunday nights|on Sunday evenings|every Sunday night|every Sunday evening).
+      Aunt Marisol calls me Sunday nights.
+- id: s.u11.8
+  node: es.u11.si-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Sí, vamos a Varadero si tú quieres.
+      tokens: [{surface: Sí, lexeme: sí}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Varadero, lexeme: varadero}, {surface: si, lexeme: si}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        Sí [nosotros] vamos a Varadero si (tú quieres|quieres [tú]|usted quiere|quiere [usted]|ustedes quieren|quieren [ustedes])
+        Sí, nosotras vamos a Varadero si tú quieres.
+        Sí, si tú quieres vamos a Varadero.
+  translations:
+    en: Yes, (let's go|we'll go|we can go|we're going) to Varadero if (you want|you want to|you like|you'd like).
+- id: s.u11.9
+  node: es.u11.si-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Si llueve mañana, no vamos a la playa.
+      tokens: [{surface: Si, lexeme: si}, {surface: llueve, lexeme: llover, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mañana, lexeme: mañana}, {surface: 'no', lexeme: 'no'}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: playa, lexeme: playa, feats: {Number: Sing}}]
+      reverse: |-
+        Si llueve mañana [nosotros] no vamos (a la|para la|pa' la) playa
+        [Nosotros] no vamos (a la|para la|pa' la) playa si llueve mañana
+        Si llueve mañana, nosotras no vamos a la playa.
+        Si mañana llueve, no vamos a la playa.
+  translations:
+    en: |-
+      If it rains tomorrow, (we won't go|we will not go|we're not going|we aren't going|we are not going|we don't go) to the beach.
+      (We won't go|We will not go|We're not going|We aren't going|We are not going) to the beach if it rains tomorrow.
+- id: s.u11.10
+  node: es.u11.si-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Él tiene el teléfono de Yunior, pero yo no.
+      tokens: [{surface: Él, lexeme: él}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Yunior, lexeme: yunior}, {surface: pero, lexeme: pero}, {surface: yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}]
+      reverse: |-
+        [Él] tiene el (teléfono|número|celular) de Yunior pero yo no
+        Él tiene el móvil de Yunior, pero yo no.
+  translations:
+    en: |-
+      He has Yunior's (phone number|number|phone), but I (don't|do not).
+      He's got Yunior's (phone number|number|phone), but I (haven't|have not).
+- id: s.u11.11
+  node: es.u11.si-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Mami me mandó una foto de tía Marisol.
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: mandó, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: foto, lexeme: foto, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      reverse: (Mami|Mamá|Mi mamá) me (mandó|envió) una foto de (tía|la tía|mi tía) Marisol
+  translations:
+    en: |-
+      (Mom|Mum|Mommy) sent me a (photo|picture|pic) of (Aunt|Auntie|Tía) Marisol.
+      Mom has sent me a photo of Aunt Marisol.
+- id: s.u11.12
+  node: es.u11.si-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Tía Marisol no escribe mucho, manda audios.
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: audios, lexeme: audio, feats: {Number: Plur}}]
+      reverse: |-
+        (Tía|La tía|Mi tía) Marisol no escribe mucho [ella] manda audios
+        Tía Marisol no escribe mucho, manda mensajes de voz.
+        Tía Marisol no escribe mucho, manda notas de voz.
+  translations:
+    en: (Aunt|Auntie|Tía) Marisol (doesn't|does not) (write|text) much, she sends (voice messages|voice notes|audio messages|audios).
+- id: s.u11.13
+  node: es.u11.si-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Yunior me escribe más que tía Marisol.
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: me, lexeme: me}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: que, lexeme: que}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      reverse: Yunior me escribe más que (tía|la tía|mi tía) Marisol
+  translations:
+    en: Yunior (writes to me|writes me|texts me|messages me) more than (Aunt|Auntie|Tía) Marisol [does].
+- id: s.u11.14
+  node: es.u11.para-mi
+  forms:
+    es-Latn/standard:
+      text: Para mí, el café de mi abuela es el más rico.
+      tokens: [{surface: Para, lexeme: para}, {surface: mí, lexeme: mí}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: más, lexeme: más}, {surface: rico, lexeme: rico, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        Para mí el café de mi abuela es el (más rico|mejor)
+        El café de mi abuela es el más rico para mí.
+  translations:
+    en: (For me|To me|In my opinion), my (grandmother's|grandma's) coffee is the (best|tastiest|most delicious).
+- id: s.u11.15
+  node: es.u11.para-mi
+  forms:
+    es-Latn/standard:
+      text: Este mensaje no es para ti, es para mí.
+      tokens: [{surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: ti, lexeme: ti}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: mí, lexeme: mí}]
+      reverse: Este mensaje no es para (ti|usted|ustedes) es para mí
+  translations:
+    en: This (message|text) (isn't|is not) for you, (it's|it is) for me.
+- id: s.u11.16
+  node: es.u11.para-mi
+  forms:
+    es-Latn/standard:
+      text: ¿A ti te gusta el té o el café?
+      tokens: [{surface: A, lexeme: a}, {surface: ti, lexeme: ti}, {surface: te, lexeme: te}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: té, lexeme: té, feats: {Number: Sing}}, {surface: o, lexeme: o}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      reverse: |-
+        [A ti] te gusta el té o el café
+        [A usted] le gusta el té o el café
+        [A ustedes] les gusta el té o el café
+  translations:
+    en: |-
+      Do you like tea or coffee?
+      Which do you like, tea or coffee?
+- id: s.u11.17
+  node: es.u11.para-mi
+  forms:
+    es-Latn/standard:
+      text: A mí no me gusta el té, me gusta el café.
+      tokens: [{surface: A, lexeme: a}, {surface: mí, lexeme: mí}, {surface: 'no', lexeme: 'no'}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: té, lexeme: té, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      reverse: '[A mí] no me gusta el té [a mí] me gusta el café'
+  translations:
+    en: I (don't|do not) like tea, I like coffee.
+- id: s.u11.18
+  node: es.u11.para-mi
+  forms:
+    es-Latn/standard:
+      text: ¿Tú quieres el café con leche o sin leche?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: leche, lexeme: leche, feats: {Number: Sing}}, {surface: o, lexeme: o}, {surface: sin, lexeme: sin}, {surface: leche, lexeme: leche, feats: {Number: Sing}}]
+      reverse: |-
+        (Tú quieres|Quieres [tú]|Usted quiere|Quiere [usted]|Ustedes quieren|Quieren [ustedes]) [el] café con leche o sin leche
+        ¿Tú quieres el café con o sin leche?
+  translations:
+    en: |-
+      (Do you want|Would you like) (your|the) coffee with or without milk?
+      (Do you want|Would you like) (your|the) coffee with milk or without [milk]?
+- id: s.u11.19
+  node: es.u11.para-mi
+  forms:
+    es-Latn/standard:
+      text: Yo no sé cómo se llama el hermano de Yasiel.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}, {surface: sé, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: cómo, lexeme: cómo}, {surface: se, lexeme: se}, {surface: llama, lexeme: llamarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: hermano, lexeme: hermano, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: Yasiel, lexeme: yasiel}]
+      reverse: |-
+        [Yo] no sé cómo se llama el hermano de Yasiel
+        No sé cuál es el nombre del hermano de Yasiel.
+  translations:
+    en: |-
+      I (don't|do not) know what Yasiel's brother's name is.
+      I (don't|do not) know (Yasiel's brother's name|what Yasiel's brother is called|the name of Yasiel's brother).
+- id: s.u11.20
+  node: es.u11.para-mi
+  forms:
+    es-Latn/standard:
+      text: ¿Tú sabes dónde está mi teléfono?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: sabes, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}]
+      reverse: |-
+        (Tú sabes|Sabes [tú]|Usted sabe|Sabe [usted]|Ustedes saben|Saben [ustedes]) dónde está mi (teléfono|celular)
+        ¿Tú sabes dónde está mi móvil?
+  translations:
+    en: Do you know where my phone is?
+- id: s.u11.21
+  node: es.u11.por-que
+  forms:
+    es-Latn/standard:
+      text: Tía, ¿cuál es tu teléfono nuevo?
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: cuál, lexeme: cuál}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}}]
+      reverse: |-
+        (Tía|Tía Marisol) cuál es (tu|su) (teléfono|número) nuevo
+        Tía, ¿cuál es tu nuevo número?
+        Tía, ¿cuál es tu número de teléfono nuevo?
+        Tía, ¿cuál es tu nuevo teléfono?
+  translations:
+    en: (Aunt|Auntie|Tía), (what's|what is) your new (phone number|number)?
+- id: s.u11.22
+  node: es.u11.por-que
+  forms:
+    es-Latn/standard:
+      text: ¿Por qué tú no me llamas por WhatsApp?
+      tokens: [{surface: Por, lexeme: por}, {surface: qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: 'no', lexeme: 'no'}, {surface: me, lexeme: me}, {surface: llamas, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: WhatsApp, lexeme: whatsapp}]
+      reverse: |-
+        (Por qué tú no me llamas|Por qué no me llamas [tú]|Por qué usted no me llama|Por qué no me llama [usted]|Por qué ustedes no me llaman|Por qué no me llaman [ustedes]) por WhatsApp
+        ¿Tú por qué no me llamas por WhatsApp?
+  translations:
+    en: Why (don't you|do you not) call me (on|over|via) WhatsApp?
+- id: s.u11.23
+  node: es.u11.por-que
+  forms:
+    es-Latn/standard:
+      text: Porque no tengo tu teléfono nuevo, tía.
+      tokens: [{surface: Porque, lexeme: porque}, {surface: 'no', lexeme: 'no'}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}]
+      reverse: |-
+        Porque [yo] no tengo (tu|su) (teléfono|número) nuevo (tía|tía Marisol)
+        Porque no tengo tu nuevo número, tía.
+        Porque no tengo tu número de teléfono nuevo, tía.
+  translations:
+    en: Because I (don't have|do not have|haven't got) your new (phone number|number), (Aunt|Auntie|Tía).
+- id: s.u11.24
+  node: es.u11.por-que
+  forms:
+    es-Latn/standard:
+      text: ¿Quién te escribió anoche, tía Marisol o Yunior?
+      tokens: [{surface: Quién, lexeme: quién}, {surface: te, lexeme: te}, {surface: escribió, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: anoche, lexeme: anoche}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: o, lexeme: o}, {surface: Yunior, lexeme: yunior}]
+      reverse: Quién (te|le|les) escribió anoche (tía|la tía) Marisol o Yunior
+  translations:
+    en: Who (wrote to you|wrote you|texted you|messaged you) last night, (Aunt|Auntie|Tía) Marisol or Yunior?
+- id: s.u11.25
+  node: es.u11.por-que
+  forms:
+    es-Latn/standard:
+      text: ¿Cuánto cuesta llamar a Cuba?
+      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: llamar, lexeme: llamar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      reverse: Cuánto cuesta llamar a Cuba
+  translations:
+    en: How much (does it cost|is it) to call Cuba?
+- id: s.u11.26
+  node: es.u11.cuando-llego
+  forms:
+    es-Latn/standard:
+      text: Tú hablas como tu abuela, mi vida.
+      tokens: [{surface: Tú, lexeme: tú}, {surface: hablas, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+      reverse: |-
+        (Tú hablas|Hablas [tú]) como tu abuela (mi vida|mi amor|mi cielo)
+        (Usted habla|Habla [usted]|Ustedes hablan|Hablan [ustedes]) como su abuela (mi vida|mi amor|mi cielo)
+  translations:
+    en: You (talk|speak|sound) like your (grandmother|grandma), (darling|sweetheart|honey|my love|my dear|dear|sweetie).
+- id: s.u11.27
+  node: es.u11.cuando-llego
+  forms:
+    es-Latn/standard:
+      text: Yo escribo como hablo.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: '[Yo] escribo como [yo] hablo'
+  translations:
+    en: I write (the way|like|how|as) I (speak|talk).
+- id: s.u11.28
+  node: es.u11.cuando-llego
+  forms:
+    es-Latn/standard:
+      text: Cuando llego a la casa, le escribo a tía Marisol.
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: llego, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      reverse: |-
+        Cuando [yo] llego a [la] casa [yo] le escribo a (tía|la tía|mi tía) Marisol
+        [Yo] le escribo a (tía|la tía|mi tía) Marisol cuando [yo] llego a [la] casa
+  translations:
+    en: |-
+      When I (get|come|arrive) home, I (write to|write|text|message) (Aunt|Auntie|Tía) Marisol.
+      I (write to|write|text|message) (Aunt|Auntie|Tía) Marisol when I (get|come|arrive) home.
+- id: s.u11.29
+  node: es.u11.cuando-llego
+  forms:
+    es-Latn/standard:
+      text: ¿Cuándo llega tu avión a La Habana?
+      tokens: [{surface: Cuándo, lexeme: cuándo}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: avión, lexeme: avión, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      reverse: |-
+        Cuándo llega (tu|su) avión a La Habana
+        Cuándo (tu|su) avión llega a La Habana
+  translations:
+    en: When does your (plane|flight) (get to|arrive in|land in) Havana?
+- id: s.u11.30
+  node: es.u11.cuando-llego
+  forms:
+    es-Latn/standard:
+      text: Esta es la casa donde vive tía Marisol.
+      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: donde, lexeme: donde}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      reverse: |-
+        Esta es la casa (donde|en la que|en que) vive (tía|la tía|mi tía) Marisol
+        Esta es la casa (donde|en la que|en que) (tía|la tía|mi tía) Marisol vive
+  translations:
+    en: |-
+      This is the house where (Aunt|Auntie|Tía) Marisol lives.
+      This is the house [that|which] (Aunt|Auntie|Tía) Marisol lives in.
+- id: s.u11.31
+  node: es.u11.cuando-llego
+  forms:
+    es-Latn/standard:
+      text: ¿Tú sabes dónde vive Yunior ahora?
+      tokens: [{surface: Tú, lexeme: tú}, {surface: sabes, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: dónde, lexeme: dónde}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Yunior, lexeme: yunior}, {surface: ahora, lexeme: ahora}]
+      reverse: |-
+        (Tú sabes|Sabes [tú]|Usted sabe|Sabe [usted]|Ustedes saben|Saben [ustedes]) dónde (vive Yunior|Yunior vive) ahora
+        ¿Tú sabes dónde vive ahora Yunior?
+  translations:
+    en: |-
+      Do you know where Yunior lives now?
+      Do you know where Yunior is living now?
+      Do you know where Yunior's living now?
+- id: s.u11.32
+  node: es.u11.hablo-hablo
+  forms:
+    es-Latn/standard:
+      text: Yo hablo español, pero escribo sin tildes.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: español, lexeme: español, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sin, lexeme: sin}, {surface: tildes, lexeme: tilde, feats: {Number: Plur}}]
+      reverse: '[Yo] hablo español pero [yo] escribo sin (tildes|acentos)'
+  translations:
+    en: |-
+      I speak Spanish, but I write without (accents|accent marks|written accents).
+      I speak Spanish, but I (don't|do not) (write|use) (accents|accent marks|written accents).
+- id: s.u11.33
+  node: es.u11.hablo-hablo
+  forms:
+    es-Latn/standard:
+      text: Hoy hablo yo con tía Marisol; ayer habló Mami.
+      tokens: [{surface: Hoy, lexeme: hoy}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: yo, lexeme: yo}, {surface: con, lexeme: con}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: ayer, lexeme: ayer}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Mami, lexeme: mami, feats: {Number: Sing}}]
+      reverse: Hoy (hablo yo|yo hablo|hablo) con (tía|la tía) Marisol [y] ayer (habló Mami|Mami habló|habló mi mamá|mi mamá habló)
+  translations:
+    en: Today (I'm talking|I am talking|I talk) (to|with) (Aunt|Auntie|Tía) Marisol[, and] yesterday (Mom|Mum) (did|talked to her|spoke to her|talked with her|spoke with her).
+- id: s.u11.34
+  node: es.u11.hablo-hablo
+  forms:
+    es-Latn/standard:
+      text: Mami compró café cubano para tía Marisol.
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: compró, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}, {surface: para, lexeme: para}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      reverse: (Mami|Mamá|Mi mamá) compró café cubano (para|pa') (tía|la tía|mi tía) Marisol
+  translations:
+    en: (Mom|Mum|Mommy) bought Cuban coffee for (Aunt|Auntie|Tía) Marisol.
+- id: s.u11.35
+  node: es.u11.hablo-hablo
+  forms:
+    es-Latn/standard:
+      text: Yo siempre compro el cafecito en la ventanita.
+      tokens: [{surface: Yo, lexeme: yo}, {surface: siempre, lexeme: siempre}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: ventanita, lexeme: ventanita, feats: {Number: Sing}}]
+      reverse: '[Yo] siempre compro el (cafecito|café) en la ventanita'
+  translations:
+    en: I always buy (my|the) (coffee|Cuban coffee|cafecito) at the (ventanita|coffee window|walk-up window).
+- id: s.u11.36
+  node: es.u11.hablo-hablo
+  forms:
+    es-Latn/standard:
+      text: Tía, ¿te llegó mi mensaje? Te mandé una foto.
+      tokens: [{surface: Tía, lexeme: tío, feats: {Number: Sing}}, {surface: te, lexeme: te}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}}, {surface: Te, lexeme: te}, {surface: mandé, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}}, {surface: foto, lexeme: foto, feats: {Number: Sing}}]
+      reverse: |-
+        (Tía|Tía Marisol) (te|le) llegó mi mensaje [yo] (te|le) (mandé|envié) una foto
+        Tía, ¿recibiste mi mensaje? Te mandé una foto.
+        Tía, ¿recibió mi mensaje? Le mandé una foto.
+  translations:
+    en: |-
+      (Aunt|Auntie|Tía), did you get my (message|text)? I sent you a (photo|picture|pic).
+      (Aunt|Auntie|Tía), did my (message|text) (reach you|get to you|arrive)? I sent you a (photo|picture|pic).
+      Aunt, did you get my message? I've sent you a photo.
+stories:
+- id: es.story.u11
+  node: es.u11.story
+  title:
+    en: With accents
+  characters:
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: marisol
+    speaker: f
+    name:
+      es-Latn/standard: Tía Marisol
+  - id: yunior
+    speaker: m
+    name:
+      es-Latn/standard: Yunior
+  steps:
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Daniel le escribe a tía Marisol por WhatsApp.
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: le, lexeme: le}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: por, lexeme: por}, {surface: WhatsApp, lexeme: whatsapp}]
+      translations:
+        en: Daniel texts Aunt Marisol on WhatsApp.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Hola, tía. ¿Cómo tú estás? Te escribo en español.
+          tokens: [{surface: Hola, lexeme: hola}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: Cómo, lexeme: cómo}, {surface: tú, lexeme: tú}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Te, lexeme: te}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: español, lexeme: español, feats: {Number: Sing}}]
+      translations:
+        en: Hi, Auntie. How are you? I'm writing to you in Spanish.
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: ¡Qué bien, mi vida! Y con tildes. Tú escribes como tu abuela.
+          tokens: [{surface: Qué, lexeme: qué}, {surface: bien, lexeme: bien}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: Y, lexeme: y}, {surface: con, lexeme: con}, {surface: tildes, lexeme: tilde, feats: {Number: Plur}}, {surface: Tú, lexeme: tú}, {surface: escribes, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      translations:
+        en: How nice, darling! And with accents. You write like your grandmother.
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Gracias, tía, pero yo no sé dónde van las tildes.
+          tokens: [{surface: Gracias, lexeme: gracias}, {surface: tía, lexeme: tío, feats: {Number: Sing}}, {surface: pero, lexeme: pero}, {surface: yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}, {surface: sé, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dónde, lexeme: dónde}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: tildes, lexeme: tilde, feats: {Number: Plur}}]
+      translations:
+        en: Thanks, Auntie, but I don't know where the accents go.
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: Yo sí sé, mi vida. Tu mensaje está muy bien.
+          tokens: [{surface: Yo, lexeme: yo}, {surface: sí, lexeme: sí}, {surface: sé, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}, {surface: Tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: bien, lexeme: bien}]
+      translations:
+        en: I do, darling. Your message is just fine.
+  - choose:
+      prompt:
+        en: Why is Tía Marisol pleased?
+      options:
+      - en: Daniel writes to her in Spanish, with accents.
+      - en: Daniel calls her on WhatsApp.
+      - en: Daniel sends her a photo.
+      answer: 0
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: ¿Cuándo tú llegas a La Habana?
+          tokens: [{surface: Cuándo, lexeme: cuándo}, {surface: tú, lexeme: tú}, {surface: llegas, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+      translations:
+        en: When do you get to Havana?
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Llego el sábado por la mañana.
+          tokens: [{surface: Llego, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}]
+      translations:
+        en: I get there on Saturday morning.
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: ¿Y tu mami? ¿Ella viene también?
+          tokens: [{surface: Y, lexeme: y}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}}, {surface: mami, lexeme: mami, feats: {Number: Sing}}, {surface: Ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: también, lexeme: también}]
+      translations:
+        en: And your mom? Is she coming too?
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: No, ella no puede. Pero te mandó café cubano.
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Pero, lexeme: pero}, {surface: te, lexeme: te}, {surface: mandó, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: No, she can't. But she sent you Cuban coffee.
+  - line:
+      speaker: marisol
+      ask: complete
+      gap: lexeme:mí
+      distractors:
+      - lexeme:ti
+      - lexeme:él
+      forms:
+        es-Latn/standard:
+          text: ¿Para mí? ¡Gracias, mi vida!
+          tokens: [{surface: Para, lexeme: para}, {surface: mí, lexeme: mí}, {surface: Gracias, lexeme: gracias}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}}, {surface: vida, lexeme: vida, feats: {Number: Sing}}]
+      translations:
+        en: For me? Thank you, darling!
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¿Y para mí qué hay, primo?
+          tokens: [{surface: Y, lexeme: y}, {surface: para, lexeme: para}, {surface: mí, lexeme: mí}, {surface: qué, lexeme: qué}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: And what is there for me, cousin?
+  - line:
+      speaker: daniel
+      ask: complete
+      gap: lexeme:teléfono
+      distractors:
+      - lexeme:abuelo
+      - lexeme:patio
+      forms:
+        es-Latn/standard:
+          text: Para ti hay un teléfono nuevo.
+          tokens: [{surface: Para, lexeme: para}, {surface: ti, lexeme: ti}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: For you, there's a new phone.
+  - choose:
+      prompt:
+        en: What is Daniel bringing for Yunior?
+      options:
+      - en: A new phone
+      - en: Cuban coffee
+      - en: A T-shirt
+      answer: 0
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¡Asere, gracias! Aquí un teléfono cuesta mucho.
+          tokens: [{surface: Asere, lexeme: asere, feats: {Number: Sing}}, {surface: gracias, lexeme: gracias}, {surface: Aquí, lexeme: aquí}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}]
+      translations:
+        en: Man, thanks! A phone costs a lot here.
+  - line:
+      speaker: yunior
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Primo, tú escribes con más tildes que yo.
+          tokens: [{surface: Primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: tú, lexeme: tú}, {surface: escribes, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: más, lexeme: más}, {surface: tildes, lexeme: tilde, feats: {Number: Plur}}, {surface: que, lexeme: que}, {surface: yo, lexeme: yo}]
+      translations:
+        en: Cousin, you write with more accents than I do.
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: ¡Porque tú no sabes dónde van, Yunior!
+          tokens: [{surface: Porque, lexeme: porque}, {surface: tú, lexeme: tú}, {surface: 'no', lexeme: 'no'}, {surface: sabes, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: dónde, lexeme: dónde}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Yunior, lexeme: yunior}]
+      translations:
+        en: Because you don't know where they go, Yunior!
+  - choose:
+      prompt:
+        en: Who writes with more accents?
+      options:
+      - en: Daniel
+      - en: Yunior
+      - en: They write the same.
+      answer: 0

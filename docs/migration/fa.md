@@ -1,0 +1,112 @@
+# Converting `courses/fa` to the lexical model
+
+Written by `nabu migrate ../courses/fa`; do not edit by hand. It belongs to
+[the migration's design note](../migration-design.md), deliverable 2. Nothing here is
+decided:
+the converter applies the course's conversion plan
+(`pipeline/src/nabu/migrate/plans/fa.yaml`, drafted, REVIEW) and lists what it found.
+
+## What was converted
+
+|  | Count |
+|---|---|
+| Sense KCs | 237 |
+| `form:` KCs | 15 |
+| `construction:` KCs | 5 |
+| `grapheme:` KCs | 2 |
+| Sentences and story lines | 426 |
+| Tokens | 1700 |
+| Lexemes in `lexicons/fa/lexemes.yaml` | 253 |
+| Pinned forms (rule debt, ADR 0145) | 2 |
+| Listed forms | 0: no statement that a form has no rule is drafted yet |
+
+**Checks** (docs/migration-design.md, "What must not change"):
+
+- every sentence and story line as displayed: text, tokens, readings, accept sets and translations are unchanged, item by item;
+- no two annotations of the course became one;
+- every lexeme a token writes is written as its entry, or as a form or allomorph the lexicon has;
+- every name points at something, and every file fits its schema.
+
+## What each KC id became
+
+| Kind | KCs |
+|---|---|
+| a construction written as a morph: a lexeme | 3 |
+| a construction: a rule, not written yet | 2 |
+| a form written as a morph: a lexeme | 15 |
+| a letter of a script track: unchanged | 2 |
+| a sense that is a form of another lexeme | 2 |
+| a sense: the lexeme of its name | 235 |
+
+**Senses that are no lexeme of their own now** (the plan's statements):
+
+| KC | Gloss | Became | Why |
+|---|---|---|---|
+| `sense:bud` | was, were (past of 'to be', stem بود-) | a form of `lexeme:budan` (Tense=Past) | the past stem of بودن |
+| `sense:nist` | is not; am not, are not | a form of `lexeme:budan` (Polarity=Neg) | the negative of است, written as one word |
+
+**`form:` and `construction:` KCs** (the plan's statements, REVIEW):
+
+| KC | Gloss | Becomes | Note |
+|---|---|---|---|
+| `form:1sg-am` | -am: I (verb ending) | `lexeme:1sg` (realises Number=Sing, Person=1) |  |
+| `form:2sg-i` | -i: you, one person (verb ending) | `lexeme:2sg` (realises Number=Sing, Person=2) |  |
+| `form:3sg-ad` | -ad: he, she, it (verb ending) | `lexeme:3sg` (realises Number=Sing, Person=3) |  |
+| `form:1pl-im` | -im: we (verb ending; هستیم: we are) | `lexeme:1pl` (realises Number=Plur, Person=1) |  |
+| `form:2pl-id` | -id: you, polite or more than one (verb ending) | `lexeme:2pl` (realises Number=Plur, Person=2) |  |
+| `form:3pl-and` | -and: they (verb ending) | `lexeme:3pl` (realises Number=Plur, Person=3) |  |
+| `form:neg-na` | na-, ne-: not (verb prefix) | `lexeme:neg` (realises Polarity=Neg) |  |
+| `form:mi-present` | mi-: present tense (verb prefix) | `lexeme:mi` (realises Aspect=Imp) | the course teaches it as the present's prefix; it is the durative, which the past takes too (mi-raftam): REVIEW |
+| `form:subj-be` | be-: imperative and subjunctive (verb prefix) | `lexeme:subj` (realises Mood=Sub) | the imperative takes it too |
+| `form:plural-ha` | -hā: plural | `lexeme:pl` (realises Number=Plur) |  |
+| `form:plural-an` | -ān: plural (people and living things) | `lexeme:pl-an` (realises Number=Plur) | the plural of people and living things: the same value as pl in another shape, chosen by the noun |
+| `form:indef-i` | -i: a, some, any (indefinite ending) | `lexeme:indef` (realises Definite=Ind) |  |
+| `form:comparative-tar` | -tar: -er, more (comparative) | `lexeme:comp` (realises Degree=Cmp) |  |
+| `form:poss-1sg` | -am: my (joined to a noun) | `lexeme:poss-1sg` (PRON) |  |
+| `form:poss-2sg` | -at: your (one person, familiar; joined to a noun) | `lexeme:poss-2sg` (PRON) |  |
+| `construction:ezafe` | ezafe: the -e that links a noun to what describes or owns it | `lexeme:ezafe` (PART) |  |
+| `construction:doost-dashtan` | دوست داشتن: to like, to love | `lexeme:doost-dashtan` (VERB) | a listed item: دوست and داشتن, of which داشتن inflects |
+| `construction:existential-hast` | هست: there is, there are | `lexeme:existential-hast` (AUX) | هست on its own says "there is": a use of بودن, kept as the entry the course has; no token names it |
+| `construction:subjunctive` | the subjunctive: be- + present stem + ending after 'want' and 'can' | `rule:subjunctive`, not written | a rule: be-, the present stem and an ending, after a verb of wanting or being able |
+| `construction:past` | the simple past: past stem + ending (رفتم, I went) | `rule:past`, not written | a rule: the past stem and an ending |
+
+## Written otherwise than the entry (15)
+
+A token names the lexeme, no feature value tells it from the entry's own form, and it is spelled differently: an allomorph by context (gran before a noun), or a form the course's annotation has no name for. Kept as an allomorph of the entry.
+
+| Where | What |
+|---|---|
+| `lexeme:budan` | written هست (39×, first in s.12): an allomorph, or a form no value names |
+| `lexeme:budan` | joined to another lexeme, written ست (14×, first in s.home.13) |
+| `lexeme:dashtan` | joined to another lexeme, written دار (70×, first in s.numbers.2) |
+| `lexeme:kardan` | joined to another lexeme, written کن (12×, first in s.day.3) |
+| `lexeme:raftan` | joined to another lexeme, written رو (21×, first in s.day.8) |
+| `lexeme:amadan` | joined to another lexeme, written آی (11×, first in s.day.11) |
+| `lexeme:khordan` | joined to another lexeme, written خور (12×, first in s.day.14) |
+| `lexeme:khandan` | joined to another lexeme, written خوان (8×, first in s.day.20) |
+| `lexeme:khabidan` | joined to another lexeme, written خواب (4×, first in s.day.22) |
+| `lexeme:pichidan` | joined to another lexeme, written پیچ (5×, first in s.city.24) |
+| `lexeme:khastan` | joined to another lexeme, written خواه (13×, first in s.shopping.1) |
+| `lexeme:kharidan` | joined to another lexeme, written خر (6×, first in s.shopping.8) |
+| `lexeme:didan` | joined to another lexeme, written بین (3×, first in s.shopping.22) |
+| `lexeme:tavanestan` | joined to another lexeme, written توان (1×, first in s.shopping.23) |
+| `lexeme:dadan` | joined to another lexeme, written ده (4×, first in s.shopping.27) |
+
+## Lexemes no sentence writes (2)
+
+An entry of the lexicon with no token: a word taught only by its card, or left over.
+
+| Where | What |
+|---|---|
+| `lexeme:doost-dashtan` | no sentence or story line writes it |
+| `lexeme:existential-hast` | no sentence or story line writes it |
+
+## What no finding above covers
+
+- **Projections:** no orthography of this course has a stated projection yet, so every
+  spelling and reading stays pinned as it is; there is nothing to compare them with
+  (ADR 0148).
+- **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
+  no
+  part to go to: a feature's uses are not authored, and nothing old counts towards a rule
+  (ADR 0146).

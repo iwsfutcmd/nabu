@@ -1,0 +1,18 @@
+# What yue declares beside its lexicon (schemas/language.schema.json).
+# Written by `nabu migrate` from courses/yue and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: yue
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@78e4f1212110', status: draft}
+varieties: [yue-HK]
+registers: [formal, neutral, colloquial]
+dimensions: {}
+features:
+  NounType: [Clf]
+  NumType: [Card]
+  Number: [Plur]
+  PartType: [Int, Mod]
+  Polarity: [Neg]
+  Poss: ['Yes']
+  PronType: [Dem, Int, Prs]

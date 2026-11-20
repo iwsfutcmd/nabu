@@ -1,0 +1,96 @@
+# courses/tok in the new shape (schemas/course-source.next.schema.json).
+# Written by `nabu migrate` from courses/tok and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: tok
+target: tok-Latn
+orthographies:
+- tok-Latn/standard
+- tok-Qaap/sitelen-pona
+support:
+- en-Latn/standard
+lexicon: tok
+names:
+  en:
+    course: Toki Pona
+    blurb: A small language of a little over a hundred words, in Latin letters or in its own signs.
+    orthographies:
+      tok-Latn/standard: Latin letters (sitelen Lasina)
+      tok-Qaap/sitelen-pona: sitelen pona (logographs)
+    hints:
+      tok-Latn/standard: The usual way to write Toki Pona.
+      tok-Qaap/sitelen-pona: 'Toki Pona''s own script: one sign for each word.'
+  ar:
+    course: توكي بونا
+    orthographies:
+      tok-Latn/standard: الحروف اللاتينية (sitelen Lasina)
+      tok-Qaap/sitelen-pona: sitelen pona (كتابة رمزية)
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  fa:
+    course: توکی پونا
+    orthographies:
+      tok-Latn/standard: حروف لاتین (sitelen Lasina)
+      tok-Qaap/sitelen-pona: "sitelen pona (نشانه\u200cنگاری)"
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  uz:
+    course: Toki Pona
+    orthographies:
+      tok-Latn/standard: Lotin harflari (sitelen Lasina)
+      tok-Qaap/sitelen-pona: sitelen pona (logografik yozuv)
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  uz-Cyrl:
+    course: Токи Пона
+    orthographies:
+      tok-Latn/standard: Лотин ҳарфлари (sitelen Lasina)
+      tok-Qaap/sitelen-pona: sitelen pona (логографик ёзув)
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+  zh-Hant-HK:
+    course: 道本語
+    orthographies:
+      tok-Latn/standard: 拉丁字母（sitelen Lasina）
+      tok-Qaap/sitelen-pona: sitelen pona（語素文字）
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
+license: CC-BY-SA-4.0
+provenance:
+  author: llm:claude@tok-draft-v1
+  status: draft
+iPlusOne: 2
+audio:
+  quality: iffy
+  voices:
+  - id: lasina-m
+    provider: espeak-ng
+    voice: eo
+    speaker: m
+    orthography: tok-Latn/standard
+    reading: lasina
+    license: CC0-1.0
+  - id: lasina-f
+    provider: espeak-ng
+    voice: eo+f2
+    speaker: f
+    orthography: tok-Latn/standard
+    reading: lasina
+    license: CC0-1.0
+consistentReadings: true
+units:
+- units/u01-toki.yaml
+- units/u02-soweli-li-lape.yaml
+- units/u03-mi-moku-e-kili.yaml
+- units/u04-pona-ala-pona.yaml
+- units/u05-jan-pi-toki-pona.yaml
+- units/u06-mi-lon-tomo.yaml
+- units/u07-tenpo-ni-la.yaml
+- units/u08-o-kama.yaml
+- units/u09-sijelo-en-kule.yaml
+- units/u10-toki-pona-li-pona.yaml

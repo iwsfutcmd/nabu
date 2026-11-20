@@ -1,0 +1,481 @@
+# Unit u18-i-am-a-hebrew of courses/hbo in the new shape.
+# Written by `nabu migrate` from courses/hbo and its conversion plan
+# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
+# switch.
+id: u18-i-am-a-hebrew
+title:
+  en: I am a Hebrew
+cefr: A2
+nodes:
+- {id: hbo.u18.a-great-storm, kind: lesson, introduces: ['lexeme:yam', 'lexeme:saar', 'lexeme:hetil', 'lexeme:hishev', 'lexeme:nishbar']}
+- {id: hbo.u18.let-us-cast-lots, kind: lesson, introduces: ['lexeme:goral', 'lexeme:hippil', 'lexeme:nafal']}
+- {id: hbo.u18.who-are-you, kind: lesson, introduces: ['lexeme:melakhah', 'lexeme:ayin.whence', 'lexeme:she']}
+- {id: hbo.u18.i-am-a-hebrew, kind: lesson, introduces: ['lexeme:ivri', 'lexeme:ani', 'lexeme:yabbashah']}
+- {id: hbo.u18.story, kind: story}
+sentences:
+- id: s.18.1
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָם
+      tokens: [{surface: יָם, lexeme: yam, feats: {Number: Sing}, readings: {tiberian: yām}}]
+      reverse: ים
+  translations:
+    en: |-
+      a sea
+      the sea
+- id: s.18.2
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַיָּם
+      tokens: [{surface: הַיָּם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyām}}]
+      reverse: הים
+  translations:
+    en: the sea
+- id: s.18.3
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: בַּיָּם
+      tokens: [{surface: בַּיָּם, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: bayyām}}]
+      reverse: בים
+  translations:
+    en: (on|in|at) the sea
+- id: s.18.4
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: סַעַר גָּדוֹל
+      tokens: [{surface: סַעַר, lexeme: saar, feats: {Number: Sing}, readings: {tiberian: sáʿar}}, {surface: גָּדוֹל, lexeme: gadol, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: gāḏôl}}]
+      reverse: סער גדול
+  translations:
+    en: |-
+      a great storm
+      a (big|violent|mighty) storm
+- id: s.18.5
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי סַעַר גָּדוֹל בַּיָּם׃
+      tokens: [{surface: וַיְהִי, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayhî}}, {surface: סַעַר, lexeme: saar, feats: {Number: Sing}, readings: {tiberian: sáʿar}}, {surface: גָּדוֹל, lexeme: gadol, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: gāḏôl}}, {surface: בַּיָּם, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: bayyām}}]
+      reverse: ויהי סער גדול בים
+  translations:
+    en: |-
+      [(And|Then)] there was a great storm (on|at) the sea.
+      [(And|Then)] a (great|violent|mighty) storm (arose|came up) on the sea.
+- id: s.18.6
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיהוָה הֵטִיל רוּחַ־גְּדוֹלָה אֶל־הַיָּם׃
+      tokens: [{surface: וַיהוָה, lexemes: [{lexeme: we, surface: וַ}, {lexeme: yhwh, surface: יהוָה, base: true, feats: {Number: Sing}}], readings: {tiberian: waʾḏōnāy}}, {surface: הֵטִיל, lexeme: hetil, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hēṭîl}}, {surface: רוּחַ, lexeme: ruach, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: rûaḥ-}}, {surface: גְּדוֹלָה, lexeme: gadol, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: gəḏôlâ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַיָּם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyām}}]
+      reverse: ויהוה הטיל רוח גדולה אל הים
+  translations:
+    en: |-
+      But the LORD hurled a great wind (on|onto|upon) the sea.
+      And the LORD (sent|threw) a (great|mighty) wind (on|onto|upon) the sea.
+- id: s.18.7
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָאֳנִיָּה חִשְּׁבָה לְהִשָּׁבֵר׃
+      tokens: [{surface: וְהָאֳנִיָּה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ}, {lexeme: oniyyah, surface: אֳנִיָּה, base: true, feats: {Number: Sing}}], readings: {tiberian: wəhāʾŏniyyâ}}, {surface: חִשְּׁבָה, lexeme: hishev, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ḥiššəḇâ}}, {surface: לְהִשָּׁבֵר, lexemes: [{lexeme: le, surface: לְ}, {lexeme: nishbar, surface: הִשָּׁבֵר, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: ləhiššāḇēr}}]
+      reverse: והאניה חשבה להשבר
+  translations:
+    en: |-
+      And the ship was about to break up.
+      And the ship (threatened|was going) to break (up|apart).
+- id: s.18.8
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: גּוֹרָל
+      tokens: [{surface: גּוֹרָל, lexeme: goral, feats: {Number: Sing}, readings: {tiberian: gôrāl}}]
+      reverse: גורל
+  translations:
+    en: a lot
+- id: s.18.9
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: גּוֹרָלוֹת
+      tokens: [{surface: גּוֹרָלוֹת, lexeme: goral, feats: {Number: Plur}, readings: {tiberian: gôrālôṯ}}]
+      reverse: גורלות
+  translations:
+    en: lots
+- id: s.18.10
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמְרוּ אִישׁ אֶל־רֵעֵהוּ׃
+      tokens: [{surface: וַיֹּאמְרוּ, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyōʾmərû}}, {surface: אִישׁ, lexeme: ish, feats: {Number: Sing}, readings: {tiberian: ʾîš}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: רֵעֵהוּ, lexemes: [{lexeme: rea, surface: רֵעֵ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: rēʿḗhû}}]
+      reverse: |-
+        (ויאמרו|ויואמרו) איש אל רעהו
+        אמרו איש אל רעהו
+        (הם|המה) אמרו איש אל רעהו
+        (והם|והמה) אמרו איש אל רעהו
+  translations:
+    en: |-
+      [(And|Then)] they said to one another.
+      [(And|Then)] they said to each other.
+- id: s.18.11
+  node: hbo.u18.let-us-cast-lots
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְכוּ וְנַפִּילָה גוֹרָלוֹת׃
+      tokens: [{surface: לְכוּ, lexeme: halakh, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: ləḵû}}, {surface: וְנַפִּילָה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: hippil, surface: נַפִּילָה, base: true, feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}}], readings: {tiberian: wənappî́lâ}}, {surface: גוֹרָלוֹת, lexeme: goral, feats: {Number: Plur}, readings: {tiberian: ḡôrālôṯ}}]
+      reverse: לכו ונפילה גורלות
+  translations:
+    en: |-
+      Come, let us cast lots!
+      Come on, let's cast lots!
+- id: s.18.12
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְנֵדְעָה
+      tokens: [{surface: וְנֵדְעָה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: yada, surface: נֵדְעָה, base: true, feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}}], readings: {tiberian: wənēḏəʿâ}}]
+      reverse: ונדעה
+  translations:
+    en: |-
+      and let us know
+      so that we may know
+- id: s.18.13
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּפֹּל הַגּוֹרָל עַל־יוֹנָה׃
+      tokens: [{surface: וַיִּפֹּל, lexeme: nafal, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyippōl}}, {surface: הַגּוֹרָל, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: goral, surface: גּוֹרָל, base: true, feats: {Number: Sing}}], readings: {tiberian: haggôrāl}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}]
+      reverse: |-
+        (ויפל|ויפול) הגורל על יונה
+        הגורל נפל על יונה
+        והגורל נפל על יונה
+        נפל הגורל על יונה
+  translations:
+    en: '[(And|Then)] the lot fell on Jonah.'
+- id: s.18.14
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּפֹּל עַל־פָּנָיו׃
+      tokens: [{surface: וַיִּפֹּל, lexeme: nafal, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyippōl}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: פָּנָיו, lexemes: [{lexeme: panim, surface: פָּנָי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: pānāyw}}]
+      reverse: |-
+        (ויפל|ויפול) על פניו
+        נפל על פניו
+        הוא נפל על פניו
+        והוא נפל על פניו
+  translations:
+    en: |-
+      [(And|Then)] he fell on his face.
+      [(And|Then)] he fell face down.
+- id: s.18.15
+  node: hbo.u18.who-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: מְלָאכָה
+      tokens: [{surface: מְלָאכָה, lexeme: melakhah, feats: {Number: Sing}, readings: {tiberian: məlāʾḵâ}}]
+      reverse: מלאכה
+  translations:
+    en: |-
+      work
+      (an occupation|a task|a job)
+- id: s.18.16
+  node: hbo.u18.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מַה־מְּלַאכְתְּךָ׃
+      tokens: [{surface: מַה, lexeme: mah, readings: {tiberian: mah-}}, {surface: מְּלַאכְתְּךָ, lexemes: [{lexeme: melakhah, surface: מְּלַאכְתְּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: məlaʾḵtəḵā}}]
+      reverse: מה מלאכתך
+  translations:
+    en: |-
+      What is your occupation?
+      What (is your work|do you do)?
+- id: s.18.17
+  node: hbo.u18.who-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: מֵאַיִן
+      tokens: [{surface: מֵאַיִן, lexemes: [{lexeme: min, surface: מֵ}, {lexeme: ayin.whence, surface: אַיִן, base: true}], readings: {tiberian: mēʾáyin}}]
+      reverse: מאין
+  translations:
+    en: |-
+      from where?
+      where from?
+- id: s.18.18
+  node: hbo.u18.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מֵאַיִן תָּבוֹא׃
+      tokens: [{surface: מֵאַיִן, lexemes: [{lexeme: min, surface: מֵ}, {lexeme: ayin.whence, surface: אַיִן, base: true}], readings: {tiberian: mēʾáyin}}, {surface: תָּבוֹא, lexeme: bo, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tāḇôʾ}}]
+      reverse: מאין תבוא
+  translations:
+    en: |-
+      Where do you come from?
+      Where (are you coming|have you come) from?
+- id: s.18.19
+  node: hbo.u18.who-are-you
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֵי־מִזֶּה בָאת׃
+      tokens: [{surface: אֵי, lexeme: ay, readings: {tiberian: ʾê-}}, {surface: מִזֶּה, lexemes: [{lexeme: min, surface: מִ}, {lexeme: zeh, surface: זֶּה, base: true}], readings: {tiberian: mizzeh}}, {surface: בָאת, lexeme: bo, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ḇāʾṯ}}]
+      reverse: אי מזה באת
+  translations:
+    en: |-
+      Where have you come from?
+      Where did you come from?
+- id: s.18.20
+  node: hbo.u18.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מָה אַרְצֶךָ׃
+      tokens: [{surface: מָה, lexeme: mah, readings: {tiberian: mâ}}, {surface: אַרְצֶךָ, lexemes: [{lexeme: erets, surface: אַרְצֶ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾarṣéḵā}}]
+      reverse: מה ארצך
+  translations:
+    en: |-
+      What is your country?
+      What is your land?
+- id: s.18.21
+  node: hbo.u18.who-are-you
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאֵי־מִזֶּה עַם אָתָּה׃
+      tokens: [{surface: וְאֵי, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ay, surface: אֵי, base: true}], readings: {tiberian: wəʾê-}}, {surface: מִזֶּה, lexemes: [{lexeme: min, surface: מִ}, {lexeme: zeh, surface: זֶּה, base: true}], readings: {tiberian: mizzeh}}, {surface: עַם, lexeme: am, feats: {Number: Sing}, readings: {tiberian: ʿam}}, {surface: אָתָּה, lexeme: atta, readings: {tiberian: ʾā́ttâ}}]
+      reverse: ואי מזה עם אתה
+  translations:
+    en: |-
+      And of what people are you?
+      And (which|what) people are you from?
+- id: s.18.22
+  node: hbo.u18.who-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּשֶׁלְּמִי הָרָעָה הַזֹּאת לָנוּ
+      tokens: [{surface: בְּשֶׁלְּמִי, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: she, surface: שֶׁ}, {lexeme: le, surface: לְּ}, {lexeme: mi, surface: מִי, base: true}], readings: {tiberian: bəšelləmî}}, {surface: הָרָעָה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: raah.evil, surface: רָעָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: hārāʿâ}}, {surface: הַזֹּאת, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: zot, surface: זֹּאת, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: hazzōʾṯ}}, {surface: לָנוּ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: lā́nû}}]
+      reverse: בשלמי הרעה (הזאת|הזואת) לנו
+  translations:
+    en: |-
+      on whose account this (evil|disaster|trouble) has come upon us
+      because of whom this (evil|disaster|trouble) has come (upon|on) us
+- id: s.18.23
+  node: hbo.u18.i-am-a-hebrew
+  tags:
+  - {persons: {speaker: m}}
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִבְרִי אָנֹכִי׃
+      tokens: [{surface: עִבְרִי, lexeme: ivri, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ʿiḇrî}}, {surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}]
+      reverse: |-
+        עברי (אנכי|אנוכי)
+        (אנכי|אנוכי) עברי
+  translations:
+    en: |-
+      I am a Hebrew.
+      I'm a Hebrew.
+- id: s.18.24
+  node: hbo.u18.i-am-a-hebrew
+  tags:
+  - {persons: {speaker: f}}
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִבְרִיָּה אָנֹכִי׃
+      tokens: [{surface: עִבְרִיָּה, lexeme: ivri, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: ʿiḇriyyâ}}, {surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}]
+      reverse: |-
+        עבריה (אנכי|אנוכי)
+        (אנכי|אנוכי) עבריה
+  translations:
+    en: |-
+      I am a Hebrew.
+      I'm a Hebrew.
+- id: s.18.25
+  node: hbo.u18.i-am-a-hebrew
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲנִי
+      tokens: [{surface: אֲנִי, lexeme: ani, readings: {tiberian: ʾănî}}]
+      reverse: אני
+  translations:
+    en: |-
+      I
+      me
+- id: s.18.26
+  node: hbo.u18.i-am-a-hebrew
+  uses: ['rule:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲנִי יְהוָה׃
+      tokens: [{surface: אֲנִי, lexeme: ani, readings: {tiberian: ʾănî}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: |-
+        אני יהוה
+        יהוה אני
+  translations:
+    en: I am the LORD.
+- id: s.18.27
+  node: hbo.u18.i-am-a-hebrew
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַיַּבָּשָׁה
+      tokens: [{surface: הַיַּבָּשָׁה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yabbashah, surface: יַּבָּשָׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyabbāšâ}}]
+      reverse: היבשה
+  translations:
+    en: the dry land
+- id: s.18.28
+  node: hbo.u18.i-am-a-hebrew
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶת־הַיָּם וְאֶת־הַיַּבָּשָׁה
+      tokens: [{surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyām}}, {surface: וְאֶת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֶת, base: true}], readings: {tiberian: wəʾeṯ-}}, {surface: הַיַּבָּשָׁה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yabbashah, surface: יַּבָּשָׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyabbāšâ}}]
+      reverse: את הים ואת היבשה
+  translations:
+    en: the sea and the dry land
+- id: s.18.29
+  node: hbo.u18.i-am-a-hebrew
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲשֶׁר עָשָׂה אֶת־הַיָּם וְאֶת־הַיַּבָּשָׁה
+      tokens: [{surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: עָשָׂה, lexeme: asah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʿāśâ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyām}}, {surface: וְאֶת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֶת, base: true}], readings: {tiberian: wəʾeṯ-}}, {surface: הַיַּבָּשָׁה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yabbashah, surface: יַּבָּשָׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyabbāšâ}}]
+      reverse: אשר עשה את הים ואת היבשה
+  translations:
+    en: who made the sea and the dry land
+- id: s.18.30
+  node: hbo.u18.i-am-a-hebrew
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאֶת־יְהוָה אֲנִי יָרֵא׃
+      tokens: [{surface: וְאֶת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֶת, base: true}], readings: {tiberian: wəʾeṯ-}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֲנִי, lexeme: ani, readings: {tiberian: ʾănî}}, {surface: יָרֵא, lexeme: yare, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: yārēʾ}}]
+      reverse: ואת יהוה אני ירא
+  translations:
+    en: |-
+      And I fear the LORD.
+      And I (worship|revere) the LORD.
+stories:
+- id: hbo.story.i-am-a-hebrew
+  node: hbo.u18.story
+  title:
+    en: I am a Hebrew (Jonah 1:4, 7–9)
+  characters:
+  - id: jonah
+    speaker: m
+    name:
+      hbo-Hebr/tiberian: יוֹנָה
+  - id: sailors
+    speaker: m
+    name:
+      hbo-Hebr/tiberian: הָאֲנָשִׁים
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיהוָה הֵטִיל רוּחַ־גְּדוֹלָה אֶל־הַיָּם
+          tokens: [{surface: וַיהוָה, lexemes: [{lexeme: we, surface: וַ}, {lexeme: yhwh, surface: יהוָה, base: true, feats: {Number: Sing}}], readings: {tiberian: waʾḏōnāy}}, {surface: הֵטִיל, lexeme: hetil, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: hēṭîl}}, {surface: רוּחַ, lexeme: ruach, feats: {Number: Sing}, readings: {tiberian: rûaḥ-}}, {surface: גְּדוֹלָה, lexeme: gadol, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: gəḏôlâ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַיָּם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyām}}]
+      translations:
+        en: But the LORD hurled a great wind onto the sea,
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיְהִי סַעַר־גָּדוֹל בַּיָּם
+          tokens: [{surface: וַיְהִי, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayhî}}, {surface: סַעַר, lexeme: saar, feats: {Number: Sing}, readings: {tiberian: saʿar-}}, {surface: גָּדוֹל, lexeme: gadol, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: gāḏôl}}, {surface: בַּיָּם, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: bayyām}}]
+      translations:
+        en: and there was a great storm on the sea,
+  - line:
+      ask: complete
+      gap: lexeme:nishbar
+      distractors:
+      - lexeme:akhal
+      - lexeme:raah
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְהָאֳנִיָּה חִשְּׁבָה לְהִשָּׁבֵר׃
+          tokens: [{surface: וְהָאֳנִיָּה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ}, {lexeme: oniyyah, surface: אֳנִיָּה, base: true, feats: {Number: Sing}}], readings: {tiberian: wəhāʾŏniyyâ}}, {surface: חִשְּׁבָה, lexeme: hishev, feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ḥiššəḇâ}}, {surface: לְהִשָּׁבֵר, lexemes: [{lexeme: le, surface: לְ}, {lexeme: nishbar, surface: הִשָּׁבֵר, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: ləhiššāḇēr}}]
+      translations:
+        en: and the ship was about to break up.
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמְרוּ אִישׁ אֶל־רֵעֵהוּ
+          tokens: [{surface: וַיֹּאמְרוּ, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyōʾmərû}}, {surface: אִישׁ, lexeme: ish, feats: {Number: Sing}, readings: {tiberian: ʾîš}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: רֵעֵהוּ, lexemes: [{lexeme: rea, surface: רֵעֵ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: rēʿḗhû}}]
+      translations:
+        en: And they said to one another,
+  - line:
+      speaker: sailors
+      forms:
+        hbo-Hebr/tiberian:
+          text: לְכוּ וְנַפִּילָה גוֹרָלוֹת וְנֵדְעָה בְּשֶׁלְּמִי הָרָעָה הַזֹּאת לָנוּ וַיַּפִּלוּ
+          tokens: [{surface: לְכוּ, lexeme: halakh, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: ləḵû}}, {surface: וְנַפִּילָה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: hippil, surface: נַפִּילָה, base: true, feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}}], readings: {tiberian: wənappî́lâ}}, {surface: גוֹרָלוֹת, lexeme: goral, feats: {Number: Plur}, readings: {tiberian: ḡôrālôṯ}}, {surface: וְנֵדְעָה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: yada, surface: נֵדְעָה, base: true, feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}}], readings: {tiberian: wənēḏəʿâ}}, {surface: בְּשֶׁלְּמִי, lexemes: [{lexeme: be, surface: בְּ}, {lexeme: she, surface: שֶׁ}, {lexeme: le, surface: לְּ}, {lexeme: mi, surface: מִי, base: true}], readings: {tiberian: bəšelləmî}}, {surface: הָרָעָה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: raah.evil, surface: רָעָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: hārāʿâ}}, {surface: הַזֹּאת, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: zot, surface: זֹּאת, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: hazzōʾṯ}}, {surface: לָנוּ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: lā́nû}}, {surface: וַיַּפִּלוּ, lexeme: hippil, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyappílû}}]
+      translations:
+        en: “Come, let us cast lots, so that we may know on whose account this evil has come upon us.”
+  - line:
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: גּוֹרָלוֹת וַיִּפֹּל הַגּוֹרָל עַל־יוֹנָה׃
+          tokens: [{surface: גּוֹרָלוֹת, lexeme: goral, feats: {Number: Plur}, readings: {tiberian: gôrālôṯ}}, {surface: וַיִּפֹּל, lexeme: nafal, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyippōl}}, {surface: הַגּוֹרָל, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: goral, surface: גּוֹרָל, base: true, feats: {Number: Sing}}], readings: {tiberian: haggôrāl}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: יוֹנָה, lexeme: yonah, feats: {Number: Sing}, readings: {tiberian: yônâ}}]
+      translations:
+        en: So they cast lots, and the lot fell on Jonah.
+  - choose:
+      prompt:
+        en: On whom did the lot fall?
+      options:
+      - en: on Jonah
+      - en: on the captain
+      - en: on no one
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמְרוּ אֵלָיו
+          tokens: [{surface: וַיֹּאמְרוּ, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyōʾmərû}}, {surface: אֵלָיו, lexemes: [{lexeme: el, surface: אֵלָי, base: true}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾēlāyw}}]
+      translations:
+        en: Then they said to him,
+  - line:
+      speaker: sailors
+      forms:
+        hbo-Hebr/tiberian:
+          text: הַגִּידָה־נָּא לָנוּ בַּאֲשֶׁר לְמִי־הָרָעָה הַזֹּאת לָנוּ מַה־מְּלַאכְתְּךָ וּמֵאַיִן תָּבוֹא מָה אַרְצֶךָ וְאֵי־מִזֶּה עַם אָתָּה׃
+          tokens: [{surface: הַגִּידָה, lexeme: nagad, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: haggîḏâ-}}, {surface: נָּא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: לָנוּ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: lā́nû}}, {surface: בַּאֲשֶׁר, lexemes: [{lexeme: be, surface: בַּ}, {lexeme: asher, surface: אֲשֶׁר, base: true}], readings: {tiberian: baʾăšer}}, {surface: לְמִי, lexemes: [{lexeme: le, surface: לְ}, {lexeme: mi, surface: מִי, base: true}], readings: {tiberian: ləmî-}}, {surface: הָרָעָה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: raah.evil, surface: רָעָה, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: hārāʿâ}}, {surface: הַזֹּאת, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: zot, surface: זֹּאת, base: true, feats: {Gender: Fem, Number: Sing}}], readings: {tiberian: hazzōʾṯ}}, {surface: לָנוּ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: lā́nû}}, {surface: מַה, lexeme: mah, readings: {tiberian: mah-}}, {surface: מְּלַאכְתְּךָ, lexemes: [{lexeme: melakhah, surface: מְּלַאכְתְּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: məlaʾḵtəḵā}}, {surface: וּמֵאַיִן, lexemes: [{lexeme: we, surface: וּ}, {lexeme: min, surface: מֵ}, {lexeme: ayin.whence, surface: אַיִן, base: true}], readings: {tiberian: ûmēʾáyin}}, {surface: תָּבוֹא, lexeme: bo, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tāḇôʾ}}, {surface: מָה, lexeme: mah, readings: {tiberian: mâ}}, {surface: אַרְצֶךָ, lexemes: [{lexeme: erets, surface: אַרְצֶ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾarṣéḵā}}, {surface: וְאֵי, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ay, surface: אֵי, base: true}], readings: {tiberian: wəʾê-}}, {surface: מִזֶּה, lexemes: [{lexeme: min, surface: מִ}, {lexeme: zeh, surface: זֶּה, base: true}], readings: {tiberian: mizzeh}}, {surface: עַם, lexeme: am, feats: {Number: Sing}, readings: {tiberian: ʿam}}, {surface: אָתָּה, lexeme: atta, readings: {tiberian: ʾā́ttâ}}]
+      translations:
+        en: “Tell us, on whose account has this evil come upon us? What is your occupation, and where do you come from? What is your country, and of what people are you?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר אֲלֵיהֶם
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: אֲלֵיהֶם, lexemes: [{lexeme: el, surface: אֲלֵי, base: true}, {lexeme: sfx-3mp, surface: הֶם}], readings: {tiberian: ʾălêhem}}]
+      translations:
+        en: And he said to them,
+  - line:
+      speaker: jonah
+      ask: complete
+      gap: lexeme:ivri
+      distractors:
+      - lexeme:gamal
+      - lexeme:ets
+      forms:
+        hbo-Hebr/tiberian:
+          text: עִבְרִי אָנֹכִי וְאֶת־יְהוָה אֱלֹהֵי הַשָּׁמַיִם אֲנִי יָרֵא אֲשֶׁר־עָשָׂה אֶת־הַיָּם וְאֶת־הַיַּבָּשָׁה׃
+          tokens: [{surface: עִבְרִי, lexeme: ivri, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ʿiḇrî}}, {surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānṓḵî}, context: pause}, {surface: וְאֶת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֶת, base: true}], readings: {tiberian: wəʾeṯ-}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵי, lexeme: elohim, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: ʾĕlōhê}}, {surface: הַשָּׁמַיִם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: shamayim, surface: שָּׁמַיִם, base: true, feats: {Number: Plur}}], readings: {tiberian: haššāmáyim}}, {surface: אֲנִי, lexeme: ani, readings: {tiberian: ʾănî}}, {surface: יָרֵא, lexeme: yare, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: yārēʾ}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer-}}, {surface: עָשָׂה, lexeme: asah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʿāśâ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּם, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yam, surface: יָּם, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyām}}, {surface: וְאֶת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et, surface: אֶת, base: true}], readings: {tiberian: wəʾeṯ-}}, {surface: הַיַּבָּשָׁה, lexemes: [{lexeme: ha, surface: הַ}, {lexeme: yabbashah, surface: יַּבָּשָׁה, base: true, feats: {Number: Sing}}], readings: {tiberian: hayyabbāšâ}}]
+      translations:
+        en: “I am a Hebrew, and I fear the LORD, the God of heaven, who made the sea and the dry land.”
+  - choose:
+      prompt:
+        en: Whom does Jonah say he fears?
+      options:
+      - en: the LORD, the God of heaven
+      - en: the sailors
+      - en: the king of Nineveh
+      answer: 0
