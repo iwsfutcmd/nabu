@@ -110,7 +110,9 @@ wrong, since *esta* is another word of the course: ADR 0076's own example.)
   g, other sounds and other Arabic letters (*kisi* for *kiši*, *tag* for *taǧ*). The rest stay noted: ṣ, s̱, ḥ,
   ṭ, ẓ, ż, ź and ṗ sound like their plain letter and only name another Arabic letter (*hujra* for *ḥujra*),
   and č has no plain letter to be taken for. The split is from Schluessel's table of letters (2018, pp. xi to
-  xxxii) and stays a statement marked REVIEW in the profile. ž joins the answer bar.
+  xxxii) and stays a statement marked REVIEW in the profile. ž joins the answer bar. **Built on 2026-11-20,
+  ahead of the rest of this ADR:** it stands on ADR 0134's mechanism alone (the profile's `requiredLetters`;
+  ADR 0134's amendment says exactly what is wrong and what stays a slip).
 - **Greek waits for its buttons** (the owner, round 5). Greek accents and the rough breathing carry sound too,
   and a learner may have no polytonic keyboard (ADR 0087's reason for noting them). grc keeps that note until
   the app has its own way to put the marks on, from buttons, as ADR 0137 gave vowel marks; then a missing one

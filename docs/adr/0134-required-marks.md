@@ -3,8 +3,8 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-17
 - Amends: [0131](0131-readings-on-new-words.md) (chg's typed readings)
-- Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
-  [0148](0148-projections-and-misses.md) (chg-Latn's š, ž, ḫ and ǧ become required: they say another sound)
+- Amended: 2026-11-20, by the owner's ruling recorded in [ADR 0148](0148-projections-and-misses.md), and
+  built the same day: chg-Latn's š, ž, ḫ and ǧ are required too (the amendment at the end)
 
 ## Context
 
@@ -58,3 +58,41 @@ not a."
   vowel a typed card requires.
 - A vowel *letter* typed for another (i for u, with no marks involved) is still judged by the
   keyboard typo model. Making every vowel slip wrong in a reading is a separate decision.
+
+## Amendment (2026-11-20): š, ž, ḫ and ǧ
+
+The owner ruled, in the sixth round on ADRs 0145–0151 ([lexemes.md](../lexemes.md) §16; ADR 0148): the
+consonant marks are of two kinds, and only one is convention.
+- **š, ž, ḫ and ǧ are sounds of their own.** Without the mark they are s, z, h and g: other sounds, written
+  with other Arabic letters. *kisi* for *kiši* and *tag* for *taǧ* misread the word.
+- **ṣ, s̱, ḥ, ṭ, ẓ, ż, ź and ṗ sound as their plain letter does** and only name another Arabic letter. č has
+  no plain letter to be taken for. These stay noted.
+
+**A profile's marks may name `requiredLetters`,** with a `requiredLettersNote`: letters written with a mark
+of the set, whose mark an answer must write.
+- Such a letter written without its mark (*kisi*), its bare letter written with it (*šän* for *sän*), or
+  another mark of the set in its place (*ḥan* for *ḫan*) is never folded away by the marks policy and never
+  a typo. The word is wrong, as with `required`.
+- The same mark on any other letter keeps the policy: *cay* for *čay* is noted.
+- **The whole letter traded for another, left out or added is a slip like any other letter's.** The typo
+  model and the contrast sets judge it: *bazārda* for *bazārǧa* is still another case ending
+  (`contrast-case`), and *bazārfa* is a typo. This is narrower than a vowel's mark, where a traded letter is
+  wrong too. The ruling is about the mark, and a wider rule would have taken the contrast note away from
+  every ending written with ǧ.
+- Where both kinds of required mark differ in one word (*sahar* for *šähär*), the vowels' note is given.
+
+**chg-Latn/schluessel's `requiredLetters`** are š, ž, ḫ and ǧ. The note is `translit-sounds`: "Mind š, ž, ḫ
+and ǧ: without the mark they are s, z, h and g, other sounds and other Arabic letters." ž joins the answer
+bar. `translit-marks` now names letters it still applies to (ḥ, ṭ, ṣ, č).
+
+The split is Claude's reading of Schluessel's table of letters (2018, pp. xi to xxxii) and is marked REVIEW
+in the profile.
+
+**Conformance vectors** pass in both harnesses: š's, ǧ's and ḫ's marks left out, added and traded for
+another mark; a capital; č's caron and ṭ's dot still noted; a required letter traded for another letter a
+typo, and the case contrast kept; both kinds in one word, and in two.
+
+**Found while building, and left as it is.** Since this ADR, a contrast set no longer catches an ending
+whose vowel carries a required mark: *öydin* for *öydä* is `WRONG` with no note, where the profile's comment
+promises `contrast-case`. The required marks are checked before the typo model, and the contrast sets are
+only read there. It is the owner's to decide whether a contrast should be named first.

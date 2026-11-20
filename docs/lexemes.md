@@ -1086,6 +1086,7 @@ part asked in the session, once forty-five rows proved too many)**
   already refuse all fifteen.
 - Decided: chg's typed readings split their consonant marks by sound. š, ž, ḫ and ǧ are required, as the
   vowels' marks are; the rest stay noted. Amends ADR 0134. Against the draft, which left ADR 0134 standing.
+  Built the same day (ADR 0134's amendment).
 - Decided: a story asks a contrast only a context decides by a third kind of question, which use, beside
   which word and which form. Against the draft, which widened which form.
 - Decided: a drafted statement that a form is listed counts until it is signed off, as every REVIEW policy

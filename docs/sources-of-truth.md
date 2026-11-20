@@ -609,6 +609,8 @@ A learner told where to look can look there.
    *-i*). fa moves its sentence-level ezafe tags onto the words. (ADR 0136.)
 3. **chg typed readings:** a wrong or missing vowel mark (ä ö ü, ā ī ū ē, à) is wrong; a consonant
    mark (ṣ ḥ ṭ ẓ ż ź s̱ ḫ č š ž ǧ) is noted. Vowels are what the script leaves out. (ADR 0134.)
+   Since 2026-11-20 the marks of š, ž, ḫ and ǧ are required too: they say another sound (ADR 0134's
+   amendment).
    - **hbo and apc** get a typed mark card: the word's letters are given, and the learner taps the
      marks onto them from buttons (only on that card), after a choice card has shown the marks.
      (ADR 0137.)

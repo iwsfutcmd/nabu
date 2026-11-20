@@ -635,7 +635,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   …}`, Schluessel's transliteration (2018), shown as ruby over the whole word (the scheme's `ruby: word`), over new words until the learner chooses, and asked by
   char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW), then typed
   (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131): a vowel's
-  marks are `required` there (ä ö ü ā ī ū ē à: left out or moved, wrong), a consonant's noted (ADR 0134);
+  marks are `required` there (ä ö ü ā ī ū ē à: left out or moved, wrong) and so are those of š ž ḫ ǧ
+  (`requiredLetters`: s for š is another sound; the letter traded for another is still a slip), another consonant's
+  noted (ADR 0134 and its amendment);
   every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
   A line's readings stand level, a gap over its tallest word's ink, inside their box (ruby-lift.ts, ADR 0131 amendments).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
