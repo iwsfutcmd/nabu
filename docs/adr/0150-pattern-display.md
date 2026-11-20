@@ -53,8 +53,8 @@ too: Chromium paints a letter and its marks in one colour.
   6%, so a shape no longer shows by itself how many radicals it has. The owner weighed a bar under each slot
   and a stronger tatweel, and chose neither.
 - **One slot letter can't say which radical is which.** A pattern that repeats a radical or moves one
-  (Hebrew polel and pilpel, the hitpaʿel's metathesis; an Arabic quadriliteral from a doubled root) looks
-  like any shape with as many slots. Until slots are numbered (below), such a pattern is shown beside an
+  (Hebrew polel and pilpel, the hitpaʿel's metathesis before a sibilant; an Arabic reduplicated quadriliteral,
+  whose first two consonants repeat) looks like any shape with as many slots. Until slots are numbered (below), such a pattern is shown beside an
   aligned word, and its traditional name stays its label.
 - **Under `prefers-contrast: more` the slots come up to a visible grey;** forced-colours modes already draw
   them at full strength. No per-device setting for slot strength.
@@ -89,6 +89,10 @@ round touches this ADR.
 
 **Restored from the notes:** an opaque grey is tuned to one background; what a bare slot costs, which the
 owner weighed when deciding against a bar and a stronger tatweel.
+
+**Checked since, in the reference library:** the hitpaʿel's metathesis and the polel and pilpel (Joüon–Muraoka
+§§ 53 and 59); reduplicated quadriliteral verbs (Ryding 2005, ch. 33), which replaces "a quadriliteral from a
+doubled root", written from memory.
 
 **Proposed with this revision, not yet the owner's:**
 1. The slot token's exemption in the token test, with a test of its own (ADR 0083 is listed as amended).
