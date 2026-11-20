@@ -221,11 +221,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا سامي.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: سامي, lexeme: sami}]
       reverse: '[أنا] سامي'
     apc-Latn/arabizi:
       text: ana Sami.
-      tokens: [{surface: ana, lexeme: ana}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: Sami, lexeme: sami}]
       reverse: '[ana] Sami'
   translations:
     en: I('m| am) Sami.
@@ -266,13 +266,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: اسمي سامي.
-      tokens: [{surface: اسمي, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: اسمي, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: سامي, lexeme: sami}]
       reverse: |-
         اسمي سامي
         أنا اسمي سامي
     apc-Latn/arabizi:
       text: esmi Sami.
-      tokens: [{surface: esmi, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: esmi, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: Sami, lexeme: sami}]
       reverse: |-
         (esmi|ismi|esme|isme) Sami
         ana esmi Sami
@@ -285,11 +285,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مرحبا سامي!
-      tokens: [{surface: مرحبا, lexeme: marhaba}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: مرحبا, lexeme: marhaba}, {surface: سامي, lexeme: sami}]
       reverse: مرحبا سامي
     apc-Latn/arabizi:
       text: mar7aba Sami!
-      tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Sami, lexeme: sami}]
       reverse: (mar7aba|marhaba|mar7ba) Sami
   translations:
     en: (Hello|Hi), Sami!
@@ -463,10 +463,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مَرْحَبا سامي! كِيفَك؟
-          tokens: [{surface: مَرْحَبا, lexeme: marhaba}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: كِيفَك, lexemes: [{lexeme: kif, surface: كِيفَ, base: true}, {lexeme: poss-2ms, surface: ك}]}]
+          tokens: [{surface: مَرْحَبا, lexeme: marhaba}, {surface: سامي, lexeme: sami}, {surface: كِيفَك, lexemes: [{lexeme: kif, surface: كِيفَ, base: true}, {lexeme: poss-2ms, surface: ك}]}]
         apc-Latn/arabizi:
           text: mar7aba Sami! kifak?
-          tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: kifak, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2ms, surface: ak}]}]
+          tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Sami, lexeme: sami}, {surface: kifak, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2ms, surface: ak}]}]
       translations:
         en: Hi Sami! How are you?
   - line:

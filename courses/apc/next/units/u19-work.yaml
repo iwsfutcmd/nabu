@@ -22,7 +22,7 @@ sentences:
       reverse: '[أنا] بالجامعة'
     apc-Latn/arabizi:
       text: ana bel jem3a.
-      tokens: [{surface: ana, lexeme: ana}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: jem3a, lexeme: jem3a.uni, feats: {Number: Sing}}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: el, n: 3, head: 4, rel: det}]}, {surface: jem3a, lexeme: jem3a.uni, feats: {Number: Sing}, n: 4}]
       reverse: '[ana] (bel|bil|b el) (jem3a|jam3a|jeme3a|jem3ah|jim3a|jum3a)'
   translations:
     en: |-
@@ -41,7 +41,7 @@ sentences:
         إنتي بتروحي عالجامعة
     apc-Latn/arabizi:
       text: btru7i 3al jem3a?
-      tokens: [{surface: btru7i, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: jem3a, lexeme: jem3a.uni, feats: {Number: Sing}}]
+      tokens: [{surface: btru7i, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: jem3a, lexeme: jem3a.uni, feats: {Number: Sing}, n: 4}]
       reverse: |-
         (btru7i|btro7i|btrou7e) (3al|3a l|3a el) (jem3a|jam3a|jeme3a|jem3ah|jim3a|jum3a)
         enti btru7i 3al jem3a
@@ -81,7 +81,7 @@ sentences:
         أنا طالبة بالجامعة
     apc-Latn/arabizi:
       text: ana tilmize bel jem3a.
-      tokens: [{surface: ana, lexeme: ana}, {surface: tilmize, lexeme: tilmiz, feats: {Gender: Fem, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: jem3a, lexeme: jem3a.uni, feats: {Number: Sing}}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: tilmize, lexeme: tilmiz, feats: {Gender: Fem, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: jem3a, lexeme: jem3a.uni, feats: {Number: Sing}, n: 5}]
       reverse: |-
         [ana] (tilmize|telmize|tilmeeze|tilmiza) (bel|bil|b el) (jem3a|jam3a|jeme3a|jem3ah|jim3a|jum3a)
         ana talbe bel jem3a
@@ -134,13 +134,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندي درس بكرا.
-      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: درس, lexeme: dars, feats: {Number: Sing}}, {surface: بكرا, lexeme: bukra}]
+      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: ي, n: 2}]}, {surface: درس, lexeme: dars, feats: {Number: Sing}}, {surface: بكرا, lexeme: bukra}]
       reverse: |-
         (عندي|أنا عندي) درس (بكرا|بكرة)
         بكرا عندي درس
     apc-Latn/arabizi:
       text: 3endi dars bukra.
-      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: dars, lexeme: dars, feats: {Number: Sing}}, {surface: bukra, lexeme: bukra}]
+      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: i, n: 2}]}, {surface: dars, lexeme: dars, feats: {Number: Sing}}, {surface: bukra, lexeme: bukra}]
       reverse: |-
         (3endi|3andi|3ende|3indi) (dars|dares|daris) (bukra|bokra|bukrah)
         ana 3endi dars bukra
@@ -161,7 +161,7 @@ sentences:
         الدرس عالتسعة
     apc-Latn/arabizi:
       text: el dars 3al sa3a tes3a.
-      tokens: [{surface: el, lexeme: el}, {surface: dars, lexeme: dars, feats: {Number: Sing}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}}, {surface: tes3a, lexeme: tes3a}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: dars, lexeme: dars, feats: {Number: Sing}, n: 2}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}, n: 5}, {surface: tes3a, lexeme: tes3a}]
       reverse: |-
         (el|l|il) (dars|dares|daris) (3al|3a l|3a el) (sa3a|se3a) (tes3a|tes3e|tis3a)
         el dars 3al tes3a
@@ -174,13 +174,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بكرا عندي امتحان.
-      tokens: [{surface: بكرا, lexeme: bukra}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: امتحان, lexeme: emte7an, feats: {Number: Sing}}]
+      tokens: [{surface: بكرا, lexeme: bukra}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-1sg, surface: ي, n: 3}]}, {surface: امتحان, lexeme: emte7an, feats: {Number: Sing}}]
       reverse: |-
         (بكرا|بكرة) (عندي|أنا عندي) امتحان
         عندي امتحان بكرا
     apc-Latn/arabizi:
       text: bukra 3endi emte7an.
-      tokens: [{surface: bukra, lexeme: bukra}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: emte7an, lexeme: emte7an, feats: {Number: Sing}}]
+      tokens: [{surface: bukra, lexeme: bukra}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-1sg, surface: i, n: 3}]}, {surface: emte7an, lexeme: emte7an, feats: {Number: Sing}}]
       reverse: |-
         (bukra|bokra|bukrah) (3endi|3andi|3ende|3indi) (emte7an|imti7an|emti7an|emte7en|imte7an)
         bukra ana 3endi emte7an
@@ -219,7 +219,7 @@ sentences:
         كان الامتحان منيح
     apc-Latn/arabizi:
       text: el emte7an ken mni7?
-      tokens: [{surface: el, lexeme: el}, {surface: emte7an, lexeme: emte7an, feats: {Number: Sing}}, {surface: ken, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: emte7an, lexeme: emte7an, feats: {Number: Sing}, n: 2}, {surface: ken, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
       reverse: |-
         (el|l|il) (emte7an|imti7an|emti7an|emte7en|imte7an) ken (mni7|mnee7|mnih)
         ken el emte7an mni7
@@ -266,7 +266,7 @@ sentences:
       reverse: (بشتغل|أنا بشتغل) بشركة كبيرة
     apc-Latn/arabizi:
       text: bishteghel b sherke kbire.
-      tokens: [{surface: bishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: b, lexeme: b}, {surface: sherke, lexeme: sherke, feats: {Number: Sing}, n: 3}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
+      tokens: [{surface: bishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: b, lexeme: b, n: 2, head: 3, rel: case}, {surface: sherke, lexeme: sherke, feats: {Number: Sing}, n: 3}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: |-
         (bishteghel|beshteghel|bishtighil) (b|bi) (sherke|shirke|sharke|sherki) (kbire|kbeere|kbiri)
         ana bishteghel b sherke kbire
@@ -305,7 +305,7 @@ sentences:
       reverse: المدير مش هون
     apc-Latn/arabizi:
       text: el mudir mish hon.
-      tokens: [{surface: el, lexeme: el}, {surface: mudir, lexeme: mudir, feats: {Number: Sing}}, {surface: mish, lexeme: mish}, {surface: hon, lexeme: hon}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: mudir, lexeme: mudir, feats: {Number: Sing}, n: 2}, {surface: mish, lexeme: mish}, {surface: hon, lexeme: hon}]
       reverse: (el|l|il) (mudir|modir|mudeer|modeer) (mish|mesh|msh|mush) (hon|hone|houn)
   translations:
     en: |-
@@ -470,7 +470,7 @@ sentences:
         ما رحت عالشغل لأنّي كنت مريض
     apc-Latn/arabizi:
       text: ma ru7t 3al shoghl la2anno kent mrid.
-      tokens: [{surface: ma, lexeme: ma}, {surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}, {surface: la2anno, lexeme: la2anno}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mrid, lexeme: mrid, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: ma, lexeme: ma}, {surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 5}, {surface: la2anno, lexeme: la2anno}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mrid, lexeme: mrid, feats: {Gender: Masc, Number: Sing}}]
       reverse: |-
         ma (ru7t|re7et|re7t) (3al|3a l|3a el) (shoghl|shoghol|shughl) (la2anno|la2ano|la2enno) (kent|kint|kunt) (mrid|mareed|mreed)
         ana ma ru7t 3al shoghl la2anno kent mrid
@@ -481,14 +481,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما فيّي اطلع لأنّه عندي امتحان.
-      tokens: [{surface: ما, lexeme: ma}, {surface: فيّي, lexemes: [{lexeme: fi.can, surface: فيّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: اطلع, lexeme: tele3, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: لأنّه, lexeme: la2anno}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: امتحان, lexeme: emte7an, feats: {Number: Sing}}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: فيّي, lexemes: [{lexeme: fi.can, surface: فيّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: اطلع, lexeme: tele3, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: لأنّه, lexeme: la2anno}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 6, head: 7, rel: case}, {lexeme: poss-1sg, surface: ي, n: 7}]}, {surface: امتحان, lexeme: emte7an, feats: {Number: Sing}}]
       reverse: |-
         ما (فيّي|فيني) اطلع (لأنّه|لأنّو) (عندي|أنا عندي) امتحان
         ما فيّي اطلع لأنّي عندي امتحان
         أنا ما فيّي اطلع لأنّه عندي امتحان
     apc-Latn/arabizi:
       text: ma fiyyi etla3 la2anno 3endi emte7an.
-      tokens: [{surface: ma, lexeme: ma}, {surface: fiyyi, lexemes: [{lexeme: fi.can, surface: fiyy, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: etla3, lexeme: tele3, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: la2anno, lexeme: la2anno}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: emte7an, lexeme: emte7an, feats: {Number: Sing}}]
+      tokens: [{surface: ma, lexeme: ma}, {surface: fiyyi, lexemes: [{lexeme: fi.can, surface: fiyy, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: etla3, lexeme: tele3, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: la2anno, lexeme: la2anno}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 6, head: 7, rel: case}, {lexeme: poss-1sg, surface: i, n: 7}]}, {surface: emte7an, lexeme: emte7an, feats: {Number: Sing}}]
       reverse: |-
         ma (fiyyi|fiyye|fiye|fiyi) (etla3|itla3|otla3) (la2anno|la2ano|la2enno|la2annu) (3endi|3andi|3ende|3indi) (emte7an|imti7an|emti7an|emte7en)
         ana ma fiyyi etla3 la2anno 3endi emte7an
@@ -502,13 +502,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بحبّ بيروت لأنّه حلوة.
-      tokens: [{surface: بحبّ, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: بيروت, lexeme: beirut, feats: {Number: Sing}}, {surface: لأنّه, lexeme: la2anno}, {surface: حلوة, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: بحبّ, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: بيروت, lexeme: beirut}, {surface: لأنّه, lexeme: la2anno}, {surface: حلوة, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         (بحبّ|أنا بحبّ) بيروت (لأنّه|لأنّو) حلوة
         بحبّ بيروت لأنّها حلوة
     apc-Latn/arabizi:
       text: b7ebb Beirut la2anno 7elwe.
-      tokens: [{surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: Beirut, lexeme: beirut, feats: {Number: Sing}}, {surface: la2anno, lexeme: la2anno}, {surface: 7elwe, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: Beirut, lexeme: beirut}, {surface: la2anno, lexeme: la2anno}, {surface: 7elwe, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         (b7ebb|b7eb|b7ib|bhebb) (Beirut|Bayrut|Beyrouth) (la2anno|la2ano|la2enno|la2annu|la2nno) (7elwe|7elwi|7ilwe|helwe)
         ana b7ebb Beirut la2anno 7elwe
@@ -519,13 +519,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بعرف إنّه سامي مشغول.
-      tokens: [{surface: بعرف, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: إنّه, lexeme: enno}, {surface: سامي, lexeme: sami, feats: {Number: Sing}, n: 3}, {surface: مشغول, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}]
+      tokens: [{surface: بعرف, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: إنّه, lexeme: enno}, {surface: سامي, lexeme: sami, n: 3}, {surface: مشغول, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: |-
         بعرف (إنّه|إنّو) سامي مشغول
         أنا بعرف إنّه سامي مشغول
     apc-Latn/arabizi:
       text: ba3ref enno Sami mashghoul.
-      tokens: [{surface: ba3ref, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: enno, lexeme: enno}, {surface: Sami, lexeme: sami, feats: {Number: Sing}, n: 3}, {surface: mashghoul, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}]
+      tokens: [{surface: ba3ref, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: enno, lexeme: enno}, {surface: Sami, lexeme: sami, n: 3}, {surface: mashghoul, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: |-
         (ba3ref|b3ref|ba3rif) (enno|eno|inno|ino|ennu) Sami (mashghoul|mashghol)
         ana ba3ref enno Sami mashghoul
@@ -599,7 +599,7 @@ sentences:
         إنتو بتعرفوا إنّه المدير هون
     apc-Latn/arabizi:
       text: bta3rfo enno el mudir hon?
-      tokens: [{surface: bta3rfo, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: enno, lexeme: enno}, {surface: el, lexeme: el}, {surface: mudir, lexeme: mudir, feats: {Number: Sing}}, {surface: hon, lexeme: hon}]
+      tokens: [{surface: bta3rfo, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: enno, lexeme: enno}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: mudir, lexeme: mudir, feats: {Number: Sing}, n: 4}, {surface: hon, lexeme: hon}]
       reverse: |-
         (bta3rfo|bta3refo|bta3rfu) (enno|eno|inno|ino|ennu) (el|l|il) (mudir|modir|mudeer|modeer) (hon|hone|houn)
         ento bta3rfo enno el mudir hon
@@ -630,10 +630,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: سامي، شو بْتِشْتِغِل هَلَّق؟
-          tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: شو, lexeme: shu}, {surface: بْتِشْتِغِل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: هَلَّق, lexeme: hala2}]
+          tokens: [{surface: سامي, lexeme: sami}, {surface: شو, lexeme: shu}, {surface: بْتِشْتِغِل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: هَلَّق, lexeme: hala2}]
         apc-Latn/arabizi:
           text: Sami, shu btishteghel hala2?
-          tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: shu, lexeme: shu}, {surface: btishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: hala2, lexeme: hala2}]
+          tokens: [{surface: Sami, lexeme: sami}, {surface: shu, lexeme: shu}, {surface: btishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: hala2, lexeme: hala2}]
       translations:
         en: Sami, what do you do now?
   - line:
@@ -641,10 +641,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: صِرْت مْهَنْدِس بْشِرْكِة كْبيرِة بْبيروت.
-          tokens: [{surface: صِرْت, lexeme: sar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: مْهَنْدِس, lexeme: mhandes, feats: {Gender: Masc, Number: Sing}}, {surface: بْشِرْكِة, lexemes: [{lexeme: b, surface: بْ, n: 3, head: 4, rel: case}, {lexeme: sherke, surface: شِرْكِة, base: true, feats: {Number: Sing}, n: 4}]}, {surface: كْبيرِة, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: بْبيروت, lexemes: [{lexeme: b, surface: بْ, n: 6, head: 7, rel: case}, {lexeme: beirut, surface: بيروت, base: true, feats: {Number: Sing}, n: 7}]}]
+          tokens: [{surface: صِرْت, lexeme: sar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: مْهَنْدِس, lexeme: mhandes, feats: {Gender: Masc, Number: Sing}}, {surface: بْشِرْكِة, lexemes: [{lexeme: b, surface: بْ, n: 3, head: 4, rel: case}, {lexeme: sherke, surface: شِرْكِة, base: true, feats: {Number: Sing}, n: 4}]}, {surface: كْبيرِة, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: بْبيروت, lexemes: [{lexeme: b, surface: بْ, n: 6, head: 7, rel: case}, {lexeme: beirut, surface: بيروت, base: true, n: 7}]}]
         apc-Latn/arabizi:
           text: sert mhandes b sherke kbire b Beirut.
-          tokens: [{surface: sert, lexeme: sar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mhandes, lexeme: mhandes, feats: {Gender: Masc, Number: Sing}}, {surface: b, lexeme: b}, {surface: sherke, lexeme: sherke, feats: {Number: Sing}, n: 4}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: b, lexeme: b}, {surface: Beirut, lexeme: beirut, feats: {Number: Sing}}]
+          tokens: [{surface: sert, lexeme: sar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mhandes, lexeme: mhandes, feats: {Gender: Masc, Number: Sing}}, {surface: b, lexeme: b, n: 3, head: 4, rel: case}, {surface: sherke, lexeme: sherke, feats: {Number: Sing}, n: 4}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: b, lexeme: b, n: 6, head: 7, rel: case}, {surface: Beirut, lexeme: beirut, n: 7}]
       translations:
         en: I've become an engineer at a big company in Beirut.
   - line:
@@ -655,7 +655,7 @@ stories:
           tokens: [{surface: والله, lexeme: walla}, {surface: حِلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: كْتير, lexeme: ktir}, {surface: والمُدير, lexemes: [{lexeme: w, surface: و}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: mudir, surface: مُدير, base: true, feats: {Number: Sing}, n: 6}]}, {surface: مْنيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 7, head: 6, rel: amod}]
         apc-Latn/arabizi:
           text: walla? 7elo ktir! w el mudir mni7?
-          tokens: [{surface: walla, lexeme: walla}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: ktir, lexeme: ktir}, {surface: w, lexeme: w}, {surface: el, lexeme: el}, {surface: mudir, lexeme: mudir, feats: {Number: Sing}, n: 6}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 7, head: 6, rel: amod}]
+          tokens: [{surface: walla, lexeme: walla}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: ktir, lexeme: ktir}, {surface: w, lexeme: w}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: mudir, lexeme: mudir, feats: {Number: Sing}, n: 6}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 7, head: 6, rel: amod}]
       translations:
         en: Really? That's great! And is the boss nice?
   - line:
@@ -671,7 +671,7 @@ stories:
           tokens: [{surface: إيه, lexeme: eh}, {surface: المُدير, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: mudir, surface: مُدير, base: true, feats: {Number: Sing}, n: 3}]}, {surface: مْنيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: بَسّ, lexeme: bas}, {surface: في, lexeme: fi}, {surface: شُغُل, lexeme: shoghl, feats: {Number: Sing}}, {surface: كْتير, lexeme: ktir}]
         apc-Latn/arabizi:
           text: eh, el mudir mni7, bas fi shoghl ktir.
-          tokens: [{surface: eh, lexeme: eh}, {surface: el, lexeme: el}, {surface: mudir, lexeme: mudir, feats: {Number: Sing}, n: 3}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: bas, lexeme: bas}, {surface: fi, lexeme: fi}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}, {surface: ktir, lexeme: ktir}]
+          tokens: [{surface: eh, lexeme: eh}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: mudir, lexeme: mudir, feats: {Number: Sing}, n: 3}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: bas, lexeme: bas}, {surface: fi, lexeme: fi}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}, {surface: ktir, lexeme: ktir}]
       translations:
         en: Yes, the boss is nice, but there's a lot of work.
   - choose:
@@ -690,7 +690,7 @@ stories:
           tokens: [{surface: أَنا, lexeme: ana}, {surface: بَعْدْني, lexemes: [{lexeme: ba3d.still, surface: بَعْدْ, base: true}, {lexeme: obj-1sg, surface: ني}]}, {surface: تِلْميذِة, lexeme: tilmiz, feats: {Gender: Fem, Number: Sing}}, {surface: بِالجّامْعَة, lexemes: [{lexeme: b, surface: بِ, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: jem3a.uni, surface: جّامْعَة, base: true, feats: {Number: Sing}, n: 7}]}]
         apc-Latn/arabizi:
           text: ana ba3dni tilmize bel jem3a.
-          tokens: [{surface: ana, lexeme: ana}, {surface: ba3dni, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: obj-1sg, surface: ni}]}, {surface: tilmize, lexeme: tilmiz, feats: {Gender: Fem, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: jem3a, lexeme: jem3a.uni, feats: {Number: Sing}}]
+          tokens: [{surface: ana, lexeme: ana}, {surface: ba3dni, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: obj-1sg, surface: ni}]}, {surface: tilmize, lexeme: tilmiz, feats: {Gender: Fem, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: el, n: 6, head: 7, rel: det}]}, {surface: jem3a, lexeme: jem3a.uni, feats: {Number: Sing}, n: 7}]
       translations:
         en: I'm still a student at university.
   - line:
@@ -698,10 +698,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: عِنْدِك اِمْتِحان هَالجِمْعَة؟
-          tokens: [{surface: عِنْدِك, lexemes: [{lexeme: 3end, surface: عِنْدِ, base: true}, {lexeme: poss-2fs, surface: ك}]}, {surface: اِمْتِحان, lexeme: emte7an, feats: {Number: Sing}}, {surface: هَالجِمْعَة, lexemes: [{lexeme: hal, surface: هَال, n: 4, head: 5, rel: det}, {lexeme: jem3a, surface: جِمْعَة, base: true, feats: {Number: Sing}, n: 5}]}]
+          tokens: [{surface: عِنْدِك, lexemes: [{lexeme: 3end, surface: عِنْدِ, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2fs, surface: ك, n: 2}]}, {surface: اِمْتِحان, lexeme: emte7an, feats: {Number: Sing}}, {surface: هَالجِمْعَة, lexemes: [{lexeme: hal, surface: هَال, n: 4, head: 5, rel: det}, {lexeme: jem3a, surface: جِمْعَة, base: true, feats: {Number: Sing}, n: 5}]}]
         apc-Latn/arabizi:
           text: 3endik emte7an hal jem3a?
-          tokens: [{surface: 3endik, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2fs, surface: ik}]}, {surface: emte7an, lexeme: emte7an, feats: {Number: Sing}}, {surface: hal, lexeme: hal}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}}]
+          tokens: [{surface: 3endik, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2fs, surface: ik, n: 2}]}, {surface: emte7an, lexeme: emte7an, feats: {Number: Sing}}, {surface: hal, lexeme: hal, n: 4, head: 5, rel: det}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}, n: 5}]
       translations:
         en: Do you have an exam this week?
   - line:

@@ -127,7 +127,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me baño por la noche.
-      tokens: [{surface: Me, lexeme: me}, {surface: baño, lexeme: bañarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: Me, lexeme: me}, {surface: baño, lexeme: bañarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 5}]
       reverse: |-
         [Yo] me (baño|ducho) (por|en) la noche
         (Por|En) la noche [yo] me (baño|ducho)
@@ -140,7 +140,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hay colada en el trabajo.
-      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: colada, lexeme: colada, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: Hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: colada, lexeme: colada, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (Hay colada|Hay una colada) en el trabajo
         En el trabajo hay [una] colada
@@ -215,7 +215,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los jueves voy a la Calle Ocho.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: jueves, lexeme: jueves, feats: {Number: Plur}, n: 2}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 6}, {surface: Ocho, lexeme: calle-ocho}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: jueves, lexeme: jueves, feats: {Number: Plur}, n: 2}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 6}, {surface: Ocho, lexeme: calle-ocho}]
       reverse: |-
         Los jueves [yo] voy a la Calle Ocho
         [Yo] voy a la Calle Ocho los jueves
@@ -229,7 +229,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El viernes trabajo por la noche.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: viernes, lexeme: viernes, feats: {Number: Sing}, n: 2}, {surface: trabajo, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: viernes, lexeme: viernes, feats: {Number: Sing}, n: 2}, {surface: trabajo, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 6}]
       reverse: |-
         El viernes [yo] trabajo (por|en) la noche
         [Yo] trabajo el viernes (por|en) la noche
@@ -257,7 +257,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los domingos vamos a casa de Abuela.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 2}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 2}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}, n: 7}]
       reverse: |-
         Los domingos [nosotros] vamos a (casa|la casa) de (Abuela|la abuela|mi abuela)
         [Nosotros] vamos a (casa|la casa) de (Abuela|la abuela|mi abuela) los domingos
@@ -303,7 +303,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela siempre ve la novela por la noche.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: novela, lexeme: novela, feats: {Number: Sing}, n: 5}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: ve, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: novela, lexeme: novela, feats: {Number: Sing}, n: 5}, {surface: por, lexeme: por, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 8}]
       reverse: |-
         (Abuela|Mi abuela|La abuela) siempre ve la (novela|telenovela) (por|en) la noche
         (Por|En) la noche (abuela|mi abuela|la abuela) siempre ve la (novela|telenovela)
@@ -339,7 +339,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Después de la novela, Abuela se acuesta.
-      tokens: [{surface: Después, lexeme: después}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: novela, lexeme: novela, feats: {Number: Sing}, n: 4}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: acuesta, lexeme: acostarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Después, lexeme: después}, {surface: de, lexeme: de, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: novela, lexeme: novela, feats: {Number: Sing}, n: 4}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: acuesta, lexeme: acostarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         Después de la (novela|telenovela) (Abuela|mi abuela|la abuela) se acuesta
         (Abuela|Mi abuela|La abuela) se acuesta después de la (novela|telenovela)
@@ -533,7 +533,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, y tú te bañas por la noche.
-          tokens: [{surface: Sí, lexeme: sí}, {surface: y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: te, lexeme: te}, {surface: bañas, lexeme: bañarse, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: te, lexeme: te}, {surface: bañas, lexeme: bañarse, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 8}]
       translations:
         en: Yes, and you shower at night.
   - choose:
@@ -587,7 +587,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y por la noche, ¡la novela!
-          tokens: [{surface: Y, lexeme: y}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 4}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: novela, lexeme: novela, feats: {Number: Sing}, n: 6}]
+          tokens: [{surface: Y, lexeme: y}, {surface: por, lexeme: por, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 4}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: novela, lexeme: novela, feats: {Number: Sing}, n: 6}]
       translations:
         en: And at night, the soap opera!
   - line:

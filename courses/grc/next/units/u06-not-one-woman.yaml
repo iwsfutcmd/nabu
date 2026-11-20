@@ -176,7 +176,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: πλὴν τῆς κωμήτιδος.
-      tokens: [{surface: πλὴν, lexeme: plen, readings: {attic: πλὴν}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: κωμήτιδος, lexeme: kometis, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: κωμήτῐδος}}]
+      tokens: [{surface: πλὴν, lexeme: plen, n: 1, head: 3, rel: case, readings: {attic: πλὴν}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: κωμήτιδος, lexeme: kometis, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: κωμήτῐδος}}]
       reverse: πλὴν τῆς κωμήτιδος
   translations:
     en: Except (the|my) (neighbour|neighbor).
@@ -185,7 +185,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὐδεμία πάρεστιν πλὴν τῆς ἐμῆς κωμήτιδος.
-      tokens: [{surface: οὐδεμία, lexeme: oudeis, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: οὐδεμῐ́ᾰ}}, {surface: πάρεστιν, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρεστῐν}}, {surface: πλὴν, lexeme: plen, readings: {attic: πλὴν}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 4, head: 6, rel: det, readings: {attic: τῆς}}, {surface: ἐμῆς, lexeme: emos, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: ἐμῆς}}, {surface: κωμήτιδος, lexeme: kometis, feats: {Case: Gen, Number: Sing}, n: 6, readings: {attic: κωμήτῐδος}}]
+      tokens: [{surface: οὐδεμία, lexeme: oudeis, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: οὐδεμῐ́ᾰ}}, {surface: πάρεστιν, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρεστῐν}}, {surface: πλὴν, lexeme: plen, n: 3, head: 6, rel: case, readings: {attic: πλὴν}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 4, head: 6, rel: det, readings: {attic: τῆς}}, {surface: ἐμῆς, lexeme: emos, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: ἐμῆς}}, {surface: κωμήτιδος, lexeme: kometis, feats: {Case: Gen, Number: Sing}, n: 6, readings: {attic: κωμήτῐδος}}]
       reverse: |-
         οὐδεμία πάρεστιν πλὴν τῆς ἐμῆς κωμήτιδος
         πλὴν τῆς ἐμῆς κωμήτιδος οὐδεμία πάρεστι[ν]
@@ -275,7 +275,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐκ τῆς οἰκίας ἐξέρχεται ἡ Καλονίκη.
-      tokens: [{surface: ἐκ, lexeme: ek, readings: {attic: ἐκ}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: οἰκίας, lexeme: oikia, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: οἰκῐ́ᾱς}}, {surface: ἐξέρχεται, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχεται}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: ἡ}}, {surface: Καλονίκη, lexeme: kalonike, feats: {Case: Nom, Number: Sing}, n: 6, readings: {attic: Κᾰλονῑ́κη}}]
+      tokens: [{surface: ἐκ, lexeme: ek, n: 1, head: 3, rel: case, readings: {attic: ἐκ}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: οἰκίας, lexeme: oikia, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: οἰκῐ́ᾱς}}, {surface: ἐξέρχεται, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχεται}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: ἡ}}, {surface: Καλονίκη, lexeme: kalonike, feats: {Case: Nom, Number: Sing}, n: 6, readings: {attic: Κᾰλονῑ́κη}}]
       reverse: |-
         ἐκ τῆς οἰκίας ἐξέρχεται ἡ Καλονίκη
         ἡ Καλονίκη ἐξέρχεται ἐκ τῆς οἰκίας
@@ -494,7 +494,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: πλὴν ἥ γ’ ἐμὴ κωμῆτις ἥδ’ ἐξέρχεται.
-          tokens: [{surface: πλὴν, lexeme: plen, readings: {attic: πλὴν}}, {surface: ἥ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, head: 5, rel: det, readings: {attic: ἥ}}, {surface: γ’, lexeme: ge, readings: {attic: γ’}}, {surface: ἐμὴ, lexeme: emos, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: ἐμὴ}}, {surface: κωμῆτις, lexeme: kometis, feats: {Case: Nom, Number: Sing}, n: 5, readings: {attic: κωμῆτῐς}}, {surface: ἥδ’, lexeme: hode, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἥδ’}}, {surface: ἐξέρχεται, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχεται}}]
+          tokens: [{surface: πλὴν, lexeme: plen, n: 1, head: 5, rel: case, readings: {attic: πλὴν}}, {surface: ἥ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, head: 5, rel: det, readings: {attic: ἥ}}, {surface: γ’, lexeme: ge, readings: {attic: γ’}}, {surface: ἐμὴ, lexeme: emos, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: ἐμὴ}}, {surface: κωμῆτις, lexeme: kometis, feats: {Case: Nom, Number: Sing}, n: 5, readings: {attic: κωμῆτῐς}}, {surface: ἥδ’, lexeme: hode, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἥδ’}}, {surface: ἐξέρχεται, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχεται}}]
       translations:
         en: 'except my neighbour: here she comes out.'
   - choose:

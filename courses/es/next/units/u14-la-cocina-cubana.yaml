@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel, ven a la cocina con tu hermana.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: ven, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 5}, {surface: con, lexeme: con}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}, n: 8}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: ven, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 5}, {surface: con, lexeme: con, n: 6, head: 8, rel: case}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: hermana, lexeme: hermano, feats: {Gender: Fem, Number: Sing}, n: 8}]
       reverse: |-
         Daniel (ven a la cocina con tu hermana|venga a la cocina con su hermana)
         Ven a la cocina con tu hermana, Daniel.
@@ -121,7 +121,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Después, todo se fríe en aceite.
-      tokens: [{surface: Después, lexeme: después}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: fríe, lexeme: freír, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: aceite, lexeme: aceite, feats: {Number: Sing}}]
+      tokens: [{surface: Después, lexeme: después}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: fríe, lexeme: freír, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 5, head: 6, rel: case}, {surface: aceite, lexeme: aceite, feats: {Number: Sing}, n: 6}]
       reverse: |-
         Después todo se fríe en aceite
         Después se fríe todo en aceite
@@ -133,7 +133,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El sofrito se hace con ajo, cebolla y ají.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: sofrito, lexeme: sofrito, feats: {Number: Sing}, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: ajo, lexeme: ajo, feats: {Number: Sing}}, {surface: cebolla, lexeme: cebolla, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: ají, lexeme: ají, feats: {Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: sofrito, lexeme: sofrito, feats: {Number: Sing}, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: ajo, lexeme: ajo, feats: {Number: Sing}, n: 6}, {surface: cebolla, lexeme: cebolla, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: ají, lexeme: ají, feats: {Number: Sing}}]
       reverse: El sofrito se hace con ajo cebolla y (ají|pimiento)
   translations:
     en: |-
@@ -144,7 +144,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ahora échale la carne al sofrito.
-      tokens: [{surface: Ahora, lexeme: ahora}, {surface: échale, lexemes: [{lexeme: echar, surface: écha, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: le, surface: le}]}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: carne, lexeme: carne, feats: {Number: Sing}, n: 5}, {surface: al, lexeme: al}, {surface: sofrito, lexeme: sofrito, feats: {Number: Sing}}]
+      tokens: [{surface: Ahora, lexeme: ahora}, {surface: échale, lexemes: [{lexeme: echar, surface: écha, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: le, surface: le}]}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: carne, lexeme: carne, feats: {Number: Sing}, n: 5}, {surface: al, lexeme: al, n: 6, head: 7, rel: case}, {surface: sofrito, lexeme: sofrito, feats: {Number: Sing}, n: 7}]
       reverse: |-
         Ahora (échale|echa|échele|eche|agrégale|agrega|ponle|pon) la carne al sofrito
         Ahora agréguele la carne al sofrito.
@@ -156,7 +156,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Después se echa un poco de sal.
-      tokens: [{surface: Después, lexeme: después}, {surface: se, lexeme: se.impersonal}, {surface: echa, lexeme: echar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de}, {surface: sal, lexeme: sal, feats: {Number: Sing}}]
+      tokens: [{surface: Después, lexeme: después}, {surface: se, lexeme: se.impersonal}, {surface: echa, lexeme: echar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: sal, lexeme: sal, feats: {Number: Sing}, n: 7}]
       reverse: |-
         Después se (echa|pone|le echa|le pone) (un poco|un poquito|un chin) de sal
         Después le echas un poco de sal.
@@ -184,7 +184,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me gusta mucho la yuca con mojo.
-      tokens: [{surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: yuca, lexeme: yuca, feats: {Number: Sing}, n: 5}, {surface: con, lexeme: con}, {surface: mojo, lexeme: mojo, feats: {Number: Sing}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: gusta, lexeme: gustar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: yuca, lexeme: yuca, feats: {Number: Sing}, n: 5}, {surface: con, lexeme: con, n: 6, head: 7, rel: case}, {surface: mojo, lexeme: mojo, feats: {Number: Sing}, n: 7}]
       reverse: |-
         Me gusta mucho la yuca con mojo
         Me encanta la yuca con mojo
@@ -198,7 +198,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El mojo se hace con ajo y naranja agria.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: mojo, lexeme: mojo, feats: {Number: Sing}, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: ajo, lexeme: ajo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: naranja, lexeme: naranja-agria}, {surface: agria, lexeme: naranja-agria}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: mojo, lexeme: mojo, feats: {Number: Sing}, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: ajo, lexeme: ajo, feats: {Number: Sing}, n: 6}, {surface: y, lexeme: y}, {surface: naranja, lexeme: naranja-agria}, {surface: agria, lexeme: naranja-agria}]
       reverse: El mojo se hace con ajo y naranja agria
   translations:
     en: |-
@@ -210,7 +210,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Miami se vende mojo en pomos, pero Abuela lo hace.
-      tokens: [{surface: En, lexeme: en}, {surface: Miami, lexeme: miami}, {surface: se, lexeme: se.impersonal}, {surface: vende, lexeme: vender, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mojo, lexeme: mojo, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: pomos, lexeme: pomo, feats: {Number: Plur}}, {surface: pero, lexeme: pero}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: lo, lexeme: lo}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Miami, lexeme: miami, n: 2}, {surface: se, lexeme: se.impersonal}, {surface: vende, lexeme: vender, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mojo, lexeme: mojo, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 6, head: 7, rel: case}, {surface: pomos, lexeme: pomo, feats: {Number: Plur}, n: 7}, {surface: pero, lexeme: pero}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: lo, lexeme: lo}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       reverse: En Miami (se vende|venden) mojo en (pomos|botellas|frascos) pero (Abuela|mi abuela|la abuela) lo hace [en casa]
   translations:
     en: In Miami (they sell mojo|mojo is sold|you can buy mojo) in (bottles|jars), but (Grandma|Abuela|my grandma) makes it [herself].
@@ -219,7 +219,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pica el ajo y échalo en la naranja agria.
-      tokens: [{surface: Pica, lexeme: picar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: ajo, lexeme: ajo, feats: {Number: Sing}, n: 3}, {surface: y, lexeme: y}, {surface: échalo, lexemes: [{lexeme: echar, surface: écha, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: lo, surface: lo}]}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: naranja, lexeme: naranja-agria, n: 9}, {surface: agria, lexeme: naranja-agria}]
+      tokens: [{surface: Pica, lexeme: picar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: ajo, lexeme: ajo, feats: {Number: Sing}, n: 3}, {surface: y, lexeme: y}, {surface: échalo, lexemes: [{lexeme: echar, surface: écha, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: lo, surface: lo}]}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: naranja, lexeme: naranja-agria, n: 9}, {surface: agria, lexeme: naranja-agria}]
       reverse: |-
         (Pica el ajo y échalo|Pique el ajo y échelo|Piquen el ajo y échenlo) en la naranja agria
         Pica el ajo y ponlo en la naranja agria.
@@ -231,7 +231,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Después, fríe el ajo un poco en el aceite.
-      tokens: [{surface: Después, lexeme: después}, {surface: fríe, lexeme: freír, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: ajo, lexeme: ajo, feats: {Number: Sing}, n: 4}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: aceite, lexeme: aceite, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Después, lexeme: después}, {surface: fríe, lexeme: freír, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: ajo, lexeme: ajo, feats: {Number: Sing}, n: 4}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: aceite, lexeme: aceite, feats: {Number: Sing}, n: 9}]
       reverse: |-
         Después (fríe|fría|frían) el ajo un poco en [el] aceite
         Después (fríe|fría|frían) un poco el ajo en [el] aceite
@@ -242,7 +242,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ahora échale el mojo a la yuca.
-      tokens: [{surface: Ahora, lexeme: ahora}, {surface: échale, lexemes: [{lexeme: echar, surface: écha, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: le, surface: le}]}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: mojo, lexeme: mojo, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: yuca, lexeme: yuca, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Ahora, lexeme: ahora}, {surface: échale, lexemes: [{lexeme: echar, surface: écha, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: le, surface: le}]}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: mojo, lexeme: mojo, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: yuca, lexeme: yuca, feats: {Number: Sing}, n: 8}]
       reverse: Ahora (échale|echa|échele|eche|ponle|pon) el mojo a la yuca
   translations:
     en: Now (pour|put) the mojo (on|over) the (yuca|cassava).
@@ -290,7 +290,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Venga, doña Ofelia, coma con nosotros.
-      tokens: [{surface: Venga, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: coma, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}}]
+      tokens: [{surface: Venga, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: coma, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 6}]
       reverse: |-
         Venga doña Ofelia [y] coma con nosotros
         Doña Ofelia venga [y] coma con nosotros
@@ -305,7 +305,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, coma un poco de ropa vieja.
-      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: coma, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de}, {surface: ropa, lexeme: ropa-vieja}, {surface: vieja, lexeme: ropa-vieja}]
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: coma, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: ropa, lexeme: ropa-vieja, n: 7}, {surface: vieja, lexeme: ropa-vieja}]
       reverse: |-
         Doña Ofelia (coma|pruebe|sírvase) un (poco|poquito) de ropa vieja
         Coma un poco de ropa vieja, doña Ofelia.
@@ -318,7 +318,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tome un cafecito con nosotros, doña Ofelia.
-      tokens: [{surface: Tome, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 3}, {surface: con, lexeme: con}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
+      tokens: [{surface: Tome, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 3}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 5}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
       reverse: |-
         Tome un (cafecito|café) con nosotros doña Ofelia
         Doña Ofelia tome un (cafecito|café) con nosotros
@@ -329,7 +329,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La ropa vieja se cocina en la olla de presión.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: ropa, lexeme: ropa-vieja, n: 2}, {surface: vieja, lexeme: ropa-vieja}, {surface: se, lexeme: se.impersonal}, {surface: cocina, lexeme: cocinar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: olla, lexeme: olla-de-presión, n: 8}, {surface: de, lexeme: olla-de-presión}, {surface: presión, lexeme: olla-de-presión}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: ropa, lexeme: ropa-vieja, n: 2}, {surface: vieja, lexeme: ropa-vieja}, {surface: se, lexeme: se.impersonal}, {surface: cocina, lexeme: cocinar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: olla, lexeme: olla-de-presión, n: 8}, {surface: de, lexeme: olla-de-presión}, {surface: presión, lexeme: olla-de-presión}]
       reverse: La ropa vieja se (cocina|hace|prepara) en la olla de presión
   translations:
     en: |-
@@ -342,7 +342,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, lleve un poco de picadillo para su casa.
-      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: lleve, lexeme: llevar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de}, {surface: picadillo, lexeme: picadillo, feats: {Number: Sing}}, {surface: para, lexeme: para}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: lleve, lexeme: llevar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: picadillo, lexeme: picadillo, feats: {Number: Sing}, n: 7}, {surface: para, lexeme: para, n: 8, head: 10, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 10}]
       reverse: |-
         Doña Ofelia (lleve|llévese) un (poco|poquito) de picadillo (para su casa|para la casa|a su casa)
         Lleve un poco de picadillo para su casa, doña Ofelia.
@@ -353,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No eches mucha sal al picadillo.
-      tokens: [{surface: 'No', lexeme: 'no'}, {surface: eches, lexeme: echar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: sal, lexeme: sal, feats: {Number: Sing}}, {surface: al, lexeme: al}, {surface: picadillo, lexeme: picadillo, feats: {Number: Sing}}]
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: eches, lexeme: echar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: sal, lexeme: sal, feats: {Number: Sing}}, {surface: al, lexeme: al, n: 5, head: 6, rel: case}, {surface: picadillo, lexeme: picadillo, feats: {Number: Sing}, n: 6}]
       reverse: |-
         No (le eches|eches|le eche|eche|le echen|echen|le pongas|pongas) (mucha|tanta|demasiada) sal al picadillo
         No eches mucha sal en el picadillo.
@@ -373,7 +373,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pon los frijoles negros en la olla de presión.
-      tokens: [{surface: Pon, lexeme: poner, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 3}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}, n: 4, head: 3, rel: amod}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: olla, lexeme: olla-de-presión, n: 7}, {surface: de, lexeme: olla-de-presión}, {surface: presión, lexeme: olla-de-presión}]
+      tokens: [{surface: Pon, lexeme: poner, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 3}, {surface: negros, lexeme: negro, feats: {Gender: Masc, Number: Plur}, n: 4, head: 3, rel: amod}, {surface: en, lexeme: en, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: olla, lexeme: olla-de-presión, n: 7}, {surface: de, lexeme: olla-de-presión}, {surface: presión, lexeme: olla-de-presión}]
       reverse: (Pon|Ponga|Pongan|Echa|Eche|Echen) los frijoles negros en la olla de presión
   translations:
     en: Put the black beans (in|into) the pressure cooker.
@@ -461,7 +461,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ven a la cocina, mi'jo. Primero, pon los frijoles en la olla de presión.
-          tokens: [{surface: Ven, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 4}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: pon, lexeme: poner, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 9}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: olla, lexeme: olla-de-presión, n: 12}, {surface: de, lexeme: olla-de-presión}, {surface: presión, lexeme: olla-de-presión}]
+          tokens: [{surface: Ven, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 4}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Primero, lexeme: primero, feats: {Gender: Masc, Number: Sing}}, {surface: pon, lexeme: poner, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 9}, {surface: en, lexeme: en, n: 10, head: 12, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: olla, lexeme: olla-de-presión, n: 12}, {surface: de, lexeme: olla-de-presión}, {surface: presión, lexeme: olla-de-presión}]
       translations:
         en: Come to the kitchen, honey. First, put the beans in the pressure cooker.
   - line:
@@ -485,7 +485,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Después, fríe todo en un poco de aceite.
-          tokens: [{surface: Después, lexeme: después}, {surface: fríe, lexeme: freír, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: en, lexeme: en}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de}, {surface: aceite, lexeme: aceite, feats: {Number: Sing}}]
+          tokens: [{surface: Después, lexeme: después}, {surface: fríe, lexeme: freír, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco, n: 6}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: aceite, lexeme: aceite, feats: {Number: Sing}, n: 8}]
       translations:
         en: Then fry it all in a little oil.
   - line:
@@ -540,7 +540,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Una vez yo la abrí, y tu abuela no me habló por una semana.
-          tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: vez, lexeme: vez, feats: {Number: Sing}, n: 2}, {surface: yo, lexeme: yo}, {surface: la, lexeme: lo, feats: {Gender: Fem, Number: Sing}}, {surface: abrí, lexeme: abrir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 8}, {surface: 'no', lexeme: 'no'}, {surface: me, lexeme: me}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 13, head: 14, rel: det}, {surface: semana, lexeme: semana, feats: {Number: Sing}, n: 14}]
+          tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: vez, lexeme: vez, feats: {Number: Sing}, n: 2}, {surface: yo, lexeme: yo}, {surface: la, lexeme: lo, feats: {Gender: Fem, Number: Sing}}, {surface: abrí, lexeme: abrir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 8}, {surface: 'no', lexeme: 'no'}, {surface: me, lexeme: me}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por, n: 12, head: 14, rel: case}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 13, head: 14, rel: det}, {surface: semana, lexeme: semana, feats: {Number: Sing}, n: 14}]
       translations:
         en: I opened it once, and your grandmother didn't speak to me for a week.
   - choose:

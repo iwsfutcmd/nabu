@@ -11,7 +11,7 @@ import collections
 from typing import Any
 
 from nabu.migrate.convert import KEPT, Converter
-from nabu.migrate.lexicon import Written, key_of, offsets, runs
+from nabu.migrate.lexicon import Written, is_cited, key_of, offsets, runs
 from nabu.migrate.source import fold, items_of, obj, seq
 
 Json = dict[str, Any]
@@ -213,19 +213,6 @@ def accounted(
     the files alone, as the compiler will read them."""
     entries = {str(e["id"])[7:]: e for e in lexicon["lexemes"]}
     citation: dict[str, Json] = obj(language.get("citation"))
-    lexical: dict[str, list[str]] = obj(language.get("lexical"))
-
-    def own_cell(entry: Json) -> Any:
-        """The cell an entry is spelled in: its category's, less what the lexeme has of itself.
-        A lexical feature the entry says its tokens choose stays in it (hermano, hermana)."""
-        pos = str(entry.get("pos"))
-        chosen = seq(entry.get("chooses"))
-        kept = {
-            str(k): str(v)
-            for k, v in citation.get(pos, {}).items()
-            if k not in lexical.get(pos, []) or k in chosen
-        }
-        return key_of(kept)
 
     def folded(spelled: Json | None, orth: str) -> set[str]:
         return {fold(str(s)) for s in (spelled or {}).get(orth, [])}
@@ -268,7 +255,10 @@ def accounted(
                     for f in seq(entry.get("forms")):
                         if key_of({str(k): str(v) for k, v in f["feats"].items()}) == cell:
                             ways |= folded(f.get("spelled"), orth)
-                    if cell in ((), own_cell(entry)):
+                    cited = {
+                        str(k): str(v) for k, v in obj(citation.get(str(entry.get("pos")))).items()
+                    }
+                    if is_cited(cell, cited):
                         ways |= folded(entry.get("spelled"), orth)
                         for a in seq(entry.get("allomorphs")):
                             ways |= folded(a.get("spelled"), orth)

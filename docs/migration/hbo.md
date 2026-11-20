@@ -72,7 +72,7 @@ the converter applies the course's conversion plan
 | `form:ptc-mp` | participle, masculine plural: they are doing; ones who do | values Gender=Masc, Number=Plur, VerbForm=Part |  |
 | `form:ptc-pass` | passive participle: done, -ed (בָּרוּךְ 'blessed'; אֻכָּל 'consumed' i | values Gender=Masc, Number=Sing, VerbForm=Part, Voice=Pass |  |
 | `form:ptc-pass-fs` | passive participle, feminine singular: done, -ed, of a woman (בְּרוּכָ | values Gender=Fem, Number=Sing, VerbForm=Part, Voice=Pass |  |
-| `form:f` | feminine: a feminine noun (אֶרֶץ 'land', אִשָּׁה 'woman'), or an adjec | values Gender=Fem, Number=Sing |  |
+| `form:f` | feminine: a feminine noun (אֶרֶץ 'land', אִשָּׁה 'woman'), or an adjec | values Gender=Fem, Number=Sing; on PROPN: Gender=Fem |  |
 | `form:pl` | plural, masculine (-îm, some -ôṯ: גּוֹרָלוֹת 'lots'); also nouns alway | values Gender=Masc, Number=Plur; on DET: Number=Plur |  |
 | `form:f-pl` | feminine plural (-ôṯ; some -îm: נָשִׁים 'women') | values Gender=Fem, Number=Plur |  |
 | `form:cstr` | construct state: 'X of …', the noun bound to the next (בְּתוֹךְ הַגָּן | values Definite=Cons, Gender=Masc, Number=Sing |  |
@@ -154,7 +154,6 @@ tagged as another category than it behaves as.
 | NOUN | Gender | 11 | raah.evil, ivri |
 | PRON | Gender | 19 | hem, at, hi |
 | PRON | Number | 19 | hem, at, hi |
-| PROPN | Number | 199 | yhwh, shmuel, hevel, avraham, qayin, yisrael |
 | VERB | Voice | 6 | yalad, akhal, nata |
 
 ## Clips
@@ -181,7 +180,7 @@ waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).
 |---|---|
 | ADJ with values and no relation | 33 |
 | amod: written | 24 |
-| case: written | 183 |
+| case: written | 318 |
 | det: written | 258 |
 
 ## Lexemes that break a default (28)
@@ -284,6 +283,16 @@ A token names the lexeme, no feature value tells it from the entry's own form, a
 | `lexeme:melakhah` | joined to another lexeme, written מְּלַאכְתְּ (2×, first in s.18.16) |
 | `lexeme:sachaq` | joined to another lexeme, written שְׂחוֹק (1×, first in s.20.21) |
 
+## Entries spelled as a form other than the citation form (3)
+
+A word card shows the entry's first spelling, and here that is one of the lexeme's inflected forms, not the form its language cites a word in (the plan's `citation`). The spelling is kept, since it is what a learner sees today.
+
+| Where | What |
+|---|---|
+| `lexeme:qum` | its entry is spelled קוּם, which its tokens write as Gender=Masc\|Mood=Imp\|Number=Sing\|Person=2\|VerbForm=Fin |
+| `lexeme:shuv` | its entry is spelled שׁוּב, which its tokens write as Gender=Masc\|Mood=Imp\|Number=Sing\|Person=2\|VerbForm=Fin |
+| `lexeme:mut` | its entry is spelled מוּת, which its tokens write as VerbForm=Inf |
+
 ## Feature values that do not tell forms apart (15)
 
 Several spellings share one set of values: the course's form KC names less than the forms differ by. Each is pinned; a tie is an authoring error once a rule reads it (ADR 0145).
@@ -314,6 +323,17 @@ What the node introduced is introduced earlier in the new shape (a sense that wa
 |---|---|
 | `hbo.u14.speak` | introduces form:weqatal-3ms: all of it is introduced earlier now, or is a form no value introduces |
 | `hbo.u16.two-women` | introduces form:wayyiqtol-3fp: all of it is introduced earlier now, or is a form no value introduces |
+
+## Left for a reviewer by the plan
+
+What the plan's drafter saw and did not decide.
+
+- The conjugations' values: qatal, yiqtol and wayyiqtol are tagged as the Universal Dependencies treebank of Biblical Hebrew tags them. Weqatal as Tense=Fut, the jussive as Mood=Jus, the cohortative as Mood=Opt and the infinitive absolute as VerbForm=InfAbs are the drafter's: the treebank tags nothing apart for them, and Hebrew's own names may serve better.
+- Hollow verbs are cited as the course cites them, in the infinitive's form (קוּם, שׁוּב, מוּת, בּוֹא), not in the qatal. Their qatal (בָא, סָר) therefore shows as written otherwise than the entry.
+- A word with a suffix written as one token and not analysed (עַמִּי, אָבִי), and שְׁתַּיִם under שְׁנַיִם, are listed as written otherwise: each needs its suffix or its form named.
+- The dual names no gender, so a noun the course writes only in the dual has none on its entry (רֶגֶל, עַיִן).
+- A form in pause or before an ending is pointed otherwise than the entry. The lexicon keeps every pointing a form is written with; the token's context (pause, nesiga) stays a pin on the token (the design note: a feature value or a pin, per language).
+- The construct state is written Definite=Cons, which Universal Dependencies has; the treebank marks it by a relation (compound:smixut) and no feature.
 
 ## What no finding above covers
 

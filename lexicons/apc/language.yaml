@@ -4,7 +4,7 @@
 # switch.
 id: apc
 license: CC-BY-SA-4.0
-provenance: {author: 'llm:claude@0ddde3f15d21', status: draft}
+provenance: {author: 'llm:claude@3ba6648d6c32', status: draft}
 varieties: [apc-LB]
 registers: [colloquial]
 dimensions:
@@ -17,7 +17,7 @@ lexical:
   PROPN: [Gender]
 citation:
   NOUN: {Gender: Masc, Number: Sing}
-  PROPN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
   VERB: {Aspect: Perf, Person: '3', Gender: Masc, Number: Sing}
   AUX: {Aspect: Perf, Person: '3', Gender: Masc, Number: Sing}
@@ -41,6 +41,7 @@ defaults:
 - {id: gender-none-name, when: {pos: PROPN}, gives: {Gender: Masc}}
 labels:
 - {feats: {Gender: Fem, Number: Sing}, gloss: {en: 'feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending on an adjective with one (kbir → kbire)'}, notes: {en: 'kbir → kbire, zghir → zghire. Arabic script: ة (كبيرة). Most nouns in -e / -a (ة) are feminine (ahwe, قهوة), not all (zalame, a man); some feminines have no ending (emm, mother; shams, the sun).'}, was: 'form:fem'}
+- {feats: {Gender: Fem}, pos: PROPN, gloss: {en: 'feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending on an adjective with one (kbir → kbire)'}, notes: {en: 'kbir → kbire, zghir → zghire. Arabic script: ة (كبيرة). Most nouns in -e / -a (ة) are feminine (ahwe, قهوة), not all (zalame, a man); some feminines have no ending (emm, mother; shams, the sun).'}, was: 'form:fem'}
 - {feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, gloss: {en: '-ik: your (to a woman)'}, notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}, was: 'form:poss-2fs'}
 - {feats: {'Number[psor]': Plur, 'Person[psor]': '2'}, gloss: {en: '-kon: your (to several people)'}, notes: {en: 'kifkon? how are you (all)?; 3endkon: you have. Arabic script: كن joined to the word (كيفكن).'}, was: 'form:poss-2pl'}
 - {feats: {Number: Plur}, gloss: {en: 'plural: a plural noun (wlad, jiren), or the -in ending on an adjective with one (jou3an → jou3anin)'}, notes: {en: 'jou3anin: hungry (several people); mabsoutin: happy. Arabic script: ين (جوعانين). Lebanese makes no gender in the plural: one form for men and women.'}, was: 'form:pl'}

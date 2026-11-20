@@ -341,7 +341,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Compramos en el agro.
-      tokens: [{surface: Compramos, lexeme: comprar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: Compramos, lexeme: comprar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 2, head: 4, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 4}]
       reverse: '[(Nosotros|Nosotras)] compramos en el (agro|agromercado|mercado)'
   translations:
     en: (We shop|We buy|We're shopping|We are shopping) (at|in) the (farmers' market|market).
@@ -350,7 +350,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En el agro venden mangos.
-      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 3}, {surface: venden, lexeme: vender, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 3}, {surface: venden, lexeme: vender, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}]
       reverse: |-
         En el (agro|agromercado|mercado) venden mangos
         Venden mangos en el (agro|agromercado|mercado)
@@ -401,7 +401,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En la shopping pagamos en dólares.
-      tokens: [{surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: shopping, lexeme: shopping, feats: {Number: Sing}, n: 3}, {surface: pagamos, lexeme: pagar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: shopping, lexeme: shopping, feats: {Number: Sing}, n: 3}, {surface: pagamos, lexeme: pagar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 5, head: 6, rel: case}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}, n: 6}]
       reverse: |-
         En la (shopping|tienda) [(nosotros|nosotras)] pagamos en dólares
         [(Nosotros|Nosotras)] pagamos en dólares en la (shopping|tienda)
@@ -414,7 +414,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo compro mangos en el agro, no en la shopping.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 6}, {surface: 'no', lexeme: 'no'}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: shopping, lexeme: shopping, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: compro, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mangos, lexeme: mango, feats: {Number: Plur}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: agro, lexeme: agromercado, feats: {Number: Sing}, n: 6}, {surface: 'no', lexeme: 'no'}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: shopping, lexeme: shopping, feats: {Number: Sing}, n: 10}]
       reverse: '[Yo] compro mangos en el (agro|agromercado|mercado) no en la (shopping|tienda)'
   translations:
     en: I buy (mangoes|mangos) (at|in) the (farmers' market|market), not (at|in) the (store|shop|hard currency store|dollar store).
@@ -512,7 +512,7 @@ stories:
       forms:
         es-Latn/standard:
           text: En Cuba los mangos son muy baratos.
-          tokens: [{surface: En, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: mangos, lexeme: mango, feats: {Number: Plur}, n: 4}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: baratos, lexeme: barato, feats: {Gender: Masc, Number: Plur}}]
+          tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 2}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: mangos, lexeme: mango, feats: {Number: Plur}, n: 4}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: baratos, lexeme: barato, feats: {Gender: Masc, Number: Plur}}]
       translations:
         en: In Cuba mangoes are really cheap.
   - line:

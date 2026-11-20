@@ -53,13 +53,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي مريض اليوم.
-      tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}, n: 1}, {surface: مريض, lexeme: mrid, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 4}]}]
+      tokens: [{surface: سامي, lexeme: sami, n: 1}, {surface: مريض, lexeme: mrid, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         سامي مريض اليوم
         اليوم سامي مريض
     apc-Latn/arabizi:
       text: Sami mrid el yom.
-      tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}, n: 1}, {surface: mrid, lexeme: mrid, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      tokens: [{surface: Sami, lexeme: sami, n: 1}, {surface: mrid, lexeme: mrid, feats: {Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 4}]
       reverse: |-
         Sami (mrid|mareed|mreed) (el|l|il) (yom|youm)
         el yom Sami mrid
@@ -143,14 +143,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: معي وجع راس.
-      tokens: [{surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: وجع, lexeme: wja3, feats: {Number: Sing}}, {surface: راس, lexeme: ras, feats: {Number: Sing}}]
+      tokens: [{surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: ي, n: 2}]}, {surface: وجع, lexeme: wja3, feats: {Number: Sing}}, {surface: راس, lexeme: ras, feats: {Number: Sing}}]
       reverse: |-
         معي وجع راس
         عندي وجع راس
         أنا معي وجع راس
     apc-Latn/arabizi:
       text: ma3i wja3 ras.
-      tokens: [{surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: ras, lexeme: ras, feats: {Number: Sing}}]
+      tokens: [{surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: i, n: 2}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: ras, lexeme: ras, feats: {Number: Sing}}]
       reverse: |-
         (ma3i|m3i|ma3e) (wja3|waja3|wje3|waje3) (ras|rass)
         3endi wja3 ras
@@ -164,14 +164,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: معي وجع بطن.
-      tokens: [{surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: وجع, lexeme: wja3, feats: {Number: Sing}}, {surface: بطن, lexeme: batn, feats: {Number: Sing}}]
+      tokens: [{surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: ي, n: 2}]}, {surface: وجع, lexeme: wja3, feats: {Number: Sing}}, {surface: بطن, lexeme: batn, feats: {Number: Sing}}]
       reverse: |-
         معي وجع بطن
         عندي وجع بطن
         أنا معي وجع بطن
     apc-Latn/arabizi:
       text: ma3i wja3 batn.
-      tokens: [{surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: batn, lexeme: batn, feats: {Number: Sing}}]
+      tokens: [{surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: i, n: 2}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: batn, lexeme: batn, feats: {Number: Sing}}]
       reverse: |-
         (ma3i|m3i|ma3e) (wja3|waja3|wje3|waje3) (batn|baten|batin)
         3endi wja3 batn
@@ -186,13 +186,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا معها وجع راس.
-      tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: معها, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-3fs, surface: ها}]}, {surface: وجع, lexeme: wja3, feats: {Number: Sing}}, {surface: راس, lexeme: ras, feats: {Number: Sing}}]
+      tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: معها, lexemes: [{lexeme: ma3, surface: مع, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-3fs, surface: ها, n: 3}]}, {surface: وجع, lexeme: wja3, feats: {Number: Sing}}, {surface: راس, lexeme: ras, feats: {Number: Sing}}]
       reverse: |-
         تيتا (معها|معا) وجع راس
         تيتا عندها وجع راس
     apc-Latn/arabizi:
       text: teta ma3a wja3 ras.
-      tokens: [{surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: ma3a, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-3fs, surface: a}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: ras, lexeme: ras, feats: {Number: Sing}}]
+      tokens: [{surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: ma3a, lexemes: [{lexeme: ma3, surface: ma3, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-3fs, surface: a, n: 3}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: ras, lexeme: ras, feats: {Number: Sing}}]
       reverse: |-
         teta (ma3a|ma3ha) (wja3|waja3|wje3|waje3) (ras|rass)
         teta 3enda wja3 ras
@@ -209,13 +209,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: معك وجع راس؟
-      tokens: [{surface: معك, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: وجع, lexeme: wja3, feats: {Number: Sing}}, {surface: راس, lexeme: ras, feats: {Number: Sing}}]
+      tokens: [{surface: معك, lexemes: [{lexeme: ma3, surface: مع, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ك, n: 2}]}, {surface: وجع, lexeme: wja3, feats: {Number: Sing}}, {surface: راس, lexeme: ras, feats: {Number: Sing}}]
       reverse: |-
         (معك|إنت معك) وجع راس
         عندك وجع راس
     apc-Latn/arabizi:
       text: ma3ak wja3 ras?
-      tokens: [{surface: ma3ak, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: ras, lexeme: ras, feats: {Number: Sing}}]
+      tokens: [{surface: ma3ak, lexemes: [{lexeme: ma3, surface: ma3, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ak, n: 2}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: ras, lexeme: ras, feats: {Number: Sing}}]
       reverse: |-
         (ma3ak|m3ak) (wja3|waja3|wje3|waje3) (ras|rass)
         enta ma3ak wja3 ras
@@ -237,7 +237,7 @@ sentences:
         إنت فيك تروح عالشغل
     apc-Latn/arabizi:
       text: fik tru7 3al shoghl?
-      tokens: [{surface: fik, lexemes: [{lexeme: fi.can, surface: fi, base: true}, {lexeme: poss-2ms, surface: k}]}, {surface: tru7, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}}]
+      tokens: [{surface: fik, lexemes: [{lexeme: fi.can, surface: fi, base: true}, {lexeme: poss-2ms, surface: k}]}, {surface: tru7, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 4, head: 6, rel: case}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 6}]
       reverse: |-
         (fik|feek|fiyak) tru7 (3al|3a l|3a el) (shoghl|shoghol|shughl)
         enta fik tru7 3al shoghl
@@ -373,7 +373,7 @@ sentences:
         اليوم أنا أحسن
     apc-Latn/arabizi:
       text: ana a7san el yom.
-      tokens: [{surface: ana, lexeme: ana}, {surface: a7san, lexeme: a7san, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: a7san, lexeme: a7san, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 4}]
       reverse: |-
         [ana] (a7san|ahsan|a7sen) (el|l|il) (yom|youm)
         el yom ana a7san
@@ -492,7 +492,7 @@ sentences:
         لازم ما تشتغل اليوم
     apc-Latn/arabizi:
       text: ma lezem tishteghel el yom.
-      tokens: [{surface: ma, lexeme: ma}, {surface: lezem, lexeme: lezem}, {surface: tishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      tokens: [{surface: ma, lexeme: ma}, {surface: lezem, lexeme: lezem}, {surface: tishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 5}]
       reverse: |-
         ma (lezem|lazem|lezim|lazim) (tishteghel|teshteghel|tishtighel) (el|l|il) (yom|youm)
         el yom ma lezem tishteghel
@@ -515,7 +515,7 @@ sentences:
         إنت لازم تروح عالحكيم
     apc-Latn/arabizi:
       text: lezem tru7 3al 7akim.
-      tokens: [{surface: lezem, lexeme: lezem}, {surface: tru7, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: 7akim, lexeme: 7akim, feats: {Number: Sing}}]
+      tokens: [{surface: lezem, lexeme: lezem}, {surface: tru7, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: 7akim, lexeme: 7akim, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (lezem|lazem|lezim|lazim) tru7 (3al|3a l|3a el) (7akim|hakim|7akeem|7kim)
         lezem tru7 3al doktor
@@ -535,7 +535,7 @@ sentences:
         وين الدكتور
     apc-Latn/arabizi:
       text: wen el 7akim?
-      tokens: [{surface: wen, lexeme: wen}, {surface: el, lexeme: el}, {surface: 7akim, lexeme: 7akim, feats: {Number: Sing}}]
+      tokens: [{surface: wen, lexeme: wen}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: 7akim, lexeme: 7akim, feats: {Number: Sing}, n: 3}]
       reverse: |-
         (wen|wein) (el|l|il) (7akim|hakim|7akeem|7kim)
         wen el doktor
@@ -571,7 +571,7 @@ sentences:
         إنتي لازم تاخدي الدوا
     apc-Latn/arabizi:
       text: lezem tekhdi el dawa.
-      tokens: [{surface: lezem, lexeme: lezem}, {surface: tekhdi, lexeme: akhad, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el}, {surface: dawa, lexeme: dawa, feats: {Number: Sing}}]
+      tokens: [{surface: lezem, lexeme: lezem}, {surface: tekhdi, lexeme: akhad, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: dawa, lexeme: dawa, feats: {Number: Sing}, n: 4}]
       reverse: |-
         (lezem|lazem|lezim|lazim) (tekhdi|tekhde|takhdi) (el|l|il) (dawa|dawe|dowa)
         enti lezem tekhdi el dawa
@@ -605,13 +605,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سلامتك، مايا!
-      tokens: [{surface: سلامتك, lexeme: salemtak, feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, vocalized: سَلامْتِك}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: سلامتك, lexeme: salemtak, feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, vocalized: سَلامْتِك}, {surface: مايا, lexeme: maya}]
       reverse: |-
         سلامتك مايا
         مايا سلامتك
     apc-Latn/arabizi:
       text: salemtik, Maya!
-      tokens: [{surface: salemtik, lexeme: salemtak, feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: salemtik, lexeme: salemtak, feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}}, {surface: Maya, lexeme: maya}]
       reverse: |-
         (salemtik|salamtik|salemtek|salemtike) Maya
         Maya salemtik
@@ -686,10 +686,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مَرْحَبا مايا، كيفِك؟
-          tokens: [{surface: مَرْحَبا, lexeme: marhaba}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: كيفِك, lexemes: [{lexeme: kif, surface: كيفِ, base: true}, {lexeme: poss-2fs, surface: ك}]}]
+          tokens: [{surface: مَرْحَبا, lexeme: marhaba}, {surface: مايا, lexeme: maya}, {surface: كيفِك, lexemes: [{lexeme: kif, surface: كيفِ, base: true}, {lexeme: poss-2fs, surface: ك}]}]
         apc-Latn/arabizi:
           text: mar7aba Maya, kifik?
-          tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: kifik, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2fs, surface: ik}]}]
+          tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Maya, lexeme: maya}, {surface: kifik, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2fs, surface: ik}]}]
       translations:
         en: Hi Maya, how are you?
   - line:
@@ -724,10 +724,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مَعي وْجَع راس، وما فِيّي نام.
-          tokens: [{surface: مَعي, lexemes: [{lexeme: ma3, surface: مَع, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: وْجَع, lexeme: wja3, feats: {Number: Sing}}, {surface: راس, lexeme: ras, feats: {Number: Sing}}, {surface: وما, lexemes: [{lexeme: w, surface: و}, {lexeme: ma, surface: ما, base: true}]}, {surface: فِيّي, lexemes: [{lexeme: fi.can, surface: فِيّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: نام, lexeme: nem, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
+          tokens: [{surface: مَعي, lexemes: [{lexeme: ma3, surface: مَع, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: ي, n: 2}]}, {surface: وْجَع, lexeme: wja3, feats: {Number: Sing}}, {surface: راس, lexeme: ras, feats: {Number: Sing}}, {surface: وما, lexemes: [{lexeme: w, surface: و}, {lexeme: ma, surface: ما, base: true}]}, {surface: فِيّي, lexemes: [{lexeme: fi.can, surface: فِيّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: نام, lexeme: nem, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
         apc-Latn/arabizi:
           text: ma3i wja3 ras, w ma fiyyi nem.
-          tokens: [{surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: ras, lexeme: ras, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ma, lexeme: ma}, {surface: fiyyi, lexemes: [{lexeme: fi.can, surface: fiyy, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: nem, lexeme: nem, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
+          tokens: [{surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: i, n: 2}]}, {surface: wja3, lexeme: wja3, feats: {Number: Sing}}, {surface: ras, lexeme: ras, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ma, lexeme: ma}, {surface: fiyyi, lexemes: [{lexeme: fi.can, surface: fiyy, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: nem, lexeme: nem, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
       translations:
         en: I have a headache, and I can't sleep.
   - choose:
@@ -746,7 +746,7 @@ stories:
           tokens: [{surface: لازِم, lexeme: lezem}, {surface: تْروحي, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: عَالحَكيم, lexemes: [{lexeme: 3a, surface: عَ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: 7akim, surface: حَكيم, base: true, feats: {Number: Sing}, n: 5}]}]
         apc-Latn/arabizi:
           text: lezem tru7i 3al 7akim!
-          tokens: [{surface: lezem, lexeme: lezem}, {surface: tru7i, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true}, {lexeme: el, surface: l}]}, {surface: 7akim, lexeme: 7akim, feats: {Number: Sing}}]
+          tokens: [{surface: lezem, lexeme: lezem}, {surface: tru7i, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: 7akim, lexeme: 7akim, feats: {Number: Sing}, n: 5}]
       translations:
         en: You have to go to the doctor!
   - line:
@@ -769,7 +769,7 @@ stories:
           tokens: [{surface: لَأ, lexeme: la2}, {surface: لازِم, lexeme: lezem}, {surface: تِرْتاحي, lexeme: rte7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 5}]}]
         apc-Latn/arabizi:
           text: la2, lezem tirte7i el yom.
-          tokens: [{surface: la2, lexeme: la2}, {surface: lezem, lexeme: lezem}, {surface: tirte7i, lexeme: rte7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+          tokens: [{surface: la2, lexeme: la2}, {surface: lezem, lexeme: lezem}, {surface: tirte7i, lexeme: rte7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 5}]
       translations:
         en: No, you have to rest today.
   - line:

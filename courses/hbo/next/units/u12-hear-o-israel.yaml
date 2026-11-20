@@ -18,7 +18,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: שְׁמַע יִשְׂרָאֵל׃
-      tokens: [{surface: שְׁמַע, lexeme: shama, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəmaʿ}}, {surface: יִשְׂרָאֵל, lexeme: yisrael, feats: {Number: Sing}, readings: {tiberian: yiśrāʾēl}}]
+      tokens: [{surface: שְׁמַע, lexeme: shama, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəmaʿ}}, {surface: יִשְׂרָאֵל, lexeme: yisrael, readings: {tiberian: yiśrāʾēl}}]
       reverse: שמע ישראל
   translations:
     en: |-
@@ -69,7 +69,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: יְהוָה אֱלֹהֵינוּ
-      tokens: [{surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, lexemes: [{lexeme: elohim, surface: אֱלֹהֵי, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: ʾĕlōhếnû}}]
+      tokens: [{surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, lexemes: [{lexeme: elohim, surface: אֱלֹהֵי, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: ʾĕlōhếnû}}]
       reverse: יהוה (אלהינו|אלוהינו)
   translations:
     en: the LORD our God
@@ -78,7 +78,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד׃
-      tokens: [{surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, lexemes: [{lexeme: elohim, surface: אֱלֹהֵי, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: ʾĕlōhếnû}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶחָד, lexeme: ehad, readings: {tiberian: ʾeḥāḏ}}]
+      tokens: [{surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, lexemes: [{lexeme: elohim, surface: אֱלֹהֵי, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: ʾĕlōhếnû}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶחָד, lexeme: ehad, readings: {tiberian: ʾeḥāḏ}}]
       reverse: יהוה (אלהינו|אלוהינו) יהוה אחד
   translations:
     en: |-
@@ -201,7 +201,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל־לְבָבְךָ׃
-      tokens: [{surface: וְאָהַבְתָּ, lexeme: ahav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəʾāhaḇtā}}, {surface: אֵת, lexeme: et, readings: {tiberian: ʾēṯ}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, lexemes: [{lexeme: elohim, surface: אֱלֹהֶי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: בְּכָל, lexemes: [{lexeme: be, surface: בְּ, n: 6, head: 7, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 7}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, lexemes: [{lexeme: levav, surface: לְבָבְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḇāḇəḵā}}]
+      tokens: [{surface: וְאָהַבְתָּ, lexeme: ahav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəʾāhaḇtā}}, {surface: אֵת, lexeme: et, n: 2, head: 3, rel: case, readings: {tiberian: ʾēṯ}}, {surface: יְהוָה, lexeme: yhwh, n: 3, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, lexemes: [{lexeme: elohim, surface: אֱלֹהֶי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: בְּכָל, lexemes: [{lexeme: be, surface: בְּ, n: 6, head: 7, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 7}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, lexemes: [{lexeme: levav, surface: לְבָבְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḇāḇəḵā}}]
       reverse: |-
         ואהבת את יהוה (אלהיך|אלוהיך) בכל לבבך
         תאהב את יהוה (אלהיך|אלוהיך) בכל לבבך
@@ -290,7 +290,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וְדִבַּרְתָּ בָּם׃
-      tokens: [{surface: וְדִבַּרְתָּ, lexeme: dibber, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəḏibbartā}}, {surface: בָּם, lexemes: [{lexeme: be, surface: בָּ, base: true}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: bām}}]
+      tokens: [{surface: וְדִבַּרְתָּ, lexeme: dibber, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəḏibbartā}}, {surface: בָּם, lexemes: [{lexeme: be, surface: בָּ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-3mp, surface: ם, n: 3}], readings: {tiberian: bām}}]
       reverse: |-
         ודברת בם
         תדבר בם
@@ -441,7 +441,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד׃
-          tokens: [{surface: שְׁמַע, lexeme: shama, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəmaʿ}}, {surface: יִשְׂרָאֵל, lexeme: yisrael, feats: {Number: Sing}, readings: {tiberian: yiśrāʾēl}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, lexemes: [{lexeme: elohim, surface: אֱלֹהֵי, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: ʾĕlōhếnû}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶחָד, lexeme: ehad, readings: {tiberian: ʾeḥāḏ}}]
+          tokens: [{surface: שְׁמַע, lexeme: shama, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəmaʿ}}, {surface: יִשְׂרָאֵל, lexeme: yisrael, readings: {tiberian: yiśrāʾēl}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, lexemes: [{lexeme: elohim, surface: אֱלֹהֵי, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cp, surface: נוּ}], readings: {tiberian: ʾĕlōhếnû}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶחָד, lexeme: ehad, readings: {tiberian: ʾeḥāḏ}}]
       translations:
         en: '“Hear, O Israel: the LORD our God, the LORD is one.'
   - line:
@@ -454,7 +454,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל־לְבָבְךָ וּבְכָל־נַפְשְׁךָ וּבְכָל־מְאֹדֶךָ׃
-          tokens: [{surface: וְאָהַבְתָּ, lexeme: ahav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəʾāhaḇtā}}, {surface: אֵת, lexeme: et, readings: {tiberian: ʾēṯ}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, lexemes: [{lexeme: elohim, surface: אֱלֹהֶי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: בְּכָל, lexemes: [{lexeme: be, surface: בְּ, n: 6, head: 7, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 7}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, lexemes: [{lexeme: levav, surface: לְבָבְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḇāḇəḵā}}, {surface: וּבְכָל, lexemes: [{lexeme: we, surface: וּ}, {lexeme: be, surface: בְ, n: 11, head: 12, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 12}], readings: {tiberian: ûḇəḵol-}}, {surface: נַפְשְׁךָ, lexemes: [{lexeme: nefesh, surface: נַפְשְׁ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: nap̄šəḵā}}, {surface: וּבְכָל, lexemes: [{lexeme: we, surface: וּ}, {lexeme: be, surface: בְ, n: 16, head: 17, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 17}], readings: {tiberian: ûḇəḵol-}}, {surface: מְאֹדֶךָ, lexemes: [{lexeme: meod, surface: מְאֹדֶ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: məʾōḏéḵā}}]
+          tokens: [{surface: וְאָהַבְתָּ, lexeme: ahav, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəʾāhaḇtā}}, {surface: אֵת, lexeme: et, n: 2, head: 3, rel: case, readings: {tiberian: ʾēṯ}}, {surface: יְהוָה, lexeme: yhwh, n: 3, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, lexemes: [{lexeme: elohim, surface: אֱלֹהֶי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: בְּכָל, lexemes: [{lexeme: be, surface: בְּ, n: 6, head: 7, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 7}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, lexemes: [{lexeme: levav, surface: לְבָבְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḇāḇəḵā}}, {surface: וּבְכָל, lexemes: [{lexeme: we, surface: וּ}, {lexeme: be, surface: בְ, n: 11, head: 12, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 12}], readings: {tiberian: ûḇəḵol-}}, {surface: נַפְשְׁךָ, lexemes: [{lexeme: nefesh, surface: נַפְשְׁ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: nap̄šəḵā}}, {surface: וּבְכָל, lexemes: [{lexeme: we, surface: וּ}, {lexeme: be, surface: בְ, n: 16, head: 17, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 17}], readings: {tiberian: ûḇəḵol-}}, {surface: מְאֹדֶךָ, lexemes: [{lexeme: meod, surface: מְאֹדֶ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: məʾōḏéḵā}}]
       translations:
         en: And you shall love the LORD your God with all your heart and with all your soul and with all your strength.
   - choose:
@@ -483,7 +483,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וְשִׁנַּנְתָּם לְבָנֶיךָ וְדִבַּרְתָּ בָּם
-          tokens: [{surface: וְשִׁנַּנְתָּם, lexemes: [{lexeme: shinnen, surface: וְשִׁנַּנְתָּ, base: true, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: wəšinnantām}}, {surface: לְבָנֶיךָ, lexemes: [{lexeme: le, surface: לְ, n: 3, head: 4, rel: case}, {lexeme: ben, surface: בָנֶי, base: true, feats: {Number: Plur}, n: 4}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḇānếḵā}}, {surface: וְדִבַּרְתָּ, lexeme: dibber, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəḏibbartā}}, {surface: בָּם, lexemes: [{lexeme: be, surface: בָּ, base: true}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: bām}}]
+          tokens: [{surface: וְשִׁנַּנְתָּם, lexemes: [{lexeme: shinnen, surface: וְשִׁנַּנְתָּ, base: true, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}}, {lexeme: sfx-3mp, surface: ם}], readings: {tiberian: wəšinnantām}}, {surface: לְבָנֶיךָ, lexemes: [{lexeme: le, surface: לְ, n: 3, head: 4, rel: case}, {lexeme: ben, surface: בָנֶי, base: true, feats: {Number: Plur}, n: 4}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḇānếḵā}}, {surface: וְדִבַּרְתָּ, lexeme: dibber, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, readings: {tiberian: wəḏibbartā}}, {surface: בָּם, lexemes: [{lexeme: be, surface: בָּ, base: true, n: 7, head: 8, rel: case}, {lexeme: sfx-3mp, surface: ם, n: 8}], readings: {tiberian: bām}}]
       translations:
         en: You shall teach them diligently to your children and talk of them
   - line:

@@ -107,7 +107,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: חַי־יְהוָה׃
-      tokens: [{surface: חַי, lexeme: chai, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ḥay-}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}]
+      tokens: [{surface: חַי, lexeme: chai, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ḥay-}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}]
       reverse: חי יהוה
   translations:
     en: |-
@@ -184,7 +184,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: קְחוּ לִי חָרֶב׃
-      tokens: [{surface: קְחוּ, lexeme: laqach, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: qəḥû}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}, {surface: חָרֶב, lexeme: herev, feats: {Number: Sing}, readings: {tiberian: ḥā́reḇ}}]
+      tokens: [{surface: קְחוּ, lexeme: laqach, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: qəḥû}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-1cs, surface: י, n: 3}], readings: {tiberian: lî}}, {surface: חָרֶב, lexeme: herev, feats: {Number: Sing}, readings: {tiberian: ḥā́reḇ}}]
       reverse: קחו לי חרב
   translations:
     en: |-
@@ -232,7 +232,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: תֵּן לִי׃
-      tokens: [{surface: תֵּן, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tēn}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}]
+      tokens: [{surface: תֵּן, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tēn}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-1cs, surface: י, n: 3}], readings: {tiberian: lî}}]
       reverse: תן לי
   translations:
     en: Give (it to me|me)!
@@ -243,7 +243,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: תְּנִי לִי׃
-      tokens: [{surface: תְּנִי, lexeme: natan, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tənî}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}]
+      tokens: [{surface: תְּנִי, lexeme: natan, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: tənî}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-1cs, surface: י, n: 3}], readings: {tiberian: lî}}]
       reverse: תני לי
   translations:
     en: Give (it to me|me)!
@@ -254,7 +254,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: תְּנוּ לִי׃
-      tokens: [{surface: תְּנוּ, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tənû}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}]
+      tokens: [{surface: תְּנוּ, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tənû}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-1cs, surface: י, n: 3}], readings: {tiberian: lî}}]
       reverse: תנו לי
   translations:
     en: Give (it to me|me)!
@@ -315,7 +315,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: תְּנוּ־לָהּ אֶת־הַיָּלוּד הַחַי׃
-      tokens: [{surface: תְּנוּ, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tənû-}}, {surface: לָהּ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: lāh}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: yalad, surface: יָּלוּד, base: true, feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, n: 6}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: chai, surface: חַי, base: true, feats: {Gender: Masc, Number: Sing}, n: 8}], readings: {tiberian: haḥay}}]
+      tokens: [{surface: תְּנוּ, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tənû-}}, {surface: לָהּ, lexemes: [{lexeme: le, surface: לָ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-3fs, surface: הּ, n: 3}], readings: {tiberian: lāh}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: yalad, surface: יָּלוּד, base: true, feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, n: 6}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: chai, surface: חַי, base: true, feats: {Gender: Masc, Number: Sing}, n: 8}], readings: {tiberian: haḥay}}]
       reverse: תנו לה את הילוד החי
   translations:
     en: |-
@@ -431,7 +431,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: לִי־חָרֶב וַיָּבִאוּ
-          tokens: [{surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî-}}, {surface: חָרֶב, lexeme: herev, feats: {Number: Sing}, readings: {tiberian: ḥā́reḇ}}, {surface: וַיָּבִאוּ, lexeme: hevi, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyāḇíʾû}}]
+          tokens: [{surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true, n: 1, head: 2, rel: case}, {lexeme: sfx-1cs, surface: י, n: 2}], readings: {tiberian: lî-}}, {surface: חָרֶב, lexeme: herev, feats: {Number: Sing}, readings: {tiberian: ḥā́reḇ}}, {surface: וַיָּבִאוּ, lexeme: hevi, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyāḇíʾû}}]
       translations:
         en: “Bring me a sword.”
   - line:
@@ -485,7 +485,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: בִּי אֲדֹנִי תְּנוּ־לָהּ אֶת־הַיָּלוּד הַחַי וְהָמֵת אַל־תְּמִיתֻהוּ
-          tokens: [{surface: בִּי, lexeme: bi, readings: {tiberian: bî}}, {surface: אֲדֹנִי, lexemes: [{lexeme: adon, surface: אֲדֹנִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾăḏōnî}}, {surface: תְּנוּ, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tənû-}}, {surface: לָהּ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: lāh}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, lexemes: [{lexeme: ha, surface: הַ, n: 8, head: 9, rel: det}, {lexeme: yalad, surface: יָּלוּד, base: true, feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, n: 9}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, lexemes: [{lexeme: ha, surface: הַ, n: 10, head: 11, rel: det}, {lexeme: chai, surface: חַי, base: true, feats: {Gender: Masc, Number: Sing}, n: 11}], readings: {tiberian: haḥay}}, {surface: וְהָמֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: hemit, surface: הָמֵת, base: true, feats: {VerbForm: InfAbs}}], readings: {tiberian: wəhāmēṯ}}, {surface: אַל, lexeme: al.neg, readings: {tiberian: ʾal-}}, {surface: תְּמִיתֻהוּ, lexemes: [{lexeme: hemit, surface: תְּמִיתֻ, base: true, feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: təmîṯúhû}}]
+          tokens: [{surface: בִּי, lexeme: bi, readings: {tiberian: bî}}, {surface: אֲדֹנִי, lexemes: [{lexeme: adon, surface: אֲדֹנִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾăḏōnî}}, {surface: תְּנוּ, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tənû-}}, {surface: לָהּ, lexemes: [{lexeme: le, surface: לָ, base: true, n: 5, head: 6, rel: case}, {lexeme: sfx-3fs, surface: הּ, n: 6}], readings: {tiberian: lāh}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, lexemes: [{lexeme: ha, surface: הַ, n: 8, head: 9, rel: det}, {lexeme: yalad, surface: יָּלוּד, base: true, feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, n: 9}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, lexemes: [{lexeme: ha, surface: הַ, n: 10, head: 11, rel: det}, {lexeme: chai, surface: חַי, base: true, feats: {Gender: Masc, Number: Sing}, n: 11}], readings: {tiberian: haḥay}}, {surface: וְהָמֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: hemit, surface: הָמֵת, base: true, feats: {VerbForm: InfAbs}}], readings: {tiberian: wəhāmēṯ}}, {surface: אַל, lexeme: al.neg, readings: {tiberian: ʾal-}}, {surface: תְּמִיתֻהוּ, lexemes: [{lexeme: hemit, surface: תְּמִיתֻ, base: true, feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: təmîṯúhû}}]
       translations:
         en: “Please, my lord, give her the living child, and do not kill him!”
   - line:
@@ -500,7 +500,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: גַּם־לִי גַם־לָךְ לֹא יִהְיֶה גְּזֹרוּ׃
-          tokens: [{surface: גַּם, lexeme: gam, readings: {tiberian: gam-}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}, {surface: גַם, lexeme: gam, readings: {tiberian: ḡam-}}, {surface: לָךְ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: lāḵ}}, {surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: יִהְיֶה, lexeme: hayah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yihyeh}}, {surface: גְּזֹרוּ, lexeme: gazar, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: gəzṓrû}}]
+          tokens: [{surface: גַּם, lexeme: gam, readings: {tiberian: gam-}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-1cs, surface: י, n: 3}], readings: {tiberian: lî}}, {surface: גַם, lexeme: gam, readings: {tiberian: ḡam-}}, {surface: לָךְ, lexemes: [{lexeme: le, surface: לָ, base: true, n: 5, head: 6, rel: case}, {lexeme: sfx-2fs, surface: ךְ, n: 6}], readings: {tiberian: lāḵ}}, {surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: יִהְיֶה, lexeme: hayah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yihyeh}}, {surface: גְּזֹרוּ, lexeme: gazar, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: gəzṓrû}}]
       translations:
         en: “It shall be neither mine nor yours; divide it!”
   - line:
@@ -516,7 +516,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: תְּנוּ־לָהּ אֶת־הַיָּלוּד הַחַי וְהָמֵת לֹא תְמִיתֻהוּ הִיא אִמּוֹ׃
-          tokens: [{surface: תְּנוּ, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tənû-}}, {surface: לָהּ, lexemes: [{lexeme: le, surface: לָ, base: true}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: lāh}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: yalad, surface: יָּלוּד, base: true, feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, n: 6}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: chai, surface: חַי, base: true, feats: {Gender: Masc, Number: Sing}, n: 8}], readings: {tiberian: haḥay}}, {surface: וְהָמֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: hemit, surface: הָמֵת, base: true, feats: {VerbForm: InfAbs}}], readings: {tiberian: wəhāmēṯ}}, {surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תְמִיתֻהוּ, lexemes: [{lexeme: hemit, surface: תְמִיתֻ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '2', VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: ṯəmîṯúhû}}, {surface: הִיא, lexeme: hi, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, lexemes: [{lexeme: em, surface: אִמּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: ʾimmô}}]
+          tokens: [{surface: תְּנוּ, lexeme: natan, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: tənû-}}, {surface: לָהּ, lexemes: [{lexeme: le, surface: לָ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-3fs, surface: הּ, n: 3}], readings: {tiberian: lāh}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: yalad, surface: יָּלוּד, base: true, feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, n: 6}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: chai, surface: חַי, base: true, feats: {Gender: Masc, Number: Sing}, n: 8}], readings: {tiberian: haḥay}}, {surface: וְהָמֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: hemit, surface: הָמֵת, base: true, feats: {VerbForm: InfAbs}}], readings: {tiberian: wəhāmēṯ}}, {surface: לֹא, lexeme: lo, readings: {tiberian: lōʾ}}, {surface: תְמִיתֻהוּ, lexemes: [{lexeme: hemit, surface: תְמִיתֻ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '2', VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: ṯəmîṯúhû}}, {surface: הִיא, lexeme: hi, feats: {Gender: Fem, Number: Sing}, readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, lexemes: [{lexeme: em, surface: אִמּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: ʾimmô}}]
       translations:
         en: '“Give her the living child, and do not kill him: she is his mother.”'
   - choose:

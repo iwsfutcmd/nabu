@@ -4,7 +4,7 @@
 # switch.
 id: es
 license: CC-BY-SA-4.0
-provenance: {author: 'llm:claude@b2c2e29b8ed1', status: draft}
+provenance: {author: 'llm:claude@f66f7403b434', status: draft}
 varieties: [es-CU]
 registers: [formal, neutral, colloquial]
 dimensions:
@@ -36,8 +36,8 @@ features:
 defaults:
 - {id: gender-a, when: {pos: NOUN, ends: a}, gives: {Gender: Fem}}
 - {id: gender-o, when: {pos: NOUN, ends: o}, gives: {Gender: Masc}}
-- {id: gender-cion, when: {pos: NOUN, ends: ción}, gives: {Gender: Fem}}
-- {id: gender-sion, when: {pos: NOUN, ends: sión}, gives: {Gender: Fem}}
+- {id: gender-ion, when: {pos: NOUN, ends: ión}, gives: {Gender: Fem}}
+- {id: gender-on, when: {pos: NOUN, ends: ón}, gives: {Gender: Masc}}
 - {id: gender-dad, when: {pos: NOUN, ends: dad}, gives: {Gender: Fem}}
 - {id: gender-tad, when: {pos: NOUN, ends: tad}, gives: {Gender: Fem}}
 - {id: gender-tud, when: {pos: NOUN, ends: tud}, gives: {Gender: Fem}}

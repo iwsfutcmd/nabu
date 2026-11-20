@@ -17,7 +17,7 @@ the converter applies the course's conversion plan
 | Sentences and story lines | 414 |
 | Tokens | 1282 |
 | Lexemes in `lexicons/grc/lexemes.yaml` | 170 |
-| Pinned forms (rule debt, ADR 0145) | 210 |
+| Pinned forms (rule debt, ADR 0145) | 200 |
 | Listed forms | 0: no statement that a form has no rule is drafted yet |
 
 **Checks** (docs/migration-design.md, "What must not change"):
@@ -181,6 +181,7 @@ waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).
 | ADJ with values and no relation | 37 |
 | DET with values and no relation | 15 |
 | amod: written | 24 |
+| case: written | 48 |
 | det: written | 147 |
 
 ## Lexemes that break a default (3)
@@ -223,7 +224,7 @@ The feature is declared lexical for the category, and this lexeme's tokens have 
 |---|---|
 | `lexeme:pais` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 
-## Written otherwise than the entry (11)
+## Written otherwise than the entry (12)
 
 A token names the lexeme, no feature value tells it from the entry's own form, and it is spelled differently: an allomorph by context (gran before a noun), or a form the course's annotation has no name for. Kept as an allomorph of the entry.
 
@@ -238,10 +239,19 @@ A token names the lexeme, no feature value tells it from the entry's own form, a
 | `lexeme:athenaios` | written Ἀθηναῖός (1×, first in s.04.19): an allomorph, or a form no value names |
 | `lexeme:alla` | written ἀλλ’ (2×, first in grc.story.a-rooster#4): an allomorph, or a form no value names |
 | `lexeme:hetoimos` | written ἕτοιμός (1×, first in s.06.33): an allomorph, or a form no value names |
+| `lexeme:onoma` | written ὄνομά (3×, first in s.07.10): an allomorph, or a form no value names |
 | `lexeme:horao` | written ὁρῶ (4×, first in s.08.22): an allomorph, or a form no value names |
 | `lexeme:ei` | written εἴ (2×, first in s.08.25): an allomorph, or a form no value names |
 
-## Feature values that do not tell forms apart (12)
+## Entries spelled as a form other than the citation form (1)
+
+A word card shows the entry's first spelling, and here that is one of the lexeme's inflected forms, not the form its language cites a word in (the plan's `citation`). The spelling is kept, since it is what a learner sees today.
+
+| Where | What |
+|---|---|
+| `lexeme:emi` | its entry is spelled ἦ, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=3\|Tense=Past\|VerbForm=Fin |
+
+## Feature values that do not tell forms apart (11)
 
 Several spellings share one set of values: the course's form KC names less than the forms differ by. Each is pinned; a tie is an authoring error once a rule reads it (ADR 0145).
 
@@ -256,7 +266,6 @@ Several spellings share one set of values: the course's form KC names less than 
 | `lexeme:perimeno` | Mood=Imp\|Number=Sing\|Person=2\|VerbForm=Fin is written 2 ways: περίμενέ, περίμενε |
 | `lexeme:hode` | Case=Nom\|Gender=Fem\|Number=Sing is written 2 ways: ἥδε, ἥδ’ |
 | `lexeme:skythropazo` | Mood=Imp\|Number=Sing\|Person=2\|VerbForm=Fin is written 2 ways: σκυθρώπαζε, σκυθρώπαζ’ |
-| `lexeme:onoma` | Case=Acc,Nom,Voc\|Number=Sing is written 2 ways: ὄνομά, ὄνομα |
 | `lexeme:gynaikonitis` | Case=Dat\|Number=Sing is written 2 ways: γυναικωνίτιδί, γυναικωνίτιδι |
 | `lexeme:sophos` | Case=Nom\|Degree=Cmp\|Gender=Masc\|Number=Sing is written 2 ways: σοφώτεροσ, σοφώτερόσ |
 
@@ -279,6 +288,15 @@ The two stand side by side and the values the course pins on them differ: one of
 | `s.02.33 (grc-Grek/polytonic)` | ἡ (Gender=Fem, Case=Nom, Number=Sing) stands before Κύρου (Gender=Masc, Case=Gen, Number=Sing) and does not agree with it |
 | `s.03.34 (grc-Grek/polytonic)` | ὁ (Gender=Masc, Case=Nom, Number=Sing) stands before Κεφάλου (Gender=Masc, Case=Gen, Number=Sing) and does not agree with it |
 | `s.05.7 (grc-Grek/polytonic)` | ὁ (Gender=Masc, Case=Nom, Number=Sing) stands before Ἀρίστωνος (Gender=Masc, Case=Gen, Number=Sing) and does not agree with it |
+
+## Left for a reviewer by the plan
+
+What the plan's drafter saw and did not decide.
+
+- Tense and aspect follow the Perseus treebank (the imperfect: past and imperfect aspect; the aorist: past alone; the perfect: perfect aspect alone). PROIEL tags the aorist with the perfect aspect; neither documents its choice.
+- A word before an enclitic takes a second accent (πρεσβύτερός ἐστιν) and εἰμί loses its own (εἰμι); a vowel is elided (δ', ἀλλ'). Each is listed as written otherwise or as a cell written two ways: rules of accent and elision, not forms.
+- A neuter's one form for subject, object and address carries all three cases at once (Case=Acc,Nom,Voc), as the course's KC says; a plural for subject and address Case=Nom,Voc.
+- The course marks voice only on one KC (the middle's -ονται): a deponent verb's other forms name no voice.
 
 ## What no finding above covers
 

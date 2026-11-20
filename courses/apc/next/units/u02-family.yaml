@@ -21,11 +21,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هيدا سامي.
-      tokens: [{surface: هيدا, lexeme: hayda}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: سامي, lexeme: sami}]
       reverse: هيدا سامي
     apc-Latn/arabizi:
       text: hayda Sami.
-      tokens: [{surface: hayda, lexeme: hayda}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: Sami, lexeme: sami}]
       reverse: (hayda|haida|hyda) Sami
   translations:
     en: |-
@@ -57,11 +57,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مرحبا مايا!
-      tokens: [{surface: مرحبا, lexeme: marhaba}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: مرحبا, lexeme: marhaba}, {surface: مايا, lexeme: maya}]
       reverse: مرحبا مايا
     apc-Latn/arabizi:
       text: mar7aba Maya!
-      tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Maya, lexeme: maya}]
       reverse: (mar7aba|marhaba|mar7ba) Maya
   translations:
     en: (Hello|Hi), Maya!
@@ -70,11 +70,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هيدي مايا.
-      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: مايا, lexeme: maya}]
       reverse: هيدي مايا
     apc-Latn/arabizi:
       text: hayde Maya.
-      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: Maya, lexeme: maya}]
       reverse: (hayde|haide|haydi) Maya
   translations:
     en: |-
@@ -85,11 +85,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هيدا بيّ سامي.
-      tokens: [{surface: هيدا, lexeme: hayda}, {surface: بيّ, lexeme: bayy, feats: {Number: Sing}}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: بيّ, lexeme: bayy, feats: {Number: Sing}}, {surface: سامي, lexeme: sami}]
       reverse: هيدا بيّ سامي
     apc-Latn/arabizi:
       text: hayda bayy Sami.
-      tokens: [{surface: hayda, lexeme: hayda}, {surface: bayy, lexeme: bayy, feats: {Number: Sing}}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: bayy, lexeme: bayy, feats: {Number: Sing}}, {surface: Sami, lexeme: sami}]
       reverse: (hayda|haida|hyda) (bayy|bay|beyy) Sami
   translations:
     en: |-
@@ -115,11 +115,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: هيدي إمّ سامي.
-      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: إمّ, lexeme: emm, feats: {Number: Sing}}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: هيدي, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: إمّ, lexeme: emm, feats: {Number: Sing}}, {surface: سامي, lexeme: sami}]
       reverse: هيدي إمّ سامي
     apc-Latn/arabizi:
       text: hayde emm Sami.
-      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: emm, lexeme: emm, feats: {Number: Sing}}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: hayde, lexeme: hayde, feats: {Gender: Fem, Number: Sing}}, {surface: emm, lexeme: emm, feats: {Number: Sing}}, {surface: Sami, lexeme: sami}]
       reverse: (hayde|haide|haydi) (emm|em|imm) Sami
   translations:
     en: |-
@@ -197,11 +197,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندي خيّ وإخت.
-      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: خيّ, lexeme: khayy, feats: {Number: Sing}}, {surface: وإخت, lexemes: [{lexeme: w, surface: و}, {lexeme: ekht, surface: إخت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: ي, n: 2}]}, {surface: خيّ, lexeme: khayy, feats: {Number: Sing}}, {surface: وإخت, lexemes: [{lexeme: w, surface: و}, {lexeme: ekht, surface: إخت, base: true, feats: {Number: Sing}}]}]
       reverse: (عندي|أنا عندي) خيّ (وإخت|و إخت)
     apc-Latn/arabizi:
       text: 3endi khayy w ekht.
-      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: khayy, lexeme: khayy, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
+      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: i, n: 2}]}, {surface: khayy, lexeme: khayy, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
       reverse: ((3endi|3ende|3andi|3ande|3indi|3inde)|ana (3endi|3ende|3andi|3ande|3indi|3inde)) (khayy|khay|5ayy) (w|wa) (ekht|ikht|e5t)
   translations:
     en: |-
@@ -214,11 +214,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندك إخت؟
-      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: إخت, lexeme: ekht, feats: {Number: Sing}}]
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ك, n: 2}]}, {surface: إخت, lexeme: ekht, feats: {Number: Sing}}]
       reverse: (عندك|إنت عندك) إخت
     apc-Latn/arabizi:
       text: 3endak ekht?
-      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ak, n: 2}]}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
       reverse: ((3endak|3andak|3indak)|(enta|inta) (3endak|3andak|3indak)) (ekht|ikht|e5t)
   translations:
     en: |-
@@ -229,11 +229,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لأ، ما عندي إخت.
-      tokens: [{surface: لأ, lexeme: la2}, {surface: ما, lexeme: ma}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: إخت, lexeme: ekht, feats: {Number: Sing}}]
+      tokens: [{surface: لأ, lexeme: la2}, {surface: ما, lexeme: ma}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 3, head: 4, rel: case}, {lexeme: poss-1sg, surface: ي, n: 4}]}, {surface: إخت, lexeme: ekht, feats: {Number: Sing}}]
       reverse: (لأ|لا) (ما عندي|أنا ما عندي|معندي) إخت
     apc-Latn/arabizi:
       text: la2, ma 3endi ekht.
-      tokens: [{surface: la2, lexeme: la2}, {surface: ma, lexeme: ma}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
+      tokens: [{surface: la2, lexeme: la2}, {surface: ma, lexeme: ma}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 3, head: 4, rel: case}, {lexeme: poss-1sg, surface: i, n: 4}]}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
       reverse: |-
         (la2|la) (ma|ana ma) (3endi|3ende|3andi|3ande|3indi|3inde) (ekht|ikht|e5t)
         la2 ma3endi ekht
@@ -277,11 +277,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: اسمه سامي.
-      tokens: [{surface: اسمه, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: ه}]}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: اسمه, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: ه}]}, {surface: سامي, lexeme: sami}]
       reverse: (اسمه|اسمو) سامي
     apc-Latn/arabizi:
       text: esmo Sami.
-      tokens: [{surface: esmo, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: o}]}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}]
+      tokens: [{surface: esmo, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: o}]}, {surface: Sami, lexeme: sami}]
       reverse: (esmo|esmu|ismo|ismu) Sami
   translations:
     en: |-
@@ -332,13 +332,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: كيفك مايا؟
-      tokens: [{surface: كيفك, lexemes: [{lexeme: kif, surface: كيف, base: true}, {lexeme: poss-2fs, surface: ك}], vocalized: كيفِك}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: كيفك, lexemes: [{lexeme: kif, surface: كيف, base: true}, {lexeme: poss-2fs, surface: ك}], vocalized: كيفِك}, {surface: مايا, lexeme: maya}]
       reverse: |-
         كيفك مايا
         مايا كيفك
     apc-Latn/arabizi:
       text: kifik Maya?
-      tokens: [{surface: kifik, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2fs, surface: ik}]}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: kifik, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2fs, surface: ik}]}, {surface: Maya, lexeme: maya}]
       reverse: |-
         (kifik|kifek|keefik|keefek) Maya
         Maya kifik
@@ -499,11 +499,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندك ولاد؟
-      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ك, n: 2}]}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
       reverse: (عندك|إنت عندك) ولاد
     apc-Latn/arabizi:
       text: 3endak wlad?
-      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ak, n: 2}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
       reverse: ((3endak|3andak|3indak)|(enta|inta) (3endak|3andak|3indak)) (wlad|wled)
   translations:
     en: |-
@@ -514,13 +514,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إيه، عندي إبن وبنت.
-      tokens: [{surface: إيه, lexeme: eh}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: إبن, lexeme: ebn, feats: {Number: Sing}}, {surface: وبنت, lexemes: [{lexeme: w, surface: و}, {lexeme: bent, surface: بنت, base: true, feats: {Number: Sing}}]}]
+      tokens: [{surface: إيه, lexeme: eh}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-1sg, surface: ي, n: 3}]}, {surface: إبن, lexeme: ebn, feats: {Number: Sing}}, {surface: وبنت, lexemes: [{lexeme: w, surface: و}, {lexeme: bent, surface: بنت, base: true, feats: {Number: Sing}}]}]
       reverse: |-
         إيه (عندي|أنا عندي) (إبن|صبي) (وبنت|و بنت)
         إي عندي إبن وبنت
     apc-Latn/arabizi:
       text: eh, 3endi ebn w bent.
-      tokens: [{surface: eh, lexeme: eh}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ebn, lexeme: ebn, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: bent, lexeme: bent, feats: {Number: Sing}}]
+      tokens: [{surface: eh, lexeme: eh}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-1sg, surface: i, n: 3}]}, {surface: ebn, lexeme: ebn, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: bent, lexeme: bent, feats: {Number: Sing}}]
       reverse: (eh|ee|e) ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (ebn|ibn|sabi|sabe) (w|wa) (bent|bint)
   translations:
     en: |-
@@ -551,11 +551,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندك عيلة كبيرة؟
-      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: عيلة, lexeme: 3ayle, feats: {Number: Sing}, n: 3}, {surface: كبيرة, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ك, n: 2}]}, {surface: عيلة, lexeme: 3ayle, feats: {Number: Sing}, n: 3}, {surface: كبيرة, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: (عندك|إنت عندك) عيلة كبيرة
     apc-Latn/arabizi:
       text: 3endak 3ayle kbire?
-      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: 3ayle, lexeme: 3ayle, feats: {Number: Sing}, n: 3}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ak, n: 2}]}, {surface: 3ayle, lexeme: 3ayle, feats: {Number: Sing}, n: 3}, {surface: kbire, lexeme: kbir, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}]
       reverse: ((3endak|3andak|3indak)|(enta|inta) (3endak|3andak|3indak)) (3ayle|3ayli|3eyle) (kbire|kbiri|kbeere)
   translations:
     en: |-
@@ -567,11 +567,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندي بنت.
-      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: بنت, lexeme: bent, feats: {Number: Sing}}]
+      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: ي, n: 2}]}, {surface: بنت, lexeme: bent, feats: {Number: Sing}}]
       reverse: (عندي|أنا عندي) بنت
     apc-Latn/arabizi:
       text: 3endi bent.
-      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: bent, lexeme: bent, feats: {Number: Sing}}]
+      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: i, n: 2}]}, {surface: bent, lexeme: bent, feats: {Number: Sing}}]
       reverse: ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (bent|bint)
   translations:
     en: |-
@@ -584,13 +584,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا، عندك ولاد؟
-      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2fs, surface: ك}], vocalized: عِنْدِك}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
+      tokens: [{surface: مايا, lexeme: maya}, {surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-2fs, surface: ك, n: 3}], vocalized: عِنْدِك}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
       reverse: |-
         مايا (عندك|إنتي عندك) ولاد
         عندك ولاد مايا
     apc-Latn/arabizi:
       text: Maya, 3endik wlad?
-      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: 3endik, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2fs, surface: ik}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
+      tokens: [{surface: Maya, lexeme: maya}, {surface: 3endik, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-2fs, surface: ik, n: 3}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
       reverse: |-
         Maya ((3endik|3andik|3indik|3endek)|(enti|inti) (3endik|3andik|3indik|3endek)) (wlad|wled)
         3endik wlad Maya
@@ -627,11 +627,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندكن ولاد؟
-      tokens: [{surface: عندكن, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2pl, surface: كن}]}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
+      tokens: [{surface: عندكن, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2pl, surface: كن, n: 2}]}, {surface: ولاد, lexeme: wlad, feats: {Number: Plur}}]
       reverse: عندكن ولاد
     apc-Latn/arabizi:
       text: 3endkon wlad?
-      tokens: [{surface: 3endkon, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2pl, surface: kon}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
+      tokens: [{surface: 3endkon, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2pl, surface: kon, n: 2}]}, {surface: wlad, lexeme: wlad, feats: {Number: Plur}}]
       reverse: (3endkon|3andkon|3indkon|3andkun) (wlad|wled)
   translations:
     en: |-
@@ -697,10 +697,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مايا، مين هَيدا؟
-          tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: مين, lexeme: meen}, {surface: هَيدا, lexeme: hayda}]
+          tokens: [{surface: مايا, lexeme: maya}, {surface: مين, lexeme: meen}, {surface: هَيدا, lexeme: hayda}]
         apc-Latn/arabizi:
           text: Maya, meen hayda?
-          tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: meen, lexeme: meen}, {surface: hayda, lexeme: hayda}]
+          tokens: [{surface: Maya, lexeme: maya}, {surface: meen, lexeme: meen}, {surface: hayda, lexeme: hayda}]
       translations:
         en: Maya, who's this?
   - line:
@@ -730,10 +730,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه، خَيّي. عِنْدي خَيّ وإِخْت.
-          tokens: [{surface: إيه, lexeme: eh}, {surface: خَيّي, lexemes: [{lexeme: khayy, surface: خَيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: عِنْدي, lexemes: [{lexeme: 3end, surface: عِنْد, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: خَيّ, lexeme: khayy, feats: {Number: Sing}}, {surface: وإِخْت, lexemes: [{lexeme: w, surface: و}, {lexeme: ekht, surface: إِخْت, base: true, feats: {Number: Sing}}]}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: خَيّي, lexemes: [{lexeme: khayy, surface: خَيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: عِنْدي, lexemes: [{lexeme: 3end, surface: عِنْد, base: true, n: 4, head: 5, rel: case}, {lexeme: poss-1sg, surface: ي, n: 5}]}, {surface: خَيّ, lexeme: khayy, feats: {Number: Sing}}, {surface: وإِخْت, lexemes: [{lexeme: w, surface: و}, {lexeme: ekht, surface: إِخْت, base: true, feats: {Number: Sing}}]}]
         apc-Latn/arabizi:
           text: eh, khayyi. 3endi khayy w ekht.
-          tokens: [{surface: eh, lexeme: eh}, {surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: khayy, lexeme: khayy, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
+          tokens: [{surface: eh, lexeme: eh}, {surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 4, head: 5, rel: case}, {lexeme: poss-1sg, surface: i, n: 5}]}, {surface: khayy, lexeme: khayy, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ekht, lexeme: ekht, feats: {Number: Sing}}]
       translations:
         en: Yes, my brother. I have a brother and a sister.
   - choose:

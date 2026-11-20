@@ -118,13 +118,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تفضّلي، مايا!
-      tokens: [{surface: تفضّلي, lexeme: tfaddal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: مايا, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: تفضّلي, lexeme: tfaddal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: مايا, lexeme: maya}]
       reverse: |-
         تفضّلي مايا
         مايا تفضّلي
     apc-Latn/arabizi:
       text: tfaddali, Maya!
-      tokens: [{surface: tfaddali, lexeme: tfaddal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: Maya, lexeme: maya, feats: {Number: Sing}}]
+      tokens: [{surface: tfaddali, lexeme: tfaddal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: Maya, lexeme: maya}]
       reverse: |-
         (tfaddali|tfadali|tfaddale) Maya
         Maya tfaddali
@@ -193,11 +193,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قهوة مع سكّر؟
-      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: مع, lexeme: ma3}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}}]
+      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: مع, lexeme: ma3, n: 2, head: 3, rel: case}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}, n: 3}]
       reverse: قهوة مع سكّر
     apc-Latn/arabizi:
       text: ahwe ma3 sukkar?
-      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: ma3, lexeme: ma3}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}}]
+      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: ma3, lexeme: ma3, n: 2, head: 3, rel: case}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}, n: 3}]
       reverse: (ahwe|2ahwe) (ma3|ma3a) (sukkar|sekkar|sokkar|sukar)
   translations:
     en: |-
@@ -212,7 +212,7 @@ sentences:
       reverse: الشاي منيح
     apc-Latn/arabizi:
       text: el shay mni7.
-      tokens: [{surface: el, lexeme: el}, {surface: shay, lexeme: shay, feats: {Number: Sing}, n: 2}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: shay, lexeme: shay, feats: {Number: Sing}, n: 2}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) shay (mni7|mnih)
   translations:
     en: |-
@@ -227,7 +227,7 @@ sentences:
       reverse: الأكل منيح
     apc-Latn/arabizi:
       text: el akl mni7.
-      tokens: [{surface: el, lexeme: el}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 2}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 2}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (akl|akel|2akl|akil) (mni7|mnih)
   translations:
     en: |-
@@ -285,11 +285,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّك لبن مع الخبز؟
-      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: لبن, lexeme: laban, feats: {Number: Sing}}, {surface: مع, lexeme: ma3}, {surface: الخبز, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: khebz, surface: خبز, base: true, feats: {Number: Sing}, n: 6}]}]
+      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: لبن, lexeme: laban, feats: {Number: Sing}}, {surface: مع, lexeme: ma3, n: 4, head: 6, rel: case}, {surface: الخبز, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: khebz, surface: خبز, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: (بدّك|إنت بدّك) لبن مع الخبز
     apc-Latn/arabizi:
       text: baddak laban ma3 el khebz?
-      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: laban, lexeme: laban, feats: {Number: Sing}}, {surface: ma3, lexeme: ma3}, {surface: el, lexeme: el}, {surface: khebz, lexeme: khebz, feats: {Number: Sing}}]
+      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: laban, lexeme: laban, feats: {Number: Sing}}, {surface: ma3, lexeme: ma3, n: 4, head: 6, rel: case}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: khebz, lexeme: khebz, feats: {Number: Sing}, n: 6}]
       reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (laban|leban) (ma3|ma3a) (el|l|il) (khebz|5ebz|khibz)
   translations:
     en: |-
@@ -301,11 +301,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قهوة بلا سكّر.
-      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: بلا, lexeme: bala}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}}]
+      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: بلا, lexeme: bala, n: 2, head: 3, rel: case}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}, n: 3}]
       reverse: قهوة بلا سكّر
     apc-Latn/arabizi:
       text: ahwe bala sukkar.
-      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: bala, lexeme: bala}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}}]
+      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: bala, lexeme: bala, n: 2, head: 3, rel: case}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}, n: 3}]
       reverse: (ahwe|2ahwe) (bala|bela) (sukkar|sekkar|sokkar|sukar)
   translations:
     en: |-
@@ -321,7 +321,7 @@ sentences:
       reverse: الأكل طيّب
     apc-Latn/arabizi:
       text: el akl tayyeb!
-      tokens: [{surface: el, lexeme: el}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 2}, {surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 2}, {surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (akl|akel|2akl|akil) (tayyeb|tayeb|tayyib|tayib)
   translations:
     en: |-
@@ -336,7 +336,7 @@ sentences:
       reverse: المنقوشة طيّبة
     apc-Latn/arabizi:
       text: el man2oushe tayybe.
-      tokens: [{surface: el, lexeme: el}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}, n: 2}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}, n: 2}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (man2oushe|manoushe|man2ushi|mankoushe) (tayybe|tayebe|taybe|tayyibe)
   translations:
     en: |-
@@ -431,11 +431,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا جوعانة.
-      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}, n: 1}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}]
+      tokens: [{surface: مايا, lexeme: maya, n: 1}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: مايا جوعانة
     apc-Latn/arabizi:
       text: Maya jou3ane.
-      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}, n: 1}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}]
+      tokens: [{surface: Maya, lexeme: maya, n: 1}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: Maya (jou3ane|jo3ane|jou3ani|ju3ane)
   translations:
     en: |-
@@ -500,7 +500,7 @@ sentences:
         التبّولة كتير طيّبة
     apc-Latn/arabizi:
       text: el tabboule tayybe ktir!
-      tokens: [{surface: el, lexeme: el}, {surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}, n: 2}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: ktir, lexeme: ktir}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}, n: 2}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         (el|l|il) (tabboule|tabbouli|tabbouleh|tabouleh|taboule) (tayybe|tayebe|taybe|tayyibe) (ktir|kteer|kter|ktiir)
         el tabboule ktir tayybe
@@ -584,13 +584,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مايا، جوعانة؟
-      tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: مايا, lexeme: maya}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         مايا [إنتي] جوعانة
         جوعانة مايا
     apc-Latn/arabizi:
       text: Maya, jou3ane?
-      tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Maya, lexeme: maya}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         Maya [(enti|inti)] (jou3ane|jo3ane|ju3ane|jou3ana)
         jou3ane Maya
@@ -719,10 +719,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: سامي، تْفَضَّل! كول!
-          tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: تْفَضَّل, lexeme: tfaddal}, {surface: كول, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
+          tokens: [{surface: سامي, lexeme: sami}, {surface: تْفَضَّل, lexeme: tfaddal}, {surface: كول, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
           text: Sami, tfaddal! kol!
-          tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: tfaddal, lexeme: tfaddal}, {surface: kol, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
+          tokens: [{surface: Sami, lexeme: sami}, {surface: tfaddal, lexeme: tfaddal}, {surface: kol, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       translations:
         en: Sami, help yourself! Eat!
   - line:
@@ -733,7 +733,7 @@ stories:
           tokens: [{surface: شُكْرا, lexeme: shukran}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: الأَكِل, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: akl, surface: أَكِل, base: true, feats: {Number: Sing}, n: 4}]}, {surface: طَيِّب, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: كْتير, lexeme: ktir}]
         apc-Latn/arabizi:
           text: shukran teta. el akl tayyeb ktir!
-          tokens: [{surface: shukran, lexeme: shukran}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: el, lexeme: el}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 4}, {surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: ktir, lexeme: ktir}]
+          tokens: [{surface: shukran, lexeme: shukran}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 4}, {surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: ktir, lexeme: ktir}]
       translations:
         en: Thanks, grandma. The food is really tasty!
   - line:
@@ -763,10 +763,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مايا، جوعانة؟ كِلي!
-          tokens: [{surface: مايا, lexeme: maya, feats: {Number: Sing}}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}, {surface: كِلي, lexeme: akal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}]
+          tokens: [{surface: مايا, lexeme: maya}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}, {surface: كِلي, lexeme: akal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
           text: Maya, jou3ane? kili!
-          tokens: [{surface: Maya, lexeme: maya, feats: {Number: Sing}}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}, {surface: kili, lexeme: akal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}]
+          tokens: [{surface: Maya, lexeme: maya}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}, {surface: kili, lexeme: akal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}]
       translations:
         en: Maya, are you hungry? Eat!
   - line:
@@ -810,10 +810,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه، وشاي بَلا سُكَّر.
-          tokens: [{surface: إيه, lexeme: eh}, {surface: وشاي, lexemes: [{lexeme: w, surface: و}, {lexeme: shay, surface: شاي, base: true, feats: {Number: Sing}}]}, {surface: بَلا, lexeme: bala}, {surface: سُكَّر, lexeme: sukkar, feats: {Number: Sing}}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: وشاي, lexemes: [{lexeme: w, surface: و}, {lexeme: shay, surface: شاي, base: true, feats: {Number: Sing}}]}, {surface: بَلا, lexeme: bala, n: 4, head: 5, rel: case}, {surface: سُكَّر, lexeme: sukkar, feats: {Number: Sing}, n: 5}]
         apc-Latn/arabizi:
           text: eh, w shay bala sukkar.
-          tokens: [{surface: eh, lexeme: eh}, {surface: w, lexeme: w}, {surface: shay, lexeme: shay, feats: {Number: Sing}}, {surface: bala, lexeme: bala}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}}]
+          tokens: [{surface: eh, lexeme: eh}, {surface: w, lexeme: w}, {surface: shay, lexeme: shay, feats: {Number: Sing}}, {surface: bala, lexeme: bala, n: 4, head: 5, rel: case}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}, n: 5}]
       translations:
         en: Yes, and tea without sugar.
   - line:

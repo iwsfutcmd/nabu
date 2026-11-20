@@ -67,6 +67,13 @@ A token names the lexeme, no feature value tells it from the entry's own form, a
 | `lexeme:得閒` | joined to another lexeme, written 得 / dak1 (3×, first in s.u06.26) |
 | `lexeme:可以` | joined to another lexeme, written 可 / ho2 (1×, first in s.u08.20) |
 
+## Left for a reviewer by the plan
+
+What the plan's drafter saw and did not decide.
+
+- A question of the kind X唔X repeats only the first syllable of a two-syllable word (得唔得閒, 可唔可以): the first copy is listed as written otherwise.
+- Names the course teaches no word for (家明, 美玲) are tokens that name no lexeme, as today.
+
 ## What no finding above covers
 
 - **Projections:** no orthography of this course has a stated projection yet, so every

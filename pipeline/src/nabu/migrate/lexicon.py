@@ -29,6 +29,16 @@ def key_of(feats: Feats) -> Key:
     return tuple(sorted(feats.items()))
 
 
+def is_cited(cell: Key, citation: Feats) -> bool:
+    """Whether a token with these values stands in its entry's own cell: every value it names
+    is the citation cell's. A token names less than the cell where its lexeme has a feature of
+    itself (casa: Number alone) or none (grc σύ: no gender); a form that serves several cases
+    names the citation's among them (τέκνον); a token that names nothing is its entry."""
+    return all(
+        k in citation and set(v.split(",")) & set(str(citation[k]).split(",")) for k, v in cell
+    )
+
+
 @dataclass(frozen=True)
 class Occurrence:
     lexeme: str
@@ -187,6 +197,12 @@ class Spellings:
         best = INVISIBLE.sub("", min(variants, key=lambda v: (_marks(v), -variants[v], v))).strip()
         if self.unmarked.get(orth, True):
             best = _strip_marks(best)
+        if any("\u0370" <= ch <= "\u03ff" or "\u1f00" <= ch <= "\u1fff" for ch in best):
+            # A Greek grave is the acute of a word in running text (ADR 0087): the form's own
+            # accent is the acute.
+            best = unicodedata.normalize(
+                "NFC", unicodedata.normalize("NFD", best).replace("\u0300", "\u0301")
+            )
         if self.lower.get(orth, False) and best[:1].isupper() and best[1:] == best[1:].lower():
             lowered = best[:1].lower() + best[1:]
             if fold(lowered) == fold(best):
@@ -363,13 +379,8 @@ def build(conv: Converter) -> Built:
         forms_by_orth = {o: fs for o, fs in forms_by_orth.items() if fs}
         spell = Spellings(forms_by_orth)
         known = {o: {fold(f) for f in fs} for o, fs in forms_by_orth.items()}
-        # The cell the entry is spelled in. A feature the lexeme has of itself is no part of
-        # it: its tokens do not carry it (casa: singular; hermano, whose gender its tokens
-        # choose: masculine singular).
-        mine = conv.lexical.get(lexeme, {})
-        citation = key_of(
-            {k: v for k, v in plan.citation.get(pos or "", {}).items() if k not in mine}
-        )
+        # The cell the entry is spelled in (`is_cited` says which tokens stand in it).
+        citation = plan.citation.get(pos or "", {})
 
         # Lexical features: the KC's own, and what its tokens all say (a noun's gender), unless
         # a default of the language gives it.
@@ -454,7 +465,7 @@ def build(conv: Converter) -> Built:
                     attested[o].add(f)
                 # An orthography the entry has no spelling in asks nothing (apc w, written only
                 # joined in Arabic): whatever is written there is its spelling.
-                is_entry = cell in ((), citation) and all(
+                is_entry = is_cited(cell, citation) and all(
                     f in known[o] for o, f in folded if o in known
                 )
                 if is_entry and forms_by_orth:
@@ -473,7 +484,7 @@ def build(conv: Converter) -> Built:
                     kept = spell.every(o, variants)
                     if kept:
                         spelled[o] = kept
-                if cell in ((), citation):
+                if is_cited(cell, citation):
                     own_reading = {str(k): fold(str(v)) for k, v in obj(kc.get("readings")).items()}
                     free = [x for x in found if not x.bound]
                     if (
@@ -523,7 +534,7 @@ def build(conv: Converter) -> Built:
                 else:
                     forms.append({"feats": dict(cell), "spelled": spelled, "status": "pinned"})
                     stats["pinned forms"] += 1
-            if cell not in ((), citation) and len(ways) > 1:
+            if not is_cited(cell, citation) and len(ways) > 1:
                 stats["cells written more than one way"] += 1
                 letters = sorted({" / ".join(f for _, f in folded) for folded in ways})
                 findings.append(
@@ -547,7 +558,7 @@ def build(conv: Converter) -> Built:
                     for folded in ways
                     if (o, fold(f)) in folded
                 ]
-                if any(cell in ((), citation) for cell in where):
+                if any(is_cited(cell, citation) for cell in where):
                     # The lexeme itself is written so (fa خانهٔ before the ezafe).
                     keep.append(f)
                     stats["second forms: a variant spelling"] += 1
@@ -575,6 +586,48 @@ def build(conv: Converter) -> Built:
             ]
         if spelled_out:
             entry["spelled"] = spelled_out
+        if forms_by_orth and pos in ("VERB", "AUX") and citation:
+            # A verb's entry that is none of its citation-form tokens and is one of its other
+            # forms: with its marks where the entry is written with them (hbo), since a
+            # pointed form shares its letters with others.
+            def same(
+                o: str,
+                written: str,
+                _spell: Spellings = spell,
+                _forms: dict[str, list[str]] = forms_by_orth,
+            ) -> bool:
+                if _spell.unmarked.get(o, True):
+                    return fold(written) == fold(_forms[o][0])
+                return INVISIBLE.sub("", written).strip() == _forms[o][0]
+
+            def as_entry(
+                found_: list[Occurrence], _forms: dict[str, list[str]] = forms_by_orth
+            ) -> bool:
+                return any(all(same(o, w) for o, w in x.spelled if o in _forms) for x in found_)
+
+            own = cells.get(lexeme, {})
+            in_citation = any(
+                as_entry(found_)
+                for cell, ways in own.items()
+                if is_cited(cell, citation)
+                for found_ in ways.values()
+            )
+            elsewhere = sorted(
+                _show_feats(dict(cell))
+                for cell, ways in own.items()
+                if not is_cited(cell, citation) and any(as_entry(f) for f in ways.values())
+            )
+            if elsewhere and not in_citation:
+                stats["entries spelled as a form other than the citation form"] += 1
+                findings.append(
+                    Finding(
+                        "entry-form",
+                        f"lexeme:{lexeme}",
+                        "its entry is spelled "
+                        f"{' / '.join(fs[0] for fs in forms_by_orth.values())}, "
+                        f"which its tokens write as {elsewhere[0]}",
+                    )
+                )
         shown_built = [
             fs[0]
             for o, fs in forms_by_orth.items()

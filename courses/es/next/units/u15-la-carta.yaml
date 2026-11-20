@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy escribo una carta para tía Marisol.
-      tokens: [{surface: Hoy, lexeme: hoy}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: carta, lexeme: carta, feats: {Number: Sing}, n: 4}, {surface: para, lexeme: para}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Hoy, lexeme: hoy}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: carta, lexeme: carta, feats: {Number: Sing}, n: 4}, {surface: para, lexeme: para, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
       reverse: |-
         Hoy [yo] escribo una carta (para|pa') [mi|la] tía Marisol
         [Yo] escribo una carta (para|pa') [mi|la] tía Marisol hoy
@@ -36,7 +36,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel le escribe una carta a su tía en Cuba.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: le, lexeme: le}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: carta, lexeme: carta, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 8}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: le, lexeme: le}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: carta, lexeme: carta, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a, n: 6, head: 8, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 8}, {surface: en, lexeme: en, n: 9, head: 10, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 10}]
       reverse: Daniel [le] escribe una carta a su tía (en|de) Cuba
   translations:
     en: |-
@@ -62,7 +62,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Aquí en Miami te extrañamos mucho.
-      tokens: [{surface: Aquí, lexeme: aquí}, {surface: en, lexeme: en}, {surface: Miami, lexeme: miami}, {surface: te, lexeme: te}, {surface: extrañamos, lexeme: extrañar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}]
+      tokens: [{surface: Aquí, lexeme: aquí}, {surface: en, lexeme: en, n: 2, head: 3, rel: case}, {surface: Miami, lexeme: miami, n: 3}, {surface: te, lexeme: te}, {surface: extrañamos, lexeme: extrañar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}]
       reverse: |-
         Aquí en Miami [nosotros|nosotras] (te|lo|la|los|las) extrañamos mucho
         [Nosotros|Nosotras] (te|lo|la|los|las) extrañamos mucho aquí en Miami
@@ -76,7 +76,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Un abrazo muy grande de la familia, tía.
-      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abrazo, lexeme: abrazo, feats: {Number: Sing}, n: 2}, {surface: muy, lexeme: muy}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}, n: 4, head: 2, rel: amod}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 7}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abrazo, lexeme: abrazo, feats: {Number: Sing}, n: 2}, {surface: muy, lexeme: muy}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}, n: 4, head: 2, rel: amod}, {surface: de, lexeme: de, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 7}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}]
       reverse: Un abrazo muy (grande|fuerte) de (la|toda la) familia tía
   translations:
     en: (A big hug|A very big hug|A huge hug|Big hugs|Lots of hugs|Hugs) from the (family|whole family), (Auntie|Aunt).
@@ -85,7 +85,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Muchos besos para Yunior también.
-      tokens: [{surface: Muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: besos, lexeme: beso, feats: {Number: Plur}}, {surface: para, lexeme: para}, {surface: Yunior, lexeme: yunior}, {surface: también, lexeme: también}]
+      tokens: [{surface: Muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: besos, lexeme: beso, feats: {Number: Plur}}, {surface: para, lexeme: para, n: 3, head: 4, rel: case}, {surface: Yunior, lexeme: yunior, n: 4}, {surface: también, lexeme: también}]
       reverse: |-
         [Muchos] besos para Yunior también
         También [muchos] besos para Yunior
@@ -96,7 +96,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami le manda un paquete a tía Marisol.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a, n: 6, head: 7, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 7}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
       reverse: (Mami|Mamá) [le] (manda|envía) un paquete a [mi|la] tía Marisol
   translations:
     en: |-
@@ -109,7 +109,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En el paquete hay café, jabón y medicinas.
-      tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 3}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: jabón, lexeme: jabón, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: medicinas, lexeme: medicina, feats: {Number: Plur}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 3}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: jabón, lexeme: jabón, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: medicinas, lexeme: medicina, feats: {Number: Plur}}]
       reverse: |-
         En el paquete hay café jabón y (medicinas|medicamentos|medicina)
         Hay café jabón y (medicinas|medicamentos|medicina) en el paquete
@@ -123,7 +123,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami también le manda zapatos a Yunior.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zapatos, lexeme: zapato, feats: {Number: Plur}}, {surface: a, lexeme: a}, {surface: Yunior, lexeme: yunior}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zapatos, lexeme: zapato, feats: {Number: Plur}}, {surface: a, lexeme: a, n: 6, head: 7, rel: case}, {surface: Yunior, lexeme: yunior, n: 7}]
       reverse: |-
         (Mami|Mamá) también [le] (manda|envía) zapatos a Yunior
         (Mami|Mamá) [le] (manda|envía) zapatos a Yunior también
@@ -139,7 +139,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ya llegó el paquete a La Habana?
-      tokens: [{surface: Ya, lexeme: ya}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 4}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 7}]
+      tokens: [{surface: Ya, lexeme: ya}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 4}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 7}]
       reverse: (Ya llegó el paquete|Llegó [ya] el paquete|El paquete ya llegó|Ya el paquete llegó) a La Habana
   translations:
     en: |-
@@ -175,7 +175,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A ver, ¿qué tú le mandas a Yunior?
-      tokens: [{surface: A, lexeme: a}, {surface: ver, lexeme: ver, feats: {VerbForm: Inf}}, {surface: qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: mandas, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Yunior, lexeme: yunior}]
+      tokens: [{surface: A, lexeme: a}, {surface: ver, lexeme: ver, feats: {VerbForm: Inf}}, {surface: qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: mandas, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: Yunior, lexeme: yunior, n: 8}]
       reverse: |-
         (A ver|Vamos a ver) (qué tú le mandas|qué le mandas [tú]|qué usted le manda|qué le manda [usted]|qué ustedes le mandan|qué le mandan [ustedes]) a Yunior
         A ver, ¿tú qué le mandas a Yunior?
@@ -186,7 +186,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Ay, Daniel! ¿Qué hay ahí, en el paquete?
-      tokens: [{surface: Ay, lexeme: ay}, {surface: Daniel, lexeme: daniel}, {surface: Qué, lexeme: qué}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: ahí, lexeme: ahí}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Ay, lexeme: ay}, {surface: Daniel, lexeme: daniel}, {surface: Qué, lexeme: qué}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: ahí, lexeme: ahí}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 8}]
       reverse: Ay Daniel qué hay (ahí|allí|ahí adentro|ahí dentro) en el paquete
   translations:
     en: |-
@@ -197,7 +197,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hola se escribe con hache.
-      tokens: [{surface: Hola, lexeme: hola}, {surface: se, lexeme: se.impersonal}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: hache, lexeme: hache, feats: {Number: Sing}}]
+      tokens: [{surface: Hola, lexeme: hola}, {surface: se, lexeme: se.impersonal}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: hache, lexeme: hache, feats: {Number: Sing}, n: 5}]
       reverse: |-
         Hola se escribe con (hache|h|una hache)
         Hola lleva (hache|h)
@@ -224,7 +224,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hola, Yunior. ¿Hoy hay olas en la playa?
-      tokens: [{surface: Hola, lexeme: hola}, {surface: Yunior, lexeme: yunior}, {surface: Hoy, lexeme: hoy}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: olas, lexeme: ola, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: playa, lexeme: playa, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Hola, lexeme: hola}, {surface: Yunior, lexeme: yunior}, {surface: Hoy, lexeme: hoy}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: olas, lexeme: ola, feats: {Number: Plur}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: playa, lexeme: playa, feats: {Number: Sing}, n: 8}]
       reverse: Hola Yunior (hoy hay olas en la playa|hay olas en la playa hoy|hay olas hoy en la playa)
   translations:
     en: (Hi|Hello), Yunior. Are there [any] waves (at|on) the beach today?
@@ -264,7 +264,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Te mando una foto de la familia.
-      tokens: [{surface: Te, lexeme: te}, {surface: mando, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Te, lexeme: te}, {surface: mando, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 7}]
       reverse: '[Yo] (te|le|les) (mando|envío) una foto de la familia'
   translations:
     en: (I'm sending|I am sending|I send|I'll send) you a (photo|picture) of the family.
@@ -273,7 +273,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En la foto, abuelo está bebiendo café.
-      tokens: [{surface: En, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 3}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bebiendo, lexeme: beber, feats: {VerbForm: Ger}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 3}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bebiendo, lexeme: beber, feats: {VerbForm: Ger}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
       reverse: |-
         En la foto [el] abuelo está (bebiendo|tomando) café
         [El] abuelo está (bebiendo|tomando) café en la foto
@@ -345,7 +345,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta noche le mando un mensaje a Yunior.
-      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 2}, {surface: le, lexeme: le}, {surface: mando, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}, n: 6}, {surface: a, lexeme: a}, {surface: Yunior, lexeme: yunior}]
+      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 2}, {surface: le, lexeme: le}, {surface: mando, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}, n: 6}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: Yunior, lexeme: yunior, n: 8}]
       reverse: |-
         Esta noche [yo] [le] (mando|envío|escribo) un mensaje a Yunior
         [Yo] [le] (mando|envío|escribo) un mensaje a Yunior esta noche
@@ -363,7 +363,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior dice que llueve mucho en La Habana.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: llueve, lexeme: llover, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 8}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: llueve, lexeme: llover, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 8}]
       reverse: Yunior dice que (llueve mucho en La Habana|en La Habana llueve mucho|está lloviendo mucho en La Habana)
   translations:
     en: Yunior says [that] (it's raining|it is raining|it rains) (a lot|hard) in Havana.
@@ -372,7 +372,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior dice que hay mucha gente en la cola.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: cola, lexeme: cola, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: dice, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: cola, lexeme: cola, feats: {Number: Sing}, n: 9}]
       reverse: |-
         Yunior dice que (hay mucha gente en la cola|en la cola hay mucha gente)
         Yunior dice que hay mucha gente en la fila.
@@ -403,7 +403,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Va a haber mucha gente en el aeropuerto.
-      tokens: [{surface: Va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: haber, lexeme: haber, feats: {VerbForm: Inf}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: aeropuerto, lexeme: aeropuerto, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: haber, lexeme: haber, feats: {VerbForm: Inf}}, {surface: mucha, lexeme: mucho, feats: {Gender: Fem, Number: Sing}}, {surface: gente, lexeme: gente, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: aeropuerto, lexeme: aeropuerto, feats: {Number: Sing}, n: 8}]
       reverse: (Va a haber|Habrá) mucha gente en el aeropuerto
   translations:
     en: |-
@@ -414,7 +414,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Echo los zapatos en el paquete.
-      tokens: [{surface: Echo, lexeme: echar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: zapatos, lexeme: zapato, feats: {Number: Plur}, n: 3}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: Echo, lexeme: echar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: zapatos, lexeme: zapato, feats: {Number: Plur}, n: 3}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 6}]
       reverse: '[Yo] (echo|pongo|meto) los zapatos en el paquete'
   translations:
     en: |-
@@ -439,7 +439,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami echa la carta y la foto en el paquete.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: echa, lexeme: echar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: carta, lexeme: carta, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: echa, lexeme: echar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: carta, lexeme: carta, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 10}]
       reverse: (Mami|Mamá) (echa|pone|mete) la carta y la foto en el paquete
   translations:
     en: (Mom|Mommy|Mum) (puts|is putting) the letter and the (photo|picture) in the (package|parcel).
@@ -475,7 +475,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel, ¿tú le escribes a tía Marisol hoy?
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: escribes, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: hoy, lexeme: hoy}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: escribes, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: hoy, lexeme: hoy}]
       translations:
         en: Daniel, are you writing to Aunt Marisol today?
   - line:
@@ -504,7 +504,7 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Querida tía: te extraño mucho. Aquí en Miami estamos bien.'
-          tokens: [{surface: Querida, lexeme: querido, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: amod}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: te, lexeme: te}, {surface: extraño, lexeme: extrañar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: Aquí, lexeme: aquí}, {surface: en, lexeme: en}, {surface: Miami, lexeme: miami}, {surface: estamos, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}]
+          tokens: [{surface: Querida, lexeme: querido, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: amod}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: te, lexeme: te}, {surface: extraño, lexeme: extrañar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: Aquí, lexeme: aquí}, {surface: en, lexeme: en, n: 7, head: 8, rel: case}, {surface: Miami, lexeme: miami, n: 8}, {surface: estamos, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}]
       translations:
         en: Dear Aunt, I miss you so much. Here in Miami we're fine.
   - line:
@@ -512,7 +512,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Ay, Daniel! Hola se escribe con hache.
-          tokens: [{surface: Ay, lexeme: ay}, {surface: Daniel, lexeme: daniel}, {surface: Hola, lexeme: hola}, {surface: se, lexeme: se.impersonal}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: hache, lexeme: hache, feats: {Number: Sing}}]
+          tokens: [{surface: Ay, lexeme: ay}, {surface: Daniel, lexeme: daniel}, {surface: Hola, lexeme: hola}, {surface: se, lexeme: se.impersonal}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 6, head: 7, rel: case}, {surface: hache, lexeme: hache, feats: {Number: Sing}, n: 7}]
       translations:
         en: Oh, Daniel! Hola is spelled with an h.
   - line:
@@ -520,7 +520,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Con hache? ¿Y la ola de la playa?
-          tokens: [{surface: Con, lexeme: con}, {surface: hache, lexeme: hache, feats: {Number: Sing}}, {surface: Y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: ola, lexeme: ola, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: playa, lexeme: playa, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: Con, lexeme: con, n: 1, head: 2, rel: case}, {surface: hache, lexeme: hache, feats: {Number: Sing}, n: 2}, {surface: Y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: ola, lexeme: ola, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: playa, lexeme: playa, feats: {Number: Sing}, n: 8}]
       translations:
         en: With an h? And the wave at the beach?
   - line:
@@ -544,7 +544,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi'jo, ¿tú le dices a Marisol que su mami le manda un abrazo?
-          tokens: [{surface: Mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: dices, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: que, lexeme: que}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 9}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: abrazo, lexeme: abrazo, feats: {Number: Sing}, n: 13}]
+          tokens: [{surface: Mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: dices, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 6}, {surface: que, lexeme: que}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 9}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: abrazo, lexeme: abrazo, feats: {Number: Sing}, n: 13}]
       translations:
         en: Sweetheart, will you tell Marisol that her mom sends her a hug?
   - line:
@@ -552,7 +552,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Hecho, abuela! Un abrazo muy grande de su mami.
-          tokens: [{surface: Hecho, lexeme: hecho}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abrazo, lexeme: abrazo, feats: {Number: Sing}, n: 4}, {surface: muy, lexeme: muy}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}, n: 6, head: 4, rel: amod}, {surface: de, lexeme: de}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 9}]
+          tokens: [{surface: Hecho, lexeme: hecho}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abrazo, lexeme: abrazo, feats: {Number: Sing}, n: 4}, {surface: muy, lexeme: muy}, {surface: grande, lexeme: grande, feats: {Gender: Masc, Number: Sing}, n: 6, head: 4, rel: amod}, {surface: de, lexeme: de, n: 7, head: 9, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 9}]
       translations:
         en: Deal, Grandma! A big hug from her mom.
   - line:
@@ -565,14 +565,14 @@ stories:
       forms:
         es-Latn/standard:
           text: En el paquete van el café, el jabón y los zapatos de Yunior.
-          tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 3}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 6}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: jabón, lexeme: jabón, feats: {Number: Sing}, n: 8}, {surface: y, lexeme: y}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 10, head: 11, rel: det}, {surface: zapatos, lexeme: zapato, feats: {Number: Plur}, n: 11}, {surface: de, lexeme: de}, {surface: Yunior, lexeme: yunior}]
+          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 3}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 6}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: jabón, lexeme: jabón, feats: {Number: Sing}, n: 8}, {surface: y, lexeme: y}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 10, head: 11, rel: det}, {surface: zapatos, lexeme: zapato, feats: {Number: Plur}, n: 11}, {surface: de, lexeme: de, n: 12, head: 13, rel: case}, {surface: Yunior, lexeme: yunior, n: 13}]
       translations:
         en: The coffee, the soap and Yunior's shoes are going in the package.
   - line:
       forms:
         es-Latn/standard:
           text: Una semana después, tía Marisol le manda un mensaje a mami.
-          tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: semana, lexeme: semana, feats: {Number: Sing}, n: 2}, {surface: después, lexeme: después}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}, n: 9}, {surface: a, lexeme: a}, {surface: mami, lexeme: mami, feats: {Number: Sing}}]
+          tokens: [{surface: Una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: semana, lexeme: semana, feats: {Number: Sing}, n: 2}, {surface: después, lexeme: después}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}, n: 9}, {surface: a, lexeme: a, n: 10, head: 11, rel: case}, {surface: mami, lexeme: mami, feats: {Number: Sing}, n: 11}]
       translations:
         en: A week later, Aunt Marisol sends Mom a message.
   - line:
@@ -604,7 +604,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel, gracias por la carta y la foto.
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: gracias, lexeme: gracias}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: carta, lexeme: carta, feats: {Number: Sing}, n: 5}, {surface: y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: gracias, lexeme: gracias}, {surface: por, lexeme: por, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: carta, lexeme: carta, feats: {Number: Sing}, n: 5}, {surface: y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 8}]
       translations:
         en: Daniel, thank you for the letter and the photo.
   - line:
@@ -621,7 +621,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Y Daniel escribió hola con hache!
-          tokens: [{surface: Y, lexeme: y}, {surface: Daniel, lexeme: daniel}, {surface: escribió, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: hola, lexeme: hola}, {surface: con, lexeme: con}, {surface: hache, lexeme: hache, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: Daniel, lexeme: daniel}, {surface: escribió, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: hola, lexeme: hola}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: hache, lexeme: hache, feats: {Number: Sing}, n: 6}]
       translations:
         en: And Daniel wrote hola with an h!
   - line:

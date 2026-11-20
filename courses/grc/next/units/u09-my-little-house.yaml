@@ -196,7 +196,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐν τῇ γυναικωνίτιδι.
-      tokens: [{surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῇ}}, {surface: γυναικωνίτιδι, lexeme: gynaikonitis, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: γῠναικωνῑ́τῐδῐ}}]
+      tokens: [{surface: ἐν, lexeme: en, n: 1, head: 3, rel: case, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῇ}}, {surface: γυναικωνίτιδι, lexeme: gynaikonitis, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: γῠναικωνῑ́τῐδῐ}}]
       reverse: ἐν τῇ γυναικωνίτιδι
   translations:
     en: In the women's (rooms|quarters).
@@ -205,7 +205,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: κατὰ τὴν γυναικωνῖτιν.
-      tokens: [{surface: κατὰ, lexeme: kata, readings: {attic: κᾰτᾰ̀}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὴν}}, {surface: γυναικωνῖτιν, lexeme: gynaikonitis, feats: {Case: Acc, Number: Sing}, n: 3, readings: {attic: γῠναικωνῖτῐν}}]
+      tokens: [{surface: κατὰ, lexeme: kata, n: 1, head: 3, rel: case, readings: {attic: κᾰτᾰ̀}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὴν}}, {surface: γυναικωνῖτιν, lexeme: gynaikonitis, feats: {Case: Acc, Number: Sing}, n: 3, readings: {attic: γῠναικωνῖτῐν}}]
       reverse: κατὰ τὴν γυναικωνῖτιν
   translations:
     en: (In|For) the women's (rooms|quarters).
@@ -214,7 +214,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ γυνὴ ἐν τῇ γυναικωνίτιδί ἐστιν.
-      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: γυνὴ, lexeme: gyne, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: γῠνὴ}}, {surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τῇ}}, {surface: γυναικωνίτιδί, lexeme: gynaikonitis, feats: {Case: Dat, Number: Sing}, n: 5, readings: {attic: γῠναικωνῑ́τῐδῐ́}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: γυνὴ, lexeme: gyne, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: γῠνὴ}}, {surface: ἐν, lexeme: en, n: 3, head: 5, rel: case, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τῇ}}, {surface: γυναικωνίτιδί, lexeme: gynaikonitis, feats: {Case: Dat, Number: Sing}, n: 5, readings: {attic: γῠναικωνῑ́τῐδῐ́}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
       reverse: |-
         ἡ γυνὴ ἐν τῇ γυναικωνίτιδί ἐστιν
         ἡ γυνή ἐστιν ἐν τῇ γυναικωνίτιδι
@@ -227,7 +227,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οἱ φίλοι ἐν τῇ ἀνδρωνίτιδί εἰσιν.
-      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det, readings: {attic: οἱ}}, {surface: φίλοι, lexeme: philos, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: φῐ́λοι}}, {surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τῇ}}, {surface: ἀνδρωνίτιδί, lexeme: andronitis, feats: {Case: Dat, Number: Sing}, n: 5, readings: {attic: ᾰ̓νδρωνῑ́τῐδῐ́}}, {surface: εἰσιν, lexeme: eimi, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰσῐν}}]
+      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det, readings: {attic: οἱ}}, {surface: φίλοι, lexeme: philos, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: φῐ́λοι}}, {surface: ἐν, lexeme: en, n: 3, head: 5, rel: case, readings: {attic: ἐν}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τῇ}}, {surface: ἀνδρωνίτιδί, lexeme: andronitis, feats: {Case: Dat, Number: Sing}, n: 5, readings: {attic: ᾰ̓νδρωνῑ́τῐδῐ́}}, {surface: εἰσιν, lexeme: eimi, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰσῐν}}]
       reverse: |-
         οἱ φίλοι ἐν τῇ ἀνδρωνίτιδί εἰσιν
         οἱ φίλοι εἰσὶν ἐν τῇ ἀνδρωνίτιδι
@@ -358,7 +358,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐν τῷ ἄστει διῃτώμην.
-      tokens: [{surface: ἐν, lexeme: en, readings: {attic: ἐν}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῷ}}, {surface: ἄστει, lexeme: astu, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: ᾰ̓́στει}}, {surface: διῃτώμην, lexeme: diaitaomai, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: δῐῃτώμην}}]
+      tokens: [{surface: ἐν, lexeme: en, n: 1, head: 3, rel: case, readings: {attic: ἐν}}, {surface: τῷ, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῷ}}, {surface: ἄστει, lexeme: astu, feats: {Case: Dat, Number: Sing}, n: 3, readings: {attic: ᾰ̓́στει}}, {surface: διῃτώμην, lexeme: diaitaomai, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: δῐῃτώμην}}]
       reverse: |-
         ἐν τῷ ἄστει διῃτώμην
         διῃτώμην ἐν τῷ ἄστει
@@ -392,7 +392,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: ἴσα ἔχον τὰ ἄνω τοῖς κάτω κατὰ τὴν γυναικωνῖτιν καὶ κατὰ τὴν ἀνδρωνῖτιν.
-          tokens: [{surface: ἴσα, lexeme: isos, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: ῐ̓́σᾰ}}, {surface: ἔχον, lexeme: echo, feats: {VerbForm: Part}, readings: {attic: ἔχον}}, {surface: τὰ, lexeme: ho, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: τᾰ̀}}, {surface: ἄνω, lexeme: ano, readings: {attic: ᾰ̓́νω}}, {surface: τοῖς, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Plur}, readings: {attic: τοῖς}}, {surface: κάτω, lexeme: kato, readings: {attic: κᾰ́τω}}, {surface: κατὰ, lexeme: kata, readings: {attic: κᾰτᾰ̀}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det, readings: {attic: τὴν}}, {surface: γυναικωνῖτιν, lexeme: gynaikonitis, feats: {Case: Acc, Number: Sing}, n: 9, readings: {attic: γῠναικωνῖτῐν}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: κατὰ, lexeme: kata, readings: {attic: κᾰτᾰ̀}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 12, head: 13, rel: det, readings: {attic: τὴν}}, {surface: ἀνδρωνῖτιν, lexeme: andronitis, feats: {Case: Acc, Number: Sing}, n: 13, readings: {attic: ᾰ̓νδρωνῖτῐν}}]
+          tokens: [{surface: ἴσα, lexeme: isos, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: ῐ̓́σᾰ}}, {surface: ἔχον, lexeme: echo, feats: {VerbForm: Part}, readings: {attic: ἔχον}}, {surface: τὰ, lexeme: ho, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Plur}, readings: {attic: τᾰ̀}}, {surface: ἄνω, lexeme: ano, readings: {attic: ᾰ̓́νω}}, {surface: τοῖς, lexeme: ho, feats: {Case: Dat, Gender: Neut, Number: Plur}, readings: {attic: τοῖς}}, {surface: κάτω, lexeme: kato, readings: {attic: κᾰ́τω}}, {surface: κατὰ, lexeme: kata, n: 7, head: 9, rel: case, readings: {attic: κᾰτᾰ̀}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det, readings: {attic: τὴν}}, {surface: γυναικωνῖτιν, lexeme: gynaikonitis, feats: {Case: Acc, Number: Sing}, n: 9, readings: {attic: γῠναικωνῖτῐν}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: κατὰ, lexeme: kata, n: 11, head: 13, rel: case, readings: {attic: κᾰτᾰ̀}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 12, head: 13, rel: det, readings: {attic: τὴν}}, {surface: ἀνδρωνῖτιν, lexeme: andronitis, feats: {Case: Acc, Number: Sing}, n: 13, readings: {attic: ᾰ̓νδρωνῖτῐν}}]
       translations:
         en: the upstairs the same as the downstairs, for the women's rooms and for the men's.
   - choose:

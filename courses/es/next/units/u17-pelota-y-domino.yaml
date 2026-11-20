@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: He jugado dominó con abuelo Pepe.
-      tokens: [{surface: He, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}]
+      tokens: [{surface: He, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 5}, {surface: Pepe, lexeme: pepe}]
       reverse: '[Yo] he jugado [al] dominó con (abuelo|mi abuelo|el abuelo) Pepe'
   translations:
     en: (I've|I have) played (dominoes|domino) with (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) Pepe.
@@ -29,7 +29,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú has jugado dominó en la Calle Ocho?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 7}, {surface: Ocho, lexeme: calle-ocho}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 7}, {surface: Ocho, lexeme: calle-ocho}]
       reverse: (Tú has jugado|Has jugado [tú]|Usted ha jugado|Ha jugado [usted]|Ustedes han jugado|Han jugado [ustedes]) [al] dominó en [la] Calle Ocho
   translations:
     en: |-
@@ -53,7 +53,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nosotros hemos jugado muchas veces con sus amigos.
-      tokens: [{surface: Nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: hemos, lexeme: haber, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: veces, lexeme: vez, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: amigos, lexeme: amigo, feats: {Number: Plur}, n: 8}]
+      tokens: [{surface: Nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: hemos, lexeme: haber, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: veces, lexeme: vez, feats: {Number: Plur}}, {surface: con, lexeme: con, n: 6, head: 8, rel: case}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: amigos, lexeme: amigo, feats: {Number: Plur}, n: 8}]
       reverse: '[Nosotros] hemos jugado (muchas veces con sus amigos|con sus amigos muchas veces)'
   translations:
     en: |-
@@ -111,7 +111,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todavía no he hablado con tía Marisol.
-      tokens: [{surface: Todavía, lexeme: todavía}, {surface: 'no', lexeme: 'no'}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hablado, lexeme: hablar, feats: {Tense: Past, VerbForm: Part}}, {surface: con, lexeme: con}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Todavía, lexeme: todavía}, {surface: 'no', lexeme: 'no'}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hablado, lexeme: hablar, feats: {Tense: Past, VerbForm: Part}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
       reverse: |-
         (Todavía|Todavía yo|Yo todavía|Aún|Yo aún) no he hablado con (tía|mi tía) Marisol
         [Yo] no he hablado con (tía|mi tía) Marisol (todavía|aún)
@@ -139,7 +139,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe nunca ha perdido con nosotros.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: perdido, lexeme: perder, feats: {Tense: Past, VerbForm: Part}}, {surface: con, lexeme: con}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: perdido, lexeme: perder, feats: {Tense: Past, VerbForm: Part}}, {surface: con, lexeme: con, n: 6, head: 7, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 7}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) Pepe nunca ha perdido (con|contra) nosotros
         (Abuelo|Mi abuelo|El abuelo) Pepe no ha perdido nunca (con|contra) nosotros
@@ -150,7 +150,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo nunca he ido a Cuba.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ido, lexeme: ir, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ido, lexeme: ir, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 6}]
       reverse: |-
         [Yo] nunca he (ido a|estado en) Cuba
         [Yo] no he (ido a|estado en) Cuba nunca
@@ -172,7 +172,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú has visto a abuelo jugar dominó?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: jugar, lexeme: jugar, feats: {VerbForm: Inf}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 5}, {surface: jugar, lexeme: jugar, feats: {VerbForm: Inf}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}]
       reverse: (Tú has visto|Has visto [tú]|Usted ha visto|Ha visto [usted]|Ustedes han visto|Han visto [ustedes]) (a abuelo|a mi abuelo|al abuelo) jugar [al] dominó
   translations:
     en: |-
@@ -218,7 +218,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela nunca ha vuelto a Matanzas.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vuelto, lexeme: volver, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Matanzas, lexeme: matanzas}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vuelto, lexeme: volver, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Matanzas, lexeme: matanzas, n: 6}]
       reverse: |-
         (Abuela|Mi abuela|La abuela) nunca ha (vuelto|regresado) a Matanzas
         (Abuela|Mi abuela|La abuela) no ha (vuelto|regresado) nunca a Matanzas
@@ -229,7 +229,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior nunca ha venido a Miami.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: venido, lexeme: venir, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: venido, lexeme: venir, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Miami, lexeme: miami, n: 6}]
       reverse: |-
         Yunior nunca ha (venido a|ido a|estado en) Miami
         Yunior no ha (venido a|ido a|estado en) Miami nunca
@@ -240,7 +240,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú has visto un juego de pelota en el estadio?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: juego, lexeme: juego, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: estadio, lexeme: estadio, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: juego, lexeme: juego, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: estadio, lexeme: estadio, feats: {Number: Sing}, n: 10}]
       reverse: (Tú has visto|Has visto [tú]|Usted ha visto|Ha visto [usted]|Ustedes han visto|Han visto [ustedes]) un juego de (pelota|béisbol) en el estadio
   translations:
     en: |-
@@ -252,7 +252,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe es de los Industriales.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: Industriales, lexeme: industriales, n: 6}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 4, head: 6, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: Industriales, lexeme: industriales, n: 6}]
       reverse: (Abuelo|Mi abuelo|El abuelo) Pepe es (de los|fanático de los|fan de los) Industriales
   translations:
     en: (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) Pepe (is an Industriales fan|is a fan of [the] Industriales|roots for [the] Industriales|supports [the] Industriales).
@@ -261,7 +261,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pero Daniel y Lili son de los Marlins.
-      tokens: [{surface: Pero, lexeme: pero}, {surface: Daniel, lexeme: daniel}, {surface: y, lexeme: y}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: Marlins, lexeme: marlins, n: 8}]
+      tokens: [{surface: Pero, lexeme: pero}, {surface: Daniel, lexeme: daniel}, {surface: y, lexeme: y}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: Marlins, lexeme: marlins, n: 8}]
       reverse: Pero Daniel y Lili son (de los|fanáticos de los|fans de los) Marlins
   translations:
     en: But Daniel and Lili (are Marlins fans|are fans of the Marlins|root for the Marlins|support the Marlins).
@@ -292,7 +292,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili ha ponchado a Daniel dos veces.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ponchado, lexeme: ponchar, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Daniel, lexeme: daniel}, {surface: dos, lexeme: dos}, {surface: veces, lexeme: vez, feats: {Number: Plur}}]
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ponchado, lexeme: ponchar, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Daniel, lexeme: daniel, n: 5}, {surface: dos, lexeme: dos}, {surface: veces, lexeme: vez, feats: {Number: Plur}}]
       reverse: |-
         Lili (ha ponchado|ponchó) a Daniel dos veces
         Lili (ha ponchado|ponchó) dos veces a Daniel
@@ -305,7 +305,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo nunca ha ido al estadio de los Marlins.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ido, lexeme: ir, feats: {Tense: Past, VerbForm: Part}}, {surface: al, lexeme: al}, {surface: estadio, lexeme: estadio, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: Marlins, lexeme: marlins, n: 9}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ido, lexeme: ir, feats: {Tense: Past, VerbForm: Part}}, {surface: al, lexeme: al, n: 5, head: 6, rel: case}, {surface: estadio, lexeme: estadio, feats: {Number: Sing}, n: 6}, {surface: de, lexeme: de, n: 7, head: 9, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: Marlins, lexeme: marlins, n: 9}]
       reverse: |-
         (Abuelo|Mi abuelo|El abuelo) nunca ha (ido al|estado en el) estadio de los Marlins
         (Abuelo|Mi abuelo|El abuelo) no ha (ido al|estado en el) estadio de los Marlins nunca
@@ -316,7 +316,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los sábados abuelo juega dominó en el parque de la Calle Ocho.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 2}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: juega, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 11}, {surface: Ocho, lexeme: calle-ocho}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 2}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: juega, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de, n: 9, head: 11, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 11}, {surface: Ocho, lexeme: calle-ocho}]
       reverse: |-
         Los sábados (abuelo|mi abuelo|el abuelo) juega [al] dominó en el parque de [la] Calle Ocho
         (Abuelo|Mi abuelo|El abuelo) juega [al] dominó en el parque de [la] Calle Ocho los sábados
@@ -354,7 +354,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tengo una data con cinco dobles.
-      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: data, lexeme: data, feats: {Number: Sing}, n: 3}, {surface: con, lexeme: con}, {surface: cinco, lexeme: cinco}, {surface: dobles, lexeme: doble, feats: {Number: Plur}}]
+      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: data, lexeme: data, feats: {Number: Sing}, n: 3}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: cinco, lexeme: cinco, n: 5}, {surface: dobles, lexeme: doble, feats: {Number: Plur}}]
       reverse: '[Yo] tengo una data con cinco dobles'
   translations:
     en: (I have|I've got) a hand with five doubles.
@@ -363,7 +363,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No tengo fichas con seis. Paso.
-      tokens: [{surface: 'No', lexeme: 'no'}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: fichas, lexeme: ficha, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: seis, lexeme: seis}, {surface: Paso, lexeme: pasar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: fichas, lexeme: ficha, feats: {Number: Plur}}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: seis, lexeme: seis, n: 5}, {surface: Paso, lexeme: pasar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         [Yo] no tengo (fichas|ninguna ficha) con (seis|un seis) [así que] [yo] paso
         [Yo] paso [porque] no tengo (fichas|ninguna ficha) con (seis|un seis)
@@ -412,7 +412,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los amigos de abuelo siempre han jugado en este parque.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: amigos, lexeme: amigo, feats: {Number: Plur}, n: 2}, {surface: de, lexeme: de}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: siempre, lexeme: siempre}, {surface: han, lexeme: haber, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: en, lexeme: en}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: amigos, lexeme: amigo, feats: {Number: Plur}, n: 2}, {surface: de, lexeme: de, n: 3, head: 4, rel: case}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 4}, {surface: siempre, lexeme: siempre}, {surface: han, lexeme: haber, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 10}]
       reverse: Los amigos (de abuelo|de mi abuelo|del abuelo) (siempre han jugado|han jugado siempre) en este parque
   translations:
     en: (Grandpa's|Abuelo's|Grandfather's|My grandpa's|My grandfather's) friends have always played in this park.
@@ -448,7 +448,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuelo, yo nunca he jugado aquí en el parque.
-          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: aquí, lexeme: aquí}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 9}]
+          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: jugado, lexeme: jugar, feats: {Tense: Past, VerbForm: Part}}, {surface: aquí, lexeme: aquí}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 9}]
       translations:
         en: Grandpa, I've never played here in the park.
   - line:
@@ -469,7 +469,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Buenas tardes, abuelo. Yo voy a jugar con su amigo.
-          tokens: [{surface: Buenas, lexeme: buenas-tardes}, {surface: tardes, lexeme: buenas-tardes}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Yo, lexeme: yo}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: jugar, lexeme: jugar, feats: {VerbForm: Inf}}, {surface: con, lexeme: con}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: amigo, lexeme: amigo, feats: {Number: Sing}, n: 10}]
+          tokens: [{surface: Buenas, lexeme: buenas-tardes}, {surface: tardes, lexeme: buenas-tardes}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Yo, lexeme: yo}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: jugar, lexeme: jugar, feats: {VerbForm: Inf}}, {surface: con, lexeme: con, n: 8, head: 10, rel: case}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: amigo, lexeme: amigo, feats: {Number: Sing}, n: 10}]
       translations:
         en: Good afternoon, Grandpa. I'm going to play with your friend.
   - choose:
@@ -510,7 +510,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Paso. No tengo fichas con nueve.
-          tokens: [{surface: Paso, lexeme: pasar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: 'No', lexeme: 'no'}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: fichas, lexeme: ficha, feats: {Number: Plur}}, {surface: con, lexeme: con}, {surface: nueve, lexeme: nueve}]
+          tokens: [{surface: Paso, lexeme: pasar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: 'No', lexeme: 'no'}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: fichas, lexeme: ficha, feats: {Number: Plur}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: nueve, lexeme: nueve, n: 6}]
       translations:
         en: I pass. I don't have any tiles with a nine.
   - line:
@@ -571,7 +571,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuelo, ¿tú has visto el juego de los Marlins?
-          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: juego, lexeme: juego, feats: {Number: Sing}, n: 6}, {surface: de, lexeme: de}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: Marlins, lexeme: marlins, n: 9}]
+          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: visto, lexeme: ver, feats: {Tense: Past, VerbForm: Part}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: juego, lexeme: juego, feats: {Number: Sing}, n: 6}, {surface: de, lexeme: de, n: 7, head: 9, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: Marlins, lexeme: marlins, n: 9}]
       translations:
         en: Grandpa, have you seen the Marlins game?
   - line:
@@ -579,7 +579,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Los Marlins? Yo soy de los Industriales, mi'jo.
-          tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: Marlins, lexeme: marlins, n: 2}, {surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det}, {surface: Industriales, lexeme: industriales, n: 7}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: Marlins, lexeme: marlins, n: 2}, {surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 5, head: 7, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det}, {surface: Industriales, lexeme: industriales, n: 7}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}]
       translations:
         en: The Marlins? I root for Industriales, son.
   - line:
@@ -587,7 +587,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuelo, tú siempre has sido de los Industriales.
-          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: siempre, lexeme: siempre}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: sido, lexeme: ser, feats: {Tense: Past, VerbForm: Part}}, {surface: de, lexeme: de}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: Industriales, lexeme: industriales, n: 8}]
+          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: siempre, lexeme: siempre}, {surface: has, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: sido, lexeme: ser, feats: {Tense: Past, VerbForm: Part}}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: Industriales, lexeme: industriales, n: 8}]
       translations:
         en: Grandpa, you've always been an Industriales fan.
   - line:
@@ -595,7 +595,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Siempre. Y tú, mi'jo, ya eres mi pareja de dominó.
-          tokens: [{surface: Siempre, lexeme: siempre}, {surface: Y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: ya, lexeme: ya}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pareja, lexeme: pareja, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}]
+          tokens: [{surface: Siempre, lexeme: siempre}, {surface: Y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: ya, lexeme: ya}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pareja, lexeme: pareja, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}, n: 10}]
       translations:
         en: Always. And you, son, are my dominoes partner now.
   - choose:

@@ -136,6 +136,14 @@ A word card shows the entry's first spelling, and here that is the lexeme with a
 | `lexeme:kuz` | its entry is spelled kuzda / кузда, which the course writes as this lexeme and others: the lexeme's own form is not among its spellings |
 | `lexeme:samolyot` | its entry is spelled samolyotda / самолётда, which the course writes as this lexeme and others: the lexeme's own form is not among its spellings |
 
+## Left for a reviewer by the plan
+
+What the plan's drafter saw and did not decide.
+
+- Person is written by two sets of endings (-man, -siz, -miz on a predicate and after -a; -m, -ngiz, -k after the past's -di): one value in two shapes by what stands before, kept as the course's separate endings. By ADR 0145 agreement merges no head; these are lexemes only because the tokens write them as morphs.
+- Eleven entries are spelled as a built word (singlim, do'stim, kechirasiz): what a card shows today. The lexeme's own form is then missing from its entry.
+- A stem that drops a vowel before an ending (singil, singl-; o'g'il, o'g'l-) is listed as written otherwise: a rule of the language, not yet written.
+
 ## What no finding above covers
 
 - **Projections:** no orthography of this course has a stated projection yet, so every

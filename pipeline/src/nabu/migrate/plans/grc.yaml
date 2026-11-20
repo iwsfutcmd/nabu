@@ -113,6 +113,9 @@ relations:
   - {rel: det, from: [DET], to: [NOUN, PROPN], side: right, agree: [Gender, Case, Number], skip: [ADJ, DET, ADV, PART, CCONJ, PRON, NUM], reach: 3}
   # An adjective and the noun beside it.
   - {rel: amod, from: [ADJ], to: [NOUN, PROPN], side: either, agree: [Gender, Case, Number], skip: [DET, ADV, PART, CCONJ], reach: 2}
+  # A preposition and the word it governs the case of: ἐν τῇ ἀγορᾷ. Which case each governs is
+  # in its gloss, not in data: the link says only what it governs.
+  - {rel: case, from: [ADP], to: [NOUN, PROPN, PRON, NUM], side: right, skip: [DET, ADJ, ADV, PART, CCONJ], reach: 3}
 
 # Gender by the nominative's ending (ADR 0146: grc states its own, and ἡ ὁδός breaks it): REVIEW.
 defaults:
@@ -123,3 +126,10 @@ defaults:
   - {id: gender-is, when: {ends: ις}, gives: {Gender: Fem}}
   - {id: gender-on, when: {ends: ον}, gives: {Gender: Neut}}
   - {id: gender-ma, when: {ends: μα}, gives: {Gender: Neut}}
+
+# What the drafter saw and did not decide: each is in the report for a reviewer.
+questions:
+  - 'Tense and aspect follow the Perseus treebank (the imperfect: past and imperfect aspect; the aorist: past alone; the perfect: perfect aspect alone). PROIEL tags the aorist with the perfect aspect; neither documents its choice.'
+  - 'A word before an enclitic takes a second accent (πρεσβύτερός ἐστιν) and εἰμί loses its own (εἰμι); a vowel is elided (δ'', ἀλλ''). Each is listed as written otherwise or as a cell written two ways: rules of accent and elision, not forms.'
+  - 'A neuter''s one form for subject, object and address carries all three cases at once (Case=Acc,Nom,Voc), as the course''s KC says; a plural for subject and address Case=Nom,Voc.'
+  - 'The course marks voice only on one KC (the middle''s -ονται): a deponent verb''s other forms name no voice.'

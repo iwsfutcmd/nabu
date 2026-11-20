@@ -17,7 +17,7 @@ the converter applies the course's conversion plan
 | Sentences and story lines | 868 |
 | Tokens | 5470 |
 | Lexemes in `lexicons/apc/lexemes.yaml` | 370 |
-| Pinned forms (rule debt, ADR 0145) | 266 |
+| Pinned forms (rule debt, ADR 0145) | 267 |
 | Listed forms | 0: no statement that a form has no rule is drafted yet |
 
 **Checks** (docs/migration-design.md, "What must not change"):
@@ -54,7 +54,7 @@ the converter applies the course's conversion plan
 
 | KC | Gloss | Becomes | Note |
 |---|---|---|---|
-| `form:fem` | feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending | values Gender=Fem, Number=Sing |  |
+| `form:fem` | feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending | values Gender=Fem, Number=Sing; on PROPN: Gender=Fem |  |
 | `form:pl` | plural: a plural noun (wlad, jiren), or the -in ending on an adjective | values Number=Plur |  |
 | `form:impf-1sg` | b-: I (present) | values Aspect=Imp, Mood=Ind, Number=Sing, Person=1 |  |
 | `form:impf-2ms` | bt-: you (present, to a man) | values Aspect=Imp, Gender=Masc, Mood=Ind, Number=Sing, Person=2 |  |
@@ -138,9 +138,9 @@ has no name for.
 
 | Category | Dimension | Tokens that say it | Tokens that do not |
 |---|---|---|---|
-| VERB | Aspect | 710 | 260 |
-| VERB | Mood | 592 | 378 |
-| VERB | Person | 722 | 248 |
+| VERB | Aspect | 712 | 258 |
+| VERB | Mood | 590 | 380 |
+| VERB | Person | 720 | 250 |
 | VERB | Gender | 298 | 672 |
 | VERB | Number | 772 | 198 |
 | AUX | Aspect | 102 | 110 |
@@ -162,16 +162,15 @@ tagged as another category than it behaves as.
 | ADJ | Mood | 4 | khayef |
 | ADJ | Person | 4 | khayef |
 | INTJ | Gender | 12 | tfaddal, kell-sene, 3mol-ma3rouf, lek |
-| INTJ | Gender[psor] | 10 | shu-bak, salemtak, 3a-albak |
+| INTJ | Gender[psor] | 12 | shu-bak, salemtak, 3a-albak, allah-ybarek |
 | INTJ | Mood | 12 | tfaddal, lek, 3mol-ma3rouf |
 | INTJ | Number | 18 | tfaddal, kell-sene, lek, 3mol-ma3rouf |
-| INTJ | Number[psor] | 14 | shu-bak, salemtak, 3a-albak |
+| INTJ | Number[psor] | 16 | shu-bak, salemtak, 3a-albak, allah-ybarek |
 | INTJ | Person | 12 | tfaddal, lek, 3mol-ma3rouf |
-| INTJ | Person[psor] | 14 | shu-bak, salemtak, 3a-albak |
+| INTJ | Person[psor] | 16 | shu-bak, salemtak, 3a-albak, allah-ybarek |
 | NOUN | Gender | 40 | jar, 7abibi, rfi2, m3allem, tilmiz, mhandes |
 | PRON | Gender | 54 | hayde, enti, hiyye |
 | PRON | Number | 68 | hayde, enti, hiyye, ento, henne, nehna |
-| PROPN | Number | 186 | sami, maya, beirut, lebnen, nisan, aylul |
 
 ## Clips
 
@@ -200,8 +199,8 @@ waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).
 |---|---|
 | ADJ with values and no relation | 292 |
 | amod: written | 142 |
-| case: written | 140 |
-| det: written | 336 |
+| case: written | 454 |
+| det: written | 700 |
 
 ## Lexemes that break a default (10)
 
@@ -251,7 +250,7 @@ Mostly entries written as several tokens, on which the course pins no form.
 | `lexeme:kanoun-awwal` | no token says its Gender |
 | `lexeme:3id-milad` | no token says its Gender |
 
-## Written otherwise than the entry (18)
+## Written otherwise than the entry (17)
 
 A token names the lexeme, no feature value tells it from the entry's own form, and it is spelled differently: an allomorph by context (gran before a noun), or a form the course's annotation has no name for. Kept as an allomorph of the entry.
 
@@ -274,7 +273,48 @@ A token names the lexeme, no feature value tells it from the entry's own form, a
 | `lexeme:saba3ta3sh` | written سبعتعشر / saba3ta3shar (1×, first in s.date.9): an allomorph, or a form no value names |
 | `lexeme:tmenta3sh` | written تمانتعشر / tmenta3shar (1×, first in s.date.10): an allomorph, or a form no value names |
 | `lexeme:tsa3ta3sh` | written تسعتعشر / tsa3ta3shar (1×, first in s.date.11): an allomorph, or a form no value names |
-| `lexeme:allah-ybarek` | written الله يبارك فيكي / allah ybarek fiki (1×, first in s.party.3): an allomorph, or a form no value names |
+
+## Entries spelled as a form other than the citation form (35)
+
+A word card shows the entry's first spelling, and here that is one of the lexeme's inflected forms, not the form its language cites a word in (the plan's `citation`). The spelling is kept, since it is what a learner sees today.
+
+| Where | What |
+|---|---|
+| `lexeme:akal` | its entry is spelled كول / kol, which its tokens write as Gender=Masc\|Mood=Imp\|Number=Sing\|Person=2 |
+| `lexeme:shereb` | its entry is spelled اشرب / eshrab, which its tokens write as Gender=Masc\|Mood=Imp\|Number=Sing\|Person=2 |
+| `lexeme:fi2` | its entry is spelled بفيق / bfi2, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:ra7` | its entry is spelled بروح / bru7, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:3emel` | its entry is spelled بعمل / ba3mel, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:eshteghel` | its entry is spelled بشتغل / bishteghel, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:2ara` | its entry is spelled بقرا / b2ra, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:nem` | its entry is spelled بنام / bnem, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:7aka` | its entry is spelled بحكي / b7ki, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:7abb` | its entry is spelled بحبّ / b7ebb, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:sama3` | its entry is spelled بسمع / bisma3, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:shef` | its entry is spelled شوف / shuf, which its tokens write as Aspect=Imp\|Mood=Sub\|Number=Sing\|Person=1 |
+| `lexeme:le3eb` | its entry is spelled بتلعب / btil3ab, which its tokens write as Aspect=Imp\|Gender=Masc\|Mood=Ind\|Number=Sing\|Person=2 |
+| `lexeme:ghanne` | its entry is spelled غنّي / ghanne, which its tokens write as Aspect=Imp\|Mood=Sub\|Number=Sing\|Person=1 |
+| `lexeme:ra2as` | its entry is spelled ارقص / or2os, which its tokens write as Aspect=Imp\|Mood=Sub\|Number=Sing\|Person=1 |
+| `lexeme:stanna` | its entry is spelled استنّى / stanna, which its tokens write as Gender=Masc\|Mood=Imp\|Number=Sing\|Person=2 |
+| `lexeme:eshtara` | its entry is spelled اشتريت / eshtarit, which its tokens write as Aspect=Perf\|Gender=Masc\|Number=Sing\|Person=2 |
+| `lexeme:zar` | its entry is spelled زرت / zert, which its tokens write as Aspect=Perf\|Gender=Masc\|Number=Sing\|Person=2 |
+| `lexeme:wesel` | its entry is spelled وصلت / weslet, which its tokens write as Aspect=Perf\|Gender=Fem\|Number=Sing\|Person=3 |
+| `lexeme:safar` | its entry is spelled سافرت / safart, which its tokens write as Aspect=Perf\|Number=Sing\|Person=1 |
+| `lexeme:tele3` | its entry is spelled تطلع / titla3, which its tokens write as Aspect=Imp\|Gender=Masc\|Mood=Sub\|Number=Sing\|Person=2 |
+| `lexeme:3eref` | its entry is spelled بعرف / ba3ref, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:seken` | its entry is spelled ساكن / seken, which its tokens write as Aspect=Part\|Gender=Masc\|Number=Sing |
+| `lexeme:nezel` | its entry is spelled ننزل / nenzal, which its tokens write as Aspect=Imp\|Mood=Sub\|Number=Plur\|Person=1 |
+| `lexeme:akhad` | its entry is spelled آخد / ekhod, which its tokens write as Aspect=Imp\|Mood=Sub\|Number=Sing\|Person=1 |
+| `lexeme:de22` | its entry is spelled دقّ / de22, which its tokens write as Aspect=Imp\|Mood=Sub\|Number=Sing\|Person=1 |
+| `lexeme:fehem` | its entry is spelled فهمت / fhemt, which its tokens write as Aspect=Perf\|Gender=Masc\|Number=Sing\|Person=2 |
+| `lexeme:b3at` | its entry is spelled بعت / b3at, which its tokens write as Gender=Masc\|Mood=Imp\|Number=Sing\|Person=2 |
+| `lexeme:lebes` | its entry is spelled البس / elbos, which its tokens write as Aspect=Imp\|Mood=Sub\|Number=Sing\|Person=1 |
+| `lexeme:2a3ed` | its entry is spelled قاعد / 2a3ed, which its tokens write as Aspect=Part\|Gender=Masc\|Number=Sing |
+| `lexeme:wa2ef` | its entry is spelled واقف / wa2ef, which its tokens write as Aspect=Part\|Gender=Masc\|Number=Sing |
+| `lexeme:laff` | its entry is spelled لفّ / liff, which its tokens write as Gender=Masc\|Mood=Imp\|Number=Sing\|Person=2 |
+| `lexeme:wa22ef` | its entry is spelled وقّف / wa22ef, which its tokens write as Gender=Masc\|Mood=Imp\|Number=Sing\|Person=2 |
+| `lexeme:daras` | its entry is spelled بدرس / bedros, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
+| `lexeme:fakkar` | its entry is spelled بفكّر / bfakker, which its tokens write as Aspect=Imp\|Mood=Ind\|Number=Sing\|Person=1 |
 
 ## Feature values that do not tell forms apart (2)
 
@@ -308,6 +348,17 @@ The clip says the word; the word is a form of another lexeme now, or built of se
 | `sense:esmi` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
 | `sense:kifak` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
 | `sense:raye7` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
+
+## Left for a reviewer by the plan
+
+What the plan's drafter saw and did not decide.
+
+- The course's verb entries are spelled as the form a card shows (kol, a command; bfi2, a b-present), not as the he-past Kline cites. The report lists them; the lexical forms of docs/lexical-forms/ give each its radicals and wait for the owner.
+- seken, 2a3ed and wa2ef are participles of verbs the course does not have. Each stays an entry whose tokens say Aspect=Part; raye7 is folded into ra7, which the course has.
+- Set phrases said to a man by default (salemtak, shu bak, 3a albak, kell sene w enta salem, allah ybarek fik) stay one lexeme each; said to a woman or to several, the token carries the possessor's values. Their parts are not linked (ADR 0146: a listed item's parts are links).
+- Nouns written in both genders under one entry (rfi2, jar, tilmiz, m3allem, mhandes, 7abibi) keep the gender on the token: by ADR 0145 the feminine is a derivative, decided per noun.
+- 3asha (dinner) is pinned feminine in the course, so the entry stores it as an exception to "no ta marbuta, masculine": check the gender.
+- A plural of things takes a feminine singular adjective. The relation rules link an adjective to its noun only where gender and number agree, so those are left bare.
 
 ## What no finding above covers
 

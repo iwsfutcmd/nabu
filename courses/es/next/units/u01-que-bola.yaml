@@ -292,7 +292,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Soy de Miami.
-      tokens: [{surface: Soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}]
+      tokens: [{surface: Soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 2, head: 3, rel: case}, {surface: Miami, lexeme: miami, n: 3}]
       reverse: '[Yo] soy de Miami'
   translations:
     en: |-
@@ -304,7 +304,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú eres de Cuba?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
       reverse: (Tú eres de Cuba|Eres [tú] de Cuba|Usted es de Cuba|Es [usted] de Cuba|Ustedes son de Cuba|Son [ustedes] de Cuba)
   translations:
     en: |-
@@ -341,7 +341,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel es de Miami.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 3, head: 4, rel: case}, {surface: Miami, lexeme: miami, n: 4}]
       reverse: Daniel es de Miami
   translations:
     en: |-
@@ -443,7 +443,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Él es de Cuba.
-      tokens: [{surface: Él, lexeme: él}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Él, lexeme: él}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
       reverse: '[Él] es de Cuba'
   translations:
     en: |-
@@ -479,7 +479,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi abuela es de Cuba.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 5}]
       reverse: Mi abuela es de Cuba
   translations:
     en: |-
@@ -663,7 +663,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Encantada, Yasiel. ¿Tú eres de Miami?
-          tokens: [{surface: Encantada, lexeme: encantado, feats: {Gender: Fem, Number: Sing}}, {surface: Yasiel, lexeme: yasiel}, {surface: Tú, lexeme: tú}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}]
+          tokens: [{surface: Encantada, lexeme: encantado, feats: {Gender: Fem, Number: Sing}}, {surface: Yasiel, lexeme: yasiel}, {surface: Tú, lexeme: tú}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: Miami, lexeme: miami, n: 6}]
       translations:
         en: Nice to meet you, Yasiel. Are you from Miami?
   - line:
@@ -671,7 +671,7 @@ stories:
       forms:
         es-Latn/standard:
           text: No, señora. Yo soy de Cuba.
-          tokens: [{surface: 'No', lexeme: 'no'}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 6}]
       translations:
         en: No, ma'am. I'm from Cuba.
   - choose:
@@ -687,7 +687,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Yo soy de Cuba! ¿Qué bolá, asere?
-          tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}, {surface: asere, lexeme: asere, feats: {Number: Sing}}]
+          tokens: [{surface: Yo, lexeme: yo}, {surface: soy, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}, {surface: Qué, lexeme: qué-bolá}, {surface: bolá, lexeme: qué-bolá}, {surface: asere, lexeme: asere, feats: {Number: Sing}}]
       translations:
         en: I'm from Cuba! What's up, buddy?
   - line:

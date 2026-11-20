@@ -58,7 +58,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: קַיִן וְהֶבֶל
-      tokens: [{surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}, {surface: וְהֶבֶל, lexemes: [{lexeme: we, surface: וְ}, {lexeme: hevel, surface: הֶבֶל, base: true, feats: {Number: Sing}}], readings: {tiberian: wəhéḇel}}]
+      tokens: [{surface: קַיִן, lexeme: qayin, readings: {tiberian: qáyin}}, {surface: וְהֶבֶל, lexemes: [{lexeme: we, surface: וְ}, {lexeme: hevel, surface: הֶבֶל, base: true}], readings: {tiberian: wəhéḇel}}]
       reverse: קין והבל
   translations:
     en: Cain and Abel
@@ -67,7 +67,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הֶבֶל אָחִיו
-      tokens: [{surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}]
+      tokens: [{surface: הֶבֶל, lexeme: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}]
       reverse: הבל אחיו
   translations:
     en: |-
@@ -79,7 +79,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: קַיִן אָחִי׃
-      tokens: [{surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}, {surface: אָחִי, lexemes: [{lexeme: ah, surface: אָחִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾāḥî}}]
+      tokens: [{surface: קַיִן, lexeme: qayin, readings: {tiberian: qáyin}}, {surface: אָחִי, lexemes: [{lexeme: ah, surface: אָחִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾāḥî}}]
       reverse: קין אחי
   translations:
     en: Cain is my brother.
@@ -139,7 +139,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הֶבֶל בַּשָּׂדֶה׃
-      tokens: [{surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ, n: 2, head: 3, rel: case}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: baśśāḏeh}}]
+      tokens: [{surface: הֶבֶל, lexeme: hevel, readings: {tiberian: héḇel}}, {surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ, n: 2, head: 3, rel: case}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: baśśāḏeh}}]
       reverse: הבל בשדה
   translations:
     en: Abel is in the field.
@@ -148,7 +148,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיָּקָם קַיִן׃
-      tokens: [{surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}]
+      tokens: [{surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: קַיִן, lexeme: qayin, readings: {tiberian: qáyin}}]
       reverse: |-
         ויקם קין
         קין קם
@@ -172,7 +172,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיָּקָם קַיִן אֶל־הֶבֶל אָחִיו וַיַּהַרְגֵהוּ׃
-      tokens: [{surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}, {surface: וַיַּהַרְגֵהוּ, lexemes: [{lexeme: harag, surface: וַיַּהַרְגֵ, base: true, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wayyaharḡḗhû}}]
+      tokens: [{surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: קַיִן, lexeme: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}, {surface: וַיַּהַרְגֵהוּ, lexemes: [{lexeme: harag, surface: וַיַּהַרְגֵ, base: true, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wayyaharḡḗhû}}]
       reverse: ויקם קין אל הבל אחיו ויהרגהו
   translations:
     en: |-
@@ -183,7 +183,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיֹּאמֶר קַיִן אֶל־הֶבֶל אָחִיו׃
-      tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}]
+      tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: קַיִן, lexeme: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}]
       reverse: |-
         (ויאמר|ויואמר) קין אל הבל אחיו
         קין אמר אל הבל אחיו
@@ -277,7 +277,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֵי הֶבֶל אָחִיךָ׃
-      tokens: [{surface: אֵי, lexeme: ay, readings: {tiberian: ʾê}}, {surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}]
+      tokens: [{surface: אֵי, lexeme: ay, readings: {tiberian: ʾê}}, {surface: הֶבֶל, lexeme: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}]
       reverse: אי הבל אחיך
   translations:
     en: |-
@@ -390,7 +390,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: קוֹל דְּמֵי אָחִיךָ צֹעֲקִים אֵלַי׃
-      tokens: [{surface: קוֹל, lexeme: qol, feats: {Number: Sing}, readings: {tiberian: qôl}}, {surface: דְּמֵי, lexeme: dam, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: dəmê}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾēlay}}]
+      tokens: [{surface: קוֹל, lexeme: qol, feats: {Number: Sing}, readings: {tiberian: qôl}}, {surface: דְּמֵי, lexeme: dam, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: dəmê}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true, n: 6, head: 7, rel: case}, {lexeme: sfx-1cs, surface: י, n: 7}], readings: {tiberian: ʾēlay}}]
       reverse: קול דמי אחיך (צעקים|צועקים) אלי
   translations:
     en: |-
@@ -401,7 +401,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
-      tokens: [{surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾēlay}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ, n: 5, head: 6, rel: det}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: hāʾăḏāmâ}}]
+      tokens: [{surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-1cs, surface: י, n: 3}], readings: {tiberian: ʾēlay}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ, n: 5, head: 6, rel: det}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: hāʾăḏāmâ}}]
       reverse: (צעקים|צועקים) אלי מן האדמה
   translations:
     en: |-
@@ -436,7 +436,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר קַיִן אֶל־הֶבֶל׃
-          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}]
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: קַיִן, lexeme: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, readings: {tiberian: héḇel}}]
       translations:
         en: And Cain spoke to his brother Abel.
   - line:
@@ -456,7 +456,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: בַּשָּׂדֶה וַיָּקָם קַיִן אֶל־הֶבֶל אָחִיו וַיַּהַרְגֵהוּ׃
-          tokens: [{surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ, n: 1, head: 2, rel: case}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: baśśāḏeh}}, {surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}, {surface: וַיַּהַרְגֵהוּ, lexemes: [{lexeme: harag, surface: וַיַּהַרְגֵ, base: true, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wayyaharḡḗhû}}]
+          tokens: [{surface: בַּשָּׂדֶה, lexemes: [{lexeme: be, surface: בַּ, n: 1, head: 2, rel: case}, {lexeme: sadeh, surface: שָּׂדֶה, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: baśśāḏeh}}, {surface: וַיָּקָם, lexeme: qum, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́qom}}, {surface: קַיִן, lexeme: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, lexeme: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיו, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḥîw}}, {surface: וַיַּהַרְגֵהוּ, lexemes: [{lexeme: harag, surface: וַיַּהַרְגֵ, base: true, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wayyaharḡḗhû}}]
       translations:
         en: Cain rose up against his brother Abel and killed him.
   - choose:
@@ -471,7 +471,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר יְהוָה אֶל־קַיִן
-          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: קַיִן, lexeme: qayin, feats: {Number: Sing}, readings: {tiberian: qáyin}}]
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: קַיִן, lexeme: qayin, readings: {tiberian: qáyin}}]
       translations:
         en: And the LORD said to Cain,
   - line:
@@ -479,7 +479,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: אֵי הֶבֶל אָחִיךָ
-          tokens: [{surface: אֵי, lexeme: ay, readings: {tiberian: ʾê}}, {surface: הֶבֶל, lexeme: hevel, feats: {Number: Sing}, readings: {tiberian: héḇel}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}]
+          tokens: [{surface: אֵי, lexeme: ay, readings: {tiberian: ʾê}}, {surface: הֶבֶל, lexeme: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}]
       translations:
         en: “Where is your brother Abel?”
   - line:
@@ -515,7 +515,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: מֶה עָשִׂיתָ קוֹל דְּמֵי אָחִיךָ צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
-          tokens: [{surface: מֶה, lexeme: mah, readings: {tiberian: meh}}, {surface: עָשִׂיתָ, lexeme: asah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʿāśî́ṯā}}, {surface: קוֹל, lexeme: qol, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: qôl}}, {surface: דְּמֵי, lexeme: dam, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: dəmê}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾēlay}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ, n: 11, head: 12, rel: det}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}, n: 12}], readings: {tiberian: hāʾăḏāmâ}}]
+          tokens: [{surface: מֶה, lexeme: mah, readings: {tiberian: meh}}, {surface: עָשִׂיתָ, lexeme: asah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʿāśî́ṯā}}, {surface: קוֹל, lexeme: qol, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: qôl}}, {surface: דְּמֵי, lexeme: dam, feats: {Definite: Cons, Number: Plur}, readings: {tiberian: dəmê}}, {surface: אָחִיךָ, lexemes: [{lexeme: ah, surface: אָחִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, lexeme: tsaaq, feats: {Gender: Masc, Number: Plur, VerbForm: Part}, readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, lexemes: [{lexeme: el, surface: אֵלַ, base: true, n: 8, head: 9, rel: case}, {lexeme: sfx-1cs, surface: י, n: 9}], readings: {tiberian: ʾēlay}}, {surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, lexemes: [{lexeme: ha, surface: הָ, n: 11, head: 12, rel: det}, {lexeme: adamah, surface: אֲדָמָה, base: true, feats: {Number: Sing}, n: 12}], readings: {tiberian: hāʾăḏāmâ}}]
       translations:
         en: “What have you done? The voice of your brother's blood is crying out to me from the ground.”
   - choose:

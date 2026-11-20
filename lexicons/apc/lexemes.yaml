@@ -400,8 +400,8 @@ lexemes:
   gloss: {en: thank you (the answer to mabrouk)}
   notes: {en: 'Literally ''God bless you''. To a woman: allah ybarek fiki; to several people: allah ybarek fikon.'}
   spelled: {apc-Arab/standard: [الله يبارك فيك], apc-Latn/arabizi: [allah ybarek fik]}
-  allomorphs:
-  - {spelled: {apc-Arab/standard: [الله يبارك فيكي], apc-Latn/arabizi: [allah ybarek fiki]}}
+  forms:
+  - {feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [الله يبارك فيكي], apc-Latn/arabizi: [allah ybarek fiki]}, status: pinned}
 - id: lexeme:alo
   pos: INTJ
   gloss: {en: 'hello? (on the phone)'}
@@ -1406,7 +1406,7 @@ lexemes:
   spelled: {apc-Arab/standard: [ننزل], apc-Latn/arabizi: [nenzal]}
   forms:
   - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [ننزل], apc-Latn/arabizi: [nenzal]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [نازل], apc-Latn/arabizi: [nezel]}, status: pinned}
+  - {feats: {Aspect: Part, Gender: Masc, Number: Sing}, spelled: {apc-Arab/standard: [نازل], apc-Latn/arabizi: [nezel]}, status: pinned}
 - id: lexeme:nhar
   pos: NOUN
   gloss: {en: day; daytime}

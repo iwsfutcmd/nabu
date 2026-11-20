@@ -31,11 +31,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ألو، مين معي؟
-      tokens: [{surface: ألو, lexeme: alo}, {surface: مين, lexeme: meen}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}]
+      tokens: [{surface: ألو, lexeme: alo}, {surface: مين, lexeme: meen}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true, n: 3, head: 4, rel: case}, {lexeme: poss-1sg, surface: ي, n: 4}]}]
       reverse: ألو مين معي
     apc-Latn/arabizi:
       text: alo, meen ma3i?
-      tokens: [{surface: alo, lexeme: alo}, {surface: meen, lexeme: meen}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}]
+      tokens: [{surface: alo, lexeme: alo}, {surface: meen, lexeme: meen}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true, n: 3, head: 4, rel: case}, {lexeme: poss-1sg, surface: i, n: 4}]}]
       reverse: (alo|allo|2alo) (meen|mien|min) (ma3i|m3i|ma3e)
   translations:
     en: |-
@@ -60,13 +60,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما معي تلفون.
-      tokens: [{surface: ما, lexeme: ma}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: تلفون, lexeme: telefon, feats: {Number: Sing}}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-1sg, surface: ي, n: 3}]}, {surface: تلفون, lexeme: telefon, feats: {Number: Sing}}]
       reverse: |-
         ما معي (تلفون|تليفون)
         أنا ما معي تلفون
     apc-Latn/arabizi:
       text: ma ma3i telefon.
-      tokens: [{surface: ma, lexeme: ma}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: telefon, lexeme: telefon, feats: {Number: Sing}}]
+      tokens: [{surface: ma, lexeme: ma}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-1sg, surface: i, n: 3}]}, {surface: telefon, lexeme: telefon, feats: {Number: Sing}}]
       reverse: |-
         ma (ma3i|m3i|ma3e) (telefon|talifon|tilifon|telephone)
         ana ma ma3i telefon
@@ -134,7 +134,7 @@ sentences:
         المسا دقّيلي
     apc-Latn/arabizi:
       text: de22ili el masa.
-      tokens: [{surface: de22ili, lexemes: [{lexeme: de22, surface: de22i, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: li}]}, {surface: el, lexeme: el}, {surface: masa, lexeme: masa, feats: {Number: Sing}}]
+      tokens: [{surface: de22ili, lexemes: [{lexeme: de22, surface: de22i, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: li}]}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: masa, lexeme: masa, feats: {Number: Sing}, n: 4}]
       reverse: |-
         (de22ili|de22ele|da22ili|de22eli) (el|l|il) (masa|masa2)
         de22ili bel masa
@@ -177,7 +177,7 @@ sentences:
       reverse: في حدا بالبيت
     apc-Latn/arabizi:
       text: fi 7ada bel bet?
-      tokens: [{surface: fi, lexeme: fi}, {surface: 7ada, lexeme: 7ada}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true}, {lexeme: el, surface: el}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}}]
+      tokens: [{surface: fi, lexeme: fi}, {surface: 7ada, lexeme: 7ada}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 5}]
       reverse: fi (7ada|hada|7add|7ade) (bel|bil|b el) (bet|beit)
   translations:
     en: |-
@@ -505,13 +505,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما عندي وقت.
-      tokens: [{surface: ما, lexeme: ma}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: وقت, lexeme: wa2t, feats: {Number: Sing}}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-1sg, surface: ي, n: 3}]}, {surface: وقت, lexeme: wa2t, feats: {Number: Sing}}]
       reverse: |-
         ما (عندي|أنا عندي) وقت
         أنا ما عندي وقت
     apc-Latn/arabizi:
       text: ma 3endi wa2t.
-      tokens: [{surface: ma, lexeme: ma}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: wa2t, lexeme: wa2t, feats: {Number: Sing}}]
+      tokens: [{surface: ma, lexeme: ma}, {surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 2, head: 3, rel: case}, {lexeme: poss-1sg, surface: i, n: 3}]}, {surface: wa2t, lexeme: wa2t, feats: {Number: Sing}}]
       reverse: |-
         ma (3endi|3andi|3ende|3indi) (wa2t|wa2et|wa2ed|wa2it|wa2at)
         ana ma 3endi wa2t
@@ -527,13 +527,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندك وقت بكرا؟
-      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: وقت, lexeme: wa2t, feats: {Number: Sing}}, {surface: بكرا, lexeme: bukra}]
+      tokens: [{surface: عندك, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ك, n: 2}]}, {surface: وقت, lexeme: wa2t, feats: {Number: Sing}}, {surface: بكرا, lexeme: bukra}]
       reverse: |-
         (عندك|إنت عندك) وقت (بكرا|بكرة)
         بكرا عندك وقت
     apc-Latn/arabizi:
       text: 3endak wa2t bukra?
-      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: wa2t, lexeme: wa2t, feats: {Number: Sing}}, {surface: bukra, lexeme: bukra}]
+      tokens: [{surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-2ms, surface: ak, n: 2}]}, {surface: wa2t, lexeme: wa2t, feats: {Number: Sing}}, {surface: bukra, lexeme: bukra}]
       reverse: |-
         (3endak|3andak|3indak) (wa2t|wa2et|wa2ed|wa2it|wa2at) (bukra|bokra|bukrah)
         enta 3endak wa2t bukra
@@ -548,11 +548,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: عندي رسالة.
-      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: رسالة, lexeme: resele, feats: {Number: Sing}}]
+      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: ي, n: 2}]}, {surface: رسالة, lexeme: resele, feats: {Number: Sing}}]
       reverse: (عندي|أنا عندي) (رسالة|مسج)
     apc-Latn/arabizi:
       text: 3endi resele.
-      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: resele, lexeme: resele, feats: {Number: Sing}}]
+      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: i, n: 2}]}, {surface: resele, lexeme: resele, feats: {Number: Sing}}]
       reverse: |-
         (3endi|3andi|3ende|3indi) (resele|risele|risale|rsele|resale)
         ana 3endi resele
@@ -583,13 +583,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سامي بعتلي رسالة مبارح.
-      tokens: [{surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: بعتلي, lexemes: [{lexeme: b3at, surface: بعت, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: لي}]}, {surface: رسالة, lexeme: resele, feats: {Number: Sing}}, {surface: مبارح, lexeme: mbere7}]
+      tokens: [{surface: سامي, lexeme: sami}, {surface: بعتلي, lexemes: [{lexeme: b3at, surface: بعت, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: لي}]}, {surface: رسالة, lexeme: resele, feats: {Number: Sing}}, {surface: مبارح, lexeme: mbere7}]
       reverse: |-
         سامي بعتلي (رسالة|مسج) (مبارح|مبارحة)
         مبارح سامي بعتلي رسالة
     apc-Latn/arabizi:
       text: Sami ba3atli resele mbere7.
-      tokens: [{surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: ba3atli, lexemes: [{lexeme: b3at, surface: ba3at, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: li}]}, {surface: resele, lexeme: resele, feats: {Number: Sing}}, {surface: mbere7, lexeme: mbere7}]
+      tokens: [{surface: Sami, lexeme: sami}, {surface: ba3atli, lexemes: [{lexeme: b3at, surface: ba3at, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: li}]}, {surface: resele, lexeme: resele, feats: {Number: Sing}}, {surface: mbere7, lexeme: mbere7}]
       reverse: |-
         Sami (ba3atli|b3atli|ba3atle) (resele|risele|risale|rsele|resale) (mbere7|embere7|mbare7|mberi7)
         mbere7 Sami ba3atli resele
@@ -604,13 +604,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما فيّي دقّ، ما معي تلفوني.
-      tokens: [{surface: ما, lexeme: ma}, {surface: فيّي, lexemes: [{lexeme: fi.can, surface: فيّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: دقّ, lexeme: de22, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: ما, lexeme: ma}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: تلفوني, lexemes: [{lexeme: telefon, surface: تلفون, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: فيّي, lexemes: [{lexeme: fi.can, surface: فيّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: دقّ, lexeme: de22, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: ما, lexeme: ma}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true, n: 6, head: 7, rel: case}, {lexeme: poss-1sg, surface: ي, n: 7}]}, {surface: تلفوني, lexemes: [{lexeme: telefon, surface: تلفون, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}]
       reverse: |-
         ما (فيّي|فيني) دقّ ما معي (تلفوني|تليفوني)
         أنا ما فيّي دقّ ما معي تلفوني
     apc-Latn/arabizi:
       text: ma fiyyi de22, ma ma3i telefoni.
-      tokens: [{surface: ma, lexeme: ma}, {surface: fiyyi, lexemes: [{lexeme: fi.can, surface: fiyy, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: de22, lexeme: de22, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: ma, lexeme: ma}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: telefoni, lexemes: [{lexeme: telefon, surface: telefon, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
+      tokens: [{surface: ma, lexeme: ma}, {surface: fiyyi, lexemes: [{lexeme: fi.can, surface: fiyy, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: de22, lexeme: de22, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: ma, lexeme: ma}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true, n: 6, head: 7, rel: case}, {lexeme: poss-1sg, surface: i, n: 7}]}, {surface: telefoni, lexemes: [{lexeme: telefon, surface: telefon, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}]
       reverse: |-
         ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (de22|da22|de22a) ma (ma3i|m3i|ma3e) (telefoni|telefone|talifoni|tilifoni)
         ana ma fiyyi de22 ma ma3i telefoni
@@ -673,10 +673,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: أَلو سامي! أَنا تيتا. سْمِعْتْني؟
-          tokens: [{surface: أَلو, lexeme: alo}, {surface: سامي, lexeme: sami, feats: {Number: Sing}}, {surface: أَنا, lexeme: ana}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: سْمِعْتْني, lexemes: [{lexeme: sama3, surface: سْمِعْتْ, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}]
+          tokens: [{surface: أَلو, lexeme: alo}, {surface: سامي, lexeme: sami}, {surface: أَنا, lexeme: ana}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: سْمِعْتْني, lexemes: [{lexeme: sama3, surface: سْمِعْتْ, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}]
         apc-Latn/arabizi:
           text: alo Sami! ana teta. sme3tni?
-          tokens: [{surface: alo, lexeme: alo}, {surface: Sami, lexeme: sami, feats: {Number: Sing}}, {surface: ana, lexeme: ana}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: sme3tni, lexemes: [{lexeme: sama3, surface: sme3t, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}]
+          tokens: [{surface: alo, lexeme: alo}, {surface: Sami, lexeme: sami}, {surface: ana, lexeme: ana}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: sme3tni, lexemes: [{lexeme: sama3, surface: sme3t, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}]
       translations:
         en: Hello Sami! It's grandma. Can you hear me?
   - line:
@@ -700,10 +700,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مْنيحَة. ما عِنْدَك تِلِفون؟ ما بْتْدِقِّلّي أَبَداً!
-          tokens: [{surface: مْنيحَة, lexeme: mni7, feats: {Gender: Fem, Number: Sing}}, {surface: ما, lexeme: ma}, {surface: عِنْدَك, lexemes: [{lexeme: 3end, surface: عِنْدَ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: تِلِفون, lexeme: telefon, feats: {Number: Sing}}, {surface: ما, lexeme: ma}, {surface: بْتْدِقِّلّي, lexemes: [{lexeme: de22, surface: بْتْدِقِّ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لّي}]}, {surface: أَبَداً, lexeme: abadan}]
+          tokens: [{surface: مْنيحَة, lexeme: mni7, feats: {Gender: Fem, Number: Sing}}, {surface: ما, lexeme: ma}, {surface: عِنْدَك, lexemes: [{lexeme: 3end, surface: عِنْدَ, base: true, n: 3, head: 4, rel: case}, {lexeme: poss-2ms, surface: ك, n: 4}]}, {surface: تِلِفون, lexeme: telefon, feats: {Number: Sing}}, {surface: ما, lexeme: ma}, {surface: بْتْدِقِّلّي, lexemes: [{lexeme: de22, surface: بْتْدِقِّ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لّي}]}, {surface: أَبَداً, lexeme: abadan}]
         apc-Latn/arabizi:
           text: mni7a. ma 3endak telefon? ma btde22elli abadan!
-          tokens: [{surface: mni7a, lexeme: mni7, feats: {Gender: Fem, Number: Sing}}, {surface: ma, lexeme: ma}, {surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: telefon, lexeme: telefon, feats: {Number: Sing}}, {surface: ma, lexeme: ma}, {surface: btde22elli, lexemes: [{lexeme: de22, surface: btde22, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: abadan, lexeme: abadan}]
+          tokens: [{surface: mni7a, lexeme: mni7, feats: {Gender: Fem, Number: Sing}}, {surface: ma, lexeme: ma}, {surface: 3endak, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 3, head: 4, rel: case}, {lexeme: poss-2ms, surface: ak, n: 4}]}, {surface: telefon, lexeme: telefon, feats: {Number: Sing}}, {surface: ma, lexeme: ma}, {surface: btde22elli, lexemes: [{lexeme: de22, surface: btde22, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: abadan, lexeme: abadan}]
       translations:
         en: Fine. Don't you have a phone? You never call me!
   - line:
@@ -733,7 +733,7 @@ stories:
           tokens: [{surface: قِلّي, lexemes: [{lexeme: 2al, surface: قِ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لّي}]}, {surface: رَح, lexeme: ra7.fut}, {surface: تْزورْني, lexemes: [{lexeme: zar, surface: تْزورْ, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ني}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 7}]}]
         apc-Latn/arabizi:
           text: 2elli, ra7 tzurni el a7ad?
-          tokens: [{surface: 2elli, lexemes: [{lexeme: 2al, surface: '2', base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: ra7, lexeme: ra7.fut}, {surface: tzurni, lexemes: [{lexeme: zar, surface: tzur, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}, {surface: el, lexeme: el}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}}]
+          tokens: [{surface: 2elli, lexemes: [{lexeme: 2al, surface: '2', base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}, {surface: ra7, lexeme: ra7.fut}, {surface: tzurni, lexemes: [{lexeme: zar, surface: tzur, base: true, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {lexeme: obj-1sg, surface: ni}]}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 7}]
       translations:
         en: Tell me, are you going to visit me on Sunday?
   - line:
@@ -745,7 +745,7 @@ stories:
           tokens: [{surface: أَكيد, lexeme: akid}, {surface: رَح, lexeme: ra7.fut}, {surface: زورِك, lexemes: [{lexeme: zar, surface: زورِ, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ك}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 6}]}]
         apc-Latn/arabizi:
           text: akid, ra7 zurik el a7ad.
-          tokens: [{surface: akid, lexeme: akid}, {surface: ra7, lexeme: ra7.fut}, {surface: zurik, lexemes: [{lexeme: zar, surface: zur, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ik}]}, {surface: el, lexeme: el}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}}]
+          tokens: [{surface: akid, lexeme: akid}, {surface: ra7, lexeme: ra7.fut}, {surface: zurik, lexemes: [{lexeme: zar, surface: zur, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ik}]}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 6}]
       translations:
         en: Of course, I'll visit you on Sunday.
   - line:

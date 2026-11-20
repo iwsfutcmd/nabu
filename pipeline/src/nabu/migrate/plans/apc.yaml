@@ -26,7 +26,7 @@ lexical:
 # the verbs shown in another form.
 citation:
   NOUN: {Gender: Masc, Number: Sing}
-  PROPN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
   VERB: {Aspect: Perf, Person: 3, Gender: Masc, Number: Sing}
   AUX: {Aspect: Perf, Person: 3, Gender: Masc, Number: Sing}
@@ -35,7 +35,7 @@ citation:
 # the command to a man: a verb with no form is that.
 bare:
   NOUN: {Gender: Masc, Number: Sing}
-  PROPN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
   VERB: {Mood: Imp, Person: 2, Gender: Masc, Number: Sing}
 
@@ -51,7 +51,11 @@ features:
 
 forms:
   # Gender and number. The plural has no gender (ADR 0132's amendment).
-  form:fem: {feats: {Gender: Fem, Number: Sing}, introduces: [Gender=Fem]}
+  form:fem:
+    feats: {Gender: Fem, Number: Sing}
+    # A name has a gender and no number.
+    byPos: {PROPN: {Gender: Fem}}
+    introduces: [Gender=Fem]
   form:pl: {feats: {Number: Plur}, introduces: [Number=Plur]}
   # The verb: the present with b-, the same without it after baddi, 3am, ra7 (the subjunctive),
   # the past, the command.
@@ -150,6 +154,9 @@ relations:
   # The article and a preposition written on a word (the design note's own example).
   - {rel: det, from: [DET], to: [NOUN, PROPN, ADJ, NUM], side: inside}
   - {rel: case, from: [ADP], to: [NOUN, PROPN, PRON, NUM, ADJ, DET], side: inside}
+  # The same two written apart, as Arabizi writes them: bel madrase, men Beirut.
+  - {rel: det, from: [DET], to: [NOUN, PROPN, ADJ, NUM], side: right}
+  - {rel: case, from: [ADP], to: [NOUN, PROPN, PRON, NUM], side: right, skip: [DET], reach: 1}
   # An adjective and the noun before it: el bet el kbir. A plural of things takes a feminine
   # singular adjective, which this rule does not link.
   - {rel: amod, from: [ADJ], to: [NOUN, PROPN], side: left, agree: [Gender, Number], skip: [DET, ADV], reach: 2}
@@ -160,3 +167,23 @@ defaults:
   - {id: gender-ta, when: {ends: "\u0629"}, gives: {Gender: Fem}}
   - {id: gender-none, when: {pos: NOUN}, gives: {Gender: Masc}}
   - {id: gender-none-name, when: {pos: PROPN}, gives: {Gender: Masc}}
+
+# Tokens the course pins no form on and that are not what a bare token is.
+tokens:
+  # nezel 3a Beirut?: the participle, where a verb with no form is otherwise a command.
+  nezel:
+    nezel: {feats: {Aspect: Part, Gender: Masc, Number: Sing}}
+    نازل: {feats: {Aspect: Part, Gender: Masc, Number: Sing}}
+  # allah ybarek fiki: the answer to mabrouk said to a woman, as salemtik is pinned.
+  allah-ybarek:
+    fiki: {feats: {'Person[psor]': 2, 'Gender[psor]': Fem, 'Number[psor]': Sing}}
+    فيكي: {feats: {'Person[psor]': 2, 'Gender[psor]': Fem, 'Number[psor]': Sing}}
+
+# What the drafter saw and did not decide: each is in the report for a reviewer.
+questions:
+  - 'The course''s verb entries are spelled as the form a card shows (kol, a command; bfi2, a b-present), not as the he-past Kline cites. The report lists them; the lexical forms of docs/lexical-forms/ give each its radicals and wait for the owner.'
+  - 'seken, 2a3ed and wa2ef are participles of verbs the course does not have. Each stays an entry whose tokens say Aspect=Part; raye7 is folded into ra7, which the course has.'
+  - 'Set phrases said to a man by default (salemtak, shu bak, 3a albak, kell sene w enta salem, allah ybarek fik) stay one lexeme each; said to a woman or to several, the token carries the possessor''s values. Their parts are not linked (ADR 0146: a listed item''s parts are links).'
+  - 'Nouns written in both genders under one entry (rfi2, jar, tilmiz, m3allem, mhandes, 7abibi) keep the gender on the token: by ADR 0145 the feminine is a derivative, decided per noun.'
+  - '3asha (dinner) is pinned feminine in the course, so the entry stores it as an exception to "no ta marbuta, masculine": check the gender.'
+  - 'A plural of things takes a feminine singular adjective. The relation rules link an adjective to its noun only where gender and number agree, so those are left bare.'

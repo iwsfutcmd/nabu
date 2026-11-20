@@ -48,7 +48,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: εἰς Πειραιᾶ κατέβην.
-      tokens: [{surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, readings: {attic: Πειραιᾶ}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
+      tokens: [{surface: εἰς, lexeme: eis, n: 1, head: 2, rel: case, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, n: 2, readings: {attic: Πειραιᾶ}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: |-
         εἰς Πειραιᾶ κατέβην
         κατέβην εἰς Πειραιᾶ
@@ -61,7 +61,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: κατέβην χθὲς εἰς Πειραιᾶ.
-      tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}, {surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, readings: {attic: Πειραιᾶ}}]
+      tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}, {surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: εἰς, lexeme: eis, n: 3, head: 4, rel: case, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, n: 4, readings: {attic: Πειραιᾶ}}]
       reverse: |-
         κατέβην χθὲς εἰς Πειραιᾶ
         χθὲς κατέβην εἰς Πειραιᾶ
@@ -78,7 +78,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ Γλαύκωνος.
-      tokens: [{surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, readings: {attic: Γλαύκωνος}}]
+      tokens: [{surface: μετὰ, lexeme: meta, n: 1, head: 2, rel: case, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, n: 2, readings: {attic: Γλαύκωνος}}]
       reverse: μετὰ Γλαύκωνος
   translations:
     en: With Glaucon.
@@ -96,7 +96,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ Γλαύκωνος κατέβην.
-      tokens: [{surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, readings: {attic: Γλαύκωνος}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
+      tokens: [{surface: μετὰ, lexeme: meta, n: 1, head: 2, rel: case, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, n: 2, readings: {attic: Γλαύκωνος}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: |-
         μετὰ Γλαύκωνος κατέβην
         κατέβην μετὰ Γλαύκωνος
@@ -107,7 +107,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγορὰν κατέβην.
-      tokens: [{surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τοῦ}}, {surface: ἀδελφοῦ, lexeme: adelphos, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: ᾰ̓δελφοῦ}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, n: 6, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
+      tokens: [{surface: μετὰ, lexeme: meta, n: 1, head: 3, rel: case, readings: {attic: μετᾰ̀}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τοῦ}}, {surface: ἀδελφοῦ, lexeme: adelphos, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: ᾰ̓δελφοῦ}}, {surface: εἰς, lexeme: eis, n: 4, head: 6, rel: case, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, n: 6, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: |-
         μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγορὰν κατέβην
         κατέβην εἰς τὴν ἀγορὰν μετὰ τοῦ ἀδελφοῦ
@@ -122,7 +122,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ τῆς μητρός.
-      tokens: [{surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: μητρός, lexeme: meter, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: μητρός}}]
+      tokens: [{surface: μετὰ, lexeme: meta, n: 1, head: 3, rel: case, readings: {attic: μετᾰ̀}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: μητρός, lexeme: meter, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: μητρός}}]
       reverse: μετὰ τῆς μητρός
   translations:
     en: With (my|the) mother.
@@ -434,7 +434,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: κατέβην χθὲς εἰς Πειραιᾶ μετὰ Γλαύκωνος τοῦ Ἀρίστωνος,
-          tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}, {surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: εἰς, lexeme: eis, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, readings: {attic: Πειραιᾶ}}, {surface: μετὰ, lexeme: meta, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, readings: {attic: Γλαύκωνος}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det, readings: {attic: τοῦ}}, {surface: Ἀρίστωνος, lexeme: ariston, feats: {Case: Gen, Number: Sing}, n: 8, readings: {attic: Ᾰ̓ρῐ́στωνος}}]
+          tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}, {surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: εἰς, lexeme: eis, n: 3, head: 4, rel: case, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, n: 4, readings: {attic: Πειραιᾶ}}, {surface: μετὰ, lexeme: meta, n: 5, head: 6, rel: case, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, n: 6, readings: {attic: Γλαύκωνος}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det, readings: {attic: τοῦ}}, {surface: Ἀρίστωνος, lexeme: ariston, feats: {Case: Gen, Number: Sing}, n: 8, readings: {attic: Ᾰ̓ρῐ́στωνος}}]
       translations:
         en: I went down to the Piraeus yesterday with Glaucon, the son of Ariston,
   - choose:

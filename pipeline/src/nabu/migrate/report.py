@@ -58,6 +58,13 @@ SECTIONS: list[tuple[str, str, str]] = [
         "course's annotation has no name for. Kept as an allomorph of the entry.",
     ),
     (
+        "entry-form",
+        "Entries spelled as a form other than the citation form",
+        "A word card shows the entry's first spelling, and here that is one of the lexeme's "
+        "inflected forms, not the form its language cites a word in (the plan's `citation`). The "
+        "spelling is kept, since it is what a learner sees today.",
+    ),
+    (
         "entry-built",
         "Entries shown as a built word",
         "A word card shows the entry's first spelling, and here that is the lexeme with an ending "
@@ -314,6 +321,15 @@ def render(m: Migration) -> str:
     for kind in other:
         lines += ["", f"## {kind} ({len(by_kind[kind])})", ""]
         lines += _table([(f"`{w}`", show(x)) for w, x in by_kind[kind]], ("Where", "What"))
+
+    questions = [str(q) for q in seq(m.plan.data.get("questions"))]
+    if questions:
+        lines += ["", "## Left for a reviewer by the plan", ""]
+        lines += [
+            "What the plan's drafter saw and did not decide.",
+            "",
+        ]
+        lines += [f"- {show(q)}" for q in questions]
 
     lines += [
         "",

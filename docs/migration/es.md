@@ -72,16 +72,17 @@ the plan's, drafted (REVIEW); the counts are this course's lexemes.
 | default gender-a: broken | 6 |
 | default gender-a: gives | 91 |
 | default gender-aje: gives | 2 |
-| default gender-cion: gives | 2 |
 | default gender-dad: gives | 3 |
+| default gender-ion: broken | 1 |
+| default gender-ion: gives | 5 |
 | default gender-o: broken | 2 |
 | default gender-o: gives | 95 |
+| default gender-on: gives | 13 |
 | default gender-or: broken | 1 |
 | default gender-or: gives | 5 |
-| default gender-sion: gives | 2 |
 | default gender-tad: gives | 1 |
 | lexical feature chosen by the token | 14 |
-| lexical feature stored: no default speaks | 92 |
+| lexical feature stored: no default speaks | 77 |
 | lexical feature unknown | 7 |
 
 **Endings a default could still cover:** among the lexemes that store the feature
@@ -94,9 +95,9 @@ lexemes or more). Each is a candidate, not a finding: a course's words are few.
 | -es | Gender=Masc | 6 | lunes, martes, miércoles, jueves, viernes, inglés |
 | -ar | Gender=Masc | 5 | dólar, mar, solar, lugar, paladar |
 | -he | Gender=Fem | 4 | leche, noche, hache, medianoche |
-| -ron | Gender=Masc | 4 | jonrón, turrón, camarón, almendrón |
 | -ol | Gender=Masc | 3 | frijol, español, árbol |
 | -ue | Gender=Masc | 3 | guateque, parque, tranque |
+| -n | Gender=Masc | 3 | son, refrán, examen |
 
 ## Dimensions
 
@@ -168,15 +169,17 @@ waits for a tree (ADR 0145: drafted by a parser, corrected by a reviewer).
 | ADJ with values and no relation | 186 |
 | DET with values and no relation | 171 |
 | amod: written | 118 |
+| case: written | 1029 |
 | det: written | 1348 |
 
-## Lexemes that break a default (9)
+## Lexemes that break a default (10)
 
 The entry stores the feature, and it is a part to learn (ADR 0146). Check each: a wrong default makes parts of regular words, a missing one hides an exception.
 
 | Where | What |
 |---|---|
 | `lexeme:día` | Gender=Masc: gender-a would give Fem for día |
+| `lexeme:avión` | Gender=Masc: gender-ion would give Fem for avión |
 | `lexeme:foto` | Gender=Fem: gender-o would give Masc for foto |
 | `lexeme:capicúa` | Gender=Masc: gender-a would give Fem for capicúa |
 | `lexeme:turista` | Gender=Masc: gender-a would give Fem for turista |
@@ -186,7 +189,7 @@ The entry stores the feature, and it is a part to learn (ADR 0146). Check each: 
 | `lexeme:mano` | Gender=Fem: gender-o would give Masc for mano |
 | `lexeme:idioma` | Gender=Masc: gender-a would give Fem for idioma |
 
-## Lexemes no default speaks of (92)
+## Lexemes no default speaks of (77)
 
 No stated default gives the feature for a lexeme so written, so the entry stores it and it is a part to learn. A reliable ending among these is a default to add.
 
@@ -198,11 +201,9 @@ No stated default gives the feature for a lexeme so written, so the entry stores
 | `lexeme:padre` | Gender=Masc: no default speaks of padre |
 | `lexeme:café` | Gender=Masc: no default speaks of café |
 | `lexeme:portal` | Gender=Masc: no default speaks of portal |
-| `lexeme:sillón` | Gender=Masc: no default speaks of sillón |
 | `lexeme:arroz` | Gender=Masc: no default speaks of arroz |
 | `lexeme:frijol` | Gender=Masc: no default speaks of frijol |
 | `lexeme:congrí` | Gender=Masc: no default speaks of congrí |
-| `lexeme:tostón` | Gender=Masc: no default speaks of tostón |
 | `lexeme:leche` | Gender=Fem: no default speaks of leche |
 | `lexeme:hambre` | Gender=Fem: no default speaks of hambre |
 | `lexeme:dólar` | Gender=Masc: no default speaks of dólar |
@@ -217,7 +218,6 @@ No stated default gives the feature for a lexeme so written, so the entry stores
 | `lexeme:pulóver` | Gender=Masc: no default speaks of pulóver |
 | `lexeme:shopping` | Gender=Fem: no default speaks of shopping |
 | `lexeme:suerte` | Gender=Fem: no default speaks of suerte |
-| `lexeme:avión` | Gender=Masc: no default speaks of avión |
 | `lexeme:pasaporte` | Gender=Masc: no default speaks of pasaporte |
 | `lexeme:té` | Gender=Masc: no default speaks of té |
 | `lexeme:español` | Gender=Masc: no default speaks of español |
@@ -233,39 +233,27 @@ No stated default gives the feature for a lexeme so written, so the entry stores
 | `lexeme:aceite` | Gender=Masc: no default speaks of aceite |
 | `lexeme:sal` | Gender=Fem: no default speaks of sal |
 | `lexeme:paquete` | Gender=Masc: no default speaks of paquete |
-| `lexeme:jabón` | Gender=Masc: no default speaks of jabón |
 | `lexeme:hache` | Gender=Fem: no default speaks of hache |
 | `lexeme:son` | Gender=Masc: no default speaks of son |
-| `lexeme:danzón` | Gender=Masc: no default speaks of danzón |
 | `lexeme:clave` | Gender=Fem: no default speaks of clave |
-| `lexeme:jonrón` | Gender=Masc: no default speaks of jonrón |
 | `lexeme:parque` | Gender=Masc: no default speaks of parque |
 | `lexeme:doble` | Gender=Masc: no default speaks of doble |
 | `lexeme:tranque` | Gender=Masc: no default speaks of tranque |
-| `lexeme:corazón` | Gender=Masc: no default speaks of corazón |
-| `lexeme:lechón` | Gender=Masc: no default speaks of lechón |
-| `lexeme:turrón` | Gender=Masc: no default speaks of turrón |
 | `lexeme:medianoche` | Gender=Fem: no default speaks of medianoche |
 | `lexeme:rey` | Gender=Masc: no default speaks of rey |
 | `lexeme:vals` | Gender=Masc: no default speaks of vals |
-| `lexeme:colchón` | Gender=Masc: no default speaks of colchón |
-| `lexeme:conexión` | Gender=Fem: no default speaks of conexión |
 | `lexeme:wifi` | Gender=Masc: no default speaks of wifi |
-| `lexeme:apagón` | Gender=Masc: no default speaks of apagón |
 | `lexeme:corriente` | Gender=Fem: no default speaks of corriente |
 | `lexeme:refrán` | Gender=Masc: no default speaks of refrán |
-| `lexeme:camarón` | Gender=Masc: no default speaks of camarón |
 | `lexeme:examen` | Gender=Masc: no default speaks of examen |
 | `lexeme:mal.harm` | Gender=Masc: no default speaks of mal |
 | `lexeme:aire` | Gender=Masc: no default speaks of aire |
 | `lexeme:mar` | Gender=Masc: no default speaks of mar |
 | `lexeme:guardacostas` | Gender=Masc: no default speaks of guardacostas |
 | `lexeme:papel` | Gender=Masc: no default speaks of papel |
-| `lexeme:balcón` | Gender=Masc: no default speaks of balcón |
 | `lexeme:solar` | Gender=Masc: no default speaks of solar |
 | `lexeme:lugar` | Gender=Masc: no default speaks of lugar |
 | `lexeme:catedral` | Gender=Fem: no default speaks of catedral |
-| `lexeme:almendrón` | Gender=Masc: no default speaks of almendrón |
 | `lexeme:bicitaxi` | Gender=Masc: no default speaks of bicitaxi |
 | `lexeme:valle` | Gender=Masc: no default speaks of valle |
 | `lexeme:mogote` | Gender=Masc: no default speaks of mogote |
@@ -344,6 +332,16 @@ The two stand side by side and the values the course pins on them differ: one of
 | `es.story.u26#8 (es-Latn/standard)` | el (Gender=Masc, Number=Sing) stands before ave (Gender=Fem, Number=Sing) and does not agree with it |
 | `es.story.u26#9 (es-Latn/standard)` | el (Gender=Masc, Number=Sing) stands before ave (Gender=Fem, Number=Sing) and does not agree with it |
 | `s.u27.20 (es-Latn/standard)` | el (Gender=Masc, Number=Sing) stands before alma (Gender=Fem, Number=Sing) and does not agree with it |
+
+## Left for a reviewer by the plan
+
+What the plan's drafter saw and did not decide.
+
+- hay (there is) is an entry of its own. It is the impersonal present of haber, whose third person is ha: a form of haber in another use, or a lexeme?
+- mucho is tagged ADV and agrees like a determiner (mucha gente, muchos días): one lexeme under one tag (ADR 0145), and which?
+- Nouns written in both genders under one entry (hermano, hermana; tío, tía; doctor, doctora) keep the gender on the token. By ADR 0145 the feminine is a derivative, a lexeme of its own where it is listed: decided per noun.
+- The article before a feminine noun in stressed a- is pinned feminine by the course's rule (el agua); el ave, un ave, el alma and el azúcar are bare. The report lists them as determiners that do not agree.
+- The imperfect, the future, the conditional and the subjunctives name no person in the course. The plan reads it off the ending where the ending has one (-mos, -s, -n); a first and a third person singular stay one form.
 
 ## What no finding above covers
 

@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los domingos hacemos una videollamada a La Habana.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 2}, {surface: hacemos, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 8}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 2}, {surface: hacemos, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a, n: 6, head: 8, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 8}]
       reverse: |-
         Los domingos [nosotros] hacemos una videollamada a La Habana
         [Nosotros] hacemos una videollamada a La Habana los domingos
@@ -57,7 +57,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú tienes wifi en la casa, o estás en el parque?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 6}, {surface: o, lexeme: o}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 11}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 6}, {surface: o, lexeme: o}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 9, head: 11, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 11}]
       reverse: |-
         (Tú tienes|Tienes [tú]) wifi en [la] casa o (tú estás|estás [tú]) en el parque
         (Usted tiene|Tiene [usted]) wifi en [la] casa o (usted está|está [usted]) en el parque
@@ -69,7 +69,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Allá en Cuba, el wifi es muy caro.
-      tokens: [{surface: Allá, lexeme: allá}, {surface: en, lexeme: en}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}, n: 5}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: caro, lexeme: caro, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Allá, lexeme: allá}, {surface: en, lexeme: en, n: 2, head: 3, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 3}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}, n: 5}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: caro, lexeme: caro, feats: {Gender: Masc, Number: Sing}}]
       reverse: |-
         Allá en Cuba el wifi es (muy caro|carísimo)
         El wifi es (muy caro|carísimo) allá en Cuba
@@ -82,7 +82,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Anoche recibí una llamada de Yunior por WhatsApp.
-      tokens: [{surface: Anoche, lexeme: anoche}, {surface: recibí, lexeme: recibir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: Yunior, lexeme: yunior}, {surface: por, lexeme: por}, {surface: WhatsApp, lexeme: whatsapp}]
+      tokens: [{surface: Anoche, lexeme: anoche}, {surface: recibí, lexeme: recibir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: Yunior, lexeme: yunior, n: 6}, {surface: por, lexeme: por, n: 7, head: 8, rel: case}, {surface: WhatsApp, lexeme: whatsapp, n: 8}]
       reverse: |-
         Anoche [yo] recibí una llamada de Yunior por WhatsApp
         [Yo] recibí una llamada de Yunior por WhatsApp anoche
@@ -106,7 +106,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Se cayó la llamada cuando Yunior estaba hablando de pelota.
-      tokens: [{surface: Se, lexeme: se}, {surface: cayó, lexeme: caerse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}, n: 4}, {surface: cuando, lexeme: cuando}, {surface: Yunior, lexeme: yunior}, {surface: estaba, lexeme: estar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hablando, lexeme: hablar, feats: {VerbForm: Ger}}, {surface: de, lexeme: de}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}}]
+      tokens: [{surface: Se, lexeme: se}, {surface: cayó, lexeme: caerse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}, n: 4}, {surface: cuando, lexeme: cuando}, {surface: Yunior, lexeme: yunior}, {surface: estaba, lexeme: estar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hablando, lexeme: hablar, feats: {VerbForm: Ger}}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 10}]
       reverse: (Se cayó la llamada|La llamada se cayó) cuando Yunior (estaba hablando|hablaba) de pelota
   translations:
     en: The call (dropped|cut out|got cut off) (when|while) Yunior was talking about baseball.
@@ -127,7 +127,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Anoche hubo un apagón de ocho horas en La Habana.
-      tokens: [{surface: Anoche, lexeme: anoche}, {surface: hubo, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: apagón, lexeme: apagón, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: ocho, lexeme: ocho}, {surface: horas, lexeme: hora, feats: {Number: Plur}}, {surface: en, lexeme: en}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 10}]
+      tokens: [{surface: Anoche, lexeme: anoche}, {surface: hubo, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: apagón, lexeme: apagón, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: ocho, lexeme: ocho, n: 6}, {surface: horas, lexeme: hora, feats: {Number: Plur}}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 10}]
       reverse: |-
         Anoche hubo un apagón de (ocho|8) horas en La Habana
         Hubo un apagón de (ocho|8) horas en La Habana anoche
@@ -140,7 +140,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Se fue la corriente, y con este calor no hay ventilador.
-      tokens: [{surface: Se, lexeme: se}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: con, lexeme: con}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: calor, lexeme: calor, feats: {Number: Sing}, n: 8}, {surface: 'no', lexeme: 'no'}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}]
+      tokens: [{surface: Se, lexeme: se}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: con, lexeme: con, n: 6, head: 8, rel: case}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: calor, lexeme: calor, feats: {Number: Sing}, n: 8}, {surface: 'no', lexeme: 'no'}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}}]
       reverse: Se fue (la corriente|la luz) y con este calor no hay ventilador
   translations:
     en: The power went (out|off), and (in|with) this heat (there's|there is) no fan.
@@ -158,7 +158,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No cuelgues todavía, Yunior. Abuela quiere hablar con Marisol.
-      tokens: [{surface: 'No', lexeme: 'no'}, {surface: cuelgues, lexeme: colgar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: todavía, lexeme: todavía}, {surface: Yunior, lexeme: yunior}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hablar, lexeme: hablar, feats: {VerbForm: Inf}}, {surface: con, lexeme: con}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: cuelgues, lexeme: colgar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: todavía, lexeme: todavía}, {surface: Yunior, lexeme: yunior}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hablar, lexeme: hablar, feats: {VerbForm: Inf}}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 9}]
       reverse: |-
         No cuelgues todavía Yunior (Abuela|la abuela|mi abuela) quiere hablar con (Marisol|tía Marisol|tu mamá|tu mami)
         No cuelgues aún, Yunior. Abuela quiere hablar con Marisol.
@@ -169,7 +169,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Con los apagones, Marisol no puede dormir por el calor.
-      tokens: [{surface: Con, lexeme: con}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: apagones, lexeme: apagón, feats: {Number: Plur}, n: 3}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dormir, lexeme: dormir, feats: {VerbForm: Inf}}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: calor, lexeme: calor, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Con, lexeme: con, n: 1, head: 3, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: apagones, lexeme: apagón, feats: {Number: Plur}, n: 3}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dormir, lexeme: dormir, feats: {VerbForm: Inf}}, {surface: por, lexeme: por, n: 8, head: 10, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: calor, lexeme: calor, feats: {Number: Sing}, n: 10}]
       reverse: Con los apagones (Marisol|tía Marisol) no puede dormir por el calor
   translations:
     en: |-
@@ -191,7 +191,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Qué bueno que vengas a vernos en el verano!
-      tokens: [{surface: Qué, lexeme: qué}, {surface: bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: vengas, lexeme: venir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: vernos, lexemes: [{lexeme: ver, surface: ver, base: true, feats: {VerbForm: Inf}}, {lexeme: nos, surface: nos, feats: {Number: Plur}}]}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Qué, lexeme: qué}, {surface: bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: vengas, lexeme: venir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: vernos, lexemes: [{lexeme: ver, surface: ver, base: true, feats: {VerbForm: Inf}}, {lexeme: nos, surface: nos, feats: {Number: Plur}}]}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 10}]
       reverse: |-
         (Qué bueno|Qué bien|Qué alegría) que vengas a vernos (en el verano|este verano)
         ¡Qué bueno que venga a vernos en el verano!
@@ -208,7 +208,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Siento que no puedas venir a la Nochebuena, tía.
-      tokens: [{surface: Siento, lexeme: sentir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: puedas, lexeme: poder, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: venir, lexeme: venir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 8}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Siento, lexeme: sentir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: puedas, lexeme: poder, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: venir, lexeme: venir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 8}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}]
       reverse: (Siento|Siento mucho|Lamento) que no puedas venir (a|para|en) la Nochebuena (tía|tía Marisol)
   translations:
     en: |-
@@ -219,7 +219,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Abuela le alegra mucho que la llames.
-      tokens: [{surface: A, lexeme: a}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: alegra, lexeme: alegrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: que, lexeme: que}, {surface: la, lexeme: lo, feats: {Gender: Fem, Number: Sing}}, {surface: llames, lexeme: llamar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: A, lexeme: a, n: 1, head: 2, rel: case}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}, n: 2}, {surface: le, lexeme: le}, {surface: alegra, lexeme: alegrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: que, lexeme: que}, {surface: la, lexeme: lo, feats: {Gender: Fem, Number: Sing}}, {surface: llames, lexeme: llamar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         A (Abuela|la abuela|mi abuela) le alegra mucho que la llames
         Abuela se alegra mucho de que la llames
@@ -258,7 +258,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me alegra que podamos hablar todos juntos por videollamada.
-      tokens: [{surface: Me, lexeme: me}, {surface: alegra, lexeme: alegrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: podamos, lexeme: poder, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hablar, lexeme: hablar, feats: {VerbForm: Inf}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: juntos, lexeme: junto, feats: {Gender: Masc, Number: Plur}}, {surface: por, lexeme: por}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: alegra, lexeme: alegrar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: podamos, lexeme: poder, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hablar, lexeme: hablar, feats: {VerbForm: Inf}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: juntos, lexeme: junto, feats: {Gender: Masc, Number: Plur}}, {surface: por, lexeme: por, n: 8, head: 9, rel: case}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}, n: 9}]
       reverse: |-
         (Me alegra|Me alegro de|Me alegro) que podamos hablar todos juntos por videollamada
         Me alegra que todos podamos hablar juntos por videollamada
@@ -273,7 +273,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me preocupa que ustedes no tengan corriente en el verano.
-      tokens: [{surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: 'no', lexeme: 'no'}, {surface: tengan, lexeme: tener, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: 'no', lexeme: 'no'}, {surface: tengan, lexeme: tener, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 10}]
       reverse: Me preocupa que [ustedes] no tengan (corriente|luz) en el verano
   translations:
     en: |-
@@ -296,7 +296,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior hizo tres horas de cola para comprar pollo.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: hizo, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: tres, lexeme: tres}, {surface: horas, lexeme: hora, feats: {Number: Plur}}, {surface: de, lexeme: de}, {surface: cola, lexeme: cola, feats: {Number: Sing}}, {surface: para, lexeme: para}, {surface: comprar, lexeme: comprar, feats: {VerbForm: Inf}}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: hizo, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: tres, lexeme: tres}, {surface: horas, lexeme: hora, feats: {Number: Plur}}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: cola, lexeme: cola, feats: {Number: Sing}, n: 6}, {surface: para, lexeme: para}, {surface: comprar, lexeme: comprar, feats: {VerbForm: Inf}}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}]
       reverse: Yunior (hizo (tres|3) horas de cola|estuvo (tres|3) horas en la cola) para comprar pollo
   translations:
     en: |-
@@ -308,7 +308,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Me preocupa que el paquete no llegue antes de Navidad.
-      tokens: [{surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 5}, {surface: 'no', lexeme: 'no'}, {surface: llegue, lexeme: llegar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: antes, lexeme: antes}, {surface: de, lexeme: de}, {surface: Navidad, lexeme: navidad, feats: {Gender: Fem}}]
+      tokens: [{surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: paquete, lexeme: paquete, feats: {Number: Sing}, n: 5}, {surface: 'no', lexeme: 'no'}, {surface: llegue, lexeme: llegar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: antes, lexeme: antes}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Navidad, lexeme: navidad, feats: {Gender: Fem}, n: 10}]
       reverse: Me preocupa que el paquete no llegue antes de [la] Navidad
   translations:
     en: |-
@@ -333,7 +333,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Abuela le preocupa que Marisol no tenga medicinas para la presión.
-      tokens: [{surface: A, lexeme: a}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: tenga, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: medicinas, lexeme: medicina, feats: {Number: Plur}}, {surface: para, lexeme: para}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: presión, lexeme: presión, feats: {Number: Sing}, n: 12}]
+      tokens: [{surface: A, lexeme: a, n: 1, head: 2, rel: case}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}, n: 2}, {surface: le, lexeme: le}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: tenga, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: medicinas, lexeme: medicina, feats: {Number: Plur}}, {surface: para, lexeme: para, n: 10, head: 12, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: presión, lexeme: presión, feats: {Number: Sing}, n: 12}]
       reverse: A (Abuela|la abuela|mi abuela) le preocupa que (Marisol|tía Marisol) no tenga (medicinas|medicina|pastillas) para la presión
   translations:
     en: |-
@@ -373,7 +373,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Dudo que Yunior tenga wifi en su casa.
-      tokens: [{surface: Dudo, lexeme: dudar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Yunior, lexeme: yunior}, {surface: tenga, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Dudo, lexeme: dudar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Yunior, lexeme: yunior}, {surface: tenga, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: wifi, lexeme: wifi, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 8}]
       reverse: '[Yo] dudo que Yunior tenga wifi en (su casa|la casa|casa)'
   translations:
     en: I doubt [that] Yunior has wifi (at home|at his house|in his house).
@@ -404,7 +404,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es posible que Yunior venga a Miami el año que viene.
-      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: Yunior, lexeme: yunior}, {surface: venga, lexeme: venir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: año, lexeme: año, feats: {Number: Sing}, n: 9}, {surface: que, lexeme: que}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: Yunior, lexeme: yunior}, {surface: venga, lexeme: venir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 6, head: 7, rel: case}, {surface: Miami, lexeme: miami, n: 7}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: año, lexeme: año, feats: {Number: Sing}, n: 9}, {surface: que, lexeme: que}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       reverse: (Es posible|Puede) que Yunior venga a Miami (el año que viene|el próximo año|el año próximo)
   translations:
     en: |-
@@ -437,7 +437,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es domingo. Daniel y Abuela hacen una videollamada a La Habana.
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: Daniel, lexeme: daniel}, {surface: y, lexeme: y}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: hacen, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}, n: 8}, {surface: a, lexeme: a}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 11}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: Daniel, lexeme: daniel}, {surface: y, lexeme: y}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: hacen, lexeme: hacer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}, n: 8}, {surface: a, lexeme: a, n: 9, head: 11, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 11}]
       translations:
         en: It's Sunday. Daniel and Grandma are making a video call to Havana.
   - line:
@@ -466,7 +466,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Bien, pero anoche hubo un apagón de diez horas.
-          tokens: [{surface: Bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: anoche, lexeme: anoche}, {surface: hubo, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: apagón, lexeme: apagón, feats: {Number: Sing}, n: 6}, {surface: de, lexeme: de}, {surface: diez, lexeme: diez}, {surface: horas, lexeme: hora, feats: {Number: Plur}}]
+          tokens: [{surface: Bien, lexeme: bien}, {surface: pero, lexeme: pero}, {surface: anoche, lexeme: anoche}, {surface: hubo, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: apagón, lexeme: apagón, feats: {Number: Sing}, n: 6}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: diez, lexeme: diez, n: 8}, {surface: horas, lexeme: hora, feats: {Number: Plur}}]
       translations:
         en: Fine, but last night there was a ten-hour blackout.
   - line:
@@ -474,7 +474,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Ay, mi'ja! Me preocupa que no tengan corriente con este calor.
-          tokens: [{surface: Ay, lexeme: ay}, {surface: mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: tengan, lexeme: tener, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: calor, lexeme: calor, feats: {Number: Sing}, n: 11}]
+          tokens: [{surface: Ay, lexeme: ay}, {surface: mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: Me, lexeme: me}, {surface: preocupa, lexeme: preocupar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: tengan, lexeme: tener, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}}, {surface: con, lexeme: con, n: 9, head: 11, rel: case}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: calor, lexeme: calor, feats: {Number: Sing}, n: 11}]
       translations:
         en: Oh, honey! I worry that you have no power in this heat.
   - line:
@@ -559,7 +559,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ahora sí te vemos. Mi'ja, siento mucho que no puedas venir a la Nochebuena.
-          tokens: [{surface: Ahora, lexeme: ahora}, {surface: sí, lexeme: sí}, {surface: te, lexeme: te}, {surface: vemos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: siento, lexeme: sentir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: puedas, lexeme: poder, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: venir, lexeme: venir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 13, head: 14, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 14}]
+          tokens: [{surface: Ahora, lexeme: ahora}, {surface: sí, lexeme: sí}, {surface: te, lexeme: te}, {surface: vemos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: siento, lexeme: sentir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: puedas, lexeme: poder, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: venir, lexeme: venir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 12, head: 14, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 13, head: 14, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 14}]
       translations:
         en: Now we can see you. Honey, I'm so sorry you can't come for Christmas Eve.
   - line:
@@ -576,7 +576,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es posible que yo vaya a Cuba en el verano.
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: yo, lexeme: yo}, {surface: vaya, lexeme: ir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 10}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: yo, lexeme: yo}, {surface: vaya, lexeme: ir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 6, head: 7, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 7}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 9, head: 10, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 10}]
       translations:
         en: I might go to Cuba in the summer.
   - line:
@@ -600,7 +600,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y en ese momento, se cayó la llamada.
-          tokens: [{surface: Y, lexeme: y}, {surface: en, lexeme: en}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: momento, lexeme: momento, feats: {Number: Sing}, n: 4}, {surface: se, lexeme: se}, {surface: cayó, lexeme: caerse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: Y, lexeme: y}, {surface: en, lexeme: en, n: 2, head: 4, rel: case}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: momento, lexeme: momento, feats: {Number: Sing}, n: 4}, {surface: se, lexeme: se}, {surface: cayó, lexeme: caerse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: llamada, lexeme: llamada, feats: {Number: Sing}, n: 8}]
       translations:
         en: And at that moment, the call dropped.
   - choose:

@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela Cachita siempre habla con refranes cuando está en la cocina.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: siempre, lexeme: siempre}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: refranes, lexeme: refrán, feats: {Number: Plur}}, {surface: cuando, lexeme: cuando}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 11}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: siempre, lexeme: siempre}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: refranes, lexeme: refrán, feats: {Number: Plur}, n: 6}, {surface: cuando, lexeme: cuando}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 9, head: 11, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 11}]
       reverse: |-
         (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) siempre habla (con|en) refranes cuando está en la cocina
         Cuando está en la cocina (abuela Cachita|la abuela Cachita|mi abuela Cachita) siempre habla (con|en) refranes
@@ -33,7 +33,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ayer Yasiel se durmió en la guagua y llegó tarde al trabajo.
-      tokens: [{surface: Ayer, lexeme: ayer}, {surface: Yasiel, lexeme: yasiel}, {surface: se, lexeme: se}, {surface: durmió, lexeme: dormirse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 7}, {surface: y, lexeme: y}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: al, lexeme: al}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}}]
+      tokens: [{surface: Ayer, lexeme: ayer}, {surface: Yasiel, lexeme: yasiel}, {surface: se, lexeme: se}, {surface: durmió, lexeme: dormirse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 7}, {surface: y, lexeme: y}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: al, lexeme: al, n: 11, head: 12, rel: case}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 12}]
       reverse: |-
         Ayer Yasiel se durmió en (la guagua|el autobús|el bus) y llegó tarde al trabajo
         Yasiel se durmió en (la guagua|el autobús|el bus) ayer y llegó tarde al trabajo
@@ -46,7 +46,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La corriente del río se llevó la pelota de Lili.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}, n: 2}, {surface: del, lexeme: del}, {surface: río, lexeme: río, feats: {Number: Sing}}, {surface: se, lexeme: se}, {surface: llevó, lexeme: llevarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}, n: 2}, {surface: del, lexeme: del, n: 3, head: 4, rel: case}, {surface: río, lexeme: río, feats: {Number: Sing}, n: 4}, {surface: se, lexeme: se}, {surface: llevó, lexeme: llevarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 10}]
       reverse: La corriente del río se llevó la pelota de Lili
   translations:
     en: The (current|river current|current of the river|river's current) (carried|took|swept) (away Lili's ball|Lili's ball away).
@@ -75,7 +75,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Gracias por el cafecito, abuela. Este regalo es para ti.
-      tokens: [{surface: Gracias, lexeme: gracias}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 4}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: regalo, lexeme: regalo, feats: {Number: Sing}, n: 7}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: ti, lexeme: ti}]
+      tokens: [{surface: Gracias, lexeme: gracias}, {surface: por, lexeme: por, n: 2, head: 4, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 4}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: regalo, lexeme: regalo, feats: {Number: Sing}, n: 7}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para, n: 9, head: 10, rel: case}, {surface: ti, lexeme: ti, n: 10}]
       reverse: '[Muchas] gracias por el (cafecito|café) (abuela|abuelita) este regalo es para ti'
   translations:
     en: (Thanks|Thank you) for the (coffee|Cuban coffee|cafecito), (Grandma|Grandmother|Abuela). This (present|gift) is for you.
@@ -84,7 +84,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili estudia por la noche para el examen del lunes.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: estudia, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 5}, {surface: para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 8}, {surface: del, lexeme: del}, {surface: lunes, lexeme: lunes, feats: {Number: Sing}}]
+      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: estudia, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 5}, {surface: para, lexeme: para, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 8}, {surface: del, lexeme: del, n: 9, head: 10, rel: case}, {surface: lunes, lexeme: lunes, feats: {Number: Sing}, n: 10}]
       reverse: |-
         Lili estudia (por la noche|en la noche|de noche) para el examen del lunes
         Lili estudia para el examen del lunes (por la noche|en la noche|de noche)
@@ -106,7 +106,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ayer pasamos por la Calle Ocho para comprar café.
-      tokens: [{surface: Ayer, lexeme: ayer}, {surface: pasamos, lexeme: pasar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 5}, {surface: Ocho, lexeme: calle-ocho}, {surface: para, lexeme: para}, {surface: comprar, lexeme: comprar, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      tokens: [{surface: Ayer, lexeme: ayer}, {surface: pasamos, lexeme: pasar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 5}, {surface: Ocho, lexeme: calle-ocho}, {surface: para, lexeme: para}, {surface: comprar, lexeme: comprar, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
       reverse: |-
         Ayer [nosotros] pasamos por [la] Calle Ocho para comprar café
         [Nosotros] pasamos por [la] Calle Ocho ayer para comprar café
@@ -119,7 +119,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Compré este pulóver por diez dólares para Yunior.
-      tokens: [{surface: Compré, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 3}, {surface: por, lexeme: por}, {surface: diez, lexeme: diez}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}, {surface: para, lexeme: para}, {surface: Yunior, lexeme: yunior}]
+      tokens: [{surface: Compré, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 3}, {surface: por, lexeme: por, n: 4, head: 5, rel: case}, {surface: diez, lexeme: diez, n: 5}, {surface: dólares, lexeme: dólar, feats: {Number: Plur}}, {surface: para, lexeme: para, n: 7, head: 8, rel: case}, {surface: Yunior, lexeme: yunior, n: 8}]
       reverse: |-
         [Yo] compré este (pulóver|pullover) por diez dólares para Yunior
         [Yo] compré este (pulóver|pullover) para Yunior por diez dólares
@@ -133,7 +133,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Para mí, el café de abuela es el mejor de Miami.
-      tokens: [{surface: Para, lexeme: para}, {surface: mí, lexeme: mí}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de}, {surface: Miami, lexeme: miami}]
+      tokens: [{surface: Para, lexeme: para, n: 1, head: 2, rel: case}, {surface: mí, lexeme: mí, n: 2}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 6}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: de, lexeme: de, n: 10, head: 11, rel: case}, {surface: Miami, lexeme: miami, n: 11}]
       reverse: |-
         Para mí el café de (abuela|la abuela|mi abuela) es el mejor de Miami
         El café de (abuela|la abuela|mi abuela) es el mejor de Miami para mí
@@ -146,7 +146,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lo hago por ti, no por mí.
-      tokens: [{surface: Lo, lexeme: lo}, {surface: hago, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: ti, lexeme: ti}, {surface: 'no', lexeme: 'no'}, {surface: por, lexeme: por}, {surface: mí, lexeme: mí}]
+      tokens: [{surface: Lo, lexeme: lo}, {surface: hago, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 4, rel: case}, {surface: ti, lexeme: ti, n: 4}, {surface: 'no', lexeme: 'no'}, {surface: por, lexeme: por, n: 6, head: 7, rel: case}, {surface: mí, lexeme: mí, n: 7}]
       reverse: '[Yo] lo hago por (ti|usted|ustedes) no por mí'
   translations:
     en: |-
@@ -157,7 +157,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela habla con refranes para que nosotros aprendamos.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: refranes, lexeme: refrán, feats: {Number: Plur}}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: aprendamos, lexeme: aprender, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: refranes, lexeme: refrán, feats: {Number: Plur}, n: 4}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: aprendamos, lexeme: aprender, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}]
       reverse: (Abuela|La abuela|Mi abuela) habla (con|en) refranes para que [nosotros] aprendamos
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) (talks|speaks) in (sayings|proverbs|refranes) so [that] we (learn|will learn|can learn).
@@ -215,7 +215,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe madruga todos los días para ir al parque.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: madruga, lexeme: madrugar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 4, head: 6, rel: det}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: días, lexeme: día, feats: {Number: Plur}, n: 6}, {surface: para, lexeme: para}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: al, lexeme: al}, {surface: parque, lexeme: parque, feats: {Number: Sing}}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: madruga, lexeme: madrugar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 4, head: 6, rel: det}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: días, lexeme: día, feats: {Number: Plur}, n: 6}, {surface: para, lexeme: para}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: al, lexeme: al, n: 9, head: 10, rel: case}, {surface: parque, lexeme: parque, feats: {Number: Sing}, n: 10}]
       reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) madruga todos los días para ir al parque
   translations:
     en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe gets up (early|very early|at dawn) every day to go to the park.
@@ -262,7 +262,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior llegó tarde a la fiesta, pero más vale tarde que nunca.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: fiesta, lexeme: fiesta, feats: {Number: Sing}, n: 6}, {surface: pero, lexeme: pero}, {surface: más, lexeme: más}, {surface: vale, lexeme: valer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: que, lexeme: que.than}, {surface: nunca, lexeme: nunca}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: llegó, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: fiesta, lexeme: fiesta, feats: {Number: Sing}, n: 6}, {surface: pero, lexeme: pero}, {surface: más, lexeme: más}, {surface: vale, lexeme: valer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: que, lexeme: que.than}, {surface: nunca, lexeme: nunca}]
       reverse: Yunior llegó tarde a la fiesta pero más vale tarde que nunca
   translations:
     en: |-
@@ -273,7 +273,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Más sabe el diablo por viejo que por diablo.
-      tokens: [{surface: Más, lexeme: más}, {surface: sabe, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: diablo, lexeme: diablo, feats: {Number: Sing}, n: 4}, {surface: por, lexeme: por}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: por, lexeme: por}, {surface: diablo, lexeme: diablo, feats: {Number: Sing}}]
+      tokens: [{surface: Más, lexeme: más}, {surface: sabe, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: diablo, lexeme: diablo, feats: {Number: Sing}, n: 4}, {surface: por, lexeme: por}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: por, lexeme: por, n: 8, head: 9, rel: case}, {surface: diablo, lexeme: diablo, feats: {Number: Sing}, n: 9}]
       reverse: Más sabe el diablo por viejo que por diablo
   translations:
     en: |-
@@ -285,7 +285,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel anda con Yasiel por la Calle Ocho los sábados.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: anda, lexeme: andar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: Yasiel, lexeme: yasiel}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 7}, {surface: Ocho, lexeme: calle-ocho}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 9, head: 10, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 10}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: anda, lexeme: andar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: Yasiel, lexeme: yasiel, n: 4}, {surface: por, lexeme: por, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 7}, {surface: Ocho, lexeme: calle-ocho}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 9, head: 10, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 10}]
       reverse: |-
         Daniel anda con Yasiel por [la] Calle Ocho los sábados
         Los sábados Daniel anda con Yasiel por [la] Calle Ocho
@@ -298,7 +298,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Dime con quién andas y te diré quién eres.
-      tokens: [{surface: Dime, lexeme: decir, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: quién, lexeme: quién}, {surface: andas, lexeme: andar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: te, lexeme: te}, {surface: diré, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: quién, lexeme: quién}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Dime, lexeme: decir, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: con, lexeme: con, n: 2, head: 3, rel: case}, {surface: quién, lexeme: quién, n: 3}, {surface: andas, lexeme: andar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: te, lexeme: te}, {surface: diré, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: quién, lexeme: quién}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       reverse: Dime con quién andas y te (diré|digo) quién eres
   translations:
     en: |-
@@ -356,7 +356,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En casa del herrero, cuchillo de palo.
-      tokens: [{surface: En, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: del, lexeme: del}, {surface: herrero, lexeme: herrero, feats: {Number: Sing}}, {surface: cuchillo, lexeme: cuchillo, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: palo, lexeme: palo, feats: {Number: Sing}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 2}, {surface: del, lexeme: del, n: 3, head: 4, rel: case}, {surface: herrero, lexeme: herrero, feats: {Number: Sing}, n: 4}, {surface: cuchillo, lexeme: cuchillo, feats: {Number: Sing}}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: palo, lexeme: palo, feats: {Number: Sing}, n: 7}]
       reverse: En casa (del|de) herrero cuchillo de palo
   translations:
     en: |-
@@ -370,7 +370,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Con ese pulóver nuevo, Yunior está en talla.
-      tokens: [{surface: Con, lexeme: con}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 3}, {surface: nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: Yunior, lexeme: yunior}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: talla, lexeme: talla, feats: {Number: Sing}}]
+      tokens: [{surface: Con, lexeme: con, n: 1, head: 3, rel: case}, {surface: ese, lexeme: ese, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pulóver, lexeme: pulóver, feats: {Number: Sing}, n: 3}, {surface: nuevo, lexeme: nuevo, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: Yunior, lexeme: yunior}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 7, head: 8, rel: case}, {surface: talla, lexeme: talla, feats: {Number: Sing}, n: 8}]
       reverse: |-
         Con ese (pulóver|pullover) nuevo Yunior está en talla
         Yunior está en talla con ese (pulóver|pullover) nuevo
@@ -425,7 +425,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando hablan en inglés, abuela está en el aire.
-      tokens: [{surface: Cuando, lexeme: cuando}, {surface: hablan, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: inglés, lexeme: inglés, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: aire, lexeme: aire, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: hablan, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 4, rel: case}, {surface: inglés, lexeme: inglés, feats: {Number: Sing}, n: 4}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: aire, lexeme: aire, feats: {Number: Sing}, n: 9}]
       reverse: |-
         Cuando hablan en inglés (abuela|la abuela|mi abuela) está en el aire
         (Abuela|La abuela|Mi abuela) está en el aire cuando hablan en inglés
@@ -440,7 +440,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior me dio muela dos horas por teléfono.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: me, lexeme: me}, {surface: dio, lexeme: dar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: muela, lexeme: muela, feats: {Number: Sing}}, {surface: dos, lexeme: dos}, {surface: horas, lexeme: hora, feats: {Number: Plur}}, {surface: por, lexeme: por}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: me, lexeme: me}, {surface: dio, lexeme: dar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: muela, lexeme: muela, feats: {Number: Sing}}, {surface: dos, lexeme: dos}, {surface: horas, lexeme: hora, feats: {Number: Plur}}, {surface: por, lexeme: por, n: 7, head: 8, rel: case}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}, n: 8}]
       reverse: |-
         Yunior me dio muela (dos horas|por dos horas|durante dos horas) por teléfono
         Yunior me dio muela por teléfono (dos horas|por dos horas|durante dos horas)
@@ -473,7 +473,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es sábado por la mañana. Lili estudia en la cocina para un examen.
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: estudia, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 10}, {surface: para, lexeme: para}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 13}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: estudia, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 10}, {surface: para, lexeme: para, n: 11, head: 13, rel: case}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 13}]
       translations:
         en: It's Saturday morning. Lili is studying in the kitchen for an exam.
   - line:
@@ -496,7 +496,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel se levanta tarde y llega a la cocina.
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: se, lexeme: se}, {surface: levanta, lexeme: levantarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: y, lexeme: y}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 9}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: se, lexeme: se}, {surface: levanta, lexeme: levantarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tarde, lexeme: tarde}, {surface: y, lexeme: y}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 7, head: 9, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 9}]
       translations:
         en: Daniel gets up late and comes into the kitchen.
   - line:
@@ -541,7 +541,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Aquí está tu cafecito, mi'jo. Lo hice para ti.
-          tokens: [{surface: Aquí, lexeme: aquí}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 4}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Lo, lexeme: lo}, {surface: hice, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: ti, lexeme: ti}]
+          tokens: [{surface: Aquí, lexeme: aquí}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 4}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Lo, lexeme: lo}, {surface: hice, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: para, lexeme: para, n: 8, head: 9, rel: case}, {surface: ti, lexeme: ti, n: 9}]
       translations:
         en: Here's your coffee, sweetheart. I made it for you.
   - line:
@@ -550,7 +550,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Gracias por el cafecito, abuela!
-          tokens: [{surface: Gracias, lexeme: gracias}, {surface: por, lexeme: por}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 4}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+          tokens: [{surface: Gracias, lexeme: gracias}, {surface: por, lexeme: por, n: 2, head: 4, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 4}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       translations:
         en: Thanks for the coffee, Grandma!
   - line:
@@ -558,7 +558,7 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Daniel, ¿tú me tiras un cabo? Es un examen de español: por y para.'
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: tú, lexeme: tú}, {surface: me, lexeme: me}, {surface: tiras, lexeme: tirar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: cabo, lexeme: cabo, feats: {Number: Sing}, n: 6}, {surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 9}, {surface: de, lexeme: de}, {surface: español, lexeme: español, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: y, lexeme: y}, {surface: para, lexeme: para}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: tú, lexeme: tú}, {surface: me, lexeme: me}, {surface: tiras, lexeme: tirar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: cabo, lexeme: cabo, feats: {Number: Sing}, n: 6}, {surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 9}, {surface: de, lexeme: de, n: 10, head: 11, rel: case}, {surface: español, lexeme: español, feats: {Number: Sing}, n: 11}, {surface: por, lexeme: por}, {surface: y, lexeme: y}, {surface: para, lexeme: para}]
       translations:
         en: 'Daniel, can you give me a hand? It''s a Spanish exam: por and para.'
   - line:
@@ -566,7 +566,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Por y para? Ay, Lili, ahí yo estoy en el aire.
-          tokens: [{surface: Por, lexeme: por}, {surface: y, lexeme: y}, {surface: para, lexeme: para}, {surface: Ay, lexeme: ay}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: ahí, lexeme: ahí}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: aire, lexeme: aire, feats: {Number: Sing}, n: 11}]
+          tokens: [{surface: Por, lexeme: por}, {surface: y, lexeme: y}, {surface: para, lexeme: para}, {surface: Ay, lexeme: ay}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: ahí, lexeme: ahí}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 9, head: 11, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: aire, lexeme: aire, feats: {Number: Sing}, n: 11}]
       translations:
         en: Por and para? Oh, Lili, I'm lost there.
   - choose:
@@ -582,7 +582,7 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Mira, mi''ja: yo trabajé mucho por ustedes, para que ustedes estudien.'
-          tokens: [{surface: Mira, lexeme: mirar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: yo, lexeme: yo}, {surface: trabajé, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: por, lexeme: por}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: estudien, lexeme: estudiar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Mira, lexeme: mirar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mi'ja, lexeme: mijo, feats: {Gender: Fem, Number: Sing}}, {surface: yo, lexeme: yo}, {surface: trabajé, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: por, lexeme: por, n: 6, head: 7, rel: case}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}, n: 7}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: estudien, lexeme: estudiar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: 'Look, sweetie: I worked hard for all of you, so that you could study.'
   - line:
@@ -595,7 +595,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Gracias, abuela! Ahora yo estoy en talla con por y para.
-          tokens: [{surface: Gracias, lexeme: gracias}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Ahora, lexeme: ahora}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: talla, lexeme: talla, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: por, lexeme: por}, {surface: y, lexeme: y}, {surface: para, lexeme: para}]
+          tokens: [{surface: Gracias, lexeme: gracias}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Ahora, lexeme: ahora}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 7, rel: case}, {surface: talla, lexeme: talla, feats: {Number: Sing}, n: 7}, {surface: con, lexeme: con}, {surface: por, lexeme: por}, {surface: y, lexeme: y}, {surface: para, lexeme: para}]
       translations:
         en: Thanks, Grandma! Now I'm on top of por and para.
   - line:
@@ -620,7 +620,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Ay, este niño! Más sabe el diablo por viejo que por diablo.
-          tokens: [{surface: Ay, lexeme: ay}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}, n: 3}, {surface: Más, lexeme: más}, {surface: sabe, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: diablo, lexeme: diablo, feats: {Number: Sing}, n: 7}, {surface: por, lexeme: por}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: por, lexeme: por}, {surface: diablo, lexeme: diablo, feats: {Number: Sing}}]
+          tokens: [{surface: Ay, lexeme: ay}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: niño, lexeme: niño, feats: {Gender: Masc, Number: Sing}, n: 3}, {surface: Más, lexeme: más}, {surface: sabe, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: diablo, lexeme: diablo, feats: {Number: Sing}, n: 7}, {surface: por, lexeme: por}, {surface: viejo, lexeme: viejo, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: por, lexeme: por, n: 11, head: 12, rel: case}, {surface: diablo, lexeme: diablo, feats: {Number: Sing}, n: 12}]
       translations:
         en: Oh, this boy! With age comes wisdom.
   - choose:

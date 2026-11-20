@@ -46,7 +46,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַחַר הַדְּבָרִים הָאֵלֶּה
-      tokens: [{surface: אַחַר, lexeme: ahar, readings: {tiberian: ʾaḥar}}, {surface: הַדְּבָרִים, lexemes: [{lexeme: ha, surface: הַ, n: 2, head: 3, rel: det}, {lexeme: davar, surface: דְּבָרִים, base: true, feats: {Number: Plur}, n: 3}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: elleh, surface: אֵלֶּה, base: true, feats: {Number: Plur}}], readings: {tiberian: hāʾḗlleh}}]
+      tokens: [{surface: אַחַר, lexeme: ahar, n: 1, head: 3, rel: case, readings: {tiberian: ʾaḥar}}, {surface: הַדְּבָרִים, lexemes: [{lexeme: ha, surface: הַ, n: 2, head: 3, rel: det}, {lexeme: davar, surface: דְּבָרִים, base: true, feats: {Number: Plur}, n: 3}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: elleh, surface: אֵלֶּה, base: true, feats: {Number: Plur}}], readings: {tiberian: hāʾḗlleh}}]
       reverse: אחר הדברים האלה
   translations:
     en: |-
@@ -58,7 +58,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַבְרָהָם
-      tokens: [{surface: אַבְרָהָם, lexeme: avraham, feats: {Number: Sing}, readings: {tiberian: ʾaḇrāhām}}]
+      tokens: [{surface: אַבְרָהָם, lexeme: avraham, readings: {tiberian: ʾaḇrāhām}}]
       reverse: אברהם
   translations:
     en: Abraham
@@ -67,7 +67,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וְהָאֱלֹהִים נִסָּה אֶת־אַבְרָהָם׃
-      tokens: [{surface: וְהָאֱלֹהִים, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: elohim, surface: אֱלֹהִים, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: wəhāʾĕlōhîm}}, {surface: נִסָּה, lexeme: nissah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: nissâ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: אַבְרָהָם, lexeme: avraham, feats: {Number: Sing}, readings: {tiberian: ʾaḇrāhām}}]
+      tokens: [{surface: וְהָאֱלֹהִים, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: elohim, surface: אֱלֹהִים, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: wəhāʾĕlōhîm}}, {surface: נִסָּה, lexeme: nissah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: nissâ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: אַבְרָהָם, lexeme: avraham, readings: {tiberian: ʾaḇrāhām}}]
       reverse: (והאלהים|והאלוהים) נסה את אברהם
   translations:
     en: |-
@@ -276,7 +276,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: יִצְחָק
-      tokens: [{surface: יִצְחָק, lexeme: yitshaq, feats: {Number: Sing}, readings: {tiberian: yiṣḥāq}}]
+      tokens: [{surface: יִצְחָק, lexeme: yitshaq, readings: {tiberian: yiṣḥāq}}]
       reverse: יצחק
   translations:
     en: Isaac
@@ -287,7 +287,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: קַח אֶת־יִצְחָק בִּנְךָ׃
-      tokens: [{surface: קַח, lexeme: laqach, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qaḥ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: יִצְחָק, lexeme: yitshaq, feats: {Number: Sing}, readings: {tiberian: yiṣḥāq}}, {surface: בִּנְךָ, lexemes: [{lexeme: ben, surface: בִּנְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: binḵā}}]
+      tokens: [{surface: קַח, lexeme: laqach, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qaḥ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: יִצְחָק, lexeme: yitshaq, readings: {tiberian: yiṣḥāq}}, {surface: בִּנְךָ, lexemes: [{lexeme: ben, surface: בִּנְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: binḵā}}]
       reverse: קח את יצחק בנך
   translations:
     en: |-
@@ -343,7 +343,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיֵּלֶךְ אַבְרָהָם אֶל־הָהָר׃
-      tokens: [{surface: וַיֵּלֶךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗleḵ}}, {surface: אַבְרָהָם, lexeme: avraham, feats: {Number: Sing}, readings: {tiberian: ʾaḇrāhām}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָהָר, lexemes: [{lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: har, surface: הָר, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: hāhār}}]
+      tokens: [{surface: וַיֵּלֶךְ, lexeme: halakh, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyḗleḵ}}, {surface: אַבְרָהָם, lexeme: avraham, readings: {tiberian: ʾaḇrāhām}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָהָר, lexemes: [{lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: har, surface: הָר, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: hāhār}}]
       reverse: וילך אברהם אל ההר
   translations:
     en: '[(And|So|Then)] Abraham went to the (mountain|hill).'
@@ -363,7 +363,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עַל אַחַד הֶהָרִים
-      tokens: [{surface: עַל, lexeme: al, readings: {tiberian: ʿal}}, {surface: אַחַד, lexeme: ehad, readings: {tiberian: ʾaḥaḏ}}, {surface: הֶהָרִים, lexemes: [{lexeme: ha, surface: הֶ, n: 3, head: 4, rel: det}, {lexeme: har, surface: הָרִים, base: true, feats: {Number: Plur}, n: 4}], readings: {tiberian: hehārîm}}]
+      tokens: [{surface: עַל, lexeme: al, n: 1, head: 2, rel: case, readings: {tiberian: ʿal}}, {surface: אַחַד, lexeme: ehad, n: 2, readings: {tiberian: ʾaḥaḏ}}, {surface: הֶהָרִים, lexemes: [{lexeme: ha, surface: הֶ, n: 3, head: 4, rel: det}, {lexeme: har, surface: הָרִים, base: true, feats: {Number: Plur}, n: 4}], readings: {tiberian: hehārîm}}]
       reverse: על אחד ההרים
   translations:
     en: on one of the (mountains|hills)
@@ -372,7 +372,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֶרֶץ הַמֹּרִיָּה
-      tokens: [{surface: אֶרֶץ, lexeme: erets, feats: {Number: Sing}, readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, lexemes: [{lexeme: ha, surface: הַ, n: 2, head: 3, rel: det}, {lexeme: moriyyah, surface: מֹּרִיָּה, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hammōriyyâ}}]
+      tokens: [{surface: אֶרֶץ, lexeme: erets, feats: {Number: Sing}, readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, lexemes: [{lexeme: ha, surface: הַ, n: 2, head: 3, rel: det}, {lexeme: moriyyah, surface: מֹּרִיָּה, base: true, n: 3}], readings: {tiberian: hammōriyyâ}}]
       reverse: ארץ (המריה|המוריה)
   translations:
     en: the land of Moriah
@@ -423,7 +423,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֱלֹהִים יִרְאֶה־לּוֹ הַשֶּׂה׃
-      tokens: [{surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: יִרְאֶה, lexeme: raah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yirʾeh-}}, {surface: לּוֹ, lexemes: [{lexeme: le, surface: לּ, base: true}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: lô}}, {surface: הַשֶּׂה, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: seh, surface: שֶּׂה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: haśśeh}}]
+      tokens: [{surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: יִרְאֶה, lexeme: raah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yirʾeh-}}, {surface: לּוֹ, lexemes: [{lexeme: le, surface: לּ, base: true, n: 3, head: 4, rel: case}, {lexeme: sfx-3ms, surface: וֹ, n: 4}], readings: {tiberian: lô}}, {surface: הַשֶּׂה, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: seh, surface: שֶּׂה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: haśśeh}}]
       reverse: (אלהים|אלוהים) יראה לו השה
   translations:
     en: |-
@@ -482,14 +482,14 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיְהִי אַחַר הַדְּבָרִים הָאֵלֶּה וְהָאֱלֹהִים נִסָּה אֶת־אַבְרָהָם׃
-          tokens: [{surface: וַיְהִי, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayhî}}, {surface: אַחַר, lexeme: ahar, readings: {tiberian: ʾaḥar}}, {surface: הַדְּבָרִים, lexemes: [{lexeme: ha, surface: הַ, n: 3, head: 4, rel: det}, {lexeme: davar, surface: דְּבָרִים, base: true, feats: {Number: Plur}, n: 4}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: elleh, surface: אֵלֶּה, base: true, feats: {Number: Plur}}], readings: {tiberian: hāʾḗlleh}}, {surface: וְהָאֱלֹהִים, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ, n: 8, head: 9, rel: det}, {lexeme: elohim, surface: אֱלֹהִים, base: true, feats: {Number: Sing}, n: 9}], readings: {tiberian: wəhāʾĕlōhîm}}, {surface: נִסָּה, lexeme: nissah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: nissâ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: אַבְרָהָם, lexeme: avraham, feats: {Number: Sing}, readings: {tiberian: ʾaḇrāhām}}]
+          tokens: [{surface: וַיְהִי, lexeme: hayah, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayhî}}, {surface: אַחַר, lexeme: ahar, n: 2, head: 4, rel: case, readings: {tiberian: ʾaḥar}}, {surface: הַדְּבָרִים, lexemes: [{lexeme: ha, surface: הַ, n: 3, head: 4, rel: det}, {lexeme: davar, surface: דְּבָרִים, base: true, feats: {Number: Plur}, n: 4}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, lexemes: [{lexeme: ha, surface: הָ}, {lexeme: elleh, surface: אֵלֶּה, base: true, feats: {Number: Plur}}], readings: {tiberian: hāʾḗlleh}}, {surface: וְהָאֱלֹהִים, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ, n: 8, head: 9, rel: det}, {lexeme: elohim, surface: אֱלֹהִים, base: true, feats: {Number: Sing}, n: 9}], readings: {tiberian: wəhāʾĕlōhîm}}, {surface: נִסָּה, lexeme: nissah, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: nissâ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: אַבְרָהָם, lexeme: avraham, readings: {tiberian: ʾaḇrāhām}}]
       translations:
         en: After these things God tested Abraham.
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר אֵלָיו
-          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: אֵלָיו, lexemes: [{lexeme: el, surface: אֵלָי, base: true}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾēlāyw}}]
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: אֵלָיו, lexemes: [{lexeme: el, surface: אֵלָי, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-3ms, surface: ו, n: 3}], readings: {tiberian: ʾēlāyw}}]
       translations:
         en: And he said to him,
   - line:
@@ -497,7 +497,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: אַבְרָהָם
-          tokens: [{surface: אַבְרָהָם, lexeme: avraham, feats: {Number: Sing}, readings: {tiberian: ʾaḇrāhām}}]
+          tokens: [{surface: אַבְרָהָם, lexeme: avraham, readings: {tiberian: ʾaḇrāhām}}]
       translations:
         en: “Abraham!”
   - line:
@@ -532,7 +532,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: קַח־נָא אֶת־בִּנְךָ אֶת־יְחִידְךָ אֲשֶׁר־אָהַבְתָּ אֶת־יִצְחָק
-          tokens: [{surface: קַח, lexeme: laqach, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qaḥ-}}, {surface: נָא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: בִּנְךָ, lexemes: [{lexeme: ben, surface: בִּנְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: binḵā}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: יְחִידְךָ, lexemes: [{lexeme: yahid, surface: יְחִידְ, base: true, feats: {Gender: Masc, Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: yəḥîḏəḵā}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer-}}, {surface: אָהַבְתָּ, lexeme: ahav, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʾāháḇtā}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: יִצְחָק, lexeme: yitshaq, feats: {Number: Sing}, readings: {tiberian: yiṣḥāq}}]
+          tokens: [{surface: קַח, lexeme: laqach, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: qaḥ-}}, {surface: נָא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: בִּנְךָ, lexemes: [{lexeme: ben, surface: בִּנְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: binḵā}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: יְחִידְךָ, lexemes: [{lexeme: yahid, surface: יְחִידְ, base: true, feats: {Gender: Masc, Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: yəḥîḏəḵā}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer-}}, {surface: אָהַבְתָּ, lexeme: ahav, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: ʾāháḇtā}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: יִצְחָק, lexeme: yitshaq, readings: {tiberian: yiṣḥāq}}]
       translations:
         en: “Take your son, your only son, whom you love, Isaac,
   - line:
@@ -540,7 +540,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וְלֶךְ־לְךָ אֶל־אֶרֶץ הַמֹּרִיָּה
-          tokens: [{surface: וְלֶךְ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: halakh, surface: לֶךְ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}], readings: {tiberian: wəleḵ-}}, {surface: לְךָ, lexemes: [{lexeme: le, surface: לְ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ləḵā}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: אֶרֶץ, lexeme: erets, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: moriyyah, surface: מֹּרִיָּה, base: true, feats: {Number: Sing}, n: 8}], readings: {tiberian: hammōriyyâ}}]
+          tokens: [{surface: וְלֶךְ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: halakh, surface: לֶךְ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}], readings: {tiberian: wəleḵ-}}, {surface: לְךָ, lexemes: [{lexeme: le, surface: לְ, base: true, n: 3, head: 4, rel: case}, {lexeme: sfx-2ms, surface: ךָ, n: 4}], readings: {tiberian: ləḵā}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: אֶרֶץ, lexeme: erets, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: moriyyah, surface: מֹּרִיָּה, base: true, n: 8}], readings: {tiberian: hammōriyyâ}}]
       translations:
         en: and go to the land of Moriah,
   - line:
@@ -548,7 +548,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וְהַעֲלֵהוּ שָׁם לְעֹלָה עַל אַחַד הֶהָרִים אֲשֶׁר אֹמַר אֵלֶיךָ׃
-          tokens: [{surface: וְהַעֲלֵהוּ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: heelah, surface: הַעֲלֵ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wəhaʿălḗhû}}, {surface: שָׁם, lexeme: sham, readings: {tiberian: šām}}, {surface: לְעֹלָה, lexemes: [{lexeme: le, surface: לְ, n: 5, head: 6, rel: case}, {lexeme: olah, surface: עֹלָה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: ləʿōlâ}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal}}, {surface: אַחַד, lexeme: ehad, readings: {tiberian: ʾaḥaḏ}}, {surface: הֶהָרִים, lexemes: [{lexeme: ha, surface: הֶ, n: 9, head: 10, rel: det}, {lexeme: har, surface: הָרִים, base: true, feats: {Number: Plur}, n: 10}], readings: {tiberian: hehārîm}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: אֹמַר, lexeme: amar, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: ʾōmar}}, {surface: אֵלֶיךָ, lexemes: [{lexeme: el, surface: אֵלֶי, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ʾēlếḵā}}]
+          tokens: [{surface: וְהַעֲלֵהוּ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: heelah, surface: הַעֲלֵ, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wəhaʿălḗhû}}, {surface: שָׁם, lexeme: sham, readings: {tiberian: šām}}, {surface: לְעֹלָה, lexemes: [{lexeme: le, surface: לְ, n: 5, head: 6, rel: case}, {lexeme: olah, surface: עֹלָה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: ləʿōlâ}}, {surface: עַל, lexeme: al, n: 7, head: 8, rel: case, readings: {tiberian: ʿal}}, {surface: אַחַד, lexeme: ehad, n: 8, readings: {tiberian: ʾaḥaḏ}}, {surface: הֶהָרִים, lexemes: [{lexeme: ha, surface: הֶ, n: 9, head: 10, rel: det}, {lexeme: har, surface: הָרִים, base: true, feats: {Number: Plur}, n: 10}], readings: {tiberian: hehārîm}}, {surface: אֲשֶׁר, lexeme: asher, readings: {tiberian: ʾăšer}}, {surface: אֹמַר, lexeme: amar, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: ʾōmar}}, {surface: אֵלֶיךָ, lexemes: [{lexeme: el, surface: אֵלֶי, base: true, n: 13, head: 14, rel: case}, {lexeme: sfx-2ms, surface: ךָ, n: 14}], readings: {tiberian: ʾēlếḵā}}]
       translations:
         en: and offer him there as a burnt offering on one of the mountains that I will tell you of.”
   - choose:
@@ -563,7 +563,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר יִצְחָק אֶל־אַבְרָהָם אָבִיו וַיֹּאמֶר
-          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: יִצְחָק, lexeme: yitshaq, feats: {Number: Sing}, readings: {tiberian: yiṣḥāq}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: אַבְרָהָם, lexeme: avraham, feats: {Number: Sing}, readings: {tiberian: ʾaḇrāhām}}, {surface: אָבִיו, lexemes: [{lexeme: av, surface: אָבִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḇîw}}, {surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}]
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: יִצְחָק, lexeme: yitshaq, readings: {tiberian: yiṣḥāq}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: אַבְרָהָם, lexeme: avraham, readings: {tiberian: ʾaḇrāhām}}, {surface: אָבִיו, lexemes: [{lexeme: av, surface: אָבִי, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: ʾāḇîw}}, {surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}]
       translations:
         en: And Isaac said to his father Abraham,
   - line:
@@ -617,7 +617,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר אַבְרָהָם
-          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: אַבְרָהָם, lexeme: avraham, feats: {Number: Sing}, readings: {tiberian: ʾaḇrāhām}}]
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: אַבְרָהָם, lexeme: avraham, readings: {tiberian: ʾaḇrāhām}}]
       translations:
         en: And Abraham said,
   - line:
@@ -630,7 +630,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: אֱלֹהִים יִרְאֶה־לּוֹ הַשֶּׂה לְעֹלָה בְּנִי
-          tokens: [{surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: יִרְאֶה, lexeme: raah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yirʾeh-}}, {surface: לּוֹ, lexemes: [{lexeme: le, surface: לּ, base: true}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: lô}}, {surface: הַשֶּׂה, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: seh, surface: שֶּׂה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: haśśeh}}, {surface: לְעֹלָה, lexemes: [{lexeme: le, surface: לְ, n: 7, head: 8, rel: case}, {lexeme: olah, surface: עֹלָה, base: true, feats: {Number: Sing}, n: 8}], readings: {tiberian: ləʿōlâ}}, {surface: בְּנִי, lexemes: [{lexeme: ben, surface: בְּנִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: bənî}}]
+          tokens: [{surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: יִרְאֶה, lexeme: raah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yirʾeh-}}, {surface: לּוֹ, lexemes: [{lexeme: le, surface: לּ, base: true, n: 3, head: 4, rel: case}, {lexeme: sfx-3ms, surface: וֹ, n: 4}], readings: {tiberian: lô}}, {surface: הַשֶּׂה, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: seh, surface: שֶּׂה, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: haśśeh}}, {surface: לְעֹלָה, lexemes: [{lexeme: le, surface: לְ, n: 7, head: 8, rel: case}, {lexeme: olah, surface: עֹלָה, base: true, feats: {Number: Sing}, n: 8}], readings: {tiberian: ləʿōlâ}}, {surface: בְּנִי, lexemes: [{lexeme: ben, surface: בְּנִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: bənî}}]
       translations:
         en: “God will provide the lamb for a burnt offering himself, my son.”
   - line:

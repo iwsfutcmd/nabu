@@ -4,7 +4,7 @@
 # switch.
 id: hbo
 license: CC-BY-SA-4.0
-provenance: {author: 'llm:claude@9fbf8e5d1990', status: draft}
+provenance: {author: 'llm:claude@f55f5b08fb95', status: draft}
 varieties: [hbo]
 registers: [formal]
 dimensions:
@@ -16,7 +16,7 @@ lexical:
   PROPN: [Gender]
 citation:
   NOUN: {Gender: Masc, Number: Sing}
-  PROPN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
   VERB: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: '3', Gender: Masc, Number: Sing}
 features:
@@ -45,6 +45,7 @@ labels:
 - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, gloss: {en: 'he did: the perfect (qatal), he or it'}, was: 'form:qatal-3ms'}
 - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, gloss: {en: 'she did: the perfect (qatal), she or it (f.)'}, was: 'form:qatal-3fs'}
 - {feats: {Gender: Fem, Number: Sing}, gloss: {en: 'feminine: a feminine noun (אֶרֶץ ''land'', אִשָּׁה ''woman''), or an adjective with one (-â or -eṯ: טוֹבָה ''good'')'}, was: 'form:f'}
+- {feats: {Gender: Fem}, pos: PROPN, gloss: {en: 'feminine: a feminine noun (אֶרֶץ ''land'', אִשָּׁה ''woman''), or an adjective with one (-â or -eṯ: טוֹבָה ''good'')'}, was: 'form:f'}
 - {feats: {Definite: Cons, Gender: Masc, Number: Plur}, gloss: {en: 'plural construct (-ê): ''the …s of''; also of nouns always plural (פְּנֵי ''the face of'')'}, was: 'form:pl-cstr'}
 - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, gloss: {en: 'participle, feminine singular: she/it is doing'}, was: 'form:ptc-fs'}
 - {feats: {Gender: Masc, Number: Plur}, gloss: {en: 'plural, masculine (-îm, some -ôṯ: גּוֹרָלוֹת ''lots''); also nouns always plural (שָׁמַיִם ''heaven'', מַיִם ''water'')'}, was: 'form:pl'}

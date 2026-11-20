@@ -70,7 +70,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hablé con mi abuela.
-      tokens: [{surface: Hablé, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: Hablé, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con, n: 2, head: 4, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 4}]
       reverse: '[Yo] hablé con (mi abuela|abuela|la abuela)'
   translations:
     en: I (talked|spoke) (to|with) (my grandma|my grandmother|my granny|Grandma|Abuela).
@@ -79,7 +79,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú hablaste con Yasiel ayer?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: hablaste, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: Yasiel, lexeme: yasiel}, {surface: ayer, lexeme: ayer}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: hablaste, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: Yasiel, lexeme: yasiel, n: 4}, {surface: ayer, lexeme: ayer}]
       reverse: |-
         (Tú hablaste|Hablaste [tú]|Usted habló|Habló [usted]|Ustedes hablaron|Hablaron [ustedes]) con Yasiel ayer
         Ayer (tú hablaste|hablaste [tú]|usted habló|habló [usted]|ustedes hablaron|hablaron [ustedes]) con Yasiel
@@ -90,7 +90,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sí, ayer hablé con él.
-      tokens: [{surface: Sí, lexeme: sí}, {surface: ayer, lexeme: ayer}, {surface: hablé, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: él, lexeme: él}]
+      tokens: [{surface: Sí, lexeme: sí}, {surface: ayer, lexeme: ayer}, {surface: hablé, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: él, lexeme: él, n: 5}]
       reverse: |-
         Sí ayer [yo] hablé con él
         Sí [yo] hablé con él ayer
@@ -103,7 +103,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yasiel fue a Cuba.
-      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
       reverse: Yasiel fue a Cuba
   translations:
     en: Yasiel went to Cuba.
@@ -112,7 +112,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú fuiste a Cuba?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: fuiste, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: fuiste, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
       reverse: (Tú fuiste|Fuiste [tú]|Usted fue|Fue [usted]|Ustedes fueron|Fueron [ustedes]) a Cuba
   translations:
     en: Did you go to Cuba?
@@ -121,7 +121,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No, fui a casa de abuela.
-      tokens: [{surface: 'No', lexeme: 'no'}, {surface: fui, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: fui, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 6}]
       reverse: No [yo] fui a (casa de|la casa de) (abuela|mi abuela|la abuela)
   translations:
     en: No, I went to (Grandma's|my grandma's|my grandmother's|Abuela's) [house].
@@ -130,7 +130,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El domingo fui a casa de abuela.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 2}, {surface: fui, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 2}, {surface: fui, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 7}]
       reverse: |-
         El domingo [yo] fui a (casa de|la casa de) (abuela|mi abuela|la abuela)
         [Yo] fui a (casa de|la casa de) (abuela|mi abuela|la abuela) el domingo
@@ -165,7 +165,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo Pepe habló con Yasiel.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: Yasiel, lexeme: yasiel}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: Pepe, lexeme: pepe}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: Yasiel, lexeme: yasiel, n: 5}]
       reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) habló con Yasiel
   translations:
     en: |-
@@ -185,7 +185,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo jugué dominó con mi abuelo.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: jugué, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: jugué, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: con, lexeme: con, n: 4, head: 6, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 6}]
       reverse: '[Yo] jugué [al] dominó con (mi abuelo|abuelo|el abuelo)'
   translations:
     en: I played (dominoes|domino) with (my grandpa|my grandfather|Grandpa|Abuelo).
@@ -252,7 +252,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo vio la pelota en la tele.
-      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: vio, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 4}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: vio, lexeme: ver, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 4}, {surface: en, lexeme: en, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 7}]
       reverse: (Abuelo|Mi abuelo|El abuelo) vio (la pelota|el béisbol|el juego) en la (tele|televisión)
   translations:
     en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) (watched|saw) (the baseball game|the game|baseball) on (TV|television|the TV).
@@ -261,7 +261,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vimos la pelota en casa de abuela.
-      tokens: [{surface: Vimos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 3}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Vimos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 3}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 7}]
       reverse: '[(Nosotros|Nosotras)] vimos (la pelota|el béisbol|el juego) en (casa de|la casa de) (abuela|mi abuela|la abuela)'
   translations:
     en: We (watched|saw) (the baseball game|the game|baseball) at (Grandma's|my grandma's|my grandmother's|Abuela's) [house].
@@ -330,7 +330,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Comimos en casa de abuela.
-      tokens: [{surface: Comimos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Comimos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 2, head: 3, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 3}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 5}]
       reverse: '[(Nosotros|Nosotras)] comimos en (casa de|la casa de) (abuela|mi abuela|la abuela)'
   translations:
     en: We (ate|had dinner|had lunch) at (Grandma's|my grandma's|my grandmother's|Abuela's) [house].
@@ -341,7 +341,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes comieron con Yasiel?
-      tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: comieron, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: Yasiel, lexeme: yasiel}]
+      tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: comieron, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: Yasiel, lexeme: yasiel, n: 4}]
       reverse: (Ustedes comieron|Comieron [ustedes]) con Yasiel
   translations:
     en: Did (you|you all|you guys|y'all) (eat|have dinner|have lunch) with Yasiel?
@@ -423,7 +423,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Fui a casa de abuela. ¿Y tú?
-          tokens: [{surface: Fui, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Y, lexeme: y}, {surface: tú, lexeme: tú}]
+          tokens: [{surface: Fui, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 3, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 3}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 5}, {surface: Y, lexeme: y}, {surface: tú, lexeme: tú}]
       translations:
         en: I went to Grandma's. And you?
   - line:
@@ -486,7 +486,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y anoche vimos la pelota en la tele.
-          tokens: [{surface: Y, lexeme: y}, {surface: anoche, lexeme: anoche}, {surface: vimos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: Y, lexeme: y}, {surface: anoche, lexeme: anoche}, {surface: vimos, lexeme: ver, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 8}]
       translations:
         en: And last night we watched the baseball game on TV.
   - line:
@@ -502,7 +502,7 @@ stories:
       forms:
         es-Latn/standard:
           text: No, Cuba no ganó. ¡Y abuelo habló con la tele!
-          tokens: [{surface: 'No', lexeme: 'no'}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Y, lexeme: y}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 10}]
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Y, lexeme: y}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 10}]
       translations:
         en: No, Cuba didn't win. And Grandpa talked to the TV!
   - choose:
@@ -542,6 +542,6 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Y tú juegas dominó con abuelo!
-          tokens: [{surface: Y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: juegas, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: con, lexeme: con}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: tú, lexeme: tú}, {surface: juegas, lexeme: jugar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: dominó, lexeme: dominó, feats: {Number: Sing}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 6}]
       translations:
         en: And you're playing dominoes with Grandpa!

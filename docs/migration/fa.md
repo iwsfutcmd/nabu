@@ -150,6 +150,16 @@ The clip says the word; the word is a form of another lexeme now, or built of se
 | `sense:bud` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
 | `sense:nist` | its clip says a word that is a form of another lexeme, or built of several, now: no item of the new shape has that name |
 
+## Left for a reviewer by the plan
+
+What the plan's drafter saw and did not decide.
+
+- A verb's present stem is its own (دار of داشتن, بین of دیدن): the report lists each as written otherwise. By ADR 0145 it is a listed stem of its lexeme (the note's own example is rav-); no statement that it is listed is drafted yet.
+- می is drafted as the durative (Aspect=Imp), which the past takes too; the course teaches it as the present's prefix.
+- بود (was) and نیست (is not) are folded into بودن. چیست and کیست (what is, who is) stay entries: the course has no lexeme for کی to build کیست of.
+- The two plurals (ـها, and ـان of people) are kept as the course's two endings with one value.
+- هست on its own, there is, is kept as the entry the course has (it has a spelling and a clip); no token names it.
+
 ## What no finding above covers
 
 - **Projections:** no orthography of this course has a stated projection yet, so every

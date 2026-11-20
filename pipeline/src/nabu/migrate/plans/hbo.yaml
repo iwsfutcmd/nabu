@@ -18,7 +18,7 @@ lexical:
 # third person masculine singular.
 citation:
   NOUN: {Gender: Masc, Number: Sing}
-  PROPN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
   VERB: {Aspect: Perf, Mood: Ind, VerbForm: Fin, Person: 3, Gender: Masc, Number: Sing}
 # What a token says when the course pins no form on it (ADR 0132's amendment: masculine,
@@ -26,7 +26,7 @@ citation:
 # always pinned.
 bare:
   NOUN: {Gender: Masc, Number: Sing}
-  PROPN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
 
 # Hebrew's own, which Universal Dependencies has no value for.
@@ -77,6 +77,8 @@ forms:
   # Universal Dependencies has for it (the PTNK treebank marks it by a relation instead).
   form:f:
     feats: {Gender: Fem, Number: Sing}
+    # A name has a gender and no number.
+    byPos: {PROPN: {Gender: Fem}}
     introduces: [Gender=Fem]
   form:pl:
     feats: {Gender: Masc, Number: Plur}
@@ -118,6 +120,8 @@ relations:
   # The article and a preposition written on a word (the design note's own example).
   - {rel: det, from: [DET], to: [NOUN, PROPN, ADJ, NUM, VERB], side: inside}
   - {rel: case, from: [ADP], to: [NOUN, PROPN, PRON, NUM, ADJ, DET], side: inside}
+  # A preposition written apart and the word after it: אֶל הָאִישׁ, עַל פְּנֵי.
+  - {rel: case, from: [ADP], to: [NOUN, PROPN, PRON, NUM], side: right, skip: [DET], reach: 1}
   # An adjective and the noun before it: הָאוֹר הַטּוֹב.
   - {rel: amod, from: [ADJ], to: [NOUN, PROPN], side: left, agree: [Gender, Number], skip: [DET], reach: 1}
 
@@ -128,3 +132,12 @@ defaults:
   - {id: gender-t, when: {ends: "\u05ea"}, gives: {Gender: Fem}}
   - {id: gender-none, when: {pos: NOUN}, gives: {Gender: Masc}}
   - {id: gender-none-name, when: {pos: PROPN}, gives: {Gender: Masc}}
+
+# What the drafter saw and did not decide: each is in the report for a reviewer.
+questions:
+  - 'The conjugations'' values: qatal, yiqtol and wayyiqtol are tagged as the Universal Dependencies treebank of Biblical Hebrew tags them. Weqatal as Tense=Fut, the jussive as Mood=Jus, the cohortative as Mood=Opt and the infinitive absolute as VerbForm=InfAbs are the drafter''s: the treebank tags nothing apart for them, and Hebrew''s own names may serve better.'
+  - 'Hollow verbs are cited as the course cites them, in the infinitive''s form (קוּם, שׁוּב, מוּת, בּוֹא), not in the qatal. Their qatal (בָא, סָר) therefore shows as written otherwise than the entry.'
+  - 'A word with a suffix written as one token and not analysed (עַמִּי, אָבִי), and שְׁתַּיִם under שְׁנַיִם, are listed as written otherwise: each needs its suffix or its form named.'
+  - 'The dual names no gender, so a noun the course writes only in the dual has none on its entry (רֶגֶל, עַיִן).'
+  - 'A form in pause or before an ending is pointed otherwise than the entry. The lexicon keeps every pointing a form is written with; the token''s context (pause, nesiga) stays a pin on the token (the design note: a feature value or a pin, per language).'
+  - 'The construct state is written Definite=Cons, which Universal Dependencies has; the treebank marks it by a relation (compound:smixut) and no feature.'

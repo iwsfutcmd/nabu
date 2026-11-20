@@ -113,7 +113,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Somos nueve con abuela.
-      tokens: [{surface: Somos, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nueve, lexeme: nueve}, {surface: con, lexeme: con}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+      tokens: [{surface: Somos, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nueve, lexeme: nueve}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 4}]
       reverse: |-
         [Nosotros] somos nueve con (abuela|la abuela)
         Con (abuela|la abuela) somos nueve
@@ -202,7 +202,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Comemos a la una.
-      tokens: [{surface: Comemos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Comemos, lexeme: comer, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: una, lexeme: uno, feats: {Gender: Fem, Number: Sing}, n: 4}]
       reverse: |-
         [Nosotros] comemos a la una
         Nosotras comemos a la una.
@@ -217,7 +217,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿A qué hora tú comes?
-      tokens: [{surface: A, lexeme: a}, {surface: qué, lexeme: qué}, {surface: hora, lexeme: hora, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: comes, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: A, lexeme: a, n: 1, head: 2, rel: case}, {surface: qué, lexeme: qué, n: 2}, {surface: hora, lexeme: hora, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: comes, lexeme: comer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         A qué hora (tú comes|comes [tú]|usted come|come [usted]|ustedes comen|comen [ustedes])
         ¿Tú a qué hora comes?
@@ -499,7 +499,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Son las ocho y media. ¡Y el cumpleaños de Lili es a las nueve!
-          tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}, {surface: y, lexeme: y}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: nueve, lexeme: nueve}]
+          tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}, {surface: y, lexeme: y}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 10}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 12, head: 14, rel: case}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: nueve, lexeme: nueve, n: 14}]
       translations:
         en: It's half past eight. And Lili's birthday party is at nine!
   - choose:

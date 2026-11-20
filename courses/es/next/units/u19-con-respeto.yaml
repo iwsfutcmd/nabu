@@ -31,7 +31,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ella es doña Ofelia. Vive al lado.
-      tokens: [{surface: Ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: Vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al}, {surface: lado, lexeme: lado, feats: {Number: Sing}}]
+      tokens: [{surface: Ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: Vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al, n: 6, head: 7, rel: case}, {surface: lado, lexeme: lado, feats: {Number: Sing}, n: 7}]
       reverse: '[Ella] es doña Ofelia [y] (vive|ella vive) (al lado|aquí al lado)'
   translations:
     en: (She's|She is|This is) (Doña|Miss|Mrs.) Ofelia. She lives next door.
@@ -40,7 +40,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia es la vecina de mi abuela.
-      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: vecina, lexeme: vecino, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: vecina, lexeme: vecino, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 8}]
       reverse: Doña Ofelia es [la] vecina de (mi abuela|la abuela|abuela)
   translations:
     en: (Doña|Miss|Mrs.) Ofelia is my (grandmother's|grandma's|granny's) (neighbour|neighbor).
@@ -49,7 +49,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Siempre le hablo de usted a doña Ofelia.
-      tokens: [{surface: Siempre, lexeme: siempre}, {surface: le, lexeme: le}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: usted, lexeme: usted}, {surface: a, lexeme: a}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
+      tokens: [{surface: Siempre, lexeme: siempre}, {surface: le, lexeme: le}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: usted, lexeme: usted, n: 5}, {surface: a, lexeme: a, n: 6, head: 7, rel: case}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}, n: 7}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
       reverse: |-
         [Yo] siempre le hablo de usted a doña Ofelia
         A doña Ofelia [yo] siempre le hablo de usted
@@ -65,7 +65,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia me habla de tú, pero yo le hablo de usted.
-      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: me, lexeme: me}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: tú, lexeme: tú}, {surface: pero, lexeme: pero}, {surface: yo, lexeme: yo}, {surface: le, lexeme: le}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: usted, lexeme: usted}]
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: me, lexeme: me}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: tú, lexeme: tú, n: 6}, {surface: pero, lexeme: pero}, {surface: yo, lexeme: yo}, {surface: le, lexeme: le}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 11, head: 12, rel: case}, {surface: usted, lexeme: usted, n: 12}]
       reverse: |-
         Doña Ofelia me habla de tú pero [yo] le hablo de usted
         Doña Ofelia me trata de tú pero [yo] la trato de usted
@@ -93,7 +93,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Bendición, abuela! Me voy para el trabajo.
-      tokens: [{surface: Bendición, lexeme: bendición, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Me, lexeme: me}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Bendición, lexeme: bendición, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Me, lexeme: me}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para, n: 5, head: 7, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 7}]
       reverse: '[La] bendición (abuela|abuelita) [ya] me voy (para el|al|pa''l) trabajo'
   translations:
     en: (Bless me|Your blessing|Give me your blessing), (Grandma|Grandmother|Granny|Abuela)! (I'm|I am) (leaving|going|off) (for work|to work).
@@ -113,7 +113,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel le pide la bendición a su abuela.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: le, lexeme: le}, {surface: pide, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: bendición, lexeme: bendición, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: le, lexeme: le}, {surface: pide, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: bendición, lexeme: bendición, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a, n: 6, head: 8, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 8}]
       reverse: Daniel le pide la bendición a (su abuela|la abuela)
   translations:
     en: |-
@@ -124,7 +124,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Con los mayores, yo hablo con respeto.
-      tokens: [{surface: Con, lexeme: con}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: mayores, lexeme: mayor, feats: {Gender: Masc, Number: Plur}}, {surface: yo, lexeme: yo}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: respeto, lexeme: respeto, feats: {Number: Sing}}]
+      tokens: [{surface: Con, lexeme: con}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: mayores, lexeme: mayor, feats: {Gender: Masc, Number: Plur}}, {surface: yo, lexeme: yo}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 6, head: 7, rel: case}, {surface: respeto, lexeme: respeto, feats: {Number: Sing}, n: 7}]
       reverse: |-
         Con los mayores [yo] hablo con respeto
         [Yo] hablo con respeto (con|a) los mayores
@@ -137,7 +137,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Por la noche, le pido la bendición a mi abuela.
-      tokens: [{surface: Por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 3}, {surface: le, lexeme: le}, {surface: pido, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: bendición, lexeme: bendición, feats: {Number: Sing}, n: 7}, {surface: a, lexeme: a}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Por, lexeme: por, n: 1, head: 3, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 3}, {surface: le, lexeme: le}, {surface: pido, lexeme: pedir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: bendición, lexeme: bendición, feats: {Number: Sing}, n: 7}, {surface: a, lexeme: a, n: 8, head: 10, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 10}]
       reverse: |-
         (Por|En) la noche [yo] le pido la bendición a (mi abuela|la abuela|abuela)
         [Yo] le pido la bendición a (mi abuela|la abuela|abuela) (por|en) la noche
@@ -152,7 +152,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Ustedes les piden la bendición a sus padres?
-      tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: les, lexeme: le, feats: {Number: Plur}}, {surface: piden, lexeme: pedir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: bendición, lexeme: bendición, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 8}]
+      tokens: [{surface: Ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: les, lexeme: le, feats: {Number: Plur}}, {surface: piden, lexeme: pedir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: bendición, lexeme: bendición, feats: {Number: Sing}, n: 5}, {surface: a, lexeme: a, n: 6, head: 8, rel: case}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 8}]
       reverse: (Ustedes les piden|Les piden [ustedes]|Ustedes le piden|Le piden [ustedes]) la bendición a sus padres
   translations:
     en: Do (you|you all|you guys|y'all) ask your parents for (their|a) blessing?
@@ -161,7 +161,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Con permiso, señora, ¿puedo pasar?
-      tokens: [{surface: Con, lexeme: con}, {surface: permiso, lexeme: permiso, feats: {Number: Sing}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: pasar, lexeme: pasar, feats: {VerbForm: Inf}}]
+      tokens: [{surface: Con, lexeme: con, n: 1, head: 2, rel: case}, {surface: permiso, lexeme: permiso, feats: {Number: Sing}, n: 2}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: pasar, lexeme: pasar, feats: {VerbForm: Inf}}]
       reverse: |-
         Con permiso señora (puedo pasar|se puede pasar|se puede)
         Con permiso, señora, ¿puedo entrar?
@@ -174,7 +174,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Disculpe, señor, ¿dónde está la parada de la guagua?
-      tokens: [{surface: Disculpe, lexeme: disculpar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: señor, lexeme: señor, feats: {Number: Sing}}, {surface: dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 6}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Disculpe, lexeme: disculpar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: señor, lexeme: señor, feats: {Number: Sing}}, {surface: dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 6}, {surface: de, lexeme: de, n: 7, head: 9, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 9}]
       reverse: (Disculpe|Perdone|Perdón) señor (dónde está|dónde queda) la parada (de la guagua|del autobús|del bus)
   translations:
     en: (Excuse me|Sorry|Pardon me), sir, (where's|where is) the bus stop?
@@ -185,7 +185,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Perdone, señora, ¿usted vive en este barrio?
-      tokens: [{surface: Perdone, lexeme: perdonar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: usted, lexeme: usted}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Perdone, lexeme: perdonar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: usted, lexeme: usted}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 5, head: 7, rel: case}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}, n: 7}]
       reverse: (Perdone|Disculpe|Perdón) señora (usted vive|vive [usted]) en este barrio
   translations:
     en: (Excuse me|Sorry|Pardon me), (ma'am|madam), do you live in this (neighbourhood|neighborhood)?
@@ -196,7 +196,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pase, pase, doña Ofelia. Está en su casa.
-      tokens: [{surface: Pase, lexeme: pasar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: pase, lexeme: pasar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Pase, lexeme: pasar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: pase, lexeme: pasar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 8}]
       reverse: (Pase [pase]|Pase adelante|Adelante|Entre) doña Ofelia (está [usted] en su casa|usted está en su casa|esta es su casa)
   translations:
     en: |-
@@ -209,7 +209,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Disculpe la molestia, señora. ¿Está su hijo en casa?
-      tokens: [{surface: Disculpe, lexeme: disculpar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: molestia, lexeme: molestia, feats: {Number: Sing}, n: 3}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: hijo, lexeme: hijo, feats: {Gender: Masc, Number: Sing}, n: 7}, {surface: en, lexeme: en}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      tokens: [{surface: Disculpe, lexeme: disculpar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: molestia, lexeme: molestia, feats: {Number: Sing}, n: 3}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: hijo, lexeme: hijo, feats: {Gender: Masc, Number: Sing}, n: 7}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 9}]
       reverse: (Disculpe|Perdone) la molestia señora (está su hijo|su hijo está) en (casa|la casa)
   translations:
     en: |-
@@ -238,7 +238,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Quisiera hablar con doña Ofelia.
-      tokens: [{surface: Quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hablar, lexeme: hablar, feats: {VerbForm: Inf}}, {surface: con, lexeme: con}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
+      tokens: [{surface: Quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hablar, lexeme: hablar, feats: {VerbForm: Inf}}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}, n: 4}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
       reverse: ([Yo] quisiera|[Yo] querría|Me gustaría) hablar con doña Ofelia
   translations:
     en: (I'd|I would) like to (speak|talk) (with|to) (Doña|Miss|Mrs.) Ofelia.
@@ -260,7 +260,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Me hace el favor de ayudar a mi abuela?
-      tokens: [{surface: Me, lexeme: me}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: favor, lexeme: favor, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: ayudar, lexeme: ayudar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Me, lexeme: me}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: favor, lexeme: favor, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: ayudar, lexeme: ayudar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 7, head: 9, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 9}]
       reverse: (Me hace|Me haría|Usted me hace|Usted me haría) el favor de ayudar a (mi abuela|la abuela)
   translations:
     en: |-
@@ -311,7 +311,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Les gustaría comer con nosotros?
-      tokens: [{surface: Les, lexeme: le, feats: {Number: Plur}}, {surface: gustaría, lexeme: gustar, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: comer, lexeme: comer, feats: {VerbForm: Inf}}, {surface: con, lexeme: con}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}}]
+      tokens: [{surface: Les, lexeme: le, feats: {Number: Plur}}, {surface: gustaría, lexeme: gustar, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: comer, lexeme: comer, feats: {VerbForm: Inf}}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 5}]
       reverse: |-
         (Les gustaría|A ustedes les gustaría|Ustedes quisieran) comer con (nosotros|nosotras)
         ¿Quisieran comer con nosotros?
@@ -322,7 +322,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia estaría feliz con un cafecito.
-      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: estaría, lexeme: estar, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}, {surface: con, lexeme: con}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: estaría, lexeme: estar, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}}, {surface: con, lexeme: con, n: 5, head: 7, rel: case}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 7}]
       reverse: Doña Ofelia estaría (feliz|contenta) con un (cafecito|café)
   translations:
     en: (Doña|Miss|Mrs.) Ofelia would be happy with a (Cuban coffee|coffee|cafecito).
@@ -344,7 +344,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo iría con ustedes, pero hoy trabajo.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: iría, lexeme: ir, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: pero, lexeme: pero}, {surface: hoy, lexeme: hoy}, {surface: trabajo, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: iría, lexeme: ir, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}, n: 4}, {surface: pero, lexeme: pero}, {surface: hoy, lexeme: hoy}, {surface: trabajo, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         [Yo] iría con ustedes pero hoy (trabajo|tengo que trabajar|estoy trabajando)
         [Yo] iría con ustedes pero (trabajo|tengo que trabajar|estoy trabajando) hoy
@@ -368,7 +368,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a llamar al médico de abuelo.
-      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llamar, lexeme: llamar, feats: {VerbForm: Inf}}, {surface: al, lexeme: al}, {surface: médico, lexeme: médico, feats: {Number: Sing}}, {surface: de, lexeme: de}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}]
+      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llamar, lexeme: llamar, feats: {VerbForm: Inf}}, {surface: al, lexeme: al, n: 4, head: 5, rel: case}, {surface: médico, lexeme: médico, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 7}]
       reverse: |-
         [Yo] voy a llamar al (médico|doctor) (de abuelo|de mi abuelo|del abuelo)
         Llamaré al médico de abuelo
@@ -382,7 +382,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami llama por teléfono al consultorio.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: llama, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}}, {surface: al, lexeme: al}, {surface: consultorio, lexeme: consultorio, feats: {Number: Sing}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: llama, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 4, rel: case}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}, n: 4}, {surface: al, lexeme: al, n: 5, head: 6, rel: case}, {surface: consultorio, lexeme: consultorio, feats: {Number: Sing}, n: 6}]
       reverse: |-
         (Mami|Mamá) (llama|está llamando) [por teléfono] al consultorio
         Mi mamá llama al consultorio
@@ -398,7 +398,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Consultorio, buenos días. ¿En qué le puedo ayudar?
-      tokens: [{surface: Consultorio, lexeme: consultorio, feats: {Number: Sing}}, {surface: buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: En, lexeme: en}, {surface: qué, lexeme: qué}, {surface: le, lexeme: le}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ayudar, lexeme: ayudar, feats: {VerbForm: Inf}}]
+      tokens: [{surface: Consultorio, lexeme: consultorio, feats: {Number: Sing}}, {surface: buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: En, lexeme: en, n: 4, head: 5, rel: case}, {surface: qué, lexeme: qué, n: 5}, {surface: le, lexeme: le}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ayudar, lexeme: ayudar, feats: {VerbForm: Inf}}]
       reverse: '[Consultorio] (buenos días|buen día|buenas) (en qué le puedo ayudar|en qué puedo ayudarle|en qué lo puedo ayudar|en qué la puedo ayudar)'
   translations:
     en: |-
@@ -409,7 +409,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Buenos días, quisiera hacer una cita para mi abuelo.
-      tokens: [{surface: Buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: cita, lexeme: cita, feats: {Number: Sing}, n: 6}, {surface: para, lexeme: para}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: cita, lexeme: cita, feats: {Number: Sing}, n: 6}, {surface: para, lexeme: para, n: 7, head: 9, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 9}]
       reverse: |-
         (Buenos días|Buen día|Buenas) (quisiera|me gustaría) (hacer|pedir|sacar) una cita para (mi abuelo|el abuelo)
         Buenos días, yo quisiera hacer una cita para mi abuelo
@@ -469,7 +469,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel, ¿me haces el favor de llevar este arroz con pollo a doña Ofelia?
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: me, lexeme: me}, {surface: haces, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: favor, lexeme: favor, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de}, {surface: llevar, lexeme: llevar, feats: {VerbForm: Inf}}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}, n: 9}, {surface: con, lexeme: con}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: me, lexeme: me}, {surface: haces, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: favor, lexeme: favor, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de}, {surface: llevar, lexeme: llevar, feats: {VerbForm: Inf}}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}, n: 9}, {surface: con, lexeme: con, n: 10, head: 11, rel: case}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}, n: 11}, {surface: a, lexeme: a, n: 12, head: 13, rel: case}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}, n: 13}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
       translations:
         en: Daniel, would you please take this chicken and rice to Doña Ofelia?
   - line:
@@ -485,14 +485,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Dios te bendiga, mi'jo. Y con doña Ofelia, tú le hablas de usted.
-          tokens: [{surface: Dios, lexeme: dios-te-bendiga}, {surface: te, lexeme: dios-te-bendiga}, {surface: bendiga, lexeme: dios-te-bendiga}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Y, lexeme: y}, {surface: con, lexeme: con}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: hablas, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: usted, lexeme: usted}]
+          tokens: [{surface: Dios, lexeme: dios-te-bendiga}, {surface: te, lexeme: dios-te-bendiga}, {surface: bendiga, lexeme: dios-te-bendiga}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Y, lexeme: y}, {surface: con, lexeme: con, n: 6, head: 7, rel: case}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}, n: 7}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: hablas, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 12, head: 13, rel: case}, {surface: usted, lexeme: usted, n: 13}]
       translations:
         en: God bless you, son. And with Doña Ofelia, you use usted.
   - line:
       forms:
         es-Latn/standard:
           text: Daniel camina a la casa de al lado.
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: camina, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de}, {surface: al, lexeme: al}, {surface: lado, lexeme: lado, feats: {Number: Sing}}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: camina, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de}, {surface: al, lexeme: al, n: 7, head: 8, rel: case}, {surface: lado, lexeme: lado, feats: {Number: Sing}, n: 8}]
       translations:
         en: Daniel walks to the house next door.
   - line:
@@ -541,7 +541,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, gracias. Este arroz con pollo es para usted, de mi abuela.
-          tokens: [{surface: Sí, lexeme: sí}, {surface: gracias, lexeme: gracias}, {surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}, n: 4}, {surface: con, lexeme: con}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: usted, lexeme: usted}, {surface: de, lexeme: de}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 12}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: gracias, lexeme: gracias}, {surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: arroz, lexeme: arroz, feats: {Number: Sing}, n: 4}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: pollo, lexeme: pollo, feats: {Number: Sing}, n: 6}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para, n: 8, head: 9, rel: case}, {surface: usted, lexeme: usted, n: 9}, {surface: de, lexeme: de, n: 10, head: 12, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 12}]
       translations:
         en: Yes, thank you. This chicken and rice is for you, from my grandmother.
   - line:
@@ -557,7 +557,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi'jo, ¿tú me podrías llamar al consultorio? Necesito una cita.
-          tokens: [{surface: Mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: tú, lexeme: tú}, {surface: me, lexeme: me}, {surface: podrías, lexeme: poder, feats: {Mood: Cnd, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: llamar, lexeme: llamar, feats: {VerbForm: Inf}}, {surface: al, lexeme: al}, {surface: consultorio, lexeme: consultorio, feats: {Number: Sing}}, {surface: Necesito, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: cita, lexeme: cita, feats: {Number: Sing}, n: 10}]
+          tokens: [{surface: Mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: tú, lexeme: tú}, {surface: me, lexeme: me}, {surface: podrías, lexeme: poder, feats: {Mood: Cnd, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: llamar, lexeme: llamar, feats: {VerbForm: Inf}}, {surface: al, lexeme: al, n: 6, head: 7, rel: case}, {surface: consultorio, lexeme: consultorio, feats: {Number: Sing}, n: 7}, {surface: Necesito, lexeme: necesitar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: cita, lexeme: cita, feats: {Number: Sing}, n: 10}]
       translations:
         en: Son, could you call the doctor's office for me? I need an appointment.
   - choose:
@@ -573,7 +573,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Consultorio, buenos días. ¿En qué le puedo ayudar?
-          tokens: [{surface: Consultorio, lexeme: consultorio, feats: {Number: Sing}}, {surface: buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: En, lexeme: en}, {surface: qué, lexeme: qué}, {surface: le, lexeme: le}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ayudar, lexeme: ayudar, feats: {VerbForm: Inf}}]
+          tokens: [{surface: Consultorio, lexeme: consultorio, feats: {Number: Sing}}, {surface: buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: En, lexeme: en, n: 4, head: 5, rel: case}, {surface: qué, lexeme: qué, n: 5}, {surface: le, lexeme: le}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ayudar, lexeme: ayudar, feats: {VerbForm: Inf}}]
       translations:
         en: Doctor's office, good morning. How can I help you?
   - line:
@@ -586,7 +586,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Buenos días. Quisiera hacer una cita para doña Ofelia.
-          tokens: [{surface: Buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: Quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: cita, lexeme: cita, feats: {Number: Sing}, n: 6}, {surface: para, lexeme: para}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
+          tokens: [{surface: Buenos, lexeme: buenos-días}, {surface: días, lexeme: buenos-días}, {surface: Quisiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: hacer, lexeme: hacer, feats: {VerbForm: Inf}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: cita, lexeme: cita, feats: {Number: Sing}, n: 6}, {surface: para, lexeme: para, n: 7, head: 8, rel: case}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}, n: 8}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
       translations:
         en: Good morning. I'd like to make an appointment for Doña Ofelia.
   - line:
@@ -594,7 +594,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Sería posible el martes a las diez?
-          tokens: [{surface: Sería, lexeme: ser, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: martes, lexeme: martes, feats: {Number: Sing}, n: 4}, {surface: a, lexeme: a}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: diez, lexeme: diez}]
+          tokens: [{surface: Sería, lexeme: ser, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: posible, lexeme: posible, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: martes, lexeme: martes, feats: {Number: Sing}, n: 4}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: diez, lexeme: diez, n: 7}]
       translations:
         en: Would Tuesday at ten be possible?
   - line:
@@ -602,7 +602,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Un momento, por favor. Doña Ofelia, ¿el martes a las diez está bien?
-          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: momento, lexeme: momento, feats: {Number: Sing}, n: 2}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}, {surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: martes, lexeme: martes, feats: {Number: Sing}, n: 8}, {surface: a, lexeme: a}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: diez, lexeme: diez}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}]
+          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: momento, lexeme: momento, feats: {Number: Sing}, n: 2}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}, {surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: martes, lexeme: martes, feats: {Number: Sing}, n: 8}, {surface: a, lexeme: a, n: 9, head: 11, rel: case}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: diez, lexeme: diez, n: 11}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}]
       translations:
         en: One moment, please. Doña Ofelia, is Tuesday at ten all right?
   - line:
@@ -626,7 +626,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y? ¿Tú le hablaste de usted?
-          tokens: [{surface: Y, lexeme: y}, {surface: Tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: hablaste, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: de, lexeme: de}, {surface: usted, lexeme: usted}]
+          tokens: [{surface: Y, lexeme: y}, {surface: Tú, lexeme: tú}, {surface: le, lexeme: le}, {surface: hablaste, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: usted, lexeme: usted, n: 6}]
       translations:
         en: So? Did you use usted with her?
   - line:

@@ -28,7 +28,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐπὶ τὸ ὄρος.
-      tokens: [{surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 3, readings: {attic: ὄρος}}]
+      tokens: [{surface: ἐπὶ, lexeme: epi, n: 1, head: 3, rel: case, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 3, readings: {attic: ὄρος}}]
       reverse: ἐπὶ τὸ ὄρος
   translations:
     en: (To|Onto|Up) the mountain.
@@ -37,7 +37,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐπὶ τὸ ὄρος πορεύονται.
-      tokens: [{surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 3, readings: {attic: ὄρος}}, {surface: πορεύονται, lexeme: poreuomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: πορεύονται}}]
+      tokens: [{surface: ἐπὶ, lexeme: epi, n: 1, head: 3, rel: case, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 3, readings: {attic: ὄρος}}, {surface: πορεύονται, lexeme: poreuomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: πορεύονται}}]
       reverse: |-
         ἐπὶ τὸ ὄρος πορεύονται
         πορεύονται ἐπὶ τὸ ὄρος
@@ -48,7 +48,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἀφικνοῦνται ἐπὶ τὸ ὄρος.
-      tokens: [{surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}, {surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 4, readings: {attic: ὄρος}}]
+      tokens: [{surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}, {surface: ἐπὶ, lexeme: epi, n: 2, head: 4, rel: case, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 4, readings: {attic: ὄρος}}]
       reverse: |-
         ἀφικνοῦνται ἐπὶ τὸ ὄρος
         ἐπὶ τὸ ὄρος ἀφικνοῦνται
@@ -410,7 +410,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: καὶ ἀφικνοῦνται ἐπὶ τὸ ὄρος τῇ πέμπτῃ ἡμέρᾳ·
-          tokens: [{surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}, {surface: ἐπὶ, lexeme: epi, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 5, readings: {attic: ὄρος}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 6, head: 8, rel: det, readings: {attic: τῇ}}, {surface: πέμπτῃ, lexeme: pemptos, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 7, head: 8, rel: amod, readings: {attic: πέμπτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, n: 8, readings: {attic: ἡμέρᾳ}}]
+          tokens: [{surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἀφικνοῦνται, lexeme: aphikneomai, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin, Voice: Mid}, readings: {attic: ᾰ̓φῑκνοῦνται}}, {surface: ἐπὶ, lexeme: epi, n: 3, head: 5, rel: case, readings: {attic: ἐπῐ̀}}, {surface: τὸ, lexeme: ho, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: τὸ}}, {surface: ὄρος, lexeme: oros, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, n: 5, readings: {attic: ὄρος}}, {surface: τῇ, lexeme: ho, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 6, head: 8, rel: det, readings: {attic: τῇ}}, {surface: πέμπτῃ, lexeme: pemptos, feats: {Case: Dat, Gender: Fem, Number: Sing}, n: 7, head: 8, rel: amod, readings: {attic: πέμπτῃ}}, {surface: ἡμέρᾳ, lexeme: hemera, feats: {Case: Dat, Number: Sing}, n: 8, readings: {attic: ἡμέρᾳ}}]
       translations:
         en: And on the fifth day they come to the mountain;
   - line:

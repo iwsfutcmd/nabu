@@ -196,6 +196,16 @@ A token names the lexeme, no feature value tells it from the entry's own form, a
 | `lexeme:pahlawan` | written فهلوان (2×, first in chg.story.where-are-you-from#1): an allomorph, or a form no value names |
 | `lexeme:parwardigar` | joined to another lexeme, written فروردیکار (1×, first in chg.story.the-first-smith#3) |
 
+## Left for a reviewer by the plan
+
+What the plan's drafter saw and did not decide.
+
+- The aorist (-ur) is drafted as the present with the habitual aspect, as Universal Dependencies' Turkish treebanks tag theirs: the name aorist is no value of its own there.
+- A source's spelling of a word is kept on its token; where the token is read as the entry is, the spelling joins the entry's (other spellings of an entry). When the orthography's free correspondences are stated (ADR 0148), they should give each.
+- Pronouns take another stem before a case ending (ul, a-; bu, mun-; män, men-): listed as written otherwise.
+- The three converbs in -p, -a and -ǧač and the purposive in -ǧali are told apart only in part by their values: REVIEW.
+- Endings that make another word (-liq, -či, -daki, -čilik, -la, the nisba) are function heads (ADR 0145); what each takes and makes is the drafter's.
+
 ## What no finding above covers
 
 - **Projections:** no orthography of this course has a stated projection yet, so every

@@ -61,7 +61,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Te aconsejo que hables con tu padre esta noche.
-      tokens: [{surface: Te, lexeme: te}, {surface: aconsejo, lexeme: aconsejar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: hables, lexeme: hablar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: padre, lexeme: padre, feats: {Number: Sing}, n: 7}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Te, lexeme: te}, {surface: aconsejo, lexeme: aconsejar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: hables, lexeme: hablar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 7, rel: case}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: padre, lexeme: padre, feats: {Number: Sing}, n: 7}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 9}]
       reverse: |-
         [Yo] te aconsejo que hables con tu (padre|papá|papi) esta noche
         Le aconsejo que hable con su padre esta noche
@@ -88,7 +88,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela quiere ir a Matanzas, y quiere que yo vaya con ella.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a}, {surface: Matanzas, lexeme: matanzas}, {surface: y, lexeme: y}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: yo, lexeme: yo}, {surface: vaya, lexeme: ir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Matanzas, lexeme: matanzas, n: 5}, {surface: y, lexeme: y}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: yo, lexeme: yo}, {surface: vaya, lexeme: ir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 11, head: 12, rel: case}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}, n: 12}]
       reverse: (Abuela|La abuela|Mi abuela) quiere ir a Matanzas y [ella] quiere que [yo] vaya con ella
   translations:
     en: |-
@@ -112,7 +112,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Espero que tengas un buen día en el trabajo.
-      tokens: [{surface: Espero, lexeme: esperar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: tengas, lexeme: tener, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 6, rel: det}, {surface: buen, lexeme: bueno, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: amod}, {surface: día, lexeme: día, feats: {Number: Sing}, n: 6}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Espero, lexeme: esperar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: tengas, lexeme: tener, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 6, rel: det}, {surface: buen, lexeme: bueno, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: amod}, {surface: día, lexeme: día, feats: {Number: Sing}, n: 6}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 9}]
       reverse: |-
         [Yo] espero que (tengas|tenga|tengan) un buen día en el trabajo
         Ojalá que tengas un buen día en el trabajo
@@ -134,7 +134,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Espero que tía Marisol y Yunior vengan pronto a Miami.
-      tokens: [{surface: Espero, lexeme: esperar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: Yunior, lexeme: yunior}, {surface: vengan, lexeme: venir, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pronto, lexeme: pronto}, {surface: a, lexeme: a}, {surface: Miami, lexeme: miami}]
+      tokens: [{surface: Espero, lexeme: esperar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: Yunior, lexeme: yunior}, {surface: vengan, lexeme: venir, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pronto, lexeme: pronto}, {surface: a, lexeme: a, n: 9, head: 10, rel: case}, {surface: Miami, lexeme: miami, n: 10}]
       reverse: |-
         [Yo] espero que (tía|mi tía) Marisol y Yunior vengan (pronto a Miami|a Miami pronto)
         Ojalá que tía Marisol y Yunior vengan pronto a Miami
@@ -184,7 +184,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi amor, no quiero que sufras por una muchacha.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: amor, lexeme: amor, feats: {Number: Sing}, n: 2}, {surface: 'no', lexeme: 'no'}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: sufras, lexeme: sufrir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: muchacha, lexeme: muchacho, feats: {Gender: Fem, Number: Sing}, n: 9}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: amor, lexeme: amor, feats: {Number: Sing}, n: 2}, {surface: 'no', lexeme: 'no'}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: sufras, lexeme: sufrir, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 7, head: 9, rel: case}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: muchacha, lexeme: muchacho, feats: {Gender: Fem, Number: Sing}, n: 9}]
       reverse: (Mi amor|Mi vida|Mi cielo) [yo] no quiero que sufras por una muchacha
   translations:
     en: |-
@@ -220,7 +220,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ojalá que te quiera como tu abuelo me quiere a mí.
-      tokens: [{surface: Ojalá, lexeme: ojalá}, {surface: que, lexeme: que}, {surface: te, lexeme: te}, {surface: quiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 7}, {surface: me, lexeme: me}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: mí, lexeme: mí}]
+      tokens: [{surface: Ojalá, lexeme: ojalá}, {surface: que, lexeme: que}, {surface: te, lexeme: te}, {surface: quiera, lexeme: querer, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: como, lexeme: como.like}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 7}, {surface: me, lexeme: me}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 10, head: 11, rel: case}, {surface: mí, lexeme: mí, n: 11}]
       reverse: |-
         Ojalá [que] te quiera como tu abuelo me quiere [a mí]
         Espero que te quiera como tu abuelo me quiere a mí
@@ -231,7 +231,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es importante que llegues temprano al trabajo.
-      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: importante, lexeme: importante, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: llegues, lexeme: llegar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: temprano, lexeme: temprano}, {surface: al, lexeme: al}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}}]
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: importante, lexeme: importante, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: llegues, lexeme: llegar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: temprano, lexeme: temprano}, {surface: al, lexeme: al, n: 6, head: 7, rel: case}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 7}]
       reverse: Es importante que (llegues|llegue|lleguen) (temprano al trabajo|al trabajo temprano)
   translations:
     en: (It's|It is) important (that you|for you to|to) (get to work|arrive at work|be at work) early.
@@ -309,7 +309,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es importante que ahorres un poco de dinero.
-      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: importante, lexeme: importante, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: ahorres, lexeme: ahorrar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}]
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: importante, lexeme: importante, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: ahorres, lexeme: ahorrar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 8}]
       reverse: Es importante que (ahorres|ahorre|ahorren) un poco de dinero
   translations:
     en: (It's|It is) important (that you save|for you to save|to save) (a little|some|a bit of|a little bit of) money.
@@ -318,7 +318,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No quiero que gastes todo tu dinero en ropa.
-      tokens: [{surface: 'No', lexeme: 'no'}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: gastes, lexeme: gastar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 5, head: 7, rel: det}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en}, {surface: ropa, lexeme: ropa, feats: {Number: Sing}}]
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: gastes, lexeme: gastar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 5, head: 7, rel: det}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: ropa, lexeme: ropa, feats: {Number: Sing}, n: 9}]
       reverse: |-
         [Yo] no quiero que gastes todo tu dinero en ropa
         No quiero que gaste todo su dinero en ropa
@@ -332,7 +332,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Te aconsejo que guardes el dinero en el banco.
-      tokens: [{surface: Te, lexeme: te}, {surface: aconsejo, lexeme: aconsejar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: guardes, lexeme: guardar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 6}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: banco, lexeme: banco, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Te, lexeme: te}, {surface: aconsejo, lexeme: aconsejar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: guardes, lexeme: guardar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 6}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: banco, lexeme: banco, feats: {Number: Sing}, n: 9}]
       reverse: |-
         [Yo] te aconsejo que guardes (el|tu) dinero en el banco
         Le aconsejo que guarde el dinero en el banco
@@ -346,7 +346,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pero Abuela guarda su dinero debajo del colchón.
-      tokens: [{surface: Pero, lexeme: pero}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: guarda, lexeme: guardar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 5}, {surface: debajo, lexeme: debajo}, {surface: del, lexeme: del}, {surface: colchón, lexeme: colchón, feats: {Number: Sing}}]
+      tokens: [{surface: Pero, lexeme: pero}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: guarda, lexeme: guardar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 5}, {surface: debajo, lexeme: debajo}, {surface: del, lexeme: del, n: 7, head: 8, rel: case}, {surface: colchón, lexeme: colchón, feats: {Number: Sing}, n: 8}]
       reverse: Pero (Abuela|la abuela|mi abuela) guarda su dinero debajo del colchón
   translations:
     en: But (Grandma|Grandmother|Abuela|my grandma|my grandmother) keeps her money under the mattress.
@@ -355,7 +355,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela le manda dinero a Marisol para que compre medicina.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}, {surface: a, lexeme: a}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: compre, lexeme: comprar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: medicina, lexeme: medicina, feats: {Number: Sing}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 6}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: compre, lexeme: comprar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: medicina, lexeme: medicina, feats: {Number: Sing}}]
       reverse: (Abuela|La abuela|Mi abuela) le manda dinero a (Marisol|tía Marisol) para que compre (medicina|medicinas)
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) sends (money to (Marisol|Aunt Marisol)|(Marisol|Aunt Marisol) money) (so [that] she can buy|for her to buy|to buy) medicine.
@@ -408,7 +408,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Es importante que ayudes a tus padres cuando sean viejos.
-      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: importante, lexeme: importante, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: ayudes, lexeme: ayudar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 7}, {surface: cuando, lexeme: cuando}, {surface: sean, lexeme: ser, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: viejos, lexeme: viejo, feats: {Gender: Masc, Number: Plur}}]
+      tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: importante, lexeme: importante, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que}, {surface: ayudes, lexeme: ayudar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: tus, lexeme: tu, feats: {Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det}, {surface: padres, lexeme: padre, feats: {Number: Plur}, n: 7}, {surface: cuando, lexeme: cuando}, {surface: sean, lexeme: ser, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: viejos, lexeme: viejo, feats: {Gender: Masc, Number: Plur}}]
       reverse: |-
         Es importante que ayudes a tus padres cuando sean (viejos|mayores)
         Es importante que ayude a sus padres cuando sean viejos
@@ -463,7 +463,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es domingo por la tarde. Daniel toma un cafecito con Abuela en el portal.
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tarde, lexeme: tarde}, {surface: Daniel, lexeme: daniel}, {surface: toma, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 9}, {surface: con, lexeme: con}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 13, head: 14, rel: det}, {surface: portal, lexeme: portal, feats: {Number: Sing}, n: 14}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: tarde, lexeme: tarde}, {surface: Daniel, lexeme: daniel}, {surface: toma, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 9}, {surface: con, lexeme: con, n: 10, head: 11, rel: case}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}, n: 11}, {surface: en, lexeme: en, n: 12, head: 14, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 13, head: 14, rel: det}, {surface: portal, lexeme: portal, feats: {Number: Sing}, n: 14}]
       translations:
         en: It's Sunday afternoon. Daniel is having a cafecito with Grandma on the porch.
   - line:
@@ -471,7 +471,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mi'jo, yo tengo unos consejos para ti.
-          tokens: [{surface: Mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: yo, lexeme: yo}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: unos, lexeme: un, feats: {Gender: Masc, Number: Plur}, n: 4, head: 5, rel: det}, {surface: consejos, lexeme: consejo, feats: {Number: Plur}, n: 5}, {surface: para, lexeme: para}, {surface: ti, lexeme: ti}]
+          tokens: [{surface: Mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: yo, lexeme: yo}, {surface: tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: unos, lexeme: un, feats: {Gender: Masc, Number: Plur}, n: 4, head: 5, rel: det}, {surface: consejos, lexeme: consejo, feats: {Number: Plur}, n: 5}, {surface: para, lexeme: para, n: 6, head: 7, rel: case}, {surface: ti, lexeme: ti, n: 7}]
       translations:
         en: Son, I have some advice for you.
   - line:
@@ -516,7 +516,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y qué? Yo me casé a los veinte.
-          tokens: [{surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: Yo, lexeme: yo}, {surface: me, lexeme: me}, {surface: casé, lexeme: casarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: veinte, lexeme: veinte}]
+          tokens: [{surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: Yo, lexeme: yo}, {surface: me, lexeme: me}, {surface: casé, lexeme: casarse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 6, head: 8, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}}, {surface: veinte, lexeme: veinte, n: 8}]
       translations:
         en: So what? I got married at twenty.
   - choose:
@@ -545,7 +545,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, abuela. Tengo mi dinero en el banco.
-          tokens: [{surface: Sí, lexeme: sí}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: banco, lexeme: banco, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: banco, lexeme: banco, feats: {Number: Sing}, n: 8}]
       translations:
         en: Yes, Grandma. I have my money in the bank.
   - line:
@@ -553,7 +553,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿En el banco? Yo guardo mi dinero debajo del colchón.
-          tokens: [{surface: En, lexeme: en}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: banco, lexeme: banco, feats: {Number: Sing}, n: 3}, {surface: Yo, lexeme: yo}, {surface: guardo, lexeme: guardar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 7}, {surface: debajo, lexeme: debajo}, {surface: del, lexeme: del}, {surface: colchón, lexeme: colchón, feats: {Number: Sing}}]
+          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: banco, lexeme: banco, feats: {Number: Sing}, n: 3}, {surface: Yo, lexeme: yo}, {surface: guardo, lexeme: guardar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}, n: 7}, {surface: debajo, lexeme: debajo}, {surface: del, lexeme: del, n: 9, head: 10, rel: case}, {surface: colchón, lexeme: colchón, feats: {Number: Sing}, n: 10}]
       translations:
         en: In the bank? I keep my money under the mattress.
   - line:
@@ -577,7 +577,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Y para mí, la familia es más importante que todo.
-          tokens: [{surface: Y, lexeme: y}, {surface: para, lexeme: para}, {surface: mí, lexeme: mí}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: importante, lexeme: importante, feats: {Gender: Fem, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: para, lexeme: para, n: 2, head: 3, rel: case}, {surface: mí, lexeme: mí, n: 3}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: importante, lexeme: importante, feats: {Gender: Fem, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}}]
       translations:
         en: And for me, family is more important than anything.
   - line:
@@ -586,7 +586,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Quiero que llames a tu tía Marisol y a Yunior.
-          tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: llames, lexeme: llamar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: a, lexeme: a}, {surface: Yunior, lexeme: yunior}]
+          tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: llames, lexeme: llamar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 9, head: 10, rel: case}, {surface: Yunior, lexeme: yunior, n: 10}]
       translations:
         en: I want you to call your Aunt Marisol and Yunior.
   - line:
@@ -594,7 +594,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mañana los llamo por WhatsApp, abuela.
-          tokens: [{surface: Mañana, lexeme: mañana}, {surface: los, lexeme: lo, feats: {Number: Plur}}, {surface: llamo, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por}, {surface: WhatsApp, lexeme: whatsapp}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+          tokens: [{surface: Mañana, lexeme: mañana}, {surface: los, lexeme: lo, feats: {Number: Plur}}, {surface: llamo, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 4, head: 5, rel: case}, {surface: WhatsApp, lexeme: whatsapp, n: 5}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       translations:
         en: I'll call them on WhatsApp tomorrow, Grandma.
   - line:
@@ -618,7 +618,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, mi'jo, ¡con mucho inglés!
-          tokens: [{surface: Sí, lexeme: sí}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: con, lexeme: con}, {surface: mucho, lexeme: mucho}, {surface: inglés, lexeme: inglés, feats: {Number: Sing}}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: con, lexeme: con, n: 3, head: 5, rel: case}, {surface: mucho, lexeme: mucho}, {surface: inglés, lexeme: inglés, feats: {Number: Sing}, n: 5}]
       translations:
         en: Yes, son, with a lot of English!
   - choose:

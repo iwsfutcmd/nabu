@@ -106,7 +106,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: נָעֳמִי
-      tokens: [{surface: נָעֳמִי, lexeme: naomi, feats: {Number: Sing}, readings: {tiberian: noʿŏmî}}]
+      tokens: [{surface: נָעֳמִי, lexeme: naomi, readings: {tiberian: noʿŏmî}}]
       reverse: נעמי
   translations:
     en: Naomi
@@ -115,7 +115,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתָּשָׁב נָעֳמִי׃
-      tokens: [{surface: וַתָּשָׁב, lexeme: shuv, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattā́šoḇ}}, {surface: נָעֳמִי, lexeme: naomi, feats: {Number: Sing}, readings: {tiberian: noʿŏmî}}]
+      tokens: [{surface: וַתָּשָׁב, lexeme: shuv, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattā́šoḇ}}, {surface: נָעֳמִי, lexeme: naomi, readings: {tiberian: noʿŏmî}}]
       reverse: |-
         ותשב נעמי
         נעמי שבה
@@ -128,7 +128,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רוּת
-      tokens: [{surface: רוּת, lexeme: rut, feats: {Number: Sing}, readings: {tiberian: rûṯ}}]
+      tokens: [{surface: רוּת, lexeme: rut, readings: {tiberian: rûṯ}}]
       reverse: רות
   translations:
     en: Ruth
@@ -170,7 +170,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַל־תִּפְגְּעִי־בִי׃
-      tokens: [{surface: אַל, lexeme: al.neg, readings: {tiberian: ʾal-}}, {surface: תִּפְגְּעִי, lexeme: paga, feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, readings: {tiberian: tip̄gəʿî-}}, {surface: בִי, lexemes: [{lexeme: be, surface: בִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ḇî}}]
+      tokens: [{surface: אַל, lexeme: al.neg, readings: {tiberian: ʾal-}}, {surface: תִּפְגְּעִי, lexeme: paga, feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, readings: {tiberian: tip̄gəʿî-}}, {surface: בִי, lexemes: [{lexeme: be, surface: בִ, base: true, n: 3, head: 4, rel: case}, {lexeme: sfx-1cs, surface: י, n: 4}], readings: {tiberian: ḇî}}]
       reverse: אל תפגעי בי
   translations:
     en: (Do not|Don't) (urge|press|beg) me!
@@ -214,7 +214,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: לְעָזְבֵךְ לָשׁוּב מֵאַחֲרָיִךְ
-      tokens: [{surface: לְעָזְבֵךְ, lexemes: [{lexeme: le, surface: לְ}, {lexeme: azav, surface: עָזְבֵ, base: true, feats: {VerbForm: Inf}}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ləʿozḇēḵ}}, {surface: לָשׁוּב, lexemes: [{lexeme: le, surface: לָ}, {lexeme: shuv, surface: שׁוּב, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lāšûḇ}}, {surface: מֵאַחֲרָיִךְ, lexemes: [{lexeme: min, surface: מֵ}, {lexeme: ahar, surface: אַחֲרָיִ, base: true}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mēʾaḥărā́yiḵ}}]
+      tokens: [{surface: לְעָזְבֵךְ, lexemes: [{lexeme: le, surface: לְ}, {lexeme: azav, surface: עָזְבֵ, base: true, feats: {VerbForm: Inf}}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ləʿozḇēḵ}}, {surface: לָשׁוּב, lexemes: [{lexeme: le, surface: לָ}, {lexeme: shuv, surface: שׁוּב, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lāšûḇ}}, {surface: מֵאַחֲרָיִךְ, lexemes: [{lexeme: min, surface: מֵ}, {lexeme: ahar, surface: אַחֲרָיִ, base: true, n: 7, head: 8, rel: case}, {lexeme: sfx-2fs, surface: ךְ, n: 8}], readings: {tiberian: mēʾaḥărā́yiḵ}}]
       reverse: לעזבך לשוב מאחריך
   translations:
     en: |-
@@ -358,7 +358,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כֹּה יַעֲשֶׂה יְהוָה לִי וְכֹה יֹסִיף׃
-      tokens: [{surface: כֹּה, lexeme: koh, readings: {tiberian: kōh}}, {surface: יַעֲשֶׂה, lexeme: asah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yaʿăśeh}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}, {surface: וְכֹה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: koh, surface: כֹה, base: true}], readings: {tiberian: wəḵōh}}, {surface: יֹסִיף, lexeme: hosif, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yōsîp̄}}]
+      tokens: [{surface: כֹּה, lexeme: koh, readings: {tiberian: kōh}}, {surface: יַעֲשֶׂה, lexeme: asah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yaʿăśeh}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true, n: 4, head: 5, rel: case}, {lexeme: sfx-1cs, surface: י, n: 5}], readings: {tiberian: lî}}, {surface: וְכֹה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: koh, surface: כֹה, base: true}], readings: {tiberian: wəḵōh}}, {surface: יֹסִיף, lexeme: hosif, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yōsîp̄}}]
       reverse: (כה|כוה) יעשה יהוה לי (וכה|וכוה) (יסיף|יוסיף)
   translations:
     en: |-
@@ -370,7 +370,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כֹּה אָמַר יְהוָה׃
-      tokens: [{surface: כֹּה, lexeme: koh, readings: {tiberian: kōh}}, {surface: אָמַר, lexeme: amar, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʾāmar}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}]
+      tokens: [{surface: כֹּה, lexeme: koh, readings: {tiberian: kōh}}, {surface: אָמַר, lexeme: amar, feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: ʾāmar}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}]
       reverse: (כה|כוה) אמר יהוה
   translations:
     en: |-
@@ -384,7 +384,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בֵּינִי וּבֵינֶךָ
-      tokens: [{surface: בֵּינִי, lexemes: [{lexeme: beyn, surface: בֵּינִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: bênî}}, {surface: וּבֵינֶךָ, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵינֶ, base: true}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: ûḇênéḵā}}]
+      tokens: [{surface: בֵּינִי, lexemes: [{lexeme: beyn, surface: בֵּינִ, base: true, n: 1, head: 2, rel: case}, {lexeme: sfx-1cs, surface: י, n: 2}], readings: {tiberian: bênî}}, {surface: וּבֵינֶךָ, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵינֶ, base: true, n: 4, head: 5, rel: case}, {lexeme: sfx-2ms, surface: ךָ, n: 5}], readings: {tiberian: ûḇênéḵā}}]
       reverse: ביני ובינך
   translations:
     en: |-
@@ -397,7 +397,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בֵּינִי וּבֵינֵךְ
-      tokens: [{surface: בֵּינִי, lexemes: [{lexeme: beyn, surface: בֵּינִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: bênî}}, {surface: וּבֵינֵךְ, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵינֵ, base: true}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ûḇênēḵ}}]
+      tokens: [{surface: בֵּינִי, lexemes: [{lexeme: beyn, surface: בֵּינִ, base: true, n: 1, head: 2, rel: case}, {lexeme: sfx-1cs, surface: י, n: 2}], readings: {tiberian: bênî}}, {surface: וּבֵינֵךְ, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵינֵ, base: true, n: 4, head: 5, rel: case}, {lexeme: sfx-2fs, surface: ךְ, n: 5}], readings: {tiberian: ûḇênēḵ}}]
       reverse: ביני ובינך
   translations:
     en: |-
@@ -410,7 +410,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כִּי הַמָּוֶת יַפְרִיד בֵּינִי וּבֵינֵךְ׃
-      tokens: [{surface: כִּי, lexeme: ki, readings: {tiberian: kî}}, {surface: הַמָּוֶת, lexemes: [{lexeme: ha, surface: הַ, n: 2, head: 3, rel: det}, {lexeme: mawet, surface: מָּוֶת, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hammā́weṯ}}, {surface: יַפְרִיד, lexeme: hifrid, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yap̄rîḏ}}, {surface: בֵּינִי, lexemes: [{lexeme: beyn, surface: בֵּינִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: bênî}}, {surface: וּבֵינֵךְ, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵינֵ, base: true}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ûḇênēḵ}}]
+      tokens: [{surface: כִּי, lexeme: ki, readings: {tiberian: kî}}, {surface: הַמָּוֶת, lexemes: [{lexeme: ha, surface: הַ, n: 2, head: 3, rel: det}, {lexeme: mawet, surface: מָּוֶת, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hammā́weṯ}}, {surface: יַפְרִיד, lexeme: hifrid, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yap̄rîḏ}}, {surface: בֵּינִי, lexemes: [{lexeme: beyn, surface: בֵּינִ, base: true, n: 5, head: 6, rel: case}, {lexeme: sfx-1cs, surface: י, n: 6}], readings: {tiberian: bênî}}, {surface: וּבֵינֵךְ, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵינֵ, base: true, n: 8, head: 9, rel: case}, {lexeme: sfx-2fs, surface: ךְ, n: 9}], readings: {tiberian: ûḇênēḵ}}]
       reverse: כי המות יפריד ביני ובינך
   translations:
     en: |-
@@ -457,14 +457,14 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: שׁוּבִי אַחֲרֵי יְבִמְתֵּךְ׃
-          tokens: [{surface: שׁוּבִי, lexeme: shuv, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šû́ḇî}}, {surface: אַחֲרֵי, lexeme: ahar, readings: {tiberian: ʾaḥărê}}, {surface: יְבִמְתֵּךְ, lexemes: [{lexeme: yevemet, surface: יְבִמְתֵּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: yəḇimtēḵ}}]
+          tokens: [{surface: שׁוּבִי, lexeme: shuv, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šû́ḇî}}, {surface: אַחֲרֵי, lexeme: ahar, n: 2, head: 3, rel: case, readings: {tiberian: ʾaḥărê}}, {surface: יְבִמְתֵּךְ, lexemes: [{lexeme: yevemet, surface: יְבִמְתֵּ, base: true, feats: {Number: Sing}, n: 3}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: yəḇimtēḵ}}]
       translations:
         en: go back after your sister-in-law.”
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַתֹּאמֶר רוּת
-          tokens: [{surface: וַתֹּאמֶר, lexeme: amar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓʾmer}}, {surface: רוּת, lexeme: rut, feats: {Number: Sing}, readings: {tiberian: rûṯ}}]
+          tokens: [{surface: וַתֹּאמֶר, lexeme: amar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓʾmer}}, {surface: רוּת, lexeme: rut, readings: {tiberian: rûṯ}}]
       translations:
         en: But Ruth said,
   - line:
@@ -472,7 +472,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: אַל־תִּפְגְּעִי־בִי לְעָזְבֵךְ לָשׁוּב מֵאַחֲרָיִךְ כִּי
-          tokens: [{surface: אַל, lexeme: al.neg, readings: {tiberian: ʾal-}}, {surface: תִּפְגְּעִי, lexeme: paga, feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, readings: {tiberian: tip̄gəʿî-}}, {surface: בִי, lexemes: [{lexeme: be, surface: בִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ḇî}}, {surface: לְעָזְבֵךְ, lexemes: [{lexeme: le, surface: לְ}, {lexeme: azav, surface: עָזְבֵ, base: true, feats: {VerbForm: Inf}}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ləʿozḇēḵ}}, {surface: לָשׁוּב, lexemes: [{lexeme: le, surface: לָ}, {lexeme: shuv, surface: שׁוּב, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lāšûḇ}}, {surface: מֵאַחֲרָיִךְ, lexemes: [{lexeme: min, surface: מֵ}, {lexeme: ahar, surface: אַחֲרָיִ, base: true}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mēʾaḥărā́yiḵ}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî}}]
+          tokens: [{surface: אַל, lexeme: al.neg, readings: {tiberian: ʾal-}}, {surface: תִּפְגְּעִי, lexeme: paga, feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, readings: {tiberian: tip̄gəʿî-}}, {surface: בִי, lexemes: [{lexeme: be, surface: בִ, base: true, n: 3, head: 4, rel: case}, {lexeme: sfx-1cs, surface: י, n: 4}], readings: {tiberian: ḇî}}, {surface: לְעָזְבֵךְ, lexemes: [{lexeme: le, surface: לְ}, {lexeme: azav, surface: עָזְבֵ, base: true, feats: {VerbForm: Inf}}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ləʿozḇēḵ}}, {surface: לָשׁוּב, lexemes: [{lexeme: le, surface: לָ}, {lexeme: shuv, surface: שׁוּב, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lāšûḇ}}, {surface: מֵאַחֲרָיִךְ, lexemes: [{lexeme: min, surface: מֵ}, {lexeme: ahar, surface: אַחֲרָיִ, base: true, n: 11, head: 12, rel: case}, {lexeme: sfx-2fs, surface: ךְ, n: 12}], readings: {tiberian: mēʾaḥărā́yiḵ}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî}}]
       translations:
         en: “Do not urge me to leave you, to turn back from following you;
   - line:
@@ -510,7 +510,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: כֹּה יַעֲשֶׂה יְהוָה לִי וְכֹה יֹסִיף כִּי הַמָּוֶת יַפְרִיד בֵּינִי וּבֵינֵךְ׃
-          tokens: [{surface: כֹּה, lexeme: koh, readings: {tiberian: kōh}}, {surface: יַעֲשֶׂה, lexeme: asah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yaʿăśeh}}, {surface: יְהוָה, lexeme: yhwh, feats: {Number: Sing}, readings: {tiberian: ʾăḏōnāy}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: lî}}, {surface: וְכֹה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: koh, surface: כֹה, base: true}], readings: {tiberian: wəḵōh}}, {surface: יֹסִיף, lexeme: hosif, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yōsîp̄}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî}}, {surface: הַמָּוֶת, lexemes: [{lexeme: ha, surface: הַ, n: 10, head: 11, rel: det}, {lexeme: mawet, surface: מָּוֶת, base: true, feats: {Number: Sing}, n: 11}], readings: {tiberian: hammā́weṯ}}, {surface: יַפְרִיד, lexeme: hifrid, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yap̄rîḏ}}, {surface: בֵּינִי, lexemes: [{lexeme: beyn, surface: בֵּינִ, base: true}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: bênî}}, {surface: וּבֵינֵךְ, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵינֵ, base: true}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: ûḇênēḵ}}]
+          tokens: [{surface: כֹּה, lexeme: koh, readings: {tiberian: kōh}}, {surface: יַעֲשֶׂה, lexeme: asah, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yaʿăśeh}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: לִי, lexemes: [{lexeme: le, surface: לִ, base: true, n: 4, head: 5, rel: case}, {lexeme: sfx-1cs, surface: י, n: 5}], readings: {tiberian: lî}}, {surface: וְכֹה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: koh, surface: כֹה, base: true}], readings: {tiberian: wəḵōh}}, {surface: יֹסִיף, lexeme: hosif, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yōsîp̄}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî}}, {surface: הַמָּוֶת, lexemes: [{lexeme: ha, surface: הַ, n: 10, head: 11, rel: det}, {lexeme: mawet, surface: מָּוֶת, base: true, feats: {Number: Sing}, n: 11}], readings: {tiberian: hammā́weṯ}}, {surface: יַפְרִיד, lexeme: hifrid, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, readings: {tiberian: yap̄rîḏ}}, {surface: בֵּינִי, lexemes: [{lexeme: beyn, surface: בֵּינִ, base: true, n: 13, head: 14, rel: case}, {lexeme: sfx-1cs, surface: י, n: 14}], readings: {tiberian: bênî}}, {surface: וּבֵינֵךְ, lexemes: [{lexeme: we, surface: וּ}, {lexeme: beyn, surface: בֵינֵ, base: true, n: 16, head: 17, rel: case}, {lexeme: sfx-2fs, surface: ךְ, n: 17}], readings: {tiberian: ûḇênēḵ}}]
       translations:
         en: May the LORD do so to me and more besides, if anything but death parts me from you.”
   - choose:

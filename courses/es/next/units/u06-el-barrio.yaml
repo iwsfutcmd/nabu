@@ -29,7 +29,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a casa.
-      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 3, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 3}]
       reverse: |-
         [Yo] voy a casa
         [Yo] me voy a casa
@@ -43,7 +43,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a la bodega.
-      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 4}]
       reverse: |-
         [Yo] voy (a|para|pa') la bodega
         Me voy a la bodega.
@@ -56,7 +56,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú vas a la bodega?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 5}]
       reverse: (Tú vas|Vas [tú]|Usted va|Va [usted]|Ustedes van|Van [ustedes]) a la bodega
   translations:
     en: (Are you going|Do you go) to the (bodega|corner store|store|grocery store)?
@@ -65,7 +65,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami va a la tienda.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: tienda, lexeme: tienda, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: tienda, lexeme: tienda, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (Mami|Mamá) va a la tienda
         Mami va para la tienda.
@@ -79,7 +79,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vamos a la bodega.
-      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 4}]
       reverse: |-
         [Nosotros] vamos (a|para|pa') la bodega
         Nosotras vamos a la bodega.
@@ -169,7 +169,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vivo en Miami.
-      tokens: [{surface: Vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Miami, lexeme: miami}]
+      tokens: [{surface: Vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 2, head: 3, rel: case}, {surface: Miami, lexeme: miami, n: 3}]
       reverse: '[Yo] vivo en Miami'
   translations:
     en: I live in Miami.
@@ -178,7 +178,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vivo en Hialeah.
-      tokens: [{surface: Vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      tokens: [{surface: Vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 2, head: 3, rel: case}, {surface: Hialeah, lexeme: hialeah, n: 3}]
       reverse: '[Yo] vivo en Hialeah'
   translations:
     en: I live in Hialeah.
@@ -198,7 +198,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi casa está en Hialeah.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: Hialeah, lexeme: hialeah, n: 5}]
       reverse: Mi casa (está|queda) en Hialeah
   translations:
     en: My (house|home) is in Hialeah.
@@ -207,7 +207,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela vive en mi calle.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: calle, lexeme: calle, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: calle, lexeme: calle, feats: {Number: Sing}, n: 5}]
       reverse: (Abuela|Mi abuela|La abuela) vive en mi calle
   translations:
     en: (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) lives on my street.
@@ -247,7 +247,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La parada está en la esquina.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: esquina, lexeme: esquina, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: esquina, lexeme: esquina, feats: {Number: Sing}, n: 6}]
       reverse: |-
         La parada (está|queda) en la esquina
         La parada de (la guagua|las guaguas) (está|queda) en la esquina
@@ -260,7 +260,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Camino a la parada.
-      tokens: [{surface: Camino, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: Camino, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 4}]
       reverse: |-
         [Yo] camino (a|hasta) la parada
         [Yo] camino (a|hasta) la parada de la guagua
@@ -271,7 +271,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vamos a la parada de la guagua.
-      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 7}]
       reverse: |-
         [Nosotros] vamos (a|para|pa') la parada [(de la guagua|de las guaguas|del autobús)]
         Nosotras vamos a la parada de la guagua.
@@ -298,7 +298,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La bodega está a la derecha.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: derecha, lexeme: derecha, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: derecha, lexeme: derecha, feats: {Number: Sing}, n: 6}]
       reverse: La bodega (está|queda) a la derecha
   translations:
     en: The (bodega|corner store|store|grocery store) is (on|to) the right.
@@ -307,7 +307,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La parada está a la izquierda.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: izquierda, lexeme: izquierda, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: parada, lexeme: parada, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: izquierda, lexeme: izquierda, feats: {Number: Sing}, n: 6}]
       reverse: |-
         La parada (está|queda) a la izquierda
         La parada de la guagua (está|queda) a la izquierda
@@ -329,7 +329,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La ventanita está en la Calle Ocho.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: ventanita, lexeme: ventanita, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 6}, {surface: Ocho, lexeme: calle-ocho}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: ventanita, lexeme: ventanita, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 6}, {surface: Ocho, lexeme: calle-ocho}]
       reverse: La ventanita (está|queda) en la Calle Ocho
   translations:
     en: The (coffee window|ventanita|café window|walk-up window) is on (Calle Ocho|Eighth Street|8th Street).
@@ -351,7 +351,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi casa está lejos de la Calle Ocho.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 7}, {surface: Ocho, lexeme: calle-ocho}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: de, lexeme: de, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 7}, {surface: Ocho, lexeme: calle-ocho}]
       reverse: Mi casa (está|queda) lejos de la Calle Ocho
   translations:
     en: My (house|home) is (far|a long way) from (Calle Ocho|Eighth Street|8th Street).
@@ -360,7 +360,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Trabajo en la Calle Ocho.
-      tokens: [{surface: Trabajo, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 4}, {surface: Ocho, lexeme: calle-ocho}]
+      tokens: [{surface: Trabajo, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 4}, {surface: Ocho, lexeme: calle-ocho}]
       reverse: '[Yo] trabajo en la Calle Ocho'
   translations:
     en: I work (on|in) (Calle Ocho|Eighth Street|8th Street).
@@ -380,7 +380,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yasiel trabaja en la ventanita.
-      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: trabaja, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: ventanita, lexeme: ventanita, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: trabaja, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: ventanita, lexeme: ventanita, feats: {Number: Sing}, n: 5}]
       reverse: Yasiel trabaja en la ventanita
   translations:
     en: Yasiel works at the (coffee window|ventanita|café window|walk-up window).
@@ -389,7 +389,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami trabaja cerca de casa.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: trabaja, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cerca, lexeme: cerca}, {surface: de, lexeme: de}, {surface: casa, lexeme: casa, feats: {Number: Sing}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: trabaja, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cerca, lexeme: cerca}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}]
       reverse: (Mami|Mamá) trabaja cerca de (casa|la casa)
   translations:
     en: (Mom|Mommy|Mum|Ma) works (near|close to) (home|the house).
@@ -398,7 +398,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Trabajo y vivo en Hialeah.
-      tokens: [{surface: Trabajo, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+      tokens: [{surface: Trabajo, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: Hialeah, lexeme: hialeah, n: 5}]
       reverse: '[Yo] (trabajo y vivo|vivo y trabajo) en Hialeah'
   translations:
     en: I (work and live|live and work) in Hialeah.
@@ -426,7 +426,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel, ¿a dónde tú vas?
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: a, lexeme: a}, {surface: dónde, lexeme: dónde}, {surface: tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: a, lexeme: a, n: 2, head: 4, rel: case}, {surface: dónde, lexeme: dónde}, {surface: tú, lexeme: tú, n: 4}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Daniel, where are you going?
   - line:
@@ -434,7 +434,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Voy a la Calle Ocho, mami. Yasiel trabaja en la ventanita.
-          tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 4}, {surface: Ocho, lexeme: calle-ocho}, {surface: mami, lexeme: mami, feats: {Number: Sing}}, {surface: Yasiel, lexeme: yasiel}, {surface: trabaja, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: ventanita, lexeme: ventanita, feats: {Number: Sing}, n: 11}]
+          tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 4}, {surface: Ocho, lexeme: calle-ocho}, {surface: mami, lexeme: mami, feats: {Number: Sing}}, {surface: Yasiel, lexeme: yasiel}, {surface: trabaja, lexeme: trabajar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 9, head: 11, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: ventanita, lexeme: ventanita, feats: {Number: Sing}, n: 11}]
       translations:
         en: I'm going to Calle Ocho, Mom. Yasiel works at the coffee window.
   - line:
@@ -484,14 +484,14 @@ stories:
       forms:
         es-Latn/standard:
           text: Está cerca, a la derecha de la bodega.
-          tokens: [{surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cerca, lexeme: cerca}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: derecha, lexeme: derecha, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: Está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cerca, lexeme: cerca}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: derecha, lexeme: derecha, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: bodega, lexeme: bodega, feats: {Number: Sing}, n: 8}]
       translations:
         en: It's close, to the right of the bodega.
   - line:
       forms:
         es-Latn/standard:
           text: Daniel coge la guagua a la Calle Ocho.
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: coge, lexeme: coger, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 4}, {surface: a, lexeme: a}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 7}, {surface: Ocho, lexeme: calle-ocho}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: coge, lexeme: coger, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 4}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Calle, lexeme: calle-ocho, n: 7}, {surface: Ocho, lexeme: calle-ocho}]
       translations:
         en: Daniel takes the bus to Calle Ocho.
   - line:
@@ -515,7 +515,7 @@ stories:
       forms:
         es-Latn/standard:
           text: No, yo vivo en Hialeah. Cojo la guagua también.
-          tokens: [{surface: 'No', lexeme: 'no'}, {surface: yo, lexeme: yo}, {surface: vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}, {surface: Cojo, lexeme: coger, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 8}, {surface: también, lexeme: también}]
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: yo, lexeme: yo}, {surface: vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: Hialeah, lexeme: hialeah, n: 5}, {surface: Cojo, lexeme: coger, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 8}, {surface: también, lexeme: también}]
       translations:
         en: No, I live in Hialeah. I take the bus too.
   - line:
@@ -524,7 +524,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo también vivo en Hialeah.
-          tokens: [{surface: Yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en}, {surface: Hialeah, lexeme: hialeah}]
+          tokens: [{surface: Yo, lexeme: yo}, {surface: también, lexeme: también}, {surface: vivo, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: Hialeah, lexeme: hialeah, n: 5}]
       translations:
         en: I live in Hialeah too.
   - choose:
@@ -540,6 +540,6 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Vamos a casa en la guagua, asere!
-          tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: casa, lexeme: casa, feats: {Number: Sing}}, {surface: en, lexeme: en}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 6}, {surface: asere, lexeme: asere, feats: {Number: Sing}}]
+          tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 3, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 3}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 6}, {surface: asere, lexeme: asere, feats: {Number: Sing}}]
       translations:
         en: Let's go home on the bus, man!
