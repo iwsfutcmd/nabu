@@ -37,7 +37,7 @@
         },
         "head": { "$ref": "#/$defs/FunctionHead" },
         "feats": {
-          "description": "Its lexical features, only those no default of its language gives (ADR 0146: each is a part to learn): mano {Gender: Fem}.",
+          "description": "Its lexical features. What Universal Dependencies says of the word (PronType: Dem, NumType: Card), and a feature its language declares lexical for its category only where no default gives it: mano {Gender: Fem}. Each of the second kind is a part to learn (ADR 0146).",
           "$ref": "common.schema.json#/$defs/UdFeatures"
         },
         "classes": {
@@ -59,7 +59,10 @@
           "minProperties": 1,
           "additionalProperties": { "type": "string", "minLength": 1 }
         },
-        "image": { "$ref": "course-source.schema.json#/$defs/ImageAsset" },
+        "image": {
+          "description": "Its picture. In a lexicon the file is relative to the lexicon's own file.",
+          "$ref": "course-source.schema.json#/$defs/ImageAsset"
+        },
         "form": { "$ref": "#/$defs/LexicalForm" },
         "forms": {
           "description": "The forms and stems no rule gives yet (ADR 0145): each listed or pinned.",
@@ -245,9 +248,8 @@
     },
     "Allomorph": {
       "title": "Allomorph",
-      "description": "One form of a lexeme by context. With no condition it is the one used elsewhere.",
+      "description": "One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.",
       "type": "object",
-      "required": ["form"],
       "additionalProperties": false,
       "properties": {
         "form": { "type": "string" },

@@ -361,6 +361,10 @@ export type Slug4 = string;
  */
 export type UdFeatures3 = Readonly<Record<string, string>>;
 /**
+ * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
+ */
+export type KcId4 = string & { readonly __brand: "KcId" };
+/**
  * A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. Nothing writes or reads it until the switch, when every stored event is upgraded to it, it replaces learner-event.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -723,7 +727,7 @@ export type ReportSubmission = CorrectionSubmission | AnswerSubmission;
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "KcRefLocal".
  */
-export type KcId4 = string & { readonly __brand: "KcId" };
+export type KcId5 = string & { readonly __brand: "KcId" };
 
 /**
  * Index of every Nabu schema type, so each is declared. Not a document type.
@@ -845,6 +849,7 @@ export interface NabuSchemaIndex {
   readonly LanguageDeclaration: LanguageDeclaration;
   readonly Condition: Condition;
   readonly Default: Default;
+  readonly FeatureLabel: FeatureLabel;
   readonly LexicalClass: LexicalClass;
   readonly NextLearnerEvent: NextLearnerEvent;
   readonly NextExerciseRef: NextExerciseRef;
@@ -2375,6 +2380,10 @@ export interface TokenLexeme {
    * Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe).
    */
   readonly surface: string;
+  /**
+   * The lexeme the token's others are merged onto (ADR 0145: every complex form is a base lexeme merged with another, one head per step): matbakh in b + el + matbakh, uy in uy + ga. It is what a question about the token asks (which lexeme, which form) and where its feature values are chosen. At most one; a token of two equals has none (yue 十 + 八).
+   */
+  readonly base?: true;
   readonly feats?: UdFeatures;
   /**
    * Its number among the lexemes the utterance writes, from 1, in order. Written where a relation names it or it names one.
@@ -2474,9 +2483,9 @@ export interface NextStoryLineSource {
    *
    * @minItems 1
    *
-   * Items: Another lexeme (which lexeme), or another form of the gap's own, as its feature values (which form).
+   * Items: Another lexeme (which lexeme); another form of the gap's own, as its feature values (which form); or a word built of several lexemes, as a token of the course writes them in that order (apc esm and its ending, where the gap is one word too).
    */
-  readonly distractors?: readonly (LexemeId | UdFeatures)[];
+  readonly distractors?: readonly (LexemeId | UdFeatures | readonly LexemeId[])[];
 }
 /**
  * A comprehension question in the support language, about what has been read.
@@ -3169,6 +3178,21 @@ export interface LanguageDeclaration {
     readonly [k: string]: readonly string[];
   };
   /**
+   * For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter reports.
+   */
+  readonly lexical?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell.
+   */
+  readonly citation?: {
+    readonly [k: string]: UdFeatures;
+  };
+  /**
    * Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none.
    */
   readonly features?: {
@@ -3185,6 +3209,10 @@ export interface LanguageDeclaration {
    * The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146).
    */
   readonly classes?: readonly LexicalClass[];
+  /**
+   * What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it.
+   */
+  readonly labels?: readonly FeatureLabel[];
 }
 /**
  * One default: where `when` holds of a lexeme, it has `gives` unless its entry says otherwise.
@@ -3243,6 +3271,23 @@ export interface LexicalClass {
   readonly notes?: {
     readonly [k: string]: string;
   };
+}
+/**
+ * The name of a set of feature values, by support language: preterite, I (Tense=Past, Person=1, Number=Sing). `pos` narrows it to one category where the same values read otherwise on another.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "FeatureLabel".
+ */
+export interface FeatureLabel {
+  readonly feats: UdFeatures;
+  readonly pos?: PartOfSpeech;
+  readonly gloss: {
+    readonly [k: string]: string;
+  };
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+  readonly was?: KcId4;
 }
 /**
  * A session began: a lesson (one path node), review, mistakes or placement.
@@ -4622,7 +4667,7 @@ export interface Lexeme {
   readonly notes?: {
     readonly [k: string]: string;
   };
-  readonly image?: ImageAsset;
+  readonly image?: ImageAsset1;
   readonly form?: LexicalForm;
   /**
    * The forms and stems no rule gives yet (ADR 0145): each listed or pinned.
@@ -4676,6 +4721,21 @@ export interface FunctionHead {
   readonly takes: readonly PartOfSpeech[];
   readonly makes: PartOfSpeech;
   readonly sets?: UdFeatures;
+}
+/**
+ * A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
+ */
+export interface ImageAsset1 {
+  /**
+   * SVG, PNG or WebP, relative to course.yaml.
+   */
+  readonly file: string;
+  readonly license: Spdx;
+  readonly provenance: Provenance;
+  /**
+   * Where it came from (URL or description), for attribution.
+   */
+  readonly source?: string;
 }
 /**
  * A Semitic base (ADR 0145): its radicals, stored (a hollow verb's middle one shows only in some forms); its Form or stem, as its language names them (apc I to X and Q; hbo qal, nifal); and the vowels its Form leaves open. The root class is never stored: it follows from the radicals.
@@ -4797,13 +4857,13 @@ export interface Scope {
   readonly registers?: readonly RegisterId[];
 }
 /**
- * One form of a lexeme by context. With no condition it is the one used elsewhere.
+ * One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Allomorph".
  */
 export interface Allomorph {
-  readonly form: string;
+  readonly form?: string;
   readonly after?: Condition1;
   readonly before?: Condition2;
   /**

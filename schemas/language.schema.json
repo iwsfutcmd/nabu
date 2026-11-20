@@ -32,13 +32,30 @@
         "type": "array",
         "minItems": 1,
         "uniqueItems": true,
-        "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*$" }
+        "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$" }
       }
+    },
+    "lexical": {
+      "description": "For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter reports.",
+      "type": "object",
+      "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$" }
+      }
+    },
+    "citation": {
+      "description": "For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell.",
+      "type": "object",
+      "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+      "additionalProperties": { "$ref": "common.schema.json#/$defs/UdFeatures" }
     },
     "features": {
       "description": "Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none.",
       "type": "object",
-      "propertyNames": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*$" },
+      "propertyNames": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$" },
       "additionalProperties": {
         "type": "array",
         "minItems": 1,
@@ -55,6 +72,11 @@
       "description": "The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146).",
       "type": "array",
       "items": { "$ref": "#/$defs/LexicalClass" }
+    },
+    "labels": {
+      "description": "What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/FeatureLabel" }
     }
   },
   "$defs": {
@@ -101,6 +123,31 @@
           "type": "object",
           "minProperties": 1,
           "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "FeatureLabel": {
+      "title": "FeatureLabel",
+      "description": "The name of a set of feature values, by support language: preterite, I (Tense=Past, Person=1, Number=Sing). `pos` narrows it to one category where the same values read otherwise on another.",
+      "type": "object",
+      "required": ["feats", "gloss"],
+      "additionalProperties": false,
+      "properties": {
+        "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" },
+        "pos": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+        "gloss": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "notes": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "was": {
+          "description": "The KC whose gloss and notes these were (docs/migration-design.md): kept so a reviewer can trace it. It goes with the switch.",
+          "$ref": "common.schema.json#/$defs/KcId"
         }
       }
     },

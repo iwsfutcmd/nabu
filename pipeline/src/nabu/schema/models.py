@@ -966,6 +966,12 @@ class TokenLexeme(BaseModel):
             description="Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe)."
         ),
     ]
+    base: Annotated[
+        Literal[True] | None,
+        Field(
+            description="The lexeme the token's others are merged onto (ADR 0145: every complex form is a base lexeme merged with another, one head per step): matbakh in b + el + matbakh, uy in uy + ga. It is what a question about the token asks (which lexeme, which form) and where its feature values are chosen. At most one; a token of two equals has none (yue 十 + 八)."
+        ),
+    ] = None
     feats: UdFeatures | None = None
     n: Annotated[
         int | None,
@@ -984,6 +990,15 @@ class TokenLexeme(BaseModel):
     rel: Annotated[
         UdRelation | None, Field(description="Its Universal Dependencies relation to `head`.")
     ] = None
+
+
+type Distractors = Annotated[
+    list[LexemeId],
+    Field(
+        description="Another lexeme (which lexeme); another form of the gap's own, as its feature values (which form); or a word built of several lexemes, as a token of the course writes them in that order (apc esm and its ending, where the gap is one word too).",
+        min_length=2,
+    ),
+]
 
 
 type Slug = Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$", title="Slug")]
@@ -1364,12 +1379,22 @@ class KeyboardLayout(BaseModel):
     ] = None
 
 
-type DimensionsAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z][A-Za-z0-9]*$")]
+type DimensionsAdditionalPropertyItem = Annotated[
+    str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")
+]
 
 
 type DimensionsAdditionalProperty = Annotated[
     list[DimensionsAdditionalPropertyItem], Field(min_length=1)
 ]
+
+
+type LexicalAdditionalPropertyItem = Annotated[
+    str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")
+]
+
+
+type LexicalAdditionalProperty = Annotated[list[LexicalAdditionalPropertyItem], Field(min_length=1)]
 
 
 type FeaturesAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*$")]
@@ -1418,6 +1443,27 @@ class Default(BaseModel):
     notes: Annotated[
         dict[str, NotesAdditionalProperty] | None,
         Field(description="What a reviewer should know, by support language.", min_length=1),
+    ] = None
+
+
+class FeatureLabel(BaseModel):
+    """
+    The name of a set of feature values, by support language: preterite, I (Tense=Past, Person=1, Number=Sing). `pos` narrows it to one category where the same values read otherwise on another.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    feats: UdFeatures
+    pos: PartOfSpeech | None = None
+    gloss: Annotated[dict[str, GlossAdditionalProperty], Field(min_length=1)]
+    notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
+    was: Annotated[
+        KcId | None,
+        Field(
+            description="The KC whose gloss and notes these were (docs/migration-design.md): kept so a reviewer can trace it. It goes with the switch."
+        ),
     ] = None
 
 
@@ -2173,14 +2219,14 @@ type SpelledAdditionalProperty2 = Annotated[
 
 class Allomorph(BaseModel):
     """
-    One form of a lexeme by context. With no condition it is the one used elsewhere.
+    One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.
     """
 
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
-    form: str
+    form: str | None = None
     after: Annotated[Condition | None, Field(description="What it stands after.")] = None
     before: Annotated[Condition | None, Field(description="What it stands before.")] = None
     spelled: Annotated[
@@ -3774,9 +3820,21 @@ class LanguageDeclaration(BaseModel):
             description="For each category, the inflectional features every member must choose a value of (ADR 0145: what makes a head a value head). Spanish NOUN: [Number]; apc VERB: [Aspect, Person, Gender, Number]."
         ),
     ]
+    lexical: Annotated[
+        dict[PartOfSpeech, LexicalAdditionalProperty] | None,
+        Field(
+            description="For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter reports."
+        ),
+    ] = None
+    citation: Annotated[
+        dict[PartOfSpeech, UdFeatures] | None,
+        Field(
+            description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
+        ),
+    ] = None
     features: Annotated[
         dict[
-            Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*$")],
+            Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*(\[[a-z0-9]+\])?$")],
             FeaturesAdditionalProperty,
         ]
         | None,
@@ -3794,6 +3852,12 @@ class LanguageDeclaration(BaseModel):
         list[LexicalClass] | None,
         Field(
             description="The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146)."
+        ),
+    ] = None
+    labels: Annotated[
+        list[FeatureLabel] | None,
+        Field(
+            description="What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it."
         ),
     ] = None
 
@@ -5505,7 +5569,7 @@ class NextStoryLineSource(BaseModel):
     ] = None
     asks: Question | None = None
     distractors: Annotated[
-        list[LexemeId | UdFeatures] | None,
+        list[LexemeId | UdFeatures | Distractors] | None,
         Field(
             description="complete. asks lexeme: other lexemes, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one that writes that lexeme with the gap's feature values; story.distractor-form where there is none). asks form: other feature values, each shown as the gap's lexeme in the attested form that has them; left out, the compiler chooses two attested forms.",
             min_length=1,
@@ -5662,7 +5726,7 @@ class Lexeme(BaseModel):
     feats: Annotated[
         UdFeatures | None,
         Field(
-            description="Its lexical features, only those no default of its language gives (ADR 0146: each is a part to learn): mano {Gender: Fem}."
+            description="Its lexical features. What Universal Dependencies says of the word (PronType: Dem, NumType: Card), and a feature its language declares lexical for its category only where no default gives it: mano {Gender: Fem}. Each of the second kind is a part to learn (ADR 0146)."
         ),
     ] = None
     classes: Annotated[
@@ -5679,7 +5743,12 @@ class Lexeme(BaseModel):
         dict[str, NotesAdditionalProperty] | None,
         Field(description="Notes shown with it, by support language.", min_length=1),
     ] = None
-    image: ImageAsset | None = None
+    image: Annotated[
+        ImageAsset | None,
+        Field(
+            description="Its picture. In a lexicon the file is relative to the lexicon's own file."
+        ),
+    ] = None
     form: LexicalForm | None = None
     forms: Annotated[
         list[LexemeForm] | None,

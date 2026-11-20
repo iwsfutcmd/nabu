@@ -387,6 +387,10 @@
           "description": "Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe).",
           "type": "string"
         },
+        "base": {
+          "description": "The lexeme the token's others are merged onto (ADR 0145: every complex form is a base lexeme merged with another, one head per step): matbakh in b + el + matbakh, uy in uy + ga. It is what a question about the token asks (which lexeme, which form) and where its feature values are chosen. At most one; a token of two equals has none (yue 十 + 八).",
+          "const": true
+        },
         "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" },
         "n": {
           "description": "Its number among the lexemes the utterance writes, from 1, in order. Written where a relation names it or it names one.",
@@ -487,8 +491,12 @@
           "minItems": 1,
           "uniqueItems": true,
           "items": {
-            "description": "Another lexeme (which lexeme), or another form of the gap's own, as its feature values (which form).",
-            "oneOf": [{ "$ref": "common.schema.json#/$defs/LexemeId" }, { "$ref": "common.schema.json#/$defs/UdFeatures" }]
+            "description": "Another lexeme (which lexeme); another form of the gap's own, as its feature values (which form); or a word built of several lexemes, as a token of the course writes them in that order (apc esm and its ending, where the gap is one word too).",
+            "oneOf": [
+              { "$ref": "common.schema.json#/$defs/LexemeId" },
+              { "$ref": "common.schema.json#/$defs/UdFeatures" },
+              { "type": "array", "minItems": 2, "items": { "$ref": "common.schema.json#/$defs/LexemeId" } }
+            ]
           }
         }
       }
