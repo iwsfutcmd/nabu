@@ -2,10 +2,12 @@
 
 - Status: Proposed
 - Date: 2026-11-19
-- Amends: [ADR 0088](0088-script-tracks.md) (the script row never gates the path), [ADR
-  0133](0133-script-tracks-ask-the-reading.md)
-- Builds on: [ADR 0146](0146-what-is-learned.md) (a word's letters are not its parts), [ADR
-  0148](0148-projections-and-misses.md) (what a script leaves over is learned word by word)
+- Amends: [ADR 0088](0088-script-tracks.md) (the script row never gates the path; placement does not touch
+  it), [ADR 0133](0133-script-tracks-ask-the-reading.md), [ADR 0077](0077-adaptive-placement.md) and [ADR
+  0111](0111-placement-seeds-words.md) (a placement over a script track, and what it leaves behind)
+- Builds on: [ADR 0146](0146-what-is-learned.md) (a word's parts are what no rule gives), [ADR
+  0148](0148-projections-and-misses.md) (a letter's correspondence is a rule; what a script leaves over is
+  learned word by word)
 
 ## Context
 
@@ -24,7 +26,8 @@ fa, hbo, apc's Arabic, es, tok's Latin and yue's Jyutping have none.
   Latin and Cyrillic each gate their own cards.
 - **Logographies never gate:** Chinese characters and sitelen pona are learned with their words.
 - **A test-out is always offered,** so a learner who reads the script is never held: a short placement over
-  the track's letters and words, folded like any placement (ADR 0039), seeding the grapheme KCs it shows.
+  the track's letters and words, folded like any placement (ADR 0039), seeding the grapheme KCs it shows (as
+  ADR 0111 seeds a placed unit's words).
 - **"Script" means the orthography's rules, not only its letters.** A Latin-script course still has one where
   its spelling isn't the learner's: es's track teaches Spanish spelling (c, qu, g and gu, h, ll and y, ñ, the
   accent rules), the real gap for heritage speakers; tok's is a minute long.
