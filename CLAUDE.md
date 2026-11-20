@@ -670,6 +670,18 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (ADR 0101: it waits while a sentence could still take one) and has a slot of its own where the session can afford it
   (planner `builds`). One of each card a session. Their `prior`s are guesses (REVIEW on real logs).
 
+## Data page notes
+- Debug mode links each course's Data page (`#/<course>/<orth>/data`, apps/web/src/Data.tsx): its words, forms and
+  patterns, letters and sentences, to read and search. It is @nabu/core/lesson `courseData` (every word with the ways
+  its sentences write it and what each token carries: `tokenParts`, a form the word has of itself marked; every form
+  with the words that carry it; every sentence with its words, tags and accept sets) shown by @nabu/ui/data
+  `DataBrowser`. It reads the bundle the lessons read and records nothing.
+- What the page shows is laid out in core (`courseData`: tags, readings as text of their own), never taken apart in UI
+  code (`nabu/no-manual-tagged-text`); ids and tags are code, in the interface's own face, left to right.
+- One search matcher: @nabu/core/lesson `textMatcher` (letters as the profile compares them, readings with or without
+  tones, support text in its own language, ids). The word list's `wordMatcher` and the Data page's `dataMatcher` call
+  it; never write another. A sentence is also found by a KC it lists (form:dat).
+
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
   (`:root[data-theme="dark"]`, and `prefers-color-scheme: dark` when nothing is chosen). A new colour gets a value in

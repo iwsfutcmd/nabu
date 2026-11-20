@@ -543,6 +543,18 @@
   font-size: 1rem;
 }
 
+/* A form the word has of itself (the Data page): listed, but nothing is built with it. Said in
+   words too, never by the border alone. */
+.part[data-of-itself] {
+  border-style: dashed;
+}
+
+.partNote {
+  color: var(--nabu-color-muted);
+  font-size: 0.8125rem;
+  font-style: italic;
+}
+
 .tile[data-correct] {
   background-color: var(--nabu-color-correct-bg);
   border-color: var(--nabu-color-correct);

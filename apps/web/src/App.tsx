@@ -5,6 +5,7 @@
  *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes | placement>
  *   · #/<course>/<orthography>/story/<node> · #/<course>/<orthography>/roleplay/<scenario>
  *   · #/<course>/<orthography>/<words | sentences | reports | offline> (the course page's links)
+ *   · #/<course>/<orthography>/<cards | audio | data> (debug mode: the card gallery, the audio check, the course's data)
  *
  * Local-first (§14.2): every learner event goes to the on-device log, and the
  * path, XP and the next session are projections of it, computed by @nabu/core.
@@ -63,6 +64,7 @@ import { storedReading, storedTradition, storeReading } from "./readings.ts";
 import { reportIntake, reportsThrough } from "./reports.ts";
 import { ReportsLink, ReportsPage } from "./YourReports.tsx";
 import { AudioCheckPage } from "./AudioCheck.tsx";
+import { DataPage } from "./Data.tsx";
 import { CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, gateClosed, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
@@ -109,6 +111,7 @@ export type Route =
   | { readonly tag: "sentences"; readonly course: string; readonly orthography: string }
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "data"; readonly course: string; readonly orthography: string }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
   | { readonly tag: "reports"; readonly course: string; readonly orthography: string }
   | { readonly tag: "offline"; readonly course: string; readonly orthography: string }
@@ -133,6 +136,7 @@ const parse = (hash: string): Route => {
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
+  if (session === "data") return { tag: "data", course, orthography: unslug(orthography) };
   if (session === "words") return { tag: "words", course, orthography: unslug(orthography) };
   if (session === "reports") return { tag: "reports", course, orthography: unslug(orthography) };
   if (session === "offline") return { tag: "offline", course, orthography: unslug(orthography) };
@@ -158,7 +162,7 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
+          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "data" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
@@ -882,6 +886,13 @@ const CoursePath = ({
         <p>
           <a className={styles.link} href={href({ tag: "cards", course: course.id, orthography })} data-cards-link="">
             {t.format("debug.cards.open")}
+          </a>
+        </p>
+      )}
+      {DEBUG && (
+        <p>
+          <a className={styles.link} href={href({ tag: "data", course: course.id, orthography })} data-data-link="">
+            {t.format("data.open")}
           </a>
         </p>
       )}
@@ -1662,6 +1673,14 @@ export const App = (): JSX.Element => {
     return (
       <CourseUiProvider course={course}>
         <AudioCheckPage loaded={loaded.value} base={import.meta.env.BASE_URL} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+      </CourseUiProvider>
+    );
+  }
+  if (route.tag === "data") {
+    const { course } = loaded.value;
+    return (
+      <CourseUiProvider course={course}>
+        <DataPage loaded={loaded.value} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
       </CourseUiProvider>
     );
   }

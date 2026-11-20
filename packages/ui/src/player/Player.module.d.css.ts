@@ -65,6 +65,7 @@ declare const styles: {
   readonly part: string;
   readonly partGloss: string;
   readonly partName: string;
+  readonly partNote: string;
   readonly partTile: string;
   readonly partWord: string;
   readonly parts: string;

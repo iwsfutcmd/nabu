@@ -1358,6 +1358,90 @@
       "message": "One card of each kind this course can make. Nothing you do here is recorded or counts towards your progress.",
       "description": "Debug mode: explanation at the top of the card gallery."
     },
+    "data.title": {
+      "message": "Course data",
+      "description": "Debug mode: title of the page that lists everything a course says of its words, forms, letters and sentences."
+    },
+    "data.open": {
+      "message": "Browse the course's data",
+      "description": "Debug mode: link on a course's page to the page that lists its words, forms, letters and sentences with everything the course says of them."
+    },
+    "data.intro": {
+      "message": "Everything the course says of its words, forms and sentences: what its cards are made from. Nothing here is recorded.",
+      "description": "Debug mode, the course data page: what the page is, under its title."
+    },
+    "data.search": {
+      "message": "Find a word, a meaning or an id",
+      "description": "Debug mode, the course data page: label of the search field. It finds words by their letters (with or without vowel marks), by their reading or by their meaning, and anything by its id (such as form:dat)."
+    },
+    "data.view.label": {
+      "message": "Show",
+      "description": "Debug mode, the course data page: label of the choice of which list to show (words, forms, letters, sentences)."
+    },
+    "data.view.words": {
+      "message": ".input {$count :number}\n{{Words ({$count})}}",
+      "description": "Debug mode, the course data page: the list of the course's words. $count is how many there are; it is a label, so no plural forms are needed."
+    },
+    "data.view.forms": {
+      "message": ".input {$count :number}\n{{Forms and patterns ({$count})}}",
+      "description": "Debug mode, the course data page: the list of the course's grammatical forms (endings, tenses, cases) and sentence patterns. $count is how many there are."
+    },
+    "data.view.letters": {
+      "message": ".input {$count :number}\n{{Letters ({$count})}}",
+      "description": "Debug mode, the course data page: the list of the letters the course's script lessons teach. $count is how many there are."
+    },
+    "data.view.sentences": {
+      "message": ".input {$count :number}\n{{Sentences ({$count})}}",
+      "description": "Debug mode, the course data page: the list of the course's sentences. $count is how many there are."
+    },
+    "data.found": {
+      "message": ".input {$count :number}\n.input {$total :number}\n{{{$count} of {$total} match}}",
+      "description": "Debug mode, the course data page: how many rows of the list match the search, out of all of them. Read out when it changes."
+    },
+    "data.more": {
+      "message": ".input {$count :number}\n{{Show more ({$count} left)}}",
+      "description": "Debug mode, the course data page: button under a long list that shows its next rows. $count is how many rows are not shown yet."
+    },
+    "data.sentences.count": {
+      "message": ".input {$count :number}\n.match $count\none {{in {$count} sentence}}\n* {{in {$count} sentences}}",
+      "description": "Debug mode, the course data page: how many of the course's sentences use a word or a form, or write a word a certain way."
+    },
+    "data.word.written": {
+      "message": "As sentences write it",
+      "description": "Debug mode, the course data page: accessible name of the list, under a word, of every way the course's sentences write that word (its inflected forms)."
+    },
+    "data.word.unwritten": {
+      "message": "No sentence writes it.",
+      "description": "Debug mode, the course data page: under a word that no sentence of the course contains."
+    },
+    "data.word.asked": {
+      "message": "Asked by its parts",
+      "description": "Debug mode, the course data page: a tag on a word form that the two cards about a word's parts (ADR 0152) can ask."
+    },
+    "data.part.of-itself": {
+      "message": "of itself",
+      "description": "Debug mode, the course data page: a note on a form that a word has by its own nature rather than by something added to it, such as the feminine gender of a feminine noun. Read as: (the word has this) of itself."
+    },
+    "data.form.carried": {
+      "message": "Words that carry it",
+      "description": "Debug mode, the course data page: accessible name of the list, under a grammatical form, of the words of the course that appear in that form."
+    },
+    "data.form.uncarried": {
+      "message": "No word carries it: sentences list it.",
+      "description": "Debug mode, the course data page: under a form or a sentence pattern that is not marked on any single word, only on whole sentences."
+    },
+    "data.more.carriers": {
+      "message": ".input {$count :number}\n{{and {$count} more}}",
+      "description": "Debug mode, the course data page: ends a list of words that was cut short. $count is how many more words there are."
+    },
+    "data.sentence.words": {
+      "message": "Its words",
+      "description": "Debug mode, the course data page: accessible name of the list, under a sentence, of that sentence's words, each with what the course says of it."
+    },
+    "data.sentence.accepts": {
+      "message": "Accepted answers",
+      "description": "Debug mode, the course data page: label before the answers a sentence accepts when the learner writes it in the language being learned, and when they translate it, each written in the course's notation for alternatives."
+    },
     "debug.cards.none": {
       "message": "None in this course",
       "description": "Debug mode: shown for a kind of card the course has no material for."

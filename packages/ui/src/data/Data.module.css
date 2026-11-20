@@ -1,0 +1,163 @@
+/* The Data page's browser (debug mode): a course's own data, to read. Logical properties only: the
+   same rules lay out LTR and RTL chrome, and every text takes its own language's direction through
+   <T>. Horizontal only: a list is not set in columns (§11.4). The search field, the view choice and
+   the unit headings are the word list's (Words.module.css). */
+
+.rows,
+.ways,
+.carriers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  padding-block: var(--nabu-space-3);
+  padding-inline: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+/* Room above and below a line of the language being learned: its marks (a shadda with its vowel, a
+   Hebrew accent) reach past the line's own box. */
+.head,
+.ink {
+  padding-block: var(--nabu-space-1);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+}
+
+.form {
+  font-size: 1.5rem;
+}
+
+.variant {
+  font-size: 1.125rem;
+  color: var(--nabu-color-muted);
+}
+
+.entry {
+  font-size: 1.0625rem;
+}
+
+.sentence {
+  margin: 0;
+  font-size: 1.375rem;
+}
+
+/* Ids and tags, as the course writes them: code, left to right whatever the chrome, in the
+   interface's own face (the app ships no monospace one, and never falls back to a system font). */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-1) var(--nabu-space-2);
+  margin: 0;
+}
+
+.code {
+  padding-inline: var(--nabu-space-1);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--nabu-color-muted);
+  background-color: var(--nabu-color-page);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: 0.25rem;
+  direction: ltr;
+  unicode-bidi: isolate;
+  overflow-wrap: anywhere;
+}
+
+/* A word as a sentence writes it, with what it carries: one line that wraps. */
+.way {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+}
+
+.token {
+  font-size: 1.25rem;
+}
+
+.readings {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+}
+
+.reading {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--nabu-space-1);
+  font-size: 0.9375rem;
+}
+
+.badge,
+.note {
+  padding-block: 0.0625rem;
+  padding-inline: var(--nabu-space-2);
+  font-size: 0.8125rem;
+  color: var(--nabu-color-muted);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: 999px;
+}
+
+.carriers {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+}
+
+.carrier {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--nabu-space-1);
+  font-size: 1.125rem;
+}
+
+.accepts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+/* An accept set as the course writes it: one alternative a line. */
+.accept {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--nabu-color-muted);
+  white-space: pre-line;
+}
+
+.more {
+  align-self: center;
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-4);
+  font: inherit;
+  font-weight: 700;
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.more[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
