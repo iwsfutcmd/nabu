@@ -9,6 +9,7 @@ outputs (fonts, pages, renders) are never committed, but for apc's lexical forms
 | [pattern-slots](pattern-slots/) | Faint pattern slots by a COLR/CPAL colour font, marks at full strength | 0150, 0151 |
 | [lzh-qieyun](lzh-qieyun/) | lzh's Baxter, Pinyin and Jyutping pins against nk2028's Qieyun derivations | 0145 (the lexical form), lexemes.md §8 |
 | [apc-lexical-forms](apc-lexical-forms/) | apc's lexical form drafted for every word of the course, its four projections, and what does not come back. Its two outputs are committed: [../lexical-forms](../lexical-forms/) | 0145, 0148 |
+| [migration-inventory](migration-inventory/) | What the migration converts, counted from the ten courses: KCs by kind, how each `form:` KC is used (a token's form, or a morph), clips keyed by a KC | 0145 (Consequences); [../migration-design.md](../migration-design.md) |
 
 The explainer for the inflection-or-derivation question, with its UI mockups and borderline cases, is in
 [../explainers](../explainers/).

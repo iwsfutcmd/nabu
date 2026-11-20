@@ -1,0 +1,417 @@
+# The migration to the lexical model: formats, for approval
+
+- Status: a design note for the owner's approval (Task C of [the handoff](handoff-lexical-model.md)),
+  2026-11-20. **Nothing is built from it.** The ADRs decide what is stored and how it behaves
+  ([0145](adr/0145-lexical-model.md) to [0149](adr/0149-script-first.md)); this note proposes the file shapes,
+  the ids, the event change and the order of work. Where it goes beyond an ADR it says "proposed".
+- Its numbers are counted from the repo by
+  [prototypes/migration-inventory](prototypes/migration-inventory/) and, for apc, by
+  [Task B's prototype](prototypes/apc-lexical-forms/).
+- Decisions it needs from the owner are listed at the end, each with a recommendation.
+
+## What there is to convert
+
+| | Count | Where |
+|---|---|---|
+| Sense KCs | 3,021 | every one has a UD `pos` already |
+| `form:` KCs | 262 | 133 pinned on tokens as their form, 127 written as morphs with letters, 2 both ways |
+| `construction:` KCs | 24 | 23 named by their sentences (`constructions:`), 1 written as a morph |
+| `grapheme:` KCs | 75 | script tracks; they stay (ADR 0149) |
+| Sentences | 5,269 | 731 carry `persons`, 763 a `register` |
+| Sense KCs listing a second form | 67 | apc 30, uz 24, fa 7, grc 4, es 2: mostly inflected forms |
+| Clips | 7,696 | 2,193 keyed by a KC id; 148 reviewed |
+
+## The order, and what "done" is for each
+
+The owner's order stands. Proposed: the first two deliverables change nothing a learner sees, and the third
+switches all ten courses at once.
+
+1. **Schemas.** `schemas/lexicon.schema.json` and `schemas/language.schema.json`, the token and tag changes in
+   `course-source`, the profile's correspondences, the event schema's new version. Additive, with examples in
+   `schemas/examples` and generated models. Done: `pnpm codegen`, lint, typecheck and tests green; nothing reads
+   the new files yet.
+2. **The converter.** `nabu migrate <course>` writes a lexicon and a converted course beside the old ones
+   (`lexicons/<lang>/`, `courses/<id>/next/`), and a report. It runs on all ten courses. Done: every course
+   comes through; the compiler's derivability report has no unexplained finding; each finding left is a
+   question for the owner; the checks under "What must not change" pass. Nothing in the app reads the output.
+3. **The switch.** The compiler, the bundle, core, the fold, the events and the UI read the new shape, and the
+   ten courses' converted sources replace the old. One branch, landed whole. Done: ADR 0148's "Done in one go"
+   list, and the checks below, on real exported logs too.
+4. **Lexical-form schemas** beyond apc (Task B's, per language), each with its review list.
+5. **Prompt tags** (ADR 0147), then **script tracks** (ADR 0149): each lands whole.
+
+- **Why not course by course:** the app would have to read two bundle shapes and fold two event shapes at
+  once, which is the half-switched state the owner ruled out. One switch, prepared by two steps that cannot
+  break anything.
+- **What can be late without blocking the switch:** rules. A form no rule gives yet is pinned (ADR 0145), so a
+  course moves with its lexicon complete and its rule debt reported.
+
+## Where the lexicon lives
+
+Proposed: `lexicons/<lang>/` at the repo's root, beside `courses/` and `profiles/`, one per language.
+
+```
+lexicons/apc/
+  language.yaml        dimensions, classes, defaults, varieties and registers
+  lexemes/u01.yaml …   entries, in files by the unit that first teaches them (any split works)
+  rules/               one file per rule, with its vectors (later; empty at the switch)
+```
+
+- A course names its lexicon and the range it teaches: `lexicon: apc`, `variety: apc-LB`, `registers:
+  [colloquial]` in `course.yaml`.
+- Two courses of one language share the entries. A unit lists the lexemes it introduces by id, as it lists KCs
+  now.
+- Entries are written with `nabu.yamlio.dump`.
+
+## The language file
+
+`language.yaml` is what ADR 0145 calls the declared dimensions, and ADR 0148 the stated classes and defaults.
+A category is a UD tag (round 6).
+
+```yaml
+id: es
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:…', status: draft}
+varieties: [es-CU, es-419, es-ES]          # a scope's first axis
+registers: [neutral, formal, colloquial]   # its second
+dimensions:                                # what every member of a category must choose (ADR 0145)
+  VERB: [Mood, Tense, Person, Number, VerbForm]
+  NOUN: [Number]
+  ADJ: [Gender, Number]
+defaults:                                  # a default is a rule (ADR 0148): what it gives is no part of a word
+  - {id: gender-a, when: {pos: NOUN, ends: a}, gives: {Gender: Fem}}
+  - {id: gender-o, when: {pos: NOUN, ends: o}, gives: {Gender: Masc}}
+classes:                                   # stated, never counted
+  - {id: e-ie, pos: VERB, says: "stem e becomes ie under stress"}
+  - {id: go, pos: VERB, says: "first person singular present in -go"}
+```
+
+- Dimension and value names are UD's features where UD has one (`Tense=Past`), and the language's own where it
+  doesn't (apc's aspect with its participle value). A language's own names are declared here.
+- `status: draft` and `llm:` provenance until signed off, as profile policies are.
+
+## A lexicon entry
+
+One entry is a lexeme. Its id is proposed as `lexeme:<name>`, unique in its language. The name is today's KC
+name where the KC is a lexeme (`sense:tener` becomes `lexeme:tener`), so most ids change only their prefix.
+
+```yaml
+- id: lexeme:tener
+  pos: VERB
+  gloss: {en: have}
+  form: tener                        # the lexical form; es is written as it is said
+  classes: [e-ie, go, short-future]  # lexical features no default gives: each is a part (ADR 0146)
+  forms:
+    - {feats: {Tense: Past}, stem: tuv, status: listed, statement: {author: 'llm:…', status: draft}}
+  scope: {}                          # every variety and register
+  provenance: {author: 'llm:…', status: draft}
+
+- id: lexeme:mano
+  pos: NOUN
+  gloss: {en: hand}
+  form: mano
+  feats: {Gender: Fem}               # stored: the -o default would give Masc, so it is a part
+  provenance: {…}
+
+- id: lexeme:casa                    # feminine by its -a: nothing stored, nothing to learn but itself
+  pos: NOUN
+  gloss: {en: house}
+  form: casa
+```
+
+- **`status` on a form is `listed` or `pinned`** (ADR 0145). Listed needs its `statement`, an entry saying the
+  language has no rule for it, with its own provenance; a drafted statement counts until it is signed off
+  (round 6). Pinned needs none: it is a rule not yet written, never a learner's part.
+- **A Semitic base's form is not one string.** As [Task B](lexical-forms/apc.md) drafts it:
+
+  ```yaml
+  - id: lexeme:ra7
+    pos: VERB
+    gloss: {en: go}
+    form: {radicals: [ر, و, ح], form: I, vowels: {present: u}}
+    forms:
+      - {feats: {Aspect: Perf, Person: 1, Number: Sing}, form: "رُحْت", status: pinned}
+  ```
+
+  A participle is a value of the verb's aspect, so `sense:raye7` has no entry of its own: it becomes pinned
+  forms of `lexeme:ra7` until the template is a rule. `lexeme:m3allem` is an entry, with `base: lexeme:3allam`
+  and `pattern: agent` as links.
+- **An affix is a lexeme too** where its value has a meaning (ADR 0145): its entry says what it realises and
+  its allomorphs, each with its condition.
+
+  ```yaml
+  - id: lexeme:dat            # uz, today form:dat-ga
+    realises: {Case: Dat}
+    allomorphs:
+      - {form: ga}
+      - {form: ka, after: {ends: k}}
+      - {form: qa, after: {ends: q}}
+  ```
+- **A concept** links lexemes that differ only socially (ADR 0145): `concept: EAT` on each. No concept file.
+- **What an entry does not hold:** a spelling in each orthography, a reading, vowel marks. Those are
+  projections of `form` (ADR 0148). Where a projection is not written yet, the entry pins them as today's KC
+  forms do: `spelled: {apc-Latn/arabizi: ahwe}`, marked pinned.
+
+### Signing off an entry
+
+Proposed, on the model of ADR 0072:
+- A sign-off pins the sha256 of the entry's canonical text (its id, pos, feats, classes, form, forms and their
+  statuses, scope and glosses, in a fixed order): a Python function and its TypeScript twin, with pinned texts
+  in both test suites.
+- `nabu review apply` takes entries as it takes sentences. An entry two courses share is signed once: the
+  lexicon is the language's, so the sign-off is too.
+- A listed form's `statement` is signed with its entry.
+- Changing an entry's form or status voids its sign-off; changing a gloss in another support language does
+  not void the others' (the hash is per support language for glosses).
+
+## A token
+
+A token names its lexemes, their feature values and, where it agrees or is governed, its UD head and relation
+(round 6). Proposed: UD's multiword tokens, since apc, hbo, fa and chg write several words as one.
+
+```yaml
+# today (apc): one written word, clitics as morphs
+- {surface: بالمطبخ, sense: matbakh, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: مطبخ, kc: 'sense:matbakh'}]}
+
+# proposed
+- surface: بالمطبخ
+  words:
+    - {n: 3, lexeme: b, surface: ب, head: 5, rel: case}
+    - {n: 4, lexeme: el, surface: ال, head: 5, rel: det}
+    - {n: 5, lexeme: matbakh, surface: مطبخ, head: 2, rel: obl}
+```
+
+```yaml
+# today (es)
+- {surface: la, sense: el, form: 'form:fem'}
+- {surface: mano, sense: mano, form: 'form:fem'}
+
+# proposed
+- {n: 1, surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, head: 2, rel: det}
+- {n: 2, surface: mano, lexeme: mano, feats: {Number: Sing}}
+```
+
+- **`n`** numbers the words of a sentence, as CoNLL-U does; `head` points at one. It is written only where
+  `head` is.
+- **`head` and `rel` are needed only where agreement or government matters** (ADR 0145): a determiner, an
+  agreeing adjective, a governed case. The converter writes them for those and leaves the rest bare. A full
+  tree comes with the first rule that needs one.
+- **`feats` holds only what the token chooses**: the dimension values. A lexical feature (*mano*'s gender) is
+  the lexeme's and is not repeated.
+- **`surface` on a word of a multiword token** stays, as the morph's surface does today: taps, corrections and
+  the marks' split need it.
+- **A token's readings and `vocalized`** stay as pins until its orthography's projections are written, then
+  go. `context` (hbo's pause) becomes a feature value or stays a pin, per language.
+
+## What each KC becomes
+
+By its use, which the inventory counts ([migration/kc-conversion.md](migration/kc-conversion.md) lists all
+286):
+
+| Today | Use | Becomes |
+|---|---|---|
+| `sense:` | a word | `lexeme:` of the same name; or a pinned or listed form of another lexeme, where it is an inflected word (apc `sense:baddi`, `sense:esmak`; the participles) |
+| `form:` pinned on a token (133) | es `form:pret-3s`, grc `form:f-acc`, hbo `form:qatal-3ms` | the token's `feats`. The KC itself goes; what was learned under it is a feature's uses and a rule's branches (ADR 0146) |
+| `form:` written as a morph (127, and 2 also pinned) | uz `form:dat-ga`, apc `form:poss-1sg`, chg's suffixes | a lexeme with `realises` and allomorphs |
+| `form:` with no letters | fa's ezafe on a word that does not write it | a feature value on the token |
+| `construction:` (24) | apc `used-to`, tok `x-ala-x`, lzh `wei-passive` | a rule where its meaning is its parts'; a listed item with slots where it isn't. Decided per construction, with its course (ADR 0145) |
+| `grapheme:` (75) | script tracks | unchanged |
+
+- **Gender and number KCs** (es, apc, hbo, grc: ADR 0132's amendment) become `feats` on agreeing words and a
+  lexical feature on the noun only where no default gives it. The converter proposes each language's defaults
+  from its nouns and lists the exceptions for review.
+- **The 67 second forms** are sorted by the converter: a variant spelling stays a free correspondence's
+  output; an inflected form becomes a pinned form with its feats; what it cannot sort is a finding.
+- **An id's name** is kept where it can be (`form:dat-ga` to `lexeme:dat`), and the alias table records every
+  change.
+
+## The profile's correspondences
+
+ADR 0148 puts one statement in the profile and the scheme, replacing `soundAlike` and a scheme's `variants`.
+Proposed shape, which Task B's apc tables fill:
+
+```yaml
+correspondences:
+  - {says: "\u0650", written: [e, i], kind: free}             # apc-Latn: a kasra, the short front vowel
+  - {says: "\u064f\u0648", written: [u, ou], kind: free}      # a damma and its waw: long u
+  - {says: ق, written: ["2", ""], kind: free, when: {at: start}}
+  - {says: ص, written: [s], kind: fixed, loses: [س]}                 # writing back needs which letter
+```
+
+- `says` is in the lexical form's notation; `written` in the orthography; `when` a context; `kind` free or
+  fixed; `loses` what the other direction cannot recover, which is what makes a word's leftover.
+- **It is data the grader runs** (ADR 0148): core compiles it once per profile, as it compiles `typo` today,
+  and reads a typed answer forwards against the accepted answers' phonemic forms, which the compiler puts in
+  the bundle.
+- `match.marks`, `equivalences` and `typo` stay. `typo.contrasts` goes when the lexicon knows every form
+  (ADR 0148).
+
+## Prompt tags
+
+ADR 0147: a tag is a value from a closed set or an authored situation. Proposed, on a sentence:
+
+```yaml
+tags:
+  - {persons: {speaker: f, addressee: sg}}          # today's `persons`, unchanged inside
+  - {register: formal}
+  - {variety: es-CU}                                # derived by the compiler, never authored
+  - {situation: {en: "it (the school)"}, provenance: {author: 'llm:…', status: draft}}
+```
+
+- Today's `persons` (731 sentences) and `register` (763) move under `tags` as they are.
+- **apc's `register: colloquial` on all 685 sentences is not a tag:** it is the course's range. The converter
+  moves it to `course.yaml` and reports it.
+- `signoffText` and its Python twin hash a sentence's tags (ADR 0147). No sentence is signed off today.
+
+## The log
+
+### New events
+
+Proposed: the event schema gains a version, and `answer_submitted` and `exercise_presented` change shape under
+it. Old events stay valid as they are, for ever.
+
+```json
+{"type": "answer_submitted", "schema": 2,
+ "outcome": {"labels": ["grammatical"],
+             "parts": [{"part": "lexeme:hablar", "skill": "produce", "status": "right"},
+                       {"part": "feature:Person=1|use:speaker", "skill": "choose", "status": "wrong"}]}}
+{"type": "exercise_presented", "schema": 2,
+ "displayed": [{"lexeme": "lexeme:hablar", "feats": {"Person": "2", "Number": "Sing"}}]}
+```
+
+- **`parts`** replaces `kcs`: each is a part, the skill asked and right, wrong or given (ADR 0146: credit per
+  part, only where the card made the learner supply it).
+- **`labels`** is ADR 0148's set (slip, orthographic, phonemic, grammatical, regularised, lexical, scope). The
+  outcome is still recorded, and follows from the set.
+- **`displayed`** is the words a card showed, each as a lexeme and its feats (ADR 0146: seen is logged).
+- **A story line read** is not an exercise, so it gets a small event of its own, `story_line_read`, with the
+  story, the line and its `displayed`. It is the one new event type.
+- **A part's id** is its node and what of it: `lexeme:tener` (itself), `lexeme:tener|class:go`,
+  `lexeme:tener|stem:tuv`, `lexeme:mano|Gender`, `lexeme:casa|spell:es-Latn/standard`,
+  `rule:uz-dat|after-q`, `feature:Tense=Past|use:completed`. A card key is a part, a skill, and where the
+  skill is of a script its orthography and reading tradition, as today.
+
+### Old events
+
+The fold sees no course, so it cannot rename anything itself (ADR 0145). Proposed:
+
+- **An alias table per course,** written by the converter and committed: `courses/<id>/aliases.yaml`. The
+  compiler puts it in the bundle, so the device and the server fold with the same file.
+- **`replay(events, aliases)`.** An old event is read through its course's table; a new one is read as it is.
+  No event is rewritten, on the device or on the server.
+- **One id that is now several parts** is resolved by the sentence, which an old event names
+  (`exercise.item`):
+
+  ```yaml
+  sense:tener:
+    part: lexeme:tener                                   # where the sentence is not known
+    by-item: {s.past.12: [lexeme:tener, 'lexeme:tener|stem:tuv']}
+  form:pret-3s:
+    by-item: {s.past.12: ['feature:Tense=Past|use:completed']}
+  ```
+
+  The converter knows every sentence's old KCs and new parts, so it writes `by-item` for all of them. A credit
+  whose sentence is gone, or that came from a drill, goes to the lexeme itself and to nothing else: it never
+  invents a listed form or a rule's branch.
+- **Nothing old counts towards a rule** (ADR 0146): old events do not say what was displayed.
+- **The other places an id is kept** go through the same table: card keys and their FSRS state, open mistakes,
+  a placement's `seeded`, corrections whose item is a KC, and a session's plan kept on the device (a session
+  under way finishes on the plan it has; the next one is planned on the new ids).
+- **The performance model** takes its difficulties per KC today, and ADR 0146 leaves its key open. Proposed for
+  the switch: per part, seeded from the old KC's value through the table. It is retuned before anything is
+  tuned against the simulation.
+- **Old apps** keep uploading schema 1. The server accepts both and folds both. An old app that downloads a
+  new bundle cannot read it. Proposed: the manifest carries a format version, and an app that does not know
+  it keeps the bundle it has and asks to be updated.
+- **`fold-before-r2.ts`** gets a successor: the oracle folds a mixed log (old events, then new) and must agree
+  with `replay`.
+
+### What must be true of a real log on the day
+
+Tested on exported logs, not the simulator (ADR 0145):
+- Every word the old fold calls known or learning is a lexeme the new fold calls the same, or the report says
+  why not (it became a form of another lexeme).
+- No word is due that was not, and none stops being due, on the day of the switch.
+- Streaks, XP and the game's projections do not move: they read answers and sessions, not KC ids.
+
+## What must not change, and how it is checked
+
+| What | Check |
+|---|---|
+| Every sentence, story line and translation as displayed | The old and new bundles' compiled text and translations are equal, item by item, byte for byte |
+| The 148 reviewed clips (apc 82, fa 37, uz 29) | Each keeps its item, its voice and the exact text its voice was given |
+| The 7,696 clips | None becomes stale: the compiler reports no `audio.stale` in any course (`pnpm courses`) |
+| The 2,193 clips keyed by a KC | The converter renames the item in `audio/index.yaml` with its lexeme and changes nothing else in the entry; a test compares file, sha256, voice and input before and after |
+| A word's voice | A voice is drawn from a seed of the item's id, so a renamed id would redraw it. Proposed: the converter writes the voice every existing item has into `audio/assignment.yaml`, and `assignment` reads a pinned voice before it draws |
+| Sign-offs | None exists on a sentence, story or unit today. The clips' reviews are the ones to keep |
+| A learner's list | The checks on real logs above |
+
+- **Task B's finding bears on the second row:** for 18 of apc's 82 reviewed clips the projection writes other
+  marks than the voice was given ([lexical-forms/apc-review.md](lexical-forms/apc-review.md)). The course's
+  vocalization stays the source of what the voices read until those are settled. A projection does not replace
+  a pinned text it does not reproduce: that is a finding, not a regeneration.
+
+## Feedback and the lexeme's parts
+
+- **Labels are messages** in `packages/i18n/messages/`, one per label and one for a known pair, as notes have
+  today:
+
+  | Id | English, proposed |
+  |---|---|
+  | `feedback.label.slip` | A slip of the keys. |
+  | `feedback.label.orthographic` | Right sound, wrong letter. |
+  | `feedback.label.orthographic-pair` | Right sound, wrong letter: {$expected}, not {$answer}. |
+  | `feedback.label.phonemic` | That spells another sound. |
+  | `feedback.label.grammatical` | Right word, another form. |
+  | `feedback.label.regularised` | That would be the regular form; this one is its own. |
+  | `feedback.label.lexical` | Another word. |
+  | `feedback.label.scope` | Right meaning, another way of speaking. |
+
+  Today's `feedback.note.*` stay: they are a profile's policies, not misses (ADR 0148).
+- **The feedback panel** lists every label, the worst first, each with the word it is about, as notes name
+  their words now (`AlignOp.note`). No new layout: the list the panel has.
+- **A lexeme's parts** are shown where the word list shows a word today: its entry opens to its parts, each
+  with what shows it ("have · 3 of 5"; ADR 0146's table). The explainer's mockups are a starting point. A
+  regular word shows one part and points at its rules.
+- **A rule has an entry of its own** in the list ("-ar present: 4 of 6"), new in the UI.
+- All of it is TaggedText through `<T>`, logical CSS, in the visual matrix (LTR, RTL, vertical).
+
+## What the converter reports
+
+Its own test is the strongest there is (the handoff): every course comes through, and each finding is a
+question. The report, per course:
+
+- sense KCs that are inflected words, and the lexeme each was folded into;
+- second forms, sorted or not;
+- nouns whose gender no proposed default gives;
+- tokens whose form the lexicon's listed and pinned forms do not account for;
+- pinned spellings, readings and marks a stated projection does not reproduce (Task B's list is apc's);
+- constructions, each with its sentences, undecided;
+- ids that changed, and credits that could not be resolved by sentence.
+
+## Not designed here
+
+- **Rules:** their file shape, and the vectors each ships with. They come after the switch, one at a time.
+- **Trees:** only `head` and `rel` on the tokens that need them.
+- **What the simulated learner knows of a rule** (ADR 0146 leaves it open), and the planner's use of parts.
+- **The script-track gate's test-out** (ADR 0149) and the tracks fa, hbo, apc's Arabic and uz's Cyrillic lack.
+- **How syntax is taught.**
+
+## For the owner
+
+Each needs a yes, a no or another answer before deliverable 1 starts. My pick is first.
+
+1. **The staging:** two silent deliverables (schemas, converter), then one switch of all ten courses. The other
+   way is course by course, with the app reading both shapes for a while.
+2. **`lexicons/<lang>/` at the root,** entries in files by unit. The other way is inside the first course of
+   the language.
+3. **Ids:** `lexeme:<name>`, keeping today's names; a part as `node|what`. The other way is opaque ids with
+   names as labels.
+4. **Old events are never rewritten:** they are folded through a per-course alias table that ships in the
+   bundle. The other way is a one-time rewrite of every stored log, which a device that is offline that day
+   would miss.
+5. **Multiword tokens as UD has them,** for clitic groups. The other way keeps today's `morphs` for clitics
+   and uses `words` nowhere.
+6. **A sign-off per lexicon entry,** hashed as a sentence is, signed once for every course of the language.
+7. **Voices pinned by the converter** in `audio/assignment.yaml`, so a renamed word keeps its voice.
+8. **apc's vocalization stays the voices' source** until the review list's 18 clips are settled.
