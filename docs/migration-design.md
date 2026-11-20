@@ -647,7 +647,8 @@ switch, or on a decision above:
 - **No form is listed.** A listed form needs a statement that the language has no rule for it (ADR 0145);
   none is drafted, so every form is pinned and no lexeme has a part but itself and a stored gender.
 - **No lexical form.** Every entry pins its spellings (`spelled`) and its readings stay on the tokens.
-  apc's drafted notation ([lexical-forms/apc.md](lexical-forms/apc.md)) waits for the owner and is not read.
+  apc's notation ([lexical-forms/apc.md](lexical-forms/apc.md)) has the owner's rulings (2026-11-20); its
+  rules are not written, and it is not read.
 - **No rule, no class, no feature's use.** A sentence's `uses` name rules that are not written.
 - **Relations are a draft:** a determiner, an adjective and a preposition. A subject and its verb, a
   governed case's value and everything else wait for trees (ADR 0145).

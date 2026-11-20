@@ -11,10 +11,13 @@ answered a fifth round of questions that came out of it and a sixth on what the 
 restored from the notes, and what was accepted as drafted. The older ADRs they amend carry a line saying so
 ("Decided, not yet built"): until the migration lands, those older ADRs still describe the code.
 
-**Tasks B and C were started the same night, without the owner, and both wait for them:**
+**Tasks B and C were started the same night, without the owner, who has answered both since:**
 - **Task B, apc:** a draft of all three deliverables is in [lexical-forms/](lexical-forms/apc.md): the schema
-  note, a worked entry for every KC, and the review list. No conjugation rule and no affix form is written;
-  the note's last two sections say what is open and what the owner has to rule on. Nothing reads it.
+  note, a worked entry for every KC, and the review list. The owner ruled on its six questions on
+  2026-11-20 (the note's last section, with how each answer was read): the three signs stand, a helping
+  vowel is not written, long a said e is stored on each word, the review list is for a speaker, what was
+  missing was deduced, and the shadda on *mara* was a mistake, fixed in the course. No conjugation rule and
+  no affix form is written (the note's "What is not done"). Nothing reads it.
 - **Task C:** [the design note](migration-design.md) gives the formats, the ids, the event change and the
   order. The owner approved it on 2026-11-20 with three changes, recorded at its end: the lexicon is flat
   (units point at it; it is never arranged by unit), old events may be rewritten and old apps need not keep
@@ -55,8 +58,32 @@ Found while the notes and the explainer were brought up to the accepted ADRs. No
 - Thai and Lao visual order is the projection's job;
 - the verdicts on *tayyora* / *samolyot* and 佢 / 他.
 
-**The owner's "let's just use UD tags" was read as:** no category system is declared per language, and the
-rule against inserting a distinction a language does not make stands. The owner has not confirmed the reading.
+**The owner's "let's just use UD tags" was read as** (the owner asked for the reading on 2026-11-20 and
+has not confirmed it):
+- **What it settles:** a lexeme's part of speech is one of UD's seventeen universal tags, and no language
+  declares categories of its own. It answered the draft's categories with subclasses and a mapping to UD,
+  and nothing wider.
+- **One tag a lexeme, where UD tags a word in its sentence.** Uzbek *yaxshi* is `ADJ` wherever it stands.
+  That keeps the rule against a distinction a language does not make, and it is where this departs from
+  UD's own practice.
+- **UD's notation, not UD's analyses.** Features and relations are written as UD writes them, by other
+  rulings. Where the owner ruled an analysis UD does not make, the ruling stands and takes a value of our
+  own: apc's participle is `Aspect=Part`, where UD has `VerbForm=Part`.
+- **A tag is not a class.** What a category's members share beyond the tag is said by features
+  (`NounType=Clf`, `PronType=Dem`) and by stated classes, never by a declared subcategory.
+- **Proposed with the reading, not the owner's:** a lexeme takes the tag whose dimensions it inflects for;
+  where nothing inflects, the tag its distribution in its own language gives, never its English gloss's.
+  - By it es *mucho* is `DET`: the course says `ADV`, and the converter found a gender on 34 of its tokens.
+  - Item 1 above has an answer: the participle is a form of its verb and has the verb's tag; the agentive
+    noun is `NOUN`.
+  - Toki Pona's content words, which the course tags `NOUN`, `VERB` and `ADJ` by their glosses, are one
+    class.
+  - Without such a rule the drafted tags follow the gloss. Spanish's quantifiers are tagged three ways
+    (*mucho* `ADV`, *poco* and *otro* `PRON`, *todo* `DET`), and apc's pseudo-verbs two (*badd* and *fi*
+    `VERB`, *3end* `ADP`): those are a class of the language's own that UD has no tag for.
+- **In the ten converted courses** every lexeme's tag is one of the seventeen and every feature name is
+  UD's. The values outside UD's universal list are `Aspect=Part` (apc), `VerbForm=InfAbs` (hbo) and UD's
+  own language-specific `NounType` and `PartType`.
 
 ## Read first
 
@@ -124,8 +151,9 @@ take. End with the three findings you think matter most.
 
 ## Task B: a lexical-form schema, apc first
 
-Drafted on 2026-11-20 for apc: [lexical-forms/apc.md](lexical-forms/apc.md), awaiting the owner's review. The
-brief stays as the record of what was asked; pick the task up from the note's "What is not done".
+Drafted on 2026-11-20 for apc: [lexical-forms/apc.md](lexical-forms/apc.md); the owner ruled on its six
+questions the same day (the note's last section). The brief stays as the record of what was asked; pick the
+task up from the note's "What is not done".
 
 ADR 0145: each morpheme stores one lexical form, in its own script, fully specified, and every orthography and
 phonemic form is projected from it; where the script can't say something, invent an in-script convention,

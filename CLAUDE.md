@@ -742,7 +742,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   events may be rewritten (one `upgrade` function; no reader of the old shape is kept), and nothing in the new formats
   is a "word" (a token lists its `lexemes`; "word" is for what a learner is shown). Its deliverables land in its
   order, each whole. docs/lexical-forms/ (apc's lexical-form schema, entries and review list; rebuilt by
-  docs/prototypes/apc-lexical-forms/build.py, never by hand) still waits for the owner, and nothing reads it.
+  docs/prototypes/apc-lexical-forms/build.py, never by hand) has the owner's rulings on its six questions
+  (2026-11-20, the note's last section); its rules and affix forms are not written, and nothing reads it.
   docs/handoff-lexical-model.md says where each task stands.
 - Fresh cloud container setup:
   - `pnpm i`
