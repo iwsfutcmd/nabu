@@ -2,7 +2,10 @@
 
 - Status: Proposed
 - Date: 2026-11-19
-- Builds on: [ADR 0145](0145-lexical-model.md) (a pattern is a function head; its allomorphs are templates)
+- Amends: [ADR 0083](0083-themes.md) (a colour that carries text has an AA pairing in both themes: the slot
+  colour is below AA on purpose)
+- Builds on: [ADR 0145](0145-lexical-model.md) (a pattern is a head: a function head, or a value head as
+  apc's participle is; its allomorphs are templates)
 - Font build: [ADR 0151](0151-fonts-build-step.md)
 
 ## Context
@@ -16,7 +19,7 @@ too: Chromium paints a letter and its marks in one colour.
 
 - **A pattern is shown with placeholder letters for its slots, faint, and everything else at full strength:**
   the pattern's own letters and marks, and a letter a root class fixes (hollow faʿala ڡَـاڡَ, *qāla*; defective
-  ڡَـڡَـى, *ramā*; Hebrew III‑he ◌ָ◌ָה, *bānâ*).
+  ڡَـڡَـى, *ramā*; Hebrew III‑he סָסָה, *bānâ*).
 - **The slot letter is each profile's data**, never code:
 
   | Script | Slot |
