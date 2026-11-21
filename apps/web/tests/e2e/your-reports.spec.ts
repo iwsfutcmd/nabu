@@ -88,7 +88,7 @@ test("a claimed answer's confirmation says it reaches a reviewer once the learne
 
 const stamp = (n: number) => ({
   id: `00000000-0000-7000-8000-${String(n).padStart(12, "0")}`,
-  schema: 1 as const,
+  schema: 2 as const,
   device: "e2e-device",
   session: "00000000-0000-7000-8000-ffffffffffff",
   clientTime: `2026-05-0${String(n)}T10:00:00.000Z`,
@@ -116,7 +116,7 @@ const claim = (n: number, text: string): AnswerReported => ({
   orthography: FA as OrthographyId,
   support: "en",
   answer: `00000000-0000-7000-8000-${String(100 + n).padStart(12, "0")}`,
-  exercise: { id: "translate-type.l1-l2:s.6", template: "translate-type.l1-l2", item: "s.6", kcs: [] } satisfies AnswerSubmitted["exercise"],
+  exercise: { id: "translate-type.l1-l2:s.6", template: "translate-type.l1-l2", item: "s.6", parts: [] } satisfies AnswerSubmitted["exercise"],
   text,
 });
 

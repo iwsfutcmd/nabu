@@ -10,7 +10,7 @@
  *   not come back (a reload in between changes nothing), and the session counts it right.
  */
 import { continueOf, paceOf, pathNodes, replay } from "@nabu/core/learner";
-import { allKcs, lessonNodes } from "@nabu/core/lesson";
+import { kindOf, lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
 import { activate, answer, canMiss, expectRightAndContinue, graded, historyBefore, loadCourse, logOf, planned, playSession, seedLog, seriousAxeViolations, sessionUrl, waitFor, type Mode } from "./solver.ts";
 
@@ -42,8 +42,7 @@ test("the end of a lesson: what was missed, the new words, the streak, and the n
   await expect(card.locator("[data-your-answer]")).toBeVisible();
   await expect(end.locator("[data-end-missed] [data-missed]")).toHaveCount(1);
   // The lesson's new words, each with its meaning.
-  const kinds = new Map(allKcs(course).map((k) => [k.id as string, k.kind]));
-  const words = first.node.introduces.filter((kc) => kinds.get(kc) !== "grapheme");
+  const words = first.node.introduces.filter((id) => kindOf(id) === "lexeme");
   await expect(end.locator("[data-end-words] [data-end-word]")).toHaveCount(words.length);
   // The first session of the day starts a streak; the XP comes after it.
   await expect(end.locator('[data-end-progress] [data-streak-now="1"]')).toBeVisible();

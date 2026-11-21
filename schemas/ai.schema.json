@@ -159,9 +159,9 @@
                       "minItems": 1,
                       "items": {
                         "type": "object",
-                        "required": ["surface", "kc"],
+                        "required": ["surface", "part"],
                         "additionalProperties": false,
-                        "properties": { "surface": { "type": "string", "minLength": 1 }, "kc": { "type": "string", "minLength": 1 } }
+                        "properties": { "surface": { "type": "string", "minLength": 1 }, "part": { "type": "string", "minLength": 1 } }
                       }
                     }
                   }

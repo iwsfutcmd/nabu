@@ -121,7 +121,7 @@ describe("the planner at a pace", () => {
     const at = lessons.findIndex((n) => n.unit.id === fa.units[4]?.id);
     const node = lessons[at]?.node.id;
     if (node === undefined) throw new Error("fa has a fifth unit");
-    const earlier = new Set(lessons.slice(0, at).flatMap((n) => n.node.introduces as readonly string[]));
+    const earlier = new Set(lessons.slice(0, at).flatMap((n) => n.node.introduces));
     const state: LearnerState = { ...emptyLearnerState(), cards: Object.fromEntries([...earlier].map((part, i) => [cardKey(part, readingSkill(part), fa.orthography), cardAt(20 + (i % 10), 4)])) };
     const review = (band: "consolidate" | "steady" | "accelerate"): number =>
       plan(fa, state, { mode: "lesson", node }, { now: NOW, seed: 5, pace: band }).exercises.filter((ex) => ex.review === true).length;

@@ -147,7 +147,7 @@ def _gloss(value: Any) -> str:
 
 def prompt_values(course: Course, node: str, count: int) -> dict[str, str]:
     """What the author prompt is filled with: what is taught up to and including `node`, one id
-    a line (`kcs`, the prompt's name for the list)."""
+    a line (`parts`, the prompt's name for the list)."""
     taught: list[str] = []
     introduces: list[str] = []
     found = False
@@ -185,7 +185,7 @@ def prompt_values(course: Course, node: str, count: int) -> dict[str, str]:
         "count": str(count),
         "node": node,
         "orthographies": ", ".join(course.orthographies),
-        "kcs": "\n".join(lines),
+        "parts": "\n".join(lines),
         "introduces": ", ".join(introduces),
     }
 
@@ -238,7 +238,7 @@ def drafts_of(output: AuthorOutput, course: Course, node: str, author: str) -> D
         for orth, form in s.forms.items():
             tokens: list[yamlio.Flow] = []
             for t in form.tokens:
-                ident = resolve(course, t.kc)
+                ident = resolve(course, t.part)
                 token: dict[str, Any] = {"surface": t.surface}
                 if ident.startswith(LEXEME):
                     token["lexeme"] = ident.removeprefix(LEXEME)

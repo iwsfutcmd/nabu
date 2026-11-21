@@ -209,7 +209,7 @@ export const formMeanings = (course: CourseView, word: TaggedText): FormMeanings
   const lexemes = lexemesById(course);
   const written = lexemesOf(token)
     .filter((l) => l !== base)
-    .map((l) => l.lexeme as string);
+    .map((l) => l.lexeme);
   const others = [...new Set(written)].flatMap((id) => {
     const meaning = lexemes.get(id)?.gloss?.[course.supportKey];
     return meaning === undefined ? [] : [{ id, meaning }];

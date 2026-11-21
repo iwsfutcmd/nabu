@@ -31,11 +31,11 @@ test("match-the-pairs: choose the wrong word, then correct its meaning", async (
   await page.locator("[data-report-dialog] [data-action=mark-incorrect]").click();
   const choose = page.locator("[data-correction-choose]");
   await expect(choose.getByRole("heading")).toHaveText("Which one is wrong?");
-  await expect(choose.locator("[data-choose]")).toHaveCount(ex.kcs.length);
+  await expect(choose.locator("[data-choose]")).toHaveCount(ex.parts.length);
   expect(await seriousAxeViolations(page, "[data-correction-choose]")).toEqual([]);
 
   // Each choice shows the word in its own language and the meaning in the UI's.
-  const kc = ex.kcs[1] ?? "";
+  const kc = ex.parts[1] ?? "";
   const choice = choose.locator(`[data-choose="${kc}"]`);
   await expect(choice.locator('[lang^="yue"]').first()).toBeVisible();
   await choice.click();

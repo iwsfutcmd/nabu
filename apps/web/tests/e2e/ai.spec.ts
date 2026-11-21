@@ -80,7 +80,7 @@ const acceptOf = (judged: AnswerSubmitted): LearnerEvent =>
     type: "outcome_revised",
     device: "server",
     answer: judged.id,
-    outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: judged.outcome.kcs.map((c) => ({ ...c, status: c.status === "wrong" ? "right" : c.status })) },
+    outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], labels: [], parts: judged.outcome.parts.map((c) => ({ ...c, status: c.status === "wrong" ? "right" : c.status })) },
     by: "judge",
     judge: { model: "stub", promptHash: "000000000000", confidence: 0.95 },
   }) as unknown as LearnerEvent;

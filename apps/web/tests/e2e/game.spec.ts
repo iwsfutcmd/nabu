@@ -6,6 +6,7 @@
  */
 import { createDecipheriv, createECDH, createHmac } from "node:crypto";
 import { DEFAULT_LEAGUE, leagueWeek } from "@nabu/core/game";
+import { skillOf } from "@nabu/core/lesson";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, test, type Page } from "@playwright/test";
 import { API_PORT } from "./ports.ts";
@@ -24,7 +25,7 @@ const practice = (at: number, right: number, wrong = 0, mode: "lesson" | "review
   const session = uuid();
   const base = (offset: number) => {
     const t = new Date(at + offset * 1000).toISOString();
-    return { id: uuid(), schema: 1 as const, device: "e2e-game", course: "fa", orthography: "fa-Arab/standard" as OrthographyId, support: "en", bundle: BUNDLE, session, clientTime: t, localDate: t.slice(0, 10), tz: "UTC" };
+    return { id: uuid(), schema: 2 as const, device: "e2e-game", course: "fa", orthography: "fa-Arab/standard" as OrthographyId, support: "en", bundle: BUNDLE, session, clientTime: t, localDate: t.slice(0, 10), tz: "UTC" };
   };
   const answers = [...Array.from({ length: right }, () => true), ...Array.from({ length: wrong }, () => false)];
   return [
@@ -32,10 +33,10 @@ const practice = (at: number, right: number, wrong = 0, mode: "lesson" | "review
     ...answers.map((ok, i) => ({
       ...base(1 + i * 5),
       type: "answer_submitted",
-      exercise: { id: `choose-translation:s.1#${i}`, template: "choose-translation", item: "s.1", kcs: ["sense:salam"] },
+      exercise: { id: `choose-translation:s.1#${i}`, template: "choose-translation", item: "s.1", parts: ["lexeme:salam"] },
       attempt: 1,
       input: { method: "choice", latencyMs: 3000 },
-      outcome: { kind: ok ? "CORRECT" : "WRONG", notes: [], kcs: [{ kc: "sense:salam", status: ok ? "right" : "wrong" }] },
+      outcome: { kind: ok ? "CORRECT" : "WRONG", notes: [], labels: [], parts: [{ part: "lexeme:salam", skill: skillOf("choose-translation", "lexeme:salam"), status: ok ? "right" : "wrong" }] },
     })),
     {
       ...base(2 + answers.length * 5),

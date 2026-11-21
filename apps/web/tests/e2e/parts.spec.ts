@@ -46,7 +46,7 @@ for (const [id, orthography] of COURSES) {
     const player = page.locator("[data-lesson-player]");
     const parts = player.locator("[data-parts]");
     await expect(parts).toHaveAttribute("dir", dir);
-    await expect(parts.locator("[data-part]")).toHaveCount(ex.parts.length);
+    await expect(parts.locator("[data-part]")).toHaveCount(ex.wordParts.length);
     await expect(parts.locator("[data-part-own]")).toHaveCount(1);
     const input = player.locator("[data-answer-input]");
     await expect(input).toHaveAttribute("dir", dir);
@@ -54,7 +54,7 @@ for (const [id, orthography] of COURSES) {
     expect(await seriousAxeViolations(page)).toEqual([]);
 
     // The word's own word, typed as the card shows it, is not the word.
-    const own = ex.parts.find((p) => p.base === true)?.text;
+    const own = ex.wordParts.find((p) => p.base === true)?.text;
     if (own === undefined) throw new Error("a built word has its own word among its parts");
     await input.fill(surfaceOf(own));
     await press(page, mode, "[data-action=check]");

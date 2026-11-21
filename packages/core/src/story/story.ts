@@ -163,7 +163,7 @@ export interface StoryGlossary {
 
 /** The course glossary for tap-for-gloss in one orthography: every spelling of every lexeme (§7.5 stage 7); a letter is no entry (ADR 0088). */
 export const courseGlossary = (course: CourseView, orthography: string = course.orthography): StoryGlossary => {
-  const entries = allLexemes(course).flatMap((lexeme) => (lexeme.forms?.[orthography] ?? []).map((form) => ({ id: lexeme.id as string, form })));
+  const entries = allLexemes(course).flatMap((lexeme) => (lexeme.forms?.[orthography] ?? []).map((form) => ({ id: lexeme.id, form })));
   return {
     compiled: compileGlossary(
       profileOf(course, orthography),
@@ -222,7 +222,7 @@ export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: re
     return [
       ...phrases,
       ...written.map((l): Gloss => {
-        const id = l.lexeme as string;
+        const id = l.lexeme;
         if (l.surface === "") return { id, form: { ...text, tokens: [own as Token] }, meaning: meaning(id), span: "part", unwritten: true };
         const surface = l.surface ?? (own as Token).surface;
         const lemma = lexemes.get(id)?.forms?.[text.orthography]?.[0];

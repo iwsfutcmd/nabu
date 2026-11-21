@@ -10,10 +10,10 @@ import { restrictMedia } from "@nabu/core/offline";
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
-import { paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
-import { lessonNodes, readCourse, retryOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
+import { askedParts, exerciseRefOf, paceOf, pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
+import { asksOf, lessonNodes, readCourse, retryOf, skillOf, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { graphemes, surfaceOf } from "@nabu/core/text";
-import type { BundleManifest, LearnerEvent, OrthographyId, SchemeId } from "@nabu/schema";
+import type { BundleManifest, LearnerEvent, OrthographyId, PartCredit, PartId, SchemeId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
 import { exclusionsOf, facetsOffOf, type Off } from "../../src/breaks.ts";
 
@@ -102,6 +102,17 @@ export const planned = (
 };
 
 /**
+ * The credits the player logs for a right answer (core `creditOf`): the parts the card asks about
+ * right, each with the skill the card exercises it by; the rest, and parts the card cannot show, given.
+ */
+export const rightCredits = (ex: Exercise): PartCredit[] => {
+  const asked = askedParts(ex);
+  const credit = (part: PartId, status: PartCredit["status"]): PartCredit => ({ part, skill: skillOf(ex.template, part), status: asksOf(ex.template, part) ? status : "given" });
+  if (asked === undefined) return ex.parts.map((part) => credit(part, "right"));
+  return [...new Set([...asked, ...ex.parts])].map((part) => credit(part, asked.includes(part) ? "right" : "given"));
+};
+
+/**
  * A learner who already finished every lesson before `node`, two days before
  * `now`, answering everything right: the events their device would hold.
  */
@@ -123,7 +134,7 @@ export const historyBefore = (course: CourseView, node: string, now: Date): Lear
       const at = new Date(clock).toISOString();
       return {
         id: uuid(),
-        schema: 1 as const,
+        schema: 2 as const,
         device: "e2e-history",
         course: course.id,
         orthography: course.orthography as OrthographyId,
@@ -140,10 +151,10 @@ export const historyBefore = (course: CourseView, node: string, now: Date): Lear
       events.push({
         ...base(),
         type: "answer_submitted",
-        exercise: { id: ex.id, template: ex.template, item: ex.item, kcs: [...ex.kcs] },
+        exercise: exerciseRefOf(ex),
         attempt: 1,
         input: { method: "choice", latencyMs: 3000 },
-        outcome: { kind: "CORRECT", notes: [], kcs: ex.kcs.map((kc) => ({ kc, status: "right" as const })) },
+        outcome: { kind: "CORRECT", notes: [], labels: [], parts: rightCredits(ex) },
       });
     }
     const summary = { completed: true, exercises: graded(exercises), correctFirstTry: graded(exercises), retries: 0, skipped: 0 };

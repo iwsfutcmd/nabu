@@ -224,7 +224,7 @@ const lexemeMaps = new WeakMap<BundleLexicon, ReadonlyMap<string, BundleLexeme>>
 export const lexemesById = (course: CourseView): ReadonlyMap<string, BundleLexeme> => {
   let map = lexemeMaps.get(course.lexicon);
   if (map === undefined) {
-    map = new Map(course.lexicon.lexemes.map((l) => [l.id as string, l]));
+    map = new Map(course.lexicon.lexemes.map((l) => [l.id, l]));
     lexemeMaps.set(course.lexicon, map);
   }
   return map;
@@ -347,7 +347,7 @@ export const lexemesInOrder = (course: CourseView): readonly BundleLexeme[] => {
  * the form has (those chosen on its token and its lexeme's own). The converter's `named` is the
  * same rule (pipeline/src/nabu/migrate/lexicon.py), until rules name forms themselves.
  */
-export const labelOf = (course: CourseView, feats: UdFeatures, pos?: string | undefined): BundleLabel | undefined => {
+export const labelOf = (course: CourseView, feats: UdFeatures, pos?: string  ): BundleLabel | undefined => {
   let best: BundleLabel | undefined;
   let size = -1;
   for (const label of course.lexicon.labels ?? []) {

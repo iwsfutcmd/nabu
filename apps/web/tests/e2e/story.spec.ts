@@ -120,12 +120,15 @@ test("tap-for-gloss: vocalized apc-Arab words find their entries, whatever their
   await kifak.tap();
   await expect(kifak).toHaveAttribute("aria-pressed", "true");
   const panel = page.locator("[data-gloss-panel]");
-  const entry = panel.locator('[data-gloss-kc="sense:kifak"]');
+  // كيفك is كيف "how" with the ending -ak "your (to a man)": an entry for each of its lexemes.
+  const entry = panel.locator('[data-gloss-id="lexeme:kif"]');
   await expect(entry).toBeVisible();
-  // The entry shown is the glossary's own form, and the KC's meaning. The course vocalizes كيفك
-  // two ways (kifak, kifik), so its form stays unmarked while the story's word is marked.
-  await expect(entry.locator("dt")).toHaveText("كيفك");
-  await expect(entry.locator("dd")).toContainText("how are you?");
+  await expect(panel.locator('[data-gloss-id="lexeme:poss-2ms"]')).toBeVisible();
+  // Each part as the story's word writes it, marked, with its meaning; under it the glossary's own
+  // form, which stays unmarked (the course vocalizes كيف in kifak and kifik alike).
+  await expect(entry.locator("dt")).toHaveText("كِيفَ");
+  await expect(entry.locator("dd")).toContainText("how");
+  await expect(entry.locator("[data-gloss-lemma]")).toContainText("كيف");
   // Hiding the vowel marks changes the display only: the same word, the same gloss.
   const line = await kifak.evaluate((el) => el.closest("[data-line]")?.getAttribute("data-line"));
   const index = await kifak.getAttribute("data-index");

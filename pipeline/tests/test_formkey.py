@@ -23,7 +23,9 @@ def test_python_keys_a_form_as_core_does(vector: dict[str, Any]) -> None:
         written = [(str(w["lexeme"]), w.get("feats")) for w in args["token"].get("lexemes", [])]
         assert {"key": token_key(written)} == vector["expected"]
     else:
-        parsed = [{"lexeme": lexeme, "feats": feats} for lexeme, feats in parse_form_key(args["key"])]
+        parsed = [
+            {"lexeme": lexeme, "feats": feats} for lexeme, feats in parse_form_key(args["key"])
+        ]
         assert parsed == vector["expected"]
 
 

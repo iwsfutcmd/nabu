@@ -214,10 +214,10 @@ def test_author_prompt_lists_what_was_taught_up_to_the_node() -> None:
     values = prompt_values(load_course(REPO / "courses" / "uz"), "uz.my", 3)
     # Each lexeme with its spellings and gloss, from the language's lexicon; an ending by its
     # allomorphs.
-    assert "lexeme:kitob: kitob / китоб (book)" in values["kcs"]
-    assert "lexeme:salom" in values["kcs"] and "lexeme:ism" in values["kcs"]
-    assert "lexeme:poss-1sg: m, im / м, им (-(i)m: my)" in values["kcs"]
-    assert "sense:" not in values["kcs"]
+    assert "lexeme:kitob: kitob / китоб (book)" in values["parts"]
+    assert "lexeme:salom" in values["parts"] and "lexeme:ism" in values["parts"]
+    assert "lexeme:poss-1sg: m, im / м, им (-(i)m: my)" in values["parts"]
+    assert "sense:" not in values["parts"]
     assert values["orthographies"] == "uz-Latn/standard, uz-Cyrl/standard"
     assert values["introduces"].startswith("lexeme:poss-1sg")
     prompt = load_prompt("author")
@@ -226,7 +226,7 @@ def test_author_prompt_lists_what_was_taught_up_to_the_node() -> None:
 
 def test_author_prompt_lists_rules_with_their_gloss() -> None:
     values = prompt_values(load_course(REPO / "courses" / "yue"), "yue.who", 3)
-    assert "rule:a-not-a: (a rule) (" in values["kcs"]
+    assert "rule:a-not-a: (a rule) (" in values["parts"]
 
 
 def test_draft_writes_reviewable_sources_with_provenance_and_lints(tmp_path: Path) -> None:
@@ -239,16 +239,16 @@ def test_draft_writes_reviewable_sources_with_provenance_and_lints(tmp_path: Pat
                     "uz-Latn/standard": {
                         "text": "Bu kitobim.",
                         "tokens": [
-                            {"surface": "Bu", "kc": "lexeme:bu"},
-                            {"surface": "kitobim", "kc": "lexeme:kitob"},
+                            {"surface": "Bu", "part": "lexeme:bu"},
+                            {"surface": "kitobim", "part": "lexeme:kitob"},
                         ],
                     },
                     "uz-Cyrl/standard": {
                         "text": "Бу китобим.",
                         "tokens": [
                             # An id of the course before the lexical model: its alias says.
-                            {"surface": "Бу", "kc": "sense:bu"},
-                            {"surface": "китобим", "kc": "lexeme:kitob"},
+                            {"surface": "Бу", "part": "sense:bu"},
+                            {"surface": "китобим", "part": "lexeme:kitob"},
                         ],
                     },
                 },
@@ -259,8 +259,8 @@ def test_draft_writes_reviewable_sources_with_provenance_and_lints(tmp_path: Pat
                     "uz-Latn/standard": {
                         "text": "Bu qalam.",
                         "tokens": [
-                            {"surface": "Bu", "kc": "lexeme:bu"},
-                            {"surface": "qalam", "kc": "lexeme:qalam"},
+                            {"surface": "Bu", "part": "lexeme:bu"},
+                            {"surface": "qalam", "part": "lexeme:qalam"},
                         ],
                     }
                 },

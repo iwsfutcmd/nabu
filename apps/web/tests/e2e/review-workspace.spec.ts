@@ -33,7 +33,7 @@ const tokenOf = async (page: Page, email: string, password: string): Promise<str
 };
 
 /** A learner's "this should have been accepted" for a sentence, uploaded from their own account. */
-const learnerReports = async (page: Page, tag: string, item: string, kcs: AnswerReported["exercise"]["kcs"], text: string): Promise<void> => {
+const learnerReports = async (page: Page, tag: string, item: string, parts: AnswerReported["exercise"]["parts"], text: string): Promise<void> => {
   const email = `learner-${tag}@example.org`;
   expect((await page.request.post(`${API}/v1/auth/sign-up`, { data: { email, password: "long enough password" } })).status()).toBe(201);
   const token = await tokenOf(page, email, "long enough password");
@@ -42,7 +42,7 @@ const learnerReports = async (page: Page, tag: string, item: string, kcs: Answer
   const report: AnswerReported = {
     id: id(1),
     type: "answer_reported",
-    schema: 1,
+    schema: 2,
     device: "e2e-learner",
     course: course.id,
     orthography: ORTHOGRAPHY,
@@ -53,7 +53,7 @@ const learnerReports = async (page: Page, tag: string, item: string, kcs: Answer
     localDate: at.slice(0, 10),
     tz: "UTC",
     answer: id(3),
-    exercise: { id: `${item}#e2e`, template: "translate-type.l1-l2", item, kcs: [...kcs] },
+    exercise: { id: `${item}#e2e`, template: "translate-type.l1-l2", item, parts: [...parts] },
     text,
   };
   const res = await page.request.post(`${API}/v1/events`, { headers: { Authorization: `Bearer ${token}` }, data: { events: [report] } });
@@ -82,7 +82,7 @@ test("a reviewer signs off a unit, accepts an answer and decides a report, all k
   await expect(page.locator("[data-review-link]")).toHaveCount(0);
   const grant = await page.request.put(`${API}/admin/v1/reviewers`, { headers: ADMIN, data: { email, handle, courses: ["apc"] } });
   expect(grant.status()).toBe(200);
-  await learnerReports(page, runTag(), sentence.id, sentence.kcs, "مرحبتين");
+  await learnerReports(page, runTag(), sentence.id, sentence.parts, "مرحبتين");
 
   // The course list asks for the role once a browser session: the next session finds the link.
   await page.evaluate(() => sessionStorage.clear());

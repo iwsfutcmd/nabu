@@ -377,7 +377,7 @@ describe("planner constraints", () => {
     expect(sizeOf(9)).toBe(9);
     expect(sizeOf(60)).toBe(15);
     // The forgotten words are what it practises.
-    const forgotten = new Set(words.slice(0, 9).map((k) => k.id as string));
+    const forgotten = new Set(words.slice(0, 9).map((k) => k.id));
     const review = plan(fa, stateWith(9), { mode: "review" }, { now, seed: 4 });
     const practised = review.exercises.filter((ex) => ex.template !== "speak.tier-0" && ex.parts.some((part) => forgotten.has(part)));
     expect(practised.length).toBeGreaterThanOrEqual(Math.ceil(review.exercises.length / 2));
@@ -429,7 +429,7 @@ describe("planner constraints", () => {
       return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
     };
     // Every earlier word seen; unit 3's fading (due), the rest fresh.
-    const fading = new Set(before.filter((n) => n.unit.id === fa.units[2]?.id).flatMap((n) => n.node.introduces as readonly string[]));
+    const fading = new Set(before.filter((n) => n.unit.id === fa.units[2]?.id).flatMap((n) => n.node.introduces));
     const cards: Record<string, LearnerState["cards"][string]> = {};
     // A lexeme is recognized and produced; a feature value read off a form and chosen.
     for (const n of before) for (const part of n.node.introduces) for (const skill of part.startsWith("feature:") ? (["read-off", "choose"] as const) : (["recognize", "produce"] as const)) cards[cardKey(part, skill, fa.orthography)] = fading.has(part) ? card(40, 2) : card(1, 100);

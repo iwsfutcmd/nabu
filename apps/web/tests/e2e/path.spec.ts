@@ -13,7 +13,7 @@
  * - its other pages are linked under its title: the words, the sentences, Preferences, Offline.
  */
 import { pathUnits, type PathUnit } from "@nabu/core/learner";
-import { cardGloss, scriptNodes, type CourseView } from "@nabu/core/lesson";
+import { cardGloss, lexemeOf, scriptNodes, type CourseView } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
@@ -29,7 +29,7 @@ const placedOutOf = (course: CourseView, nodes: readonly string[], at: Date): Le
     const time = new Date(at.getTime() + seconds * 1000).toISOString();
     return {
       id: `00000000-0000-7000-9000-${id.toString(16).padStart(12, "0")}`,
-      schema: 1 as const,
+      schema: 2 as const,
       device: "e2e-placement",
       course: course.id,
       orthography: course.orthography as OrthographyId,
@@ -83,9 +83,9 @@ test.describe("the course path", () => {
 
     // The first lesson's new words, each with its meaning under it, as a card glosses it.
     const words = opening.node.introduces.flatMap((id) => {
-      const kc = first.unit.kcs.find((k) => k.id === id);
-      const form = kc?.forms?.[course.orthography]?.[0];
-      return form === undefined ? [] : [{ form, gloss: kc?.gloss?.[course.supportKey] }];
+      const lexeme = lexemeOf(course, id);
+      const form = lexeme?.forms?.[course.orthography]?.[0];
+      return form === undefined ? [] : [{ form, gloss: lexeme?.gloss?.[course.supportKey] }];
     });
     expect(words.length).toBeGreaterThan(0);
     const items = page.locator(`[data-lesson="${opening.node.id}"] [data-preview-item]`);

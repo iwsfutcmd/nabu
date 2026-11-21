@@ -3,7 +3,7 @@
  * learner has yet to read right on a reading card, and leaves it off the others; "All words" in the
  * display menu brings every reading back, and the choice holds for the course's next session.
  */
-import { allKcs, lessonNodes } from "@nabu/core/lesson";
+import { allLexemes, asksOf, lessonNodes, skillOf } from "@nabu/core/lesson";
 import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
 import { freshIds, historyBefore, loadCourse, seedLog, sessionUrl } from "./solver.ts";
@@ -12,17 +12,17 @@ const SEED = 7;
 const NOW = new Date("2026-05-12T09:00:00Z");
 const DAY = 86_400_000;
 
-/** One first try, right for every KC given, on a card of `template`. */
-const answered = (model: AnswerSubmitted, template: AnswerSubmitted["exercise"]["template"], kcs: readonly string[], at: Date): LearnerEvent => {
-  const refs = kcs as AnswerSubmitted["exercise"]["kcs"];
+/** One first try, right for every part given, on a card of `template`. */
+const answered = (model: AnswerSubmitted, template: AnswerSubmitted["exercise"]["template"], parts: readonly string[], at: Date): LearnerEvent => {
+  const refs = parts;
   return {
     ...model,
     session: "00000000-0000-7000-a000-00000000d0d1",
     clientTime: at.toISOString(),
     localDate: at.toISOString().slice(0, 10),
-    exercise: { id: `${template}:all`, template, item: "all", kcs: refs },
+    exercise: { id: `${template}:all`, template, item: "all", parts: refs },
     attempt: 1,
-    outcome: { kind: "CORRECT", notes: [], kcs: refs.map((kc) => ({ kc, status: "right" as const })) },
+    outcome: { kind: "CORRECT", notes: [], labels: [], parts: refs.map((part) => ({ part, skill: skillOf(template, part), status: asksOf(template, part) ? ("right" as const) : ("given" as const) })) },
   };
 };
 
@@ -34,7 +34,7 @@ test("Jyutping fades from the words whose reading the learner has read right, an
   const model = historyBefore(course, second, new Date(NOW.getTime() - 3 * DAY)).find((e): e is AnswerSubmitted => e.type === "answer_submitted");
   if (model === undefined) throw new Error("yue's first lesson has answers");
   // Every word met two days ago, and its reading read right on a reading card the day after.
-  const words = allKcs(course).map((kc) => String(kc.id));
+  const words = allLexemes(course).map((lexeme) => String(lexeme.id));
   const history = freshIds([answered(model, "choose-translation", words, new Date(NOW.getTime() - 2 * DAY)), answered(model, "char-read", words, new Date(NOW.getTime() - DAY))]);
 
   await page.clock.setFixedTime(NOW);

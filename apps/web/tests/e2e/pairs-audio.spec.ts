@@ -42,9 +42,9 @@ test("a tapped word plays its clip; a meaning plays nothing", async ({ page }) =
   const course = loadCourse("fa", "fa-Arab/standard");
   const ex = cardGallery(course, 7).find((c) => c.template === "match-pairs")?.exercise;
   if (ex?.template !== "match-pairs") throw new Error("fa has a match-pairs card");
-  const at = ex.kcs.findIndex((kc) => course.audio[kc] !== undefined);
+  const at = ex.parts.findIndex((part) => course.audio[part] !== undefined);
   expect(at).toBeGreaterThanOrEqual(0);
-  const clip = course.audio[ex.kcs[at] ?? ""]?.normal.path;
+  const clip = course.audio[ex.parts[at] ?? ""]?.normal.path;
 
   await recordPlays(page);
   await pairsCard(page, "");

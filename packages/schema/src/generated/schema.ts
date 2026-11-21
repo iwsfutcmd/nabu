@@ -1255,7 +1255,7 @@ export interface AuthorOutput {
          */
         readonly tokens: readonly {
           readonly surface: string;
-          readonly kc: string;
+          readonly part: string;
         }[];
       };
     };

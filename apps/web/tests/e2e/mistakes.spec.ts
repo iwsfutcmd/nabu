@@ -28,7 +28,7 @@ test("a listening mistake waits while listening is off, and is counted again onc
     id: "00000000-0000-7000-8000-0000000fffff",
     clientTime: new Date(NOW.getTime() - 60_000).toISOString(),
     localDate: NOW.toISOString().slice(0, 10),
-    outcome: { kind: "WRONG", notes: [], kcs: heard.exercise.kcs.map((kc) => ({ kc, status: "wrong" as const })) },
+    outcome: { kind: "WRONG", notes: [], labels: [], parts: heard.outcome.parts.map((c) => ({ ...c, status: c.status === "given" ? ("given" as const) : ("wrong" as const) })) },
   };
   const log = freshIds([...history, missed]);
   const state = replay(log);

@@ -8,32 +8,35 @@
  * listening is never due, on the course page as in the list (D41); a break changes neither.
  */
 import { continueOf, learnedWords, paceOf, replay, skillsAsked, wordCounts } from "@nabu/core/learner";
-import { allKcs, lessonNodes, type Facet, type TemplateId } from "@nabu/core/lesson";
+import { asksOf, lessonNodes, lexemesInOrder, skillOf, type Facet, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
-import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
+import type { LearnerEvent, PartCredit } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
 import { freshIds, historyBefore, loadCourse, seedLog, seriousAxeViolations } from "./solver.ts";
 
 const NOW = new Date("2026-05-12T09:00:00Z");
 const DAY = 86_400_000;
 
+/** A part answered right on a card of `template`, with the skill the card exercises it by (core `creditOf`). */
+const rightOn = (template: TemplateId, part: string): PartCredit => ({ part, skill: skillOf(template, part), status: asksOf(template, part) ? "right" : "given" });
+
 /**
  * A word read, written and heard right on first tries a day after the history met it: every skill
  * a course asks shown (ADR 0100), so the word is known.
  */
-const shownNextDay = (history: readonly LearnerEvent[], kc: string, at: Date): LearnerEvent[] => {
+const shownNextDay = (history: readonly LearnerEvent[], lexeme: string, at: Date): LearnerEvent[] => {
   const model = history.find((e) => e.type === "answer_submitted");
   if (model?.type !== "answer_submitted") throw new Error("the history has answers");
   const cards: readonly TemplateId[] = ["select-image", "translate-type.l1-l2", "listen-select"];
-  const ref = kc as AnswerSubmitted["exercise"]["kcs"][number];
+  const ref = lexeme;
   return cards.map((template, i) => ({
     ...model,
     session: "00000000-0000-7000-a000-00000000d0d0",
     clientTime: new Date(at.getTime() + i * 10_000).toISOString(),
     localDate: at.toISOString().slice(0, 10),
-    exercise: { id: `${template}:${kc}`, template, item: kc, kcs: [ref] },
+    exercise: { id: `${template}:${lexeme}`, template, item: lexeme, parts: [ref] },
     attempt: 1,
-    outcome: { kind: "CORRECT", notes: [], kcs: [{ kc: ref, status: "right" }] },
+    outcome: { kind: "CORRECT", notes: [], labels: [], parts: [rightOn(template, ref)] },
   }));
 };
 
@@ -48,7 +51,7 @@ test("a learner browses the words they have learned, finds one, and reorders the
   const third = lessonNodes(course)[2]?.node.id;
   if (third === undefined) throw new Error("fa has three lessons");
   const met = historyBefore(course, third, NOW);
-  const firstWord = learnedWords(course, replay(met), NOW.toISOString())[0]?.kc;
+  const firstWord = learnedWords(course, replay(met), NOW.toISOString())[0]?.lexeme;
   if (firstWord === undefined) throw new Error("fa's first lessons teach words");
   const history = freshIds([...met, ...shownNextDay(met, firstWord, new Date(NOW.getTime() - DAY))]);
   const words = learnedWords(course, replay(history), NOW.toISOString());
@@ -68,12 +71,12 @@ test("a learner browses the words they have learned, finds one, and reorders the
   await expect(list.locator("[data-words-count]")).toHaveAttribute("data-words-count", String(words.length));
   await expect(list.locator("[data-words-count]")).toHaveAttribute("data-words-known", String(counts.known));
   await expect(list.locator("[data-word]")).toHaveCount(words.length);
-  expect(await list.locator("[data-word]").evaluateAll((els) => els.map((e) => e.getAttribute("data-word")))).toEqual(words.map((w) => w.kc));
+  expect(await list.locator("[data-word]").evaluateAll((els) => els.map((e) => e.getAttribute("data-word")))).toEqual(words.map((w) => w.lexeme));
   // Known or learning, as the core says; a learning word names the skills it has yet to show.
   expect(await list.locator("[data-word]").evaluateAll((els) => els.map((e) => e.getAttribute("data-known")))).toEqual(words.map((w) => String(w.known)));
   const learning = words.find((w) => !w.known);
   if (learning === undefined) throw new Error("a word is still being learned");
-  await expect(list.locator(`[data-word="${learning.kc}"] [data-skills-missing]`)).toHaveAttribute(
+  await expect(list.locator(`[data-word="${learning.lexeme}"] [data-skills-missing]`)).toHaveAttribute(
     "data-skills-missing",
     learning.skills.filter((k) => !k.shown).map((k) => k.skill).join(" "),
   );
@@ -89,7 +92,7 @@ test("a learner browses the words they have learned, finds one, and reorders the
   await expect(list.locator("[data-word]")).toHaveCount(words.length);
 
   // Each word right to left in its own tag; its meaning left to right.
-  const first = list.locator(`[data-word="${words[0]?.kc ?? ""}"]`);
+  const first = list.locator(`[data-word="${words[0]?.lexeme ?? ""}"]`);
   const form = first.locator("p[data-nabu-text]").first();
   await expect(form).toHaveAttribute("dir", "rtl");
   expect((await form.getAttribute("lang"))?.startsWith("fa")).toBe(true);
@@ -103,11 +106,11 @@ test("a learner browses the words they have learned, finds one, and reorders the
   if (marked === undefined) throw new Error("fa's first lessons have a word with vowel marks");
   const search = page.locator("[data-field=word-search]");
   await search.fill(surfaceOf(marked.form).replace(/[\u064B-\u0652]/gu, ""));
-  await expect(list.locator(`[data-word="${marked.kc}"]`)).toBeVisible();
+  await expect(list.locator(`[data-word="${marked.lexeme}"]`)).toBeVisible();
   // And by its meaning.
   const meaning = marked.gloss === undefined ? "" : surfaceOf(marked.gloss);
   await search.fill(meaning.toLocaleUpperCase("en"));
-  await expect(list.locator(`[data-word="${marked.kc}"]`)).toBeVisible();
+  await expect(list.locator(`[data-word="${marked.lexeme}"]`)).toBeVisible();
   await search.fill("zzzz");
   await expect(list.locator("[data-words-none-found]")).toBeVisible();
   await search.fill("");
@@ -116,7 +119,7 @@ test("a learner browses the words they have learned, finds one, and reorders the
   await list.locator("[data-order=alphabetical]").click();
   const collator = new Intl.Collator("fa", { sensitivity: "base" });
   const shown = await list.locator("[data-word]").evaluateAll((els) => els.map((e) => e.getAttribute("data-word")));
-  const alphabetical = [...words].sort((a, b) => collator.compare(surfaceOf(a.form), surfaceOf(b.form))).map((w) => w.kc);
+  const alphabetical = [...words].sort((a, b) => collator.compare(surfaceOf(a.form), surfaceOf(b.form))).map((w) => w.lexeme);
   expect(shown).toEqual(alphabetical);
   expect(errors).toEqual([]);
 });
@@ -144,20 +147,20 @@ test("listening turned off for good: words are known without being heard, and it
   const course = loadCourse("fa", "fa-Arab/standard");
   const asked = skillsAsked(course);
   // Words the course asks to be read, typed and heard.
-  const kcs = allKcs(course)
-    .filter((k) => k.kind === "sense" && k.forms?.[course.orthography] !== undefined && asked(k.id).length === 3)
+  const lexemes = lexemesInOrder(course)
+    .filter((l) => l.forms?.[course.orthography] !== undefined && asked(l.id).length === 3)
     .slice(0, 25);
-  expect(kcs).toHaveLength(25);
+  expect(lexemes).toHaveLength(25);
   const model = historyBefore(course, lessonNodes(course)[1]?.node.id ?? "", NOW).find((e) => e.type === "answer_submitted");
   if (model?.type !== "answer_submitted") throw new Error("the history has answers");
   // Each read, typed and heard right 20 days ago, then read and typed right again yesterday: every
   // skill shown but listening, whose one review has faded since.
   const answers = (daysAgo: number, session: string, templates: readonly TemplateId[]): LearnerEvent[] =>
-    kcs.flatMap((kc, i) =>
+    lexemes.flatMap((lexeme, i) =>
       templates.map((template, j): LearnerEvent => {
         const at = new Date(NOW.getTime() - daysAgo * DAY + (i * templates.length + j) * 10_000).toISOString();
-        const exercise = { id: `${template}:${kc.id}`, template, item: kc.id, kcs: [kc.id] };
-        return { ...model, session, clientTime: at, localDate: at.slice(0, 10), exercise, attempt: 1, outcome: { kind: "CORRECT", notes: [], kcs: [{ kc: kc.id, status: "right" }] } };
+        const exercise = { id: `${template}:${lexeme.id}`, template, item: lexeme.id, parts: [lexeme.id] };
+        return { ...model, session, clientTime: at, localDate: at.slice(0, 10), exercise, attempt: 1, outcome: { kind: "CORRECT", notes: [], labels: [], parts: [rightOn(template, lexeme.id)] } };
       }),
     );
   const history = freshIds([
@@ -191,7 +194,7 @@ test("listening turned off for good: words are known without being heard, and it
   // The word list: every word still to be heard.
   await page.locator("[data-words-link]").click();
   await expect(list.locator("[data-words-count]")).toHaveAttribute("data-words-known", "0");
-  await expect(list.locator(`[data-word="${kcs[0]?.id ?? ""}"] [data-skills-missing]`)).toHaveAttribute("data-skills-missing", "listen");
+  await expect(list.locator(`[data-word="${lexemes[0]?.id ?? ""}"] [data-skills-missing]`)).toHaveAttribute("data-skills-missing", "listen");
 
   // "Can't listen now" was pressed: for the hour, its exercises are left out and nothing else.
   await page.evaluate((until) => localStorage.setItem("nabu.listening-off-until", String(until)), NOW.getTime() + 3_600_000);

@@ -143,7 +143,7 @@ class Token(BaseModel):
         frozen=True,
     )
     surface: Annotated[str, Field(min_length=1)]
-    kc: Annotated[str, Field(min_length=1)]
+    part: Annotated[str, Field(min_length=1)]
 
 
 class Forms(BaseModel):

@@ -774,7 +774,9 @@ def _labels(conv: Converter) -> list[Json]:
                         continue
                     feats = dict(sorted(part.said.items()))
                     same = [x for x in out if x["feats"] == feats]
-                    if any(x.get("pos") in (None, part.pos) and x["was"] != part.form for x in same):
+                    if any(
+                        x.get("pos") in (None, part.pos) and x["was"] != part.form for x in same
+                    ):
                         if part.pos is None or any(x.get("pos") == part.pos for x in same):
                             continue
                         label = {"feats": feats, "pos": part.pos}

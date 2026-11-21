@@ -88,7 +88,7 @@ export interface LearnedWord {
  */
 const skillsOf = (course: CourseView, off: ReadonlySet<AskedSkill>): ((part: string) => readonly AskedSkill[]) => {
   const excluded = courseExclusions(course);
-  const lexemes = new Set(course.lexicon.lexemes.map((l) => l.id as string));
+  const lexemes = new Set(course.lexicon.lexemes.map((l) => l.id));
   const plans = (skill: "recognize" | "produce" | "listen"): boolean => !off.has(skill) && (Object.keys(TEMPLATES) as TemplateId[]).some((t) => TEMPLATES[t].facet === skill && !excluded.has(t));
   const written = new Set<string>();
   const heard = new Set<string>(Object.keys(course.audio));

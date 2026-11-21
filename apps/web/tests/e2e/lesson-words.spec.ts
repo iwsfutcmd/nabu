@@ -30,7 +30,7 @@ test("gap-fill: the words around the gap say what they mean; the options never d
   await expect(word).toHaveAttribute("aria-pressed", "true");
   const panel = page.locator("[data-gloss-panel]");
   await expect(panel).toHaveAttribute("data-gloss-open", "");
-  await expect(panel.locator("[data-gloss-kc]")).not.toHaveCount(0);
+  await expect(panel.locator("[data-gloss-id]")).not.toHaveCount(0);
   // A second tap closes it.
   await word.click();
   await expect(panel).not.toHaveAttribute("data-gloss-open", "");
@@ -47,7 +47,7 @@ test("choose the meaning: the sentence's words say what they mean only once it i
   await answer(page, ex, "keyboard");
   await expect(page.locator("[data-feedback]")).toBeVisible();
   await prompt.locator("button[data-index]").first().click();
-  await expect(page.locator("[data-gloss-panel] [data-gloss-kc]")).not.toHaveCount(0);
+  await expect(page.locator("[data-gloss-panel] [data-gloss-id]")).not.toHaveCount(0);
   // Still the feedback: tapping a word never moves the lesson on.
   await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "feedback");
 });

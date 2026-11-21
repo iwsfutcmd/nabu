@@ -390,23 +390,23 @@ its KCs. **No real exported log has been checked: the owner's is needed.**
 
 ### Not done, in order
 
-1. **A node may introduce a feature value none of its own sentences shows** (a noun's gender is its
-   lexeme's, so *feminine* introduced with bare nouns has nothing to present): the value is never
-   seen and blocks later sentences (`allSeen` in the planner). apc, grc and hbo; six simulation
-   checks fail on it. Fix in the converter (`migrate/course.py`): introduce a value at the first
-   node, at or after its old one, whose own sentences choose it. Then flip, bundles, simulation.
-2. **simulation.test.ts:** uz-Latn's weak learner is at 79.3% (floor 80; it was 80.6), and one es
-   pacing check compares counts of 0 to 9 known words. Look at both after 1; do not retune first.
-3. **Web app tests:** `apps/web/tests/unit` is part ported (an agent stopped at the usage limit;
-   its new `upgrade-log.test.ts` is unfinished). `apps/web/tests/e2e` and its solver are not
-   ported: `data-gloss-kc` is `data-gloss-id`, `data-listed-kc` is `data-listed-part`.
-4. **Every check on the merged tree:** `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm conformance`,
-   `pnpm courses`, the pipeline's pytest, ruff and pyright, `pnpm test:e2e`, the visual matrix in
-   Docker (baselines will change where word order did), `pnpm license-check`, `pnpm check:catalogs`.
-5. **Docs:** "Stages 2 to 4, as built" in the design note; CLAUDE.md still speaks of KCs.
-6. **Stage 7, the flip:** the old schemas, readers and the converter go, `Next` leaves the names,
-   the token kind `word` becomes `lexical`; the mobile build. Then land on main, whole.
-7. **Stages 5 and 6** (losses and labels; what a learner sees) are not started. My advice stands:
+1. **Every check on the merged tree, once more, together:** `pnpm lint`, `pnpm typecheck`, `pnpm test`,
+   `pnpm conformance`, `pnpm courses`, the pipeline's pytest, ruff and pyright, `pnpm test:e2e`,
+   `pnpm license-check`, `pnpm check:catalogs`. Where each stood when this was written is under
+   "Third session" below.
+2. **The visual matrix in Docker** has not been run on the branch. Baselines will change where word
+   order did (a card's other options): review every changed PNG.
+3. **A real exported log** through `upgrade`: the owner's. Stage 4 is not done without it.
+4. **Stage 7, the flip:** the old schemas and the converter go (with `pnpm migrate`, `nabu flip` and the
+   test that holds the courses to what the flip writes from main), `Next` leaves the names (about 30
+   source files, mostly the compiler), the token kind `word` becomes `lexical` (about 460 lines in 76
+   files: courses, bundles, conformance vectors, core, UI, Python), the mobile build, and CLAUDE.md,
+   which still speaks of KCs. `upgrade` and the old event schema stay: they are the rewrite. Then land
+   on main, whole.
+5. **Small leftovers:** the authoring assistant's output still calls a token's id `kc`
+   (`schemas/ai.schema.json`, `prompts/author.md`, whose example says `sense:`); no e2e test seeds an
+   old log and watches the app rewrite it (the unit tests do, on fake IndexedDB).
+6. **Stages 5 and 6** (losses and labels; what a learner sees) are not started. My advice stands:
    land 1 to 4 and 7 as the switch, and 5 with 6 after.
 
 ### How to work on it

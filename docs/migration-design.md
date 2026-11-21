@@ -767,6 +767,72 @@ gloss and notes nowhere but the report. `language.yaml` now names its rules (`ru
 the notes, the KC it was), a node or a sentence may only name a rule its language does, and a test holds
 every construction's words against it. A rule's own file comes when the rule is written.
 
+### Stages 2 to 4, as built: the compiler, core and the log
+
+**Stage 2, the compiler.** `nabu build` reads `lexicons/<lang>/` and the flipped units and writes format 2
+bundles: the lexicon file, the alias table, units without `kcs`. Every tool that reads a course reads the
+new shape (Jyutping, corrections, sign-offs, the authoring assistant, the LibreLingo importer). The
+compiler resolves what the app would otherwise work out: a lexeme's features with the language's defaults
+applied, a sentence's `parts`, each part of speech's bare cell (`bare`), every story question's options.
+
+**Stage 3, core.** Lessons, the planner, placement, stories, the word list and the Data page read
+lexemes, feature values, rules and labels; `lesson/lexemes.ts` is where a token's lexemes are read, and
+no other module takes a token apart. A walked path of each course plans the sessions the old tree
+planned, card for card, until one of the differences below shows.
+
+**Stage 4, the log.** Events are schema 2: `exercise.parts`, and `outcome.parts`, each credit with the
+skill it was earned by. `upgrade(event, aliases)` in `packages/core/src/learner/upgrade.ts` is the one
+reader of schema 1. The device rewrites its log once, before anything reads it, and keeps the old events
+aside in a store of their own; the server rewrites its rows at startup; a download of the old shape is
+restored through the same function; an old event is never uploaded; a bundle of another format is
+refused. The fold, the game's replay and the server's projections read schema 2 alone.
+
+**Settled while building them** (each for the owner to overrule):
+- **A feature value is known by two skills** beside a lexeme's three: `read-off`, on a card that is read
+  or heard, and `choose`, on one that is typed, said or written. A card that asks a word's reading or
+  spelling gives a feature value no credit.
+- **An old form KC's credit goes to the feature values it chose in that sentence** that the course
+  teaches (`byItem` in the alias table), and where the sentence is not known, to nothing. Deliverable 2
+  had given it nowhere to go; a learner's forms would then all have looked unseen, and their sentences
+  would have left review. An alias also says what a placement seeds (`seeds`).
+- **A form is named by the most specific label whose values it has** (the language schema's rule). The
+  converter adds a label where a token states more than its KC named (10 labels), so every form a KC
+  named is still named.
+- **A feature value is introduced by the first node whose own sentences choose it,** at or after the node
+  that introduced its form KC. A noun's gender is its lexeme's, so *feminine* brought in with bare nouns
+  had nothing to present; the value was never seen and kept every later sentence that lists it out of
+  lessons (apc, grc, hbo). The converter reports a value no lesson shows; there is none.
+- **Words follow the order nodes introduce them,** since the lexicon is flat. Anything that followed a
+  unit's own list (a card's other options, the pairs matched together) differs from before in places.
+- **A form's memory is one a feature value:** *hablo* and *habla* are both the present, where they were
+  two KCs. Fewer cards, each seen more often.
+- **The grader's inflected words** are the lexemes some token writes outside its part of speech's bare
+  cell; a contrast set names forms as a part of speech and feature values (`FormCondition`).
+- **Nothing readable is kept in the old shape.** A course whose alias table cannot be fetched is rewritten
+  by its ids' own names (a sense its lexeme) and done again from the events kept aside once the table is
+  in reach.
+
+**What a learner could notice,** ids under the hood aside: the differences in word order and in a form's
+memory above; eight words that are forms of another lexeme now and leave the word list as entries of
+their own (apc *kifak*, *esmak*, *esmi*, *baddi*, *baddak*, *raye7*; fa *nist*, *bud*), while fa *hast*
+is listed; no "which form" question on a bare noun whose gender is its own.
+
+**Checked:**
+- *Plans.* Old tree against new, per course: the same sessions until word order or a form's memory
+  differs; total cards within 0.5%.
+- *Logs.* 28 simulated learners, a month each, every course and script, logged by the old tree, then
+  upgraded and folded by the new one: every event valid schema 2; the fold equal to its oracle; lessons
+  done, XP and open mistakes identical; in chg, lzh, tok, uz and yue every word, due flag and card
+  identical; in es, grc and hbo the words identical and form cards merged into feature values; a due flag
+  flips for 0 to 3 words a learner where a course has forms, since an answer's pace is per unit of length
+  and a sentence's parts are not its KCs. **No real exported log has been checked.**
+- *The simulation.* Renaming every id drew every simulated difficulty again, so each learner is another
+  learner. Three checks that rested on one learner at a margin failed; five learners each, old tree and
+  new: a weak Uzbek learner 83.0% then 82.4%; a weak Hebrew learner 82.5% then 83.0%, typing 25 then 20
+  sentences in the month; a weak, slow Spanish learner following Continue knows 1.2 words then 3.8
+  (on the path 0.6 then 3.0). Those three checks now rest on three learners each, as the pacing check's
+  rate already did. Nothing was retuned.
+
 ## The owner's decisions (2026-11-20)
 
 The eight questions this note ended with, and what the owner answered. The sections above are rewritten to
