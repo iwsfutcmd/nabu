@@ -1,29 +1,36 @@
-"""Compiled units built by hand, as the compiler gives them (the bundle's models), for tests of
-what reads them: the cast, the audio plan, pinned readings. What a test does not say gets a
-neutral value: a sentence on node "n", a draft by human:test, no translations."""
+"""Compiled content built by hand, as the compiler gives it (the bundle's models), for tests of
+what reads it: the cast, the audio plan, pinned readings. What a test does not say gets a neutral
+value: a sentence on node "n", a draft by human:test, no translations."""
 
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
 from typing import Any, Literal
 
+from nabu.items import Content
 from nabu.schema.models import (
-    BundleKc,
-    BundleSentence,
-    BundleStory,
-    BundleStoryStep,
-    BundleUnit,
+    BundleLexeme,
+    BundleLexicon,
     TaggedText,
     TokenModel,
 )
+from nabu.schema.models import NextBundleSentence as BundleSentence
+from nabu.schema.models import NextBundleStory as BundleStory
+from nabu.schema.models import NextBundleStoryStep as BundleStoryStep
+from nabu.schema.models import NextBundleUnit as BundleUnit
 
 Gender = Literal["m", "f"]
 DRAFT = {"author": "human:test", "status": "draft"}
 
 
-def token(surface: str, kind: str = "word", **fields: Any) -> TokenModel:
-    """A token: `token("呢", sense="呢", readings={"jyutping": "ni1"})`."""
-    return TokenModel.model_validate({"surface": surface, "kind": kind, **fields})
+def token(surface: str, kind: str = "word", lexeme: str | None = None, **fields: Any) -> TokenModel:
+    """A token: `token("呢", lexeme="呢", readings={"jyutping": "ni1"})`. `lexeme` names the one
+    lexeme it writes (its name, without `lexeme:`); a token that writes several gives `lexemes`
+    as a bundle has them: `lexemes=[{"lexeme": "lexeme:uy", "surface": "uy", "base": True}, …]`."""
+    data: dict[str, Any] = {"surface": surface, "kind": kind, **fields}
+    if lexeme is not None:
+        data["lexemes"] = [{"lexeme": f"lexeme:{lexeme}"}]
+    return TokenModel.model_validate(data)
 
 
 def tagged(orth: str, tokens: Sequence[TokenModel]) -> TaggedText:
@@ -42,22 +49,23 @@ def sentence(
             "node": "n",
             "forms": {o: {"text": tagged(o, t)} for o, t in (forms or {}).items()},
             "translations": {},
-            "kcs": [],
+            "parts": [],
             "production": True,
             "provenance": dict(provenance),
             "license": "CC0-1.0",
-            **({} if speaker is None else {"persons": {"speaker": speaker}}),
+            **({} if speaker is None else {"tags": [{"persons": {"speaker": speaker}}]}),
         }
     )
 
 
-def kc(id_: str, forms: Mapping[str, Sequence[Sequence[TokenModel]]] | None = None) -> BundleKc:
-    """A KC with its forms by orthography, each a form's tokens (the first: its lemma)."""
-    return BundleKc.model_validate(
+def lexeme(
+    name: str, forms: Mapping[str, Sequence[Sequence[TokenModel]]] | None = None
+) -> BundleLexeme:
+    """A lexeme with its spellings by orthography, each a spelling's tokens (the first: its
+    lemma). `name` is its name in its lexicon, without `lexeme:`."""
+    return BundleLexeme.model_validate(
         {
-            "id": id_,
-            "kind": id_.split(":", 1)[0],
-            "prerequisites": [],
+            "id": f"lexeme:{name}",
             **(
                 {"forms": {o: [tagged(o, f) for f in fs] for o, fs in forms.items()}}
                 if forms
@@ -67,6 +75,12 @@ def kc(id_: str, forms: Mapping[str, Sequence[Sequence[TokenModel]]] | None = No
     )
 
 
+def lexicon(lexemes: Sequence[BundleLexeme] = (), language: str = "und") -> BundleLexicon:
+    """A bundle's lexicon: its lexemes, sorted by id as a lexicon is."""
+    ordered = sorted(lexemes, key=lambda entry: str(entry.id))
+    return BundleLexicon(language=language, lexemes=ordered)
+
+
 def line(
     forms: Mapping[str, Sequence[TokenModel]] | None = None, speaker: str | None = None
 ) -> BundleStoryStep:
@@ -74,7 +88,7 @@ def line(
     data: dict[str, Any] = {
         "forms": {o: tagged(o, t) for o, t in (forms or {}).items()},
         "translations": {},
-        "kcs": [],
+        "parts": [],
     }
     if speaker is not None:
         data["speaker"] = speaker
@@ -103,7 +117,7 @@ def story(
                 for c, g in (characters or {}).items()
             ],
             "steps": list(steps),
-            "kcs": [],
+            "parts": [],
             "provenance": dict(provenance),
             "license": "CC0-1.0",
         }
@@ -112,14 +126,20 @@ def story(
 
 def unit(
     sentences: Sequence[BundleSentence] = (),
-    kcs: Sequence[BundleKc] = (),
     stories: Sequence[BundleStory] = (),
     id_: str = "u",
 ) -> BundleUnit:
     return BundleUnit(
         id=id_,
-        kcs=list(kcs),
         nodes=[],
         sentences=list(sentences),
         stories=list(stories) if stories else None,
     )
+
+
+def content(
+    units: Sequence[BundleUnit] | BundleUnit = (), lexemes: Sequence[BundleLexeme] = ()
+) -> Content:
+    """A course's compiled content: its units, and its lexemes as its lexicon."""
+    listed = [units] if isinstance(units, BundleUnit) else list(units)
+    return Content(listed, lexicon(lexemes))
