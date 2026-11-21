@@ -118,3 +118,21 @@ and accept sets take siz as well; untagged siz sentences accept all three (ADR 0
 The romanization scheme `forms` is gone. The alphabet track asks a word as its KC's pinned Schluessel
 reading (`scriptTrack: {reading: schluessel}`), which equals its chg-Latn/schluessel form in every
 case. A letter keeps its grapheme KC's chg-Latn/schluessel form.
+
+## Amendment: the past and its person endings, one morpheme each (2026-11-21)
+
+The project owner saw *saldim* "I built" glossed as two parts, *sal-* and *-dim* "I did", and asked for
+three: the past and the first person singular are two morphemes. The course had one affix lexeme for each
+person of the past (`past-1s` -dim, `past-1p` -duq, …), and two for the conditional (`cond-1s` -sam,
+`cond-2s` -saŋ).
+
+- **The past is one lexeme**, `past` (-di, -du; -ti, -tu after a voiceless consonant), realising
+  `Tense=Past`. With nothing after it, it says the third person: *bardi* "she went".
+- **Its person endings are the possessive type**, a set of their own (the owner's choice, as uz has
+  `past-1sg`): `pp1s` -m, `pp2s` -ŋ, `pp2` -ŋiz, `pp1p` -q/-k, `pp2pl` -ŋlar. They follow the past and the
+  conditional (*barsam* "if I go" is `cond` -s + `pp1s` -m); the pronominal type (`p1s` -män, `p2s` -sän …)
+  follows the present and a predicate. -lar "they" is one lexeme in both, `p3pl`.
+- A token's feature values are unchanged but for the third person, which the past alone no longer marks.
+  262 tokens split; the alias table sends the old KC ids to `past` or `cond`, seeding the person ending
+  with it. A log already upgraded to the lexical model's events keeps cards for the old lexemes, which no
+  card asks again.

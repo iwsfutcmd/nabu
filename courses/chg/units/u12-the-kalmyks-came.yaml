@@ -56,7 +56,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: کوب کشی قاچتی.
-      tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: قاچتی, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: qačti}}]
+      tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: قاچتی, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: qačti}}]
       reverse: (کوب|کوپ) (کشی|کیشی) قاچتی
   translations:
     en: Many people fled.
@@ -65,7 +65,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلالارینی الیب قاچتیلار.
-      tokens: [{surface: بلالارینی, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: balalarini}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: قاچتیلار, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past-3pl, surface: تیلار}], readings: {schluessel: qačtilar}}]
+      tokens: [{surface: بلالارینی, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: balalarini}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: قاچتیلار, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past, surface: تی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qačtilar}}]
       reverse: |-
         (بلالارینی|بالالارینی) (الیب|آلیب) قاچتیلار
         (بلالارینی|بالالارینی) (الیب|آلیب) قاچتی
@@ -94,7 +94,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: خبر کلدی.
-      tokens: [{surface: خبر, lexeme: khabar, readings: {schluessel: ḫabar}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: خبر, lexeme: khabar, readings: {schluessel: ḫabar}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
       reverse: خبر (کلدی|کیلدی)
   translations:
     en: News came.
@@ -112,7 +112,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "نیلخه\u200cدین خبر کلدی."
-      tokens: [{surface: "نیلخه\u200cدین", lexemes: [{lexeme: nilkha, surface: "نیلخه\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Nilḫadin}}, {surface: خبر, lexeme: khabar, readings: {schluessel: ḫabar}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: "نیلخه\u200cدین", lexemes: [{lexeme: nilkha, surface: "نیلخه\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Nilḫadin}}, {surface: خبر, lexeme: khabar, readings: {schluessel: ḫabar}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
       reverse: "(نیلخه\u200cدین|نیلخه\u200cدن) خبر (کلدی|کیلدی)"
   translations:
     en: News came from Nilkha.
@@ -130,7 +130,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قالماق لشکری کلدی.
-      tokens: [{surface: قالماق, lexeme: qalmaq, readings: {schluessel: Qalmaq}}, {surface: لشکری, lexemes: [{lexeme: lashkar, surface: لشکر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: laškari}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: قالماق, lexeme: qalmaq, readings: {schluessel: Qalmaq}}, {surface: لشکری, lexemes: [{lexeme: lashkar, surface: لشکر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: laškari}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
       reverse: |-
         قالماق لشکری (کلدی|کیلدی)
         قالماق لشکری (کلدیلار|کیلدیلار)
@@ -141,7 +141,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: کوب قالماق کلیب، شهرغه توشتی.
-      tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: قالماق, lexeme: qalmaq, readings: {schluessel: Qalmaq}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: توشتی, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: tüšti}}]
+      tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: قالماق, lexeme: qalmaq, readings: {schluessel: Qalmaq}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: توشتی, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: tüšti}}]
       reverse: (کوب|کوپ) قالماق کلیب (شهرغه|شهرکه|شهرقه|شهرغا) توشتی
   translations:
     en: Many Kalmyks came and (camped at|stopped at|fell upon) the (city|town).
@@ -168,7 +168,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: توقوز تراغه باردیلار.
-      tokens: [{surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: تراغه, lexemes: [{lexeme: tara, surface: ترا, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Taraǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: bardilar}}]
+      tokens: [{surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: تراغه, lexemes: [{lexeme: tara, surface: ترا, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Taraǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: bardilar}}]
       reverse: |-
         (توقوز|توقز) (تراغه|تراکه|تراقه|تراغا) باردیلار
         (توقوز|توقز) (تراغه|تراکه|تراقه|تراغا) باردی
@@ -188,7 +188,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: چاپان باشین دیکان یرغه توشتی.
-      tokens: [{surface: چاپان, lexeme: chapan, readings: {schluessel: Čaṗan}}, {surface: باشین, lexeme: bashin, readings: {schluessel: Bašin}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: یرغه, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: yärgä}}, {surface: توشتی, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: tüšti}}]
+      tokens: [{surface: چاپان, lexeme: chapan, readings: {schluessel: Čaṗan}}, {surface: باشین, lexeme: bashin, readings: {schluessel: Bašin}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: یرغه, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: yärgä}}, {surface: توشتی, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: tüšti}}]
       reverse: (چاپان|چافان) باشین دیکان (یرغه|یرکه|یرقه|یرغا|یارغه|یارکه|یارقه|یارغا) توشتی
   translations:
     en: (They|He|She) (camped|stopped) at a place called Chapan Bashin.
@@ -206,7 +206,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوچ کون اوروش قیلدیلار.
-      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: اوروش, lexeme: urush, readings: {schluessel: uruš}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}]
+      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: اوروش, lexeme: urush, readings: {schluessel: uruš}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qildilar}}]
       reverse: |-
         اوچ کون اوروش (قیلدیلار|قلدیلار)
         اوچ کون اوروش (قیلدی|قلدی)
@@ -217,7 +217,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تورتونچی کونی قاچتیلار.
-      tokens: [{surface: تورتونچی, lexemes: [{lexeme: tort, surface: تورت, base: true}, {lexeme: ord, surface: ونچی}], readings: {schluessel: törtünči}}, {surface: کونی, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: küni}}, {surface: قاچتیلار, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past-3pl, surface: تیلار}], readings: {schluessel: qačtilar}}]
+      tokens: [{surface: تورتونچی, lexemes: [{lexeme: tort, surface: تورت, base: true}, {lexeme: ord, surface: ونچی}], readings: {schluessel: törtünči}}, {surface: کونی, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: küni}}, {surface: قاچتیلار, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past, surface: تی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qačtilar}}]
       reverse: |-
         تورتونچی کونی قاچتیلار
         تورتونچی کونی قاچتی
@@ -228,7 +228,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: غلبه قیلدی.
-      tokens: [{surface: غلبه, lexeme: ghalaba, readings: {schluessel: ǧalaba}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qildi}}]
+      tokens: [{surface: غلبه, lexeme: ghalaba, readings: {schluessel: ǧalaba}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: qildi}}]
       reverse: غلبه (قیلدی|قلدی)
   translations:
     en: (He|She|They) won.
@@ -237,7 +237,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: غلبه قیلمای قاشتی.
-      tokens: [{surface: غلبه, lexeme: ghalaba, readings: {schluessel: ǧalaba}}, {surface: قیلمای, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: qilmay}}, {surface: قاشتی, lexemes: [{lexeme: qash, surface: قاش, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: qašti}}]
+      tokens: [{surface: غلبه, lexeme: ghalaba, readings: {schluessel: ǧalaba}}, {surface: قیلمای, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: qilmay}}, {surface: قاشتی, lexemes: [{lexeme: qash, surface: قاش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: qašti}}]
       reverse: غلبه (قیلمای|قلمای) قاشتی
   translations:
     en: (They|He|She) (fled without winning|did not win, and fled|could not win and fled).
@@ -246,7 +246,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایکینچی مراتبه کلمادی.
-      tokens: [{surface: ایکینچی, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: ord, surface: نچی}], readings: {schluessel: ikkinči}}, {surface: مراتبه, lexeme: murataba, readings: {schluessel: murātaba}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-3, surface: دی}], readings: {schluessel: kälmädi}}]
+      tokens: [{surface: ایکینچی, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: ord, surface: نچی}], readings: {schluessel: ikkinči}}, {surface: مراتبه, lexeme: murataba, readings: {schluessel: murātaba}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
       reverse: (ایکینچی|اکینچی) مراتبه (کلمادی|کیلمادی)
   translations:
     en: (They|He|She) (did not|didn't) come a second time.
@@ -287,14 +287,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: "نیلخه\u200cدین خبر کلدی: «کوب قالماق لشکری کلیب، چافان باشین دیکان یرکه توشتی،» دیب…"
-          tokens: [{surface: "نیلخه\u200cدین", lexemes: [{lexeme: nilkha, surface: "نیلخه\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Nilḫadin}}, {surface: خبر, lexeme: khabar, readings: {schluessel: ḫabar}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}, {surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: قالماق, lexeme: qalmaq, readings: {schluessel: Qalmaq}}, {surface: لشکری, lexemes: [{lexeme: lashkar, surface: لشکر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: laškari}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: چافان, lexeme: chapan, readings: {schluessel: Čaṗan}}, {surface: باشین, lexeme: bashin, readings: {schluessel: Bašin}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: یرکه, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: dat, surface: که}], readings: {schluessel: yärgä}}, {surface: توشتی, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: tüšti}}, {surface: دیب, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: dep}}]
+          tokens: [{surface: "نیلخه\u200cدین", lexemes: [{lexeme: nilkha, surface: "نیلخه\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Nilḫadin}}, {surface: خبر, lexeme: khabar, readings: {schluessel: ḫabar}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}, {surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: قالماق, lexeme: qalmaq, readings: {schluessel: Qalmaq}}, {surface: لشکری, lexemes: [{lexeme: lashkar, surface: لشکر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: laškari}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: چافان, lexeme: chapan, readings: {schluessel: Čaṗan}}, {surface: باشین, lexeme: bashin, readings: {schluessel: Bašin}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: یرکه, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: dat, surface: که}], readings: {schluessel: yärgä}}, {surface: توشتی, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: tüšti}}, {surface: دیب, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: dep}}]
       translations:
         en: 'News came from Nilkha: “Many Kalmyk soldiers have come and camped at a place called Chapan Bashin.”'
   - line:
       forms:
         chg-Arab/standard:
           text: … تاش دابان دیکان یرده اوچ کون قاتتیق اوروش قیلیب، تورتونجی کونی قالماقلار غلبه قیلمای قاشتی.
-          tokens: [{surface: تاش, lexeme: tash, readings: {schluessel: taš}}, {surface: دابان, lexeme: daban, readings: {schluessel: daban}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: قاتتیق, lexeme: qattiq, readings: {schluessel: qattiq}}, {surface: اوروش, lexeme: urush, readings: {schluessel: uruš}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: تورتونجی, lexemes: [{lexeme: tort, surface: تورت, base: true}, {lexeme: ord, surface: ونجی}], readings: {schluessel: törtünči}}, {surface: کونی, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: küni}}, {surface: قالماقلار, lexemes: [{lexeme: qalmaq, surface: قالماق, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: Qalmaqlar}}, {surface: غلبه, lexeme: ghalaba, readings: {schluessel: ǧalaba}}, {surface: قیلمای, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: qilmay}}, {surface: قاشتی, lexemes: [{lexeme: qash, surface: قاش, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: qašti}}]
+          tokens: [{surface: تاش, lexeme: tash, readings: {schluessel: taš}}, {surface: دابان, lexeme: daban, readings: {schluessel: daban}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: قاتتیق, lexeme: qattiq, readings: {schluessel: qattiq}}, {surface: اوروش, lexeme: urush, readings: {schluessel: uruš}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: تورتونجی, lexemes: [{lexeme: tort, surface: تورت, base: true}, {lexeme: ord, surface: ونجی}], readings: {schluessel: törtünči}}, {surface: کونی, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: küni}}, {surface: قالماقلار, lexemes: [{lexeme: qalmaq, surface: قالماق, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: Qalmaqlar}}, {surface: غلبه, lexeme: ghalaba, readings: {schluessel: ǧalaba}}, {surface: قیلمای, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: qilmay}}, {surface: قاشتی, lexemes: [{lexeme: qash, surface: قاش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: qašti}}]
       translations:
         en: … at a place called Tash Daban they fought hard for three days, and on the fourth day the Kalmyks fled without winning.
   - line:
@@ -302,7 +302,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: ایکینچی مراتبه کلمادی.
-          tokens: [{surface: ایکینچی, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: ord, surface: نچی}], readings: {schluessel: ikkinči}}, {surface: مراتبه, lexeme: murataba, readings: {schluessel: murātaba}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-3, surface: دی}], readings: {schluessel: kälmädi}}]
+          tokens: [{surface: ایکینچی, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: ord, surface: نچی}], readings: {schluessel: ikkinči}}, {surface: مراتبه, lexeme: murataba, readings: {schluessel: murātaba}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
       translations:
         en: They did not come a second time.
   - choose:

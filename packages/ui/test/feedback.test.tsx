@@ -250,7 +250,7 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     const forms = meaningsOf(html);
     expect(forms.startsWith('data-meanings="forms"')).toBe(true);
     expect(forms).toContain("What each form says:");
-    // Chaghatay's endings are affix lexemes (lexeme:past-3pl), each glossed as its form.
+    // Chaghatay's endings are affix lexemes (lexeme:past, lexeme:p3pl), each glossed as its form.
     expect(forms).toMatch(/data-gloss-form="(?:lexeme|form):/u);
     const right = surfaceOf(gap.options[gap.answer] as TaggedText);
     const wrong = surfaceOf(gap.options[chosen] as TaggedText);

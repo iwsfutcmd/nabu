@@ -686,8 +686,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   A line's readings stand level, a gap over its tallest word's ink, inside their box (ruby-lift.ts, ADR 0131 amendments).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
-- Suffixes are affix lexemes (`realises` a feature value, `allomorphs` by spelling: dat, past-1s, pres, mis …) in a
-  token's `lexemes`; verbs are cited as stems with a hyphen (bar-). Homographs take a suffix (bar.go, at.name,
+- Suffixes are affix lexemes (`realises` a feature value, `allomorphs` by spelling: dat, past, pres, mis …) in a
+  token's `lexemes`, one per morpheme: bardim is bar- + past -di + pp1s -m (ADR 0128 amendment; the past and the
+  conditional take the possessive-type person endings pp1s pp2s pp2 pp1p pp2pl, the present -män … p1s …; -lar is p3pl); verbs are cited as stems with a hyphen (bar-). Homographs take a suffix (bar.go, at.name,
   kim.that, yuz.face).
 - Schluessel's book is CC BY-NC-ND: take facts from it (letters, suffixes, spellings, glosses), never his example
   sentences or the documents he composed (ch. 7). Stories are public-domain passages (Babur, the Tadhkira, Abu

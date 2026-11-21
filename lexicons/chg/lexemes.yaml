@@ -571,22 +571,11 @@ lexemes:
 - id: lexeme:cond
   realises: {Mood: Cnd}
   gloss: {en: '-sa, -sä: if, when'}
-  notes: {en: 'desä "if one says, if you call": Kāfir desä, īmān eytadur "if you call them unbelievers, they say the creed". Unit 8 has the persons (barsam "if I go").'}
+  notes: {en: 'desä "if one says, if you call": Kāfir desä, īmān eytadur "if you call them unbelievers, they say the creed". A person ending follows it as it follows the past: barsam "if I go", bärsäŋ "if you give".'}
   allomorphs:
   - {spelled: {chg-Arab/standard: [سه]}}
   - {spelled: {chg-Arab/standard: [سا]}}
-- id: lexeme:cond-1s
-  realises: {Mood: Cnd, Number: Sing, Person: '1'}
-  gloss: {en: '-sam, -säm: if I, when I'}
-  notes: {en: 'barsam "if I go, when I went"; tesäm "if I said". The other persons follow the past: -saŋ, -saŋiz, -saq, -saŋlar, -salar.'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [سم]}}
-- id: lexeme:cond-2s
-  realises: {Mood: Cnd, Number: Sing, Person: '2'}
-  gloss: {en: '-saŋ, -säŋ: if you (one person); would you …?'}
-  notes: {en: 'The conditional with the person ending -ŋ. Asked as a question it is a polite request (Schluessel 16.7): saqlap bärsäŋ? "would you keep it for me?".'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [سانک]}}
+  - {spelled: {chg-Arab/standard: [س]}}
 - id: lexeme:cv-a
   realises: {Aspect: Imp, VerbForm: Conv}
   gloss: {en: '-a, -ä (-y after a vowel): doing; with al-: can'}
@@ -1647,7 +1636,7 @@ lexemes:
 - id: lexeme:p3pl
   realises: {Number: Plur, Person: '3'}
   gloss: {en: '-lar, -lär: they (on the predicate or the verb)'}
-  notes: {en: 'derlär "they say, they call"; it may be left out: ular Türk "they are Turks".'}
+  notes: {en: 'derlär "they say, they call"; after the past, bardilar "they went". It may be left out: ular Türk "they are Turks", ular bardi "they went".'}
   allomorphs:
   - {spelled: {chg-Arab/standard: [لار]}}
 - id: lexeme:padishah
@@ -1686,50 +1675,15 @@ lexemes:
   allomorphs:
   - {spelled: {chg-Arab/standard: [یل]}}
   - {spelled: {chg-Arab/standard: [ل]}}
-- id: lexeme:past-1p
-  realises: {Number: Plur, Person: '1', Tense: Past}
-  gloss: {en: '-duq, -dük: we did'}
-  notes: {en: 'The scribes write -duq far more than -dük, whatever the vowels.'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [دوق]}}
-  - {spelled: {chg-Arab/standard: [توق]}}
-  - {spelled: {chg-Arab/standard: [دوک]}}
-- id: lexeme:past-1s
-  realises: {Number: Sing, Person: '1', Tense: Past}
-  gloss: {en: '-dim, -dum, -düm (-tim after a voiceless consonant): I did'}
-  notes: {en: 'The simple past tells what happened: bardim "I went", boldum "I became", ičtim "I drank".'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [دیم]}}
-  - {spelled: {chg-Arab/standard: [تیم]}}
-  - {spelled: {chg-Arab/standard: [دوم]}}
-- id: lexeme:past-2
-  realises: {Person: '2', Polite: Form, Tense: Past}
-  gloss: {en: '-diŋiz: you did, politely or to several'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [دینکیز]}}
-- id: lexeme:past-2pl
-  realises: {Number: Plur, Person: '2', Tense: Past}
-  gloss: {en: '-diŋlar, -duŋlar: you did, to several people'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [دینکلار]}}
-- id: lexeme:past-2s
-  realises: {Number: Sing, Person: '2', Tense: Past}
-  gloss: {en: '-diŋ, -duŋ, -düŋ: you did, to a friend'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [دینک]}}
-- id: lexeme:past-3
-  realises: {Person: '3', Tense: Past}
-  gloss: {en: '-di (-ti): he, she, it did; they did'}
-  notes: {en: 'bardi "she went". With several people it may be -dilär, or -di alone.'}
+- id: lexeme:past
+  realises: {Tense: Past}
+  gloss: {en: '-di, -du, -dü (-ti, -tu after a voiceless consonant): the past; alone, he, she, it did, or they did'}
+  notes: {en: 'The simple past tells what happened: bardi "she went", boldi "he became". A person ending follows it (-m, -ŋ, -ŋiz, -q, -ŋlar, -lar): bardim "I went", barduq "we went", bardilar "they went". The scribes write -duq far more than -dük, whatever the vowels.'}
   allomorphs:
   - {spelled: {chg-Arab/standard: [دی]}}
   - {spelled: {chg-Arab/standard: [تی]}}
-- id: lexeme:past-3pl
-  realises: {Number: Plur, Person: '3', Tense: Past}
-  gloss: {en: '-dilär, -dilar: they did'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [دیلار]}}
-  - {spelled: {chg-Arab/standard: [تیلار]}}
+  - {spelled: {chg-Arab/standard: [دو]}}
+  - {spelled: {chg-Arab/standard: [تو]}}
 - id: lexeme:paytakht
   pos: NOUN
   gloss: {en: capital city}
@@ -1796,6 +1750,37 @@ lexemes:
   - {spelled: {chg-Arab/standard: [ی]}}
   - {spelled: {chg-Arab/standard: [سی]}}
   - {spelled: {chg-Arab/standard: [یی]}}
+- id: lexeme:pp1p
+  realises: {Number: Plur, Person: '1'}
+  gloss: {en: '-q, -k: we (after the past -di and the conditional -sa)'}
+  notes: {en: 'barduq "we went", barsaq "if we go". The scribes write -q far more than -k, whatever the vowels.'}
+  allomorphs:
+  - {spelled: {chg-Arab/standard: [ق]}}
+  - {spelled: {chg-Arab/standard: [ک]}}
+- id: lexeme:pp1s
+  realises: {Number: Sing, Person: '1'}
+  gloss: {en: '-m: I (after the past -di and the conditional -sa)'}
+  notes: {en: 'bardim "I went", barsam "if I go". These person endings follow the past and the conditional; -män, -sän, -siz, -miz, -sizlär follow the present and a predicate.'}
+  allomorphs:
+  - {spelled: {chg-Arab/standard: [م]}}
+- id: lexeme:pp2
+  realises: {Person: '2', Polite: Form}
+  gloss: {en: '-ŋiz: you, politely or to several (after the past -di and the conditional -sa)'}
+  notes: {en: 'bardiŋiz "you went".'}
+  allomorphs:
+  - {spelled: {chg-Arab/standard: [نکیز]}}
+- id: lexeme:pp2pl
+  realises: {Number: Plur, Person: '2'}
+  gloss: {en: '-ŋlar: you, to several people (after the past -di and the conditional -sa)'}
+  notes: {en: 'bardiŋlar "you (all) went".'}
+  allomorphs:
+  - {spelled: {chg-Arab/standard: [نکلار]}}
+- id: lexeme:pp2s
+  realises: {Number: Sing, Person: '2'}
+  gloss: {en: '-ŋ: you, to one person you know well (after the past -di and the conditional -sa)'}
+  notes: {en: 'bardiŋ "you went". Asked after -sa it is a polite request (Schluessel 16.7): saqlap bärsäŋ? "would you keep it for me?".'}
+  allomorphs:
+  - {spelled: {chg-Arab/standard: [نک]}}
 - id: lexeme:pres
   realises: {Tense: Pres}
   gloss: {en: '-a, -ä (-y after a vowel): the present-future: does, is doing, will do'}
