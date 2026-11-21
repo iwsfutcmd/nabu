@@ -1,6 +1,6 @@
 /**
  * The fold changes its draft in place (ADR 0119, R2 in the 2026-11 review): a first try no longer
- * copies the performance model's KC and item maps. Replaying must give exactly the state the fold
+ * copies the performance model's part and item maps. Replaying must give exactly the state the fold
  * gave before (fold-before-r2.ts), as values and as JSON, key order included: on a long simulated
  * log, folded whole and event by event as the app records it, and on logs with every kind of event
  * the fold reads, in any order and with duplicates. The state a fold starts from is never changed.
@@ -8,7 +8,7 @@
 import fc from "fast-check";
 import type { AnswerSubmitted, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { applyEvents, compareEvents, emptyLearnerState, placedKcs, replay, type LearnerState } from "../src/learner/index.ts";
+import { applyEvents, compareEvents, emptyLearnerState, placedParts, replay, type LearnerState } from "../src/learner/index.ts";
 import { lessonNodes, seededRng } from "../src/lesson/index.ts";
 import { applyEventsBefore, replayBefore } from "./fold-before-r2.ts";
 import { loadCourse } from "./learner-fixtures.ts";
@@ -45,7 +45,7 @@ describe("the fold in place equals the fold that copied (ADR 0119)", () => {
       const log = simulated("es", 41, 2.0, 90);
       const state = replay(log);
       // Long enough that the model's maps hold every word of the course and a thousand items.
-      expect(Object.keys(state.performance.kc).length).toBeGreaterThan(700);
+      expect(Object.keys(state.performance.part).length).toBeGreaterThan(700);
       expect(Object.keys(state.performance.item).length).toBeGreaterThan(1000);
       same(state, replayBefore(log));
       // The app folds each event as it is recorded, into the state it holds.
@@ -85,7 +85,7 @@ describe("the fold in place equals the fold that copied (ADR 0119)", () => {
     const fresh = (): string => `00000000-0000-7000-b000-${(++n).toString(16).padStart(12, "0")}`;
     const meta = (e: (typeof base)[number], seconds: number) => {
       const clientTime = at(e.clientTime, seconds);
-      return { id: fresh(), schema: 1 as const, device: "other", course: course.id, orthography: course.orthography as OrthographyId, support: course.supportKey, bundle: "b", session: e.session, clientTime, localDate: clientTime.slice(0, 10), tz: "UTC" };
+      return { id: fresh(), schema: 2 as const, device: "other", course: course.id, orthography: course.orthography as OrthographyId, support: course.supportKey, bundle: "b", session: e.session, clientTime, localDate: clientTime.slice(0, 10), tz: "UTC" };
     };
 
     /** The simulated month with answers hinted, self-rated, skipped, claimed and revised, a placement test, a reset and stopped sessions. */
@@ -129,14 +129,14 @@ describe("the fold in place equals the fold that copied (ADR 0119)", () => {
         }
         for (const [i, right, seconds] of m.revised) {
           const a = pick(answers, i);
-          const kcs = a.outcome.kcs.map((k) => ({ ...k, status: k.status === "given" ? k.status : right ? ("right" as const) : ("wrong" as const) }));
-          added.push({ ...meta(a, seconds), type: "outcome_revised", answer: a.id, outcome: { kind: right ? "CORRECT_PROVISIONAL" : "WRONG", notes: [], kcs }, by: "judge" });
+          const parts = a.outcome.parts.map((k) => ({ ...k, status: k.status === "given" ? k.status : right ? ("right" as const) : ("wrong" as const) }));
+          added.push({ ...meta(a, seconds), type: "outcome_revised", answer: a.id, outcome: { kind: right ? "CORRECT_PROVISIONAL" : "WRONG", notes: [], labels: [], parts }, by: "judge" });
         }
         if (m.placement !== undefined) {
           const [i, count, completed] = m.placement;
           const placed = nodes.slice(0, count);
           const summary = { completed, exercises: 12, correctFirstTry: 9, retries: 0, skipped: 0 };
-          added.push({ ...meta(pick(base, i), 1), type: "session_completed", mode: "placement", summary, placed, seeded: placedKcs(course, placed) });
+          added.push({ ...meta(pick(base, i), 1), type: "session_completed", mode: "placement", summary, placed, seeded: placedParts(course, placed) });
         }
         if (m.reset !== undefined) added.push({ ...meta(pick(base, m.reset), 1), type: "progress_reset" });
         const sessions = base.filter((e) => e.type === "session_completed");

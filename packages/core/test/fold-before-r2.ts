@@ -1,33 +1,35 @@
 /**
  * The learner fold as it was before it updated its draft in place (ADR 0119, R2 in the 2026-11
- * review): every first try copied the performance model's KC and item maps. Kept, unchanged, as
- * the oracle `replay` must equal on long logs (replay-in-place.test.ts, `bench:replay --check`).
- * It shares the fold's pure parts (the rating map, FSRS, revisions, the prediction); what it keeps
- * of its own is the fold itself. A deliberate change to the fold changes this copy too.
+ * review): every first try copied the performance model's part and item maps. Kept as the oracle
+ * `replay` must equal on long logs (replay-in-place.test.ts, `bench:replay --check`), and on an old
+ * log upgraded to the new shape (docs/migration-design.md, "Old events"). It shares the fold's pure
+ * parts (the rating map, FSRS, revisions, the prediction, which skill a card exercises a part by);
+ * what it keeps of its own is the fold itself. A deliberate change to the fold changes this copy
+ * too: it folds parts and skills since the lexical model (ADR 0146).
  */
-import type { AnswerSubmitted, Asks, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
+import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, Question, SessionCompleted, Skill } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
-import { facetOf, ratingOf, type Pace, type Rating } from "../src/learner/credit.ts";
+import { ratingOf, type Pace, type Rating } from "../src/learner/credit.ts";
 import { initialPerformance, predict, type Performance, type PredictionInput } from "../src/learner/performance.ts";
 import { withRevisions } from "../src/learner/revisions.ts";
-import { askOf, cardKey, DESIRED_RETENTION, RECENT_WINDOW, sameQuestion, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
-import type { Facet, TemplateId } from "../src/lesson/exercise.ts";
-import { SPEAKING, TEMPLATES } from "../src/lesson/templates.ts";
+import { askOf, cardKey, DESIRED_RETENTION, readingSkill, RECENT_WINDOW, sameQuestion, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
+import type { SkillRef, TemplateId } from "../src/lesson/exercise.ts";
+import { asksOf, skillOf, SPEAKING, TEMPLATES } from "../src/lesson/templates.ts";
 
 const LEARNING_RATE = 0.15;
 const L2 = 0.01;
 
-/** The model's step as it was: a new model, its KC and item maps copied whole. */
+/** The model's step as it was: a new model, its part and item maps copied whole. */
 const update = (m: Performance, x: PredictionInput, correct: boolean): Performance => {
   const error = (correct ? 1 : 0) - predict(m, x);
   const step = (value: number, gradient: number): number => value + LEARNING_RATE * (gradient * error - L2 * value);
-  const kc = { ...m.kc };
-  for (const k of x.kcs) kc[k] = (kc[k] ?? 0) - (LEARNING_RATE * error) / x.kcs.length - LEARNING_RATE * L2 * (kc[k] ?? 0);
+  const part = { ...m.part };
+  for (const k of x.parts) part[k] = (part[k] ?? 0) - (LEARNING_RATE * error) / x.parts.length - LEARNING_RATE * L2 * (part[k] ?? 0);
   return {
     theta: m.theta + LEARNING_RATE * error,
     facet: { ...m.facet, [x.facet]: step(m.facet[x.facet] ?? 0, 1) },
     template: { ...m.template, [x.template]: step(m.template[x.template] ?? 0, -1) },
-    kc,
+    part,
     item: { ...m.item, [x.item]: step(m.item[x.item] ?? 0, -1) },
     w: m.w + LEARNING_RATE * (error * (x.r - 0.5) - L2 * (m.w - 2)),
   };
@@ -75,13 +77,16 @@ const fromCard = (c: Card): StoredCard => ({
   last_review: c.last_review?.toISOString(),
 });
 
-const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string, reading?: string): number => {
-  const card = state.cards[cardKey(kc, facet, orthography, reading)];
+const retrievability = (state: LearnerState, part: string, skill: Skill, orthography: string, now: string, reading?: string): number => {
+  const card = state.cards[cardKey(part, skill, orthography, reading)];
   return card === undefined ? 0 : scheduler.get_retrievability(toCard(card), new Date(now), false);
 };
 
-const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string, reading?: string): number =>
-  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now, reading), 0) / kcs.length;
+const meanRetrievability = (state: LearnerState, refs: readonly SkillRef[], orthography: string, now: string, reading?: string): number =>
+  refs.length === 0 ? 0 : refs.reduce((sum, ref) => sum + retrievability(state, ref.part, ref.skill, orthography, now, reading), 0) / refs.length;
+
+/** An exercise's parts a card of its template can show, each with the skill it shows it by. */
+const shownBy = (template: TemplateId, parts: readonly string[]): readonly SkillRef[] => parts.filter((part) => asksOf(template, part)).map((part) => ({ part, skill: skillOf(template, part) }));
 
 const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good, easy: FsrsRating.Easy };
 
@@ -112,10 +117,10 @@ const addXp = (d: Draft, date: string, amount: number): void => {
   d.xp.byDate[date] = (d.xp.byDate[date] ?? 0) + amount;
 };
 
-const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, rating: Rating): void => {
+const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, part: string, skill: Skill, rating: Rating): void => {
   const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
-  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
+  const key = cardKey(part, skill, e.orthography, e.exercise.reading);
   if (d.rated.keys.includes(key)) return;
   d.rated.keys.push(key);
   const now = new Date(at);
@@ -125,65 +130,66 @@ const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet:
   d.cards[key] = fromCard(scheduler.next(card, now, GRADES[grade]).card);
 };
 
-const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
-  if (!WITNESSED_FACETS.has(facet)) return;
-  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
+const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, part: string, skill: Skill, right: boolean): void => {
+  if (!WITNESSED_FACETS.has(skill)) return;
+  const key = cardKey(part, skill, e.orthography, e.exercise.reading);
   if (!right) {
     delete d.shown[key];
     d.missed[key] = e.localDate;
     return;
   }
-  const met = d.met[kc];
+  const met = d.met[part];
   const missed = d.missed[key];
   if (met !== undefined && e.localDate > met && (missed === undefined || e.localDate > missed)) d.shown[key] = e.localDate;
 };
 
-const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined, asks?: Asks): void => {
+const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined, asks?: Question): void => {
   d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameQuestion(m, ask, asks)));
   if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }), ...(asks === undefined ? {} : { asks }) }].slice(-MISTAKES_KEPT);
 };
 
 const answered = (d: Draft, e: AnswerSubmitted): void => {
-  const { template, item, kcs } = e.exercise;
-  const facet = facetOf(template);
+  const { template, item, parts } = e.exercise;
+  const facet = TEMPLATES[template].facet;
   const correct = e.outcome.kind.startsWith("CORRECT");
   if (e.attempt === 1) {
-    const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
-    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime, e.exercise.reading);
-    d.performance = update(d.performance, { template, facet, item, kcs, r }, correct);
+    const credited: readonly SkillRef[] = e.outcome.parts.filter((c) => c.status !== "given").map((c) => ({ part: c.part, skill: c.skill }));
+    const r = meanRetrievability(d, credited.length > 0 ? credited : shownBy(template, parts), e.orthography, e.clientTime, e.exercise.reading);
+    d.performance = update(d.performance, { template, facet, item, parts, r }, correct);
   }
   const recent = d.latencies[template] ?? [];
   const typical = median(recent);
-  const perUnit = e.input.latencyMs / (PACE_OVERHEAD + kcs.length);
+  const perUnit = e.input.latencyMs / (PACE_OVERHEAD + parts.length);
   const pace: Pace = typical === undefined ? "usual" : perUnit > PACE_SLOW * typical ? "slow" : perUnit <= PACE_FAST * typical ? "fast" : "usual";
   if (e.attempt === 1) d.latencies[template] = [...recent, perUnit].slice(-LATENCY_WINDOW);
   const typed = TEMPLATES[template].modality.input === "text";
   const hinted = e.input.hinted === true && !SPEAKING.has(template);
-  for (const credit of e.outcome.kcs) {
+  for (const credit of e.outcome.parts) {
     const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, pace, e.input.selfRating, typed, hinted);
-    if (rating !== undefined) rate(d, e, credit.kc, facet, rating);
+    if (rating !== undefined) rate(d, e, credit.part, credit.skill, rating);
   }
   if (e.attempt === 1 && e.input.selfRating === undefined) {
     d.recent = [...d.recent, correct].slice(-RECENT_WINDOW);
-    const credited = e.outcome.kcs.filter((c) => c.status !== "given");
+    const credited = e.outcome.parts.filter((c) => c.status !== "given");
     const pinned = credited.length === 1 || credited.some((c) => c.status === "right");
-    if (!hinted) for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.kc, facet, c.status === "right");
+    if (!hinted) for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.part, c.skill, c.status === "right");
   }
-  for (const credit of e.outcome.kcs) d.met[credit.kc] ??= e.localDate;
+  for (const credit of e.outcome.parts) d.met[credit.part] ??= e.localDate;
   if (correct) addXp(d, e.localDate, XP.answer);
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
-    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs), askOf(e.outcome.kcs) === undefined ? undefined : e.exercise.asks);
+    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.parts), askOf(e.outcome.parts) === undefined ? undefined : e.exercise.asks);
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
   if (e.reason !== "skip") return;
-  const facet = facetOf(e.exercise.template);
+  const { template, parts } = e.exercise;
   if (e.attempt === 1) d.recent = [...d.recent, false].slice(-RECENT_WINDOW);
-  for (const kc of e.exercise.kcs) {
-    rate(d, e, kc, facet, "again");
-    if (e.exercise.kcs.length === 1) witness(d, e, kc, facet, false);
-    d.met[kc] ??= e.localDate;
+  const shown = shownBy(template, parts);
+  for (const { part, skill } of shown) {
+    rate(d, e, part, skill, "again");
+    if (shown.length === 1) witness(d, e, part, skill, false);
   }
+  for (const part of parts) d.met[part] ??= e.localDate;
   noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true, undefined);
 };
 
@@ -191,9 +197,9 @@ const completed = (d: Draft, e: SessionCompleted): void => {
   if (e.mode === "placement") {
     for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
     const at = new Date(e.clientTime);
-    for (const kc of e.seeded ?? []) {
-      d.met[kc] ??= e.localDate;
-      const key = cardKey(kc, "recognize", e.orthography);
+    for (const part of e.seeded ?? []) {
+      d.met[part] ??= e.localDate;
+      const key = cardKey(part, readingSkill(part), e.orthography);
       if (d.cards[key] === undefined) d.cards[key] = fromCard(scheduler.next(createEmptyCard(at), at, GRADES.easy).card);
     }
   }
@@ -258,6 +264,7 @@ const FOLDS: Readonly<Record<LearnerEvent["type"], boolean>> = {
   sentence_reported: false,
   outcome_revised: false,
   goal_set: false,
+  story_line_read: false,
 };
 
 /** `applyEvents` before ADR 0119. */

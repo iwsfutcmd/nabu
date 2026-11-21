@@ -52,7 +52,7 @@ const time = (events: readonly LearnerEvent[]): number[] =>
   });
 
 const state = replay(log);
-console.log(`${log.length} events; ${Object.keys(state.cards).length} cards, ${Object.keys(state.performance.kc).length} KCs and ${Object.keys(state.performance.item).length} items in the model`);
+console.log(`${log.length} events; ${Object.keys(state.cards).length} cards, ${Object.keys(state.performance.part).length} parts and ${Object.keys(state.performance.item).length} items in the model`);
 for (const [name, events] of [
   ["sorted", log],
   ["shuffled", seededRng(5).shuffle(log)],

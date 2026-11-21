@@ -1,7 +1,7 @@
 /** Shared helpers for learner tests: courses from the committed bundles, and event builders. */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { BundleManifest, LearnerEvent, PartCredit, PartId, Prediction } from "@nabu/schema";
+import type { AliasTable, BundleManifest, LearnerEvent, PartCredit, PartId, Prediction } from "@nabu/schema";
 import { askedParts } from "../src/learner/credit.ts";
 import { exerciseRefOf } from "../src/learner/events.ts";
 import { asksOf, readCourse, skillOf, type CourseView, type Exercise } from "../src/lesson/index.ts";
@@ -11,6 +11,13 @@ const BUNDLES = join(ROOT, "apps/web/public/bundles");
 const numberingSystems = JSON.parse(readFileSync(join(ROOT, "packages/i18n/src/generated/numbering-systems.json"), "utf8")) as Record<string, string>;
 
 export const manifestOf = (id: string): BundleManifest => JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
+
+/** What each KC id of a course became (its bundle's alias table): what `upgrade` reads. */
+export const aliasesOf = (id: string): AliasTable => {
+  const file = manifestOf(id).files.find((f) => f.role === "aliases");
+  if (file === undefined) throw new Error(`the bundle of ${id} has no alias table`);
+  return JSON.parse(readFileSync(join(BUNDLES, id, file.path), "utf8")) as AliasTable;
+};
 
 /** A course from its committed bundle: every test's one loader. */
 export const loadCourse = (id: string, orthography?: string): CourseView => {
