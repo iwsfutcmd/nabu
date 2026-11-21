@@ -21,7 +21,7 @@ const LETTERS = "سلام مریم!";
 
 const meta = (n: number) => ({
   id: `00000000-0000-7000-8000-${String(n).padStart(12, "0")}`,
-  schema: 1 as const,
+  schema: 2 as const,
   device: "device-1",
   session: "00000000-0000-7000-8000-ffffffffffff",
   clientTime: `2026-11-${String(n).padStart(2, "0")}T10:00:00.000+02:00`,
@@ -103,9 +103,9 @@ describe("what came of a correction", () => {
   });
 
   it("a word (ADR 0057): its first form and its meaning", () => {
-    const shown = shownNow(fa, "sense:salam");
-    expect(correctionStatus(fa, correction(1, fa, "sense:salam", { ...shown, forms: { [FA]: { text: "سلم" } } }, { forms: { [FA]: { text: "سلام" } } }))).toBe("adopted");
-    expect(correctionStatus(fa, correction(2, fa, "sense:salam", shown, { translation: "hi" }))).toBe("pending");
+    const shown = shownNow(fa, "lexeme:salam");
+    expect(correctionStatus(fa, correction(1, fa, "lexeme:salam", { ...shown, forms: { [FA]: { text: "سلم" } } }, { forms: { [FA]: { text: "سلام" } } }))).toBe("adopted");
+    expect(correctionStatus(fa, correction(2, fa, "lexeme:salam", shown, { translation: "hi" }))).toBe("pending");
   });
 
   it("an item the course no longer has is gone", () => {
@@ -126,7 +126,7 @@ const claim = (n: number, template: AnswerReported["exercise"]["template"], item
   orthography: YUE as OrthographyId,
   support: "en",
   answer: `00000000-0000-7000-8000-${String(100 + n).padStart(12, "0")}`,
-  exercise: { id: `${template}:${item}`, template, item, kcs: [] },
+  exercise: { id: `${template}:${item}`, template, item, parts: [] },
   text,
   ...extra,
 });

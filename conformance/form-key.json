@@ -1,0 +1,246 @@
+{
+  "$comment": "A form's key (schemas/common.schema.json FormKey): one form of a lexeme, or of a token built of several, as a string. It names the clip that says a form and the pairs a learner has seen (ADR 0146). @nabu/core's formKey and the pipeline's nabu.formkey are twins; both pass these.",
+  "vectors": [
+    {
+      "id": "form-key/one-lexeme",
+      "op": "form-key",
+      "args": {
+        "token": {
+          "surface": "casa",
+          "kind": "word",
+          "lexemes": [
+            {
+              "lexeme": "lexeme:casa"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "key": "lexeme:casa"
+      },
+      "note": "a lexeme with no values chosen is its id alone"
+    },
+    {
+      "id": "form-key/values-sorted-by-name",
+      "op": "form-key",
+      "args": {
+        "token": {
+          "surface": "hablo",
+          "kind": "word",
+          "lexemes": [
+            {
+              "lexeme": "lexeme:hablar",
+              "feats": {
+                "Tense": "Pres",
+                "Person": "1",
+                "Number": "Sing",
+                "Mood": "Ind",
+                "VerbForm": "Fin"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "key": "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=1;Tense=Pres;VerbForm=Fin"
+      },
+      "note": "the values chosen, as Name=Value, sorted by name"
+    },
+    {
+      "id": "form-key/several-values-of-one-feature",
+      "op": "form-key",
+      "args": {
+        "token": {
+          "surface": "παῖδες",
+          "kind": "word",
+          "lexemes": [
+            {
+              "lexeme": "lexeme:παῖς",
+              "feats": {
+                "Number": "Plur",
+                "Case": "Nom,Voc"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "key": "lexeme:παῖς|form:Case=Nom,Voc;Number=Plur"
+      },
+      "note": "a value that is several stays as it is written"
+    },
+    {
+      "id": "form-key/several-lexemes",
+      "op": "form-key",
+      "args": {
+        "token": {
+          "surface": "baddi",
+          "kind": "word",
+          "lexemes": [
+            {
+              "lexeme": "lexeme:badd",
+              "surface": "badd",
+              "base": true
+            },
+            {
+              "lexeme": "lexeme:poss-1sg",
+              "surface": "i"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "key": "lexeme:badd+lexeme:poss-1sg"
+      },
+      "note": "a token built of several lexemes: their keys in the order it writes them"
+    },
+    {
+      "id": "form-key/several-lexemes-with-values",
+      "op": "form-key",
+      "args": {
+        "token": {
+          "surface": "kitoblarim",
+          "kind": "word",
+          "lexemes": [
+            {
+              "lexeme": "lexeme:kitob",
+              "surface": "kitob",
+              "base": true,
+              "feats": {
+                "Number": "Plur"
+              }
+            },
+            {
+              "lexeme": "lexeme:poss-1sg",
+              "surface": "larim"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "key": "lexeme:kitob|form:Number=Plur+lexeme:poss-1sg"
+      },
+      "note": "each lexeme in the form it has there"
+    },
+    {
+      "id": "form-key/empty-values",
+      "op": "form-key",
+      "args": {
+        "token": {
+          "surface": "casa",
+          "kind": "word",
+          "lexemes": [
+            {
+              "lexeme": "lexeme:casa",
+              "feats": {}
+            }
+          ]
+        }
+      },
+      "expected": {
+        "key": "lexeme:casa"
+      },
+      "note": "no value chosen: the lexeme's id"
+    },
+    {
+      "id": "form-key/not-analysed",
+      "op": "form-key",
+      "args": {
+        "token": {
+          "surface": "Marisol",
+          "kind": "word"
+        }
+      },
+      "expected": {
+        "key": null
+      },
+      "note": "a token that names no lexeme has no key"
+    },
+    {
+      "id": "form-key/han",
+      "op": "form-key",
+      "args": {
+        "token": {
+          "surface": "學生",
+          "kind": "word",
+          "lexemes": [
+            {
+              "lexeme": "lexeme:學生"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "key": "lexeme:學生"
+      },
+      "note": "a lexeme named by the word itself"
+    },
+    {
+      "id": "form-key/parse-one",
+      "op": "parse-form-key",
+      "args": {
+        "key": "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=1;Tense=Pres;VerbForm=Fin"
+      },
+      "expected": [
+        {
+          "lexeme": "lexeme:hablar",
+          "feats": {
+            "Mood": "Ind",
+            "Number": "Sing",
+            "Person": "1",
+            "Tense": "Pres",
+            "VerbForm": "Fin"
+          }
+        }
+      ]
+    },
+    {
+      "id": "form-key/parse-several",
+      "op": "parse-form-key",
+      "args": {
+        "key": "lexeme:kitob|form:Number=Plur+lexeme:poss-1sg"
+      },
+      "expected": [
+        {
+          "lexeme": "lexeme:kitob",
+          "feats": {
+            "Number": "Plur"
+          }
+        },
+        {
+          "lexeme": "lexeme:poss-1sg",
+          "feats": {}
+        }
+      ]
+    },
+    {
+      "id": "form-key/parse-several-values",
+      "op": "parse-form-key",
+      "args": {
+        "key": "lexeme:παῖς|form:Case=Nom,Voc;Number=Plur"
+      },
+      "expected": [
+        {
+          "lexeme": "lexeme:παῖς",
+          "feats": {
+            "Case": "Nom,Voc",
+            "Number": "Plur"
+          }
+        }
+      ]
+    },
+    {
+      "id": "form-key/parse-bare",
+      "op": "parse-form-key",
+      "args": {
+        "key": "lexeme:casa"
+      },
+      "expected": [
+        {
+          "lexeme": "lexeme:casa",
+          "feats": {}
+        }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 /** Shared helpers for learner tests: courses from the committed bundles, and event builders. */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { BundleManifest, KcCredit, LearnerEvent, Prediction } from "@nabu/schema";
-import { askedKcs } from "../src/learner/credit.ts";
+import type { BundleManifest, LearnerEvent, PartCredit, PartId, Prediction } from "@nabu/schema";
+import { askedParts } from "../src/learner/credit.ts";
 import { exerciseRefOf } from "../src/learner/events.ts";
-import { readCourse, type CourseView, type Exercise } from "../src/lesson/index.ts";
+import { asksOf, readCourse, skillOf, type CourseView, type Exercise } from "../src/lesson/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
 const BUNDLES = join(ROOT, "apps/web/public/bundles");
@@ -37,12 +37,16 @@ export interface EventFactory {
   readonly completed: (mode: "lesson" | "review" | "mistakes", node: string | undefined, summary: { exercises: number; correctFirstTry: number; retries: number }) => LearnerEvent;
 }
 
-/** The credits the player logs for a whole answer (creditOf): the words asked about, the rest given. */
-const creditsOf = (ex: Exercise, correct: boolean): KcCredit[] => {
-  const asked = askedKcs(ex);
+/**
+ * The credits the player logs for a whole answer (creditOf): the words asked about, the rest given,
+ * each part with the skill the card exercises it by; a part the card cannot show is given.
+ */
+const creditsOf = (ex: Exercise, correct: boolean): PartCredit[] => {
+  const asked = askedParts(ex);
   const status = correct ? "right" : "wrong";
-  if (asked === undefined) return ex.kcs.map((kc): KcCredit => ({ kc, status }));
-  return [...new Set([...asked, ...ex.kcs])].map((kc): KcCredit => ({ kc, status: asked.includes(kc) ? status : "given" }));
+  const credit = (part: PartId, said: PartCredit["status"]): PartCredit => ({ part, skill: skillOf(ex.template, part), status: asksOf(ex.template, part) ? said : "given" });
+  if (asked === undefined) return ex.parts.map((part) => credit(part, status));
+  return [...new Set([...asked, ...ex.parts])].map((part) => credit(part, asked.includes(part) ? status : "given"));
 };
 
 /** Builds valid learner events for one course, with a settable clock. */
@@ -52,7 +56,7 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
   let session = nextId();
   const base = () => ({
     id: nextId(),
-    schema: 1 as const,
+    schema: 2 as const,
     device: "test",
     course: course.id,
     orthography: course.orthography as Exclude<LearnerEvent, { type: "goal_set" }>["orthography"],
@@ -79,7 +83,7 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
       attempt,
       // Self-rated speaking (tier 0) carries the learner's rating, as the player logs it (ADR 0099).
       input: { method: "choice", latencyMs, ...(ex.template === "speak.tier-0" ? { selfRating: correct ? ("good" as const) : ("again" as const) } : {}) },
-      outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], kcs: creditsOf(ex, correct) },
+      outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], labels: [], parts: creditsOf(ex, correct) },
       ...(prediction === undefined ? {} : { prediction }),
     }),
     completed: (mode, node, summary) => ({

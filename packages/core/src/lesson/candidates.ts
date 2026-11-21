@@ -34,11 +34,11 @@ export const candidatesFor = (ctx: MakeContext, sentences: readonly BundleSenten
 
 /**
  * The cards a lesson makes of its own material, before the review it brings back: its sentences, and
- * its new lexemes, or, where it brings in fewer than three, those and the unit's lexemes the learner
- * has `seen` (so that there are pairs to match).
+ * its new lexemes, or, where it brings in fewer than three things, those and the unit's lexemes the
+ * learner has `seen` (so that there are pairs to match).
  */
 export const lessonCandidates = (ctx: MakeContext, { unit, node }: LessonNode, seen: ReadonlySet<string>, exclude: ReadonlySet<TemplateId>): Exercise[] => {
   const fresh = node.introduces.flatMap<BundleLexeme>((id) => lexemesById(ctx.course).get(id) ?? []);
-  const words = fresh.length >= 3 ? fresh : [...fresh, ...lexemesOfUnit(ctx.course, unit).filter((k) => !fresh.includes(k) && seen.has(k.id))];
+  const words = node.introduces.length >= 3 ? fresh : [...fresh, ...lexemesOfUnit(ctx.course, unit).filter((k) => !fresh.includes(k) && seen.has(k.id))];
   return candidatesFor(ctx, sentencesOf(ctx.course, unit, node), words, exclude);
 };

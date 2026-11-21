@@ -82,7 +82,7 @@ describe("a course restricted to the media a device has", () => {
   it("drops clips and pictures it lacks, so no exercise needs them", () => {
     const bare = restrictMedia(course, none);
     expect(Object.keys(bare.audio)).toEqual([]);
-    expect(bare.units.flatMap((u) => u.kcs).some((k) => k.image !== undefined)).toBe(false);
+    expect(bare.lexicon.lexemes.some((l) => l.image !== undefined)).toBe(false);
     const now = "2026-05-20T09:00:00.000Z";
     for (const { node } of lessonNodes(bare)) {
       const exercises = plan(bare, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 }).exercises;

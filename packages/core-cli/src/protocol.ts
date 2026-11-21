@@ -9,7 +9,8 @@
 import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type WordForm } from "@nabu/core";
 import { TONE_SYSTEMS } from "@nabu/core/speech";
 import { directionOf, scriptOf } from "@nabu/i18n";
-import type { TaggedText } from "@nabu/schema";
+import { formKey, parseFormKey } from "@nabu/core/lesson";
+import type { TaggedText, Token } from "@nabu/schema";
 import { loadProfiles } from "./load.ts";
 
 type Id = number | string | null;
@@ -134,6 +135,9 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
   },
   direction: (a) => ({ script: scriptOf(text(a, "tag")), dir: directionOf(text(a, "tag")) }),
   "check-tagged-text": (a) => checkTaggedText(a["text"] as TaggedText).map((i) => i.code),
+  /** A token's form key (ADR 0146): the lexemes it writes, each in the form it has there; null for a token that names none. */
+  "form-key": (a) => ({ key: formKey(a["token"] as Token) ?? null }),
+  "parse-form-key": (a) => parseFormKey(text(a, "key")),
   "unicode-set": (a) => parseExemplarSet(text(a, "set")),
 };
 

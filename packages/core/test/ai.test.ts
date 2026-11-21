@@ -104,7 +104,7 @@ describe("roleplay turn checks", () => {
 describe("the judge's rules", () => {
   const fa = loadCourse("fa");
   const events = eventFactory(fa, "0".repeat(64));
-  const [exercise] = plan(fa, emptyLearnerState(), { mode: "lesson", node: "fa.greetings" }, { now: "2026-01-01T09:00:00.000Z", seed: 3 }).exercises.filter((e) => e.kcs.length > 0);
+  const [exercise] = plan(fa, emptyLearnerState(), { mode: "lesson", node: "fa.greetings" }, { now: "2026-01-01T09:00:00.000Z", seed: 3 }).exercises.filter((e) => e.parts.length > 0);
   if (exercise === undefined) throw new Error("no exercise");
   const typed = (e: LearnerEvent, raw = "سلام"): AnswerSubmitted => {
     if (e.type !== "answer_submitted") throw new Error(e.type);
@@ -172,7 +172,7 @@ describe("the judge's rules", () => {
     expect(after.xp.byDate["2026-01-01"]).toBe(1); // on the answer's date, not the revision's
     expect(after.mistakes).toEqual([]);
     expect(replay([answer, revision])).toEqual(after);
-    expect(provisionalOutcome(answer).kcs.every((c) => c.status !== "wrong")).toBe(true);
+    expect(provisionalOutcome(answer).parts.every((c) => c.status !== "wrong")).toBe(true);
     const clock = { now: "2026-01-04T00:00:00.000Z", today: "2026-01-04" };
     expect(replayGame([{ event: answer }, { event: revision }], DEFAULT_GAME, clock).xp.total).toBe(replayGame([{ event: answer }], DEFAULT_GAME, clock).xp.total + DEFAULT_GAME.xp.answer);
     // A revision for another course is ignored.

@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "tagged-text/morphs-mismatch",
+      "id": "tagged-text/lexemes-mismatch",
       "op": "check-tagged-text",
       "args": {
         "text": {
@@ -87,14 +87,15 @@
             {
               "surface": "tilini",
               "kind": "word",
-              "morphs": [
+              "lexemes": [
                 {
+                  "lexeme": "lexeme:til",
                   "surface": "til",
-                  "kc": "sense:til"
+                  "base": true
                 },
                 {
-                  "surface": "ni",
-                  "kc": "form:acc"
+                  "lexeme": "lexeme:acc",
+                  "surface": "ni"
                 }
               ]
             }
@@ -102,11 +103,11 @@
         }
       },
       "expected": [
-        "morphs-mismatch"
+        "lexemes-mismatch"
       ]
     },
     {
-      "id": "tagged-text/morphs-ok",
+      "id": "tagged-text/lexemes-ok",
       "op": "check-tagged-text",
       "args": {
         "text": {
@@ -116,18 +117,19 @@
             {
               "surface": "tilini",
               "kind": "word",
-              "morphs": [
+              "lexemes": [
                 {
+                  "lexeme": "lexeme:til",
                   "surface": "til",
-                  "kc": "sense:til"
+                  "base": true
                 },
                 {
-                  "surface": "i",
-                  "kc": "form:poss-3"
+                  "lexeme": "lexeme:poss-3",
+                  "surface": "i"
                 },
                 {
-                  "surface": "ni",
-                  "kc": "form:acc"
+                  "lexeme": "lexeme:acc",
+                  "surface": "ni"
                 }
               ]
             }
@@ -280,6 +282,97 @@
       "expected": [
         "variant-not-nfc"
       ]
+    },
+    {
+      "id": "tagged-text/lexemes-some-without-letters",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "uz-Latn",
+          "orthography": "uz-Latn/standard",
+          "tokens": [
+            {
+              "surface": "tilni",
+              "kind": "word",
+              "lexemes": [
+                {
+                  "lexeme": "lexeme:til",
+                  "surface": "til",
+                  "base": true
+                },
+                {
+                  "lexeme": "lexeme:acc"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expected": [
+        "lexemes-mismatch"
+      ],
+      "note": "a token that writes several lexemes says which letters are each one's"
+    },
+    {
+      "id": "tagged-text/lexemes-two-bases",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "uz-Latn",
+          "orthography": "uz-Latn/standard",
+          "tokens": [
+            {
+              "surface": "tilni",
+              "kind": "word",
+              "lexemes": [
+                {
+                  "lexeme": "lexeme:til",
+                  "surface": "til",
+                  "base": true
+                },
+                {
+                  "lexeme": "lexeme:acc",
+                  "surface": "ni",
+                  "base": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expected": [
+        "lexemes-mismatch"
+      ],
+      "note": "one lexeme at most is the base the others are merged onto"
+    },
+    {
+      "id": "tagged-text/lexeme-unwritten",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "fa-Arab",
+          "orthography": "fa-Arab/standard",
+          "tokens": [
+            {
+              "surface": "کتاب",
+              "kind": "word",
+              "lexemes": [
+                {
+                  "lexeme": "lexeme:ketab",
+                  "surface": "کتاب",
+                  "base": true
+                },
+                {
+                  "lexeme": "lexeme:ezafe",
+                  "surface": ""
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expected": [],
+      "note": "a lexeme the script does not write has no letters (ADR 0136: the ezafe)"
     }
   ]
 }

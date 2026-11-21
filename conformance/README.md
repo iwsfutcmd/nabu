@@ -18,6 +18,7 @@ it.
 | `accept.json` | Accept-set notation, expansion and errors |
 | `grade.json` | Grading verdicts, notes and alignments across the profiles (each unit that raised a note carries it, so feedback can name the words: cómo and como; Biblical Hebrew: points, accents and maqaf ignored, pronoun and suffix contrasts, and the sets limited by form: person prefixes, verb endings, agreement, ADR 0084; Toki Pona: Latin typed into sitelen pona, names against their cartouches, ADR 0086) |
 | `tagged-text.json` | TaggedText invariants |
+| `form-key.json` | A form's key (ADR 0146): a token's lexemes, each with the feature values chosen there, as one string, and back (the pipeline's `nabu.formkey` passes these too, `tests/test_formkey.py`) |
 | `gloss.json` | Tap-for-gloss: longest match, exact and folded passes side by side, token spans |
 | `pronounce.json` | A word's pronunciation as the script leaves it out: vowel marks on abjad words, typed Jyutping (ADR 0054); a typed reading's syllables and a syllable's tone as a reading scheme's data shapes them (ADR 0109: the pipeline's `nabu.schemes` passes these too, `tests/test_schemes.py`) |
 

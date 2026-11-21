@@ -9,7 +9,7 @@ import { loadCourse } from "./learner-fixtures.ts";
 
 const BUNDLE = "a".repeat(64);
 const meta = {
-  schema: 1 as const,
+  schema: 2 as const,
   device: "device-123",
   user: "user-456",
   session: "00000000-0000-7000-8000-00000000abcd",
@@ -40,7 +40,7 @@ const claim: AnswerReported = {
   orthography: "apc-Latn/arabizi" as OrthographyId,
   support: "en",
   answer: "00000000-0000-7000-8000-000000000003",
-  exercise: { id: "translate-type.l1-l2:s.home.10", template: "translate-type.l1-l2", item: "s.home.10", kcs: [] },
+  exercise: { id: "translate-type.l1-l2:s.home.10", template: "translate-type.l1-l2", item: "s.home.10", parts: [] },
   text: "men wen enta",
 };
 
@@ -99,9 +99,9 @@ describe("the GitHub issue", () => {
   });
 
   it("a word's issue quotes its forms and its meaning", () => {
-    const word = submissionOf({ ...correction, course: "apc", orthography: "apc-Arab/standard" as OrthographyId, item: "sense:salon", shown: { forms: { "apc-Arab/standard": { text: "الصّالون" } }, translation: "living room" }, correction: { translation: "the living room" } });
+    const word = submissionOf({ ...correction, course: "apc", orthography: "apc-Arab/standard" as OrthographyId, item: "lexeme:salon", shown: { forms: { "apc-Arab/standard": { text: "الصّالون" } }, translation: "living room" }, correction: { translation: "the living room" } });
     const issue = issueOf(word, loadCourse("apc"));
-    expect(issueKeyOf(word)).toBe("apc/sense:salon");
+    expect(issueKeyOf(word)).toBe("apc/lexeme:salon");
     expect(issue.body).toContain("- meaning: `\u2068living room\u2069`");
     expect(issue.body).not.toContain("Accepted answers");
   });

@@ -1,15 +1,15 @@
 /**
  * A simulated learner with a hidden truth the planner never sees: their own
- * ability, per-template and per-KC difficulties that differ from the model's
- * priors, and a forgetting curve per (KC, facet). The planner only sees the
+ * ability, per-template and per-part difficulties that differ from the model's
+ * priors, and a forgetting curve per part and skill. The planner only sees the
  * events it causes, exactly as in the app. Used by the 30-day acceptance test
  * (simulation.test.ts) and by `pnpm simulate`, which writes the log as JSONL
  * for the calibration notebook (pipeline/notebooks/calibration.py).
  */
 import type { LearnerEvent } from "@nabu/schema";
-import { creditedKcs } from "../src/learner/credit.ts";
-import { applyEvents, dueFacets, emptyLearnerState, facetOf, paceOf, PERFORMANCE_MODEL, plan, practiceFirst, type LearnerState } from "../src/learner/index.ts";
-import { lessonNodes, seededRng, type Exercise, type Rng, type TemplateId } from "../src/lesson/index.ts";
+import { creditedParts } from "../src/learner/credit.ts";
+import { applyEvents, dueFacets, emptyLearnerState, paceOf, PERFORMANCE_MODEL, plan, practiceFirst, type LearnerState } from "../src/learner/index.ts";
+import { lessonNodes, seededRng, skillOf, type Exercise, type Rng, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const DAY = 86_400_000;
@@ -20,7 +20,7 @@ interface Truth {
   /** How fast memories grow with practice: 1 as the planner's tuning assumed, more or less for others. */
   readonly learning: number;
   readonly template: Readonly<Record<TemplateId, number>>;
-  readonly kc: Map<string, number>;
+  readonly part: Map<string, number>;
   /** Memory per (KC, facet): stability in days and last practice. */
   readonly memory: Map<string, { s: number; last: number }>;
 }
@@ -69,28 +69,26 @@ const recall = (truth: Truth, key: string, now: number): number => {
 
 /** Recall of what the card asks (a blank's word, a pronunciation card's word); the rest is shown. */
 const trueP = (truth: Truth, ex: Exercise, now: number, rng: Rng): number => {
-  const facet = facetOf(ex.template);
-  const asked = creditedKcs(ex);
-  const r = asked.length === 0 ? 0 : asked.reduce((s, kc) => s + recall(truth, `${kc}|${facet}`, now), 0) / asked.length;
-  const kcs = ex.kcs.map((kc) => {
-    if (!truth.kc.has(kc)) truth.kc.set(kc, 0.4 * gauss(rng));
-    return truth.kc.get(kc) as number;
+  const asked = creditedParts(ex);
+  const r = asked.length === 0 ? 0 : asked.reduce((s, part) => s + recall(truth, `${part}|${skillOf(ex.template, part)}`, now), 0) / asked.length;
+  const parts = ex.parts.map((part) => {
+    if (!truth.part.has(part)) truth.part.set(part, 0.4 * gauss(rng));
+    return truth.part.get(part) as number;
   });
-  const b = TRUE_TEMPLATE[ex.template] + (kcs.length === 0 ? 0 : kcs.reduce((a, c) => a + c, 0) / kcs.length);
+  const b = TRUE_TEMPLATE[ex.template] + (parts.length === 0 ? 0 : parts.reduce((a, c) => a + c, 0) / parts.length);
   return 1 / (1 + Math.exp(-(truth.theta - b + 2.5 * (r - 0.5))));
 };
 
 /**
- * How long an answer takes (ADR 0096): a fixed part and a part per KC, slower when recall is weak,
+ * How long an answer takes (ADR 0096): a fixed part and a part per part of the card, slower when recall is weak,
  * with the spread of a real learner, so the rating map's pace is exercised as in the app.
  */
-const latencyOf = (ex: Exercise, p: number, rng: Rng): number => Math.round((2000 + 900 * ex.kcs.length) * Math.exp(0.35 * gauss(rng)) * (1 + 0.8 * (1 - p)));
+const latencyOf = (ex: Exercise, p: number, rng: Rng): number => Math.round((2000 + 900 * ex.parts.length) * Math.exp(0.35 * gauss(rng)) * (1 + 0.8 * (1 - p)));
 
 const practise = (truth: Truth, ex: Exercise, correct: boolean, now: number): void => {
-  const facet = facetOf(ex.template);
   const grow = (gain: number): number => 1 + gain * truth.learning;
-  for (const kc of creditedKcs(ex)) {
-    const key = `${kc}|${facet}`;
+  for (const part of creditedParts(ex)) {
+    const key = `${part}|${skillOf(ex.template, part)}`;
     const m = truth.memory.get(key);
     const s = m === undefined ? (correct ? truth.learning : 0.3) : correct ? m.s * (recall(truth, key, now) < 0.9 ? grow(1.5) : grow(0.2)) : Math.max(0.3, m.s * 0.4);
     truth.memory.set(key, { s, last: now });
@@ -136,7 +134,7 @@ export const simulate = (
   const course = loadCourse(courseId, orthography);
   const events = eventFactory(course, manifestOf(courseId).id);
   const rng = seededRng(seed);
-  const truth: Truth = { theta: ability + 0.2 * gauss(rng), learning: options.learning ?? 1, template: TRUE_TEMPLATE, kc: new Map(), memory: new Map() };
+  const truth: Truth = { theta: ability + 0.2 * gauss(rng), learning: options.learning ?? 1, template: TRUE_TEMPLATE, part: new Map(), memory: new Map() };
   let state: LearnerState = emptyLearnerState();
   const apply = (e: LearnerEvent): void => {
     state = applyEvents(state, [e]);
