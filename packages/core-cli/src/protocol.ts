@@ -44,7 +44,7 @@ const glossaryCache = new Map<string, CompiledGlossary>();
 const glossary = (args: Args): CompiledGlossary => {
   const p = profile(args);
   const entries = args["entries"];
-  if (!Array.isArray(entries)) throw new Error('"entries" must be an array of {kc, text}');
+  if (!Array.isArray(entries)) throw new Error('"entries" must be an array of {id, text}');
   const key = `${p.id}\u0000${JSON.stringify(entries)}`;
   let compiled = glossaryCache.get(key);
   if (compiled === undefined) {

@@ -361,8 +361,14 @@ const skipped = (d: Draft, e: ExerciseSkipped): void => {
   noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true, undefined);
 };
 
-/** The skill a placement seeds a part by (ADR 0111): the reading side's first. */
-export const seededSkill = (part: string): Skill => (kindOf(part) === "feature" ? "read-off" : "recognize");
+/**
+ * The skill a part is first known by, on the reading side: a feature value read off a form, anything
+ * else recognized. What a placement seeds (ADR 0111), and what "recognized before produced" asks.
+ */
+export const readingSkill = (part: string): Skill => (kindOf(part) === "feature" ? "read-off" : "recognize");
+
+/** The skills of the language a part can be known by (ADR 0146), script facets aside. */
+export const languageSkills = (part: string): readonly Skill[] => (kindOf(part) === "feature" ? ["read-off", "choose"] : ["recognize", "produce", "listen"]);
 
 const completed = (d: Draft, e: SessionCompleted): void => {
   // A placement test marks the nodes the learner placed out of as done (§9.5), and seeds what they
@@ -376,7 +382,7 @@ const completed = (d: Draft, e: SessionCompleted): void => {
     const at = new Date(e.clientTime);
     for (const part of e.seeded ?? []) {
       d.met[part] ??= e.localDate;
-      const key = cardKey(part, seededSkill(part), e.orthography);
+      const key = cardKey(part, readingSkill(part), e.orthography);
       if (d.cards[key] === undefined) d.cards[key] = fromCard(scheduler.next(createEmptyCard(at), at, GRADES.easy).card);
     }
   }

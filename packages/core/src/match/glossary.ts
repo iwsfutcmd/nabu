@@ -11,13 +11,14 @@
  * The compiler's glossary lints call this same function through core-cli, so an
  * entry the lint calls dead is one the app can never show.
  */
-import type { KcId, Token } from "@nabu/schema";
+import type { Token } from "@nabu/schema";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { glossUnits } from "./gloss.ts";
 
 export interface GlossEntry {
-  readonly kc: KcId;
-  /** How the entry is written in the orthography (a KC's form). */
+  /** What the entry is: a lexeme's id. */
+  readonly id: string;
+  /** How the entry is written in the orthography (one of the lexeme's spellings). */
   readonly text: string;
 }
 
@@ -39,7 +40,7 @@ export type GlossPass = "exact" | "folded";
 /** A run of units matched by one entry: units [start, end). */
 export interface GlossMatch {
   readonly entry: number;
-  readonly kc: KcId;
+  readonly id: string;
   readonly start: number;
   readonly end: number;
   readonly pass: GlossPass;
@@ -100,7 +101,7 @@ export const matchUnits = (glossary: CompiledGlossary, exact: readonly string[],
       continue;
     }
     const [entry, len, pass] = eLen >= fLen ? [e as number, eLen, "exact" as const] : [f as number, fLen, "folded" as const];
-    out.push({ entry, kc: glossary.entries[entry]?.kc as KcId, start: at, end: at + len, pass });
+    out.push({ entry, id: glossary.entries[entry]?.id as string, start: at, end: at + len, pass });
     at += len;
   }
   return out;

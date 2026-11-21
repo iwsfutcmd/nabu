@@ -1632,7 +1632,7 @@ def _glossary(
                 )
         if not entries:
             continue
-        glossary = [{"kc": ident, "text": surface} for ident, surface, _u, _l in entries]
+        glossary = [{"id": ident, "text": surface} for ident, surface, _u, _l in entries]
         hits = [0] * len(entries)
         shadowed: set[str] = set()
         texts: list[tuple[str, list[dict[str, Any]], Loc]] = []

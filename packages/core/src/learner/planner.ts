@@ -2,35 +2,36 @@
  * The session planner (gameplan §9.4). Pure and seeded: the same request,
  * state, bundle and seed give the same plan.
  *
- * 1. Targets: the node's new KCs, plus due facets (R below desired retention).
+ * 1. Targets: what the node introduces (lexemes, feature values, rules,
+ *    letters), plus due cards (R below desired retention).
  * 2. Candidates: every (template, item) the templates can make, where every
- *    KC that is not a target has been seen before (the i+1 rule at runtime).
+ *    part that is not a target has been seen before (the i+1 rule at runtime).
  * 3. Score: expected memory gain (more for a skill a word has yet to show, ADR
  *    0101), plus closeness of the session's mean p̂ to the target success rate,
  *    minus repetition of the same template or item.
  * 4. Greedy selection with hard constraints: excluded templates, at most three
- *    of a template (two speaking turns), a new KC is recognized before it is
- *    produced or read, every new KC of a lesson is presented in it, and a few
+ *    of a template (two speaking turns), a new part is recognized before it is
+ *    produced or read, every new part of a lesson is presented in it, and a few
  *    cards, spread through the session, have words show the skills they lack
  *    (typing them, hearing them; ADR 0101).
  * 5. Order: selection order (new words first), ending on a likely success.
  */
-import type { Asks, BundleSentence, KcId, SchemeId } from "@nabu/schema";
+import type { BundleSentence, Question, SchemeId } from "@nabu/schema";
 import { candidatesFor, lessonCandidates } from "../lesson/candidates.ts";
-import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
-import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
+import { allSentences, lexemesById, lexemesInOrder, type CourseView } from "../lesson/course.ts";
+import type { Exercise, Facet, Skill, SkillRef, TemplateId } from "../lesson/exercise.ts";
 import { courseExclusions, speechExclusions, type SpeechSupport } from "../lesson/exclusions.ts";
 import { lessonNodes, sentencesOf } from "../lesson/nodes.ts";
 import { seededRng } from "../lesson/rng.ts";
 import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
 import { readingTradition, traditionKey } from "../lesson/traditions.ts";
-import { KC_LISTENING, KC_TEMPLATES, SENTENCE_TEMPLATES, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
+import { LEXEME_LISTENING, LEXEME_TEMPLATES, SENTENCE_TEMPLATES, skillOf, TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { typedByProfile } from "../match/pronounce.ts";
-import { askedKcs, creditedKcs, facetOf, readingOf } from "./credit.ts";
+import { askedParts, creditedParts, facetOf, readingOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
-import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, sameQuestion, type LearnerState } from "./state.ts";
+import { cardKey, DESIRED_RETENTION, languageSkills, meanRetrievability, parseCardKey, readingSkill, retrievability, sameQuestion, type LearnerState } from "./state.ts";
 import { PACE, type PaceBand } from "./pacing.ts";
 import { NONE_OFF, skillsAsked } from "./words.ts";
 
@@ -155,6 +156,8 @@ const SKILL_SHARES: readonly { readonly facet: Facet; readonly share: number }[]
   { facet: "listen", share: 0.15 },
 ];
 const SKILL_EASY = 0.65;
+/** The skills that are shown by typing: a lexeme produced, a feature value chosen (ADR 0146). */
+const PRODUCED: ReadonlySet<Skill> = new Set<Skill>(["produce", "choose"]);
 
 /**
  * Sentences a lesson may lean on (ADR 0101): the BALANCE_SENTENCES earlier sentences whose words the
@@ -165,16 +168,25 @@ const SKILL_EASY = 0.65;
  */
 const BALANCE_SENTENCES = 3;
 
+/**
+ * A sentence's parts a card can be kept for: all but what is a lexeme's own (lexeme:mano|Gender),
+ * which no card asks yet and nothing is ever seen of.
+ */
+const kept = (parts: readonly string[]): readonly string[] => parts.filter((part) => !part.includes("|"));
+
+/** Whether every part a card can be kept for is seen, or a target of the lesson. */
+const allSeen = (parts: readonly string[], seen: ReadonlySet<string>, targets?: ReadonlySet<string>): boolean => kept(parts).every((part) => seen.has(part) || targets?.has(part) === true);
+
 /** The earlier sentences whose words this learner recognizes best now, leaving out `taken`. */
 const wellKnownSentences = (
   past: readonly BundleSentence[],
   taken: readonly BundleSentence[],
   seen: ReadonlySet<string>,
-  recall: (kc: string) => number,
+  recall: (part: string) => number,
 ): readonly BundleSentence[] =>
   past
-    .filter((s) => s.kcs.length > 0 && !taken.includes(s) && s.kcs.every((kc) => seen.has(kc)))
-    .map((s) => ({ s, r: s.kcs.reduce((a, kc) => a + recall(kc), 0) / s.kcs.length }))
+    .filter((s) => kept(s.parts).length > 0 && !taken.includes(s) && allSeen(s.parts, seen))
+    .map((s) => ({ s, r: kept(s.parts).reduce((a, part) => a + recall(part), 0) / kept(s.parts).length }))
     .sort((a, b) => b.r - a.r)
     .slice(0, BALANCE_SENTENCES)
     .map((x) => x.s);
@@ -186,10 +198,10 @@ const wellKnownSentences = (
 const skillNeeds = (course: CourseView, state: LearnerState, today: string, facetsOff: ReadonlySet<Facet>): ReadonlySet<string> => {
   const asked = skillsAsked(course, facetsOff);
   const out = new Set<string>();
-  for (const [kc, met] of Object.entries(state.met)) {
+  for (const [part, met] of Object.entries(state.met)) {
     if (met >= today) continue;
-    for (const skill of asked(kc)) {
-      const k = cardKey(kc, skill, course.orthography);
+    for (const skill of asked(part)) {
+      const k = cardKey(part, skill, course.orthography);
       if (state.shown[k] === undefined && (state.missed[k] ?? "") < today) out.add(k);
     }
   }
@@ -199,8 +211,8 @@ const skillNeeds = (course: CourseView, state: LearnerState, today: string, face
 /**
  * The earlier sentences a lesson brings back (ADR 0097), from the lessons before it on the path (a
  * later lesson's sentence is new, whatever its words): chosen greedily by the due words they would
- * practise, the most forgotten first (desired retention minus recall, per due recognize or produce
- * card), and the skills their words have yet to show (NEED_GAIN each, ADR 0101), each card counted
+ * practise, the most forgotten first (desired retention minus recall, per due card of a skill of the
+ * language), and the skills their words have yet to show (NEED_GAIN each, ADR 0101), each card counted
  * once. So review goes where it is needed, across every unit, never to the course's first sentences
  * because their common words are always due somewhere; and a sentence just reviewed is no longer
  * due, so it does not come back lesson after lesson.
@@ -212,14 +224,14 @@ const reviewSentences = (
   due: ReadonlyMap<string, number>,
   needs: ReadonlySet<string>,
   desired: number,
-  key: (kc: string, facet: Facet) => string,
+  key: (part: string, skill: Skill) => string,
   count = REVIEW_SENTENCES,
 ): readonly BundleSentence[] => {
   const worth = (k: string): number => (due.has(k) ? desired - (due.get(k) ?? desired) : 0) + (needs.has(k) ? NEED_GAIN : 0);
   // Each sentence's cards that need review, worked out once.
   const pool = past
-    .filter((s) => s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)))
-    .map((s) => ({ s, cards: s.kcs.flatMap((kc) => [key(kc, "recognize"), key(kc, "produce"), key(kc, "listen")]).filter((k) => due.has(k) || needs.has(k)) }))
+    .filter((s) => kept(s.parts).length > 0 && allSeen(s.parts, seen))
+    .map((s) => ({ s, cards: kept(s.parts).flatMap((part) => languageSkills(part).map((skill) => key(part, skill))).filter((k) => due.has(k) || needs.has(k)) }))
     .filter((x) => x.cards.length > 0);
   const covered = new Set<string>();
   const need = (cards: readonly string[]): number => cards.reduce((sum, k) => (covered.has(k) ? sum : sum + worth(k)), 0);
@@ -248,19 +260,22 @@ const PRONOUNCE: ReadonlySet<TemplateId> = new Set<TemplateId>(["vocalize", "voc
 /** Templates that can present a new word (`TemplateInfo.presents`). */
 const RECOGNITION: ReadonlySet<TemplateId> = new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].presents === true));
 
+/** What an answer to a card is credited to, each part with the skill the card exercises it by. */
+const creditedRefs = (ex: Exercise): readonly SkillRef[] => creditedParts(ex).map((part) => ({ part, skill: skillOf(ex.template, part) }));
+
 /** p̂ for an exercise in this state, in the course's orthography, at `now`. */
 export const predictExercise = (state: LearnerState, ex: Exercise, orthography: string, now: string): number => {
   const facet = facetOf(ex.template);
   // Recall of what the answer is credited to: a blank's word, not the sentence shown around it; a
   // reading card's in its tradition (ADR 0138).
-  return predict(state.performance, { template: ex.template, facet, item: ex.item, kcs: ex.kcs, r: meanRetrievability(state, creditedKcs(ex), facet, orthography, now, readingOf(ex)) });
+  return predict(state.performance, { template: ex.template, facet, item: ex.item, parts: ex.parts, r: meanRetrievability(state, creditedRefs(ex), orthography, now, readingOf(ex)) });
 };
 
-/** A KC is seen once any of its facets has a card. */
-const seenKcs = (state: LearnerState): ReadonlySet<string> => new Set(Object.keys(state.cards).map((k) => parseCardKey(k).kc));
+/** A part is seen once any of its skills has a card. */
+const seenParts = (state: LearnerState): ReadonlySet<string> => new Set(Object.keys(state.cards).map((k) => parseCardKey(k).part));
 
 /**
- * Due facets (R < desired retention) of seen KCs, most forgotten first. Script
+ * Due cards (R < desired retention) of seen parts, most forgotten first. Script
  * facets count only in the orthography being learned, readings only in the
  * learner's tradition (`reading`, as `traditionKey` names it: ADR 0138), and
  * facets the learner turned off for good (D41) not at all: no session can
@@ -277,9 +292,9 @@ export const dueFacets = (
   Object.keys(state.cards)
     .flatMap((key) => {
       const ref = parseCardKey(key);
-      if ((ref.orthography !== undefined && ref.orthography !== orthography) || facetsOff.has(ref.facet)) return [];
-      if (ref.facet === "read-script" && ref.reading !== reading) return [];
-      return [{ key, r: retrievability(state, ref.kc, ref.facet, orthography, now, ref.reading) }];
+      if ((ref.orthography !== undefined && ref.orthography !== orthography) || (facetsOff as ReadonlySet<string>).has(ref.skill)) return [];
+      if (ref.skill === "read-script" && ref.reading !== reading) return [];
+      return [{ key, r: retrievability(state, ref.part, ref.skill, orthography, now, ref.reading) }];
     })
     .filter((f) => f.r < desired)
     .sort((a, b) => a.r - b.r || (a.key < b.key ? -1 : 1));
@@ -290,34 +305,34 @@ const exclusionsOf = (course: CourseView, options: { readonly exclude?: Readonly
 
 /**
  * The open mistakes rebuilt as their exercises, most recent first: those whose template is not
- * excluded, whose item the course still makes that exercise from, and whose KCs are all seen. A
+ * excluded, whose item the course still makes that exercise from, and whose parts are all seen. A
  * card that asked about one word of its sentence asks that word again (`Mistake.ask`); where the
  * sentence no longer has it, the course no longer makes that mistake's card. Two mistakes on one
  * card of a sentence (two of its words) come one at a time: the card's id is the sentence's.
  */
 const mistakeExercises = (ctx: MakeContext, state: LearnerState, exclude: ReadonlySet<TemplateId>, seen: ReadonlySet<string>): Exercise[] => {
   const byId = new Map(allSentences(ctx.course).map((s) => [s.id, s]));
-  const kcById = new Map(allKcs(ctx.course).map((k) => [k.id as string, k]));
+  const lexemes = lexemesById(ctx.course);
   const out: Exercise[] = [];
   for (const m of [...state.mistakes].reverse()) {
     if (exclude.has(m.template)) continue;
     const s = byId.get(m.item);
-    const kc = kcById.get(m.item);
+    const lexeme = lexemes.get(m.item);
     const at = { ...ctx, ask: m.ask, asks: m.asks };
-    const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(at, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(at, kc) : undefined;
+    const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(at, s) : lexeme !== undefined ? LEXEME_TEMPLATES[m.template]?.(at, lexeme) : undefined;
     if (ex === undefined || (m.ask !== undefined && !sameQuestion(m, askedWord(ex), questionOf(ex)))) continue;
-    if (ex.kcs.every((k) => seen.has(k)) && !out.some((e) => e.id === ex.id)) out.push(ex);
+    if (allSeen(ex.parts, seen) && !out.some((e) => e.id === ex.id)) out.push(ex);
   }
   return out;
 };
 
 /** What a fill-in asks of its word (ADR 0132), as a mistake records it. */
-const questionOf = (ex: Exercise): Asks | undefined => (ex.template === "gap-fill" || ex.template === "story-complete" ? ex.asks : undefined);
+const questionOf = (ex: Exercise): Question | undefined => (ex.template === "gap-fill" || ex.template === "story-complete" ? ex.asks : undefined);
 
-/** The word a card asks about, as a mistake records it (sorted KCs); undefined for a whole sentence. */
+/** The word a card asks about, as a mistake records it (its parts, sorted); undefined for a whole sentence. */
 const askedWord = (ex: Exercise): readonly string[] | undefined => {
-  const kcs = askedKcs(ex);
-  return kcs === undefined ? undefined : [...new Set(kcs.map(String))].sort();
+  const parts = askedParts(ex);
+  return parts === undefined ? undefined : [...new Set(parts.map(String))].sort();
 };
 
 /**
@@ -332,7 +347,7 @@ export const practicableMistakes = (
   state: LearnerState,
   options: { readonly exclude?: ReadonlySet<TemplateId> | undefined; readonly speech?: SpeechSupport | undefined; readonly reading?: SchemeId | false | undefined } = {},
 ): readonly Exercise[] =>
-  mistakeExercises({ course, rng: seededRng(1), introduced: [], reading: readingTradition(course, options.reading) }, state, exclusionsOf(course, options), seenKcs(state));
+  mistakeExercises({ course, rng: seededRng(1), introduced: [], reading: readingTradition(course, options.reading) }, state, exclusionsOf(course, options), seenParts(state));
 
 /**
  * Whether the course can plan this request. A lesson request names one of the course's lesson or
@@ -360,18 +375,23 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   // read-script cards are its own.
   const reading = readingTradition(course, options.reading);
   const traditionCards = traditionKey(course, reading);
-  const key = (kc: string, facet: Facet): string => cardKey(kc, facet, orthography, facet === "read-script" ? traditionCards : undefined);
-  const seen = seenKcs(state);
+  const key = (part: string, skill: Skill): string => cardKey(part, skill, orthography, skill === "read-script" ? traditionCards : undefined);
+  /** The card a part has by the skill a card of this template exercises it by. */
+  const cardOf = (template: TemplateId, part: string): string => key(part, skillOf(template, part));
+  const seen = seenParts(state);
   // What is due and what words are asked, without the facets the learner turned off for good (D41).
   const facetsOff = options.facetsOff ?? NONE_OFF;
   const due = new Map(dueFacets(state, orthography, now, desired, facetsOff, traditionCards).map((f) => [f.key, f.r]));
   // Skills words have yet to show (ADR 0100, 0101), and the words to type: a mistakes session
   // practises its mistakes only.
   const needs = request.mode === "mistakes" ? new Set<string>() : skillNeeds(course, state, options.today ?? now.slice(0, 10), facetsOff);
-  const focus = new Set([...needs].flatMap((k) => (parseCardKey(k).facet === "produce" ? [parseCardKey(k).kc] : [])));
+  // What the session wants typed: a lexeme to produce, a feature value to choose.
+  const focus = new Set([...needs].flatMap((k) => (PRODUCED.has(parseCardKey(k).skill) ? [parseCardKey(k).part] : [])));
+  /** How well a part is known on the reading side: a lexeme recognized, a feature value read off. */
+  const recall = (part: string): number => retrievability(state, part, readingSkill(part), orthography, now);
 
   // ---- 1–2. targets and candidates
-  let introduced: readonly KcId[] = [];
+  let introduced: readonly string[] = [];
   // Items a lesson brings back for review (ADR 0097): their cards are capped and marked.
   const reviewItems = new Set<string>();
   let pool: Exercise[];
@@ -393,51 +413,50 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const lessons = lessonNodes(course);
     const past = lessons.slice(0, lessons.indexOf(found)).flatMap((n) => sentencesOf(course, n.unit, n.node));
     const picked = reviewSentences(course, past, seen, due, needs, desired, key);
-    const earlier = [...picked, ...wellKnownSentences(past, picked, seen, (kc) => retrievability(state, kc, "recognize", orthography, now))];
+    const earlier = [...picked, ...wellKnownSentences(past, picked, seen, recall)];
     for (const s of earlier) reviewItems.add(s.id);
     // Earlier words to be heard (ADR 0101): a word's own clip is the gentlest way to show it.
-    const unheard = allKcs(course).filter((k) => needs.has(key(k.id, "listen")) && !node.introduces.includes(k.id));
-    const hearing = unheard.flatMap((kc) => KC_LISTENING.flatMap((make) => make(ctx, kc) ?? [])).filter((ex) => !exclude.has(ex.template));
+    const unheard = lexemesInOrder(course).filter((k) => needs.has(key(k.id, "listen")) && !node.introduces.includes(k.id));
+    const hearing = unheard.flatMap((lexeme) => LEXEME_LISTENING.flatMap((make) => make(ctx, lexeme) ?? [])).filter((ex) => !exclude.has(ex.template));
     for (const ex of hearing) reviewItems.add(ex.item);
     pool = [...lessonCandidates(ctx, found, seen, exclude), ...candidatesFor(ctx, earlier, [], exclude), ...hearing];
     size = options.size ?? Math.min(14, Math.max(10, own.length * 2));
   } else if (request.mode === "review") {
     const ctx: MakeContext = { course, rng, introduced: [], focus, reading };
-    const studied = allSentences(course).filter((s) => s.forms[course.orthography] !== undefined && s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)));
-    // How much each word needs review: how far its due cards have fallen, and the skills it lacks.
+    const studied = allSentences(course).filter((s) => s.forms[course.orthography] !== undefined && kept(s.parts).length > 0 && allSeen(s.parts, seen));
+    // How much each part needs review: how far its due cards have fallen, and the skills it lacks.
     const worth = new Map<string, number>();
-    for (const [k, r] of due) worth.set(parseCardKey(k).kc, (worth.get(parseCardKey(k).kc) ?? 0) + (desired - r));
-    for (const k of needs) worth.set(parseCardKey(k).kc, (worth.get(parseCardKey(k).kc) ?? 0) + NEED_GAIN);
+    for (const [k, r] of due) worth.set(parseCardKey(k).part, (worth.get(parseCardKey(k).part) ?? 0) + (desired - r));
+    for (const k of needs) worth.set(parseCardKey(k).part, (worth.get(parseCardKey(k).part) ?? 0) + NEED_GAIN);
     size = options.size ?? Math.max(REVIEW_SESSION_MIN, Math.min(REVIEW_SESSION_MAX, worth.size));
-    const neediest = new Set([...worth].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, 3 * size).map(([kc]) => kc));
+    const neediest = new Set([...worth].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, 3 * size).map(([part]) => part));
     const picked = reviewSentences(course, studied, seen, due, needs, desired, key, 2 * size);
-    const recall = (kc: string): number => retrievability(state, kc, "recognize", orthography, now);
     const sentences = [...picked, ...wellKnownSentences(studied, picked, seen, recall)];
-    // Due facets have the highest gain; the well-known sentences are what the calibration can pick
+    // Due cards have the highest gain; the well-known sentences are what the calibration can pick
     // to keep the session near the target success rate.
-    pool = candidatesFor(ctx, sentences, allKcs(course).filter((k) => seen.has(k.id) && neediest.has(k.id)), exclude);
+    pool = candidatesFor(ctx, sentences, lexemesInOrder(course).filter((k) => seen.has(k.id) && neediest.has(k.id)), exclude);
   } else {
     pool = mistakeExercises({ course, rng, introduced: [], reading }, state, exclude, seen);
     size = Math.min(options.size ?? 10, pool.length);
   }
 
-  // i+1 at runtime: every KC that is not new in this lesson has been seen.
-  const targets = new Set(introduced);
-  const admissible = pool.filter((ex) => ex.kcs.every((kc) => targets.has(kc) || seen.has(kc)));
+  // i+1 at runtime: every part that is not new in this lesson has been seen.
+  const targets = new Set<string>(introduced);
+  const admissible = pool.filter((ex) => allSeen(ex.parts, seen, targets));
   const candidates: Candidate[] = admissible.map((ex, order) => ({ ex, p: predictExercise(state, ex, orthography, now), order }));
 
   // ---- 3–4. greedy selection
   const chosen: Candidate[] = [];
-  const covered = new Set<string>(); // (KC, facet) exercised so far in this plan
-  const recognized = new Set<string>(); // new KCs recognized so far in this plan
+  const covered = new Set<string>(); // cards (a part by a skill) exercised so far in this plan
+  const recognized = new Set<string>(); // new parts recognized so far in this plan
   const gain = (c: Candidate): number => {
     const facet = facetOf(c.ex.template);
-    // What the answer is credited to: a blank's word, a pronunciation card's word, else every KC.
-    const parts = creditedKcs(c.ex).map((kc) => {
-      const k = key(kc, facet);
+    // What the answer is credited to: a blank's word, a pronunciation card's word, else every part.
+    const parts = creditedParts(c.ex).map((part) => {
+      const k = cardOf(c.ex.template, part);
       // A word met in this lesson is first recognized; producing it counts once it is shown in a later
       // session (D2), so here it is worth no more than any other new card.
-      const fresh = targets.has(kc) ? (facet === "produce" ? 0.5 : 1) : 0.5;
+      const fresh = targets.has(part) ? (facet === "produce" ? 0.5 : 1) : 0.5;
       const base = state.cards[k] === undefined ? fresh : due.has(k) ? 0.6 + (desired - (due.get(k) ?? 0)) : 0.15;
       // A skill the word has yet to show (ADR 0101) is worth more, once a session.
       return covered.has(k) ? base * 0.3 : base + (needs.has(k) ? NEED_GAIN : 0);
@@ -458,13 +477,18 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   // its forms can be produced, never its words: only a sentence typed shows that. So it takes none of
   // the sentences' typing slots, counts toward none, and says nothing of how well this learner types
   // sentences; it has a slot of its own (`builds`, below).
-  const lacks = (c: Candidate, facet: Facet): boolean => facetOf(c.ex.template) === facet && creditedKcs(c.ex).some((kc) => needs.has(key(kc, facet)) && !covered.has(key(kc, facet)));
+  const lacks = (c: Candidate, facet: Facet): boolean =>
+    facetOf(c.ex.template) === facet &&
+    creditedParts(c.ex).some((part) => {
+      const k = cardOf(c.ex.template, part);
+      return needs.has(k) && !covered.has(k);
+    });
   const shows = (c: Candidate, facet: Facet): boolean => c.ex.template !== "parts-whole" && lacks(c, facet);
   const builds = (c: Candidate): boolean => c.ex.template === "parts-whole" && lacks(c, "produce");
   // How many a session: a share for a skill this learner does well, one for a skill they find hard.
   const quotas = SKILL_SHARES.flatMap(({ facet, share }) => {
     const ps = candidates.filter((c) => shows(c, facet)).map((c) => c.p);
-    const words = [...needs].filter((k) => parseCardKey(k).facet === facet).length;
+    const words = [...needs].filter((k) => (facet === "produce" ? PRODUCED.has(parseCardKey(k).skill) : parseCardKey(k).skill === facet)).length;
     if (ps.length === 0 || words === 0) return [];
     const easy = ps.reduce((a, b) => a + b, 0) / ps.length >= SKILL_EASY;
     return [{ facet, quota: easy ? Math.min(words, Math.max(1, Math.round(size * share))) : 1, picked: 0 }];
@@ -488,17 +512,17 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     // A word is built from its parts once each form asked was recognized right (the fold's `shown`):
     // read first, then written, as a reading is typed after it was chosen (ADR 0131). A mistakes
     // session brings its mistakes back whatever has slipped since.
-    if (c.ex.template === "parts-whole" && request.mode !== "mistakes" && !(askedKcs(c.ex) ?? []).every((kc) => state.shown[key(kc, "recognize")] !== undefined)) return false;
-    // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
+    if (c.ex.template === "parts-whole" && request.mode !== "mistakes" && !(askedParts(c.ex) ?? []).every((part) => state.shown[key(part, readingSkill(part))] !== undefined)) return false;
+    // A new part is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
-    const gated = PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" || c.ex.template === "reading-feature" || c.ex.template === "spelling-choice" ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
+    const gated = kept(PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" || c.ex.template === "reading-feature" || c.ex.template === "spelling-choice" ? (askedParts(c.ex) ?? c.ex.parts) : c.ex.parts);
     // A reading typed as text (Schluessel, ADR 0131), or in one of several traditions (ADR 0138), is
     // asked only once the word was read right by choice: its reading shown, as the fold witnesses it.
     const typedAfterChoice = c.ex.template === "transcribe" && (typedByProfile(c.ex.scheme) || c.ex.tradition !== undefined);
-    if (typedAfterChoice && !gated.every((kc) => state.shown[cardKey(kc, "read-script", orthography, readingOf(c.ex))] !== undefined)) return false;
+    if (typedAfterChoice && !gated.every((part) => state.shown[cardKey(part, "read-script", orthography, readingOf(c.ex))] !== undefined)) return false;
     // So are marks put on a word's letters (ADR 0137): once a choice card has shown them.
-    if (c.ex.template === "vocalize-build" && !gated.every((kc) => state.shown[key(kc, "read-script")] !== undefined)) return false;
-    return gated.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
+    if (c.ex.template === "vocalize-build" && !gated.every((part) => state.shown[key(part, "read-script")] !== undefined)) return false;
+    return gated.every((part) => !targets.has(part) || recognized.has(part) || state.cards[key(part, readingSkill(part))] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.
   // A self-rated speaking card is no verdict (L6): it neither pulls the session's mean p̂ toward the
@@ -511,7 +535,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const calibration = -CALIBRATION_WEIGHT * Math.abs(meanP - target) - (selfRated(c) ? 0 : 2 * Math.abs(c.p - target));
     const sameTemplate = chosen.filter((x) => x.ex.template === c.ex.template).length;
     const sameItem = chosen.filter((x) => x.ex.item === c.ex.item).length;
-    const newCoverage = c.ex.kcs.some((kc) => targets.has(kc) && !recognized.has(kc)) && RECOGNITION.has(c.ex.template) ? 0.4 : 0;
+    const newCoverage = c.ex.parts.some((part) => targets.has(part) && !recognized.has(part)) && RECOGNITION.has(c.ex.template) ? 0.4 : 0;
     return gain(c) + newCoverage + calibration - 0.15 * sameTemplate - 0.5 * sameItem;
   };
   // Whether the session can take a card of this skill and still come near its target: the cards
@@ -531,20 +555,20 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const sum = counted.reduce((a, x) => a + x.p, 0) + gentlest.p + rest.reduce((a, p) => a + p, 0);
     return sum / (counted.length + 1 + rest.length) >= target;
   };
-  // Every new KC is presented in its lesson (a hard constraint): while a new KC an allowed exercise
+  // Every new part is presented in its lesson (a hard constraint): while a new part an allowed exercise
   // can present is not yet in the plan, only such exercises qualify (new words first, as ordered
   // below); the scores choose among them, and then fill the session. A card presents the words it
   // is credited to: a word that is only the context of a pronunciation card's word gets no card of
   // its own from it, so it is not presented there.
-  const presents = (c: Candidate): readonly KcId[] => creditedKcs(c.ex);
-  const presentable = new Set(candidates.flatMap((c) => presents(c).filter((kc) => targets.has(kc))));
+  const presents = (c: Candidate): readonly string[] => creditedParts(c.ex);
+  const presentable = new Set(candidates.flatMap((c) => presents(c).filter((part) => targets.has(part))));
   const presented = new Set<string>();
   const remaining = [...candidates];
   const showing = new Set<Candidate>();
   while (chosen.length < size && remaining.length > 0) {
     builtWordsWait = quotas.some((q) => q.facet === "produce" && q.picked < q.quota) && remaining.some((c) => shows(c, "produce") && sameOf(c.ex.template) < capOf(c.ex.template));
-    const missing = [...presentable].filter((kc) => !presented.has(kc));
-    const mustPresent = missing.length > 0 && remaining.some((c) => allowed(c) && presents(c).some((kc) => missing.includes(kc)));
+    const missing = [...presentable].filter((part) => !presented.has(part));
+    const mustPresent = missing.length > 0 && remaining.some((c) => allowed(c) && presents(c).some((part) => missing.includes(part)));
     // Once new words are presented, at each spread-out place a card that has a word show a skill it
     // lacks (ADR 0101): of the skill furthest from its quota.
     const shown = quotas.reduce((a, q) => a + q.picked, 0);
@@ -558,7 +582,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     let bestScore = Number.NEGATIVE_INFINITY;
     for (const [i, c] of remaining.entries()) {
       if (!allowed(c)) continue;
-      if (mustPresent && !presents(c).some((kc) => missing.includes(kc))) continue;
+      if (mustPresent && !presents(c).some((part) => missing.includes(part))) continue;
       if (owed !== undefined && !shows(c, owed.facet)) continue;
       if (building && !builds(c)) continue;
       const s = score(c);
@@ -580,10 +604,9 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
       showing.add(pick);
     }
     chosen.push(pick);
-    const facet = facetOf(pick.ex.template);
-    for (const kc of presents(pick)) presented.add(kc);
-    if (RECOGNITION.has(pick.ex.template)) for (const kc of pick.ex.kcs) if (targets.has(kc)) recognized.add(kc);
-    for (const kc of creditedKcs(pick.ex)) covered.add(key(kc, facet));
+    for (const part of presents(pick)) presented.add(part);
+    if (RECOGNITION.has(pick.ex.template)) for (const part of pick.ex.parts) if (targets.has(part)) recognized.add(part);
+    for (const part of creditedParts(pick.ex)) covered.add(cardOf(pick.ex.template, part));
   }
 
   // A word's pronunciation as its script leaves it out, in its sentence (ADR 0054, 0095): one card a
@@ -592,8 +615,8 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   if (request.mode === "lesson" && !chosen.some((c) => PRONOUNCE.has(c.ex.template))) {
     const pick = remaining.filter((c) => PRONOUNCE.has(c.ex.template) && allowed(c)).sort((a, b) => score(b) - score(a) || a.order - b.order)[0];
     if (pick !== undefined) {
-      const presentedBy = (kc: KcId, except: Candidate): boolean => chosen.some((c) => c !== except && presents(c).includes(kc));
-      const spare = [...chosen].reverse().find((c) => !showing.has(c) && presents(c).every((kc) => !targets.has(kc) || presentedBy(kc, c)));
+      const presentedBy = (part: string, except: Candidate): boolean => chosen.some((c) => c !== except && presents(c).includes(part));
+      const spare = [...chosen].reverse().find((c) => !showing.has(c) && presents(c).every((part) => !targets.has(part) || presentedBy(part, c)));
       if (chosen.length < size) chosen.push(pick);
       else if (spare !== undefined) chosen.splice(chosen.indexOf(spare), 1, pick);
     }
@@ -607,8 +630,8 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   if (request.mode === "lesson" && !facetsOff.has(TEMPLATES["tone-identify"].facet) && !chosen.some((c) => c.ex.template === "tone-identify")) {
     const pick = remaining.filter((c) => c.ex.template === "tone-identify" && allowed(c)).sort((a, b) => score(b) - score(a) || a.order - b.order)[0];
     if (pick !== undefined) {
-      const presentedBy = (kc: KcId, except: Candidate): boolean => chosen.some((c) => c !== except && presents(c).includes(kc));
-      const spare = [...chosen].reverse().find((c) => !showing.has(c) && !PRONOUNCE.has(c.ex.template) && presents(c).every((kc) => !targets.has(kc) || presentedBy(kc, c)));
+      const presentedBy = (part: string, except: Candidate): boolean => chosen.some((c) => c !== except && presents(c).includes(part));
+      const spare = [...chosen].reverse().find((c) => !showing.has(c) && !PRONOUNCE.has(c.ex.template) && presents(c).every((part) => !targets.has(part) || presentedBy(part, c)));
       if (chosen.length < size) chosen.push(pick);
       else if (spare !== undefined) chosen.splice(chosen.indexOf(spare), 1, pick);
     }

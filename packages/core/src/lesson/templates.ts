@@ -1039,7 +1039,7 @@ const lexemePart = (course: CourseView, id: string, base: boolean): WordPart | u
  * feature values there (`labelOf`: those chosen on the token and its lexeme's own), credited to the
  * values chosen on the token. Undefined for a token that chooses none, or whose form has no name.
  */
-const formPart = (course: CourseView, token: Token): WordPart | undefined => {
+export const formPart = (course: CourseView, token: Token): WordPart | undefined => {
   const base = baseOf(token);
   if (base === undefined || Object.keys(base.feats ?? {}).length === 0) return undefined;
   const entry = lexemesById(course).get(base.lexeme);

@@ -6,9 +6,10 @@
  *
  * Pure: options are shuffled with the injected seeded Rng only.
  */
-import type { BundleStory, BundleStoryLine, KcId, TaggedText, Token } from "@nabu/schema";
+import type { BundleStory, BundleStoryLine, PartId, TaggedText, Token } from "@nabu/schema";
 import type { CourseView } from "../lesson/course.ts";
-import { allKcs, profileOf } from "../lesson/course.ts";
+import { allLexemes, lexemesById, profileOf } from "../lesson/course.ts";
+import { baseIdOf, lexemeIdsOf, lexemesOf } from "../lesson/lexemes.ts";
 import type { Exercise, StoryArrange, StoryChoose, StoryComplete } from "../lesson/exercise.ts";
 import type { Rng } from "../lesson/rng.ts";
 import { compileGlossary, glossesAt, glossTokens, type CompiledGlossary, type TokenGloss } from "../match/glossary.ts";
@@ -23,7 +24,7 @@ export interface StoryLine {
   readonly speaker?: { readonly id: string; readonly name: TaggedText | undefined } | undefined;
   readonly text: TaggedText;
   readonly translation: TaggedText | undefined;
-  readonly kcs: readonly KcId[];
+  readonly parts: readonly PartId[];
 }
 
 export type StoryStep =
@@ -45,8 +46,6 @@ export const storyAt = (course: CourseView, node: string): BundleStory | undefin
 
 const isWord = (t: Token): boolean => t.kind === "word" || t.kind === "number";
 
-const tokenKcs = (t: Token): readonly KcId[] => [...(t.sense === undefined ? [] : [`sense:${t.sense}` as KcId]), ...(t.morphs ?? []).map((m) => m.kc)];
-
 const joinerOf = (text: TaggedText): string => (text.tokens.some((t) => t.kind === "space") ? " " : "");
 
 const slice = (text: TaggedText, from: number, to: number): TaggedText => ({ ...text, tokens: text.tokens.slice(from, to) });
@@ -59,7 +58,7 @@ const withAnswer = <T>(rng: Rng, answer: T, others: readonly T[]): { readonly op
 
 /**
  * The wrong options of a `complete` line as the compiler resolved them (ADR 0132): each a word the
- * course writes, in the gap's form (a word question) or the gap's word in another form (a form
+ * course writes, in the gap's form (a lexeme question) or the gap's lexeme in another form (a form
  * question). Undefined where the bundle has none for this orthography.
  */
 const resolvedOptions = (line: BundleStoryLine, orthography: string): readonly TaggedText[] | undefined => {
@@ -70,25 +69,22 @@ const resolvedOptions = (line: BundleStoryLine, orthography: string): readonly T
 const complete = (course: CourseView, story: BundleStory, at: number, line: BundleStoryLine, text: TaggedText, rng: Rng): StoryComplete | undefined => {
   const gap = line.gap;
   if (gap === undefined) return undefined;
-  const index = text.tokens.findIndex((t) => isWord(t) && tokenKcs(t).includes(gap));
+  const index = text.tokens.findIndex((t) => isWord(t) && lexemeIdsOf(t).includes(gap));
   const token = text.tokens[index];
-  if (token === undefined) return undefined;
-  // A bundle from before ADR 0132: each distractor by its KC's first form, the question mixed.
-  const resolved = resolvedOptions(line, course.orthography);
-  const kcs = new Map(allKcs(course).map((k) => [k.id, k]));
-  const others = resolved ?? (line.distractors ?? []).flatMap((kc) => kcs.get(kc)?.forms?.[course.orthography]?.[0] ?? []);
+  const others = resolvedOptions(line, course.orthography);
+  if (token === undefined || others === undefined) return undefined;
   const { options, answer } = withAnswer(rng, { ...text, tokens: [token] }, others);
   return {
     template: "story-complete",
     id: `story-complete:${story.id}/${at}`,
     item: `${story.id}/${at}`,
-    kcs: line.kcs,
+    parts: line.parts,
     orthography: course.orthography,
     before: slice(text, 0, index),
     after: slice(text, index + 1, text.tokens.length),
     options,
     answer,
-    ...(resolved === undefined || line.asks === undefined ? {} : { asks: line.asks }),
+    ...(line.asks === undefined ? {} : { asks: line.asks }),
   };
 };
 
@@ -102,7 +98,7 @@ const arrange = (course: CourseView, story: BundleStory, at: number, line: Bundl
     template: "story-arrange",
     id: `story-arrange:${story.id}/${at}`,
     item: `${story.id}/${at}`,
-    kcs: line.kcs,
+    parts: line.parts,
     orthography: course.orthography,
     prompt: translation,
     tiles: order.map((i) => tiles[i] as TaggedText),
@@ -129,7 +125,7 @@ export const storyScript = (course: CourseView, story: BundleStory, rng: Rng): S
         ...(step.line.speaker === undefined ? {} : { speaker: { id: step.line.speaker, name: names.get(step.line.speaker) } }),
         text,
         translation: step.line.translations[key],
-        kcs: step.line.kcs,
+        parts: step.line.parts,
       });
       const ex = step.line.ask === "complete" ? complete(course, story, at, step.line, text, rng) : step.line.ask === "arrange" ? arrange(course, story, at, step.line, text, rng) : undefined;
       steps.push(ex === undefined ? { tag: "line", line: index } : { tag: "question", ex, reveals: index });
@@ -147,7 +143,7 @@ export const storyScript = (course: CourseView, story: BundleStory, rng: Rng): S
         template: "story-choose",
         id: `story-choose:${story.id}/${at}`,
         item: `${story.id}/${at}`,
-        kcs: [],
+        parts: [],
         orthography: course.support,
         prompt,
         options: shuffled.options as readonly TaggedText[],
@@ -161,19 +157,17 @@ export const storyScript = (course: CourseView, story: BundleStory, rng: Rng): S
 
 export interface StoryGlossary {
   readonly compiled: CompiledGlossary;
-  /** The KC form behind each entry, as the bundle has it. */
+  /** The spelling behind each entry, as the bundle has it. */
   readonly forms: readonly TaggedText[];
 }
 
-/** The course glossary for tap-for-gloss in one orthography: every KC form but a letter's (§7.5 stage 7, ADR 0088). */
+/** The course glossary for tap-for-gloss in one orthography: every spelling of every lexeme (§7.5 stage 7); a letter is no entry (ADR 0088). */
 export const courseGlossary = (course: CourseView, orthography: string = course.orthography): StoryGlossary => {
-  const entries = allKcs(course)
-    .filter((kc) => kc.kind !== "grapheme")
-    .flatMap((kc) => (kc.forms?.[orthography] ?? []).map((form) => ({ kc: kc.id, form })));
+  const entries = allLexemes(course).flatMap((lexeme) => (lexeme.forms?.[orthography] ?? []).map((form) => ({ id: lexeme.id as string, form })));
   return {
     compiled: compileGlossary(
       profileOf(course, orthography),
-      entries.map((e) => ({ kc: e.kc, text: surfaceOf(e.form) })),
+      entries.map((e) => ({ id: e.id, text: surfaceOf(e.form) })),
     ),
     forms: entries.map((e) => e.form),
   };
@@ -184,10 +178,11 @@ export const glossLine = (course: CourseView, glossary: StoryGlossary, text: Tag
   glossTokens(glossary.compiled, profileOf(course, text.orthography), text.tokens);
 
 export interface Gloss {
-  readonly kc: KcId;
+  /** The lexeme glossed. */
+  readonly id: string;
   /**
-   * How the entry is written: the matched KC form, or the tapped word itself when no entry reached it;
-   * a morph as the word writes it, its KC's form (with its readings) where that is spelled alike.
+   * How the entry is written: the matched spelling, or the tapped word itself when no entry reached it;
+   * a lexeme of the word as the word writes it, its own spelling (with its readings) where that is alike.
    */
   readonly form: TaggedText;
   /** Its meaning in the support language. */
@@ -195,13 +190,13 @@ export interface Gloss {
   /** The entry covers only part of the tapped token (我 in 我哋), or more than it (唔該). */
   readonly span: "whole" | "part" | "phrase";
   /**
-   * A morph the word does not spell (ADR 0136: the ezafe, its kasra on the noun's last letter in
+   * A lexeme the word does not spell (ADR 0136: the ezafe, its kasra on the noun's last letter in
    * Persian, nothing at all in Chaghatay): its form is the whole word, and the panel says so.
    */
   readonly unwritten?: true;
   /**
-   * A morph's dictionary form, where the word writes the morph otherwise: bor in boraman is
-   * bormoq (ADR 0061). The KC's first form in the line's orthography.
+   * A lexeme's dictionary form, where the word writes it otherwise: bor in boraman is bormoq
+   * (ADR 0061). Its first spelling in the line's orthography.
    */
   readonly lemma?: TaggedText;
 }
@@ -209,48 +204,49 @@ export interface Gloss {
 /**
  * What a tap on a token shows (ADR 0061).
  * - A phrase entry covering the word and its neighbours comes first: what they mean together.
- * - A word its annotation analyses into several KCs (Angliya·dan·mi·siz) is shown morph by
- *   morph, each with its meaning, and the dictionary form where the morph is written otherwise.
+ * - A word that writes several lexemes (Angliya·dan·mi·siz) is shown lexeme by lexeme, each with
+ *   its meaning, and the dictionary form where the word writes it otherwise.
  * - Any other word: the glossary entries covering it, in order; a word no entry reaches falls
- *   back to its own sense, so a tap always explains an annotated word.
+ *   back to its own lexeme, so a tap always explains an annotated word.
  */
 export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: readonly TokenGloss[], text: TaggedText, token: number): readonly Gloss[] => {
-  const kcs = new Map(allKcs(course).map((k) => [k.id, k]));
-  const meaning = new Map([...kcs.values()].map((k) => [k.id, k.gloss?.[course.supportKey]]));
+  const lexemes = lexemesById(course);
+  const meaning = (id: string): TaggedText | undefined => lexemes.get(id)?.gloss?.[course.supportKey];
   const own = text.tokens[token];
-  const morphs = own === undefined || !isWord(own) ? [] : (own.morphs ?? []);
-  if (new Set(morphs.map((m) => m.kc)).size > 1) {
+  const written = own === undefined || !isWord(own) ? [] : lexemesOf(own);
+  if (new Set(written.map((l) => l.lexeme)).size > 1) {
     const phrases = glossesAt(glosses, token).flatMap((g): Gloss[] => {
       const form = glossary.forms[g.entry];
-      return form === undefined || g.tokenEnd - g.tokenStart < 2 ? [] : [{ kc: g.kc, form, meaning: meaning.get(g.kc), span: "phrase" }];
+      return form === undefined || g.tokenEnd - g.tokenStart < 2 ? [] : [{ id: g.id, form, meaning: meaning(g.id), span: "phrase" }];
     });
     return [
       ...phrases,
-      ...morphs.map((m): Gloss => {
-        if (m.surface === "") return { kc: m.kc, form: { ...text, tokens: [own as Token] }, meaning: meaning.get(m.kc), span: "part", unwritten: true };
-        const lemma = kcs.get(m.kc)?.forms?.[text.orthography]?.[0];
-        const gloss: Gloss = { kc: m.kc, form: textOfSurface(text, m.surface), meaning: meaning.get(m.kc), span: "part" };
+      ...written.map((l): Gloss => {
+        const id = l.lexeme as string;
+        if (l.surface === "") return { id, form: { ...text, tokens: [own as Token] }, meaning: meaning(id), span: "part", unwritten: true };
+        const surface = l.surface ?? (own as Token).surface;
+        const lemma = lexemes.get(id)?.forms?.[text.orthography]?.[0];
+        const gloss: Gloss = { id, form: textOfSurface(text, surface), meaning: meaning(id), span: "part" };
         if (lemma === undefined) return gloss;
-        // A morph spelled as its dictionary form is that form, with the readings the KC pins (اشلیغ ašliǧ in اشلیغی).
-        return surfaceOf(lemma).normalize("NFC") === m.surface.normalize("NFC") ? { ...gloss, form: lemma } : { ...gloss, lemma };
+        // A lexeme spelled as its dictionary form is that form, with the readings its entry pins (اشلیغ ašliǧ in اشلیغی).
+        return surfaceOf(lemma).normalize("NFC") === surface.normalize("NFC") ? { ...gloss, form: lemma } : { ...gloss, lemma };
       }),
     ];
   }
   // A homograph (知 "know", 知 "wise"; ADR 0071): an entry over this word alone, spelled as the
-  // word is, glosses the sense the token names rather than whichever entry the glossary met first.
-  const named = own !== undefined && isWord(own) && own.sense !== undefined ? (`sense:${own.sense}` as KcId) : undefined;
-  const spells = (kc: KcId): boolean => (kcs.get(kc)?.forms?.[text.orthography] ?? []).some((f) => surfaceOf(f).normalize("NFC") === own?.surface.normalize("NFC"));
+  // word is, glosses the lexeme the token names rather than whichever entry the glossary met first.
+  const named = own !== undefined && isWord(own) ? baseIdOf(own) : undefined;
+  const spells = (id: string): boolean => (lexemes.get(id)?.forms?.[text.orthography] ?? []).some((f) => surfaceOf(f).normalize("NFC") === own?.surface.normalize("NFC"));
   const hits = glossesAt(glosses, token).flatMap((g): Gloss[] => {
     const form = glossary.forms[g.entry];
     if (form === undefined) return [];
     const span = g.partial ? "part" : g.tokenEnd - g.tokenStart > 1 ? "phrase" : "whole";
-    const kc = span === "whole" && named !== undefined && named !== g.kc && spells(named) ? named : g.kc;
-    return [{ kc, form, meaning: meaning.get(kc), span }];
+    const id = span === "whole" && named !== undefined && named !== g.id && spells(named) ? named : g.id;
+    return [{ id, form, meaning: meaning(id), span }];
   });
   if (hits.length > 0) return hits;
   if (own === undefined || !isWord(own)) return [];
-  // No entry reaches the word (an ezafe form, a name): its own sense, shown as written here.
-  return tokenKcs(own)
-    .slice(0, 1)
-    .map((kc) => ({ kc, form: { ...text, tokens: [own] }, meaning: meaning.get(kc), span: "whole" as const }));
+  // No entry reaches the word (an inflected form, a name): its own lexeme, shown as written here.
+  const fallback = baseIdOf(own) ?? lexemeIdsOf(own)[0];
+  return fallback === undefined ? [] : [{ id: fallback, form: { ...text, tokens: [own] }, meaning: meaning(fallback), span: "whole" as const }];
 };
