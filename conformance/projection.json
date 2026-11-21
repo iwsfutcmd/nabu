@@ -1,5 +1,5 @@
 {
-  "$comment": "Projections (ADR 0148; docs/migration-design.md, 'Stages 5 and 6'): what a spelling says, read forwards off its letters by the profile's stated correspondences (sound-read), two spellings compared by sound (sound-compare: same, free, and the places they differ), a word's other spellings of its sound (sound-spellings); and a reading scheme's relation to the spelling it annotates (reading-spells, by dynamic programming), the pieces a script leaves open (reading-variants) and minimal ruby (reading-open). Profiles: es-Latn/standard (Cuban: seseo, yeísmo, b/v, silent h, stress), fa-Arab/standard (ADR 0142's sets); schemes: schluessel (of chg-Arab/standard), pinyin and baxter (sets only).",
+  "$comment": "Projections (ADR 0148; docs/migration-design.md, 'Stages 5 and 6'): what a spelling says, read forwards off its letters by the profile's stated correspondences (sound-read), two spellings compared by sound (sound-compare: same, free, and the places they differ), a word's other spellings of its sound (sound-spellings); and a reading scheme's relation to the spelling it annotates (reading-spells, by dynamic programming), the pieces a script leaves open (reading-variants) and minimal ruby (reading-open). Profiles: es-Latn/standard (Cuban: seseo, yeísmo, b/v, silent h, stress), fa-Arab/standard (ADR 0142's sets); schemes: schluessel (of chg-Arab/standard), tiberian (of hbo-Hebr/tiberian's consonantal text, its points ignored),pinyin and baxter (sets only).",
   "vectors": [
     {
       "id": "projection/es/b-v",
@@ -1099,6 +1099,181 @@
       "note": "A letter before a half-space is still that letter."
     },
     {
+      "id": "projection/apc-latn/read-e-i",
+      "op": "sound-read",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "3indi"
+      },
+      "expected": {
+        "sites": [
+          { "says": "3", "written": "3" },
+          { "says": "e", "written": "i", "rule": "e", "kind": "free" },
+          { "says": "n", "written": "n" },
+          { "says": "d", "written": "d" },
+          { "says": "e", "written": "i", "rule": "e", "kind": "free" }
+        ]
+      },
+      "note": "REVIEW (ADR 0148): Arabizi's e or i, free: i says what e says."
+    },
+    {
+      "id": "projection/apc-latn/e-i-free",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "3endi",
+        "typed": "3indi"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          { "expected": "e", "typed": "i", "rule": "e", "kind": "free" }
+        ]
+      },
+      "note": "3indi for 3endi: the same sound, an accepted variant."
+    },
+    {
+      "id": "projection/apc-latn/7-h",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "7abibi",
+        "typed": "habibi"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "7 (ḥ) and h are two sounds: no correspondence makes them one."
+    },
+    {
+      "id": "projection/apc-latn/a-e",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "enta",
+        "typed": "inte"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Only e and i are one: a and e stay apart (enta, inte)."
+    },
+    {
+      "id": "projection/apc-latn/spellings-none",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "3endi"
+      },
+      "expected": [],
+      "note": "A free correspondence leaves no spelling to learn."
+    },
+    {
+      "id": "projection/apc-arab/marks-ignored",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "بيتُه",
+        "typed": "بيته"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": []
+      },
+      "note": "REVIEW: the vowel marks are left aside."
+    },
+    {
+      "id": "projection/apc-arab/nothing-lost",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "بيته",
+        "typed": "بيتو"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "REVIEW: nothing is stated lost (correspondences: []), so ـه and ـو for -o are two sounds here: accept sets carry بيتو by hand."
+    },
+    {
+      "id": "projection/apc-arab/spellings-none",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "text": "صحن"
+      },
+      "expected": [],
+      "note": "No spelling leftover: ص and س are not stated as one sound."
+    },
+    {
+      "id": "projection/ar-arab/marks-ignored",
+      "op": "sound-compare",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "expected": "كِتاب",
+        "typed": "كتاب"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": []
+      },
+      "note": "REVIEW: MSA's vowel marks are left aside."
+    },
+    {
+      "id": "projection/ar-arab/sin-sad",
+      "op": "sound-compare",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "expected": "صيف",
+        "typed": "سيف"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "ص and س are two sounds in the standard."
+    },
+    {
+      "id": "projection/tg-cyrl/ha-kha",
+      "op": "sound-compare",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "expected": "ҳаво",
+        "typed": "хаво"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "REVIEW: Tajik Cyrillic loses nothing: ҳ and х are two sounds."
+    },
+    {
+      "id": "projection/chg-latn/required-letter",
+      "op": "sound-compare",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "expected": "kiši",
+        "typed": "kisi"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "REVIEW: Schluessel's transliteration loses nothing: s is another sound than š."
+    },
+    {
       "id": "projection/schluessel/spells/bardi",
       "op": "reading-spells",
       "args": {
@@ -1275,11 +1450,78 @@
       "op": "reading-spells",
       "args": {
         "scheme": "schluessel",
+        "reading": "ṣandūqta",
+        "spelling": "صندوقدا"
+      },
+      "expected": null,
+      "note": "A د for the t of -ta after q is not stated: not accounted for (the review list). (Until the statement said پ for b, this vector was پز biz: projection/schluessel/spells/pe-for-be.)"
+    },
+    {
+      "id": "projection/schluessel/spells/pe-for-be",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
         "reading": "biz",
         "spelling": "پز"
       },
-      "expected": null,
-      "note": "A scribal پ for b is not stated: not accounted for (the review list)."
+      "expected": [
+        { "says": "b", "written": "پ", "kind": "free" },
+        { "says": "i", "written": "", "kind": "free" },
+        { "says": "z", "written": "ز", "kind": "fixed" }
+      ],
+      "note": "REVIEW (ADR 0148): the course's texts write پ for b (پز biz, پله billä): free, as the scribes' پ, ب for p are."
+    },
+    {
+      "id": "projection/schluessel/spells/double-twice",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "qattiq",
+        "spelling": "قاتتیق"
+      },
+      "expected": [
+        { "says": "q", "written": "ق", "kind": "fixed" },
+        { "says": "a", "written": "ا", "kind": "free" },
+        { "says": "t", "written": "ت", "kind": "fixed" },
+        { "says": "t", "written": "ت", "kind": "free" },
+        { "says": "i", "written": "ی", "kind": "free" },
+        { "says": "q", "written": "ق", "kind": "fixed" }
+      ],
+      "note": "REVIEW: a double written twice: the second letter is the double's (free), stated before the plain letter's."
+    },
+    {
+      "id": "projection/schluessel/spells/double-once",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "qattiq",
+        "spelling": "قاتیق"
+      },
+      "expected": [
+        { "says": "q", "written": "ق" },
+        { "says": "a", "written": "ا" },
+        { "says": "t", "written": "ت" },
+        { "says": "t", "written": "", "kind": "free" },
+        { "says": "i", "written": "ی" },
+        { "says": "q", "written": "ق" }
+      ],
+      "note": "And written once."
+    },
+    {
+      "id": "projection/schluessel/variants/pe-written",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "pādišāh",
+        "spelling": "پادشاه"
+      },
+      "expected": [
+        ["bādišāh", "ṗādišāh"],
+        ["padišāh", "pädišāh"],
+        ["pādašāh", "pādäšāh", "pādešāh", "pādušāh", "pādüšāh"],
+        ["pādišah", "pādišäh"]
+      ],
+      "note": "REVIEW: where پ is written, a card may trade p for b (پ writes b too) and ṗ (ṗ is ف or پ)."
     },
     {
       "id": "projection/schluessel/spells/at-end",
@@ -1502,6 +1744,363 @@
       "note": "A capital tone letter stays."
     },
     {
+      "id": "projection/attic/variants/long",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "attic",
+        "reading": "χώρᾱ"
+      },
+      "expected": [
+        [
+          "χώρᾰ"
+        ]
+      ],
+      "note": "The Greek letters do not write a vowel's length: the long α traded for the short one (attic states its lengths as sets, no `of`)."
+    },
+    {
+      "id": "projection/attic/variants/marked",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "attic",
+        "reading": "ᾰ̓γορᾱ́"
+      },
+      "expected": [
+        [
+          "ᾱ̓γορᾱ́"
+        ],
+        [
+          "ᾰ̓γορᾰ́"
+        ]
+      ],
+      "note": "A length with a breathing or an accent on it is traded with them kept, one place at a time."
+    },
+    {
+      "id": "projection/attic/variants/capital",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "attic",
+        "reading": "Ᾰ̓θῆναι"
+      },
+      "expected": [
+        [
+          "Ᾱ̓θῆναι"
+        ]
+      ],
+      "note": "A capital keeps its case; the circumflex's η and the diphthong are no loss."
+    },
+    {
+      "id": "projection/attic/variants/settled",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "attic",
+        "reading": "λόγος"
+      },
+      "expected": [],
+      "note": "Nothing left open: ο is short by its letter."
+    },
+    {
+      "id": "projection/attic/spells-no-of",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "attic",
+        "reading": "χώρᾱ",
+        "spelling": "χώρα"
+      },
+      "expected": null,
+      "note": "A scheme without `of` relates no spelling."
+    },
+    {
+      "id": "projection/jyutping/variants/none",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "jyutping",
+        "reading": "hok6 saang1"
+      },
+      "expected": [],
+      "note": "Jyutping states no sets (`correspondences: []`): its tones are its `tones`, not traded here."
+    },
+    {
+      "id": "projection/lasina/variants/none",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "lasina",
+        "reading": "pona"
+      },
+      "expected": [],
+      "note": "A logograph's word is listed per logograph: nothing open."
+    },
+    {
+      "id": "projection/uz-Latn/x-h",
+      "op": "sound-compare",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "expected": "xona",
+        "typed": "hona"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "uz-Latn loses nothing: x and h are other sounds in the standard."
+    },
+    {
+      "id": "projection/uz-Latn/spellings-none",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "kitob"
+      },
+      "expected": [],
+      "note": "Nothing lost, so no other spelling."
+    },
+    {
+      "id": "projection/uz-Cyrl/ya-not-stated",
+      "op": "sound-compare",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "expected": "янги",
+        "typed": "йанги"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Not stated (the profile's REVIEW comment): stating йа as a spelling of я would give 100 of uz's 558 words a spelling no one writes."
+    },
+    {
+      "id": "projection/uz-Cyrl/spellings-none",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "text": "Салом"
+      },
+      "expected": [],
+      "note": "No Цалом: ц is not stated as a spelling of с."
+    },
+    {
+      "id": "projection/grc/accent-is-sound",
+      "op": "sound-compare",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "expected": "λόγος",
+        "typed": "λογος"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "The accent is part of the letter's sound; grading's marks policy decides a mark left out before the sound question (CORRECT_MARKS)."
+    },
+    {
+      "id": "projection/grc/spellings-none",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "χώρα"
+      },
+      "expected": [],
+      "note": "The letters write no length, so none to trade on the writing side: the loss is the attic scheme's."
+    },
+    {
+      "id": "projection/tok-Latn/spellings-none",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "text": "pona"
+      },
+      "expected": [],
+      "note": "Fourteen letters, fourteen sounds."
+    },
+    {
+      "id": "projection/yue-Latn/spellings-none",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "saang1"
+      },
+      "expected": [],
+      "note": "Jyutping writes each sound one way."
+    },
+    {
+      "id": "projection/error/no-sound-characters",
+      "op": "sound-read",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "學生"
+      },
+      "error": "states no sound",
+      "note": "Characters list a reading per sign: no sound statement."
+    },
+    {
+      "id": "projection/tiberian/spells/pointed",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "bərēʾšîṯ",
+        "spelling": "ב\u05b0\u05bcר\u05b5אש\u05b4\u05c1ית"
+      },
+      "expected": [
+        { "says": "b", "written": "ב", "rule": "b", "kind": "fixed" },
+        { "says": "ə", "written": "", "rule": "ə", "kind": "fixed" },
+        { "says": "r", "written": "ר", "rule": "r", "kind": "fixed" },
+        { "says": "ē", "written": "", "rule": "ē", "kind": "free", "note": "spelling-variant" },
+        { "says": "ʾ", "written": "א", "rule": "ʾ", "kind": "fixed" },
+        { "says": "š", "written": "ש", "rule": "š", "kind": "fixed" },
+        { "says": "î", "written": "י", "rule": "î", "kind": "free", "note": "spelling-variant" },
+        { "says": "ṯ", "written": "ת", "rule": "ṯ", "kind": "fixed" }
+      ],
+      "note": "The points are passed over (`ignores`): the relation is of the consonantal text. Each consonant its letter, shewa and tsere unwritten, î with its yod."
+    },
+    {
+      "id": "projection/tiberian/spells/unpointed",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "bərēʾšîṯ",
+        "spelling": "בראשית"
+      },
+      "expected": [
+        { "says": "b", "written": "ב", "rule": "b", "kind": "fixed" },
+        { "says": "ə", "written": "", "rule": "ə", "kind": "fixed" },
+        { "says": "r", "written": "ר", "rule": "r", "kind": "fixed" },
+        { "says": "ē", "written": "", "rule": "ē", "kind": "free", "note": "spelling-variant" },
+        { "says": "ʾ", "written": "א", "rule": "ʾ", "kind": "fixed" },
+        { "says": "š", "written": "ש", "rule": "š", "kind": "fixed" },
+        { "says": "î", "written": "י", "rule": "î", "kind": "free", "note": "spelling-variant" },
+        { "says": "ṯ", "written": "ת", "rule": "ṯ", "kind": "fixed" }
+      ],
+      "note": "Unpointed, the same path: a pointed and an unpointed spelling relate alike."
+    },
+    {
+      "id": "projection/tiberian/spells/doubled",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "wayyṓʾmer",
+        "spelling": "ו\u05b7י\u05b9\u05bcאמ\u05b6ר"
+      },
+      "expected": [
+        { "says": "w", "written": "ו", "rule": "w", "kind": "fixed" },
+        { "says": "a", "written": "", "rule": "a", "kind": "fixed" },
+        { "says": "yy", "written": "י", "rule": "yy", "kind": "fixed" },
+        { "says": "ṓ", "written": "", "rule": "ṓ", "kind": "free", "note": "spelling-variant" },
+        { "says": "ʾ", "written": "א", "rule": "ʾ", "kind": "fixed" },
+        { "says": "m", "written": "מ", "rule": "m", "kind": "fixed" },
+        { "says": "e", "written": "", "rule": "e", "kind": "fixed" },
+        { "says": "r", "written": "ר", "rule": "r", "kind": "fixed" }
+      ],
+      "note": "A doubled consonant is one letter (the dagesh is a point); the acute is part of its vowel's piece."
+    },
+    {
+      "id": "projection/tiberian/spells/final-he",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "ʾattâ",
+        "spelling": "א\u05b7ת\u05b8\u05bcה"
+      },
+      "expected": [
+        { "says": "ʾ", "written": "א", "rule": "ʾ", "kind": "fixed" },
+        { "says": "a", "written": "", "rule": "a", "kind": "fixed" },
+        { "says": "tt", "written": "ת", "rule": "tt", "kind": "fixed" },
+        { "says": "â", "written": "ה", "rule": "â", "kind": "fixed" }
+      ],
+      "note": "A final â is written with he; a doubled t one tav."
+    },
+    {
+      "id": "projection/tiberian/spells/bound",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "kol-",
+        "spelling": "כ\u05b8\u05bcל"
+      },
+      "expected": [
+        { "says": "k", "written": "כ", "rule": "k", "kind": "fixed" },
+        { "says": "o", "written": "", "rule": "o", "kind": "fixed" },
+        { "says": "l", "written": "ל", "rule": "l", "kind": "fixed" },
+        { "says": "-", "written": "", "rule": "-", "kind": "fixed" }
+      ],
+      "note": "A maqaf-bound word's hyphen is said and not written; a medial kaf before a letter."
+    },
+    {
+      "id": "projection/tiberian/spells/defective",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "qôl",
+        "spelling": "קל"
+      },
+      "expected": [
+        { "says": "q", "written": "ק", "rule": "q", "kind": "fixed" },
+        { "says": "ô", "written": "", "rule": "ô", "kind": "free", "note": "spelling-variant" },
+        { "says": "l", "written": "ל", "rule": "l", "kind": "fixed" }
+      ],
+      "note": "ô written without its vav (a defective spelling): free."
+    },
+    {
+      "id": "projection/tiberian/spells/plene",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "qōl",
+        "spelling": "קול"
+      },
+      "expected": [
+        { "says": "q", "written": "ק", "rule": "q", "kind": "fixed" },
+        { "says": "ō", "written": "ו", "rule": "ō", "kind": "free", "note": "spelling-variant" },
+        { "says": "l", "written": "ל", "rule": "l", "kind": "fixed" }
+      ],
+      "note": "ō written with a vav (a full spelling): free."
+    },
+    {
+      "id": "projection/tiberian/spells/medial-at-end",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "ʾĕlōhîm",
+        "spelling": "אלהימ"
+      },
+      "expected": null,
+      "note": "A medial mem at the end of a word is not this relation's: it stays a slip."
+    },
+    {
+      "id": "projection/tiberian/spells/sin-samekh",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "yiśrāʾēl",
+        "spelling": "יסראל"
+      },
+      "expected": null,
+      "note": "ś is written ש, never ס: another sound in the Tiberian reading."
+    },
+    {
+      "id": "projection/tiberian/spells/qere",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "ʾăḏōnāy",
+        "spelling": "י\u05b0הו\u05b8ה"
+      },
+      "expected": null,
+      "note": "The divine name's reading is its qere: not accounted for (the review list)."
+    },
+    {
+      "id": "projection/tiberian/variants/none",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "qôl",
+        "spelling": "קו\u05b9ל"
+      },
+      "expected": [],
+      "note": "No `loses`: the relation gives reading cards no options to trade."
+    },
+    {
       "id": "projection/es/stress/ke-que",
       "op": "sound-compare",
       "args": {
@@ -1573,8 +2172,8 @@
       "id": "projection/error/no-sound",
       "op": "sound-read",
       "args": {
-        "profile": "uz-Latn/standard",
-        "text": "non"
+        "profile": "en-Latn/standard",
+        "text": "none"
       },
       "error": "states no sound",
       "note": "A profile without `sound`: the question is never asked."

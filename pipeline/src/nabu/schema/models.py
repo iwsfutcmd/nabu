@@ -5460,6 +5460,13 @@ class ReadingScheme(BaseModel):
             description="The orthography whose spellings this scheme's correspondences relate its readings to (ADR 0148): Schluessel's transliteration of chg-Arab/standard. A scheme without one lists a reading per sign (characters, logographs): its correspondences, if any, only state sets a reading card may trade within (`loses`)."
         ),
     ] = None
+    ignores: Annotated[
+        str | None,
+        Field(
+            description="Marks of `of`'s spellings the relation passes over, as a UnicodeSet: removed from a spelling (after NFC, code point by code point) before `correspondences` relate it to a reading, so the relation is of what remains. Biblical Hebrew's points: the tiberian relation is of the consonantal text, pointed or not (ADR 0148).",
+            min_length=1,
+        ),
+    ] = None
     correspondences: Annotated[
         list[CorrespondenceModel] | None,
         Field(

@@ -58,6 +58,14 @@ match:
       - { id: possessive, note: contrast-possessive, members: [[im, um, üm, m], [iŋ, uŋ, üŋ, ŋ], [i, si], [imiz, umiz, ümiz, miz], [iŋiz, uŋiz, üŋiz, ŋiz]] }
       - { id: case, note: contrast-case, members: [ni, niŋ, [ǧa, gä, qa, kä], [da, dä, ta, tä], [din, tin, dan, dän]] }
       - { id: pronoun, note: contrast-pronoun, members: [män, sän, siz, biz, sizlär, [ular, alar]] }
+# What the transliteration writes of the sound (ADR 0148). REVIEW: one letter for each letter or sound, so the
+# sound is read off the spelling and nothing is lost: every letter says itself, and a wrong letter is another
+# sound. The marks are matching policy, not correspondences: the vowels' and š ž ḫ ǧ's `required` (another sound),
+# the rest noted (ṣ s̱ ḥ ṭ ẓ ż ź ṗ name another Arabic letter for the sound of their plain one, and the policy
+# already accepts the plain letter with a note; stating them here as fixed would make a typed s for ṣ beside another
+# slip an orthographic miss, stricter than ADR 0134's note). ng for ŋ is an equivalence.
+sound: { from: spelling }
+correspondences: []
 input:
   keyboard: cldr-kbd:en
   extraKeys: ["ä", "ö", "ü", "ā", "ī", "ū", "č", "š", "ž", "ǧ", "ḫ", "ŋ", "ḥ", "ṭ", "ṣ", "ẓ", "ż", "ź", "ṗ", "ʿ"]

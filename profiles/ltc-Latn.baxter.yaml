@@ -15,6 +15,12 @@ normalize:
   - whitespace: remove
 match:
   case: { locale: en }
+# REVIEW (ADR 0148): no `sound`, though Baxter's transcription writes each of his Middle Chinese categories one way (his
+# ASCII, tone letters X and H at a syllable's end), so nothing is lost. A transcription of categories rather than of
+# sounds, and graded letter by letter (the whitespace is removed): the sound question asked of one letter is no
+# question of the word (stated, kanH for kenH was labelled lexical where it is another reading). A letter off stays
+# wrong, as before (no typo leeway, above). Nothing is stated as lost.
+correspondences: []
 input:
   keyboard: cldr-kbd:en
   extraKeys: ["'", "+"]

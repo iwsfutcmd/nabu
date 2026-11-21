@@ -46,8 +46,18 @@ describe("the bundle's leftovers (the compiler, through core)", () => {
     expect(chg.lexicon.lexemes.some((l) => l.leftovers?.spelling !== undefined)).toBe(false);
   });
 
-  it("none where no profile or scheme states one (uz, tok, grc)", () => {
-    for (const id of ["uz", "tok", "grc"]) expect(loadCourse(id).lexicon.lexemes.some((l) => l.leftovers !== undefined), id).toBe(false);
+  it("none where the statements lose nothing (uz, tok)", () => {
+    for (const id of ["uz", "tok"]) expect(loadCourse(id).lexicon.lexemes.some((l) => l.leftovers !== undefined), id).toBe(false);
+  });
+
+  it("grc's words with a vowel the letters leave long or short have a reading leftover in attic, and no spelling one", () => {
+    const grc = loadCourse("grc");
+    const open = grc.lexicon.lexemes.filter((l) => l.leftovers !== undefined);
+    expect(open.length).toBeGreaterThan(50);
+    for (const l of open) {
+      expect(l.leftovers?.spelling, l.id).toBeUndefined();
+      expect(l.leftovers?.reading, l.id).toEqual([{ orthography: "grc-Grek/polytonic", scheme: "attic" }]);
+    }
   });
 });
 

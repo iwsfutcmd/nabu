@@ -20,6 +20,11 @@ match:
   # 爲 for 為, 説 for 說: older and regional forms of the same character are right, with a note.
   variants:       { table: hk-tw-variants, policy: accept-with-note, note: variant-form }
   scriptMismatch: { detect: Hans, table: hans-only, policy: reject-with-note, note: use-traditional }
+# REVIEW (ADR 0148): no `sound`. A written language whose sound the course never asks (ADR 0071): each character's
+# readings are listed per character in three traditions (the pinyin, jyutping and baxter schemes, which state what
+# the characters leave out of them), never a rule of the script. Character variants stay the matching policy above.
+# Nothing is stated as lost.
+correspondences: []
 annotations:
   - { id: pinyin, kind: reading, scheme: pinyin, lang: zh-Latn-pinyin, toggle: true, default: "off", render: ruby, fade: by-facet }
   - { id: jyutping, kind: reading, scheme: jyutping, lang: yue-Latn-jyutping, toggle: true, default: "off", render: ruby, fade: by-facet }

@@ -1686,6 +1686,236 @@
       "note": "3alba7r, as عالبحر is one word."
     },
     {
+      "id": "grade/apc-latn/statement-right",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "3endi 2ahwe",
+        "answer": "3endi 2ahwe"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "labels": []
+      },
+      "note": "The profile's own statement (ADR 0148): the spelling the course writes."
+    },
+    {
+      "id": "grade/apc-latn/statement-e-i-variant",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shu esmak",
+        "answer": "shu ismak"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "REVIEW: e or i, free in the profile's statement: ismak for esmak is an accepted variant (was a typo, CORRECT_WITH_TYPO, before the statement)."
+    },
+    {
+      "id": "grade/apc-latn/statement-e-i-another-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shu esmak",
+        "answer": "shu ismak",
+        "lexemes": {
+          "esmak": [
+            "lexeme:esm"
+          ],
+          "ismak": [
+            "lexeme:other"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "Never a variant where the course writes the typed word as another lexeme's."
+    },
+    {
+      "id": "grade/apc-latn/statement-a-e-slip",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shu esmak",
+        "answer": "shu asmak"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "a for e is another sound: no variant, a slip as before."
+    },
+    {
+      "id": "grade/apc-latn/statement-other-sound",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "enta mni7",
+        "answer": "inte mni7"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "inte for enta: the i is e's variant, the final e for a is another sound and past a slip: phonemic."
+    },
+    {
+      "id": "grade/apc-arab/statement-marks",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بيتُه كبير",
+        "answer": "بيته كبير"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "labels": []
+      },
+      "note": "The vowel marks are matching policy (ignored) and left aside by the sound."
+    },
+    {
+      "id": "grade/apc-arab/statement-nothing-lost",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بيته كبير",
+        "answer": "بيتو كبير"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "REVIEW (ADR 0148): apc-Arab states nothing lost, so ـو for ـه (-o) is not the profile's to accept: the course's accept sets list بيتو where they take it. Wrong, as before the statement; its label phonemic."
+    },
+    {
+      "id": "grade/apc-arab/statement-slip",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "صحن",
+        "answer": "سحن"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "س for ص is not stated as one sound (Lebanese says them apart): a slip, as before."
+    },
+    {
+      "id": "grade/ar-arab/statement-other-sound",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "كتاب",
+        "answer": "كتب"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "REVIEW: MSA states nothing lost; كتب is another sound."
+    },
+    {
+      "id": "grade/ar-arab/statement-slip",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "صيف",
+        "answer": "سيف"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "ص and س are two sounds: a one-letter slip stays a slip."
+    },
+    {
+      "id": "grade/tg-cyrl/statement-right",
+      "op": "grade",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "accept": "китоб",
+        "answer": "китоб"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "labels": []
+      }
+    },
+    {
+      "id": "grade/tg-cyrl/statement-slip",
+      "op": "grade",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "accept": "китоб",
+        "answer": "китаб"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "REVIEW: Tajik Cyrillic states nothing lost: а for о is another sound, within a slip."
+    },
+    {
+      "id": "grade/tg-cyrl/statement-russian-letter",
+      "op": "grade",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "accept": "ҳаво хуб аст",
+        "answer": "хаво хуб аст"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "orthographic"
+        ],
+        "notes": [
+          "tajik-letters"
+        ]
+      },
+      "note": "A Russian letter for a Tajik one is the policy's (refused with a note), never the sound's."
+    },
+    {
+      "id": "grade/chg-Latn/statement-vowel-mark-moved",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "kördi",
+        "answer": "kordü"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "REVIEW (ADR 0148): the transliteration loses nothing, so a vowel's mark moved is another sound: phonemic."
+    },
+    {
       "id": "grade/uz/contrast-person",
       "op": "grade",
       "args": {
@@ -2638,6 +2868,197 @@
       "note": "The plene spelling is accepted beside the defective one."
     },
     {
+      "id": "grade/hbo/sound/right",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "קול",
+        "answer": "קול",
+        "readings": { "קול": ["qôl"] }
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "labels": [],
+        "correspondences": []
+      },
+      "note": "The expected spelling: right."
+    },
+    {
+      "id": "grade/hbo/sound/unpointed-right",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ו\u05b7י\u05b9\u05bcאמ\u05b6ר",
+        "answer": "ויאמר",
+        "readings": { "ויאמר": ["wayyṓʾmer"] }
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "labels": [],
+        "correspondences": []
+      },
+      "note": "Unpointed for pointed: the points are ignored by the marks policy before the sound is asked."
+    },
+    {
+      "id": "grade/hbo/sound/defective",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "קול",
+        "answer": "קל",
+        "readings": { "קול": ["qôl"] }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": ["spelling-variant"],
+        "labels": [],
+        "correspondences": []
+      },
+      "note": "A defective spelling for a full one: the same reading (ô with or without its vav, free), an accepted variant."
+    },
+    {
+      "id": "grade/hbo/sound/plene",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ק\u05b9ל",
+        "answer": "קול",
+        "readings": { "קל": ["qōl"] }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": ["spelling-variant"],
+        "labels": [],
+        "correspondences": []
+      },
+      "note": "A full spelling for a defective one: an accepted variant."
+    },
+    {
+      "id": "grade/hbo/sound/defective-other-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "בית",
+        "answer": "בת",
+        "readings": { "בית": ["bêṯ"] },
+        "lexemes": {
+          "בית": ["lexeme:bayit|form:Number=Sing"],
+          "בת": ["lexeme:bat|form:Number=Sing"]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": ["spelling-variant"],
+        "labels": ["lexical"],
+        "correspondences": []
+      },
+      "note": "A defective spelling that is a form of another lexeme of the course (daughter) is never a variant: lexical."
+    },
+    {
+      "id": "grade/hbo/sound/qof-kaf",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "קול",
+        "answer": "כול",
+        "readings": { "קול": ["qôl"] }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [],
+        "labels": ["phonemic"],
+        "correspondences": []
+      },
+      "note": "כ for ק: k is not q in the Tiberian reading, another sound (phonemic), not a spelling of it."
+    },
+    {
+      "id": "grade/hbo/sound/tet-tav",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "טוב",
+        "answer": "תוב",
+        "readings": { "טוב": ["ṭôḇ"] }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [],
+        "labels": ["phonemic"],
+        "correspondences": []
+      },
+      "note": "ת for ט: t is not ṭ, phonemic."
+    },
+    {
+      "id": "grade/hbo/sound/sin-samekh",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "עשה",
+        "answer": "עסה",
+        "readings": { "עשה": ["ʿāśâ"] }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [],
+        "labels": ["phonemic"],
+        "correspondences": []
+      },
+      "note": "ס for ש\u05c2: ś is not s in the Tiberian reading, phonemic."
+    },
+    {
+      "id": "grade/hbo/sound/sin-samekh-slip",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ישראל",
+        "answer": "יסראל",
+        "readings": { "ישראל": ["yiśrāʾēl"] }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": [],
+        "labels": ["slip"],
+        "correspondences": []
+      },
+      "note": "In a longer word the same trade is within the typo budget: no same sound stops the slip, so it stays a slip."
+    },
+    {
+      "id": "grade/hbo/sound/ayin-alef",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "עשה",
+        "answer": "אשה",
+        "readings": { "עשה": ["ʿāśâ"] }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": [],
+        "labels": ["slip"],
+        "correspondences": []
+      },
+      "note": "א for ע: not the same sound (ʾ is not ʿ), and the keys are neighbours: a slip, as before (with the course's lexicon, אשה is another word)."
+    },
+    {
+      "id": "grade/hbo/sound/vowel-letter",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "שמר",
+        "answer": "שמור",
+        "readings": { "שמר": ["šāmar"] }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [],
+        "labels": ["phonemic"],
+        "correspondences": []
+      },
+      "note": "A vav no vowel of the reading is written with (ā, a): another sound, phonemic."
+    },
+    {
       "id": "grade/hbo/prefix-person",
       "op": "grade",
       "args": {
@@ -3571,12 +3992,12 @@
         "answer": "Kisi öydä"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-sounds"
         ]
       },
-      "note": "The mark of š left out (ADR 0134 as amended, ADR 0148): s is another sound and another Arabic letter, so the answer is wrong."
+      "note": "The mark of š left out (ADR 0134 as amended, ADR 0148): s is another sound and another Arabic letter, so the answer is wrong. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/sound-mark-left-out-gh",
@@ -3587,12 +4008,12 @@
         "answer": "tag"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-sounds"
         ]
       },
-      "note": "g for ǧ: wrong, as s for š is."
+      "note": "g for ǧ: wrong, as s for š is. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/sound-mark-added",
@@ -3603,12 +4024,12 @@
         "answer": "šän"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-sounds"
         ]
       },
-      "note": "A caron added to s: a required mark added is as wrong as one left out."
+      "note": "A caron added to s: a required mark added is as wrong as one left out. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/sound-mark-traded",
@@ -3619,12 +4040,12 @@
         "answer": "ḥan"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-sounds"
         ]
       },
-      "note": "ḥ for ḫ: the breve below is required on h, the dot below is not."
+      "note": "ḥ for ḫ: the breve below is required on h, the dot below is not. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/sound-mark-capital",
@@ -3635,12 +4056,12 @@
         "answer": "Sāh"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-sounds"
         ]
       },
-      "note": "Required letters are compared case folded: S for Š."
+      "note": "Required letters are compared case folded: S for Š. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/sound-letter-traded",
@@ -3665,12 +4086,12 @@
         "answer": "sahar"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-vowels"
         ]
       },
-      "note": "Both kinds of required mark left out of one word: the vowels' note is given."
+      "note": "Both kinds of required mark left out of one word: the vowels' note is given. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/vowel-marks-left-out",
@@ -3681,12 +4102,12 @@
         "answer": "Kiši oyda"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-vowels"
         ]
       },
-      "note": "A vowel's marks left out (o for ö, a for ä, ADR 0134): the vowels are what the script leaves out, so the answer is wrong."
+      "note": "A vowel's marks left out (o for ö, a for ä, ADR 0134): the vowels are what the script leaves out, so the answer is wrong. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/vowel-length-left-out",
@@ -3697,12 +4118,12 @@
         "answer": "ata"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-vowels"
         ]
       },
-      "note": "A long vowel's macron left out."
+      "note": "A long vowel's macron left out. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/vowel-mark-moved",
@@ -3741,13 +4162,13 @@
         "answer": "sultān oyda"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-marks",
           "translit-vowels"
         ]
       },
-      "note": "A noted consonant mark and vowel marks both left out: the vowels make it wrong."
+      "note": "A noted consonant mark and vowel marks both left out: the vowels make it wrong. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/sound-and-vowel-marks-left-out",
@@ -3758,13 +4179,13 @@
         "answer": "Kisi oyda"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-sounds",
           "translit-vowels"
         ]
       },
-      "note": "š's mark left out of one word and the vowels' of another: each word carries its note."
+      "note": "š's mark left out of one word and the vowels' of another: each word carries its note. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/chg-Latn/marks-make-word",
@@ -4995,8 +5416,8 @@
       "op": "grade",
       "args": {
         "profile": "chg-Arab/standard",
-        "accept": "باردی",
-        "answer": "بردی",
+        "accept": "اوتوز",
+        "answer": "وتوز",
         "statement": {
           "sound": {
             "from": "reading",
@@ -5004,8 +5425,8 @@
           }
         },
         "readings": {
-          "باردی": [
-            "bardi"
+          "اوتوز": [
+            "ottuz"
           ]
         }
       },
@@ -5015,10 +5436,161 @@
           "orthographic"
         ],
         "correspondences": [
-          "chg-Arab/standard:a"
+          "chg-Arab/standard:~ا"
         ]
       },
-      "note": "A sound read off the pinned reading (sound from: reading, Schluessel's statement): بردی can be read bardi too, the a left unwritten, so it is the right sound with the wrong spelling, against the correspondence of a."
+      "note": "A sound read off the pinned reading (sound from: reading, Schluessel's statement): وتوز can be read ottuz too, so it is the right sound with the wrong spelling, against the fixed correspondence of the alif that only carries a word's first vowel. (Until the statement said the vowel letters are free, this vector was بردی for باردی, now an accepted variant: grade/labels/chg-from-reading-vowel-free.)"
+    },
+    {
+      "id": "grade/labels/chg-from-reading-vowel-free",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "باردی",
+        "answer": "بردی",
+        "readings": {
+          "باردی": [
+            "bardi"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "REVIEW (ADR 0148): a vowel's letter written or left out is free in Schluessel's statement (the scribes write it both ways, کشی and کیشی): بردی read bardi is an accepted variant, where no lexeme of the course is written so."
+    },
+    {
+      "id": "grade/labels/chg-from-reading-vowel-another-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "باردی",
+        "answer": "بردی",
+        "readings": {
+          "باردی": [
+            "bardi"
+          ]
+        },
+        "lexemes": {
+          "باردی": [
+            "lexeme:bar.go"
+          ],
+          "بردی": [
+            "lexeme:bar.give"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "Never a variant where the course writes the typed word as another lexeme's: بردی is bärdi \"gave\"."
+    },
+    {
+      "id": "grade/labels/chg-from-reading-pe-for-be",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "پادشاه",
+        "answer": "بادشاه",
+        "readings": {
+          "پادشاه": [
+            "pādišāh"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "REVIEW (ADR 0148): the scribes' ب for p, free: an accepted variant of the answer's own word."
+    },
+    {
+      "id": "grade/labels/chg-from-reading-be-written-pe",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "بیز",
+        "answer": "پیز",
+        "readings": {
+          "بیز": [
+            "biz"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": []
+      },
+      "note": "REVIEW: پ for b, as the course's texts write it (پز biz, پله billä): free."
+    },
+    {
+      "id": "grade/labels/chg-from-reading-jim-for-che",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "چیقتی",
+        "answer": "جقتی",
+        "readings": {
+          "چیقتی": [
+            "čiqti"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": []
+      },
+      "note": "REVIEW: ج for č and an i left unwritten, both free (the course writes جقتی too)."
+    },
+    {
+      "id": "grade/labels/chg-from-reading-double-once",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "قاتتیق",
+        "answer": "قاتیق",
+        "readings": {
+          "قاتتیق": [
+            "qattiq"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": []
+      },
+      "note": "REVIEW: a double written once or twice is free."
+    },
+    {
+      "id": "grade/labels/chg-from-reading-wrong-vowel-letter",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "کیشی",
+        "answer": "کوشی",
+        "readings": {
+          "کیشی": [
+            "kiši"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "و cannot write kiši's i: another sound, phonemic, and no slip (a vowel letter traded within a word this short is past the typo budget)."
     },
     {
       "id": "grade/labels/chg-from-reading-unpinned",
@@ -5090,7 +5662,23 @@
       "note": "A homophone character is a possible spelling of its syllable (ADR 0148): orthographic, PARTIAL as before."
     },
     {
-      "id": "grade/labels/uz-no-sound",
+      "id": "grade/labels/en-no-sound",
+      "op": "grade",
+      "args": {
+        "profile": "en-Latn/standard",
+        "accept": "I bought a book",
+        "answer": "I bought a buk"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "A profile that states no sound: the sound question is never asked (no orthographic, no phonemic); a miss no slip explains is lexical."
+    },
+    {
+      "id": "grade/labels/uz-phonemic",
       "op": "grade",
       "args": {
         "profile": "uz-Latn/standard",
@@ -5100,10 +5688,187 @@
       "expected": {
         "verdict": "WRONG",
         "labels": [
-          "lexical"
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "uz-Latn states its sound and loses nothing (ADR 0148): an attempt at the word in other letters says another sound, phonemic; WRONG, as before."
+    },
+    {
+      "id": "grade/labels/uz-Latn-x-h",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "xona",
+        "answer": "hona"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "x and h are other sounds in standard Uzbek: not stated as one, so h for x is phonemic, never orthographic."
+    },
+    {
+      "id": "grade/labels/uz-Cyrl-right",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "янги",
+        "answer": "янги"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "labels": []
+      }
+    },
+    {
+      "id": "grade/labels/uz-Cyrl-ya-not-stated",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "янги",
+        "answer": "йанги"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "йа for я is left out of uz-Cyrl's statement (its REVIEW comment): WRONG, as before, now phonemic."
+    },
+    {
+      "id": "grade/labels/uz-Cyrl-slip",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "келди",
+        "answer": "кйелди"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
         ]
       },
-      "note": "A profile that states no sound: the sound question is never asked (no orthographic, no phonemic); a miss no slip explains is lexical."
+      "note": "A letter added inside the budget stays a slip."
+    },
+    {
+      "id": "grade/labels/grc-marks-still-noted",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "λόγος",
+        "answer": "λογος"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "greek-marks"
+        ],
+        "labels": []
+      },
+      "note": "grc-Grek states its sound (ADR 0148), and a missing accent is still the noted policy, decided before the sound question: Greek waits for its buttons."
+    },
+    {
+      "id": "grade/labels/grc-phonemic",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "λέγει",
+        "answer": "λάγαι"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "Other letters, another sound: grc loses nothing on the writing side."
+    },
+    {
+      "id": "grade/labels/tok-Latn-right",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "accept": "mi moku",
+        "answer": "mi moku"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "labels": []
+      }
+    },
+    {
+      "id": "grade/labels/tok-Latn-phonemic",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "accept": "mi moku",
+        "answer": "mi muku"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "Fourteen letters, fourteen sounds: a letter off in a short word says another sound."
+    },
+    {
+      "id": "grade/labels/tok-Latn-slip",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "accept": "kepeken",
+        "answer": "kepekne"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "A transposition in a longer word stays a slip (the slip is asked before the sound)."
+    },
+    {
+      "id": "grade/labels/yue-Latn-slip",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "hok6 saang1",
+        "answer": "hok6 sung1"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "yue-Latn states its sound and loses nothing; a slip that spells no syllable of the course stays a slip."
+    },
+    {
+      "id": "grade/labels/tr-phonemic",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "kitap",
+        "answer": "katup"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "tr-Latn states its sound and loses nothing: other vowels, another sound."
     },
     {
       "id": "grade/labels/uz-cyrl-refused-fold",
@@ -5133,7 +5898,7 @@
         "answer": "Kisi öydä"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "translit-sounds"
         ],
@@ -5141,7 +5906,7 @@
           "phonemic"
         ]
       },
-      "note": "A required mark carries sound (ADR 0134 as amended): with no sound statement, kisi for kiši is phonemic; WRONG, as before."
+      "note": "A required mark carries sound (ADR 0134 as amended): with no sound statement, kisi for kiši is phonemic; WRONG, as before. WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to judge, never the judge's."
     },
     {
       "id": "grade/labels/chg-Latn-required-mark-word",

@@ -11,3 +11,128 @@ lang: hbo-Latn
 # A word bound to the next by a maqaf reads with a final hyphen (ʿal-), and unstressed: the compiler checks the reading
 # and the maqaf agree, and compares bound words apart from free ones (saʿar-, sáʿar; ADR 0135).
 bound: { mark: "-", before: "\u05BE" }
+# REVIEW (ADR 0148): how hbo-Hebr/tiberian writes each piece of the reading, the relation the grader (the profile's
+# `sound: {from: reading}`), reading cards and the compiler read (profiles/README.md, "The sound statement"). It is a
+# relation of the consonantal text: the points (vowels, shewa, dagesh, the shin and sin dots), and any accents or meteg,
+# are passed over (`ignores`), so a pointed and an unpointed spelling relate alike; what the points write is the
+# profile's marks policy and its vocalize cards, not this. Nothing is implied: a reading this does not relate to its
+# spelling is on the review list (`nabu projections ../courses/hbo`), the divine name's qere first.
+# No `loses`: which vowel an unwritten place has, qamets gadol or qatan, vocal or silent shewa, are left to the
+# pointing; stating them as sets would give reading cards options this course has not reviewed (REVIEW).
+of: hbo-Hebr/tiberian
+# REVIEW: every Hebrew point, accent, meteg, rafe, upper and lower dot and qamats qatan (the profile's marks and what
+# its normalization removes or maps).
+ignores: "[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]"
+correspondences:
+  # REVIEW: a consonant is its letter; a begadkefat letter's stop and spirant alike (b and ḇ: ב, the dagesh a point);
+  # ś and š both ש (the dot a point). ś, ṭ, q and ʿ are not s, t, k and ʾ: ס, ת, כ and א do not write them.
+  - { says: ʾ, written: [א], kind: fixed }
+  - { says: b, written: [ב], kind: fixed }
+  - { says: ḇ, written: [ב], kind: fixed }
+  - { says: g, written: [ג], kind: fixed }
+  - { says: ḡ, written: [ג], kind: fixed }
+  - { says: d, written: [ד], kind: fixed }
+  - { says: ḏ, written: [ד], kind: fixed }
+  - { says: h, written: [ה], kind: fixed }
+  - { says: w, written: [ו], kind: fixed }
+  - { says: z, written: [ז], kind: fixed }
+  - { says: ḥ, written: [ח], kind: fixed }
+  - { says: ṭ, written: [ט], kind: fixed }
+  - { says: y, written: [י], kind: fixed }
+  - { says: l, written: [ל], kind: fixed }
+  - { says: s, written: [ס], kind: fixed }
+  - { says: ʿ, written: [ע], kind: fixed }
+  - { says: q, written: [ק], kind: fixed }
+  - { says: r, written: [ר], kind: fixed }
+  - { says: ś, written: [ש], kind: fixed }
+  - { says: š, written: [ש], kind: fixed }
+  - { says: t, written: [ת], kind: fixed }
+  - { says: ṯ, written: [ת], kind: fixed }
+  # REVIEW: a final form at the end of a word, the other form before a letter: a medial form at the end is not
+  # this relation's (it stays the slip it was).
+  - { says: k, written: [ך], kind: fixed, when: { at: end } }
+  - { says: k, written: [כ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: ḵ, written: [ך], kind: fixed, when: { at: end } }
+  - { says: ḵ, written: [כ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: m, written: [ם], kind: fixed, when: { at: end } }
+  - { says: m, written: [מ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: n, written: [ן], kind: fixed, when: { at: end } }
+  - { says: n, written: [נ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: p, written: [ף], kind: fixed, when: { at: end } }
+  - { says: p, written: [פ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: p̄, written: [ף], kind: fixed, when: { at: end } }
+  - { says: p̄, written: [פ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: ṣ, written: [ץ], kind: fixed, when: { at: end } }
+  - { says: ṣ, written: [צ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  # REVIEW: a doubled consonant is one letter (the dagesh forte is a point); a doubled begadkefat is its stop.
+  - { says: bb, written: [ב], kind: fixed }
+  - { says: gg, written: [ג], kind: fixed }
+  - { says: dd, written: [ד], kind: fixed }
+  - { says: ww, written: [ו], kind: fixed }
+  - { says: zz, written: [ז], kind: fixed }
+  - { says: ṭṭ, written: [ט], kind: fixed }
+  - { says: yy, written: [י], kind: fixed }
+  - { says: ll, written: [ל], kind: fixed }
+  - { says: ss, written: [ס], kind: fixed }
+  - { says: qq, written: [ק], kind: fixed }
+  - { says: rr, written: [ר], kind: fixed }
+  - { says: śś, written: [ש], kind: fixed }
+  - { says: šš, written: [ש], kind: fixed }
+  - { says: tt, written: [ת], kind: fixed }
+  - { says: kk, written: [ך], kind: fixed, when: { at: end } }
+  - { says: kk, written: [כ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: mm, written: [ם], kind: fixed, when: { at: end } }
+  - { says: mm, written: [מ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: nn, written: [ן], kind: fixed, when: { at: end } }
+  - { says: nn, written: [נ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: pp, written: [ף], kind: fixed, when: { at: end } }
+  - { says: pp, written: [פ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  - { says: ṣṣ, written: [ץ], kind: fixed, when: { at: end } }
+  - { says: ṣṣ, written: [צ], kind: fixed, when: { before: "[\u05d0-\u05ea]" } }
+  # REVIEW (ADR 0148: hbo's full and defective spellings, free): a long vowel SBL writes with a circumflex has its
+  # mater (ô, û with ו; î, ê with י), or none; one it writes with a macron has none, or its mater. Either way the same
+  # sound: an accepted variant, never a leftover, unless the spelling is another word of the course (the lexicon).
+  - { says: ô, written: [ו, ""], kind: free, note: spelling-variant }
+  - { says: ố, written: [ו, ""], kind: free, note: spelling-variant }
+  - { says: û, written: [ו, ""], kind: free, note: spelling-variant }
+  - { says: û́, written: [ו, ""], kind: free, note: spelling-variant }
+  - { says: î, written: [י, ""], kind: free, note: spelling-variant }
+  - { says: î́, written: [י, ""], kind: free, note: spelling-variant }
+  - { says: ê, written: [י, ""], kind: free, note: spelling-variant }
+  - { says: ế, written: [י, ""], kind: free, note: spelling-variant }
+  - { says: ō, written: ["", ו], kind: free, note: spelling-variant }
+  - { says: ṓ, written: ["", ו], kind: free, note: spelling-variant }
+  - { says: ū, written: ["", ו], kind: free, note: spelling-variant }
+  - { says: ū́, written: ["", ו], kind: free, note: spelling-variant }
+  - { says: ī, written: ["", י], kind: free, note: spelling-variant }
+  - { says: ī́, written: ["", י], kind: free, note: spelling-variant }
+  - { says: ē, written: ["", י], kind: free, note: spelling-variant }
+  - { says: ḗ, written: ["", י], kind: free, note: spelling-variant }
+  # REVIEW: a final he as mater: â (qamets he), ê (segol or tsere he), ô (holem he). Never left out: a word that
+  # ends -â without its ה is another form (אתה, את), which the contrast sets and the lexicon judge.
+  - { says: â, written: [ה], kind: fixed, when: { at: end } }
+  - { says: ấ, written: [ה], kind: fixed, when: { at: end } }
+  - { says: ê, written: [ה], kind: fixed, when: { at: end } }
+  - { says: ế, written: [ה], kind: fixed, when: { at: end } }
+  - { says: ô, written: [ה], kind: fixed, when: { at: end } }
+  - { says: ố, written: [ה], kind: fixed, when: { at: end } }
+  # REVIEW: every other vowel, shewa and hatef vowel is a point: unwritten in the consonantal text.
+  - { says: a, written: [""], kind: fixed }
+  - { says: á, written: [""], kind: fixed }
+  - { says: ā, written: [""], kind: fixed }
+  - { says: ā́, written: [""], kind: fixed }
+  - { says: e, written: [""], kind: fixed }
+  - { says: é, written: [""], kind: fixed }
+  - { says: i, written: [""], kind: fixed }
+  - { says: í, written: [""], kind: fixed }
+  - { says: o, written: [""], kind: fixed }
+  - { says: ó, written: [""], kind: fixed }
+  - { says: u, written: [""], kind: fixed }
+  - { says: ú, written: [""], kind: fixed }
+  - { says: ə, written: [""], kind: fixed }
+  - { says: ă, written: [""], kind: fixed }
+  - { says: ĕ, written: [""], kind: fixed }
+  - { says: ŏ, written: [""], kind: fixed }
+  # REVIEW: the acute (non-final stress) is part of its vowel's piece above; the hyphen of a maqaf-bound word is
+  # said (the word loses its stress) and the maqaf is not part of the word's spelling.
+  - { says: "-", written: [""], kind: fixed }

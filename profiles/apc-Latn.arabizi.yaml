@@ -35,6 +35,22 @@ match:
           forms: [{ feats: { Aspect: "Imp,Perf" } }, { feats: { Mood: Imp, Gender: Fem } }, { feats: { Mood: Imp, Number: Plur } }],
           members: [[b, bi, be], [bt, bti, bte], [by, byi, bye], [mn, mni, mne], [t, ti, te], [y, yi, ye], [n, ni, ne], ["", e, a, i]] }
       - { id: agreement, note: contrast-ending, inflected: true, members: ["", [e, a, i], [o, u]] }
+# What Arabizi writes of the sound (ADR 0148). REVIEW: read off the spelling, after the folds above (ch, ou, doubled
+# vowels, 5 and 8 are matching policies, never restated here).
+sound: { from: spelling }
+correspondences:
+  # REVIEW: e or i, ADR 0148's own example of a free correspondence. No norm picks one: the course's accept sets
+  # write it both ways about 1,500 times by hand (3endi/3indi, enta/inta, badde/baddi, hayde/haydi, ekhti/ikhti),
+  # and no two of its 726 Arabizi spellings (lexicon and tokens) differ by e/i alone, so the grader's other-lexeme
+  # guard has no pair to keep apart today. Lebanese ē and ī do contrast (bēt, dīn; dēn "debt"): a course that
+  # teaches such a pair keeps it apart by its lexicon (the guard), not by this rule.
+  - { says: e, written: [e, i], kind: free }
+  # Considered and left out (REVIEW):
+  #  - o or u (shokran/shukran, about 450 alternatives by hand): the same case as e/i, but ADR 0148 names only e/i,
+  #    and ō/ū contrast (mōt "death", mūt "I die"); left to the reviewer.
+  #  - ay/ai/ei/e (hayda/haida, shway/shwei, wayn/wen): a diphthong or its monophthong by speaker; no context safe.
+  #  - 7 (ḥ) and h (h), 3 (ʿ) and a, 2 (ʔ) and nothing, q and 2 or k: different sounds, or a sound said otherwise
+  #    by word; a slip at most, as the typo model says.
 layout: { vertical: none }
 transliterate: { to: apc-Arab/standard, via: hand-pinned }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.

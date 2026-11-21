@@ -9,10 +9,12 @@
  * written, and stated, on its own). A correspondence consumes its `says` of the reading (it may be
  * "": written and not said) and one of its written forms of the spelling (it may be "": said and not
  * written), its `when` tested on the spelling. Nothing is implied: a piece or a letter no
- * correspondence names is not accounted for.
+ * correspondence names is not accounted for. The marks a scheme `ignores` (hbo's points) are taken out
+ * of a spelling first: the relation is of what remains (the consonantal text, pointed or not).
  */
 import type { ReadingScheme } from "@nabu/schema";
 import { graphemes } from "../text/graphemes.ts";
+import { parseExemplarSet } from "../text/unicode-set.ts";
 import { compileRules, holds, startsWith, type Rule } from "./rules.ts";
 
 /** One step of a path relating a reading to a spelling. */
@@ -66,7 +68,9 @@ interface Step {
 export const compileReadingProjection = (scheme: ReadingScheme): ReadingProjection => {
   const locale = scheme.lang ?? scheme.language;
   const lower = (text: string): string => text.normalize("NFC").toLocaleLowerCase(locale).normalize("NFC");
-  const spellingUnits = (text: string): readonly string[] => Array.from(text.normalize("NFC"));
+  // The marks the relation passes over (`ignores`: hbo's points), each code point on its own.
+  const ignored: ReadonlySet<string> = new Set(scheme.ignores === undefined ? [] : parseExemplarSet(scheme.ignores).flatMap((m) => Array.from(m.normalize("NFD"))));
+  const spellingUnits = (text: string): readonly string[] => Array.from(text.normalize("NFC")).filter((c) => !ignored.has(c));
   const compiled = compileRules(scheme.correspondences ?? [], { says: lower, units: spellingUnits, written: (s) => s.normalize("NFC") });
   if (!compiled.ok) throw new Error(`scheme ${scheme.id}: ${compiled.error.join("; ")}`);
   const rules = compiled.value;

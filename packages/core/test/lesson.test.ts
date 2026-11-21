@@ -1001,11 +1001,13 @@ describe("a Chaghatay word's reading typed, once read right by choice (ADR 0131)
     expect(typed(noted, surfaceOf(noted.reading)).verdict).toBe("CORRECT");
     expect([bare(noted).verdict, bare(noted).notes]).toEqual(["CORRECT_MARKS", ["translit-marks"]]);
     // s for š is another sound and another Arabic letter (the owner, 2026-11-20): wrong, as a vowel's mark left out is.
+    // WRONG_WORD since the profile states its sound (ADR 0148): a mark that carries sound is the statement's to
+    // judge, never the AI judge's; not accepted either way.
     const sound = cardWith(SOUND, VOWEL, NOTED);
     expect(typed(sound, surfaceOf(sound.reading)).verdict).toBe("CORRECT");
-    expect([bare(sound).verdict, bare(sound).notes]).toEqual(["WRONG", ["translit-sounds"]]);
+    expect([bare(sound).verdict, bare(sound).notes]).toEqual(["WRONG_WORD", ["translit-sounds"]]);
     const vowel = cardWith(VOWEL, SOUND, NOTED);
-    expect([bare(vowel).verdict, bare(vowel).notes]).toEqual(["WRONG", ["translit-vowels"]]);
+    expect([bare(vowel).verdict, bare(vowel).notes]).toEqual(["WRONG_WORD", ["translit-vowels"]]);
     expect(isCorrect(typed(noted, "xyz").verdict)).toBe(false);
     const nasal = cards.find((ex) => surfaceOf(ex.reading).includes("ŋ"));
     if (nasal !== undefined) expect(isCorrect(gradeExercise(nasal, { tag: "text", text: surfaceOf(nasal.reading).replace(/ŋ/gu, "ng") }, grader).verdict)).toBe(true);

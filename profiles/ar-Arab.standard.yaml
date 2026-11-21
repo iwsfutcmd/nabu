@@ -28,6 +28,16 @@ match:
     - { id: alef-maqsura, map: { "\u0649": "\u064A" }, policy: accept-with-note, note: alef-maqsura }
     - { id: ta-marbuta, map: { "\u0629": "\u0647" }, policy: accept-with-note, note: ta-marbuta }
   typo: { model: keyboard, layout: cldr-kbd:ar, maxRatio: 0.2 }
+# What the letters write of the sound (ADR 0148). REVIEW: no course uses this profile yet. Modern Standard Arabic's
+# consonant letters each say one sound, so the sound is read off the spelling, its vowel marks left aside (texts
+# leave them out), and nothing is stated as lost. Considered and left out (REVIEW):
+#  - ة/ه, ى/ي, the hamza seats: matching policies with their notes (`equivalences`), never restated here.
+#  - Long ā as ا, ى or a dagger alif (هذا hādhā; the dagger alif is a mark the sound leaves aside); tanwin's alif
+#    (كتابًا); the article's l before a sun letter; the silent alif of -ū (كتبوا): each is the one spelling the
+#    norm writes, with no other a learner could be taken to choose.
+#  - Regional readings of ق, ج, ث, ذ, ظ: the profile is the standard, and the standard says each one way.
+sound: { from: spelling, ignores: "[ً-ْٰ]" }
+correspondences: []
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: on-for-new-words }
 layout: { vertical: none }

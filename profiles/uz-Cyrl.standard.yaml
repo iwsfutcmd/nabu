@@ -23,6 +23,20 @@ match:
       - { id: possessive, note: contrast-possessive, members: [[им, м], [инг, нг], [и, си], [имиз, миз], [ингиз, нгиз], лари] }
       - { id: case, note: contrast-case, members: [ни, нинг, [га, ка, қа], [да, та], [дан, тан]] }
       - { id: pronoun, note: contrast-pronoun, members: [мен, сен, у, биз, сиз, улар] }
+# REVIEW (ADR 0148): Uzbek Cyrillic writes a sound with one letter, but for я, ю, ё (й with а, у, о: янги, юз, ёз),
+# е at a word's start and after a vowel (й and е: ер, қаер) and ц (с at a word's start in Uzbek speech: цирк, which the
+# Latin writes sirk; ADR 0148's own example). Nothing is stated, so a wrong letter in a word is another sound.
+# Considered and left out, measured: stating these (я, ю, ё, е written also йа, йу, йо, йе; ц saying с at a word's
+# start) makes a typed йанги for янги or сирк for цирк an orthographic miss, as ADR 0148 wants, but a correspondence
+# says which spellings a word may choose between, and the norm chooses here by rule, never by word: stated, 100 of the
+# course's 558 words gained a spelling no one writes as a leftover to learn (Цалом for Салом, йахши for яхши), and
+# spelling cards would offer it. No word of the course has a ц yet. These wait for a way to state a spelling the
+# norm never writes (or a word with ц); until then йанги stays WRONG, as now.
+# Also left out: ь (only фильм, in an accept set: stated silent, the course's филм slip would become a miss); ъ (the
+# tutuq belgisi, a sound of its own; no word of the course has it); э beside е after a consonant (loans only, none in
+# the course); х and ҳ, which the standard keeps apart.
+sound: { from: spelling }
+correspondences: []
 input:
   extraKeys: ["\u045E", "\u049B", "\u0493", "\u04B3"]
 layout: { vertical: none }

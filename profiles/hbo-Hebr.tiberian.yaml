@@ -63,6 +63,17 @@ match:
       - { id: agreement, note: contrast-ending,
           forms: [{ pos: [NOUN, PROPN, ADJ, PRON, DET, NUM], feats: { Gender: Fem } }, { pos: [NOUN, PROPN, ADJ, PRON, DET, NUM], feats: { Number: Plur } }, { feats: { VerbForm: Part } }],
           members: ["", [ה, ת], ים, ות] }
+# REVIEW (ADR 0148): a word's sound is the Tiberian reading its token pins (SBL transliteration), and the tiberian
+# scheme's relation says how the consonantal text writes it (profiles/schemes/tiberian.yaml: each consonant its
+# letter, full and defective spellings free, the points passed over). So a typed spelling that relates to the
+# expected word's reading is the same sound (an accepted variant where it differs only by a mater); one that does not
+# (ס for ש read ś, ת for ט, כ for ק, א for ע: other sounds in the Tiberian reading, whatever later traditions merge) is
+# another sound. A word with no pinned reading is not asked.
+sound: { from: reading, scheme: tiberian }
+# REVIEW: the profile's own losses are the points, which are its marks policy (`match.marks`, ignored in answers) and
+# its vocalize and vocalize-build cards, not correspondences. No stress: the reading carries it (its acute), and no
+# written mark does that a rule places otherwise.
+correspondences: []
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true
 input:

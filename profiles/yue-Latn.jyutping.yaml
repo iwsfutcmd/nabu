@@ -36,6 +36,13 @@ match:
     contrasts:
       - { id: tone, note: reading-tone, members: ["1", "2", "3", "4", "5", "6"] }
       - { id: tone-missing, note: reading-no-tones, members: ["", "1", "2", "3", "4", "5", "6"] }
+# REVIEW (ADR 0148): Jyutping writes each sound of a syllable with its letters and its tone with a number, one way
+# each (the LSHK's scheme): nothing is lost, so a wrong letter is another sound. Its tones stay the normalization
+# (`split`) and contrast sets above (a wrong or missing tone number is another word). Considered and not stated: the
+# n/l and ng/zero-initial mergers of much Hong Kong speech (lei5 and nei5 for 你): the course writes the standard
+# reading, so writing what a merged speaker says is no other spelling of the standard's sound.
+sound: { from: spelling }
+correspondences: []
 annotations:
   - { id: characters, kind: reading, scheme: characters, lang: yue-Hant-HK, toggle: true, render: ruby, fade: none }
 input:

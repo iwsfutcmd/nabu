@@ -19,6 +19,13 @@ match:
   # The tones are the reading the characters leave out: one left out, added, changed or moved is wrong
   # (ADR 0134), noted as a tone where the letters are right. ü is not u: wrong, as any other letter.
   marks: { set: "[\u0300\u0301\u0304\u0308\u030C]", policy: reject, required: "[\u0300\u0301\u0304\u030C]", requiredNote: reading-tone }
+# REVIEW (ADR 0148): no `sound`, though Pinyin writes each sound of a standard Mandarin syllable and its tone one way
+# (nothing is lost: ü written u after j, q, x and y is the spelling's rule, never a second spelling). Left out because
+# an answer here is graded letter by letter (the whitespace is removed, so a word's syllables typed together or apart
+# compare alike), and the sound question asked of one letter is no question of the word: stated, shan for shàn became
+# WRONG_WORD labelled lexical, where the required tone marks above make it WRONG and phonemic, as it should be. The
+# tones stay the normalization (tone numbers) and the required marks above. Nothing is stated as lost.
+correspondences: []
 input:
   keyboard: cldr-kbd:en
   extraKeys: [ā, á, ǎ, à, ē, é, ě, è, ī, í, ǐ, ì, ō, ó, ǒ, ò, ū, ú, ǔ, ù, ü, ǖ, ǘ, ǚ, ǜ]

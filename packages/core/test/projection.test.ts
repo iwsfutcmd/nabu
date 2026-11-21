@@ -168,6 +168,34 @@ describe("chg: Schluessel's statement of chg-Arab/standard", () => {
   });
 });
 
+describe("hbo: the tiberian statement of the consonantal text (its points ignored)", () => {
+  const scheme = readingProjection("tiberian");
+  if (scheme === undefined) throw new Error("no tiberian");
+  const pairs = tokensOf("hbo", "hbo-Hebr/tiberian").flatMap((t) => {
+    const r = readingOf(t, "tiberian");
+    return r === undefined ? [] : [[t.surface, r] as const];
+  });
+
+  it("relates more than 95% of the pinned readings to their spellings", () => {
+    const spelled = pairs.filter(([s, r]) => scheme.spells(r, s) !== undefined).length;
+    expect(pairs.length).toBeGreaterThan(2000);
+    expect(spelled / pairs.length).toBeGreaterThan(0.95);
+  });
+
+  it("passes over the points (`ignores`): a pointed and an unpointed spelling take one path", () => {
+    const pointed = scheme.spells("bərēʾšîṯ", "ב\u05b0\u05bcר\u05b5אש\u05b4\u05c1ית");
+    expect(pointed).toBeDefined();
+    expect(scheme.spells("bərēʾšîṯ", "בראשית")).toEqual(pointed);
+    // Without `ignores` the same statement accounts for no point.
+    const bare = compileReadingProjection({ ...(readingSchemes().find((s) => s.id === "tiberian") as ReadingScheme), ignores: undefined } as unknown as ReadingScheme);
+    expect(bare.spells("bərēʾšîṯ", "ב\u05b0\u05bcר\u05b5אש\u05b4\u05c1ית")).toBeUndefined();
+  });
+
+  it("leaves nothing open for reading cards (no `loses`)", () => {
+    expect(scheme.opens).toBe(false);
+  });
+});
+
 describe("lzh: Pinyin's and Baxter's sets as statements", () => {
   it("pinyin: a syllable in another tone, one vowel at a time", () => {
     const p = readingProjection("pinyin");

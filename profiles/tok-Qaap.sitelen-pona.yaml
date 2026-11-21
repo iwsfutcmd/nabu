@@ -174,6 +174,10 @@ match:
 annotations:
   # Each logograph's word in sitelen Lasina, as ruby above it: off until the learner asks.
   - { id: lasina, kind: reading, scheme: lasina, lang: tok-Latn, toggle: true, default: "off", render: ruby, fade: none }
+# REVIEW (ADR 0148): no `sound`. A logograph writes a word, and its sound is its sitelen Lasina reading, listed per
+# logograph (the lasina scheme): no rule of the script writes a sound, and a learner picks or types logographs (Latin
+# typed becomes them), so the sound question is never asked here. Nothing is stated as lost.
+correspondences: []
 # REVIEW: sitelen pona is written vertically too, logographs upright (the proposal, section 6h), but the font
 # here has no vertical cartouches; linja insa has them and carries no licence file. Horizontal only for now.
 layout: { vertical: none }

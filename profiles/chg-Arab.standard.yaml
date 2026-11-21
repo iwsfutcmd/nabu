@@ -51,6 +51,12 @@ match:
       - { id: case, note: contrast-case, members: [نی, نینک, [غه, گه, قه, که, غا, قا, کا, گا], [ده, دا, ته, تا], [دین, تین, دان, دن]] }
       - { id: past, note: contrast-person, members: [[دیم, دوم, تیم, توم], [دینک, دونک, تینک], [دینکیز, تینکیز], [دی, تی], [دوق, دوک, توق], [دیلار, تیلار]] }
       - { id: pronoun, note: contrast-pronoun, members: [من, سن, سیز, بیز, سیزلار, اولار] }
+# REVIEW (ADR 0148): a word's sound is its token's pinned Schluessel reading, and the scheme's statement (`of` this
+# orthography, profiles/schemes/schluessel.yaml) says how these letters write it: a typed spelling says the expected
+# word when the reading can be read off it. Which correspondences are free (the scribes' vowel letters, پ ب ف, چ ج,
+# ک گ غ, doubles) and which fixed is the scheme's. No `correspondences` here: the profile's own letters are not
+# read as sounds (a word's reading is pinned, never derived from its spelling).
+sound: { from: reading, scheme: schluessel }
 annotations:
   # Schluessel's transliteration of each word, as ruby over the whole word (the scheme's `ruby: word`): over the
   # words whose reading is still new until the learner chooses (ADR 0131), fading once a reading card shows it.

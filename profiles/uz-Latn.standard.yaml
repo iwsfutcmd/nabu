@@ -34,6 +34,13 @@ match:
       - { id: possessive, note: contrast-possessive, members: [[im, m], [ing, ng], [i, si], [imiz, miz], [ingiz, ngiz], lari] }
       - { id: case, note: contrast-case, members: [ni, ning, [ga, ka, qa], [da, ta], [dan, tan]] }
       - { id: pronoun, note: contrast-pronoun, members: [men, sen, u, biz, siz, ular] }
+# REVIEW (ADR 0148): the 1995 Latin alphabet writes what standard (Tashkent) Uzbek says, one letter or digraph a
+# sound: nothing is stated as lost, so a wrong letter in a word is another sound (phonemic). x and h, o\u02BB and o, g\u02BB and
+# g, q and k are other sounds in the standard and stay apart. The apostrophes (o\u02BB, g\u02BB, the tutuq belgisi) are a matching
+# policy above, not a correspondence. Considered and not stated: ng (one letter) beside n + g across a morpheme's edge,
+# which the spelling does not tell apart; it is no second spelling of a sound, so nothing a statement could trade.
+sound: { from: spelling }
+correspondences: []
 input:
   extraKeys: ["\u02BB", "\u02BC"]
 transliterate: { to: uz-Cyrl/standard, via: cldr-transform }       # powers script-convert exercises

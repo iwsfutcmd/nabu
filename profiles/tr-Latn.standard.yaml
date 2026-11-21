@@ -14,4 +14,11 @@ match:
   equivalences:
     - { id: circumflex, map: { "\u00E2": a, "\u00EE": i, "\u00FB": u }, policy: accept }   # REVIEW: optional in modern spelling
   typo: { model: keyboard, layout: cldr-kbd:tr, maxRatio: 0.2 }
+# REVIEW (ADR 0148): Turkish spelling (1928, TDK) writes a sound with one letter: nothing is stated as lost, so a wrong
+# letter in a word is another sound. The circumflex is a matching policy above (accepted), not a correspondence.
+# Considered and not stated: ğ, which lengthens the vowel before it or glides between vowels rather than saying a sound
+# of its own (dağ, değil): which words take it is spelling to learn, but no other letter writes that sound, so there is
+# no second spelling to state. No course teaches Turkish: this profile is the casing test (gameplan §16).
+sound: { from: spelling }
+correspondences: []
 layout: { vertical: none }

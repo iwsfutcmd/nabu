@@ -14,6 +14,14 @@ match:
     # REVIEW: Russian-keyboard stand-ins for Tajik letters are wrong, but say why.
     - { id: tajik-letters, map: { "\u0493": "\u0433", "\u04E3": "\u0438", "\u049B": "\u043A", "\u04EF": "\u0443", "\u04B3": "\u0445", "\u04B7": "\u0447" }, policy: reject-with-note, note: tajik-letters }
   typo: { model: keyboard, layout: cldr-kbd:tg, maxRatio: 0.2 }
+# What the letters write of the sound (ADR 0148). REVIEW: no course uses this profile yet. Tajik Cyrillic writes its
+# sounds closely, so the sound is read off the spelling and nothing is stated as lost. Considered and left out
+# (REVIEW): \u0435 and \u044d (\u044d at a word's start, \u0435 elsewhere: a positional rule with one spelling per word, no choice); \u044f, \u044e,
+# \u0451 for \u0439 + a vowel (the norm writes the one letter); \u0438 and \u04e3 (the stressed final \u04e3 is a suffix of its own, never a
+# spelling of \u0438); \u044a (a glottal stop or a long vowel by word). Russian letters typed for Tajik ones are a matching
+# policy (`tajik-letters`, refused with a note), never a correspondence.
+sound: { from: spelling }
+correspondences: []
 input:
   extraKeys: ["\u0493", "\u04E3", "\u049B", "\u04EF", "\u04B3", "\u04B7"]
 layout: { vertical: none }

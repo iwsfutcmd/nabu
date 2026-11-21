@@ -11,3 +11,40 @@ lang: grc-Grek
 # A learner still learning the alphabet reads it in Latin letters (ADR 0133): nabu.greek_translit, the lengths kept
 # (χώρᾱ chōrā, ᾰ̓γορᾱ́ agorā).
 latin: grc-Latn/romanized
+# REVIEW (ADR 0148): what the Greek letters leave out of this reading is the length of α, ι and υ: each is written
+# alike long or short (χώρᾱ and ᾰ̓γορᾱ́ write their α's alike), and the reading's macron or breve is what the spelling
+# does not give. Stated as sets, one a vowel with each accent and breathing a reading writes on it (the reading's
+# macron or breve stands first, then the breathing, then the accent, as the course's pinned readings have them): a
+# card may trade the long vowel for the short one there. The letters write the other vowels' length (ε and ο beside η
+# and ω), and a circumflex or an iota subscript settles it (the reading marks none there), so those are no loss. No `of`: the scheme is the spelling with its lengths, and no
+# relation to state but these sets. Not stated: a length mark with a diaeresis (no reading of the course has one).
+# The scheme has no `answer`, so no card asks for it yet: the sets give each word with a marked vowel a reading
+# leftover (the word list's) and nothing else.
+correspondences:
+  - { says: "ᾱ", written: ["α"], kind: fixed, loses: ["ᾰ"] }
+  - { says: "ᾱ\u0301", written: ["ά"], kind: fixed, loses: ["ᾰ\u0301"] }
+  - { says: "ᾱ\u0300", written: ["ὰ"], kind: fixed, loses: ["ᾰ\u0300"] }
+  - { says: "ᾱ\u0313", written: ["ἀ"], kind: fixed, loses: ["ᾰ\u0313"] }
+  - { says: "ᾱ\u0314", written: ["ἁ"], kind: fixed, loses: ["ᾰ\u0314"] }
+  - { says: "ᾱ\u0313\u0301", written: ["ἄ"], kind: fixed, loses: ["ᾰ\u0313\u0301"] }
+  - { says: "ᾱ\u0314\u0301", written: ["ἅ"], kind: fixed, loses: ["ᾰ\u0314\u0301"] }
+  - { says: "ᾱ\u0313\u0300", written: ["ἂ"], kind: fixed, loses: ["ᾰ\u0313\u0300"] }
+  - { says: "ᾱ\u0314\u0300", written: ["ἃ"], kind: fixed, loses: ["ᾰ\u0314\u0300"] }
+  - { says: "ῑ", written: ["ι"], kind: fixed, loses: ["ῐ"] }
+  - { says: "ῑ\u0301", written: ["ί"], kind: fixed, loses: ["ῐ\u0301"] }
+  - { says: "ῑ\u0300", written: ["ὶ"], kind: fixed, loses: ["ῐ\u0300"] }
+  - { says: "ῑ\u0313", written: ["ἰ"], kind: fixed, loses: ["ῐ\u0313"] }
+  - { says: "ῑ\u0314", written: ["ἱ"], kind: fixed, loses: ["ῐ\u0314"] }
+  - { says: "ῑ\u0313\u0301", written: ["ἴ"], kind: fixed, loses: ["ῐ\u0313\u0301"] }
+  - { says: "ῑ\u0314\u0301", written: ["ἵ"], kind: fixed, loses: ["ῐ\u0314\u0301"] }
+  - { says: "ῑ\u0313\u0300", written: ["ἲ"], kind: fixed, loses: ["ῐ\u0313\u0300"] }
+  - { says: "ῑ\u0314\u0300", written: ["ἳ"], kind: fixed, loses: ["ῐ\u0314\u0300"] }
+  - { says: "ῡ", written: ["υ"], kind: fixed, loses: ["ῠ"] }
+  - { says: "ῡ\u0301", written: ["ύ"], kind: fixed, loses: ["ῠ\u0301"] }
+  - { says: "ῡ\u0300", written: ["ὺ"], kind: fixed, loses: ["ῠ\u0300"] }
+  - { says: "ῡ\u0313", written: ["ὐ"], kind: fixed, loses: ["ῠ\u0313"] }
+  - { says: "ῡ\u0314", written: ["ὑ"], kind: fixed, loses: ["ῠ\u0314"] }
+  - { says: "ῡ\u0313\u0301", written: ["ὔ"], kind: fixed, loses: ["ῠ\u0313\u0301"] }
+  - { says: "ῡ\u0314\u0301", written: ["ὕ"], kind: fixed, loses: ["ῠ\u0314\u0301"] }
+  - { says: "ῡ\u0313\u0300", written: ["ὒ"], kind: fixed, loses: ["ῠ\u0313\u0300"] }
+  - { says: "ῡ\u0314\u0300", written: ["ὓ"], kind: fixed, loses: ["ῠ\u0314\u0300"] }

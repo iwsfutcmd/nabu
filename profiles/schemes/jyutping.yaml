@@ -32,6 +32,10 @@ language: yue
 lang: yue-Latn-HK-jyutping
 answer: yue-Latn/jyutping
 typed: { syllable: "[a-z]+[1-6]", locale: yue-Latn-HK, between: "[\\s'’.-]" }
+# REVIEW (ADR 0148): no `of`, and no sets: a character's Jyutping is listed per character, never a rule of the script.
+# What the characters leave out that a card trades is the tone, and that stays in `tones` below (a reading card's tone
+# options are the attested tones, ADR 0139), not restated here as sets.
+correspondences: []
 tones:
   system: yue-jyutping
   marks: "[0-9]"

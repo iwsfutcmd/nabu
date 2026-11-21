@@ -49,6 +49,17 @@ match:
       - { id: pronoun, note: contrast-pronoun, members: [ἡμεῖς, ὑμεῖς, ἡμῶν, ὑμῶν, ἡμῖν, ὑμῖν, ἡμᾶς, ὑμᾶς, [μου, ἐμοῦ], [σου, σοῦ], [μοι, ἐμοί], [σοι, σοί], [με, ἐμέ], [σε, σέ]] }
       - { id: case, note: contrast-ending, inflected: true,
           members: [ος, ον, ου, ε, οι, ων, οις, ους, α, ας, αι, αις, αν, η, ης, ην, ι, ες, εις, εως, ει, [σι, σιν], εσι, εσιν, ευς, εα] }
+# REVIEW (ADR 0148): Attic as editions spell it writes its sounds, letter by letter (η and ε, ω and ο, the rough
+# breathing for h, the accents for pitch) but for the length of α, ι and υ, which it never writes: that is the reading
+# side's loss, stated in the attic scheme (ᾱ beside ᾰ). Nothing is stated as lost here, so a wrong letter is another
+# sound. Not stress: every word writes its accent, and no rule places one that is left out. The accents, breathings
+# and iota subscript stay the noted matching policy above (ADR 0148: Greek waits for its buttons), decided before the
+# sound question is asked: a mark left out is CORRECT_MARKS, unless it makes another word of the course. Considered and
+# not stated: ει and ου as the long close vowels they had become in Attic beside ε and ο (the spurious diphthongs:
+# whether a word writes ει or ε is history the spelling keeps, but in fourth-century Attic ε is a short vowel, so no
+# second spelling of one sound).
+sound: { from: spelling }
+correspondences: []
 input:
   keyboard: cldr-kbd:el
 layout: { vertical: none }

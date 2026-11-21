@@ -21,6 +21,11 @@ match:
   # ni, li, pi). A slip that spells another word of the course is WRONG_WORD through the lexicon, so no
   # contrast sets are needed; what is left is a slip inside a longer word (kepeken, kijetesantakalu).
   typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
+# REVIEW (ADR 0148): sitelen Lasina writes Toki Pona's fourteen sounds with fourteen letters, one each: nothing is
+# lost, so a wrong letter is another sound (and, the words being short, often another word). j is the sound of y, as
+# it was designed; no other letter writes it. Names keep their capital, a matching policy, not a sound.
+sound: { from: spelling }
+correspondences: []
 input:
   keyboard: cldr-kbd:en
 layout: { vertical: none }

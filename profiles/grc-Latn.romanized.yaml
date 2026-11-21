@@ -19,4 +19,8 @@ match:
   # REVIEW: a macron typed or not (e for ē) is noted, not failed.
   marks: { set: "[\u0304]", policy: accept-with-note, note: greek-marks }
   typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
+# REVIEW (ADR 0148): no `sound`. This Latin is the compiler's rendering of each word's Attic reading
+# (nabu.greek_translit), shown and chosen on letter and word cards, never typed (ADR 0133, which ADR 0148 leaves
+# standing: its macrons stay noted). So the sound question is never asked of it, and nothing is stated as lost.
+correspondences: []
 layout: { vertical: none }

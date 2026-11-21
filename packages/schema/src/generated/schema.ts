@@ -5537,6 +5537,10 @@ export interface ReadingScheme {
   };
   readonly of?: OrthographyId4;
   /**
+   * Marks of `of`'s spellings the relation passes over, as a UnicodeSet: removed from a spelling (after NFC, code point by code point) before `correspondences` relate it to a reading, so the relation is of what remains. Biblical Hebrew's points: the tiberian relation is of the consonantal text, pointed or not (ADR 0148).
+   */
+  readonly ignores?: string;
+  /**
    * What the orthography `of` writes of this scheme's readings, and what it loses (ADR 0148): `says` a piece of the reading, `written` how the orthography writes it ("": not written), `loses` the pieces a reading card may trade it for. Nothing is implied: a piece no correspondence names is not accounted for. Read by @nabu/core (`project`): reading cards' options, minimal ruby and the compiler's leftovers (docs/migration-design.md, stages 5 and 6). It replaced `variants` (ADR 0131).
    */
   readonly correspondences?: readonly Correspondence[];

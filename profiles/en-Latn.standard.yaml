@@ -12,4 +12,9 @@ normalize:
 match:
   case: { locale: en }
   typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
+# REVIEW (ADR 0148): no `sound`. English spelling is not stated as rules (a statement of its letters and their
+# contexts would be the larger part of a pronouncing dictionary), and the sound of an English answer is never what a
+# card asks: a translation into English is graded on its words. So the sound question is never asked here, and
+# nothing is stated as lost.
+correspondences: []
 layout: { vertical: none }

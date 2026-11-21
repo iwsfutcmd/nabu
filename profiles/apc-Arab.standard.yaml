@@ -55,6 +55,19 @@ match:
       # REVIEW (ADR 0081): endings that agree, on inflected words: the feminine ة (بعيدة for بعيد), -i to a woman
       # (بتشتغلي), -o to several people (بتشتغلوا). No ending is a member: the masculine, the man addressed.
       - { id: agreement, note: contrast-ending, inflected: true, members: ["", ة, ي, [وا, و]] }
+# What the letters write of the sound (ADR 0148). REVIEW: the sound is read off the spelling, its vowel marks left
+# aside (the unmarked spelling is the usual one, as fa's), and nothing is stated as lost: no correspondence a rule
+# could state holds for every word of an unstandardized variety, so accept sets keep carrying spellings by hand.
+# Considered and left out (REVIEW):
+#  - ث ذ ظ ق: each said two ways by word (ث t or s, ذ d or z, ظ ḍ or ẓ, ق a glottal stop or q in learned words), so
+#    no rule says them; and ء/ق/أ for the glottal stop likewise.
+#  - -o written ـه (as Kline writes it) or ـو: a word-final ه also writes -a (ta marbuta folded to it), h (الله) and
+#    a silent letter, and the damma before ـه that marks -o is a vowel mark the sound leaves aside: no context
+#    states it safely. The accept sets carry ـو (بيتو beside بيته).
+#  - ة/ه, ى/ي, the hamza seats, ڤ/ف and پ/ب: matching policies already (`equivalences`), never restated here.
+#  - The article's l before a sun letter (الشاي ish-shay): written and not said, but written in every spelling.
+sound: { from: spelling, ignores: "[ً-ْٰ]" }
+correspondences: []
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true. Shadda and harakat where content has them (بدّي)
 input:

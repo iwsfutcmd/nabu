@@ -30,6 +30,16 @@ ZWNJ = "\u200c"
 # Pinned readings PyCantonese disagrees with, where the pinned one is the colloquial reading taught:
 # the particles 呀/嗎, 名 meng2 (你叫咩名呀), 弟弟 dai4 dai2, 平 peng4 ("cheap").
 EXPECTED_WARNINGS = {
+    "hbo": {
+        # The review list (ADR 0148): readings the tiberian statement of the consonantal text does
+        # not relate to their letters. The divine name is read as its qere (ʾăḏōnāy, laʾḏōnāy,
+        # waʾḏōnāy), and the Pentateuch's הוא is read hîʾ (its qere): a ketiv no stated rule gives.
+        ("projection.unaccounted", "י\u05b0הו\u05b8ה"),
+        ("projection.unaccounted", "י\u05b0ה\u05b9ו\u05b8ה"),
+        ("projection.unaccounted", "ל\u05b7יהו\u05b8ה"),
+        ("projection.unaccounted", "ו\u05b7יהו\u05b8ה"),
+        ("projection.unaccounted", "ה\u05b4וא"),
+    },
     "yue": {
         ("enrich.reading-mismatch", "呀"),
         ("enrich.reading-mismatch", "嗎"),
@@ -64,9 +74,9 @@ EXPECTED_WARNINGS = {
         ("reading.inconsistent-pending", "شهرغه"),
         ("reading.inconsistent-pending", "تیزیغه"),
         # The review list (ADR 0148): readings Schluessel's statement does not relate to their
-        # letters (پز biz, پله billä, شهریکه šahargä, صندوقدا ṣandūqta, سُوی süyi, موغالستان
-        # Moǧulistān), for a reviewer to settle in the statement or the reading
-        # (`nabu projections ../courses/chg`).
+        # letters (شهریکه šahargä, صندوقدا ṣandūqta, سُوی süyi, موغالستان Moǧulistān), for a
+        # reviewer to settle in the statement or the reading (`nabu projections ../courses/chg`).
+        # پز biz, پله billä and پلماسمز bilmäsmiz are related since the statement says پ for b.
         ("projection.unaccounted", "\u0645\u0648\u063a\u0627\u0644\u0633\u062a\u0627\u0646"),
         (
             "projection.unaccounted",
@@ -76,11 +86,8 @@ EXPECTED_WARNINGS = {
             "projection.unaccounted",
             "\u0645\u0648\u063a\u0627\u0644\u0633\u062a\u0627\u0646\u200c\u063a\u0647",
         ),
-        ("projection.unaccounted", "\u067e\u0632"),
-        ("projection.unaccounted", "\u067e\u0644\u0645\u0627\u0633\u0645\u0632"),
         ("projection.unaccounted", "\u0634\u0647\u0631\u06cc\u06a9\u0647"),
         ("projection.unaccounted", "\u0633\u064f\u0648\u06cc"),
-        ("projection.unaccounted", "\u067e\u0644\u0647"),
         ("projection.unaccounted", "\u0635\u0646\u062f\u0648\u0642\u062f\u0627"),
     },
 }
