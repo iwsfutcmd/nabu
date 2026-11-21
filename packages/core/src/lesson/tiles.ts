@@ -79,7 +79,9 @@ const casedOf = (course: CourseView): Cased => {
     }
     for (const v of Object.values(value)) visit(v);
   };
+  // Sentences, translations and story lines are the units'; lexemes' forms and glosses the lexicon's.
   visit(course.units);
+  visit(course.lexicon);
   const cased = { words: out, lower };
   casedCache.set(course, cased);
   return cased;

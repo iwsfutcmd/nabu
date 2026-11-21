@@ -18,6 +18,12 @@ export const sentencePersons = (s: { readonly tags?: readonly BundleTag[] | unde
   return undefined;
 };
 
+/** The register a sentence says it is in (ADR 0147), where its tags say; its course's range otherwise. */
+export const sentenceRegister = (s: { readonly tags?: readonly BundleTag[] | undefined }): string | undefined => {
+  for (const tag of s.tags ?? []) if ("register" in tag) return tag.register;
+  return undefined;
+};
+
 /** What a part or a teachable is: a lexeme, a feature value, a rule or a letter. */
 export type PartKind = "lexeme" | "feature" | "rule" | "grapheme";
 

@@ -8,8 +8,14 @@ import type { LearnerEvent } from "@nabu/schema";
 import type { Outbox, SetAside } from "./outbox.ts";
 
 export const DB_NAME = "nabu";
-export const DB_VERSION = 3;
+export const DB_VERSION = 4;
 export const EVENTS = "events";
+/**
+ * The events of before the lexical model as they were, by id, kept aside when the log is rewritten
+ * in the new shape (upgrade-log.ts): so a course rewritten without its alias table can be done
+ * again once that is at hand. The release after next drops the store.
+ */
+export const BEFORE = "events-before-lexical";
 export const META = "meta";
 export const OUTBOX = "outbox";
 /** Event id → when the server first received it (ISO). */
@@ -42,6 +48,7 @@ export const openDb = (): Promise<IDBDatabase> =>
       const db = request.result;
       if (!db.objectStoreNames.contains(EVENTS)) db.createObjectStore(EVENTS, { keyPath: "id" }).createIndex("course", "course");
       if (!db.objectStoreNames.contains(META)) db.createObjectStore(META);
+      if (!db.objectStoreNames.contains(BEFORE)) db.createObjectStore(BEFORE, { keyPath: "id" });
       if (!db.objectStoreNames.contains(RECEIVED)) {
         db.createObjectStore(RECEIVED);
         // Before version 3 receipt times were not kept: pull everything again to learn them.

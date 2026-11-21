@@ -37,7 +37,7 @@ import {
   type SessionRequest,
   type Studied,
 } from "@nabu/core/learner";
-import { cardGloss, createGrader, doneOf, firstTriesOf, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Facet, type PlayerState } from "@nabu/core/lesson";
+import { cardGloss, createGrader, doneOf, entryOf, firstTriesOf, glossOfPart, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Facet, type PlayerState } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
@@ -88,6 +88,7 @@ import { nextStepOf, practises, useSessionEnd } from "./session-end.ts";
 import { focusScreen, Loading, ScreenHeading, sessionName, titleOf, useScreen } from "./screen.tsx";
 import { StartOver } from "./StartOver.tsx";
 import { openStore, type EventStore } from "./store.ts";
+import { bundleAliases, upgradeDeviceLog } from "./upgrade-log.ts";
 import { createSync, type Account, type Sync } from "./sync.ts";
 
 const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
@@ -415,13 +416,13 @@ const Preview = ({ items, label }: { readonly items: readonly PreviewItem[]; rea
 
 /**
  * A lesson's new words in the orthography being learned, each with its meaning as a card shows it
- * (its first sense). A drill's KC has no form: it previews what it practises ("numbers").
+ * (its first sense). What a drill brings in has no spelling (a rule): it previews what it
+ * practises ("numbers"). A feature value or an ending a lesson brings in is no word to preview.
  */
-const previewOf = (course: CourseView, unit: BundleUnit, node: BundleNode): PreviewItem[] =>
+const previewOf = (course: CourseView, node: BundleNode): PreviewItem[] =>
   node.introduces.flatMap((id): PreviewItem[] => {
-    const kc = unit.kcs.find((k) => k.id === id);
-    const form = kc?.forms?.[course.orthography]?.[0];
-    const gloss = kc?.gloss?.[course.supportKey];
+    const form = entryOf(course, id)?.forms?.[course.orthography]?.[0];
+    const gloss = glossOfPart(course, id);
     if (form !== undefined) return [{ text: form, gloss: gloss === undefined ? undefined : cardGloss(gloss) }];
     return node.kind === "practice" && gloss !== undefined ? [{ text: cardGloss(gloss) }] : [];
   });
@@ -855,7 +856,7 @@ const CoursePath = ({
                         <span className={styles.lessonName} data-node-name="">{name}</span>
                         <Status status={s} />
                       </span>
-                      <Preview items={previewOf(course, unit, node)} label={number === undefined ? undefined : t.format("app.lessons.new-words")} />
+                      <Preview items={previewOf(course, node)} label={number === undefined ? undefined : t.format("app.lessons.new-words")} />
                     </>
                   );
                 const link = kind === "story" ? href({ tag: "story", course: course.id, orthography, node: node.id }) : to({ mode: "lesson", node: node.id });
@@ -1403,6 +1404,9 @@ declare global {
 /** The deployment's game rules, loaded once. */
 const gameRules = loadGameConfig(import.meta.env.BASE_URL);
 const ready = openStore().then(async (store) => {
+  // A log of before the lexical model is rewritten in the new shape before anything reads it or
+  // sends it (upgrade-log.ts): once, and again only for a course that waited for its alias table.
+  await upgradeDeviceLog(store, bundleAliases(BUNDLES)).catch(() => undefined);
   const sync = await createSync(store, apiBase(), { gameConfig: () => gameRules });
   window.nabu = store;
   window.nabuSync = sync;

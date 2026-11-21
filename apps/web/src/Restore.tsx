@@ -15,7 +15,8 @@ import { useEffect, useState, type JSX } from "react";
 import { Button, FileTrigger } from "react-aria-components";
 import styles from "./App.module.css";
 import { isNative } from "./platform.ts";
-import { eventValidator, readEventsFile, restoreEvents } from "./restore.ts";
+import { eventValidator, inNewShape, oldEventValidator, readEventsFile, restoreEvents } from "./restore.ts";
+import { bundleAliases } from "./upgrade-log.ts";
 import type { EventStore } from "./store.ts";
 import type { Sync } from "./sync.ts";
 
@@ -72,8 +73,11 @@ export const Restore = ({ store, sync, courses }: { store: EventStore; sync: Syn
   const read = async (file: File): Promise<void> => {
     setStage({ tag: "reading" });
     try {
-      const [text, valid] = await Promise.all([file.text(), eventValidator()]);
-      const { events, invalid } = readEventsFile(text, valid);
+      const [text, valid, validOld] = await Promise.all([file.text(), eventValidator(), oldEventValidator()]);
+      const found = readEventsFile(text, valid, validOld);
+      const { invalid } = found;
+      // A file from before the lexical model: its events are rewritten as they are read.
+      const events = await inNewShape(found, bundleAliases(`${import.meta.env.BASE_URL}bundles/`));
       if (events.length === 0) {
         setStage({ tag: "empty" });
         return;

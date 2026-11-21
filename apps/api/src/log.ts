@@ -4,11 +4,17 @@
  * as the idempotency key, and read back in receipt order by cursor. The
  * learner's state is the same pure replay the device runs, so a device can
  * check that the server agrees with it.
+ *
+ * The log holds events of schema 2 (ADR 0146: parts and skills). An event of
+ * schema 1 is refused like any other that does not fit (an app from before the
+ * lexical model holds it, and sends it once it has updated and rewritten its
+ * log); the rows stored before the switch are rewritten once, at the deploy
+ * (upgrade.ts). Nothing here reads the old shape: every read asks for schema 2.
  */
 import { readFileSync } from "node:fs";
 import { localDateOf, replayGame, type GameConfig, type GameState } from "@nabu/core/game";
 import { replay, type LearnerState } from "@nabu/core/learner";
-import type { LearnerEvent } from "@nabu/schema";
+import type { LearnerEvent, LearnerEventV1 } from "@nabu/schema";
 import { Ajv2020, type ErrorObject } from "ajv/dist/2020.js";
 import { and, asc, eq, gt, inArray, max, notInArray } from "drizzle-orm";
 import type { Db } from "./db/index.ts";
@@ -25,11 +31,21 @@ const ajv = new Ajv2020({ strict: true, allErrors: false });
 ajv.addKeyword({ keyword: "tsType", schemaType: "string" });
 ajv.addSchema(schema("common.schema.json"));
 ajv.addSchema(schema("correction.schema.json"));
-const eventSchema = schema("learner-event.schema.json") as { readonly $id: string };
+// The old shape: the new one shares its definitions (ids, the session summary), and the rows the
+// deploy's job rewrites are checked against it before they are read.
+const oldSchema = schema("learner-event.schema.json") as { readonly $id: string };
+const validateOld = ajv.compile<LearnerEventV1>(oldSchema);
+const eventSchema = schema("learner-event.next.schema.json") as { readonly $id: string };
 const validate = ajv.compile<LearnerEvent>(eventSchema);
 
-/** Whether a value is a valid learner event (schemas/learner-event.schema.json). */
+/** The schema version the log holds (ADR 0146). */
+export const SCHEMA = 2;
+
+/** Whether a value is a valid learner event (schemas/learner-event.next.schema.json). */
 export const validEvent = (value: unknown): value is LearnerEvent => validate(value);
+
+/** Whether a value is a valid event of the shape before the lexical model: what the deploy's job upgrades. */
+export const validOldEvent = (value: unknown): value is LearnerEventV1 => validateOld(value);
 
 /** A batch the server cannot read at all: nothing in it is taken. */
 export type UploadError = { readonly code: "invalid-batch" } | { readonly code: "batch-too-large"; readonly max: number };
@@ -81,15 +97,17 @@ const idOf = (value: unknown): { readonly id?: string } => {
 
 /** Each event type's definition in the schema, where the errors that explain a rejection are. */
 const DEFINITIONS: Readonly<Record<string, string>> = {
-  session_started: "SessionStarted",
-  exercise_presented: "ExercisePresented",
-  answer_submitted: "AnswerSubmitted",
-  exercise_skipped: "ExerciseSkipped",
-  session_completed: "SessionCompleted",
-  outcome_revised: "OutcomeRevised",
-  answer_reported: "AnswerReported",
-  progress_reset: "ProgressReset",
-  sentence_reported: "SentenceReported",
+  session_started: "NextSessionStarted",
+  exercise_presented: "NextExercisePresented",
+  answer_submitted: "NextAnswerSubmitted",
+  exercise_skipped: "NextExerciseSkipped",
+  session_completed: "NextSessionCompleted",
+  outcome_revised: "NextOutcomeRevised",
+  answer_reported: "NextAnswerReported",
+  progress_reset: "NextProgressReset",
+  sentence_reported: "NextSentenceReported",
+  goal_set: "NextGoalSet",
+  story_line_read: "StoryLineRead",
 };
 
 /**
@@ -143,7 +161,7 @@ export const checkBatch = (
 
 /** Whether the user's log holds an event after cursor `since` that is not one of `ids`. */
 const othersSince = async (db: Db, user: string, since: number, ids: readonly string[]): Promise<boolean> => {
-  const after = and(eq(events.userId, user), gt(events.seq, since));
+  const after = and(eq(events.userId, user), eq(events.schema, SCHEMA), gt(events.seq, since));
   const rows = await db
     .select({ id: events.id })
     .from(events)
@@ -199,7 +217,7 @@ export const since = async (db: Db, user: string, after: number, limit = MAX_BAT
   const rows = await db
     .select({ seq: events.seq, payload: events.payload, serverTime: events.serverTime })
     .from(events)
-    .where(and(eq(events.userId, user), gt(events.seq, after)))
+    .where(and(eq(events.userId, user), eq(events.schema, SCHEMA), gt(events.seq, after)))
     .orderBy(asc(events.seq))
     .limit(limit + 1);
   const page = rows.slice(0, limit);
@@ -211,9 +229,16 @@ export const since = async (db: Db, user: string, after: number, limit = MAX_BAT
   };
 };
 
+/**
+ * Every event the server holds of a user, in receipt order, whatever its shape: what an export
+ * gives back (ADR 0067). A row the deploy's job could not rewrite is still the learner's.
+ */
+export const everyEvent = async (db: Db, user: string): Promise<(LearnerEvent | LearnerEventV1)[]> =>
+  (await db.select({ payload: events.payload }).from(events).where(eq(events.userId, user)).orderBy(asc(events.seq))).map((r) => r.payload as LearnerEvent | LearnerEventV1);
+
 /** A user's events for one course, in no particular order. */
 export const eventsOf = async (db: Db, user: string, course: string): Promise<LearnerEvent[]> =>
-  (await db.select({ payload: events.payload }).from(events).where(and(eq(events.userId, user), eq(events.course, course)))).map((r) => r.payload as LearnerEvent);
+  (await db.select({ payload: events.payload }).from(events).where(and(eq(events.userId, user), eq(events.schema, SCHEMA), eq(events.course, course)))).map((r) => r.payload as LearnerEvent);
 
 /** The state a user's log for one course projects to: core's replay, as on the device. */
 export const stateOf = async (db: Db, user: string, course: string): Promise<{ readonly events: number; readonly state: LearnerState }> => {
@@ -228,7 +253,7 @@ export const stateOf = async (db: Db, user: string, course: string): Promise<{ r
  * time zone), `now` to the server's clock.
  */
 export const gameStateOf = async (db: Db, user: string, config: GameConfig, clock: { readonly now: string; readonly today?: string | undefined }): Promise<GameState> => {
-  const rows = await db.select({ payload: events.payload, serverTime: events.serverTime }).from(events).where(eq(events.userId, user));
+  const rows = await db.select({ payload: events.payload, serverTime: events.serverTime }).from(events).where(and(eq(events.userId, user), eq(events.schema, SCHEMA)));
   const inputs = rows.map((r) => ({ event: r.payload as LearnerEvent, receivedAt: r.serverTime.toISOString() }));
   const latest = inputs.map((i) => i.event).sort((a, b) => Date.parse(a.clientTime) - Date.parse(b.clientTime)).at(-1);
   const today = clock.today ?? localDateOf(clock.now, latest?.tz ?? "UTC") ?? clock.now.slice(0, 10);

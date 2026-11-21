@@ -116,6 +116,10 @@ export const uploadOutbox = async (
   for (;;) {
     const batch = await outbox.pending(BATCH);
     if (batch.length === 0) return courses;
+    // A log of before the lexical model is rewritten when the app next opens (upgrade-log.ts). The
+    // server takes the new shape only, so until then nothing is sent: an event sent as it was
+    // would be refused and set aside.
+    if (batch.some((e) => (e.schema as number) !== 2)) return courses;
     let answer: Uploaded;
     try {
       const since = await cursor?.get();

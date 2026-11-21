@@ -17,9 +17,9 @@
  * that progress will not be kept.
  */
 import { compareEvents, isStart } from "@nabu/core/learner";
-import type { LearnerEvent } from "@nabu/schema";
+import type { LearnerEvent, LearnerEventV1 } from "@nabu/schema";
 import { uuidv7 } from "./clock.ts";
-import { done, EVENTS, heldOf, META, openDb, OUTBOX, outboxOf, persist, persisted, promised, RECEIVED, receivedTimes, releaseHeld, requeueLog, type Held } from "./idb.ts";
+import { BEFORE, done, EVENTS, heldOf, META, openDb, OUTBOX, outboxOf, persist, persisted, promised, RECEIVED, receivedTimes, releaseHeld, requeueLog, type Held } from "./idb.ts";
 import type { SetAside } from "./outbox.ts";
 
 export interface EventStore {
@@ -37,8 +37,23 @@ export interface EventStore {
    * when the server received them (`received`, by id). Returns the ids that were new.
    */
   readonly append: (events: readonly LearnerEvent[], options?: { readonly synced?: boolean; readonly received?: Readonly<Record<string, string>> }) => Promise<readonly string[]>;
+  /**
+   * A course's events, and the whole log: those of the new shape. An event of before the lexical
+   * model is rewritten when the app starts (upgrade-log.ts); one that was not (the rewrite failed)
+   * is in the log and in no reader's hands until it is.
+   */
   readonly eventsOf: (course: string) => Promise<readonly LearnerEvent[]>;
   readonly allEvents: () => Promise<readonly LearnerEvent[]>;
+  /** Every event in the log, whatever its shape: what the rewrite reads. */
+  readonly everyEvent: () => Promise<readonly (LearnerEvent | LearnerEventV1)[]>;
+  /**
+   * Writes events over those of the same ids (the log's one rewrite: upgrade-log.ts), and keeps
+   * `before`, the events as they were, aside. Nothing else changes: the outbox, the receipt times
+   * and what is set aside go by id.
+   */
+  readonly rewrite: (events: readonly LearnerEvent[], before: readonly LearnerEventV1[]) => Promise<void>;
+  /** The events kept aside by a rewrite, as they were. */
+  readonly before: () => Promise<readonly LearnerEventV1[]>;
   /**
    * Each course's latest start (a session begun, or the course started over; @nabu/core `isStart`),
    * for where the learner left off (S1). Each course's events are read back from its newest, so
@@ -72,6 +87,9 @@ export interface EventStore {
   readonly setMeta: (key: string, value: unknown) => Promise<void>;
   readonly deleteMeta: (key: string) => Promise<void>;
 }
+
+/** The events of the new shape (schema 2) among these. */
+const newShape = (events: readonly (LearnerEvent | LearnerEventV1)[]): LearnerEvent[] => events.filter((e): e is LearnerEvent => e.schema === 2);
 
 /** Walks a cursor while `step` says to go on; resolves when it stops or runs out. */
 const walk = <C extends IDBCursor>(request: IDBRequest<C | null>, step: (cursor: C) => boolean): Promise<void> =>
@@ -142,8 +160,16 @@ const indexedStore = async (): Promise<EventStore> => {
       await done(tx);
       return fresh;
     },
-    eventsOf: async (course) => promised(db.transaction(EVENTS).objectStore(EVENTS).index("course").getAll(course)) as Promise<LearnerEvent[]>,
-    allEvents: async () => promised(db.transaction(EVENTS).objectStore(EVENTS).getAll()) as Promise<LearnerEvent[]>,
+    eventsOf: async (course) => newShape((await promised(db.transaction(EVENTS).objectStore(EVENTS).index("course").getAll(course))) as (LearnerEvent | LearnerEventV1)[]),
+    allEvents: async () => newShape((await promised(db.transaction(EVENTS).objectStore(EVENTS).getAll())) as (LearnerEvent | LearnerEventV1)[]),
+    everyEvent: async () => promised(db.transaction(EVENTS).objectStore(EVENTS).getAll()) as Promise<(LearnerEvent | LearnerEventV1)[]>,
+    rewrite: async (events, before) => {
+      const tx = db.transaction([EVENTS, BEFORE], "readwrite");
+      for (const e of before) tx.objectStore(BEFORE).put(e);
+      for (const e of events) tx.objectStore(EVENTS).put(e);
+      await done(tx);
+    },
+    before: async () => promised(db.transaction(BEFORE).objectStore(BEFORE).getAll()) as Promise<LearnerEventV1[]>,
     latestStarts: () => latestStartsOf(db),
     ids: async () => new Set((await promised(db.transaction(EVENTS).objectStore(EVENTS).getAllKeys())) as string[]),
     pending: outbox.pending,
@@ -170,11 +196,12 @@ const indexedStore = async (): Promise<EventStore> => {
 };
 
 const memoryStore = (): EventStore => {
-  const log = new Map<string, LearnerEvent>();
+  const log = new Map<string, LearnerEvent | LearnerEventV1>();
   const outbox = new Set<string>();
   const received = new Map<string, string>();
   const meta = new Map<string, unknown>();
   const held = new Map<string, { code: string; at: string }>();
+  const before = new Map<string, LearnerEventV1>();
   const receive = (times: Readonly<Record<string, string>> = {}): void => {
     for (const [id, at] of Object.entries(times)) received.set(id, at);
   };
@@ -192,11 +219,18 @@ const memoryStore = (): EventStore => {
       return Promise.resolve(fresh.map((e) => e.id));
     },
     // The account's own events (the weekly goal) are no course's, as the browser's course index leaves them out.
-    eventsOf: (course) => Promise.resolve([...log.values()].filter((e) => e.type !== "goal_set" && e.course === course)),
-    allEvents: () => Promise.resolve([...log.values()]),
+    eventsOf: (course) => Promise.resolve(newShape([...log.values()]).filter((e) => e.type !== "goal_set" && e.course === course)),
+    allEvents: () => Promise.resolve(newShape([...log.values()])),
+    everyEvent: () => Promise.resolve([...log.values()]),
+    rewrite: (events, kept) => {
+      for (const e of kept) before.set(e.id, e);
+      for (const e of events) log.set(e.id, e);
+      return Promise.resolve();
+    },
+    before: () => Promise.resolve([...before.values()]),
     latestStarts: () => {
       const latest = new Map<string, LearnerEvent>();
-      for (const e of log.values()) {
+      for (const e of newShape([...log.values()])) {
         if (!isStart(e)) continue;
         const seen = latest.get(e.course);
         if (seen === undefined || compareEvents(seen, e) < 0) latest.set(e.course, e);
@@ -204,7 +238,8 @@ const memoryStore = (): EventStore => {
       return Promise.resolve([...latest.values()]);
     },
     ids: () => Promise.resolve(new Set(log.keys())),
-    pending: (limit) => Promise.resolve([...outbox].sort().slice(0, limit).flatMap((id) => log.get(id) ?? [])),
+    // As in IndexedDB, the outbox gives an event as the log holds it; an upload stops at one of the old shape (outbox.ts).
+    pending: (limit) => Promise.resolve([...outbox].sort().slice(0, limit).flatMap((id) => (log.get(id) as LearnerEvent | undefined) ?? [])),
     pendingCount: () => Promise.resolve(outbox.size),
     pendingIds: () => Promise.resolve(new Set(outbox)),
     acknowledge: (ids, times) => {

@@ -120,7 +120,7 @@ export const run = async (loaded: readonly LoadedItem[], courses: Courses, gatew
       subject,
       course: item.course,
       orthography: item.orthography,
-      vars: judgeVars(sentence, item.orthography, course.supportKey, accept, item.answer),
+      vars: judgeVars(course, sentence, item.orthography, course.supportKey, accept, item.answer),
     });
     const verdict = res.ok ? res.value.output : undefined;
     groups.set(key(item), [...(groups.get(key(item)) ?? []), { id: item.id, category: item.category, expect: item.expect, accepted: verdict === undefined ? undefined : accepts(verdict), verdict }]);

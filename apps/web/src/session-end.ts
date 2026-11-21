@@ -33,7 +33,7 @@ export interface Standing {
 const knownIn = (course: CourseView, state: LearnerState, now: string, facetsOff: ReadonlySet<Facet>): readonly string[] =>
   learnedWords(course, state, now, DESIRED_RETENTION, facetsOff)
     .filter((w) => w.known)
-    .map((w) => w.kc);
+    .map((w) => w.lexeme);
 
 /** The units whose every lesson and story is done. */
 const unitsDone = (course: CourseView, state: LearnerState): ReadonlySet<string> => {

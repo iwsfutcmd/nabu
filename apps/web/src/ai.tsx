@@ -214,7 +214,7 @@ const reportOf = (answer: AnswerSubmitted, text: string, claim: "accept" | "reje
   return {
     id: uuidv7(now.getTime()),
     type: "answer_reported",
-    schema: 1,
+    schema: 2,
     device: answer.device,
     ...(answer.user === undefined ? {} : { user: answer.user }),
     course: answer.course,

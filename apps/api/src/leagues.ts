@@ -16,6 +16,7 @@ import type { LearnerEvent } from "@nabu/schema";
 import { and, asc, count, desc, eq, gte, inArray, lt, notInArray, sql } from "drizzle-orm";
 import type { Db } from "./db/index.ts";
 import { events, leagueMembers, leagueOptOuts, leagueResults, leagueWeeks, profiles } from "./db/schema.ts";
+import { SCHEMA } from "./log.ts";
 
 const HOUR = 3_600_000;
 
@@ -31,11 +32,11 @@ const weekXp = async (db: Db, users: readonly string[], week: { start: number; e
   const during = await db
     .select(columns)
     .from(events)
-    .where(and(inArray(events.userId, [...users]), gte(events.clientTime, new Date(week.start)), lt(events.clientTime, new Date(week.end))));
+    .where(and(inArray(events.userId, [...users]), eq(events.schema, SCHEMA), gte(events.clientTime, new Date(week.start)), lt(events.clientTime, new Date(week.end))));
   const earlier = await db
     .select(columns)
     .from(events)
-    .where(and(inArray(events.userId, [...users]), lt(events.clientTime, new Date(week.start)), inArray(events.type, ["session_completed", "progress_reset"])));
+    .where(and(inArray(events.userId, [...users]), eq(events.schema, SCHEMA), lt(events.clientTime, new Date(week.start)), inArray(events.type, ["session_completed", "progress_reset"])));
   const rows = [...earlier, ...during];
   const byUser = new Map<string, GameInput[]>();
   for (const r of rows) byUser.set(r.userId, [...(byUser.get(r.userId) ?? []), { event: r.payload as LearnerEvent, receivedAt: r.serverTime.toISOString() }]);

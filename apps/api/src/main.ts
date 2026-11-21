@@ -48,6 +48,7 @@ import { openDatabase } from "./db/index.ts";
 import { rollover } from "./leagues.ts";
 import { nativeSendersFromEnv } from "./nativepush.ts";
 import { sendReminders, type Notification } from "./reminders.ts";
+import { createAliases, upgradeStored } from "./upgrade.ts";
 import { sendPush, vapidKeys, type Subscription, type Vapid } from "./webpush.ts";
 
 const port = Number(process.env["PORT"] ?? 8787);
@@ -78,7 +79,14 @@ const gates = (JSON.parse(readFileSync(gatesFile, "utf8")) as unknown[]).filter(
   console.warn("ignoring an invalid judge gate in", gatesFile.pathname);
   return false;
 });
-const courses = createCourses(dir(env["NABU_BUNDLES"], DEFAULT_BUNDLES));
+const bundles = dir(env["NABU_BUNDLES"], DEFAULT_BUNDLES);
+const courses = createCourses(bundles);
+// The stored events of before the lexical model, rewritten in the new shape before anything reads
+// them (docs/migration-design.md, "Old events"). With none left it does nothing.
+const rewritten = await upgradeStored(db, createAliases(bundles));
+if (rewritten.upgraded > 0) console.info(`events: ${rewritten.upgraded} of the old shape rewritten`);
+if (rewritten.withoutTable.length > 0) console.warn("events: rewritten without an alias table (no bundle here) for", rewritten.withoutTable.join(", "));
+for (const left of rewritten.left) console.warn(JSON.stringify({ event: "upgrade-left", id: left.id, why: left.why }));
 console.info(provider === undefined ? "ai: no model configured; AI features are off" : `ai: ${provider.name} ${provider.model}; judge gates open: ${gates.filter((g) => g.enabled).length}`);
 
 const speechUrl = env["NABU_SPEECH_URL"] === "" ? undefined : env["NABU_SPEECH_URL"];

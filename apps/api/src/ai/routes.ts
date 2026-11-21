@@ -13,7 +13,7 @@
 import { acceptForJudge, accepts, answerUnitsPrompt, checkTurn, explanationOf, gateOpen, judgeable, knownForms, productionAccept, provisionalOutcome, autoTokens, ROLEPLAY_HISTORY, textBase, type ExplanationContext, type TextBase } from "@nabu/core/ai";
 import { localDateOf } from "@nabu/core/game";
 import { replay } from "@nabu/core/learner";
-import { allSentences, TEMPLATES, type CourseView, type TemplateId } from "@nabu/core/lesson";
+import { allSentences, sentenceRegister, TEMPLATES, type CourseView, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { AnswerSubmitted, BundleScenario, BundleSentence, EvalGate, ExplanationOutput, JudgeOutput, JudgeVerdict, OutcomeRevised, RoleplayOutput, RoleplayTurn, TaggedText } from "@nabu/schema";
 import { createHash } from "node:crypto";
@@ -72,15 +72,18 @@ const failure = (c: Context, error: GatewayError) => {
   }
 };
 
-/** What the judge prompt is filled with (§13.2): the course's own sentence and accept set, the answer as data. */
-export const judgeVars = (sentence: BundleSentence, orthography: string, supportKey: string, accept: string, raw: string): Record<string, string> => {
+/**
+ * What the judge prompt is filled with (§13.2): the course's own sentence and accept set, the answer
+ * as data. The register is the sentence's where it tags one, else its course's (ADR 0147).
+ */
+export const judgeVars = (course: CourseView, sentence: BundleSentence, orthography: string, supportKey: string, accept: string, raw: string): Record<string, string> => {
   const support = sentence.translations[supportKey];
   return {
     from: languageName(support?.text.lang ?? supportKey),
     to: languageName(sentence.forms[orthography]?.text.lang ?? orthography),
     prompt: text(support?.text),
     accept: acceptForJudge(accept).join("\n"),
-    register: sentence.register ?? "everyday",
+    register: sentenceRegister(sentence) ?? course.registers?.[0] ?? "everyday",
     answer: asData(raw),
   };
 };
@@ -134,7 +137,7 @@ export const aiRoutes = (app: Hono<Env>, deps: AiDeps): void => {
       course: e.course,
       orthography: e.orthography,
       cacheKey: [e.course, e.orthography, e.exercise.template, sentence.id, normalizedAnswer(courses, e.course, e.orthography, raw)],
-      vars: judgeVars(sentence, e.orthography, e.support, accept, raw),
+      vars: judgeVars(course, sentence, e.orthography, e.support, accept, raw),
     });
     if (!result.ok) return failure(c, result.error);
     const { output, provenance } = result.value;
@@ -146,7 +149,7 @@ export const aiRoutes = (app: Hono<Env>, deps: AiDeps): void => {
     const revision: OutcomeRevised = {
       id: uuidv7(at),
       type: "outcome_revised",
-      schema: 1,
+      schema: 2,
       device: "server",
       user,
       course: e.course,

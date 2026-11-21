@@ -48,6 +48,8 @@ export interface CourseView {
   readonly placement?: PlacementPolicy | undefined;
   /** The course asks words by their parts (ADR 0152): `parts-whole` and `whole-parts` are planned. */
   readonly wordParts?: true | undefined;
+  /** The registers the course's sentences are in where they say nothing else (ADR 0147): apc is colloquial throughout. */
+  readonly registers?: readonly string[] | undefined;
 }
 
 /** Bundle files that stay URLs (pictures, audio); every other file is JSON the course needs. */
@@ -75,7 +77,15 @@ export interface CourseFiles {
   readonly numberingSystems: Readonly<Record<string, string>>;
 }
 
+/**
+ * The bundle format this build reads (the manifest's `formatVersion`): 2, lexemes where a bundle
+ * had KCs (ADR 0145). A bundle of another format is refused whole: one a device kept from before
+ * the lexical model is fetched again, and one from a later build asks for the app to be updated.
+ */
+export const BUNDLE_FORMAT = 2;
+
 export type CourseError =
+  | { readonly code: "format"; readonly version: unknown }
   | { readonly code: "missing-file"; readonly path: string }
   | { readonly code: "unknown-orthography"; readonly orthography: string }
   | { readonly code: "profile"; readonly orthography: string; readonly detail: string };
@@ -148,6 +158,8 @@ export const audioFor = (
 
 export const assembleCourse = (bundle: CourseFiles, orthography?: string): Result<CourseView, CourseError> => {
   const { manifest, files } = bundle;
+  const version: unknown = manifest.formatVersion;
+  if (version !== BUNDLE_FORMAT) return err({ code: "format", version });
   const chosen: string = orthography ?? manifest.orthographies[0] ?? "";
   if (!(manifest.orthographies as readonly string[]).includes(chosen)) return err({ code: "unknown-orthography", orthography: chosen });
   const read = (role: string): unknown[] => manifest.files.filter((f) => f.role === role).map((f) => files.get(f.path));
@@ -181,6 +193,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
     ...(manifest.audioQuality === undefined ? {} : { audioQuality: manifest.audioQuality }),
     ...(manifest.placement === undefined ? {} : { placement: manifest.placement }),
     ...(manifest.wordParts === true ? { wordParts: true as const } : {}),
+    ...(manifest.registers === undefined ? {} : { registers: manifest.registers }),
   });
 };
 

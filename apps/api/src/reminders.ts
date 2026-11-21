@@ -23,6 +23,7 @@ import type { LearnerEvent } from "@nabu/schema";
 import { and, desc, eq, inArray } from "drizzle-orm";
 import type { Db } from "./db/index.ts";
 import { events, nativePushTokens, profiles, pushLog, pushSubscriptions, reminderSettings } from "./db/schema.ts";
+import { SCHEMA } from "./log.ts";
 import type { NativeSenders, Platform } from "./nativepush.ts";
 import type { Subscription } from "./webpush.ts";
 
@@ -233,7 +234,7 @@ export const sendReminders = async (db: Db, now: number, { send, native = {}, ga
   const users = [...new Set([...subs.map((s) => s.userId), ...tokens.map((t) => t.userId)])];
   let sent = 0;
   for (const user of users) {
-    const log = (await db.select({ payload: events.payload }).from(events).where(eq(events.userId, user))).map((r) => r.payload as LearnerEvent);
+    const log = (await db.select({ payload: events.payload }).from(events).where(and(eq(events.userId, user), eq(events.schema, SCHEMA)))).map((r) => r.payload as LearnerEvent);
     const history = (
       await db.select({ template: pushLog.template, localDate: pushLog.localDate, sentAt: pushLog.sentAt }).from(pushLog).where(eq(pushLog.userId, user)).orderBy(desc(pushLog.localDate)).limit(30)
     ).map((h) => ({ template: h.template as Template, localDate: h.localDate, sentAt: h.sentAt.toISOString() }));

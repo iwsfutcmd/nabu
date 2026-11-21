@@ -10,7 +10,7 @@
  * Pages publishes a copy), not from the learners' bundles, which leave held-back clips out.
  */
 import { correctable, correctablesByUnit, signedOff, type Correctable } from "@nabu/core/corrections";
-import type { AudioRef, CourseView } from "@nabu/core/lesson";
+import { lexemesOfUnit, type AudioRef, type CourseView } from "@nabu/core/lesson";
 import { surfaceOf, textOfSurface } from "@nabu/core/text";
 import type { AudioClip, AudioVerdict, AudioVerdicts, BundleClip, SchemeId, TaggedText } from "@nabu/schema";
 import { T, useTranslator } from "@nabu/ui";
@@ -83,7 +83,8 @@ const rowsOf = (course: CourseView, clips: readonly AudioClip[]): readonly Row[]
     rows.push({ key, kind, unit, target, normal: found.normal, slow: found.slow, held: course.audio[key] === undefined });
   };
   correctablesByUnit(course).forEach(({ unit, sentences, stories }, u) => {
-    for (const kc of unit.kcs) take(kc.id, "word", u, correctable(course, kc.id));
+    for (const lexeme of lexemesOfUnit(course, unit)) take(lexeme.id, "word", u, correctable(course, lexeme.id));
+    for (const letter of unit.graphemes ?? []) take(letter.id, "word", u, correctable(course, letter.id));
     for (const s of sentences) take(s.item, "sentence", u, s);
     for (const { lines } of stories) for (const line of lines) take(`${line.item}#${String(line.step)}`, "line", u, line);
   });

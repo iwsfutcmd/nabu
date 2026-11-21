@@ -7,7 +7,7 @@
  * only a salted hash of their id, the subject (ADR 0045), so it is found through that.
  */
 import type { GameConfig, GameState } from "@nabu/core/game";
-import type { LearnerEvent } from "@nabu/schema";
+import type { LearnerEvent, LearnerEventV1 } from "@nabu/schema";
 import { and, count, eq, inArray } from "drizzle-orm";
 import type { Db } from "./db/index.ts";
 import {
@@ -25,7 +25,7 @@ import {
   sentenceCorrections,
   users,
 } from "./db/schema.ts";
-import { gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
+import { everyEvent, gameStateOf, stateOf } from "./log.ts";
 import { getProfile } from "./profiles.ts";
 import { chosenMinute, timeOf } from "./reminders.ts";
 import { reviewerExport } from "./review.ts";
@@ -34,8 +34,8 @@ export interface AccountExport {
   readonly exportedAt: string;
   readonly user: { readonly id: string; readonly email: string; readonly createdAt: string };
   readonly profile: Awaited<ReturnType<typeof getProfile>>;
-  /** The whole log, in the order the server received it. */
-  readonly events: readonly LearnerEvent[];
+  /** The whole log, in the order the server received it: every event it holds, one of the old shape that it could not rewrite too. */
+  readonly events: readonly (LearnerEvent | LearnerEventV1)[];
   /** Each course's replayed projection, as GET /v1/state gives it. */
   readonly courses: readonly ({ readonly course: string } & Awaited<ReturnType<typeof stateOf>>)[];
   readonly game: GameState;
@@ -55,21 +55,10 @@ export interface AccountExport {
   readonly review: Awaited<ReturnType<typeof reviewerExport>>;
 }
 
-const allEvents = async (db: Db, user: string): Promise<LearnerEvent[]> => {
-  const out: LearnerEvent[] = [];
-  let cursor = 0;
-  for (;;) {
-    const page = await since(db, user, cursor, MAX_BATCH);
-    out.push(...page.events);
-    cursor = page.cursor;
-    if (!page.more) return out;
-  }
-};
-
 export const exportOf = async (db: Db, user: string, subject: string | undefined, game: GameConfig, now: Date): Promise<AccountExport | undefined> => {
   const [account] = await db.select({ id: users.id, email: users.email, createdAt: users.createdAt }).from(users).where(eq(users.id, user));
   if (account === undefined) return undefined;
-  const log = await allEvents(db, user);
+  const log = await everyEvent(db, user);
   // Every course the log names; the account's own events (the weekly goal) name none.
   const courseIds = [...new Set(log.flatMap((e) => (e.type === "goal_set" ? [] : [e.course])))].sort();
   const courses = await Promise.all(courseIds.map(async (course) => ({ course, ...(await stateOf(db, user, course)) })));
