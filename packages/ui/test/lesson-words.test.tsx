@@ -55,6 +55,25 @@ describe("tap-for-gloss in a lesson (P1)", () => {
     expect(tappable(play(course, ex, stateOf(course, ex, { tag: "choice", index: ex.answer })), 'data-ink-container="prompt"')).toBeGreaterThan(0);
   });
 
+  it("taps a tile once answered: placed or not, a tile of the language learned opens its gloss", () => {
+    const ex = card(course, "translate-tap.l1-l2");
+    if (ex.template !== "translate-tap.l1-l2") throw new Error("not a word bank");
+    /** The word bank's tiles and the answer row's, as buttons: disabled, and looked up (aria-pressed). */
+    const tiles = (html: string): readonly string[] => [...html.matchAll(/<button[^>]*data-(?:placed-)?tile="\d+"[^>]*>/gu)].map((m) => m[0]);
+    const before = tiles(play(course, ex, stateOf(course, ex)));
+    expect(before.length).toBe(ex.tiles.length);
+    expect(before.some((b) => b.includes("aria-pressed"))).toBe(false);
+    // Answered: no tile is disabled, and each says whether its word is the one looked up.
+    const answered = tiles(play(course, ex, stateOf(course, ex, { tag: "tiles", order: ex.solution })));
+    expect(answered.length).toBe(ex.tiles.length);
+    expect(answered.every((b) => !b.includes("disabled") && b.includes('aria-pressed="false"'))).toBe(true);
+    // Tiles in the learner's own language (into English) stay put once answered.
+    const back = card(course, "translate-tap.l2-l1");
+    if (back.template !== "translate-tap.l2-l1") throw new Error("not a word bank");
+    const english = tiles(play(course, back, stateOf(course, back, { tag: "tiles", order: back.solution })));
+    expect(english.every((b) => b.includes("disabled") && !b.includes("aria-pressed"))).toBe(true);
+  });
+
   it("taps a sentence to say from the start: its translation is on the card", () => {
     const ex = card(course, "speak.tier-0");
     expect(tappable(play(course, ex, stateOf(course, ex)), 'data-ink-container="prompt"')).toBeGreaterThan(0);
