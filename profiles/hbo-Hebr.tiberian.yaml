@@ -36,23 +36,33 @@ match:
     # (pl.), -nû we. אתה/את stay one member: apart, a plene 2ms perfect (קראתה) would read as the pronoun.
     contrasts:
       - { id: pronoun, note: contrast-pronoun, members: [[אני, אנכי], [אתה, את], הוא, היא, [אנחנו, נחנו], אתם, [הם, המה], [הן, הנה]] }
-      - { id: person, note: contrast-person, forms: [form:qatal, form:weqatal], members: ["", ה, [ת, תה], תי, ו, תם, תן, נו] }
+      # The forms it is asked of: the perfect, and the perfect after vav (weqatal, Tense Fut).
+      - { id: person, note: contrast-person,
+          forms: [{ feats: { Aspect: Perf, VerbForm: Fin } }, { feats: { Tense: Fut, VerbForm: Fin } }],
+          members: ["", ה, [ת, תה], תי, ו, תם, תן, נו] }
       - { id: suffix, note: contrast-possessive, members: [י, [ך, כה], [ו, הו], ה, נו, כם, [הם, ם]] }
       # REVIEW (ADR 0084): a verb's person prefix (Joüon-Muraoka § 44, P2), on verbs only (a noun's first letter stays
       # a typo): א I, ת you/she, י he/they, נ we, after ו (wayyiqtol, weqatal). No prefix (the perfect, imperative,
       # infinitive) and the ה of hiphil and hithpael perfects and imperatives are members too: ילך for נלך, יגיד for
       # הגיד, שמר for ישמר change the sentence. Participles are out (their מ/נ is the stem's).
       - { id: verb-prefix, note: contrast-prefix, at: start, after: [ו],
-          forms: [form:yiqtol, form:wayyiqtol, form:juss, form:coh, form:qatal, form:weqatal, form:impv, form:inf],
+          forms: [{ feats: { VerbForm: "Fin,Inf,InfAbs" } }],
           members: [א, ת, י, נ, "", ה] }
       # REVIEW (ADR 0084): the prefix conjugation's endings (§ 44d-f): none, -î (you, to a woman), -û (they, you
       # pl.), -nâ (they f., you f. pl.), with paragogic -ûn/-în and -n for -nâ as the same member. The cohortative and
       # long imperative -â is no member: it changes no person.
-      - { id: verb-ending, note: contrast-person, forms: [form:yiqtol, form:wayyiqtol, form:juss, form:coh, form:impv],
+      # The forms it is asked of: the imperfect with the jussive and the cohortative (Aspect Imp), the
+      # wayyiqtol (Tense Past) and the imperative.
+      - { id: verb-ending, note: contrast-person,
+          forms: [{ feats: { Aspect: Imp, VerbForm: Fin } }, { feats: { Tense: Past, VerbForm: Fin } }, { feats: { Mood: Imp } }],
           members: ["", [י, ין], [ו, ון], [נה, ן]] }
       # REVIEW (ADR 0084): agreement and number (§ 89-90): none, the feminine -â/-eṯ (one member: a participle takes
       # either), the plurals -îm and -ôṯ, on words whose sense the course pins as feminine, participle or plural.
-      - { id: agreement, note: contrast-ending, forms: [form:f, form:ptc, form:pl], members: ["", [ה, ת], ים, ות] }
+      # The forms it is asked of: a feminine or a plural of a noun, an adjective, a pronoun or a demonstrative
+      # (never a verb's feminine or plural, whose endings are the person's), and a participle.
+      - { id: agreement, note: contrast-ending,
+          forms: [{ pos: [NOUN, PROPN, ADJ, PRON, DET, NUM], feats: { Gender: Fem } }, { pos: [NOUN, PROPN, ADJ, PRON, DET, NUM], feats: { Number: Plur } }, { feats: { VerbForm: Part } }],
+          members: ["", [ה, ת], ים, ות] }
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true
 input:

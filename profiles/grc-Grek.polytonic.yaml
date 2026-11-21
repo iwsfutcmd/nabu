@@ -41,7 +41,10 @@ match:
     # pins as a verb form; case and number on nouns, adjectives, pronouns and the article (λόγος, λόγον, λόγου,
     # λόγοι), on words it inflects. Pronouns a letter apart (ἡμεῖς, ὑμεῖς) are another word.
     contrasts:
-      - { id: person, note: contrast-person, forms: [form:pres, form:impf, form:aor, form:fut, form:impv],
+      # The forms it is asked of: a finite verb in the present, a past or the future, and the imperative. REVIEW:
+      # the perfect is left out, as it was.
+      - { id: person, note: contrast-person,
+          forms: [{ feats: { VerbForm: Fin, Tense: "Pres,Past,Fut" } }, { feats: { Mood: Imp } }],
           members: [ω, εις, ει, ομεν, ετε, [ουσι, ουσιν], ον, ες, [ε, εν], α, ας, αμεν, ατε, αν, ομαι, εται, ομεθα, εσθε, ονται, ομην, ου, ετο, οντο, σο] }
       - { id: pronoun, note: contrast-pronoun, members: [ἡμεῖς, ὑμεῖς, ἡμῶν, ὑμῶν, ἡμῖν, ὑμῖν, ἡμᾶς, ὑμᾶς, [μου, ἐμοῦ], [σου, σοῦ], [μοι, ἐμοί], [σοι, σοί], [με, ἐμέ], [σε, σέ]] }
       - { id: case, note: contrast-ending, inflected: true,

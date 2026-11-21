@@ -76,7 +76,7 @@ def migrate(course_dir: Path, plan_path: Path | None = None) -> Migration:
     next_course = writer.course()
     if any(path is None for path, _ in next_units):
         next_course["units"] = [path or unit for path, unit in next_units]
-    table, alias_stats = aliases_mod.build(conv)
+    table, alias_stats = aliases_mod.build(conv, [unit for _, unit in next_units])
     assignment, audio_stats, audio_findings, audio_errors = audio_mod.build(conv, table)
     audio_mod.spoken(conv, table, next_course)
     findings = [
@@ -241,7 +241,7 @@ def _language(language: Json) -> Json:
     for key, value in language.items():
         if key in ("defaults", "classes", "labels", "rules"):
             out[key] = [_flow(v) for v in value]
-        elif key in ("dimensions", "lexical", "citation", "features"):
+        elif key in ("dimensions", "lexical", "citation", "bare", "features"):
             out[key] = {k: _flow(v) for k, v in value.items()}
         elif isinstance(value, (dict, list)):
             out[key] = _flow(value)

@@ -4,7 +4,7 @@
  * matcher uses. Data is passed in, never imported or fetched, so core stays
  * pure; the Node loader (core-cli) and the client both resolve it.
  */
-import type { DataTable, KeyboardLayout, OrthographyProfile, Policy } from "@nabu/schema";
+import type { DataTable, FormCondition, KeyboardLayout, OrthographyProfile, Policy } from "@nabu/schema";
 import { compileNormalizer, literalMap, type StepFn } from "../normalize/steps.ts";
 import { err, ok, type Result } from "../result.ts";
 import { readingScheme } from "./schemes.ts";
@@ -98,10 +98,10 @@ export interface CompiledContrast {
   /** Only on words the grader is told are inflected (GradeOptions.inflected). */
   readonly inflected: boolean;
   /**
-   * Only on words the course pins as one of these forms, or a form that begins so
-   * (GradeOptions.forms): narrower than `inflected` (ADR 0084).
+   * Only on words a token of the course writes in one of these forms (GradeOptions.forms):
+   * narrower than `inflected` (ADR 0084).
    */
-  readonly forms?: readonly string[] | undefined;
+  readonly forms?: readonly FormCondition[] | undefined;
 }
 
 export type ProfileError =

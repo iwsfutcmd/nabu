@@ -1974,6 +1974,8 @@ def _bundle_lexicon(
         lexemes.append(k)
 
     out: dict[str, Any] = {"language": lang.code, "lexemes": lexemes}
+    if lang.declared.bare:
+        out["bare"] = {str(pos): lx.sorted_feats(cell) for pos, cell in lang.declared.bare.items()}
     labels: list[dict[str, Any]] = []
     for label in lang.declared.labels or []:
         if not label.gloss:

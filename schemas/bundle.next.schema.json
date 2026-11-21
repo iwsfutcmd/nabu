@@ -106,6 +106,12 @@
       "properties": {
         "language": { "$ref": "common.schema.json#/$defs/LanguageCode" },
         "lexemes": { "type": "array", "items": { "$ref": "#/$defs/BundleLexeme" } },
+        "bare": {
+          "description": "For each category, the feature values of its form with nothing added (the language's `bare`): grading counts a lexeme the course writes in another form as one it inflects (ADR 0081).",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+          "additionalProperties": { "$ref": "common.schema.json#/$defs/UdFeatures" }
+        },
         "labels": {
           "description": "The names of feature values, alone or several together (the language's `labels`). The most specific label whose values a form has names it.",
           "type": "array",

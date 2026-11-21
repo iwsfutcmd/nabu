@@ -52,6 +52,12 @@
       "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
       "additionalProperties": { "$ref": "common.schema.json#/$defs/UdFeatures" }
     },
+    "bare": {
+      "description": "For each category, the feature values of its form with nothing added: masculine singular for a noun or an adjective, a verb's bare stem (apc: the command to a man). A lexeme the course writes in another form is one it inflects, which a profile's contrast sets marked `inflected` ask (ADR 0081: a slip that trades one agreement ending for another is no typo, on a word that takes them). Where it is the cell an entry is spelled in, it is said here all the same.",
+      "type": "object",
+      "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+      "additionalProperties": { "$ref": "common.schema.json#/$defs/UdFeatures" }
+    },
     "features": {
       "description": "Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none.",
       "type": "object",

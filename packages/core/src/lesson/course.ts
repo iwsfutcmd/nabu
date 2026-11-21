@@ -3,13 +3,14 @@
  * for one taught orthography and one support language. Assembling it is pure;
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
-import type { BundleAudio, BundleAudioItem, BundleClip, BundleFile, BundleKc, BundleManifest, BundleSentence, BundleUnit, CourseNames, DataTable, Facet, KeyboardLayout, OrthographyProfile, PlacementPolicy, TaggedText } from "@nabu/schema";
-import { keyboardDistance } from "../match/compare.ts";
+import type { BundleAudio, BundleAudioItem, BundleClip, BundleFile, BundleGrapheme, BundleLabel, BundleLexeme, BundleLexicon, BundleManifest, BundleRule, BundleSentence, BundleUnit, CourseNames, DataTable, Facet, KeyboardLayout, OrthographyProfile, PartId, PlacementPolicy, TaggedText, Token, UdFeatures } from "@nabu/schema";
+import { keyboardDistance, type WordForm } from "../match/compare.ts";
 import { compileAcceptSet, grade, lexiconKey, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
 import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
+import { baseOf, effectiveFeats, kindOf, nodeOf } from "./lexemes.ts";
 
 export interface CourseView {
   readonly id: string;
@@ -18,13 +19,19 @@ export interface CourseView {
   /** What the app calls the course and its orthographies, by language (ADR 0109). */
   readonly names?: CourseNames | undefined;
   readonly units: readonly BundleUnit[];
+  /**
+   * The lexicon of the course's language, as far as the course uses it (ADR 0145): its lexemes in
+   * one flat list, what the language calls its forms, and its rules. No entry names a unit: the
+   * units' nodes point at it.
+   */
+  readonly lexicon: BundleLexicon;
   /** The orthography the learner chose (one of the course's). */
   readonly orthography: string;
   /** The support orthography (en-Latn/standard) and its translation key (en). */
   readonly support: string;
   readonly supportKey: string;
   readonly profiles: ReadonlyMap<string, CompiledProfile>;
-  /** Playable clips by sentence or KC id (gameplan §10); empty for a course without audio. */
+  /** Playable clips by sentence, lexeme or letter id (gameplan §10); empty for a course without audio. */
   readonly audio: Readonly<Record<string, BundleAudioItem>>;
   /**
    * The facets the course practises (ADR 0071), where it names them; undefined: all of them.
@@ -80,9 +87,14 @@ const supportKeyOf = (orthography: string): string => orthography.split("-")[0] 
 const wordTokens = (text: TaggedText): readonly number[] =>
   text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
 
-/** Each audio item's text in every orthography: sentences, story lines (`story#step`) and KC forms. */
-const itemTexts = (units: readonly BundleUnit[]): ReadonlyMap<string, Readonly<Record<string, TaggedText>>> => {
+/** Each audio item's text in every orthography: sentences, story lines (`story#step`), and lexemes and letters as they are cited. */
+const itemTexts = (units: readonly BundleUnit[], lexicon: BundleLexicon): ReadonlyMap<string, Readonly<Record<string, TaggedText>>> => {
   const out = new Map<string, Readonly<Record<string, TaggedText>>>();
+  const cited = (entry: BundleLexeme | BundleGrapheme): void => {
+    const forms = Object.entries(entry.forms ?? {}).flatMap(([o, fs]) => (fs[0] === undefined ? [] : [[o, fs[0]] as const]));
+    out.set(entry.id, Object.fromEntries(forms));
+  };
+  for (const lexeme of lexicon.lexemes) cited(lexeme);
   for (const unit of units) {
     for (const s of unit.sentences) out.set(s.id, Object.fromEntries(Object.entries(s.forms).map(([o, f]) => [o, f.text])));
     for (const story of unit.stories ?? []) {
@@ -90,10 +102,7 @@ const itemTexts = (units: readonly BundleUnit[]): ReadonlyMap<string, Readonly<R
         if ("line" in step && step.line !== undefined) out.set(`${story.id}#${String(i)}`, step.line.forms);
       });
     }
-    for (const kc of unit.kcs) {
-      const forms = Object.entries(kc.forms ?? {}).flatMap(([o, fs]) => (fs[0] === undefined ? [] : [[o, fs[0]] as const]));
-      out.set(kc.id, Object.fromEntries(forms));
-    }
+    for (const letter of unit.graphemes ?? []) cited(letter);
   }
   return out;
 };
@@ -125,9 +134,10 @@ const retime = (clip: BundleClip, texts: Readonly<Record<string, TaggedText>> | 
 export const audioFor = (
   audio: Readonly<Record<string, BundleAudioItem>>,
   units: readonly BundleUnit[],
+  lexicon: BundleLexicon,
   orthography: string,
 ): Readonly<Record<string, BundleAudioItem>> => {
-  const texts = itemTexts(units);
+  const texts = itemTexts(units, lexicon);
   return Object.fromEntries(
     Object.entries(audio).map(([item, a]) => {
       const t = texts.get(item);
@@ -154,12 +164,14 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
   }
   const support = manifest.support[0] as string;
   const units = manifest.units.map((u) => files.get(u.file) as BundleUnit);
-  const audio = audioFor((read("audio-index")[0] as BundleAudio | undefined)?.items ?? {}, units, chosen);
+  const lexicon = (read("lexicon")[0] as BundleLexicon | undefined) ?? { language: manifest.lexicon, lexemes: [] };
+  const audio = audioFor((read("audio-index")[0] as BundleAudio | undefined)?.items ?? {}, units, lexicon, chosen);
   return ok({
     id: manifest.course,
     target: manifest.target,
     ...(manifest.names === undefined ? {} : { names: manifest.names }),
     units,
+    lexicon,
     orthography: chosen,
     support,
     supportKey: supportKeyOf(support),
@@ -179,7 +191,6 @@ export const profileOf = (course: CourseView, orthography: string): CompiledProf
 };
 
 const sentenceLists = new WeakMap<CourseView, readonly BundleSentence[]>();
-const kcLists = new WeakMap<CourseView, readonly BundleKc[]>();
 
 /** Every sentence of the course, in course order (built once per course: planning asks per exercise). */
 export const allSentences = (course: CourseView): readonly BundleSentence[] => {
@@ -191,14 +202,146 @@ export const allSentences = (course: CourseView): readonly BundleSentence[] => {
   return list;
 };
 
-/** Every KC of the course, in course order (built once per course). */
-export const allKcs = (course: CourseView): readonly BundleKc[] => {
-  let list = kcLists.get(course);
+/** Every lexeme the course uses, as its lexicon lists them (sorted by id: a lexicon has no course order). */
+export const allLexemes = (course: CourseView): readonly BundleLexeme[] => course.lexicon.lexemes;
+
+const lexemeMaps = new WeakMap<BundleLexicon, ReadonlyMap<string, BundleLexeme>>();
+
+/** The course's lexemes by id (built once per lexicon). */
+export const lexemesById = (course: CourseView): ReadonlyMap<string, BundleLexeme> => {
+  let map = lexemeMaps.get(course.lexicon);
+  if (map === undefined) {
+    map = new Map(course.lexicon.lexemes.map((l) => [l.id as string, l]));
+    lexemeMaps.set(course.lexicon, map);
+  }
+  return map;
+};
+
+/** A lexeme of the course by its id (lexeme:casa), or by a part of it (lexeme:mano|Gender). */
+export const lexemeOf = (course: CourseView, part: string): BundleLexeme | undefined => lexemesById(course).get(nodeOf(part));
+
+const graphemeMaps = new WeakMap<readonly BundleUnit[], ReadonlyMap<string, BundleGrapheme>>();
+
+/** The letters the course's script tracks teach, by id, in course order. */
+export const graphemesById = (course: CourseView): ReadonlyMap<string, BundleGrapheme> => {
+  let map = graphemeMaps.get(course.units);
+  if (map === undefined) {
+    map = new Map(course.units.flatMap((u) => (u.graphemes ?? []).map((g) => [g.id, g] as const)));
+    graphemeMaps.set(course.units, map);
+  }
+  return map;
+};
+
+/** The lexeme or letter a card is about, by its id: what has spellings and a gloss of its own. */
+export const entryOf = (course: CourseView, id: string): BundleLexeme | BundleGrapheme | undefined =>
+  kindOf(id) === "grapheme" ? graphemesById(course).get(id) : lexemeOf(course, id);
+
+const orderMaps = new WeakMap<readonly BundleUnit[], ReadonlyMap<string, number>>();
+
+/**
+ * Where the course first teaches each lexeme, feature value, rule and letter: the index, among all
+ * its nodes in course order, of the first node that introduces it. The lexicon is flat (it is
+ * sorted by id), so anything that follows the course's order reads it here.
+ */
+export const introducedAt = (course: CourseView): ReadonlyMap<string, number> => {
+  let map = orderMaps.get(course.units);
+  if (map === undefined) {
+    const built = new Map<string, number>();
+    let position = 0;
+    for (const unit of course.units) {
+      for (const node of unit.nodes) {
+        for (const id of node.introduces) if (!built.has(id)) built.set(id, position);
+        position += 1;
+      }
+    }
+    map = built;
+    orderMaps.set(course.units, map);
+  }
+  return map;
+};
+
+const unitMaps = new WeakMap<readonly BundleUnit[], ReadonlyMap<string, number>>();
+
+/** The index of the unit whose node first introduces each lexeme, feature value, rule and letter. */
+export const unitIndexOf = (course: CourseView): ReadonlyMap<string, number> => {
+  let map = unitMaps.get(course.units);
+  if (map === undefined) {
+    const built = new Map<string, number>();
+    course.units.forEach((unit, i) => {
+      for (const node of unit.nodes) for (const id of node.introduces) if (!built.has(id)) built.set(id, i);
+    });
+    map = built;
+    unitMaps.set(course.units, map);
+  }
+  return map;
+};
+
+const lexemeOrders = new WeakMap<readonly BundleUnit[], WeakMap<BundleLexicon, readonly BundleLexeme[]>>();
+
+/**
+ * The course's lexemes in the order it teaches them (each at the first node that introduces it;
+ * those no node introduces after them, by id): what picks among lexemes in course order reads.
+ */
+export const lexemesInOrder = (course: CourseView): readonly BundleLexeme[] => {
+  let byLexicon = lexemeOrders.get(course.units);
+  if (byLexicon === undefined) {
+    byLexicon = new WeakMap();
+    lexemeOrders.set(course.units, byLexicon);
+  }
+  let list = byLexicon.get(course.lexicon);
   if (list === undefined) {
-    list = course.units.flatMap((u) => u.kcs);
-    kcLists.set(course, list);
+    const taught: BundleLexeme[] = [];
+    const seen = new Set<string>();
+    for (const unit of course.units) {
+      for (const node of unit.nodes) {
+        for (const id of node.introduces) {
+          const lexeme = lexemesById(course).get(id);
+          if (lexeme !== undefined && !seen.has(id)) {
+            seen.add(id);
+            taught.push(lexeme);
+          }
+        }
+      }
+    }
+    list = [...taught, ...course.lexicon.lexemes.filter((l) => !seen.has(l.id))];
+    byLexicon.set(course.lexicon, list);
   }
   return list;
+};
+
+const sameFeats = (a: UdFeatures, b: UdFeatures): boolean => {
+  const names = Object.keys(a);
+  return names.length === Object.keys(b).length && names.every((name) => a[name] === b[name]);
+};
+
+/**
+ * What the language calls a set of feature values (ADR 0150: "present tense: I"), for a lexeme of
+ * a part of speech: the label that names exactly these values, one for that part of speech before
+ * one for any.
+ */
+export const labelOf = (course: CourseView, feats: UdFeatures, pos?: string | undefined): BundleLabel | undefined => {
+  const named = (course.lexicon.labels ?? []).filter((l) => sameFeats(l.feats, feats));
+  return named.find((l) => l.pos !== undefined && l.pos === pos) ?? named.find((l) => l.pos === undefined);
+};
+
+/** A rule the language names (rule:copula-drop), with what the course says of it. */
+export const ruleOf = (course: CourseView, id: string): BundleRule | undefined => (course.lexicon.rules ?? []).find((r) => r.id === id);
+
+/** What a part is called in the support language, where the course says: a lexeme's or a rule's gloss, a feature value's label. */
+export const glossOfPart = (course: CourseView, part: PartId): TaggedText | undefined => {
+  const node = nodeOf(part);
+  switch (kindOf(node)) {
+    case "lexeme":
+      return lexemeOf(course, node)?.gloss?.[course.supportKey];
+    case "grapheme":
+      return graphemesById(course).get(node)?.gloss?.[course.supportKey];
+    case "rule":
+      return ruleOf(course, node)?.gloss?.[course.supportKey];
+    case "feature": {
+      const [name, value] = node.slice("feature:".length).split("=");
+      return name === undefined || value === undefined ? undefined : labelOf(course, { [name]: value })?.gloss[course.supportKey];
+    }
+  }
 };
 
 /** Grades answers against accept sets with the course's compiled profiles (§8.3). */
@@ -207,13 +350,14 @@ export interface Grader {
 }
 
 /**
- * Every text the course writes in an orthography: its glossary forms, its
- * sentences, and its story lines. Since KC forms are lemmas (ADR 0061), the
- * inflected words a learner types (talabasan, kitobing, وأنا) are only found in
- * the sentences and stories that use them.
+ * Every text the course writes in an orthography: its lexemes and letters as
+ * they are cited, its sentences, and its story lines. Since a lexeme is cited by
+ * its lemma (ADR 0061), the inflected words a learner types (talabasan, kitobing,
+ * وأنا) are only found in the sentences and stories that use them.
  */
 const textsOf = function* (course: CourseView, orthography: string): Generator<TaggedText> {
-  for (const kc of allKcs(course)) yield* kc.forms?.[orthography] ?? [];
+  for (const lexeme of allLexemes(course)) yield* lexeme.forms?.[orthography] ?? [];
+  for (const letter of graphemesById(course).values()) yield* letter.forms?.[orthography] ?? [];
   for (const s of allSentences(course)) {
     const form = s.forms[orthography];
     if (form !== undefined) yield form.text;
@@ -228,21 +372,37 @@ const textsOf = function* (course: CourseView, orthography: string): Generator<T
   }
 };
 
-/** What grading looks a typed word up in, for one orthography of a course. */
-export interface Lexicon {
+/** What grading looks a typed word up in, for one orthography of a course: everything the course spells there. */
+export interface Spellings {
   /** Every word the course writes in it, as `lexiconKey` has it: a typo landing on one is WRONG_WORD (erratum 46). */
   readonly words: ReadonlySet<string>;
   /**
-   * The words the course inflects (ADR 0081): every word of a sense some token pins a form on, so a
-   * masculine adjective counts with its feminine, a bare past verb with its b- present.
+   * The words the course inflects (ADR 0081): every token of a lexeme that some token writes
+   * outside its bare cell (`marked`), so a masculine adjective counts with its feminine, a bare
+   * past verb with its b- present.
    */
   readonly inflected: ReadonlySet<string>;
   /**
-   * Each inflected word's own forms, the forms its tokens are pinned as, for contrasts limited to
-   * some (ADR 0084): a verb's infinitive is no perfect, whatever else its sense is pinned as.
+   * The forms each word stands in, those of the tokens spelled so, for contrasts limited to some
+   * (ADR 0084): a verb's infinitive is no perfect, whatever else its lexeme is written as.
    */
-  readonly forms: ReadonlyMap<string, readonly string[]>;
+  readonly forms: ReadonlyMap<string, readonly WordForm[]>;
 }
+
+/**
+ * Whether a token shows a form of its lexeme: it stands outside the cell its part of speech is
+ * cited in (the lexicon's `bare`: a noun's singular, an adjective's masculine singular), by a value
+ * chosen on it or one its lexeme has of itself. Where the language names no such cell for the part
+ * of speech, any value chosen on the token is a form.
+ */
+export const marked = (lexicon: BundleLexicon, token: Token, lexeme: BundleLexeme | undefined): boolean => {
+  const base = baseOf(token);
+  if (base === undefined) return false;
+  const chosen = base.feats ?? {};
+  const cell = lexeme?.pos === undefined ? undefined : lexicon.bare?.[lexeme.pos];
+  if (cell === undefined) return Object.keys(chosen).length > 0;
+  return Object.entries(effectiveFeats(token, lexeme)).some(([name, value]) => (name in cell || name in chosen) && cell[name] !== value);
+};
 
 interface OwnWord {
   readonly key: string;
@@ -250,7 +410,13 @@ interface OwnWord {
   readonly inflected: boolean;
 }
 
-const buildLexicon = (course: CourseView, orthography: string): Lexicon => {
+const formId = (form: WordForm): string =>
+  `${form.pos ?? ""}|${Object.keys(form.feats)
+    .sort()
+    .map((name) => `${name}=${form.feats[name] ?? ""}`)
+    .join(";")}`;
+
+const buildSpellings = (course: CourseView, orthography: string): Spellings => {
   const profile = profileOf(course, orthography);
   const texts = [...textsOf(course, orthography)];
   // Words recur across the course's texts and accept sets: each is keyed and split once.
@@ -285,20 +451,24 @@ const buildLexicon = (course: CourseView, orthography: string): Lexicon => {
   const words = new Set<string>();
   for (const text of texts) for (const unit of profile.units(profile.normalize(surfaceOf(text)))) words.add(keyOf(unit));
 
-  const tokens = texts.flatMap((text) => text.tokens.filter((t) => t.kind === "word" && t.sense !== undefined));
-  const senses = new Set(tokens.filter((t) => t.form !== undefined).map((t) => t.sense));
+  const lexemes = lexemesById(course);
+  const entryOfToken = (t: Token): BundleLexeme | undefined => lexemes.get(baseOf(t)?.lexeme ?? "");
+  const tokens = texts.flatMap((text) => text.tokens.filter((t) => t.kind === "word" && baseOf(t) !== undefined));
+  // The lexemes the course inflects: those a token writes outside the cell they are cited in.
+  const inflecting = new Set(tokens.filter((t) => marked(course.lexicon, t, entryOfToken(t))).map((t) => baseOf(t)?.lexeme));
   const inflected = new Set<string>();
-  const forms = new Map<string, Set<string>>();
-  const pin = (k: string, these: Iterable<string>): void => {
-    const all = forms.get(k) ?? new Set<string>();
-    for (const f of these) all.add(f);
+  const forms = new Map<string, Map<string, WordForm>>();
+  const pin = (k: string, these: Iterable<WordForm>): void => {
+    const all = forms.get(k) ?? new Map<string, WordForm>();
+    for (const f of these) all.set(formId(f), f);
     forms.set(k, all);
   };
   for (const t of tokens) {
-    if (!senses.has(t.sense)) continue;
+    const lexeme = entryOfToken(t);
+    const form: WordForm = { ...(lexeme?.pos !== undefined && { pos: lexeme.pos }), feats: effectiveFeats(t, lexeme) };
     for (const k of keys(t.surface)) {
-      inflected.add(k);
-      if (t.form !== undefined) pin(k, [t.form]);
+      if (inflecting.has(baseOf(t)?.lexeme)) inflected.add(k);
+      pin(k, [form]);
     }
   }
   // A sentence's accept set spells its words other ways too (be2ra beside b2ra): each of those
@@ -312,10 +482,11 @@ const buildLexicon = (course: CourseView, orthography: string): Lexicon => {
     const own: OwnWord[] = [];
     const ownByKey = new Map<string, OwnWord>();
     for (const t of form.text.tokens) {
-      if (t.kind !== "word" || t.sense === undefined) continue;
+      const base = baseOf(t);
+      if (t.kind !== "word" || base === undefined) continue;
       for (const key of keys(t.surface)) {
         if (ownByKey.has(key)) continue;
-        const word: OwnWord = { key, letters: lettersOf(key), inflected: senses.has(t.sense) };
+        const word: OwnWord = { key, letters: lettersOf(key), inflected: inflecting.has(base.lexeme) };
         own.push(word);
         ownByKey.set(key, word);
       }
@@ -338,12 +509,12 @@ const buildLexicon = (course: CourseView, orthography: string): Lexicon => {
         }
         if (nearest?.inflected === true && best <= Math.max(1, nearest.letters.length / 2)) {
           inflected.add(k);
-          pin(k, forms.get(nearest.key) ?? []);
+          pin(k, forms.get(nearest.key)?.values() ?? []);
         }
       }
     }
   }
-  return { words, inflected, forms: new Map([...forms].map(([k, fs]) => [k, [...fs].sort()])) };
+  return { words, inflected, forms: new Map([...forms].map(([k, fs]) => [k, [...fs.keys()].sort().map((id) => fs.get(id) as WordForm)])) };
 };
 
 /**
@@ -351,38 +522,38 @@ const buildLexicon = (course: CourseView, orthography: string): Lexicon => {
  * makes one. They are kept with the course's units, which a copy of the course that changes only
  * its media (restrictMedia) shares, and rebuilt only for another profile.
  */
-const lexicons = new WeakMap<readonly BundleUnit[], Map<string, { readonly profile: CompiledProfile; readonly lexicon: Lexicon }>>();
+const spellings = new WeakMap<readonly BundleUnit[], Map<string, { readonly profile: CompiledProfile; readonly spellings: Spellings }>>();
 
-/** A course's lexicon for an orthography (exported for tests). */
-export const lexiconOf = (course: CourseView, orthography: string): Lexicon => {
-  let byOrthography = lexicons.get(course.units);
+/** What a course spells in an orthography, for grading (exported for tests). */
+export const spellingsOf = (course: CourseView, orthography: string): Spellings => {
+  let byOrthography = spellings.get(course.units);
   if (byOrthography === undefined) {
     byOrthography = new Map();
-    lexicons.set(course.units, byOrthography);
+    spellings.set(course.units, byOrthography);
   }
   const profile = profileOf(course, orthography);
   const built = byOrthography.get(orthography);
-  if (built !== undefined && built.profile === profile) return built.lexicon;
-  const lexicon = buildLexicon(course, orthography);
-  byOrthography.set(orthography, { profile, lexicon });
-  return lexicon;
+  if (built !== undefined && built.profile === profile) return built.spellings;
+  const made = buildSpellings(course, orthography);
+  byOrthography.set(orthography, { profile, spellings: made });
+  return made;
 };
 
 /**
- * Builds the lexicons grading looks words up in (the course's orthography and its support
+ * Builds what grading looks words up in (the course's orthography and its support
  * language's), which the first typed or tiled answer would otherwise wait for: each session makes
  * a grader, and a course of thirty units takes a moment. An app calls it while the learner reads.
  */
 export const prepareGrading = (course: CourseView): void => {
-  for (const orthography of [course.orthography, course.support]) if (course.profiles.has(orthography)) lexiconOf(course, orthography);
+  for (const orthography of [course.orthography, course.support]) if (course.profiles.has(orthography)) spellingsOf(course, orthography);
 };
 
 /**
- * A grader with a per-orthography lexicon (every word the course writes in it,
- * normalized and case-folded as grade() compares units) so that a typo landing
- * on a real word is WRONG_WORD (erratum 46). The lexicons are the course's (built
- * once per course); compiled accept sets are memoized per grader; grading itself
- * stays pure.
+ * A grader that knows what the course spells in each orthography (every word it
+ * writes there, normalized and case-folded as grade() compares units) so that a
+ * typo landing on a real word is WRONG_WORD (erratum 46). The spellings are the
+ * course's (built once per course); compiled accept sets are memoized per grader;
+ * grading itself stays pure.
  */
 export const createGrader = (course: CourseView): Grader => {
   const sets = new Map<string, CompiledAcceptSet>();
@@ -396,7 +567,7 @@ export const createGrader = (course: CourseView): Grader => {
         set = compiled.value;
         sets.set(key, set);
       }
-      const { words, inflected, forms } = lexiconOf(course, orthography);
+      const { words, inflected, forms } = spellingsOf(course, orthography);
       return grade(set, answer, { lexicon: words, inflected, forms });
     },
   };

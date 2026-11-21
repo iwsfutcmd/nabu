@@ -6,7 +6,7 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry } from "@nabu/core";
+import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type WordForm } from "@nabu/core";
 import { TONE_SYSTEMS } from "@nabu/core/speech";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
@@ -52,6 +52,16 @@ const glossary = (args: Args): CompiledGlossary => {
     glossaryCache.set(key, compiled);
   }
   return compiled;
+};
+
+/** A form as a request gives it: `{ pos?, feats }` (a word's part of speech and feature values there). */
+const wordForm = (given: unknown): WordForm => {
+  const form = typeof given === "object" && given !== null ? (given as Record<string, unknown>) : {};
+  const feats = typeof form["feats"] === "object" && form["feats"] !== null ? (form["feats"] as Record<string, unknown>) : {};
+  return {
+    ...(typeof form["pos"] === "string" && { pos: form["pos"] }),
+    feats: Object.fromEntries(Object.entries(feats).map(([name, value]) => [name, String(value)])),
+  };
 };
 
 const text = (args: Args, key = "text"): string => {
@@ -102,11 +112,11 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
       Array.isArray(a[name]) ? new Set((a[name] as unknown[]).map((w) => lexiconKey(set.profile, String(w)))) : undefined;
     const lexicon = keyed("lexicon");
     const inflected = keyed("inflected");
-    // Each inflected word with the forms the course pins it as: { word: [form KC ids] } (ADR 0084).
+    // Each word with the forms the course's tokens write it in: { word: [{ pos?, feats }] } (ADR 0084).
     const given = a["forms"];
     const forms =
       typeof given === "object" && given !== null && !Array.isArray(given)
-        ? new Map(Object.entries(given).map(([w, fs]) => [lexiconKey(set.profile, w), Array.isArray(fs) ? fs.map(String) : []]))
+        ? new Map(Object.entries(given).map(([w, fs]) => [lexiconKey(set.profile, w), Array.isArray(fs) ? fs.map(wordForm) : []]))
         : undefined;
     return grade(set, text(a, "answer"), { ...(lexicon && { lexicon }), ...(inflected && { inflected }), ...(forms && { forms }) });
   },

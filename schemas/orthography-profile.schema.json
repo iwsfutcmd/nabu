@@ -1161,14 +1161,10 @@
           "type": "boolean"
         },
         "forms": {
-          "description": "Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).",
+          "description": "Only on words that a token of the course writes in one of these forms (GradeOptions.forms: the forms of the tokens a word spells). Narrower than inflected, for a course whose nouns have forms too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).",
           "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^form:[a-z0-9-]+$"
-          },
-          "minItems": 1,
-          "uniqueItems": true
+          "items": { "$ref": "#/$defs/FormCondition" },
+          "minItems": 1
         },
         "note": {
           "description": "The feedback note shown with the verdict (MF2 message feedback.note.<note>).",
@@ -1235,6 +1231,22 @@
           "description": "After one of these.",
           "$ref": "#/$defs/UnicodeSetPattern"
         }
+      }
+    },
+    "FormCondition": {
+      "title": "FormCondition",
+      "description": "A form a token may stand in: its base lexeme's part of speech (any, where none is given) and feature values it has there, chosen on the token or its lexeme's own. Every feature named must have one of the values given (several, separated by commas: any of them). The perfect of a Hebrew verb: {feats: {Aspect: Perf, VerbForm: Fin}}; a feminine noun or adjective: {pos: [NOUN, ADJ], feats: {Gender: Fem}}.",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "pos": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/PartOfSpeech" }
+        },
+        "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" }
       }
     }
   }

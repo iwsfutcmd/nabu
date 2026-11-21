@@ -38,7 +38,11 @@ match:
       # nouns pin their gender too, ADR 0132 amendment). A verb's prefix says who
       # and whether it is a plain statement (Kline ch. 13, 22): b- I, bt- you/she, bi- he, mn- we; without b- (the
       # imperfect) a- or nothing, t-, y-, n-. Trading one for another, or dropping b-, changes the sentence. After و.
-      - { id: verb-prefix, note: contrast-prefix, at: start, after: [و], forms: [form:impf, form:subj, form:past, form:imp],
+      # The forms it is asked of: the b-present and the form after ra7 or baddi (both Aspect Imp), the past, and
+      # a command to a woman or to several people. REVIEW: a command to one man, the verb's bare stem, is left
+      # out, as it was while forms were pinned by hand and that one never was.
+      - { id: verb-prefix, note: contrast-prefix, at: start, after: [و],
+          forms: [{ feats: { Aspect: "Imp,Perf" } }, { feats: { Mood: Imp, Gender: Fem } }, { feats: { Mood: Imp, Number: Plur } }],
           members: [ب, بت, بي, [من, بن], ت, ي, ن, [ا, ""]] }
       # REVIEW (ADR 0081): endings that agree, on inflected words: the feminine ة (بعيدة for بعيد), -i to a woman
       # (بتشتغلي), -o to several people (بتشتغلوا). No ending is a member: the masculine, the man addressed.

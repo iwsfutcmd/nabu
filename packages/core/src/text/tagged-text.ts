@@ -24,7 +24,6 @@ export type TextIssue =
   | { readonly code: "not-nfc"; readonly token: number }
   | { readonly code: "splits-grapheme"; readonly token: number }
   | { readonly code: "ruby-mismatch"; readonly token: number; readonly scheme: string }
-  | { readonly code: "morphs-mismatch"; readonly token: number }
   | { readonly code: "lexemes-mismatch"; readonly token: number }
   | { readonly code: "variant-not-nfc"; readonly token: number }
   | { readonly code: "lang-outside-orthography" };
@@ -34,8 +33,8 @@ const subtags = (tag: string): string[] => tag.split("-");
 /**
  * Invariants a JSON Schema cannot express (schemas/tagged-text.schema.json
  * $comment): NFC everywhere, token boundaries on grapheme-cluster boundaries,
- * ruby bases, morph surfaces and lexemes' letters that concatenate to their
- * token, and a language tag within the orthography's language. Empty means valid.
+ * ruby bases and lexemes' letters that concatenate to their token, and a
+ * language tag within the orthography's language. Empty means valid.
  */
 export const checkTaggedText = (text: TaggedText): readonly TextIssue[] => {
   const issues: TextIssue[] = [];
@@ -47,9 +46,6 @@ export const checkTaggedText = (text: TaggedText): readonly TextIssue[] => {
     if (token.surface.normalize("NFC") !== token.surface) issues.push({ code: "not-nfc", token: i });
     for (const [scheme, segments] of Object.entries(token.ruby ?? {})) {
       if (segments.map((s) => s.base).join("") !== token.surface) issues.push({ code: "ruby-mismatch", token: i, scheme });
-    }
-    if (token.morphs !== undefined && token.morphs.map((m) => m.surface).join("") !== token.surface) {
-      issues.push({ code: "morphs-mismatch", token: i });
     }
     // A token that writes several lexemes says which letters are each one's: together, the token.
     // Its only lexeme needs none (the whole token), and a base is marked on one at most.

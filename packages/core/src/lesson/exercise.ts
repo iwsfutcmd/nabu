@@ -3,7 +3,7 @@
  * Instances are plain data: everything a template needs to render and to
  * grade is in them, so a lesson can be serialized, replayed and tested.
  */
-import type { Asks, BundleAudioItem, KcId, Persons, SchemeId, TaggedText } from "@nabu/schema";
+import type { BundleAudioItem, PartId, Persons, Question, SchemeId, Skill, TaggedText } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
 import type { SpeechResult } from "../speech/score.ts";
 
@@ -43,21 +43,28 @@ export type TemplateId =
   | "parts-whole"
   | "whole-parts";
 
-/** Facets of a knowledge component (§9.1): each (KC, facet) pair is its own memory. */
+/**
+ * The ways a lexeme, a rule or a letter is known (§9.1): each pair of one with a facet is its own
+ * memory. A feature value is known by the two skills beside these (ADR 0146): choosing it when
+ * producing, and reading it off a word.
+ */
 export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
 
-export interface FacetRef {
-  readonly kc: KcId;
-  readonly facet: Facet;
+export type { Skill };
+
+/** A part with the skill a card exercises it by: what a card of the learner's memory is keyed by. */
+export interface SkillRef {
+  readonly part: PartId;
+  readonly skill: Skill;
 }
 
 interface Common {
   /** Unique within a lesson; a retried exercise gets a new id. */
   readonly id: string;
-  /** The sentence or KC the exercise is built from. */
+  /** The sentence, lexeme or letter the exercise is built from. */
   readonly item: string;
-  /** The knowledge components it exercises. */
-  readonly kcs: readonly KcId[];
+  /** The parts it exercises (ADR 0146): lexemes, feature values, rules and letters. */
+  readonly parts: readonly PartId[];
   /** The orthography the learner answers in (target or support). */
   readonly orthography: string;
   /** Older material a lesson brings back because it is due (ADR 0097): the player marks the card. */
@@ -76,7 +83,7 @@ export interface SelectImage extends Common {
 /** Match each target word with its gloss (or, on a script track, each letter with its Latin value). */
 export interface MatchPairs extends Common {
   readonly template: "match-pairs" | "letter-pairs";
-  /** The words: left[i] is the form of kcs[i], so its clip is the course's audio of kcs[i]. */
+  /** The words: left[i] is the spelling of parts[i], so its clip is the course's audio of parts[i]. */
   readonly left: readonly TaggedText[];
   readonly right: readonly TaggedText[];
   /** pairs[i] is the index in `right` that belongs with left[i]. */
@@ -154,10 +161,10 @@ export interface GapFill extends Common {
   readonly options: readonly TaggedText[];
   readonly answer: number;
   /**
-   * Which word or which form; it decides the instruction, what the answer credits and what feedback
-   * says. Absent on a card planned before ADR 0132 (a session left part-way), which asked both.
+   * Which lexeme or which form (ADR 0132); it decides the instruction, what the answer credits and
+   * what feedback says. Absent on a spelling-choice, which asks neither.
    */
-  readonly asks?: Asks | undefined;
+  readonly asks?: Question | undefined;
   /**
    * Who speaks and who is spoken to: the options are often the word in other persons (بدّك, بدكن),
    * which the hint alone cannot choose between.
@@ -277,23 +284,27 @@ export interface Transcribe extends Common {
 }
 
 /**
- * A part of a word (ADR 0152): a word of the course (the word's own, a clitic or a particle written
- * with it), shown as the course writes it alone, or a form the word takes, named by its gloss. The
- * cards ask the forms and are credited to them; the words are given.
+ * A part of a word a learner is shown (ADR 0152): a lexeme (the word's own, a clitic or a particle
+ * written with it), shown as the course cites it, or a form the word takes there, named by its
+ * label. The cards ask the forms and are credited to them; the lexemes are given.
  */
 export interface WordPart {
-  readonly kc: KcId;
-  /** A word: its first form in the orthography being learned. Absent for a form, which is named, not written. */
+  /**
+   * What it is credited to: a lexeme, or the feature values a form's label names (each a part; a
+   * label of several values is one thing to pick and several to credit).
+   */
+  readonly parts: readonly PartId[];
+  /** A lexeme: its first spelling in the orthography being learned. Absent for a form, which is named, not written. */
   readonly text?: TaggedText | undefined;
-  /** What the word means, or which form it is, in the support language. */
+  /** What the lexeme means, or which form it is, in the support language. */
   readonly gloss: TaggedText;
-  /** The word's own word, which the other parts are added to. */
+  /** The word's base lexeme, which the other parts are added to. */
   readonly base?: true | undefined;
 }
 
 /**
  * Parts to whole (ADR 0152): a sentence with one word left out, what the sentence means, and that
- * word's parts (its own word, and the form or morphs it carries here). The learner types the word.
+ * word's parts (its base lexeme, and the form and other lexemes it carries here). The learner types the word.
  * The parts say which form it is; putting them together is what is asked.
  */
 export interface PartsWhole extends Common {
@@ -303,7 +314,7 @@ export interface PartsWhole extends Common {
   readonly before: TaggedText;
   readonly after: TaggedText;
   /** The word's parts, in the word's order. */
-  readonly parts: readonly WordPart[];
+  readonly wordParts: readonly WordPart[];
   /** The word itself: the answer. */
   readonly whole: TaggedText;
   /** The word, and the spellings of it the course accepts (a token's variants), as an accept set. */
@@ -314,7 +325,7 @@ export interface PartsWhole extends Common {
 
 /**
  * Whole to parts (ADR 0152): a sentence with one word marked. The learner picks that word's parts
- * (its own word, and the form or morphs it carries here) among others; every part, and no other.
+ * (its base lexeme, and the form and other lexemes it carries here) among others; every part, and no other.
  * What the sentence means is shown once the card is answered: before, it would name the parts.
  */
 export interface WholeParts extends Common {
@@ -433,8 +444,8 @@ export interface StoryComplete extends Common {
   readonly after: TaggedText;
   readonly options: readonly TaggedText[];
   readonly answer: number;
-  /** As GapFill's: absent where the bundle predates ADR 0132 (options by their first forms). */
-  readonly asks?: Asks | undefined;
+  /** As GapFill's: which lexeme, or which form. */
+  readonly asks?: Question | undefined;
 }
 
 /** The next line of a story, given its translation: build it from its tiles. */

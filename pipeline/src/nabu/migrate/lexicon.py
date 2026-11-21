@@ -721,6 +721,8 @@ def build(conv: Converter) -> Built:
         language["lexical"] = plan.lexical
     if plan.citation:
         language["citation"] = plan.citation
+    if plan.bare:
+        language["bare"] = plan.bare
     if features:
         language["features"] = features
     if defaults:

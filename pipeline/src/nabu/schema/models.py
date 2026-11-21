@@ -1309,6 +1309,19 @@ class VocalizationSource(BaseModel):
     ] = None
 
 
+class Morph(BaseModel):
+    """
+    One piece of a word in the course source this schema describes, the shape before the lexical model (it goes with this file at the switch): its letters and the KC it is.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    surface: str
+    kc: KcId
+
+
 type GroupItem = Annotated[str, Field(min_length=1)]
 
 
@@ -2840,60 +2853,6 @@ type Members = Annotated[
 type AfterItem = Annotated[str, Field(min_length=1)]
 
 
-type Form = Annotated[str, Field(pattern="^form:[a-z0-9-]+$")]
-
-
-class Contrast(BaseModel):
-    """
-    A set of endings, prefixes (or whole words) one letter or two apart that mean different things.
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
-    members: Annotated[
-        list[str | Members],
-        Field(
-            description="The members, each a meaning. An empty spelling is the word with no such affix: the bare Lebanese imperfect (shteghel) beside b-shteghel, a masculine adjective beside its feminine.",
-            min_length=2,
-        ),
-    ]
-    at: Annotated[
-        Literal["end", "start"] | None,
-        Field(
-            description="Where the members stand: at the end of the word (endings, stacking like suffixes) or at its start (prefixes: Lebanese b-, bt-, mn- on verbs). Default end."
-        ),
-    ] = None
-    after: Annotated[
-        list[AfterItem] | None,
-        Field(
-            description="For prefixes: what may come before the member, a proclitic written onto the word (Arabic و 'and': وبشتغل)."
-        ),
-    ] = None
-    inflected: Annotated[
-        bool | None,
-        Field(
-            description="Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not."
-        ),
-    ] = None
-    forms: Annotated[
-        list[Form] | None,
-        Field(
-            description="Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).",
-            min_length=1,
-        ),
-    ] = None
-    note: Annotated[
-        str | None,
-        Field(
-            description="The feedback note shown with the verdict (MF2 message feedback.note.<note>).",
-            pattern="^[a-z][a-z0-9-]*$",
-        ),
-    ] = None
-
-
 type Lose = Annotated[str, Field(min_length=1)]
 
 
@@ -2912,6 +2871,19 @@ class CorrespondenceContext(BaseModel):
     ] = None
     before: Annotated[UnicodeSetPattern | None, Field(description="Before one of these.")] = None
     after: Annotated[UnicodeSetPattern | None, Field(description="After one of these.")] = None
+
+
+class FormCondition(BaseModel):
+    """
+    A form a token may stand in: its base lexeme's part of speech (any, where none is given) and feature values it has there, chosen on the token or its lexeme's own. Every feature named must have one of the values given (several, separated by commas: any of them). The perfect of a Hebrew verb: {feats: {Aspect: Perf, VerbForm: Fin}}; a feminine noun or adjective: {pos: [NOUN, ADJ], feats: {Gender: Fem}}.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    pos: Annotated[list[PartOfSpeech] | None, Field(min_length=1)] = None
+    feats: UdFeatures | None = None
 
 
 class Bound(BaseModel):
@@ -3226,20 +3198,6 @@ class RubySegment(BaseModel):
     )
     base: Annotated[str, Field(min_length=1)]
     text: Annotated[str, Field(min_length=1)]
-
-
-class Morph(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    surface: Annotated[
-        str,
-        Field(
-            description="The morph as the word writes it. Empty for a morpheme the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe, fa کتابِ, chg ملک malik-i): it is the word's last morph, glossed and credited like any other."
-        ),
-    ]
-    kc: KcId
 
 
 class AnswerReport(BaseModel):
@@ -3990,6 +3948,12 @@ class LanguageDeclaration(BaseModel):
         dict[PartOfSpeech, UdFeatures] | None,
         Field(
             description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
+        ),
+    ] = None
+    bare: Annotated[
+        dict[PartOfSpeech, UdFeatures] | None,
+        Field(
+            description="For each category, the feature values of its form with nothing added: masculine singular for a noun or an adjective, a verb's bare stem (apc: the command to a man). A lexeme the course writes in another form is one it inflects, which a profile's contrast sets marked `inflected` ask (ADR 0081: a slip that trades one agreement ending for another is no typo, on a word that takes them). Where it is the cell an entry is spelled in, it is said here all the same."
         ),
     ] = None
     features: Annotated[
@@ -5186,30 +5150,6 @@ class Zwnj(BaseModel):
     note: NoteId | None = None
 
 
-class Typo(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    model: Literal["keyboard", "marks", "ime-homophone"]
-    layout: KeyboardRef | None = None
-    unit: Literal["graphemes", "letters"] | None = None
-    maxRatio: Annotated[float | None, Field(gt=0.0, le=1.0)] = None
-    minLength: Annotated[
-        int | None,
-        Field(
-            description="Tokens shorter than this many units get no typo tolerance (default 3).",
-            ge=1,
-        ),
-    ] = None
-    contrasts: Annotated[
-        list[Contrast] | None,
-        Field(
-            description="Endings, or whole words, that carry meaning, in sets: person endings, possessive endings, case endings, pronouns. A slip that turns one member of a set into another at the end of a word, the rest unchanged, is WRONG_WORD, not a typo: talabasan for talabaman, kitobing for kitobim (erratum 46). Members match after case folding, the profile's equivalences and its marks, as units are compared, so a hamza-less spelling still counts. A member may list several spellings of one meaning (the dative ga, ka, qa): trading those stays a typo."
-        ),
-    ] = None
-
-
 class Variants(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -5263,33 +5203,6 @@ class SoundAlike(BaseModel):
     note: NoteId
 
 
-class MatchPolicy(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    marks: Marks | None = None
-    zwnj: Zwnj | None = None
-    case: Literal["none"] | Case | None = None
-    typo: Typo | None = None
-    variants: Variants | None = None
-    scriptMismatch: ScriptMismatch | None = None
-    homophones: Homophones | None = None
-    apostrophe: Apostrophe | None = None
-    soundAlike: Annotated[
-        SoundAlike | None,
-        Field(
-            description="Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options."
-        ),
-    ] = None
-    equivalences: Annotated[
-        list[Equivalence] | None,
-        Field(
-            description="Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently."
-        ),
-    ] = None
-
-
 class Recognizer(BaseModel):
     """
     Who hears the orthography: Whisper, in a language, or a Whisper fine-tune for a language Whisper's own does not write (Cantonese, which it writes as Mandarin: ADR 0094).
@@ -5307,6 +5220,57 @@ class Recognizer(BaseModel):
         ),
     ] = None
     fineTuned: FineTunedRecognizer | None = None
+
+
+class Contrast(BaseModel):
+    """
+    A set of endings, prefixes (or whole words) one letter or two apart that mean different things.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    members: Annotated[
+        list[str | Members],
+        Field(
+            description="The members, each a meaning. An empty spelling is the word with no such affix: the bare Lebanese imperfect (shteghel) beside b-shteghel, a masculine adjective beside its feminine.",
+            min_length=2,
+        ),
+    ]
+    at: Annotated[
+        Literal["end", "start"] | None,
+        Field(
+            description="Where the members stand: at the end of the word (endings, stacking like suffixes) or at its start (prefixes: Lebanese b-, bt-, mn- on verbs). Default end."
+        ),
+    ] = None
+    after: Annotated[
+        list[AfterItem] | None,
+        Field(
+            description="For prefixes: what may come before the member, a proclitic written onto the word (Arabic و 'and': وبشتغل)."
+        ),
+    ] = None
+    inflected: Annotated[
+        bool | None,
+        Field(
+            description="Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not."
+        ),
+    ] = None
+    forms: Annotated[
+        list[FormCondition] | None,
+        Field(
+            description="Only on words that a token of the course writes in one of these forms (GradeOptions.forms: the forms of the tokens a word spells). Narrower than inflected, for a course whose nouns have forms too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).",
+            min_length=1,
+        ),
+    ] = None
+    note: Annotated[
+        str | None,
+        Field(
+            description="The feedback note shown with the verdict (MF2 message feedback.note.<note>).",
+            pattern="^[a-z][a-z0-9-]*$",
+        ),
+    ] = None
 
 
 class Correspondence(BaseModel):
@@ -5508,15 +5472,6 @@ class TokenModel(BaseModel):
         str, Field(description="NFC. Never splits a grapheme cluster.", min_length=1)
     ]
     kind: TokenKind
-    sense: Annotated[
-        SenseId | None, Field(description="Link to the lexicon (a knowledge component).")
-    ] = None
-    form: Annotated[
-        KcId | None,
-        Field(
-            description="The form KC (form:<id>) of an inflected word, as the source pins it: the grader keeps its affixes apart (a profile's contrasts marked inflected, ADR 0081)."
-        ),
-    ] = None
     readings: Annotated[
         dict[SchemeId, ReadingsAdditionalProperty4] | None,
         Field(
@@ -5543,17 +5498,10 @@ class TokenModel(BaseModel):
         list[Variant3] | None,
         Field(description="Accepted orthographic variants, e.g. HK and TW character forms."),
     ] = None
-    morphs: Annotated[
-        list[Morph] | None,
-        Field(
-            description="Agglutinative breakdown. Morph surfaces concatenate to `surface`.",
-            min_length=1,
-        ),
-    ] = None
     lexemes: Annotated[
         list[WrittenLexeme] | None,
         Field(
-            description="The lexemes the token writes, in the order it writes them (bundle format version 2; ADR 0145): a stem, a clitic and an affix alike. There is no unit between a token and a lexeme (the owner, 2026-11-20). It takes the place of `sense`, `form` and `morphs`, which go at the flip.",
+            description="The lexemes the token writes, in the order it writes them (ADR 0145): a stem, a clitic and an affix alike. There is no unit between a token and a lexeme (the owner, 2026-11-20).",
             min_length=1,
         ),
     ] = None
@@ -6101,6 +6049,57 @@ type NormalizeStep = Annotated[
     | ToneNumbersStep,
     Field(title="NormalizeStep"),
 ]
+
+
+class Typo(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    model: Literal["keyboard", "marks", "ime-homophone"]
+    layout: KeyboardRef | None = None
+    unit: Literal["graphemes", "letters"] | None = None
+    maxRatio: Annotated[float | None, Field(gt=0.0, le=1.0)] = None
+    minLength: Annotated[
+        int | None,
+        Field(
+            description="Tokens shorter than this many units get no typo tolerance (default 3).",
+            ge=1,
+        ),
+    ] = None
+    contrasts: Annotated[
+        list[Contrast] | None,
+        Field(
+            description="Endings, or whole words, that carry meaning, in sets: person endings, possessive endings, case endings, pronouns. A slip that turns one member of a set into another at the end of a word, the rest unchanged, is WRONG_WORD, not a typo: talabasan for talabaman, kitobing for kitobim (erratum 46). Members match after case folding, the profile's equivalences and its marks, as units are compared, so a hamza-less spelling still counts. A member may list several spellings of one meaning (the dative ga, ka, qa): trading those stays a typo."
+        ),
+    ] = None
+
+
+class MatchPolicy(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    marks: Marks | None = None
+    zwnj: Zwnj | None = None
+    case: Literal["none"] | Case | None = None
+    typo: Typo | None = None
+    variants: Variants | None = None
+    scriptMismatch: ScriptMismatch | None = None
+    homophones: Homophones | None = None
+    apostrophe: Apostrophe | None = None
+    soundAlike: Annotated[
+        SoundAlike | None,
+        Field(
+            description="Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options."
+        ),
+    ] = None
+    equivalences: Annotated[
+        list[Equivalence] | None,
+        Field(
+            description="Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently."
+        ),
+    ] = None
 
 
 class SpeechSetup(BaseModel):
@@ -6757,6 +6756,12 @@ class BundleLexicon(BaseModel):
     )
     language: LanguageCode
     lexemes: list[BundleLexeme]
+    bare: Annotated[
+        dict[PartOfSpeech, UdFeatures] | None,
+        Field(
+            description="For each category, the feature values of its form with nothing added (the language's `bare`): grading counts a lexeme the course writes in another form as one it inflects (ADR 0081)."
+        ),
+    ] = None
     labels: Annotated[
         list[BundleLabel] | None,
         Field(

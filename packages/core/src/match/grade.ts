@@ -9,7 +9,7 @@ import { compileLattice, type Lattice, type LatticeAlternative, type LatticeWarn
 import { parseAcceptSet, type NotationError, type NotationWarning } from "../accept/notation.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
-import { compareUnits, contrastOf, COST, type Comparison, type MatchKind } from "./compare.ts";
+import { compareUnits, contrastOf, COST, type Comparison, type MatchKind, type WordForm } from "./compare.ts";
 
 export type Verdict =
   | "CORRECT"
@@ -73,11 +73,11 @@ export interface GradeOptions {
    */
   readonly inflected?: ReadonlySet<string>;
   /**
-   * The forms each inflected word is pinned as in the course (form KC ids, the forms of the
-   * tokens it spells), keyed by `lexiconKey`: contrasts with `forms` apply to the words pinned as
-   * one (ADR 0084).
+   * The forms each word stands in in the course (the forms of the tokens spelled so: a part of
+   * speech and feature values), keyed by `lexiconKey`: contrasts with `forms` apply to the words
+   * that stand in one of theirs (ADR 0084).
    */
-  readonly forms?: ReadonlyMap<string, readonly string[]>;
+  readonly forms?: ReadonlyMap<string, readonly WordForm[]>;
 }
 
 /**

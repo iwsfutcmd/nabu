@@ -26,21 +26,6 @@ export type OrthographyId = string & { readonly __brand: "OrthographyId" };
  */
 export type TokenKind = "word" | "punct" | "space" | "number" | "symbol";
 /**
- * Link to the lexicon (a knowledge component).
- */
-export type SenseId = string & { readonly __brand: "SenseId" };
-/**
- * The form KC (form:<id>) of an inflected word, as the source pins it: the grader keeps its affixes apart (a profile's contrasts marked inflected, ADR 0081).
- */
-export type KcId = string & { readonly __brand: "KcId" };
-/**
- * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "KcId".
- */
-export type KcId1 = string & { readonly __brand: "KcId" };
-/**
  * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -204,6 +189,13 @@ export type CreditId2 = string;
  */
 export type CreditId3 = string;
 /**
+ * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "KcId".
+ */
+export type KcId = string & { readonly __brand: "KcId" };
+/**
  * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -223,7 +215,7 @@ export type SchemeId = string & { readonly __brand: "SchemeId" };
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "SenseId".
  */
-export type SenseId1 = string & { readonly __brand: "SenseId" };
+export type SenseId = string & { readonly __brand: "SenseId" };
 /**
  * An ISO 15924 script code in titlecase.
  *
@@ -394,11 +386,11 @@ export type UdFeatures6 = Readonly<Record<string, string>>;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
-export type KcId2 = string & { readonly __brand: "KcId" };
+export type KcId1 = string & { readonly __brand: "KcId" };
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
-export type KcId3 = string & { readonly __brand: "KcId" };
+export type KcId2 = string & { readonly __brand: "KcId" };
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
@@ -435,7 +427,7 @@ export type UdFeatures7 = Readonly<Record<string, string>>;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
-export type KcId4 = string & { readonly __brand: "KcId" };
+export type KcId3 = string & { readonly __brand: "KcId" };
 /**
  * The path node (kind story) the story is read at.
  */
@@ -443,7 +435,7 @@ export type Slug4 = string;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
-export type KcId5 = string & { readonly __brand: "KcId" };
+export type KcId4 = string & { readonly __brand: "KcId" };
 /**
  * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
  */
@@ -775,7 +767,7 @@ export type ReportSubmission = CorrectionSubmission | AnswerSubmission;
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "KcRefLocal".
  */
-export type KcId6 = string & { readonly __brand: "KcId" };
+export type KcId5 = string & { readonly __brand: "KcId" };
 
 /**
  * Index of every Nabu schema type, so each is declared. Not a document type.
@@ -843,8 +835,8 @@ export interface NabuSchemaIndex {
   readonly ScriptedLangTag: ScriptedLangTag;
   readonly OrthographyId: OrthographyId;
   readonly SchemeId: SchemeId;
-  readonly SenseId: SenseId1;
-  readonly KcId: KcId1;
+  readonly SenseId: SenseId;
+  readonly KcId: KcId;
   readonly PartOfSpeech: PartOfSpeech;
   readonly UdFeatures: UdFeatures1;
   readonly Asks: Asks;
@@ -909,6 +901,7 @@ export interface NabuSchemaIndex {
   readonly StoryChoiceSource: StoryChoiceSource;
   readonly ScenarioSource: ScenarioSource;
   readonly VocalizationSource: VocalizationSource;
+  readonly Morph: Morph;
   readonly DataTable: DataTable;
   readonly KeyboardLayout: KeyboardLayout;
   readonly LanguageDeclaration: LanguageDeclaration;
@@ -1002,6 +995,7 @@ export interface NabuSchemaIndex {
   readonly Contrast: Contrast;
   readonly Correspondence: Correspondence;
   readonly CorrespondenceContext: CorrespondenceContext;
+  readonly FormCondition: FormCondition;
   readonly ReadingScheme: ReadingScheme;
   readonly SchemeNames: SchemeNames;
   readonly Tone: Tone;
@@ -1016,7 +1010,6 @@ export interface NabuSchemaIndex {
   readonly Token: Token;
   readonly WrittenLexeme: WrittenLexeme;
   readonly RubySegment: RubySegment;
-  readonly Morph: Morph;
 }
 /**
  * What the AI services produce (gameplan §13): every output is structured, validated against this schema, and carries provenance. Models fill the *Output shapes; the server adds provenance and turns text into TaggedText.
@@ -1121,8 +1114,6 @@ export interface Token {
    */
   readonly surface: string;
   readonly kind: TokenKind;
-  readonly sense?: SenseId;
-  readonly form?: KcId;
   /**
    * Readings per scheme, e.g. {"jyutping": "hong4"}. Pinned in content, never guessed at runtime.
    */
@@ -1144,28 +1135,11 @@ export interface Token {
    */
   readonly variants?: readonly string[];
   /**
-   * Agglutinative breakdown. Morph surfaces concatenate to `surface`.
-   *
-   * @minItems 1
-   */
-  readonly morphs?: readonly Morph[];
-  /**
-   * The lexemes the token writes, in the order it writes them (bundle format version 2; ADR 0145): a stem, a clitic and an affix alike. There is no unit between a token and a lexeme (the owner, 2026-11-20). It takes the place of `sense`, `form` and `morphs`, which go at the flip.
+   * The lexemes the token writes, in the order it writes them (ADR 0145): a stem, a clitic and an affix alike. There is no unit between a token and a lexeme (the owner, 2026-11-20).
    *
    * @minItems 1
    */
   readonly lexemes?: readonly WrittenLexeme[];
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Morph".
- */
-export interface Morph {
-  /**
-   * The morph as the word writes it. Empty for a morpheme the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe, fa کتابِ, chg ملک malik-i): it is the word's last morph, glossed and credited like any other.
-   */
-  readonly surface: string;
-  readonly kc: KcId1;
 }
 /**
  * One lexeme a token writes, as a bundle has it: a course source's token lexeme, with its full id.
@@ -1838,6 +1812,12 @@ export interface BundleLexicon {
   readonly language: LanguageCode;
   readonly lexemes: readonly BundleLexeme[];
   /**
+   * For each category, the feature values of its form with nothing added (the language's `bare`): grading counts a lexeme the course writes in another form as one it inflects (ADR 0081).
+   */
+  readonly bare?: {
+    readonly [k: string]: UdFeatures1;
+  };
+  /**
    * The names of feature values, alone or several together (the language's `labels`). The most specific label whose values a form has names it.
    */
   readonly labels?: readonly BundleLabel[];
@@ -2348,9 +2328,9 @@ export interface BundleUnit {
  * via the `definition` "BundleKc".
  */
 export interface BundleKc {
-  readonly id: KcId1;
+  readonly id: KcId;
   readonly kind: "sense" | "form" | "construction" | "grapheme" | "reading" | "phone" | "tone";
-  readonly prerequisites: readonly KcId1[];
+  readonly prerequisites: readonly KcId[];
   readonly cefr?: string;
   readonly pos?: PartOfSpeech;
   readonly features?: UdFeatures1;
@@ -2372,8 +2352,8 @@ export interface BundleKc {
 export interface BundleNode {
   readonly id: string;
   readonly kind: string;
-  readonly introduces: readonly KcId1[];
-  readonly reinforces: readonly KcId1[];
+  readonly introduces: readonly KcId[];
+  readonly reinforces: readonly KcId[];
   readonly sentences: readonly string[];
   /**
    * An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133).
@@ -2395,11 +2375,11 @@ export interface BundleNode {
  * via the `definition` "ScriptItem".
  */
 export interface ScriptItem {
-  readonly kc: KcId1;
+  readonly kc: KcId;
   /**
    * The grapheme KCs it is written with, of those its track teaches (a letter: its own).
    */
-  readonly letters: readonly KcId1[];
+  readonly letters: readonly KcId[];
   readonly text: TaggedText;
   readonly latin: TaggedText;
 }
@@ -2422,7 +2402,7 @@ export interface BundleSentence {
       readonly accept: string;
     };
   };
-  readonly kcs: readonly KcId1[];
+  readonly kcs: readonly KcId[];
   readonly production: boolean;
   readonly register?: string;
   readonly persons?: Persons;
@@ -2458,7 +2438,7 @@ export interface BundleStory {
   /**
    * Every KC its lines use.
    */
-  readonly kcs: readonly KcId1[];
+  readonly kcs: readonly KcId[];
   readonly provenance?: Provenance;
   readonly license: string;
 }
@@ -2496,11 +2476,11 @@ export interface BundleStoryLine {
   readonly translations: {
     readonly [k: string]: TaggedText;
   };
-  readonly kcs: readonly KcId1[];
+  readonly kcs: readonly KcId[];
   readonly ask?: "complete" | "arrange";
-  readonly gap?: KcId1;
+  readonly gap?: KcId;
   readonly asks?: Asks;
-  readonly distractors?: readonly KcId1[];
+  readonly distractors?: readonly KcId[];
   /**
    * complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one word token the course writes in the story's unit or earlier (the distractor's sense in the gap's form, or the gap's word in another form), analysis and readings kept.
    */
@@ -3626,6 +3606,12 @@ export interface LanguageDeclaration {
     readonly [k: string]: UdFeatures1;
   };
   /**
+   * For each category, the feature values of its form with nothing added: masculine singular for a noun or an adjective, a verb's bare stem (apc: the command to a man). A lexeme the course writes in another form is one it inflects, which a profile's contrast sets marked `inflected` ask (ADR 0081: a slip that trades one agreement ending for another is no typo, on a word that takes them). Where it is the cell an entry is spelled in, it is said here all the same.
+   */
+  readonly bare?: {
+    readonly [k: string]: UdFeatures1;
+  };
+  /**
    * Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none.
    */
   readonly features?: {
@@ -3724,7 +3710,7 @@ export interface FeatureLabel {
   readonly notes?: {
     readonly [k: string]: string;
   };
-  readonly was?: KcId2;
+  readonly was?: KcId1;
 }
 /**
  * A rule by its name, with what a learner is shown for it. It says nothing of what the rule does: that is the rule's own file, once it is written.
@@ -3743,7 +3729,7 @@ export interface NamedRule {
   readonly notes?: {
     readonly [k: string]: string;
   };
-  readonly was?: KcId3;
+  readonly was?: KcId2;
 }
 /**
  * A course as authored: courses/<id>/course.yaml plus its units (gameplan §7.1–7.3). Content is keyed by target language; each support language is a layer (§7.2).
@@ -3869,8 +3855,8 @@ export interface UnitSource {
  * via the `definition` "KnowledgeComponentSource".
  */
 export interface KnowledgeComponentSource {
-  readonly id: KcId1;
-  readonly prerequisites?: readonly KcId1[];
+  readonly id: KcId;
+  readonly prerequisites?: readonly KcId[];
   readonly cefr?: Cefr;
   readonly pos?: PartOfSpeech2;
   readonly features?: UdFeatures7;
@@ -3925,8 +3911,8 @@ export interface ImageAsset1 {
 export interface PathNodeSource {
   readonly id: Slug;
   readonly kind: "lesson" | "practice" | "story" | "review" | "challenge" | "script";
-  readonly introduces?: readonly KcId1[];
-  readonly reinforces?: readonly KcId1[];
+  readonly introduces?: readonly KcId[];
+  readonly reinforces?: readonly KcId[];
   /**
    * script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
    */
@@ -3935,7 +3921,7 @@ export interface PathNodeSource {
     /**
      * @minItems 1
      */
-    readonly words: readonly KcId1[];
+    readonly words: readonly KcId[];
   };
   /**
    * script nodes: convert sentences between two orthographies (script-convert, §6.3).
@@ -3962,7 +3948,7 @@ export interface SentenceSource {
   readonly forms: {
     readonly [k: string]: SentenceForm;
   };
-  readonly constructions?: readonly KcId1[];
+  readonly constructions?: readonly KcId[];
   /**
    * Accept sets per support language (key: the support orthography's language, e.g. en). The first alternative is the displayed translation.
    */
@@ -3999,8 +3985,8 @@ export interface SentenceForm {
 export interface SourceToken {
   readonly surface: string;
   readonly kind?: TokenKind;
-  readonly sense?: SenseId1;
-  readonly form?: KcId4;
+  readonly sense?: SenseId;
+  readonly form?: KcId3;
   readonly readings?: {
     readonly [k: string]: string;
   };
@@ -4025,6 +4011,16 @@ export interface SourceToken {
    * Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading.
    */
   readonly readingVariant?: true;
+}
+/**
+ * One piece of a word in the course source this schema describes, the shape before the lexical model (it goes with this file at the switch): its letters and the KC it is.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Morph".
+ */
+export interface Morph {
+  readonly surface: string;
+  readonly kc: KcId;
 }
 /**
  * A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. Its words are glossed on tap from the course's glossary (KC forms).
@@ -4084,14 +4080,14 @@ export interface StoryLineSource {
    * Ask before showing the line. complete: choose the word missing at `gap`; arrange: build the line from its tiles, given its translation.
    */
   readonly ask?: "complete" | "arrange";
-  readonly gap?: KcId5;
+  readonly gap?: KcId4;
   readonly asks?: Asks1;
   /**
    * complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.
    *
    * @minItems 1
    */
-  readonly distractors?: readonly KcId1[];
+  readonly distractors?: readonly KcId[];
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.
@@ -5851,15 +5847,28 @@ export interface Contrast {
    */
   readonly inflected?: boolean;
   /**
-   * Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).
+   * Only on words that a token of the course writes in one of these forms (GradeOptions.forms: the forms of the tokens a word spells). Narrower than inflected, for a course whose nouns have forms too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).
    *
    * @minItems 1
    */
-  readonly forms?: readonly string[];
+  readonly forms?: readonly FormCondition[];
   /**
    * The feedback note shown with the verdict (MF2 message feedback.note.<note>).
    */
   readonly note?: string;
+}
+/**
+ * A form a token may stand in: its base lexeme's part of speech (any, where none is given) and feature values it has there, chosen on the token or its lexeme's own. Every feature named must have one of the values given (several, separated by commas: any of them). The perfect of a Hebrew verb: {feats: {Aspect: Perf, VerbForm: Fin}}; a feminine noun or adjective: {pos: [NOUN, ADJ], feats: {Gender: Fem}}.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "FormCondition".
+ */
+export interface FormCondition {
+  /**
+   * @minItems 1
+   */
+  readonly pos?: readonly PartOfSpeech[];
+  readonly feats?: UdFeatures1;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

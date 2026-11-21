@@ -1105,7 +1105,15 @@
         ],
         "forms": {
           "بشتغل": [
-            "form:impf-1sg"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "1"
+              }
+            }
           ]
         }
       },
@@ -1129,7 +1137,15 @@
         ],
         "forms": {
           "بشتغل": [
-            "form:impf-1sg"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "1"
+              }
+            }
           ]
         }
       },
@@ -1153,7 +1169,15 @@
         ],
         "forms": {
           "وبشتغل": [
-            "form:impf-1sg"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "1"
+              }
+            }
           ]
         }
       },
@@ -1194,7 +1218,12 @@
         ],
         "forms": {
           "بيروت": [
-            "form:fem"
+            {
+              "pos": "PROPN",
+              "feats": {
+                "Gender": "Fem"
+              }
+            }
           ]
         }
       },
@@ -1237,10 +1266,26 @@
         ],
         "forms": {
           "b2ra": [
-            "form:impf-1sg"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "1"
+              }
+            }
           ],
           "be2ra": [
-            "form:impf-1sg"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "1"
+              }
+            }
           ]
         }
       },
@@ -1264,7 +1309,15 @@
         ],
         "forms": {
           "ba3mel": [
-            "form:impf-1sg"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "1"
+              }
+            }
           ]
         }
       },
@@ -2560,7 +2613,17 @@
         "answer": "תשמרו",
         "forms": {
           "ישמרו": [
-            "form:yiqtol-3mp"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Gender": "Masc",
+                "Mood": "Ind",
+                "Number": "Plur",
+                "Person": "3",
+                "VerbForm": "Fin"
+              }
+            }
           ]
         }
       },
@@ -2581,7 +2644,17 @@
         "answer": "שמרו",
         "forms": {
           "ישמרו": [
-            "form:yiqtol-3mp"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Gender": "Masc",
+                "Mood": "Ind",
+                "Number": "Plur",
+                "Person": "3",
+                "VerbForm": "Fin"
+              }
+            }
           ]
         }
       },
@@ -2602,7 +2675,17 @@
         "answer": "ונשמעו",
         "forms": {
           "וישמעו": [
-            "form:wayyiqtol-3mp"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Gender": "Masc",
+                "Mood": "Ind",
+                "Number": "Plur",
+                "Person": "3",
+                "Tense": "Past",
+                "VerbForm": "Fin"
+              }
+            }
           ]
         }
       },
@@ -2623,7 +2706,13 @@
         "answer": "תנשים",
         "forms": {
           "אנשים": [
-            "form:pl"
+            {
+              "pos": "NOUN",
+              "feats": {
+                "Gender": "Masc",
+                "Number": "Plur"
+              }
+            }
           ]
         }
       },
@@ -2642,7 +2731,17 @@
         "answer": "שמרתי",
         "forms": {
           "שמרתם": [
-            "form:qatal-2mp"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Perf",
+                "Gender": "Masc",
+                "Mood": "Ind",
+                "Number": "Plur",
+                "Person": "2",
+                "VerbForm": "Fin"
+              }
+            }
           ]
         }
       },
@@ -2663,7 +2762,12 @@
         "answer": "בהיוותם",
         "forms": {
           "בהיותם": [
-            "form:inf"
+            {
+              "pos": "VERB",
+              "feats": {
+                "VerbForm": "Inf"
+              }
+            }
           ]
         }
       },
@@ -2682,7 +2786,17 @@
         "answer": "וישמע",
         "forms": {
           "וישמעו": [
-            "form:wayyiqtol-3mp"
+            {
+              "pos": "VERB",
+              "feats": {
+                "Gender": "Masc",
+                "Mood": "Ind",
+                "Number": "Plur",
+                "Person": "3",
+                "Tense": "Past",
+                "VerbForm": "Fin"
+              }
+            }
           ]
         }
       },
@@ -2703,7 +2817,13 @@
         "answer": "גדול",
         "forms": {
           "גדולה": [
-            "form:f"
+            {
+              "pos": "ADJ",
+              "feats": {
+                "Gender": "Fem",
+                "Number": "Sing"
+              }
+            }
           ]
         }
       },
@@ -3109,8 +3229,17 @@
         "accept": "ὁ παῖς γρ\u03ACφει",
         "answer": "ὁ παῖς γρ\u03ACφεις",
         "forms": {
-          "γρ\u03ACφει": [
-            "form:pres-3s"
+          "γράφει": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Mood": "Ind",
+                "Number": "Sing",
+                "Person": "3",
+                "Tense": "Pres",
+                "VerbForm": "Fin"
+              }
+            }
           ]
         }
       },

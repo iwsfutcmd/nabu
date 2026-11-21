@@ -60,6 +60,7 @@ course). None is decided here: the last column is the plan's drafter's reading.
 - **Projections:** no orthography of this course has a stated projection yet, so every
   spelling and reading stays pinned as it is; there is nothing to compare them with
   (ADR 0148).
-- **Credits by sentence:** an old credit for a `form:` KC that is feature values now has
-  no part to go to: a feature's uses are not authored, and nothing old counts towards a
-  rule (ADR 0146).
+- **Credits by sentence:** an old credit for a `form:` KC that is feature values now goes,
+  sentence by sentence, to the values the form chose there that the course teaches (the
+  sentence's parts). Where the sentence is not known it goes nowhere, and nothing old
+  counts towards a rule (ADR 0146).

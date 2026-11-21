@@ -30,7 +30,9 @@ match:
     # (b2ra, be2ra, bi2ra; bt2ra, bti2ra): b- I, bt- you/she, by- he/they, mn- we; t-, y-, n-, and none or a vowel (I)
     # without b-. Endings: none (masculine, a man), -e/-a/-i (feminine, a woman; her), -o/-u (several people; him).
     contrasts:
-      - { id: verb-prefix, note: contrast-prefix, at: start, forms: [form:impf, form:subj, form:past, form:imp],
+      # The forms it is asked of: as in the Arabic letters' profile (REVIEW there).
+      - { id: verb-prefix, note: contrast-prefix, at: start,
+          forms: [{ feats: { Aspect: "Imp,Perf" } }, { feats: { Mood: Imp, Gender: Fem } }, { feats: { Mood: Imp, Number: Plur } }],
           members: [[b, bi, be], [bt, bti, bte], [by, byi, bye], [mn, mni, mne], [t, ti, te], [y, yi, ye], [n, ni, ne], ["", e, a, i]] }
       - { id: agreement, note: contrast-ending, inflected: true, members: ["", [e, a, i], [o, u]] }
 layout: { vertical: none }

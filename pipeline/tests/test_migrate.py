@@ -576,8 +576,14 @@ def test_a_story_question_names_lexemes(spanish: migrate.Migration) -> None:
 def test_the_alias_table(spanish: migrate.Migration) -> None:
     aliases = spanish.aliases["aliases"]
     assert dict(aliases["sense:casa"]) == {"part": "lexeme:casa"}
-    # Feature values on tokens: nothing a learner has (ADR 0146).
-    assert dict(aliases["form:fem"]) == {}
+    # Feature values on tokens: by sentence, those the course teaches by then; elsewhere nothing.
+    assert "part" not in aliases["form:fem"]
+    assert dict(aliases["form:fem"]["byItem"]) == {
+        "mini.story.one#1": ["feature:Gender=Fem"],
+        "s.1": ["feature:Gender=Fem"],
+        "s.2": ["feature:Gender=Fem"],
+        "s.8": ["feature:Gender=Fem"],
+    }
 
 
 def test_a_renamed_clip_keeps_its_voice(spanish: migrate.Migration) -> None:

@@ -5,7 +5,7 @@
  * paths, then silent folds, then noted folds, then typos and IME slips, and
  * only then a substitution.
  */
-import type { Policy } from "@nabu/schema";
+import type { FormCondition, Policy } from "@nabu/schema";
 import type { CompiledContrast, CompiledProfile } from "../profile/compile.ts";
 import { graphemes } from "../text/graphemes.ts";
 
@@ -251,21 +251,42 @@ const onlyEndings = (word: readonly string[], from: number, contrasts: readonly 
  * - An empty member is the word without the affix: shteghel for bishteghel, b3id for b3ide.
  * - Sets marked `inflected` apply only when `inflected` says the expected word is one the
  *   course inflects, so a noun's first letter stays a typo.
- * - Sets with `forms` apply only when the expected word is pinned as one of them (`forms`, the
- *   word's forms in the course; an entry also matches the forms it begins: form:yiqtol, ADR 0084).
+ * - Sets with `forms` apply only when the expected word stands in one of them (`forms`: the forms
+ *   of the course's tokens spelled so; ADR 0084).
  * Compared by graphemes of the units' contrast keys.
  */
+/**
+ * A form a token of the course stands in: its base lexeme's part of speech, and the feature values
+ * it has there (those chosen on the token and its lexeme's own).
+ */
+export interface WordForm {
+  readonly pos?: string | undefined;
+  readonly feats: Readonly<Record<string, string>>;
+}
+
+/**
+ * Whether a form is one a profile's condition names: of one of its parts of speech (any, where it
+ * names none), with one of the values it gives for each feature it names (a value list is any of them).
+ */
+export const inForm = (form: WordForm, condition: FormCondition): boolean => {
+  if (condition.pos !== undefined && (form.pos === undefined || !(condition.pos as readonly string[]).includes(form.pos))) return false;
+  return Object.entries(condition.feats ?? {}).every(([name, wanted]) => {
+    const has = form.feats[name]?.split(",") ?? [];
+    return wanted.split(",").some((value) => has.includes(value));
+  });
+};
+
 export const contrastOf = (
   profile: CompiledProfile,
   expected: string,
   actual: string,
   inflected = false,
-  forms: readonly string[] = [],
+  forms: readonly WordForm[] = [],
 ): CompiledContrast | undefined => {
   const typo = profile.typo;
   if (typo === undefined || typo.contrasts.length === 0) return undefined;
   const applies = (c: CompiledContrast): boolean =>
-    c.forms === undefined ? inflected || !c.inflected : forms.some((f) => c.forms?.some((start) => f.startsWith(start)) === true);
+    c.forms === undefined ? inflected || !c.inflected : forms.some((f) => c.forms?.some((condition) => inForm(f, condition)) === true);
   const sets = typo.contrasts.filter(applies);
   const endings = sets.filter((c) => c.at === "end");
   const e = graphemes(typo.key(expected));
