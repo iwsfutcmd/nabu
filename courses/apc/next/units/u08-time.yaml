@@ -666,8 +666,8 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: مايا، إِنْتي فاضْيِة نْهار السَّبْت؟
-          tokens: [{surface: مايا, lexeme: maya}, {surface: إِنْتي, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: فاضْيِة, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}, {surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: السَّبْت, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: sabt, surface: سَّبْت, base: true, feats: {Number: Sing}, n: 6}]}]
+          text: مايا، إِنْتي فاضْيِة نْهار السَّبِت؟
+          tokens: [{surface: مايا, lexeme: maya}, {surface: إِنْتي, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: فاضْيِة, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}, {surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: السَّبِت, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: sabt, surface: سَّبِت, base: true, feats: {Number: Sing}, n: 6}]}]
         apc-Latn/arabizi:
           text: Maya, enti fadye nhar el sabt?
           tokens: [{surface: Maya, lexeme: maya}, {surface: enti, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: fadye, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}, {surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: sabt, lexeme: sabt, feats: {Number: Sing}, n: 6}]
@@ -677,8 +677,8 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: لأ، نْهار السَّبْت بِشْتِغِل. بَسّ الأَحَد فاضْيِة.
-          tokens: [{surface: لأ, lexeme: la2}, {surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: السَّبْت, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sabt, surface: سَّبْت, base: true, feats: {Number: Sing}, n: 4}]}, {surface: بِشْتِغِل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: بَسّ, lexeme: bas}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 8}]}, {surface: فاضْيِة, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}]
+          text: لأ، نْهار السَّبِت بِشْتِغِل. بَسّ الأَحَد فاضْيِة.
+          tokens: [{surface: لأ, lexeme: la2}, {surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: السَّبِت, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sabt, surface: سَّبِت, base: true, feats: {Number: Sing}, n: 4}]}, {surface: بِشْتِغِل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: بَسّ, lexeme: bas}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 8}]}, {surface: فاضْيِة, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}]
         apc-Latn/arabizi:
           text: la2, nhar el sabt bishteghel. bas el a7ad fadye.
           tokens: [{surface: la2, lexeme: la2}, {surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: sabt, lexeme: sabt, feats: {Number: Sing}, n: 4}, {surface: bishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bas, lexeme: bas}, {surface: el, lexeme: el, n: 7, head: 8, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 8}, {surface: fadye, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}]
@@ -718,8 +718,8 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: الصُّبْح، السّاعَة تِسْعَة.
-          tokens: [{surface: الصُّبْح, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sob7, surface: صُّبْح, base: true, feats: {Number: Sing}, n: 2}]}, {surface: السّاعَة, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sa3a, surface: سّاعَة, base: true, feats: {Number: Sing}, n: 4}]}, {surface: تِسْعَة, lexeme: tes3a}]
+          text: الصُّبُح، السّاعَة تِسْعَة.
+          tokens: [{surface: الصُّبُح, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sob7, surface: صُّبُح, base: true, feats: {Number: Sing}, n: 2}]}, {surface: السّاعَة, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sa3a, surface: سّاعَة, base: true, feats: {Number: Sing}, n: 4}]}, {surface: تِسْعَة, lexeme: tes3a}]
         apc-Latn/arabizi:
           text: el sob7, el sa3a tes3a.
           tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}, n: 2}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}, n: 4}, {surface: tes3a, lexeme: tes3a}]
@@ -765,8 +765,8 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: وبَعْد الضُّهُر مْنْشوف فيلْم؟
-          tokens: [{surface: وبَعْد, lexemes: [{lexeme: w, surface: و}, {lexeme: ba3d, surface: بَعْد, base: true, n: 2, head: 4, rel: case}]}, {surface: الضُّهُر, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: dohr, surface: ضُّهُر, base: true, feats: {Number: Sing}, n: 4}]}, {surface: مْنْشوف, lexeme: shef, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: فيلْم, lexeme: film, feats: {Number: Sing}}]
+          text: وبَعِد الضُّهُر مْنْشوف فيلِم؟
+          tokens: [{surface: وبَعِد, lexemes: [{lexeme: w, surface: و}, {lexeme: ba3d, surface: بَعِد, base: true, n: 2, head: 4, rel: case}]}, {surface: الضُّهُر, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: dohr, surface: ضُّهُر, base: true, feats: {Number: Sing}, n: 4}]}, {surface: مْنْشوف, lexeme: shef, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: فيلِم, lexeme: film, feats: {Number: Sing}}]
         apc-Latn/arabizi:
           text: w ba3d el dohr mnshuf film?
           tokens: [{surface: w, lexeme: w}, {surface: ba3d, lexeme: ba3d, n: 2, head: 4, rel: case}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: dohr, lexeme: dohr, feats: {Number: Sing}, n: 4}, {surface: mnshuf, lexeme: shef, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: film, lexeme: film, feats: {Number: Sing}}]

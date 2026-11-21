@@ -774,8 +774,8 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: سامي! شو عْمِلْت الجِمْعَة الماضْيِة؟
-          tokens: [{surface: سامي, lexeme: sami}, {surface: شو, lexeme: shu}, {surface: عْمِلْت, lexeme: 3emel, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: الجِمْعَة, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: jem3a, surface: جِمْعَة, base: true, feats: {Number: Sing}, n: 5}]}, {surface: الماضْيِة, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: madi, surface: ماضْيِة, base: true, feats: {Gender: Fem, Number: Sing}, n: 7, head: 5, rel: amod}]}]
+          text: سامي! شو عْمِلِت الجِمْعَة الماضْيِة؟
+          tokens: [{surface: سامي, lexeme: sami}, {surface: شو, lexeme: shu}, {surface: عْمِلِت, lexeme: 3emel, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: الجِمْعَة, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: jem3a, surface: جِمْعَة, base: true, feats: {Number: Sing}, n: 5}]}, {surface: الماضْيِة, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: madi, surface: ماضْيِة, base: true, feats: {Gender: Fem, Number: Sing}, n: 7, head: 5, rel: amod}]}]
         apc-Latn/arabizi:
           text: Sami! shu 3melt el jem3a el madye?
           tokens: [{surface: Sami, lexeme: sami}, {surface: shu, lexeme: shu}, {surface: 3melt, lexeme: 3emel, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}, n: 5}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: madye, lexeme: madi, feats: {Gender: Fem, Number: Sing}, n: 7, head: 5, rel: amod}]
@@ -785,8 +785,8 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: رُحْت عَالجَبَل مَع خَيّي.
-          tokens: [{surface: رُحْت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عَالجَبَل, lexemes: [{lexeme: 3a, surface: عَ, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: jabal, surface: جَبَل, base: true, feats: {Number: Sing}, n: 4}]}, {surface: مَع, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: خَيّي, lexemes: [{lexeme: khayy, surface: خَيّ, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: ي}]}]
+          text: رُحِت عَالجَبَل مَع خَيّي.
+          tokens: [{surface: رُحِت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عَالجَبَل, lexemes: [{lexeme: 3a, surface: عَ, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: jabal, surface: جَبَل, base: true, feats: {Number: Sing}, n: 4}]}, {surface: مَع, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: خَيّي, lexemes: [{lexeme: khayy, surface: خَيّ, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: ي}]}]
         apc-Latn/arabizi:
           text: ru7t 3al jabal ma3 khayyi.
           tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 4}, {surface: ma3, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: i}]}]
@@ -796,8 +796,8 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: حِلو! كِنْت مَبْسوط؟
-          tokens: [{surface: حِلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: كِنْت, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: مَبْسوط, lexeme: mabsout, feats: {Gender: Masc, Number: Sing}}]
+          text: حِلو! كِنِت مَبْسوط؟
+          tokens: [{surface: حِلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: كِنِت, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: مَبْسوط, lexeme: mabsout, feats: {Gender: Masc, Number: Sing}}]
         apc-Latn/arabizi:
           text: 7elo! kent mabsout?
           tokens: [{surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: mabsout, lexeme: mabsout, feats: {Gender: Masc, Number: Sing}}]
@@ -842,8 +842,8 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: أَنا كِنْت بِالبيت. كِنْت تَعْبانِة.
-          tokens: [{surface: أَنا, lexeme: ana}, {surface: كِنْت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: بِالبيت, lexemes: [{lexeme: b, surface: بِ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 5}]}, {surface: كِنْت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تَعْبانِة, lexeme: ta3ban, feats: {Gender: Fem, Number: Sing}}]
+          text: أَنا كِنِت بِالبيت. كِنِت تَعْبانِة.
+          tokens: [{surface: أَنا, lexeme: ana}, {surface: كِنِت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: بِالبيت, lexemes: [{lexeme: b, surface: بِ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 5}]}, {surface: كِنِت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تَعْبانِة, lexeme: ta3ban, feats: {Gender: Fem, Number: Sing}}]
         apc-Latn/arabizi:
           text: ana kent bel bet. kent ta3bane.
           tokens: [{surface: ana, lexeme: ana}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 5}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: ta3bane, lexeme: ta3ban, feats: {Gender: Fem, Number: Sing}}]
@@ -865,8 +865,8 @@ stories:
       ask: arrange
       forms:
         apc-Arab/standard:
-          text: نْهار الأَحَد زِرْت تيتا، وأَكَلْنا الغَدا سَوا.
-          tokens: [{surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 3}]}, {surface: زِرْت, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: وأَكَلْنا, lexemes: [{lexeme: w, surface: و}, {lexeme: akal, surface: أَكَلْنا, base: true, feats: {Aspect: Perf, Number: Plur, Person: '1'}}]}, {surface: الغَدا, lexemes: [{lexeme: el, surface: ال, n: 8, head: 9, rel: det}, {lexeme: ghada, surface: غَدا, base: true, feats: {Number: Sing}, n: 9}]}, {surface: سَوا, lexeme: sawa}]
+          text: نْهار الأَحَد زِرِت تيتا، وأَكَلْنا الغَدا سَوا.
+          tokens: [{surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 3}]}, {surface: زِرِت, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: وأَكَلْنا, lexemes: [{lexeme: w, surface: و}, {lexeme: akal, surface: أَكَلْنا, base: true, feats: {Aspect: Perf, Number: Plur, Person: '1'}}]}, {surface: الغَدا, lexemes: [{lexeme: el, surface: ال, n: 8, head: 9, rel: det}, {lexeme: ghada, surface: غَدا, base: true, feats: {Number: Sing}, n: 9}]}, {surface: سَوا, lexeme: sawa}]
         apc-Latn/arabizi:
           text: nhar el a7ad zert teta, w akalna el ghada sawa.
           tokens: [{surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 3}, {surface: zert, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: el, lexeme: el, n: 8, head: 9, rel: det}, {surface: ghada, lexeme: ghada, feats: {Number: Sing}, n: 9}, {surface: sawa, lexeme: sawa}]
