@@ -82,3 +82,6 @@ labels:
 - {feats: {Definite: Cons, Gender: Fem, Number: Plur}, gloss: {en: 'feminine plural construct (-ôṯ): ''the …s of'' (מַעַרְכוֹת יִשְׂרָאֵל ''the ranks of Israel'')'}, was: 'form:f-pl-cstr'}
 - {feats: {Gender: Fem, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'and they (f.) did: the narrative past, they (women)'}, was: 'form:wayyiqtol-3fp'}
 - {feats: {Gender: Fem, Number: Sing, VerbForm: Part, Voice: Pass}, gloss: {en: 'passive participle, feminine singular: done, -ed, of a woman (בְּרוּכָה ''blessed'')'}, was: 'form:ptc-pass-fs'}
+rules:
+- {id: 'rule:nominal', gloss: {en: 'a noun sentence: no verb ''to be'' (הָאוֹר טוֹב ''the light is good'')'}, was: 'construction:nominal'}
+- {id: 'rule:yesh-le', gloss: {en: 'יֵשׁ לְ…: … has (there is to …); אֵין לְ…: … has no'}, was: 'construction:yesh-le'}

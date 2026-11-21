@@ -719,6 +719,9 @@ def build(conv: Converter) -> Built:
         language["classes"] = plan.data["classes"]
     if labels:
         language["labels"] = labels
+    rules = _rules(conv)
+    if rules:
+        language["rules"] = rules
     return Built(language, lexicon, findings, occs, dict(stats), stored)
 
 
@@ -744,6 +747,24 @@ def _labels(conv: Converter) -> list[Json]:
             label["was"] = kc_id
             out.append(label)
     return out
+
+
+def _rules(conv: Converter) -> list[Json]:
+    """The rules the language names: each KC that keeps a rule's name, with its gloss and notes,
+    so nothing a course says of a construction is lost. Two KCs that keep one name say it once,
+    and the first one's words stand."""
+    out: dict[str, Json] = {}
+    for kc_id, kc in conv.kcs.items():
+        fp = conv.plan.forms.get(kc_id)
+        if fp is None or fp.rule is None:
+            continue
+        rule: Json = {"id": f"rule:{fp.rule}"}
+        for key in ("gloss", "notes"):
+            if kc.get(key):
+                rule[key] = kc[key]
+        rule["was"] = kc_id
+        out.setdefault(str(rule["id"]), rule)
+    return [out[k] for k in sorted(out)]
 
 
 def _show_feats(feats: Feats) -> str:

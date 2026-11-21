@@ -41,6 +41,17 @@ export type KcId = string & { readonly __brand: "KcId" };
  */
 export type KcId1 = string & { readonly __brand: "KcId" };
 /**
+ * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LexemeId".
+ */
+export type LexemeId = string;
+/**
+ * The feature values chosen here, never the lexeme's own lexical features (mano's gender is its entry's).
+ */
+export type UdFeatures = Readonly<Record<string, string>>;
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReportStatus".
  */
@@ -65,6 +76,17 @@ export type PartId = string;
  */
 export type Spdx = string;
 /**
+ * The variety the course teaches, where it names one (ADR 0147: a dialect tag is derived from it).
+ */
+export type LangTag = string & { readonly __brand: "LangTag" };
+/**
+ * A register a language declares (ADR 0145: the second axis of a scope): formal, colloquial, krama.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "RegisterId".
+ */
+export type RegisterId = string;
+/**
  * What an exercise practises about a knowledge component (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -76,12 +98,12 @@ export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script"
  */
 export type CreditId = string;
 /**
- * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
+ * A language as a lexicon is kept for it (ADR 0145: one lexicon per language): its BCP 47 language subtag, with no script, region or variant.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "CreditId".
+ * via the `definition` "LanguageCode".
  */
-export type CreditId1 = string;
+export type LanguageCode = string;
 /**
  * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
  *
@@ -112,7 +134,75 @@ export type PartOfSpeech =
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "UdFeatures".
  */
-export type UdFeatures = Readonly<Record<string, string>>;
+export type UdFeatures1 = Readonly<Record<string, string>>;
+/**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures2 = Readonly<Record<string, string>>;
+/**
+ * A rule of a language (ADR 0145, 0148): what gives a combination's form, a projection, a default.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "RuleId".
+ */
+export type RuleId = string;
+/**
+ * What a path node may introduce: a lexeme, a feature value, a rule, or a letter of a script track (ADR 0149: a grapheme stays the track's).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "TeachableId".
+ */
+export type TeachableId = string;
+/**
+ * One tag of a prompt (ADR 0147): what the answer must say and the prompt leaves open. A value from a closed set, rendered from the UI catalog (persons, register, variety), or an authored situation in each support language. Exactly one of the four. A variety is derived by the compiler from the course's and is never authored.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleTag".
+ */
+export type BundleTag =
+  | {
+      readonly persons: Persons;
+    }
+  | {
+      readonly register: RegisterId;
+    }
+  | {
+      readonly variety: LangTag1;
+    }
+  | {
+      readonly situation: {
+        readonly [k: string]: TaggedText;
+      };
+    };
+/**
+ * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LangTag".
+ */
+export type LangTag1 = string & { readonly __brand: "LangTag" };
+/**
+ * The one thing a choice asks (ADR 0132, 0147): which lexeme, which form of the answer's lexeme, or which use (a contrast only the passage decides). Replaces `Asks`, whose first value called a lexeme a word.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Question".
+ */
+export type Question = "lexeme" | "form" | "use";
+/**
+ * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
+ */
+export type CreditId1 = string;
+/**
+ * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
+ */
+export type CreditId2 = string;
+/**
+ * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CreditId".
+ */
+export type CreditId3 = string;
 /**
  * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
  *
@@ -120,17 +210,6 @@ export type UdFeatures = Readonly<Record<string, string>>;
  * via the `definition` "Asks".
  */
 export type Asks = "word" | "form";
-/**
- * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
- */
-export type CreditId2 = string;
-/**
- * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "LangTag".
- */
-export type LangTag = string & { readonly __brand: "LangTag" };
 /**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  *
@@ -153,33 +232,19 @@ export type SenseId1 = string & { readonly __brand: "SenseId" };
  */
 export type ScriptCode = string;
 /**
- * A language as a lexicon is kept for it (ADR 0145: one lexicon per language): its BCP 47 language subtag, with no script, region or variant.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "LanguageCode".
- */
-export type LanguageCode = string;
-/**
- * A lexeme's name in its language's lexicon: its id without the `lexeme:` prefix, as a token writes it (lexeme: tener). No space, no bar.
+ * A lexeme's name in its language's lexicon: its id without the `lexeme:` prefix, as a token writes it (lexeme: tener). No space, no bar, no plus sign (a form's key joins lexemes with one).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "LexemeName".
  */
 export type LexemeName = string;
 /**
- * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
+ * One form of a lexeme, as a string to key by (a clip that says it; ADR 0146's pairs a learner has seen): the lexeme's id, then `|form:` and the feature values chosen there as Name=Value, sorted by name and joined by `;` (lexeme:ra7|form:Aspect=Part;Gender=Masc;Number=Sing). A lexeme with no feature values chosen is its id alone. A token built of several lexemes is their keys joined by `+`, in the order it writes them (lexeme:badd+lexeme:poss-1sg).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "LexemeId".
+ * via the `definition` "FormKey".
  */
-export type LexemeId = string;
-/**
- * A rule of a language (ADR 0145, 0148): what gives a combination's form, a projection, a default.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "RuleId".
- */
-export type RuleId = string;
+export type FormKey = string;
 /**
  * One value of one feature of a language, as what is taught and learned (ADR 0146: an inherent feature is learned as its contrast, by its uses): feature:Tense=Past.
  *
@@ -188,26 +253,12 @@ export type RuleId = string;
  */
 export type FeatureValueId = string;
 /**
- * What a path node may introduce: a lexeme, a feature value, a rule, or a letter of a script track (ADR 0149: a grapheme stays the track's).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "TeachableId".
- */
-export type TeachableId = string;
-/**
  * A concept (ADR 0145): what links lexemes that differ only socially (variety, speech level, honorific). It has no entry and no learning state: lexemes that name the same one are linked.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ConceptId".
  */
 export type ConceptId = string;
-/**
- * A register a language declares (ADR 0145: the second axis of a scope): formal, colloquial, krama.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "RegisterId".
- */
-export type RegisterId = string;
 /**
  * A Universal Dependencies relation, with its subtype where it has one: det, case, nsubj, obl, nmod:poss.
  *
@@ -239,13 +290,6 @@ export type Skill =
 export type MissLabel =
   "slip" | "orthographic" | "phonemic" | "grammatical" | "regularised" | "lexical" | "scope";
 /**
- * The one thing a choice asks (ADR 0132, 0147): which lexeme, which form of the answer's lexeme, or which use (a contrast only the passage decides). Replaces `Asks`, whose first value called a lexeme a word.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Question".
- */
-export type Question = "lexeme" | "form" | "use";
-/**
  * pending: suggested by a learner; approved or rejected by a reviewer; applied: written into the course source by `nabu corrections apply`.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -268,7 +312,7 @@ export type Cefr = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 /**
  * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
  */
-export type UdFeatures1 = Readonly<Record<string, string>>;
+export type UdFeatures3 = Readonly<Record<string, string>>;
 /**
  * One tag (ADR 0147): a value from a closed set, rendered from the UI catalog (persons, register), or an authored situation in each support language. Exactly one of the three.
  *
@@ -306,7 +350,7 @@ export type Spdx2 = string;
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
-export type LangTag1 = string & { readonly __brand: "LangTag" };
+export type LangTag2 = string & { readonly __brand: "LangTag" };
 /**
  * An SPDX license expression.
  */
@@ -335,7 +379,7 @@ export type PartOfSpeech1 =
 /**
  * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
  */
-export type UdFeatures2 = Readonly<Record<string, string>>;
+export type UdFeatures4 = Readonly<Record<string, string>>;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
@@ -359,11 +403,15 @@ export type Slug4 = string;
 /**
  * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
  */
-export type UdFeatures3 = Readonly<Record<string, string>>;
+export type UdFeatures5 = Readonly<Record<string, string>>;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId4 = string & { readonly __brand: "KcId" };
+/**
+ * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
+ */
+export type KcId5 = string & { readonly __brand: "KcId" };
 /**
  * A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. Nothing writes or reads it until the switch, when every stored event is upgraded to it, it replaces learner-event.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.
  *
@@ -560,11 +608,11 @@ export type PartOfSpeech2 =
 /**
  * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
  */
-export type UdFeatures4 = Readonly<Record<string, string>>;
+export type UdFeatures6 = Readonly<Record<string, string>>;
 /**
  * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
  */
-export type UdFeatures5 = Readonly<Record<string, string>>;
+export type UdFeatures7 = Readonly<Record<string, string>>;
 /**
  * A lexeme's one lexical form (ADR 0145): in its own script, fully specified, every spelling and the phonemes projected from it. Its shape depends on the kind of lexeme: a string in the language's notation (docs/lexical-forms/<lang>.md); a base's radicals, Form and vowels; a pattern's templates; a listed item's parts; a logograph with what picks its reading.
  *
@@ -703,7 +751,7 @@ export type NoteId4 = string;
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
-export type LangTag2 = string & { readonly __brand: "LangTag" };
+export type LangTag3 = string & { readonly __brand: "LangTag" };
 /**
  * A LangTag that carries an explicit script subtag. Every piece of language data uses one (gameplan §1 decision 3, §6.1): direction, fonts, Han glyph selection and input all key off the script.
  */
@@ -727,7 +775,7 @@ export type ReportSubmission = CorrectionSubmission | AnswerSubmission;
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "KcRefLocal".
  */
-export type KcId5 = string & { readonly __brand: "KcId" };
+export type KcId6 = string & { readonly __brand: "KcId" };
 
 /**
  * Index of every Nabu schema type, so each is declared. Not a document type.
@@ -759,8 +807,24 @@ export interface NabuSchemaIndex {
   readonly AudioRejection: AudioRejection;
   readonly AudioVerdicts: AudioVerdicts;
   readonly AudioVerdict: AudioVerdict;
+  readonly NextBundleManifest: NextBundleManifest;
+  readonly NextBundleFile: NextBundleFile;
+  readonly BundleLexicon: BundleLexicon;
+  readonly BundleLexeme: BundleLexeme;
+  readonly BundleLabel: BundleLabel;
+  readonly BundleRule: BundleRule;
+  readonly BundleGrapheme: BundleGrapheme;
+  readonly NextBundleUnit: NextBundleUnit;
+  readonly NextScriptItem: NextScriptItem;
+  readonly NextBundleNode: NextBundleNode;
+  readonly BundleTag: BundleTag;
+  readonly NextBundleSentence: NextBundleSentence;
+  readonly NextBundleStory: NextBundleStory;
+  readonly NextBundleStoryStep: NextBundleStoryStep;
+  readonly NextBundleStoryLine: NextBundleStoryLine;
+  readonly NextBundleAudio: NextBundleAudio;
   readonly BundleManifest: BundleManifest;
-  readonly CreditId: CreditId1;
+  readonly CreditId: CreditId3;
   readonly BundleFile: BundleFile;
   readonly BundleManifestUnit: BundleManifestUnit;
   readonly BundleUnit: BundleUnit;
@@ -775,23 +839,24 @@ export interface NabuSchemaIndex {
   readonly BundleAudio: BundleAudio;
   readonly BundleAudioItem: BundleAudioItem;
   readonly BundleClip: BundleClip;
-  readonly LangTag: LangTag;
+  readonly LangTag: LangTag1;
   readonly ScriptedLangTag: ScriptedLangTag;
   readonly OrthographyId: OrthographyId;
   readonly SchemeId: SchemeId;
   readonly SenseId: SenseId1;
   readonly KcId: KcId1;
   readonly PartOfSpeech: PartOfSpeech;
-  readonly UdFeatures: UdFeatures;
+  readonly UdFeatures: UdFeatures1;
   readonly Asks: Asks;
   readonly Persons: Persons;
   readonly Facet: Facet;
-  readonly PlacementPolicy: PlacementPolicy1;
+  readonly PlacementPolicy: PlacementPolicy2;
   readonly ScriptCode: ScriptCode;
-  readonly CourseNames: CourseNames1;
+  readonly CourseNames: CourseNames2;
   readonly LanguageCode: LanguageCode;
   readonly LexemeName: LexemeName;
   readonly LexemeId: LexemeId;
+  readonly FormKey: FormKey;
   readonly RuleId: RuleId;
   readonly FeatureValueId: FeatureValueId;
   readonly TeachableId: TeachableId;
@@ -850,6 +915,7 @@ export interface NabuSchemaIndex {
   readonly Condition: Condition;
   readonly Default: Default;
   readonly FeatureLabel: FeatureLabel;
+  readonly NamedRule: NamedRule;
   readonly LexicalClass: LexicalClass;
   readonly NextLearnerEvent: NextLearnerEvent;
   readonly NextExerciseRef: NextExerciseRef;
@@ -948,6 +1014,7 @@ export interface NabuSchemaIndex {
   readonly TaggedText: TaggedText;
   readonly TokenKind: TokenKind;
   readonly Token: Token;
+  readonly WrittenLexeme: WrittenLexeme;
   readonly RubySegment: RubySegment;
   readonly Morph: Morph;
 }
@@ -1082,6 +1149,12 @@ export interface Token {
    * @minItems 1
    */
   readonly morphs?: readonly Morph[];
+  /**
+   * The lexemes the token writes, in the order it writes them (bundle format version 2; ADR 0145): a stem, a clitic and an affix alike. There is no unit between a token and a lexeme (the owner, 2026-11-20). It takes the place of `sense`, `form` and `morphs`, which go at the flip.
+   *
+   * @minItems 1
+   */
+  readonly lexemes?: readonly WrittenLexeme[];
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1093,6 +1166,36 @@ export interface Morph {
    */
   readonly surface: string;
   readonly kc: KcId1;
+}
+/**
+ * One lexeme a token writes, as a bundle has it: a course source's token lexeme, with its full id.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "WrittenLexeme".
+ */
+export interface WrittenLexeme {
+  readonly lexeme: LexemeId;
+  /**
+   * Its letters in the token, where the token writes several lexemes: their surfaces concatenate to the token's. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe). Absent on a token's only lexeme: the whole token.
+   */
+  readonly surface?: string;
+  /**
+   * The lexeme the token's others are merged onto (ADR 0145): matbakh in b + el + matbakh. It is what a question about the token asks (which lexeme, which form) and where its feature values are chosen. Marked where the token writes several; a token's only lexeme is its base; a token of two equals has none (yue 十 + 八).
+   */
+  readonly base?: true;
+  readonly feats?: UdFeatures;
+  /**
+   * Its number among the lexemes the utterance writes, from 1, in order. Present where a relation names it or it names one.
+   */
+  readonly n?: number;
+  /**
+   * The `n` of the lexeme it agrees with or is governed by (ADR 0145: only where agreement or government matters).
+   */
+  readonly head?: number;
+  /**
+   * Its Universal Dependencies relation to `head`.
+   */
+  readonly rel?: string;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1561,16 +1664,16 @@ export interface AudioVerdict {
   readonly at: string;
 }
 /**
- * A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
+ * A compiled course bundle in the shape the lexical model needs (docs/migration-design.md, deliverable 3): format version 2. It has lexemes, feature values and rules where a bundle had KCs, and its tokens list the lexemes they write. Written by the compiler from a language's lexicon and a course in the new shape; at the flip it replaces bundle.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleManifest".
+ * via the `definition` "NextBundleManifest".
  */
-export interface BundleManifest {
+export interface NextBundleManifest {
   /**
-   * 1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text.
+   * 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.
    */
-  readonly formatVersion: 1;
+  readonly formatVersion: 2;
   /**
    * sha256 of the manifest without this field.
    */
@@ -1579,6 +1682,17 @@ export interface BundleManifest {
   readonly target: ScriptedLangTag;
   readonly orthographies: readonly OrthographyId[];
   readonly support: readonly OrthographyId[];
+  /**
+   * The language whose lexicon the course draws on (ADR 0145: one lexicon per language). A part's id is unique in it.
+   */
+  readonly lexicon: string;
+  readonly variety?: LangTag;
+  /**
+   * The registers the course teaches, where it names them.
+   *
+   * @minItems 1
+   */
+  readonly registers?: readonly RegisterId[];
   readonly names?: CourseNames;
   /**
    * The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.
@@ -1604,7 +1718,7 @@ export interface BundleManifest {
   /**
    * Every file in the bundle by role, with its SPDX license.
    */
-  readonly files: readonly BundleFile[];
+  readonly files: readonly NextBundleFile[];
   /**
    * Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`).
    */
@@ -1677,11 +1791,23 @@ export interface PlacementPolicy {
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleFile".
+ * via the `definition` "NextBundleFile".
  */
-export interface BundleFile {
+export interface NextBundleFile {
   readonly path: string;
-  readonly role: "unit" | "profile" | "table" | "keyboard" | "image" | "audio" | "audio-index";
+  /**
+   * lexicon: the course's lexemes, labels and named rules (BundleLexicon), one file. aliases: what each KC id of the course became (aliases.schema.json), which upgrading a log written before format version 2 reads.
+   */
+  readonly role:
+    | "unit"
+    | "lexicon"
+    | "aliases"
+    | "profile"
+    | "table"
+    | "keyboard"
+    | "image"
+    | "audio"
+    | "audio-index";
   readonly sha256: string;
   readonly license: string;
   readonly credit?: CreditId;
@@ -1701,6 +1827,504 @@ export interface BundleManifestUnit {
    * Paths of the media files (roles audio and image) the unit's items use, sorted. A file shared by units is listed in each.
    */
   readonly assets: readonly string[];
+}
+/**
+ * The course's part of its language's lexicon (role lexicon): every lexeme a node of the course introduces or a token of it writes, in one list sorted by id. It is flat (the owner, 2026-11-20): no entry says which unit teaches it, and a unit's nodes point at it. With it, what a learner is shown for the feature values the course's tokens carry and for the rules its nodes and sentences name.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleLexicon".
+ */
+export interface BundleLexicon {
+  readonly language: LanguageCode;
+  readonly lexemes: readonly BundleLexeme[];
+  /**
+   * The names of feature values, alone or several together (the language's `labels`). The most specific label whose values a form has names it.
+   */
+  readonly labels?: readonly BundleLabel[];
+  /**
+   * The rules the course names (the language's `rules`), each with what a learner is shown for it.
+   */
+  readonly rules?: readonly BundleRule[];
+}
+/**
+ * One lexeme as a course ships it. What kind it is shows in what it has, as in the lexicon: a part of speech, `realises` (a value head: uz -ga) or `head` (a function head). A form a rule gives and ours does not yet (pinned) is not here: it is stored and checked in the lexicon, and never a learner's part (ADR 0146).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleLexeme".
+ */
+export interface BundleLexeme {
+  readonly id: LexemeId;
+  readonly pos?: PartOfSpeech;
+  readonly realises?: UdFeatures1;
+  readonly head?: FunctionHead;
+  readonly feats?: UdFeatures2;
+  /**
+   * Lexical features of its category that its tokens choose instead (hermano, whose tokens are masculine or feminine).
+   *
+   * @minItems 1
+   */
+  readonly chooses?: readonly string[];
+  /**
+   * Its parts beyond itself (ADR 0146: every part no rule gives): a lexical feature no default gives (lexeme:mano|Gender), a listed form or stem, a class, a leftover of an orthography. A lexeme with none is learned once itself is.
+   *
+   * @minItems 1
+   */
+  readonly parts?: readonly PartId[];
+  /**
+   * Its meaning, per support language.
+   */
+  readonly gloss?: {
+    readonly [k: string]: TaggedText;
+  };
+  /**
+   * How it is written, per orthography: its entry's spellings, the first the one a card shows, then those of its allomorphs. Each with the readings and vowel marks the course pins.
+   */
+  readonly forms?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly TaggedText[];
+  };
+  /**
+   * Bundle path of its picture (a file with role image).
+   */
+  readonly image?: string;
+}
+/**
+ * A function head's signature (ADR 0145): what it takes, what it makes, which features it sets.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "FunctionHead".
+ */
+export interface FunctionHead {
+  /**
+   * @minItems 1
+   */
+  readonly takes: readonly PartOfSpeech[];
+  readonly makes: PartOfSpeech;
+  readonly sets?: UdFeatures1;
+}
+/**
+ * The name of a set of feature values (language.schema.json FeatureLabel), per support language: preterite, I (Tense=Past, Person=1, Number=Sing). `pos` narrows it to one category.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleLabel".
+ */
+export interface BundleLabel {
+  readonly feats: UdFeatures1;
+  readonly pos?: PartOfSpeech;
+  readonly gloss: {
+    readonly [k: string]: TaggedText;
+  };
+}
+/**
+ * A rule the course names, with what a learner is shown for it. Until rules are written (docs/migration-design.md, "Not designed here") a rule is its name and its gloss: what a `construction:` KC was.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleRule".
+ */
+export interface BundleRule {
+  readonly id: RuleId;
+  readonly gloss?: {
+    readonly [k: string]: TaggedText;
+  };
+}
+/**
+ * A letter, a digraph or a mark a script track teaches (ADR 0149: a grapheme stays the track's, never the lexicon's): how each orthography writes it, and in a Latin orthography what a track asks it as (ADR 0133).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleGrapheme".
+ */
+export interface BundleGrapheme {
+  readonly id: string;
+  readonly gloss?: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly forms?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly TaggedText[];
+  };
+}
+/**
+ * A unit's file. It defines no lexemes: its nodes point at the bundle's lexicon. The letters its script nodes teach are the one thing it lists.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NextBundleUnit".
+ */
+export interface NextBundleUnit {
+  readonly id: string;
+  readonly cefr?: string;
+  readonly title?: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly graphemes?: readonly BundleGrapheme[];
+  readonly nodes: readonly NextBundleNode[];
+  readonly sentences: readonly NextBundleSentence[];
+  readonly stories?: readonly NextBundleStory[];
+  readonly scenarios?: readonly BundleScenario[];
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NextBundleNode".
+ */
+export interface NextBundleNode {
+  readonly id: string;
+  readonly kind: string;
+  /**
+   * What the node teaches for the first time: lexemes, feature values, rules, and a script node's letters. The one place the teaching order is written.
+   */
+  readonly introduces: readonly TeachableId[];
+  readonly reinforces: readonly TeachableId[];
+  readonly sentences: readonly string[];
+  /**
+   * An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133).
+   */
+  readonly alphabet?: {
+    readonly orthography: string;
+    readonly letters: readonly NextScriptItem[];
+    readonly lexemes: readonly NextScriptItem[];
+  };
+  readonly convert?: {
+    readonly from: string;
+    readonly to: string;
+  };
+}
+/**
+ * A letter or a lexeme of an alphabet node: what it is, how the orthography writes it, and its reading in Latin letters (ADR 0133): a lexeme's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NextScriptItem".
+ */
+export interface NextScriptItem {
+  /**
+   * What a path node may introduce: a lexeme, a feature value, a rule, or a letter of a script track (ADR 0149: a grapheme stays the track's).
+   */
+  readonly id: string;
+  /**
+   * The letters it is written with, of those its track teaches (a letter: its own).
+   */
+  readonly letters: readonly string[];
+  readonly text: TaggedText;
+  readonly latin: TaggedText;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NextBundleSentence".
+ */
+export interface NextBundleSentence {
+  readonly id: string;
+  readonly node: string;
+  readonly forms: {
+    readonly [k: string]: {
+      readonly text: TaggedText;
+      readonly reverse?: string;
+    };
+  };
+  readonly translations: {
+    readonly [k: string]: {
+      readonly text: TaggedText;
+      readonly accept: string;
+    };
+  };
+  /**
+   * Every part the sentence can give evidence of (ADR 0146), each once: the lexemes its tokens write, the feature values they carry that a node of the course introduces, the rules it is an example of (the source's `uses`), and a lexeme's own part where a token shows it (mano's gender, on the article that agrees with it).
+   */
+  readonly parts: readonly PartId[];
+  readonly production: boolean;
+  /**
+   * What the answer must say and the prompt leaves open (ADR 0147), shown under the prompt where the answer's language marks it.
+   *
+   * @minItems 1
+   */
+  readonly tags?: readonly BundleTag[];
+  readonly provenance: Provenance;
+  readonly license: string;
+}
+/**
+ * Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Persons".
+ */
+export interface Persons {
+  /**
+   * The speaker's gender, where the sentence marks it.
+   */
+  readonly speaker?: "m" | "f";
+  /**
+   * Who is spoken to: one man (m), one woman (f), one person where the language marks number but not gender (sg: Cantonese 你 against 你哋), two people where it has a dual (du), or several people (pl).
+   */
+  readonly addressee?: "m" | "f" | "sg" | "du" | "pl";
+}
+/**
+ * A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NextBundleStory".
+ */
+export interface NextBundleStory {
+  readonly id: string;
+  readonly node: string;
+  readonly title: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly characters: readonly {
+    readonly id: string;
+    /**
+     * The character's gender as a speaker, where the course sets it (ADR 0078).
+     */
+    readonly speaker?: "m" | "f";
+    /**
+     * Per orthography.
+     */
+    readonly name: {
+      readonly [k: string]: TaggedText;
+    };
+  }[];
+  readonly steps: readonly NextBundleStoryStep[];
+  /**
+   * Every part its lines can give evidence of.
+   */
+  readonly parts: readonly PartId[];
+  readonly provenance?: Provenance;
+  readonly license: string;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NextBundleStoryStep".
+ */
+export interface NextBundleStoryStep {
+  readonly line?: NextBundleStoryLine;
+  readonly choose?: {
+    readonly prompt: {
+      readonly [k: string]: TaggedText;
+    };
+    readonly options: readonly {
+      readonly [k: string]: TaggedText;
+    }[];
+    readonly answer: number;
+  };
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NextBundleStoryLine".
+ */
+export interface NextBundleStoryLine {
+  readonly speaker?: string;
+  /**
+   * Per orthography.
+   */
+  readonly forms: {
+    readonly [k: string]: TaggedText;
+  };
+  /**
+   * Per support language.
+   */
+  readonly translations: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly parts: readonly PartId[];
+  readonly ask?: "complete" | "arrange";
+  /**
+   * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
+   */
+  readonly gap?: string;
+  readonly asks?: Question;
+  /**
+   * complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one token the course writes in the story's unit or earlier (another lexeme in the gap's form, or the gap's lexeme in another form), analysis and readings kept.
+   */
+  readonly options?: readonly {
+    readonly [k: string]: TaggedText;
+  }[];
+}
+/**
+ * A roleplay scenario card (Phase 8, §13.4); its texts per support language.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleScenario".
+ */
+export interface BundleScenario {
+  readonly id: string;
+  /**
+   * The path node completed before the scenario opens.
+   */
+  readonly after: string;
+  readonly title: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly setting: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly character: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly goal: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly provenance?: Provenance;
+  readonly license: string;
+}
+/**
+ * audio.json (role audio-index): playable clips by item. An item is a sentence's id, a story line's (`story#step`), a lexeme's id for its entry's spelling, or a form's key for a clip that says one form of a lexeme or a token built of several (common.schema.json FormKey).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NextBundleAudio".
+ */
+export interface NextBundleAudio {
+  readonly items: {
+    readonly [k: string]: BundleAudioItem;
+  };
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleAudioItem".
+ */
+export interface BundleAudioItem {
+  readonly normal: BundleClip;
+  readonly slow?: BundleClip;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleClip".
+ */
+export interface BundleClip {
+  readonly path: string;
+  readonly durationMs: number;
+  readonly synthetic: boolean;
+  readonly license: string;
+  readonly credit?: CreditId1;
+  /**
+   * A person confirmed what the clip says (ADR 0125): it is a recording (not synthetic), or a synthetic clip a listener marked right in the audio check (ADR 0060). Present only when true. A tone card (tone-identify) plays only confirmed clips: a synthetic voice is not trusted with a lone syllable's tone.
+   */
+  readonly confirmed?: boolean;
+  readonly timings?: readonly TokenTiming[];
+  /**
+   * The orthography whose tokens `timings` index: the one the voice read. Another orthography of the course gets them moved to its own tokens, word for word (ADR 0126).
+   */
+  readonly orthography?: string;
+}
+/**
+ * A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleManifest".
+ */
+export interface BundleManifest {
+  /**
+   * 1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text.
+   */
+  readonly formatVersion: 1;
+  /**
+   * sha256 of the manifest without this field.
+   */
+  readonly id: string;
+  readonly course: string;
+  readonly target: ScriptedLangTag;
+  readonly orthographies: readonly OrthographyId[];
+  readonly support: readonly OrthographyId[];
+  readonly names?: CourseNames1;
+  /**
+   * The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.
+   *
+   * @minItems 1
+   */
+  readonly facets?: readonly Facet[];
+  /**
+   * How far learners may rely on the course's clips, where it is not good (course source `audio.quality`, ADR 0091). iffy: no template whose prompt is a clip (listening, listen-and-repeat) is planned; clips still play where the learner has the text. A bad voice ships no clips, so it needs no flag.
+   */
+  readonly audioQuality?: "iffy";
+  readonly placement?: PlacementPolicy1;
+  /**
+   * The course asks words by their parts (course source `wordParts`, ADR 0152): the templates `parts-whole` and `whole-parts` are planned. Absent: they are not.
+   */
+  readonly wordParts?: true;
+  /**
+   * Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU.
+   */
+  readonly versions: {
+    readonly [k: string]: string;
+  };
+  /**
+   * Every file in the bundle by role, with its SPDX license.
+   */
+  readonly files: readonly BundleFile[];
+  /**
+   * Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`).
+   */
+  readonly credits: {
+    readonly [k: string]: string;
+  };
+  /**
+   * The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit.
+   */
+  readonly units: readonly BundleManifestUnit[];
+  /**
+   * SPDX expression → number of content items.
+   */
+  readonly licenses: {
+    readonly [k: string]: number;
+  };
+  /**
+   * Counts by status and author kind.
+   */
+  readonly provenance: {
+    readonly [k: string]: number;
+  };
+  /**
+   * A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.
+   */
+  readonly release?: boolean;
+}
+/**
+ * What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses.
+ */
+export interface CourseNames1 {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
+      readonly [k: string]: string;
+    };
+    readonly provenance?: Provenance1;
+  };
+}
+/**
+ * How the placement test probes, where the course says (course source `placement`, ADR 0077).
+ */
+export interface PlacementPolicy1 {
+  readonly production?: "tiles" | "typed";
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleFile".
+ */
+export interface BundleFile {
+  readonly path: string;
+  readonly role: "unit" | "profile" | "table" | "keyboard" | "image" | "audio" | "audio-index";
+  readonly sha256: string;
+  readonly license: string;
+  readonly credit?: CreditId2;
+  /**
+   * Size in bytes, to say what a download costs before it starts.
+   */
+  readonly bytes: number;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1728,7 +2352,7 @@ export interface BundleKc {
   readonly prerequisites: readonly KcId1[];
   readonly cefr?: string;
   readonly pos?: PartOfSpeech;
-  readonly features?: UdFeatures;
+  readonly features?: UdFeatures1;
   readonly gloss?: {
     readonly [k: string]: TaggedText;
   };
@@ -1803,22 +2427,6 @@ export interface BundleSentence {
   readonly persons?: Persons;
   readonly provenance: Provenance;
   readonly license: string;
-}
-/**
- * Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Persons".
- */
-export interface Persons {
-  /**
-   * The speaker's gender, where the sentence marks it.
-   */
-  readonly speaker?: "m" | "f";
-  /**
-   * Who is spoken to: one man (m), one woman (f), one person where the language marks number but not gender (sg: Cantonese 你 against 你哋), two people where it has a dual (du), or several people (pl).
-   */
-  readonly addressee?: "m" | "f" | "sg" | "du" | "pl";
 }
 /**
  * A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
@@ -1900,33 +2508,6 @@ export interface BundleStoryLine {
   }[];
 }
 /**
- * A roleplay scenario card (Phase 8, §13.4); its texts per support language.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleScenario".
- */
-export interface BundleScenario {
-  readonly id: string;
-  /**
-   * The path node completed before the scenario opens.
-   */
-  readonly after: string;
-  readonly title: {
-    readonly [k: string]: TaggedText;
-  };
-  readonly setting: {
-    readonly [k: string]: TaggedText;
-  };
-  readonly character: {
-    readonly [k: string]: TaggedText;
-  };
-  readonly goal: {
-    readonly [k: string]: TaggedText;
-  };
-  readonly provenance?: Provenance;
-  readonly license: string;
-}
-/**
  * audio.json (role audio-index): playable clips by item (sentence or KC id).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1938,40 +2519,12 @@ export interface BundleAudio {
   };
 }
 /**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleAudioItem".
- */
-export interface BundleAudioItem {
-  readonly normal: BundleClip;
-  readonly slow?: BundleClip;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleClip".
- */
-export interface BundleClip {
-  readonly path: string;
-  readonly durationMs: number;
-  readonly synthetic: boolean;
-  readonly license: string;
-  readonly credit?: CreditId2;
-  /**
-   * A person confirmed what the clip says (ADR 0125): it is a recording (not synthetic), or a synthetic clip a listener marked right in the audio check (ADR 0060). Present only when true. A tone card (tone-identify) plays only confirmed clips: a synthetic voice is not trusted with a lone syllable's tone.
-   */
-  readonly confirmed?: boolean;
-  readonly timings?: readonly TokenTiming[];
-  /**
-   * The orthography whose tokens `timings` index: the one the voice read. Another orthography of the course gets them moved to its own tokens, word for word (ADR 0126).
-   */
-  readonly orthography?: string;
-}
-/**
  * How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "PlacementPolicy".
  */
-export interface PlacementPolicy1 {
+export interface PlacementPolicy2 {
   readonly production?: "tiles" | "typed";
 }
 /**
@@ -1980,7 +2533,7 @@ export interface PlacementPolicy1 {
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "CourseNames".
  */
-export interface CourseNames1 {
+export interface CourseNames2 {
   readonly [k: string]: {
     /**
      * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
@@ -2120,7 +2673,7 @@ export interface NextCourseSource {
    * @minItems 1
    */
   readonly support: readonly OrthographyId[];
-  readonly names?: CourseNames2;
+  readonly names?: CourseNames3;
   readonly license?: Spdx1;
   readonly provenance?: Provenance2;
   /**
@@ -2129,7 +2682,7 @@ export interface NextCourseSource {
    * @minItems 1
    */
   readonly facets?: readonly Facet[];
-  readonly placement?: PlacementPolicy1;
+  readonly placement?: PlacementPolicy2;
   /**
    * Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.
    */
@@ -2153,10 +2706,10 @@ export interface NextCourseSource {
    */
   readonly vocalization?: readonly (string | VocalizationSource)[];
   /**
-   * The language whose lexicon the course draws on (lexicons/<lang>/).
+   * A language as a lexicon is kept for it (ADR 0145: one lexicon per language): its BCP 47 language subtag, with no script, region or variant.
    */
   readonly lexicon: string;
-  readonly variety?: LangTag1;
+  readonly variety?: LangTag2;
   /**
    * The registers the course teaches, of its language's.
    *
@@ -2167,7 +2720,7 @@ export interface NextCourseSource {
 /**
  * What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).
  */
-export interface CourseNames2 {
+export interface CourseNames3 {
   readonly [k: string]: {
     /**
      * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
@@ -2328,7 +2881,7 @@ export interface NextToken {
    * The one lexeme the token writes.
    */
   readonly lexeme?: string;
-  readonly feats?: UdFeatures1;
+  readonly feats?: UdFeatures3;
   /**
    * The lexemes the token writes, in the order it writes them (apc b + el + matbakh; uz uy + ga).
    *
@@ -2384,7 +2937,7 @@ export interface TokenLexeme {
    * The lexeme the token's others are merged onto (ADR 0145: every complex form is a base lexeme merged with another, one head per step): matbakh in b + el + matbakh, uy in uy + ga. It is what a question about the token asks (which lexeme, which form) and where its feature values are chosen. At most one; a token of two equals has none (yue 十 + 八).
    */
   readonly base?: true;
-  readonly feats?: UdFeatures;
+  readonly feats?: UdFeatures1;
   /**
    * Its number among the lexemes the utterance writes, from 1, in order. Written where a relation names it or it names one.
    */
@@ -2485,7 +3038,7 @@ export interface NextStoryLineSource {
    *
    * Items: Another lexeme (which lexeme); another form of the gap's own, as its feature values (which form); or a word built of several lexemes, as a token of the course writes them in that order (apc esm and its ending, where the gap is one word too).
    */
-  readonly distractors?: readonly (LexemeId | UdFeatures | readonly LexemeId[])[];
+  readonly distractors?: readonly (LexemeId | UdFeatures1 | readonly LexemeId[])[];
 }
 /**
  * A comprehension question in the support language, about what has been read.
@@ -2748,7 +3301,7 @@ export interface CourseSource {
    * @minItems 1
    */
   readonly support: readonly OrthographyId[];
-  readonly names?: CourseNames3;
+  readonly names?: CourseNames4;
   readonly license?: Spdx3;
   readonly provenance?: Provenance3;
   /**
@@ -2757,7 +3310,7 @@ export interface CourseSource {
    * @minItems 1
    */
   readonly facets?: readonly Facet[];
-  readonly placement?: PlacementPolicy1;
+  readonly placement?: PlacementPolicy2;
   /**
    * Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.
    */
@@ -2784,7 +3337,7 @@ export interface CourseSource {
 /**
  * What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).
  */
-export interface CourseNames3 {
+export interface CourseNames4 {
   readonly [k: string]: {
     /**
      * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
@@ -2855,7 +3408,7 @@ export interface KnowledgeComponentSource {
   readonly prerequisites?: readonly KcId1[];
   readonly cefr?: Cefr;
   readonly pos?: PartOfSpeech1;
-  readonly features?: UdFeatures2;
+  readonly features?: UdFeatures4;
   /**
    * Short meaning per support language.
    */
@@ -3161,7 +3714,7 @@ export interface LanguageDeclaration {
    *
    * @minItems 1
    */
-  readonly varieties?: readonly LangTag[];
+  readonly varieties?: readonly LangTag1[];
   /**
    * The registers a scope may name.
    *
@@ -3190,7 +3743,7 @@ export interface LanguageDeclaration {
    * For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell.
    */
   readonly citation?: {
-    readonly [k: string]: UdFeatures;
+    readonly [k: string]: UdFeatures1;
   };
   /**
    * Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none.
@@ -3213,6 +3766,10 @@ export interface LanguageDeclaration {
    * What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it.
    */
   readonly labels?: readonly FeatureLabel[];
+  /**
+   * The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces.
+   */
+  readonly rules?: readonly NamedRule[];
 }
 /**
  * One default: where `when` holds of a lexeme, it has `gives` unless its entry says otherwise.
@@ -3223,7 +3780,7 @@ export interface LanguageDeclaration {
 export interface Default {
   readonly id: Slug;
   readonly when: Condition;
-  readonly gives: UdFeatures;
+  readonly gives: UdFeatures1;
   /**
    * What a reviewer should know, by support language.
    */
@@ -3248,7 +3805,7 @@ export interface Condition {
    */
   readonly starts?: string;
   readonly class?: Slug4;
-  readonly feats?: UdFeatures3;
+  readonly feats?: UdFeatures5;
 }
 /**
  * One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).
@@ -3279,7 +3836,7 @@ export interface LexicalClass {
  * via the `definition` "FeatureLabel".
  */
 export interface FeatureLabel {
-  readonly feats: UdFeatures;
+  readonly feats: UdFeatures1;
   readonly pos?: PartOfSpeech;
   readonly gloss: {
     readonly [k: string]: string;
@@ -3288,6 +3845,25 @@ export interface FeatureLabel {
     readonly [k: string]: string;
   };
   readonly was?: KcId4;
+}
+/**
+ * A rule by its name, with what a learner is shown for it. It says nothing of what the rule does: that is the rule's own file, once it is written.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NamedRule".
+ */
+export interface NamedRule {
+  readonly id: RuleId;
+  /**
+   * What a learner is shown for it, by support language (apc used-to: kent + a verb without b-).
+   */
+  readonly gloss?: {
+    readonly [k: string]: string;
+  };
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+  readonly was?: KcId5;
 }
 /**
  * A session began: a lesson (one path node), review, mistakes or placement.
@@ -3457,7 +4033,7 @@ export interface Prediction {
  */
 export interface DisplayedLexeme {
   readonly lexeme: LexemeId;
-  readonly feats?: UdFeatures;
+  readonly feats?: UdFeatures1;
 }
 /**
  * One graded answer (§9.6). Raw answers are personal data (§14.4).
@@ -4646,9 +5222,9 @@ export interface Provenance4 {
 export interface Lexeme {
   readonly id: LexemeId;
   readonly pos?: PartOfSpeech2;
-  readonly realises?: UdFeatures4;
+  readonly realises?: UdFeatures6;
   readonly head?: FunctionHead;
-  readonly feats?: UdFeatures5;
+  readonly feats?: UdFeatures7;
   /**
    * Features its language declares lexical for its category that this lexeme's tokens choose instead: hermano, whose tokens are masculine or feminine. By ADR 0145 a noun's feminine is a derivative, and a lexeme of its own where it is listed; until that is decided for a lexeme, the value stays on its tokens, and the entry says so here.
    *
@@ -4713,20 +5289,6 @@ export interface Lexeme {
     readonly [k: string]: string;
   };
   readonly provenance?: Provenance;
-}
-/**
- * A function head's signature (ADR 0145): what it takes, what it makes, which features it sets.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "FunctionHead".
- */
-export interface FunctionHead {
-  /**
-   * @minItems 1
-   */
-  readonly takes: readonly PartOfSpeech[];
-  readonly makes: PartOfSpeech;
-  readonly sets?: UdFeatures;
 }
 /**
  * A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
@@ -4806,7 +5368,7 @@ export interface Logograph {
  * via the `definition` "LexemeForm".
  */
 export interface LexemeForm {
-  readonly feats: UdFeatures;
+  readonly feats: UdFeatures1;
   /**
    * The whole form, in the language's lexical-form notation (fue).
    */
@@ -4856,7 +5418,7 @@ export interface Scope {
   /**
    * @minItems 1
    */
-  readonly varieties?: readonly LangTag[];
+  readonly varieties?: readonly LangTag1[];
   /**
    * @minItems 1
    */
@@ -4902,7 +5464,7 @@ export interface Condition1 {
    */
   readonly starts?: string;
   readonly class?: Slug4;
-  readonly feats?: UdFeatures3;
+  readonly feats?: UdFeatures5;
 }
 /**
  * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
@@ -4918,7 +5480,7 @@ export interface Condition2 {
    */
   readonly starts?: string;
   readonly class?: Slug4;
-  readonly feats?: UdFeatures3;
+  readonly feats?: UdFeatures5;
 }
 /**
  * UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.
@@ -4928,7 +5490,7 @@ export interface Condition2 {
  */
 export interface MessageCatalog {
   readonly $schema?: string;
-  readonly locale: LangTag;
+  readonly locale: LangTag1;
   readonly provenance?: Provenance6;
   readonly messages: {
     readonly [k: string]: CatalogMessage;
@@ -5202,7 +5764,7 @@ export interface MatchPolicy {
   readonly case?:
     | "none"
     | {
-        readonly locale: LangTag;
+        readonly locale: LangTag1;
       };
   readonly typo?: {
     readonly model: "keyboard" | "marks" | "ime-homophone";
@@ -5511,7 +6073,7 @@ export interface ReadingScheme {
   readonly names: {
     readonly [k: string]: SchemeNames;
   };
-  readonly language: LangTag2;
+  readonly language: LangTag3;
   readonly lang?: ScriptedLangTag2;
   readonly answer?: OrthographyId2;
   readonly latin?: OrthographyId3;
@@ -5540,7 +6102,7 @@ export interface ReadingScheme {
      * One syllable, as a regular expression that JavaScript and Python's `regex` read alike (letters, character classes, quantifiers): [a-z]+[1-6].
      */
     readonly syllable: string;
-    readonly locale: LangTag;
+    readonly locale: LangTag1;
     /**
      * A character class of what may stand between syllables and is dropped: spaces, apostrophes, dots, hyphens.
      */

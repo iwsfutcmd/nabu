@@ -1,0 +1,172 @@
+{
+  "id": "abc",
+  "graphemes": [
+    {
+      "id": "grapheme:alif",
+      "forms": {
+        "chg-Arab/standard": [
+          {
+            "lang": "chg-Arab",
+            "orthography": "chg-Arab/standard",
+            "tokens": [
+              {
+                "surface": "ا",
+                "kind": "word",
+                "tileGroup": 0
+              }
+            ]
+          }
+        ],
+        "chg-Latn/schluessel": [
+          {
+            "lang": "chg-Latn",
+            "orthography": "chg-Latn/schluessel",
+            "tokens": [
+              {
+                "surface": "a",
+                "kind": "word",
+                "tileGroup": 0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "grapheme:t",
+      "forms": {
+        "chg-Arab/standard": [
+          {
+            "lang": "chg-Arab",
+            "orthography": "chg-Arab/standard",
+            "tokens": [
+              {
+                "surface": "ت",
+                "kind": "word",
+                "tileGroup": 0
+              }
+            ]
+          }
+        ],
+        "chg-Latn/schluessel": [
+          {
+            "lang": "chg-Latn",
+            "orthography": "chg-Latn/schluessel",
+            "tokens": [
+              {
+                "surface": "t",
+                "kind": "word",
+                "tileGroup": 0
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "id": "chg.abc.1",
+      "kind": "script",
+      "introduces": [
+        "grapheme:alif",
+        "grapheme:t"
+      ],
+      "reinforces": [],
+      "sentences": [],
+      "alphabet": {
+        "orthography": "chg-Arab/standard",
+        "letters": [
+          {
+            "id": "grapheme:alif",
+            "letters": [
+              "grapheme:alif"
+            ],
+            "text": {
+              "lang": "chg-Arab",
+              "orthography": "chg-Arab/standard",
+              "tokens": [
+                {
+                  "surface": "ا",
+                  "kind": "word",
+                  "tileGroup": 0
+                }
+              ]
+            },
+            "latin": {
+              "lang": "chg-Latn",
+              "orthography": "chg-Latn/schluessel",
+              "tokens": [
+                {
+                  "surface": "a",
+                  "kind": "word",
+                  "tileGroup": 0
+                }
+              ]
+            }
+          },
+          {
+            "id": "grapheme:t",
+            "letters": [
+              "grapheme:t"
+            ],
+            "text": {
+              "lang": "chg-Arab",
+              "orthography": "chg-Arab/standard",
+              "tokens": [
+                {
+                  "surface": "ت",
+                  "kind": "word",
+                  "tileGroup": 0
+                }
+              ]
+            },
+            "latin": {
+              "lang": "chg-Latn",
+              "orthography": "chg-Latn/schluessel",
+              "tokens": [
+                {
+                  "surface": "t",
+                  "kind": "word",
+                  "tileGroup": 0
+                }
+              ]
+            }
+          }
+        ],
+        "words": [
+          {
+            "id": "lexeme:at.name",
+            "letters": [
+              "grapheme:alif",
+              "grapheme:t"
+            ],
+            "text": {
+              "lang": "chg-Arab",
+              "orthography": "chg-Arab/standard",
+              "tokens": [
+                {
+                  "surface": "ات",
+                  "kind": "word",
+                  "tileGroup": 0
+                }
+              ]
+            },
+            "latin": {
+              "lang": "chg-Latn",
+              "orthography": "chg-Latn/schluessel",
+              "tokens": [
+                {
+                  "surface": "at",
+                  "kind": "word",
+                  "tileGroup": 0
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "sentences": []
+}

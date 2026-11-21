@@ -129,9 +129,13 @@ def references(
     for d in seq(language.get("defaults")):
         feats_ok(d["gives"], f"default {d['id']}")
 
+    rules = {str(r["id"]) for r in seq(language.get("rules"))}
+
     def teachable(t: str, where: str) -> None:
         if t.startswith("lexeme:") and t not in known:
             errors.append(f"{where}: {t} is not in the lexicon")
+        if t.startswith("rule:") and t not in rules:
+            errors.append(f"{where}: {t} is no rule the language names")
         if t.startswith("feature:"):
             name, _, value = t[8:].partition("=")
             if value not in features.get(name, []):

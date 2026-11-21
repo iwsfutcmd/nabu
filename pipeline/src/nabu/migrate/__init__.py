@@ -239,7 +239,7 @@ def _flow(value: Any) -> Any:
 def _language(language: Json) -> Json:
     out: Json = {}
     for key, value in language.items():
-        if key in ("defaults", "classes", "labels"):
+        if key in ("defaults", "classes", "labels", "rules"):
             out[key] = [_flow(v) for v in value]
         elif key in ("dimensions", "lexical", "citation", "features"):
             out[key] = {k: _flow(v) for k, v in value.items()}

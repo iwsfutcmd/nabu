@@ -81,6 +81,48 @@
           "type": "array",
           "minItems": 1,
           "items": { "$ref": "#/$defs/Morph" }
+        },
+        "lexemes": {
+          "description": "The lexemes the token writes, in the order it writes them (bundle format version 2; ADR 0145): a stem, a clitic and an affix alike. There is no unit between a token and a lexeme (the owner, 2026-11-20). It takes the place of `sense`, `form` and `morphs`, which go at the flip.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/WrittenLexeme" }
+        }
+      }
+    },
+    "WrittenLexeme": {
+      "title": "WrittenLexeme",
+      "description": "One lexeme a token writes, as a bundle has it: a course source's token lexeme, with its full id.",
+      "type": "object",
+      "required": ["lexeme"],
+      "additionalProperties": false,
+      "properties": {
+        "lexeme": { "$ref": "common.schema.json#/$defs/LexemeId" },
+        "surface": {
+          "description": "Its letters in the token, where the token writes several lexemes: their surfaces concatenate to the token's. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe). Absent on a token's only lexeme: the whole token.",
+          "type": "string"
+        },
+        "base": {
+          "description": "The lexeme the token's others are merged onto (ADR 0145): matbakh in b + el + matbakh. It is what a question about the token asks (which lexeme, which form) and where its feature values are chosen. Marked where the token writes several; a token's only lexeme is its base; a token of two equals has none (yue 十 + 八).",
+          "const": true
+        },
+        "feats": {
+          "description": "The feature values chosen here, never the lexeme's own lexical features (mano's gender is its entry's).",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
+        "n": {
+          "description": "Its number among the lexemes the utterance writes, from 1, in order. Present where a relation names it or it names one.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "head": {
+          "description": "The `n` of the lexeme it agrees with or is governed by (ADR 0145: only where agreement or government matters).",
+          "type": "integer",
+          "minimum": 1
+        },
+        "rel": {
+          "description": "Its Universal Dependencies relation to `head`.",
+          "$ref": "common.schema.json#/$defs/UdRelation"
         }
       }
     },

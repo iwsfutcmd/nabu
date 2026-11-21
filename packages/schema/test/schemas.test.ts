@@ -108,7 +108,8 @@ describe("fixture courses in /courses", () => {
 });
 
 // Each directory of examples and the schema it is checked against: a file's root, or one of its
-// definitions. The last six are the lexical model's (docs/migration-design.md, deliverable 1).
+// definitions. Those from `language` on are the lexical model's (docs/migration-design.md): the
+// sources and events of deliverable 1, then the bundle of deliverable 3.
 const EXAMPLES: readonly (readonly [string, string])[] = [
   ["tagged-text", ID("tagged-text.schema.json")],
   ["orthography-profile", ID("orthography-profile.schema.json")],
@@ -119,6 +120,9 @@ const EXAMPLES: readonly (readonly [string, string])[] = [
   ["course.next", ID("course-source.next.schema.json")],
   ["unit.next", `${ID("course-source.next.schema.json")}#/$defs/NextUnitSource`],
   ["learner-event.next", ID("learner-event.next.schema.json")],
+  ["bundle.next", ID("bundle.next.schema.json")],
+  ["bundle-lexicon.next", `${ID("bundle.next.schema.json")}#/$defs/BundleLexicon`],
+  ["bundle-unit.next", `${ID("bundle.next.schema.json")}#/$defs/NextBundleUnit`],
 ];
 
 describe("examples", () => {

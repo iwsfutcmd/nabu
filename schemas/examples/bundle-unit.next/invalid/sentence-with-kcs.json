@@ -1,0 +1,463 @@
+{
+  "id": "u03",
+  "cefr": "A1",
+  "title": {
+    "en": {
+      "lang": "en-Latn",
+      "orthography": "en-Latn/standard",
+      "tokens": [
+        {
+          "surface": "The",
+          "kind": "word",
+          "tileGroup": 0
+        },
+        {
+          "surface": " ",
+          "kind": "space"
+        },
+        {
+          "surface": "body",
+          "kind": "word",
+          "tileGroup": 1
+        }
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "es.u03.mano",
+      "kind": "lesson",
+      "introduces": [
+        "lexeme:mano",
+        "feature:Mood=Imp"
+      ],
+      "reinforces": [
+        "lexeme:dar"
+      ],
+      "sentences": [
+        "s.u03.1"
+      ]
+    },
+    {
+      "id": "es.u03.story",
+      "kind": "story",
+      "introduces": [],
+      "reinforces": [],
+      "sentences": []
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s.u03.1",
+      "node": "es.u03.mano",
+      "forms": {
+        "es-Latn/standard": {
+          "text": {
+            "lang": "es-Latn-CU",
+            "orthography": "es-Latn/standard",
+            "tokens": [
+              {
+                "surface": "Dame",
+                "kind": "word",
+                "tileGroup": 0,
+                "lexemes": [
+                  {
+                    "lexeme": "lexeme:dar",
+                    "surface": "Da",
+                    "base": true,
+                    "feats": {
+                      "Mood": "Imp",
+                      "Number": "Sing",
+                      "Person": "2",
+                      "VerbForm": "Fin"
+                    }
+                  },
+                  {
+                    "lexeme": "lexeme:me",
+                    "surface": "me"
+                  }
+                ]
+              },
+              {
+                "surface": " ",
+                "kind": "space"
+              },
+              {
+                "surface": "la",
+                "kind": "word",
+                "tileGroup": 1,
+                "lexemes": [
+                  {
+                    "lexeme": "lexeme:el",
+                    "feats": {
+                      "Gender": "Fem",
+                      "Number": "Sing"
+                    },
+                    "n": 2,
+                    "head": 3,
+                    "rel": "det"
+                  }
+                ]
+              },
+              {
+                "surface": " ",
+                "kind": "space"
+              },
+              {
+                "surface": "mano",
+                "kind": "word",
+                "tileGroup": 2,
+                "lexemes": [
+                  {
+                    "lexeme": "lexeme:mano",
+                    "feats": {
+                      "Number": "Sing"
+                    },
+                    "n": 3
+                  }
+                ]
+              },
+              {
+                "surface": ".",
+                "kind": "punct"
+              }
+            ]
+          },
+          "reverse": "Dame la mano"
+        }
+      },
+      "translations": {
+        "en": {
+          "text": {
+            "lang": "en-Latn",
+            "orthography": "en-Latn/standard",
+            "tokens": [
+              {
+                "surface": "Give",
+                "kind": "word",
+                "tileGroup": 0
+              },
+              {
+                "surface": " ",
+                "kind": "space"
+              },
+              {
+                "surface": "me",
+                "kind": "word",
+                "tileGroup": 1
+              },
+              {
+                "surface": " ",
+                "kind": "space"
+              },
+              {
+                "surface": "your",
+                "kind": "word",
+                "tileGroup": 2
+              },
+              {
+                "surface": " ",
+                "kind": "space"
+              },
+              {
+                "surface": "hand",
+                "kind": "word",
+                "tileGroup": 3
+              },
+              {
+                "surface": ".",
+                "kind": "punct"
+              }
+            ]
+          },
+          "accept": "Give me your hand."
+        }
+      },
+      "production": true,
+      "tags": [
+        {
+          "persons": {
+            "addressee": "sg"
+          }
+        },
+        {
+          "register": "colloquial"
+        }
+      ],
+      "provenance": {
+        "author": "llm:claude@lexical-model-v1",
+        "status": "draft"
+      },
+      "license": "CC-BY-SA-4.0",
+      "kcs": [
+        "lexeme:dar",
+        "feature:Mood=Imp",
+        "lexeme:me",
+        "lexeme:el",
+        "lexeme:mano",
+        "lexeme:mano|Gender"
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "id": "story.u03.manos",
+      "node": "es.u03.story",
+      "title": {
+        "en": {
+          "lang": "en-Latn",
+          "orthography": "en-Latn/standard",
+          "tokens": [
+            {
+              "surface": "Hands",
+              "kind": "word",
+              "tileGroup": 0
+            }
+          ]
+        }
+      },
+      "characters": [
+        {
+          "id": "abuela",
+          "speaker": "f",
+          "name": {
+            "es-Latn/standard": {
+              "lang": "es-Latn-CU",
+              "orthography": "es-Latn/standard",
+              "tokens": [
+                {
+                  "surface": "Abuela",
+                  "kind": "word",
+                  "tileGroup": 0
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "steps": [
+        {
+          "line": {
+            "speaker": "abuela",
+            "forms": {
+              "es-Latn/standard": {
+                "lang": "es-Latn-CU",
+                "orthography": "es-Latn/standard",
+                "tokens": [
+                  {
+                    "surface": "Dame",
+                    "kind": "word",
+                    "tileGroup": 0,
+                    "lexemes": [
+                      {
+                        "lexeme": "lexeme:dar",
+                        "surface": "Da",
+                        "base": true,
+                        "feats": {
+                          "Mood": "Imp",
+                          "Number": "Sing",
+                          "Person": "2",
+                          "VerbForm": "Fin"
+                        }
+                      },
+                      {
+                        "lexeme": "lexeme:me",
+                        "surface": "me"
+                      }
+                    ]
+                  },
+                  {
+                    "surface": " ",
+                    "kind": "space"
+                  },
+                  {
+                    "surface": "la",
+                    "kind": "word",
+                    "tileGroup": 1,
+                    "lexemes": [
+                      {
+                        "lexeme": "lexeme:el",
+                        "feats": {
+                          "Gender": "Fem",
+                          "Number": "Sing"
+                        },
+                        "n": 2,
+                        "head": 3,
+                        "rel": "det"
+                      }
+                    ]
+                  },
+                  {
+                    "surface": " ",
+                    "kind": "space"
+                  },
+                  {
+                    "surface": "mano",
+                    "kind": "word",
+                    "tileGroup": 2,
+                    "lexemes": [
+                      {
+                        "lexeme": "lexeme:mano",
+                        "feats": {
+                          "Number": "Sing"
+                        },
+                        "n": 3
+                      }
+                    ]
+                  },
+                  {
+                    "surface": ".",
+                    "kind": "punct"
+                  }
+                ]
+              }
+            },
+            "translations": {
+              "en": {
+                "lang": "en-Latn",
+                "orthography": "en-Latn/standard",
+                "tokens": [
+                  {
+                    "surface": "Give",
+                    "kind": "word",
+                    "tileGroup": 0
+                  },
+                  {
+                    "surface": " ",
+                    "kind": "space"
+                  },
+                  {
+                    "surface": "me",
+                    "kind": "word",
+                    "tileGroup": 1
+                  },
+                  {
+                    "surface": " ",
+                    "kind": "space"
+                  },
+                  {
+                    "surface": "your",
+                    "kind": "word",
+                    "tileGroup": 2
+                  },
+                  {
+                    "surface": " ",
+                    "kind": "space"
+                  },
+                  {
+                    "surface": "hand",
+                    "kind": "word",
+                    "tileGroup": 3
+                  },
+                  {
+                    "surface": ".",
+                    "kind": "punct"
+                  }
+                ]
+              }
+            },
+            "parts": [
+              "lexeme:dar",
+              "feature:Mood=Imp",
+              "lexeme:me",
+              "lexeme:el",
+              "lexeme:mano"
+            ],
+            "ask": "complete",
+            "gap": "lexeme:mano",
+            "asks": "lexeme",
+            "options": [
+              {
+                "es-Latn/standard": {
+                  "lang": "es-Latn-CU",
+                  "orthography": "es-Latn/standard",
+                  "tokens": [
+                    {
+                      "surface": "casa",
+                      "kind": "word",
+                      "lexemes": [
+                        {
+                          "lexeme": "lexeme:casa",
+                          "feats": {
+                            "Number": "Sing"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "choose": {
+            "prompt": {
+              "en": {
+                "lang": "en-Latn",
+                "orthography": "en-Latn/standard",
+                "tokens": [
+                  {
+                    "surface": "Who",
+                    "kind": "word",
+                    "tileGroup": 0
+                  },
+                  {
+                    "surface": " ",
+                    "kind": "space"
+                  },
+                  {
+                    "surface": "speaks?",
+                    "kind": "word",
+                    "tileGroup": 1
+                  }
+                ]
+              }
+            },
+            "options": [
+              {
+                "en": {
+                  "lang": "en-Latn",
+                  "orthography": "en-Latn/standard",
+                  "tokens": [
+                    {
+                      "surface": "Grandma",
+                      "kind": "word",
+                      "tileGroup": 0
+                    }
+                  ]
+                }
+              },
+              {
+                "en": {
+                  "lang": "en-Latn",
+                  "orthography": "en-Latn/standard",
+                  "tokens": [
+                    {
+                      "surface": "Daniel",
+                      "kind": "word",
+                      "tileGroup": 0
+                    }
+                  ]
+                }
+              }
+            ],
+            "answer": 0
+          }
+        }
+      ],
+      "parts": [
+        "lexeme:dar",
+        "feature:Mood=Imp",
+        "lexeme:me",
+        "lexeme:el",
+        "lexeme:mano"
+      ],
+      "provenance": {
+        "author": "llm:claude@lexical-model-v1",
+        "status": "draft"
+      },
+      "license": "CC-BY-SA-4.0"
+    }
+  ]
+}

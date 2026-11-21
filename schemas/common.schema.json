@@ -163,14 +163,19 @@
       "pattern": "^[a-z]{2,3}$"
     },
     "LexemeName": {
-      "description": "A lexeme's name in its language's lexicon: its id without the `lexeme:` prefix, as a token writes it (lexeme: tener). No space, no bar.",
+      "description": "A lexeme's name in its language's lexicon: its id without the `lexeme:` prefix, as a token writes it (lexeme: tener). No space, no bar, no plus sign (a form's key joins lexemes with one).",
       "type": "string",
-      "pattern": "^[^\\s|]+$"
+      "pattern": "^[^\\s|+]+$"
     },
     "LexemeId": {
       "description": "A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.",
       "type": "string",
-      "pattern": "^lexeme:[^\\s|]+$"
+      "pattern": "^lexeme:[^\\s|+]+$"
+    },
+    "FormKey": {
+      "description": "One form of a lexeme, as a string to key by (a clip that says it; ADR 0146's pairs a learner has seen): the lexeme's id, then `|form:` and the feature values chosen there as Name=Value, sorted by name and joined by `;` (lexeme:ra7|form:Aspect=Part;Gender=Masc;Number=Sing). A lexeme with no feature values chosen is its id alone. A token built of several lexemes is their keys joined by `+`, in the order it writes them (lexeme:badd+lexeme:poss-1sg).",
+      "type": "string",
+      "pattern": "^lexeme:[^\\s|+]+(\\|form:[^\\s|+]+)?(\\+lexeme:[^\\s|+]+(\\|form:[^\\s|+]+)?)*$"
     },
     "RuleId": {
       "description": "A rule of a language (ADR 0145, 0148): what gives a combination's form, a projection, a default.",

@@ -16,3 +16,6 @@ features:
   Polarity: [Neg]
   Poss: ['Yes']
   PronType: [Dem, Int, Prs]
+rules:
+- {id: 'rule:a-not-a', gloss: {en: 'X唔X: a yes-or-no question (係唔係, ''is it or not'')'}, was: 'construction:a-not-a'}
+- {id: 'rule:cl-possessive', gloss: {en: 'pronoun + classifier + noun: possessive (我本書 my book, 你個仔 your son)'}, notes: {en: 'Instead of 嘅, Cantonese often puts the classifier between owner and thing: 我隻貓 ''my cat''.'}, was: 'construction:cl-possessive'}

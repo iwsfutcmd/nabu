@@ -705,6 +705,48 @@ fault is found in the stage that made it.
   plan's `lexical`), before the converter's last run; a form's clip is keyed by its lexeme and its feature
   values in stage 2.
 
+### Stage 1, as built: the new bundle's shape
+
+`schemas/bundle.next.schema.json`, format version 2, with examples that fit and that do not
+(`schemas/examples/bundle.next`, `bundle-lexicon.next`, `bundle-unit.next`) and the generated types. Nothing
+writes or reads it yet.
+
+| Today's bundle | The new one |
+|---|---|
+| `kcs` in each unit's file | One `lexicon` file a bundle (`BundleLexicon`): its lexemes, flat and sorted by id, with the labels of its feature values and the rules it names. A unit's file lists only its script nodes' `graphemes` |
+| A KC: `kind`, `prerequisites`, `cefr`, `pos`, `features`, `gloss`, `forms`, `image` | A lexeme: `pos`, `realises` or `head`; `feats`, every lexical feature it has, stored or by a default; `chooses`; `parts`, what it has to learn beyond itself; `gloss`, `forms`, `image`. No `prerequisites` and no level: the app read neither |
+| A token's `sense`, `form` and `morphs` | A token's `lexemes` (`WrittenLexeme` in `tagged-text.schema.json`): every lexeme it writes, in order, each with its full id, its letters where the token writes several, `base`, `feats`, and `n`, `head`, `rel` where a relation is |
+| A node's `introduces` and `reinforces`, as KC ids | The same, as lexemes, feature values, rules and letters |
+| A sentence's and a story's `kcs` | `parts`: the lexemes its tokens write, the feature values they carry that a node introduces, the rules it is an example of, and a lexeme's own part where a token shows it (the article that agrees with *mano*) |
+| A sentence's `persons` and `register` | `tags` (ADR 0147): persons, register, a derived variety, an authored situation |
+| A story line's `gap` (a KC) and `distractors` | `gap` (a lexeme), `asks` (`lexeme`, `form`, `use`) and the resolved `options`; the unresolved `distractors` are not shipped, since every question's options are resolved |
+| An alphabet node's `letters` and `words`, each with its `kc` | `letters` and `lexemes`, each with its `id` |
+| Clips by sentence or KC id | By sentence, story line or lexeme id, and a form's clip by its **form key** |
+| | The manifest names its `lexicon` (a part's id is unique in a language), its `variety` and `registers`, and lists a `lexicon` and an `aliases` file |
+
+**Settled while writing it:**
+- **A bundle's token has one shape.** A source token that writes one lexeme names it itself; a bundle's
+  always lists its lexemes, of one or more, so nothing that reads a bundle has two cases. Ids are full
+  (`lexeme:tener`), since they are what credit and memory are keyed by.
+- **A pinned form is not shipped.** It is rule debt (ADR 0146): stored and checked in the lexicon, never
+  a learner's. What a card shows of a form is the token that writes it.
+- **A lexeme's `feats` are resolved.** *casa* and *mano* are both `Gender: Fem` in a bundle; that only
+  *mano*'s is a part to learn is its `parts` (`lexeme:mano|Gender`). The app applies no default itself.
+- **A form key** (`FormKey` in `common.schema.json`): `lexeme:ra7|form:Aspect=Part;Gender=Masc;Number=Sing`,
+  and a token built of several lexemes as their keys joined by `+` (`lexeme:badd+lexeme:poss-1sg`). It
+  names the eight clips of words that are no lexeme of their own now, and is what the fold will keep for a
+  pair a learner has seen (ADR 0146). A lexeme's name may hold no `+` for it; none did.
+- **A feature value is taught only where a node introduces it.** A token's `feats` name every value
+  (person, number, mood); a sentence's `parts` list the ones the course teaches, as a form KC was
+  something a node had introduced. In es that is eleven values, in grc eighteen.
+- **Relations are shipped** (`n`, `head`, `rel`), though nothing reads them at the switch: a lexeme's
+  stored gender is shown by the token that agrees with it, and that is how a card will know which.
+
+**One thing the converter had dropped:** a construction that keeps a rule's name (21 of the 24) had its
+gloss and notes nowhere but the report. `language.yaml` now names its rules (`rules`: the name, the gloss,
+the notes, the KC it was), a node or a sentence may only name a rule its language does, and a test holds
+every construction's words against it. A rule's own file comes when the rule is written.
+
 ## The owner's decisions (2026-11-20)
 
 The eight questions this note ended with, and what the owner answered. The sections above are rewritten to

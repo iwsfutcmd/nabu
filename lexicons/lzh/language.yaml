@@ -16,3 +16,9 @@ features:
   Poss: ['Yes']
   PronType: [Dem, Ind, Int, Neg, Prs]
   Reflex: ['Yes']
+rules:
+- {id: 'rule:buyi-hu', gloss: {en: '不亦…乎: “isn’t it …?”, a question that expects “yes”'}, was: 'construction:buyi-hu'}
+- {id: 'rule:neg-pronoun', gloss: {en: '不我知: after a negative, a pronoun object comes before the verb, “does not know me”'}, notes: {en: 'Classical prose puts 我, 吾, 汝 or 爾 between the negative and the verb: 王不我知 “the king does not know me”. After 不 the object 之 is usually left out (人不知 “others do not know [it]”); after 莫 and 未 it comes before the verb (莫之能知 “no one can know it”). A pronoun after a negated verb (王不知我) is rarer, and emphatic.'}, was: 'construction:neg-pronoun'}
+- {id: 'rule:wei-passive', gloss: {en: '為 A V: “be V-ed by A”, as in 為人笑 “be laughed at by people”'}, was: 'construction:wei-passive'}
+- {id: 'rule:ye', gloss: {en: 'A，B也: “A is B”, a noun as the predicate'}, was: 'construction:ye'}
+- {id: 'rule:you-zhe', gloss: {en: 'X人有…者: “there was a man of X who …”, how a story brings in its hero'}, was: 'construction:you-zhe'}

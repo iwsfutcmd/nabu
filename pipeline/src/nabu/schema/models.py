@@ -330,6 +330,21 @@ class AudioVerdict(BaseModel):
 type CreditsAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+type Choose = Annotated[str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")]
+
+
+type Letter = Annotated[str, Field(pattern="^grapheme:[^\\s|]+$")]
+
+
+class Convert(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    from_: Annotated[str, Field(alias="from")]
+    to: str
+
+
 type CreditId = Annotated[
     str,
     Field(
@@ -374,15 +389,6 @@ class BundleManifestUnit(BaseModel):
             description="Paths of the media files (roles audio and image) the unit's items use, sorted. A file shared by units is listed in each."
         ),
     ]
-
-
-class Convert(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    from_: Annotated[str, Field(alias="from")]
-    to: str
 
 
 class BundleClip(BaseModel):
@@ -608,8 +614,8 @@ type LanguageCode = Annotated[
 type LexemeName = Annotated[
     str,
     Field(
-        description="A lexeme's name in its language's lexicon: its id without the `lexeme:` prefix, as a token writes it (lexeme: tener). No space, no bar.",
-        pattern="^[^\\s|]+$",
+        description="A lexeme's name in its language's lexicon: its id without the `lexeme:` prefix, as a token writes it (lexeme: tener). No space, no bar, no plus sign (a form's key joins lexemes with one).",
+        pattern="^[^\\s|+]+$",
     ),
 ]
 
@@ -618,7 +624,16 @@ type LexemeId = Annotated[
     str,
     Field(
         description="A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.",
-        pattern="^lexeme:[^\\s|]+$",
+        pattern="^lexeme:[^\\s|+]+$",
+    ),
+]
+
+
+type FormKey = Annotated[
+    str,
+    Field(
+        description="One form of a lexeme, as a string to key by (a clip that says it; ADR 0146's pairs a learner has seen): the lexeme's id, then `|form:` and the feature values chosen there as Name=Value, sorted by name and joined by `;` (lexeme:ra7|form:Aspect=Part;Gender=Masc;Number=Sing). A lexeme with no feature values chosen is its id alone. A token built of several lexemes is their keys joined by `+`, in the order it writes them (lexeme:badd+lexeme:poss-1sg).",
+        pattern="^lexeme:[^\\s|+]+(\\|form:[^\\s|+]+)?(\\+lexeme:[^\\s|+]+(\\|form:[^\\s|+]+)?)*$",
     ),
 ]
 
@@ -855,10 +870,10 @@ type TitleAdditionalProperty = Annotated[str, Field(min_length=1)]
 type GlossAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
-type FormsAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
+type FormsAdditionalProperty2Item = Annotated[str, Field(min_length=1)]
 
 
-type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Field(min_length=1)]
+type FormsAdditionalProperty2 = Annotated[list[FormsAdditionalProperty2Item], Field(min_length=1)]
 
 
 type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
@@ -879,7 +894,7 @@ class GraphemeSource(BaseModel):
         Field(description="Short meaning per support language."),
     ] = None
     forms: Annotated[
-        dict[OrthographyId, FormsAdditionalProperty] | None,
+        dict[OrthographyId, FormsAdditionalProperty2] | None,
         Field(
             description="How it is written, per orthography: a letter's forms, and in a Latin orthography what a script track asks it as (ADR 0133)."
         ),
@@ -887,7 +902,7 @@ class GraphemeSource(BaseModel):
     notes: dict[str, NotesAdditionalProperty] | None = None
 
 
-class Alphabet1(BaseModel):
+class Alphabet2(BaseModel):
     """
     script nodes that teach an orthography from scratch (ADR 0088): lexemes for reading and writing practice, each one whose citation form the letters taught by this node and the ones before it spell.
     """
@@ -900,7 +915,7 @@ class Alphabet1(BaseModel):
     lexemes: Annotated[list[LexemeId], Field(min_length=1)]
 
 
-class Convert1(BaseModel):
+class Convert2(BaseModel):
     """
     script nodes: convert sentences between two orthographies (script-convert, §6.3).
     """
@@ -1032,13 +1047,13 @@ class Provenance(BaseModel):
 type Cefr = Annotated[Literal["A1", "A2", "B1", "B2", "C1", "C2"], Field(title="Cefr")]
 
 
-type FormsAdditionalProperty1Item = Annotated[str, Field(min_length=1)]
+type FormsAdditionalProperty3Item = Annotated[str, Field(min_length=1)]
 
 
-type FormsAdditionalProperty1 = Annotated[list[FormsAdditionalProperty1Item], Field(min_length=1)]
+type FormsAdditionalProperty3 = Annotated[list[FormsAdditionalProperty3Item], Field(min_length=1)]
 
 
-class Alphabet2(BaseModel):
+class Alphabet3(BaseModel):
     """
     script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
     """
@@ -1061,13 +1076,13 @@ class PathNodeSource(BaseModel):
     introduces: list[KcId] | None = None
     reinforces: list[KcId] | None = None
     alphabet: Annotated[
-        Alphabet2 | None,
+        Alphabet3 | None,
         Field(
             description="script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell."
         ),
     ] = None
     convert: Annotated[
-        Convert1 | None,
+        Convert2 | None,
         Field(
             description="script nodes: convert sentences between two orthographies (script-convert, §6.3)."
         ),
@@ -1458,6 +1473,32 @@ class FeatureLabel(BaseModel):
     feats: UdFeatures
     pos: PartOfSpeech | None = None
     gloss: Annotated[dict[str, GlossAdditionalProperty], Field(min_length=1)]
+    notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
+    was: Annotated[
+        KcId | None,
+        Field(
+            description="The KC whose gloss and notes these were (docs/migration-design.md): kept so a reviewer can trace it. It goes with the switch."
+        ),
+    ] = None
+
+
+class NamedRule(BaseModel):
+    """
+    A rule by its name, with what a learner is shown for it. It says nothing of what the rule does: that is the rule's own file, once it is written.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: RuleId
+    gloss: Annotated[
+        dict[str, GlossAdditionalProperty] | None,
+        Field(
+            description="What a learner is shown for it, by support language (apc used-to: kent + a verb without b-).",
+            min_length=1,
+        ),
+    ] = None
     notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
     was: Annotated[
         KcId | None,
@@ -2101,9 +2142,6 @@ class GoalSet(BaseModel):
     ]
 
 
-type Choose1 = Annotated[str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")]
-
-
 type SpelledAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
 
 
@@ -2293,7 +2331,7 @@ class CatalogMessage(BaseModel):
 type ExemplarsExtraItem = Annotated[str, Field(min_length=1)]
 
 
-type Letter = Annotated[str, Field(min_length=1)]
+type Letter1 = Annotated[str, Field(min_length=1)]
 
 
 type Policy = Annotated[
@@ -3130,6 +3168,53 @@ type TokenKind = Annotated[
 type Variant3 = Annotated[str, Field(min_length=1)]
 
 
+class WrittenLexeme(BaseModel):
+    """
+    One lexeme a token writes, as a bundle has it: a course source's token lexeme, with its full id.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    lexeme: LexemeId
+    surface: Annotated[
+        str | None,
+        Field(
+            description="Its letters in the token, where the token writes several lexemes: their surfaces concatenate to the token's. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe). Absent on a token's only lexeme: the whole token."
+        ),
+    ] = None
+    base: Annotated[
+        Literal[True] | None,
+        Field(
+            description="The lexeme the token's others are merged onto (ADR 0145): matbakh in b + el + matbakh. It is what a question about the token asks (which lexeme, which form) and where its feature values are chosen. Marked where the token writes several; a token's only lexeme is its base; a token of two equals has none (yue 十 + 八)."
+        ),
+    ] = None
+    feats: Annotated[
+        UdFeatures | None,
+        Field(
+            description="The feature values chosen here, never the lexeme's own lexical features (mano's gender is its entry's)."
+        ),
+    ] = None
+    n: Annotated[
+        int | None,
+        Field(
+            description="Its number among the lexemes the utterance writes, from 1, in order. Present where a relation names it or it names one.",
+            ge=1,
+        ),
+    ] = None
+    head: Annotated[
+        int | None,
+        Field(
+            description="The `n` of the lexeme it agrees with or is governed by (ADR 0145: only where agreement or government matters).",
+            ge=1,
+        ),
+    ] = None
+    rel: Annotated[
+        UdRelation | None, Field(description="Its Universal Dependencies relation to `head`.")
+    ] = None
+
+
 class RubySegment(BaseModel):
     """
     One ruby base and its annotation. Sub-token annotation always uses segments, never integer offsets.
@@ -3440,6 +3525,78 @@ class AudioVerdicts(BaseModel):
     verdicts: list[AudioVerdict]
 
 
+class NextBundleFile(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    path: str
+    role: Annotated[
+        Literal[
+            "unit",
+            "lexicon",
+            "aliases",
+            "profile",
+            "table",
+            "keyboard",
+            "image",
+            "audio",
+            "audio-index",
+        ],
+        Field(
+            description="lexicon: the course's lexemes, labels and named rules (BundleLexicon), one file. aliases: what each KC id of the course became (aliases.schema.json), which upgrading a log written before format version 2 reads."
+        ),
+    ]
+    sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+    license: str
+    credit: Annotated[
+        CreditId | None,
+        Field(
+            description="Who or what made the file (its source): an entry of the manifest's `credits`."
+        ),
+    ] = None
+    bytes: Annotated[
+        int,
+        Field(description="Size in bytes, to say what a download costs before it starts.", ge=0),
+    ]
+
+
+class BundleTag1(BaseModel):
+    """
+    One tag of a prompt (ADR 0147): what the answer must say and the prompt leaves open. A value from a closed set, rendered from the UI catalog (persons, register, variety), or an authored situation in each support language. Exactly one of the four. A variety is derived by the compiler from the course's and is never authored.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    persons: Persons
+
+
+class BundleTag2(BaseModel):
+    """
+    One tag of a prompt (ADR 0147): what the answer must say and the prompt leaves open. A value from a closed set, rendered from the UI catalog (persons, register, variety), or an authored situation in each support language. Exactly one of the four. A variety is derived by the compiler from the course's and is never authored.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    register_: Annotated[RegisterId, Field(alias="register")]
+
+
+class BundleTag3(BaseModel):
+    """
+    One tag of a prompt (ADR 0147): what the answer must say and the prompt leaves open. A value from a closed set, rendered from the UI catalog (persons, register, variety), or an authored situation in each support language. Exactly one of the four. A variety is derived by the compiler from the course's and is never authored.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    variety: LangTag
+
+
 class BundleAudioItem(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -3516,13 +3673,13 @@ class NextPathNodeSource(BaseModel):
     introduces: list[TeachableId] | None = None
     reinforces: list[TeachableId] | None = None
     alphabet: Annotated[
-        Alphabet1 | None,
+        Alphabet2 | None,
         Field(
             description="script nodes that teach an orthography from scratch (ADR 0088): lexemes for reading and writing practice, each one whose citation form the letters taught by this node and the ones before it spell."
         ),
     ] = None
     convert: Annotated[
-        Convert1 | None,
+        Convert2 | None,
         Field(
             description="script nodes: convert sentences between two orthographies (script-convert, §6.3)."
         ),
@@ -3657,7 +3814,7 @@ class KnowledgeComponentSource(BaseModel):
         Field(description="Short meaning per support language."),
     ] = None
     forms: Annotated[
-        dict[OrthographyId, FormsAdditionalProperty1] | None,
+        dict[OrthographyId, FormsAdditionalProperty3] | None,
         Field(
             description="Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7)."
         ),
@@ -3861,6 +4018,12 @@ class LanguageDeclaration(BaseModel):
         list[FeatureLabel] | None,
         Field(
             description="What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it."
+        ),
+    ] = None
+    rules: Annotated[
+        list[NamedRule] | None,
+        Field(
+            description="The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces."
         ),
     ] = None
 
@@ -5387,6 +5550,13 @@ class TokenModel(BaseModel):
             min_length=1,
         ),
     ] = None
+    lexemes: Annotated[
+        list[WrittenLexeme] | None,
+        Field(
+            description="The lexemes the token writes, in the order it writes them (bundle format version 2; ADR 0145): a stem, a clitic and an affix alike. There is no unit between a token and a lexeme (the owner, 2026-11-20). It takes the place of `sense`, `form` and `morphs`, which go at the flip.",
+            min_length=1,
+        ),
+    ] = None
 
 
 class AliasTable(BaseModel):
@@ -5419,6 +5589,122 @@ class AudioIndex(BaseModel):
             description="Reference voices (`nabu audio cast`): a short recording a voice-cloning provider (OmniVoice) clones for every clip, so one course voice sounds like one speaker."
         ),
     ] = None
+
+
+class NextBundleManifest(BaseModel):
+    """
+    A compiled course bundle in the shape the lexical model needs (docs/migration-design.md, deliverable 3): format version 2. It has lexemes, feature values and rules where a bundle had KCs, and its tokens list the lexemes they write. Written by the compiler from a language's lexicon and a course in the new shape; at the flip it replaces bundle.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    formatVersion: Annotated[
+        Literal[2],
+        Field(
+            description="2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated."
+        ),
+    ]
+    id: Annotated[
+        str,
+        Field(description="sha256 of the manifest without this field.", pattern="^[0-9a-f]{64}$"),
+    ]
+    course: str
+    target: ScriptedLangTag
+    orthographies: list[OrthographyId]
+    support: list[OrthographyId]
+    lexicon: Annotated[
+        LanguageCode,
+        Field(
+            description="The language whose lexicon the course draws on (ADR 0145: one lexicon per language). A part's id is unique in it."
+        ),
+    ]
+    variety: Annotated[
+        LangTag | None,
+        Field(
+            description="The variety the course teaches, where it names one (ADR 0147: a dialect tag is derived from it)."
+        ),
+    ] = None
+    registers: Annotated[
+        list[RegisterId] | None,
+        Field(description="The registers the course teaches, where it names them.", min_length=1),
+    ] = None
+    names: Annotated[
+        CourseNames | None,
+        Field(
+            description="What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses."
+        ),
+    ] = None
+    facets: Annotated[
+        list[Facet] | None,
+        Field(
+            description="The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
+            min_length=1,
+        ),
+    ] = None
+    audioQuality: Annotated[
+        Literal["iffy"] | None,
+        Field(
+            description="How far learners may rely on the course's clips, where it is not good (course source `audio.quality`, ADR 0091). iffy: no template whose prompt is a clip (listening, listen-and-repeat) is planned; clips still play where the learner has the text. A bad voice ships no clips, so it needs no flag."
+        ),
+    ] = None
+    placement: Annotated[
+        PlacementPolicy | None,
+        Field(
+            description="How the placement test probes, where the course says (course source `placement`, ADR 0077)."
+        ),
+    ] = None
+    wordParts: Annotated[
+        Literal[True] | None,
+        Field(
+            description="The course asks words by their parts (course source `wordParts`, ADR 0152): the templates `parts-whole` and `whole-parts` are planned. Absent: they are not."
+        ),
+    ] = None
+    versions: Annotated[
+        dict[str, str],
+        Field(
+            description="Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU."
+        ),
+    ]
+    files: Annotated[
+        list[NextBundleFile],
+        Field(description="Every file in the bundle by role, with its SPDX license."),
+    ]
+    credits: Annotated[
+        dict[CreditId, CreditsAdditionalProperty],
+        Field(
+            description="Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`)."
+        ),
+    ]
+    units: Annotated[
+        list[BundleManifestUnit],
+        Field(
+            description="The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit."
+        ),
+    ]
+    licenses: Annotated[
+        dict[str, int], Field(description="SPDX expression → number of content items.")
+    ]
+    provenance: Annotated[dict[str, int], Field(description="Counts by status and author kind.")]
+    release: Annotated[
+        bool | None,
+        Field(
+            description="A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
+        ),
+    ] = None
+
+
+class NextBundleAudio(BaseModel):
+    """
+    audio.json (role audio-index): playable clips by item. An item is a sentence's id, a story line's (`story#step`), a lexeme's id for its entry's spelling, or a form's key for a clip that says one form of a lexeme or a token built of several (common.schema.json FormKey).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    items: dict[str, BundleAudioItem]
 
 
 class BundleManifest(BaseModel):
@@ -5733,7 +6019,7 @@ class Lexeme(BaseModel):
         ),
     ] = None
     chooses: Annotated[
-        list[Choose1] | None,
+        list[Choose] | None,
         Field(
             description="Features its language declares lexical for its category that this lexeme's tokens choose instead: hermano, whose tokens are masculine or feminine. By ADR 0145 a noun's feminine is a derivative, and a lexeme of its own where it is listed; until that is decided for a lexeme, the value stays on its tokens, and the entry says so here.",
             min_length=1,
@@ -5894,22 +6180,218 @@ class RoleplayTurn(BaseModel):
     provenance: AiProvenance
 
 
-class BundleScenario(BaseModel):
+type FormsAdditionalProperty = Annotated[list[TaggedText], Field(min_length=1)]
+
+
+class BundleLexeme(BaseModel):
     """
-    A roleplay scenario card (Phase 8, §13.4); its texts per support language.
+    One lexeme as a course ships it. What kind it is shows in what it has, as in the lexicon: a part of speech, `realises` (a value head: uz -ga) or `head` (a function head). A form a rule gives and ours does not yet (pinned) is not here: it is stored and checked in the lexicon, and never a learner's part (ADR 0146).
     """
 
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
+    id: LexemeId
+    pos: PartOfSpeech | None = None
+    realises: UdFeatures | None = None
+    head: FunctionHead | None = None
+    feats: Annotated[
+        UdFeatures | None,
+        Field(
+            description="Its lexical features, every one: what its entry stores and what a default of its language gives (mano and casa are both Gender Fem here). A choice that asks which lexeme offers only lexemes with the answer's part of speech and these, exactly (ADR 0132)."
+        ),
+    ] = None
+    chooses: Annotated[
+        list[Choose] | None,
+        Field(
+            description="Lexical features of its category that its tokens choose instead (hermano, whose tokens are masculine or feminine).",
+            min_length=1,
+        ),
+    ] = None
+    parts: Annotated[
+        list[PartId] | None,
+        Field(
+            description="Its parts beyond itself (ADR 0146: every part no rule gives): a lexical feature no default gives (lexeme:mano|Gender), a listed form or stem, a class, a leftover of an orthography. A lexeme with none is learned once itself is.",
+            min_length=1,
+        ),
+    ] = None
+    gloss: Annotated[
+        dict[str, TaggedText] | None, Field(description="Its meaning, per support language.")
+    ] = None
+    forms: Annotated[
+        dict[OrthographyId, FormsAdditionalProperty] | None,
+        Field(
+            description="How it is written, per orthography: its entry's spellings, the first the one a card shows, then those of its allomorphs. Each with the readings and vowel marks the course pins."
+        ),
+    ] = None
+    image: Annotated[
+        str | None, Field(description="Bundle path of its picture (a file with role image).")
+    ] = None
+
+
+class BundleLabel(BaseModel):
+    """
+    The name of a set of feature values (language.schema.json FeatureLabel), per support language: preterite, I (Tense=Past, Person=1, Number=Sing). `pos` narrows it to one category.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    feats: UdFeatures
+    pos: PartOfSpeech | None = None
+    gloss: Annotated[dict[str, TaggedText], Field(min_length=1)]
+
+
+class BundleRule(BaseModel):
+    """
+    A rule the course names, with what a learner is shown for it. Until rules are written (docs/migration-design.md, "Not designed here") a rule is its name and its gloss: what a `construction:` KC was.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: RuleId
+    gloss: Annotated[dict[str, TaggedText] | None, Field(min_length=1)] = None
+
+
+class BundleGrapheme(BaseModel):
+    """
+    A letter, a digraph or a mark a script track teaches (ADR 0149: a grapheme stays the track's, never the lexicon's): how each orthography writes it, and in a Latin orthography what a track asks it as (ADR 0133).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^grapheme:[^\\s|]+$")]
+    gloss: dict[str, TaggedText] | None = None
+    forms: dict[OrthographyId, FormsAdditionalProperty] | None = None
+
+
+class NextScriptItem(BaseModel):
+    """
+    A letter or a lexeme of an alphabet node: what it is, how the orthography writes it, and its reading in Latin letters (ADR 0133): a lexeme's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[TeachableId, Field(description="The letter (a grapheme id) or the lexeme.")]
+    letters: Annotated[
+        list[Letter],
+        Field(
+            description="The letters it is written with, of those its track teaches (a letter: its own)."
+        ),
+    ]
+    text: TaggedText
+    latin: TaggedText
+
+
+class Alphabet(BaseModel):
+    """
+    An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    orthography: str
+    letters: list[NextScriptItem]
+    lexemes: list[NextScriptItem]
+
+
+class NextBundleNode(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
     id: str
-    after: Annotated[str, Field(description="The path node completed before the scenario opens.")]
-    title: dict[str, TaggedText]
-    setting: dict[str, TaggedText]
-    character: dict[str, TaggedText]
-    goal: dict[str, TaggedText]
-    provenance: Provenance | None = None
+    kind: str
+    introduces: Annotated[
+        list[TeachableId],
+        Field(
+            description="What the node teaches for the first time: lexemes, feature values, rules, and a script node's letters. The one place the teaching order is written."
+        ),
+    ]
+    reinforces: list[TeachableId]
+    sentences: list[str]
+    alphabet: Annotated[
+        Alphabet | None,
+        Field(
+            description="An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133)."
+        ),
+    ] = None
+    convert: Convert | None = None
+
+
+class BundleTag4(BaseModel):
+    """
+    One tag of a prompt (ADR 0147): what the answer must say and the prompt leaves open. A value from a closed set, rendered from the UI catalog (persons, register, variety), or an authored situation in each support language. Exactly one of the four. A variety is derived by the compiler from the course's and is never authored.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    situation: Annotated[dict[str, TaggedText], Field(min_length=1)]
+
+
+type BundleTag = Annotated[
+    BundleTag1 | BundleTag2 | BundleTag3 | BundleTag4,
+    Field(
+        description="One tag of a prompt (ADR 0147): what the answer must say and the prompt leaves open. A value from a closed set, rendered from the UI catalog (persons, register, variety), or an authored situation in each support language. Exactly one of the four. A variety is derived by the compiler from the course's and is never authored.",
+        title="BundleTag",
+    ),
+]
+
+
+class Forms1(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: TaggedText
+    reverse: str | None = None
+
+
+class Translations(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: TaggedText
+    accept: str
+
+
+class NextBundleSentence(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    node: str
+    forms: dict[str, Forms1]
+    translations: dict[str, Translations]
+    parts: Annotated[
+        list[PartId],
+        Field(
+            description="Every part the sentence can give evidence of (ADR 0146), each once: the lexemes its tokens write, the feature values they carry that a node of the course introduces, the rules it is an example of (the source's `uses`), and a lexeme's own part where a token shows it (mano's gender, on the article that agrees with it)."
+        ),
+    ]
+    production: bool
+    tags: Annotated[
+        list[BundleTag] | None,
+        Field(
+            description="What the answer must say and the prompt leaves open (ADR 0147), shown under the prompt where the answer's language marks it.",
+            min_length=1,
+        ),
+    ] = None
+    provenance: Provenance
     license: str
 
 
@@ -5928,7 +6410,7 @@ class Character(BaseModel):
     name: Annotated[dict[str, TaggedText], Field(description="Per orthography.")]
 
 
-class Choose(BaseModel):
+class Choose1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
@@ -5936,6 +6418,47 @@ class Choose(BaseModel):
     prompt: dict[str, TaggedText]
     options: list[dict[str, TaggedText]]
     answer: Annotated[int, Field(ge=0)]
+
+
+class NextBundleStoryLine(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    speaker: str | None = None
+    forms: Annotated[dict[str, TaggedText], Field(description="Per orthography.")]
+    translations: Annotated[dict[str, TaggedText], Field(description="Per support language.")]
+    parts: list[PartId]
+    ask: Literal["complete", "arrange"] | None = None
+    gap: Annotated[
+        LexemeId | None, Field(description="complete: the lexeme the line leaves out and asks for.")
+    ] = None
+    asks: Question | None = None
+    options: Annotated[
+        list[dict[str, TaggedText]] | None,
+        Field(
+            description="complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one token the course writes in the story's unit or earlier (another lexeme in the gap's form, or the gap's lexeme in another form), analysis and readings kept."
+        ),
+    ] = None
+
+
+class BundleScenario(BaseModel):
+    """
+    A roleplay scenario card (Phase 8, §13.4); its texts per support language.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    after: Annotated[str, Field(description="The path node completed before the scenario opens.")]
+    title: dict[str, TaggedText]
+    setting: dict[str, TaggedText]
+    character: dict[str, TaggedText]
+    goal: dict[str, TaggedText]
+    provenance: Provenance | None = None
+    license: str
 
 
 class BundleStoryLine(BaseModel):
@@ -5997,7 +6520,7 @@ class ScriptItem(BaseModel):
     latin: TaggedText
 
 
-class Alphabet(BaseModel):
+class Alphabet1(BaseModel):
     """
     An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133).
     """
@@ -6022,30 +6545,12 @@ class BundleNode(BaseModel):
     reinforces: list[KcId]
     sentences: list[str]
     alphabet: Annotated[
-        Alphabet | None,
+        Alphabet1 | None,
         Field(
             description="An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133)."
         ),
     ] = None
     convert: Convert | None = None
-
-
-class Forms1(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    text: TaggedText
-    reverse: str | None = None
-
-
-class Translations(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    text: TaggedText
-    accept: str
 
 
 class BundleSentence(BaseModel):
@@ -6208,7 +6713,7 @@ class OrthographyProfile(BaseModel):
         ),
     ] = None
     letters: Annotated[
-        list[Letter] | None,
+        list[Letter1] | None,
         Field(
             description="The alphabet as the orthography defines it, including multigraph letters (sh, ch, ng, oʻ). Typo distance and letter-level exercises use it, longest match first.",
             min_length=1,
@@ -6240,13 +6745,47 @@ class OrthographyProfile(BaseModel):
     ] = None
 
 
+class BundleLexicon(BaseModel):
+    """
+    The course's part of its language's lexicon (role lexicon): every lexeme a node of the course introduces or a token of it writes, in one list sorted by id. It is flat (the owner, 2026-11-20): no entry says which unit teaches it, and a unit's nodes point at it. With it, what a learner is shown for the feature values the course's tokens carry and for the rules its nodes and sentences name.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    language: LanguageCode
+    lexemes: list[BundleLexeme]
+    labels: Annotated[
+        list[BundleLabel] | None,
+        Field(
+            description="The names of feature values, alone or several together (the language's `labels`). The most specific label whose values a form has names it."
+        ),
+    ] = None
+    rules: Annotated[
+        list[BundleRule] | None,
+        Field(
+            description="The rules the course names (the language's `rules`), each with what a learner is shown for it."
+        ),
+    ] = None
+
+
+class NextBundleStoryStep(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    line: NextBundleStoryLine | None = None
+    choose: Choose1 | None = None
+
+
 class BundleStoryStep(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
     line: BundleStoryLine | None = None
-    choose: Choose | None = None
+    choose: Choose1 | None = None
 
 
 class NextStorySource(BaseModel):
@@ -6289,6 +6828,25 @@ class StorySource(BaseModel):
     steps: Annotated[list[StoryStep], Field(min_length=2)]
     provenance: Provenance | None = None
     license: Spdx | None = None
+
+
+class NextBundleStory(BaseModel):
+    """
+    A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    node: str
+    title: dict[str, TaggedText]
+    characters: list[Character]
+    steps: list[NextBundleStoryStep]
+    parts: Annotated[list[PartId], Field(description="Every part its lines can give evidence of.")]
+    provenance: Provenance | None = None
+    license: str
 
 
 class BundleStory(BaseModel):
@@ -6373,6 +6931,25 @@ class UnitSource(BaseModel):
         list[ScenarioSource] | None,
         Field(description="Roleplay scenario cards (gameplan §13.4, Phase 8)."),
     ] = None
+
+
+class NextBundleUnit(BaseModel):
+    """
+    A unit's file. It defines no lexemes: its nodes point at the bundle's lexicon. The letters its script nodes teach are the one thing it lists.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    cefr: str | None = None
+    title: dict[str, TaggedText] | None = None
+    graphemes: list[BundleGrapheme] | None = None
+    nodes: list[NextBundleNode]
+    sentences: list[NextBundleSentence]
+    stories: list[NextBundleStory] | None = None
+    scenarios: list[BundleScenario] | None = None
 
 
 class BundleUnit(BaseModel):
@@ -6557,6 +7134,7 @@ type NabuSchemaBundle = Annotated[
     | AliasTable
     | AudioIndex
     | AudioVerdicts
+    | NextBundleManifest
     | BundleManifest
     | Corrections
     | NextCourseSource

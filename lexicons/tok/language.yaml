@@ -13,3 +13,10 @@ features:
   PartType: [Mod]
   Polarity: [Neg]
   PronType: [Dem, Int, Prs, Tot]
+rules:
+- {id: 'rule:counting', gloss: {en: 'numbers that add up: tu wan (three), tu tu (four)'}, notes: {en: 'Number words follow the noun and are added: luka (five) and wan make six, soweli luka tu is seven animals. Past that, most speakers just say mute.'}, was: 'construction:counting'}
+- {id: 'rule:la-if', gloss: {en: 'X la Y as a condition: if X, Y; when X, Y'}, notes: {en: 'The la that sets a time also sets a condition: sina wile la mi kama, if you want, I''ll come. A whole sentence can stand before la.'}, was: 'construction:la-if'}
+- {id: 'rule:ni-colon', gloss: {en: 'e ni: before a reported sentence (says that, thinks that)'}, notes: {en: 'ni can point ahead to the next sentence, after a colon: ona li toki e ni: toki pona li pona (she says that Toki Pona is good).'}, was: 'construction:ni-colon'}
+- {id: 'rule:pona-tawa', gloss: {en: 'X li pona tawa Y: Y likes X'}, notes: {en: 'Literally X is good to Y: kili li pona tawa mi, I like fruit. ike tawa says the opposite: ni li ike tawa mi, I don''t like this.'}, was: 'construction:pona-tawa'}
+- {id: 'rule:preverb', gloss: {en: 'a preverb before a verb: mi wile moku (I want to eat)'}, notes: {en: 'wile, ken, kama, awen, sona, lukin, alasa, open and pini can stand right before another verb, with no e: mi ken toki. ala after the preverb negates it: mi ken ala toki.'}, was: 'construction:preverb'}
+- {id: 'rule:x-ala-x', gloss: {en: 'X ala X?: a yes/no question'}, notes: {en: 'Say the first word of the predicate, ala, then the word again: sina moku ala moku? Are you eating? Answer with the word (moku: yes) or with ala (moku ala, or just ala: no).'}, was: 'construction:x-ala-x'}

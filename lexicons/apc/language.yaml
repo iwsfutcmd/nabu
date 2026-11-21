@@ -71,3 +71,7 @@ labels:
 - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, gloss: {en: 't-…-i: you (to a woman, after ra7, baddik…)'}, notes: {en: 'ra7 tru7i: you''ll go. Arabic script: ت before the verb and ي after it (تروحي).'}, was: 'form:subj-2fs'}
 - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}, gloss: {en: 't-…-o: you (to several people, after ra7, badkon…)'}, notes: {en: 'ra7 ta3mlo: you''ll do. Arabic script: ت before the verb and وا after it (تعملوا).'}, was: 'form:subj-2pl'}
 - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '3'}, gloss: {en: 'y-…-o: they (after ra7, baddon…)'}, notes: {en: 'ra7 ysefro: they''ll travel. Arabic script: ي before the verb and وا after it (يسافروا).'}, was: 'form:subj-3pl'}
+rules:
+- {id: 'rule:shu-excl', gloss: {en: 'shu + adjective: how …!'}, notes: {en: 'shu 7elo!: how nice!; shu 7elwe hal hdiyye!: what a lovely present! The adjective agrees with what it describes.'}, was: 'construction:shu-excl'}
+- {id: 'rule:used-to', gloss: {en: 'kent + a verb without b-: used to; would'}, notes: {en: 'kent ru7: I used to go; kenna nekol: we used to eat; ken yishteghel: he used to work. Both verbs agree with who did it.'}, was: 'construction:used-to'}
+- {id: 'rule:was-doing', gloss: {en: 'kent 3am + verb: was …ing'}, notes: {en: 'kent 3am e2ra: I was reading; keno 3am yeklo: they were eating.'}, was: 'construction:was-doing'}

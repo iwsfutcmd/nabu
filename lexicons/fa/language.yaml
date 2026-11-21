@@ -22,3 +22,6 @@ features:
   Poss: ['Yes']
   PronType: [Dem, Int, Prs, Tot]
   Tense: [Past]
+rules:
+- {id: 'rule:past', gloss: {en: 'the simple past: past stem + ending (رفتم, I went)'}, notes: {en: 'Each verb has a past stem: رفت- (go), آمد- (come), خورد- (eat), کرد- (do), خرید- (buy), دید- (see). He/she has no ending: رفت, he went. The negative adds na-: نرفتم.'}, was: 'construction:past'}
+- {id: 'rule:subjunctive', gloss: {en: 'the subjunctive: be- + present stem + ending after ''want'' and ''can'''}, notes: {en: "می\u200cخواهم یک کتاب بخرم: I want to buy a book. می\u200cتوانم ببینم؟ Can I see?"}, was: 'construction:subjunctive'}

@@ -63,6 +63,33 @@ def test_every_kc_has_an_alias(course: str, converted: dict[str, migrate.Migrati
     assert set(m.aliases["aliases"]) == set(m.course.kcs())
 
 
+def test_a_construction_that_keeps_a_rules_name_keeps_its_words(
+    converted: dict[str, migrate.Migration],
+) -> None:
+    """A rule is not written yet, so its name is all a node and a sentence have of it: the
+    language file says what a learner is shown for each (the construction's gloss and notes)."""
+    named = 0
+    for m in converted.values():
+        rules = {str(r["id"]): r for r in m.built.language.get("rules", [])}
+        for kc_id, kc in m.conv.kcs.items():
+            fp = m.plan.forms.get(kc_id)
+            if fp is None or fp.rule is None:
+                continue
+            rule = rules[f"rule:{fp.rule}"]
+            assert rule["was"] == kc_id
+            assert rule.get("gloss") == kc.get("gloss")
+            assert rule.get("notes") == kc.get("notes")
+            named += 1
+        # And nothing names a rule the language does not.
+        for _, unit in m.next_units:
+            for node in unit["nodes"]:
+                for t in [*node.get("introduces", []), *node.get("reinforces", [])]:
+                    assert not str(t).startswith("rule:") or str(t) in rules
+            for s in unit.get("sentences", []):
+                assert all(str(u) in rules for u in s.get("uses", []) if str(u).startswith("rule:"))
+    assert named == 21
+
+
 def test_the_clips_keyed_by_a_kc_are_all_spoken_for(
     converted: dict[str, migrate.Migration],
 ) -> None:
