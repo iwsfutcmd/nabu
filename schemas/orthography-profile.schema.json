@@ -86,7 +86,7 @@
       "$ref": "#/$defs/Speech"
     },
     "correspondences": {
-      "description": "What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`); `soundAlike` goes when grading reads it (docs/migration-design.md, stages 5 and 6).",
+      "description": "What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`): grading, spelling-choice cards and the compiler's leftovers (docs/migration-design.md, stages 5 and 6). It replaced `soundAlike` (ADR 0142).",
       "type": "array",
       "items": { "$ref": "orthography-profile.schema.json#/$defs/Correspondence" }
     },
@@ -734,32 +734,6 @@
           "properties": {
             "policy": {
               "$ref": "#/$defs/Policy"
-            },
-            "note": {
-              "$ref": "#/$defs/NoteId"
-            }
-          }
-        },
-        "soundAlike": {
-          "description": "Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.",
-          "type": "object",
-          "required": [
-            "sets",
-            "note"
-          ],
-          "additionalProperties": false,
-          "properties": {
-            "sets": {
-              "type": "array",
-              "minItems": 1,
-              "items": {
-                "type": "array",
-                "minItems": 2,
-                "items": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              }
             },
             "note": {
               "$ref": "#/$defs/NoteId"

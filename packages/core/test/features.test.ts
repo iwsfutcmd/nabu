@@ -2,12 +2,13 @@
  * Feature cards (ADR 0139): a word's reading among the same reading changed in one place the script
  * leaves open, in every way the scheme's data allows there.
  */
-import type { SchemeId, TaggedText } from "@nabu/schema";
+import type { SchemeId, TaggedText, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { askedParts } from "../src/learner/credit.ts";
 import { lexemeIdsOf } from "../src/lesson/lexemes.ts";
 import { emptyLearnerState, plan } from "../src/learner/index.ts";
-import { lessonNodes, sampleExercise, type Exercise } from "../src/lesson/index.ts";
+import { createGrader, gradeExercise, isCorrect, lessonNodes, profileOf, sampleExercise, type Exercise } from "../src/lesson/index.ts";
+import { skillOf } from "../src/lesson/templates.ts";
 import { homographsOf, otherReadings } from "../src/lesson/index.ts";
 import { hasOpenLetters, openLetters, readingFeatures } from "../src/match/pronounce.ts";
 import { graphemes } from "../src/text/graphemes.ts";
@@ -136,7 +137,29 @@ describe("spelling choice (ADR 0142)", () => {
     for (const o of ex.options) expect(o.tokens.every((t) => t.ruby === undefined && t.readings === undefined)).toBe(true);
   });
 
-  it("none where nothing sounds alike in the profile: courses without sets or homophones", () => {
-    for (const id of ["es", "uz", "tok", "chg"]) expect(choices(id), id).toEqual([]);
+  it("offers a Spanish word among other spellings of its sound (ADR 0148: b/v, h, c/s/z), never one the line takes", () => {
+    const course = loadCourse("es");
+    const [ex] = choices("es");
+    if (ex?.template !== "spelling-choice") throw new Error("no spelling choice in es");
+    const profile = profileOf(course, "es-Latn/standard");
+    const projection = profile.projection;
+    if (projection?.from !== "spelling") throw new Error("es reads its sound off its spelling");
+    const right = text(ex.options[ex.answer] as TaggedText);
+    expect(ex.options.length).toBeGreaterThanOrEqual(3);
+    const grader = createGrader(course);
+    for (const [i, o] of ex.options.entries()) {
+      if (i === ex.answer) continue;
+      // The same sound by a fixed correspondence: a wrong answer, never a free variant.
+      expect(projection.compare(right, text(o)), text(o)).toMatchObject({ same: true, free: false });
+      expect(isCorrect(gradeExercise(ex, { tag: "choice", index: i }, grader).verdict)).toBe(false);
+    }
+    // It asks the word's lexeme, by write-script.
+    const asked = askedParts(ex) ?? [];
+    expect(asked).toEqual(lexemeIdsOf(ex.options[ex.answer]?.tokens[0] as Token));
+    expect(asked.every((part) => skillOf("spelling-choice", part) === "write-script")).toBe(true);
+  });
+
+  it("none where nothing sounds alike in the profile: courses without a statement or homophones", () => {
+    for (const id of ["uz", "tok", "chg"]) expect(choices(id), id).toEqual([]);
   });
 });

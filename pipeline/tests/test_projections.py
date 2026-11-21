@@ -68,3 +68,41 @@ def test_format_escapes_invisibles() -> None:
     assert lines[2] == "schluessel of chg-Arab/standard: 4 of 5 readings related to their spellings"
     assert lines[3] == "  s.1: ا\\u200cب ab (projection.unaccounted)"
     assert all(zwnj not in line for line in lines)
+
+
+def _compiled(core_cli: CoreCli, course: str):
+    diags, compiled = compile_course(ROOT / "courses" / course, core_cli, PROFILES, audio=False)
+    assert compiled is not None, [d.format() for d in diags.items]
+    return diags, compiled
+
+
+def test_es_lexemes_carry_their_spelling_leftovers(core_cli: CoreCli) -> None:
+    _, compiled = _compiled(core_cli, "es")
+    by_id = {str(lx.id): lx for lx in compiled.lexicon.lexemes}
+    casa = by_id["lexeme:casa"]
+    assert casa.leftovers is not None and casa.leftovers.spelling is not None
+    assert [str(o) for o in casa.leftovers.spelling] == ["es-Latn/standard"]
+    assert casa.leftovers.reading is None
+    # A word every letter of which says itself has none (mi: m and i).
+    assert by_id["lexeme:mi"].leftovers is None
+    with_spelling = [lx for lx in compiled.lexicon.lexemes if lx.leftovers is not None]
+    assert 0 < len(with_spelling) < len(compiled.lexicon.lexemes)
+
+
+def test_chg_lexemes_carry_their_reading_leftovers_and_the_review_list(core_cli: CoreCli) -> None:
+    diags, compiled = _compiled(core_cli, "chg")
+    opened = [
+        lx
+        for lx in compiled.lexicon.lexemes
+        if lx.leftovers is not None
+        and lx.leftovers.reading is not None
+        and any(str(r.scheme) == "schluessel" for r in lx.leftovers.reading)
+    ]
+    assert len(opened) > 100
+    assert all(
+        lx.leftovers is None or lx.leftovers.spelling is None for lx in compiled.lexicon.lexemes
+    )
+    # The review list is a warning: the course still builds.
+    listed = [d for d in diags.items if d.lint == "projection.unaccounted"]
+    assert listed and all(d.severity == "warning" for d in listed)
+    assert any("'پز'" in d.message for d in listed)

@@ -27,11 +27,8 @@ lang: ltc-Latn-x-baxter
 # A reading card offers and grades its readings as ltc-Latn/baxter: his ASCII, case folded (ADR 0138).
 answer: ltc-Latn/baxter
 typedByProfile: true
-# The characters write none of a reading: a reading card's wrong options trade x and h, which are his
-# tone letters at a syllable's end (X, H) and initials at its start (ADR 0138).
-variants:
-  - [x, h]
-# REVIEW (ADR 0148): the same set as a statement: x and h are not written, and a card may trade one for the other.
-# No `of`: a character's reading is listed, not a rule.
+# REVIEW (ADR 0148): the characters write none of a reading. A reading card's wrong options trade x and h, which are
+# his tone letters at a syllable's end (X, H) and initials at its start (ADR 0138): neither is written, and a card
+# may trade one for the other (`loses`). No `of`: a character's reading is listed, not a rule.
 correspondences:
   - { says: x, written: [""], kind: fixed, loses: [h] }

@@ -38,3 +38,15 @@ class CoreCli(JsonLinesProcess):
         if not ok:
             raise CoreCliError(f"{op}: {value}")
         return value
+
+    def batch(self, requests: list[dict[str, Any]]) -> list[Any]:
+        """The results of many requests (each an op and its arguments) in one round trip, in
+        order; an error in any raises, as `result` does."""
+        if not requests:
+            return []
+        out: list[Any] = []
+        for request, answer in zip(requests, self.result("batch", requests=requests), strict=True):
+            if not answer["ok"]:
+                raise CoreCliError(f"{request['op']}: {answer['error']}")
+            out.append(answer["result"])
+        return out

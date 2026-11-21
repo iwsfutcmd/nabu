@@ -2653,12 +2653,6 @@ class Case(BaseModel):
     locale: LangTag
 
 
-type SetItem = Annotated[str, Field(min_length=1)]
-
-
-type Set = Annotated[list[SetItem], Field(min_length=2)]
-
-
 type NoteId = Annotated[
     str,
     Field(
@@ -3049,12 +3043,6 @@ class Bound(BaseModel):
     before: Annotated[str, Field(min_length=1)]
 
 
-type Variant1Item = Annotated[str, Field(min_length=1)]
-
-
-type Variant1 = Annotated[list[Variant1Item], Field(min_length=2)]
-
-
 class Typed(BaseModel):
     """
     A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
@@ -3285,9 +3273,6 @@ class SignOff(BaseModel):
 type TokenKind = Annotated[
     Literal["lexical", "punct", "space", "number", "symbol"], Field(title="TokenKind")
 ]
-
-
-type Variant2 = Annotated[str, Field(min_length=1)]
 
 
 class WrittenLexeme(BaseModel):
@@ -5254,19 +5239,6 @@ class Apostrophe(BaseModel):
     note: NoteId | None = None
 
 
-class SoundAlike(BaseModel):
-    """
-    Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    sets: Annotated[list[Set], Field(min_length=1)]
-    note: NoteId
-
-
 class Recognizer(BaseModel):
     """
     Who hears the orthography: Whisper, in a language, or a Whisper fine-tune for a language Whisper's own does not write (Cantonese, which it writes as Mandarin: ADR 0094).
@@ -5458,13 +5430,6 @@ class ReadingScheme(BaseModel):
             description="How a reading marks a word bound to the next, where the text binds it with a mark of its own (the Tiberian reading's final hyphen where a maqaf follows, ADR 0135): a reading ends with `mark` exactly where the next token holds `before` (`reading.bound`). A bound word is compared and filled in apart from a free one: it can read otherwise (unstressed: saʿar- before a maqaf, sáʿar free)."
         ),
     ] = None
-    variants: Annotated[
-        list[Variant1] | None,
-        Field(
-            description="Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.",
-            min_length=1,
-        ),
-    ] = None
     ruby: Annotated[
         Literal["character", "word"],
         Field(
@@ -5498,7 +5463,7 @@ class ReadingScheme(BaseModel):
     correspondences: Annotated[
         list[CorrespondenceModel] | None,
         Field(
-            description='What the orthography `of` writes of this scheme\'s readings, and what it loses (ADR 0148): `says` a piece of the reading, `written` how the orthography writes it ("": not written), `loses` the pieces a reading card may trade it for. Nothing is implied: a piece no correspondence names is not accounted for. Read by @nabu/core (`project`); `variants` goes when the cards read it (docs/migration-design.md, stages 5 and 6).'
+            description="What the orthography `of` writes of this scheme's readings, and what it loses (ADR 0148): `says` a piece of the reading, `written` how the orthography writes it (\"\": not written), `loses` the pieces a reading card may trade it for. Nothing is implied: a piece no correspondence names is not accounted for. Read by @nabu/core (`project`): reading cards' options, minimal ruby and the compiler's leftovers (docs/migration-design.md, stages 5 and 6). It replaced `variants` (ADR 0131)."
         ),
     ] = None
 
@@ -5563,7 +5528,7 @@ class TokenModel(BaseModel):
         int | None, Field(description="Tokens with the same group form one word-bank tile.", ge=0)
     ] = None
     variants: Annotated[
-        list[Variant2] | None,
+        list[Variant] | None,
         Field(description="Accepted orthographic variants, e.g. HK and TW character forms."),
     ] = None
     lexemes: Annotated[
@@ -5617,9 +5582,9 @@ class BundleManifest(BaseModel):
         frozen=True,
     )
     formatVersion: Annotated[
-        Literal[3],
+        Literal[4],
         Field(
-            description="3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated."
+            description="4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated."
         ),
     ]
     id: Annotated[
@@ -5989,12 +5954,6 @@ class MatchPolicy(BaseModel):
     scriptMismatch: ScriptMismatch | None = None
     homophones: Homophones | None = None
     apostrophe: Apostrophe | None = None
-    soundAlike: Annotated[
-        SoundAlike | None,
-        Field(
-            description="Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options."
-        ),
-    ] = None
     equivalences: Annotated[
         list[Equivalence] | None,
         Field(
@@ -6491,7 +6450,7 @@ class OrthographyProfile(BaseModel):
     correspondences: Annotated[
         list[CorrespondenceModel] | None,
         Field(
-            description="What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`); `soundAlike` goes when grading reads it (docs/migration-design.md, stages 5 and 6)."
+            description="What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`): grading, spelling-choice cards and the compiler's leftovers (docs/migration-design.md, stages 5 and 6). It replaced `soundAlike` (ADR 0142)."
         ),
     ] = None
     sound: SoundSource | None = None

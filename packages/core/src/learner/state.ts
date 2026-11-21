@@ -102,6 +102,18 @@ export interface LearnerState {
    * revealed answer counted as missed): how recent practice went, for the learning pace (ADR 0105).
    */
   readonly recent: readonly boolean[];
+  /**
+   * Misses per correspondence (ADR 0148, "A letter's rule is counted, not scheduled"): by its id
+   * (`<orthography>:<id>`, an answer's `outcome.correspondences`), how many answers not accepted
+   * missed it and when the last did. Counted, never scheduled: no card, no memory.
+   */
+  readonly letters: Readonly<Record<string, LetterMisses>>;
+}
+
+/** How often a correspondence was missed, and when last (an answer's device time). */
+export interface LetterMisses {
+  readonly missed: number;
+  readonly last: string;
 }
 
 /** How many graded first tries the learning pace looks back over (ADR 0105): about four sessions. */
@@ -142,6 +154,7 @@ export const emptyLearnerState = (): LearnerState => ({
   shown: {},
   missed: {},
   recent: [],
+  letters: {},
 });
 
 /**
@@ -236,6 +249,7 @@ interface Draft {
   shown: Record<string, string>;
   missed: Record<string, string>;
   recent: boolean[];
+  letters: Record<string, { missed: number; last: string }>;
 }
 
 const draftOf = (s: LearnerState): Draft => structuredClone(s) as Draft;
@@ -266,10 +280,12 @@ const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, part: string, skil
 export const SKILL_FACETS: ReadonlySet<Skill> = new Set<Skill>(["recognize", "produce", "listen", "read-off", "choose"]);
 
 /**
- * The skills a first try shows or misses: those a part is known by, and reading a word (ADR 0131: a
- * reading card in context or a word's reading card), which says when its reading's ruby may fade.
+ * The skills a first try shows or misses: those a part is known by; reading a word (ADR 0131: a
+ * reading card in context or a word's reading card), which says when its reading's ruby may fade;
+ * and writing it (ADR 0148: a spelling card, or a typed word right), which says when a word's
+ * spelling leftover is shown. Neither is a skill a word needs to be known.
  */
-export const WITNESSED_FACETS: ReadonlySet<Skill> = new Set<Skill>([...SKILL_FACETS, "read-script"]);
+export const WITNESSED_FACETS: ReadonlySet<Skill> = new Set<Skill>([...SKILL_FACETS, "read-script", "write-script"]);
 
 /**
  * A skill shown or missed (ADR 0100). It is shown only on a later day than the part was met and
@@ -340,6 +356,8 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
     if (!hinted) for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.part, c.skill, c.status === "right");
   }
   for (const credit of e.outcome.parts) d.met[credit.part] ??= e.localDate;
+  // A correspondence an answer missed (ADR 0148): counted, once an answer, never scheduled.
+  if (!correct) for (const id of new Set(e.outcome.correspondences ?? [])) d.letters[id] = { missed: (d.letters[id]?.missed ?? 0) + 1, last: e.clientTime };
   if (correct) addXp(d, e.localDate, XP.answer);
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
   // Story questions are not mistakes to practice: they only make sense inside their story.
@@ -411,6 +429,7 @@ const startOver = (d: Draft): void => {
   d.shown = fresh.shown;
   d.missed = fresh.missed;
   d.recent = fresh.recent;
+  d.letters = fresh.letters;
 };
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {

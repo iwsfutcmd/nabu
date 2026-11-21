@@ -40,6 +40,10 @@ export interface ReadingProjection {
   readonly letterVariants: (reading: string, spelling?: string) => readonly string[];
   /** The reading as minimal ruby: open pieces kept, each run of closed ones a middle dot, spaces kept; "" where nothing is open. */
   readonly open: (reading: string, spelling?: string) => string;
+  /** For each grapheme of the reading (in the scheme's language), whether it is in a place the script leaves open. */
+  readonly openAt: (reading: string, spelling?: string) => readonly boolean[];
+  /** Whether the statement leaves anything open anywhere: some piece a card may trade for another (`loses`). */
+  readonly opens: boolean;
 }
 
 /** Where a reading's letters the script leaves open are left out: a run of others stands as one dot. */
@@ -166,12 +170,12 @@ export const compileReadingProjection = (scheme: ReadingScheme): ReadingProjecti
         if (step.says === 0) return [];
         const piece = step.rule.says;
         const traded = new Set<string>(step.rule.loses);
-        // What the same letter also writes here: told apart only by what the scheme lets a card trade.
-        if (step.writes > 0) {
-          for (const other of rules) {
-            if (other === step.rule || other.says === "" || other.says === piece) continue;
-            if (other.written.some((w) => w.text === step.written) && holds(other, s, at, at + step.writes)) traded.add(other.says);
-          }
+        // What the same letter also writes here, or, where the piece is not written, what else the
+        // script leaves unwritten here (Chaghatay's short vowels: qizil's i as a, ä, e, u, ü): told
+        // apart only by what the scheme lets a card trade.
+        for (const other of rules) {
+          if (other === step.rule || other.says === "" || other.says === piece) continue;
+          if (other.written.some((w) => w.text === step.written) && holds(other, s, at, at + step.writes)) traded.add(other.says);
         }
         const allowed = othersOf(piece);
         const others = allowed.filter((p) => traded.has(p));
@@ -224,5 +228,12 @@ export const compileReadingProjection = (scheme: ReadingScheme): ReadingProjecti
     return kept ? out : "";
   };
 
-  return { scheme: scheme.id, ...(scheme.of !== undefined && { of: scheme.of }), spells, variants, letterVariants, open };
+  const openAt = (reading: string, spelling?: string): readonly boolean[] => {
+    const { pieces, spans } = places(reading, spelling);
+    const out: boolean[] = pieces.map(() => false);
+    for (const span of spans) if (span.others.length > 0) for (let k = span.from; k < span.to; k++) out[k] = true;
+    return out;
+  };
+
+  return { scheme: scheme.id, ...(scheme.of !== undefined && { of: scheme.of }), spells, variants, letterVariants, open, openAt, opens: alternatives.size > 0 };
 };

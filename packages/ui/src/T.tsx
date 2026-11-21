@@ -14,7 +14,7 @@
  * - Vocalization (§6.6): text is stored vocalized; `marks="hide"` strips the
  *   profile's mark set for display only, never in the data.
  */
-import { openLetters } from "@nabu/core";
+import { openLetters, schemeSpelling } from "@nabu/core";
 import { lexemeIdsOf } from "@nabu/core/lesson";
 import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
 import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
@@ -102,13 +102,17 @@ interface TokenViewProps {
   readonly open: boolean;
   /** Its spelling is read more than one way in the course (ADR 0140). */
   readonly homograph: boolean;
+  /** The orthography it is written in: a scheme stated `of` it reads what each segment's letters leave open (ADR 0148). */
+  readonly orthography: string;
 }
 
-const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed, lift, open, homograph }: TokenViewProps): JSX.Element => {
+const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, spoken, focus, onPress, pressed, lift, open, homograph, orthography }: TokenViewProps): JSX.Element => {
   const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
   const full = ruby === false ? undefined : token.ruby?.[ruby];
   // Minimal ruby (ADR 0141): each segment's unwritten letters, a dot for the rest; none where nothing is open.
-  const minimal = ruby === false || !open || full === undefined ? full : full.map((segment) => ({ ...segment, text: openLetters(ruby, segment.text) }));
+  // With the letters under it, only what they leave open (ADR 0148).
+  const minimal =
+    ruby === false || !open || full === undefined ? full : full.map((segment) => ({ ...segment, text: openLetters(ruby, segment.text, schemeSpelling(ruby, orthography, segment.base)) }));
   const segments = minimal !== undefined && minimal.every((segment) => segment.text === "") ? undefined : minimal;
   // A focused character needs the segment bases even when no reading layer is shown.
   const bases = segments ?? (focus === undefined ? undefined : Object.values(token.ruby ?? {})[0]);
@@ -178,7 +182,7 @@ export const useShowsRuby = (): ((text: TaggedText, scheme: SchemeId) => boolean
   const keepOpen = useOpenLettersKept();
   // A faded word may keep what the script leaves unwritten (ADR 0141).
   const shows = (t: Token, scheme: SchemeId, orthography: string): boolean =>
-    !faded(lexemeIdsOf(t), t.surface, orthography) || (keepOpen && (t.ruby?.[scheme] ?? []).some((segment) => openLetters(scheme, segment.text) !== ""));
+    !faded(lexemeIdsOf(t), t.surface, orthography) || (keepOpen && (t.ruby?.[scheme] ?? []).some((segment) => openLetters(scheme, segment.text, schemeSpelling(scheme, orthography, segment.base)) !== ""));
   return (text, scheme) => text.tokens.some((t) => (t.ruby?.[scheme]?.length ?? 0) > 0 && shows(t, scheme, text.orthography));
 };
 
@@ -256,6 +260,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           pressed={pressed === index}
           open={keepOpen && fadedAt(token, index)}
           homograph={token.kind === "lexical" && homograph(token.surface, text.orthography)}
+          orthography={text.orthography}
         />
       ))}
     </Tag>

@@ -29,31 +29,6 @@ lang: chg-Latn
 answer: chg-Latn/schluessel
 # Its readings are Latin already: an alphabet track's words are their readings as they stand (ADR 0133).
 latin: chg-Latn/schluessel
-# REVIEW: what each letter of the script stands for in the course's own words (every Arabic spelling aligned with
-# its reading, 786 words), erring on more options: a reading card's wrong options trade one letter for another the
-# same letter (or no letter) is read as, after the course's real homographs. The card asks what the script does not
-# say: a word's vowels (front or back, rounded or not, long or short) and the consonants one letter writes alike.
-variants:
-  # alif: a, ā, ä, and at the start of a word e, i, u (initial alif carries any vowel)
-  - [a, ä, ā, e, i, u]
-  # vav: u, o, ü, ö, ū
-  - [o, ö, u, ü, ū]
-  # ye: i, e, ī, and ä (bär- "give"), à (alif maksura: taʿālà), ē (bē-)
-  - [i, e, ī, ä, à, ē]
-  # a final he: a, ä, e
-  - [a, ä, e]
-  # no letter at all: a, i, ä, u, e, ü
-  - [a, ä, e, i, u, ü]
-  # ک: k, g (göšt, yigit, kälgän: g in 30 of 136 words)
-  - [k, g]
-  # غ: ǧ, g (the dative -gä after front vowels)
-  - [ǧ, g]
-  # ب: b, p (köp, barip: p at the end of a word); پ and ف: p, ṗ
-  - [b, p, ṗ]
-  # ج: j, č (kälgäč)
-  - [j, č]
-  # ن: n, ŋ (ŋ is usually نک)
-  - [n, ŋ]
 # Typed once a word's reading was read right by choice (ADR 0131), graded as text of chg-Latn/schluessel: a mark
 # left out is noted, not failed, unless it spells another word (bardi for bärdi); ng for ŋ is accepted with a note.
 typedByProfile: true
@@ -64,9 +39,11 @@ ruby: word
 # compiler read (profiles/README.md, "The sound statement"). `says` is a letter of the transliteration, `written` the
 # letters that write it ("" where the script leaves it unwritten), `when` where on the spelling it holds. Nothing is
 # implied: a reading this does not relate to its spelling is on the review list (`nabu projections ../courses/chg`).
-# The first ten keep the sets of `variants` above, which stays until the cards read this: `loses` is what a card may
-# trade a piece for; with a spelling, only what the letter written there also writes. From Schluessel's table of
-# letters (2018, xii-xxxii) and the course's own spellings; a reviewer should check the scribal ones last (پ for b).
+# The first ten carry the sets a reading card trades within (`loses`), drawn from every Arabic spelling of the course
+# aligned with its reading (786 words) and erring on more options: a word's vowels (front or back, rounded or not,
+# long or short) and the consonants one letter writes alike. With a word's spelling, a card trades only what the
+# letter written there also writes, after the course's real homographs. From Schluessel's table of letters (2018,
+# xii-xxxii) and the course's own spellings; a reviewer should check the scribal ones last (پ for b).
 of: chg-Arab/standard
 correspondences:
   # alif at the start of a word carries any vowel: a, ä, ā, e, i, u

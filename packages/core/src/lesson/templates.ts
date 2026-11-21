@@ -8,8 +8,8 @@ import type { BundleLabel, BundleLexeme, BundleSentence, PartId, Persons, Questi
 import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { compileAcceptSet, grade, type CompiledAcceptSet } from "../match/grade.ts";
-import { readingTag } from "../profile/schemes.ts";
-import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, letterVariants, readingFeatures, toneVariants, transcribable, typedByProfile, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
+import { readingProjection, readingTag } from "../profile/schemes.ts";
+import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, letterVariants, readingFeatures, schemeSpelling, toneVariants, transcribable, typedByProfile, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
 import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { tilesOf } from "./tiles.ts";
@@ -1468,28 +1468,24 @@ const homophoneChars = (course: CourseView, scheme: SchemeId): ReadonlyMap<strin
 };
 
 /**
- * A word's spelling with one letter traded for another that sounds alike (ADR 0142), in a stable
- * order: a letter of the profile's `soundAlike` sets (Persian صد as سد, ثد), its marks kept; or,
- * where the profile knows homophone characters, a character for another the course reads alike in
- * its first reading layer (Cantonese 衫 saam1 as 三). None where nothing in it sounds like another.
+ * A word's spelling with one place traded for another way of writing its sound (ADR 0142, 0148), in
+ * a stable order: what the profile's statement gives (`projection.spellings`: a fixed
+ * correspondence's other letter, Persian صد as سد, ثد, Spanish vaca as baca; a silent letter left out,
+ * hola as ola), its marks and capital kept, never a free variant; or, where the profile knows
+ * homophone characters, a character for another the course reads alike in its first reading layer
+ * (Cantonese 衫 saam1 as 三). None where nothing in it could be written otherwise.
  */
 const soundAlikeSpellings = (ctx: MakeContext, token: Token): readonly string[] => {
   const profile = profileOf(ctx.course, ctx.course.orthography);
   const surface = token.surface.normalize("NFC");
   const out: string[] = [];
+  const own = new Set([surface, ...(token.variants ?? []).map((v) => v.normalize("NFC"))]);
   const add = (spelling: string): void => {
     const s = spelling.normalize("NFC");
-    if (s !== surface && !out.includes(s)) out.push(s);
+    if (!own.has(s) && !out.includes(s)) out.push(s);
   };
-  const letters = graphemes(surface);
-  const alike = profile.soundAlike;
-  if (alike !== undefined) {
-    letters.forEach((g, i) => {
-      const bare = profile.marks?.strip(g) ?? g;
-      const marks = g.normalize("NFD").slice(bare.normalize("NFD").length);
-      for (const other of alike.others(bare)) add(letters.map((x, k) => (k === i ? `${other}${marks}` : x)).join(""));
-    });
-  }
+  const projection = profile.projection;
+  if (projection?.from === "spelling") for (const s of projection.spellings(surface)) add(s);
   const scheme = readingTradition(ctx.course);
   const segments = scheme === undefined ? undefined : token.ruby?.[scheme];
   if (profile.homophones !== undefined && scheme !== undefined && segments !== undefined) {
@@ -1504,44 +1500,53 @@ const soundAlikeSpellings = (ctx: MakeContext, token: Token): readonly string[] 
 };
 
 /**
- * Which spelling of a word fits the gap (ADR 0142): the sentence with the word left out, what it
- * means, the word's reading where the course's first layer writes one, and the word among itself
- * spelled with a sound-alike letter or character. The writing side's twin of a reading card.
+ * Which spelling of a word fits the gap (ADR 0142, 0148): the sentence with the word left out, what
+ * it means, the word's reading where the course's first layer writes one, and the word among itself
+ * spelled otherwise with the same sound. Asked only of a word with two such spellings that are wrong
+ * answers: none the sentence's accept set takes in the gap. The writing side's twin of a reading card.
  */
 export const makeSpellingChoice = (ctx: MakeContext, s: BundleSentence): GapFill | undefined => {
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
+  const tokens = form.text.tokens;
   const askable = (t: Token): boolean => t.kind === "lexical" && soundAlikeSpellings(ctx, t).length >= 2;
-  const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, s, t));
-  const fresh = form.text.tokens.findIndex((t) => askable(t) && introduces(ctx, t));
-  const at = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(askable);
-  const target = form.text.tokens[at];
-  if (target === undefined) return undefined;
-  // No option may show a reading: the right one would keep it, and the reading is the question's.
-  const plain = stripRuby(target);
-  const correct: TaggedText = { ...form.text, tokens: [plain] };
-  const others = ctx.rng
-    .shuffle([...soundAlikeSpellings(ctx, target)])
-    .slice(0, 3)
-    .map((spelling): TaggedText => ({ ...form.text, tokens: [{ surface: spelling, kind: "lexical" }] }));
-  const { options, answer } = withAnswer(ctx, correct, others);
-  const scheme = readingTradition(ctx.course);
-  const reading = scheme === undefined ? undefined : target.readings?.[scheme];
-  return {
-    template: "spelling-choice",
-    id: id("spelling-choice", `${s.id}:${target.surface}`),
-    item: s.id,
-    parts: s.parts,
-    orthography: ctx.course.orthography,
-    hint: translation.text,
-    before: slice(form.text, 0, at),
-    after: slice(form.text, at + 1, form.text.tokens.length),
-    options,
-    answer,
-    ...(reading === undefined || scheme === undefined ? {} : { reading: readingText(scheme, reading) }),
-    ...personsOf(s),
-  };
+  // A word asked again first, then one the lesson introduces, then any; the first whose spellings
+  // leave two wrong answers once those the accept set takes are set aside.
+  const candidates = [...tokens.keys()].filter((i) => askable(tokens[i] as Token));
+  const order = [
+    ...new Set([...candidates.filter((i) => asked(ctx, s, tokens[i] as Token)), ...candidates.filter((i) => introduces(ctx, tokens[i] as Token)), ...candidates]),
+  ];
+  for (const at of order) {
+    const target = tokens[at] as Token;
+    const before = slice(form.text, 0, at);
+    const after = slice(form.text, at + 1, tokens.length);
+    const wrong = soundAlikeSpellings(ctx, target)
+      .map((spelling): TaggedText => ({ ...form.text, tokens: [{ surface: spelling, kind: "lexical" }] }))
+      .filter((option) => !takes(ctx.course, s, before, option, after));
+    if (wrong.length < 2) continue;
+    // No option may show a reading: the right one would keep it, and the reading is the question's.
+    const correct: TaggedText = { ...form.text, tokens: [stripRuby(target)] };
+    const others = ctx.rng.shuffle(wrong).slice(0, 3);
+    const { options, answer } = withAnswer(ctx, correct, others);
+    const scheme = readingTradition(ctx.course);
+    const reading = scheme === undefined ? undefined : target.readings?.[scheme];
+    return {
+      template: "spelling-choice",
+      id: id("spelling-choice", `${s.id}:${target.surface}`),
+      item: s.id,
+      parts: s.parts,
+      orthography: ctx.course.orthography,
+      hint: translation.text,
+      before,
+      after,
+      options,
+      answer,
+      ...(reading === undefined || scheme === undefined ? {} : { reading: readingText(scheme, reading) }),
+      ...personsOf(s),
+    };
+  }
+  return undefined;
 };
 
 // ------------------------------------------------------------------------------------ reading templates
@@ -1631,20 +1636,23 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
   const reading = target.readings?.[scheme] as string;
   const syllables = reading.split(" ").length;
   const tones = ctx.rng.shuffle([...toneVariants(scheme, reading, courseSyllables(ctx.course, scheme))]).slice(0, 2);
-  // Where the script writes some of the scheme's letters alike (its `variants`, ADR 0131: Chaghatay's
-  // unwritten vowels), the course's other readings of the word's spelling come first, then the
-  // reading with one such letter traded, every option in the answer's case: what the script leaves open.
-  const traded = letterVariants(scheme, reading);
+  // Where the script writes some of the scheme's pieces alike (its correspondences, ADR 0148:
+  // Chaghatay's unwritten vowels), the course's other readings of the word's spelling come first,
+  // then the reading with one such piece traded for what the letter written there also writes,
+  // every option in the answer's case: what the script leaves open.
+  const traded = letterVariants(scheme, reading, schemeSpelling(scheme, ctx.course.orthography, target.surface));
   const lang = readingTag(scheme)?.lang;
   const same = (a: string, b: string): boolean => a.toLocaleLowerCase(lang) === b.toLocaleLowerCase(lang);
-  const cased = traded.length === 0 ? (r: string): string => r : (r: string): string => likeCase(r, reading, lang);
-  const alike =
-    traded.length === 0 ? [] : [...ctx.rng.shuffle(spellingReadings(ctx.course, scheme, target.surface).map(cased)), ...ctx.rng.shuffle([...traded])];
+  // A scheme whose statement leaves pieces open (not the word alone: a word with nothing open still
+  // takes its homographs first).
+  const opens = readingProjection(scheme)?.opens === true;
+  const cased = !opens ? (r: string): string => r : (r: string): string => likeCase(r, reading, lang);
+  const alike = !opens ? [] : [...ctx.rng.shuffle(spellingReadings(ctx.course, scheme, target.surface).map(cased)), ...ctx.rng.shuffle([...traded])];
   const close = [...tones, ...alike].filter((r, i, all) => !same(r, reading) && all.findIndex((x) => same(x, r)) === i);
   const pool = otherSentences(ctx, s)
     .flatMap((o) => formOf(ctx.course, o)?.text.tokens ?? [])
     .flatMap((t) => (readable(t) ? [cased(t.readings?.[scheme] as string)] : []))
-    .filter((r) => r.split(" ").length === syllables && r !== reading && !close.includes(r) && (traded.length === 0 || !same(r, reading)));
+    .filter((r) => r.split(" ").length === syllables && r !== reading && !close.includes(r) && (!opens || !same(r, reading)));
   const others = [...new Set([...close, ...ctx.rng.shuffle(pool)])].slice(0, 3);
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, readingText(scheme, reading), others.map((r) => readingText(scheme, r)));
@@ -1668,8 +1676,8 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
 /**
  * One place of a word's reading the script leaves open (ADR 0139): the sentence without ruby, the
  * word marked as on a char-read card, and its reading among the same reading changed in that one
- * place, in every way the scheme's data allows there (a letter of its `variants` set, a syllable's
- * tone the course attests). The place is the session's pick among those open two or more ways.
+ * place, in every way the scheme's data allows there (a piece its correspondences write alike with
+ * the letter the word has there, ADR 0148; a syllable's tone the course attests). The place is the session's pick among those open two or more ways.
  */
 export const makeReadingFeature = (ctx: MakeContext, s: BundleSentence): CharRead | undefined => {
   const scheme = rubySchemeOf(ctx);
@@ -1677,7 +1685,9 @@ export const makeReadingFeature = (ctx: MakeContext, s: BundleSentence): CharRea
   if (scheme === undefined || form === undefined) return undefined;
   // Each word's places open two or more ways, worked out once.
   const attested = courseSyllables(ctx.course, scheme);
-  const places = form.text.tokens.map((t) => (t.kind === "lexical" && t.readings?.[scheme] !== undefined ? readingFeatures(scheme, t.readings[scheme], attested).filter((f) => f.length >= 2) : []));
+  const places = form.text.tokens.map((t) =>
+    t.kind === "lexical" && t.readings?.[scheme] !== undefined ? readingFeatures(scheme, t.readings[scheme], attested, schemeSpelling(scheme, ctx.course.orthography, t.surface)).filter((f) => f.length >= 2) : [],
+  );
   const askable = (t: Token): boolean => (places[form.text.tokens.indexOf(t)]?.length ?? 0) > 0;
   const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, s, t));
   const fresh = form.text.tokens.findIndex((t) => askable(t) && introduces(ctx, t));
@@ -2042,6 +2052,8 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
   const translation = translationOf(ctx.course, s);
   // Only marks ordinary writing leaves out (an abjad's vowels: the profile ignores them in answers),
   // never accents that are part of the spelling (es, grc), which alphabets write anyway (ADR 0054).
+  // The options trade the profile's marks: they are what an abjad's letters lose (ADR 0148 keeps
+  // them as the reading side of a vowel-marked script's statement).
   if (marks === undefined || marks.policy !== "ignore" || form === undefined || translation === undefined) return undefined;
   const spelledIn = (profile.source.match?.marks?.spelledIn ?? []).filter((o) => o !== ctx.course.orthography);
   const spelledAt = (i: number): TaggedText | undefined => spelledIn.map((o) => twinOf(s, form.text, i, o)).find((t) => t !== undefined);
@@ -2089,6 +2101,7 @@ export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): Vocalize
   const marks = profile.marks;
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
+  // The buttons are the profile's marks: what an abjad's letters lose (ADR 0148, as on vocalize).
   if (profile.source.input?.markBuilder !== true || marks === undefined || marks.policy !== "ignore" || form === undefined || translation === undefined) return undefined;
   const word = pronouncedWord(ctx, s, form.text, (t) => hasVowelMarks(marks, t.surface));
   if (word === undefined) return undefined;

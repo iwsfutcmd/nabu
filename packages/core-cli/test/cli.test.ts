@@ -18,4 +18,18 @@ describe("core-cli", () => {
       { id: 3, ok: false, error: "unknown op" },
     ]);
   });
+
+  it("answers a batch with a response for each request, in order", () => {
+    const input = '{"id":7,"op":"batch","requests":[{"op":"ping"},{"op":"x"},{"op":"batch","requests":[]}]}';
+    const out = JSON.parse(execFileSync(process.execPath, [MAIN], { input, encoding: "utf8" }).trim()) as unknown;
+    expect(out).toEqual({
+      id: 7,
+      ok: true,
+      result: [
+        { id: null, ok: true, result: "pong" },
+        { id: null, ok: false, error: "unknown op" },
+        { id: null, ok: false, error: "invalid request" },
+      ],
+    });
+  });
 });

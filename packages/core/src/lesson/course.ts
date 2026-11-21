@@ -78,12 +78,14 @@ export interface CourseFiles {
 }
 
 /**
- * The bundle format this build reads (the manifest's `formatVersion`): 3, format 2 (lexemes where a
- * bundle had KCs, ADR 0145) with the token kind `lexical` where it was `word`. A bundle of another
+ * The bundle format this build reads (the manifest's `formatVersion`): 4, format 3 with the profiles'
+ * and schemes' statements in place of `soundAlike` and `variants` and each lexeme's `leftovers` (ADR
+ * 0148); 3 was format 2 (lexemes where a bundle had KCs, ADR 0145) with the token kind `lexical` where
+ * it was `word`. A bundle of another
  * format is refused whole: one a device kept from before is fetched again, and one from a later
  * build asks for the app to be updated.
  */
-export const BUNDLE_FORMAT = 3;
+export const BUNDLE_FORMAT = 4;
 
 export type CourseError =
   | { readonly code: "format"; readonly version: unknown }

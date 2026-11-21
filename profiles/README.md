@@ -34,8 +34,13 @@ statement is marked REVIEW. Grading reads it (ADR 0148, "What a miss is"; `grade
 `packages/core/src/match/grade.ts`): a typed word that says what the expected one says is an orthographic
 miss by a fixed correspondence and an accepted variant (`CORRECT_VARIANT`) by free ones alone; one with
 the same sounds and another stress (*tambien*) is phonemic; and the grade lists the correspondences an
-orthographic miss differed by (`<profile id>:<id>`). The cards do not read it yet (stage 5's other half):
-`soundAlike` (spelling-choice cards) and a scheme's `variants` stay.
+orthographic miss differed by (`<profile id>:<id>`), which the learner fold counts (`state.letters`, never
+scheduled). The cards read it: `spelling-choice` takes its options from a profile's `spellings` (and a
+profile's homophone characters), `char-read`, `reading-feature` and minimal ruby from the scheme projection's `variants`
+and `open`, with the word's spelling where the scheme is stated `of` its orthography (`schemeSpelling`). The
+compiler writes each bundle lexeme's `leftovers` from it (`nabu.projections`, through core-cli in batches)
+and lists the readings a scheme cannot relate to their spellings as the warning `projection.unaccounted`.
+It replaced a profile's `soundAlike` (ADR 0142) and a scheme's `variants` (ADR 0131), both removed.
 
 ### The writing side: a profile
 
@@ -110,14 +115,15 @@ correspondences:
 - **The sets a card may trade within**: each correspondence's `says` with its `loses`. Without a spelling (or a
   scheme without `of`, or a spelling the statement cannot relate), `variants` cuts the reading greedily into the
   longest known pieces (a `says` or a member of a `loses`) and trades each for the other members of every set it
-  is in: what a scheme's `variants` give today. With a spelling it relates, each site is traded only for what
-  the letter written there also writes (another correspondence with that written form whose `when` holds there),
-  and for its own `loses`, and only within the piece's sets; an unwritten site only for its `loses`.
+  is in: what a scheme's `variants` sets gave. With a spelling it relates, each site is traded only for what
+  the letter written there also writes (another correspondence with that written form whose `when` holds there;
+  for an unwritten site, another piece the script leaves unwritten there), and for its own `loses`, and only
+  within the piece's sets.
 - **`open`**: minimal ruby (ADR 0141): open pieces kept, each run of closed ones a middle dot, spaces kept; ""
   where nothing is open. Tone marks stay the caller's (`openLetters`).
 - A scheme without `of` (Pinyin, Baxter) lists a reading per sign: its correspondences only state sets
   (`{ says: ā, written: [""], loses: [á, ǎ, à] }`).
 
 `schemes/schluessel.yaml` relates Schluessel's transliteration to every word of the chg course (see `nabu
-projections ../courses/chg` for the readings it does not account for); its first ten correspondences keep the
-sets of its `variants`.
+projections ../courses/chg` for the readings it does not account for); its first ten correspondences carry the
+sets its `variants` had.

@@ -218,8 +218,20 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
   "reading-open": (a) => schemeProjection(a).open(text(a, "reading"), optionalText(a, "spelling")),
 };
 
+/**
+ * Many requests in one line (`batch`: `requests`, each an op and its arguments, no id): a response for
+ * each, in order, as `handleRequest` gives it. The compiler asks a whole course's questions so.
+ */
+const batch = (request: Args): Response => {
+  const id = (request["id"] ?? null) as Id;
+  const requests = request["requests"];
+  if (!Array.isArray(requests)) return { id, ok: false, error: '"requests" must be an array' };
+  return { id, ok: true, result: requests.map((r: unknown) => (typeof r === "object" && r !== null && (r as Args)["op"] !== "batch" ? handleRequest(r as Args) : { id: null, ok: false, error: "invalid request" })) };
+};
+
 export const handleRequest = (request: Args): Response => {
   const id = (request["id"] ?? null) as Id;
+  if (request["op"] === "batch") return batch(request);
   const op = OPS[String(request["op"])];
   if (op === undefined) return { id, ok: false, error: "unknown op" };
   try {

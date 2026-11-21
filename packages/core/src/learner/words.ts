@@ -17,16 +17,16 @@
  *
  * Pure: the state is the replayed log, `now` the caller's clock.
  */
-import type { SchemeId, TaggedText } from "@nabu/schema";
+import type { PartId, SchemeId, TaggedText } from "@nabu/schema";
 import { courseExclusions } from "../lesson/exclusions.ts";
-import { lexemesInOrder, unitIndexOf, type CourseView } from "../lesson/course.ts";
+import { glossOfPart, introducedAt, lexemeOf, lexemesInOrder, unitIndexOf, type CourseView } from "../lesson/course.ts";
 import { kindOf } from "../lesson/lexemes.ts";
 import type { Facet, Skill, TemplateId } from "../lesson/exercise.ts";
 import { textMatcher } from "../lesson/search.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
-import { chosenTraditionKey } from "../lesson/traditions.ts";
+import { chosenTraditionKey, readingTraditions } from "../lesson/traditions.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
-import { cardKey, DESIRED_RETENTION, parseCardKey, retrievability, type LearnerState } from "./state.ts";
+import { cardKey, DESIRED_RETENTION, languageSkills, parseCardKey, retrievability, type LearnerState, type LetterMisses } from "./state.ts";
 
 /**
  * A skill a part is known by (ADR 0100, 0146). A lexeme: recognizing it, producing it, hearing it.
@@ -234,3 +234,103 @@ export const readingsShown = (course: CourseView, state: LearnerState, reading?:
   }
   return out;
 };
+
+/**
+ * One thing asked of a word (ADR 0146, 0148), and whether the learner has shown it: `shown` by the
+ * fold's rule (a first try right on a later day than the word was met, not missed since);
+ * `not-shown` while it is asked and not yet shown; `not-asked` where no card asks it yet (a
+ * lexeme's own feature, `lexeme:mano|Gender`, is given on every card today).
+ */
+export type PartStatus = "shown" | "not-shown" | "not-asked";
+
+export type WordPart =
+  /** A skill the course asks of the word (`skillsAsked`). */
+  | { readonly kind: "skill"; readonly skill: AskedSkill; readonly status: PartStatus }
+  /** A lexical feature of its own that no default gives (the bundle lexeme's `parts`: la mano). */
+  | { readonly kind: "feature"; readonly part: PartId; readonly status: PartStatus }
+  /** Its spelling leftover in an orthography (`leftovers.spelling`): shown by a write-script card there. */
+  | { readonly kind: "spelling"; readonly orthography: string; readonly status: PartStatus }
+  /** Its reading leftover in a scheme (`leftovers.reading`): shown by a read-script card in that tradition. */
+  | { readonly kind: "reading"; readonly orthography: string; readonly scheme: SchemeId; readonly status: PartStatus };
+
+/**
+ * Everything asked of a learned word, each with whether it is shown (ADR 0146, 0148; the word
+ * list's entry): the skills the course asks of it, its own features that are parts, its spelling
+ * leftover per orthography and its reading leftover per scheme. Empty for an unknown lexeme.
+ * `facetsOff`: the skills turned off for good (D41), asked of no word.
+ */
+export const partsOf = (course: CourseView, state: LearnerState, lexemeId: string, facetsOff: ReadonlySet<Facet> = NONE_OFF): readonly WordPart[] => {
+  const lexeme = lexemeOf(course, lexemeId);
+  if (lexeme === undefined) return [];
+  const orthography = course.orthography;
+  const status = (key: string): PartStatus => (state.shown[key] !== undefined ? "shown" : "not-shown");
+  const skills = skillsAsked(course, facetsOff)(lexemeId).map((skill): WordPart => ({ kind: "skill", skill, status: status(cardKey(lexemeId, skill, orthography)) }));
+  // A part of the lexeme is asked once a card has rated it: today none does, so each is given.
+  const rated = (part: string): readonly string[] => Object.keys(state.cards).filter((key) => parseCardKey(key).part === part);
+  const features = (lexeme.parts ?? [])
+    .filter((part) => part.startsWith(`${lexemeId}|`))
+    .map((part): WordPart => {
+      const keys = rated(part);
+      return { kind: "feature", part, status: keys.length === 0 ? "not-asked" : keys.some((k) => state.shown[k] !== undefined) ? "shown" : "not-shown" };
+    });
+  const spelling = ((lexeme.leftovers?.spelling ?? []) as readonly string[]).map((orth): WordPart => ({ kind: "spelling", orthography: orth, status: status(cardKey(lexemeId, "write-script", orth)) }));
+  const reading = (lexeme.leftovers?.reading ?? []).map(({ orthography: orth, scheme }): WordPart => {
+    // A read-script card names its tradition where the orthography is read in several (ADR 0138).
+    const tradition = readingTraditions(course, orth).length > 1 ? scheme : undefined;
+    return { kind: "reading", orthography: orth, scheme, status: status(cardKey(lexemeId, "read-script", orth, tradition)) };
+  });
+  return [...skills, ...features, ...spelling, ...reading];
+};
+
+/** A rule or a taught feature value the learner has met (ADR 0146): its entry in the word list. */
+export interface RuleEntry {
+  readonly part: PartId;
+  readonly kind: "rule" | "feature";
+  /** What the course calls it, in the support language: a rule's gloss, a feature value's label (`labelOf`). */
+  readonly label: TaggedText | undefined;
+  /**
+   * The skills asked of it, each shown or not: those `skillsAsked` asks (a feature value read off and
+   * chosen), and of a rule, which no skill is asked of yet, those its cards have practised.
+   */
+  readonly skills: readonly { readonly skill: Skill; readonly shown: boolean }[];
+  /** How many of them are shown. */
+  readonly shown: number;
+}
+
+/**
+ * Every rule and every feature value the course teaches that the learner has met (the fold's
+ * `met`), in the order the course introduces them, with its label and how many of the skills asked
+ * of it are shown ("3 of 5").
+ */
+export const ruleEntries = (course: CourseView, state: LearnerState, facetsOff: ReadonlySet<Facet> = NONE_OFF): readonly RuleEntry[] => {
+  const order = introducedAt(course);
+  const asked = skillsAsked(course, facetsOff);
+  const off = facetsOff as ReadonlySet<string>;
+  const practised = new Map<string, Set<Skill>>();
+  for (const [key, card] of Object.entries(state.cards)) {
+    const ref = parseCardKey(key);
+    if (card.reps > 0) (practised.get(ref.part) ?? practised.set(ref.part, new Set()).get(ref.part))?.add(ref.skill);
+  }
+  const out: RuleEntry[] = [];
+  for (const part of Object.keys(state.met)) {
+    const kind = kindOf(part);
+    if ((kind !== "rule" && kind !== "feature") || part.includes("|") || !order.has(part)) continue;
+    const own: readonly Skill[] = asked(part);
+    const skills: readonly Skill[] =
+      kind === "rule" ? [...new Set([...own, ...languageSkills(part).filter((k) => practised.get(part)?.has(k) === true && !off.has(k))])] : own;
+    const shown = skills.map((skill) => ({ skill, shown: state.shown[cardKey(part, skill, course.orthography)] !== undefined }));
+    out.push({ part, kind, label: glossOfPart(course, part), skills: shown, shown: shown.filter((k) => k.shown).length });
+  }
+  return out.sort((a, b) => (order.get(a.part) ?? 0) - (order.get(b.part) ?? 0) || (a.part < b.part ? -1 : a.part > b.part ? 1 : 0));
+};
+
+/** A correspondence the learner's answers missed (ADR 0148): its id, how often, when last. */
+export interface MissedLetter extends LetterMisses {
+  readonly id: string;
+}
+
+/** The correspondences the learner's answers missed (the fold's `letters`), most missed first, the latest first on a tie. */
+export const missedLetters = (state: LearnerState): readonly MissedLetter[] =>
+  Object.entries(state.letters)
+    .map(([id, m]) => ({ id, ...m }))
+    .sort((a, b) => b.missed - a.missed || (a.last < b.last ? 1 : a.last > b.last ? -1 : 0) || (a.id < b.id ? -1 : 1));

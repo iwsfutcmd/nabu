@@ -12,6 +12,12 @@ import type { LessonEvent } from "../lesson/player.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
 import { creditOf, readingOf } from "./credit.ts";
 
+/**
+ * Whether the course practises a skill (ADR 0071: its `facets`): a word's spelling leftover is
+ * credited by write-script (ADR 0148), which a course that does not write (lzh) never asks.
+ */
+export const practised = (course: CourseView, skill: string): boolean => skill !== "write-script" || course.facets === undefined || course.facets.includes("write-script");
+
 export interface EventMeta {
   readonly id: string;
   /** Device clock, ISO 8601 with offset. */
@@ -135,7 +141,7 @@ export const learnerEventOf = (
           notes: [...e.graded.notes],
           labels: [...(e.graded.labels ?? [])],
           ...(e.graded.correspondences !== undefined && e.graded.correspondences.length > 0 ? { correspondences: [...e.graded.correspondences] } : {}),
-          parts: [...creditOf(e.ex, e.graded, course.profiles, lexemesById(course))],
+          parts: creditOf(e.ex, e.graded, course.profiles, lexemesById(course)).filter((c) => practised(course, c.skill)),
         },
         ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }),
       };

@@ -117,7 +117,7 @@ def test_credits_are_defined_once(core_cli: CoreCli, course: str, tmp_path: Path
     assert compiled is not None, [d.format() for d in diags.items]
     raw = write_bundle(compiled, profiles, analyzers, tmp_path)
     manifest = BundleManifest.model_validate(raw)
-    assert manifest.formatVersion == 3
+    assert manifest.formatVersion == 4
     assert all(credit_id(text) == ident for ident, text in manifest.credits.items())
     named = {f.credit for f in manifest.files if f.credit is not None}
     # Each text once in the manifest (and nowhere in the audio index, below).

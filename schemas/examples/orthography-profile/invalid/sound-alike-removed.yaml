@@ -1,0 +1,7 @@
+# `match.soundAlike` is gone (ADR 0148): letters of one sound are fixed correspondences. Not the real profile.
+id: fa-Arab/standard
+lang: fa-Arab
+segmentation: { content: whitespace, runtime: grapheme }
+normalize: [nfc]
+match:
+  soundAlike: { sets: [[س, ص, ث]], note: sound-alike }

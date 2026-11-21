@@ -55,6 +55,7 @@ const emptyLearnerState = (): LearnerState => ({
   shown: {},
   missed: {},
   recent: [],
+  letters: {},
 });
 
 const scheduler: FSRS = fsrs(generatorParameters({ request_retention: DESIRED_RETENTION, enable_fuzz: false }));
@@ -108,6 +109,7 @@ interface Draft {
   shown: Record<string, string>;
   missed: Record<string, string>;
   recent: boolean[];
+  letters: Record<string, { missed: number; last: string }>;
 }
 
 const draftOf = (s: LearnerState): Draft => structuredClone(s) as Draft;
@@ -175,6 +177,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
     if (!hinted) for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.part, c.skill, c.status === "right");
   }
   for (const credit of e.outcome.parts) d.met[credit.part] ??= e.localDate;
+  if (!correct) for (const id of new Set(e.outcome.correspondences ?? [])) d.letters[id] = { missed: (d.letters[id]?.missed ?? 0) + 1, last: e.clientTime };
   if (correct) addXp(d, e.localDate, XP.answer);
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
     noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.parts), askOf(e.outcome.parts) === undefined ? undefined : e.exercise.asks);
@@ -222,6 +225,7 @@ const startOver = (d: Draft): void => {
   d.shown = fresh.shown;
   d.missed = fresh.missed;
   d.recent = fresh.recent;
+  d.letters = fresh.letters;
 };
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {

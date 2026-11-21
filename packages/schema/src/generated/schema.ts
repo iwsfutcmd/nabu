@@ -1628,9 +1628,9 @@ export interface AudioVerdict {
  */
 export interface BundleManifest {
   /**
-   * 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.
+   * 4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.
    */
-  readonly formatVersion: 3;
+  readonly formatVersion: 4;
   /**
    * sha256 of the manifest without this field.
    */
@@ -4920,7 +4920,7 @@ export interface OrthographyProfile {
   readonly transliterate?: Transliteration;
   readonly speech?: SpeechSetup;
   /**
-   * What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`); `soundAlike` goes when grading reads it (docs/migration-design.md, stages 5 and 6).
+   * What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`): grading, spelling-choice cards and the compiler's leftovers (docs/migration-design.md, stages 5 and 6). It replaced `soundAlike` (ADR 0142).
    */
   readonly correspondences?: readonly Correspondence[];
   readonly sound?: SoundSource;
@@ -5163,16 +5163,6 @@ export interface MatchPolicy {
   readonly apostrophe?: {
     readonly policy: Policy;
     readonly note?: NoteId;
-  };
-  /**
-   * Letters the script writes for one sound (ADR 0142): Persian [س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]. An answer that differs from the expected word only by such letters, each traded within its set, has the right sound and the wrong letter: never a typo, WRONG with `note`, or WRONG_WORD where it spells another word of the course (the grader's lexicon). Spelling-choice cards offer the word with one such letter traded as wrong options.
-   */
-  readonly soundAlike?: {
-    /**
-     * @minItems 1
-     */
-    readonly sets: readonly string[][];
-    readonly note: NoteId;
   };
   /**
    * Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.
@@ -5505,12 +5495,6 @@ export interface ReadingScheme {
     readonly before: string;
   };
   /**
-   * Letters of the scheme that the script it reads writes alike, each list a set (ADR 0131): Schluessel's a, ä and ā all under alif. A reading card offers a word's reading with one of them traded for another of its set (bärdi for bardi), after the course's real homographs: what the script leaves for the reader to know. Compared in the scheme's `lang`, case kept.
-   *
-   * @minItems 1
-   */
-  readonly variants?: readonly string[][];
-  /**
    * What one ruby segment stands over where a profile shows the scheme as ruby (ADR 0129): each character (the default: a Han character's syllable, a logograph's word, a syllable of the script's own scheme) or the whole word, where the script's letters do not line up with the reading's (Schluessel's transliteration over a Chaghatay word in Arabic script, which leaves most vowels unwritten).
    */
   readonly ruby?: "character" | "word";
@@ -5553,7 +5537,7 @@ export interface ReadingScheme {
   };
   readonly of?: OrthographyId4;
   /**
-   * What the orthography `of` writes of this scheme's readings, and what it loses (ADR 0148): `says` a piece of the reading, `written` how the orthography writes it ("": not written), `loses` the pieces a reading card may trade it for. Nothing is implied: a piece no correspondence names is not accounted for. Read by @nabu/core (`project`); `variants` goes when the cards read it (docs/migration-design.md, stages 5 and 6).
+   * What the orthography `of` writes of this scheme's readings, and what it loses (ADR 0148): `says` a piece of the reading, `written` how the orthography writes it ("": not written), `loses` the pieces a reading card may trade it for. Nothing is implied: a piece no correspondence names is not accounted for. Read by @nabu/core (`project`): reading cards' options, minimal ruby and the compiler's leftovers (docs/migration-design.md, stages 5 and 6). It replaced `variants` (ADR 0131).
    */
   readonly correspondences?: readonly Correspondence[];
 }

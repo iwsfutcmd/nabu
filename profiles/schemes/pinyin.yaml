@@ -27,17 +27,9 @@ lang: zh-Latn-pinyin
 # A reading card offers and grades its readings as zh-Latn/pinyin: typed with marks or tone numbers.
 answer: zh-Latn/pinyin
 typedByProfile: true
-# The characters write no tone: a reading card's wrong options give a syllable another tone, each
-# marked vowel traded for the same vowel with another tone's mark (ADR 0131's sets, ADR 0138).
-variants:
-  - [ā, á, ǎ, à]
-  - [ē, é, ě, è]
-  - [ī, í, ǐ, ì]
-  - [ō, ó, ǒ, ò]
-  - [ū, ú, ǔ, ù]
-  - [ǖ, ǘ, ǚ, ǜ]
-# REVIEW (ADR 0148): the same sets as a statement. The characters write no reading: each tone of a vowel is said and
-# not written, and a card may trade it for the others (`loses`). No `of`: a character's reading is listed, not a rule.
+# REVIEW (ADR 0148): the characters write no tone. Each tone of a vowel is said and not written, and a reading
+# card's wrong options give a syllable another tone, the marked vowel traded for the same vowel with another tone's
+# mark (`loses`; ADR 0131's sets, ADR 0138). No `of`: a character's reading is listed, not a rule.
 correspondences:
   - { says: ā, written: [""], kind: fixed, loses: [á, ǎ, à] }
   - { says: ē, written: [""], kind: fixed, loses: [é, ě, è] }

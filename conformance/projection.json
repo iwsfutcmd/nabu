@@ -1324,7 +1324,7 @@
           "bardü"
         ]
       ],
-      "note": "Without a spelling: each piece traded within every set it belongs to (as the scheme's variants trade today)."
+      "note": "Without a spelling: each piece traded within every set it belongs to (as the scheme's `variants` traded before ADR 0148)."
     },
     {
       "id": "projection/schluessel/variants/bardi-spelled",
@@ -1355,6 +1355,43 @@
       "note": "With its spelling: inside a word an alif writes a, ä or ā, never e, i or u; a final ye writes i, e, ī, ä, à, ē or ā (Mūsā), never a, u or ü."
     },
     {
+      "id": "projection/schluessel/variants/unwritten",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "qizil",
+        "spelling": "قزل"
+      },
+      "expected": [
+        [
+          "qazil",
+          "qäzil",
+          "qezil",
+          "quzil",
+          "qüzil"
+        ],
+        [
+          "qizal",
+          "qizäl",
+          "qizel",
+          "qizul",
+          "qizül"
+        ]
+      ],
+      "note": "With its spelling, a vowel the script leaves unwritten is traded for what else it leaves unwritten there (a, ä, e, u, ü), never for a vowel a letter writes (ā, ī, ē)."
+    },
+    {
+      "id": "projection/schluessel/open/unwritten",
+      "op": "reading-open",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "qizil",
+        "spelling": "قزل"
+      },
+      "expected": "\u00b7i\u00b7i\u00b7",
+      "note": "Minimal ruby with the spelling: the unwritten vowels are open."
+    },
+    {
       "id": "projection/schluessel/variants/capital",
       "op": "reading-variants",
       "args": {
@@ -1380,7 +1417,7 @@
         "reading": "bardi"
       },
       "expected": "ba·i",
-      "note": "Without a spelling: b, a and i are open somewhere (as openLetters reads the variants), r and d never."
+      "note": "Without a spelling: b, a and i are open somewhere (as openLetters read the `variants` before ADR 0148), r and d never."
     },
     {
       "id": "projection/schluessel/open/spelled",

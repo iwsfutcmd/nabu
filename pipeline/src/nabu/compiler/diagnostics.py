@@ -182,6 +182,14 @@ _LINTS = [
         "without its vowel lengths, ADR 0135).",
     ),
     Lint(
+        "projection.unaccounted",
+        "warning",
+        3,
+        "A token's pinned reading, in a scheme stated `of` its orthography (ADR 0148), is one its "
+        "statement cannot relate to the token's spelling (`reading-spells`): a reading or a "
+        "correspondence for a reviewer to look at. The review list; it never fails a build.",
+    ),
+    Lint(
         "enrich.transliteration-mismatch",
         "info",
         3,

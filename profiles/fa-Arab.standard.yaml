@@ -30,18 +30,14 @@ match:
       - { id: possessive, note: contrast-possessive, members: [[م, ام], [ت, ات], [ش, اش], مان, تان, شان] }
       - { id: person, note: contrast-person, members: [م, ی, د, یم, ید, ند] }
       - { id: copula, note: contrast-person, members: [ام, ای, است, ایم, اید, اند] }
-  # Letters Iranian Persian writes for one sound, from the Arabic loanwords (ADR 0142; reviewed by Ben, 2026-11-17).
-  # A word spelled with the right sound and the wrong letter (سد for صد, ذهن for زهن) is never a typo: wrong, with a
-  # note, or WRONG_WORD where it spells another word of the course; spelling-choice cards trade them. Dari tells ق
-  # from غ (its ع and ء sound alike, as here): a Dari profile would leave out the last set.
-  soundAlike:
-    sets: [[س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]]
-    note: sound-alike
 # REVIEW: what the spelling writes of the sound, and what it loses (ADR 0148; profiles/README.md, "The sound
-# statement"): the sets above, as fixed correspondences (the norm spells each word with one of them, so which is a
-# word's own to learn). Read by @nabu/core; `soundAlike` stays until grading and the spelling cards read this. The
-# vowel marks are left aside: a word unmarked says what it says marked, and the unmarked spelling is the usual one.
-# The `says` values are only compared with one another (ʔ the glottal stop, ɢ the one sound of ق and غ).
+# statement"). Letters Iranian Persian writes for one sound, from the Arabic loanwords (ADR 0142's sets, reviewed by
+# Ben, 2026-11-17), as fixed correspondences: the norm spells each word with one of them, so which is a word's own to
+# learn. A word spelled with the right sound and the wrong letter (سد for صد, ذهن for زهن) is never a typo: wrong,
+# with a note, or WRONG_WORD where it spells another word of the course; spelling-choice cards trade them. Dari tells
+# ق from غ (its ع and ء sound alike, as here): a Dari profile would leave out the last. The vowel marks are left
+# aside: a word unmarked says what it says marked, and the unmarked spelling is the usual one. The `says` values are
+# only compared with one another (ʔ the glottal stop, ɢ the one sound of ق and غ).
 # Not stated yet: the silent و of خواهر and خواب (خو before ا), which writing loses too; stating it would make
 # خاهر a spelling of خواهر's sound, for a reviewer to decide.
 sound: { from: spelling, ignores: "[\u064B-\u0652\u0670]" }

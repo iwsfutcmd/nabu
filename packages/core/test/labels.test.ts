@@ -4,7 +4,7 @@
  * The conformance vectors (conformance/grade.json, grade/labels/…) pin the labels across profiles;
  * these tests pin what the vectors cannot: the course's own lexemes, the credit and the event.
  */
-import type { OrthographyId, OrthographyProfile, ReadingScheme } from "@nabu/schema";
+import type { BundleLexeme, OrthographyProfile, ReadingScheme } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { creditOf } from "../src/learner/credit.ts";
 import { exerciseRefOf, learnerEventOf } from "../src/learner/events.ts";
@@ -131,14 +131,20 @@ describe("credit follows the labels (ADR 0146, 0148)", () => {
   });
 
   it("a right word shows its spelling leftover, where the bundle lists one", () => {
-    const lexemes = new Map(lexemesById(es));
-    const entry = lexemes.get(casa);
-    if (entry === undefined) throw new Error(casa);
-    lexemes.set(casa, { ...entry, leftovers: { spelling: ["es-Latn/standard" as OrthographyId] } });
-    const right = creditOf(ex, answer(ex, "Mi casa está en Hialeah"), es.profiles, lexemes);
+    // The compiler lists casa's (kasa, caza: es-Latn/standard states c and s, z for /s/).
+    expect(lexemesById(es).get(casa)?.leftovers?.spelling).toEqual(["es-Latn/standard"]);
+    const right = creditOf(ex, answer(ex, "Mi casa está en Hialeah"), es.profiles, lexemesById(es));
     expect(right).toContainEqual({ part: casa, skill: "write-script", status: "right" });
-    // Without leftovers, as every bundle today: no write-script credit at all.
-    expect(creditOf(ex, answer(ex, "Mi casa está en Hialeah"), es.profiles, lexemesById(es)).some((c) => c.skill === "write-script")).toBe(false);
+    // A word with no leftover gets no write-script credit: without leftovers, none at all.
+    const scripted = new Set(right.filter((c) => c.skill === "write-script").map((c) => c.part));
+    for (const part of scripted) expect(lexemesById(es).get(part)?.leftovers?.spelling, part).toContain("es-Latn/standard");
+    const none: ReadonlyMap<string, BundleLexeme> = new Map(
+      [...lexemesById(es)].map(([id, l]): [string, BundleLexeme] => {
+        const { leftovers: _leftovers, ...rest } = l;
+        return [id, rest];
+      }),
+    );
+    expect(creditOf(ex, answer(ex, "Mi casa está en Hialeah"), es.profiles, none).some((c) => c.skill === "write-script")).toBe(false);
   });
 
   it("the answer event carries the labels and correspondences", () => {

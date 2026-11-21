@@ -63,6 +63,25 @@ EXPECTED_WARNINGS = {
         ("reading.inconsistent-pending", "سویی"),
         ("reading.inconsistent-pending", "شهرغه"),
         ("reading.inconsistent-pending", "تیزیغه"),
+        # The review list (ADR 0148): readings Schluessel's statement does not relate to their
+        # letters (پز biz, پله billä, شهریکه šahargä, صندوقدا ṣandūqta, سُوی süyi, موغالستان
+        # Moǧulistān), for a reviewer to settle in the statement or the reading
+        # (`nabu projections ../courses/chg`).
+        ("projection.unaccounted", "\u0645\u0648\u063a\u0627\u0644\u0633\u062a\u0627\u0646"),
+        (
+            "projection.unaccounted",
+            "\u0645\u0648\u063a\u0627\u0644\u0633\u062a\u0627\u0646\u063a\u0647",
+        ),
+        (
+            "projection.unaccounted",
+            "\u0645\u0648\u063a\u0627\u0644\u0633\u062a\u0627\u0646\u200c\u063a\u0647",
+        ),
+        ("projection.unaccounted", "\u067e\u0632"),
+        ("projection.unaccounted", "\u067e\u0644\u0645\u0627\u0633\u0645\u0632"),
+        ("projection.unaccounted", "\u0634\u0647\u0631\u06cc\u06a9\u0647"),
+        ("projection.unaccounted", "\u0633\u064f\u0648\u06cc"),
+        ("projection.unaccounted", "\u067e\u0644\u0647"),
+        ("projection.unaccounted", "\u0635\u0646\u062f\u0648\u0642\u062f\u0627"),
     },
 }
 TOOLS = {

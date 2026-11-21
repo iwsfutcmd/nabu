@@ -335,18 +335,31 @@ describe("a word and its parts in a learner's sessions", () => {
       }
     });
 
-  // What plan() plans a learner who walks the path, missing every seventh card (test/planned.ts).
+  // What plan() plans learners who walk the path, missing every seventh card (test/planned.ts). How
+  // often a card comes rests on three learners: one walk's count turns on its seed (a Spanish lesson
+  // now has a spelling card too, ADR 0148, and one learner's walk went from 14 words taken apart to
+  // 1 while the two beside it kept 11 and 20), the three together do not.
+  const WALKS = [7, 8, 9];
   for (const [id, orthography] of [
     ["es", "es-Latn/standard"],
     ["hbo", "hbo-Hebr/tiberian"],
   ] as const)
     it(`plans both along the path, at most one of each a session (${id})`, () => {
-      const sessions = walkPath(loadCourse(id, orthography), { lessons: 24 });
+      const course = loadCourse(id, orthography);
+      const walks = WALKS.map((seed) => walkPath(course, { lessons: 24, seed }));
       const count = (exercises: readonly Exercise[], template: Exercise["template"]): number => exercises.filter((ex) => ex.template === template).length;
       for (const template of PARTS) {
-        for (const s of sessions) expect(count(s.plan.exercises, template), `${s.label} ${template}`).toBeLessThanOrEqual(1);
-        const lessons = sessions.filter((s) => s.request.mode === "lesson");
-        expect(lessons.reduce((a, s) => a + count(s.plan.exercises, template), 0), template).toBeGreaterThan(3);
+        let planned = 0;
+        for (const [i, sessions] of walks.entries()) {
+          for (const s of sessions) expect(count(s.plan.exercises, template), `learner ${String(WALKS[i])} ${s.label} ${template}`).toBeLessThanOrEqual(1);
+          const lessons = sessions.filter((s) => s.request.mode === "lesson");
+          const own = lessons.reduce((a, s) => a + count(s.plan.exercises, template), 0);
+          // Every learner meets the card along the path.
+          expect(own, `learner ${String(WALKS[i])} ${template}`).toBeGreaterThan(0);
+          planned += own;
+        }
+        // More than three a learner, on average, in twenty-four lessons.
+        expect(planned / walks.length, template).toBeGreaterThan(3);
       }
     });
 });

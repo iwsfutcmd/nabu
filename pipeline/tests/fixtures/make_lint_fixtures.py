@@ -257,6 +257,47 @@ HBO: dict[str, Any] = {
 }
 """A Biblical Hebrew course: עַל bound to הָאָרֶץ by a maqaf, its reading's final hyphen saying so."""
 
+CHG_ORTH = "chg-Arab/standard"
+QIZIL = "\u0642\u0632\u0644"  # قزل
+CHG: dict[str, Any] = {
+    "id": "clean-chg",
+    "target": "chg-Arab",
+    "orthographies": [CHG_ORTH],
+    "support": ["en-Latn/standard"],
+    "lexicon": "chg",
+    "names": {"en": {"course": "Chaghatay"}},
+    "license": "CC0-1.0",
+    "provenance": {"author": "human:fixture", "status": "draft"},
+    "own": own("chg", [{"id": "lexeme:qizil", "pos": "ADJ", "gloss": {"en": "red"}}]),
+    "units": [
+        {
+            "id": "basics",
+            "nodes": [{"id": "basics.1", "kind": "lesson", "introduces": ["lexeme:qizil"]}],
+            "sentences": [
+                {
+                    "id": "s.1",
+                    "node": "basics.1",
+                    "forms": {
+                        CHG_ORTH: {
+                            "text": QIZIL,
+                            "tokens": [
+                                {
+                                    "surface": QIZIL,
+                                    "lexeme": "qizil",
+                                    "readings": {"schluessel": "qizil"},
+                                }
+                            ],
+                            "reverse": QIZIL,
+                        }
+                    },
+                    "translations": {"en": "red"},
+                }
+            ],
+        }
+    ],
+}
+"""A Chaghatay course: قزل read qizil, which Schluessel's statement relates to its letters."""
+
 ES_ORTH = "es-Latn/standard"
 
 
@@ -584,6 +625,11 @@ def _grc_misspelled_reading(c: Course) -> None:
 def _hbo_unbound(c: Course) -> None:
     """עַל before a maqaf read without the bound mark."""
     unit(c)["sentences"][1]["forms"][HBO_ORTH]["tokens"][0]["readings"] = {"tiberian": "ʿal"}
+
+
+def _chg_unaccounted(c: Course) -> None:
+    """قزل read kizil, a reading Schluessel's statement does not relate to its letters."""
+    unit(c)["sentences"][0]["forms"][CHG_ORTH]["tokens"][0]["readings"] = {"schluessel": "kizil"}
 
 
 def _script_untaught(c: Course) -> None:
@@ -1115,6 +1161,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(_grc_misspelled_reading, GRC),
     ),
     "reading.bound": ("עַל before a maqaf read without its bound mark.", m(_hbo_unbound, HBO)),
+    "projection.unaccounted": (
+        "\u0642\u0632\u0644 read kizil: Schluessel's statement writes k with \u06a9, never \u0642.",
+        m(_chg_unaccounted, CHG),
+    ),
     "script.untaught-letter": (
         "A Greek alphabet node's word uses ν before the track teaches it.",
         m(_script_untaught, GRC),

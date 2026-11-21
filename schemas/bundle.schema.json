@@ -7,7 +7,7 @@
   "required": ["formatVersion", "id", "course", "target", "orthographies", "support", "lexicon", "versions", "files", "credits", "units", "licenses", "provenance"],
   "additionalProperties": false,
   "properties": {
-    "formatVersion": { "description": "3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.", "const": 3 },
+    "formatVersion": { "description": "4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.", "const": 4 },
     "id": { "description": "sha256 of the manifest without this field.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "course": { "type": "string" },
     "target": { "$ref": "common.schema.json#/$defs/ScriptedLangTag" },

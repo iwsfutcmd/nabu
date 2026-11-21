@@ -21,6 +21,9 @@ const profileNotes = (): string[] =>
       m.scriptMismatch?.note,
       m.apostrophe?.note,
       ...(m.equivalences ?? []).map((e) => (e.policy === "accept" || e.policy === "ignore" ? undefined : (e.note ?? e.id))),
+      // The sound statement's notes (ADR 0148): a correspondence's, and the stress mark's.
+      ...(p.correspondences ?? []).map((c) => c.note),
+      p.stress?.note,
     ].filter((n): n is string => n !== undefined);
   });
 

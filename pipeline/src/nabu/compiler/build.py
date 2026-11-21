@@ -37,6 +37,7 @@ from nabu.corecli import CoreCli
 from nabu.drills.rbnf import icu_version, spellout, transform
 from nabu.items import Content
 from nabu.paths import I18N_GENERATED, PROFILES
+from nabu.projections import leftovers, unaccounted
 from nabu.schema.models import (
     BundleLexicon,
     BundleUnit,
@@ -852,6 +853,9 @@ def compile_course(
         ctx.cli,
     )
     compiled.units = with_alphabets(compiled.units, alphabets)
+    # ---- stage 3 (on the bundle): what the statements leave to learn (ADR 0148)
+    compiled.lexicon = leftovers(compiled.lexicon, course.orthographies, ctx.profiles, ctx.cli)
+    _unaccounted(ctx, units, compiled)
     aliases = course_file.parent / "aliases.yaml"
     if aliases.is_file():
         compiled.aliases = yaml.safe_load(aliases.read_text(encoding="utf-8"))
@@ -860,6 +864,28 @@ def compile_course(
     if diags.errors:
         return diags, None
     return diags, compiled
+
+
+def _unaccounted(ctx: Ctx, units: list[Unit], compiled: Compiled) -> None:
+    """The review list (ADR 0148): each token whose pinned reading, in a scheme stated `of` its
+    orthography, the scheme's statement cannot relate to its spelling (`projection.unaccounted`),
+    at its sentence, story line or lexicon entry."""
+    where: dict[str, Loc] = {}
+    for unit in units:
+        for si, s in enumerate(unit.source.sentences):
+            where[s.id] = unit.doc.loc("sentences", si)
+        for k, story in enumerate(unit.source.stories or []):
+            for step in range(len(story.steps)):
+                where[f"{story.id}#{step}"] = unit.doc.loc("stories", k, "steps", step)
+    for found in unaccounted(compiled.content, compiled.orthographies, ctx.cli):
+        for u in found.unaccounted:
+            loc = where.get(u.item) or ctx.lang.loc(u.item)
+            ctx.diags.report(
+                "projection.unaccounted",
+                f"{u.item}: '{u.surface}' read {u.reading!r}: {found.scheme}'s statement does not "
+                f"relate the reading to the spelling",
+                loc,
+            )
 
 
 def _images(ctx: Ctx, used: set[str], compiled: Compiled) -> dict[str, str]:

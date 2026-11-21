@@ -1,44 +1,22 @@
 /**
  * Projections (ADR 0148; docs/migration-design.md, "Stages 5 and 6"): the statements the profiles
- * and schemes make, checked against what the cards and the grader read today. Nothing reads them
- * yet, so each test pins parity (fa's sound-alike sets, the schemes' variants) or coverage (how much
- * of chg's pinned readings the Schluessel statement relates to their spellings).
+ * and schemes make, which grading, spelling-choice and reading cards and the compiler's leftovers
+ * read. fa's statement replaced ADR 0142's sound-alike sets and the schemes' replaced their
+ * `variants` sets: these tests pin what each gives on concrete words (as the removed parity tests
+ * proved it gave what those sets gave), and how much of chg's pinned readings Schluessel's
+ * statement relates to their spellings.
  */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { OrthographyProfile, ReadingScheme, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { letterVariants, openLetters, readingFeatures } from "../src/match/pronounce.ts";
-import { compileProfile, type CompiledProfile } from "../src/profile/compile.ts";
+import { compileProfile } from "../src/profile/compile.ts";
 import { readingProjection, readingSchemes } from "../src/profile/schemes.ts";
 import { compileProjection, type SpellingProjection } from "../src/project/sound.ts";
 import { compileReadingProjection } from "../src/project/reading.ts";
 import { profileOf } from "../src/lesson/index.ts";
 import { graphemes } from "../src/text/graphemes.ts";
 import { loadCourse, manifestOf } from "./learner-fixtures.ts";
-
-/**
- * The grader's sound-alike test before ADR 0148 (removed from match/grade.ts when grading came to
- * read the statement), kept here as the reference the statement is checked against: whether two
- * words differ only in letters of the profile's `soundAlike` sets, at least one, compared as the
- * profile's letters, case folded and marks stripped.
- */
-const soundAlikeOnly = (profile: CompiledProfile, expected: string, actual: string): boolean => {
-  const sets = profile.soundAlike;
-  if (sets === undefined) return false;
-  const plain = (t: string): string => (profile.marks?.strip(profile.fold(t)) ?? profile.fold(t)).normalize("NFC");
-  const e = profile.letters(plain(expected));
-  const a = profile.letters(plain(actual));
-  if (e.length !== a.length) return false;
-  let apart = 0;
-  for (const [i, letter] of e.entries()) {
-    const other = a[i] as string;
-    if (letter === other) continue;
-    if (!sets.alike(letter, other)) return false;
-    apart += 1;
-  }
-  return apart > 0;
-};
 
 const BUNDLES = resolve(import.meta.dirname, "../../../apps/web/public/bundles");
 
@@ -65,8 +43,6 @@ const spellingSide = (course: string, orthography: string): SpellingProjection =
 
 /** A token's pinned reading in a scheme. */
 const readingOf = (t: Token, scheme: string): string | undefined => (t.readings as Readonly<Record<string, string>> | undefined)?.[scheme];
-
-const sorted = (xs: readonly string[]): string[] => [...xs].sort();
 
 describe("the statement compiles", () => {
   const base: OrthographyProfile = { id: "es-Latn/standard", lang: "es-Latn", segmentation: { content: "whitespace", runtime: "grapheme" }, normalize: ["nfc"] } as unknown as OrthographyProfile;
@@ -106,60 +82,38 @@ describe("es (Cuban: seseo, yeísmo, b/v, silent h, stress)", () => {
   });
 });
 
-describe("fa: the statement is ADR 0142's sound-alike sets", () => {
-  const course = loadCourse("fa");
-  const profile = profileOf(course, "fa-Arab/standard");
+describe("fa: ADR 0142's sound-alike letters as fixed correspondences", () => {
   const fa = spellingSide("fa", "fa-Arab/standard");
-  const alike = profile.soundAlike;
-  if (alike === undefined) throw new Error("fa states sound-alike sets");
-  // Today's trading (lesson/templates.ts soundAlikeSpellings, its letter half): one grapheme at a time, marks kept.
-  const today = (surface: string): readonly string[] => {
-    const word = surface.normalize("NFC");
-    const out: string[] = [];
-    const letters = graphemes(word);
-    letters.forEach((g, i) => {
-      const bare = profile.marks?.strip(g) ?? g;
-      const marks = g.normalize("NFD").slice(bare.normalize("NFD").length);
-      for (const other of alike.others(bare)) {
-        const s = letters.map((x, k) => (k === i ? `${other}${marks}` : x)).join("").normalize("NFC");
-        if (s !== word && !out.includes(s)) out.push(s);
-      }
-    });
-    return out;
-  };
   const words = [...new Set(tokensOf("fa", "fa-Arab/standard").map((t) => t.surface.normalize("NFC")))];
 
-  it("gives every spelling today's trading gives, and more only before a half-space", () => {
-    let equal = 0;
-    for (const w of words) {
-      const was = today(w);
-      const now = fa.spellings(w);
-      expect(sorted(now)).toEqual(expect.arrayContaining(sorted(was)));
-      const extra = now.filter((s) => !was.includes(s));
-      // Today a letter clustered with the half-space after it (the he of bachche-ha) is never traded.
-      for (const s of extra) {
-        const at = graphemes(w).findIndex((g, i) => g !== graphemes(s)[i]);
-        expect(graphemes(w)[at]).toMatch(/\u200C$/u);
-      }
-      if (extra.length === 0) equal += 1;
-    }
-    expect(words.length).toBeGreaterThan(300);
-    expect(words.length - equal).toBeLessThanOrEqual(3);
+  it("trades one letter within its set, its marks kept", () => {
+    expect(fa.spellings("صد")).toEqual(["سد", "ثد"]);
+    expect(fa.spellings("ذهن")).toEqual(["زهن", "ضهن", "ظهن", "ذحن"]);
+    expect(fa.spellings("حالا")).toEqual(["هالا"]);
+    expect(fa.spellings("سَلام")).toEqual(["صَلام", "ثَلام"]);
+    // A letter before a half-space is traded too (ADR 0142's trading, by grapheme, never did).
+    expect(fa.spellings("بچه\u200cها")).toEqual(["بچح\u200cها", "بچه\u200cحا"]);
+    expect(fa.spellings("مرد")).toEqual([]);
   });
 
-  it("compares as soundAlikeOnly does on those pairs", () => {
+  it("gives the course's words only other spellings of their sound, one letter apart within a set", () => {
+    const sets = [["س", "ص", "ث"], ["ز", "ذ", "ض", "ظ"], ["ت", "ط"], ["ه", "ح"], ["ء", "ع"], ["ق", "غ"]];
+    const alike = (a: string, b: string): boolean => sets.some((set) => set.includes(a) && set.includes(b));
+    expect(words.length).toBeGreaterThan(300);
+    let traded = 0;
     for (const w of words) {
-      const was = today(w);
-      for (const s of was) {
-        expect(soundAlikeOnly(profile, w, s)).toBe(true);
-        expect(fa.compare(w, s)).toMatchObject({ same: true, free: false });
-      }
-      // The spellings only the statement finds: the same sound; today's check reads the letter with its half-space.
-      for (const s of fa.spellings(w).filter((x) => !was.includes(x))) {
-        expect(fa.compare(w, s)).toMatchObject({ same: true, free: false });
-        expect(soundAlikeOnly(profile, w, s)).toBe(false);
+      const others = fa.spellings(w);
+      if (others.length > 0) traded += 1;
+      for (const o of others) {
+        expect(fa.compare(w, o)).toMatchObject({ same: true, free: false });
+        const [x, y] = [Array.from(w.normalize("NFD")), Array.from(o.normalize("NFD"))];
+        expect(x.length).toBe(y.length);
+        const apart = x.flatMap((c, i) => (c === y[i] ? [] : [[c, y[i] as string] as const]));
+        expect(apart).toHaveLength(1);
+        expect(alike(...(apart[0] as readonly [string, string]))).toBe(true);
       }
     }
+    expect(traded).toBeGreaterThan(words.length / 4);
   });
 });
 
@@ -177,22 +131,37 @@ describe("chg: Schluessel's statement of chg-Arab/standard", () => {
     expect(spelled / pairs.length).toBeGreaterThan(0.99);
   });
 
-  it("without a spelling, opens what the scheme's variants open today", () => {
-    for (const [, r] of pairs) {
-      expect(scheme.variants(r)).toEqual(readingFeatures("schluessel", r, new Set()));
-      expect(scheme.letterVariants(r)).toEqual(letterVariants("schluessel", r));
-      expect(scheme.open(r)).toBe(openLetters("schluessel", r));
-    }
+  it("without a spelling, trades a piece within the sets its correspondences state (as `variants` did)", () => {
+    expect(scheme.variants("bardi")).toEqual([
+      ["pardi", "ṗardi"],
+      ["bärdi", "bārdi", "berdi", "birdi", "burdi", "bürdi"],
+      ["barda", "bardä", "bardā", "barde", "bardu", "bardī", "bardà", "bardē", "bardü"],
+    ]);
+    expect(scheme.variants("Čay")).toEqual([["Jay"], ["Čäy", "Čāy", "Čey", "Čiy", "Čuy", "Čüy"]]);
+    expect(scheme.open("bardi")).toBe("ba\u00B7i");
+    expect(scheme.open("üzüm")).toBe("ü\u00B7ü\u00B7");
   });
 
-  it("with its spelling, trades only what today's variants trade, and fewer", () => {
+  it("with its spelling, trades only what the letter written there also writes", () => {
+    expect(scheme.variants("bardi", "باردی")).toEqual([
+      ["pardi", "ṗardi"],
+      ["bärdi", "bārdi"],
+      ["bardä", "bardā", "barde", "bardī", "bardà", "bardē"],
+    ]);
+    expect(scheme.variants("üzüm", "اوزوم")).toEqual([
+      ["ozüm", "özüm", "uzüm", "ūzüm"],
+      ["üzom", "üzöm", "üzum", "üzūm"],
+    ]);
+  });
+
+  it("with its spelling, trades a subset of what the sets alone trade, and fewer", () => {
     let was = 0;
     let now = 0;
     for (const [s, r] of pairs) {
-      const today = new Set(letterVariants("schluessel", r));
+      const sets = new Set(scheme.letterVariants(r));
       const narrow = scheme.letterVariants(r, s);
-      for (const v of narrow) expect(today.has(v)).toBe(true);
-      was += today.size;
+      for (const v of narrow) expect(sets.has(v)).toBe(true);
+      was += sets.size;
       now += narrow.length;
     }
     expect(now).toBeLessThan(was * 0.6);
@@ -200,17 +169,28 @@ describe("chg: Schluessel's statement of chg-Arab/standard", () => {
 });
 
 describe("lzh: Pinyin's and Baxter's sets as statements", () => {
+  it("pinyin: a syllable in another tone, one vowel at a time", () => {
+    const p = readingProjection("pinyin");
+    expect(p?.variants("shàn")).toEqual([["shān", "shán", "shǎn"]]);
+    expect(p?.variants("rén yì")).toEqual([
+      ["rēn yì", "rěn yì", "rèn yì"],
+      ["rén yī", "rén yí", "rén yǐ"],
+    ]);
+    expect(p?.open("shàn")).toBe("\u00B7à\u00B7");
+  });
+  it("baxter: x and h traded, a capital kept", () => {
+    const b = readingProjection("baxter");
+    expect(b?.variants("dzyenX")).toEqual([["dzyenH"]]);
+    expect(b?.variants("xjang")).toEqual([["hjang"]]);
+    expect(b?.open("hjang")).toBe("h\u00B7");
+  });
   for (const scheme of ["pinyin", "baxter"] as const) {
-    it(`${scheme}: what today's variants give, for every reading`, () => {
+    it(`${scheme}: every reading's variants differ from it in one piece`, () => {
       const p = readingProjection(scheme);
       if (p === undefined) throw new Error(`no ${scheme}`);
       const readings = [...new Set(tokensOf("lzh", "lzh-Hant/standard").flatMap((t) => readingOf(t, scheme) ?? []))];
       expect(readings.length).toBeGreaterThan(100);
-      for (const r of readings) {
-        expect(p.variants(r)).toEqual(readingFeatures(scheme, r, new Set()));
-        expect(p.letterVariants(r)).toEqual(letterVariants(scheme, r));
-        expect(p.open(r)).toBe(openLetters(scheme, r));
-      }
+      for (const r of readings) for (const v of p.letterVariants(r)) expect(graphemes(v).filter((g, i) => g !== graphemes(r)[i])).toHaveLength(1);
     });
   }
 });
