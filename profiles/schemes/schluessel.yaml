@@ -60,3 +60,145 @@ typedByProfile: true
 # A Chaghatay word's letters do not line up with its sounds (most vowels are unwritten): the reading stands over
 # the whole word.
 ruby: word
+# REVIEW (ADR 0148): how chg-Arab/standard writes each piece of the reading, the relation a reading card and the
+# compiler read (profiles/README.md, "The sound statement"). `says` is a letter of the transliteration, `written` the
+# letters that write it ("" where the script leaves it unwritten), `when` where on the spelling it holds. Nothing is
+# implied: a reading this does not relate to its spelling is on the review list (`nabu projections ../courses/chg`).
+# The first ten keep the sets of `variants` above, which stays until the cards read this: `loses` is what a card may
+# trade a piece for; with a spelling, only what the letter written there also writes. From Schluessel's table of
+# letters (2018, xii-xxxii) and the course's own spellings; a reviewer should check the scribal ones last (پ for b).
+of: chg-Arab/standard
+correspondences:
+  # alif at the start of a word carries any vowel: a, ä, ā, e, i, u
+  - { says: a, written: [ا, آ], kind: fixed, when: { at: start }, loses: [ä, ā, e, i, u] }
+  # vav: o, ö, u, ü, ū
+  - { says: o, written: [و], kind: fixed, loses: [ö, u, ü, ū] }
+  # ye: i, e, ī, ä (bär- "give"), à (alif maksura: taʿālà), ē (bē-)
+  - { says: i, written: [ی], kind: fixed, loses: [e, ī, ä, à, ē] }
+  # a final he: a, ä, e
+  - { says: a, written: [ه], kind: fixed, when: { at: end }, loses: [ä, e] }
+  # no letter at all: a, ä, e, i, u, ü
+  - { says: a, written: [""], kind: fixed, loses: [ä, e, i, u, ü] }
+  # keheh: k, g (göšt, yigit, kälgän)
+  - { says: k, written: [ک], kind: fixed, loses: [g] }
+  # ghain: ǧ, g (the dative -gä after front vowels)
+  - { says: ǧ, written: [غ], kind: fixed, loses: [g] }
+  # be: b, p (köp, barip: p at the end of a word); pe and fe: p, ṗ
+  - { says: b, written: [ب], kind: fixed, loses: [p, ṗ] }
+  # jim: j, č (kälgäč)
+  - { says: j, written: [ج], kind: fixed, loses: [č] }
+  # nun: n, ŋ (ŋ is usually نک)
+  - { says: n, written: [ن], kind: fixed, loses: [ŋ] }
+  # The rest of each letter and each vowel. A vowel at the start of a word after a half-space (bē-iḫtiyār) is
+  # written as at the start of a word.
+  - { says: a, written: [ا, آ], kind: fixed, when: { after: "[\u200C]" }, loses: [ä, ā, e, i, u] }
+  - { says: ā, written: [ا, آ], kind: fixed, when: { at: start } }
+  - { says: ā, written: [ا, آ], kind: fixed, when: { after: "[\u200C]" } }
+  - { says: ä, written: [ا, آ], kind: fixed, when: { at: start } }
+  - { says: ä, written: [ا, آ], kind: fixed, when: { after: "[\u200C]" } }
+  - { says: e, written: [ا, آ], kind: fixed, when: { at: start } }
+  - { says: e, written: [ا, آ], kind: fixed, when: { after: "[\u200C]" } }
+  - { says: i, written: [ا, آ], kind: fixed, when: { at: start } }
+  - { says: i, written: [ا, آ], kind: fixed, when: { after: "[\u200C]" } }
+  - { says: u, written: [ا, آ], kind: fixed, when: { at: start } }
+  - { says: u, written: [ا, آ], kind: fixed, when: { after: "[\u200C]" } }
+  # an alif that starts a word before vav or ye only carries it: اوتوز ottuz, ایکی ikki
+  - { says: "", written: [ا, آ], kind: fixed, when: { at: start, before: "[وی]" } }
+  - { says: "", written: [ا], kind: fixed, when: { after: "[\u200C]", before: "[وی]" } }
+  # Long a and the front a inside a word: alif (and ā as alif maksura at the end, Mūsā).
+  - { says: a, written: [ا], kind: fixed }
+  - { says: ā, written: [ا, آ], kind: fixed }
+  - { says: ä, written: [ا], kind: fixed }
+  - { says: ā, written: [ی], kind: fixed, when: { at: end } }
+  # Vowels written with ye, vav or a final he, or not at all.
+  - { says: e, written: [ی], kind: fixed }
+  - { says: ī, written: [ی], kind: fixed }
+  - { says: ä, written: [ی], kind: fixed }
+  - { says: à, written: [ی], kind: fixed }
+  - { says: ē, written: [ی], kind: fixed }
+  - { says: ö, written: [و], kind: fixed }
+  - { says: u, written: [و], kind: fixed }
+  - { says: ü, written: [و], kind: fixed }
+  - { says: ū, written: [و], kind: fixed }
+  - { says: ä, written: [ه], kind: fixed, when: { at: end } }
+  - { says: e, written: [ه], kind: fixed, when: { at: end } }
+  # A final he stays final before a half-space and a suffix (darwāzasi), or an ezafe written as a hamza.
+  - { says: a, written: [ه], kind: fixed, when: { before: "[\u200C\u0654]" }, loses: [ä, e] }
+  - { says: ä, written: [ه], kind: fixed, when: { before: "[\u200C\u0654]" } }
+  - { says: e, written: [ه], kind: fixed, when: { before: "[\u200C\u0654]" } }
+  - { says: ä, written: [""], kind: fixed }
+  - { says: e, written: [""], kind: fixed }
+  - { says: i, written: [""], kind: fixed }
+  - { says: u, written: [""], kind: fixed }
+  - { says: ü, written: [""], kind: fixed }
+  - { says: o, written: [""], kind: fixed }
+  - { says: ö, written: [""], kind: fixed }
+  # Consonants: Schluessel's letter for each Arabic letter (2018, xii-xxxii).
+  - { says: p, written: [پ, ب], kind: fixed }
+  - { says: ṗ, written: [ف, پ], kind: fixed }
+  - { says: t, written: [ت], kind: fixed }
+  - { says: s̱, written: [ث], kind: fixed }
+  - { says: č, written: [چ, ج], kind: fixed }
+  - { says: ḥ, written: [ح], kind: fixed }
+  - { says: ḫ, written: [خ], kind: fixed }
+  - { says: d, written: [د], kind: fixed }
+  - { says: ẕ, written: [ذ], kind: fixed }
+  - { says: r, written: [ر], kind: fixed }
+  - { says: z, written: [ز], kind: fixed }
+  - { says: ž, written: [ژ], kind: fixed }
+  - { says: s, written: [س], kind: fixed }
+  - { says: š, written: [ش], kind: fixed }
+  - { says: ṣ, written: [ص], kind: fixed }
+  - { says: ż, written: [ض], kind: fixed }
+  - { says: ṭ, written: [ط], kind: fixed }
+  - { says: ẓ, written: [ظ], kind: fixed }
+  - { says: ʿ, written: [ع], kind: fixed }
+  - { says: g, written: [ک, گ, غ], kind: fixed }
+  - { says: f, written: [ف], kind: fixed }
+  - { says: q, written: [ق], kind: fixed }
+  - { says: l, written: [ل], kind: fixed }
+  - { says: m, written: [م], kind: fixed }
+  - { says: ŋ, written: [نک, ڭ], kind: fixed }
+  - { says: w, written: [و], kind: fixed }
+  - { says: h, written: [ه], kind: fixed }
+  - { says: y, written: [ی], kind: fixed }
+  - { says: ʾ, written: [ء, ئ, أ, ؤ, "\u0654"], kind: fixed }
+  # A doubled consonant is written once (ikki ایکی, jannat جنت), or once with a shadda (جبّار jabbār): the second
+  # is not written, or is the shadda, right after the letter.
+  - { says: b, written: ["", "\u0651"], kind: fixed, when: { after: "[ب]" } }
+  - { says: p, written: ["", "\u0651"], kind: fixed, when: { after: "[پب]" } }
+  - { says: t, written: ["", "\u0651"], kind: fixed, when: { after: "[ت]" } }
+  - { says: j, written: ["", "\u0651"], kind: fixed, when: { after: "[ج]" } }
+  - { says: č, written: ["", "\u0651"], kind: fixed, when: { after: "[چج]" } }
+  - { says: ḥ, written: ["", "\u0651"], kind: fixed, when: { after: "[ح]" } }
+  - { says: ḫ, written: ["", "\u0651"], kind: fixed, when: { after: "[خ]" } }
+  - { says: d, written: ["", "\u0651"], kind: fixed, when: { after: "[د]" } }
+  - { says: r, written: ["", "\u0651"], kind: fixed, when: { after: "[ر]" } }
+  - { says: z, written: ["", "\u0651"], kind: fixed, when: { after: "[ز]" } }
+  - { says: s, written: ["", "\u0651"], kind: fixed, when: { after: "[س]" } }
+  - { says: š, written: ["", "\u0651"], kind: fixed, when: { after: "[ش]" } }
+  - { says: ṣ, written: ["", "\u0651"], kind: fixed, when: { after: "[ص]" } }
+  - { says: ż, written: ["", "\u0651"], kind: fixed, when: { after: "[ض]" } }
+  - { says: ṭ, written: ["", "\u0651"], kind: fixed, when: { after: "[ط]" } }
+  - { says: ʿ, written: ["", "\u0651"], kind: fixed, when: { after: "[ع]" } }
+  - { says: ǧ, written: ["", "\u0651"], kind: fixed, when: { after: "[غ]" } }
+  - { says: f, written: ["", "\u0651"], kind: fixed, when: { after: "[ف]" } }
+  - { says: q, written: ["", "\u0651"], kind: fixed, when: { after: "[ق]" } }
+  - { says: k, written: ["", "\u0651"], kind: fixed, when: { after: "[ک]" } }
+  - { says: g, written: ["", "\u0651"], kind: fixed, when: { after: "[کگ]" } }
+  - { says: l, written: ["", "\u0651"], kind: fixed, when: { after: "[ل]" } }
+  - { says: m, written: ["", "\u0651"], kind: fixed, when: { after: "[م]" } }
+  - { says: n, written: ["", "\u0651"], kind: fixed, when: { after: "[ن]" } }
+  - { says: y, written: ["", "\u0651"], kind: fixed, when: { after: "[ی]" } }
+  - { says: w, written: ["", "\u0651"], kind: fixed, when: { after: "[و]" } }
+  # An ezafe after a final he, written as a hamza on it (شجرهٔ šajara-i).
+  - { says: i, written: ["\u0654"], kind: fixed, when: { after: "[ه]" } }
+  # The dative after q: -qa written غا (ḫalāyiqqa).
+  - { says: q, written: [غ], kind: fixed, when: { after: "[ق]" } }
+  # The Arabic article al- (القصه al-qiṣṣa), its l said as a sun letter after it (الدین ud-Dīn).
+  - { says: d, written: [ل], kind: fixed, when: { before: "[د]" } }
+  # A hyphen binds a word to the next, or an ezafe -i to its noun (āwāz-i): written as nothing. A half-space
+  # before a suffix (Andijāndur) says nothing.
+  - { says: "-", written: [""], kind: fixed }
+  - { says: "", written: ["\u200C"], kind: fixed }
+

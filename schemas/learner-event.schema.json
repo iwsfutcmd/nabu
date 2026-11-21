@@ -368,6 +368,12 @@
               "uniqueItems": true,
               "items": { "$ref": "common.schema.json#/$defs/MissLabel" }
             },
+            "correspondences": {
+              "description": "The ids of the correspondences an orthographic miss was against (`<orthography>:<id>`, ADR 0148).",
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "minLength": 1 }
+            },
             "parts": {
               "type": "array",
               "items": { "$ref": "#/$defs/PartCredit" }

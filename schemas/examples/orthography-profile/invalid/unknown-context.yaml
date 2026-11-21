@@ -1,0 +1,7 @@
+# A correspondence's context is at, before or after: nothing else.
+id: es-Latn/standard
+lang: es-Latn
+segmentation: { content: whitespace, runtime: grapheme }
+normalize: [nfc]
+correspondences:
+  - { says: s, written: [c], kind: fixed, when: { inside: "[ei]" } }

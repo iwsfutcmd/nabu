@@ -160,7 +160,34 @@
           "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
           "additionalProperties": { "type": "array", "minItems": 1, "items": { "$ref": "tagged-text.schema.json" } }
         },
-        "image": { "description": "Bundle path of its picture (a file with role image).", "type": "string" }
+        "image": { "description": "Bundle path of its picture (a file with role image).", "type": "string" },
+        "leftovers": {
+          "description": "What no stated correspondence gives of this lexeme (ADR 0148): the orthographies in which a fixed correspondence could have spelled it otherwise (`spelling`); the schemes in which its letters leave its reading open (`reading`). Absent: none.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "spelling": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "common.schema.json#/$defs/OrthographyId" }
+            },
+            "reading": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["orthography", "scheme"],
+                "additionalProperties": false,
+                "properties": {
+                  "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+                  "scheme": { "$ref": "common.schema.json#/$defs/SchemeId" }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "BundleLabel": {

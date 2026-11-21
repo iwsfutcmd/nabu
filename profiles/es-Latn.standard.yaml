@@ -28,6 +28,55 @@ match:
     contrasts:
       - { id: ending, note: contrast-ending, members: [o, a, e, os, as, es, an, en, amos, emos, imos, aste, iste, aron, ieron, io, i, aba, abas, aban, ia, ias, ian] }
       - { id: pronoun, note: contrast-pronoun, members: [yo, tu, el, ella, ellos, ellas, usted, ustedes, nosotros, nosotras] }
+# REVIEW: what the spelling writes of the sound, and what it loses (ADR 0148; profiles/README.md, "The sound
+# statement"). The course teaches Cuban Spanish, so the sounds are Cuban: seseo (s, z, and c before e or i are one
+# sound), yeísmo (ll and y are one sound), b and v one sound, h silent but in ch, and g before e or i the sound of j
+# (in Cuba a breathy [h], so it says "h" here; the letter h itself is silent). The `says` values are only compared
+# with one another: "rr" is the trill, "ʝ" the sound of ll and y, "tʃ" ch, "gw" gü, "ks" x.
+sound: { from: spelling }
+# REVIEW: the acute writes stress. An unmarked word ending in a vowel, n or s is stressed on its next-to-last
+# syllable, any other on its last (the RAE's rule). i and u beside another vowel share its syllable unless they carry
+# the accent (día has two syllables, dia would have one). So esta and está, tu and tú say different things, and
+# háblo says what hablo says (its accent is then a place of its own, rule `stress`).
+stress:
+  mark: "\u0301"
+  vowels: [a, e, i, o, u]
+  weak: [i, u]
+  default: [{ when: { ends: "[aeiouns]" }, "on": penult }, { "on": last }]
+  note: accent
+correspondences:
+  # REVIEW: every one is fixed: the norm spells each word one way. Each `when` is stated before the wider one it
+  # narrows (the longest written form wins, the earlier correspondence on a tie).
+  # b and v are one sound (betacismo, everywhere Spanish is spoken).
+  - { says: b, written: [b, v], kind: fixed, note: sound-alike }
+  # Seseo: c before e or i, s and z are one sound in Cuba (and all of Latin America).
+  - { says: s, written: [c], kind: fixed, when: { before: "[eiéí]" }, note: sound-alike }
+  - { says: s, written: [s, z], kind: fixed, note: sound-alike }
+  # /k/: qu before e or i, c elsewhere, k in loanwords (kilo); c before e or i is s (above).
+  - { says: k, written: [qu], kind: fixed, when: { before: "[eiéí]" }, note: sound-alike }
+  - { says: k, written: [c, k], kind: fixed, note: sound-alike }
+  # The sound of j: g before e or i, and j everywhere (gente, jefe).
+  - { says: h, written: [g], kind: fixed, when: { before: "[eiéí]" }, note: sound-alike }
+  - { says: h, written: [j], kind: fixed, note: sound-alike }
+  # /g/ before e or i is gu (guerra), and gü says g and u there (pingüino); g elsewhere (gato).
+  - { says: g, written: [gu], kind: fixed, when: { before: "[eiéí]" }, note: sound-alike }
+  - { says: gw, written: [gü], kind: fixed, when: { before: "[eiéí]" }, note: sound-alike }
+  - { says: g, written: [g], kind: fixed, note: sound-alike }
+  # y at the end of a word after a vowel is the vowel i (hoy, muy, rey); elsewhere y and ll are one sound (yeísmo).
+  # Not stated: the conjunction y standing alone, which says i too; a context can only say "after a vowel" or "at
+  # the start", so it reads as the sound of ll here (a spelling card would offer ll for it).
+  - { says: i, written: [y], kind: fixed, when: { at: end, after: "[aeiouáéíóú]" } }
+  - { says: ʝ, written: [ll, y], kind: fixed, note: sound-alike }
+  # ch is one sound; h alone says nothing (hablar, ahora).
+  - { says: tʃ, written: [ch], kind: fixed }
+  - { says: "", written: [h], kind: fixed, note: sound-alike }
+  # The trill: rr between vowels, r at the start of a word and after l, n or s (rosa, honra, Israel); r elsewhere is
+  # the tap and says itself.
+  - { says: rr, written: [rr], kind: fixed, note: sound-alike }
+  - { says: rr, written: [r], kind: fixed, when: { at: start }, note: sound-alike }
+  - { says: rr, written: [r], kind: fixed, when: { after: "[lns]" }, note: sound-alike }
+  # x is k and s (taxi, examen). México's x (the sound of j) is that word's own, not a rule.
+  - { says: ks, written: [x], kind: fixed }
 layout: { vertical: none }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
 # Whisper writes Spanish (tier 1). Not the phones: eSpeak NG's es says Castilian (θ for c and z, every s), and Cuban

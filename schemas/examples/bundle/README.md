@@ -11,11 +11,14 @@ Three directories, one per file a bundle has (`schemas/bundle.schema.json`):
 - `bundle-lexicon/`: the course's lexemes, labels and named rules (`BundleLexicon`).
   - `valid/es.json`: casa and mano are both feminine; only mano's gender is a part to learn.
   - `valid/uz.json`: an ending is a lexeme too, shown by its allomorphs.
+  - `valid/es-leftovers.json`: casa's spelling is a leftover in es-Latn: s, z and c say one sound (ADR 0148).
   - `invalid/old-kc-id.json`: an entry is a lexeme, never a KC.
   - `invalid/unit-on-an-entry.json`: the lexicon is flat: no entry says which unit teaches it.
   - `invalid/pinned-form-shipped.json`: a form a rule gives is rule debt, never shipped as a learner's.
   - `invalid/part-with-two-bars.json`: a part is a lexeme and what of it, never a skill too.
   - `invalid/gloss-a-bare-string.json`: language data is never a bare string.
+  - `invalid/leftover-reading-without-scheme.json`: a reading leftover names the scheme its letters leave open.
+  - `invalid/empty-leftovers.json`: a lexeme with no leftover has no `leftovers`.
 - `bundle-unit/`: a unit's file (`BundleUnit`).
   - `valid/es.json`: tokens list the lexemes they write; a sentence lists the parts it can show.
   - `valid/chg-alphabet.json`: a script node's letters are the one thing a unit defines.

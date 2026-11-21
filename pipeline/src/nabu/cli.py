@@ -330,6 +330,35 @@ def jyutping_command(
     typer.echo(f"✓ Jyutping {verb}; {len(set(report))} readings to check")
 
 
+@app.command("projections")
+def projections_command(
+    course: Annotated[Path, typer.Argument(exists=True, help="A course directory.")],
+) -> None:
+    """What the profiles' and schemes' statements leave to learn of a course's words (ADR 0148).
+
+    Per orthography whose sound is read off its spelling: how many of the course's words have
+    another spelling of their sound, with examples. Per scheme that relates its readings to an
+    orthography of the course: the tokens whose pinned reading it cannot relate to their spelling,
+    by item (the review list).
+    """
+    from nabu.analyzers import analyzers_by_tool
+    from nabu.compiler import compile_course, load_profiles
+    from nabu.corecli import CoreCli
+    from nabu.projections import format_report, report
+
+    profiles = load_profiles()
+    with CoreCli() as cli:
+        diags, compiled = compile_course(course, cli, profiles, analyzers_by_tool(), audio=False)
+        if compiled is None:
+            for d in diags.sorted():
+                typer.echo(d.format(), err=True)
+            typer.echo(f"✗ {course} does not compile", err=True)
+            raise typer.Exit(code=1)
+        result = report(compiled.content, compiled.orthographies, profiles, cli)
+    for line in format_report(result):
+        typer.echo(line)
+
+
 @app.command("calibration")
 def calibration_command(
     events: Annotated[

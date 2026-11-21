@@ -1,0 +1,8 @@
+# Shape test for a scheme's relation to the spelling it reads (ADR 0148). Not the real schluessel.
+id: schluessel
+names: { en: { scheme: Schluessel } }
+language: chg
+of: chg-Arab/standard
+correspondences:
+  - { says: o, written: [و], kind: fixed }
+  - { says: a, written: [ا, "", ه], kind: fixed, loses: [ä] }

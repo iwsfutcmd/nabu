@@ -1,0 +1,1573 @@
+{
+  "$comment": "Projections (ADR 0148; docs/migration-design.md, 'Stages 5 and 6'): what a spelling says, read forwards off its letters by the profile's stated correspondences (sound-read), two spellings compared by sound (sound-compare: same, free, and the places they differ), a word's other spellings of its sound (sound-spellings); and a reading scheme's relation to the spelling it annotates (reading-spells, by dynamic programming), the pieces a script leaves open (reading-variants) and minimal ruby (reading-open). Profiles: es-Latn/standard (Cuban: seseo, yeísmo, b/v, silent h, stress), fa-Arab/standard (ADR 0142's sets); schemes: schluessel (of chg-Arab/standard), pinyin and baxter (sets only).",
+  "vectors": [
+    {
+      "id": "projection/es/b-v",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "haber",
+        "typed": "haver"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "b",
+            "typed": "v",
+            "rule": "b",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "b and v say one sound: a fixed correspondence, so which one is the word's own."
+    },
+    {
+      "id": "projection/es/h-silent",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "hablar",
+        "typed": "ablar"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "h",
+            "typed": "",
+            "rule": "~h",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "h says nothing: left out, it is a place with nothing on one side."
+    },
+    {
+      "id": "projection/es/h-and-c",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "hacer",
+        "typed": "aser"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "h",
+            "typed": "",
+            "rule": "~h",
+            "kind": "fixed"
+          },
+          {
+            "expected": "c",
+            "typed": "s",
+            "rule": "s",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "Two places: the silent h and c before e (seseo)."
+    },
+    {
+      "id": "projection/es/z-s",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "caza",
+        "typed": "casa"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "z",
+            "typed": "s",
+            "rule": "s",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "Seseo: z and s say one sound in Cuba."
+    },
+    {
+      "id": "projection/es/c-before-i",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "cine",
+        "typed": "sine"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "c",
+            "typed": "s",
+            "rule": "s",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "c before i says s."
+    },
+    {
+      "id": "projection/es/c-before-a",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "casa",
+        "typed": "sasa"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "c before a says k, not s: the context decides."
+    },
+    {
+      "id": "projection/es/qu-k",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "queso",
+        "typed": "keso"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "qu",
+            "typed": "k",
+            "rule": "k",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "qu before e and k both say k."
+    },
+    {
+      "id": "projection/es/c-k",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "casa",
+        "typed": "kasa"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "c",
+            "typed": "k",
+            "rule": "k",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "c before a and k both say k (kilo)."
+    },
+    {
+      "id": "projection/es/qu-before-a",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "casa",
+        "typed": "quasa"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "qu says k only before e or i: before a, q and u are read as themselves."
+    },
+    {
+      "id": "projection/es/g-j",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "gente",
+        "typed": "jente"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "g",
+            "typed": "j",
+            "rule": "h",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "g before e and j say one sound."
+    },
+    {
+      "id": "projection/es/g-before-a",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "gato",
+        "typed": "jato"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "g before a says g."
+    },
+    {
+      "id": "projection/es/gu-before-e",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "guerra",
+        "typed": "guerra"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": []
+      },
+      "note": "gu before e is one sound, g."
+    },
+    {
+      "id": "projection/es/gu-g-before-e",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "guerra",
+        "typed": "gerra"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "g before e says the sound of j, not g: the longest match and its context."
+    },
+    {
+      "id": "projection/es/gui-gui-diaeresis",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "pingüino",
+        "typed": "pinguino"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "gü before i says g and u; gu says g: the diaeresis carries sound."
+    },
+    {
+      "id": "projection/es/ll-y",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "llave",
+        "typed": "yave"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ll",
+            "typed": "y",
+            "rule": "ʝ",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "Yeísmo: ll and y say one sound."
+    },
+    {
+      "id": "projection/es/longest-ll",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "calle",
+        "typed": "caye"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ll",
+            "typed": "y",
+            "rule": "ʝ",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "ll is read as one place (the longest written form), not two l."
+    },
+    {
+      "id": "projection/es/ch",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "mucho",
+        "typed": "muco"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "ch is one sound of its own: not c and a silent h."
+    },
+    {
+      "id": "projection/es/y-final-vowel",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "hoy",
+        "typed": "holl"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "y at the end of a word is the vowel i, not the sound of ll."
+    },
+    {
+      "id": "projection/es/rr-r-start",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "rosa",
+        "typed": "rrosa"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "r",
+            "typed": "rr",
+            "rule": "rr",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "r at the start of a word is the trill, as rr is."
+    },
+    {
+      "id": "projection/es/rr-r-inside",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "perro",
+        "typed": "pero"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Between vowels r is the tap and rr the trill: two sounds."
+    },
+    {
+      "id": "projection/es/rr-after-n",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "honra",
+        "typed": "honrra"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "r",
+            "typed": "rr",
+            "rule": "rr",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "After n, r is the trill."
+    },
+    {
+      "id": "projection/es/x",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "taxi",
+        "typed": "tasi"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "x says k and s."
+    },
+    {
+      "id": "projection/es/case",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "Cuba",
+        "typed": "cuba"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": []
+      },
+      "note": "Case is folded as the profile folds it."
+    },
+    {
+      "id": "projection/es/stress/esta",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "está",
+        "typed": "esta"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "The accent writes stress: esta is stressed on its first syllable by the default rule, está on its last."
+    },
+    {
+      "id": "projection/es/stress/tambien",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "también",
+        "typed": "tambien"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "tambien (ends in n) would be stressed on tam-."
+    },
+    {
+      "id": "projection/es/stress/hablo",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "hablo",
+        "typed": "háblo"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "a",
+            "typed": "á",
+            "rule": "stress",
+            "kind": "fixed",
+            "note": "accent"
+          }
+        ]
+      },
+      "note": "háblo says hablo: the default already stresses ha-. The mark is a place of its own (rule stress)."
+    },
+    {
+      "id": "projection/es/stress/examen",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "examen",
+        "typed": "exámen"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "a",
+            "typed": "á",
+            "rule": "stress",
+            "kind": "fixed",
+            "note": "accent"
+          }
+        ]
+      },
+      "note": "exámen says examen."
+    },
+    {
+      "id": "projection/es/stress/tu",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "tú",
+        "typed": "tu"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "A marked monosyllable is stressed; an unmarked one has no stress: tu and tú differ."
+    },
+    {
+      "id": "projection/es/stress/el",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "el",
+        "typed": "el"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": []
+      },
+      "note": "An unmarked monosyllable read as itself."
+    },
+    {
+      "id": "projection/es/stress/dia",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "día",
+        "typed": "dia"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Hiatus: í is a syllable of its own (two syllables); dia would be one."
+    },
+    {
+      "id": "projection/es/stress/baul",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "baúl",
+        "typed": "baul"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "ú carries the mark, so it does not join a."
+    },
+    {
+      "id": "projection/es/stress/default-consonant",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "hablar",
+        "typed": "hablár"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "a",
+            "typed": "á",
+            "rule": "stress",
+            "kind": "fixed",
+            "note": "accent"
+          }
+        ]
+      },
+      "note": "Ending in r: stressed on the last syllable by default, as hablár marks."
+    },
+    {
+      "id": "projection/es/stress/default-n",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "examen",
+        "typed": "examén"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Ending in n: stressed on the next to last by default; examén is stressed on its last."
+    },
+    {
+      "id": "projection/es/stress/diphthong",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "cuidado",
+        "typed": "cuidado"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": []
+      },
+      "note": "ui is one nucleus (two weak vowels)."
+    },
+    {
+      "id": "projection/es/read/hablar",
+      "op": "sound-read",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "hablar"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "",
+            "written": "h",
+            "rule": "~h",
+            "kind": "fixed"
+          },
+          {
+            "says": "a",
+            "written": "a"
+          },
+          {
+            "says": "b",
+            "written": "b",
+            "rule": "b"
+          },
+          {
+            "says": "l"
+          },
+          {
+            "says": "a"
+          },
+          {
+            "says": "r"
+          }
+        ],
+        "syllables": 2,
+        "stressed": 1
+      },
+      "note": "A silent site is kept; a letter no correspondence names says itself, with no rule."
+    },
+    {
+      "id": "projection/es/read/cuidado",
+      "op": "sound-read",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "cuidado"
+      },
+      "expected": {
+        "syllables": 3,
+        "stressed": 1
+      },
+      "note": "cui-da-do: ui one syllable; ends in o, so da is stressed."
+    },
+    {
+      "id": "projection/es/read/dia",
+      "op": "sound-read",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "día"
+      },
+      "expected": {
+        "syllables": 2,
+        "stressed": 0
+      },
+      "note": "dí-a: the marked í is a syllable and is stressed."
+    },
+    {
+      "id": "projection/es/read/guerra",
+      "op": "sound-read",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "guerra"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "g",
+            "written": "gu",
+            "rule": "g"
+          },
+          {
+            "says": "e"
+          },
+          {
+            "says": "rr",
+            "written": "rr",
+            "rule": "rr"
+          },
+          {
+            "says": "a"
+          }
+        ]
+      },
+      "note": "gu before e is one site; rr one site."
+    },
+    {
+      "id": "projection/es/read/llover",
+      "op": "sound-read",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "llover"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "ʝ",
+            "written": "ll"
+          },
+          {
+            "says": "o"
+          },
+          {
+            "says": "b",
+            "written": "v"
+          },
+          {
+            "says": "e"
+          },
+          {
+            "says": "r"
+          }
+        ]
+      },
+      "note": "Longest match: ll one site."
+    },
+    {
+      "id": "projection/es/spellings/hablar",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "hablar"
+      },
+      "expected": [
+        "ablar",
+        "havlar"
+      ],
+      "note": "One place traded each: the silent h dropped, b for v."
+    },
+    {
+      "id": "projection/es/spellings/casa",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "casa"
+      },
+      "expected": [
+        "kasa",
+        "caza"
+      ],
+      "note": "c traded for k (qu before a is read back and refused), s for z (c before a refused)."
+    },
+    {
+      "id": "projection/es/spellings/capital",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "Cuba"
+      },
+      "expected": [
+        "Kuba",
+        "Cuva"
+      ],
+      "note": "A capital stays a capital."
+    },
+    {
+      "id": "projection/es/spellings/gente",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "gente"
+      },
+      "expected": [
+        "jente"
+      ],
+      "note": "g before e for j."
+    },
+    {
+      "id": "projection/es/spellings/guerra",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "guerra"
+      },
+      "expected": [],
+      "note": "gu for g would read as the sound of j; r for rr would be the tap: none."
+    },
+    {
+      "id": "projection/es/spellings/llave",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "llave"
+      },
+      "expected": [
+        "yave",
+        "llabe"
+      ],
+      "note": "ll for y, v for b."
+    },
+    {
+      "id": "projection/es/spellings/queso",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "queso"
+      },
+      "expected": [
+        "keso",
+        "quezo"
+      ],
+      "note": "qu for k; s for z (c before o refused)."
+    },
+    {
+      "id": "projection/es/spellings/tambien",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "también"
+      },
+      "expected": [
+        "tamvién"
+      ],
+      "note": "No stress-mark variants: only b for v; the accent stays."
+    },
+    {
+      "id": "projection/es/spellings/hoy",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "hoy"
+      },
+      "expected": [
+        "oy"
+      ],
+      "note": "Final y after a vowel is the vowel: no ll for it."
+    },
+    {
+      "id": "projection/es/spellings/casi",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "casi"
+      },
+      "expected": [
+        "kasi",
+        "caci",
+        "cazi"
+      ],
+      "note": "A final i is never traded for y: y says i only after a vowel at the end."
+    },
+    {
+      "id": "projection/es/y-after-consonant",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "casi",
+        "typed": "casy"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "y at the end after a consonant is not the vowel."
+    },
+    {
+      "id": "projection/fa/sin-sad",
+      "op": "sound-compare",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "صد",
+        "typed": "سد"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ص",
+            "typed": "س",
+            "rule": "s",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "fa: ص and س say one sound (ADR 0142's sets, fixed)."
+    },
+    {
+      "id": "projection/fa/ze-zal",
+      "op": "sound-compare",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "ذهن",
+        "typed": "زهن"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ذ",
+            "typed": "ز",
+            "rule": "z",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "ذ and ز say one sound."
+    },
+    {
+      "id": "projection/fa/te-ta",
+      "op": "sound-compare",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "طلا",
+        "typed": "تلا"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ط",
+            "typed": "ت",
+            "rule": "t",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "ط and ت say one sound."
+    },
+    {
+      "id": "projection/fa/he-he",
+      "op": "sound-compare",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "حال",
+        "typed": "هال"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ح",
+            "typed": "ه",
+            "rule": "h",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "ح and ه say one sound."
+    },
+    {
+      "id": "projection/fa/ain-hamza",
+      "op": "sound-compare",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "علم",
+        "typed": "ءلم"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ع",
+            "typed": "ء",
+            "rule": "ʔ",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "ع and ء say one sound."
+    },
+    {
+      "id": "projection/fa/qaf-ghain",
+      "op": "sound-compare",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "قند",
+        "typed": "غند"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ق",
+            "typed": "غ",
+            "rule": "ɢ",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "ق and غ say one sound in Iranian Persian."
+    },
+    {
+      "id": "projection/fa/other-letter",
+      "op": "sound-compare",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "سد",
+        "typed": "شد"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "س and ش are two sounds."
+    },
+    {
+      "id": "projection/fa/marks-ignored",
+      "op": "sound-compare",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "کِتاب",
+        "typed": "کتاب"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": []
+      },
+      "note": "Vowel marks are left aside: the unmarked spelling says what the marked one says."
+    },
+    {
+      "id": "projection/fa/spellings/sad",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "صد"
+      },
+      "expected": [
+        "سد",
+        "ثد"
+      ],
+      "note": "Each other letter of the set."
+    },
+    {
+      "id": "projection/fa/spellings/marks-kept",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "صَد"
+      },
+      "expected": [
+        "سَد",
+        "ثَد"
+      ],
+      "note": "A traded letter keeps its marks."
+    },
+    {
+      "id": "projection/fa/spellings/before-zwnj",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "لباس\u200cها"
+      },
+      "expected": [
+        "لباص\u200cها",
+        "لباث\u200cها",
+        "لباس\u200cحا"
+      ],
+      "note": "A letter before a half-space is still that letter."
+    },
+    {
+      "id": "projection/schluessel/spells/bardi",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "bardi",
+        "spelling": "باردی"
+      },
+      "expected": [
+        {
+          "says": "b",
+          "written": "ب"
+        },
+        {
+          "says": "a",
+          "written": "ا"
+        },
+        {
+          "says": "r",
+          "written": "ر"
+        },
+        {
+          "says": "d",
+          "written": "د"
+        },
+        {
+          "says": "i",
+          "written": "ی"
+        }
+      ],
+      "note": "Every piece written by its letter."
+    },
+    {
+      "id": "projection/schluessel/spells/unwritten",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "qulla",
+        "spelling": "قله"
+      },
+      "expected": [
+        {
+          "says": "q",
+          "written": "ق"
+        },
+        {
+          "says": "u",
+          "written": ""
+        },
+        {
+          "says": "l",
+          "written": "ل"
+        },
+        {
+          "says": "l",
+          "written": ""
+        },
+        {
+          "says": "a",
+          "written": "ه"
+        }
+      ],
+      "note": "A vowel not written; a doubled consonant written once; a final he for a."
+    },
+    {
+      "id": "projection/schluessel/spells/silent-alif",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "ottuz",
+        "spelling": "اوتوز"
+      },
+      "expected": [
+        {
+          "says": "",
+          "written": "ا"
+        },
+        {
+          "says": "o",
+          "written": "و"
+        },
+        {
+          "says": "t"
+        },
+        {
+          "says": "t",
+          "written": ""
+        },
+        {
+          "says": "u",
+          "written": "و"
+        },
+        {
+          "says": "z"
+        }
+      ],
+      "note": "An alif that starts a word before vav only carries it: it says nothing."
+    },
+    {
+      "id": "projection/schluessel/spells/zwnj",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "Andijāndur",
+        "spelling": "اندجان\u200cدور"
+      },
+      "expected": [
+        {
+          "says": "a"
+        },
+        {
+          "says": "n"
+        },
+        {
+          "says": "d"
+        },
+        {
+          "says": "i",
+          "written": ""
+        },
+        {
+          "says": "j"
+        },
+        {
+          "says": "ā"
+        },
+        {
+          "says": "n"
+        },
+        {
+          "says": "",
+          "written": "\u200c"
+        },
+        {
+          "says": "d"
+        },
+        {
+          "says": "u"
+        },
+        {
+          "says": "r"
+        }
+      ],
+      "note": "A half-space says nothing; a capital is read lowercased."
+    },
+    {
+      "id": "projection/schluessel/spells/ng",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "maŋa",
+        "spelling": "منکا"
+      },
+      "expected": [
+        {
+          "says": "m"
+        },
+        {
+          "says": "a",
+          "written": ""
+        },
+        {
+          "says": "ŋ",
+          "written": "نک"
+        },
+        {
+          "says": "a",
+          "written": "ا"
+        }
+      ],
+      "note": "Longest written form: نک for ŋ."
+    },
+    {
+      "id": "projection/schluessel/spells/none",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "biz",
+        "spelling": "پز"
+      },
+      "expected": null,
+      "note": "A scribal پ for b is not stated: not accounted for (the review list)."
+    },
+    {
+      "id": "projection/schluessel/spells/at-end",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "qulla",
+        "spelling": "قلهی"
+      },
+      "expected": null,
+      "note": "A he says a only at the end of a word (or before a half-space)."
+    },
+    {
+      "id": "projection/schluessel/variants/bardi",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "bardi"
+      },
+      "expected": [
+        [
+          "pardi",
+          "ṗardi"
+        ],
+        [
+          "bärdi",
+          "bārdi",
+          "berdi",
+          "birdi",
+          "burdi",
+          "bürdi"
+        ],
+        [
+          "barda",
+          "bardä",
+          "bardā",
+          "barde",
+          "bardu",
+          "bardī",
+          "bardà",
+          "bardē",
+          "bardü"
+        ]
+      ],
+      "note": "Without a spelling: each piece traded within every set it belongs to (as the scheme's variants trade today)."
+    },
+    {
+      "id": "projection/schluessel/variants/bardi-spelled",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "bardi",
+        "spelling": "باردی"
+      },
+      "expected": [
+        [
+          "pardi",
+          "ṗardi"
+        ],
+        [
+          "bärdi",
+          "bārdi"
+        ],
+        [
+          "bardä",
+          "bardā",
+          "barde",
+          "bardī",
+          "bardà",
+          "bardē"
+        ]
+      ],
+      "note": "With its spelling: inside a word an alif writes a, ä or ā, never e, i or u; a final ye writes i, e, ī, ä, à, ē or ā (Mūsā), never a, u or ü."
+    },
+    {
+      "id": "projection/schluessel/variants/capital",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "Oš",
+        "spelling": "اوش"
+      },
+      "expected": [
+        [
+          "Öš",
+          "Uš",
+          "Üš",
+          "Ūš"
+        ]
+      ],
+      "note": "A capital is traded for a capital; the silent alif is no place."
+    },
+    {
+      "id": "projection/schluessel/open/bardi",
+      "op": "reading-open",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "bardi"
+      },
+      "expected": "ba·i",
+      "note": "Without a spelling: b, a and i are open somewhere (as openLetters reads the variants), r and d never."
+    },
+    {
+      "id": "projection/schluessel/open/spelled",
+      "op": "reading-open",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "qattiq",
+        "spelling": "قاتیق"
+      },
+      "expected": "·a·i·",
+      "note": "With a spelling: q, t and its double are closed; a and i open."
+    },
+    {
+      "id": "projection/pinyin/variants",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "pinyin",
+        "reading": "shàn"
+      },
+      "expected": [
+        [
+          "shān",
+          "shán",
+          "shǎn"
+        ]
+      ],
+      "note": "Pinyin states each tone of a vowel as unwritten, with the others it may be traded for."
+    },
+    {
+      "id": "projection/pinyin/open",
+      "op": "reading-open",
+      "args": {
+        "scheme": "pinyin",
+        "reading": "shàn yú"
+      },
+      "expected": "·à· ·ú",
+      "note": "Minimal ruby: the marked vowels, each run of others a dot, spaces kept."
+    },
+    {
+      "id": "projection/pinyin/open-none",
+      "op": "reading-open",
+      "args": {
+        "scheme": "pinyin",
+        "reading": "de"
+      },
+      "expected": "",
+      "note": "Nothing open: empty."
+    },
+    {
+      "id": "projection/pinyin/spells-no-of",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "pinyin",
+        "reading": "shàn",
+        "spelling": "善"
+      },
+      "expected": null,
+      "note": "A scheme without `of` relates no spelling."
+    },
+    {
+      "id": "projection/baxter/variants",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "baxter",
+        "reading": "xjang"
+      },
+      "expected": [
+        [
+          "hjang"
+        ]
+      ],
+      "note": "x and h trade."
+    },
+    {
+      "id": "projection/baxter/open",
+      "op": "reading-open",
+      "args": {
+        "scheme": "baxter",
+        "reading": "kenH"
+      },
+      "expected": "·H",
+      "note": "A capital tone letter stays."
+    },
+    {
+      "id": "projection/es/stress/ke-que",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "qu\u00e9",
+        "typed": "ke"
+      },
+      "expected": {
+        "same": false,
+        "sounds": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "qu",
+            "typed": "k",
+            "rule": "k",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "The same sounds with another stress (ADR 0148: orthographic for the k, phonemic for the unstressed que): the letter place is still named, the stress is no place of the spelling."
+    },
+    {
+      "id": "projection/es/stress/sounds-only",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "tambi\u00e9n",
+        "typed": "tambien"
+      },
+      "expected": {
+        "same": false,
+        "sounds": true,
+        "free": false,
+        "differs": []
+      },
+      "note": "Only the stress is another: no letter place."
+    },
+    {
+      "id": "projection/es/sounds/another",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "mesa",
+        "typed": "misa"
+      },
+      "expected": {
+        "same": false,
+        "sounds": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Another sound."
+    },
+    {
+      "id": "projection/es/spellings/capital-dropped",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "Hola"
+      },
+      "expected": [
+        "Ola"
+      ],
+      "note": "A capital letter that is dropped leaves its capital to the next letter."
+    },
+    {
+      "id": "projection/error/no-sound",
+      "op": "sound-read",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "non"
+      },
+      "error": "states no sound",
+      "note": "A profile without `sound`: the question is never asked."
+    },
+    {
+      "id": "projection/error/unknown-profile",
+      "op": "sound-compare",
+      "args": {
+        "profile": "xx-Latn/standard",
+        "expected": "a",
+        "typed": "b"
+      },
+      "error": "unknown profile"
+    },
+    {
+      "id": "projection/error/unknown-scheme",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "nope",
+        "reading": "a"
+      },
+      "error": "unknown scheme"
+    },
+    {
+      "id": "projection/error/no-text",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard"
+      },
+      "error": "\"text\" must be a string"
+    }
+  ]
+}

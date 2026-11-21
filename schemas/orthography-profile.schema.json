@@ -86,11 +86,12 @@
       "$ref": "#/$defs/Speech"
     },
     "correspondences": {
-      "description": "What this orthography writes of the lexical form, and what it loses (ADR 0148): one statement for reading and writing. It replaces `soundAlike` at the switch (docs/migration-design.md); until then nothing reads it.",
+      "description": "What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`); `soundAlike` goes when grading reads it (docs/migration-design.md, stages 5 and 6).",
       "type": "array",
-      "minItems": 1,
       "items": { "$ref": "orthography-profile.schema.json#/$defs/Correspondence" }
-    }
+    },
+    "sound": { "$ref": "#/$defs/SoundSource" },
+    "stress": { "$ref": "#/$defs/Stress" }
   },
   "$defs": {
     "Policy": {
@@ -1189,18 +1190,17 @@
     },
     "Correspondence": {
       "title": "Correspondence",
-      "description": "One correspondence between a language's lexical form and a way of writing it (ADR 0148: the projections are rules, and the profile states them). It says both directions at once: what is written for a piece of the lexical form, and what reading back cannot recover. Whatever the stated correspondences do not give is per lexeme: a leftover to learn, or a pinned spelling to review.",
+      "description": "One correspondence between a sound and the ways an orthography writes it (ADR 0148: the projections are rules, and the profile states them). In a profile it is read forwards: at each place of a spelling the longest `written` whose `when` holds wins, the earlier correspondence on a tie (state a narrower context before a wider one). In a reading scheme with `of` it relates a piece of the reading to the spelling of that orthography. Whatever the stated correspondences do not give is per lexeme: a leftover to learn, or a pinned spelling to review. A correspondence may not say nothing and be written only as nothing (`says: \"\"` with `written: [\"\"]`): @nabu/core refuses to compile it.",
       "type": "object",
       "required": ["says", "written", "kind"],
       "additionalProperties": false,
       "properties": {
         "says": {
-          "description": "The piece of the lexical form, in its language's notation (docs/lexical-forms/<lang>.md): a letter, a sign, a letter with its sign.",
-          "type": "string",
-          "minLength": 1
+          "description": "A sound in the profile's own notation, or a piece of the reading in the scheme's: only ever compared for equality. An empty string: written and not said (Spanish h).",
+          "type": "string"
         },
         "written": {
-          "description": "How it is written here, the spelling a projection writes first. An empty string: it is not written.",
+          "description": "The ways it is written. An empty string: not written (said and not written), meaningful only in a scheme's relation; a profile's reading skips it.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
@@ -1213,7 +1213,7 @@
         },
         "when": { "$ref": "#/$defs/CorrespondenceContext" },
         "loses": {
-          "description": "The other pieces of the lexical form written the same way here, which reading back cannot tell from `says` (Arabizi s: sin and sad).",
+          "description": "The other pieces written the same way, which reading back cannot tell from `says`: a set a reading card may trade within (Pinyin's ā among á, ǎ, à). Used by schemes; a profile's reading ignores it.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
@@ -1227,23 +1227,115 @@
     },
     "CorrespondenceContext": {
       "title": "CorrespondenceContext",
-      "description": "Where a correspondence holds. Every key given must hold. A first, small set: it grows when the grader runs these (the switch).",
+      "description": "Where a correspondence holds, tested on the written side. Every key given must hold.",
       "type": "object",
       "minProperties": 1,
       "additionalProperties": false,
       "properties": {
         "at": {
-          "description": "At the start or the end of a token, or of a lexeme a token writes.",
+          "description": "At the start or the end of the word.",
           "type": "string",
           "enum": ["start", "end"]
         },
         "before": {
-          "description": "Before one of these.",
+          "description": "The letter right after it is one of these (never at the word's end).",
           "$ref": "#/$defs/UnicodeSetPattern"
         },
         "after": {
-          "description": "After one of these.",
+          "description": "The letter right before it is one of these (never at the word's start).",
           "$ref": "#/$defs/UnicodeSetPattern"
+        }
+      }
+    },
+    "SoundSource": {
+      "title": "SoundSource",
+      "description": "Where a word's sound comes from, for the sound question of grading and the spelling cards (ADR 0148). spelling: what the profile's correspondences read off its spelling. reading: its token's pinned reading in `scheme`, related to the spelling by that scheme's statement. Absent: the sound question is never asked for this orthography.",
+      "oneOf": [
+        {
+          "title": "SoundFromSpelling",
+          "type": "object",
+          "required": ["from"],
+          "additionalProperties": false,
+          "properties": {
+            "from": { "const": "spelling" },
+            "ignores": {
+              "description": "Marks the sound reading leaves aside (fa's vowel marks: the unmarked spelling is the usual one).",
+              "$ref": "#/$defs/UnicodeSetPattern"
+            }
+          }
+        },
+        {
+          "title": "SoundFromReading",
+          "type": "object",
+          "required": ["from", "scheme"],
+          "additionalProperties": false,
+          "properties": {
+            "from": { "const": "reading" },
+            "scheme": {
+              "description": "The scheme whose pinned readings are the sound.",
+              "$ref": "common.schema.json#/$defs/SchemeId"
+            },
+            "ignores": {
+              "description": "Marks the sound reading leaves aside.",
+              "$ref": "#/$defs/UnicodeSetPattern"
+            }
+          }
+        }
+      ]
+    },
+    "Stress": {
+      "title": "Stress",
+      "description": "Where a mark writes stress and a rule places it otherwise (es): the stress is made explicit before a spelling is compared, so esta and está say different things and háblo says hablo. Only meaningful with `sound: {from: spelling}`.",
+      "type": "object",
+      "required": ["mark", "vowels", "default"],
+      "additionalProperties": false,
+      "properties": {
+        "mark": {
+          "description": "The combining mark that writes stress (U+0301).",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1
+        },
+        "vowels": {
+          "description": "The `says` values that are syllable nuclei.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "weak": {
+          "description": "The vowels that join a neighbouring vowel in one syllable unless they carry the mark (i, u).",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "default": {
+          "description": "Where an unmarked word of two syllables or more is stressed: the first rule whose `when` holds.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["on"],
+            "additionalProperties": false,
+            "properties": {
+              "when": {
+                "type": "object",
+                "required": ["ends"],
+                "additionalProperties": false,
+                "properties": {
+                  "ends": {
+                    "description": "The written word's last letter is one of these.",
+                    "$ref": "#/$defs/UnicodeSetPattern"
+                  }
+                }
+              },
+              "on": { "type": "string", "enum": ["last", "penult"] }
+            }
+          }
+        },
+        "note": {
+          "description": "The feedback note for a spelling that differs by the stress mark.",
+          "$ref": "#/$defs/NoteId"
         }
       }
     },

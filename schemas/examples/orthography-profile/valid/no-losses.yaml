@@ -1,0 +1,7 @@
+# An orthography that loses nothing states its correspondences as an empty list. Not a real profile.
+id: tok-Latn/standard
+lang: tok-Latn
+segmentation: { content: whitespace, runtime: grapheme }
+normalize: [nfc]
+sound: { from: reading, scheme: lasina, ignores: "[\\u0301]" }
+correspondences: []

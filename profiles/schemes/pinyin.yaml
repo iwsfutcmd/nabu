@@ -36,3 +36,12 @@ variants:
   - [ō, ó, ǒ, ò]
   - [ū, ú, ǔ, ù]
   - [ǖ, ǘ, ǚ, ǜ]
+# REVIEW (ADR 0148): the same sets as a statement. The characters write no reading: each tone of a vowel is said and
+# not written, and a card may trade it for the others (`loses`). No `of`: a character's reading is listed, not a rule.
+correspondences:
+  - { says: ā, written: [""], kind: fixed, loses: [á, ǎ, à] }
+  - { says: ē, written: [""], kind: fixed, loses: [é, ě, è] }
+  - { says: ī, written: [""], kind: fixed, loses: [í, ǐ, ì] }
+  - { says: ō, written: [""], kind: fixed, loses: [ó, ǒ, ò] }
+  - { says: ū, written: [""], kind: fixed, loses: [ú, ǔ, ù] }
+  - { says: ǖ, written: [""], kind: fixed, loses: [ǘ, ǚ, ǜ] }

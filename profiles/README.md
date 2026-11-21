@@ -25,3 +25,92 @@ Also here:
   (`nabu.schemes`).
 
 A profile with id `<lang>/<slug>` lives in `<lang>.<slug>.yaml`.
+
+## The sound statement (ADR 0148)
+
+What an orthography writes of the sound, and what it loses, stated as data and read by `@nabu/core`
+(`packages/core/src/project/`; core-cli `sound-*` and `reading-*`; `conformance/projection.json`). Every
+statement is marked REVIEW. Until grading and the cards read it (stages 5 and 6 of
+docs/migration-design.md), nothing a learner sees changes: `soundAlike` and a scheme's `variants` stay.
+
+### The writing side: a profile
+
+```yaml
+sound: { from: spelling }          # a word's sound is what the correspondences read off its spelling
+stress: { mark: "́", vowels: [a, e, i, o, u], weak: [i, u],
+          default: [{ when: { ends: "[aeiouns]" }, "on": penult }, { "on": last }], note: accent }
+correspondences:                   # the lossy part only
+  - { says: b, written: [b, v], kind: fixed, note: sound-alike }
+  - { says: s, written: [c], kind: fixed, when: { before: "[eiéí]" } }
+  - { says: s, written: [s, z], kind: fixed }
+  - { says: "", written: [h], kind: fixed }
+```
+
+- **Preparing a word** (one grading unit, already through `normalize`): NFC; case folded as the profile
+  folds (unless `match.case` is none); the marks of `sound.ignores` removed (fa's vowel marks: the unmarked
+  spelling is the usual one); where `stress` is stated, the letter carrying `stress.mark` noted and the mark
+  removed. Units are grapheme clusters, a format character (ZWNJ) a unit of its own.
+- **Reading** (`read`): left to right; at each place, among every correspondence's non-empty `written` forms
+  that match there with their `when` holding, the longest wins, the earlier correspondence on a tie (so a
+  narrower context is stated before the wider one: c before e or i, then c). `at: start` holds where the form
+  begins the word, `at: end` where it ends it; `before` and `after` test the unit right after and right before
+  the form, and fail at the word's edge. Where nothing matches, the letter is itself and says itself, with no
+  rule. A site is `{says, written, rule, kind, note}`; `rule` is the correspondence's id: its `says`, or `~` and
+  its first written form where it says nothing (`~h`); in an event, `<profile id>:<id>`.
+- **Stress**: syllables are the sites whose `says` is one of `vowels`; adjacent ones (only silent sites between)
+  share a syllable where one is `weak` and does not carry the mark; two strong ones never do. The stressed
+  syllable is the marked one, else, in a word of two or more, the first `default` whose `ends` holds of the
+  written word's last letter; an unmarked monosyllable has none. So *esta* and *está*, *tu* and *tú*, *día*
+  and *dia* say different things, and *háblo* says *hablo*.
+- **Comparing** (`compare`): the same where the said sites' `says` are equal in order and the stress is the
+  same. Then each place where the written forms differ is listed with its correspondence and kind (a silent
+  site on one side only pairs with nothing; a stress mark on one side only is a place of its own, rule
+  `stress`). A place is free only where both sides' sites are free; `free` means the same and at least one place,
+  every one free (an accepted variant). Identical spellings are the same and not free.
+  Where the sounds are the same and only the stress is another (*ke* for *qué*, *tambien* for *también*),
+  `same` is false and `sounds` true, and the letter places are still listed: the stress is then the miss, not
+  a place of the spelling.
+- **Other spellings** (`spellings`): for each site in order, each other non-empty written form of a fixed
+  correspondence saying the same, and a silent site dropped; a candidate is kept where reading it back is the
+  same and not free (so *quasa* is no spelling of *casa*: qu says k only before e or i). A traded letter keeps
+  its capital and the marks preparing took from it. No stress-mark variants.
+- `sound: { from: reading, scheme }` says a word's sound is its token's pinned reading in that scheme; core
+  compiles it as such, and the writing side's operations refuse it.
+
+es (`es-Latn.standard.yaml`) states Cuban Spanish as the course teaches it: seseo, yeísmo, b and v, silent h
+(ch apart), g before e or i and j, gu and gü, qu, c and k, the trill, y as the vowel at a word's end after a
+vowel, x. fa (`fa-Arab.standard.yaml`) states ADR 0142's sets, its vowel marks ignored.
+
+### The reading side: a scheme
+
+```yaml
+of: chg-Arab/standard
+correspondences:
+  - { says: a, written: [ا, آ], kind: fixed, when: { at: start }, loses: [ä, ā, e, i, u] }
+  - { says: o, written: [و], kind: fixed, loses: [ö, u, ü, ū] }
+  - { says: a, written: [""], kind: fixed, loses: [ä, e, i, u, ü] }
+  - { says: k, written: [ک], kind: fixed, loses: [g] }
+```
+
+- A reading is NFC, cut into grapheme clusters and lowercased in the scheme's `lang` (or `language`), each
+  cluster's capital remembered; a spelling is NFC, cut into code points (an Arabic letter, a shadda and a ZWNJ
+  are each written, and stated, on their own).
+- **`spells`**: dynamic programming over both. A correspondence consumes its `says` of the reading (`""`:
+  written and not said, a ZWNJ) and one of its `written` forms of the spelling (`""`: said and not written,
+  most short vowels), its `when` tested on the spelling. Nothing is implied: a piece or a letter no
+  correspondence names fails. The path taken prefers the longest `says`, then the longest written form, then
+  the earlier correspondence. A correspondence that says nothing and is written only as nothing is refused.
+- **The sets a card may trade within**: each correspondence's `says` with its `loses`. Without a spelling (or a
+  scheme without `of`, or a spelling the statement cannot relate), `variants` cuts the reading greedily into the
+  longest known pieces (a `says` or a member of a `loses`) and trades each for the other members of every set it
+  is in: what a scheme's `variants` give today. With a spelling it relates, each site is traded only for what
+  the letter written there also writes (another correspondence with that written form whose `when` holds there),
+  and for its own `loses`, and only within the piece's sets; an unwritten site only for its `loses`.
+- **`open`**: minimal ruby (ADR 0141): open pieces kept, each run of closed ones a middle dot, spaces kept; ""
+  where nothing is open. Tone marks stay the caller's (`openLetters`).
+- A scheme without `of` (Pinyin, Baxter) lists a reading per sign: its correspondences only state sets
+  (`{ says: ā, written: [""], loses: [á, ǎ, à] }`).
+
+`schemes/schluessel.yaml` relates Schluessel's transliteration to every word of the chg course (see `nabu
+projections ../courses/chg` for the readings it does not account for); its first ten correspondences keep the
+sets of its `variants`.

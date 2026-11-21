@@ -151,6 +151,7 @@ describe("lexicons in /lexicons", () => {
 const EXAMPLES: readonly (readonly [string, string])[] = [
   ["tagged-text", ID("tagged-text.schema.json")],
   ["orthography-profile", ID("orthography-profile.schema.json")],
+  ["reading-scheme", ID("reading-scheme.schema.json")],
   ["message-catalog", ID("message-catalog.schema.json")],
   ["language", ID("language.schema.json")],
   ["lexicon", ID("lexicon.schema.json")],

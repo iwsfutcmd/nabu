@@ -7,6 +7,7 @@
 import type { DataTable, FormCondition, KeyboardLayout, OrthographyProfile, Policy } from "@nabu/schema";
 import { compileNormalizer, literalMap, type StepFn } from "../normalize/steps.ts";
 import { err, ok, type Result } from "../result.ts";
+import { compileProjection, type Projection } from "../project/sound.ts";
 import { readingScheme } from "./schemes.ts";
 import { asciiLowercase } from "../text/ascii.ts";
 import { caseFold } from "../text/case.ts";
@@ -89,6 +90,12 @@ export interface CompiledProfile {
    * letters are of one set; a word apart only so is the right sound with the wrong letter.
    */
   readonly soundAlike?: { readonly note: string; readonly alike: (a: string, b: string) => boolean; readonly others: (letter: string) => readonly string[] };
+  /**
+   * What the orthography writes of the sound (ADR 0148: its `sound`, `stress` and `correspondences`),
+   * compiled: what a spelling says, two spellings compared by sound, a word's other spellings of its
+   * sound. Absent where the profile states no `sound`: the sound question is never asked.
+   */
+  readonly projection?: Projection;
 }
 
 export interface CompiledContrast {
@@ -115,7 +122,8 @@ export type ProfileError =
   | { readonly code: "unknown-keyboard"; readonly keyboard: string }
   | { readonly code: "unknown-scheme"; readonly scheme: string }
   | { readonly code: "bad-step"; readonly message: string }
-  | { readonly code: "bad-unicode-set"; readonly message: string };
+  | { readonly code: "bad-unicode-set"; readonly message: string }
+  | { readonly code: "bad-correspondence"; readonly message: string };
 
 const DEFAULT_MAX_RATIO = 0.2;
 const CACHE_LIMIT = 4096;
@@ -299,6 +307,11 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     };
   }
 
+  const projected = compileProjection(profile, fold, caseLocale);
+  if (!projected.ok) for (const message of projected.error) errors.push({ code: "bad-correspondence", message });
+  if (profile.sound?.from === "reading" && readingScheme(profile.sound.scheme) === undefined) errors.push({ code: "unknown-scheme", scheme: profile.sound.scheme });
+  const projection = projected.ok ? projected.value : undefined;
+
   if (errors.length > 0) return err(errors);
   return ok({
     id: profile.id,
@@ -316,6 +329,7 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     ...(homophones && { homophones }),
     ...(scriptMismatch && { scriptMismatch }),
     ...(soundAlike && { soundAlike }),
+    ...(projection && { projection }),
     ...(typo && { typo }),
     ...(match.apostrophe && { apostrophe: { policy: match.apostrophe.policy, note: match.apostrophe.note } }),
   });

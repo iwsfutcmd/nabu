@@ -101,7 +101,7 @@ const OP_SUB = 3;
  * Whether two words differ only in letters the script writes for one sound (ADR 0142), at least one
  * of them: compared as the profile's letters, case folded and marks stripped.
  */
-const soundAlikeOnly = (profile: CompiledProfile, expected: string, actual: string): boolean => {
+export const soundAlikeOnly = (profile: CompiledProfile, expected: string, actual: string): boolean => {
   const sets = profile.soundAlike;
   if (sets === undefined) return false;
   const plain = (t: string): string => (profile.marks?.strip(profile.fold(t)) ?? profile.fold(t)).normalize("NFC");

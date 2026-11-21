@@ -100,10 +100,13 @@
         }
       }
     },
+    "of": {
+      "description": "The orthography whose spellings this scheme's correspondences relate its readings to (ADR 0148): Schluessel's transliteration of chg-Arab/standard. A scheme without one lists a reading per sign (characters, logographs): its correspondences, if any, only state sets a reading card may trade within (`loses`).",
+      "$ref": "common.schema.json#/$defs/OrthographyId"
+    },
     "correspondences": {
-      "description": "What this scheme writes of the lexical form, and what it loses (ADR 0148). It replaces `variants` at the switch (docs/migration-design.md); until then nothing reads it.",
+      "description": "What the orthography `of` writes of this scheme's readings, and what it loses (ADR 0148): `says` a piece of the reading, `written` how the orthography writes it (\"\": not written), `loses` the pieces a reading card may trade it for. Nothing is implied: a piece no correspondence names is not accounted for. Read by @nabu/core (`project`); `variants` goes when the cards read it (docs/migration-design.md, stages 5 and 6).",
       "type": "array",
-      "minItems": 1,
       "items": { "$ref": "orthography-profile.schema.json#/$defs/Correspondence" }
     }
   },

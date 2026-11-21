@@ -31,3 +31,7 @@ typedByProfile: true
 # tone letters at a syllable's end (X, H) and initials at its start (ADR 0138).
 variants:
   - [x, h]
+# REVIEW (ADR 0148): the same set as a statement: x and h are not written, and a card may trade one for the other.
+# No `of`: a character's reading is listed, not a rule.
+correspondences:
+  - { says: x, written: [""], kind: fixed, loses: [h] }

@@ -125,6 +125,13 @@ export type UdFeatures1 = Readonly<Record<string, string>>;
  */
 export type UdFeatures2 = Readonly<Record<string, string>>;
 /**
+ * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SchemeId".
+ */
+export type SchemeId = string & { readonly __brand: "SchemeId" };
+/**
  * A rule of a language (ADR 0145, 0148): what gives a combination's form, a projection, a default.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -184,13 +191,6 @@ export type CreditId1 = string;
  * via the `definition` "CreditId".
  */
 export type CreditId2 = string;
-/**
- * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "SchemeId".
- */
-export type SchemeId = string & { readonly __brand: "SchemeId" };
 /**
  * Links a token to a lexicon entry. An authored slug in NFC; may be in the target script. No whitespace.
  *
@@ -270,13 +270,20 @@ export type Skill =
   | "choose"
   | "read-off";
 /**
- * What a miss is (ADR 0148). A miss may carry several, each from one question: is the sound right (orthographic, phonemic), whose form is it (grammatical, regularised, lexical, scope), how did it happen (slip).
+ * What a miss is (ADR 0148). A miss may carry several, each from one question: is the sound right (orthographic, phonemic), whose form is it (grammatical, regularised, lexical, scope), how did it happen (slip), and, of a sentence, are its words an accepted answer's in another order (order).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "MissLabel".
  */
 export type MissLabel =
-  "slip" | "orthographic" | "phonemic" | "grammatical" | "regularised" | "lexical" | "scope";
+  | "slip"
+  | "orthographic"
+  | "phonemic"
+  | "grammatical"
+  | "regularised"
+  | "lexical"
+  | "scope"
+  | "order";
 /**
  * pending: suggested by a learner; approved or rejected by a reviewer; applied: written into the course source by `nabu corrections apply`.
  *
@@ -700,6 +707,33 @@ export type UnicodeSetPattern7 = string;
  */
 export type NoteId4 = string;
 /**
+ * Where a word's sound comes from, for the sound question of grading and the spelling cards (ADR 0148). spelling: what the profile's correspondences read off its spelling. reading: its token's pinned reading in `scheme`, related to the spelling by that scheme's statement. Absent: the sound question is never asked for this orthography.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SoundSource".
+ */
+export type SoundSource = SoundFromSpelling | SoundFromReading;
+/**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern8 = string;
+/**
+ * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
+ */
+export type SchemeId4 = string & { readonly __brand: "SchemeId" };
+/**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern9 = string;
+/**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern10 = string;
+/**
+ * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
+ */
+export type NoteId5 = string;
+/**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
 export type LangTag3 = string & { readonly __brand: "LangTag" };
@@ -715,6 +749,10 @@ export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
  * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
  */
 export type OrthographyId3 = string & { readonly __brand: "OrthographyId" };
+/**
+ * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ */
+export type OrthographyId4 = string & { readonly __brand: "OrthographyId" };
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReportSubmission".
@@ -932,6 +970,8 @@ export interface NabuSchemaIndex {
   readonly Contrast: Contrast;
   readonly Correspondence: Correspondence;
   readonly CorrespondenceContext: CorrespondenceContext;
+  readonly SoundSource: SoundSource;
+  readonly Stress: Stress;
   readonly FormCondition: FormCondition;
   readonly ReadingScheme: ReadingScheme;
   readonly SchemeNames: SchemeNames;
@@ -1812,6 +1852,22 @@ export interface BundleLexeme {
    * Bundle path of its picture (a file with role image).
    */
   readonly image?: string;
+  /**
+   * What no stated correspondence gives of this lexeme (ADR 0148): the orthographies in which a fixed correspondence could have spelled it otherwise (`spelling`); the schemes in which its letters leave its reading open (`reading`). Absent: none.
+   */
+  readonly leftovers?: {
+    /**
+     * @minItems 1
+     */
+    readonly spelling?: readonly OrthographyId[];
+    /**
+     * @minItems 1
+     */
+    readonly reading?: readonly {
+      readonly orthography: OrthographyId;
+      readonly scheme: SchemeId;
+    }[];
+  };
 }
 /**
  * A function head's signature (ADR 0145): what it takes, what it makes, which features it sets.
@@ -3699,6 +3755,10 @@ export interface AnswerSubmitted {
      * What the miss is (ADR 0148). Empty for a right answer; a slip alone is a typo, accepted.
      */
     readonly labels: readonly MissLabel[];
+    /**
+     * The ids of the correspondences an orthographic miss was against (`<orthography>:<id>`, ADR 0148).
+     */
+    readonly correspondences?: readonly string[];
     readonly parts: readonly PartCredit[];
   };
   readonly prediction?: Prediction;
@@ -4860,11 +4920,11 @@ export interface OrthographyProfile {
   readonly transliterate?: Transliteration;
   readonly speech?: SpeechSetup;
   /**
-   * What this orthography writes of the lexical form, and what it loses (ADR 0148): one statement for reading and writing. It replaces `soundAlike` at the switch (docs/migration-design.md); until then nothing reads it.
-   *
-   * @minItems 1
+   * What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`); `soundAlike` goes when grading reads it (docs/migration-design.md, stages 5 and 6).
    */
   readonly correspondences?: readonly Correspondence[];
+  readonly sound?: SoundSource;
+  readonly stress?: Stress;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -5333,18 +5393,18 @@ export interface SpeechPhones {
   readonly voice?: string;
 }
 /**
- * One correspondence between a language's lexical form and a way of writing it (ADR 0148: the projections are rules, and the profile states them). It says both directions at once: what is written for a piece of the lexical form, and what reading back cannot recover. Whatever the stated correspondences do not give is per lexeme: a leftover to learn, or a pinned spelling to review.
+ * One correspondence between a sound and the ways an orthography writes it (ADR 0148: the projections are rules, and the profile states them). In a profile it is read forwards: at each place of a spelling the longest `written` whose `when` holds wins, the earlier correspondence on a tie (state a narrower context before a wider one). In a reading scheme with `of` it relates a piece of the reading to the spelling of that orthography. Whatever the stated correspondences do not give is per lexeme: a leftover to learn, or a pinned spelling to review. A correspondence may not say nothing and be written only as nothing (`says: ""` with `written: [""]`): @nabu/core refuses to compile it.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Correspondence".
  */
 export interface Correspondence {
   /**
-   * The piece of the lexical form, in its language's notation (docs/lexical-forms/<lang>.md): a letter, a sign, a letter with its sign.
+   * A sound in the profile's own notation, or a piece of the reading in the scheme's: only ever compared for equality. An empty string: written and not said (Spanish h).
    */
   readonly says: string;
   /**
-   * How it is written here, the spelling a projection writes first. An empty string: it is not written.
+   * The ways it is written. An empty string: not written (said and not written), meaningful only in a scheme's relation; a profile's reading skips it.
    *
    * @minItems 1
    */
@@ -5355,7 +5415,7 @@ export interface Correspondence {
   readonly kind: "fixed" | "free";
   readonly when?: CorrespondenceContext;
   /**
-   * The other pieces of the lexical form written the same way here, which reading back cannot tell from `says` (Arabizi s: sin and sad).
+   * The other pieces written the same way, which reading back cannot tell from `says`: a set a reading card may trade within (Pinyin's ā among á, ǎ, à). Used by schemes; a profile's reading ignores it.
    *
    * @minItems 1
    */
@@ -5363,18 +5423,61 @@ export interface Correspondence {
   readonly note?: NoteId4;
 }
 /**
- * Where a correspondence holds. Every key given must hold. A first, small set: it grows when the grader runs these (the switch).
+ * Where a correspondence holds, tested on the written side. Every key given must hold.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "CorrespondenceContext".
  */
 export interface CorrespondenceContext {
   /**
-   * At the start or the end of a token, or of a lexeme a token writes.
+   * At the start or the end of the word.
    */
   readonly at?: "start" | "end";
   readonly before?: UnicodeSetPattern6;
   readonly after?: UnicodeSetPattern7;
+}
+export interface SoundFromSpelling {
+  readonly from: "spelling";
+  readonly ignores?: UnicodeSetPattern8;
+}
+export interface SoundFromReading {
+  readonly from: "reading";
+  readonly scheme: SchemeId4;
+  readonly ignores?: UnicodeSetPattern9;
+}
+/**
+ * Where a mark writes stress and a rule places it otherwise (es): the stress is made explicit before a spelling is compared, so esta and está say different things and háblo says hablo. Only meaningful with `sound: {from: spelling}`.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Stress".
+ */
+export interface Stress {
+  /**
+   * The combining mark that writes stress (U+0301).
+   */
+  readonly mark: string;
+  /**
+   * The `says` values that are syllable nuclei.
+   *
+   * @minItems 1
+   */
+  readonly vowels: readonly string[];
+  /**
+   * The vowels that join a neighbouring vowel in one syllable unless they carry the mark (i, u).
+   */
+  readonly weak?: readonly string[];
+  /**
+   * Where an unmarked word of two syllables or more is stressed: the first rule whose `when` holds.
+   *
+   * @minItems 1
+   */
+  readonly default: readonly {
+    readonly when?: {
+      readonly ends: UnicodeSetPattern10;
+    };
+    readonly on: "last" | "penult";
+  }[];
+  readonly note?: NoteId5;
 }
 /**
  * A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).
@@ -5448,10 +5551,9 @@ export interface ReadingScheme {
       readonly [k: string]: Tone;
     };
   };
+  readonly of?: OrthographyId4;
   /**
-   * What this scheme writes of the lexical form, and what it loses (ADR 0148). It replaces `variants` at the switch (docs/migration-design.md); until then nothing reads it.
-   *
-   * @minItems 1
+   * What the orthography `of` writes of this scheme's readings, and what it loses (ADR 0148): `says` a piece of the reading, `written` how the orthography writes it ("": not written), `loses` the pieces a reading card may trade it for. Nothing is implied: a piece no correspondence names is not accounted for. Read by @nabu/core (`project`); `variants` goes when the cards read it (docs/migration-design.md, stages 5 and 6).
    */
   readonly correspondences?: readonly Correspondence[];
 }

@@ -1,0 +1,240 @@
+{
+  "language": "es",
+  "lexemes": [
+    {
+      "id": "lexeme:casa",
+      "pos": "NOUN",
+      "feats": {
+        "Gender": "Fem"
+      },
+      "gloss": {
+        "en": {
+          "lang": "en-Latn",
+          "orthography": "en-Latn/standard",
+          "tokens": [
+            {
+              "surface": "house",
+              "kind": "lexical",
+              "tileGroup": 0
+            }
+          ]
+        }
+      },
+      "forms": {
+        "es-Latn/standard": [
+          {
+            "lang": "es-Latn-CU",
+            "orthography": "es-Latn/standard",
+            "tokens": [
+              {
+                "surface": "casa",
+                "kind": "lexical",
+                "tileGroup": 0
+              }
+            ]
+          }
+        ]
+      },
+      "leftovers": {
+        "spelling": [
+          "es-Latn/standard"
+        ]
+      }
+    },
+    {
+      "id": "lexeme:hermano",
+      "pos": "NOUN",
+      "chooses": [
+        "Gender"
+      ],
+      "gloss": {
+        "en": {
+          "lang": "en-Latn",
+          "orthography": "en-Latn/standard",
+          "tokens": [
+            {
+              "surface": "brother",
+              "kind": "lexical",
+              "tileGroup": 0
+            }
+          ]
+        }
+      },
+      "forms": {
+        "es-Latn/standard": [
+          {
+            "lang": "es-Latn-CU",
+            "orthography": "es-Latn/standard",
+            "tokens": [
+              {
+                "surface": "hermano",
+                "kind": "lexical",
+                "tileGroup": 0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "lexeme:mano",
+      "pos": "NOUN",
+      "feats": {
+        "Gender": "Fem"
+      },
+      "parts": [
+        "lexeme:mano|Gender"
+      ],
+      "gloss": {
+        "en": {
+          "lang": "en-Latn",
+          "orthography": "en-Latn/standard",
+          "tokens": [
+            {
+              "surface": "hand",
+              "kind": "lexical",
+              "tileGroup": 0
+            }
+          ]
+        }
+      },
+      "forms": {
+        "es-Latn/standard": [
+          {
+            "lang": "es-Latn-CU",
+            "orthography": "es-Latn/standard",
+            "tokens": [
+              {
+                "surface": "mano",
+                "kind": "lexical",
+                "tileGroup": 0
+              }
+            ]
+          }
+        ]
+      },
+      "image": "images/hand.0123456789abcdef.svg"
+    },
+    {
+      "id": "lexeme:tener",
+      "pos": "VERB",
+      "gloss": {
+        "en": {
+          "lang": "en-Latn",
+          "orthography": "en-Latn/standard",
+          "tokens": [
+            {
+              "surface": "to",
+              "kind": "lexical",
+              "tileGroup": 0
+            },
+            {
+              "surface": " ",
+              "kind": "space"
+            },
+            {
+              "surface": "have",
+              "kind": "lexical",
+              "tileGroup": 1
+            }
+          ]
+        }
+      },
+      "forms": {
+        "es-Latn/standard": [
+          {
+            "lang": "es-Latn-CU",
+            "orthography": "es-Latn/standard",
+            "tokens": [
+              {
+                "surface": "tener",
+                "kind": "lexical",
+                "tileGroup": 0
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "labels": [
+    {
+      "feats": {
+        "Gender": "Fem",
+        "Number": "Sing"
+      },
+      "gloss": {
+        "en": {
+          "lang": "en-Latn",
+          "orthography": "en-Latn/standard",
+          "tokens": [
+            {
+              "surface": "feminine",
+              "kind": "lexical",
+              "tileGroup": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "feats": {
+        "Mood": "Ind",
+        "Number": "Sing",
+        "Person": "1",
+        "Tense": "Past",
+        "VerbForm": "Fin"
+      },
+      "pos": "VERB",
+      "gloss": {
+        "en": {
+          "lang": "en-Latn",
+          "orthography": "en-Latn/standard",
+          "tokens": [
+            {
+              "surface": "preterite:",
+              "kind": "lexical",
+              "tileGroup": 0
+            },
+            {
+              "surface": " ",
+              "kind": "space"
+            },
+            {
+              "surface": "I",
+              "kind": "lexical",
+              "tileGroup": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "rule:ir-a",
+      "gloss": {
+        "en": {
+          "lang": "en-Latn",
+          "orthography": "en-Latn/standard",
+          "tokens": [
+            {
+              "surface": "going",
+              "kind": "lexical",
+              "tileGroup": 0
+            },
+            {
+              "surface": " ",
+              "kind": "space"
+            },
+            {
+              "surface": "to",
+              "kind": "lexical",
+              "tileGroup": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

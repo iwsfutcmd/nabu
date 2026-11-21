@@ -698,9 +698,18 @@ type Skill = Annotated[
 
 
 type MissLabel = Annotated[
-    Literal["slip", "orthographic", "phonemic", "grammatical", "regularised", "lexical", "scope"],
+    Literal[
+        "slip",
+        "orthographic",
+        "phonemic",
+        "grammatical",
+        "regularised",
+        "lexical",
+        "scope",
+        "order",
+    ],
     Field(
-        description="What a miss is (ADR 0148). A miss may carry several, each from one question: is the sound right (orthographic, phonemic), whose form is it (grammatical, regularised, lexical, scope), how did it happen (slip)."
+        description="What a miss is (ADR 0148). A miss may carry several, each from one question: is the sound right (orthographic, phonemic), whose form is it (grammatical, regularised, lexical, scope), how did it happen (slip), and, of a sentence, are its words an accepted answer's in another order (order)."
     ),
 ]
 
@@ -1633,6 +1642,9 @@ class Input(BaseModel):
     ] = None
 
 
+type Correspondence = Annotated[str, Field(min_length=1)]
+
+
 class Outcome(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -1657,10 +1669,43 @@ class Outcome(BaseModel):
             description="What the miss is (ADR 0148). Empty for a right answer; a slip alone is a typo, accepted."
         ),
     ]
+    correspondences: Annotated[
+        list[Correspondence] | None,
+        Field(
+            description="The ids of the correspondences an orthographic miss was against (`<orthography>:<id>`, ADR 0148)."
+        ),
+    ] = None
     parts: list[PartCredit]
 
 
 type PlacedItem = Annotated[str, Field(min_length=1)]
+
+
+class Outcome1(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kind: Literal[
+        "CORRECT",
+        "CORRECT_ALT",
+        "CORRECT_MARKS",
+        "CORRECT_VARIANT",
+        "CORRECT_WITH_TYPO",
+        "CORRECT_PROVISIONAL",
+        "PARTIAL",
+        "WRONG_WORD",
+        "WRONG",
+        "SKIPPED",
+    ]
+    notes: list[str]
+    labels: Annotated[
+        list[MissLabel],
+        Field(
+            description="What the miss is (ADR 0148). Empty for a right answer; a slip alone is a typo, accepted."
+        ),
+    ]
+    parts: list[PartCredit]
 
 
 class Judge(BaseModel):
@@ -2847,7 +2892,7 @@ type Lose = Annotated[str, Field(min_length=1)]
 
 class CorrespondenceContext(BaseModel):
     """
-    Where a correspondence holds. Every key given must hold. A first, small set: it grows when the grader runs these (the switch).
+    Where a correspondence holds, tested on the written side. Every key given must hold.
     """
 
     model_config = ConfigDict(
@@ -2855,11 +2900,127 @@ class CorrespondenceContext(BaseModel):
         frozen=True,
     )
     at: Annotated[
-        Literal["start", "end"] | None,
-        Field(description="At the start or the end of a token, or of a lexeme a token writes."),
+        Literal["start", "end"] | None, Field(description="At the start or the end of the word.")
     ] = None
-    before: Annotated[UnicodeSetPattern | None, Field(description="Before one of these.")] = None
-    after: Annotated[UnicodeSetPattern | None, Field(description="After one of these.")] = None
+    before: Annotated[
+        UnicodeSetPattern | None,
+        Field(description="The letter right after it is one of these (never at the word's end)."),
+    ] = None
+    after: Annotated[
+        UnicodeSetPattern | None,
+        Field(
+            description="The letter right before it is one of these (never at the word's start)."
+        ),
+    ] = None
+
+
+class SoundFromSpelling(BaseModel):
+    """
+    Where a word's sound comes from, for the sound question of grading and the spelling cards (ADR 0148). spelling: what the profile's correspondences read off its spelling. reading: its token's pinned reading in `scheme`, related to the spelling by that scheme's statement. Absent: the sound question is never asked for this orthography.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    from_: Annotated[Literal["spelling"], Field(alias="from")]
+    ignores: Annotated[
+        UnicodeSetPattern | None,
+        Field(
+            description="Marks the sound reading leaves aside (fa's vowel marks: the unmarked spelling is the usual one)."
+        ),
+    ] = None
+
+
+class SoundFromReading(BaseModel):
+    """
+    Where a word's sound comes from, for the sound question of grading and the spelling cards (ADR 0148). spelling: what the profile's correspondences read off its spelling. reading: its token's pinned reading in `scheme`, related to the spelling by that scheme's statement. Absent: the sound question is never asked for this orthography.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    from_: Annotated[Literal["reading"], Field(alias="from")]
+    scheme: Annotated[
+        SchemeId, Field(description="The scheme whose pinned readings are the sound.")
+    ]
+    ignores: Annotated[
+        UnicodeSetPattern | None, Field(description="Marks the sound reading leaves aside.")
+    ] = None
+
+
+type SoundSource = Annotated[
+    SoundFromSpelling | SoundFromReading,
+    Field(
+        description="Where a word's sound comes from, for the sound question of grading and the spelling cards (ADR 0148). spelling: what the profile's correspondences read off its spelling. reading: its token's pinned reading in `scheme`, related to the spelling by that scheme's statement. Absent: the sound question is never asked for this orthography.",
+        title="SoundSource",
+    ),
+]
+
+
+type Vowel = Annotated[str, Field(min_length=1)]
+
+
+type WeakItem = Annotated[str, Field(min_length=1)]
+
+
+class When(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    ends: Annotated[
+        UnicodeSetPattern, Field(description="The written word's last letter is one of these.")
+    ]
+
+
+class DefaultItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    when: When | None = None
+    on: Literal["last", "penult"]
+
+
+class Stress(BaseModel):
+    """
+    Where a mark writes stress and a rule places it otherwise (es): the stress is made explicit before a spelling is compared, so esta and está say different things and háblo says hablo. Only meaningful with `sound: {from: spelling}`.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    mark: Annotated[
+        str,
+        Field(
+            description="The combining mark that writes stress (U+0301).",
+            max_length=1,
+            min_length=1,
+        ),
+    ]
+    vowels: Annotated[
+        list[Vowel], Field(description="The `says` values that are syllable nuclei.", min_length=1)
+    ]
+    weak: Annotated[
+        list[WeakItem] | None,
+        Field(
+            description="The vowels that join a neighbouring vowel in one syllable unless they carry the mark (i, u)."
+        ),
+    ] = None
+    default: Annotated[
+        list[DefaultItem],
+        Field(
+            description="Where an unmarked word of two syllables or more is stressed: the first rule whose `when` holds.",
+            min_length=1,
+        ),
+    ]
+    note: Annotated[
+        NoteId | None,
+        Field(description="The feedback note for a spelling that differs by the stress mark."),
+    ] = None
 
 
 class FormCondition(BaseModel):
@@ -3521,6 +3682,28 @@ class BundleFile(BaseModel):
         int,
         Field(description="Size in bytes, to say what a download costs before it starts.", ge=0),
     ]
+
+
+class ReadingItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    orthography: OrthographyId
+    scheme: SchemeId
+
+
+class Leftovers(BaseModel):
+    """
+    What no stated correspondence gives of this lexeme (ADR 0148): the orthographies in which a fixed correspondence could have spelled it otherwise (`spelling`); the schemes in which its letters leave its reading open (`reading`). Absent: none.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    spelling: Annotated[list[OrthographyId] | None, Field(min_length=1)] = None
+    reading: Annotated[list[ReadingItem] | None, Field(min_length=1)] = None
 
 
 class BundleTag1(BaseModel):
@@ -4219,7 +4402,7 @@ class OutcomeRevised(BaseModel):
     ]
     tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
     answer: Annotated[Uuid, Field(description="The id of the answer_submitted event this revises.")]
-    outcome: Outcome
+    outcome: Outcome1
     by: Annotated[
         Literal["judge", "review"],
         Field(
@@ -5154,9 +5337,9 @@ class Contrast(BaseModel):
     ] = None
 
 
-class Correspondence(BaseModel):
+class CorrespondenceModel(BaseModel):
     """
-    One correspondence between a language's lexical form and a way of writing it (ADR 0148: the projections are rules, and the profile states them). It says both directions at once: what is written for a piece of the lexical form, and what reading back cannot recover. Whatever the stated correspondences do not give is per lexeme: a leftover to learn, or a pinned spelling to review.
+    One correspondence between a sound and the ways an orthography writes it (ADR 0148: the projections are rules, and the profile states them). In a profile it is read forwards: at each place of a spelling the longest `written` whose `when` holds wins, the earlier correspondence on a tie (state a narrower context before a wider one). In a reading scheme with `of` it relates a piece of the reading to the spelling of that orthography. Whatever the stated correspondences do not give is per lexeme: a leftover to learn, or a pinned spelling to review. A correspondence may not say nothing and be written only as nothing (`says: ""` with `written: [""]`): @nabu/core refuses to compile it.
     """
 
     model_config = ConfigDict(
@@ -5166,14 +5349,13 @@ class Correspondence(BaseModel):
     says: Annotated[
         str,
         Field(
-            description="The piece of the lexical form, in its language's notation (docs/lexical-forms/<lang>.md): a letter, a sign, a letter with its sign.",
-            min_length=1,
+            description="A sound in the profile's own notation, or a piece of the reading in the scheme's: only ever compared for equality. An empty string: written and not said (Spanish h)."
         ),
     ]
     written: Annotated[
         list[str],
         Field(
-            description="How it is written here, the spelling a projection writes first. An empty string: it is not written.",
+            description="The ways it is written. An empty string: not written (said and not written), meaningful only in a scheme's relation; a profile's reading skips it.",
             min_length=1,
         ),
     ]
@@ -5187,7 +5369,7 @@ class Correspondence(BaseModel):
     loses: Annotated[
         list[Lose] | None,
         Field(
-            description="The other pieces of the lexical form written the same way here, which reading back cannot tell from `says` (Arabizi s: sin and sad).",
+            description="The other pieces written the same way, which reading back cannot tell from `says`: a set a reading card may trade within (Pinyin's ā among á, ǎ, à). Used by schemes; a profile's reading ignores it.",
             min_length=1,
         ),
     ] = None
@@ -5307,11 +5489,16 @@ class ReadingScheme(BaseModel):
             description="Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use."
         ),
     ] = None
-    correspondences: Annotated[
-        list[Correspondence] | None,
+    of: Annotated[
+        OrthographyId | None,
         Field(
-            description="What this scheme writes of the lexical form, and what it loses (ADR 0148). It replaces `variants` at the switch (docs/migration-design.md); until then nothing reads it.",
-            min_length=1,
+            description="The orthography whose spellings this scheme's correspondences relate its readings to (ADR 0148): Schluessel's transliteration of chg-Arab/standard. A scheme without one lists a reading per sign (characters, logographs): its correspondences, if any, only state sets a reading card may trade within (`loses`)."
+        ),
+    ] = None
+    correspondences: Annotated[
+        list[CorrespondenceModel] | None,
+        Field(
+            description='What the orthography `of` writes of this scheme\'s readings, and what it loses (ADR 0148): `says` a piece of the reading, `written` how the orthography writes it ("": not written), `loses` the pieces a reading card may trade it for. Nothing is implied: a piece no correspondence names is not accounted for. Read by @nabu/core (`project`); `variants` goes when the cards read it (docs/migration-design.md, stages 5 and 6).'
         ),
     ] = None
 
@@ -5941,6 +6128,12 @@ class BundleLexeme(BaseModel):
     image: Annotated[
         str | None, Field(description="Bundle path of its picture (a file with role image).")
     ] = None
+    leftovers: Annotated[
+        Leftovers | None,
+        Field(
+            description="What no stated correspondence gives of this lexeme (ADR 0148): the orthographies in which a fixed correspondence could have spelled it otherwise (`spelling`); the schemes in which its letters leave its reading open (`reading`). Absent: none."
+        ),
+    ] = None
 
 
 class BundleLabel(BaseModel):
@@ -6296,12 +6489,13 @@ class OrthographyProfile(BaseModel):
     transliterate: Transliteration | None = None
     speech: SpeechSetup | None = None
     correspondences: Annotated[
-        list[Correspondence] | None,
+        list[CorrespondenceModel] | None,
         Field(
-            description="What this orthography writes of the lexical form, and what it loses (ADR 0148): one statement for reading and writing. It replaces `soundAlike` at the switch (docs/migration-design.md); until then nothing reads it.",
-            min_length=1,
+            description="What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`); `soundAlike` goes when grading reads it (docs/migration-design.md, stages 5 and 6)."
         ),
     ] = None
+    sound: SoundSource | None = None
+    stress: Stress | None = None
 
 
 class BundleLexicon(BaseModel):

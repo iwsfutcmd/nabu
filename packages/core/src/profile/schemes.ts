@@ -8,6 +8,7 @@
  */
 import type { ReadingScheme, TaggedText } from "@nabu/schema";
 import data from "@nabu/schema/schemes" with { type: "json" };
+import { compileReadingProjection, type ReadingProjection } from "../project/reading.ts";
 
 const SCHEMES: ReadonlyMap<string, ReadingScheme> = new Map((data as unknown as readonly ReadingScheme[]).map((s) => [s.id, s]));
 
@@ -25,4 +26,21 @@ export const readingSchemes = (): readonly ReadingScheme[] => [...SCHEMES.values
 export const readingTag = (id: string): Pick<TaggedText, "lang" | "orthography"> | undefined => {
   const scheme = SCHEMES.get(id);
   return scheme?.answer === undefined || scheme.lang === undefined ? undefined : { lang: scheme.lang, orthography: scheme.answer };
+};
+
+const projections = new Map<string, ReadingProjection>();
+
+/**
+ * A scheme's statement of what the script it annotates writes of its readings (ADR 0148), compiled
+ * once, on first use; undefined for an unknown scheme. A scheme that states nothing has no open pieces.
+ */
+export const readingProjection = (id: string): ReadingProjection | undefined => {
+  let p = projections.get(id);
+  if (p === undefined) {
+    const scheme = SCHEMES.get(id);
+    if (scheme === undefined) return undefined;
+    p = compileReadingProjection(scheme);
+    projections.set(id, p);
+  }
+  return p;
 };

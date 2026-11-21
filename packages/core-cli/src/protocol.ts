@@ -6,7 +6,7 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type WordForm } from "@nabu/core";
+import { caseFold, checkTaggedText, readingProjection, type ReadingProjection, type SpellingProjection, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type WordForm } from "@nabu/core";
 import { TONE_SYSTEMS } from "@nabu/core/speech";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import { formKey, parseFormKey } from "@nabu/core/lesson";
@@ -63,6 +63,31 @@ const wordForm = (given: unknown): WordForm => {
     ...(typeof form["pos"] === "string" && { pos: form["pos"] }),
     feats: Object.fromEntries(Object.entries(feats).map(([name, value]) => [name, String(value)])),
   };
+};
+
+/** A profile's writing side (ADR 0148): only where its sound is read off its spelling. */
+const spellingProjection = (args: Args): SpellingProjection => {
+  const p = profile(args);
+  const projection = p.projection;
+  if (projection === undefined) throw new Error(`${p.id} states no sound`);
+  if (projection.from !== "spelling") throw new Error(`${p.id} reads its sound from the scheme ${projection.scheme}`);
+  return projection;
+};
+
+/** A scheme's statement (ADR 0148). */
+const schemeProjection = (args: Args): ReadingProjection => {
+  const id = String(args["scheme"]);
+  const projection = readingProjection(id);
+  if (projection === undefined) throw new Error(`unknown scheme "${id}"`);
+  return projection;
+};
+
+/** An optional string argument. */
+const optionalText = (args: Args, key: string): string | undefined => {
+  const value = args[key];
+  if (value === undefined || value === null) return undefined;
+  if (typeof value !== "string") throw new Error(`"${key}" must be a string`);
+  return value;
 };
 
 const text = (args: Args, key = "text"): string => {
@@ -139,6 +164,18 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
   "form-key": (a) => ({ key: formKey(a["token"] as Token) ?? null }),
   "parse-form-key": (a) => parseFormKey(text(a, "key")),
   "unicode-set": (a) => parseExemplarSet(text(a, "set")),
+  /** What a word's spelling says, site by site, with its syllables and stress where the profile states them (ADR 0148). */
+  "sound-read": (a) => spellingProjection(a).read(text(a)),
+  /** Two spellings compared by what they say, and where they differ. */
+  "sound-compare": (a) => spellingProjection(a).compare(text(a, "expected"), text(a, "typed")),
+  /** A word's other spellings of its sound, one place traded for another fixed way of writing it. */
+  "sound-spellings": (a) => spellingProjection(a).spellings(text(a)),
+  /** Whether the scheme's statement relates a reading to a spelling: the sites of one path, or null. */
+  "reading-spells": (a) => schemeProjection(a).spells(text(a, "reading"), text(a, "spelling")) ?? null,
+  /** The places of a reading the script leaves open, each with the reading changed there in every way. */
+  "reading-variants": (a) => schemeProjection(a).variants(text(a, "reading"), optionalText(a, "spelling")),
+  /** A reading as minimal ruby: only its open pieces (ADR 0141). */
+  "reading-open": (a) => schemeProjection(a).open(text(a, "reading"), optionalText(a, "spelling")),
 };
 
 export const handleRequest = (request: Args): Response => {

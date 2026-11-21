@@ -37,6 +37,21 @@ match:
   soundAlike:
     sets: [[س, ص, ث], [ز, ذ, ض, ظ], [ت, ط], [ه, ح], [ء, ع], [ق, غ]]
     note: sound-alike
+# REVIEW: what the spelling writes of the sound, and what it loses (ADR 0148; profiles/README.md, "The sound
+# statement"): the sets above, as fixed correspondences (the norm spells each word with one of them, so which is a
+# word's own to learn). Read by @nabu/core; `soundAlike` stays until grading and the spelling cards read this. The
+# vowel marks are left aside: a word unmarked says what it says marked, and the unmarked spelling is the usual one.
+# The `says` values are only compared with one another (ʔ the glottal stop, ɢ the one sound of ق and غ).
+# Not stated yet: the silent و of خواهر and خواب (خو before ا), which writing loses too; stating it would make
+# خاهر a spelling of خواهر's sound, for a reviewer to decide.
+sound: { from: spelling, ignores: "[\u064B-\u0652\u0670]" }
+correspondences:
+  - { says: s, written: [س, ص, ث], kind: fixed, note: sound-alike }
+  - { says: z, written: [ز, ذ, ض, ظ], kind: fixed, note: sound-alike }
+  - { says: t, written: [ت, ط], kind: fixed, note: sound-alike }
+  - { says: h, written: [ه, ح], kind: fixed, note: sound-alike }
+  - { says: ʔ, written: [ء, ع], kind: fixed, note: sound-alike }
+  - { says: ɢ, written: [ق, غ], kind: fixed, note: sound-alike }
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: on-for-new-words }
 input:

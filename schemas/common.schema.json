@@ -218,9 +218,9 @@
       "enum": ["recognize", "produce", "listen", "speak", "read-script", "write-script", "choose", "read-off"]
     },
     "MissLabel": {
-      "description": "What a miss is (ADR 0148). A miss may carry several, each from one question: is the sound right (orthographic, phonemic), whose form is it (grammatical, regularised, lexical, scope), how did it happen (slip).",
+      "description": "What a miss is (ADR 0148). A miss may carry several, each from one question: is the sound right (orthographic, phonemic), whose form is it (grammatical, regularised, lexical, scope), how did it happen (slip), and, of a sentence, are its words an accepted answer's in another order (order).",
       "type": "string",
-      "enum": ["slip", "orthographic", "phonemic", "grammatical", "regularised", "lexical", "scope"]
+      "enum": ["slip", "orthographic", "phonemic", "grammatical", "regularised", "lexical", "scope", "order"]
     },
     "Question": {
       "description": "The one thing a choice asks (ADR 0132, 0147): which lexeme, which form of the answer's lexeme, or which use (a contrast only the passage decides). Replaces `Asks`, whose first value called a lexeme a word.",
